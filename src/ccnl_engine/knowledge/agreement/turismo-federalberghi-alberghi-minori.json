@@ -658,9 +658,9 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T14:00:00Z",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
           "verified_by": "gpt-6-sol",
-          "verified_at": "2026-11-08T14:00:00Z",
+          "verified_at": "2026-11-08T09:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-gpt-turismo-federalberghi-alberghi-minori-guarantee-element-2027"
         }
@@ -2960,7 +2960,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "080c7e9046a288f135169b5e8f49cda31e706e734ee844b6f61f771a66c09b51",
+    "source_hash": "5f2b822d94e24d8485e909d6c01645ab44d4ee093332c40dccd299b3a9e8d19d",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },

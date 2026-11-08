@@ -530,10 +530,10 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T21:00:00Z",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
           "effective_from": "2027-11-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-08T21:00:00Z",
+          "verified_at": "2026-11-08T09:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-gpt-pubblici-esercizi-fipe-angem-ristorazione-collettiva-guarantee-premium-2027"
         }
@@ -2693,7 +2693,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "1c11b8a51f62d21641ac83d53b4c00d49102fb619b01f291c673128a7c1ba11e",
+    "source_hash": "4bdb3cb0819d646715f2fbea88403b132d1651db75a76c26773fd9e979ec3d89",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

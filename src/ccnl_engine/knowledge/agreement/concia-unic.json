@@ -7,7 +7,7 @@
     "effective_until": null,
     "published_at": "2026-09-11",
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-    "source_hash": "68ae2c8d9f67bf35a6c7cf662ea878725bc706987546245b4c7f5174eb2c542e",
+    "source_hash": "9ec36f108199ae6bd74105ef36e53408d205ee0bc67a0fbab218f56fdb6a68b2",
     "verification_status": "verified",
     "source_type": "contracting_party"
   },
@@ -3487,10 +3487,10 @@
             "extraction": {
               "method": "ai",
               "model": "gpt-6-sol",
-              "extraction_timestamp": "2026-11-08T11:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": null,
               "verified_by": "gpt-6-sol",
-              "verified_at": "2026-11-08T11:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-08-gpt-concia-unic-data-fixes"
             }

@@ -761,12 +761,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               }
@@ -791,12 +791,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -827,12 +827,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -857,12 +857,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         },
@@ -893,12 +893,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -923,12 +923,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         }
@@ -1089,12 +1089,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               }
@@ -1119,12 +1119,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -1155,12 +1155,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -1185,12 +1185,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         },
@@ -1221,12 +1221,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -1251,12 +1251,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         }
@@ -1417,12 +1417,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               }
@@ -1447,12 +1447,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -1483,12 +1483,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -1513,12 +1513,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         },
@@ -1549,12 +1549,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -1579,12 +1579,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         }
@@ -1746,12 +1746,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               }
@@ -1776,12 +1776,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -1812,12 +1812,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -1842,12 +1842,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         },
@@ -1878,12 +1878,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -1908,12 +1908,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         }
@@ -2074,12 +2074,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               }
@@ -2104,12 +2104,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -2140,12 +2140,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -2170,12 +2170,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         },
@@ -2206,12 +2206,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -2236,12 +2236,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         }
@@ -2402,12 +2402,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               }
@@ -2432,12 +2432,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -2468,12 +2468,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -2498,12 +2498,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         },
@@ -2534,12 +2534,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -2564,12 +2564,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         }
@@ -2731,12 +2731,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               }
@@ -2761,12 +2761,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -2802,12 +2802,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2025-01-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               },
@@ -2833,12 +2833,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2025-09-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               },
@@ -2868,12 +2868,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2025-01-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -2904,12 +2904,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               }
@@ -2934,12 +2934,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -2970,12 +2970,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -3000,12 +3000,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         },
@@ -3036,12 +3036,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -3066,12 +3066,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         }
@@ -3233,12 +3233,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               }
@@ -3263,12 +3263,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -3299,12 +3299,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               }
@@ -3329,12 +3329,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -3365,12 +3365,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               }
@@ -3395,12 +3395,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -3431,12 +3431,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -3461,12 +3461,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         },
@@ -3497,12 +3497,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -3527,12 +3527,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         }
@@ -3693,12 +3693,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               }
@@ -3723,12 +3723,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -3759,12 +3759,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -3789,12 +3789,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         },
@@ -3825,12 +3825,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -3855,12 +3855,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         }
@@ -4022,12 +4022,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               }
@@ -4052,12 +4052,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -4088,12 +4088,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -4118,12 +4118,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         },
@@ -4154,12 +4154,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -4184,12 +4184,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         }
@@ -4351,12 +4351,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               }
@@ -4381,12 +4381,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -4417,12 +4417,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               }
@@ -4447,12 +4447,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -4483,12 +4483,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -4513,12 +4513,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         },
@@ -4549,12 +4549,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -4579,12 +4579,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         }
@@ -4917,12 +4917,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               }
@@ -4947,12 +4947,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -4983,12 +4983,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               }
@@ -5013,12 +5013,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -5049,12 +5049,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -5079,12 +5079,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         },
@@ -5115,12 +5115,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -5145,12 +5145,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         }
@@ -5483,12 +5483,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               }
@@ -5513,12 +5513,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -5549,12 +5549,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                    "review_id": "2026-11-08-ai-coop-sociali-allowances"
                   }
                 }
               }
@@ -5579,12 +5579,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T01:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+              "review_id": "2026-11-08-ai-coop-sociali-allowances"
             }
           }
         },
@@ -5615,12 +5615,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -5645,12 +5645,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         },
@@ -5681,12 +5681,12 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-02-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                    "review_id": "2026-11-08-gpt-coop-sociali-allowances"
                   }
                 }
               }
@@ -5711,12 +5711,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T02:30:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+              "review_id": "2026-11-08-gpt-coop-sociali-allowances"
             }
           }
         }
@@ -6090,7 +6090,7 @@
     "effective_until": null,
     "source": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
     "verification_status": "unverified",
-    "source_hash": "3adade8f92d9154bb8455bd3d6b7bd39a4761d2b83076fe23bbb0679e8f64039",
+    "source_hash": "470aeb1676bb6a98464482f2a3bf00878e173920561c58921aef2e74d2c4b5be",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -6576,7 +6576,7 @@
             "extraction_timestamp": "2026-11-08T03:00:00Z",
             "effective_from": null,
             "verified_by": "gpt-6-sol",
-            "verified_at": "2026-11-08T14:00:00Z",
+            "verified_at": "2026-11-08T09:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-08-gpt-cooperative-sociali-injury-top-up"
           },
@@ -6756,8 +6756,8 @@
         ]
       },
       {
-        "id": "2026-11-09-ai-coop-sociali-allowances",
-        "date": "2026-11-09",
+        "id": "2026-11-08-ai-coop-sociali-allowances",
+        "date": "2026-11-08",
         "reviewer": "claude-opus-5-5",
         "reviewer_kind": "ai",
         "scope": "Artt. 47, 57, 78 and 79 of the CCNL Cooperative sociali, testo completo 2025 (PDF pp. 78-86, 93-94, 109-110, text layer).",
@@ -6779,8 +6779,8 @@
         ]
       },
       {
-        "id": "2026-11-09-gpt-coop-sociali-allowances",
-        "date": "2026-11-09",
+        "id": "2026-11-08-gpt-coop-sociali-allowances",
+        "date": "2026-11-08",
         "reviewer": "gpt-6-sol",
         "reviewer_kind": "ai",
         "scope": "Artt. 47, 57, 78, 79 and 81 of the CCNL Cooperative sociali 2025 against the role allowances, by a separate model session.",

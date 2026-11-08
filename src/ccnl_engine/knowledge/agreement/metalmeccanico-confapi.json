@@ -87,19 +87,6 @@
   "coverage": {
     "notes": [
       {
-        "kind": "simplification",
-        "text": "Art. 32 tops up reduced sickness, maternity and injury treatment only on holidays in letters b) and c). The national calendar also includes the excluded letter a) holidays (25 April, 1 May and 2 June). A blanket sickness_rules.holiday would overpay those days, so the sickness holiday top-up is not calculated. The injury (INAIL) and local patron saint treatments are also not calculated.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "holiday_during_injury",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Support contract-scoped holiday dates before implementing the sickness and injury top-ups of art. 32(b,c)."
-        }
-      },
-      {
         "kind": "info",
         "text": "CONSOLIDATED MINIMUMS: base_salary holds the 'minimi tabellari conglobati della classificazione unica' (Art. 38 p. 112 and Art. 40 p. 113 of the CCNL of 3 July 2017), which absorb paga base, contingenza and EDR; fixed_allowances is empty for all levels."
       },
@@ -320,6 +307,19 @@
             "trigger": "outside_input"
           },
           "remediation": "Add the hourly elements of art. 38 to the hourly pay of the PAR, and source the PAR left at the end of the employment."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 32 tops up reduced sickness, maternity and injury treatment only on holidays in letters b) and c). The national calendar also includes the excluded letter a) holidays (25 April, 1 May and 2 June). A blanket sickness_rules.holiday would overpay those days, so the sickness holiday top-up is not calculated. The injury (INAIL) and local patron saint treatments are also not calculated.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "holiday_during_injury",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Support contract-scoped holiday dates before implementing the sickness and injury top-ups of art. 32(b,c)."
         }
       }
     ]
@@ -2690,10 +2690,10 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-08T17:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "1991-01-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-08T17:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-08-ai-confapi-quadri-allowance"
                   }
@@ -2721,10 +2721,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T17:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "1991-01-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T17:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-confapi-quadri-allowance"
             }
@@ -2758,10 +2758,10 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-08T17:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2017-07-03",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-08T17:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-08-ai-confapi-quadri-allowance"
                   }
@@ -2789,10 +2789,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T17:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2017-07-03",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T17:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-confapi-quadri-allowance"
             }
@@ -3053,10 +3053,10 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-08T17:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "1991-01-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-08T17:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-08-ai-confapi-quadri-allowance"
                   }
@@ -3083,10 +3083,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T17:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "1991-01-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T17:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-confapi-quadri-allowance"
             }
@@ -3298,7 +3298,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "537528581ba1e88b26fd44bc626d380e196bca7f7791b6db43563ecc3738767a",
+    "source_hash": "54397714b186ceee5bddc7fe25c6120755aa70a7c9a6f2366b8f3773900ff7ba",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4058,12 +4058,12 @@
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-08T23:00:00Z",
+            "extraction_timestamp": "2026-11-08T09:00:00Z",
             "effective_from": "2021-06-01",
             "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-08T23:00:00Z",
+            "verified_at": "2026-11-08T09:00:00Z",
             "verification_status": "verified",
-            "review_id": "2026-11-09-gpt-metalmeccanico-confapi-par-conto-ore"
+            "review_id": "2026-11-08-gpt-metalmeccanico-confapi-par-conto-ore"
           }
         },
         "permits_hourly": true
@@ -4710,29 +4710,8 @@
         ]
       },
       {
-        "id": "2026-11-08-ai-confapi-holiday-scope",
+        "id": "2026-11-08-gpt-metalmeccanico-confapi-par-conto-ore",
         "date": "2026-11-08",
-        "reviewer": "claude-opus-5-5",
-        "reviewer_kind": "ai",
-        "scope": "Art. 32(a,b,c) and holiday-in-absence paragraph, cached PDF pp. 104-105.",
-        "outcome": "confirmed",
-        "sources": [
-          {
-            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
-            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
-          }
-        ],
-        "findings": [
-          "Art. 32 excludes letter a) (25 April, 1 May and 2 June); the national calendar includes these, so a blanket sickness holiday rule would overpay. Injury and patron saint also remain unmodelled."
-        ],
-        "independence": "same_process",
-        "checked": [
-          "coverage.notes.holiday_during_injury"
-        ]
-      },
-      {
-        "id": "2026-11-09-gpt-metalmeccanico-confapi-par-conto-ore",
-        "date": "2026-11-09",
         "reviewer": "gpt-6-sol",
         "reviewer_kind": "ai",
         "scope": "The conto ore of the PAR not taken, the hourly pay of art. 38 and the leave settlement code path, by a separate model session in two rounds.",
@@ -4751,6 +4730,27 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.leave_rules.permit_deadline"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-confapi-holiday-scope",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 32(a,b,c) and holiday-in-absence paragraph, cached PDF pp. 104-105.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          }
+        ],
+        "findings": [
+          "Art. 32 excludes letter a) (25 April, 1 May and 2 June); the national calendar includes these, so a blanket sickness holiday rule would overpay. Injury and patron saint also remain unmodelled."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "coverage.notes.holiday_during_injury"
         ]
       }
     ],

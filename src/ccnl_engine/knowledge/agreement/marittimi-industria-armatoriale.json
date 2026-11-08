@@ -230,8 +230,8 @@
         ]
       },
       {
-        "id": "2026-11-09-gpt-marittimi-level-superminimi",
-        "date": "2026-11-09",
+        "id": "2026-11-08-gpt-marittimi-level-superminimi",
+        "date": "2026-11-08",
         "reviewer": "gpt-6-sol",
         "reviewer_kind": "ai",
         "scope": "Allegato 1 nn. 2-5 (PDF p. 32) against the encoding of the superminimi by years in the level, by a separate model session.",
@@ -888,10 +888,10 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-08T22:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-07-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-08T22:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-08-ai-marittimi-level-superminimi"
                   }
@@ -919,10 +919,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T22:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-07-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T22:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-marittimi-level-superminimi"
             }
@@ -1193,10 +1193,10 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-08T22:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-07-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-08T22:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-08-ai-marittimi-level-superminimi"
                   }
@@ -1224,10 +1224,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T22:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-07-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T22:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-marittimi-level-superminimi"
             }
@@ -1262,10 +1262,10 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-08T22:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-07-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-08T22:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-08-ai-marittimi-level-superminimi"
                   }
@@ -1293,10 +1293,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T22:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-07-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T22:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-marittimi-level-superminimi"
             }
@@ -1567,10 +1567,10 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-08T22:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-07-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-08T22:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-08-ai-marittimi-level-superminimi"
                   }
@@ -1598,10 +1598,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T22:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-07-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T22:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-marittimi-level-superminimi"
             }
@@ -2665,7 +2665,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "0fb9dc5a71776b02b8975a84e2f36d05299300f5d4ca086b047286dba3c8430e",
+    "source_hash": "6b71135870dd1765ccea368bebb751df37db575476c5bc853e3b3fc704cf3506",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

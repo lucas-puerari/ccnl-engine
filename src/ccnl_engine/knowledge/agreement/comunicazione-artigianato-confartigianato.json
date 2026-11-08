@@ -406,10 +406,10 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T13:00:00Z",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
           "effective_from": "2023-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-08T13:00:00Z",
+          "verified_at": "2026-11-08T09:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-comunicazione-artigianato-confartigianato-fsba"
         }
@@ -1687,10 +1687,10 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T15:00:00Z",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
           "effective_from": "2024-11-18",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-08T15:00:00Z",
+          "verified_at": "2026-11-08T09:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-comunicazione-artigianato-apprenticeship"
         }
@@ -1748,10 +1748,10 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T15:00:00Z",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
           "effective_from": "2024-11-18",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-08T15:00:00Z",
+          "verified_at": "2026-11-08T09:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-comunicazione-artigianato-apprenticeship"
         }
@@ -1798,10 +1798,10 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T15:00:00Z",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
           "effective_from": "2024-11-18",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-08T15:00:00Z",
+          "verified_at": "2026-11-08T09:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-comunicazione-artigianato-apprenticeship"
         }
@@ -1853,10 +1853,10 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T15:00:00Z",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
           "effective_from": "2024-11-18",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-08T15:00:00Z",
+          "verified_at": "2026-11-08T09:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-comunicazione-artigianato-apprenticeship"
         }
@@ -1908,10 +1908,10 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T15:00:00Z",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
           "effective_from": "2024-11-18",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-08T15:00:00Z",
+          "verified_at": "2026-11-08T09:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-comunicazione-artigianato-apprenticeship"
         }
@@ -1964,10 +1964,10 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T15:00:00Z",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
           "effective_from": "2024-11-18",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-08T15:00:00Z",
+          "verified_at": "2026-11-08T09:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-comunicazione-artigianato-apprenticeship"
         }
@@ -2020,10 +2020,10 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T15:00:00Z",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
           "effective_from": "2024-11-18",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-08T15:00:00Z",
+          "verified_at": "2026-11-08T09:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-comunicazione-artigianato-apprenticeship"
         }
@@ -2075,10 +2075,10 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T15:00:00Z",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
           "effective_from": "2024-11-18",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-08T15:00:00Z",
+          "verified_at": "2026-11-08T09:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-comunicazione-artigianato-apprenticeship"
         }
@@ -2092,7 +2092,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "c22929a0433f3d7fb49435b99e43a6b6c2d80720b624475b47e439477ea9a223",
+    "source_hash": "6a0ea820bbe70c0afd4f9b796b6fc7936bd3cf7409617477f257b2f9e097655d",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
