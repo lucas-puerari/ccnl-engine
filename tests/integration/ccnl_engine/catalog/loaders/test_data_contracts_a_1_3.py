@@ -129,10 +129,10 @@ class TestLoadMultiserviziAnip:
         assert lvl.base_salary.value_at(date(2021, 7, 1)) == Decimal("821.08")
 
     def test_multiservizi_anip_level4_salary_tranche2(self) -> None:
-        """Level 4 paga base at May 2026 tranche (2025-2028 renewal) = 1003.10."""
+        """Level 4 stays on the signed July 2025 tranche in May 2026."""
         ccnl = load_ccnl("multiservizi-anip")
         lvl = next(lv for lv in ccnl.levels if lv.code == "4")
-        assert lvl.base_salary.value_at(date(2026, 5, 1)) == Decimal("1003.10")
+        assert lvl.base_salary.value_at(date(2026, 5, 1)) == Decimal("915.03")
 
     def test_multiservizi_anip_level_ordering(self) -> None:
         """Level 1 must be lowest order; Q must be highest order."""

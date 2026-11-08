@@ -68,7 +68,7 @@
     "notes": [
       {
         "kind": "info",
-        "text": "Salary model: SPLIT. The tabellare is a time series; contingenza and EDR are frozen fixed_allowances. Tranches of July 2021 to July 2024: art. 73 tables of the renewal of 8 June 2021 (CNEL 139292, pp. 32-34, signed by ANIP). Tranches from July 2025: tables of 6 August 2025 (CNEL 234752), not signed by ANIP (see anip_unsigned_renewal). No table prints the tabellare of 2par115 and 4par125 after April 2013: it is the April 2013 amount (CNEL 105782 pp. 30-31) plus the parametric increments."
+        "text": "Salary model: SPLIT. The tabellare is a time series; contingenza and EDR are frozen fixed_allowances. Tranches of July 2021 to July 2024: art. 73 tables of the renewal of 8 June 2021 (CNEL 139292, pp. 32-34, signed by ANIP). From July 2025: the ANIP-signed fifth tranche of CNEL 139292 p. 34. Later unsigned tables of 6 August 2025 (CNEL 234752) are excluded (see anip_unsigned_renewal). No table prints the tabellare of 2par115 and 4par125 after April 2013: it is the April 2013 amount (CNEL 105782 pp. 30-31) plus the parametric increments."
       },
       {
         "kind": "info",
@@ -96,7 +96,7 @@
       },
       {
         "kind": "info",
-        "text": "July 2025 values: the renewal of 8 June 2021 (CNEL 139292, signed by ANIP) sets a fifth tranche from 1 July 2025 (level 2 +10.00, tabellare 779.21, p. 34), provisional under the art. 73 consuntivo. The renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025 (CNEL 234752) raise level 2 to 819.21 from the same date, but ANIP signed neither. The file carries the 2025 renewal from July 2025, so for an ANIP member the operative amount is the 2021 tranche, not the file's (see anip_unsigned_renewal). No ANIP amount for the art. 73 consuntivo or the IPCA increments of art. 73-bis and 73-ter was found."
+        "text": "July 2025 values: the renewal of 8 June 2021 (CNEL 139292, signed by ANIP) sets a fifth tranche from 1 July 2025 (level 2 +10.00, tabellare 779.21, p. 34), provisional under the art. 73 consuntivo. The renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025 (CNEL 234752) raise level 2 to 819.21 from the same date, but ANIP signed neither. The file applies the ANIP-signed 2021 fifth tranche from July 2025 and excludes the later unsigned tranches (see anip_unsigned_renewal). No ANIP amount for the art. 73 consuntivo or the IPCA increments of art. 73-bis and 73-ter was found."
       },
       {
         "kind": "info",
@@ -112,16 +112,16 @@
       },
       {
         "kind": "simplification",
-        "text": "UNSIGNED RENEWAL: the salary periods from 1 July 2025 come from the renewal of 13 June 2025 and its tables of 6 August 2025 (CNEL K511, deposits 234754 and 234752), signed by AGCI, Confcooperative, Legacoop and Confapi but not by ANIP. For an ANIP member the last signed amount is the fifth tranche of July 2025 of the 2021 renewal (deposit 139292, p. 34, level 2 779.21 against 819.21 here); no ANIP amount after it was found. Runs from July 2025 may overpay an ANIP employer's workers.",
+        "text": "LATER UNSIGNED TRANCHES: the May 2026 and later minima of the renewal of 13 June 2025 (CNEL K511, deposits 234754 and 234752) were not signed by ANIP and are excluded. The signed July 2025 fifth tranche of the 2021 renewal (CNEL 139292 p. 34) is applied; no subsequent ANIP minimum or actual IPCA adjustment has been verified.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "anip_unsigned_renewal",
           "applies_when": {
             "trigger": "run",
-            "effective_from": "2025-07-01"
+            "effective_from": "2026-05-01"
           },
-          "remediation": "Use the 2021 renewal values for ANIP members, or the 2025 renewal once ANIP signs or joins it."
+          "remediation": "Source an ANIP-signed later minimum or verified IPCA adjustment before adding subsequent tranches."
         }
       },
       {
@@ -144,15 +144,30 @@
       },
       {
         "kind": "simplification",
-        "text": "SIGNATORIES: the minimums from 1 July 2025 are those of the renewal of 13 June 2025 and of its integrative agreement of 6 August 2025 (CNEL 234754, 234752), signed by AGCI Servizi, Confcooperative Lavoro e Servizi, Legacoop Produzione e Servizi, Unionservizi Confapi and the three unions, not by ANIP-Confindustria. The last tables ANIP signed are those of the 8 June 2021 renewal (CNEL 139292: fifth tranche July 2025, level 2 779.21), with the IPCA consuntivo of art. 73 and arts. 73-bis/ter. The 2025 tables are kept because the sector applies them; whether an ANIP member must pay them is not established.",
+        "text": "SIGNATORIES: ANIP is not among the original signatories of the 13 June 2025 renewal and the 6 August 2025 tables (CNEL 234754, 234752); a later ANIP accession or a separate ANIP agreement was not found but is not excluded. From July 2025 the file applies the ANIP-signed fifth tranche of the 8 June 2021 renewal (CNEL 139292 p. 34); with an accession the 2025 renewal minima (level 2 819.21 from July 2025) would apply instead.",
         "capability": "base_salary",
-        "monetary_impact": "unknown",
+        "monetary_impact": "yes",
         "limitation": {
           "variant": "renewal_not_signed_by_anip",
           "applies_when": {
-            "trigger": "run"
+            "trigger": "run",
+            "effective_from": "2025-07-01"
           },
-          "remediation": "Source an ANIP accession to the 2025 renewal, or an ANIP agreement with its own tables, and remove this note or replace the 2025 tables."
+          "remediation": "Source an ANIP accession or an ANIP-signed later agreement before adding later minima."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "IPCA CONSUNTIVO: CNEL 139292 p. 34 makes the July 2025 table provisional, subject to the 2021-2024 IPCA consuntivo of June 2025 (and pp. 35-36 provide the 2025-2026 IPCA mechanism). No consuntivo adjustment has been found, so the printed provisional amounts are paid from July 2025.",
+        "capability": "base_salary",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "anip_ipca_consuntivo",
+          "applies_when": {
+            "trigger": "run",
+            "effective_from": "2025-07-01"
+          },
+          "remediation": "Source the IPCA consuntivo of June 2025 and any later IPCA adjustment for ANIP and adjust the July 2025 minima."
         }
       }
     ]
@@ -311,43 +326,8 @@
             },
             {
               "valid_from": "2025-07-01",
-              "valid_until": "2026-05-01",
-              "value": "83.24"
-            },
-            {
-              "valid_from": "2026-05-01",
-              "valid_until": "2026-10-01",
-              "value": "86.05"
-            },
-            {
-              "valid_from": "2026-10-01",
-              "valid_until": "2027-05-01",
-              "value": "88.86"
-            },
-            {
-              "valid_from": "2027-05-01",
-              "valid_until": "2027-12-01",
-              "value": "91.26"
-            },
-            {
-              "valid_from": "2027-12-01",
-              "valid_until": "2028-07-01",
-              "value": "92.87"
-            },
-            {
-              "valid_from": "2028-07-01",
-              "valid_until": "2028-10-01",
-              "value": "94.88"
-            },
-            {
-              "valid_from": "2028-10-01",
-              "valid_until": "2029-03-01",
-              "value": "96.48"
-            },
-            {
-              "valid_from": "2029-03-01",
               "valid_until": null,
-              "value": "97.29"
+              "value": "80.03"
             }
           ]
         },
@@ -375,43 +355,8 @@
             },
             {
               "valid_from": "2025-07-01",
-              "valid_until": "2026-05-01",
-              "value": "99.21"
-            },
-            {
-              "valid_from": "2026-05-01",
-              "valid_until": "2026-10-01",
-              "value": "102.70"
-            },
-            {
-              "valid_from": "2026-10-01",
-              "valid_until": "2027-05-01",
-              "value": "106.19"
-            },
-            {
-              "valid_from": "2027-05-01",
-              "valid_until": "2027-12-01",
-              "value": "109.18"
-            },
-            {
-              "valid_from": "2027-12-01",
-              "valid_until": "2028-07-01",
-              "value": "111.18"
-            },
-            {
-              "valid_from": "2028-07-01",
-              "valid_until": "2028-10-01",
-              "value": "113.67"
-            },
-            {
-              "valid_from": "2028-10-01",
-              "valid_until": "2029-03-01",
-              "value": "115.67"
-            },
-            {
-              "valid_from": "2029-03-01",
               "valid_until": null,
-              "value": "116.67"
+              "value": "95.22"
             }
           ]
         },
@@ -439,43 +384,8 @@
             },
             {
               "valid_from": "2025-07-01",
-              "valid_until": "2026-05-01",
-              "value": "111.89"
-            },
-            {
-              "valid_from": "2026-05-01",
-              "valid_until": "2026-10-01",
-              "value": "115.92"
-            },
-            {
-              "valid_from": "2026-10-01",
-              "valid_until": "2027-05-01",
-              "value": "119.96"
-            },
-            {
-              "valid_from": "2027-05-01",
-              "valid_until": "2027-12-01",
-              "value": "123.42"
-            },
-            {
-              "valid_from": "2027-12-01",
-              "valid_until": "2028-07-01",
-              "value": "125.72"
-            },
-            {
-              "valid_from": "2028-07-01",
-              "valid_until": "2028-10-01",
-              "value": "128.60"
-            },
-            {
-              "valid_from": "2028-10-01",
-              "valid_until": "2029-03-01",
-              "value": "130.91"
-            },
-            {
-              "valid_from": "2029-03-01",
               "valid_until": null,
-              "value": "132.06"
+              "value": "107.28"
             }
           ]
         },
@@ -503,43 +413,8 @@
             },
             {
               "valid_from": "2025-07-01",
-              "valid_until": "2026-05-01",
-              "value": "120.81"
-            },
-            {
-              "valid_from": "2026-05-01",
-              "valid_until": "2026-10-01",
-              "value": "125.23"
-            },
-            {
-              "valid_from": "2026-10-01",
-              "valid_until": "2027-05-01",
-              "value": "129.64"
-            },
-            {
-              "valid_from": "2027-05-01",
-              "valid_until": "2027-12-01",
-              "value": "133.43"
-            },
-            {
-              "valid_from": "2027-12-01",
-              "valid_until": "2028-07-01",
-              "value": "135.95"
-            },
-            {
-              "valid_from": "2028-07-01",
-              "valid_until": "2028-10-01",
-              "value": "139.11"
-            },
-            {
-              "valid_from": "2028-10-01",
-              "valid_until": "2029-03-01",
-              "value": "141.63"
-            },
-            {
-              "valid_from": "2029-03-01",
               "valid_until": null,
-              "value": "142.89"
+              "value": "115.77"
             }
           ]
         }
@@ -575,8 +450,8 @@
           "section": "Art. 22 Scatti biennali per gli impiegati e anzianità forfettaria di settore per gli operai (table p. 90)",
           "quote": "maggiorazione del 6,25% calcolata sulla retribuzione tabellare"
         },
-        "transformation": "Scatti of levels 5, 6, 7, Q for 2021-2024: 6.25% x (tabellare of the CNEL 139292 tables pp. 32-34 + contingenza at 1/8/1983 279.60).",
-        "note": "Cadence 24 months, at most 8 scatti, forfettaria not paid in the first four years and its amounts (CNEL 105782 p. 90) match. The scatti from July 2025 are those of the renewal not signed by ANIP (CNEL 234752 p. 4); the ANIP amounts of July 2025 are Q 115.77, 7 107.28, 6 95.22, 5 80.03. Art. 22 gives scatti to impiegati of levels 2-7 and Q and the forfettaria to operai of levels 1-6, priced at maturation and capped at 50% of tabellare + 279.60: declared in multiservizi_unmodelled_rules.",
+        "transformation": "Scatti of levels 5, 6, 7, Q for 2021-2025: 6.25% x (tabellare of the CNEL 139292 tables pp. 32-34 + contingenza at 1/8/1983 279.60).",
+        "note": "Cadence 24 months, at most 8 scatti, forfettaria not paid in the first four years and its amounts (CNEL 105782 p. 90) match. The July 2025 scatti are derived from the ANIP-signed tabellare (CNEL 139292 p. 34) and the 279.60 reference: Q 115.77, 7 107.28, 6 95.22, 5 80.03. Art. 22 gives scatti to impiegati of levels 2-7 and Q and the forfettaria to operai of levels 1-6, priced at maturation and capped at 50% of tabellare + 279.60: declared in multiservizi_unmodelled_rules.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
@@ -977,229 +852,33 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": "2026-05-01",
-            "value": "751.57",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Art. 73, table 'Luglio 2025', row 1, col. Retribuzione tabellare Luglio 2025"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image. The ANIP amount from July 2025 is 714.87 (2021 renewal, fifth tranche, CNEL 139292 p. 34).",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2025-07-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-05-01",
-            "valid_until": "2026-10-01",
-            "value": "783.68",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 maggio 2026', row 1, col. Retribuzione tabellare Maggio 2026"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2026-05-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
-            "value": "815.79",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 ottobre 2026', row 1, col. Retribuzione tabellare Ottobre 2026"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2026-10-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-05-01",
-            "valid_until": "2027-12-01",
-            "value": "843.31",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 maggio 2027', row 1, col. Retribuzione tabellare Maggio 2027"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2027-05-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-12-01",
-            "valid_until": "2028-07-01",
-            "value": "861.66",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 dicembre 2027', row 1, col. Retribuzione tabellare Dicembre 2027"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2027-12-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-07-01",
-            "valid_until": "2028-10-01",
-            "value": "884.60",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Tabella retributiva",
-                "quote": "1  100  € 22,94  € 884,60 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2028-07-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-10-01",
-            "valid_until": "2029-03-01",
-            "value": "902.95",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Tabella retributiva",
-                "quote": "1  100  € 18,35  € 902,95 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2028-10-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2029-03-01",
             "valid_until": null,
-            "value": "912.12",
+            "value": "714.87",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
+                  "document_id": "cnel-k511-139292",
+                  "title": "ANIP-signed renewal of 8 June 2021, fifth tranche (CNEL K511, deposit 139292)",
                   "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+                  "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
                 },
-                "page": "4",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 marzo 2029', row 1, col. Retribuzione tabellare Marzo 2029"
+                "page": "34",
+                "section": "Art. 73, table 'Con decorrenza 1 luglio 2025', row 1, Retribuzione tabellare Luglio 2025",
+                "quote": "1            100               9,17 €       714,87 €"
               },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
+              "note": "Signed fifth tranche, contractual tabellare (not contingenza or EDR).",
+              "transformation": "Italian thousands separator removed and decimal comma converted to decimal point; monthly tabellare copied without adding contingenza or EDR.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2029-03-01",
-                "verification_status": "unverified"
+                "extraction_timestamp": "2026-11-08T13:12:13Z",
+                "effective_from": "2025-07-01",
+                "verified_at": "2026-11-08T13:12:13Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-anip-july-2025",
+                "verified_by": "claude-opus-5-5"
               }
             }
           }
@@ -1445,225 +1124,33 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": "2026-05-01",
-            "value": "819.21",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Art. 73, table 'Luglio 2025', row 2, col. Retribuzione tabellare Luglio 2025"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image. The ANIP amount from July 2025 is 779.21 (2021 renewal, fifth tranche, CNEL 139292 p. 34).",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2025-07-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-05-01",
-            "valid_until": "2026-10-01",
-            "value": "854.21",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 maggio 2026', row 2, col. Retribuzione tabellare Maggio 2026"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2026-05-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
-            "value": "889.21",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 ottobre 2026', row 2, col. Retribuzione tabellare Ottobre 2026"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2026-10-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-05-01",
-            "valid_until": "2027-12-01",
-            "value": "919.21",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 maggio 2027', row 2, col. Retribuzione tabellare Maggio 2027"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2027-05-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-12-01",
-            "valid_until": "2028-07-01",
-            "value": "939.21",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 dicembre 2027', row 2, col. Retribuzione tabellare Dicembre 2027"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2027-12-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-07-01",
-            "valid_until": "2028-10-01",
-            "value": "964.21",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 luglio 2028', row 2, col. Retribuzione tabellare Luglio 2028"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2028-07-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-10-01",
-            "valid_until": "2029-03-01",
-            "value": "984.21",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 ottobre 2028', row 2, col. Retribuzione tabellare Ottobre 2028"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2028-10-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2029-03-01",
             "valid_until": null,
-            "value": "994.21",
+            "value": "779.21",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
+                  "document_id": "cnel-k511-139292",
+                  "title": "ANIP-signed renewal of 8 June 2021, fifth tranche (CNEL K511, deposit 139292)",
                   "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+                  "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
                 },
-                "page": "4",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 marzo 2029', row 2, col. Retribuzione tabellare Marzo 2029"
+                "page": "34",
+                "section": "Art. 73, table 'Con decorrenza 1 luglio 2025', row 2, Retribuzione tabellare Luglio 2025",
+                "quote": "2            109              10,00 €       779,21 €"
               },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
+              "note": "Signed fifth tranche, contractual tabellare (not contingenza or EDR).",
+              "transformation": "Italian thousands separator removed and decimal comma converted to decimal point; monthly tabellare copied without adding contingenza or EDR.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2029-03-01",
-                "verification_status": "unverified"
+                "extraction_timestamp": "2026-11-08T13:12:13Z",
+                "effective_from": "2025-07-01",
+                "verified_at": "2026-11-08T13:12:13Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-anip-july-2025",
+                "verified_by": "claude-opus-5-5"
               }
             }
           }
@@ -1903,233 +1390,33 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": "2026-05-01",
-            "value": "864.30",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Art. 73, row Parametro 115 (increments)"
-              },
-              "transformation": "Tabellare of July 2024 plus the Parametro 115 increments of the 2021 fifth tranche and of the 2025 renewal up to the period.",
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, read on the page image. By its increments the renewal gives 864.31; the file differs by up to 0.02. The ANIP amount from July 2025 is 822.11 (2021 renewal, fifth tranche).",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2025-07-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-05-01",
-            "valid_until": "2026-10-01",
-            "value": "901.23",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Art. 73, row Parametro 115 (increments)"
-              },
-              "transformation": "Tabellare of July 2024 plus the Parametro 115 increments of the 2021 fifth tranche and of the 2025 renewal up to the period.",
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, read on the page image. By its increments the renewal gives 901.24; the file differs by up to 0.02.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2026-05-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
-            "value": "938.16",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Art. 73, row Parametro 115 (increments)"
-              },
-              "transformation": "Tabellare of July 2024 plus the Parametro 115 increments of the 2021 fifth tranche and of the 2025 renewal up to the period.",
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, read on the page image. By its increments the renewal gives 938.17; the file differs by up to 0.02.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2026-10-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-05-01",
-            "valid_until": "2027-12-01",
-            "value": "969.81",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Art. 73, row Parametro 115 (increments)"
-              },
-              "transformation": "Tabellare of July 2024 plus the Parametro 115 increments of the 2021 fifth tranche and of the 2025 renewal up to the period.",
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, read on the page image. By its increments the renewal gives 969.82; the file differs by up to 0.02.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2027-05-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-12-01",
-            "valid_until": "2028-07-01",
-            "value": "990.91",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Art. 73, row Parametro 115 (increments)"
-              },
-              "transformation": "Tabellare of July 2024 plus the Parametro 115 increments of the 2021 fifth tranche and of the 2025 renewal up to the period.",
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, read on the page image. By its increments the renewal gives 990.92; the file differs by up to 0.02.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2027-12-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-07-01",
-            "valid_until": "2028-10-01",
-            "value": "1017.28",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Art. 73, row Parametro 115 (increments)"
-              },
-              "transformation": "Tabellare of July 2024 plus the Parametro 115 increments of the 2021 fifth tranche and of the 2025 renewal up to the period.",
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, read on the page image. By its increments the renewal gives 1017.30; the file differs by up to 0.02.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2028-07-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-10-01",
-            "valid_until": "2029-03-01",
-            "value": "1038.38",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Art. 73, row Parametro 115 (increments)"
-              },
-              "transformation": "Tabellare of July 2024 plus the Parametro 115 increments of the 2021 fifth tranche and of the 2025 renewal up to the period.",
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, read on the page image. By its increments the renewal gives 1038.40; the file differs by up to 0.02.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2028-10-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2029-03-01",
             "valid_until": null,
-            "value": "1048.93",
+            "value": "822.11",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
+                  "document_id": "cnel-k511-139292",
+                  "title": "ANIP-signed renewal of 8 June 2021, fifth tranche (CNEL K511, deposit 139292)",
                   "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+                  "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
                 },
-                "page": "1",
-                "section": "Art. 73, row Parametro 115 (increments)"
+                "page": "34",
+                "section": "Art. 73, table 'Con decorrenza 1 luglio 2025', row 2, Aumento economico Luglio 2025; parametric position 2par115 derived",
+                "quote": "2            109              10,00 €       779,21 €"
               },
-              "transformation": "Tabellare of July 2024 plus the Parametro 115 increments of the 2021 fifth tranche and of the 2025 renewal up to the period.",
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, read on the page image. By its increments the renewal gives 1048.95; the file differs by up to 0.02.",
+              "note": "Parametric position not explicitly printed on page 34; increment derived from the signed level 2 tranche and the established parametric position.",
+              "transformation": "Prior signed July 2024 tabellare 811.56 + parametric July 2025 increment 10.55 = 822.11; the special position is not printed as a standalone row in this table.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2029-03-01",
-                "verification_status": "unverified"
+                "extraction_timestamp": "2026-11-08T13:12:13Z",
+                "effective_from": "2025-07-01",
+                "verified_at": "2026-11-08T13:12:13Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-anip-july-2025",
+                "verified_by": "claude-opus-5-5"
               }
             }
           }
@@ -2374,229 +1661,33 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": "2026-05-01",
-            "value": "886.85",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Art. 73, table 'Luglio 2025', row 3, col. Retribuzione tabellare Luglio 2025"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image. The ANIP amount from July 2025 is 843.55 (2021 renewal, fifth tranche, CNEL 139292 p. 34).",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2025-07-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-05-01",
-            "valid_until": "2026-10-01",
-            "value": "924.74",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 maggio 2026', row 3, col. Retribuzione tabellare Maggio 2026"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2026-05-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
-            "value": "962.63",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 ottobre 2026', row 3, col. Retribuzione tabellare Ottobre 2026"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2026-10-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-05-01",
-            "valid_until": "2027-12-01",
-            "value": "995.11",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 maggio 2027', row 3, col. Retribuzione tabellare Maggio 2027"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2027-05-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-12-01",
-            "valid_until": "2028-07-01",
-            "value": "1016.76",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 dicembre 2027', row 3, col. Retribuzione tabellare Dicembre 2027"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2027-12-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-07-01",
-            "valid_until": "2028-10-01",
-            "value": "1043.82",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Tabella retributiva",
-                "quote": "3  118  € 27,06  € 1.043,82 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2028-07-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-10-01",
-            "valid_until": "2029-03-01",
-            "value": "1065.47",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Tabella retributiva",
-                "quote": "3  118  € 21,65  € 1.065,47 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2028-10-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2029-03-01",
             "valid_until": null,
-            "value": "1076.30",
+            "value": "843.55",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
+                  "document_id": "cnel-k511-139292",
+                  "title": "ANIP-signed renewal of 8 June 2021, fifth tranche (CNEL K511, deposit 139292)",
                   "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+                  "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
                 },
-                "page": "4",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 marzo 2029', row 3, col. Retribuzione tabellare Marzo 2029"
+                "page": "34",
+                "section": "Art. 73, table 'Con decorrenza 1 luglio 2025', row 3, Retribuzione tabellare Luglio 2025",
+                "quote": "3            118              10,83 €       843,55 €"
               },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
+              "note": "Signed fifth tranche, contractual tabellare (not contingenza or EDR).",
+              "transformation": "Italian thousands separator removed and decimal comma converted to decimal point; monthly tabellare copied without adding contingenza or EDR.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2029-03-01",
-                "verification_status": "unverified"
+                "extraction_timestamp": "2026-11-08T13:12:13Z",
+                "effective_from": "2025-07-01",
+                "verified_at": "2026-11-08T13:12:13Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-anip-july-2025",
+                "verified_by": "claude-opus-5-5"
               }
             }
           }
@@ -2836,233 +1927,33 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": "2026-05-01",
-            "value": "939.46",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Art. 73, row Parametro 125 (increments)"
-              },
-              "transformation": "Tabellare of July 2024 plus the Parametro 125 increments of the 2021 fifth tranche and of the 2025 renewal up to the period.",
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, read on the page image. By its increments the renewal gives 939.47; the file differs by up to 0.02. The ANIP amount from July 2025 is 893.60 (2021 renewal, fifth tranche).",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2025-07-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-05-01",
-            "valid_until": "2026-10-01",
-            "value": "979.60",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Art. 73, row Parametro 125 (increments)"
-              },
-              "transformation": "Tabellare of July 2024 plus the Parametro 125 increments of the 2021 fifth tranche and of the 2025 renewal up to the period.",
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, read on the page image. By its increments the renewal gives 979.61; the file differs by up to 0.02.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2026-05-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
-            "value": "1019.74",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Art. 73, row Parametro 125 (increments)"
-              },
-              "transformation": "Tabellare of July 2024 plus the Parametro 125 increments of the 2021 fifth tranche and of the 2025 renewal up to the period.",
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, read on the page image. By its increments the renewal gives 1019.75; the file differs by up to 0.02.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2026-10-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-05-01",
-            "valid_until": "2027-12-01",
-            "value": "1054.14",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Art. 73, row Parametro 125 (increments)"
-              },
-              "transformation": "Tabellare of July 2024 plus the Parametro 125 increments of the 2021 fifth tranche and of the 2025 renewal up to the period.",
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, read on the page image. By its increments the renewal gives 1054.15; the file differs by up to 0.02.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2027-05-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-12-01",
-            "valid_until": "2028-07-01",
-            "value": "1077.08",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Art. 73, row Parametro 125 (increments)"
-              },
-              "transformation": "Tabellare of July 2024 plus the Parametro 125 increments of the 2021 fifth tranche and of the 2025 renewal up to the period.",
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, read on the page image. By its increments the renewal gives 1077.09; the file differs by up to 0.02.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2027-12-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-07-01",
-            "valid_until": "2028-10-01",
-            "value": "1105.75",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Art. 73, row Parametro 125 (increments)"
-              },
-              "transformation": "Tabellare of July 2024 plus the Parametro 125 increments of the 2021 fifth tranche and of the 2025 renewal up to the period.",
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, read on the page image. By its increments the renewal gives 1105.76; the file differs by up to 0.02.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2028-07-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-10-01",
-            "valid_until": "2029-03-01",
-            "value": "1128.68",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Art. 73, row Parametro 125 (increments)"
-              },
-              "transformation": "Tabellare of July 2024 plus the Parametro 125 increments of the 2021 fifth tranche and of the 2025 renewal up to the period.",
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, read on the page image. By its increments the renewal gives 1128.70; the file differs by up to 0.02.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2028-10-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2029-03-01",
             "valid_until": null,
-            "value": "1140.15",
+            "value": "893.60",
             "provenance": {
               "status": "derived",
               "location": {
                 "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
+                  "document_id": "cnel-k511-139292",
+                  "title": "ANIP-signed renewal of 8 June 2021, fifth tranche (CNEL K511, deposit 139292)",
                   "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+                  "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
                 },
-                "page": "1",
-                "section": "Art. 73, row Parametro 125 (increments)"
+                "page": "34",
+                "section": "Art. 73, table 'Con decorrenza 1 luglio 2025', row 4, Aumento economico Luglio 2025; parametric position 4par125 derived",
+                "quote": "4            128              11,74 €       915,03 €"
               },
-              "transformation": "Tabellare of July 2024 plus the Parametro 125 increments of the 2021 fifth tranche and of the 2025 renewal up to the period.",
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, read on the page image. By its increments the renewal gives 1140.17; the file differs by up to 0.02.",
+              "note": "Parametric position not explicitly printed on page 34; increment derived from the signed level 4 tranche and the established parametric position.",
+              "transformation": "Prior signed July 2024 tabellare 882.13 + parametric July 2025 increment 11.47 = 893.60; the special position is not printed as a standalone row in this table.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2029-03-01",
-                "verification_status": "unverified"
+                "extraction_timestamp": "2026-11-08T13:12:13Z",
+                "effective_from": "2025-07-01",
+                "verified_at": "2026-11-08T13:12:13Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-anip-july-2025",
+                "verified_by": "claude-opus-5-5"
               }
             }
           }
@@ -3307,227 +2198,33 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": "2026-05-01",
-            "value": "962.00",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Art. 73, table 'Luglio 2025', row 4, col. Retribuzione tabellare Luglio 2025"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image. The ANIP amount from July 2025 is 915.03 (2021 renewal, fifth tranche, CNEL 139292 p. 34).",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2025-07-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-05-01",
-            "valid_until": "2026-10-01",
-            "value": "1003.10",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 maggio 2026', row 4, col. Retribuzione tabellare Maggio 2026"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2026-05-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
-            "value": "1044.20",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 ottobre 2026', row 4, col. Retribuzione tabellare Ottobre 2026"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2026-10-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-05-01",
-            "valid_until": "2027-12-01",
-            "value": "1079.43",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 maggio 2027', row 4, col. Retribuzione tabellare Maggio 2027"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2027-05-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-12-01",
-            "valid_until": "2028-07-01",
-            "value": "1102.92",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 dicembre 2027', row 4, col. Retribuzione tabellare Dicembre 2027"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2027-12-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-07-01",
-            "valid_until": "2028-10-01",
-            "value": "1132.28",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 luglio 2028', row 4, col. Retribuzione tabellare Luglio 2028"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2028-07-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-10-01",
-            "valid_until": "2029-03-01",
-            "value": "1155.77",
+            "valid_until": null,
+            "value": "915.03",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Tabella retributiva",
-                "quote": "4  128  € 23,49  € 1.155,77 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2028-10-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2029-03-01",
-            "valid_until": null,
-            "value": "1167.51",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
+                  "document_id": "cnel-k511-139292",
+                  "title": "ANIP-signed renewal of 8 June 2021, fifth tranche (CNEL K511, deposit 139292)",
                   "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+                  "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
                 },
-                "page": "4",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 marzo 2029', row 4, col. Retribuzione tabellare Marzo 2029"
+                "page": "34",
+                "section": "Art. 73, table 'Con decorrenza 1 luglio 2025', row 4, Retribuzione tabellare Luglio 2025",
+                "quote": "4            128              11,74 €       915,03 €"
               },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
+              "note": "Signed fifth tranche, contractual tabellare (not contingenza or EDR).",
+              "transformation": "Italian thousands separator removed and decimal comma converted to decimal point; monthly tabellare copied without adding contingenza or EDR.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2029-03-01",
-                "verification_status": "unverified"
+                "extraction_timestamp": "2026-11-08T13:12:13Z",
+                "effective_from": "2025-07-01",
+                "verified_at": "2026-11-08T13:12:13Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-anip-july-2025",
+                "verified_by": "claude-opus-5-5"
               }
             }
           }
@@ -3771,241 +2468,33 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": "2026-05-01",
-            "value": "1052.18",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Tabella retributiva",
-                "quote": "5  140  € 64,22  € 1.052,18 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2025-07-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-05-01",
-            "valid_until": "2026-10-01",
-            "value": "1097.13",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Tabella retributiva",
-                "quote": "5  140  € 44,95  € 1.097,13 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2026-05-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
-            "value": "1142.08",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Tabella retributiva",
-                "quote": "5  140  € 44,95  € 1.142,08 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2026-10-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-05-01",
-            "valid_until": "2027-12-01",
-            "value": "1180.61",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Tabella retributiva",
-                "quote": "5  140  € 38,53  € 1.180,61 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2027-05-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-12-01",
-            "valid_until": "2028-07-01",
-            "value": "1206.30",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Tabella retributiva",
-                "quote": "5  140  € 25,69  € 1.206,30 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2027-12-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-07-01",
-            "valid_until": "2028-10-01",
-            "value": "1238.41",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Tabella retributiva",
-                "quote": "5  140  € 32,11  € 1.238,41 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2028-07-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-10-01",
-            "valid_until": "2029-03-01",
-            "value": "1264.10",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Tabella retributiva",
-                "quote": "5  140  € 25,69  € 1.264,10 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2028-10-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2029-03-01",
             "valid_until": null,
-            "value": "1276.94",
+            "value": "1000.81",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
+                  "document_id": "cnel-k511-139292",
+                  "title": "ANIP-signed renewal of 8 June 2021, fifth tranche (CNEL K511, deposit 139292)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+                  "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
                 },
-                "page": "4",
-                "section": "Tabella retributiva",
-                "quote": "5  140  € 12,84  € 1.276,94 [read on the page image]"
+                "page": "34",
+                "section": "Art. 73, table 'Con decorrenza 1 luglio 2025', row 5, Retribuzione tabellare Luglio 2025",
+                "quote": "5            140              12,84 €     1.000,81 €"
               },
+              "note": "Signed fifth tranche, contractual tabellare (not contingenza or EDR).",
+              "transformation": "Italian thousands separator removed and decimal comma converted to decimal point; monthly tabellare copied without adding contingenza or EDR.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2029-03-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
+                "extraction_timestamp": "2026-11-08T13:12:13Z",
+                "effective_from": "2025-07-01",
+                "verified_at": "2026-11-08T13:12:13Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
+                "review_id": "2026-11-08-ai-anip-july-2025",
+                "verified_by": "claude-opus-5-5"
               }
             }
           }
@@ -4249,237 +2738,33 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": "2026-05-01",
-            "value": "1307.72",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Tabella retributiva",
-                "quote": "6  174  € 79,82  € 1.307,72 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2025-07-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-05-01",
-            "valid_until": "2026-10-01",
-            "value": "1363.59",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Tabella retributiva",
-                "quote": "6  174  € 55,87  € 1.363,59 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2026-05-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
-            "value": "1419.46",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 ottobre 2026', row 6, col. Retribuzione tabellare Ottobre 2026"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2026-10-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-05-01",
-            "valid_until": "2027-12-01",
-            "value": "1467.35",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 maggio 2027', row 6, col. Retribuzione tabellare Maggio 2027"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2027-05-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-12-01",
-            "valid_until": "2028-07-01",
-            "value": "1499.28",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Tabella retributiva",
-                "quote": "6  174  € 31,93  € 1.499,28 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2027-12-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-07-01",
-            "valid_until": "2028-10-01",
-            "value": "1539.19",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Tabella retributiva",
-                "quote": "6  174  € 39,91  € 1.539,19 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2028-07-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-10-01",
-            "valid_until": "2029-03-01",
-            "value": "1571.12",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Tabella retributiva",
-                "quote": "6  174  € 31,93  € 1.571,12 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2028-10-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2029-03-01",
             "valid_until": null,
-            "value": "1587.08",
+            "value": "1243.86",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
+                  "document_id": "cnel-k511-139292",
+                  "title": "ANIP-signed renewal of 8 June 2021, fifth tranche (CNEL K511, deposit 139292)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+                  "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
                 },
-                "page": "4",
-                "section": "Tabella retributiva",
-                "quote": "6  174  € 15,96  € 1.587,08 [read on the page image]"
+                "page": "34",
+                "section": "Art. 73, table 'Con decorrenza 1 luglio 2025', row 6, Retribuzione tabellare Luglio 2025",
+                "quote": "6            174              15,96 €     1.243,86 €"
               },
+              "note": "Signed fifth tranche, contractual tabellare (not contingenza or EDR).",
+              "transformation": "Italian thousands separator removed and decimal comma converted to decimal point; monthly tabellare copied without adding contingenza or EDR.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2029-03-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
+                "extraction_timestamp": "2026-11-08T13:12:13Z",
+                "effective_from": "2025-07-01",
+                "verified_at": "2026-11-08T13:12:13Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
+                "review_id": "2026-11-08-ai-anip-july-2025",
+                "verified_by": "claude-opus-5-5"
               }
             }
           }
@@ -4723,235 +3008,33 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": "2026-05-01",
-            "value": "1510.64",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Art. 73, table 'Luglio 2025', row 7, col. Retribuzione tabellare Luglio 2025"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image. The ANIP amount from July 2025 is 1436.88 (2021 renewal, fifth tranche, CNEL 139292 p. 34).",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2025-07-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-05-01",
-            "valid_until": "2026-10-01",
-            "value": "1575.18",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 maggio 2026', row 7, col. Retribuzione tabellare Maggio 2026"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2026-05-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
-            "value": "1639.72",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 ottobre 2026', row 7, col. Retribuzione tabellare Ottobre 2026"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2026-10-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-05-01",
-            "valid_until": "2027-12-01",
-            "value": "1695.04",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Tabella retributiva",
-                "quote": "7  201  € 55,32  € 1.695,04 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2027-05-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-12-01",
-            "valid_until": "2028-07-01",
-            "value": "1731.92",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Tabella retributiva",
-                "quote": "7  201  € 36,88  € 1.731,92 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2027-12-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-07-01",
-            "valid_until": "2028-10-01",
-            "value": "1778.02",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Tabella retributiva",
-                "quote": "7  201  € 46,10  € 1.778,02 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2028-07-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-10-01",
-            "valid_until": "2029-03-01",
-            "value": "1814.90",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Tabella retributiva",
-                "quote": "7  201  € 36,88  € 1.814,90 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2028-10-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2029-03-01",
             "valid_until": null,
-            "value": "1833.34",
+            "value": "1436.88",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
+                  "document_id": "cnel-k511-139292",
+                  "title": "ANIP-signed renewal of 8 June 2021, fifth tranche (CNEL K511, deposit 139292)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+                  "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
                 },
-                "page": "4",
-                "section": "Tabella retributiva",
-                "quote": "7  201  € 18,44  € 1.833,34 [read on the page image]"
+                "page": "34",
+                "section": "Art. 73, table 'Con decorrenza 1 luglio 2025', row 7, Retribuzione tabellare Luglio 2025",
+                "quote": "7            201              18,44 €     1.436,88 €"
               },
+              "note": "Signed fifth tranche, contractual tabellare (not contingenza or EDR).",
+              "transformation": "Italian thousands separator removed and decimal comma converted to decimal point; monthly tabellare copied without adding contingenza or EDR.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2029-03-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
+                "extraction_timestamp": "2026-11-08T13:12:13Z",
+                "effective_from": "2025-07-01",
+                "verified_at": "2026-11-08T13:12:13Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
+                "review_id": "2026-11-08-ai-anip-july-2025",
+                "verified_by": "claude-opus-5-5"
               }
             }
           }
@@ -5197,239 +3280,33 @@
           },
           {
             "valid_from": "2025-07-01",
-            "valid_until": "2026-05-01",
-            "value": "1653.44",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "1",
-                "section": "Tabella retributiva",
-                "quote": "Q  220  € 100,92  € 1.653,44 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2025-07-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-05-01",
-            "valid_until": "2026-10-01",
-            "value": "1724.08",
-            "provenance": {
-              "status": "derived",
-              "location": {
-                "source_document": {
-                  "document_id": "cnel-k511-234752",
-                  "title": "Accordo integrativo all'accordo di rinnovo del 13 giugno 2025, tabelle retributive, 6 agosto 2025 (CNEL K511, deposito 234752; not signed by ANIP)",
-                  "kind": "cnel",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "published_on": "2025-08-06",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Accordo integrativo 6/8/2025, table 'Con decorrenza 1 maggio 2026', row Q, col. Retribuzione tabellare Maggio 2026"
-              },
-              "note": "Tranche of the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025, not signed by ANIP: see anip_unsigned_renewal. Scan without text layer, value read on the page image.",
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-10-13T09:25:49Z",
-                "effective_from": "2026-05-01",
-                "verification_status": "unverified"
-              }
-            }
-          },
-          {
-            "valid_from": "2026-10-01",
-            "valid_until": "2027-05-01",
-            "value": "1794.72",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Tabella retributiva",
-                "quote": "Q  220  € 70,64  € 1.794,72 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2026-10-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-05-01",
-            "valid_until": "2027-12-01",
-            "value": "1855.27",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "2",
-                "section": "Tabella retributiva",
-                "quote": "Q  220  € 60,55  € 1.855,27 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2027-05-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2027-12-01",
-            "valid_until": "2028-07-01",
-            "value": "1895.64",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Tabella retributiva",
-                "quote": "Q  220  € 40,37  € 1.895,64 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2027-12-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-07-01",
-            "valid_until": "2028-10-01",
-            "value": "1946.10",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Tabella retributiva",
-                "quote": "Q  220  € 50,46  € 1.946,10 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2028-07-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2028-10-01",
-            "valid_until": "2029-03-01",
-            "value": "1986.47",
-            "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
-                },
-                "page": "3",
-                "section": "Tabella retributiva",
-                "quote": "Q  220  € 40,37  € 1.986,47 [read on the page image]"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2028-10-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
-              }
-            }
-          },
-          {
-            "valid_from": "2029-03-01",
             "valid_until": null,
-            "value": "2006.65",
+            "value": "1572.70",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "multiservizi-anip-src-8f40d0cf",
-                  "title": "multiservizi-anip: 234752.pdf",
-                  "kind": "associazione",
-                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
-                  "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61"
+                  "document_id": "cnel-k511-139292",
+                  "title": "ANIP-signed renewal of 8 June 2021, fifth tranche (CNEL K511, deposit 139292)",
+                  "kind": "cnel",
+                  "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+                  "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
                 },
-                "page": "4",
-                "section": "Tabella retributiva",
-                "quote": "Q  220  € 20,18  € 2.006,65 [read on the page image]"
+                "page": "34",
+                "section": "Art. 73, table 'Con decorrenza 1 luglio 2025', row Q, Retribuzione tabellare Luglio 2025",
+                "quote": "Q            220              20,18 €     1.572,70 €"
               },
+              "note": "Signed fifth tranche, contractual tabellare (not contingenza or EDR).",
+              "transformation": "Italian thousands separator removed and decimal comma converted to decimal point; monthly tabellare copied without adding contingenza or EDR.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T22:00:00Z",
-                "effective_from": "2029-03-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T22:00:00Z",
+                "extraction_timestamp": "2026-11-08T13:12:13Z",
+                "effective_from": "2025-07-01",
+                "verified_at": "2026-11-08T13:12:13Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-multiservizi-anip-corrections"
+                "review_id": "2026-11-08-ai-anip-july-2025",
+                "verified_by": "claude-opus-5-5"
               }
             }
           }
@@ -5640,7 +3517,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "3f9f38b953a40b2e8b96ca5a64a66406d3a810e5ef9988b70b0091ba245861bb",
+    "source_hash": "25ec17052508836ad7f636ef57d3d004df15b491d73e55973ca7b5d527d374db",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -6344,6 +4221,29 @@
         ],
         "independence": "separate_model",
         "checked": [
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-anip-july-2025",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Cached CNEL 139292 PDF page 34, July 2025 tabellare for all eight printed levels; two parametric positions derived; later unsigned salary periods excluded.",
+        "outcome": "corrected",
+        "independence": "same_process",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+            "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
+          }
+        ],
+        "findings": [
+          "Verified all eight printed monthly minima against PDF page 34; derived two unprinted parametric positions from prior signed periods and signed tranche increments.",
+          "Excluded all unsigned salary periods from May 2026 onward; the signed July 2025 tranche remains in force until further ANIP evidence."
+        ],
+        "checked": [
+          "levels.base_salary.periods",
           "coverage.notes"
         ]
       }
