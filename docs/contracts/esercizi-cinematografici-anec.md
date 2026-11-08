@@ -118,13 +118,6 @@ percentage: 0.90
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "esercizi-cinematografici-anec/other_holiday_during_absence · sickness · impact yes · open"
-    Art. 61: pregnancy and puerperium holiday top-ups, Easter Sunday are not calculated; national weekday holidays during sickness and injury are covered.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Provide employer-specific holidays and the remaining absence treatments.
-
 !!! warning "esercizi-cinematografici-anec/fpls_rates_approximated · inps_employer · impact unknown · open"
     SIMPLIFICATION: tax_sector=TERZIARIO. Cinema exhibition employees (esercizio cinematografico) were historically under ENPALS (now FPLS — Fondo Pensione Lavoratori dello Spettacolo dell'INPS, Art. 12 comma 6 of this CCNL). The FPLS contribution regime differs from ordinary terziario. terziario rates are used as an approximation pending a dedicated cinema-FPLS tax file. For the workers enrolled after 31 December 1995 the IVS of the FPLS is the ordinary 33% (23.81 + 9.19) up to the annual massimale (INPS, Calcolo dei contributi IVS dei lavoratori dello spettacolo, updated 5 October 2026), as charged here; approximated are the daily bands of the workers enrolled before 1996 (massimale 892 a day in 2026, solidarity 5% above it) and the non-IVS contributions.
 
@@ -145,6 +138,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies.
 
     **Remediation:** Leave the hospital stays, life-saving therapies and serious illnesses of Art. 64 out of the counts and pay half of the integration past day 180, then resolve this limitation.
+
+!!! warning "esercizi-cinematografici-anec/other_holiday_during_absence · sickness · impact yes · open"
+    Art. 61: pregnancy and puerperium holiday top-ups, Easter Sunday are not calculated; national weekday holidays during sickness and injury are covered.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Provide employer-specific holidays and the remaining absence treatments.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

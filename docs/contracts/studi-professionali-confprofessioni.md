@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, maternity_leave, sickness |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -179,6 +179,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Top up the holidays the clause covers beyond the weekday national calendar, and the items above.
+
+!!! warning "studi-professionali-confprofessioni/local_holiday_during_absence · sickness · impact yes · open"
+    The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Provide the employer-specific patron saint holiday.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer, maternity_leave, workplace_injury |
+| **Limits of this contract** | base_salary, inps_employer, maternity_leave, sickness, workplace_injury |
 
-4 documented simplification(s) and 1 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 1 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -63,6 +63,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 157, PDF p. 102: holiday top-up during compulsory maternity. | confirmed | Verified the quoted clause against the cached PDF; encoded only the compulsory maternity holiday target. |
 | 2026-11-08 | gpt-6-sol (ai) | The maternity holiday clause against the encoding, by a separate model session. | corrected | Confirmed the 100% target net of the INPS share on the holidays of the compulsory leave.<br>Recorded as limitation maternity_holiday_scope: the Sunday holidays, the patron saint and 4 October, the optional leave. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay. | confirmed | Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 147 - Injury pay, ordinary injury integration and waiting days against the cached PDF. | corrected | The explicit numerical 75% is used rather than the contradictory parenthetical words (100%). The three days after the injury are paid at 60%; from offset 4 the INAIL benefit is topped up to 75% of net daily pay. The conflicting wording requires a clarification before a 100% target can be asserted. |
+| 2026-11-08 | gpt-6-sol (ai) | Art. 147 against the injury integration bands, by a separate model session. | flagged | Confirmed the waiting days at 60%, the bands from the INAIL indemnity and the day mapping from the injury day.<br>Flagged, kept as limitations: the 75% of the numeral against the '(cento per cento)' in words. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Local patron saint day in sickness and work injury holiday clauses. | confirmed | Art. 149 - Festività nel periodo di malattia o infortunio (p. 97): Ai sensi della L. 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad un'indennità integrativa di quella a carico rispettivamente dell'INPS e dell'INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all'art. 168. The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged. |
 
 ## Salary table
@@ -133,12 +135,19 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Top up the holidays the clause covers beyond the weekday national calendar, and the items above.
 
-!!! warning "ced-assoced/injury_integration_missing · workplace_injury · impact yes · open"
-    Art. 147 (PDF p. 97): the ordinary integration of the INAIL indemnity (60% on the first three days, then '75% (cento per cento)' from the 4th: the text is inconsistent) is not modelled: the injury rules of the ruleset hold only the holiday target, so the ordinary injury days are paid at the INAIL share; the holiday reaches 100% net of that share.
+!!! warning "ced-assoced/local_holiday_during_absence · sickness · impact yes · open"
+    The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Encode the integration bands of the injury article (insured_absence.injury.integration_bands).
+    **Remediation:** Provide the employer-specific patron saint holiday.
+
+!!! warning "ced-assoced/injury_rate_text_conflict · workplace_injury · impact yes · open"
+    Art. 147 prints 75% (cento per cento) for ordinary injury integration after the waiting period. The numerical 75% is encoded; the contradictory words could indicate a 100% intended rate. Confirm with the signatories before using this target as definitive.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Obtain an authoritative clarification of the conflicting percentage in Art. 147.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

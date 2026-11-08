@@ -171,15 +171,28 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 105 (PDF pp. 84-85): the ordinary integration of the INAIL indemnity (90% from the 5th to the 20th day, 100% from the 21st; apprentices 80% and 90%) is not modelled: the injury rules of the ruleset hold only the holiday target, so the ordinary injury days are paid at the INAIL share; the holiday reaches 100% net of that share.",
-        "capability": "workplace_injury",
+        "text": "The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.",
+        "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "injury_integration_missing",
+          "variant": "local_holiday_during_absence",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Encode the integration bands of the injury article (insured_absence.injury.integration_bands)."
+          "remediation": "Provide the employer-specific patron saint holiday."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 105 - Injury pay: the 80% target on days 5–20 and 90% target from day 21 for apprentices are not selectable; the general 90%/100% targets are encoded for all workers.",
+        "capability": "workplace_injury",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "injury_apprentice_rates",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add apprentice-specific injury integration targets."
         }
       }
     ]
@@ -1441,7 +1454,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "68a20b77dfafc51cb8b6bd85171f22836e0ea1eeeb5408fa6a90f6ead93ffd65",
+    "source_hash": "7eb20caaa7be812261fbf4ee5b214359c32068849938cf1b83d5c562f8240853",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -1991,24 +2004,24 @@
           "status": "verified",
           "location": {
             "source_document": {
-              "document_id": "impianti-sportivi-sport-holiday-clause",
+              "document_id": "impianti-sportivi-sport-injury-integration",
               "title": "CCNL Sport 2024-2026",
               "kind": "associazione",
               "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
               "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
             },
-            "page": "85",
-            "section": "Art. 107 - Festività nel periodo di malattia o infortunio",
-            "quote": "Ai sensi della legge 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto a un'indennità integrativa di quella a carico rispettivamente dell'INPS e dell'INAIL da corrispondersi a carico del datore di lavoro in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all'art. 117."
+            "page": "84-85",
+            "section": "Art. 105 - Injury pay",
+            "quote": "2) il 90% (novanta per cento) per i giorni dal 5º al 20º;\n3) il 100% (cento per cento) per i giorni dal 21º in poi, della retribuzione giornaliera netta cui il\nlavoratore avrebbe avuto diritto in caso di normale svolgimento del rapporto. Per retribuzione\ngiornaliera si intende la quota della retribuzione di fatto di cui all'art. 117.\n\n\nPer gli apprendisti le misure previste dai punti 2) e 3) del precedente comma sono fissate\nrispettivamente nell'80 e nel 90%."
           },
-          "transformation": "On a covered national weekday holiday during a work injury, employer integration reaches 100% of the daily pay after subtracting INAIL indemnity and the ordinary CCNL integration already due on that day; the clause also covers sickness. The local patron saint is outside the national calendar.",
+          "transformation": "The first three days following the injury are paid at 60%; the ordinary non-apprentice net-pay target is 90% on calendar days 5–20 (offsets 4–19) and 100% from day 21 (offset 20). Apprentices have different targets and are not distinguished by the injury model.",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-08T12:05:09Z",
-            "verified_at": "2026-11-08T12:05:09Z",
+            "extraction_timestamp": "2026-11-08T12:41:14Z",
+            "verified_at": "2026-11-08T12:41:14Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-ai-impianti-sportivi-sport-injury-holiday",
+            "review_id": "2026-11-08-ai-impianti-sportivi-sport-injury-integration",
             "verified_by": "claude-opus-5-5"
           }
         },
@@ -2043,7 +2056,19 @@
             "10-04"
           ],
           "includes_patron_saint": true
-        }
+        },
+        "carenza_rate": "0.60",
+        "integration_bands": [
+          {
+            "day_from": 4,
+            "rate": "0.90"
+          },
+          {
+            "day_from": 20,
+            "rate": "1"
+          }
+        ],
+        "net_basis": true
       }
     }
   },
@@ -2176,6 +2201,50 @@
         "independence": "same_process",
         "checked": [
           "work_rules.insured_absence.injury.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-impianti-sportivi-sport-injury-integration",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 105 - Injury pay, ordinary injury integration and waiting days against the cached PDF.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+            "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+          }
+        ],
+        "findings": [
+          "The first three days following the injury are paid at 60%; the ordinary non-apprentice net-pay target is 90% on calendar days 5–20 (offsets 4–19) and 100% from day 21 (offset 20). Apprentices have different targets and are not distinguished by the injury model."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.insured_absence.injury",
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-impianti-sportivi-sport-injury-integration",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Art. 105 against the injury integration bands, by a separate model session.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+            "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+          }
+        ],
+        "findings": [
+          "Confirmed the waiting days at 60%, the bands from the INAIL indemnity and the day mapping from the injury day.",
+          "Flagged, kept as limitations: the apprentice rates of 80% and 90% are not selected; the general bands apply to them."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.injury"
         ]
       },
       {

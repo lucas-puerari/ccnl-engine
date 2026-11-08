@@ -61,19 +61,6 @@
   "coverage": {
     "notes": [
       {
-        "kind": "simplification",
-        "text": "Art. 9 (Sez. IV Tit. III): the holidays of letters b and c in a sickness or a work injury reach 100% (sickness_rules.holiday and insured_absence.injury.holiday). Not calculated: the holiday top-up during pregnancy and puerperium, the patron saint substitute and 29 June, a letter b holiday in Rome only, outside the national calendar.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "holiday_outside_calendar",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Top up pregnancy and puerperium holidays, the substitute patron holiday and Rome-only 29 June when the applicable local facts are stated."
-        }
-      },
-      {
         "kind": "info",
         "text": "CONSOLIDATED MINIMUMS: the values in base_salary are the 'consolidated table minimums' of the CCNL Federmeccanica-Assistal, which incorporate base pay, contingenza, and EDR into a single figure (Federmeccanica practice since 2001). For this reason fixed_allowances is empty for all levels."
       },
@@ -216,6 +203,19 @@
             "trigger": "outside_input"
           },
           "remediation": "Add the hourly elements of Tit. IV art. 3 to the hourly pay of the PAR, and source the PAR left at the end of the employment."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 9 (Sez. IV Tit. III): the holidays of letters b and c in a sickness or a work injury reach 100% (sickness_rules.holiday and insured_absence.injury.holiday). Not calculated: the holiday top-up during pregnancy and puerperium, the patron saint substitute and 29 June, a letter b holiday in Rome only, outside the national calendar.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "holiday_outside_calendar",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Top up pregnancy and puerperium holidays, the substitute patron holiday and Rome-only 29 June when the applicable local facts are stated."
         }
       }
     ]
@@ -3381,7 +3381,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "5eae9280153aa9d11a75367cf9b575f2405a11a9a062c85c01b6776325713c68",
+    "source_hash": "6aea77bdf95bb1f1356d2dfa171773098a72fac64fa9c67ff2db609c38a9a7f3",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },

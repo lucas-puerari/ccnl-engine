@@ -22,6 +22,7 @@ from ccnl_engine.absence.insured.extraordinary.models import (
 from ccnl_engine.absence.insured.injury_models import InjuryIntegrationBand
 from ccnl_engine.absence.insured.maternity_holiday import MaternityHoliday
 from ccnl_engine.absence.insured.parental.models import ParentalRates
+from ccnl_engine.absence.insured.parental.top_up import ParentalTopUp
 from ccnl_engine.provenance.ruleset.models import RulesetIdentity
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.sickness.holiday.models import SicknessHoliday
@@ -37,6 +38,7 @@ __all__ = [
     "MaternityHoliday",
     "MaternityRates",
     "MaternityRules",
+    "ParentalTopUp",
     "RestPermitRates",
     "YearCeiling",
 ]
@@ -255,14 +257,12 @@ class InjuryRules(BaseModel):
 class InsuredAbsenceRules(BaseModel):
     """The CCNL treatment of the absences an insurer pays.
 
-    Attributes:
-        maternity: The top-up of the maternity indemnity, ``None`` when the
-            CCNL adds nothing.
-        injury: The treatment of a work injury, ``None`` when the CCNL adds
-            nothing.
+    ``maternity``, ``injury`` and ``parental`` are the top-ups and the
+    treatment the CCNL adds to INPS and INAIL; ``None`` when it adds nothing.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     maternity: MaternityRules | None = None
     injury: InjuryRules | None = None
+    parental: ParentalTopUp | None = None

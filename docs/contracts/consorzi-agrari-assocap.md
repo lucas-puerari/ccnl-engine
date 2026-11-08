@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer |
+| **Limits of this contract** | base_salary, inps_employer |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -113,6 +113,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies; contract type in apprentice.
 
     **Remediation:** Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/agricoltura.json derived, then remove this note.
+
+!!! warning "consorzi-agrari-assocap/grandfathered_consorzio_award · base_salary · impact yes · open"
+    Art. 43 (2024–2027 CCNL, PDF p. 40): employees already in service on 22 December 1997 retain a one-off, three-month award at 25 years with the same consorzio (including apprenticeship), excluded from TFR. Non-disciplinary termination after starting year 21 or 25 instead attracts two or three months; a qualifying short employer-initiated break may preserve prior service. Annual loyalty_premium would repeatedly overpay and cannot enforce the grandfathering.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Implement a one-off cohort-gated three-month award with the Art. 43 termination and service rules.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

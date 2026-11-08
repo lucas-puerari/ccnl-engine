@@ -652,7 +652,8 @@
     ],
     "agreement/alimentari-federalimentare.json": [
       "alimentari-federalimentare/fasa_family_members",
-      "alimentari-federalimentare/health_and_bilateral_funds"
+      "alimentari-federalimentare/health_and_bilateral_funds",
+      "alimentari-federalimentare/sugar_twenty_five_year_award"
     ],
     "agreement/assicurazioni-ania.json": [
       "assicurazioni-ania/funzionari_economic_allowance",
@@ -663,7 +664,8 @@
       "autoferrotranvieri-internavigatori/public_operator_inps_scheme"
     ],
     "agreement/autorimesse-ic35.json": [
-      "autorimesse-ic35/meal_voucher"
+      "autorimesse-ic35/meal_voucher",
+      "autorimesse-ic35/parental_top_up_scope"
     ],
     "agreement/aziende-termali-federterme.json": [
       "aziende-termali-federterme/apprentice_seniority",
@@ -681,6 +683,7 @@
     "agreement/bcc-credito-cooperativo.json": [
       "bcc-credito-cooperativo/art3_derogation_apprenticeship",
       "bcc-credito-cooperativo/inps_sector_rates_unsourced",
+      "bcc-credito-cooperativo/movement_loyalty_award",
       "bcc-credito-cooperativo/pre_1998_cohort_scatti"
     ],
     "agreement/carta-cartone-assocarta.json": [
@@ -688,7 +691,8 @@
     ],
     "agreement/ced-assoced.json": [
       "ced-assoced/conditional_allowances_title_xxiii",
-      "ced-assoced/injury_integration_missing",
+      "ced-assoced/injury_rate_text_conflict",
+      "ced-assoced/local_holiday_during_absence",
       "ced-assoced/maternity_holiday_scope",
       "ced-assoced/terziario_inps_rates_unverified"
     ],
@@ -721,7 +725,7 @@
       "cinema-audiovisivi-industria/fpls_rates_approximated"
     ],
     "agreement/commercio-confcommercio.json": [
-      "commercio-confcommercio/holiday_during_injury",
+      "commercio-confcommercio/local_patron_holiday",
       "commercio-confcommercio/profile_specific_apprenticeship",
       "commercio-confcommercio/sickness_net_basis"
     ],
@@ -738,7 +742,8 @@
       "concia-unic/higher_overtime_bands"
     ],
     "agreement/consorzi-agrari-assocap.json": [
-      "consorzi-agrari-assocap/apprentice_inps_rates_unsourced"
+      "consorzi-agrari-assocap/apprentice_inps_rates_unsourced",
+      "consorzi-agrari-assocap/grandfathered_consorzio_award"
     ],
     "agreement/consorzi-di-bonifica-snebi.json": [
       "consorzi-di-bonifica-snebi/apprentice_inps_rates_unsourced",
@@ -825,6 +830,7 @@
     "agreement/edilizia-cooperative-ancpl.json": [
       "edilizia-cooperative-ancpl/apprentice_seniority",
       "edilizia-cooperative-ancpl/cassa_edile_accruals_missing",
+      "edilizia-cooperative-ancpl/cooperative_legacy_loyalty",
       "edilizia-cooperative-ancpl/operai_seniority_ape"
     ],
     "agreement/edilizia-pmi-confapi-aniem.json": [
@@ -896,9 +902,10 @@
       "igiene-ambientale-utilitalia/industria_rates_proxy"
     ],
     "agreement/impianti-sportivi-sport.json": [
-      "impianti-sportivi-sport/injury_integration_missing",
+      "impianti-sportivi-sport/injury_apprentice_rates",
       "impianti-sportivi-sport/level_v_first_semester_overpaid",
       "impianti-sportivi-sport/level_vi_whole_track_at_destination",
+      "impianti-sportivi-sport/local_holiday_during_absence",
       "impianti-sportivi-sport/pre_2015_fourteenth_missing",
       "impianti-sportivi-sport/pre_2015_superminimo_missing",
       "impianti-sportivi-sport/sickness_net_basis"
@@ -908,7 +915,8 @@
       "impiegati-tecnici-agricoli/eban_agrifondo_missing"
     ],
     "agreement/industria-turistica-federturismo.json": [
-      "industria-turistica-federturismo/apprenticeship_under_classification"
+      "industria-turistica-federturismo/apprenticeship_under_classification",
+      "industria-turistica-federturismo/federturismo_legacy_awards"
     ],
     "agreement/informatica-pmi-unimatica.json": [
       "informatica-pmi-unimatica/apprentice_seniority",
@@ -992,7 +1000,8 @@
     ],
     "agreement/materiali-costruzione-lapidei-confapi.json": [
       "materiali-costruzione-lapidei-confapi/cigo_rate_by_activity",
-      "materiali-costruzione-lapidei-confapi/contractual_fund_partial"
+      "materiali-costruzione-lapidei-confapi/contractual_fund_partial",
+      "materiali-costruzione-lapidei-confapi/parental_top_up_scope"
     ],
     "agreement/metalmeccanica-cooperative.json": [
       "metalmeccanica-cooperative/apprenticeship_from_federmeccanica",
@@ -1162,6 +1171,7 @@
     "agreement/studi-professionali-confprofessioni.json": [
       "studi-professionali-confprofessioni/fourteenth_exclusion",
       "studi-professionali-confprofessioni/intermittent_availability",
+      "studi-professionali-confprofessioni/local_holiday_during_absence",
       "studi-professionali-confprofessioni/maternity_holiday_scope",
       "studi-professionali-confprofessioni/rolling_comporto_and_serious_illness",
       "studi-professionali-confprofessioni/travel_diaria",
@@ -1176,7 +1186,8 @@
     ],
     "agreement/terziario-confesercenti.json": [
       "terziario-confesercenti/apprentice_sickness",
-      "terziario-confesercenti/injury_integration_missing",
+      "terziario-confesercenti/injury_apprentice_rates",
+      "terziario-confesercenti/local_holiday_during_absence",
       "terziario-confesercenti/provincial_third_elements",
       "terziario-confesercenti/sales_operators",
       "terziario-confesercenti/sickness_net_basis",
@@ -1221,7 +1232,8 @@
       "turismo-federalberghi-alberghi-minori/guarantee_element_2027",
       "turismo-federalberghi-alberghi-minori/hires_2016_ramp",
       "turismo-federalberghi-alberghi-minori/quadri_absorption",
-      "turismo-federalberghi-alberghi-minori/sickness_net_basis"
+      "turismo-federalberghi-alberghi-minori/sickness_net_basis",
+      "turismo-federalberghi-alberghi-minori/small_hotel_legacy_award"
     ],
     "agreement/turismo-federalberghi.json": [
       "turismo-federalberghi/apprentice_net_cap",
@@ -1229,6 +1241,7 @@
       "turismo-federalberghi/extra_months_during_leave",
       "turismo-federalberghi/extras_hourly_table",
       "turismo-federalberghi/guarantee_element_2027",
+      "turismo-federalberghi/hotel_legacy_award",
       "turismo-federalberghi/quadri_absorption",
       "turismo-federalberghi/sickness_net_basis"
     ],

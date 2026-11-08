@@ -196,24 +196,25 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "parental_leave",
         "event.parental_base_pay",
         FactEnforcement.REPORTED,
-        "unknown pay of the month before the leave: the indemnity is computed "
-        "on the pay of the run, with a missing_fact parental_base_pay blocker",
+        "Unknown previous-month pay: the run's pay is used provisionally.",
+    ),
+    "ParentalLeaveEvent.topped_up_days_before": requires_fact(
+        "parental_leave",
+        "event.topped_up_days_before",
+        FactEnforcement.REPORTED,
+        "Unknown prior supplemented days block the CCNL top-up.",
     ),
     "ParentalLeaveEvent.protection_ended_on": requires_fact(
         "parental_leave",
         "event.protection_ended_on",
         FactEnforcement.REPORTED,
-        "unknown end of the maternity or paternity leave: the days are paid "
-        "on the months at 80% the birth day gives, with a missing_fact "
-        "protection_ended_on blocker when the end could give more",
+        "Unknown protected leave end may change the enhanced INPS months.",
     ),
     "DisabilityPermitEvent.hours": absence_is_fact(
         "permits taken as whole days only; hours of permit are a fact of the "
         "timesheet the event records"
     ),
-    "ParentalLeaveEvent.single_parent": absence_is_fact(
-        "two parents; a sole parent is a fact of the family the event records"
-    ),
+    "ParentalLeaveEvent.single_parent": absence_is_fact("sole parent status"),
     "HourlyParentalLeaveEvent.parental_base_pay": requires_fact(
         "parental_leave",
         "event.parental_base_pay",

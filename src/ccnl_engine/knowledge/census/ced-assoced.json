@@ -51,18 +51,34 @@
       }
     },
     {
-      "id": "injury_integration_missing",
+      "id": "injury_rate_text_conflict",
       "institute": "workplace_injury",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 147 (PDF p. 97): the ordinary integration of the INAIL indemnity (60% on the first three days, then '75% (cento per cento)' from the 4th: the text is inconsistent) is not modelled: the injury rules of the ruleset hold only the holiday target, so the ordinary injury days are paid at the INAIL share; the holiday reaches 100% net of that share.",
+      "rule": "Art. 147 prints 75% (cento per cento) for ordinary injury integration after the waiting period. The numerical 75% is encoded; the contradictory words could indicate a 100% intended rate. Confirm with the signatories before using this target as definitive.",
       "calculation": "ccnl/ced-assoced:coverage.notes",
       "state": "absent",
-      "remediation": "Encode the integration bands of the injury article (insured_absence.injury.integration_bands).",
+      "remediation": "Obtain an authoritative clarification of the conflicting percentage in Art. 147.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "ced-assoced/injury_integration_missing"
+          "ced-assoced/injury_rate_text_conflict"
+        ]
+      }
+    },
+    {
+      "id": "local_holiday_during_absence",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.",
+      "calculation": "ccnl/ced-assoced:coverage.notes",
+      "state": "absent",
+      "remediation": "Provide the employer-specific patron saint holiday.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "ced-assoced/local_holiday_during_absence"
         ]
       }
     },

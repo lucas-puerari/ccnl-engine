@@ -197,7 +197,15 @@ def _segment_pay(
     worker = money(base * segment.worker_rate)
     if segment.kind is SickDayKind.CARENZA:
         return advanced, _ZERO, worker
-    integration = max(_ZERO, worker - _grossed(share, *rules))
+    holiday = rules[0].ccnl.holiday
+    gross_holiday = (
+        holiday is not None
+        and holiday.gross_basis
+        and segment.first in rules[0].holidays
+    )
+    integration = max(
+        _ZERO, worker - (share if gross_holiday else _grossed(share, *rules))
+    )
     return advanced, integration, _ZERO
 
 

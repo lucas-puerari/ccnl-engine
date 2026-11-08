@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, sickness, workplace_injury |
 
-9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+10 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -63,6 +63,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | integration_75_days_4_20: JSON sickness_rules.day_bands is [4,21) at 0.75 and [21,infinity) at 1; carenza_integration_rate=1, net_basis=true and apprentices_excluded=true. SickPayRules.target_rate(index) selects the matching band and _segment_pay() tops up INPS to that target (does not add 75% on top). Th |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 107 (PDF p. 85, text layer). | confirmed | Art. 107: the festività in a sickness or injury are topped up to 100% of the pay, net of the INPS and INAIL indemnity: sickness_rules.holiday rate 1; the injury part stays a limitation. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay. | confirmed | Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 105 - Injury pay, ordinary injury integration and waiting days against the cached PDF. | corrected | The first three days following the injury are paid at 60%; the ordinary non-apprentice net-pay target is 90% on calendar days 5–20 (offsets 4–19) and 100% from day 21 (offset 20). Apprentices have different targets and are not distinguished by the injury model. |
+| 2026-11-08 | gpt-6-sol (ai) | Art. 105 against the injury integration bands, by a separate model session. | flagged | Confirmed the waiting days at 60%, the bands from the INAIL indemnity and the day mapping from the injury day.<br>Flagged, kept as limitations: the apprentice rates of 80% and 90% are not selected; the general bands apply to them. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Local patron saint day in sickness and work injury holiday clauses. | confirmed | Art. 107 - Festività nel periodo di malattia o infortunio (p. 85): Ai sensi della legge 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto a un'indennità integrativa di quella a carico rispettivamente dell'INPS e dell'INAIL da corrispondersi a carico del datore di lavoro in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all'art. 117. The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged. |
 
 ## Salary table
@@ -157,12 +159,19 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 103, align the computation, then resolve this limitation.
 
-!!! warning "impianti-sportivi-sport/injury_integration_missing · workplace_injury · impact yes · open"
-    Art. 105 (PDF pp. 84-85): the ordinary integration of the INAIL indemnity (90% from the 5th to the 20th day, 100% from the 21st; apprentices 80% and 90%) is not modelled: the injury rules of the ruleset hold only the holiday target, so the ordinary injury days are paid at the INAIL share; the holiday reaches 100% net of that share.
+!!! warning "impianti-sportivi-sport/local_holiday_during_absence · sickness · impact yes · open"
+    The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Encode the integration bands of the injury article (insured_absence.injury.integration_bands).
+    **Remediation:** Provide the employer-specific patron saint holiday.
+
+!!! warning "impianti-sportivi-sport/injury_apprentice_rates · workplace_injury · impact yes · open"
+    Art. 105 - Injury pay: the 80% target on days 5–20 and 90% target from day 21 for apprentices are not selectable; the general 90%/100% targets are encoded for all workers.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add apprentice-specific injury integration targets.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

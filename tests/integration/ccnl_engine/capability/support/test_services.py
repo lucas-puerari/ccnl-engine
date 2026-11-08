@@ -78,6 +78,7 @@ def test_bundled_missing_notes_and_limitations() -> None:
             "base_salary",
             "inps_employer",
             "maternity_leave",
+            "sickness",
             "workplace_injury",
         ],
         "ortofrutticoli-agrumari": [

@@ -47,19 +47,6 @@
   "coverage": {
     "notes": [
       {
-        "kind": "simplification",
-        "text": "Art. 61: pregnancy and puerperium holiday top-ups, Easter Sunday are not calculated; national weekday holidays during sickness and injury are covered.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "other_holiday_during_absence",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Provide employer-specific holidays and the remaining absence treatments."
-        }
-      },
-      {
         "kind": "source",
         "text": "Primary source: CCNL Esercizi Cinematografici 2023-2026 (FISTel CISL, signed 16/10/2025). Art. 54: period 01/01/2023-31/12/2026. Three salary tranches: 01/01/2023, 01/11/2024, 01/07/2025 from salary tables (pages 59-65 of the PDF). Baseline (31/12/2022 column) used only for increment verification, not modelled as a separate period."
       },
@@ -131,6 +118,19 @@
       {
         "kind": "info",
         "text": "APPRENTICE SENIORITY (Art. 16, p. 25 of the CCNL 2023-2026): the seniority for the aumenti periodici runs from the conversion of the apprenticeship; no increment during it (seniority_increments.apprentice_amount 0.00)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 61: pregnancy and puerperium holiday top-ups, Easter Sunday are not calculated; national weekday holidays during sickness and injury are covered.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "other_holiday_during_absence",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Provide employer-specific holidays and the remaining absence treatments."
+        }
       }
     ]
   },
@@ -2851,7 +2851,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "2e747a7fa0c607b5cb4778ba485a20b069d00ca81487a0f39408f57cd1d72a9b",
+    "source_hash": "4ec21f59876717683b928e1dadaaa205f8757a36b69c107f9e77c707423fc5c1",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

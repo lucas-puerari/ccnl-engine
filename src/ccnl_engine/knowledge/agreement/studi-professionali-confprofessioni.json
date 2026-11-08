@@ -205,6 +205,19 @@
           },
           "remediation": "Top up the holidays the clause covers beyond the weekday national calendar, and the items above."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "local_holiday_during_absence",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Provide the employer-specific patron saint holiday."
+        }
       }
     ]
   },
@@ -2373,7 +2386,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "b15662857dafc65590144dee60f37cb720a6a7f0f9b7b51d9b978ce52c047602",
+    "source_hash": "475303641ccb32609b14f160493a794ad60364b535d982b6dcda636be2f62bcc",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
