@@ -38,6 +38,16 @@ class EqualisationElement(BaseModel):
             instead of the worker in service on 1 January.
         part_time_proportional: Whether a part-time worker is owed it in
             proportion to the hours (Turismo art. 13 c. 6).
+        individual_excludes: Whether any individual element of the worker
+            closes it instead of reducing it (Uniontessile art. 12 bis: "che
+            non percepiscono altri trattamenti economici individuali").
+        bargaining_year_before: Whether the second-level bargaining that
+            closes it is the one in force in the year before (Confapi art.
+            48), ``False`` for the year it is paid in (Uniontessile art. 12
+            bis: "aziende prive della contrattazione aziendale").
+        settled_on_termination: Whether a termination run before its month
+            pays it with the final settlement; ``False`` pays it only in the
+            regular run of its month.
         provenance: The clause.
     """
 
@@ -49,6 +59,9 @@ class EqualisationElement(BaseModel):
     paid_in_year: int | None = None
     in_service_month_before: bool = False
     part_time_proportional: bool = False
+    individual_excludes: bool = False
+    settled_on_termination: bool = True
+    bargaining_year_before: bool = True
     paid_in_month: int = Field(ge=1, le=12)
     month_min_days: int = Field(default=16, ge=1, le=31)
     provenance: RuleProvenance

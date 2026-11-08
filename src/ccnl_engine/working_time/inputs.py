@@ -65,11 +65,8 @@ class OvertimeEvent:
     Attributes:
         event_date: Calendar date the overtime was worked.
         hours: Overtime hours, above 0 and at most 744 (a month of 31 days).
-        hourly_rate: Base hourly rate in EUR, above 0.  ``None`` (the
-            default) derives it from the CCNL: the monthly pay elements of
-            its ``hourly_base_method`` divided by its hourly divisor, when
-            the CCNL hourly base is sourced; otherwise the run is rejected.
-            An explicit value prevails and is reported as caller-supplied.
+        hourly_rate: Base hourly rate in EUR, above 0; ``None`` derives it
+            from the CCNL hourly base (the run is rejected without one).
         multiplier: Overtime multiplier applied to the hourly rate (e.g.
             ``1.25`` for 25% supplement).  Must be > 0.  ``None`` (the
             default) derives it from the CCNL band of ``kind`` as
@@ -77,6 +74,9 @@ class OvertimeEvent:
             percentage band for it.  An explicit value prevails over the
             CCNL band.
         kind: When the hours were worked, selecting the CCNL band.
+        non_occasional: Whether the overtime is worked 'a titolo non
+            occasionale', which a CCNL may count in the TFR (operai agricoli
+            OTD: 10%); ``False`` is occasional overtime.
     """
 
     event_date: date
@@ -84,6 +84,7 @@ class OvertimeEvent:
     hourly_rate: Decimal | None = None
     multiplier: Decimal | None = None
     kind: OvertimeKind = OvertimeKind.WEEKDAY
+    non_occasional: bool = False
 
     def __post_init__(self) -> None:  # noqa: D105
         feature = "overtime"
@@ -95,19 +96,16 @@ class OvertimeEvent:
             positive=True,
             maximum=_HOURS_IN_A_MONTH,
         )
-        require_decimal(
-            self.hourly_rate,
-            "OvertimeEvent.hourly_rate",
-            feature=feature,
-            positive=True,
-            optional=True,
-        )
-        require_decimal(
-            self.multiplier,
-            "OvertimeEvent.multiplier",
-            feature=feature,
-            positive=True,
-            optional=True,
+        for name in ("hourly_rate", "multiplier"):
+            require_decimal(
+                getattr(self, name),
+                f"OvertimeEvent.{name}",
+                feature=feature,
+                positive=True,
+                optional=True,
+            )
+        require_bool(
+            self.non_occasional, "OvertimeEvent.non_occasional", feature=feature
         )
         kind = parse_enum(
             self.kind, OvertimeKind, "OvertimeEvent.kind", feature=feature

@@ -1041,7 +1041,6 @@
       "operai-agricoli-florovivaisti/florovivaisti_sickness_integration",
       "operai-agricoli-florovivaisti/florovivaisti_tables",
       "operai-agricoli-florovivaisti/inail_agricultural_premium",
-      "operai-agricoli-florovivaisti/otd_terzo_elemento",
       "operai-agricoli-florovivaisti/provincial_supplement",
       "operai-agricoli-florovivaisti/super_profile_scatti"
     ],
@@ -1176,6 +1175,8 @@
       "tessile-moda-artigianato-confartigianato/level_category_unconfirmed"
     ],
     "agreement/tessile-pmi-uniontessile.json": [
+      "tessile-pmi-uniontessile/art_12_ter_element",
+      "tessile-pmi-uniontessile/egr_termination_before_june",
       "tessile-pmi-uniontessile/fondapi_base_elements",
       "tessile-pmi-uniontessile/level_4s_seniority",
       "tessile-pmi-uniontessile/level_8_function_allowance",
