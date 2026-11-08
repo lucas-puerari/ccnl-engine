@@ -30,10 +30,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🟢 Verified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 59 verified / 9 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 59 verified / 11 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 74 - Tredicesima mensilità (p. 57): "4. Le frazioni di mese pari o superiori ai 15 giorni saranno considerate come mese intero.". Match: at_least 15. The quattordicesima differs: Art. 75: no separate 14th; an equivalent amount is already included in the minimo conglobato of art. 68, so no fraction rule applies to it. |
 | 2026-11-07 | claude-opus-5-5 (ai) | Art. 69 of the CCNL ANASTE 2026-2028 signed 9 October 2026: the tabellare from 1 October 2026, 1 January 2027 and 1 January 2028 (p. 64, page image). | corrected | Three tranches of the 2026-2028 renewal; the 'tabellare vigente' column equals the August 2025 values of the file. |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 52 values found verbatim on the cited pages and marked verified; 6 left as they were (derived or not on a text page). |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 70 c. 2 (p. 55), the declaratorie of levels 6 and 7 (p. 31), artt. 68, 74, 75 and 99 of the CCNL ANASTE 2023-2025. | confirmed | Art. 70 c. 2: 155 EUR a month for 12 months to the staff 'con qualifica e mansioni di infermiere', absorbable by an individual pay above the CCNL; no starting date of its own.<br>The infermiere is named in the declaratorie of levels 6 and 7; art. 99 does not exclude the allowance from the TFR. |
 
 ## Salary table
 
@@ -113,13 +114,6 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "istituzioni-servizi-socio-assistenziali-anaste/nurses_professional_allowance · base_salary · impact yes · open"
-    NURSES ALLOWANCE: indennita professionale infermieri 155 EUR/month (12 months) not included — qualifica-specific, not level-specific.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the indennita professionale infermieri (155 EUR x 12) as a fixed allowance with role 'infermiere' (Allowance.role, months_per_year 12).
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -321,6 +315,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP (Art. 22 c. 12-15, p. 19): levels 1-5 apprentice 12 months at 90% for months 1-6 and 95% after; levels 6-10 32 months at 90% for months 1-28 and 95% after; the full pay of the qualification from the end (c. 13). The first clause of c. 12 says 'fino a 32 mesi' for levels 1-5 too, against the 12 months of c. 15: c. 15 sets the duration. Level Q, in neither list, keeps the 32-month track.
     
     APPRENTICE SENIORITY (Apprendistato c. 12, p. 19 of the CCNL ANASTE, https://snalv.it/docs/anaste25/pdf6.pdf, sha256 0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98): 'Il periodo di apprendistato è considerato utile ai fini della maturazione degli scatti di anzianità previsti dall’art. 73 del CCNL.' Reading: the scatti matured during the apprenticeship are those of art. 73 at the amounts of the level (seniority_increments.apprentice_level_amount).
+    
+    Art. 70 c. 2 (p. 55): the indennità professionale of the infermieri, 155 EUR a month on 12 payments, is a fixed allowance of levels 6 and 7 with the role 'infermiere'. Absorbed by an individual pay above the CCNL: the caller states the superminimo net of the absorbed part. The TFR counts it: art. 99 does not exclude it.
     
 
 ## Raw data

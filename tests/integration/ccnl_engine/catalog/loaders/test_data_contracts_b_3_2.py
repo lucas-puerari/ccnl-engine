@@ -159,6 +159,16 @@ class TestLoadScuolePrivatelaicheAninsei:
 class TestLoadIstituzioniServiziSocioAssistenzialiAnaste:
     """Tests for CCNL Istituzioni e Servizi Socio-Assistenziali ANASTE (T131)."""
 
+    def test_anaste_nurse_allowance(self) -> None:
+        """Art. 70 c. 2: 155 a month on 12 payments, role infermiere, levels 6-7."""
+        ccnl = load_ccnl("istituzioni-servizi-socio-assistenziali-anaste")
+        for code in ("6", "7"):
+            (allowance,) = ccnl.level_by_code(code).fixed_allowances
+            assert allowance.code == "INDENNITA_PROFESSIONALE_INFERMIERI"
+            assert allowance.role == "infermiere"
+            assert allowance.months_per_year == 12
+            assert allowance.monthly.value_at(date(2026, 1, 1)) == Decimal("155.00")
+
     def test_anaste_loads(self) -> None:
         """Contract loads with correct id and CNEL code."""
         ccnl = load_ccnl("istituzioni-servizi-socio-assistenziali-anaste")
