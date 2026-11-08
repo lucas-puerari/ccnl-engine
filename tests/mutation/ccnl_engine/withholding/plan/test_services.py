@@ -16,6 +16,7 @@ from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.calendar.models import WorkCalendar
 from ccnl_engine.calendar.payment.models import PaymentId
 from ccnl_engine.calendar.schedule.models import PayrollRunCount
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.element.types import MonthlyPayChain
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.errors import InvalidInputError
@@ -220,6 +221,33 @@ class TestUpcomingRecurringGross:
         """11 regular months, half a fourteenth and a full thirteenth."""
         gross = upcoming_recurring_gross(_chain(), _HALF_FOURTEENTH.slots[1:])
         assert gross == Decimal(11 * 1000 + 500 + 1000)
+
+    def test_a_prior_extra_month_reduces_only_the_fourteenth(self) -> None:
+        """Studi art. 143: 400 already received lowers the fourteenth only.
+
+        11 regular months + 1000 fourteenth + 1000 thirteenth = 13000; the
+        offset leaves 600 of the fourteenth: 12600.  Unknown: 13000.
+        """
+        slots = calendar_schedule(
+            WorkCalendar.from_additional_months(_YEAR, Decimal(14))
+        ).slots[1:]
+        rule = load_ccnl(
+            "studi-professionali-confprofessioni"
+        ).parameters.fourteenth_prior_extra_offset
+        assert rule is not None
+        full = upcoming_recurring_gross(_chain(), slots)
+        offset = upcoming_recurring_gross(
+            _chain(),
+            slots,
+            fourteenth_offset=rule,
+            prior_extra_month_amount=Decimal(400),
+        )
+        unknown = upcoming_recurring_gross(_chain(), slots, fourteenth_offset=rule)
+        assert (full, offset, unknown) == (
+            Decimal(13000),
+            Decimal(12600),
+            Decimal(13000),
+        )
 
     def test_last_slot_has_nothing_upcoming(self) -> None:
         """On the last slot the projection adds nothing."""
