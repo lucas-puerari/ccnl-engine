@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, leave, overtime, sickness |
 
-13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+14 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 98 (printed p. 182), Premesse p. 12 and the renewals of 26 May 2021, 24 July 2025 and 4 June 2026 for amendments to it. | corrected | Art. 98 sets 69.72 (quadri A) and 49.06 (quadri B) from 1 January 1991 and 32.75 for the quadri B of the oreficeria sector, without a date.<br>No renewal of 2021, 2025 or 2026 amends Art. 98 (an independent reading of the three signed texts found none).<br>Art. 50 p. 123 counts the indennità di funzione quadri in the 'retribuzione FONDAPI': added to the base of the fund.<br>An independent reading flagged that the 9th category also holds workers outside the declaratoria of the quadri A: the 69.72 is paid with the role 'quadro' on level 9 too; it confirmed Art. 50 (both contributions on the retribuzione FONDAPI) and found no absorption or 13th-month clause on Art. 98. |
 | 2026-11-08 | gpt-6-sol (ai) | The conto ore of the PAR not taken, the hourly pay of art. 38 and the leave settlement code path, by a separate model session in two rounds. | flagged | Round 1 found the payout blocked by the missing termination basis: the deadline now values the hours by the hour (PermitDeadline.permits_hourly), the termination path unchanged.<br>Round 2 confirmed the year offset (December of the second year after), the hourly valuation as the general hourly pay 'ai fini dei vari istituti contrattuali', and the test amounts (C3 131.27, level 5 132.42).<br>Flagged: the hourly pay of art. 38 adds the hourly elements (incentivi, cottimo), which the engine leaves out; kept under par_conto_ore_hourly_elements. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 32(a,b,c) and holiday-in-absence paragraph, cached PDF pp. 104-105. | confirmed | Art. 32 excludes letter a) (25 April, 1 May and 2 June); the national calendar includes these, so a blanket sickness holiday rule would overpay. Injury and patron saint also remain unmodelled. |
 
 ## Salary table
 
@@ -209,6 +210,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Add the hourly elements of art. 38 to the hourly pay of the PAR, and source the PAR left at the end of the employment.
+
+!!! warning "metalmeccanico-confapi/holiday_during_injury · sickness · impact yes · open"
+    Art. 32 tops up reduced sickness, maternity and injury treatment only on holidays in letters b) and c). The national calendar also includes the excluded letter a) holidays (25 April, 1 May and 2 June). A blanket sickness_rules.holiday would overpay those days, so the sickness holiday top-up is not calculated. The injury (INAIL) and local patron saint treatments are also not calculated.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Support contract-scoped holiday dates before implementing the sickness and injury top-ups of art. 32(b,c).
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

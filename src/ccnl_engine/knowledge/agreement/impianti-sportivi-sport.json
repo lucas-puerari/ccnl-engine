@@ -1441,7 +1441,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "5d8a4d10e1e4a23d1ab6fbc6721dd2df6e7f8f9539de7d299dd2f47cf4ed32f9",
+    "source_hash": "76c4c08b9c3872dc35a1b2919d13b20f145a96777b5689ecdea6e27c6b3851ff",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -1776,7 +1776,7 @@
             "section": "Art. 107 - Festività nel periodo di malattia o infortunio",
             "quote": "Ai sensi della legge 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto a un'indennità integrativa di quella a carico rispettivamente dell'INPS e dell'INAIL da corrispondersi a carico del datore di lavoro in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all'art. 117."
           },
-          "transformation": "On a national holiday (not a Sunday) falling in a sickness within the comporto, the integration target of the day is 100% of the daily pay, the INPS share of the day netted (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury.",
+          "transformation": "On a national holiday (not a Sunday) falling in a sickness within the comporto, the integration target of the day is 100% of the daily pay, the INPS share of the day netted (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury. The national calendar adds 4 October from 2026 (L. 151/2025), which this text, signed before, does not list: excluded (excluded_days 10-04).",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
@@ -1786,7 +1786,10 @@
             "verification_status": "verified",
             "review_id": "2026-11-08-ai-impianti-sportivi-sport-holiday-in-sickness"
           }
-        }
+        },
+        "excluded_days": [
+          "10-04"
+        ]
       }
     },
     "notice": {

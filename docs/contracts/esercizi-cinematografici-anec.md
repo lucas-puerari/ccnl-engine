@@ -32,7 +32,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | inps_employer, sickness |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-10-16 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 20 - Tredicesima mensilita' o gratifica natalizia (p. 27): "La frazione di mese superiore a 15 giorni sarà considerata, a tali effetti, come mese intero.". Match: more_than 15. |
 | 2026-11-07 | claude-opus-5-5 (ai) | Verbale of 12 February 2026: the IPCA adjustment of the minimi from January 2026 (pp. 1-3). | corrected | The minimi rise 1.7% from January 2026 (26.58 EUR at level IV, reparametrised); the seniority amounts are unchanged. |
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 60 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 61, cached PDF pp. 46-47, national weekday holidays and sickness paragraph. | confirmed | Art. 61 tops up sickness treatment to full daily pay on national weekday holidays; injury, maternity, Easter Sunday and the patron saint remain unmodelled. |
 
 ## Salary table
 
@@ -114,6 +115,13 @@ percentage: 0.90
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "esercizi-cinematografici-anec/holiday_during_injury · sickness · impact yes · open"
+    Art. 61: the holiday top-up during injury (INAIL), pregnancy and puerperium, Easter Sunday and the local patron saint is not calculated; only national weekday holidays in sickness are covered.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model injury and maternity holiday treatments and employer-specific and Sunday holiday dates.
 
 !!! warning "esercizi-cinematografici-anec/fpls_rates_approximated · inps_employer · impact unknown · open"
     SIMPLIFICATION: tax_sector=TERZIARIO. Cinema exhibition employees (esercizio cinematografico) were historically under ENPALS (now FPLS — Fondo Pensione Lavoratori dello Spettacolo dell'INPS, Art. 12 comma 6 of this CCNL). The FPLS contribution regime differs from ordinary terziario. terziario rates are used as an approximation pending a dedicated cinema-FPLS tax file. For the workers enrolled after 31 December 1995 the IVS of the FPLS is the ordinary 33% (23.81 + 9.19) up to the annual massimale (INPS, Calcolo dei contributi IVS dei lavoratori dello spettacolo, updated 5 October 2026), as charged here; approximated are the daily bands of the workers enrolled before 1996 (massimale 892 a day in 2026, solidarity 5% above it) and the non-IVS contributions.
