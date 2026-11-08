@@ -297,3 +297,25 @@ def test_fondapi_chemical_tiers(rate: str, employer: str, employee: str) -> None
     )
     assert _entry(result, "pension_fund_employer") == Decimal(employer)
     assert _entry(result, "pension_fund_employee") == Decimal(employee)
+
+
+def test_fonte_on_the_agenti_immobiliari() -> None:
+    """FIAIP art. 15: Fon.Te. 1.55% and 0.55% of the TFR base, fee included.
+
+    Level II in January 2026, a TFR base of 2206.00: employer 34.193 ->
+    34.19, employee 12.133 -> 12.13.
+    """
+    result = regular_period(
+        employment=Employment(
+            ccnl_id="agenti-immobiliari-fiaip",
+            level_code="II",
+            seniority=new_hire(),
+            pension_fund=PensionFundEnrolment(
+                "FONTE", Decimal("0.0055"), tfr_to_fund=True
+            ),
+            contract_type=Permanent(),
+        )
+    )
+    assert _pension_decision(result).inputs["base"] == Decimal("2206.00")
+    assert _entry(result, "pension_fund_employer") == Decimal("34.19")
+    assert _entry(result, "pension_fund_employee") == Decimal("12.13")
