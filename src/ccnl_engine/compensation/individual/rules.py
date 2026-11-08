@@ -80,7 +80,12 @@ def with_individual_elements(
         reports the unknown level); else a copy whose level ``level_code``
         pays each element, at its amount on ``day``, as a fixed allowance.
     """
-    if not elements:
+    if not elements and not any(
+        a.absorbed_by_individual_excess
+        for level in ccnl.levels
+        if level.code == level_code
+        for a in level.fixed_allowances
+    ):
         return ccnl
     levels = tuple(
         _with(level, elements, day) if level.code == level_code else level
@@ -110,9 +115,35 @@ def _with(level: Level, elements: tuple[IndividualElement, ...], day: date) -> L
         )
         for e in elements
     )
-    return level.model_copy(
-        update={"fixed_allowances": (*level.fixed_allowances, *added)}
+    excess = sum((monthly_on(e, level, day) for e in elements), _ZERO)
+    allowances = tuple(
+        _offset_allowance(a, excess, day) if a.absorbed_by_individual_excess else a
+        for a in level.fixed_allowances
     )
+    return level.model_copy(update={"fixed_allowances": (*allowances, *added)})
+
+
+def _offset_allowance(allowance: Allowance, excess: Decimal, day: date) -> Allowance:
+    """Keep individual pay whole and pay only the unabsorbed allowance.
+
+    Returns:
+        A copy with the remaining amount for this month, or the original
+        allowance outside its validity period.
+    """
+    period = allowance.monthly.period_at(day)
+    if period is None or period.value is None:
+        return allowance
+    monthly = TimeSeries(
+        periods=(
+            ValidityPeriod(
+                valid_from=period.valid_from,
+                valid_until=period.valid_until,
+                value=max(_ZERO, period.value - excess),
+                provenance=period.provenance,
+            ),
+        )
+    )
+    return allowance.model_copy(update={"monthly": monthly})
 
 
 def individual_element_decisions(ctx: RunContext) -> tuple[CalculationDecision, ...]:

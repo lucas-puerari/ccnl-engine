@@ -44,6 +44,7 @@ class Allowance(BaseModel):
     percentage together with the base salary; a CCNL that lists the reduced
     elements exempts every allowance it does not list.
 
+    ``absorbed_by_individual_excess`` offsets paid individual excess (capped).
     ``individual=True`` marks an element of the worker, not of the CCNL
     (:class:`~ccnl_engine.compensation.individual.inputs.IndividualElement`):
     the hourly base counts it as the CCNL says
@@ -56,9 +57,7 @@ class Allowance(BaseModel):
     ``service_months_threshold`` includes the allowance only when the
     recognised seniority (``Employment.seniority``) is known and at least
     this many months on the run; unknown, the run names the missing fact.
-    ``service_months_until`` closes the band (the RPD of the AFAM docenti).
-    ``career_service`` gates on ``SeniorityFact.career_months`` when stated
-    (Farmacie Tabella C: the years in level 1 and Area Q).
+    ``career_service`` gates on ``SeniorityFact.career_months`` when stated.
 
     ``part_time_proportionable=False`` marks allowances paid at their full
     contractual value whatever the part-time fraction (fixed welfare
@@ -94,6 +93,7 @@ class Allowance(BaseModel):
     career_service: bool = False
     in_service_on: date | None = None
     individual: bool = False
+    absorbed_by_individual_excess: bool = False
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
