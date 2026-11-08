@@ -57,3 +57,38 @@ def test_the_inail_share_is_topped_up_after_the_carenza() -> None:
 
     assert lines["crnz"] == Decimal("110.45")
     assert lines["intg"] > 0
+
+
+def _injury_integration(employer: EmployerProfile) -> Decimal:
+    result = PayrollEngine.bundled().calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(2026, 3),
+            payment_date=date(2026, 3, 27),
+            employment=Employment(
+                ccnl_id="studi-professionali-confprofessioni",
+                level_code="4",
+                contract_type=Permanent(),
+                employment_period=EmploymentPeriod(_HIRED, None),
+                seniority=SeniorityFact.since(_HIRED, SenioritySource.EMPLOYER_RECORDS),
+                pension_fund=NoPensionFund(),
+            ),
+            employer=employer,
+            facts=PeriodFacts(
+                events=(WorkInjuryEvent(date(2026, 3, 2), date(2026, 3, 31)),)
+            ),
+        )
+    )
+    lines = {i.item_id.rsplit("_", 1)[-1]: i.amount for i in result.pay_items}
+    return lines["intg"]
+
+
+def test_the_run_tops_up_a_stated_patron_day_in_the_injury() -> None:
+    """Thursday 19 March, stated as the patron, reaches 100% in the run.
+
+    Without the employer's patron day the month has no covered holiday.
+    """
+    plain = _injury_integration(EmployerProfile(headcount=Headcount(10)))
+    patron = _injury_integration(
+        EmployerProfile(headcount=Headcount(10), patron_saint_day="03-19")
+    )
+    assert patron > plain
