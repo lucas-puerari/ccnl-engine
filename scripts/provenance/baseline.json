@@ -645,7 +645,6 @@
       "afam-aran/shared_rules_unchecked"
     ],
     "agreement/agenti-immobiliari-fiaip.json": [
-      "agenti-immobiliari-fiaip/fonte_pension_fund",
       "agenti-immobiliari-fiaip/specialist_apprenticeship_track"
     ],
     "agreement/agenzie-marittime-i481.json": [
@@ -676,7 +675,6 @@
       "bancari-abi/abi_saturday_overtime_and_hourly_base",
       "bancari-abi/abi_sickness_counting",
       "bancari-abi/apprentice_net_equivalent_allowance",
-      "bancari-abi/ex_ristrutturazione_amount",
       "bancari-abi/inps_sector_rates_unsourced",
       "bancari-abi/scatti_freeze_2013_2014"
     ],
@@ -751,6 +749,7 @@
     "agreement/cooperative-sociali.json": [
       "cooperative-sociali/coop_sociali_unmodelled_elements",
       "cooperative-sociali/inps_rate_not_reconciled",
+      "cooperative-sociali/role_conditions_caller_stated",
       "cooperative-sociali/type_b_disadvantaged_exemption"
     ],
     "agreement/dirigenza-funzioni-locali-aran.json": [
@@ -927,6 +926,7 @@
     ],
     "agreement/lavoro-domestico-convivente-orario-ridotto.json": [
       "lavoro-domestico-convivente-orario-ridotto/annual_minimi_not_updated",
+      "lavoro-domestico-convivente-orario-ridotto/art34_role_conditions",
       "lavoro-domestico-convivente-orario-ridotto/babysitter_and_certification_allowances",
       "lavoro-domestico-convivente-orario-ridotto/extra_month_hours",
       "lavoro-domestico-convivente-orario-ridotto/hourly_inps_bracket_unvalidated",
@@ -934,6 +934,7 @@
     ],
     "agreement/lavoro-domestico-convivente.json": [
       "lavoro-domestico-convivente/annual_minimi_not_updated",
+      "lavoro-domestico-convivente/art34_role_conditions",
       "lavoro-domestico-convivente/extra_month_hours",
       "lavoro-domestico-convivente/hourly_inps_bracket_unvalidated",
       "lavoro-domestico-convivente/part_time_scaling",
@@ -942,6 +943,7 @@
     ],
     "agreement/lavoro-domestico-non-convivente.json": [
       "lavoro-domestico-non-convivente/annual_minimi_not_updated",
+      "lavoro-domestico-non-convivente/art34_hourly_allowances",
       "lavoro-domestico-non-convivente/extra_month_hours",
       "lavoro-domestico-non-convivente/hourly_inps_bracket_unvalidated",
       "lavoro-domestico-non-convivente/meal_indennity",
@@ -970,6 +972,7 @@
       "logistica-trasporto-confetra/sixth_day_overtime"
     ],
     "agreement/marittimi-industria-armatoriale.json": [
+      "marittimi-industria-armatoriale/level_years_from_service",
       "marittimi-industria-armatoriale/una_tantum_2024_2025"
     ],
     "agreement/materiali-costruzione-lapidei-confapi.json": [

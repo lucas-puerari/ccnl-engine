@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 62 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 62 verified / 47 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-11-20 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2025-10-01 |
 
 ## Review history
@@ -66,6 +66,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | asi_health_contribution: Art. 87 covers permanent employees from 2013-05-01 at €5 employer/month, increased by €5 to €10 from 2025-01-01; Art. 28(A)(1), PDF p. 55, calls apprenticeship an open-ended contract. cooperative-sociali.json already specifies these periods and amounts, permanent_only=true and ap |
 | 2026-11-08 | gpt-6-sol (ai) | Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image. | corrected | The injury rule had no top-up of the INAIL indemnity; added: {"integration_bands": [{"day_from": 4, "rate": "1"}, {"day_from": 180, "rate": "0"}], "carenza_rate": "1"} |
+| 2026-11-09 | claude-opus-5-5 (ai) | Artt. 47, 57, 78 and 79 of the CCNL Cooperative sociali, testo completo 2025 (PDF pp. 78-86, 93-94, 109-110, text layer). | confirmed | Art. 78: indennità professionali 61.97 (infermiere generico, D1), 154.94 (infermiere, terapisti, D2), 258.23 (medico, E2 or F1), 232.41 (direttore, F2): role allowances.<br>Art. 47: ETDR educatore 41 EUR from 1 January 2025, 82 from 1 September 2025, ended on 1 January 2026.<br>Art. 57: reperibilità in struttura 77.47 EUR a month; the 20 EUR a night stays outside. |
+| 2026-11-09 | gpt-6-sol (ai) | Artt. 47, 57, 78, 79 and 81 of the CCNL Cooperative sociali 2025 against the role allowances, by a separate model session. | corrected | Confirmed the indennità professionali, their levels and amounts, the ETDR and the reperibilità in struttura.<br>Corrected: the indennità di cassa 30.99 (art. 81) and the affiancamento 50 (art. 78) are fixed monthly amounts too: added as role allowances.<br>Flagged: the conditions of the roles (ETDR categories, medico F1 experience, reperibilità programming) are caller-stated: limitation role_conditions_caller_stated. |
 
 ## Salary table
 
@@ -147,11 +149,18 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add a disadvantaged-worker input and zero the contributions of L. 381/1991 art. 4.
 
 !!! warning "cooperative-sociali/coop_sociali_unmodelled_elements · base_salary · impact yes · open"
-    NOT MODELLED AMOUNTS: the ETDR of the educatori (EUR 41, then 82 a month in 2025, Art. 47 and verbale 17 September 2025; the educatori socio-pedagogici move to D2 from 1 January 2026); the night allowance of EUR 12.39 / 6.20 per night and the 10% of night-only custody staff (Art. 54); 15% on Sunday and holiday ordinary hours (Art. 55); the 10% shift allowance (Art. 56); reperibilità in struttura EUR 77.47 a month plus EUR 20 a night (Art. 57); pronta disponibilità EUR 1.55 an hour (Art. 58); the indennità professionali (Art. 78) and the EUR 50 affiancamento allowance; the indennità di cassa EUR 30.99 (Art. 81); the extra 1/26 of a holiday on the rest day (Art. 59) and the 4 days of ex festività (Art. 60); the 26 hours of night workers' permessi (Art. 54); the PTR (Art. 10, outside every institute); the salari di primo ingresso of type B (Art. 2 B.4); the territorial gradualità agreements (Art. 77); the maternity integration (Art. 63); the 100% integration of work injury to day 180 (Art. 72); the EUR 10 quota d'iscrizione of Previdenza Cooperativa (Art. 86). Sickness: no integration during the prova (Art. 71, Art. 28 M) and the comporto of 12 months in three years are not inputs. Apprenticeship: the 24-month track of the educatore professionale with title (Art. 28 N.2) is not expressible by level.
+    NOT MODELLED AMOUNTS: the night allowance of EUR 12.39 / 6.20 per night and the 10% of night-only custody staff (Art. 54); 15% on Sunday and holiday ordinary hours (Art. 55); the 10% shift allowance (Art. 56); the EUR 20 a night of the reperibilità in struttura (Art. 57; the 77.47 a month is a role allowance); pronta disponibilità EUR 1.55 an hour (Art. 58); the extra 1/26 of a holiday on the rest day (Art. 59) and the 4 days of ex festività (Art. 60); the 26 hours of night workers' permessi (Art. 54); the PTR (Art. 10, outside every institute); the salari di primo ingresso of type B (Art. 2 B.4); the territorial gradualità agreements (Art. 77); the maternity integration (Art. 63); the 100% integration of work injury to day 180 (Art. 72); the EUR 10 quota d'iscrizione of Previdenza Cooperativa (Art. 86). Sickness: no integration during the prova (Art. 71, Art. 28 M) and the comporto of 12 months in three years are not inputs. Apprenticeship: the 24-month track of the educatore professionale with title (Art. 28 N.2) is not expressible by level.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the ETDR, the night, shift and availability allowances, the professional allowances and the prova exclusion of sickness.
+
+!!! warning "cooperative-sociali/role_conditions_caller_stated · base_salary · impact yes · open"
+    Role allowances of the cooperative sociali: the caller states the role only when its condition holds: 'educatore_etdr' for an educatore of the servizi per l'infanzia (DM 378/2018) or socio-pedagogico (L. 205/2017 c. 597) on D1; 'medico' on F1 with five years in the cooperative sector; 'reperibilita_struttura' for the reperibilità with the duty to stay in a residential structure, as programmed by the cooperative (Art. 57); 'affiancamento_inserimento' for the months of the assignment (Art. 78). The engine does not check these conditions.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** State the conditions of each role as worker facts the engine can check.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -159,6 +168,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation.
+
+!!! warning "apprenticeship_pct_undeclared_components · base_salary · impact unknown · open"
+    A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.
+
+    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

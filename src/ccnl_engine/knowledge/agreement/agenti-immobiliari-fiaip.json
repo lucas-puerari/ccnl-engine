@@ -110,18 +110,13 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: Fondo Fon.Te. supplementary pension (Art. 15) not modelled. Voluntary adhesion. Employee: 0.55% of TFR-eligible retribuzione; employer: 1.55% + 0.05% quota associativa. employer_cost_annual understated by approximately 1.60% of annual retribuzione for adherents.",
-        "capability": "pension_fund_contribution",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "fonte_pension_fund",
-          "remediation": "Add the Fon.Te. employee and employer rates to the CCNL pension fund data."
-        }
+        "kind": "info",
+        "text": "Source provenance: values extracted from signed CCNL 19/05/2025 PDF distributed by FIAIP/EBNAIP. The direct PDF download URL was not recorded; the homepage https://www.ebnaip.it/ was used as the source anchor. All values verified page-by-page against the original document."
       },
       {
         "kind": "info",
-        "text": "Source provenance: values extracted from signed CCNL 19/05/2025 PDF distributed by FIAIP/EBNAIP. The direct PDF download URL was not recorded; the homepage https://www.ebnaip.it/ was used as the source anchor. All values verified page-by-page against the original document."
+        "text": "Art. 15 (p. 26): Fon.Te., employer 1.55% and worker minimum 0.55% of the TFR base, the 0.05 quota associativa included in each (parameters.employer_funds FONTE); the TFR share, 50% or 100%, is the worker's choice. The una tantum of 15.50 EUR at enrolment is not paid by the engine.",
+        "capability": "pension_fund_contribution"
       }
     ]
   },
@@ -284,6 +279,27 @@
         "independence": "same_process",
         "checked": [
           "parameters.health_funds"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-fiaip-fonte",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 15 of the CCNL FIAIP 2025 (PDF p. 26, text layer).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+            "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+          }
+        ],
+        "findings": [
+          "Fon.Te.: employer 1.55% and worker 0.55% of the TFR base, the 0.05 quota associativa included (the old note added it on top); TFR 50% or 100% at the worker's choice; una tantum 15.50 EUR at enrolment."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.employer_funds"
         ]
       }
     ]
@@ -602,6 +618,58 @@
             "verified_at": "2026-11-08T17:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-08-ai-agenti-immobiliari-fiaip-ebnaip"
+          }
+        }
+      }
+    ],
+    "employer_funds": [
+      {
+        "code": "FONTE",
+        "description": "Fon.Te. - Fondo pensione complementare per i dipendenti da aziende del terziario (CCNL FIAIP, Art. 15)",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "0.0155"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2025-05-01",
+              "valid_until": null,
+              "value": "0.0055"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ebnaip-ccnl-fiaip-2025",
+              "title": "CCNL FIAIP 2025, testo definitivo (EBNAIP)",
+              "kind": "associazione",
+              "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+              "published_on": "2025-05-01",
+              "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+            },
+            "page": "26",
+            "section": "Art. 15 - Previdenza complementare Fon.Te.",
+            "quote": "- 0,55% (di cui lo 0,05 costituisce la quota associativa) della retribuzione utile per il computo del TFR, a carico del lavoratore; - 1,55% (di cui lo 0,05 costituisce la quota associativa) della retribuzione utile per il computo del TFR, a carico del datore di lavoro; - A scelta del lavoratore, il 50% o il 100% del TFR maturato dal momento dell’adesione al Fondo Fon.Te."
+          },
+          "transformation": "Employer 1.55% and worker minimum 0.55% of the TFR base, the quota associativa of 0.05 included in each; the share of the TFR is the worker's choice (PensionFundEnrolment). From the CCNL of 1 May 2025. Not modelled: the una tantum of 15.50 EUR at enrolment (11.88 employer, 3.62 worker).",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-09T00:30:00Z",
+            "effective_from": "2025-05-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-09T00:30:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-09-ai-fiaip-fonte"
           }
         }
       }
@@ -1832,7 +1900,7 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "5d61163554fa0c69717375a1fd4d1983e7be0f8e9aa709a3a0b294517491d697"
+    "source_hash": "c107692005e9520912bfbed46353f9ea4441e554270f357c3357e5e8b453ffac"
   },
   "work_rules": {
     "notice": {

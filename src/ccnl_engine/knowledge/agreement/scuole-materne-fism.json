@@ -69,7 +69,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY (Arts. 40, 44-46): the scatti were frozen at 31/12/2015 and consolidated by the CCNL 2016-2018; those amounts and the salario di anzianità of the earlier renewals are the worker's own (the caller states them as individual elements). The salario di anzianità of Art. 46 from 1 September 2025 (15 EUR levels I-IV, 20 EUR levels V-VIII, 13 payments, two years of uninterrupted service on that day) is a fixed allowance of every level (in_service_on 2023-09-01). Approximated: an interruption of the service before 1 September 2025 is not read, and the amount follows the level of the run instead of the level held on 1 September 2025.",
+        "text": "SENIORITY (Arts. 40, 44-46): the scatti were frozen at 31/12/2015 and consolidated by the CCNL 2016-2018; those amounts and the salario di anzianità of the earlier renewals are the worker's own (the caller states them as individual elements). The salario di anzianità of Art. 46 from 1 September 2025 (15 EUR levels I-IV, 20 EUR levels V-VIII, 13 payments, two years of uninterrupted service on that day) is a fixed allowance of every level (in_service_on 2023-09-01). Approximated: 'servizio ininterrotto presso lo stesso Ente' is read from the start of the employment period, so an interruption or a change of Ente before 1 September 2025 is not read, and the amount follows the level of the run instead of the level held on 1 September 2025.",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
@@ -177,6 +177,29 @@
           "The agreement of 7 July 2026 does not amend art. 46."
         ],
         "independence": "same_process",
+        "checked": [
+          "levels[].fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-09-gpt-fism-salario-anzianita",
+        "date": "2026-11-09",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Art. 46 (PDF pp. 35-36) against the encoding of the salario di anzianità, by a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+            "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
+          }
+        ],
+        "findings": [
+          "Confirmed the amounts, the date, the 13 payments and the two years of service.",
+          "Corrected: 'a tutto il personale' does not say whether the apprentice percentage applies: the declaration is removed and the ruleset joins the engine limitation of undeclared apprenticeship components.",
+          "Flagged: the level held on 1 September 2025 and the continuity with the same Ente are approximations, in the limitation."
+        ],
+        "independence": "separate_model",
         "checked": [
           "levels[].fixed_allowances"
         ]
@@ -588,7 +611,7 @@
               "section": "Art. 46 - Salario di anzianità",
               "quote": "Dal 1° settembre 2025 è corrisposto mensilmente, per tredici mensilità, a titolo di \"salario di anzianità\", l'importo di cui sotto a tutto il personale che a quella data abbia maturato 2 anni di servizio ininterrotto presso lo stesso Ente. Tale importo si aggiunge a quanto già maturato come salario di anzianità secondo previsione dei rinnovi contrattuali precedenti. Di seguito si riporta l'importo del salario di anzianità in base al livello di inquadramento alla data del 1° settembre 2025: - 15,00 € per i livelli I-II-III-IV - 20,00 € per i livelli V-VI-VII-VIII"
             },
-            "transformation": "EUR 15.00 a month on 13 payments from 1 September 2025 to the worker in service with the Ente since 1 September 2023 at the latest (two years of service on 1 September 2025: in_service_on), on the level of the run. Approximated: 'ininterrotto' is read from the start of the employment period; the amount follows the level of the run, where the text fixes the level held on 1 September 2025. Paid in full to an apprentice too ('a tutto il personale').",
+            "transformation": "EUR 15.00 a month on 13 payments from 1 September 2025 to the worker in service with the Ente since 1 September 2023 at the latest (two years of service on 1 September 2025: in_service_on), on the level of the run. Approximated: 'ininterrotto' is read from the start of the employment period; the amount follows the level of the run, where the text fixes the level held on 1 September 2025.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -599,8 +622,7 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-fism-salario-anzianita"
             }
-          },
-          "apprenticeship_pct_relevant": false
+          }
         }
       ],
       "provenance": {
@@ -841,7 +863,7 @@
               "section": "Art. 46 - Salario di anzianità",
               "quote": "Dal 1° settembre 2025 è corrisposto mensilmente, per tredici mensilità, a titolo di \"salario di anzianità\", l'importo di cui sotto a tutto il personale che a quella data abbia maturato 2 anni di servizio ininterrotto presso lo stesso Ente. Tale importo si aggiunge a quanto già maturato come salario di anzianità secondo previsione dei rinnovi contrattuali precedenti. Di seguito si riporta l'importo del salario di anzianità in base al livello di inquadramento alla data del 1° settembre 2025: - 15,00 € per i livelli I-II-III-IV - 20,00 € per i livelli V-VI-VII-VIII"
             },
-            "transformation": "EUR 15.00 a month on 13 payments from 1 September 2025 to the worker in service with the Ente since 1 September 2023 at the latest (two years of service on 1 September 2025: in_service_on), on the level of the run. Approximated: 'ininterrotto' is read from the start of the employment period; the amount follows the level of the run, where the text fixes the level held on 1 September 2025. Paid in full to an apprentice too ('a tutto il personale').",
+            "transformation": "EUR 15.00 a month on 13 payments from 1 September 2025 to the worker in service with the Ente since 1 September 2023 at the latest (two years of service on 1 September 2025: in_service_on), on the level of the run. Approximated: 'ininterrotto' is read from the start of the employment period; the amount follows the level of the run, where the text fixes the level held on 1 September 2025.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -852,8 +874,7 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-fism-salario-anzianita"
             }
-          },
-          "apprenticeship_pct_relevant": false
+          }
         }
       ],
       "provenance": {
@@ -1094,7 +1115,7 @@
               "section": "Art. 46 - Salario di anzianità",
               "quote": "Dal 1° settembre 2025 è corrisposto mensilmente, per tredici mensilità, a titolo di \"salario di anzianità\", l'importo di cui sotto a tutto il personale che a quella data abbia maturato 2 anni di servizio ininterrotto presso lo stesso Ente. Tale importo si aggiunge a quanto già maturato come salario di anzianità secondo previsione dei rinnovi contrattuali precedenti. Di seguito si riporta l'importo del salario di anzianità in base al livello di inquadramento alla data del 1° settembre 2025: - 15,00 € per i livelli I-II-III-IV - 20,00 € per i livelli V-VI-VII-VIII"
             },
-            "transformation": "EUR 15.00 a month on 13 payments from 1 September 2025 to the worker in service with the Ente since 1 September 2023 at the latest (two years of service on 1 September 2025: in_service_on), on the level of the run. Approximated: 'ininterrotto' is read from the start of the employment period; the amount follows the level of the run, where the text fixes the level held on 1 September 2025. Paid in full to an apprentice too ('a tutto il personale').",
+            "transformation": "EUR 15.00 a month on 13 payments from 1 September 2025 to the worker in service with the Ente since 1 September 2023 at the latest (two years of service on 1 September 2025: in_service_on), on the level of the run. Approximated: 'ininterrotto' is read from the start of the employment period; the amount follows the level of the run, where the text fixes the level held on 1 September 2025.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -1105,8 +1126,7 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-fism-salario-anzianita"
             }
-          },
-          "apprenticeship_pct_relevant": false
+          }
         }
       ],
       "provenance": {
@@ -1347,7 +1367,7 @@
               "section": "Art. 46 - Salario di anzianità",
               "quote": "Dal 1° settembre 2025 è corrisposto mensilmente, per tredici mensilità, a titolo di \"salario di anzianità\", l'importo di cui sotto a tutto il personale che a quella data abbia maturato 2 anni di servizio ininterrotto presso lo stesso Ente. Tale importo si aggiunge a quanto già maturato come salario di anzianità secondo previsione dei rinnovi contrattuali precedenti. Di seguito si riporta l'importo del salario di anzianità in base al livello di inquadramento alla data del 1° settembre 2025: - 15,00 € per i livelli I-II-III-IV - 20,00 € per i livelli V-VI-VII-VIII"
             },
-            "transformation": "EUR 15.00 a month on 13 payments from 1 September 2025 to the worker in service with the Ente since 1 September 2023 at the latest (two years of service on 1 September 2025: in_service_on), on the level of the run. Approximated: 'ininterrotto' is read from the start of the employment period; the amount follows the level of the run, where the text fixes the level held on 1 September 2025. Paid in full to an apprentice too ('a tutto il personale').",
+            "transformation": "EUR 15.00 a month on 13 payments from 1 September 2025 to the worker in service with the Ente since 1 September 2023 at the latest (two years of service on 1 September 2025: in_service_on), on the level of the run. Approximated: 'ininterrotto' is read from the start of the employment period; the amount follows the level of the run, where the text fixes the level held on 1 September 2025.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -1358,8 +1378,7 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-fism-salario-anzianita"
             }
-          },
-          "apprenticeship_pct_relevant": false
+          }
         }
       ],
       "provenance": {
@@ -1600,7 +1619,7 @@
               "section": "Art. 46 - Salario di anzianità",
               "quote": "Dal 1° settembre 2025 è corrisposto mensilmente, per tredici mensilità, a titolo di \"salario di anzianità\", l'importo di cui sotto a tutto il personale che a quella data abbia maturato 2 anni di servizio ininterrotto presso lo stesso Ente. Tale importo si aggiunge a quanto già maturato come salario di anzianità secondo previsione dei rinnovi contrattuali precedenti. Di seguito si riporta l'importo del salario di anzianità in base al livello di inquadramento alla data del 1° settembre 2025: - 15,00 € per i livelli I-II-III-IV - 20,00 € per i livelli V-VI-VII-VIII"
             },
-            "transformation": "EUR 20.00 a month on 13 payments from 1 September 2025 to the worker in service with the Ente since 1 September 2023 at the latest (two years of service on 1 September 2025: in_service_on), on the level of the run. Approximated: 'ininterrotto' is read from the start of the employment period; the amount follows the level of the run, where the text fixes the level held on 1 September 2025. Paid in full to an apprentice too ('a tutto il personale').",
+            "transformation": "EUR 20.00 a month on 13 payments from 1 September 2025 to the worker in service with the Ente since 1 September 2023 at the latest (two years of service on 1 September 2025: in_service_on), on the level of the run. Approximated: 'ininterrotto' is read from the start of the employment period; the amount follows the level of the run, where the text fixes the level held on 1 September 2025.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -1611,8 +1630,7 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-fism-salario-anzianita"
             }
-          },
-          "apprenticeship_pct_relevant": false
+          }
         }
       ],
       "provenance": {
@@ -1853,7 +1871,7 @@
               "section": "Art. 46 - Salario di anzianità",
               "quote": "Dal 1° settembre 2025 è corrisposto mensilmente, per tredici mensilità, a titolo di \"salario di anzianità\", l'importo di cui sotto a tutto il personale che a quella data abbia maturato 2 anni di servizio ininterrotto presso lo stesso Ente. Tale importo si aggiunge a quanto già maturato come salario di anzianità secondo previsione dei rinnovi contrattuali precedenti. Di seguito si riporta l'importo del salario di anzianità in base al livello di inquadramento alla data del 1° settembre 2025: - 15,00 € per i livelli I-II-III-IV - 20,00 € per i livelli V-VI-VII-VIII"
             },
-            "transformation": "EUR 20.00 a month on 13 payments from 1 September 2025 to the worker in service with the Ente since 1 September 2023 at the latest (two years of service on 1 September 2025: in_service_on), on the level of the run. Approximated: 'ininterrotto' is read from the start of the employment period; the amount follows the level of the run, where the text fixes the level held on 1 September 2025. Paid in full to an apprentice too ('a tutto il personale').",
+            "transformation": "EUR 20.00 a month on 13 payments from 1 September 2025 to the worker in service with the Ente since 1 September 2023 at the latest (two years of service on 1 September 2025: in_service_on), on the level of the run. Approximated: 'ininterrotto' is read from the start of the employment period; the amount follows the level of the run, where the text fixes the level held on 1 September 2025.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -1864,8 +1882,7 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-fism-salario-anzianita"
             }
-          },
-          "apprenticeship_pct_relevant": false
+          }
         }
       ],
       "provenance": {
@@ -2106,7 +2123,7 @@
               "section": "Art. 46 - Salario di anzianità",
               "quote": "Dal 1° settembre 2025 è corrisposto mensilmente, per tredici mensilità, a titolo di \"salario di anzianità\", l'importo di cui sotto a tutto il personale che a quella data abbia maturato 2 anni di servizio ininterrotto presso lo stesso Ente. Tale importo si aggiunge a quanto già maturato come salario di anzianità secondo previsione dei rinnovi contrattuali precedenti. Di seguito si riporta l'importo del salario di anzianità in base al livello di inquadramento alla data del 1° settembre 2025: - 15,00 € per i livelli I-II-III-IV - 20,00 € per i livelli V-VI-VII-VIII"
             },
-            "transformation": "EUR 20.00 a month on 13 payments from 1 September 2025 to the worker in service with the Ente since 1 September 2023 at the latest (two years of service on 1 September 2025: in_service_on), on the level of the run. Approximated: 'ininterrotto' is read from the start of the employment period; the amount follows the level of the run, where the text fixes the level held on 1 September 2025. Paid in full to an apprentice too ('a tutto il personale').",
+            "transformation": "EUR 20.00 a month on 13 payments from 1 September 2025 to the worker in service with the Ente since 1 September 2023 at the latest (two years of service on 1 September 2025: in_service_on), on the level of the run. Approximated: 'ininterrotto' is read from the start of the employment period; the amount follows the level of the run, where the text fixes the level held on 1 September 2025.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -2117,8 +2134,7 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-fism-salario-anzianita"
             }
-          },
-          "apprenticeship_pct_relevant": false
+          }
         }
       ],
       "provenance": {
@@ -2359,7 +2375,7 @@
               "section": "Art. 46 - Salario di anzianità",
               "quote": "Dal 1° settembre 2025 è corrisposto mensilmente, per tredici mensilità, a titolo di \"salario di anzianità\", l'importo di cui sotto a tutto il personale che a quella data abbia maturato 2 anni di servizio ininterrotto presso lo stesso Ente. Tale importo si aggiunge a quanto già maturato come salario di anzianità secondo previsione dei rinnovi contrattuali precedenti. Di seguito si riporta l'importo del salario di anzianità in base al livello di inquadramento alla data del 1° settembre 2025: - 15,00 € per i livelli I-II-III-IV - 20,00 € per i livelli V-VI-VII-VIII"
             },
-            "transformation": "EUR 20.00 a month on 13 payments from 1 September 2025 to the worker in service with the Ente since 1 September 2023 at the latest (two years of service on 1 September 2025: in_service_on), on the level of the run. Approximated: 'ininterrotto' is read from the start of the employment period; the amount follows the level of the run, where the text fixes the level held on 1 September 2025. Paid in full to an apprentice too ('a tutto il personale').",
+            "transformation": "EUR 20.00 a month on 13 payments from 1 September 2025 to the worker in service with the Ente since 1 September 2023 at the latest (two years of service on 1 September 2025: in_service_on), on the level of the run. Approximated: 'ininterrotto' is read from the start of the employment period; the amount follows the level of the run, where the text fixes the level held on 1 September 2025.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -2370,8 +2386,7 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-fism-salario-anzianita"
             }
-          },
-          "apprenticeship_pct_relevant": false
+          }
         }
       ],
       "provenance": {
@@ -2424,7 +2439,7 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "19d345ee4852af9a2f6b4febd387e9b6503c7f1d35cba6b24d59a31d0591bc96",
+    "source_hash": "482d1faa2e2a2cb26eb6550822d1977486993b364ffd9f9eb161495731344a86",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

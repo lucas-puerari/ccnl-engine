@@ -127,7 +127,7 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED AMOUNTS: the ETDR of the educatori (EUR 41, then 82 a month in 2025, Art. 47 and verbale 17 September 2025; the educatori socio-pedagogici move to D2 from 1 January 2026); the night allowance of EUR 12.39 / 6.20 per night and the 10% of night-only custody staff (Art. 54); 15% on Sunday and holiday ordinary hours (Art. 55); the 10% shift allowance (Art. 56); reperibilità in struttura EUR 77.47 a month plus EUR 20 a night (Art. 57); pronta disponibilità EUR 1.55 an hour (Art. 58); the indennità professionali (Art. 78) and the EUR 50 affiancamento allowance; the indennità di cassa EUR 30.99 (Art. 81); the extra 1/26 of a holiday on the rest day (Art. 59) and the 4 days of ex festività (Art. 60); the 26 hours of night workers' permessi (Art. 54); the PTR (Art. 10, outside every institute); the salari di primo ingresso of type B (Art. 2 B.4); the territorial gradualità agreements (Art. 77); the maternity integration (Art. 63); the 100% integration of work injury to day 180 (Art. 72); the EUR 10 quota d'iscrizione of Previdenza Cooperativa (Art. 86). Sickness: no integration during the prova (Art. 71, Art. 28 M) and the comporto of 12 months in three years are not inputs. Apprenticeship: the 24-month track of the educatore professionale with title (Art. 28 N.2) is not expressible by level.",
+        "text": "NOT MODELLED AMOUNTS: the night allowance of EUR 12.39 / 6.20 per night and the 10% of night-only custody staff (Art. 54); 15% on Sunday and holiday ordinary hours (Art. 55); the 10% shift allowance (Art. 56); the EUR 20 a night of the reperibilità in struttura (Art. 57; the 77.47 a month is a role allowance); pronta disponibilità EUR 1.55 an hour (Art. 58); the extra 1/26 of a holiday on the rest day (Art. 59) and the 4 days of ex festività (Art. 60); the 26 hours of night workers' permessi (Art. 54); the PTR (Art. 10, outside every institute); the salari di primo ingresso of type B (Art. 2 B.4); the territorial gradualità agreements (Art. 77); the maternity integration (Art. 63); the 100% integration of work injury to day 180 (Art. 72); the EUR 10 quota d'iscrizione of Previdenza Cooperativa (Art. 86). Sickness: no integration during the prova (Art. 71, Art. 28 M) and the comporto of 12 months in three years are not inputs. Apprenticeship: the 24-month track of the educatore professionale with title (Art. 28 N.2) is not expressible by level.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -136,6 +136,19 @@
             "trigger": "outside_input"
           },
           "remediation": "Model the ETDR, the night, shift and availability allowances, the professional allowances and the prova exclusion of sickness."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Role allowances of the cooperative sociali: the caller states the role only when its condition holds: 'educatore_etdr' for an educatore of the servizi per l'infanzia (DM 378/2018) or socio-pedagogico (L. 205/2017 c. 597) on D1; 'medico' on F1 with five years in the cooperative sector; 'reperibilita_struttura' for the reperibilità with the duty to stay in a residential structure, as programmed by the cooperative (Art. 57); 'affiancamento_inserimento' for the months of the assignment (Art. 78). The engine does not check these conditions.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "role_conditions_caller_stated",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "State the conditions of each role as worker facts the engine can check."
         }
       }
     ]
@@ -720,7 +733,206 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_REPERIBILITA_STRUTTURA",
+          "description": "Reperibilità in struttura, fixed monthly part (art. 57)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "77.47",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "93-94",
+                    "section": "Art. 57 - Reperibilità",
+                    "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+                  },
+                  "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "reperibilita_struttura",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "93-94",
+              "section": "Art. 57 - Reperibilità",
+              "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+            },
+            "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di maneggio denaro (art. 81)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "30.99",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "111",
+                    "section": "Art. 81 - Indennità di cassa",
+                    "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+                  },
+                  "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "111",
+              "section": "Art. 81 - Indennità di cassa",
+              "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+            },
+            "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_AFFIANCAMENTO",
+          "description": "Indennità di funzione per l'affiancamento all'inserimento lavorativo (art. 78)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "50.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "110",
+                    "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+                    "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+                  },
+                  "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "affiancamento_inserimento",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "110",
+              "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+              "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+            },
+            "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -849,7 +1061,206 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_REPERIBILITA_STRUTTURA",
+          "description": "Reperibilità in struttura, fixed monthly part (art. 57)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "77.47",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "93-94",
+                    "section": "Art. 57 - Reperibilità",
+                    "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+                  },
+                  "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "reperibilita_struttura",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "93-94",
+              "section": "Art. 57 - Reperibilità",
+              "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+            },
+            "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di maneggio denaro (art. 81)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "30.99",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "111",
+                    "section": "Art. 81 - Indennità di cassa",
+                    "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+                  },
+                  "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "111",
+              "section": "Art. 81 - Indennità di cassa",
+              "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+            },
+            "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_AFFIANCAMENTO",
+          "description": "Indennità di funzione per l'affiancamento all'inserimento lavorativo (art. 78)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "50.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "110",
+                    "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+                    "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+                  },
+                  "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "affiancamento_inserimento",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "110",
+              "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+              "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+            },
+            "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -978,7 +1389,206 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_REPERIBILITA_STRUTTURA",
+          "description": "Reperibilità in struttura, fixed monthly part (art. 57)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "77.47",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "93-94",
+                    "section": "Art. 57 - Reperibilità",
+                    "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+                  },
+                  "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "reperibilita_struttura",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "93-94",
+              "section": "Art. 57 - Reperibilità",
+              "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+            },
+            "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di maneggio denaro (art. 81)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "30.99",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "111",
+                    "section": "Art. 81 - Indennità di cassa",
+                    "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+                  },
+                  "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "111",
+              "section": "Art. 81 - Indennità di cassa",
+              "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+            },
+            "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_AFFIANCAMENTO",
+          "description": "Indennità di funzione per l'affiancamento all'inserimento lavorativo (art. 78)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "50.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "110",
+                    "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+                    "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+                  },
+                  "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "affiancamento_inserimento",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "110",
+              "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+              "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+            },
+            "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -1108,7 +1718,206 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_REPERIBILITA_STRUTTURA",
+          "description": "Reperibilità in struttura, fixed monthly part (art. 57)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "77.47",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "93-94",
+                    "section": "Art. 57 - Reperibilità",
+                    "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+                  },
+                  "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "reperibilita_struttura",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "93-94",
+              "section": "Art. 57 - Reperibilità",
+              "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+            },
+            "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di maneggio denaro (art. 81)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "30.99",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "111",
+                    "section": "Art. 81 - Indennità di cassa",
+                    "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+                  },
+                  "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "111",
+              "section": "Art. 81 - Indennità di cassa",
+              "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+            },
+            "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_AFFIANCAMENTO",
+          "description": "Indennità di funzione per l'affiancamento all'inserimento lavorativo (art. 78)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "50.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "110",
+                    "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+                    "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+                  },
+                  "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "affiancamento_inserimento",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "110",
+              "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+              "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+            },
+            "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -1237,7 +2046,206 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_REPERIBILITA_STRUTTURA",
+          "description": "Reperibilità in struttura, fixed monthly part (art. 57)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "77.47",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "93-94",
+                    "section": "Art. 57 - Reperibilità",
+                    "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+                  },
+                  "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "reperibilita_struttura",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "93-94",
+              "section": "Art. 57 - Reperibilità",
+              "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+            },
+            "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di maneggio denaro (art. 81)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "30.99",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "111",
+                    "section": "Art. 81 - Indennità di cassa",
+                    "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+                  },
+                  "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "111",
+              "section": "Art. 81 - Indennità di cassa",
+              "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+            },
+            "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_AFFIANCAMENTO",
+          "description": "Indennità di funzione per l'affiancamento all'inserimento lavorativo (art. 78)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "50.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "110",
+                    "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+                    "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+                  },
+                  "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "affiancamento_inserimento",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "110",
+              "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+              "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+            },
+            "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -1366,7 +2374,206 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_REPERIBILITA_STRUTTURA",
+          "description": "Reperibilità in struttura, fixed monthly part (art. 57)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "77.47",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "93-94",
+                    "section": "Art. 57 - Reperibilità",
+                    "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+                  },
+                  "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "reperibilita_struttura",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "93-94",
+              "section": "Art. 57 - Reperibilità",
+              "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+            },
+            "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di maneggio denaro (art. 81)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "30.99",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "111",
+                    "section": "Art. 81 - Indennità di cassa",
+                    "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+                  },
+                  "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "111",
+              "section": "Art. 81 - Indennità di cassa",
+              "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+            },
+            "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_AFFIANCAMENTO",
+          "description": "Indennità di funzione per l'affiancamento all'inserimento lavorativo (art. 78)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "50.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "110",
+                    "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+                    "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+                  },
+                  "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "affiancamento_inserimento",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "110",
+              "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+              "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+            },
+            "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -1496,7 +2703,379 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_PROF_INFERMIERE_GENERICO",
+          "description": "Indennità professionale, infermiera/e generica/o (art. 78)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "61.97",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "109-110",
+                    "section": "Art. 78 - Indennità professionali",
+                    "quote": "Al personale inquadrato nei seguenti profili professionali saranno corrisposte le seguenti indennità mensili lorde: - infermiera/e generica/o € 61,97 - infermiera/e € 154,94 - fisioterapista, psicomotricista, terapista occupazionale, logopedista € 154,94 - medico € 258,23 - direttrice e direttore aziendale € 232,41"
+                  },
+                  "transformation": "EUR 61.97 a month with the role 'infermiere_generico' on level D1, the level of the profile in art. 47 (p. 79-80); in the extra months and the TFR (art. 79, the ministerial cost tables of p. 188 count it). Attested by the CCNL 2023-2025: the series starts with the pay table of the ruleset.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "infermiere_generico",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "109-110",
+              "section": "Art. 78 - Indennità professionali",
+              "quote": "Al personale inquadrato nei seguenti profili professionali saranno corrisposte le seguenti indennità mensili lorde: - infermiera/e generica/o € 61,97 - infermiera/e € 154,94 - fisioterapista, psicomotricista, terapista occupazionale, logopedista € 154,94 - medico € 258,23 - direttrice e direttore aziendale € 232,41"
+            },
+            "transformation": "EUR 61.97 a month with the role 'infermiere_generico' on level D1, the level of the profile in art. 47 (p. 79-80); in the extra months and the TFR (art. 79, the ministerial cost tables of p. 188 count it). Attested by the CCNL 2023-2025: the series starts with the pay table of the ruleset.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "ETDR_EDUCATORE",
+          "description": "Elemento temporaneo aggiuntivo della retribuzione degli educatori D1 (art. 47)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": "2025-01-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2025-09-01",
+                "value": "41.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "84-85",
+                    "section": "Art. 47 - ETDR Educatore",
+                    "quote": "inquadrati al profilo D1 del presente articolo, a far data dal 1° gennaio 2025 avranno diritto ad un elemento temporaneo aggiuntivo della retribuzione mensile del valore economico di € 41,00. Tale valore sarà incrementato a partire dal 1° settembre 2025 di € 41,00. A far data dal 1° gennaio 2026 gli educatori di cui ai precedenti punti transiteranno al livello D2 del presente contratto senza conservazione dell’elemento temporaneo aggiuntivo della retribuzione."
+                  },
+                  "transformation": "41 EUR a month from 1 January 2025, 82 from 1 September 2025, to the educatori of the servizi per l'infanzia (DM 378/2018) and the educatori professionali socio-pedagogici (L. 205/2017 c. 597) on D1, the role 'educatore_etdr'; none from 1 January 2026, when they move to D2 (the caller states the new level). It counts in every institute, the TFR included.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              },
+              {
+                "valid_from": "2025-09-01",
+                "valid_until": "2026-01-01",
+                "value": "82.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "84-85",
+                    "section": "Art. 47 - ETDR Educatore",
+                    "quote": "inquadrati al profilo D1 del presente articolo, a far data dal 1° gennaio 2025 avranno diritto ad un elemento temporaneo aggiuntivo della retribuzione mensile del valore economico di € 41,00. Tale valore sarà incrementato a partire dal 1° settembre 2025 di € 41,00. A far data dal 1° gennaio 2026 gli educatori di cui ai precedenti punti transiteranno al livello D2 del presente contratto senza conservazione dell’elemento temporaneo aggiuntivo della retribuzione."
+                  },
+                  "transformation": "41 EUR a month from 1 January 2025, 82 from 1 September 2025, to the educatori of the servizi per l'infanzia (DM 378/2018) and the educatori professionali socio-pedagogici (L. 205/2017 c. 597) on D1, the role 'educatore_etdr'; none from 1 January 2026, when they move to D2 (the caller states the new level). It counts in every institute, the TFR included.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2025-09-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "gap_kind": "not_applicable"
+              }
+            ]
+          },
+          "role": "educatore_etdr",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "84-85",
+              "section": "Art. 47 - ETDR Educatore",
+              "quote": "inquadrati al profilo D1 del presente articolo, a far data dal 1° gennaio 2025 avranno diritto ad un elemento temporaneo aggiuntivo della retribuzione mensile del valore economico di € 41,00. Tale valore sarà incrementato a partire dal 1° settembre 2025 di € 41,00. A far data dal 1° gennaio 2026 gli educatori di cui ai precedenti punti transiteranno al livello D2 del presente contratto senza conservazione dell’elemento temporaneo aggiuntivo della retribuzione."
+            },
+            "transformation": "41 EUR a month from 1 January 2025, 82 from 1 September 2025, to the educatori of the servizi per l'infanzia (DM 378/2018) and the educatori professionali socio-pedagogici (L. 205/2017 c. 597) on D1, the role 'educatore_etdr'; none from 1 January 2026, when they move to D2 (the caller states the new level). It counts in every institute, the TFR included.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_REPERIBILITA_STRUTTURA",
+          "description": "Reperibilità in struttura, fixed monthly part (art. 57)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "77.47",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "93-94",
+                    "section": "Art. 57 - Reperibilità",
+                    "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+                  },
+                  "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "reperibilita_struttura",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "93-94",
+              "section": "Art. 57 - Reperibilità",
+              "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+            },
+            "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di maneggio denaro (art. 81)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "30.99",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "111",
+                    "section": "Art. 81 - Indennità di cassa",
+                    "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+                  },
+                  "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "111",
+              "section": "Art. 81 - Indennità di cassa",
+              "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+            },
+            "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_AFFIANCAMENTO",
+          "description": "Indennità di funzione per l'affiancamento all'inserimento lavorativo (art. 78)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "50.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "110",
+                    "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+                    "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+                  },
+                  "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "affiancamento_inserimento",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "110",
+              "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+              "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+            },
+            "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -1626,7 +3205,338 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_PROF_INFERMIERE",
+          "description": "Indennità professionale, infermiera/e (art. 78)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "154.94",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "109-110",
+                    "section": "Art. 78 - Indennità professionali",
+                    "quote": "Al personale inquadrato nei seguenti profili professionali saranno corrisposte le seguenti indennità mensili lorde: - infermiera/e generica/o € 61,97 - infermiera/e € 154,94 - fisioterapista, psicomotricista, terapista occupazionale, logopedista € 154,94 - medico € 258,23 - direttrice e direttore aziendale € 232,41"
+                  },
+                  "transformation": "EUR 154.94 a month with the role 'infermiere' on level D2, the level of the profile in art. 47 (p. 79-80); in the extra months and the TFR (art. 79, the ministerial cost tables of p. 188 count it). Attested by the CCNL 2023-2025: the series starts with the pay table of the ruleset.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "infermiere",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "109-110",
+              "section": "Art. 78 - Indennità professionali",
+              "quote": "Al personale inquadrato nei seguenti profili professionali saranno corrisposte le seguenti indennità mensili lorde: - infermiera/e generica/o € 61,97 - infermiera/e € 154,94 - fisioterapista, psicomotricista, terapista occupazionale, logopedista € 154,94 - medico € 258,23 - direttrice e direttore aziendale € 232,41"
+            },
+            "transformation": "EUR 154.94 a month with the role 'infermiere' on level D2, the level of the profile in art. 47 (p. 79-80); in the extra months and the TFR (art. 79, the ministerial cost tables of p. 188 count it). Attested by the CCNL 2023-2025: the series starts with the pay table of the ruleset.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_PROF_TERAPISTA",
+          "description": "Indennità professionale, fisioterapista, psicomotricista, terapista occupazionale, logopedista (art. 78)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "154.94",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "109-110",
+                    "section": "Art. 78 - Indennità professionali",
+                    "quote": "Al personale inquadrato nei seguenti profili professionali saranno corrisposte le seguenti indennità mensili lorde: - infermiera/e generica/o € 61,97 - infermiera/e € 154,94 - fisioterapista, psicomotricista, terapista occupazionale, logopedista € 154,94 - medico € 258,23 - direttrice e direttore aziendale € 232,41"
+                  },
+                  "transformation": "EUR 154.94 a month with the role 'terapista' on level D2, the level of the profile in art. 47 (p. 79-80); in the extra months and the TFR (art. 79, the ministerial cost tables of p. 188 count it). Attested by the CCNL 2023-2025: the series starts with the pay table of the ruleset.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "terapista",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "109-110",
+              "section": "Art. 78 - Indennità professionali",
+              "quote": "Al personale inquadrato nei seguenti profili professionali saranno corrisposte le seguenti indennità mensili lorde: - infermiera/e generica/o € 61,97 - infermiera/e € 154,94 - fisioterapista, psicomotricista, terapista occupazionale, logopedista € 154,94 - medico € 258,23 - direttrice e direttore aziendale € 232,41"
+            },
+            "transformation": "EUR 154.94 a month with the role 'terapista' on level D2, the level of the profile in art. 47 (p. 79-80); in the extra months and the TFR (art. 79, the ministerial cost tables of p. 188 count it). Attested by the CCNL 2023-2025: the series starts with the pay table of the ruleset.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_REPERIBILITA_STRUTTURA",
+          "description": "Reperibilità in struttura, fixed monthly part (art. 57)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "77.47",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "93-94",
+                    "section": "Art. 57 - Reperibilità",
+                    "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+                  },
+                  "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "reperibilita_struttura",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "93-94",
+              "section": "Art. 57 - Reperibilità",
+              "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+            },
+            "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di maneggio denaro (art. 81)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "30.99",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "111",
+                    "section": "Art. 81 - Indennità di cassa",
+                    "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+                  },
+                  "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "111",
+              "section": "Art. 81 - Indennità di cassa",
+              "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+            },
+            "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_AFFIANCAMENTO",
+          "description": "Indennità di funzione per l'affiancamento all'inserimento lavorativo (art. 78)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "50.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "110",
+                    "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+                    "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+                  },
+                  "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "affiancamento_inserimento",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "110",
+              "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+              "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+            },
+            "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -1755,7 +3665,206 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_REPERIBILITA_STRUTTURA",
+          "description": "Reperibilità in struttura, fixed monthly part (art. 57)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "77.47",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "93-94",
+                    "section": "Art. 57 - Reperibilità",
+                    "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+                  },
+                  "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "reperibilita_struttura",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "93-94",
+              "section": "Art. 57 - Reperibilità",
+              "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+            },
+            "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di maneggio denaro (art. 81)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "30.99",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "111",
+                    "section": "Art. 81 - Indennità di cassa",
+                    "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+                  },
+                  "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "111",
+              "section": "Art. 81 - Indennità di cassa",
+              "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+            },
+            "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_AFFIANCAMENTO",
+          "description": "Indennità di funzione per l'affiancamento all'inserimento lavorativo (art. 78)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "50.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "110",
+                    "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+                    "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+                  },
+                  "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "affiancamento_inserimento",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "110",
+              "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+              "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+            },
+            "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -1885,7 +3994,206 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_REPERIBILITA_STRUTTURA",
+          "description": "Reperibilità in struttura, fixed monthly part (art. 57)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "77.47",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "93-94",
+                    "section": "Art. 57 - Reperibilità",
+                    "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+                  },
+                  "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "reperibilita_struttura",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "93-94",
+              "section": "Art. 57 - Reperibilità",
+              "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+            },
+            "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di maneggio denaro (art. 81)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "30.99",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "111",
+                    "section": "Art. 81 - Indennità di cassa",
+                    "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+                  },
+                  "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "111",
+              "section": "Art. 81 - Indennità di cassa",
+              "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+            },
+            "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_AFFIANCAMENTO",
+          "description": "Indennità di funzione per l'affiancamento all'inserimento lavorativo (art. 78)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "50.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "110",
+                    "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+                    "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+                  },
+                  "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "affiancamento_inserimento",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "110",
+              "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+              "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+            },
+            "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -2015,7 +4323,272 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_PROF_MEDICO",
+          "description": "Indennità professionale, medico (art. 78)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "258.23",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "109-110",
+                    "section": "Art. 78 - Indennità professionali",
+                    "quote": "Al personale inquadrato nei seguenti profili professionali saranno corrisposte le seguenti indennità mensili lorde: - infermiera/e generica/o € 61,97 - infermiera/e € 154,94 - fisioterapista, psicomotricista, terapista occupazionale, logopedista € 154,94 - medico € 258,23 - direttrice e direttore aziendale € 232,41"
+                  },
+                  "transformation": "EUR 258.23 a month with the role 'medico' on level E2, the level of the profile in art. 47 (p. 79-80); in the extra months and the TFR (art. 79, the ministerial cost tables of p. 188 count it). Attested by the CCNL 2023-2025: the series starts with the pay table of the ruleset.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "medico",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "109-110",
+              "section": "Art. 78 - Indennità professionali",
+              "quote": "Al personale inquadrato nei seguenti profili professionali saranno corrisposte le seguenti indennità mensili lorde: - infermiera/e generica/o € 61,97 - infermiera/e € 154,94 - fisioterapista, psicomotricista, terapista occupazionale, logopedista € 154,94 - medico € 258,23 - direttrice e direttore aziendale € 232,41"
+            },
+            "transformation": "EUR 258.23 a month with the role 'medico' on level E2, the level of the profile in art. 47 (p. 79-80); in the extra months and the TFR (art. 79, the ministerial cost tables of p. 188 count it). Attested by the CCNL 2023-2025: the series starts with the pay table of the ruleset.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_REPERIBILITA_STRUTTURA",
+          "description": "Reperibilità in struttura, fixed monthly part (art. 57)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "77.47",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "93-94",
+                    "section": "Art. 57 - Reperibilità",
+                    "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+                  },
+                  "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "reperibilita_struttura",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "93-94",
+              "section": "Art. 57 - Reperibilità",
+              "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+            },
+            "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di maneggio denaro (art. 81)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "30.99",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "111",
+                    "section": "Art. 81 - Indennità di cassa",
+                    "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+                  },
+                  "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "111",
+              "section": "Art. 81 - Indennità di cassa",
+              "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+            },
+            "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_AFFIANCAMENTO",
+          "description": "Indennità di funzione per l'affiancamento all'inserimento lavorativo (art. 78)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "50.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "110",
+                    "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+                    "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+                  },
+                  "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "affiancamento_inserimento",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "110",
+              "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+              "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+            },
+            "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -2316,7 +4889,272 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_PROF_MEDICO",
+          "description": "Indennità professionale, medico (5 anni nel settore cooperativo) (art. 78)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "258.23",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "109-110",
+                    "section": "Art. 78 - Indennità professionali",
+                    "quote": "Al personale inquadrato nei seguenti profili professionali saranno corrisposte le seguenti indennità mensili lorde: - infermiera/e generica/o € 61,97 - infermiera/e € 154,94 - fisioterapista, psicomotricista, terapista occupazionale, logopedista € 154,94 - medico € 258,23 - direttrice e direttore aziendale € 232,41"
+                  },
+                  "transformation": "EUR 258.23 a month with the role 'medico' on level F1, the level of the profile in art. 47 (p. 79-80); in the extra months and the TFR (art. 79, the ministerial cost tables of p. 188 count it). Attested by the CCNL 2023-2025: the series starts with the pay table of the ruleset.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "medico",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "109-110",
+              "section": "Art. 78 - Indennità professionali",
+              "quote": "Al personale inquadrato nei seguenti profili professionali saranno corrisposte le seguenti indennità mensili lorde: - infermiera/e generica/o € 61,97 - infermiera/e € 154,94 - fisioterapista, psicomotricista, terapista occupazionale, logopedista € 154,94 - medico € 258,23 - direttrice e direttore aziendale € 232,41"
+            },
+            "transformation": "EUR 258.23 a month with the role 'medico' on level F1, the level of the profile in art. 47 (p. 79-80); in the extra months and the TFR (art. 79, the ministerial cost tables of p. 188 count it). Attested by the CCNL 2023-2025: the series starts with the pay table of the ruleset.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_REPERIBILITA_STRUTTURA",
+          "description": "Reperibilità in struttura, fixed monthly part (art. 57)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "77.47",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "93-94",
+                    "section": "Art. 57 - Reperibilità",
+                    "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+                  },
+                  "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "reperibilita_struttura",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "93-94",
+              "section": "Art. 57 - Reperibilità",
+              "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+            },
+            "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di maneggio denaro (art. 81)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "30.99",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "111",
+                    "section": "Art. 81 - Indennità di cassa",
+                    "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+                  },
+                  "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "111",
+              "section": "Art. 81 - Indennità di cassa",
+              "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+            },
+            "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_AFFIANCAMENTO",
+          "description": "Indennità di funzione per l'affiancamento all'inserimento lavorativo (art. 78)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "50.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "110",
+                    "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+                    "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+                  },
+                  "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "affiancamento_inserimento",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "110",
+              "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+              "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+            },
+            "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -2617,7 +5455,272 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_PROF_DIRETTORE",
+          "description": "Indennità professionale, direttrice e direttore aziendale (art. 78)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "232.41",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "109-110",
+                    "section": "Art. 78 - Indennità professionali",
+                    "quote": "Al personale inquadrato nei seguenti profili professionali saranno corrisposte le seguenti indennità mensili lorde: - infermiera/e generica/o € 61,97 - infermiera/e € 154,94 - fisioterapista, psicomotricista, terapista occupazionale, logopedista € 154,94 - medico € 258,23 - direttrice e direttore aziendale € 232,41"
+                  },
+                  "transformation": "EUR 232.41 a month with the role 'direttore' on level F2, the level of the profile in art. 47 (p. 79-80); in the extra months and the TFR (art. 79, the ministerial cost tables of p. 188 count it). Attested by the CCNL 2023-2025: the series starts with the pay table of the ruleset.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "direttore",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "109-110",
+              "section": "Art. 78 - Indennità professionali",
+              "quote": "Al personale inquadrato nei seguenti profili professionali saranno corrisposte le seguenti indennità mensili lorde: - infermiera/e generica/o € 61,97 - infermiera/e € 154,94 - fisioterapista, psicomotricista, terapista occupazionale, logopedista € 154,94 - medico € 258,23 - direttrice e direttore aziendale € 232,41"
+            },
+            "transformation": "EUR 232.41 a month with the role 'direttore' on level F2, the level of the profile in art. 47 (p. 79-80); in the extra months and the TFR (art. 79, the ministerial cost tables of p. 188 count it). Attested by the CCNL 2023-2025: the series starts with the pay table of the ruleset.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_REPERIBILITA_STRUTTURA",
+          "description": "Reperibilità in struttura, fixed monthly part (art. 57)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "77.47",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "93-94",
+                    "section": "Art. 57 - Reperibilità",
+                    "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+                  },
+                  "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T01:00:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T01:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "reperibilita_struttura",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "93-94",
+              "section": "Art. 57 - Reperibilità",
+              "quote": "Nei casi di servizi residenziali continuativi alle lavoratrici e ai lavoratori cui è richiesta la reperibilità con vincolo di permanenza nella struttura secondo un’apposita programmazione, oltre alla normale retribuzione, verrà riconosciuta un’indennità fissa mensile lorda di € 77,47."
+            },
+            "transformation": "EUR 77.47 a month with the role 'reperibilita_struttura' (residential services, reperibilità with the duty to stay in the structure). Not modelled: the 20 EUR for each night of 7 hours of reperibilità, which needs the nights.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T01:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T01:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_CASSA",
+          "description": "Indennità di maneggio denaro (art. 81)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "30.99",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "111",
+                    "section": "Art. 81 - Indennità di cassa",
+                    "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+                  },
+                  "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "111",
+              "section": "Art. 81 - Indennità di cassa",
+              "quote": "Alla lavoratrice e al lavoratore che effettua normalmente maneggio di denaro con onere per errori (ovvero con responsabilità finanziaria in caso di ammanchi) deve essere corrisposta un’indennità mensile lorda di € 30,99."
+            },
+            "transformation": "EUR 30.99 a month with the role 'maneggio_denaro' (handling money with the burden of the errors).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_AFFIANCAMENTO",
+          "description": "Indennità di funzione per l'affiancamento all'inserimento lavorativo (art. 78)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "50.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "legacoopsociali-ccnl-2025",
+                      "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                      "kind": "associazione",
+                      "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                      "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+                    },
+                    "page": "110",
+                    "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+                    "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+                  },
+                  "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T02:30:00Z",
+                    "effective_from": "2024-02-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "affiancamento_inserimento",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "legacoopsociali-ccnl-2025",
+                "title": "CCNL Cooperative sociali, testo completo 2025 (Legacoopsociali)",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "110",
+              "section": "Art. 78 - Indennità di funzione per l'affiancamento",
+              "quote": "La cooperativa riconoscerà al lavoratore che svolge tale funzione, limitatamente al tempo concordato e riferito ai progetti individuali dei colleghi svantaggiati, una indennità mensile pari a 50,00 €."
+            },
+            "transformation": "EUR 50 a month with the role 'affiancamento_inserimento', for the months of the function the cooperative assigns (the caller states the role only in those months).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T02:30:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-coop-sociali-allowances"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -2987,7 +6090,7 @@
     "effective_until": null,
     "source": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
     "verification_status": "unverified",
-    "source_hash": "05aaf711dc15e28f92939717c911c19d086f2c021dbc2f2239e78c35b2bf8c13",
+    "source_hash": "3adade8f92d9154bb8455bd3d6b7bd39a4761d2b83076fe23bbb0679e8f64039",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3650,6 +6753,52 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.insured_absence.injury"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-coop-sociali-allowances",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 47, 57, 78 and 79 of the CCNL Cooperative sociali, testo completo 2025 (PDF pp. 78-86, 93-94, 109-110, text layer).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+          }
+        ],
+        "findings": [
+          "Art. 78: indennità professionali 61.97 (infermiere generico, D1), 154.94 (infermiere, terapisti, D2), 258.23 (medico, E2 or F1), 232.41 (direttore, F2): role allowances.",
+          "Art. 47: ETDR educatore 41 EUR from 1 January 2025, 82 from 1 September 2025, ended on 1 January 2026.",
+          "Art. 57: reperibilità in struttura 77.47 EUR a month; the 20 EUR a night stays outside."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels[].fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-09-gpt-coop-sociali-allowances",
+        "date": "2026-11-09",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 47, 57, 78, 79 and 81 of the CCNL Cooperative sociali 2025 against the role allowances, by a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+          }
+        ],
+        "findings": [
+          "Confirmed the indennità professionali, their levels and amounts, the ETDR and the reperibilità in struttura.",
+          "Corrected: the indennità di cassa 30.99 (art. 81) and the affiancamento 50 (art. 78) are fixed monthly amounts too: added as role allowances.",
+          "Flagged: the conditions of the roles (ETDR categories, medico F1 experience, reperibilità programming) are caller-stated: limitation role_conditions_caller_stated."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances"
         ]
       }
     ],
