@@ -92,6 +92,7 @@ from ccnl_engine.seniority.inputs import (
     SenioritySource,
 )
 from ccnl_engine.severance.provision.models import TfrFundBalance
+from ccnl_engine.sickness.diagnosis import SeriousIllnessKind
 from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
 from ccnl_engine.withholding.deferral.inputs import ShortfallDeferralRequest
 from ccnl_engine.working_time.inputs import (
@@ -190,6 +191,7 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             PublicEndOfService,
             SeniorityFact,
             SenioritySource,
+            SeriousIllnessKind,
             ShiftKind,
             ShortfallDeferralRequest,
             StandbyKind,
