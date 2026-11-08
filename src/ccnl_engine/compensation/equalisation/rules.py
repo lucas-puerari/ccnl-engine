@@ -76,6 +76,7 @@ def _pays(
     return (
         kind is RunKind.TERMINATION
         and month < element.paid_in_month
+        and element.settled_on_termination
         and not element.in_service_month_before
     )
 
@@ -127,14 +128,14 @@ def _ratio(request: PeriodCalculationRequest) -> Decimal:
     return weekly.value / full.value
 
 
-def _company(request: PeriodCalculationRequest) -> bool:
-    """Return whether a stated second-level element was in force last year.
+def _company(request: PeriodCalculationRequest, *, before: bool) -> bool:
+    """Return whether a stated second-level element was in force.
 
     Returns:
         ``True`` when an element of the employer covers a day of the year
-        before the run.
+        before the run, or of its year when not ``before``.
     """
-    year = request.period_id.year - 1
+    year = request.period_id.year - before
     first, last = date(year, 1, 1), date(year, 12, 31)
     return any(
         e.valid_from <= last and (e.valid_until is None or e.valid_until >= first)
@@ -163,6 +164,8 @@ def _amount(
         owed *= _ratio(request)
     if not request.individual_elements:
         return money(owed)
+    if element.individual_excludes:
+        return Decimal(0)
     level = ccnl.level_by_code(request.level_code)
     day = date(request.period_id.year - 1, 12, 31)
     monthly = sum(
@@ -185,7 +188,7 @@ def equalisation_outcome(
     if element is None or not _pays(element, request, kind):
         return EqualisationOutcome()
     premium = request.employer.second_level_premium
-    if premium or _company(request):
+    if premium or _company(request, before=element.bargaining_year_before):
         return EqualisationOutcome()
     months = _served(element, request)
     amount = _amount(element, request, ccnl, months) if months else Decimal(0)
