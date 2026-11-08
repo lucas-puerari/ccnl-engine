@@ -19,7 +19,6 @@ level, the sick days, the holidays and the leave accrual read the same.
 
 from __future__ import annotations
 
-from decimal import Decimal
 from typing import TYPE_CHECKING, Protocol
 
 from ccnl_engine.leave.permit.models import PermitHours
@@ -58,11 +57,7 @@ def with_week_divisor(ccnl: CCNL, full_time: WeeklyHours | None) -> CCNL:
     if rules is None or supplements is None or full_time is None:
         return ccnl
     week = next(
-        (
-            w
-            for w in supplements.week_divisors
-            if Decimal(w.weekly_hours) == full_time.value
-        ),
+        (w for w in supplements.week_divisors if w.weekly_hours == full_time.value),
         None,
     )
     if week is None:
