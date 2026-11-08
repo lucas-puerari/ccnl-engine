@@ -24,8 +24,12 @@ from ccnl_engine import (
     PeriodInput,
 )
 from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.compensation.fixed_term.rules import with_fixed_term_pay
+from ccnl_engine.compensation.fixed_term.rules import (
+    overtime_hours,
+    with_fixed_term_pay,
+)
 from ccnl_engine.errors import OutOfScopeError
+from ccnl_engine.events import OvertimeEvent
 from ccnl_engine.inputs import (
     ContributableHours,
     EmploymentPeriod,
@@ -154,3 +158,31 @@ def test_a_cooperative_otd_is_paid_the_hours_and_the_terzo_elemento() -> None:
     assert pay["terzo_elemento_2026-01"] == (paid * Decimal("0.3044")).quantize(
         Decimal("0.01")
     )
+
+
+def test_the_terzo_elemento_is_paid_on_the_overtime_hours() -> None:
+    """Art. 44: also on the overtime hours, at the ordinary measure.
+
+    120 hours worked and 10 of overtime: the base of the terzo elemento is
+    944.56 x 130 / 120 = 1,023.273 -> 1,023.27, times 30.44% = 311.48.
+    """
+    result = regular_period(
+        employment=_employment(FixedTerm()),
+        current_year=employment_only(),
+        events=(
+            OvertimeEvent(date(2026, 1, 15), Decimal(10), hourly_rate=Decimal("7.87")),
+        ),
+        ordinary_hours_worked=ContributableHours(Decimal(120)),
+    )
+    pay = {i.item_id.removesuffix("-regular"): i.amount for i in result.pay_items}
+    assert pay["terzo_elemento_2026-01"] == Decimal("311.48")
+
+
+def test_overtime_hours_count_only_for_the_fixed_term_pay() -> None:
+    """A permanent operaio, or a CCNL without the rule, adds no hours."""
+    events = (OvertimeEvent(date(2026, 1, 15), Decimal(10)),)
+    ccnl = load_ccnl(_CCNL_ID)
+    assert overtime_hours(ccnl, events) == 0
+    otd = with_fixed_term_pay(ccnl, WorkerCategory.OPERAIO, FixedTerm())
+    assert overtime_hours(otd, events) == 10
+    assert overtime_hours(load_ccnl("commercio-confcommercio"), events) == 0
