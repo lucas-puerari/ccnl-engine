@@ -1041,6 +1041,7 @@
       "metalmeccanico-federmeccanica/shift_and_multiweek_premiums"
     ],
     "agreement/multiservizi-anip.json": [
+      "multiservizi-anip/anip_ipca_consuntivo",
       "multiservizi-anip/anip_unsigned_renewal",
       "multiservizi-anip/multiservizi_unmodelled_rules",
       "multiservizi-anip/renewal_not_signed_by_anip"
