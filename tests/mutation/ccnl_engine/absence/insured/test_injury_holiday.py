@@ -105,6 +105,25 @@ def test_metal_only_letter_b_and_reduced_days() -> None:
     assert date(2026, 4, 25) not in days
 
 
+def test_confcommercio_injury_holiday_reaches_gross_quota() -> None:
+    """Jan 6: 100 gross = 60 INAIL + 40 employer, despite net ordinary bands."""
+    paid = _paid(
+        "commercio-confcommercio",
+        date(2026, 1, 6),
+        date(2026, 1, 6),
+        date(2026, 1, 2),
+    )
+    assert (paid.indemnity, paid.integration) == (Decimal(60), Decimal(40))
+    work = load_ccnl("commercio-confcommercio").work_rules
+    assert work is not None
+    assert work.insured_absence is not None
+    injury = work.insured_absence.injury
+    assert injury is not None
+    assert date(2027, 10, 4) not in covered_target_holidays(
+        injury.holiday, load_national_holidays(), 2027
+    )
+
+
 def test_banded_integration_is_netted_on_the_holiday() -> None:
     """Jan 6 INAIL pays 60; the band pays 30 to reach 90% of 100.
 

@@ -598,6 +598,23 @@ def _parental(base: InpsSicknessBase | None, ended: date | None) -> PeriodInput:
     return replace(run, employment=employment, facts=PeriodFacts(events=(leave,)))
 
 
+def _parental_topup(prior: int | None) -> PeriodInput:
+    """Return a parental run under a CCNL with an eligible day cap.
+
+    Returns:
+        The run with stated or unknown prior supplementation.
+    """
+    run = _parental(_FEBRUARY_PAY, _MATERNITY_END)
+    leave = run.facts.events[0]
+    assert isinstance(leave, ParentalLeaveEvent)
+    employment = replace(run.employment, ccnl_id="autorimesse-ic35", level_code="C4")
+    return replace(
+        run,
+        employment=employment,
+        facts=PeriodFacts(events=(replace(leave, topped_up_days_before=prior),)),
+    )
+
+
 def _hourly_parental(base: InpsSicknessBase | None, ended: date | None) -> PeriodInput:
     """Return two days of parental leave by the hour in March of an impiegato.
 
@@ -718,6 +735,13 @@ def sickness_cases[C](
                 _parental(_FEBRUARY_PAY, _MATERNITY_END),
                 _parental(None, _MATERNITY_END),
                 "parental_base_pay",
+            ),
+        ),
+        "ParentalLeaveEvent.topped_up_days_before": (
+            case(
+                _parental_topup(0),
+                _parental_topup(None),
+                "topped_up_days_before",
             ),
         ),
         "ParentalLeaveEvent.protection_ended_on": (
