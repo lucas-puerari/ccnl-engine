@@ -52,47 +52,47 @@
     {
       "level_code": "QD4",
       "as_of": "2023-11-23",
-      "expected_amount": "95.31"
+      "expected_amount": "109.61"
     },
     {
       "level_code": "QD3",
       "as_of": "2023-11-23",
-      "expected_amount": "95.31"
+      "expected_amount": "109.61"
     },
     {
       "level_code": "QD2",
       "as_of": "2023-11-23",
-      "expected_amount": "41.55"
+      "expected_amount": "49.54"
     },
     {
       "level_code": "QD1",
       "as_of": "2023-11-23",
-      "expected_amount": "41.55"
+      "expected_amount": "49.54"
     },
     {
       "level_code": "3A4",
       "as_of": "2023-11-23",
-      "expected_amount": "41.55"
+      "expected_amount": "49.54"
     },
     {
       "level_code": "3A3",
       "as_of": "2023-11-23",
-      "expected_amount": "41.55"
+      "expected_amount": "49.54"
     },
     {
       "level_code": "3A2",
       "as_of": "2023-11-23",
-      "expected_amount": "41.55"
+      "expected_amount": "49.54"
     },
     {
       "level_code": "3A1",
       "as_of": "2023-11-23",
-      "expected_amount": "41.55"
+      "expected_amount": "49.54"
     },
     {
       "level_code": "1e2A",
       "as_of": "2023-11-23",
-      "expected_amount": "29.07"
+      "expected_amount": "34.66"
     }
   ],
   "apprenticeship_uc_checks": [
