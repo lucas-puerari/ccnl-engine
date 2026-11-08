@@ -132,15 +132,20 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 65: the premio di fedeltà of one month a year after 20 years of service.",
+        "text": "Art. 65: the annual loyalty award is paid on the hire-anniversary month after 20 years of uninterrupted actual service, using the run-chain monthly pay as an approximation of Art. 44 items 1-15. Not modelled: the whole-month twelfths due after a non-disciplinary dismissal, conventional seniority and interruptions or group-company service not represented by the hire date, and the exact Art. 44 elements (including territorial and individual components) actually summed in the award.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "loyalty_premium",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "outside_input",
+            "worker_categories": [
+              "impiegato",
+              "quadro"
+            ],
+            "seniority_months_from": 240
           },
-          "remediation": "Model the premio di fedeltà on seniority."
+          "remediation": "Represent qualifying actual service and the Art. 44 items 1-15 individually, and pay whole-month twelfths on eligible non-disciplinary dismissal."
         }
       },
       {
@@ -240,6 +245,36 @@
     ]
   },
   "parameters": {
+    "loyalty_premium": {
+      "service_years": 20,
+      "months": "1",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-edilizia-industria-2010-fillea",
+            "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+            "kind": "associazione",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "published_on": "2010-04-19",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          },
+          "page": "78",
+          "section": "Art. 65 Premio di fedeltà",
+          "quote": "All’impiegato in servizio quando abbia presso la stessa azienda o gruppo aziendale (intendendosi per tale il complesso industriale facente capo alla stessa società) una anzianità ininterrotta ed effettiva di servizio di vent’anni, va corrisposto, annualmente, un premio di fedeltà pari ad una mensilità degli elementi di cui ai nn. dall’1 al 15 dell’art. 44."
+        },
+        "transformation": "Pay one Art. 44 items 1-15 monthly amount on the hire-anniversary month at 20 years of uninterrupted actual service and annually thereafter (Art. 65, p. 78). The run-chain base approximates the enumerated elements (Art. 44, pp. 66-67); the quadro function allowance is useful for Art. 65 (Art. 76, p. 84). Include the award in the TFR and contributory bases (Art. 72, pp. 81-82; general contributory-income rule), but not in the 13th-month base (Art. 63, p. 77). Non-disciplinary dismissal pro rata and conventional/interrupting service are not modelled. Text searches of the 2014, 2018, 2022 and 2025 renewal PDFs found no amendment to Art. 65; no current consolidated text was verified.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T11:31:30Z",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T11:31:30Z",
+          "review_id": "2026-11-08-ai-ance-loyalty"
+        }
+      }
+    },
     "hourly_divisor": {
       "periods": [
         {
@@ -2432,7 +2467,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "6c2554d846eae1aaeeccf4e08bca36c09f8a77db1c4255d633310453bc8a8e76",
+    "source_hash": "ba1b5423df1b7945389cc346c07b26d755d479b32165bcceb4034e62aff0fb1a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3235,6 +3270,29 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.sunday_holidays"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-ance-loyalty",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 65 loyalty award for ANCE clerical workers; Art. 44 monthly elements, Art. 72 TFR treatment, Art. 63 thirteenth month, Art. 76 quadro allowance, and renewal-text searches for amendments through 2025.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "One monthly Art. 44 items 1-15 award on each qualifying hire anniversary after twenty uninterrupted actual years; included in TFR, not in the 13th base.",
+          "The engine approximates the enumerated monthly elements and does not pay dismissal pro rata or establish qualifying service across interruptions or group companies."
+        ],
+        "checked": [
+          "parameters.loyalty_premium",
+          "coverage.notes"
         ]
       }
     ],
