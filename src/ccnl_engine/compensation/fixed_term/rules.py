@@ -2,18 +2,21 @@
 
 from __future__ import annotations
 
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.employment.inputs import FixedTerm
+from ccnl_engine.working_time.inputs import OvertimeEvent
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable
     from datetime import date
 
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.sector.models import YearRules
 
-__all__ = ["covers", "with_fixed_term_pay", "with_fixed_term_tfr"]
+__all__ = ["covers", "overtime_hours", "with_fixed_term_pay", "with_fixed_term_tfr"]
 
 
 def covers(ccnl: CCNL, category: WorkerCategory | None, contract_type: object) -> bool:
@@ -90,3 +93,21 @@ def with_fixed_term_tfr(
     rate = rule.tfr_rate.value_at(day)
     tfr = year_rules.tfr.model_copy(update={"accrual_divisor": 1 / rate})
     return year_rules.model_copy(update={"tfr": tfr})
+
+
+def overtime_hours(ccnl: CCNL, events: Iterable[object]) -> Decimal:
+    """Return the overtime hours the percentages of a fixed-term worker add.
+
+    Operai agricoli art. 44: the terzo elemento "viene corrisposto anche per
+    le ore straordinarie, festive e notturne, ma nella misura in atto per le
+    ore ordinarie".  The ordinary night and holiday hours are already in
+    the hours worked; the overtime hours of the run are not.
+
+    Returns:
+        The hours of the overtime events when ``ccnl`` pays the run's worker
+        by its fixed-term pay (``with_fixed_term_pay`` applied), else 0.
+    """
+    rule = ccnl.parameters.fixed_term_pay
+    if rule is None or ccnl.parameters.hourly_pay != rule.hourly_pay:
+        return Decimal(0)
+    return sum((e.hours for e in events if isinstance(e, OvertimeEvent)), Decimal(0))
