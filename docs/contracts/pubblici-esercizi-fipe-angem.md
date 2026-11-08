@@ -74,6 +74,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | The hourly divisor of the 44-hour week, Articolo 160 (PDF p. 116, printed p. 114), checked by a separate session on the page rendered at 200 and 400 dpi. | confirmed | Art. 160 c.1 (sha256 32a2831b... matched): 190 for a normal week of 44 hours, 172 for 40: work_rules.time_supplements.week_divisors 44/190.<br>The renewal of 5 June 2024 amends arts. 114, 135, 161, 183-184 and 199-202, not art. 160. |
 | 2026-11-08 | gpt-6-sol (ai) | Maternity top-up (art. 200, 2024 renewal) and work injury (arts. 191, 193, 2018 text), read by a separate model session and checked on the page images (no text layer). | confirmed | Added work_rules.insured_absence.maternity and .injury.<br>Injury: the research omitted the top-up of art. 191 c. 4 (to 100% from the day of the injury); added from the page image. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | contract_catering_tranche_dates: 2018 art. 1(1) II covers catering/collective catering; signed 2024 table specifies September 2025 and September 2026 for that scope. The caller-selected sibling pubblici-esercizi-fipe-angem-ristorazione-collettiva.json stores all ten levels with June 2024 -> September 2025 -> Sep |
+| 2026-11-08 | gpt-6-sol (ai) | Artt. 160, 245, 250, 266 of the signed text of 8 February 2018 (scanned, PDF pp. 116, 166-168, 175-176), read on the page images by a separate model session; art. 250 also by the extraction session. | corrected | Added work_rules.subsector_rules for stabilimenti_balneari and alberghi_diurni: carenza paid in full, 28% employer share over INPS, divisor 190 for the balneari non impiegati. |
 
 ## Salary table
 
@@ -147,11 +148,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Confirm whether the 20% of art. 132 is added to the overtime rate on a festività; if so set the bands to 0.5 and 0.8, else close this note.
 
 !!! warning "pubblici-esercizi-fipe-angem/balneari_diurni_rules · sickness · impact yes · open"
-    BALNEARI AND ALBERGHI DIURNI: art. 190 c. 5 (PDF p. 134) leaves the stabilimenti balneari and the alberghi diurni out of the sickness rule of the file: they pay the supplements of arts. 250 and 266 over the INPS 50%/66.66%, and the balneari non impiegati work 44 hours a week. Not modelled.
+    BALNEARI AND ALBERGHI DIURNI (artt. 245, 250, 266 of the text of 8 February 2018): for an employer of the sub-sector stabilimenti_balneari or alberghi_diurni (EmployerProfile.subsector) the sickness pays the whole pay for the three days of carenza and 28% of the pay from the employer over the INPS indemnity (work_rules.subsector_rules); the non impiegati of the balneari have the hourly divisor 190 of the 44-hour week. Not modelled: the overtime threshold of the 44-hour week, and the INPS indemnity reduced by INPS (the 28% is added to the rate the engine computes).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the special parts of the stabilimenti balneari and alberghi diurni in a sibling file.
+    **Remediation:** Model the 44-hour week of the balneari non impiegati in the overtime threshold.
 
 !!! warning "pubblici-esercizi-fipe-angem/guarantee_premium_2027 · base_salary · impact yes · open"
     Art. 13 c. 10 of the renewal of 5 June 2024: the guarantee premium paid with the November 2027 pay to workers without second-level bargaining. The caller pays it as a variable item.

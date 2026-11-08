@@ -1,11 +1,9 @@
 """Classify the sick days of a month: waiting period, INPS bands, CCNL tiers.
 
-Every calendar day of an episode has an index: its day in the episode,
-counted on from the episode it continues for a relapse.  The index
-decides, for that day:
+Every day of an episode has an index, counted on through a relapse.  The
+index decides, for that day:
 
-- the waiting period (*carenza*): the first ``carenza_days`` days, which
-  INPS does not pay and the CCNL integrates at its ``carenza`` rate;
+- the *carenza*: the first ``carenza_days``, at the CCNL ``carenza`` rate;
 - the INPS band and rate, while INPS covers the worker and has paid fewer
   than its annual maximum of days in the calendar year of the day;
 - the CCNL treatment: the integration rate of the day and whether it is
@@ -194,10 +192,10 @@ def _classify(
     inps: _InpsDays,
     days: tuple[CcnlDay, _FixedTermLimit | agricultural.AgriculturalLimit | None],
 ) -> _Day:
-    """Return the treatment of the sick day ``day`` of episode index ``index``.
+    """Return the kind, INPS rate and worker rate of sick day ``index``.
 
     Returns:
-        The kind, INPS rate and worker rate of the day.
+        The treatment; an ``employer_share`` adds to the INPS rate it pays.
     """
     ccnl, limit = days
     if limit is not None and not limit.allows(index, day, inps):
@@ -215,7 +213,9 @@ def _classify(
     )
     if ccnl.beyond_comporto:
         return _Day(SickDayKind.BEYOND_COMPORTO, rate, rate, direct)
-    return _Day(SickDayKind.INDEMNIFIED, rate, max(ccnl.rate, rate), direct)
+    share = rules.ccnl.employer_share
+    worker = max(ccnl.rate, rate) if share is None else rate + share * paid
+    return _Day(SickDayKind.INDEMNIFIED, rate, worker, direct)
 
 
 def _walk(

@@ -37,6 +37,7 @@ from ccnl_engine.working_time.models import (
     TimeSupplements,
 )
 from ccnl_engine.working_time.standby.models import StandbyRules
+from ccnl_engine.working_time.subsector.models import SubsectorRules
 
 if TYPE_CHECKING:
     from collections.abc import Iterator, Sequence
@@ -142,6 +143,7 @@ class CCNLWorkRules(BaseModel):
         default_factory=dict
     )
     apprentice_sickness_rules: SicknessRules | None = None
+    subsector_rules: dict[str, SubsectorRules] = Field(default_factory=dict)
     insured_absence: InsuredAbsenceRules | None = None
     standby_rules: StandbyRules | None = None
     travel_allowance: CcnlTravelAllowance | None = None
