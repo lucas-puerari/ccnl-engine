@@ -241,18 +241,28 @@ class TravelAllowanceBand(BaseModel):
 
     hours_from: Decimal = Field(ge=Decimal(0))
     hours_until: Decimal | None = None
+    hours_from_exclusive: bool = False
+    hours_until_inclusive: bool = False
     italy: TimeSeries
     abroad: TimeSeries
 
     def holds(self, hours: Decimal) -> bool:
-        """Return whether ``hours`` away fall in the span.
+        """Check whether hours fall in this span.
 
         Returns:
-            ``hours_from <= hours < hours_until``.
+            Whether hours satisfy the inclusive or exclusive endpoints.
         """
-        return hours >= self.hours_from and (
-            self.hours_until is None or hours < self.hours_until
+        lower = (
+            hours > self.hours_from
+            if self.hours_from_exclusive
+            else hours >= self.hours_from
         )
+        upper = self.hours_until is None or (
+            hours <= self.hours_until
+            if self.hours_until_inclusive
+            else hours < self.hours_until
+        )
+        return lower and upper
 
 
 class CcnlTravelAllowance(BaseModel):
@@ -261,13 +271,8 @@ class CcnlTravelAllowance(BaseModel):
     Attributes:
         bands: Spans of hours away with their amounts; fewer hours than the
             first span give no allowance.
-        tfr_base: What of the allowance enters the TFR base: ``"none"``,
-            ``"whole"``, or ``"above_exempt"`` (the part above the IRPEF
-            exemption, Logistica art. 62 c. 7).
-        night_allowance: Amount for each day of at least
-            :attr:`night_from_hours` away (Logistica art. 16: 0.93 per
-            trasferta of 18 to 24 hours), pay of the period that enters the
-            TFR base; ``None`` without one.
+        tfr_base: TFR inclusion; ``None`` requires an event-level choice.
+        night_allowance: Taxable, TFR-included amount per qualifying day.
         night_from_hours: Hours away from which the night allowance is due.
         provenance: Source and status of the amounts.
     """
@@ -275,7 +280,12 @@ class CcnlTravelAllowance(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     bands: tuple[TravelAllowanceBand, ...] = Field(min_length=1)
-    tfr_base: Literal["none", "whole", "above_exempt"]
+    tfr_base: Literal["none", "whole", "above_exempt"] | None = None
+    mission_duration: bool = False
+    habitual_discount: Decimal = Field(default=Decimal(0), ge=Decimal(0), le=Decimal(1))
+    long_mission_discount: Decimal = Field(
+        default=Decimal(0), ge=Decimal(0), le=Decimal(1)
+    )
     night_allowance: TimeSeries | None = None
     night_from_hours: Decimal = Decimal(18)
     provenance: RuleProvenance | None = None

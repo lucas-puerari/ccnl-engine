@@ -440,6 +440,71 @@ def _process(event: TravelAllowanceEvent, terms: TravelTerms | None) -> Decimal:
     return _processed(event, terms)[0]
 
 
+_STUDI_TRAVEL = json.loads(
+    (
+        KNOWLEDGE_DIR / "agreement" / "studi-professionali-confprofessioni.json"
+    ).read_text(encoding="utf-8")
+)["work_rules"]["travel_allowance"]
+
+
+def _studi_terms() -> TravelTerms:
+    return TravelTerms(
+        CcnlTravelAllowance.model_validate(_STUDI_TRAVEL), "ccnl/studi/2026"
+    )
+
+
+@pytest.mark.parametrize(
+    ("hours", "days", "habitual", "over_month", "amount"),
+    [
+        ("7", 1, False, False, "0.00"),
+        ("8.5", 1, False, False, "15.00"),
+        ("24", 1, False, False, "15.00"),
+        ("25", 2, False, False, "60.00"),
+        ("48", 2, True, False, "54.00"),
+        ("48", 2, False, True, "54.00"),
+        ("48", 2, True, True, "54.00"),
+        ("9", 3, True, False, "40.50"),
+    ],
+)
+def test_studi_mission_duration_and_reduction(
+    hours: str, days: int, habitual: bool, over_month: bool, amount: str
+) -> None:
+    """A 48-hour mission for two days pays 2 x 30 = 60, or 2 x 27 = 54."""
+    event = _trip(
+        daily_amount=None,
+        hours_away=None,
+        mission_hours=Decimal(hours),
+        days=days,
+        habitual_travel=habitual,
+        mission_over_month=over_month,
+    )
+    paid, decisions = _processed(event, _studi_terms())
+
+    assert paid == Decimal(amount)
+    (decision,) = (d for d in decisions if d.capability == "travel_allowance")
+    assert decision.inputs["daily_amount"] == Decimal(amount) / days
+    assert decision.inputs["mission_hours"] == Decimal(hours)
+
+
+def test_daily_bands_do_not_use_total_mission_hours_as_daily_hours() -> None:
+    """A 25-hour mission alone cannot select a different CCNL's daily band."""
+    with pytest.raises(MissingRuleError, match="hours_away"):
+        _processed(_trip(daily_amount=None, mission_hours=Decimal(25)), _terms())
+
+
+def test_studi_requires_mission_hours_and_explicit_tfr_base() -> None:
+    """A 25-hour mission needs its total duration and a caller TFR choice."""
+    with pytest.raises(MissingRuleError, match="mission_hours"):
+        _processed(_trip(daily_amount=None, hours_away=Decimal(20)), _studi_terms())
+    with pytest.raises(MissingRuleError, match="exact mission duration"):
+        _processed(_trip(daily_amount=None, mission_hours=Decimal(8)), _studi_terms())
+    with pytest.raises(MissingRuleError, match="no TFR rule"):
+        _processed(
+            _trip(daily_amount=None, mission_hours=Decimal(25), tfr_base=None),
+            _studi_terms(),
+        )
+
+
 def test_caps_without_a_ruleset_cite_the_tax_year_of_the_run() -> None:
     """The run versions caps given without a ruleset by its own tax year."""
     rules = _RULES.model_copy(update={"ruleset": None})

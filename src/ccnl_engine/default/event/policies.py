@@ -138,19 +138,18 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "the CCNL amount of the hours away; an amount of the employer's "
         "policy is a fact the event records"
     ),
-    "TravelAllowanceEvent.hours_away": absence_is_fact(
-        "read only without daily_amount, which then requires it"
-    ),
-    "TravelAllowanceEvent.tfr_base": absence_is_fact(
-        "the TFR rule of the CCNL; without one the event is rejected"
-    ),
-    "TravelAllowanceEvent.abroad": absence_is_fact(
-        "a trasferta in Italy; abroad is a fact the event records"
-    ),
+    "TravelAllowanceEvent.hours_away": absence_is_fact("CCNL daily hours"),
+    "TravelAllowanceEvent.tfr_base": absence_is_fact("CCNL or caller TFR"),
+    "TravelAllowanceEvent.abroad": absence_is_fact("Italy unless abroad is stated"),
     "TravelAllowanceEvent.trasfertista": absence_is_fact(
         "an ordinary trasferta; a worker bound to always different places "
         "is a fact of the contract"
     ),
+    "TravelAllowanceEvent.mission_hours": absence_is_fact(
+        "CCNL mission-duration bands require this without an explicit amount"
+    ),
+    "TravelAllowanceEvent.habitual_travel": absence_is_fact("stated by caller"),
+    "TravelAllowanceEvent.mission_over_month": absence_is_fact("stated by caller"),
     "SicknessEpisode.hospital_stays": requires_fact(
         "sickness",
         "event.hospital_stays",
