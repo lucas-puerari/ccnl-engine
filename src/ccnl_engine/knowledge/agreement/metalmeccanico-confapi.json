@@ -123,17 +123,9 @@
         "text": "SICKNESS (Art. 55 pp. 136-139): integration up to the normal net pay, full for 2/3/4 months and half for 4/6/8 more by seniority, over the sickness of the three years before each episode; comporto breve 6/9/12 months. The INPS share is grossed up by the worker's INPS rate (net_basis), a payroll practice the CCNL does not spell out."
       },
       {
-        "kind": "simplification",
-        "text": "The Fondapi base ('retribuzione FONDAPI', Art. 50 p. 123) counts, besides the minimi conglobati, the EDR, the indennità di funzione of the quadri and the elemento retributivo of the 8th and 9th categories. The CCNL text sets no EDR amount and no elemento retributivo; the indennità di funzione (Art. 98 p. 182: 69.72 quadri A, 49.06 quadri B, 32.75 quadri B oreficeria) is not held by the bundle pay, so the fund contributions of an enrolled quadro are understated.",
-        "capability": "pension_fund_contribution",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "fondapi_base_elements",
-          "applies_when": {
-            "trigger": "run"
-          },
-          "remediation": "Model the quadri of the 8th and 9th categories with the indennità di funzione of Art. 98 and add it to the Fondapi base, then remove this note."
-        }
+        "kind": "info",
+        "text": "The Fondapi base ('retribuzione FONDAPI', Art. 50 p. 123) counts, besides the minimi conglobati, the EDR, the indennità di funzione of the quadri and the elemento retributivo of the 8th and 9th categories. The CCNL text sets no EDR amount and no elemento retributivo; the indennità di funzione (Art. 98 p. 182: 69.72 quadri A, 49.06 quadri B, 32.75 quadri B oreficeria) is paid on levels 8 and 9 and counted in the Fondapi base (minimum_allowances).",
+        "capability": "pension_fund_contribution"
       },
       {
         "kind": "simplification",
@@ -146,19 +138,6 @@
             "trigger": "outside_input"
           },
           "remediation": "State the pay above the CCNL of the year before as a fact of the run, or pass the element as a bonus and leave the employer flag true."
-        }
-      },
-      {
-        "kind": "simplification",
-        "text": "Art. 98: the indennità di funzione of the quadri.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "quadri_allowance",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model the quadri allowance with a role."
         }
       },
       {
@@ -311,6 +290,11 @@
       {
         "kind": "info",
         "text": "LEAVE AT TERMINATION (Art. 33, p. 106 of the CCNL of 3 July 2017): 'Per ogni giornata di ferie la retribuzione dovuta al lavoratore è costituita dalla retribuzione giornaliera globale di fatto'. No clause of the 2017 text or of the 2025-2028 renewal (OCR) defines that daily pay as a fraction of the monthly pay: the 1/26 of the retribuzione mensile fissa (Art. 32, p. 104) is the pay of a festività falling on a Sunday, the 1/6 of the weekly pay (Art. 15, p. 87) is the ferie of the discontinuous workers only, and the divisor 173 gives the hourly pay. The engine pays no residual (termination_residual_leave incomplete, termination_basis_not_sourced)."
+      },
+      {
+        "kind": "info",
+        "text": "Art. 98: the indennità di funzione of the quadri is paid as a fixed allowance with the role 'quadro': 69.72 on the 9th category (quadri A), 49.06 on the 8th category (quadri B); 32.75 with the role 'quadro_oreficeria' on the 8th category. The 32.75 has no starting date in Art. 98: the series starts at the CCNL of 3 July 2017 that prints it. Art. 98 does not say whether superminimi absorb it: the caller states a superminimo net of any part an individual agreement absorbs.",
+        "capability": "base_salary"
       }
     ]
   },
@@ -579,7 +563,7 @@
             "section": "Art. 50 - Previdenza complementare, points 2) and 3)",
             "quote": "al 2,0% a decorrere dal 1° gennaio 2020 [...] 1,2% a decorrere dal 1°gennaio 2000."
           },
-          "transformation": "Employer 2.0% (from 1 January 2020) and worker minimum 1.2% (from 1 January 2000) of the 'retribuzione FONDAPI', apprentices included; a worker rate above the minimum on the 'retribuzione TFR'. Both in force for the whole ruleset, from 2021-06-01.",
+          "transformation": "Employer 2.0% (from 1 January 2020) and worker minimum 1.2% (from 1 January 2000) of the 'retribuzione FONDAPI', apprentices included; a worker rate above the minimum on the 'retribuzione TFR'. Both in force for the whole ruleset, from 2021-06-01. The 'retribuzione FONDAPI' counts the indennità di funzione of the quadri with the minimo (minimum_allowances).",
           "note": "Corroborated by the Fondapi nota informativa deposited at COVIP on 29 July 2026 (https://www.fondapi.it/documenti/i-destinatari-e-i-contributi, sha256 7e9b29394505b6cd14125c88c6f0cc4ba78c14f026b546bb387636e40e42ee15, 'Contributo azienda dal 01/01/2020 2,00%'). The avviso comune of 26 May 2026 concerns the portability of the employer contribution, no rate change. The Fondapi base also counts the indennità di funzione of the quadri (Art. 98), not held by the bundle pay: limitation fondapi_base_elements.",
           "extraction": {
             "method": "ai",
@@ -592,7 +576,11 @@
             "review_id": "2026-10-13-ai-production"
           }
         },
-        "employee_base_above_minimum": "tfr_base"
+        "employee_base_above_minimum": "tfr_base",
+        "minimum_allowances": [
+          "IND_FUNZIONE_QUADRO",
+          "IND_FUNZIONE_QUADRO_OREFICERIA"
+        ]
       }
     ],
     "accrual_rule": {
@@ -2647,7 +2635,144 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_FUNZIONE_QUADRO",
+          "description": "Indennità di funzione of the quadri of livello B, 8th category (Art. 98)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "1991-01-01",
+                "valid_until": null,
+                "value": "49.06",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-unionmeccanica-confapi-2017",
+                      "title": "CCNL 3 luglio 2017 piccola e media industria metalmeccanica, orafa e installazione impianti (Unionmeccanica-Confapi, Fim-Cisl, Fiom-Cgil, Uilm-Uil), testo a stampa",
+                      "kind": "associazione",
+                      "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+                      "published_on": "2017-07-03",
+                      "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+                    },
+                    "page": "182",
+                    "section": "Art. 98 - Indennità di funzione quadri",
+                    "quote": "La normativa relativa ai quadri decorre dal 1° luglio 1987. Con pari decorrenza è erogata una indennità di funzione di euro 51,65 lorde mensili per i quadri di livello A e di euro 36,15 per i quadri di livello B. Con decorrenza 1° gennaio 1991 l’indennità di funzione di cui al precedente comma è elevata rispettivamente a euro 69,72 lorde mensili per i quadri di livello A e a euro 49,06 lorde mensili per i quadri di livello B. Ai Quadri livello B inquadrati nel punto d) parte IV delle Premesse (settore oreficeria) verrà riconosciuta la somma di euro 32,75."
+                  },
+                  "transformation": "EUR 49.06 a month from 1 January 1991, paid with the role 'quadro' on the 8th category (quadri of livello B). A quadro B of the oreficeria sector is paid the amount of the role 'quadro_oreficeria' instead, without the role 'quadro'.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T17:00:00Z",
+                    "effective_from": "1991-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T17:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-confapi-quadri-allowance"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "quadro",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-unionmeccanica-confapi-2017",
+                "title": "CCNL 3 luglio 2017 piccola e media industria metalmeccanica, orafa e installazione impianti (Unionmeccanica-Confapi, Fim-Cisl, Fiom-Cgil, Uilm-Uil), testo a stampa",
+                "kind": "associazione",
+                "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+                "published_on": "2017-07-03",
+                "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+              },
+              "page": "182",
+              "section": "Art. 98 - Indennità di funzione quadri",
+              "quote": "La normativa relativa ai quadri decorre dal 1° luglio 1987. Con pari decorrenza è erogata una indennità di funzione di euro 51,65 lorde mensili per i quadri di livello A e di euro 36,15 per i quadri di livello B. Con decorrenza 1° gennaio 1991 l’indennità di funzione di cui al precedente comma è elevata rispettivamente a euro 69,72 lorde mensili per i quadri di livello A e a euro 49,06 lorde mensili per i quadri di livello B. Ai Quadri livello B inquadrati nel punto d) parte IV delle Premesse (settore oreficeria) verrà riconosciuta la somma di euro 32,75."
+            },
+            "transformation": "EUR 49.06 a month from 1 January 1991, paid with the role 'quadro' on the 8th category (quadri of livello B). A quadro B of the oreficeria sector is paid the amount of the role 'quadro_oreficeria' instead, without the role 'quadro'.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T17:00:00Z",
+              "effective_from": "1991-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T17:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-confapi-quadri-allowance"
+            }
+          }
+        },
+        {
+          "code": "IND_FUNZIONE_QUADRO_OREFICERIA",
+          "description": "Indennità di funzione of the quadri of livello B of the oreficeria sector (Art. 98, Premesse parte IV d)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2017-07-03",
+                "valid_until": null,
+                "value": "32.75",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-unionmeccanica-confapi-2017",
+                      "title": "CCNL 3 luglio 2017 piccola e media industria metalmeccanica, orafa e installazione impianti (Unionmeccanica-Confapi, Fim-Cisl, Fiom-Cgil, Uilm-Uil), testo a stampa",
+                      "kind": "associazione",
+                      "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+                      "published_on": "2017-07-03",
+                      "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+                    },
+                    "page": "182",
+                    "section": "Art. 98 - Indennità di funzione quadri",
+                    "quote": "La normativa relativa ai quadri decorre dal 1° luglio 1987. Con pari decorrenza è erogata una indennità di funzione di euro 51,65 lorde mensili per i quadri di livello A e di euro 36,15 per i quadri di livello B. Con decorrenza 1° gennaio 1991 l’indennità di funzione di cui al precedente comma è elevata rispettivamente a euro 69,72 lorde mensili per i quadri di livello A e a euro 49,06 lorde mensili per i quadri di livello B. Ai Quadri livello B inquadrati nel punto d) parte IV delle Premesse (settore oreficeria) verrà riconosciuta la somma di euro 32,75."
+                  },
+                  "transformation": "EUR 32.75 a month with the role 'quadro_oreficeria' on the 8th category. Art. 98 states no starting date for this amount: the series starts at the CCNL of 3 July 2017 that prints it.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T17:00:00Z",
+                    "effective_from": "2017-07-03",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T17:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-confapi-quadri-allowance"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "quadro_oreficeria",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-unionmeccanica-confapi-2017",
+                "title": "CCNL 3 luglio 2017 piccola e media industria metalmeccanica, orafa e installazione impianti (Unionmeccanica-Confapi, Fim-Cisl, Fiom-Cgil, Uilm-Uil), testo a stampa",
+                "kind": "associazione",
+                "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+                "published_on": "2017-07-03",
+                "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+              },
+              "page": "182",
+              "section": "Art. 98 - Indennità di funzione quadri",
+              "quote": "La normativa relativa ai quadri decorre dal 1° luglio 1987. Con pari decorrenza è erogata una indennità di funzione di euro 51,65 lorde mensili per i quadri di livello A e di euro 36,15 per i quadri di livello B. Con decorrenza 1° gennaio 1991 l’indennità di funzione di cui al precedente comma è elevata rispettivamente a euro 69,72 lorde mensili per i quadri di livello A e a euro 49,06 lorde mensili per i quadri di livello B. Ai Quadri livello B inquadrati nel punto d) parte IV delle Premesse (settore oreficeria) verrà riconosciuta la somma di euro 32,75."
+            },
+            "transformation": "EUR 32.75 a month with the role 'quadro_oreficeria' on the 8th category. Art. 98 states no starting date for this amount: the series starts at the CCNL of 3 July 2017 that prints it.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T17:00:00Z",
+              "effective_from": "2017-07-03",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T17:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-confapi-quadri-allowance"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "verified",
         "location": {
@@ -2873,7 +2998,76 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_FUNZIONE_QUADRO",
+          "description": "Indennità di funzione of the quadri of livello A, 9th category (Art. 98)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "1991-01-01",
+                "valid_until": null,
+                "value": "69.72",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-unionmeccanica-confapi-2017",
+                      "title": "CCNL 3 luglio 2017 piccola e media industria metalmeccanica, orafa e installazione impianti (Unionmeccanica-Confapi, Fim-Cisl, Fiom-Cgil, Uilm-Uil), testo a stampa",
+                      "kind": "associazione",
+                      "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+                      "published_on": "2017-07-03",
+                      "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+                    },
+                    "page": "182",
+                    "section": "Art. 98 - Indennità di funzione quadri",
+                    "quote": "La normativa relativa ai quadri decorre dal 1° luglio 1987. Con pari decorrenza è erogata una indennità di funzione di euro 51,65 lorde mensili per i quadri di livello A e di euro 36,15 per i quadri di livello B. Con decorrenza 1° gennaio 1991 l’indennità di funzione di cui al precedente comma è elevata rispettivamente a euro 69,72 lorde mensili per i quadri di livello A e a euro 49,06 lorde mensili per i quadri di livello B. Ai Quadri livello B inquadrati nel punto d) parte IV delle Premesse (settore oreficeria) verrà riconosciuta la somma di euro 32,75."
+                  },
+                  "transformation": "EUR 69.72 a month from 1 January 1991, paid with the role 'quadro' on the 9th category: the quadri of livello A are the workers of the 9th category that the declaratoria 'Quadri - Livello A' (p. 80) names, not every worker of the category (Premesse p. 12). No renewal of 2021, 2025 or 2026 amends Art. 98.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T17:00:00Z",
+                    "effective_from": "1991-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T17:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-confapi-quadri-allowance"
+                  }
+                }
+              }
+            ]
+          },
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-unionmeccanica-confapi-2017",
+                "title": "CCNL 3 luglio 2017 piccola e media industria metalmeccanica, orafa e installazione impianti (Unionmeccanica-Confapi, Fim-Cisl, Fiom-Cgil, Uilm-Uil), testo a stampa",
+                "kind": "associazione",
+                "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+                "published_on": "2017-07-03",
+                "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+              },
+              "page": "182",
+              "section": "Art. 98 - Indennità di funzione quadri",
+              "quote": "La normativa relativa ai quadri decorre dal 1° luglio 1987. Con pari decorrenza è erogata una indennità di funzione di euro 51,65 lorde mensili per i quadri di livello A e di euro 36,15 per i quadri di livello B. Con decorrenza 1° gennaio 1991 l’indennità di funzione di cui al precedente comma è elevata rispettivamente a euro 69,72 lorde mensili per i quadri di livello A e a euro 49,06 lorde mensili per i quadri di livello B. Ai Quadri livello B inquadrati nel punto d) parte IV delle Premesse (settore oreficeria) verrà riconosciuta la somma di euro 32,75."
+            },
+            "transformation": "EUR 69.72 a month from 1 January 1991, paid with the role 'quadro' on the 9th category: the quadri of livello A are the workers of the 9th category that the declaratoria 'Quadri - Livello A' (p. 80) names, not every worker of the category (Premesse p. 12). No renewal of 2021, 2025 or 2026 amends Art. 98.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T17:00:00Z",
+              "effective_from": "1991-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T17:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-confapi-quadri-allowance"
+            }
+          },
+          "role": "quadro"
+        }
+      ],
       "category": "quadro",
       "provenance": {
         "status": "verified",
@@ -3078,7 +3272,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "062e8fdb0c1b868e994eebbe9d48bff2dceb17f083212f0648e2a17418524795",
+    "source_hash": "365929d9fa0c0fde9a93f735db3672724848ffed7673646d4a170cedc2b5b960",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4425,6 +4619,32 @@
         "checked": [
           "work_rules.insured_absence.maternity",
           "work_rules.insured_absence.injury"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-confapi-quadri-allowance",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 98 (printed p. 182), Premesse p. 12 and the renewals of 26 May 2021, 24 July 2025 and 4 June 2026 for amendments to it.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          }
+        ],
+        "findings": [
+          "Art. 98 sets 69.72 (quadri A) and 49.06 (quadri B) from 1 January 1991 and 32.75 for the quadri B of the oreficeria sector, without a date.",
+          "No renewal of 2021, 2025 or 2026 amends Art. 98 (an independent reading of the three signed texts found none).",
+          "Art. 50 p. 123 counts the indennità di funzione quadri in the 'retribuzione FONDAPI': added to the base of the fund.",
+          "An independent reading flagged that the 9th category also holds workers outside the declaratoria of the quadri A: the 69.72 is paid with the role 'quadro' on level 9 too; it confirmed Art. 50 (both contributions on the retribuzione FONDAPI) and found no absorption or 13th-month clause on Art. 98."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels[8].fixed_allowances",
+          "levels[9].fixed_allowances",
+          "parameters.employer_funds[0].minimum_allowances"
         ]
       }
     ],

@@ -105,6 +105,8 @@ class EmployerFund(BaseModel):
     ``fund_paid_month`` the CCNL declares (Previambiente art. 65 c. 8).
     ``seniority_conversion`` is the conversion of the seniority increments
     a worker may opt for (``PensionFundEnrolment.seniority_to_fund``).
+    ``minimum_allowances`` names the allowances a ``CONTRACTUAL_MINIMUM``
+    base counts with the minimum (Fondapi: the indennità di funzione quadri).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -125,6 +127,7 @@ class EmployerFund(BaseModel):
     enrolled_monthly: TimeSeries | None = None
     paid_month_only: bool = False
     seniority_conversion: SeniorityConversion | None = None
+    minimum_allowances: tuple[str, ...] = ()
 
     def rate_series(self) -> tuple[tuple[str, TimeSeries | None], ...]:
         """Return the series of the fund a run may read, by key.

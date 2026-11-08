@@ -87,6 +87,10 @@ def pension_terms(ctx: RunContext) -> PensionFundTerms | None:
         minimum_base=ctx.chain.base,
         erc_amount=erc_of(ctx),
     )
+    named = terms.fund.minimum_allowances
+    if named:
+        extra = sum((v for a, v in ctx.chain.allowances if a.code in named), _ZERO)
+        terms = replace(terms, minimum_base=terms.minimum_base + extra)
     converted = converted_seniority(ctx)
     if converted:
         terms = replace(terms, enrolled_monthly=terms.enrolled_monthly + converted)

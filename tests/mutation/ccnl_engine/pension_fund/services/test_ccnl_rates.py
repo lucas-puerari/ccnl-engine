@@ -35,8 +35,14 @@ the pay that enters the TFR, as their Scheda 'I destinatari e i contributi'
   of the CCNL PMI metalmeccanica and tessile): metalmeccanico Confapi level
   5, 2195.86, employer 2% = 43.9172 -> 43.92, employee 1.20% = 26.35032 ->
   26.35; tessile Uniontessile level 4, 1962.56, employer 2% = 39.2512 ->
-  39.25, employee 1.60% = 31.40096 -> 31.40.  The Fondapi base also counts
-  the EDR, which the bundle pay lacks: an open limitation blocks the run.
+  39.25, employee 1.60% = 31.40096 -> 31.40.  On the tessile the Fondapi
+  base also counts the EDR, which the bundle pay lacks: an open limitation
+  blocks the run.  On the metalmeccanico it counts the indennità di
+  funzione quadri (Art. 50): level 9 with the role 'quadro', 3054.74 +
+  69.72 = 3124.46, employer 62.4892 -> 62.49, employee 37.49352 -> 37.49
+  (without the role, 3054.74: 61.0948 -> 61.09, 36.65688 -> 36.66);
+  level 8 with the role 'quadro', 2746.82 + 49.06 = 2795.88, employer
+  55.9176 -> 55.92.
 - Fondapi on the chemical PMI (Unionchimica), level D in January 2026,
   2267.00, on the retribuzione TFR: an employee 1.06% takes employer 1.66%
   = 37.6322 -> 37.63 and employee 24.0302 -> 24.03; an employee 1.60%
@@ -221,7 +227,7 @@ def test_cometa_unknown_young_membership_is_a_missing_fact() -> None:
 def test_fondapi_on_the_minimum(
     slug: str, level: str, rate: str, employer: str, employee: str
 ) -> None:
-    """Fondapi on the minimum, not payable while the EDR is missing."""
+    """Fondapi on the minimum; the tessile EDR missing is a limitation."""
     result = regular_period(
         employment=Employment(
             ccnl_id=slug,
@@ -236,8 +242,39 @@ def test_fondapi_on_the_minimum(
     assert _entry(result, "pension_fund_employer") == Decimal(employer)
     assert _entry(result, "pension_fund_employee") == Decimal(employee)
     limitations = {limitation.id for limitation in result.assurance.limitations}
-    assert f"{slug}/fondapi_base_elements" in limitations
-    assert not result.is_payable
+    blocked = f"{slug}/fondapi_base_elements" in limitations
+    assert blocked is (slug == "tessile-pmi-uniontessile")
+
+
+@pytest.mark.parametrize(
+    ("level", "roles", "employer", "employee"),
+    [
+        ("9", frozenset({"quadro"}), "62.49", "37.49"),
+        ("9", None, "61.09", "36.66"),
+        ("8", frozenset({"quadro"}), "55.92", "33.55"),
+        ("8", frozenset({"quadro_oreficeria"}), "55.59", "33.35"),
+        ("8", None, "54.94", "32.96"),
+    ],
+    ids=["quadro-a", "cat-9", "quadro-b", "oreficeria", "not-a-quadro"],
+)
+def test_fondapi_counts_the_quadri_allowance(
+    level: str, roles: frozenset[str] | None, employer: str, employee: str
+) -> None:
+    """Art. 50: the 'retribuzione FONDAPI' counts the indennità di funzione."""
+    result = regular_period(
+        employment=Employment(
+            ccnl_id="metalmeccanico-confapi",
+            level_code=level,
+            seniority=new_hire(),
+            pension_fund=PensionFundEnrolment(
+                "FONDAPI", Decimal("0.012"), tfr_to_fund=True
+            ),
+            contract_type=Permanent(),
+            roles=roles,
+        )
+    )
+    assert _entry(result, "pension_fund_employer") == Decimal(employer)
+    assert _entry(result, "pension_fund_employee") == Decimal(employee)
 
 
 @pytest.mark.parametrize(
