@@ -34,6 +34,7 @@ from ccnl_engine import (
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.inputs import (
     ContributableHours,
+    EarnedIncrements,
     Permanent,
     SeniorityFact,
     SenioritySource,
@@ -86,7 +87,17 @@ def _employment(ccnl: CCNL, level_code: str) -> Employment:
         ccnl_id=ccnl.meta.ccnl_id,
         level_code=level_code,
         weekly_hours=WeeklyHours(Decimal(25)) if domestic else None,
-        seniority=_SENIORITY,
+        seniority=(
+            SeniorityFact(
+                36,
+                date(_YEAR, 1, 1),
+                SenioritySource.PAYSLIP,
+                earned=EarnedIncrements(1, Decimal("18.78")),
+            )
+            if ccnl.meta.ccnl_id == "logistica-trasporto-confetra"
+            and level_code == "6J"
+            else _SENIORITY
+        ),
         category=pricing_category(ccnl.parameters.seniority_increments, level_code),
         contract_type=Permanent(),
     )

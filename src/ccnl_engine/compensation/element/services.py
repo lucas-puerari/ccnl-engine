@@ -12,6 +12,10 @@ from ccnl_engine.apprenticeship.rules import _apprentice_chain
 from ccnl_engine.compensation.element.rules import _level_chain
 from ccnl_engine.compensation.element.types import ApprenticeshipScaling
 from ccnl_engine.compensation.entry.rules import entry_level
+from ccnl_engine.compensation.entry.transition import (
+    require_preserved_seniority,
+    transitioned_level,
+)
 from ccnl_engine.employment.apprentice.inputs import ApprenticeshipProgramme
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
 from ccnl_engine.errors import InvalidInputError
@@ -117,30 +121,34 @@ def _resolve_chain(
     weekly_hours: Decimal | None = None,
     full_time_weekly_hours: Decimal | None = None,
     hired_on: date | None = None,
+    level_started_on: date | None = None,
     seniority: SeniorityFact | None = None,
     career_months: int | None = None,
 ) -> tuple[MonthlyPayChain, ApprenticeshipScaling | None]:
     """Resolve the elementary pay chain for the period.
 
-    For a percentage apprenticeship the percentage reduces the base salary,
-    the seniority and the allowances flagged ``apprenticeship_pct_relevant``;
-    the other allowances are paid in full.  Part-time scaling then applies
-    when ``weekly_hours < full_time_weekly_hours``.  An allowance of a
-    cohort in service on a day (``in_service_on``) is kept only when
-    ``hired_on`` is known and not later.  A qualified worker whose
-    ``seniority`` states the increments earned is paid them as stated plus
-    the increments matured since (:func:`earned_seniority`); one whose
-    ``seniority`` states a promotion, under a CCNL that reprices the earlier
-    increments at the next one, is paid them at the level before it until
-    then (:func:`promoted_seniority`).
+    Apprentice percentages reduce base, seniority and relevant allowances;
+    other allowances stay whole. Part-time scaling then applies
+    when ``weekly_hours < full_time_weekly_hours``. An ``in_service_on``
+    allowance requires a known eligible hire date. Stated earned steps
+    persist (:func:`earned_seniority`); promotion under a repricing CCNL
+    retains old steps until the next one (:func:`promoted_seniority`).
 
     Returns:
         :class:`~ccnl_engine.compensation.element.types.MonthlyPayChain` with each
-        component rounded and ready for pay-item emission, and the
-        apprenticeship scaling applied, ``None`` unless the worker is on a
-        percentage apprenticeship track.
+        component rounded, and optional apprenticeship scaling.
     """
     with rule_scope(ruleset=ccnl.meta.ccnl_id):
+        require_preserved_seniority(
+            ccnl,
+            level,
+            contract_type,
+            as_of,
+            level_started_on,
+            hired_on,
+            seniority_months,
+            earned=seniority.earned if seniority else None,
+        )
         chain, scaling = _contract_chain(
             ccnl,
             level,
@@ -150,7 +158,11 @@ def _resolve_chain(
             roles=roles,
             worker_category=worker_category,
             hired_on=hired_on,
+            level_started_on=level_started_on,
             career_months=career_months,
+        )
+        level = transitioned_level(
+            ccnl, level, contract_type, as_of, level_started_on, hired_on=hired_on
         )
         if (
             seniority is not None
@@ -202,6 +214,7 @@ def _contract_chain(
     roles: frozenset[str],
     worker_category: WorkerCategory | None,
     hired_on: date | None,
+    level_started_on: date | None = None,
     career_months: int | None = None,
 ) -> tuple[MonthlyPayChain, ApprenticeshipScaling | None]:
     """Return the level or apprentice chain of the contract, full time.
@@ -212,6 +225,9 @@ def _contract_chain(
     Returns:
         The chain and the apprenticeship scaling, as :func:`_resolve_chain`.
     """
+    level = transitioned_level(
+        ccnl, level, contract_type, as_of, level_started_on, hired_on=hired_on
+    )
     count = _seniority_count(ccnl, level, seniority_months, worker_category)
     scaling: ApprenticeshipScaling | None = None
     if isinstance(contract_type, Apprentice) and contract_type.programme in _DUAL:
