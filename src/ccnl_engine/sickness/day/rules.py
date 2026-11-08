@@ -30,6 +30,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.compensation.proration.rules import payable_days
 from ccnl_engine.sickness.agricultural import rules as agricultural
+from ccnl_engine.sickness.holiday.rules import gross_holiday_boundary
 from ccnl_engine.sickness.window.rules import window_start
 
 if TYPE_CHECKING:
@@ -277,14 +278,8 @@ def classify_days(
 ) -> tuple[SickDaySegment, ...]:
     """Return the sick days of ``span`` grouped by treatment.
 
-    Args:
-        episode: The episode; ``span`` lies within it.
-        span: First and last sick day the run pays.
-        history: Episodes recorded by earlier runs.
-        rules: INPS and CCNL rules.
-
     Returns:
-        The segments in day order.
+        The segments of ``span`` in day order, using ``history`` and ``rules``.
     """
     history.check(episode, span[0])
     inps = _used_before(episode, span[0], history, rules)
@@ -294,9 +289,11 @@ def classify_days(
         if (
             last is not None
             and last.kind is treatment.kind
-            and last.inps_rate == treatment.inps_rate
-            and last.worker_rate == treatment.worker_rate
-            and last.inps_direct == treatment.inps_direct
+            and (last.inps_rate, last.worker_rate, last.inps_direct)
+            == (treatment.inps_rate, treatment.worker_rate, treatment.inps_direct)
+            and not gross_holiday_boundary(
+                rules.ccnl.holiday, rules.holidays, day, last.last
+            )
         ):
             segments[-1] = SickDaySegment(
                 last.first,
