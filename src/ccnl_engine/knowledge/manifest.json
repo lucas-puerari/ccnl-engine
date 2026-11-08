@@ -1921,7 +1921,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/scuole-materne-fism",
       "ruleset_version": "2026.2",
-      "source_hash": "2156d79207a8a2cad946459f0ec6ec7084d6c931cb39f61e9f3b02dd17b6c4d6",
+      "source_hash": "19d345ee4852af9a2f6b4febd387e9b6503c7f1d35cba6b24d59a31d0591bc96",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/scuole-materne-fism.json.gz"
@@ -4641,7 +4641,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "f9ee5993a264f7d8711259fcab01354c2acc6966a72ad726cb6ea0c13b67cc8e",
+      "source_hash": "4d6b6a8cf23860ea7f8ed9d446e024c616e0e5bb01c47ac57da85274f88a8ece",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/scuole-materne-fism.json.gz",

@@ -282,11 +282,14 @@ class TestLoadScuoleMaternieFism:
         ccnl = load_ccnl("scuole-materne-fism")
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 9, 1)) == Decimal(160)
 
-    def test_fism_no_fixed_allowances(self) -> None:
-        """Conglobated model: all levels have no fixed allowances."""
+    def test_fism_fixed_allowances_are_the_salario_di_anzianita(self) -> None:
+        """Conglobated pay: the only allowance is art. 46, from 1 September 2025."""
         ccnl = load_ccnl("scuole-materne-fism")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == ()
+            (allowance,) = lv.fixed_allowances
+            assert allowance.code == "SALARIO_ANZIANITA_2025"
+            assert not allowance.monthly.applies_on(date(2025, 8, 31))
+            assert allowance.monthly.applies_on(date(2025, 9, 1))
 
     def test_fism_tax_sector(self) -> None:
         """Tax sector is terziario."""
