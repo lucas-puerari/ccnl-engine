@@ -13,7 +13,8 @@ renewal), the rest with the run.
 
 A month of the covered period counts when the worker was employed at least
 the days of the una tantum (``month_min_days``, 15 when the text is
-silent), over the months of the period; a part time is reduced by its
+silent), over the months of the period (or the clause's explicit accrual
+denominator); a part time is reduced by its
 hours; the absences of a month do not reduce it, though a text may pay the
 months "di effettiva prestazione"; a run whose employment period is not
 stated is paid none.  These readings are the engine limitation
@@ -139,7 +140,9 @@ def _installment(
     served = _months(first, last, days) if first <= last else []
     if not served:
         return ()
-    amount = money(base * len(served) / len(covered) * _ratio(request))
+    amount = money(
+        base * len(served) / (una.accrual_denominator or len(covered)) * _ratio(request)
+    )
     return _arrears(paid, amount, served, request.payment_date.year)
 
 

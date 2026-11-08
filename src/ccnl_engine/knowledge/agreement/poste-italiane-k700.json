@@ -113,7 +113,7 @@
       },
       {
         "kind": "info",
-        "text": "ANTICIPO 2024 (Allegato 10, p. 178): the 'anticipo sui futuri miglioramenti economici' (A1 928.18 to F 571.47) for July 2024 to August 2025 is the una tantum ANTICIPO_2024, paid with the September 2024 pay to the permanent workers in service on 23 July 2024; the paga base keeps the pre-renewal amount for that window. The 'competenze contrattuali arretrate' of the same page (vacanza contrattuale of the first half of 2024, A1 397.79 to F 244.92, '1/12 per ogni mese di servizio') are not modelled: the share of a six-month period in twelfths is not settled by the text."
+        "text": "ANTICIPO 2024 (Allegato 10, p. 178): the 'anticipo sui futuri miglioramenti economici' (A1 928.18 to F 571.47) for July 2024 to August 2025 is the una tantum ANTICIPO_2024, paid with the September 2024 pay to the permanent workers in service on 23 July 2024; the paga base keeps the pre-renewal amount for that window. The 'competenze contrattuali arretrate' for the first half of 2024 are separately paid as six twelfths at most under VACANZA_2024."
       },
       {
         "kind": "simplification",
@@ -129,19 +129,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "VACANZA CONTRATTUALE 2024 (Allegato 10, p. 178): the 'competenze contrattuali arretrate' for the first half of 2024 (A1 397.79 to F 244.92), paid with the September 2024 pay to the permanent workers in service on 23 July 2024 'nella misura di 1/12 per ogni mese di servizio', are not paid: twelfths of a six-month period leave the full amount unsettled.",
-        "capability": "una_tantum",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "vacanza_contrattuale_2024",
-          "applies_when": {
-            "trigger": "run",
-            "effective_from": "2024-09-01",
-            "effective_until": "2024-10-01"
-          },
-          "remediation": "Pay the arretrate of Allegato 10 once the share of the six months is settled (six twelfths or the whole amount)."
-        }
+        "kind": "info",
+        "text": "VACANZA CONTRATTUALE 2024 (Allegato 10, p. 178): the first-semester arrears are paid in September 2024 to eligible permanent employees at one twelfth of the table amount for each qualifying month, at most six twelfths."
       }
     ]
   },
@@ -207,6 +196,27 @@
         "independence": "separate_model",
         "checked": [
           "levels.base_salary"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-vacanza-2024",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Annex 10 first-semester 2024 vacancy arrears, page 178, against the cached PDF.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
+            "sha256": "84ca233b59d12f2026028da61615d216d540f7c94a72b04c85713ade1115a437"
+          }
+        ],
+        "findings": [
+          "Annex 10: A1 397.79, A2 361.14, B 319.11, C 300.00, D 289.69, E 265.57, F 244.92; one twelfth per first-semester month or fraction exceeding 15 days, permanent staff in service at signing, paid September 2024."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.una_tantum[VACANZA_2024]"
         ]
       }
     ]
@@ -332,6 +342,55 @@
             "model": "claude-opus-5-5",
             "extraction_timestamp": "2026-11-01T22:20:38Z",
             "verification_status": "unverified",
+            "effective_from": "2024-09-01"
+          }
+        }
+      },
+      {
+        "code": "VACANZA_2024",
+        "covers_from": "2024-01-01",
+        "covers_until": "2024-06-30",
+        "month_min_days": 16,
+        "accrual_denominator": 12,
+        "in_service_on": "2024-07-23",
+        "permanent_only": true,
+        "installments": [
+          {
+            "paid_in": "2024-09-01",
+            "amounts": {
+              "A1": "397.79",
+              "A2": "361.14",
+              "B": "319.11",
+              "C": "300.00",
+              "D": "289.69",
+              "E": "265.57",
+              "F": "244.92"
+            }
+          }
+        ],
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-poste-italiane-2024-uilposte",
+              "title": "CCNL Poste Italiane 2024-2027, 23 luglio 2024 (testo UILPoste)",
+              "kind": "associazione",
+              "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
+              "published_on": "2024-07-23",
+              "sha256": "84ca233b59d12f2026028da61615d216d540f7c94a72b04c85713ade1115a437"
+            },
+            "page": "178",
+            "section": "Allegato 10, Competenze contrattuali arretrate",
+            "quote": "A1 397,79 A2 361,14 B 319,11 C 300,00 D 289,69 E 265,57 F 244,92 Le somme sopraindicate verranno corrisposte, a titolo di vacanza contrattuale per il primo semestre 2024, esclusivamente al personale con contratto a tempo indeterminato in servizio alla data di sottoscrizione del presente CCNL. Tali somme saranno corrisposte nella misura di 1/12 per ogni mese di servizio o frazione di esso superiore a 15 giorni, prestato nel suddetto periodo. Null’altro è dovuto a titolo di vacanza contrattuale. L’erogazione delle suddette somme avverrà con le competenze di settembre 2024."
+          },
+          "transformation": "Use the Annex 10 table amount as the base, paying one twelfth for each month served from January through June 2024 (including fractions exceeding 15 days), only to permanent employees in service at the 23 July signature, with September 2024 pay; a full semester pays six twelfths.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T14:51:00Z",
+            "verified_at": "2026-11-08T14:51:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-vacanza-2024",
             "effective_from": "2024-09-01"
           }
         }
@@ -2003,7 +2062,7 @@
     "effective_until": null,
     "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "d9601804dfc9d3fff1320d093d65767ee773e213f9a2620a3bf0be0a3677b28c",
+    "source_hash": "8e320bc6b2c7ce028f96ac67e78fda51fb39ff8e7c7f7cd22b1579593ff47010",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

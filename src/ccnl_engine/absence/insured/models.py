@@ -21,6 +21,7 @@ from ccnl_engine.absence.insured.extraordinary.models import (
 )
 from ccnl_engine.absence.insured.injury_models import InjuryIntegrationBand
 from ccnl_engine.absence.insured.maternity_holiday import MaternityHoliday
+from ccnl_engine.absence.insured.maternity_rules import MaternityRules
 from ccnl_engine.absence.insured.parental.models import ParentalRates
 from ccnl_engine.absence.insured.parental.top_up import ParentalTopUp
 from ccnl_engine.provenance.ruleset.models import RulesetIdentity
@@ -183,49 +184,6 @@ class InsuredAbsenceRates(BaseModel):
     extraordinary_leave: ExtraordinaryLeaveRates
     injury: InjuryRates
     ruleset: RulesetIdentity | None = None
-
-
-class MaternityRules(BaseModel):
-    """What a CCNL adds to the INPS maternity indemnity.
-
-    Attributes:
-        integration_rate: Share of the pay the employer tops the indemnity
-            up to; ``None`` for a CCNL that tops up the holidays only.
-        integration_days: Days of the leave, from its first day, the
-            top-up is due for (five months: 150).
-        next_integration_rate: Target share after the first integration period.
-        next_integration_days: Length of that following period in calendar days.
-        net_basis: Whether the measure is of the net pay (the INPS share,
-            free of contributions, is grossed up by the worker's INPS rate).
-        holiday: The target of a national holiday in the compulsory leave
-            (Studi art. 110 c. 8: "in modo da raggiungere complessivamente il
-            100%"), net of the INPS share and of the top-up of the day.
-        paternity_holiday: The same target in a compulsory paternity leave.
-        provenance: Source of the clause.
-    """
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    integration_rate: Share | None = None
-    integration_days: int | None = Field(default=None, ge=1)
-    next_integration_rate: Share | None = None
-    next_integration_days: int | None = Field(default=None, ge=1)
-    net_basis: bool = False
-    holiday: MaternityHoliday | None = None
-    paternity_holiday: MaternityHoliday | None = None
-    provenance: RuleProvenance
-
-    @model_validator(mode="after")
-    def _check_next_period(self) -> Self:
-        if (self.next_integration_rate is None) != (self.next_integration_days is None):
-            msg = "the following maternity period requires a rate and days"
-            raise ValueError(msg)
-        if self.next_integration_rate is not None and (
-            self.integration_rate is None or self.integration_days is None
-        ):
-            msg = "the following maternity period requires a first period"
-            raise ValueError(msg)
-        return self
 
 
 class InjuryRules(BaseModel):
