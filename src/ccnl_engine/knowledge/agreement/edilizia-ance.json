@@ -122,7 +122,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 24 point 4: the special maggiorazione of the capisquadra in the base of Art. 17 and 18.",
+        "text": "CAPISQUADRA (classification, p. 103; Art. 24 point 4): the 10% maggiorazione of the operaio put in charge of at least five operai is the allowance CAPOSQUADRA (role 'caposquadra'), in the base of the riposi annui and Cassa Edile percentages. Not modelled: its provincial elements (EET, indennità territoriale) and the floor of the level 2 pay plus 10% for a caposquadra classified lower.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -130,7 +130,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the capisquadra maggiorazione with a role."
+          "remediation": "Model the provincial elements of its base and the level 2 floor."
         }
       },
       {
@@ -568,7 +568,8 @@
             ]
           },
           "base_allowances": [
-            "CONTINGENZA"
+            "CONTINGENZA",
+            "CAPOSQUADRA"
           ],
           "settlement": "cash",
           "provenance": {
@@ -613,7 +614,8 @@
             ]
           },
           "base_allowances": [
-            "CONTINGENZA"
+            "CONTINGENZA",
+            "CAPOSQUADRA"
           ],
           "settlement": "cassa_edile",
           "net_rate": {
@@ -874,6 +876,57 @@
               "review_id": "2026-10-15-ai-elements"
             }
           }
+        },
+        {
+          "code": "CAPOSQUADRA",
+          "description": "Maggiorazione del 10% del caposquadra (classificazione operai, art. 24 punto 4)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": "2026-03-01",
+                "value": "158.02"
+              },
+              {
+                "valid_from": "2026-03-01",
+                "valid_until": "2027-03-01",
+                "value": "163.02"
+              },
+              {
+                "valid_from": "2027-03-01",
+                "valid_until": null,
+                "value": "168.02"
+              }
+            ]
+          },
+          "role": "caposquadra",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "103",
+              "section": "Classificazione, Caposquadra",
+              "quote": "Al lavoratore (comunque denominato: caposquadra, capo operaio, capo sciolta, caporale, ecc.) che, a qualunque categoria o qualifica appartenga, sia espressamente preposto dall’impresa a sorvegliare ed a guidare l’attività esecutiva di un gruppo di cinque o più operai di qualsiasi categoria o qualifica, e partecipi egli stesso direttamente all’esecuzione dei lavori, è riconosciuta, per tale particolare incarico e limitatamente alla durata dello stesso, una maggiorazione del 10% da computarsi sugli elementi della retribuzione di cui al punto 3) dell’art. 24 (compreso l’utile minimo contrattuale di cottimo qualora lavori a cottimo)."
+            },
+            "transformation": "10% of the paga base and the ex contingenza of the level, per month, paid by the hour like them, to the worker the request states with the role 'caposquadra' (put in charge of at least five operai). Not modelled: the elemento economico territoriale and the indennità territoriale di settore of the base (provincial), and the floor of the pay of a level 2 operaio plus 10%. An apprentice's percentage reduces it as it reduces the elements it is computed on.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T08:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T08:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-edilizia-ance-capisquadra"
+            }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "category": "operaio",
@@ -1092,6 +1145,57 @@
               "review_id": "2026-10-15-ai-elements"
             }
           }
+        },
+        {
+          "code": "CAPOSQUADRA",
+          "description": "Maggiorazione del 10% del caposquadra (classificazione operai, art. 24 punto 4)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": "2026-03-01",
+                "value": "176.52"
+              },
+              {
+                "valid_from": "2026-03-01",
+                "valid_until": "2027-03-01",
+                "value": "182.37"
+              },
+              {
+                "valid_from": "2027-03-01",
+                "valid_until": null,
+                "value": "188.22"
+              }
+            ]
+          },
+          "role": "caposquadra",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "103",
+              "section": "Classificazione, Caposquadra",
+              "quote": "Al lavoratore (comunque denominato: caposquadra, capo operaio, capo sciolta, caporale, ecc.) che, a qualunque categoria o qualifica appartenga, sia espressamente preposto dall’impresa a sorvegliare ed a guidare l’attività esecutiva di un gruppo di cinque o più operai di qualsiasi categoria o qualifica, e partecipi egli stesso direttamente all’esecuzione dei lavori, è riconosciuta, per tale particolare incarico e limitatamente alla durata dello stesso, una maggiorazione del 10% da computarsi sugli elementi della retribuzione di cui al punto 3) dell’art. 24 (compreso l’utile minimo contrattuale di cottimo qualora lavori a cottimo)."
+            },
+            "transformation": "10% of the paga base and the ex contingenza of the level, per month, paid by the hour like them, to the worker the request states with the role 'caposquadra' (put in charge of at least five operai). Not modelled: the elemento economico territoriale and the indennità territoriale di settore of the base (provincial), and the floor of the pay of a level 2 operaio plus 10%. An apprentice's percentage reduces it as it reduces the elements it is computed on.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T08:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T08:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-edilizia-ance-capisquadra"
+            }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "category": "operaio",
@@ -1310,6 +1414,57 @@
               "review_id": "2026-10-15-ai-elements"
             }
           }
+        },
+        {
+          "code": "CAPOSQUADRA",
+          "description": "Maggiorazione del 10% del caposquadra (classificazione operai, art. 24 punto 4)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": "2026-03-01",
+                "value": "190.67"
+              },
+              {
+                "valid_from": "2026-03-01",
+                "valid_until": "2027-03-01",
+                "value": "197.17"
+              },
+              {
+                "valid_from": "2027-03-01",
+                "valid_until": null,
+                "value": "203.67"
+              }
+            ]
+          },
+          "role": "caposquadra",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "103",
+              "section": "Classificazione, Caposquadra",
+              "quote": "Al lavoratore (comunque denominato: caposquadra, capo operaio, capo sciolta, caporale, ecc.) che, a qualunque categoria o qualifica appartenga, sia espressamente preposto dall’impresa a sorvegliare ed a guidare l’attività esecutiva di un gruppo di cinque o più operai di qualsiasi categoria o qualifica, e partecipi egli stesso direttamente all’esecuzione dei lavori, è riconosciuta, per tale particolare incarico e limitatamente alla durata dello stesso, una maggiorazione del 10% da computarsi sugli elementi della retribuzione di cui al punto 3) dell’art. 24 (compreso l’utile minimo contrattuale di cottimo qualora lavori a cottimo)."
+            },
+            "transformation": "10% of the paga base and the ex contingenza of the level, per month, paid by the hour like them, to the worker the request states with the role 'caposquadra' (put in charge of at least five operai). Not modelled: the elemento economico territoriale and the indennità territoriale di settore of the base (provincial), and the floor of the pay of a level 2 operaio plus 10%. An apprentice's percentage reduces it as it reduces the elements it is computed on.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T08:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T08:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-edilizia-ance-capisquadra"
+            }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "category": "operaio",
@@ -1528,6 +1683,57 @@
               "review_id": "2026-10-15-ai-elements"
             }
           }
+        },
+        {
+          "code": "CAPOSQUADRA",
+          "description": "Maggiorazione del 10% del caposquadra (classificazione operai, art. 24 punto 4)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": "2026-03-01",
+                "value": "201.56"
+              },
+              {
+                "valid_from": "2026-03-01",
+                "valid_until": "2027-03-01",
+                "value": "208.56"
+              },
+              {
+                "valid_from": "2027-03-01",
+                "valid_until": null,
+                "value": "215.56"
+              }
+            ]
+          },
+          "role": "caposquadra",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "103",
+              "section": "Classificazione, Caposquadra",
+              "quote": "Al lavoratore (comunque denominato: caposquadra, capo operaio, capo sciolta, caporale, ecc.) che, a qualunque categoria o qualifica appartenga, sia espressamente preposto dall’impresa a sorvegliare ed a guidare l’attività esecutiva di un gruppo di cinque o più operai di qualsiasi categoria o qualifica, e partecipi egli stesso direttamente all’esecuzione dei lavori, è riconosciuta, per tale particolare incarico e limitatamente alla durata dello stesso, una maggiorazione del 10% da computarsi sugli elementi della retribuzione di cui al punto 3) dell’art. 24 (compreso l’utile minimo contrattuale di cottimo qualora lavori a cottimo)."
+            },
+            "transformation": "10% of the paga base and the ex contingenza of the level, per month, paid by the hour like them, to the worker the request states with the role 'caposquadra' (put in charge of at least five operai). Not modelled: the elemento economico territoriale and the indennità territoriale di settore of the base (provincial), and the floor of the pay of a level 2 operaio plus 10%. An apprentice's percentage reduces it as it reduces the elements it is computed on.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T08:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T08:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-edilizia-ance-capisquadra"
+            }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "category": "operaio",
@@ -1720,7 +1926,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "ab0219fb07cc7a2b76d0f4d3fa93af7fce1eb50f5a79281f88fe52e044e7db00",
+    "source_hash": "b9fbdb9c53099d78fd4e69779bd0411d788d7bed4961383fb4b15313ba8e721c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2975,6 +3181,28 @@
         "independence": "separate_model",
         "checked": [
           "dual_apprenticeship"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-edilizia-ance-capisquadra",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Caposquadra (printed p. 89, PDF p. 103) and Art. 24 points 3-4 of the CCNL 19 April 2010, via a research report, quotes checked on the text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "Added the role allowance CAPOSQUADRA (10% of paga base and ex contingenza) in the base of the hourly percentages."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.fixed_allowances[CAPOSQUADRA]",
+          "parameters.hourly_pay.percentages"
         ]
       }
     ],
