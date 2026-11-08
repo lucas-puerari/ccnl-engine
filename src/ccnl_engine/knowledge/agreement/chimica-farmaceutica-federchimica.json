@@ -3677,10 +3677,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T11:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-07-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T11:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-federchimica-ear-hourly-quota"
             }
@@ -4002,10 +4002,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T11:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-07-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T11:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-federchimica-ear-hourly-quota"
             }
@@ -4327,10 +4327,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T11:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-07-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T11:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-federchimica-ear-hourly-quota"
             }
@@ -4653,10 +4653,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T11:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-07-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T11:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-federchimica-ear-hourly-quota"
             }
@@ -4979,10 +4979,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T11:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2024-07-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T11:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-federchimica-ear-hourly-quota"
             }
@@ -5027,7 +5027,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "acb984c93da302f7263bbbf8291f25452fd18f42b483800d3cf237e87862adde",
+    "source_hash": "5580eeaa4f0602ef501751e6b9ccd1c1d6e92ead7f8e9f40711a9b48651434a9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5826,10 +5826,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T12:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2006-05-10",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T12:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-chimica-farmaceutica-federchimica-saturday"
             }

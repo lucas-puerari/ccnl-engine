@@ -326,10 +326,10 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-08T20:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2022-01-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-08T20:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified"
                   }
                 }
@@ -357,10 +357,10 @@
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-08T20:00:00Z",
+                    "extraction_timestamp": "2026-11-08T09:00:00Z",
                     "effective_from": "2024-01-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-08T20:00:00Z",
+                    "verified_at": "2026-11-08T09:00:00Z",
                     "verification_status": "verified"
                   }
                 }
@@ -390,10 +390,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T20:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2022-01-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T20:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified"
             }
           }
@@ -519,7 +519,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "7b2ad0bd1d557085a11ce5e9c5fb578eafe1460d9176eb07df3a77409a753913",
+    "source_hash": "31cbbd1fc3aac1a703084083c8b278b5a5f46ef5d219106b443d9f6d3b4b8ebd",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

@@ -3695,7 +3695,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "f81a92a207bef8fb68a8c2e9d160150ff8392b14d7fedfde04c22b1aa8dd6bf9",
+    "source_hash": "37630bdf2e9da2df6ec70aa6683c988428eb4983214814cb9eaa91117ac654ce",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5068,7 +5068,7 @@
             "extraction_timestamp": "2026-11-08T03:00:00Z",
             "effective_from": null,
             "verified_by": "gpt-6-sol",
-            "verified_at": "2026-11-08T14:00:00Z",
+            "verified_at": "2026-11-08T09:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-08-gpt-commercio-confcommercio-injury-top-up"
           },

@@ -496,10 +496,10 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T13:00:00Z",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
           "effective_from": "2023-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-08T13:00:00Z",
+          "verified_at": "2026-11-08T09:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-legno-lapidei-artigianato-confartigianato-fsba"
         }
@@ -1894,7 +1894,7 @@
     "effective_until": null,
     "source": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
     "verification_status": "unverified",
-    "source_hash": "9360054a0867ed8912d639f74fd4ca1247f7099d544f240c6d922eb021edd274",
+    "source_hash": "bbbb50bce418ae933c0d244825320c29d928bac4ff77725c0676f97320ed2e7f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

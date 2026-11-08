@@ -482,10 +482,10 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T18:00:00Z",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
           "effective_from": "2021-06-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-08T18:00:00Z",
+          "verified_at": "2026-11-08T09:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-uniontessile-egr"
         }
@@ -6083,6 +6083,6 @@
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "64cbbc42571a594bdd64abef0579df21240e22205a457857ec93221c76f048f2"
+    "source_hash": "0f6beeb36c9b7d8b6a4fe9219fba1e2bb3c4a553e6492e0fa7cb58015e5d8bfc"
   }
 }

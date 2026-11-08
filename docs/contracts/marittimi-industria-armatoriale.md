@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-11 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2026-07-01 |
 
 ## Review history
@@ -62,7 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: Allegato 4 lett. a) (pp. 39, 41) and the aumenti periodici of the sezione personale di terra of 11 July 2024 (OCR). | corrected | 'Il periodo di apprendistato si computa ai fini dell'anzianità aziendale e di servizio' (p. 39); 'la percentuale si applica esclusivamente sul minimo contrattuale' (p. 41); the workers get an increment of a fixed amount per level each biennio: the level increments in full. |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 49 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Allegato 1 nn. 2-5 (PDF p. 32), art. 17 and art. 33 of the Sezione personale di terra of 11 July 2024. | corrected | The superminimi by years in the level are in Allegato 1 nn. 2-5, not art. 18 as the note said: 7 EUR (IV, 8 years; III, 4 years with a diploma or 8 years), 11 EUR (II, 10 years, no further promotion).<br>Art. 17 puts the superminimo in the tredicesima and quattordicesima, art. 33 in the TFR base. |
-| 2026-11-09 | gpt-6-sol (ai) | Allegato 1 nn. 2-5 (PDF p. 32) against the encoding of the superminimi by years in the level, by a separate model session. | corrected | Confirmed the amounts, levels and thresholds of nn. 2, 3 and 5.<br>Corrected: n. 4 is for the 'altri impiegati', not every impiegato; n. 3 does not end at eight years (role 'non_diplomato' for n. 4).<br>Flagged: without career_months the service months stand for the years in the level (limitation level_years_from_service). |
+| 2026-11-08 | gpt-6-sol (ai) | Allegato 1 nn. 2-5 (PDF p. 32) against the encoding of the superminimi by years in the level, by a separate model session. | corrected | Confirmed the amounts, levels and thresholds of nn. 2, 3 and 5.<br>Corrected: n. 4 is for the 'altri impiegati', not every impiegato; n. 3 does not end at eight years (role 'non_diplomato' for n. 4).<br>Flagged: without career_months the service months stand for the years in the level (limitation level_years_from_service). |
 
 ## Salary table
 

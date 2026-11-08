@@ -153,7 +153,7 @@
       },
       {
         "kind": "info",
-        "text": "Importo ex ristrutturazione tabellare (artt. 93, 102; Allegato 2 p. 165): owed for each scatto matured, 14.30 (QD3, QD4), 7.99 (QD1, QD2, 3a Area), 5.59 (Area Unificata) a month on 13 payments, in the TFR base (art. 90), frozen with the scatti from 1 January 2013 to 31 July 2014 (art. 103): it is part of the amount of each scatto (parameters.seniority_increments). Art. 72 c. 7 leaves it out of the scatti paid in one case of that article.",
+        "text": "Importo ex ristrutturazione tabellare (artt. 93, 102; Allegato 2 p. 165): owed for each scatto matured, 14.30 (QD3, QD4), 7.99 (QD1, QD2, 3a Area), 5.59 (Area Unificata) a month on 13 payments, in the TFR base (art. 90), frozen with the scatti from 1 January 2013 to 31 July 2014 (art. 103): it is part of the amount of each scatto (parameters.seniority_increments). Art. 68 c. 7 (PDF p. 104) leaves it out in the case of that article ('con l'esclusione pertanto dell'importo ex ristrutturazione tabellare'). The staff in service on 19 December 1994 keep up to 12 scatti (art. 103 c. 2) and the former 1a and 2a areas keep the 'Integrazione stipendio ex ccnl 2019' (art. 100): see the limitations on the scatti.",
         "capability": "seniority"
       }
     ]
@@ -1872,7 +1872,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "05681235690105366bfe70addbc943dc255a33d8ee436d6a45d7e33469ccaa8b",
+    "source_hash": "c88e6f87a311ec6cadfb18152939a04364cfd97ea962fb4df7ec12e1297d4697",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2451,8 +2451,8 @@
         ]
       },
       {
-        "id": "2026-11-09-ai-abi-ex-ristrutturazione",
-        "date": "2026-11-09",
+        "id": "2026-11-08-ai-abi-ex-ristrutturazione",
+        "date": "2026-11-08",
         "reviewer": "claude-opus-5-5",
         "reviewer_kind": "ai",
         "scope": "Artt. 50, 90, 93, 94, 102, 103 and Allegato 2 (PDF p. 165) of the CCNL ABI 23 November 2023 (FABI text).",
@@ -2465,9 +2465,32 @@
         ],
         "findings": [
           "The importo ex ristrutturazione tabellare is owed for each scatto matured ('per ciascuno scatto di anzianità'), with the scatto: added to the amount of each scatto by level.",
-          "It enters the TFR base (art. 90) and is frozen with the scatti (art. 103)."
+          "It enters the TFR base (art. 90) and is frozen with the scatti (art. 103).",
+          "A separate reading corrected the article of the exclusion (art. 68 c. 7, not 72) and recalled the older cohorts of art. 103 and art. 100."
         ],
         "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments.amount_by_level"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-abi-ex-ristrutturazione",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 68, 93, 94, 100, 102, 103 and Allegato 2 of the CCNL ABI 23 November 2023 against the importo ex ristrutturazione added to each scatto, by a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+            "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
+          }
+        ],
+        "findings": [
+          "Confirmed the amounts per scatto by level and their place in the TFR base.",
+          "Corrected: the exclusion is art. 68 c. 7, not art. 72; the older cohorts (art. 103 c. 2, art. 100) are recalled in the note."
+        ],
+        "independence": "separate_model",
         "checked": [
           "parameters.seniority_increments.amount_by_level"
         ]

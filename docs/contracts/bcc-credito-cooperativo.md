@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-09 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -61,7 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-14 | claude-opus-5-5 (ai) | Second review of the credito group: stipendio of the eleven levels in the three tranches, scatti, number of monthly payments, against the testo coordinato signed on 19 December 2024. | corrected | The 33 stipendi match Allegato A (p. 149) except two 2026 values, one cent off: 3ª Area 1° livello 2742.35 corrected to 2742.34, 2ª Area 2° livello 2572.10 corrected to 2572.11.<br>13 monthly payments: verified (Art. 46, tredicesima; no further monthly payment in the text).<br>Scatti: amounts match Allegato A; at most 8 for the 1st and 2nd level of the quadri, not 12: the 12 apply only to staff in service on 31 December 1997 (Art. 101). Corrected; the 1997 cohort is noted.<br>The FABI URL of the text no longer serves the PDF; the same signed text is cited from its Eutekne reproduction.<br>Not reviewed here: the hourly pay of Art. 114 (90.66% of one twelfth of the annual pay, divided by 160) and the overtime rates, which stay derived. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 55 (p. 75) of the testo coordinato signed on 19.12.2024: the job and the whole pay are kept 6, 8, 12, one month per year up to 18, or 22 months by seniority, summing the absences of the 18 months before. The file kept 180 days of one illness: corrected to a cumulation over 18 months with ten seniority bands. The FABI copy cited before returns 404; the Eutekne copy of the same signed text is cited. |
-| 2026-11-09 | claude-opus-5-5 (ai) | Artt. 101 and 113 (PDF pp. 117, 128) of the testo coordinato of 19 December 2024, text layer. | corrected | Art. 101: 'al personale in servizio alla data del 31.12.1997, gli scatti di anzianità competono nel numero massimo di 12 più un ulteriore aumento periodico'; for the 3rd and 4th level 'resta confermato il numero complessivo di 9 scatti'. Art. 113: 12 for the aree professionali. Encoded as seniority_increments.in_service_cohort. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Artt. 101 and 113 (PDF pp. 117, 128) of the testo coordinato of 19 December 2024, text layer. | corrected | Art. 101: 'al personale in servizio alla data del 31.12.1997, gli scatti di anzianità competono nel numero massimo di 12 più un ulteriore aumento periodico'; for the 3rd and 4th level 'resta confermato il numero complessivo di 9 scatti'. Art. 113: 12 for the aree professionali. Encoded as seniority_increments.in_service_cohort. |
 
 ## Salary table
 

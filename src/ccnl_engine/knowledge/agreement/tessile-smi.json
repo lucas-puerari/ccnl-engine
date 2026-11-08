@@ -1946,7 +1946,7 @@
     "effective_until": null,
     "source": "https://www.sistemamodaitalia.com/",
     "verification_status": "unverified",
-    "source_hash": "52ac7f41d1d9f1ef2db053764acebced51b0877e0c767ee0a38528b851199e42",
+    "source_hash": "c4d03fb980235fda0b18ce1d05be680be48fde2d241059ab8660ae1db181fb63",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2195,7 +2195,7 @@
             "extraction_timestamp": "2026-11-08T03:00:00Z",
             "effective_from": null,
             "verified_by": "gpt-6-sol",
-            "verified_at": "2026-11-08T14:00:00Z",
+            "verified_at": "2026-11-08T09:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-08-gpt-tessile-smi-injury-top-up"
           }

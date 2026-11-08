@@ -1902,7 +1902,7 @@
     "effective_until": null,
     "source": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
     "verification_status": "unverified",
-    "source_hash": "256d13b7422467e1e12ed2c4324fd7234964ad64050b9fdbcf45649eb8c7d2dd",
+    "source_hash": "985eb0ce80e8ac9e4b4001a4c90e24d049b753fd40b7520e18d7fddbb9c31ecc",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -2118,7 +2118,7 @@
             "extraction_timestamp": "2026-11-08T03:00:00Z",
             "effective_from": null,
             "verified_by": "gpt-6-sol",
-            "verified_at": "2026-11-08T14:00:00Z",
+            "verified_at": "2026-11-08T09:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-08-gpt-vigilanza-privata-assiv-injury-top-up"
           }

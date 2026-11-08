@@ -5228,7 +5228,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "0fb4db96949be95081bc527674b4f461776dbbb9b012f2effde23a3907123342",
+    "source_hash": "009fb70c7a7c25a69f056bb8e6369ea17efc157cbf7abc20a9b6d0c33cfb13a7",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -5548,7 +5548,7 @@
             "extraction_timestamp": "2026-11-08T03:00:00Z",
             "effective_from": null,
             "verified_by": "gpt-6-sol",
-            "verified_at": "2026-11-08T14:00:00Z",
+            "verified_at": "2026-11-08T09:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-08-gpt-igiene-ambientale-utilitalia-injury-top-up"
           },

@@ -953,10 +953,10 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T13:00:00Z",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
           "effective_from": "2023-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-08T13:00:00Z",
+          "verified_at": "2026-11-08T09:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-pulizia-artigianato-confartigianato-fsba"
         }
@@ -4431,7 +4431,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "ff8766159d1054dd70317bd3c545ec666e2afb43248cee8e343ddb9b5b32fcd2",
+    "source_hash": "7fb8a84b89ab722da7322eb517136c162cd019b10280b1d004bab235cc307752",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

@@ -535,9 +535,9 @@
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-08T16:00:00Z",
+                "extraction_timestamp": "2026-11-08T09:00:00Z",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-08T16:00:00Z",
+                "verified_at": "2026-11-08T09:00:00Z",
                 "verification_status": "verified",
                 "review_id": "2026-11-08-ai-operai-agricoli-otd"
               }
@@ -939,7 +939,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "3b0f4c99c1078253f033f5cc14f3b6e16aa606f755d1d94e2023858367664cb9",
+    "source_hash": "673e6c73c938a8c7e06f5ac196242647922f0f618755bcae027f6422aa3dba9e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

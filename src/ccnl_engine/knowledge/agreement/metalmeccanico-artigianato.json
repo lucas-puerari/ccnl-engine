@@ -515,10 +515,10 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T13:00:00Z",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
           "effective_from": "2023-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-08T13:00:00Z",
+          "verified_at": "2026-11-08T09:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-metalmeccanico-artigianato-fsba"
         }
@@ -2983,7 +2983,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "b14aaf40a2122bd23e6c615de8379ad76f49fc9ff6b59153e5b7fd7877b50ca0",
+    "source_hash": "1aa2a4f02a1574884aa90204e09db2ea2659ca8e4859811745fbb91fa1b5303b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3196,10 +3196,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T16:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2022-01-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T16:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-metalmeccanico-artigianato-saturday-overtime"
             }
@@ -3238,10 +3238,10 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T16:00:00Z",
+              "extraction_timestamp": "2026-11-08T09:00:00Z",
               "effective_from": "2022-01-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T16:00:00Z",
+              "verified_at": "2026-11-08T09:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-metalmeccanico-artigianato-saturday-overtime"
             }
