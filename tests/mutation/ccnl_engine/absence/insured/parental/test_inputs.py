@@ -39,6 +39,8 @@ def test_a_leave_is_dated_by_its_first_day_and_cut_to_the_month() -> None:
         ({"protection_ended_on": "2025-09-01"}, "protection_ended_on"),
         ({"child_born_on": "2025-06-01"}, "ParentalLeaveEvent.child_born_on"),
         ({"parental_base_pay": 1}, "ParentalLeaveEvent.parental_base_pay"),
+        ({"topped_up_days_before": -1}, "ParentalLeaveEvent.topped_up_days_before"),
+        ({"topped_up_days_before": True}, "ParentalLeaveEvent.topped_up_days_before"),
     ],
 )
 def test_a_wrong_leave_is_rejected(kwargs: dict[str, object], match: str) -> None:

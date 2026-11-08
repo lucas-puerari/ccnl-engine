@@ -227,6 +227,22 @@
       }
     },
     {
+      "id": "parental_top_up_scope",
+      "institute": "parental_leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 52 also allows the leave by the hour, which gets no top-up; 'un periodo non superiore a tre mesi' is read as 90 days of leave; the company provisions it lets the employer absorb are not read. The top-up is computed on the INPS daily base of the leave (art. 23 D.Lgs. 151/2001), as the text gives no pay base of its own. The days already topped up by earlier leave events of the child are a fact of the event (ParentalLeaveEvent.topped_up_days_before).",
+      "calculation": "ccnl/materiali-costruzione-lapidei-confapi:coverage.notes",
+      "state": "absent",
+      "remediation": "Top up the hourly leave, read the pay base the CCNL means, and carry the days topped up per child in the state.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "materiali-costruzione-lapidei-confapi/parental_top_up_scope"
+        ]
+      }
+    },
+    {
       "id": "paternity_daily_base",
       "institute": "paternity_leave",
       "variant": "all",

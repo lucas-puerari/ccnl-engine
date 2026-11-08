@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 272 weak rules, 431 open limitations (431 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 272 weak rules, 433 open limitations (433 with a monetary impact).
 
 ## Declared window
 
@@ -61,7 +61,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [assicurazioni-ania](../contracts/assicurazioni-ania.md) | `assicurazioni` | exploratory | — | 24 rows | 24 open requirements; 2 weak rules; 19 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [attivita-minerarie-assorisorse](../contracts/attivita-minerarie-assorisorse.md) | `materiali-estrattive` | exploratory | — | 22 rows | 22 open requirements; 3 weak rules; 17 monetary limitations; 18 non-native capabilities |
 | [autoferrotranvieri-internavigatori](../contracts/autoferrotranvieri-internavigatori.md) | `trasporti-logistica` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 18 monetary limitations; 2 outside_input limitations; 19 non-native capabilities |
-| [autorimesse-ic35](../contracts/autorimesse-ic35.md) | `servizi-automobilistici` | exploratory | — | 24 rows | 24 open requirements; 2 weak rules; 19 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
+| [autorimesse-ic35](../contracts/autorimesse-ic35.md) | `servizi-automobilistici` | exploratory | — | 25 rows | 25 open requirements; 2 weak rules; 19 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
 | [autoscuole-unasca](../contracts/autoscuole-unasca.md) | `servizi-automobilistici` | exploratory | — | 20 rows | 20 open requirements; 1 weak rule; 17 monetary limitations; 18 non-native capabilities |
 | [autostrade-trafori](../contracts/autostrade-trafori.md) | `trasporti-logistica` | exploratory | — | 23 rows | 23 open requirements; 2 weak rules; 19 monetary limitations; 18 non-native capabilities |
 | [aziende-termali-federterme](../contracts/aziende-termali-federterme.md) | `turismo` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 21 monetary limitations; 21 non-native capabilities |
@@ -131,7 +131,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [logistica-trasporto-confetra](../contracts/logistica-trasporto-confetra.md) | `trasporti-logistica` | reviewed | — | 26 rows | 26 open requirements; 19 monetary limitations; 5 outside_input limitations; 21 non-native capabilities |
 | [logistica-trasporto-confetra-viaggiante](../contracts/logistica-trasporto-confetra-viaggiante.md) | `trasporti-logistica` | reviewed | — | 24 rows | 24 open requirements; 19 monetary limitations; 3 outside_input limitations; 20 non-native capabilities |
 | [marittimi-industria-armatoriale](../contracts/marittimi-industria-armatoriale.md) | `trasporti-logistica` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 19 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
-| [materiali-costruzione-lapidei-confapi](../contracts/materiali-costruzione-lapidei-confapi.md) | `materiali-estrattive` | exploratory | — | 42 rows | 42 open requirements; 21 weak rules; 19 monetary limitations; 19 non-native capabilities |
+| [materiali-costruzione-lapidei-confapi](../contracts/materiali-costruzione-lapidei-confapi.md) | `materiali-estrattive` | exploratory | — | 43 rows | 43 open requirements; 21 weak rules; 19 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [metalmeccanica-cooperative](../contracts/metalmeccanica-cooperative.md) | `metalmeccanica` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 20 monetary limitations; 20 non-native capabilities |
 | [metalmeccanico-artigianato](../contracts/metalmeccanico-artigianato.md) | `metalmeccanica` | exploratory | 2026-12-31 | 24 rows | 24 open requirements; 20 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
 | [metalmeccanico-confapi](../contracts/metalmeccanico-confapi.md) | `metalmeccanica` | reviewed | — | 33 rows | 33 open requirements; 17 monetary limitations; 14 outside_input limitations; 21 non-native capabilities |
