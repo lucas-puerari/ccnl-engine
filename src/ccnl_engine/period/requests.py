@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field, replace
+from dataclasses import dataclass, field
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.balance.models import PeriodState
-from ccnl_engine.calendar.tax_year.rules import TaxYearPolicy
+from ccnl_engine.compensation.presence.inputs import validate_presence_days
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.employer.inputs import EmployerProfile
 from ccnl_engine.employment.fact.inputs import (
@@ -29,6 +29,7 @@ from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
 from ccnl_engine.pension_fund.inputs import PENSION_FUND_TYPES
+from ccnl_engine.period.opening.requests import stated_opening, validate_tax_year
 from ccnl_engine.period.request.validators import employment_gap
 from ccnl_engine.regime.models import EmploymentSector
 from ccnl_engine.run.types import PeriodId
@@ -104,6 +105,9 @@ class PeriodCalculationRequest:
         seniority: Recognised seniority, aged to the competence month; ``None``
             unknown, a ``missing_fact`` blocker when the level pays on seniority.
         roles: Role codes of the role-specific allowances, ``None`` unknown.
+        presence_days: Count of days actually present at work in the month.
+        site_presence_days: Subset of those days present at the work site.
+            ``None`` means the count is missing, not zero.
         individual_elements: Pay agreed above the CCNL minimum, fixed allowances.
         category: Worker category declared on the employment.  ``None``
             takes the category fixed by the level, if any.  Must match the
@@ -170,6 +174,8 @@ class PeriodCalculationRequest:
     level_started_on: date | None = None
     seniority: SeniorityFact | None = None
     roles: frozenset[str] | None = None
+    presence_days: int | None = None
+    site_presence_days: int | None = None
     individual_elements: tuple[IndividualElement, ...] = ()
     category: WorkerCategory | None = None
     extra_month_accrual: ExtraMonthAccrual | None = None
@@ -212,33 +218,22 @@ class PeriodCalculationRequest:
         check_week_days(self.full_time_week_days)
         check_pattern_hours(self.weekly_hours, self.work_pattern)
         check_surtax_codes(self.regione, self.comune_belfiore)
-        competence = date(self.period_id.year, self.period_id.month, 1)
-        tax_year = TaxYearPolicy().attribute(competence, self.payment_date).tax_year
-        opening_year = self.opening_state.tax_year
-        if opening_year is not None and opening_year != tax_year:
-            msg = (
-                f"run {self.period_id.year}-{self.period_id.month:02d} paid on "
-                f"{self.payment_date.isoformat()} belongs to tax year {tax_year} "
-                f"(TUIR art. 51 c. 1), but opening_state is for tax year "
-                f"{opening_year}: open the new tax year with close_tax_year() "
-                "on the closing state of the last run of the previous year"
-            )
-            raise InvalidInputError(msg, feature="tax_year")
-        latest = self.opening_state.cash.obligations.latest_tax_year
-        if latest is not None and latest > tax_year:
-            msg = (
-                f"opening_state carries an obligation opened in {latest}, after "
-                f"the tax year of the run ({tax_year})"
-            )
-            raise InvalidInputError(msg, feature="tax_year")
-        object.__setattr__(self, "opening_state", self._stated_opening())
-        schedule = self.withholding_schedule
-        if schedule is not None and schedule.year != tax_year:
-            msg = (
-                f"withholding_schedule.year ({schedule.year}) "
-                f"does not match tax year ({tax_year})"
-            )
-            raise InvalidInputError(msg, feature="tax_year")
+        validate_presence_days(
+            self.presence_days,
+            self.site_presence_days,
+            owner="PeriodCalculationRequest",
+        )
+        validate_tax_year(
+            self.period_id,
+            self.payment_date,
+            self.opening_state,
+            self.withholding_schedule,
+        )
+        object.__setattr__(
+            self,
+            "opening_state",
+            self._stated_opening(),
+        )
 
     def _stated_opening(self) -> PeriodState:
         """Return the opening state with the stated base of other employers.
@@ -247,14 +242,9 @@ class PeriodCalculationRequest:
             ``opening_state``, with the INPS base of other employments of
             ``current_year`` when it is of the competence year.
         """
-        year, facts = self.period_id.year, self.current_year
-        if facts is None or facts.tax_year != year:
-            return self.opening_state
-        accrual = self.opening_state.accrual
-        base = accrual.inps_base(year).stating_other_employers(
-            facts.other_employment_inps_base
+        return stated_opening(
+            self.period_id.year, self.current_year, self.opening_state
         )
-        return replace(self.opening_state, accrual=accrual.with_inps_base(base))
 
     def _field_specs(self) -> tuple[FieldSpec, ...]:
         """Return the fields an untyped caller may supply with a wrong type.

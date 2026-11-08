@@ -2,18 +2,21 @@
 
 from datetime import date
 from decimal import Decimal
-from enum import StrEnum
 from typing import Literal, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
+from ccnl_engine.compensation.accrual_comparison.models import (
+    AccrualComparison as AccrualComparison,  # noqa: PLC0414
+)
 from ccnl_engine.compensation.cohort.models import ClassTable, CohortSalary
 from ccnl_engine.compensation.entry.models import TransitionHireBand
 from ccnl_engine.compensation.equalisation.models import EqualisationElement
 from ccnl_engine.compensation.fixed_term.models import FixedTermPay
 from ccnl_engine.compensation.hourly.models import HourlyPay
 from ccnl_engine.compensation.loyalty.models import LoyaltyPremium
+from ccnl_engine.compensation.presence.models import DailyPresenceAllowance
 from ccnl_engine.compensation.renewal_minimum.models import RenewalAgreement
 from ccnl_engine.compensation.una_tantum.models import UnaTantum
 from ccnl_engine.employment.category.models import WorkerCategory
@@ -115,53 +118,6 @@ class Allowance(BaseModel):
         the allowance for percentage apprentices was not sourced.
         """
         return "apprenticeship_pct_relevant" in self.model_fields_set
-
-
-class AccrualComparison(StrEnum):
-    """How the accruing days of a month are compared with the threshold.
-
-    Attributes:
-        AT_LEAST: The month counts when its days reach the threshold
-            ("pari o superiore a 15 giorni").
-        MORE_THAN: The month counts when its days exceed the threshold
-            ("frazione superiore a 15 giorni").
-        WORKING_DAYS_26: No threshold: a month not worked in full accrues
-            its accruing days from Monday to Saturday as twenty-sixths of a
-            rateo, at most one (CCNL Turismo 2024, art. 160 c. 2: "i giorni
-            lavorati - determinati in ventiseiesimi - [...] daranno diritto
-            alla maturazione di un ugual numero di ventiseiesimi di un
-            rateo mensile").
-        DAYS_365: A whole month accrues a twelfth, a month served in part
-            a 365th of the year for each day served (CCNL Sanità 2022-2024
-            art. 60 c. 4: "per le frazioni di mese, in ragione di un
-            trecentosessantacinquesimo per i giorni prestati nel mese").
-        DAYS_360: As ``DAYS_365`` with a 360th for each day of a month
-            served in part (CCNL Area I 21 April 2006 art. 63 c. 4).
-        SERVICE_DAYS_365: Every day served accrues a 365th of the year,
-            whole months too (CCNL Funzioni Locali 16 November 2022 art. 75
-            c. 3: "in ragione di tanti 365esimi quanti sono i giorni di
-            servizio prestato").
-        CUMULATED_FRACTIONS: A whole month accrues a rateo; the days of the
-            months served in part are summed, and each 30 days accrue a
-            rateo, a remainder of 15 days or more one more (CCNL Pubblici
-            Esercizi 8 February 2018 art. 183 c. 2: "le frazioni di mese
-            saranno cumulate [...] un rateo mensile per ogni trenta giorni
-            di calendario, nonché per la eventuale frazione residua pari o
-            superiore a quindici giorni").
-    """
-
-    AT_LEAST = "at_least"
-    MORE_THAN = "more_than"
-    WORKING_DAYS_26 = "working_days_26"
-    DAYS_365 = "days_365"
-    DAYS_360 = "days_360"
-    SERVICE_DAYS_365 = "service_days_365"
-    CUMULATED_FRACTIONS = "cumulated_fractions"
-
-    @property
-    def by_days(self) -> bool:
-        """Whether the rule accrues days rather than comparing a threshold."""
-        return self not in {AccrualComparison.AT_LEAST, AccrualComparison.MORE_THAN}
 
 
 _SHORTEST_MONTH_DAYS = 28
@@ -281,6 +237,8 @@ class CCNLParameters(BaseModel):
     ``enam_levels``: ex ENAM; ``renewals``: raising the minimo (L. 199/2025);
     ``health_funds``, with their elemento distinto; ``hourly_pay``,
     ``fixed_term_pay`` (operai edilizia, OTD); ``loyalty_premium`` (fedeltà).
+    ``daily_presence_allowances``: rates paid per counted qualifying day,
+    rather than a fraction of monthly pay.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -311,6 +269,7 @@ class CCNLParameters(BaseModel):
     una_tantum: tuple[UnaTantum, ...] = ()
     equalisation_element: EqualisationElement | None = None
     loyalty_premium: LoyaltyPremium | None = None
+    daily_presence_allowances: tuple[DailyPresenceAllowance, ...] = ()
 
     @model_validator(mode="after")
     def _check_positive_params(self) -> Self:
