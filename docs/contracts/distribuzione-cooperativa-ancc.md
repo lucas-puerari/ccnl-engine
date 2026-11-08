@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, seniority |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-29 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 10 values found verbatim on the cited pages and marked verified; 36 left as they were (derived or not on a text page). |
 | 2026-11-07 | gpt-6-sol (ai) | Terzo elemento against art. 186 of the signed text and the later renewals. | corrected | The file paid 3.07 from a secondary table; art. 186 c. 4 prints 3,10 and no later renewal amends it (research .private/research/work/r-distr-coop). Corrected on all levels. |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 19 values found verbatim on the cited pages and marked verified; 36 left as they were (derived or not on a text page). |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 187 c. 2 of the 2011 official text (PDF p. 201, text layer). | corrected | The divisors of the half-hour weeks (167 for 38.5, 184 from 42.5) are now expressible: added 38.5, 42.5 and 43.5 to time_supplements.week_divisors. |
 
 ## Salary table
 
@@ -119,13 +120,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; contract type in apprentice.
 
     **Remediation:** Read the apprenticeship articles of the 2024 renewal (Arts. 75, 80-82) and update the tracks, then remove this limitation.
-
-!!! note "distribuzione-cooperativa-ancc/long_week_divisors · workplace_injury · impact yes · resolved"
-    HOURLY DIVISOR: Art. 187 c. 2 (2011 official text, p. 201): 165 for the normal week of 38 hours (art. 113 c. 1), 167 for 38.5, 168 for 39 and 40, 182 for 42, 184 from 42.5 to 44. The engine keeps 165 and reads 168, 182 or 184 when Employment.full_time_weekly_hours is 39, 40, 42, 43 or 44; staff hired after 22 December 2011 work 40 hours (art. 113 c. 5) and state it. The half-hour weeks of 38.5 and 42.5 are not expressible: their rate is not derived. Art. 198 cited earlier is the resignation for marriage, not the divisor.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Resolved: work_rules.time_supplements.week_divisors holds 168, 182 and 184 for the weeks of 39, 40, 42, 43 and 44 hours.
 
 !!! warning "distribuzione-cooperativa-ancc/seniority_amounts_proxy_source · seniority · impact unknown · open"
     SENIORITY AMOUNTS: from kitech.it only (proxy source). No independent primary-source confirmation. Cadence (36 months) and maximum (10) confirmed from CCNL text via olympus.uniurb.it.
@@ -334,6 +328,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SENIORITY: triennial (cadence_months=36), maximum 10 scatti. Per-level amounts from kitech.it Dec 2025 (proxy, label SIMPLIFICATION). Q=27.82, L1=26.64, L2=24.52, L3S=21.79, L3=21.79, L4S=19.93, L4=19.93, L5=18.84, L6=16.51 EUR/scatto. L3S=L3 and L4S=L4 duplication confirmed plausible in Terziario family.
     
     INPS: uses 2026-terziario.json (terziario sector). No bilateral fund substituting INPS contributions. CNEL code: H016.
+    
+    HOURLY DIVISOR: Art. 187 c. 2 (2011 official text, p. 201): 165 for the normal week of 38 hours (art. 113 c. 1), 167 for 38.5, 168 for 39 and 40, 182 for 42, 184 from 42.5 to 44. The engine keeps 165 and reads the others from Employment.full_time_weekly_hours (38.5, 39, 40, 42, 42.5, 43, 43.5, 44); staff hired after 22 December 2011 work 40 hours (art. 113 c. 5) and state it.
     
     MODELLED TRANCHES (Nov 2026 / Mar 2027): confirmed by studioagostini.org (secondary source, June 2024 commentary on the Mar 2024 renewal). L4 increments: +35.00 EUR (01/11/2026), +40.00 EUR (01/03/2027). L1 increments: +56.39 EUR (01/11/2026), +64.44 EUR (01/03/2027). All per-level values match the reparametrized ratio from confirmed prior tranches. Source: studioagostini.org/ccnl-distribuzione-cooperativa-aumenti-fino-a-240-euro/
     

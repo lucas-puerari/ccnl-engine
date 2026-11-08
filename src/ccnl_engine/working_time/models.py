@@ -86,12 +86,13 @@ class WeekDivisor(BaseModel):
     """The hourly divisor of a normal week other than the one of the CCNL divisor.
 
     Commercio art. 211: 168 for a normal week of 40 hours, 182 for 42, 195
-    for 45; the CCNL divisor is the first, this the others.
+    for 45; the CCNL divisor is the first, this the others.  A week may
+    have half hours (Distribuzione cooperativa art. 187: 167 for 38.5).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    weekly_hours: int = Field(ge=1)
+    weekly_hours: Decimal = Field(gt=Decimal(0))
     divisor: Decimal = Field(gt=Decimal(0))
     provenance: RuleProvenance
 
@@ -123,7 +124,7 @@ class TimeSupplements(BaseModel):
 
     hourly_base_method: HourlyBaseMethod = HourlyBaseMethod.MINIMO_TABELLARE
     hourly_base_provenance: RuleProvenance | None = None
-    hourly_divisor_weekly_hours: int | None = Field(default=None, ge=1)
+    hourly_divisor_weekly_hours: Decimal | None = Field(default=None, gt=Decimal(0))
     week_divisors: tuple[WeekDivisor, ...] = Field(default=())
     individual_elements: IndividualElementsRule | None = None
     hourly_base_excluded: tuple[str, ...] = Field(default=())

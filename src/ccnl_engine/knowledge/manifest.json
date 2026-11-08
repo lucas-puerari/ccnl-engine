@@ -711,7 +711,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/distribuzione-cooperativa-ancc",
       "ruleset_version": "2026.2",
-      "source_hash": "ee7e8ab64950a22a2bd81fc750014f30cb568437ad8dda4e04882ca5e7c00df3",
+      "source_hash": "b748d957012f4bdee2cfdfea2b32b5c13e01e9d2d636e9ed9eca50c234954845",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/distribuzione-cooperativa-ancc.json.gz"
