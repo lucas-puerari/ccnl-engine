@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 272 weak rules, 404 open limitations (404 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 272 weak rules, 403 open limitations (403 with a monetary impact).
 
 ## Declared window
 
@@ -88,7 +88,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [dirigenza-funzioni-locali-aran](../contracts/dirigenza-funzioni-locali-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 19 rows | 19 open requirements; 16 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [dirigenza-istruzione-ricerca-aran](../contracts/dirigenza-istruzione-ricerca-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 19 rows | 19 open requirements; 17 monetary limitations; 19 non-native capabilities |
 | [dirigenza-sanitaria-area-sanita-aran](../contracts/dirigenza-sanitaria-area-sanita-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 21 rows | tables from 2026-03-01; 21 open requirements; 18 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
-| [dirigenza-sanitaria-medico-veterinaria-aran](../contracts/dirigenza-sanitaria-medico-veterinaria-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 25 rows | tables from 2026-03-01; 25 open requirements; 2 weak rules; 20 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
+| [dirigenza-sanitaria-medico-veterinaria-aran](../contracts/dirigenza-sanitaria-medico-veterinaria-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 24 rows | tables from 2026-03-01; 24 open requirements; 2 weak rules; 19 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [distribuzione-cooperativa-ancc](../contracts/distribuzione-cooperativa-ancc.md) | `commercio` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 21 monetary limitations; 20 non-native capabilities |
 | [dmo-federdistribuzione](../contracts/dmo-federdistribuzione.md) | `commercio` | reviewed | — | 24 rows | 24 open requirements; 18 monetary limitations; 4 outside_input limitations; 20 non-native capabilities |
 | [edilizia-ance](../contracts/edilizia-ance.md) | `edilizia` | reviewed | — | 34 rows | 34 open requirements; 21 monetary limitations; 11 outside_input limitations; 20 non-native capabilities |
