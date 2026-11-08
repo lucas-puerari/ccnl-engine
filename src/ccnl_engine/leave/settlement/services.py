@@ -27,6 +27,7 @@ from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
 )
+from ccnl_engine.leave.models import LeaveTermination
 from ccnl_engine.leave.settlement.models import (
     PERMIT_DEADLINE,
     TERMINATION_RESIDUAL_LEAVE,
@@ -82,6 +83,19 @@ def _residuals(account: LeaveAccount) -> dict[LeaveBucket, Decimal]:
     return residuals
 
 
+def _basis(rules: LeaveRules, terms: SettlementTerms) -> LeaveTermination | None:
+    """Return the basis the residual is valued at.
+
+    Returns:
+        The termination basis, or at a deadline that pays its hours by the
+        hour a basis of hourly permits only.
+    """
+    deadline = terms.deadline
+    if deadline is not None and deadline.permits_hourly:
+        return LeaveTermination(permits_hourly=True)
+    return rules.termination
+
+
 def _blocking_reason(
     rules: LeaveRules | None,
     account: LeaveAccount,
@@ -95,14 +109,33 @@ def _blocking_reason(
     """
     if rules is None or not rules.buckets:
         return "leave_accrual_not_modelled"
-    basis = rules.termination
+    basis = _basis(rules, terms)
     if basis is None:
         return "termination_basis_not_sourced"
     if not account.known:
         return LEAVE_HISTORY_UNKNOWN.code
     if any(value < _ZERO for value in residuals.values()):
         return "leave_taken_beyond_accrual"
+    return _unvalued(basis, rules, residuals, terms)
+
+
+def _unvalued(
+    basis: LeaveTermination,
+    rules: LeaveRules,
+    residuals: dict[LeaveBucket, Decimal],
+    terms: SettlementTerms,
+) -> str | None:
+    """Return why a residual left has no basis to be valued at.
+
+    Returns:
+        The reason code, ``None`` when every residual has a basis.
+    """
     daily = {p.bucket for p in rules.permits if p.day_hours is not None}
+    by_day = daily | {LeaveBucket.FERIE}
+    if basis.ferie_divisor is None and any(
+        v > _ZERO for b, v in residuals.items() if b in by_day
+    ):
+        return "termination_basis_not_sourced"
     hourly = any(
         b is not LeaveBucket.FERIE and b not in daily and v > _ZERO
         for b, v in residuals.items()
@@ -122,14 +155,15 @@ def _quota(
         permit, of the full-time monthly pay, the ferie divisor times the
         hours of a day of a bucket paid by the day, else the hourly divisor.
     """
-    divisor = rules.termination.ferie_divisor  # type: ignore[union-attr]
+    basis = _basis(rules, terms)
+    divisor = None if basis is None else basis.ferie_divisor
     if bucket is LeaveBucket.FERIE:
-        return divisor, terms.monthly_pay
+        return divisor, terms.monthly_pay  # type: ignore[return-value]
     ratio = terms.part_time_ratio
     pay = terms.monthly_pay if ratio is None else terms.monthly_pay / ratio
     day = next((p.day_hours for p in rules.permits if p.bucket is bucket), None)
     if day is not None:
-        return divisor * day, pay
+        return divisor * day, pay  # type: ignore[operator]
     return terms.hourly_divisor, pay  # type: ignore[return-value]
 
 

@@ -191,6 +191,15 @@ def test_nothing_left_is_a_final_zero() -> None:
             _account(),
             _terms(
                 rules=_RULES.model_copy(
+                    update={"termination": LeaveTermination(permits_hourly=True)}
+                )
+            ),
+            "termination_basis_not_sourced",
+        ),
+        (
+            _account(),
+            _terms(
+                rules=_RULES.model_copy(
                     update={
                         "termination": LeaveTermination(
                             ferie_divisor=Decimal(26), permits_hourly=False

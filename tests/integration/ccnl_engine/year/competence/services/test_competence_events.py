@@ -186,7 +186,7 @@ class TestSurtaxStatus:
                 _CCNL,
                 _LEVEL,
                 facts=PeriodFacts(comune_belfiore="Z999"),
-                opening_state=fresh_tax_year(_YEAR),
+                opening_state=fresh_tax_year(_YEAR, leave_balances=()),
                 current_year=employment_only(_YEAR),
             ),
             repo=bundled_repository(),
