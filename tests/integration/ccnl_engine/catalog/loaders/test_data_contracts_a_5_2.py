@@ -314,16 +314,27 @@ class TestLoadLavoroDomesticoConvivente:
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(234)
 
     def test_lavoro_domestico_convivente_d_ds_indennita(self) -> None:
-        """D and DS have indennità di funzione 207.69; A-CS have none."""
+        """D and DS have indennità di funzione 207.69; A-CS have none.
+
+        The role allowances of art. 34 (Tabelle H, I, L) are on B, BS, CS
+        and DS.
+        """
         ccnl = load_ccnl("lavoro-domestico-convivente")
+        roles = {
+            "B": ["IND_CERTIFICAZIONE_UNI"],
+            "BS": ["IND_BABYSITTER", "IND_CERTIFICAZIONE_UNI"],
+            "CS": ["IND_PIU_NON_AUTOSUFFICIENTI", "IND_CERTIFICAZIONE_UNI"],
+            "DS": ["IND_PIU_NON_AUTOSUFFICIENTI"],
+        }
         for code in ("A", "AS", "B", "BS", "C", "CS"):
             codes = [a.code for a in ccnl.level_by_code(code).fixed_allowances]
-            assert codes == ["vitto_alloggio"]
+            assert codes == ["vitto_alloggio", *roles.get(code, [])]
         for code in ("D", "DS"):
             lv = ccnl.level_by_code(code)
             assert [a.code for a in lv.fixed_allowances] == [
                 "INDENNITA_FUNZIONE",
                 "vitto_alloggio",
+                *roles.get(code, []),
             ]
             assert lv.fixed_allowances[0].monthly.value_at(date(2026, 1, 1)) == Decimal(
                 "207.69"

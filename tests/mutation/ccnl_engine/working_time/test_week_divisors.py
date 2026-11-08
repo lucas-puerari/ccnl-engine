@@ -135,10 +135,24 @@ def test_autorimesse_divides_by_the_divisor_of_the_role_week(
 
 
 @pytest.mark.parametrize(
-    ("week", "divisor"), [(38, 165), (39, 168), (40, 168), (42, 182), (44, 184)]
+    ("week", "divisor"),
+    [
+        ("38", 165),
+        ("38.5", 167),
+        ("39", 168),
+        ("40", 168),
+        ("42", 182),
+        ("42.5", 184),
+        ("43.5", 184),
+        ("44", 184),
+    ],
 )
-def test_the_ancc_divides_by_the_divisor_of_art_187(week: int, divisor: int) -> None:
-    """Distribuzione cooperativa Art. 187 c. 2 (2011 official text, p. 201)."""
+def test_the_ancc_divides_by_the_divisor_of_art_187(week: str, divisor: int) -> None:
+    """Distribuzione cooperativa Art. 187 c. 2 (2011 official text, p. 201).
+
+    The half-hour weeks: '167 [...] 38 ore e mezza', '184 [...] 42 ore e
+    mezzo settimanali e fino a 44 ore'.
+    """
     ccnl = with_week_divisor(
         load_ccnl("distribuzione-cooperativa-ancc"), WeeklyHours(Decimal(week))
     )

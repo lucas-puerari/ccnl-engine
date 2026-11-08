@@ -93,18 +93,9 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "HOURLY DIVISOR: Art. 187 c. 2 (2011 official text, p. 201): 165 for the normal week of 38 hours (art. 113 c. 1), 167 for 38.5, 168 for 39 and 40, 182 for 42, 184 from 42.5 to 44. The engine keeps 165 and reads 168, 182 or 184 when Employment.full_time_weekly_hours is 39, 40, 42, 43 or 44; staff hired after 22 December 2011 work 40 hours (art. 113 c. 5) and state it. The half-hour weeks of 38.5 and 42.5 are not expressible: their rate is not derived. Art. 198 cited earlier is the resignation for marriage, not the divisor.",
-        "capability": "workplace_injury",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "long_week_divisors",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Resolved: work_rules.time_supplements.week_divisors holds 168, 182 and 184 for the weeks of 39, 40, 42, 43 and 44 hours.",
-          "status": "resolved"
-        }
+        "kind": "info",
+        "text": "HOURLY DIVISOR: Art. 187 c. 2 (2011 official text, p. 201): 165 for the normal week of 38 hours (art. 113 c. 1), 167 for 38.5, 168 for 39 and 40, 182 for 42, 184 from 42.5 to 44. The engine keeps 165 and reads the others from Employment.full_time_weekly_hours (38.5, 39, 40, 42, 42.5, 43, 43.5, 44); for the life of that contract, the staff hired after its signature work 40 hours (art. 113 c. 5) and state it. The cooperative minori of title XV keep their own 40-hour week and divisor (art. 187 c. 3, art. 147): not told apart.",
+        "capability": "workplace_injury"
       },
       {
         "kind": "info",
@@ -291,6 +282,27 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-ancc-half-hour-weeks",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 187 c. 2 of the 2011 official text (PDF p. 201, text layer).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+            "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+          }
+        ],
+        "findings": [
+          "The divisors of the half-hour weeks (167 for 38.5, 184 from 42.5) are now expressible: added 38.5, 42.5 and 43.5 to time_supplements.week_divisors."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements.week_divisors"
         ]
       }
     ]
@@ -2937,7 +2949,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
     "verification_status": "unverified",
-    "source_hash": "ee7e8ab64950a22a2bd81fc750014f30cb568437ad8dda4e04882ca5e7c00df3",
+    "source_hash": "673112b5b43843cdf24c8922ec9596c06048f3360c428432160df01676cd8af9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3093,6 +3105,36 @@
       "hourly_divisor_weekly_hours": 38,
       "week_divisors": [
         {
+          "weekly_hours": "38.5",
+          "divisor": "167",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "distribuzione-cooperativa-ancc-ccnl-testo",
+                "title": "Contratto collettivo nazionale di lavoro per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+              },
+              "page": "201",
+              "section": "Art. 187 c. 2 - Divisori orari",
+              "quote": "167 – per il personale la cui durata normale di lavoro è di 38 ore e mezza settimanali;"
+            },
+            "transformation": "Divisor 167 for a normal week of 38.5 hours ('184 – per il personale la cui durata normale di lavoro è di 42 ore e mezzo settimanali e fino a 44 ore settimanali'; '167 – [...] 38 ore e mezza settimanali').",
+            "note": "The 2008 text (art. 172) had 173 for 40 hours and 169 for 39; the 2011 renewal set 168 for both. Art. 113 c. 5 (p. 152) puts the staff hired after 22 December 2011 on 40 hours with divisor 168. The renewals of 19 February 2019 (economic only) and 29 March 2024 do not amend art. 187.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-05T15:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-05T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-05-ai-week-divisors"
+            }
+          }
+        },
+        {
           "weekly_hours": 39,
           "divisor": "168",
           "provenance": {
@@ -3183,6 +3225,36 @@
           }
         },
         {
+          "weekly_hours": "42.5",
+          "divisor": "184",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "distribuzione-cooperativa-ancc-ccnl-testo",
+                "title": "Contratto collettivo nazionale di lavoro per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+              },
+              "page": "201",
+              "section": "Art. 187 c. 2 - Divisori orari",
+              "quote": "La quota oraria della retribuzione, sia normale che di fatto, si ottiene dividendo l’importo mensile per i seguenti divisori orari: 184 – per il personale la cui durata normale di lavoro è di 42 ore e mezzo settimanali e fino a 44 ore settimanali"
+            },
+            "transformation": "Divisor 184 for a normal week of 42.5 hours ('184 – per il personale la cui durata normale di lavoro è di 42 ore e mezzo settimanali e fino a 44 ore settimanali'; '167 – [...] 38 ore e mezza settimanali').",
+            "note": "The 2008 text (art. 172) had 173 for 40 hours and 169 for 39; the 2011 renewal set 168 for both. Art. 113 c. 5 (p. 152) puts the staff hired after 22 December 2011 on 40 hours with divisor 168. The renewals of 19 February 2019 (economic only) and 29 March 2024 do not amend art. 187.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-05T15:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-05T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-05-ai-week-divisors"
+            }
+          }
+        },
+        {
           "weekly_hours": 43,
           "divisor": "184",
           "provenance": {
@@ -3200,6 +3272,36 @@
               "quote": "La quota oraria della retribuzione, sia normale che di fatto, si ottiene dividendo l’importo mensile per i seguenti divisori orari: 184 – per il personale la cui durata normale di lavoro è di 42 ore e mezzo settimanali e fino a 44 ore settimanali"
             },
             "transformation": "The hourly divisor of an employment whose full-time week (Employment.full_time_weekly_hours) is 43 hours.",
+            "note": "The 2008 text (art. 172) had 173 for 40 hours and 169 for 39; the 2011 renewal set 168 for both. Art. 113 c. 5 (p. 152) puts the staff hired after 22 December 2011 on 40 hours with divisor 168. The renewals of 19 February 2019 (economic only) and 29 March 2024 do not amend art. 187.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-05T15:00:00Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-05T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-05-ai-week-divisors"
+            }
+          }
+        },
+        {
+          "weekly_hours": "43.5",
+          "divisor": "184",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "distribuzione-cooperativa-ancc-ccnl-testo",
+                "title": "Contratto collettivo nazionale di lavoro per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+              },
+              "page": "201",
+              "section": "Art. 187 c. 2 - Divisori orari",
+              "quote": "La quota oraria della retribuzione, sia normale che di fatto, si ottiene dividendo l’importo mensile per i seguenti divisori orari: 184 – per il personale la cui durata normale di lavoro è di 42 ore e mezzo settimanali e fino a 44 ore settimanali"
+            },
+            "transformation": "Divisor 184 for a normal week of 43.5 hours ('184 – per il personale la cui durata normale di lavoro è di 42 ore e mezzo settimanali e fino a 44 ore settimanali'; '167 – [...] 38 ore e mezza settimanali').",
             "note": "The 2008 text (art. 172) had 173 for 40 hours and 169 for 39; the 2011 renewal set 168 for both. Art. 113 c. 5 (p. 152) puts the staff hired after 22 December 2011 on 40 hours with divisor 168. The renewals of 19 February 2019 (economic only) and 29 March 2024 do not amend art. 187.",
             "extraction": {
               "method": "ai",

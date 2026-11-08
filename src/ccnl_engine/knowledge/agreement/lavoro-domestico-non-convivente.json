@@ -195,6 +195,25 @@
           },
           "remediation": "Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 34 cc. 3, 4, 7 and Tabelle H, I, L (PDF pp. 44, 59): the non live-in worker is owed 0.84 an hour as baby sitter of level B super for children under six, 0.70 an hour at levels C super and D super assisting more than one non self-sufficient person, and the indennità of the UNI 11766:2019 certification (Tabella L prints a monthly 30.27). Not modelled: the ruleset pays a monthly equivalent of the hourly minimi and the hourly allowances would need the hours worked.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "art34_hourly_allowances",
+          "applies_when": {
+            "trigger": "outside_input",
+            "levels": [
+              "BS",
+              "CS",
+              "DS",
+              "B"
+            ]
+          },
+          "remediation": "Pay the Tabella H and I hourly allowances on the hours worked, and the Tabella L monthly amount, with role gates."
+        }
       }
     ]
   },
@@ -993,7 +1012,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "4a926eeb5f4e1a9a4a795faf3b740a20cef48e968e9c5b7638e18467691aa6b8",
+    "source_hash": "52cc149b6766ce12a8eeb1c01bd30d780157509a69b2993c3897a85a0d954ce9",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
