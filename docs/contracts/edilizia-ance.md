@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, overtime, sickness, territorial_supplement |
 
-13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+14 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -76,7 +76,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-02 | claude-opus-5-5 (ai) | Art. 19 n. 10 (PDF p. 40). | corrected | Art. 19 n. 10: festivo notturno 50% (HolidayWorkKind.NIGHT_HOLIDAY). |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Saturday premium of the signed text, found verbatim in the source (analysis by a separate model session, quote rechecked). | corrected | Added supplement band ANCE_SABATO_SEI_GIORNI. |
-| 2026-11-08 | gpt-6-sol (ai) | Art. 92 in the ANCE text of 4 April 2019 (pp. 4-8), applied to contracts from 1 April 2019. Every row of the extraction re-checked by a separate model session on the saved PDFs (verdict CONFIRMED). | confirmed | Added dual_apprenticeship for the first- and third-level apprentices. |
+| 2026-11-08 | gpt-6-sol (ai) | Art. 92 in the ANCE text of 4 April 2019 (pp. 4-8), applied to contracts from 1 April 2019. Final encoding (dual_apprenticeship JSON) checked against the PDFs by a separate model session (.private flv2). | flagged | Semesters, conventional levels 2 and 1 and the third-level table match. The base also names the indennità territoriale, the premio di produzione and the elemento variabile, which the bundle does not hold (limitations territorial_sector_allowance and provincial_evr).<br>A failed-title prorogation keeps the pay of the previous year (p. 6): not expressible, recorded as dual_apprenticeship_prorogation.<br>Ambiguous in the text, kept as read: the base of the 10% training share ('di quella che gli sarebbe dovuta'). |
 
 ## Salary table
 
@@ -198,6 +198,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `bilateral_funds` applies.
 
     **Remediation:** Pass the provincial Cassa Edile contribution as a bilateral fund event, or model the provincial rates.
+
+!!! warning "edilizia-ance/dual_apprenticeship_prorogation · base_salary · impact yes · open"
+    FIRST-LEVEL PROROGATION (Art. 92, ANCE text of 4 April 2019, p. 6): 'Per l'apprendista che invece non abbia conseguito il titolo di istruzione, in caso di proroga il trattamento economico è quello dell'anno precedente'. The engine pays the semester of Apprentice.months_elapsed: a prorogued apprentice who failed the title is paid the next semester's percentage.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Let the caller state a failed title, and pay the previous year's percentage.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

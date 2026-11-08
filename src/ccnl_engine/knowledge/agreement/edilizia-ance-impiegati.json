@@ -220,6 +220,22 @@
           },
           "remediation": "Exclude the night holiday work in periodic shifts from the 50% of Art. 54 once a source sets its rate."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "FIRST-LEVEL PROROGATION (Art. 92, ANCE text of 4 April 2019, p. 6): 'Per l'apprendista che invece non abbia conseguito il titolo di istruzione, in caso di proroga il trattamento economico è quello dell'anno precedente'. The engine pays the semester of Apprentice.months_elapsed: a prorogued apprentice who failed the title is paid the next semester's percentage.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "dual_apprenticeship_prorogation",
+          "applies_when": {
+            "trigger": "outside_input",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Let the caller state a failed title, and pay the previous year's percentage."
+        }
       }
     ]
   },
@@ -2416,7 +2432,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "318c64c82e5a17b8d757a517eeecd26117fc276037b41660042eb79c80d71bbf",
+    "source_hash": "6c2c3415f7fb3ebacfea08915b9f4da6a9477624e313d4cd78a7e3c693861798",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3159,8 +3175,8 @@
         "date": "2026-11-08",
         "reviewer": "gpt-6-sol",
         "reviewer_kind": "ai",
-        "scope": "Art. 92 in the ANCE text of 4 April 2019 (pp. 4-8), applied to contracts from 1 April 2019. Every row of the extraction re-checked by a separate model session on the saved PDFs (verdict CONFIRMED).",
-        "outcome": "confirmed",
+        "scope": "Art. 92 in the ANCE text of 4 April 2019 (pp. 4-8), applied to contracts from 1 April 2019. Final encoding (dual_apprenticeship JSON) checked against the PDFs by a separate model session (.private flv2).",
+        "outcome": "flagged",
         "sources": [
           {
             "url": "https://ance.it/wp-content/uploads/archive/37937-Art%20%2092%20Apprendistato-Nota%20a%20verbale.pdf",
@@ -3168,7 +3184,9 @@
           }
         ],
         "findings": [
-          "Added dual_apprenticeship for the first- and third-level apprentices."
+          "Semesters, conventional levels 2 and 1 and the third-level table match. The base also names the premio di produzione and the elemento variabile, which the bundle does not hold (limitations provincial_production_premium and provincial_evr).",
+          "A failed-title prorogation keeps the pay of the previous year (p. 6): recorded as dual_apprenticeship_prorogation.",
+          "Ambiguous in the text, kept as read: the base of the 10% training share ('di quella che gli sarebbe dovuta')."
         ],
         "independence": "separate_model",
         "checked": [
@@ -3180,8 +3198,8 @@
         "date": "2026-11-08",
         "reviewer": "gpt-6-sol",
         "reviewer_kind": "ai",
-        "scope": "Art. 66 of the CCNL edilizia industria 2010 (PDF p. 78), the encoding checked line by line against the text by a separate model session.",
-        "outcome": "corrected",
+        "scope": "Art. 66 of the CCNL edilizia industria 2010 (PDF p. 78). A separate model session rejected a first encoding (pay counted over the 30-month window); the merged per-illness encoding was checked again by a separate session (.private flv2), which confirmed the bands and kept the three extra months of several illnesses as unmodelled.",
+        "outcome": "flagged",
         "sources": [
           {
             "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",

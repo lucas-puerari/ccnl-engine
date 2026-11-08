@@ -35,10 +35,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ✅ |
-| **Limits of this contract** | — |
+| **Core payroll path** | ⚠️ |
+| **Limits of this contract** | base_salary |
 
-0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -62,7 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
-| 2026-11-08 | gpt-6-sol (ai) | Allegato 13 of the CCNL 2024-2027 signed 1 March 2024 (CNEL 236584), pp. 177-181. Every row of the extraction re-checked by a separate model session on the saved PDFs (verdict CONFIRMED). | confirmed | Added dual_apprenticeship for the first- and third-level apprentices. |
+| 2026-11-08 | gpt-6-sol (ai) | Allegato 13 of the CCNL 2024-2027 signed 1 March 2024 (CNEL 236584), pp. 177-181. Final encoding (dual_apprenticeship JSON) checked against the PDFs by a separate model session (.private flv2). | flagged | The first-level and third-level percentages by year on the tabellare match.<br>Third level (p. 181): 'la percentuale retributiva di ingresso non può essere inferiore a quella percepita al termine dell'apprendistato professionalizzante'; not expressible, recorded as dual_apprenticeship_entry_floor.<br>Ambiguous in the text, kept as read: the base of the 10% training share ('di quella che gli sarebbe dovuta'). |
 
 ## Salary table
 
@@ -100,6 +100,13 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "formazione-professionale/dual_apprenticeship_entry_floor · base_salary · impact yes · open"
+    THIRD-LEVEL ENTRY (Allegato 13, punto b, PDF p. 181): after a professionalising apprenticeship 'la percentuale retributiva di ingresso non può essere inferiore a quella percepita al termine dell'apprendistato professionalizzante'. The engine pays 70% in the first year whatever came before.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Let the caller state the last professionalising percentage and pay the higher one.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

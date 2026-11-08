@@ -90,6 +90,22 @@
       {
         "kind": "info",
         "text": "FIRST- AND THIRD-LEVEL APPRENTICES (Allegato 13): modelled in dual_apprenticeship (first level 50/55/60/70%, third level 70/80/90/100% of the tabellare by year; training at the employer 10% of the work pay, school hours unpaid)."
+      },
+      {
+        "kind": "simplification",
+        "text": "THIRD-LEVEL ENTRY (Allegato 13, punto b, PDF p. 181): after a professionalising apprenticeship 'la percentuale retributiva di ingresso non può essere inferiore a quella percepita al termine dell'apprendistato professionalizzante'. The engine pays 70% in the first year whatever came before.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "dual_apprenticeship_entry_floor",
+          "applies_when": {
+            "trigger": "outside_input",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Let the caller state the last professionalising percentage and pay the higher one."
+        }
       }
     ]
   },
@@ -1106,7 +1122,7 @@
     "effective_until": null,
     "source": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/",
     "verification_status": "verified",
-    "source_hash": "cdb03b693c97eca06adc0e29c4cf619cf12c1846e1b964a1f3129da7d28716ca",
+    "source_hash": "0713a3271d59a243b4f4e4efe5325f53d84ed3336ed8595deaca0d51e91782c4",
     "published_at": "2026-09-11",
     "source_type": "contracting_party"
   },
@@ -1579,8 +1595,8 @@
         "date": "2026-11-08",
         "reviewer": "gpt-6-sol",
         "reviewer_kind": "ai",
-        "scope": "Allegato 13 of the CCNL 2024-2027 signed 1 March 2024 (CNEL 236584), pp. 177-181. Every row of the extraction re-checked by a separate model session on the saved PDFs (verdict CONFIRMED).",
-        "outcome": "confirmed",
+        "scope": "Allegato 13 of the CCNL 2024-2027 signed 1 March 2024 (CNEL 236584), pp. 177-181. Final encoding (dual_apprenticeship JSON) checked against the PDFs by a separate model session (.private flv2).",
+        "outcome": "flagged",
         "sources": [
           {
             "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/236584",
@@ -1588,7 +1604,9 @@
           }
         ],
         "findings": [
-          "Added dual_apprenticeship for the first- and third-level apprentices."
+          "The first-level and third-level percentages by year on the tabellare match.",
+          "Third level (p. 181): 'la percentuale retributiva di ingresso non può essere inferiore a quella percepita al termine dell'apprendistato professionalizzante'; not expressible, recorded as dual_apprenticeship_entry_floor.",
+          "Ambiguous in the text, kept as read: the base of the 10% training share ('di quella che gli sarebbe dovuta')."
         ],
         "independence": "separate_model",
         "checked": [

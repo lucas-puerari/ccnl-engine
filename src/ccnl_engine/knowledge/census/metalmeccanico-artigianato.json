@@ -83,6 +83,22 @@
       }
     },
     {
+      "id": "dual_apprenticeship_prorogation",
+      "institute": "base_salary",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SCHOOL OBJECTIVES NOT MET (accordo interconfederale 1 febbraio 2018, point 9, PDF p. 95): 'nel caso di mancato raggiungimento degli obiettivi formativi scolastici, all'apprendista non spetta, per il successivo anno di apprendistato, l'avanzamento delle percentuali retributive'. The engine pays the year of Apprentice.months_elapsed.",
+      "calculation": "ccnl/metalmeccanico-artigianato:coverage.notes",
+      "state": "absent",
+      "remediation": "Let the caller state the objectives not met, and keep the previous year's percentage.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-artigianato/dual_apprenticeship_prorogation"
+        ]
+      }
+    },
+    {
       "id": "inps_sector_rates_unsourced",
       "institute": "inps_employer",
       "variant": "all",

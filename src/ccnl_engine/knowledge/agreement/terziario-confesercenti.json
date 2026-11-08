@@ -4158,7 +4158,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "36ec134412fd0b9a3bcfcabfda47313636daacf99aa0be31087746146441acf7",
+    "source_hash": "bca86e82bc3be25c4e1e5fc40095fbdec3dc29012e16b90b763509815c15e3e6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5711,7 +5711,7 @@
         "date": "2026-11-08",
         "reviewer": "gpt-6-sol",
         "reviewer_kind": "ai",
-        "scope": "Art. 69 of the testo unico 12 dicembre 2019 and the agreement of 2016 it incorporates. Every row of the extraction re-checked by a separate model session on the saved PDFs (verdict CONFIRMED).",
+        "scope": "Art. 69 of the testo unico 12 dicembre 2019 and the agreement of 2016 it incorporates. Final encoding (dual_apprenticeship JSON) checked against the PDFs by a separate model session (.private flv2).",
         "outcome": "confirmed",
         "sources": [
           {
@@ -5720,7 +5720,8 @@
           }
         ],
         "findings": [
-          "Added dual_apprenticeship for the first- and third-level apprentices."
+          "The percentages and the halves of the third level match; the year is read as the contract year and the 10% training share on the qualified-worker pay, which art. 69 and the 2016 agreement do not define.",
+          "Ambiguous in the text, kept as read: the base of the 10% training share ('di quella che gli sarebbe dovuta')."
         ],
         "independence": "separate_model",
         "checked": [

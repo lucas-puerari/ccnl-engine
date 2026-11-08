@@ -115,6 +115,22 @@
       }
     },
     {
+      "id": "dual_apprenticeship_prorogation",
+      "institute": "base_salary",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "FIRST-LEVEL PROROGATION (Art. 92, ANCE text of 4 April 2019, p. 6): 'Per l'apprendista che invece non abbia conseguito il titolo di istruzione, in caso di proroga il trattamento economico è quello dell'anno precedente'. The engine pays the semester of Apprentice.months_elapsed: a prorogued apprentice who failed the title is paid the next semester's percentage.",
+      "calculation": "ccnl/edilizia-ance:coverage.notes",
+      "state": "absent",
+      "remediation": "Let the caller state a failed title, and pay the previous year's percentage.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-ance/dual_apprenticeship_prorogation"
+        ]
+      }
+    },
+    {
       "id": "edilizia_operai_sickness",
       "institute": "sickness",
       "variant": "all",

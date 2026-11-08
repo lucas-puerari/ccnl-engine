@@ -51,6 +51,22 @@
       }
     },
     {
+      "id": "dual_apprenticeship_school_year",
+      "institute": "base_salary",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "FIRST-LEVEL PERIOD (All. F, p. 86): 'la retribuzione, in ragione del titolo da conseguire e dell'anno scolastico/formativo di effettiva frequenza, è stabilita in percentuale'; the table of pp. 86-87 maps the school years of each course to the 45/55/60/70% rows. The data keys the rows by year of the contract, which differs for an apprentice hired after the first school year of the course.",
+      "calculation": "ccnl/impiegati-tecnici-agricoli:coverage.notes",
+      "state": "absent",
+      "remediation": "Key the first-level rows by the course and the school year attended (Apprentice.school_year).",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "impiegati-tecnici-agricoli/dual_apprenticeship_school_year"
+        ]
+      }
+    },
+    {
       "id": "eban_agrifondo_missing",
       "institute": "bilateral_funds",
       "variant": "all",
