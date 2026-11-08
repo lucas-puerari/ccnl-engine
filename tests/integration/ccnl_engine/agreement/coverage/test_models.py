@@ -38,6 +38,8 @@ _DECLARED_GAPS: dict[tuple[str, SalaryGapKind, date], int] = {
     ("alimentari-federalimentare", _NOT_APPLICABLE, date(2027, 1, 1)): 8,
     # Art. G37 ter: the DPI contribution from 1 July 2025.
     ("trasporto-aereo-assaeroporti", _NOT_APPLICABLE, date(2025, 7, 1)): 11,
+    # Art. 47: the ETDR of the educatori D1 from 1 January 2025.
+    ("cooperative-sociali", _NOT_APPLICABLE, date(2025, 1, 1)): 1,
     # Indennità di struttura complessa before 2022 (art. 90 CCNL 2019) not read.
     ("dirigenza-sanitaria-medico-veterinaria-aran", _MISSING, date(2022, 1, 1)): 1,
     ("dirigenza-sanitaria-area-sanita-aran", _MISSING, date(2022, 1, 1)): 1,
