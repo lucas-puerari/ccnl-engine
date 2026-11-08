@@ -817,7 +817,8 @@
       "edilizia-artigianato-cna/cassa_edile_accruals_missing",
       "edilizia-artigianato-cna/cigo_rate_by_activity",
       "edilizia-artigianato-cna/inps_sector_rates_unsourced",
-      "edilizia-artigianato-cna/loyalty_dismissal_pro_rata"
+      "edilizia-artigianato-cna/loyalty_dismissal_pro_rata",
+      "edilizia-artigianato-cna/loyalty_service_count"
     ],
     "agreement/edilizia-cooperative-ancpl.json": [
       "edilizia-cooperative-ancpl/apprentice_seniority",
@@ -830,6 +831,7 @@
       "edilizia-pmi-confapi-aniem/cassa_edile_accruals_missing",
       "edilizia-pmi-confapi-aniem/contractual_fund_partial",
       "edilizia-pmi-confapi-aniem/impiegati_premio_fedelta",
+      "edilizia-pmi-confapi-aniem/loyalty_service_count",
       "edilizia-pmi-confapi-aniem/operai_gruppo_3_track_merged",
       "edilizia-pmi-confapi-aniem/operai_seniority_ape",
       "edilizia-pmi-confapi-aniem/provincial_evr",

@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, pension_fund_contribution, seniority, territorial_supplement |
 
-9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+10 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Articolo 63 - Tredicesima mensilita' (Parte II, impiegati) (p. 95): "La frazione di mese non superiore ai quindici giorni non va considerata mentre deve essere considerata come mese intero la frazione di mese superiore ai quindici giorni.". Match: more_than 15. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Artt. 63-64 of the harmonised text of 15 April 2025 (printed p. 95), via a research report; the quote checked on the text layer. | corrected | Added 14 monthly payments for impiegati and quadri; the premio annuo is the fourteenth, run in June (30 June is past the 1-28 range of PaymentDay). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 65 loyalty premium on cached harmonised text PDF page 96. | corrected | Annual anniversary award for clerical employees after twenty years; termination pro rata remains unmodelled. |
+| 2026-11-08 | gpt-6-sol (ai) | Art. 65, the elements of the monthly pay and the TFR article, against the loyalty premium encoding, by a separate model session. | corrected | Confirmed the 20 years, the anniversary and the one monthly pay.<br>Corrected: the TFR article is art. 72; the excluded conventional seniority and the 29 February anniversary are recorded as limitation loyalty_service_count. |
 
 ## Salary table
 
@@ -175,6 +176,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `pension_fund_contribution` applies; the run takes the engine code path.
 
     **Remediation:** Source the rule of the CCNL Confapi Aniem for a partial month and part time and model it, then remove this note.
+
+!!! warning "edilizia-pmi-confapi-aniem/loyalty_service_count · base_salary · impact yes · open"
+    Art. 65: the twenty years of uninterrupted actual service leave out 'le anzianità convenzionali di carattere militare, combattentistiche e simili'; the engine counts the years from the start of the employment period, so the caller states a start that leaves them out. The anniversary of a hire on 29 February falls on 28 February in a common year (the text does not say).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** State the years of actual service the premio counts as a worker fact.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
