@@ -154,7 +154,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 35 | G029 | [CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico](informatica-pmi-unimatica.md) | informatica-servizi-innovativi | ~20k | — | ⚠️ | base_salary, seniority | 2 / 39 / 1 / 0 | 🧪 | 🤖 |
 | 36 | A141 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | Agricoltura | ~2k | 2023 | ⚠️ | inps_employer | 34 / 21 / 1 / 0 | 🧪 | 🤖 |
 | 37 | A131 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | Agricoltura | ~4k | 2025 | ⚠️ | inps_employer, seniority | 50 / 10 / 1 / 1 | 🧪 | 🤖 |
-| 38 | T151 | [CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)](cooperative-sociali.md) | servizi socio-assistenziali | ~380k | — | ⚠️ | base_salary, inps_employer | 62 / 1 / 0 / 0 | 👁 | 🤖✓ |
+| 38 | T151 | [CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)](cooperative-sociali.md) | servizi socio-assistenziali | ~380k | — | ⚠️ | base_salary, inps_employer | 62 / 21 / 0 / 0 | 👁 | 🤖✓ |
 | 39 | A016 | [CCNL Cooperative e Consorzi Agricoli](cooperative-consorzi-agricoli.md) | cooperative e consorzi agricoli — impiegati e operai agricoli | ~60k | 2024 | ⚠️ | base_salary | 34 / 8 / 0 / 0 | 🧪 | 🤖 |
 | 40 | T611 | [CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa](federcasa.md) | Case popolari | ~6k | 2024 | ⚠️ | base_salary, inps_employer | 1 / 23 / 1 / 0 | 🧪 | 🤖 |
 | 41 | E018 | [CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)](alimentari-pmi-unionalimentari.md) | Alimentare | ~35k | 2025 | ✅ | — | 38 / 34 / 1 / 0 | 🧪 | 🤖 |
