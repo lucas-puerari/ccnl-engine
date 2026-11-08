@@ -230,3 +230,21 @@ def test_overtime_tfr_counts_only_non_occasional_otd_hours() -> None:
     assert overtime_tfr(ccnl, level, (hours,), day) == 0
     commercio = load_ccnl("commercio-confcommercio")
     assert overtime_tfr(commercio, commercio.levels[0], (hours,), day) == 0
+
+
+def test_a_cooperative_otd_accrues_the_tfr_on_continuous_overtime() -> None:
+    """Cooperative agricole, art. 66 p. 86: 8.63% on the overtime hours.
+
+    Only when the overtime has 'costanza e continuità': minimo / 169 x 10
+    hours x 8.63%.
+    """
+    ccnl = with_fixed_term_pay(
+        load_ccnl("cooperative-consorzi-agricoli"), WorkerCategory.OPERAIO, FixedTerm()
+    )
+    level = ccnl.level_by_code("5")
+    day = date(2026, 1, 15)
+    hourly = level.base_salary.value_at(day) / Decimal(169)
+    expected = (hourly * 10 * Decimal("0.0863")).quantize(Decimal("0.01"))
+    events = (OvertimeEvent(day, Decimal(10), non_occasional=True),)
+    assert overtime_tfr(ccnl, level, events, day) == expected
+    assert expected > 0
