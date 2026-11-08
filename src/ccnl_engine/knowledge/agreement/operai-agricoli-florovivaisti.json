@@ -112,19 +112,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "OTD (Art. 50, p. 52): a fixed-term operaio is paid the hours worked (PeriodFacts.ordinary_hours_worked, salario over 169) with the terzo elemento of 30.44% on them (festività 5.45%, ferie 8.33%, tredicesima 8.33%, quattordicesima 8.33%), outside the TFR base; no extra month and no leave accrue (parameters.fixed_term_pay). The terzo elemento is also paid on the hours of the overtime events 'nella misura in atto per le ore ordinarie' (Art. 44, p. 48); the ordinary holiday and night hours are in the hours worked. Not modelled: the TFR of 10% on the non-ordinary hours worked 'a titolo non occasionale' (p. 58): the OTD accrues 8.63% of the salario of the hours paid (parameters.fixed_term_pay.tfr_rate).",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "otd_terzo_elemento",
-          "applies_when": {
-            "contract_types": [
-              "fixed_term"
-            ]
-          },
-          "remediation": "Accrue 10% TFR on the non-ordinary hours worked 'a titolo non occasionale'."
-        }
+        "kind": "info",
+        "text": "OTD (Art. 50, p. 52): a fixed-term operaio is paid the hours worked (PeriodFacts.ordinary_hours_worked, salario over 169) with the terzo elemento of 30.44% on them (festività 5.45%, ferie 8.33%, tredicesima 8.33%, quattordicesima 8.33%), outside the TFR base; no extra month and no leave accrue (parameters.fixed_term_pay). The terzo elemento is also paid on the hours of the overtime events 'nella misura in atto per le ore ordinarie' (Art. 44, p. 48); the ordinary holiday and night hours are in the hours worked. The OTD accrues 8.63% of the salario of the hours paid and 10% on the overtime hours worked 'a titolo non occasionale' (p. 58; parameters.fixed_term_pay.tfr_rate and overtime_tfr_rate, OvertimeEvent.non_occasional)."
       },
       {
         "kind": "simplification",
@@ -518,6 +507,41 @@
             "valid_from": "2022-06-01",
             "valid_until": null,
             "value": "0.0863"
+          }
+        ]
+      },
+      "overtime_tfr_rate": {
+        "periods": [
+          {
+            "valid_from": "2022-06-01",
+            "valid_until": null,
+            "value": "0.10",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-operai-agricoli-2022-2025-flai",
+                  "title": "CCNL operai agricoli e florovivaisti 23 maggio 2022 (FLAI CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                  "published_on": "2022-05-23",
+                  "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+                },
+                "page": "58",
+                "section": "Art. 50 Retribuzione",
+                "quote": "All'operaio a tempo determinato compete il TFR per l'effettivo lavoro ordinario svolto, pari all'8,63 per cento calcolato sul salario contrattuale definito dal contratto provinciale; per le ore di lavoro non ordinario, svolto a titolo non occasionale, tale misura è elevata al 10 per cento del salario contrattuale, limitatamente alle anzidette ore. In entrambi i casi il TFR non si calcola sul terzo elemento (Allegato n. 14)."
+              },
+              "transformation": "10% of the salario of the overtime hours the caller states non occasional (OvertimeEvent.non_occasional); the occasional overtime accrues no TFR.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T16:00:00Z",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T16:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-operai-agricoli-otd"
+              }
+            }
           }
         ]
       }
@@ -915,7 +939,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "cb9ad626e4eb97a6476577c0ff4827605d7d027ddbda294a6743ee268fdec838",
+    "source_hash": "14cb9857b0305ab13a616d59b0ea3856a8e01500b4797a6dec80a9824fae1236",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1559,12 +1583,14 @@
         ],
         "findings": [
           "Added parameters.fixed_term_pay: hourly pay with the 30.44% terzo elemento, twelve monthly payments and no leave for the OTD.",
-          "Added parameters.fixed_term_pay.tfr_rate: 8.63% TFR of the OTD (Allegato 14)."
+          "Added parameters.fixed_term_pay.tfr_rate: 8.63% TFR of the OTD (Allegato 14).",
+          "Added parameters.fixed_term_pay.overtime_tfr_rate 0.10 on the non-occasional overtime hours (OvertimeEvent.non_occasional)."
         ],
         "independence": "same_process",
         "checked": [
           "parameters.fixed_term_pay",
-          "parameters.fixed_term_pay.tfr_rate"
+          "parameters.fixed_term_pay.tfr_rate",
+          "parameters.fixed_term_pay.overtime_tfr_rate"
         ]
       }
     ],

@@ -6,6 +6,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.employment.inputs import FixedTerm
+from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.working_time.inputs import OvertimeEvent
 
 if TYPE_CHECKING:
@@ -13,10 +14,17 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.agreement.facade import CCNL
+    from ccnl_engine.compensation.models import Level
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.sector.models import YearRules
 
-__all__ = ["covers", "overtime_hours", "with_fixed_term_pay", "with_fixed_term_tfr"]
+__all__ = [
+    "covers",
+    "overtime_hours",
+    "overtime_tfr",
+    "with_fixed_term_pay",
+    "with_fixed_term_tfr",
+]
 
 
 def covers(ccnl: CCNL, category: WorkerCategory | None, contract_type: object) -> bool:
@@ -111,3 +119,31 @@ def overtime_hours(ccnl: CCNL, events: Iterable[object]) -> Decimal:
     if rule is None or ccnl.parameters.hourly_pay != rule.hourly_pay:
         return Decimal(0)
     return sum((e.hours for e in events if isinstance(e, OvertimeEvent)), Decimal(0))
+
+
+def overtime_tfr(
+    ccnl: CCNL, level: Level, events: Iterable[object], day: date
+) -> Decimal:
+    """Return the TFR of the non-occasional overtime of a fixed-term worker.
+
+    Operai agricoli, Allegato 14: "per le ore di lavoro non ordinario, svolto
+    a titolo non occasionale, tale misura è elevata al 10 per cento del
+    salario contrattuale, limitatamente alle anzidette ore".
+
+    Returns:
+        ``overtime_tfr_rate`` of the salario of those hours (the base salary
+        of ``level`` over the hourly divisor), 0 for a worker the pay does not
+        cover or without such overtime.
+    """
+    rule = ccnl.parameters.fixed_term_pay
+    if rule is None or rule.overtime_tfr_rate is None:
+        return Decimal(0)
+    if ccnl.parameters.hourly_pay != rule.hourly_pay:
+        return Decimal(0)
+    hours = sum(
+        (e.hours for e in events if isinstance(e, OvertimeEvent) and e.non_occasional),
+        Decimal(0),
+    )
+    divisor = ccnl.parameters.hourly_divisor.value_at(day)
+    hourly = level.base_salary.value_at(day) / divisor
+    return money(hourly * hours * rule.overtime_tfr_rate.value_at(day))

@@ -138,6 +138,7 @@ class _AmountsInput:
     domestic_hourly_rate: Decimal | None = None
     eligible_work_days: int = DAYS_IN_YEAR
     fixed_term_in_year: bool = False
+    extra_tfr_quota: Decimal = Decimal(0)
     period_days: int = 0
     event_separate_base: Decimal = Decimal(0)
     event_apart_inps_base: Decimal = Decimal(0)

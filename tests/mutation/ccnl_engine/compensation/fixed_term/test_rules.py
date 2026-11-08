@@ -26,6 +26,7 @@ from ccnl_engine import (
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.fixed_term.rules import (
     overtime_hours,
+    overtime_tfr,
     with_fixed_term_pay,
 )
 from ccnl_engine.errors import OutOfScopeError
@@ -188,3 +189,44 @@ def test_overtime_hours_count_only_for_the_fixed_term_pay() -> None:
     otd = with_fixed_term_pay(ccnl, WorkerCategory.OPERAIO, FixedTerm())
     assert overtime_hours(otd, events) == 10
     assert overtime_hours(load_ccnl("commercio-confcommercio"), events) == 0
+
+
+def _tfr(*, non_occasional: bool) -> Decimal:
+    event = OvertimeEvent(
+        date(2026, 1, 15),
+        Decimal(10),
+        hourly_rate=Decimal("7.87"),
+        non_occasional=non_occasional,
+    )
+    result = regular_period(
+        employment=_employment(FixedTerm()),
+        current_year=employment_only(),
+        events=(event,),
+        ordinary_hours_worked=ContributableHours(Decimal(120)),
+    )
+    return next(i.amount for i in result.pay_items if i.item_id.startswith("tfr_"))
+
+
+def test_non_occasional_overtime_accrues_ten_percent_tfr() -> None:
+    """Allegato 14: 10% of the salario of the non-occasional overtime hours.
+
+    1,330.25 / 169 x 10 hours x 10% = 7.871 -> 7.87 on top of the 8.63%.
+    """
+    assert _tfr(non_occasional=True) - _tfr(non_occasional=False) == Decimal("7.87")
+
+
+def test_overtime_tfr_counts_only_non_occasional_otd_hours() -> None:
+    """Occasional hours, a permanent operaio and other CCNLs accrue none."""
+    day = date(2026, 1, 15)
+    hours = OvertimeEvent(day, Decimal(10), non_occasional=True)
+    occasional = OvertimeEvent(day, Decimal(10))
+    ccnl = load_ccnl(_CCNL_ID)
+    otd = with_fixed_term_pay(ccnl, WorkerCategory.OPERAIO, FixedTerm())
+    level = otd.level_by_code("Area2")
+    assert overtime_tfr(otd, level, (hours, occasional, object()), day) == Decimal(
+        "7.87"
+    )
+    assert overtime_tfr(otd, level, (occasional,), day) == 0
+    assert overtime_tfr(ccnl, level, (hours,), day) == 0
+    commercio = load_ccnl("commercio-confcommercio")
+    assert overtime_tfr(commercio, commercio.levels[0], (hours,), day) == 0

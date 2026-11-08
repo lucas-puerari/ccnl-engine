@@ -1,9 +1,4 @@
-"""Inputs of the run steps: the variable events and the amounts input.
-
-The steps of :mod:`._pipeline` call these helpers, which gather the run
-context into the arguments of the event processing and of the amounts
-computation.
-"""
+"""Inputs of the run steps: the variable events and the amounts input."""
 
 from __future__ import annotations
 
@@ -18,6 +13,7 @@ from ccnl_engine.balance.obligation.models import (
     TRATTAMENTO_RECOVERY,
     ULTERIORE_RECOVERY,
 )
+from ccnl_engine.compensation.fixed_term.rules import overtime_tfr
 from ccnl_engine.contribution.additional_ivs.services import (
     additional_ivs_position,
 )
@@ -250,6 +246,9 @@ def amounts_input(
         domestic_hourly_rate=_domestic_rate(ctx),
         eligible_work_days=spell_days(ctx.employment_spells),
         fixed_term_in_year=any(s.fixed_term for s in ctx.employment_spells),
+        extra_tfr_quota=overtime_tfr(
+            contract.ccnl, contract.level, request.events, contract.tctx.competence
+        ),
         period_days=_period_days(ctx),
         recovery_plan=trattamento,
         ulteriore_plan=ulteriore,
