@@ -890,6 +890,8 @@ def _d1(month: int) -> Decimal:
 #: 1 November 2026 falls on a Sunday: "una giornata di retribuzione" (CCNL
 #: art. 11), the monthly pay over 25 (art. 20 point 4), paid with November.
 _D1_SUNDAY_HOLIDAY = _cents(_D1_FROM_JULY / 25)
+#: Art. 12: Easter, Sunday 5 April 2026, "una quota giornaliera [...] (1/25)".
+_D1_EASTER = _cents(_D1_UNTIL_JUNE / 25)
 
 
 #: Art. 13: "in occasione del pagamento della retribuzione del mese di
@@ -900,6 +902,8 @@ _D1_EX_NOVEMBER_FOURTH = _cents(_D1_FROM_JULY * 8 / 173)
 
 def _chimica_year() -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _d1(m), _d1(m)) for m in range(1, 13)]
+    april = _D1_UNTIL_JUNE + _D1_EASTER
+    pays[3] = Pay(_run(4), april, april)
     august = _D1_FROM_JULY + _D1_EX_NOVEMBER_FOURTH
     pays[7] = Pay(_run(8), august, august)
     november = _D1_FROM_JULY + _D1_SUNDAY_HOLIDAY
@@ -912,6 +916,8 @@ def _chimica_year() -> tuple[Pay, ...]:
 
 def _chimica_june() -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _d1(m), _d1(m)) for m in range(1, 6)]
+    april = _D1_UNTIL_JUNE + _D1_EASTER
+    pays[3] = Pay(_run(4), april, april)
     #: Six twelfths of the tredicesima are paid with the last month.
     june = _D1_UNTIL_JUNE + _cents(_D1_UNTIL_JUNE * 6 / 12)
     return (*pays, Pay(_run(6), june, june))

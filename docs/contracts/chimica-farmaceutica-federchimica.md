@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-02 | claude-opus-5-5 (ai) | The premiums on ordinary hours of Art. 9 punti 4-6 in the CNEL text 579 (Word file). | corrected | Art. 9 punti 4, 5 b-c, 6: supplement_bands CHIM_NOTTURNO 50%, CHIM_TURNO_NOTTURNO 34%, CHIM_TURNO_NOTTURNO_3X7 46% and CHIM_DOMENICA_3X7 33% (role turno_3x7); punti 9-11 left as the narrowed limitation. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Saturday premium of the signed text, found verbatim in the source (analysis by a separate model session, quote rechecked). | corrected | Added supplement band CHIM_SABATO. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 15 punti 1-2, art. 20 punto 4 and art. 9 of the CCNL of 10 May 2006 (CNEL 579), via a research report; the EAR amounts as already read in the base salaries. | corrected | Moved the EAR of categories A (190) and B (100) out of the base salary into the allowance EAR, outside the hourly quota. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 11, 12 and 20 of the CCNL 10 May 2006 (CNEL 579, Word file). | corrected | The holidays on a Sunday at 1/25 (art. 11, 20) were already paid: the limitation was stale for them.<br>Art. 12: Easter pays to every worker a daily quota (1/25) of the retribuzione globale di fatto: added to work_rules.sunday_holidays.holidays; the base stays the art. 15 monthly pay, a residual limitation. |
 
 ## Salary table
 
@@ -131,11 +132,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the night-shift indemnity per shift.
 
 !!! warning "chimica-farmaceutica-federchimica/easter_and_sunday_holiday · base_salary · impact yes · open"
-    Art. 12 and Art. 20: the Easter payment of 1/25 and the holiday falling on a Sunday at 1/25.
+    Art. 12: the Easter quota of 1/25 is of the 'retribuzione globale di fatto'; the engine pays it, as the holidays on a Sunday of art. 20, on the monthly pay of art. 15 point 1 (minimo, IPO, scatti, individual elements), without the other recurring allowances of the global pay (shift and similar).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Pay the Easter 1/25 and the Sunday holiday at 1/25.
+    **Remediation:** Compute the Easter quota on the retribuzione globale di fatto (the recurring allowances of the month included).
 
 !!! warning "chimica-farmaceutica-federchimica/participation_premiums · base_salary · impact yes · open"
     Artt. 48-50: the premio di partecipazione, the premio variabile and the elemento perequativo.
