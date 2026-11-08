@@ -167,10 +167,10 @@
       "institute": "base_salary",
       "variant": "operaio",
       "discriminant": "applies_when.trigger = run",
-      "rule": "OTD (Art. 60, verbale 19 July 2024, pp. 14-15): a fixed-term operaio is paid the hours worked (PeriodFacts.ordinary_hours_worked, minimo over 169) with the terzo elemento of 30.44% on them (festività, ferie, 13ma, 14ma); no extra month and no leave pay accrue (parameters.fixed_term_pay). Not modelled: the terzo elemento on the salario integrativo of the second level, which the bundle does not hold; the TFR of art. 66 (not read: the terzo elemento stays in the TFR base); the balance of the ferie the OTD still takes, unpaid ('mera anticipazione economica').",
+      "rule": "OTD (Art. 60, verbale 19 July 2024, pp. 14-15; Art. 66 of the stesura 2019-2023, p. 85): a fixed-term operaio is paid the hours worked (PeriodFacts.ordinary_hours_worked, minimo over 169) with the terzo elemento of 30.44% on them and on the overtime hours, outside the TFR base; TFR 8.63% of the minimo; no extra month and no leave pay accrue (parameters.fixed_term_pay). Not modelled: the terzo elemento and the TFR on the salario integrativo of the second level, which the bundle does not hold; the TFR on the overtime hours when the overtime is not occasional; the balance of the ferie the OTD still takes, unpaid ('mera anticipazione economica').",
       "calculation": "ccnl/cooperative-consorzi-agricoli:coverage.notes",
       "state": "absent",
-      "remediation": "Read art. 66 for the TFR of the OTD and model the salario integrativo.",
+      "remediation": "Model the salario integrativo and the TFR of the non-occasional overtime hours.",
       "origin": "seeded",
       "links": {
         "limitations": [

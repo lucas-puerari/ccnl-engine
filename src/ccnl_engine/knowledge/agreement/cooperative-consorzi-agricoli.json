@@ -71,7 +71,7 @@
       },
       {
         "kind": "simplification",
-        "text": "OTD (Art. 60, verbale 19 July 2024, pp. 14-15): a fixed-term operaio is paid the hours worked (PeriodFacts.ordinary_hours_worked, minimo over 169) with the terzo elemento of 30.44% on them (festività, ferie, 13ma, 14ma); no extra month and no leave pay accrue (parameters.fixed_term_pay). Not modelled: the terzo elemento on the salario integrativo of the second level, which the bundle does not hold; the TFR of art. 66 (not read: the terzo elemento stays in the TFR base); the balance of the ferie the OTD still takes, unpaid ('mera anticipazione economica').",
+        "text": "OTD (Art. 60, verbale 19 July 2024, pp. 14-15; Art. 66 of the stesura 2019-2023, p. 85): a fixed-term operaio is paid the hours worked (PeriodFacts.ordinary_hours_worked, minimo over 169) with the terzo elemento of 30.44% on them and on the overtime hours, outside the TFR base; TFR 8.63% of the minimo; no extra month and no leave pay accrue (parameters.fixed_term_pay). Not modelled: the terzo elemento and the TFR on the salario integrativo of the second level, which the bundle does not hold; the TFR on the overtime hours when the overtime is not occasional; the balance of the ferie the OTD still takes, unpaid ('mera anticipazione economica').",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -84,7 +84,7 @@
               "operaio"
             ]
           },
-          "remediation": "Read art. 66 for the TFR of the OTD and model the salario integrativo."
+          "remediation": "Model the salario integrativo and the TFR of the non-occasional overtime hours."
         }
       },
       {
@@ -1667,7 +1667,7 @@
                 "section": "Art. 60 Retribuzione, operai a tempo determinato",
                 "quote": "Per gli operai agricoli e florovivaisti con rapporto di lavoro a tempo determinato, gli elementi che costituiscono la retribuzione sono: a) Salario nazionale costituito da: minimo contrattuale conglobato giornaliero o orario (vedi tabella). All'operaio a tempo determinato compete inoltre una indennità (terzo elemento) pari al corrispettivo in percentuale dei seguenti istituti riconosciuti agli operai a tempo indeterminato e calcolata su 312 giorni lavorativi: Festività 5,45%; Ferie 8,33%; 13ma mensilità 8,33%; 14ma mensilità 8,33%; Totale 30,44%. Tale misura del 3° elemento, espressa in percentuale, ed in vigore dal 1.5.1991, è calcolata sul minimo contrattuale nazionale e sul salario integrativo."
               },
-              "transformation": "30.44% of the minimo contrattuale conglobato of the hours worked, paid with the pay of the period. The verbale leaves the TFR base to art. 66, not read: the percentage stays in the TFR base.",
+              "transformation": "30.44% of the minimo contrattuale conglobato of the hours worked and of the overtime hours ('nella misura in atto per le ore ordinarie', art. 58, verbale p. 12), paid with the pay of the period, outside the TFR base (art. 66, dichiarazione a verbale: 'non incidenza [...] (3° elemento)').",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
@@ -1677,7 +1677,8 @@
                 "verification_status": "verified",
                 "review_id": "2026-11-08-ai-cooperative-consorzi-agricoli-otd"
               }
-            }
+            },
+            "tfr_relevant": false
           }
         ],
         "provenance": {
@@ -1741,6 +1742,41 @@
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-cooperative-consorzi-agricoli-otd"
         }
+      },
+      "tfr_rate": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": null,
+            "value": "0.0863",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-cooperative-agricole-stesura-2019-2023-uila",
+                  "title": "CCNL dipendenti cooperative e consorzi agricoli 2019-2023, verbale di stesura 3 agosto 2022 (UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/03_08_2022-STESURA-CCNL-COOPERATIVE-AGRICOLE-2019-2023.pdf",
+                  "published_on": "2022-08-03",
+                  "sha256": "586ec86c279b9cf2484217d15e0e663985d32c3ed31a4e649e1574a1f594004b"
+                },
+                "page": "85",
+                "section": "Art. 66 Trattamento di fine rapporto",
+                "quote": "Per gli operai a tempo determinato il trattamento di fine rapporto è pari all'8,63% calcolato sull'insieme del minimo contrattuale nazionale conglobato e del salario integrativo. [...] Dichiarazione a verbale. Per gli operai a tempo determinato il trattamento di fine rapporto è stabilito convenzionalmente nella percentuale di cui all'art. 66. Tale percentuale tiene conto sia della non incidenza sulle quote di retribuzione oraria per festività, ferie e mensilità aggiuntive (3° elemento) che della mancata suddivisione della retribuzione complessiva annua per 13,5"
+              },
+              "transformation": "8.63% of the minimo of the hours paid, the terzo elemento left out; art. 66 is not changed by the renewal of 19 July 2024, whose art. 60 still refers to 'la percentuale del TFR di cui all'art. 66'.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T04:30:00Z",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T04:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-cooperative-consorzi-agricoli-otd"
+              }
+            }
+          }
+        ]
       }
     }
   },
@@ -1774,7 +1810,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "005dd1b7cb2f9b497e7a944a0fd20df95df555413de49222f77d93cb5ba0ae8a",
+    "source_hash": "249e6815b5d589a967447e8144a892ffd8424d4f40f1c6dc58c1240a5e3ab27f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2085,11 +2121,13 @@
           }
         ],
         "findings": [
-          "Added parameters.fixed_term_pay for the OTD: hourly pay with the 30.44% terzo elemento and twelve monthly payments."
+          "Added parameters.fixed_term_pay for the OTD: hourly pay with the 30.44% terzo elemento and twelve monthly payments.",
+          "Added the 8.63% TFR of art. 66 (stesura 2019-2023, p. 85) and took the terzo elemento out of the TFR base."
         ],
         "independence": "same_process",
         "checked": [
-          "parameters.fixed_term_pay"
+          "parameters.fixed_term_pay",
+          "parameters.fixed_term_pay.tfr_rate"
         ]
       }
     ],

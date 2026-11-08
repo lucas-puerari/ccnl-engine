@@ -114,11 +114,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add the provincial (CPL) supplement outside the engine.
 
 !!! warning "operai-agricoli-florovivaisti/otd_terzo_elemento · base_salary · impact yes · open"
-    OTD (Art. 50, p. 52): a fixed-term operaio is paid the hours worked (PeriodFacts.ordinary_hours_worked, salario over 169) with the terzo elemento of 30.44% on them (festività 5.45%, ferie 8.33%, tredicesima 8.33%, quattordicesima 8.33%), outside the TFR base; no extra month and no leave accrue (parameters.fixed_term_pay). Not modelled: the terzo elemento on the overtime, holiday and night hours 'nella misura in atto per le ore ordinarie' (Art. 44, p. 48), and the TFR of 10% on the non-ordinary hours worked 'a titolo non occasionale' (p. 58): the OTD accrues 8.63% of the salario of the hours paid (parameters.fixed_term_pay.tfr_rate).
+    OTD (Art. 50, p. 52): a fixed-term operaio is paid the hours worked (PeriodFacts.ordinary_hours_worked, salario over 169) with the terzo elemento of 30.44% on them (festività 5.45%, ferie 8.33%, tredicesima 8.33%, quattordicesima 8.33%), outside the TFR base; no extra month and no leave accrue (parameters.fixed_term_pay). The terzo elemento is also paid on the hours of the overtime events 'nella misura in atto per le ore ordinarie' (Art. 44, p. 48); the ordinary holiday and night hours are in the hours worked. Not modelled: the TFR of 10% on the non-ordinary hours worked 'a titolo non occasionale' (p. 58): the OTD accrues 8.63% of the salario of the hours paid (parameters.fixed_term_pay.tfr_rate).
 
     **Applies when:** `base_salary` applies; contract type in fixed_term.
 
-    **Remediation:** Pay the terzo elemento on the overtime hours at the ordinary rate and accrue 10% TFR on the non-ordinary hours.
+    **Remediation:** Accrue 10% TFR on the non-ordinary hours worked 'a titolo non occasionale'.
 
 !!! warning "operai-agricoli-florovivaisti/florovivaisti_tables · base_salary · impact yes · open"
     FLOROVIVAISTI NOT DISTINGUISHED. The CCNL covers both Operai Agricoli (OTA) and Operai Florovivaisti (OTF). OTF have separate (higher) tabelle retributive with their own area amounts. This file models OTA amounts only. Callers must use a separate file (not yet modelled) for OTF workers.
