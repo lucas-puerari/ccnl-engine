@@ -193,6 +193,8 @@ class MaternityRules(BaseModel):
             up to; ``None`` for a CCNL that tops up the holidays only.
         integration_days: Days of the leave, from its first day, the
             top-up is due for (five months: 150).
+        next_integration_rate: Target share after the first integration period.
+        next_integration_days: Length of that following period in calendar days.
         net_basis: Whether the measure is of the net pay (the INPS share,
             free of contributions, is grossed up by the worker's INPS rate).
         holiday: The target of a national holiday in the compulsory leave
@@ -206,10 +208,24 @@ class MaternityRules(BaseModel):
 
     integration_rate: Share | None = None
     integration_days: int | None = Field(default=None, ge=1)
+    next_integration_rate: Share | None = None
+    next_integration_days: int | None = Field(default=None, ge=1)
     net_basis: bool = False
     holiday: MaternityHoliday | None = None
     paternity_holiday: MaternityHoliday | None = None
     provenance: RuleProvenance
+
+    @model_validator(mode="after")
+    def _check_next_period(self) -> Self:
+        if (self.next_integration_rate is None) != (self.next_integration_days is None):
+            msg = "the following maternity period requires a rate and days"
+            raise ValueError(msg)
+        if self.next_integration_rate is not None and (
+            self.integration_rate is None or self.integration_days is None
+        ):
+            msg = "the following maternity period requires a first period"
+            raise ValueError(msg)
+        return self
 
 
 class InjuryRules(BaseModel):
@@ -222,6 +238,7 @@ class InjuryRules(BaseModel):
             indemnity up to, ``None`` for no top-up.
         integration_bands: The top-up by day, in place of one
             ``integration_rate`` (DMO art. 172: 90% to the 20th day, then 100%).
+        apprentice_bands: An apprentice's ``integration_bands`` (art. 189: 80%, 90%).
         net_basis: Whether the measures are of the net pay.
         advanced: Whether the employer advances the INAIL indemnity on the
             payslip (and claims it back from INAIL).
@@ -237,6 +254,7 @@ class InjuryRules(BaseModel):
     carenza_rate: Decimal | None = Field(default=None, gt=Decimal(0), le=Decimal(1))
     integration_rate: Decimal | None = Field(default=None, gt=Decimal(0), le=Decimal(1))
     integration_bands: tuple[InjuryIntegrationBand, ...] = ()
+    apprentice_bands: tuple[InjuryIntegrationBand, ...] = ()
     net_basis: bool = False
     advanced: bool = False
     advanced_permanent_only: bool = False
@@ -244,14 +262,28 @@ class InjuryRules(BaseModel):
 
     @model_validator(mode="after")
     def _check_integration(self) -> Self:
-        days = [b.day_from for b in self.integration_bands]
         if self.integration_bands and self.integration_rate is not None:
             msg = "an injury top-up has an integration_rate or bands, not both"
             raise ValueError(msg)
-        if days != sorted(set(days)):
-            msg = f"injury integration bands must be in day order; got {days}"
+        if self.apprentice_bands and not self.integration_bands:
+            msg = "apprentice injury bands replace integration bands"
             raise ValueError(msg)
+        for bands in (self.integration_bands, self.apprentice_bands):
+            days = [b.day_from for b in bands]
+            if days != sorted(set(days)):
+                msg = f"injury integration bands must be in day order; got {days}"
+                raise ValueError(msg)
         return self
+
+    def for_worker(self, *, apprentice: bool) -> InjuryRules:
+        """Return the rules of the worker, with the apprentice bands if any.
+
+        Returns:
+            These rules, or a copy whose bands are the apprentice bands.
+        """
+        if not (apprentice and self.apprentice_bands):
+            return self
+        return self.model_copy(update={"integration_bands": self.apprentice_bands})
 
 
 class InsuredAbsenceRules(BaseModel):

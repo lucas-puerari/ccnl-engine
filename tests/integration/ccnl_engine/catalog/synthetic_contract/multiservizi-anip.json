@@ -1,56 +1,56 @@
 {
-  "_description": "multiservizi-anip — data checks 2026",
+  "_description": "multiservizi-anip — signed July 2025 tranche checks",
   "ccnl_id": "multiservizi-anip",
   "salary_checks": [
     {
       "level_code": "1",
-      "as_of": "2029-03-01",
-      "expected_monthly": "912.12"
+      "as_of": "2025-08-01",
+      "expected_monthly": "714.87"
     },
     {
       "level_code": "2",
-      "as_of": "2029-03-01",
-      "expected_monthly": "994.21"
+      "as_of": "2025-08-01",
+      "expected_monthly": "779.21"
     },
     {
       "level_code": "2par115",
-      "as_of": "2029-03-01",
-      "expected_monthly": "1048.93"
+      "as_of": "2025-08-01",
+      "expected_monthly": "822.11"
     },
     {
       "level_code": "3",
-      "as_of": "2029-03-01",
-      "expected_monthly": "1076.30"
+      "as_of": "2025-08-01",
+      "expected_monthly": "843.55"
     },
     {
       "level_code": "4par125",
-      "as_of": "2029-03-01",
-      "expected_monthly": "1140.15"
+      "as_of": "2025-08-01",
+      "expected_monthly": "893.60"
     },
     {
       "level_code": "4",
-      "as_of": "2029-03-01",
-      "expected_monthly": "1167.51"
+      "as_of": "2025-08-01",
+      "expected_monthly": "915.03"
     },
     {
       "level_code": "5",
-      "as_of": "2029-03-01",
-      "expected_monthly": "1276.94"
+      "as_of": "2025-08-01",
+      "expected_monthly": "1000.81"
     },
     {
       "level_code": "6",
-      "as_of": "2029-03-01",
-      "expected_monthly": "1587.08"
+      "as_of": "2025-08-01",
+      "expected_monthly": "1243.86"
     },
     {
       "level_code": "7",
-      "as_of": "2029-03-01",
-      "expected_monthly": "1833.34"
+      "as_of": "2025-08-01",
+      "expected_monthly": "1436.88"
     },
     {
       "level_code": "Q",
-      "as_of": "2029-03-01",
-      "expected_monthly": "2006.65"
+      "as_of": "2025-08-01",
+      "expected_monthly": "1572.70"
     }
   ],
   "seniority_checks": [
@@ -86,23 +86,23 @@
     },
     {
       "level_code": "5",
-      "as_of": "2029-03-01",
-      "expected_amount": "97.29"
+      "as_of": "2025-08-01",
+      "expected_amount": "80.03"
     },
     {
       "level_code": "6",
-      "as_of": "2029-03-01",
-      "expected_amount": "116.67"
+      "as_of": "2025-08-01",
+      "expected_amount": "95.22"
     },
     {
       "level_code": "7",
-      "as_of": "2029-03-01",
-      "expected_amount": "132.06"
+      "as_of": "2025-08-01",
+      "expected_amount": "107.28"
     },
     {
       "level_code": "Q",
-      "as_of": "2029-03-01",
-      "expected_amount": "142.89"
+      "as_of": "2025-08-01",
+      "expected_amount": "115.77"
     }
   ],
   "apprenticeship_uc_checks": [

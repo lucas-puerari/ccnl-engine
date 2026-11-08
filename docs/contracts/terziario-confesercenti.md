@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, overtime, sickness, territorial_supplement, una_tantum, workplace_injury |
+| **Limits of this contract** | base_salary, overtime, sickness, territorial_supplement, una_tantum |
 
-13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -70,6 +70,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Art. 69 of the testo unico 12 dicembre 2019 and the agreement of 2016 it incorporates. Final encoding (dual_apprenticeship JSON) checked against the PDFs by a separate model session (.private flv2). | confirmed | The percentages and the halves of the third level match; the year is read as the contract year and the 10% training share on the qualified-worker pay, which art. 69 and the 2016 agreement do not define.<br>Ambiguous in the text, kept as read: the base of the 10% training share ('di quella che gli sarebbe dovuta'). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 191 (PDF p. 145, text layer). | confirmed | Art. 191: the festività in a sickness or injury are topped up to 100% of the pay, net of the INPS and INAIL indemnity: sickness_rules.holiday rate 1; the injury part stays a limitation. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay. | confirmed | Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 189 - Injury pay, ordinary injury integration and waiting days against the cached PDF. | corrected | The first three days following the injury are paid at 60%; the ordinary non-apprentice net-pay target is 90% on calendar days 5–20 (offsets 4–19) and 100% from day 21 (offset 20). Apprentices have different targets and are not distinguished by the injury model. |
+| 2026-11-08 | gpt-6-sol (ai) | Art. 189 against the injury integration bands, by a separate model session. | flagged | Confirmed the waiting days at 60%, the bands from the INAIL indemnity and the day mapping from the injury day.<br>Flagged, kept as limitations: the apprentice rates of 80% and 90% are not selected; the general bands apply to them. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 189 - Injury pay, PDF pp. 144-145: the integration targets of apprentices. | confirmed | The clause sets the targets of points 2) and 3) at 80% and 90% for apprentices; point 1) (60% for the waiting days) is unchanged.<br>Encoded as apprentice_bands at offsets 4 and 20, selected when the contract is an apprenticeship. |
 
 ## Salary table
 
@@ -189,13 +192,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Provide the employer-specific patron saint holiday.
-
-!!! warning "terziario-confesercenti/injury_integration_missing · workplace_injury · impact yes · open"
-    Art. 189 (PDF p. 144): the ordinary integration of the INAIL indemnity (90% from the 5th to the 20th day, 100% from the 21st; apprentices 80% and 90%) is not modelled: the injury rules of the ruleset hold only the holiday target, so the ordinary injury days are paid at the INAIL share; the holiday reaches 100% net of that share.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Encode the integration bands of the injury article (insured_absence.injury.integration_bands).
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
