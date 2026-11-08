@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-28 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2027-09-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 49 Tredicesima mensilità (p. 37): "Le frazioni di mese vengono prese in considerazione solo se superiori a 15 giorni ed in tal caso equiparate ad un mese intero.". Match: more_than 15. |
 | 2026-11-07 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 40 values read identically by both readings and equal to the file. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 40, 44, 46 of the CCNL FISM of 28 May 2025 (PDF pp. 32-36, page images) and the economic agreement 2026-2027 (p. 2) for amendments. | confirmed | Art. 46: from 1 September 2025, 15 EUR (levels I-IV) or 20 EUR (V-VIII) a month for 13 payments to the staff with two years of uninterrupted service with the Ente on that day, added to the salario di anzianità of earlier renewals.<br>The agreement of 7 July 2026 does not amend art. 46. |
+| 2026-11-09 | gpt-6-sol (ai) | Art. 46 (PDF pp. 35-36) against the encoding of the salario di anzianità, by a separate model session. | corrected | Confirmed the amounts, the date, the 13 payments and the two years of service.<br>Corrected: 'a tutto il personale' does not say whether the apprentice percentage applies: the declaration is removed and the ruleset joins the engine limitation of undeclared apprenticeship components.<br>Flagged: the level held on 1 September 2025 and the continuity with the same Ente are approximations, in the limitation. |
 
 ## Salary table
 
@@ -104,7 +105,7 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "scuole-materne-fism/salario_di_anzianita · seniority · impact yes · open"
-    SENIORITY (Arts. 40, 44-46): the scatti were frozen at 31/12/2015 and consolidated by the CCNL 2016-2018; those amounts and the salario di anzianità of the earlier renewals are the worker's own (the caller states them as individual elements). The salario di anzianità of Art. 46 from 1 September 2025 (15 EUR levels I-IV, 20 EUR levels V-VIII, 13 payments, two years of uninterrupted service on that day) is a fixed allowance of every level (in_service_on 2023-09-01). Approximated: an interruption of the service before 1 September 2025 is not read, and the amount follows the level of the run instead of the level held on 1 September 2025.
+    SENIORITY (Arts. 40, 44-46): the scatti were frozen at 31/12/2015 and consolidated by the CCNL 2016-2018; those amounts and the salario di anzianità of the earlier renewals are the worker's own (the caller states them as individual elements). The salario di anzianità of Art. 46 from 1 September 2025 (15 EUR levels I-IV, 20 EUR levels V-VIII, 13 payments, two years of uninterrupted service on that day) is a fixed allowance of every level (in_service_on 2023-09-01). Approximated: 'servizio ininterrotto presso lo stesso Ente' is read from the start of the employment period, so an interruption or a change of Ente before 1 September 2025 is not read, and the amount follows the level of the run instead of the level held on 1 September 2025.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
@@ -130,6 +131,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation.
+
+!!! warning "apprenticeship_pct_undeclared_components · base_salary · impact unknown · open"
+    A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.
+
+    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
