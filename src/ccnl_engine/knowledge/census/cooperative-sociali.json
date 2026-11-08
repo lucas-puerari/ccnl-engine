@@ -39,7 +39,7 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "NOT MODELLED AMOUNTS: the night allowance of EUR 12.39 / 6.20 per night and the 10% of night-only custody staff (Art. 54); 15% on Sunday and holiday ordinary hours (Art. 55); the 10% shift allowance (Art. 56); the EUR 20 a night of the reperibilità in struttura (Art. 57; the 77.47 a month is a role allowance); pronta disponibilità EUR 1.55 an hour (Art. 58); the EUR 50 affiancamento allowance (Art. 78; the indennità professionali are role allowances); the indennità di cassa EUR 30.99 (Art. 81); the extra 1/26 of a holiday on the rest day (Art. 59) and the 4 days of ex festività (Art. 60); the 26 hours of night workers' permessi (Art. 54); the PTR (Art. 10, outside every institute); the salari di primo ingresso of type B (Art. 2 B.4); the territorial gradualità agreements (Art. 77); the maternity integration (Art. 63); the 100% integration of work injury to day 180 (Art. 72); the EUR 10 quota d'iscrizione of Previdenza Cooperativa (Art. 86). Sickness: no integration during the prova (Art. 71, Art. 28 M) and the comporto of 12 months in three years are not inputs. Apprenticeship: the 24-month track of the educatore professionale with title (Art. 28 N.2) is not expressible by level.",
+      "rule": "NOT MODELLED AMOUNTS: the night allowance of EUR 12.39 / 6.20 per night and the 10% of night-only custody staff (Art. 54); 15% on Sunday and holiday ordinary hours (Art. 55); the 10% shift allowance (Art. 56); the EUR 20 a night of the reperibilità in struttura (Art. 57; the 77.47 a month is a role allowance); pronta disponibilità EUR 1.55 an hour (Art. 58); the extra 1/26 of a holiday on the rest day (Art. 59) and the 4 days of ex festività (Art. 60); the 26 hours of night workers' permessi (Art. 54); the PTR (Art. 10, outside every institute); the salari di primo ingresso of type B (Art. 2 B.4); the territorial gradualità agreements (Art. 77); the maternity integration (Art. 63); the 100% integration of work injury to day 180 (Art. 72); the EUR 10 quota d'iscrizione of Previdenza Cooperativa (Art. 86). Sickness: no integration during the prova (Art. 71, Art. 28 M) and the comporto of 12 months in three years are not inputs. Apprenticeship: the 24-month track of the educatore professionale with title (Art. 28 N.2) is not expressible by level.",
       "calculation": "ccnl/cooperative-sociali:coverage.notes",
       "state": "absent",
       "remediation": "Model the ETDR, the night, shift and availability allowances, the professional allowances and the prova exclusion of sickness.",
@@ -303,6 +303,22 @@
       "links": {
         "limitations": [
           "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "role_conditions_caller_stated",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Role allowances of the cooperative sociali: the caller states the role only when its condition holds: 'educatore_etdr' for an educatore of the servizi per l'infanzia (DM 378/2018) or socio-pedagogico (L. 205/2017 c. 597) on D1; 'medico' on F1 with five years in the cooperative sector; 'reperibilita_struttura' for the reperibilità with the duty to stay in a residential structure, as programmed by the cooperative (Art. 57); 'affiancamento_inserimento' for the months of the assignment (Art. 78). The engine does not check these conditions.",
+      "calculation": "ccnl/cooperative-sociali:coverage.notes",
+      "state": "absent",
+      "remediation": "State the conditions of each role as worker facts the engine can check.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "cooperative-sociali/role_conditions_caller_stated"
         ]
       }
     },

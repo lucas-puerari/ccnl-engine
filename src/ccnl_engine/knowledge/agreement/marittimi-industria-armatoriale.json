@@ -96,8 +96,26 @@
       },
       {
         "kind": "info",
-        "text": "Allegato 1 nn. 2-5 (p. 32; not art. 18): the superminimi by years in the level are fixed allowances gated on SeniorityFact.career_months: 7 EUR in level IV after 8 years; 7 EUR in level III after 4 years with the role 'diplomato' or after 8 years; 11 EUR in level II after 10 years with the role 'senza_passaggio'. Without career_months the run reads the service months.",
+        "text": "Allegato 1 nn. 2-5 (p. 32; not art. 18): the superminimi by years in the level are fixed allowances gated on SeniorityFact.career_months: 7 EUR in level IV after 8 years; 7 EUR in level III after 4 years with the role 'diplomato', or after 8 years with the role 'non_diplomato'; 11 EUR in level II after 10 years with the role 'senza_passaggio'.",
         "capability": "base_salary"
+      },
+      {
+        "kind": "simplification",
+        "text": "Allegato 1 nn. 2-5: the superminimi count the years in the level ('permanenza nel livello', 'anzianità di livello'). The run reads SeniorityFact.career_months; without it, it reads the service months, which pay a worker promoted into the level less than the years required.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "level_years_from_service",
+          "applies_when": {
+            "trigger": "outside_input",
+            "levels": [
+              "II",
+              "III",
+              "IV"
+            ]
+          },
+          "remediation": "State SeniorityFact.career_months as the months in the current level for the workers of levels II-IV."
+        }
       }
     ]
   },
@@ -209,6 +227,29 @@
           "levels[1].fixed_allowances",
           "levels[2].fixed_allowances",
           "levels[3].fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-09-gpt-marittimi-level-superminimi",
+        "date": "2026-11-09",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Allegato 1 nn. 2-5 (PDF p. 32) against the encoding of the superminimi by years in the level, by a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+            "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+          }
+        ],
+        "findings": [
+          "Confirmed the amounts, levels and thresholds of nn. 2, 3 and 5.",
+          "Corrected: n. 4 is for the 'altri impiegati', not every impiegato; n. 3 does not end at eight years (role 'non_diplomato' for n. 4).",
+          "Flagged: without career_months the service months stand for the years in the level (limitation level_years_from_service)."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[2].fixed_allowances"
         ]
       }
     ]
@@ -1148,7 +1189,7 @@
                     "section": "Allegato 1, n. 3 - Superminimi",
                     "quote": "3 - Agli impiegati con diploma di scuola media superiore, dopo quattro anni di permanenza nel 3° livello, sarà corrisposto un superminimo di € 7,00 mensili."
                   },
-                  "transformation": "EUR 7 a month with the role 'diplomato' from 48 months in level III, until 96 months, when the superminimo of n. 4 takes over: the two are one superminimo of 7 EUR, never added. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+                  "transformation": "EUR 7 a month with the role 'diplomato' from 48 months in level III, without an end: n. 4 is for the 'altri impiegati' (role 'non_diplomato'), never added to it. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
@@ -1179,7 +1220,7 @@
               "section": "Allegato 1, n. 3 - Superminimi",
               "quote": "3 - Agli impiegati con diploma di scuola media superiore, dopo quattro anni di permanenza nel 3° livello, sarà corrisposto un superminimo di € 7,00 mensili."
             },
-            "transformation": "EUR 7 a month with the role 'diplomato' from 48 months in level III, until 96 months, when the superminimo of n. 4 takes over: the two are one superminimo of 7 EUR, never added. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+            "transformation": "EUR 7 a month with the role 'diplomato' from 48 months in level III, without an end: n. 4 is for the 'altri impiegati' (role 'non_diplomato'), never added to it. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -1191,12 +1232,11 @@
               "review_id": "2026-11-08-ai-marittimi-level-superminimi"
             }
           },
-          "service_months_until": 96,
           "role": "diplomato"
         },
         {
           "code": "SUPERMINIMO_LIVELLO",
-          "description": "Superminimo after eight years in level III (Allegato 1 n. 4)",
+          "description": "Superminimo of the other impiegati after eight years in level III (Allegato 1 n. 4)",
           "months_per_year": "14",
           "monthly": {
             "periods": [
@@ -1218,7 +1258,7 @@
                     "section": "Allegato 1, n. 4 - Superminimi",
                     "quote": "4 - Agli altri impiegati di 3° livello, dopo otto anni di permanenza nello stesso, sarà corrisposto un superminimo di € 7,00 mensili."
                   },
-                  "transformation": "EUR 7 a month from 96 months in level III, to every impiegato of the level (the diplomato included, whose superminimo of n. 3 ends there). The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+                  "transformation": "EUR 7 a month with the role 'non_diplomato' from 96 months in level III: 'Agli altri impiegati', the impiegati without the diploma of n. 3. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
@@ -1249,7 +1289,7 @@
               "section": "Allegato 1, n. 4 - Superminimi",
               "quote": "4 - Agli altri impiegati di 3° livello, dopo otto anni di permanenza nello stesso, sarà corrisposto un superminimo di € 7,00 mensili."
             },
-            "transformation": "EUR 7 a month from 96 months in level III, to every impiegato of the level (the diplomato included, whose superminimo of n. 3 ends there). The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+            "transformation": "EUR 7 a month with the role 'non_diplomato' from 96 months in level III: 'Agli altri impiegati', the impiegati without the diploma of n. 3. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -1260,7 +1300,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-marittimi-level-superminimi"
             }
-          }
+          },
+          "role": "non_diplomato"
         }
       ],
       "provenance": {
@@ -2624,7 +2665,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "f6a854d825c3d67b276550a91f7547a533c8aaa5b234cb1ab5505810860eb1d9",
+    "source_hash": "0fb9dc5a71776b02b8975a84e2f36d05299300f5d4ca086b047286dba3c8430e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
