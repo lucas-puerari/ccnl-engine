@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, maternity_leave, sickness |
 
-8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -76,6 +76,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 110(8), PDF p. 56: weekday holiday top-up during compulsory maternity and paternity. | confirmed | Verified the quoted clause against the cached PDF; encoded only the compulsory maternity holiday target. |
 | 2026-11-08 | gpt-6-sol (ai) | The maternity holiday clause against the encoding, by a separate model session. | corrected | Confirmed the 100% target net of the INPS share on the holidays of the compulsory leave.<br>Recorded as limitation maternity_holiday_scope: the Sunday holidays, the patron saint and 4 October. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay. | confirmed | Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 143 fourteenth exclusion and difference for extra remuneration already received at contract entry, against the cached 2024 text, page 74. | corrected | Only extra remuneration months already received at contract entry offset the fourteenth; merit bonuses remain outside the credit. A missing worker amount can affect only workers employed by the entry date or with an unknown start. |
 
 ## Salary table
 
@@ -157,13 +158,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the trasferta diaria.
-
-!!! warning "studi-professionali-confprofessioni/fourteenth_exclusion · base_salary · impact yes · open"
-    Art. 143: the exclusion of the quattordicesima for workers already paid extra months. The una tantum of EUR 400 (EUR 200 in May 2024 and May 2025, p. 73) is historic and outside the TFR base.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Add a worker fact for extra months already paid.
 
 !!! note "studi-professionali-confprofessioni/rol_not_accrued · leave · impact yes · resolved"
     LEAVE, ROL (Art. 91 cc.2-3, p. 47): 40 hours a year on a five-day week, 66 on a six-day week. The file accrues the 40 hours of the five-day week and the 66 of the six-day week when Employment.full_time_week_days is 6. The hires within the 2024-2027 term accrue 50% from the twelfth month, 75% from the twenty-fourth to the thirty-sixth, 100% after; the clause states no share before the twelfth month, read as nothing, as Commercio's 'decorsi due anni' (steps 0, 11, 23, 36 completed months). The contratto di reimpiego (c.4, the entry pay of art. 56: Permanent.entry_pay) accrues 50% from the sixth month, 75% from the twelfth to the eighteenth, 100% after (permit entry_ramp).
@@ -394,6 +388,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     INJURY (Art. 123, p. 66): the injury day in full and 60% for the three days of carenza (art. 73 DPR 1124/1965); from the fourth day the employer tops the INAIL indemnity up to 75% of the retribuzione media giornaliera (work_rules.insured_absence.injury). The indemnity is not due when INAIL pays none.
     
     ENTRY PAY (Art. 56, p. 40): an over 50 or long-term unemployed hired a tempo indeterminato may be paid two levels below for 9 months and one for the 6 after (Permanent.entry_pay, CCNL entry_pay); not for level 5. The engine applies the largest reduction the clause allows ('fino a').
+    
+    Art. 143: extra remuneration months already received beyond the thirteenth at contract entry offset the fourteenth, up to its amount; merit bonuses are not absorbed. The worker states the full historical extra monthly amount (zero if none); absent facts block only workers hired at or before entry, or with an unknown start date.
     
     HOURLY RATE AND SUPPLEMENTS (artt. 93-97, 135, 137 of the CCNL of 16 February 2024): without a caller value the engine derives the hourly base (the art. 135 normale retribuzione over 170) and the 30% on festività hours paid as straordinario festivo (art. 97 lett. E with art. 95); art. 97 also pays the hours themselves, which the engine does not post: the run is provisional. Not derived, the caller states the amount: ordinary night work, which art. 93 leaves to the Area Professionale or second-level bargaining (the 30% of art. 95 is a night overtime rate); work on the weekly rest day ('la relativa sola maggiorazione', art. 97 lett. F, names no percentage).
     

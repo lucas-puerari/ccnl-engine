@@ -16,9 +16,8 @@ from ccnl_engine.compensation.hourly.services import upcoming_percentages
 from ccnl_engine.compensation.proration.services import run_proration
 from ccnl_engine.compensation.una_tantum.rules import UNA_TANTUM, una_tantum_events
 from ccnl_engine.employment.category.rules import resolve_worker_category
-from ccnl_engine.extra_month.liquidation.services import (
-    run_settlements,
-)
+from ccnl_engine.extra_month.liquidation.services import run_settlements
+from ccnl_engine.extra_month.offset.services import offset_fourteenth
 from ccnl_engine.extra_month.qualification.services import month_accrual_rule
 from ccnl_engine.extra_month.services import (
     run_accrual,
@@ -218,6 +217,8 @@ def build_context(
         request.employment_period,
         month_accrual_rule(contract.ccnl),
         request.work_pattern,
+        contract.ccnl.parameters.fourteenth_prior_extra_offset,
+        request.prior_extra_month_amount,
     )
     accrual = run_accrual(request, contract.ccnl, competence)
     regular_chain = chain
@@ -231,6 +232,14 @@ def build_context(
     chain = proration.apply(
         _apply_extra_month_policy(chain, payment.run_id.kind, run_fraction(accrual))
     )
+    if payment.run_id.kind == "fourteenth":
+        chain = offset_fourteenth(
+            chain,
+            contract.ccnl.parameters.fourteenth_prior_extra_offset,
+            request.employment_period,
+            request.prior_extra_month_amount,
+            run_fraction(accrual),
+        )
     return RunContext(
         request=request,
         repo=effective_repo,

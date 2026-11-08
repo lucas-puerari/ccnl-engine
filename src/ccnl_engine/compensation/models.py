@@ -16,6 +16,7 @@ from ccnl_engine.compensation.loyalty.models import LoyaltyPremium
 from ccnl_engine.compensation.renewal_minimum.models import RenewalAgreement
 from ccnl_engine.compensation.una_tantum.models import UnaTantum
 from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.extra_month.offset.models import FourteenthPriorExtraOffset
 from ccnl_engine.fund.assistance.models import AssistanceContribution
 from ccnl_engine.fund.health.models import ContractualFund
 from ccnl_engine.fund.models import (
@@ -274,10 +275,8 @@ class RaccordoElement(BaseModel):
 class CCNLParameters(BaseModel):
     """Contract-wide parameters.
 
-    ``accrual_rule``: threshold counting a month of an extra-month window;
-    ``thirteenth_payment_day``, ``fourteenth_payment_day``: their pay days.
-    ``assistance_contribution``, ``contractual_fund_contribution``: charged
-    to a fund; ``additional_months_by_category``: the payments of a category.
+    ``accrual_rule``: threshold for extra-month accrual; payment days govern
+    extra months. Fund contributions and category-specific months follow.
     ``flat_pay_max_weekly_hours``: hours at the full minimum (domestic: 30);
     ``solidarity_fund``: D.Lgs. 148/2015 art. 26; ``raccordo_element``: ERC;
     ``enam_levels``: ex ENAM; ``renewals``: raising the minimo (L. 199/2025);
@@ -289,6 +288,7 @@ class CCNLParameters(BaseModel):
 
     hourly_divisor: TimeSeries
     additional_months: TimeSeries
+    fourteenth_prior_extra_offset: FourteenthPriorExtraOffset | None = None
     additional_months_by_category: dict[WorkerCategory, TimeSeries] = Field(
         default_factory=dict
     )

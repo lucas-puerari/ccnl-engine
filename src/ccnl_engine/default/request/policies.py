@@ -233,6 +233,15 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "Dipendenti Pubblici and has a missing_fact public_end_of_service "
         "blocker",
     ),
+    "Employment.prior_extra_month_amount": requires_fact(
+        "base_salary",
+        "employment.prior_extra_month_amount",
+        _REPORTED,
+        "unknown extra remuneration already received at contract entry: "
+        "a fourteenth payment for a worker employed by the entry date "
+        "has a missing_fact prior_extra_month_amount blocker; zero states none, "
+        "merit awards do not count",
+    ),
     "Employment.erc_amount": requires_fact(
         "pension_fund_contribution",
         "employment.erc_amount",

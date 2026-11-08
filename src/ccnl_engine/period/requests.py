@@ -27,14 +27,14 @@ from ccnl_engine.employment.week_days.inputs import check_week_days
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
-from ccnl_engine.pension_fund.inputs import PENSION_FUND_TYPES
+from ccnl_engine.period.request.fields import period_request_fields
 from ccnl_engine.period.request.validators import employment_gap
 from ccnl_engine.regime.models import EmploymentSector
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.seniority.inputs import SeniorityFact
 from ccnl_engine.severance.provision.models import TfrFundBalance
 from ccnl_engine.surtax.jurisdiction.types import check_surtax_codes
-from ccnl_engine.validators import FieldSpec, require_instances
+from ccnl_engine.validators import FieldSpec, require_decimal, require_instances
 
 if TYPE_CHECKING:
     from ccnl_engine.calendar.payment.models import PaymentId
@@ -140,6 +140,9 @@ class PeriodCalculationRequest:
             judged to miss them.
         tfr_fund: TFR fund at 31 December of the year before, if known;
             ``tfr_treasury_fund`` whether the TFR goes to the Fondo Tesoreria.
+        prior_extra_month_amount: Full extra monthly remuneration already
+            received beyond the thirteenth at contract entry, excluding merit
+            bonuses; zero states none, ``None`` is unknown.
         erc_amount: Annual ERC of the CCNL grafici editoriali, if known;
             ``public_end_of_service`` the regime of a public employee.
         personal_withholdings: Garnishments and salary assignments notified
@@ -184,6 +187,7 @@ class PeriodCalculationRequest:
     tfr_fund: TfrFundBalance | None = None
     tfr_treasury_fund: bool | None = None
     erc_amount: Decimal | None = None
+    prior_extra_month_amount: Decimal | None = None
     public_end_of_service: PublicEndOfService | None = None
     personal_withholdings: tuple[PersonalWithholding, ...] = ()
 
@@ -215,6 +219,13 @@ class PeriodCalculationRequest:
         check_week_days(self.full_time_week_days)
         check_pattern_hours(self.weekly_hours, self.work_pattern)
         check_surtax_codes(self.regione, self.comune_belfiore)
+        require_decimal(
+            self.prior_extra_month_amount,
+            "PeriodCalculationRequest.prior_extra_month_amount",
+            feature="period_request",
+            minimum=Decimal(0),
+            optional=True,
+        )
         competence = date(self.period_id.year, self.period_id.month, 1)
         tax_year = TaxYearPolicy().attribute(competence, self.payment_date).tax_year
         opening_year = self.opening_state.tax_year
@@ -260,10 +271,10 @@ class PeriodCalculationRequest:
         return replace(self.opening_state, accrual=accrual.with_inps_base(base))
 
     def _field_specs(self) -> tuple[FieldSpec, ...]:
-        """Return the fields an untyped caller may supply with a wrong type.
+        """Return the checked runtime type specifications for this request.
 
         Returns:
-            One spec per checked field: name, value, types, ``None`` allowed.
+            Name, value, accepted types and optionality of each field.
         """
         return (
             ("period_id", self.period_id, PeriodId, False),
@@ -287,29 +298,5 @@ class PeriodCalculationRequest:
             ("events", self.events, (tuple, list), False),
             ("weekly_hours", self.weekly_hours, WeeklyHours, True),
             ("contributable_hours", self.contributable_hours, ContributableHours, True),
-            (
-                "ordinary_hours_worked",
-                self.ordinary_hours_worked,
-                ContributableHours,
-                True,
-            ),
-            ("full_time_weekly_hours", self.full_time_weekly_hours, WeeklyHours, True),
-            ("work_pattern", self.work_pattern, WorkPattern, True),
-            ("weekly_rest_day", self.weekly_rest_day, Weekday, False),
-            ("rota", self.rota, Rota, True),
-            ("employment_period", self.employment_period, EmploymentPeriod, True),
-            ("seniority", self.seniority, SeniorityFact, True),
-            ("sector", self.sector, EmploymentSector, True),
-            ("prior_year", self.prior_year, PriorYearTaxFacts, False),
-            ("current_year", self.current_year, CurrentYearTaxFacts, True),
-            ("pension_fund", self.pension_fund, PENSION_FUND_TYPES, True),
-            ("tfr_fund", self.tfr_fund, TfrFundBalance, True),
-            ("tfr_treasury_fund", self.tfr_treasury_fund, bool, True),
-            ("erc_amount", self.erc_amount, Decimal, True),
-            (
-                "public_end_of_service",
-                self.public_end_of_service,
-                PublicEndOfService,
-                True,
-            ),
+            *period_request_fields(self),
         )
