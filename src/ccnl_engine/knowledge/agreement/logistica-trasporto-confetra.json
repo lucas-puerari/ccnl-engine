@@ -197,19 +197,6 @@
       },
       {
         "kind": "simplification",
-        "text": "MATERNITY (Art. 64 c. 1 b, testo unico 25 September 2025, p. 90): the employer tops up to the full retribuzione globale for the first five months (modelled, 150 days) and to 50% in the sixth month (not modelled).",
-        "capability": "maternity_leave",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "maternity_sixth_month",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model the 50% top-up of the sixth month of Art. 64."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "Art. 71 c. 5 (Parte speciale, Sezione seconda, PDF p. 92): the top-up to 100% of the holidays in a sickness or injury applies only to the employers that came from the CCNL Magazzini Generali, a fact the request does not state: not applied.",
         "capability": "sickness",
         "monetary_impact": "yes",
@@ -219,6 +206,19 @@
             "trigger": "outside_input"
           },
           "remediation": "State whether the employer applies the Sezione seconda (ex Magazzini Generali) and apply the holiday target of art. 71 c. 5 then."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "MATERNITY (Art. 64 c. 1 b, p. 90): the 50% top-up of the sixth month of absence is applied only to the days of a maternity leave event beyond day 150 (e.g. after an early interdiction). When the sixth month of absence is a parental leave (congedo parentale) after the five months of compulsory leave, no top-up is paid: the parental leave event does not carry the months of absence already elapsed.",
+        "capability": "parental_leave",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sixth_month_parental_leave",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Top up a parental leave that falls in the sixth month of absence from the start of the maternity leave to 50% of the monthly global pay."
         }
       }
     ]
@@ -2757,7 +2757,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "3f82c68b73014b682ac91767713a5cf3823f4e6808d7dca940564668e479096a",
+    "source_hash": "1550ff0520e7fbf0134491384c3d076154d9b7dc770fcecfce8e272d9f340dc7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3465,6 +3465,8 @@
       "maternity": {
         "integration_rate": "1",
         "integration_days": 150,
+        "next_integration_rate": "0.5",
+        "next_integration_days": 30,
         "net_basis": false,
         "provenance": {
           "status": "verified",
@@ -3480,16 +3482,16 @@
             "section": "Parte speciale, sezione prima, Art. 64, comma 1(b)",
             "quote": "corrispondere ad ogni fine mese, mediante integrazione con gli stessi criteri previsti dal precedente art.63 di quanto le lavoratrici percepiscono per atti di previdenza a cui l'azienda è tenuta per disposizioni di legge, l'intera retribuzione globale mensile per i primi 5 mesi della sua assenza ed il 50% di essa per il 6° mese."
           },
-          "transformation": "First five months: 100% of monthly global pay inclusive of social-insurance payments; sixth month 50%. No conversion of months to days or assertion of net basis. integration_days 150: the compulsory leave of art. 16 D.Lgs. 151/2001 (five months) the clause refers to; net_basis false: the clause measures the retribuzione without saying netta",
+          "transformation": "First 150 calendar days from the recorded leave start target the full monthly global pay; the following 30 calendar days target 50% of that pay. Both targets include the INPS indemnity, so employer integration cannot be negative. Thirty-day months are the existing engine convention for five months = 150 days; the source itself specifies months, not a calendar-day conversion. The clause does not say net pay.",
           "extraction": {
             "method": "ai",
-            "model": "gpt-6-sol",
-            "extraction_timestamp": "2026-11-08T03:00:00Z",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T13:11:52Z",
             "effective_from": null,
             "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-08T03:00:00Z",
+            "verified_at": "2026-11-08T13:11:52Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-gpt-logistica-trasporto-confetra-insured-absence"
+            "review_id": "2026-11-08-ai-confetra-maternity-second-period"
           }
         }
       },
@@ -3964,6 +3966,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-confetra-maternity-second-period",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 64 c. 1(b), cached Confetra PDF p. 90; maternity integration periods.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "The sixth-month target is 50% inclusive of statutory indemnity, not an additional payment."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.insured_absence.maternity"
         ]
       }
     ],
