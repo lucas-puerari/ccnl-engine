@@ -38,9 +38,11 @@ the pay that enters the TFR, as their Scheda 'I destinatari e i contributi'
   39.25, employee 1.60% = 31.40096 -> 31.40.  On the tessile the Fondapi
   base also counts the EDR, which the bundle pay lacks: an open limitation
   blocks the run.  On the metalmeccanico it counts the indennità di
-  funzione quadri (Art. 50): level 9, 3054.74 + 69.72 = 3124.46, employer
-  62.4892 -> 62.49, employee 37.49352 -> 37.49; level 8 with the role
-  'quadro', 2746.82 + 49.06 = 2795.88, employer 55.9176 -> 55.92.
+  funzione quadri (Art. 50): level 9 with the role 'quadro', 3054.74 +
+  69.72 = 3124.46, employer 62.4892 -> 62.49, employee 37.49352 -> 37.49
+  (without the role, 3054.74: 61.0948 -> 61.09, 36.65688 -> 36.66);
+  level 8 with the role 'quadro', 2746.82 + 49.06 = 2795.88, employer
+  55.9176 -> 55.92.
 - Fondapi on the chemical PMI (Unionchimica), level D in January 2026,
   2267.00, on the retribuzione TFR: an employee 1.06% takes employer 1.66%
   = 37.6322 -> 37.63 and employee 24.0302 -> 24.03; an employee 1.60%
@@ -247,12 +249,13 @@ def test_fondapi_on_the_minimum(
 @pytest.mark.parametrize(
     ("level", "roles", "employer", "employee"),
     [
-        ("9", None, "62.49", "37.49"),
+        ("9", frozenset({"quadro"}), "62.49", "37.49"),
+        ("9", None, "61.09", "36.66"),
         ("8", frozenset({"quadro"}), "55.92", "33.55"),
         ("8", frozenset({"quadro_oreficeria"}), "55.59", "33.35"),
         ("8", None, "54.94", "32.96"),
     ],
-    ids=["quadro-a", "quadro-b", "oreficeria", "not-a-quadro"],
+    ids=["quadro-a", "cat-9", "quadro-b", "oreficeria", "not-a-quadro"],
 )
 def test_fondapi_counts_the_quadri_allowance(
     level: str, roles: frozenset[str] | None, employer: str, employee: str
