@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer, seniority, sickness, una_tantum |
+| **Limits of this contract** | base_salary, inps_employer, seniority, sickness |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-23 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 67 - Tredicesima mensilità (p. 141): "quanti sono i mesi di servizio prestati presso la Società, computando come mese intero la frazione di mese pari o superiore a 15 giorni.". Match: at_least 15. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 83 - Preavviso, p. 151). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-07 | gpt-6-sol (ai) | Annual minimi tabellari of Allegato 9 read from the page image by an independent session of another model without being told the expected value; divisor from art. 65 read by a separate session. | confirmed | 35 monthly minimums equal one twelfth of the printed annual amount (art. 65 I: monthly base pay is one twelfth of the minimum; 13th and 14th are separate payments, arts. 67-68). |
+| 2026-11-08 | claude-opus-5-5 (ai) | Annex 10 first-semester 2024 vacancy arrears, page 178, against the cached PDF. | confirmed | Annex 10: A1 397.79, A2 361.14, B 319.11, C 300.00, D 289.69, E 265.57, F 244.92; one twelfth per first-semester month or fraction exceeding 15 days, permanent staff in service at signing, paid September 2024. |
 
 ## Salary table
 
@@ -117,13 +118,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies.
 
     **Remediation:** Take the serious illness, disability or life-saving therapy of Art. 41 II as a fact of the episode and apply the 730 days at full pay.
-
-!!! warning "poste-italiane-k700/vacanza_contrattuale_2024 · una_tantum · impact yes · open"
-    VACANZA CONTRATTUALE 2024 (Allegato 10, p. 178): the 'competenze contrattuali arretrate' for the first half of 2024 (A1 397.79 to F 244.92), paid with the September 2024 pay to the permanent workers in service on 23 July 2024 'nella misura di 1/12 per ogni mese di servizio', are not paid: twelfths of a six-month period leave the full amount unsettled.
-
-    **Applies when:** `una_tantum` applies; from 2024-09-01; before 2024-10-01.
-
-    **Remediation:** Pay the arretrate of Allegato 10 once the share of the six months is settled (six twelfths or the whole amount).
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -311,7 +305,9 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     SIMPLIFICATION: industria CIGO (1.70-2.00%) included in employer INPS rate. Poste Italiane is not a manufacturing firm and is not CIGO-subject; actual employer cost is lower. Verify against INPS circ. for the correct Poste INPS classification.
     
-    ANTICIPO 2024 (Allegato 10, p. 178): the 'anticipo sui futuri miglioramenti economici' (A1 928.18 to F 571.47) for July 2024 to August 2025 is the una tantum ANTICIPO_2024, paid with the September 2024 pay to the permanent workers in service on 23 July 2024; the paga base keeps the pre-renewal amount for that window. The 'competenze contrattuali arretrate' of the same page (vacanza contrattuale of the first half of 2024, A1 397.79 to F 244.92, '1/12 per ogni mese di servizio') are not modelled: the share of a six-month period in twelfths is not settled by the text.
+    ANTICIPO 2024 (Allegato 10, p. 178): the 'anticipo sui futuri miglioramenti economici' (A1 928.18 to F 571.47) for July 2024 to August 2025 is the una tantum ANTICIPO_2024, paid with the September 2024 pay to the permanent workers in service on 23 July 2024; the paga base keeps the pre-renewal amount for that window. The 'competenze contrattuali arretrate' for the first half of 2024 are separately paid as six twelfths at most under VACANZA_2024.
+    
+    VACANZA CONTRATTUALE 2024 (Allegato 10, p. 178): the first-semester arrears are paid in September 2024 to eligible permanent employees at one twelfth of the table amount for each qualifying month, at most six twelfths.
     
 
 ## Raw data
