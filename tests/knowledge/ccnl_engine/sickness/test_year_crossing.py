@@ -91,15 +91,21 @@ def _commercio() -> tuple[dict[str, object], ...]:
 
 
 def test_the_episode_keeps_its_day_count_across_the_year() -> None:
-    """Carenza in December only; day 12 on 1 January, day 21 on 10 January."""
+    """Carenza in December; holidays split the day count across the year."""
     december, january, february = _commercio()
 
     assert december["segments"] == (
         "2026-12-21..2026-12-23:carenza:index=1:units=3:inps=0:worker=1;"
-        "2026-12-24..2026-12-31:indemnified:index=4:units=7:inps=0.50:worker=0.75"
+        "2026-12-24..2026-12-24:indemnified:index=4:units=1:inps=0.50:worker=0.75;"
+        "2026-12-25..2026-12-25:indemnified:index=5:units=1:inps=0.50:worker=1;"
+        "2026-12-26..2026-12-26:indemnified:index=6:units=1:inps=0.50:worker=1;"
+        "2026-12-27..2026-12-31:indemnified:index=7:units=4:inps=0.50:worker=0.75"
     )
     assert january["segments"] == (
-        "2027-01-01..2027-01-09:indemnified:index=12:units=8:inps=0.50:worker=0.75;"
+        "2027-01-01..2027-01-01:indemnified:index=12:units=1:inps=0.50:worker=1;"
+        "2027-01-02..2027-01-05:indemnified:index=13:units=3:inps=0.50:worker=0.75;"
+        "2027-01-06..2027-01-06:indemnified:index=17:units=1:inps=0.50:worker=1;"
+        "2027-01-07..2027-01-09:indemnified:index=18:units=3:inps=0.50:worker=0.75;"
         "2027-01-10..2027-01-31:indemnified:index=21:units=18:inps=0.6666:worker=1"
     )
     assert february["segments"] == (

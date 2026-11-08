@@ -22,6 +22,8 @@ class SicknessHoliday(BaseModel):
 
     Attributes:
         rate: Share of the daily pay the holiday reaches, insurer included.
+        gross_basis: Measure this target against the gross daily pay, without
+            grossing up the insurer's share even if ordinary integration is net.
         excluded_days: Codes of the national calendar (``MM-DD``,
             ``easter_monday``) the clause does not cover, e.g. ``10-04``,
             a holiday from 2026 that a text signed before does not list.
@@ -31,5 +33,6 @@ class SicknessHoliday(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     rate: Decimal = Field(gt=Decimal(0), le=Decimal(1))
+    gross_basis: bool = False
     excluded_days: tuple[str, ...] = ()
     provenance: RuleProvenance
