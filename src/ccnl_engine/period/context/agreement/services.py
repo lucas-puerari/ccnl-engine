@@ -1,7 +1,6 @@
 """CCNL, level, dates and yearly rules of one run.
 
-The tax rules are those of the tax year of the payment; the INPS rules are
-those of the competence year of the run (:func:`with_competence_contributions`).
+Tax rules of the payment's tax year, INPS rules of the competence year.
 """
 
 from __future__ import annotations
@@ -11,6 +10,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.catalog.services import resolve_ccnl
+from ccnl_engine.compensation.category_months.rules import with_category_months
 from ccnl_engine.compensation.cohort.rules import hire_date, with_hire_cohort
 from ccnl_engine.compensation.fixed_term.rules import (
     with_fixed_term_pay,
@@ -179,6 +179,7 @@ def load_contract(
         level_code=request.level_code,
     )
     ccnl = with_sickness_variant(ccnl, _category(ccnl, request), request.contract_type)
+    ccnl = with_category_months(ccnl, _category(ccnl, request))
     ccnl = with_hire_cohort(
         ccnl, hire_date(request.employment_period, request.seniority)
     )

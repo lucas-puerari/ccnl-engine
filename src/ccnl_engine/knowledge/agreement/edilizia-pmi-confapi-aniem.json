@@ -81,18 +81,18 @@
       },
       {
         "kind": "simplification",
-        "text": "ADDITIONAL_MONTHS: the file pays 13 monthly payments to every level. The impiegati are owed a tredicesima (Art. 63) and a premio annuo of one monthly payment on 30 June (Art. 64), 14 in all, and after twenty years with the employer a premio di fedeltà (Art. 65); the premio annuo is not paid and the TFR and accruals read 13.",
+        "text": "ADDITIONAL_MONTHS: the operai are paid 13 monthly payments; the impiegati and quadri 14, the tredicesima (Art. 63) and the premio annuo of one monthly payment accrued from 1 July to 30 June and paid on 30 June (Art. 64, p. 95; parameters.additional_months_by_category). Not modelled: the premio di fedeltà after twenty years with the employer (Art. 65).",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "impiegati_premio_annuo_missing",
+          "variant": "impiegati_premio_fedelta",
           "applies_when": {
             "worker_categories": [
               "impiegato",
               "quadro"
             ]
           },
-          "remediation": "Model the impiegati in a file of their own with 14 monthly payments (Art. 63-64), as edilizia-ance-impiegati does."
+          "remediation": "Model the premio di fedeltà of Art. 65."
         }
       },
       {
@@ -465,6 +465,78 @@
         },
         "transformation": "10 EUR x parametro / 100 for each level: 1: 10 x 100 / 100 = 10.00, 2: 10 x 117 / 100 = 11.70, 3: 10 x 130 / 100 = 13.00, 4: 10 x 140 / 100 = 14.00, 5: 10 x 150 / 100 = 15.00, 6: 10 x 180 / 100 = 18.00, 7: 10 x 200 / 100 = 20.00. The parametri are those of the column Par. of Allegati A and B of the CCNL Confapi Aniem armonizzato 15/04/2025 (I 100 operaio comune, II 117, III 130, IV 140, V 150, impiegati di 1a 180, quadri 200), the source of the minima of this file.",
         "note": "Read from the PDF the url serves (sha256 7e9b29394505b6cd14125c88c6f0cc4ba78c14f026b546bb387636e40e42ee15). The Scheda states no rule for a partial month, part time or the extra months: the engine owes it in full on the runs that pay the month, with the open limitation contractual_fund_partial, and none on an extra-month run. No human review recorded."
+      }
+    },
+    "additional_months_by_category": {
+      "impiegato": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "14",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-pmi-confapi-aniem-ccnl-testo",
+                  "title": "Contratto collettivo nazionale di lavoro lavoratori della piccola e media industria delle costruzioni edilizie e affini, 15 aprile 2025",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+                  "published_on": "2025-04-15",
+                  "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
+                },
+                "page": "95",
+                "section": "Art. 63 Tredicesima mensilità; Art. 64 Premio annuo",
+                "quote": "Per l'anzianità di servizio maturata dal 1º luglio al 30 giugno dell'anno successivo è dovuto all'impiegato non in prova un premio annuo nella misura di una mensilità da computarsi sugli elementi di cui ai nn. dall'1 al 14 dell'art. 45."
+              },
+              "transformation": "Impiegati and quadri (art. 76 refers to art. 64): the tredicesima and the premio annuo, 14 monthly payments; the premio annuo is the fourteenth, accrued from July to June and paid on 30 June, one twelfth for each month of service.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T07:00:00Z",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T07:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-edilizia-pmi-premio-annuo"
+              }
+            }
+          }
+        ]
+      },
+      "quadro": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": null,
+            "value": "14",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "edilizia-pmi-confapi-aniem-ccnl-testo",
+                  "title": "Contratto collettivo nazionale di lavoro lavoratori della piccola e media industria delle costruzioni edilizie e affini, 15 aprile 2025",
+                  "kind": "associazione",
+                  "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+                  "published_on": "2025-04-15",
+                  "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
+                },
+                "page": "95",
+                "section": "Art. 63 Tredicesima mensilità; Art. 64 Premio annuo",
+                "quote": "Per l'anzianità di servizio maturata dal 1º luglio al 30 giugno dell'anno successivo è dovuto all'impiegato non in prova un premio annuo nella misura di una mensilità da computarsi sugli elementi di cui ai nn. dall'1 al 14 dell'art. 45."
+              },
+              "transformation": "Impiegati and quadri (art. 76 refers to art. 64): the tredicesima and the premio annuo, 14 monthly payments; the premio annuo is the fourteenth, accrued from July to June and paid on 30 June, one twelfth for each month of service.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T07:00:00Z",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T07:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-edilizia-pmi-premio-annuo"
+              }
+            }
+          }
+        ]
       }
     }
   },
@@ -1777,7 +1849,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "e7c5e5f28ad171f076791917d3079ac0f709a47d98336d0ec0db9f538c227c47",
+    "source_hash": "15015dca179217f4523b6852867c76d1f330df8d9879a669e0476ea0779edf16",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
@@ -2156,6 +2228,27 @@
         ],
         "findings": [
           "Articolo 63 - Tredicesima mensilita' (Parte II, impiegati) (p. 95): \"La frazione di mese non superiore ai quindici giorni non va considerata mentre deve essere considerata come mese intero la frazione di mese superiore ai quindici giorni.\". Match: more_than 15."
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-edilizia-pmi-premio-annuo",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 63-64 of the harmonised text of 15 April 2025 (printed p. 95), via a research report; the quote checked on the text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+            "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
+          }
+        ],
+        "findings": [
+          "Added 14 monthly payments for impiegati and quadri; the premio annuo is the fourteenth, run in June (30 June is past the 1-28 range of PaymentDay)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.additional_months_by_category"
         ]
       }
     ],

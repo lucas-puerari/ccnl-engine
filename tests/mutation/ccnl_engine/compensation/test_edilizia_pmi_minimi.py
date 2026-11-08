@@ -42,7 +42,7 @@ def test_each_tranche_of_the_allegati(level: str, amounts: tuple[str, ...]) -> N
 
 
 def test_monthly_payment_gaps_are_declared() -> None:
-    """Each category whose monthly payments differ from 13 is blocked."""
+    """The open gaps of the payments by category: premio di fedeltà, Cassa Edile."""
     scopes = {
         note.limitation.variant: note.limitation.applies_when.worker_categories
         for note in _CCNL.coverage.notes
@@ -51,5 +51,5 @@ def test_monthly_payment_gaps_are_declared() -> None:
 
     employees = frozenset({"impiegato", "quadro"})
 
-    assert scopes["impiegati_premio_annuo_missing"] == employees
+    assert scopes["impiegati_premio_fedelta"] == employees
     assert scopes["cassa_edile_accruals_missing"] == frozenset({"operaio"})

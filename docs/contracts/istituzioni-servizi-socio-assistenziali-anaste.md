@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, una_tantum |
+| **Limits of this contract** | base_salary |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -113,13 +113,6 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "istituzioni-servizi-socio-assistenziali-anaste/una_tantum_2025 · una_tantum · impact yes · open"
-    RENEWAL: CCNL signed 2025-07-23, triennio 2023-2025. Economic effects from 2025-08-01. Una tantum non modelled (non-recurring).
-
-    **Applies when:** `una_tantum` applies; from 2025-08-01.
-
-    **Remediation:** Source the amount and the payment months of the una tantum of the renewal of 23 July 2025, pay it outside the engine (ArrearsEvent) and record it as an open limitation.
 
 !!! warning "istituzioni-servizi-socio-assistenziali-anaste/nurses_professional_allowance · base_salary · impact yes · open"
     NURSES ALLOWANCE: indennita professionale infermieri 155 EUR/month (12 months) not included — qualifica-specific, not level-specific.
@@ -311,6 +304,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 | CCNL ANASTE 2026-2028, testo sottoscritto il 9 ottobre 2026 | associazione | 2026-10-09 | [↗](https://www.anaste.com/download/?wpdmdl=11171) |
 
 ??? note "Coverage notes"
+    UNA TANTUM 2025 (Art. 71 of the CCNL 2023-2025, consolidated text of 3 November 2025, pp. 55-56): EUR 300, 200 or 100 by hire year to the workers in service on 23 July 2025, reduced for part-time, paid in three instalments with the pay of September, October and November 2025, outside every institute and the TFR. Paid in 2025: no tax year the engine computes.
+    
     CONGLOBATED (Art. 69): minimo contrattuale conglobato includes base wage, contingenza and EDR. No separate contingenza or EDR column.
     
     HOURLY DIVISOR (Art. 72): 164 h/month for 38h/week. Verified: 1696.37/10.34=164.06 (lvl 6), 1893.48/11.55=163.94 (lvl 9), 2130.15/12.99=163.98 (lvl Q).

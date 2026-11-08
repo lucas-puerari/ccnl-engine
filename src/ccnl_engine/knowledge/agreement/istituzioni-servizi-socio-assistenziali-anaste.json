@@ -48,18 +48,8 @@
   "coverage": {
     "notes": [
       {
-        "kind": "simplification",
-        "text": "RENEWAL: CCNL signed 2025-07-23, triennio 2023-2025. Economic effects from 2025-08-01. Una tantum non modelled (non-recurring).",
-        "capability": "una_tantum",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "una_tantum_2025",
-          "applies_when": {
-            "trigger": "run",
-            "effective_from": "2025-08-01"
-          },
-          "remediation": "Source the amount and the payment months of the una tantum of the renewal of 23 July 2025, pay it outside the engine (ArrearsEvent) and record it as an open limitation."
-        }
+        "kind": "info",
+        "text": "UNA TANTUM 2025 (Art. 71 of the CCNL 2023-2025, consolidated text of 3 November 2025, pp. 55-56): EUR 300, 200 or 100 by hire year to the workers in service on 23 July 2025, reduced for part-time, paid in three instalments with the pay of September, October and November 2025, outside every institute and the TFR. Paid in 2025: no tax year the engine computes."
       },
       {
         "kind": "info",
@@ -2622,7 +2612,7 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "f0964fda7263afaa2fc6006733f501cdf5e04a9c08403c64e9ea80754617d6f9",
+    "source_hash": "dffdc21e8a47e358f586364717d37a031c8fe4782802f7497191f3200db0d29a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
