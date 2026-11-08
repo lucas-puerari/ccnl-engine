@@ -287,7 +287,11 @@ class InjuryRules(BaseModel):
 
 
 class InsuredAbsenceRules(BaseModel):
-    """Optional maternity, injury and parental CCNL treatments."""
+    """The CCNL treatment of the absences an insurer pays.
+
+    ``maternity``, ``injury`` and ``parental`` are the top-ups and the
+    treatment the CCNL adds to INPS and INAIL; ``None`` when it adds nothing.
+    """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
