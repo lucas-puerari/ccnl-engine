@@ -129,6 +129,19 @@
           },
           "remediation": "Top up the INAIL indemnity of a holiday falling in an injury to 100%, and add the patron saint as an employer fact."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 157 (p. 102) covers the holidays of the compulsory 'e facoltativa' absence: the top-up of the holidays of the optional (parental) leave is not paid. The holiday target applies on the weekday national holidays: a holiday on a Sunday (paid by its own quota), the patron saint and 4 October (a holiday from 2026, which the text, signed before, does not list) are not topped up; 'festività cadenti' covers them in the text.",
+        "capability": "maternity_leave",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "maternity_holiday_scope",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Top up the holidays the clause covers beyond the weekday national calendar, and the items above."
+        }
       }
     ]
   },
@@ -1894,7 +1907,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "2c7e1e8c87a50caa98080f139682a0b9feae79770cf790df341bbc4f7cfab241",
+    "source_hash": "a205c948396ca34b9d87d0a6a378bef35ae8fc55db572f471b410e60a25ad01c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2116,6 +2129,70 @@
           "10-04"
         ]
       }
+    },
+    "insured_absence": {
+      "maternity": {
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "fondoeasi-it-fondo-easi-ccnl-ced-ced-ict-professioni-digitali-e-stp-stesura-ccnl",
+              "title": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+              "kind": "altro",
+              "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+              "pages": [],
+              "published_on": "2022-03-09",
+              "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+            },
+            "page": "102",
+            "section": "Art. 157",
+            "quote": "Ai sensi della L. 1° marzo 1954, n. 90, per le festività cadenti nel periodo di assenza obbligatoria e facoltativa, la lavoratrice ha diritto ad un'indennità integrativa di quella a carico dell'INPS, da corrispondersi a carico del datore di lavoro in modo da raggiungere complessivamente il 100% (cento per cento) della quota giornaliera della retribuzione di fatto di cui all'art. 170."
+          },
+          "transformation": "Top up weekday national holidays during compulsory maternity leave to 100% of daily pay, net of INPS and ordinary CCNL integration; no ordinary maternity integration is inferred. Paternity and optional leave are not handled by this rule.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T10:36:13Z",
+            "verified_at": "2026-11-08T10:36:13Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-ced-assoced-maternity-holiday",
+            "verified_by": "claude-opus-5-5"
+          }
+        },
+        "holiday": {
+          "rate": "1",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "fondoeasi-it-fondo-easi-ccnl-ced-ced-ict-professioni-digitali-e-stp-stesura-ccnl",
+                "title": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+                "kind": "altro",
+                "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+                "pages": [],
+                "published_on": "2022-03-09",
+                "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+              },
+              "page": "102",
+              "section": "Art. 157",
+              "quote": "Ai sensi della L. 1° marzo 1954, n. 90, per le festività cadenti nel periodo di assenza obbligatoria e facoltativa, la lavoratrice ha diritto ad un'indennità integrativa di quella a carico dell'INPS, da corrispondersi a carico del datore di lavoro in modo da raggiungere complessivamente il 100% (cento per cento) della quota giornaliera della retribuzione di fatto di cui all'art. 170."
+            },
+            "transformation": "Top up weekday national holidays during compulsory maternity leave to 100% of daily pay, net of INPS and ordinary CCNL integration; no ordinary maternity integration is inferred. Paternity and optional leave are not handled by this rule. 4 October, a holiday from 2026 the text does not list, is excluded (excluded_days 10-04).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T10:36:13Z",
+              "verified_at": "2026-11-08T10:36:13Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-ced-assoced-maternity-holiday",
+              "verified_by": "claude-opus-5-5"
+            }
+          },
+          "excluded_days": [
+            "10-04"
+          ]
+        }
+      }
     }
   },
   "verification": {
@@ -2182,6 +2259,49 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-ced-assoced-maternity-holiday",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 157, PDF p. 102: holiday top-up during compulsory maternity.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+            "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+          }
+        ],
+        "findings": [
+          "Verified the quoted clause against the cached PDF; encoded only the compulsory maternity holiday target."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.insured_absence.maternity.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-ced-assoced-maternity-holiday",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "The maternity holiday clause against the encoding, by a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+            "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+          }
+        ],
+        "findings": [
+          "Confirmed the 100% target net of the INPS share on the holidays of the compulsory leave.",
+          "Recorded as limitation maternity_holiday_scope: the Sunday holidays, the patron saint and 4 October, the optional leave."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.maternity"
         ]
       }
     ]
