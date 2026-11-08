@@ -191,6 +191,19 @@
         "kind": "info",
         "text": "LEAVE, CONTO ORE (Sez. IV Tit. III Art. 5, p. 156): the PAR not taken in their year are carried 24 more months and the residual is paid with the December pay of the second year after, at the pay of that run (work_rules.leave_rules.permit_deadline, carry_years 2).",
         "capability": "leave"
+      },
+      {
+        "kind": "simplification",
+        "text": "LEAVE, CONTO ORE: the PAR paid at the end of the conto ore are valued at the monthly pay of the run over 173; the hourly pay of Tit. IV art. 3 also adds the hourly elements of the pay (incentivi, indennità orarie, cottimo), which the engine does not add. A worker leaving before the expiry is paid nothing for them (no basis for the leave at termination).",
+        "capability": "leave",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "par_conto_ore_hourly_elements",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the hourly elements of Tit. IV art. 3 to the hourly pay of the PAR, and source the PAR left at the end of the employment."
+        }
       }
     ]
   },
@@ -3355,7 +3368,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "8446c24557f3c1571da3b1c0309eed7d6859575c2bace9a855bcbc1f64dc6288",
+    "source_hash": "61b80ee9dccdf2ed95ea2473cf336b288d2cdc71664f67a898ed9dec15fd075e",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -3947,7 +3960,7 @@
             "verified_by": "claude-opus-5-5",
             "verified_at": "2026-11-08T23:00:00Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-gpt-metalmeccanico-federmeccanica-par-conto-ore"
+            "review_id": "2026-11-09-gpt-metalmeccanico-federmeccanica-par-conto-ore"
           }
         },
         "permits_hourly": true
@@ -5957,12 +5970,12 @@
         ]
       },
       {
-        "id": "2026-11-08-gpt-metalmeccanico-federmeccanica-par-conto-ore",
-        "date": "2026-11-08",
+        "id": "2026-11-09-gpt-metalmeccanico-federmeccanica-par-conto-ore",
+        "date": "2026-11-09",
         "reviewer": "gpt-6-sol",
         "reviewer_kind": "ai",
-        "scope": "Art. 5: the conto ore of the PAR not taken (p. 156).",
-        "outcome": "confirmed",
+        "scope": "The conto ore of the PAR not taken, the hourly pay of Tit. IV art. 3 and the leave settlement code path, by a separate model session in two rounds.",
+        "outcome": "flagged",
         "sources": [
           {
             "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
@@ -5970,7 +5983,9 @@
           }
         ],
         "findings": [
-          "The PAR not taken in the year go to an individual conto ore for 24 more months; the residual is paid at the pay in force at the expiry, the run of the payment not named: the December pay of the second year after."
+          "Round 1 found the payout blocked by the missing termination basis: the deadline now values the hours by the hour (PermitDeadline.permits_hourly), the termination path unchanged.",
+          "Round 2 confirmed the year offset (December of the second year after), the hourly valuation as the general hourly pay 'ai fini dei vari istituti contrattuali', and the test amounts (C3 131.27, level 5 132.42).",
+          "Flagged: the hourly pay of Tit. IV art. 3 adds the hourly elements (incentivi, cottimo), which the engine leaves out; kept under par_conto_ore_hourly_elements."
         ],
         "independence": "separate_model",
         "checked": [

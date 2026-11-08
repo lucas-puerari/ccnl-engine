@@ -993,6 +993,7 @@
       "metalmeccanico-confapi/flexibility_and_hours_bank",
       "metalmeccanico-confapi/ipca_top_up",
       "metalmeccanico-confapi/ordinary_hours_premiums",
+      "metalmeccanico-confapi/par_conto_ore_hourly_elements",
       "metalmeccanico-confapi/par_conto_ore_payout",
       "metalmeccanico-confapi/par_sector_shift_and_renewal_hours",
       "metalmeccanico-confapi/sickness_rules",
@@ -1006,6 +1007,7 @@
     "agreement/metalmeccanico-federmeccanica.json": [
       "metalmeccanico-federmeccanica/elemento_perequativo",
       "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement",
+      "metalmeccanico-federmeccanica/par_conto_ore_hourly_elements",
       "metalmeccanico-federmeccanica/par_sector_and_shift_hours",
       "metalmeccanico-federmeccanica/shift_and_multiweek_premiums"
     ],

@@ -295,6 +295,19 @@
         "kind": "info",
         "text": "Art. 98: the indennità di funzione of the quadri is paid as a fixed allowance with the role 'quadro': 69.72 on the 9th category (quadri A), 49.06 on the 8th category (quadri B); 32.75 with the role 'quadro_oreficeria' on the 8th category. The 32.75 has no starting date in Art. 98: the series starts at the CCNL of 3 July 2017 that prints it. Art. 98 does not say whether superminimi absorb it: the caller states a superminimo net of any part an individual agreement absorbs.",
         "capability": "base_salary"
+      },
+      {
+        "kind": "simplification",
+        "text": "LEAVE, CONTO ORE: the PAR paid at the end of the conto ore are valued at the monthly pay of the run over 173; the hourly pay of art. 38 also adds the hourly elements of the pay (incentivi, indennità orarie, cottimo), which the engine does not add. A worker leaving before the expiry is paid nothing for them (no basis for the leave at termination).",
+        "capability": "leave",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "par_conto_ore_hourly_elements",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the hourly elements of art. 38 to the hourly pay of the PAR, and source the PAR left at the end of the employment."
+        }
       }
     ]
   },
@@ -3272,7 +3285,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "31c17f66a8647ad6a48daf03b99234b3db7e8e6014ccd21edc0b668a4c2a3b8a",
+    "source_hash": "09a07ad7a871a04ee27442fc694552a6925790e8a5c14d4950598102f9995103",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4037,7 +4050,7 @@
             "verified_by": "claude-opus-5-5",
             "verified_at": "2026-11-08T23:00:00Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-ai-metalmeccanico-confapi-par-conto-ore"
+            "review_id": "2026-11-09-gpt-metalmeccanico-confapi-par-conto-ore"
           }
         },
         "permits_hourly": true
@@ -4684,12 +4697,12 @@
         ]
       },
       {
-        "id": "2026-11-08-ai-metalmeccanico-confapi-par-conto-ore",
-        "date": "2026-11-08",
-        "reviewer": "claude-opus-5-5",
+        "id": "2026-11-09-gpt-metalmeccanico-confapi-par-conto-ore",
+        "date": "2026-11-09",
+        "reviewer": "gpt-6-sol",
         "reviewer_kind": "ai",
-        "scope": "Art. 22: the conto ore of the PAR not taken (p. 93-94).",
-        "outcome": "confirmed",
+        "scope": "The conto ore of the PAR not taken, the hourly pay of art. 38 and the leave settlement code path, by a separate model session in two rounds.",
+        "outcome": "flagged",
         "sources": [
           {
             "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
@@ -4697,9 +4710,11 @@
           }
         ],
         "findings": [
-          "The PAR not taken in the year go to an individual conto ore for 24 more months; the residual is paid at the pay in force at the expiry, the run of the payment not named: the December pay of the second year after."
+          "Round 1 found the payout blocked by the missing termination basis: the deadline now values the hours by the hour (PermitDeadline.permits_hourly), the termination path unchanged.",
+          "Round 2 confirmed the year offset (December of the second year after), the hourly valuation as the general hourly pay 'ai fini dei vari istituti contrattuali', and the test amounts (C3 131.27, level 5 132.42).",
+          "Flagged: the hourly pay of art. 38 adds the hourly elements (incentivi, cottimo), which the engine leaves out; kept under par_conto_ore_hourly_elements."
         ],
-        "independence": "same_process",
+        "independence": "separate_model",
         "checked": [
           "work_rules.leave_rules.permit_deadline"
         ]

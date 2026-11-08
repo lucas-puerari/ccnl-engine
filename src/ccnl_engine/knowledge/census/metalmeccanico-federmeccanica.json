@@ -147,6 +147,22 @@
       }
     },
     {
+      "id": "par_conto_ore_hourly_elements",
+      "institute": "leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "LEAVE, CONTO ORE: the PAR paid at the end of the conto ore are valued at the monthly pay of the run over 173; the hourly pay of Tit. IV art. 3 also adds the hourly elements of the pay (incentivi, indennità orarie, cottimo), which the engine does not add. A worker leaving before the expiry is paid nothing for them (no basis for the leave at termination).",
+      "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
+      "state": "absent",
+      "remediation": "Add the hourly elements of Tit. IV art. 3 to the hourly pay of the PAR, and source the PAR left at the end of the employment.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-federmeccanica/par_conto_ore_hourly_elements"
+        ]
+      }
+    },
+    {
       "id": "par_sector_and_shift_hours",
       "institute": "leave",
       "variant": "all",
