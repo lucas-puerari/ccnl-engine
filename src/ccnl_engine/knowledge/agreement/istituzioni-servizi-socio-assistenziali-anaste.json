@@ -85,7 +85,7 @@
       },
       {
         "kind": "info",
-        "text": "Art. 70 c. 2 (p. 55): the indennità professionale of the infermieri, 155 EUR a month on 12 payments, is a fixed allowance of levels 6 and 7 with the role 'infermiere'. Absorbed by an individual pay above the CCNL: the caller states the superminimo net of the absorbed part. The TFR counts it: art. 99 does not exclude it.",
+        "text": "Art. 70 c. 2 (p. 55): the indennità professionale of the infermieri, 155 EUR a month on 12 payments, is a fixed allowance of levels 6 and 7 with the role 'infermiere'. The allowance is offset up to its full amount against paid Employment.individual_elements above the minimum. The TFR counts it: art. 99 does not exclude it.",
         "capability": "base_salary"
       },
       {
@@ -170,6 +170,28 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-anaste-nurse-offset",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 70(2), p. 55: automatic absorption of the nurse allowance against individual excess.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+            "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
+          }
+        ],
+        "findings": [
+          "The EUR 155 allowance for twelve months applies only to qualified nurses and is absorbed up to concurrence by individual pay exceeding the minimum."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels[6].fixed_allowances",
+          "levels[7].fixed_allowances"
         ]
       },
       {
@@ -1359,16 +1381,16 @@
                     "section": "Art. 70 c. 2 - Indennità professionale infermieri",
                     "quote": "Con riferimento al solo personale con qualifica e mansioni di infermiere, è riconosciuta un’indennità professionale mensile, per soli 12 mesi annui, pari ad Euro 155,00, da ritenersi assorbita ed assorbibile, fino a concorrenza, in ipotesi di eccedenza del trattamento retributivo individuale del personale interessato."
                   },
-                  "transformation": "EUR 155 a month on 12 payments (not in the tredicesima of art. 74, computed on the pay of art. 68, which does not list it) with the role 'infermiere' on levels 6 and 7, the levels whose declaratoria names the infermiere (p. 31). Art. 70 states no starting date: the series starts with the CCNL of 1 January 2023. Absorbed 'fino a concorrenza' by an individual pay above the CCNL: the caller states the superminimo net of the absorbed part.",
+                  "transformation": "EUR 155 a month on 12 payments (not in the tredicesima of art. 74, computed on the pay of art. 68, which does not list it) with the role 'infermiere' on levels 6 and 7, the levels whose declaratoria names the infermiere (p. 31). Art. 70 states no starting date: the series starts with the CCNL of 1 January 2023. Absorbed up to its amount against paid Employment.individual_elements above the CCNL minimum.",
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-08T09:00:00Z",
+                    "extraction_timestamp": "2026-11-08T14:28:01Z",
                     "effective_from": "2023-01-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-08T09:00:00Z",
+                    "verified_at": "2026-11-08T14:28:01Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-08-ai-anaste-nurse-allowance"
+                    "review_id": "2026-11-08-ai-anaste-nurse-offset"
                   }
                 }
               }
@@ -1376,6 +1398,7 @@
           },
           "role": "infermiere",
           "months_per_year": 12,
+          "absorbed_by_individual_excess": true,
           "provenance": {
             "status": "derived",
             "location": {
@@ -1390,16 +1413,16 @@
               "section": "Art. 70 c. 2 - Indennità professionale infermieri",
               "quote": "Con riferimento al solo personale con qualifica e mansioni di infermiere, è riconosciuta un’indennità professionale mensile, per soli 12 mesi annui, pari ad Euro 155,00, da ritenersi assorbita ed assorbibile, fino a concorrenza, in ipotesi di eccedenza del trattamento retributivo individuale del personale interessato."
             },
-            "transformation": "EUR 155 a month on 12 payments (not in the tredicesima of art. 74, computed on the pay of art. 68, which does not list it) with the role 'infermiere' on levels 6 and 7, the levels whose declaratoria names the infermiere (p. 31). Art. 70 states no starting date: the series starts with the CCNL of 1 January 2023. Absorbed 'fino a concorrenza' by an individual pay above the CCNL: the caller states the superminimo net of the absorbed part.",
+            "transformation": "EUR 155 a month on 12 payments (not in the tredicesima of art. 74, computed on the pay of art. 68, which does not list it) with the role 'infermiere' on levels 6 and 7, the levels whose declaratoria names the infermiere (p. 31). Art. 70 states no starting date: the series starts with the CCNL of 1 January 2023. Absorbed up to its amount against paid Employment.individual_elements above the CCNL minimum.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T09:00:00Z",
+              "extraction_timestamp": "2026-11-08T14:28:01Z",
               "effective_from": "2023-01-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T09:00:00Z",
+              "verified_at": "2026-11-08T14:28:01Z",
               "verification_status": "verified",
-              "review_id": "2026-11-08-ai-anaste-nurse-allowance"
+              "review_id": "2026-11-08-ai-anaste-nurse-offset"
             }
           }
         }
@@ -1605,16 +1628,16 @@
                     "section": "Art. 70 c. 2 - Indennità professionale infermieri",
                     "quote": "Con riferimento al solo personale con qualifica e mansioni di infermiere, è riconosciuta un’indennità professionale mensile, per soli 12 mesi annui, pari ad Euro 155,00, da ritenersi assorbita ed assorbibile, fino a concorrenza, in ipotesi di eccedenza del trattamento retributivo individuale del personale interessato."
                   },
-                  "transformation": "EUR 155 a month on 12 payments (not in the tredicesima of art. 74, computed on the pay of art. 68, which does not list it) with the role 'infermiere' on levels 6 and 7, the levels whose declaratoria names the infermiere (p. 31). Art. 70 states no starting date: the series starts with the CCNL of 1 January 2023. Absorbed 'fino a concorrenza' by an individual pay above the CCNL: the caller states the superminimo net of the absorbed part.",
+                  "transformation": "EUR 155 a month on 12 payments (not in the tredicesima of art. 74, computed on the pay of art. 68, which does not list it) with the role 'infermiere' on levels 6 and 7, the levels whose declaratoria names the infermiere (p. 31). Art. 70 states no starting date: the series starts with the CCNL of 1 January 2023. Absorbed up to its amount against paid Employment.individual_elements above the CCNL minimum.",
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-08T09:00:00Z",
+                    "extraction_timestamp": "2026-11-08T14:28:01Z",
                     "effective_from": "2023-01-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-08T09:00:00Z",
+                    "verified_at": "2026-11-08T14:28:01Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-08-ai-anaste-nurse-allowance"
+                    "review_id": "2026-11-08-ai-anaste-nurse-offset"
                   }
                 }
               }
@@ -1622,6 +1645,7 @@
           },
           "role": "infermiere",
           "months_per_year": 12,
+          "absorbed_by_individual_excess": true,
           "provenance": {
             "status": "derived",
             "location": {
@@ -1636,16 +1660,16 @@
               "section": "Art. 70 c. 2 - Indennità professionale infermieri",
               "quote": "Con riferimento al solo personale con qualifica e mansioni di infermiere, è riconosciuta un’indennità professionale mensile, per soli 12 mesi annui, pari ad Euro 155,00, da ritenersi assorbita ed assorbibile, fino a concorrenza, in ipotesi di eccedenza del trattamento retributivo individuale del personale interessato."
             },
-            "transformation": "EUR 155 a month on 12 payments (not in the tredicesima of art. 74, computed on the pay of art. 68, which does not list it) with the role 'infermiere' on levels 6 and 7, the levels whose declaratoria names the infermiere (p. 31). Art. 70 states no starting date: the series starts with the CCNL of 1 January 2023. Absorbed 'fino a concorrenza' by an individual pay above the CCNL: the caller states the superminimo net of the absorbed part.",
+            "transformation": "EUR 155 a month on 12 payments (not in the tredicesima of art. 74, computed on the pay of art. 68, which does not list it) with the role 'infermiere' on levels 6 and 7, the levels whose declaratoria names the infermiere (p. 31). Art. 70 states no starting date: the series starts with the CCNL of 1 January 2023. Absorbed up to its amount against paid Employment.individual_elements above the CCNL minimum.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T09:00:00Z",
+              "extraction_timestamp": "2026-11-08T14:28:01Z",
               "effective_from": "2023-01-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T09:00:00Z",
+              "verified_at": "2026-11-08T14:28:01Z",
               "verification_status": "verified",
-              "review_id": "2026-11-08-ai-anaste-nurse-allowance"
+              "review_id": "2026-11-08-ai-anaste-nurse-offset"
             }
           }
         }
@@ -2819,7 +2843,7 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "43e478000540f50fa91071f500d82575b684adf7575312f36a167d3e8ea68821",
+    "source_hash": "0391628657bb41b2291def691dfc167038d807e849f6e03df123c688e79433d0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

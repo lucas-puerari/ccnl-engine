@@ -46,12 +46,34 @@ def _events(hired: date, contract: object) -> list[tuple[PeriodId | None, Decima
     return [(e.reference_period, e.amount) for e in events]
 
 
-@pytest.mark.parametrize("hired", [date(2020, 1, 1), date(2024, 7, 10)])
+@pytest.mark.parametrize(
+    ("hired", "vacanza"),
+    [(date(2020, 1, 1), True), (date(2024, 7, 10), False)],
+)
 def test_a_permanent_worker_in_service_at_signature_takes_it_whole(
-    hired: date,
+    hired: date, vacanza: bool
 ) -> None:
-    """The 14 months to August 2025, paid with September 2024 and taxed then."""
-    assert _events(hired, Permanent()) == [(PeriodId(2024, 9), Decimal("700.00"))]
+    """The 14-month anticipo is EUR 700; only first-semester service earns arrears."""
+    expected = [(PeriodId(2024, 9), Decimal("700.00"))]
+    if vacanza:
+        expected.append((PeriodId(2024, 6), Decimal("150.00")))
+    assert _events(hired, Permanent()) == expected
+
+
+def test_vacanza_full_semester_pays_six_twelfths() -> None:
+    """Level C: EUR 300 / 12 * 6 = 150, plus EUR 700 anticipo = 850."""
+    assert _events(date(2020, 1, 1), Permanent()) == [
+        (PeriodId(2024, 9), Decimal("700.00")),
+        (PeriodId(2024, 6), Decimal("150.00")),
+    ]
+
+
+def test_vacanza_mid_semester_hire_pays_qualifying_months() -> None:
+    """Hired 10 April: April-June = 3 months, 300 / 12 * 3 = 75; total 775."""
+    assert _events(date(2024, 4, 10), Permanent()) == [
+        (PeriodId(2024, 9), Decimal("700.00")),
+        (PeriodId(2024, 6), Decimal("75.00")),
+    ]
 
 
 def test_a_hire_after_signature_takes_nothing() -> None:
