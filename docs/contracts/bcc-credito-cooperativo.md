@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer, seniority |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -129,6 +129,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Pay the further increase of Allegato A §5 from the 12th scatto of the 1997 cohort.
+
+!!! warning "bcc-credito-cooperativo/movement_loyalty_award · base_salary · impact yes · open"
+    Art. 102 (2024 CCNL, PDF p. 117): a single loyalty award at 25 years of cumulative cooperative-banking movement service, only for managerial grades 3 and 4, at 90.66% of one month of the enumerated salary items. The annual hire-anniversary loyalty_premium cannot represent the one-off award, cross-employer service, or the restricted pay base.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Implement a once-only award using cumulative movement service and the Art. 102 grade and pay-base restrictions.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
