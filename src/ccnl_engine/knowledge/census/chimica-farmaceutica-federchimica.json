@@ -71,10 +71,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 12 and Art. 20: the Easter payment of 1/25 and the holiday falling on a Sunday at 1/25.",
+      "rule": "Art. 12: the Easter quota of 1/25 is of the 'retribuzione globale di fatto'; the engine pays it, as the holidays on a Sunday of art. 20, on the monthly pay of art. 15 point 1 (minimo, IPO, scatti, individual elements), without the other recurring allowances of the global pay (shift and similar).",
       "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
       "state": "absent",
-      "remediation": "Pay the Easter 1/25 and the Sunday holiday at 1/25.",
+      "remediation": "Compute the Easter quota on the retribuzione globale di fatto (the recurring allowances of the month included).",
       "origin": "seeded",
       "links": {
         "limitations": [

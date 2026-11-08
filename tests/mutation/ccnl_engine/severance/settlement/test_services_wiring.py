@@ -164,17 +164,19 @@ def test_chimica_d1_terminated_in_october_2026_against_a_hand_oracle() -> None:
 
     By hand: each 2026 run accrues pay / 13.5 less 0.50% of the whole-euro
     INPS base (L. 297/1982 art. 3 c. 16): January-June 174.83 - 11.80 =
-    163.03; July and September 179.28 - 12.10 = 167.18; August adds the ex
+    163.03, April with Easter, 1/25 of 2,360.26 = 94.41 (CCNL art. 12), so
+    2,454.67 / 13.5 = 181.83 less 12.28 = 169.55; July and September
+    179.28 - 12.10 = 167.18; August adds the ex
     festività of 4 November, 8/173 of 2,420.26 = 111.92 (CCNL art. 13), so
     2,532.18 / 13.5 = 187.57 less 12.66 = 174.91; October pays its month
     and the ratei of the tredicesima, 10/12 of 2,420.26 = 2,016.88, so
     4,437.14 / 13.5 = 328.68 less 22.19 = 306.49.  Quotas of 2026 =
-    1,793.94; TFR paid = 4,384.62 + 1,793.94 = 6,178.56, without the
+    1,800.46; TFR paid = 4,384.62 + 1,800.46 = 6,185.08, without the
     revaluation of 2026 (art. 2120 c. 5), which needs the October 2026 FOI
-    index, not published on 2026-10-19.  Taxable = 6,178.56 - 41.17 =
-    6,137.39; 34 months of service; reference income = 6,137.39 x 12 /
-    (34 / 12) = 25,993.65, all in the 23% bracket, so the average rate is
-    23% and the tax 6,137.39 x 23% = 1,411.60.
+    index, not published on 2026-10-19.  Taxable = 6,185.08 - 41.17 =
+    6,143.91; 34 months of service; reference income = 6,143.91 x 12 /
+    (34 / 12) = 26,021.27, all in the 23% bracket, so the average rate is
+    23% and the tax 6,143.91 x 23% = 1,413.10.
     """
     fund = TfrFundBalance(2025, Decimal("4384.62"), Decimal("41.17"), Decimal(0))
     plan = year_plan(
@@ -189,9 +191,11 @@ def test_chimica_d1_terminated_in_october_2026_against_a_hand_oracle() -> None:
         events={10: (TerminationTFREvent(date(2026, 10, 31)),)},
     )
     first, july = Decimal("2360.26"), Decimal("2420.26")
+    april = first + _money(first / 25)
     august = july + _money(july * 8 / 173)
     october = july + _money(july * 10 / 12)
-    quotas = 6 * _quota(first) + 2 * _quota(july) + _quota(august) + _quota(october)
+    quotas = 5 * _quota(first) + _quota(april) + 2 * _quota(july)
+    quotas += _quota(august) + _quota(october)
     payout = fund.amount + quotas
     taxable = payout - Decimal("41.17")
     reference = taxable * 12 / (Decimal(34) / 12)
@@ -204,9 +208,9 @@ def test_chimica_d1_terminated_in_october_2026_against_a_hand_oracle() -> None:
     due, separate = _settlement(result)
 
     assert (quotas, payout, tax) == (
-        Decimal("1793.94"),
-        Decimal("6178.56"),
-        Decimal("1411.60"),
+        Decimal("1800.46"),
+        Decimal("6185.08"),
+        Decimal("1413.10"),
     )
     assert (due.status, due.reason_code, due.amount) == (
         CalculationStatus.INCOMPLETE,

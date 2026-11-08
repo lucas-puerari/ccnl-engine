@@ -466,6 +466,16 @@ def test_easter_sunday_is_paid_where_the_clause_lists_it() -> None:
     assert not _limited(result)
 
 
+def test_chimica_pays_easter_at_one_twenty_fifth() -> None:
+    """Chimica art. 12: Easter, Sunday 28 March 2027, at the monthly pay / 25."""
+    result = _run(_CHIMICA, 2027, 3)
+    (decision,) = (d for d in result.decisions if d.capability == CAPABILITY)
+
+    assert decision.inputs["days"] == "2027-03-28"
+    monthly = Decimal(str(decision.inputs["monthly"]))
+    assert decision.amount == (monthly / 25).quantize(Decimal("0.01"))
+
+
 @pytest.mark.parametrize(
     "ccnl", [("metalmeccanico-federmeccanica", "C3"), _ANAS], ids=["clause", "none"]
 )
