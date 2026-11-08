@@ -122,7 +122,7 @@
       },
       {
         "kind": "simplification",
-        "text": "CAPISQUADRA (classification, p. 103; Art. 24 point 4): the 10% maggiorazione of the operaio put in charge of at least five operai is the allowance CAPOSQUADRA (role 'caposquadra'), in the base of the riposi annui and Cassa Edile percentages. Not modelled: its provincial elements (EET, indennità territoriale) and the floor of the level 2 pay plus 10% for a caposquadra classified lower.",
+        "text": "CAPISQUADRA (classification, p. 103; Art. 24 point 4): the 10% maggiorazione of the operaio put in charge of at least five operai is the allowance CAPOSQUADRA (role 'caposquadra'), in the base of the riposi annui and Cassa Edile percentages. Not modelled: provincial EET/ITS and piecework minimum in the percentage base; assignment duration is supplied by the role input.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -130,7 +130,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the provincial elements of its base and the level 2 floor."
+          "remediation": "Supply provincial and piecework components of the percentage base and assignment duration."
         }
       },
       {
@@ -583,23 +583,24 @@
                 "published_on": "2010-04-19",
                 "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
               },
-              "page": "27",
-              "section": "Art. 5 B) Riposi annui",
-              "quote": "La percentuale per i riposi annui pari al 4,95% calcolata sugli elementi della retribuzione di cui al punto 4) dell’art. 24"
+              "page": "27, 49",
+              "section": "Art. 5 B) Riposi annui; Art. 24, points 2–4",
+              "quote": "La percentuale per i riposi annui pari al 4,95% calcolata sugli elementi della retribuzione di cui al punto 4) dell’art. 24 Si intende la paga attribuita all’operaio “ad personam” (minimo contrattuale più eventuale superminimo). [...] Ai fini dell’applicazione degli artt. 17 e 18 oltre agli elementi retributivi di cui al punto 3) deve essere assunta a base di calcolo, per i capisquadra anche la speciale maggiorazione riconosciuta per tale particolare incarico."
             },
-            "transformation": "4.95% of the paga base and the ex contingenza (Art. 24 point 3 and 4) paid on the hours paid by the hour, with the pay of the period: 'corrisposta alla scadenza di ciascun periodo di paga direttamente dall’impresa al lavoratore per tutte le ore di lavoro normale contrattuale [...] effettivamente prestate'. The 88 hours of riposi permits are covered by it and not paid as hours. In the TFR base (Art. 33, p. 56: 'percentuale per i riposi annui di cui all’art. 5').",
+            "transformation": "4.95% of the paga base and the ex contingenza (Art. 24 point 3 and 4) paid on the hours paid by the hour, with the pay of the period: 'corrisposta alla scadenza di ciascun periodo di paga direttamente dall’impresa al lavoratore per tutte le ore di lavoro normale contrattuale [...] effettivamente prestate'. The 88 hours of riposi permits are covered by it and not paid as hours. In the TFR base (Art. 33, p. 56: 'percentuale per i riposi annui di cui all’art. 5'). Individual superminimum enters the fact-pay element in the percentage base; the distinct qualified-worker integration is not the special supplement enumerated in point 4.",
             "note": "The EDR is not an element of Art. 24 point 3: the ANCE Sassari table of 1 February 2025 (sha256 b681a3f867cd31d4cef09e5234d85a2b6f183a72c66054ed6ff8bd326d88f715) computes its row '6) Per riposi annui (4,95% Sub Tot. A)' on a sub-total that includes the hourly EDR 0,06, a provincial practice the CCNL text does not state. Not changed by the renewals of 2014, 2018, 2022 and 2025; the ANCE Ragusa table of 1 March 2026 still prints 'pari al 4,95% della retribuzione'.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T15:30:00Z",
+              "extraction_timestamp": "2026-11-08T14:55:34Z",
               "effective_from": "2025-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-10-13T15:30:00Z",
+              "verified_at": "2026-11-08T14:55:34Z",
               "verification_status": "verified",
-              "review_id": "2026-10-13-ai-cassa-edile"
+              "review_id": "2026-11-08-ai-capisquadra-integration"
             }
-          }
+          },
+          "include_individual": true
         },
         {
           "code": "CASSA_EDILE",
@@ -638,23 +639,24 @@
                 "published_on": "2010-04-19",
                 "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
               },
-              "page": "37",
-              "section": "Art. 18 Accantonamenti presso la Cassa Edile; Allegato D (p. 172)",
-              "quote": "è assolto dall’impresa con la corresponsione di una percentuale complessiva del 18,5% calcolata sugli elementi della retribuzione di cui"
+              "page": "37, 49",
+              "section": "Art. 18 Accantonamenti presso la Cassa Edile; Allegato D (p. 172); Art. 24, points 2–4",
+              "quote": "è assolto dall’impresa con la corresponsione di una percentuale complessiva del 18,5% calcolata sugli elementi della retribuzione di cui Si intende la paga attribuita all’operaio “ad personam” (minimo contrattuale più eventuale superminimo). [...] Ai fini dell’applicazione degli artt. 17 e 18 oltre agli elementi retributivi di cui al punto 3) deve essere assunta a base di calcolo, per i capisquadra anche la speciale maggiorazione riconosciuta per tale particolare incarico."
             },
-            "transformation": "18.5% (8.50% ferie + 10% gratifica natalizia, p. 38: 'La percentuale complessiva va imputata per l’8,50% al trattamento economico') of the paga base and the ex contingenza on the hours paid by the hour: a gross earning in the INPS, IRPEF and TFR bases (Allegato D point 1, p. 172: 'costituita dalla somma della retribuzione diretta e dalla maggiorazione di cui'; Art. 33, p. 56: 'trattamento economico di cui all’art. 18'), not paid to the worker: 'Tali importi sono accantonati al netto delle ritenute di legge secondo il criterio' of Allegato D (p. 38). Allegato D point 2 (p. 172): 'L’importo che deve essere accantonato presso la Cassa Edile è pari al 14,2%,' of the same base, withheld from the net pay (point 3: 'contributi e le ritenute fiscali complessivi nonché l’accantonamento nell’importo').",
+            "transformation": "18.5% (8.50% ferie + 10% gratifica natalizia, p. 38: 'La percentuale complessiva va imputata per l’8,50% al trattamento economico') of the paga base and the ex contingenza on the hours paid by the hour: a gross earning in the INPS, IRPEF and TFR bases (Allegato D point 1, p. 172: 'costituita dalla somma della retribuzione diretta e dalla maggiorazione di cui'; Art. 33, p. 56: 'trattamento economico di cui all’art. 18'), not paid to the worker: 'Tali importi sono accantonati al netto delle ritenute di legge secondo il criterio' of Allegato D (p. 38). Allegato D point 2 (p. 172): 'L’importo che deve essere accantonato presso la Cassa Edile è pari al 14,2%,' of the same base, withheld from the net pay (point 3: 'contributi e le ritenute fiscali complessivi nonché l’accantonamento nell’importo'). Individual superminimum enters the fact-pay element in the percentage base; the distinct qualified-worker integration is not the special supplement enumerated in point 4.",
             "note": "Hours of p. 37: 'al punto 4) dell’art. 24, per tutte le ore di lavoro normale contrattuale di cui agli'; the net rate of Allegato D on p. 172. The ANCE Sassari table of 1 February 2025 computes its row '5) Per ferie e grat.nataliz.(18,5% Sub Tot A)' on a sub-total with the hourly EDR 0,06, which the CCNL text does not list. Not changed by the renewals of 2014, 2018, 2022 and 2025; the ANCE Ragusa table of 1 March 2026 prints 'lorda del 18,50%' and 'pari al 14,20%'.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-13T15:30:00Z",
+              "extraction_timestamp": "2026-11-08T14:55:34Z",
               "effective_from": "2025-02-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-10-13T15:30:00Z",
+              "verified_at": "2026-11-08T14:55:34Z",
               "verification_status": "verified",
-              "review_id": "2026-10-13-ai-cassa-edile"
+              "review_id": "2026-11-08-ai-capisquadra-integration"
             }
-          }
+          },
+          "include_individual": true
         }
       ],
       "provenance": {
@@ -913,20 +915,25 @@
               },
               "page": "103",
               "section": "Classificazione, Caposquadra",
-              "quote": "Al lavoratore (comunque denominato: caposquadra, capo operaio, capo sciolta, caporale, ecc.) che, a qualunque categoria o qualifica appartenga, sia espressamente preposto dall’impresa a sorvegliare ed a guidare l’attività esecutiva di un gruppo di cinque o più operai di qualsiasi categoria o qualifica, e partecipi egli stesso direttamente all’esecuzione dei lavori, è riconosciuta, per tale particolare incarico e limitatamente alla durata dello stesso, una maggiorazione del 10% da computarsi sugli elementi della retribuzione di cui al punto 3) dell’art. 24 (compreso l’utile minimo contrattuale di cottimo qualora lavori a cottimo)."
+              "quote": "Al lavoratore (comunque denominato: caposquadra, capo operaio, capo sciolta, caporale, ecc.) che, a qualunque categoria o qualifica appartenga, sia espressamente preposto dall’impresa a sorvegliare ed a guidare l’attività esecutiva di un gruppo di cinque o più operai di qualsiasi categoria o qualifica, e partecipi egli stesso direttamente all’esecuzione dei lavori, è riconosciuta, per tale particolare incarico e limitatamente alla durata dello stesso, una maggiorazione del 10% da computarsi sugli elementi della retribuzione di cui al punto 3) dell’art. 24 (compreso l’utile minimo contrattuale di cottimo qualora lavori a cottimo). Al predetto lavoratore deve essere riconosciuta in ogni caso una retribuzione non inferiore a quella dell’operaio qualificato, oltre alla maggiorazione del 10% di cui sopra sugli elementi della retribuzione di cui al punto 3) dell’art. 24 (compreso l’utile minimo contrattuale di cottimo qualora lavori a cottimo)."
             },
-            "transformation": "10% of the paga base and the ex contingenza of the level, per month, paid by the hour like them, to the worker the request states with the role 'caposquadra' (put in charge of at least five operai). Not modelled: the elemento economico territoriale and the indennità territoriale di settore of the base (provincial), and the floor of the pay of a level 2 operaio plus 10%. An apprentice's percentage reduces it as it reduces the elements it is computed on.",
+            "transformation": "For the assigned role, pay 10% of own base salary, contingency and stated individual elements. If these ordinary elements are less than the level-2 national base plus contingency, pay the shortfall as a separate qualified-worker integration, leaving contractual base pay and the special 10% supplement unchanged. Territorial EET/ITS and piecework are not available in this bundle. The role is supplied by the request; assignment duration is not independently verified.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T08:00:00Z",
+              "extraction_timestamp": "2026-11-08T14:55:34Z",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T08:00:00Z",
+              "verified_at": "2026-11-08T14:55:34Z",
               "verification_status": "verified",
-              "review_id": "2026-11-08-ai-edilizia-ance-capisquadra"
+              "review_id": "2026-11-08-ai-capisquadra-integration"
             }
           },
-          "apprenticeship_pct_relevant": true
+          "apprenticeship_pct_relevant": true,
+          "percentage_rate": "0.10",
+          "percentage_base_allowances": [
+            "CONTINGENZA"
+          ],
+          "floor_level": "2"
         }
       ],
       "category": "operaio",
@@ -1182,20 +1189,25 @@
               },
               "page": "103",
               "section": "Classificazione, Caposquadra",
-              "quote": "Al lavoratore (comunque denominato: caposquadra, capo operaio, capo sciolta, caporale, ecc.) che, a qualunque categoria o qualifica appartenga, sia espressamente preposto dall’impresa a sorvegliare ed a guidare l’attività esecutiva di un gruppo di cinque o più operai di qualsiasi categoria o qualifica, e partecipi egli stesso direttamente all’esecuzione dei lavori, è riconosciuta, per tale particolare incarico e limitatamente alla durata dello stesso, una maggiorazione del 10% da computarsi sugli elementi della retribuzione di cui al punto 3) dell’art. 24 (compreso l’utile minimo contrattuale di cottimo qualora lavori a cottimo)."
+              "quote": "Al lavoratore (comunque denominato: caposquadra, capo operaio, capo sciolta, caporale, ecc.) che, a qualunque categoria o qualifica appartenga, sia espressamente preposto dall’impresa a sorvegliare ed a guidare l’attività esecutiva di un gruppo di cinque o più operai di qualsiasi categoria o qualifica, e partecipi egli stesso direttamente all’esecuzione dei lavori, è riconosciuta, per tale particolare incarico e limitatamente alla durata dello stesso, una maggiorazione del 10% da computarsi sugli elementi della retribuzione di cui al punto 3) dell’art. 24 (compreso l’utile minimo contrattuale di cottimo qualora lavori a cottimo). Al predetto lavoratore deve essere riconosciuta in ogni caso una retribuzione non inferiore a quella dell’operaio qualificato, oltre alla maggiorazione del 10% di cui sopra sugli elementi della retribuzione di cui al punto 3) dell’art. 24 (compreso l’utile minimo contrattuale di cottimo qualora lavori a cottimo)."
             },
-            "transformation": "10% of the paga base and the ex contingenza of the level, per month, paid by the hour like them, to the worker the request states with the role 'caposquadra' (put in charge of at least five operai). Not modelled: the elemento economico territoriale and the indennità territoriale di settore of the base (provincial), and the floor of the pay of a level 2 operaio plus 10%. An apprentice's percentage reduces it as it reduces the elements it is computed on.",
+            "transformation": "For the assigned role, pay 10% of own base salary, contingency and stated individual elements. If these ordinary elements are less than the level-2 national base plus contingency, pay the shortfall as a separate qualified-worker integration, leaving contractual base pay and the special 10% supplement unchanged. Territorial EET/ITS and piecework are not available in this bundle. The role is supplied by the request; assignment duration is not independently verified.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T08:00:00Z",
+              "extraction_timestamp": "2026-11-08T14:55:34Z",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T08:00:00Z",
+              "verified_at": "2026-11-08T14:55:34Z",
               "verification_status": "verified",
-              "review_id": "2026-11-08-ai-edilizia-ance-capisquadra"
+              "review_id": "2026-11-08-ai-capisquadra-integration"
             }
           },
-          "apprenticeship_pct_relevant": true
+          "apprenticeship_pct_relevant": true,
+          "percentage_rate": "0.10",
+          "percentage_base_allowances": [
+            "CONTINGENZA"
+          ],
+          "floor_level": "2"
         }
       ],
       "category": "operaio",
@@ -1451,20 +1463,25 @@
               },
               "page": "103",
               "section": "Classificazione, Caposquadra",
-              "quote": "Al lavoratore (comunque denominato: caposquadra, capo operaio, capo sciolta, caporale, ecc.) che, a qualunque categoria o qualifica appartenga, sia espressamente preposto dall’impresa a sorvegliare ed a guidare l’attività esecutiva di un gruppo di cinque o più operai di qualsiasi categoria o qualifica, e partecipi egli stesso direttamente all’esecuzione dei lavori, è riconosciuta, per tale particolare incarico e limitatamente alla durata dello stesso, una maggiorazione del 10% da computarsi sugli elementi della retribuzione di cui al punto 3) dell’art. 24 (compreso l’utile minimo contrattuale di cottimo qualora lavori a cottimo)."
+              "quote": "Al lavoratore (comunque denominato: caposquadra, capo operaio, capo sciolta, caporale, ecc.) che, a qualunque categoria o qualifica appartenga, sia espressamente preposto dall’impresa a sorvegliare ed a guidare l’attività esecutiva di un gruppo di cinque o più operai di qualsiasi categoria o qualifica, e partecipi egli stesso direttamente all’esecuzione dei lavori, è riconosciuta, per tale particolare incarico e limitatamente alla durata dello stesso, una maggiorazione del 10% da computarsi sugli elementi della retribuzione di cui al punto 3) dell’art. 24 (compreso l’utile minimo contrattuale di cottimo qualora lavori a cottimo). Al predetto lavoratore deve essere riconosciuta in ogni caso una retribuzione non inferiore a quella dell’operaio qualificato, oltre alla maggiorazione del 10% di cui sopra sugli elementi della retribuzione di cui al punto 3) dell’art. 24 (compreso l’utile minimo contrattuale di cottimo qualora lavori a cottimo)."
             },
-            "transformation": "10% of the paga base and the ex contingenza of the level, per month, paid by the hour like them, to the worker the request states with the role 'caposquadra' (put in charge of at least five operai). Not modelled: the elemento economico territoriale and the indennità territoriale di settore of the base (provincial), and the floor of the pay of a level 2 operaio plus 10%. An apprentice's percentage reduces it as it reduces the elements it is computed on.",
+            "transformation": "For the assigned role, pay 10% of own base salary, contingency and stated individual elements. If these ordinary elements are less than the level-2 national base plus contingency, pay the shortfall as a separate qualified-worker integration, leaving contractual base pay and the special 10% supplement unchanged. Territorial EET/ITS and piecework are not available in this bundle. The role is supplied by the request; assignment duration is not independently verified.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T08:00:00Z",
+              "extraction_timestamp": "2026-11-08T14:55:34Z",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T08:00:00Z",
+              "verified_at": "2026-11-08T14:55:34Z",
               "verification_status": "verified",
-              "review_id": "2026-11-08-ai-edilizia-ance-capisquadra"
+              "review_id": "2026-11-08-ai-capisquadra-integration"
             }
           },
-          "apprenticeship_pct_relevant": true
+          "apprenticeship_pct_relevant": true,
+          "percentage_rate": "0.10",
+          "percentage_base_allowances": [
+            "CONTINGENZA"
+          ],
+          "floor_level": "2"
         }
       ],
       "category": "operaio",
@@ -1720,20 +1737,25 @@
               },
               "page": "103",
               "section": "Classificazione, Caposquadra",
-              "quote": "Al lavoratore (comunque denominato: caposquadra, capo operaio, capo sciolta, caporale, ecc.) che, a qualunque categoria o qualifica appartenga, sia espressamente preposto dall’impresa a sorvegliare ed a guidare l’attività esecutiva di un gruppo di cinque o più operai di qualsiasi categoria o qualifica, e partecipi egli stesso direttamente all’esecuzione dei lavori, è riconosciuta, per tale particolare incarico e limitatamente alla durata dello stesso, una maggiorazione del 10% da computarsi sugli elementi della retribuzione di cui al punto 3) dell’art. 24 (compreso l’utile minimo contrattuale di cottimo qualora lavori a cottimo)."
+              "quote": "Al lavoratore (comunque denominato: caposquadra, capo operaio, capo sciolta, caporale, ecc.) che, a qualunque categoria o qualifica appartenga, sia espressamente preposto dall’impresa a sorvegliare ed a guidare l’attività esecutiva di un gruppo di cinque o più operai di qualsiasi categoria o qualifica, e partecipi egli stesso direttamente all’esecuzione dei lavori, è riconosciuta, per tale particolare incarico e limitatamente alla durata dello stesso, una maggiorazione del 10% da computarsi sugli elementi della retribuzione di cui al punto 3) dell’art. 24 (compreso l’utile minimo contrattuale di cottimo qualora lavori a cottimo). Al predetto lavoratore deve essere riconosciuta in ogni caso una retribuzione non inferiore a quella dell’operaio qualificato, oltre alla maggiorazione del 10% di cui sopra sugli elementi della retribuzione di cui al punto 3) dell’art. 24 (compreso l’utile minimo contrattuale di cottimo qualora lavori a cottimo)."
             },
-            "transformation": "10% of the paga base and the ex contingenza of the level, per month, paid by the hour like them, to the worker the request states with the role 'caposquadra' (put in charge of at least five operai). Not modelled: the elemento economico territoriale and the indennità territoriale di settore of the base (provincial), and the floor of the pay of a level 2 operaio plus 10%. An apprentice's percentage reduces it as it reduces the elements it is computed on.",
+            "transformation": "For the assigned role, pay 10% of own base salary, contingency and stated individual elements. If these ordinary elements are less than the level-2 national base plus contingency, pay the shortfall as a separate qualified-worker integration, leaving contractual base pay and the special 10% supplement unchanged. Territorial EET/ITS and piecework are not available in this bundle. The role is supplied by the request; assignment duration is not independently verified.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T08:00:00Z",
+              "extraction_timestamp": "2026-11-08T14:55:34Z",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T08:00:00Z",
+              "verified_at": "2026-11-08T14:55:34Z",
               "verification_status": "verified",
-              "review_id": "2026-11-08-ai-edilizia-ance-capisquadra"
+              "review_id": "2026-11-08-ai-capisquadra-integration"
             }
           },
-          "apprenticeship_pct_relevant": true
+          "apprenticeship_pct_relevant": true,
+          "percentage_rate": "0.10",
+          "percentage_base_allowances": [
+            "CONTINGENZA"
+          ],
+          "floor_level": "2"
         }
       ],
       "category": "operaio",
@@ -1926,7 +1948,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "5baf99e7cd3742974cdb0d49b337fcdfa344644dde7884ba60265c1d38ec7430",
+    "source_hash": "c144d967054e7e184a285f2e8d366c47f62844dd39d90db4ad7f50f236b7d2f6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3203,6 +3225,51 @@
         "checked": [
           "levels.fixed_allowances[CAPOSQUADRA]",
           "parameters.hourly_pay.percentages"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-capisquadra-floor",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Caposquadra percentage base and qualified-worker floor, CCNL 2010 PDF pp. 49 and 103.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "Calculate the national supplement dynamically and lift base pay to the level 2 ordinary pay where required. Provincial, individual and piecework components remain unavailable."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.fixed_allowances[CAPOSQUADRA]",
+          "compensation.element.rules"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-capisquadra-integration",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Caposquadra qualified-worker remuneration integration and Art. 24 points 2–4, signed CCNL 2010 PDF pp. 49 and 103.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "The level-2 shortfall is a separate earning, not a contractual base-pay increase; own individual elements reduce it and enter the special supplement and Art. 17–18 bases."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.fixed_allowances[CAPOSQUADRA]",
+          "parameters.hourly_pay.percentages",
+          "compensation.element.rules"
         ]
       }
     ],
