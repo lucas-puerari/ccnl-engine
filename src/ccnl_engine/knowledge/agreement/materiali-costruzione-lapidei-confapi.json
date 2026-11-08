@@ -109,6 +109,10 @@
         }
       },
       {
+        "kind": "info",
+        "text": "Art. 32 of the cached materials-construction PDF (pp. 112–114) awards cemento workers a non-recurring seniority payment: operai one listed monthly pay at 15 years, intermedi five-sixths at 15 and 23 years, and clerical staff/managers one month at 15 and 23 years. This agreement file covers lapidei only; these cemento terms must not be applied to its levels."
+      },
+      {
         "kind": "simplification",
         "text": "Art. 52 also allows the leave by the hour, which gets no top-up; 'un periodo non superiore a tre mesi' is read as 90 days of leave; the company provisions it lets the employer absorb are not read. The top-up is computed on the INPS daily base of the leave (art. 23 D.Lgs. 151/2001), as the text gives no pay base of its own. The days already topped up by earlier leave events of the child are a fact of the event (ParentalLeaveEvent.topped_up_days_before).",
         "capability": "parental_leave",
@@ -2469,7 +2473,7 @@
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "a59053b9ca7bd4a677013504a45713eb049d5405a0a55ae02c2106164acac008"
+    "source_hash": "653bc1cd1665e169235b657b1f9bc1fd28f94071ffde1be14fcc6a40dc461389"
   },
   "work_rules": {
     "insured_absence": {

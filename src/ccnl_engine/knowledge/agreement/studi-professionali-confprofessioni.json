@@ -190,19 +190,6 @@
         "text": "APPRENTICE SENIORITY (Art. 129, p. 119 of the CCNL completo 10 April 2026, https://www.confprofessioni.eu/wp-content/uploads/2026/07/00274046_CCNL_Studi_Professionali_2026.04.10_completo.pdf, sha256 35cc1ec44a282f39fa401949828f180897872a8c7907eb39d4f7a51420e04477): 'la disciplina sull’anzianità di servizio e sugli scatti di anzianità (di cui all’art. 134 del presente CCNL) è applicabile anche agli apprendisti e la decorrenza di questi istituti è quella della data di assunzione': the apprentice takes the scatti of art. 134 at the amounts of the level (seniority_increments.apprentice_level_amount)."
       },
       {
-        "kind": "simplification",
-        "text": "Art. 124 (p. 67): a festività falling in a sickness is topped up to 100% of the daily pay net of the INPS share (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury, and the holidays the CCNL adds to the national calendar (the patron saint).",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "holiday_during_injury",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Top up the INAIL indemnity of a holiday falling in an injury to 100%, and add the patron saint as an employer fact."
-        }
-      },
-      {
         "kind": "info",
         "text": "Art. 110(8): compulsory maternity and paternity holiday top-ups are modelled for leave days."
       },
@@ -217,6 +204,19 @@
             "trigger": "outside_input"
           },
           "remediation": "Top up the holidays the clause covers beyond the weekday national calendar, and the items above."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "local_holiday_during_absence",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Provide the employer-specific patron saint holiday."
         }
       }
     ]
@@ -2386,7 +2386,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "92844ac4855c25b301ea11b3c268a2badf3b8abdace590a23f42f0950deb7504",
+    "source_hash": "359aed91e8db595057c54b1031aa1fe35335eb898856419dc92aaa0a7f73395b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3189,6 +3189,37 @@
             "verification_status": "unverified",
             "effective_from": "2024-02-16"
           }
+        },
+        "holiday": {
+          "rate": "1",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "studi-professionali-confprofessioni-holiday-clause",
+                "title": "CCNL Studi professionali 2024, testo integrale definitivo (Confprofessioni)",
+                "kind": "associazione",
+                "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+                "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+              },
+              "page": "67",
+              "section": "Art. 124 - Festività nel periodo di malattia o infortunio",
+              "quote": "Ai sensi della Legge 31 Marzo 1954, n° 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad una indennità integrativa di quella a carico rispettivamente dell’INPS e dell’INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di cui al Titolo XXVIII (Trattamento Economico)."
+            },
+            "transformation": "On a covered national weekday holiday during a work injury, employer integration reaches 100% of the daily pay after subtracting INAIL indemnity and the ordinary CCNL integration already due on that day; the clause also covers sickness. The local patron saint is outside the national calendar.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T12:05:09Z",
+              "verified_at": "2026-11-08T12:05:09Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-studi-professionali-confprofessioni-injury-holiday",
+              "verified_by": "claude-opus-5-5"
+            }
+          },
+          "excluded_days": [
+            "10-04"
+          ]
         }
       },
       "maternity": {
@@ -4034,6 +4065,27 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.insured_absence.maternity"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-studi-professionali-confprofessioni-injury-holiday",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.insured_absence.injury.holiday"
         ]
       }
     ],

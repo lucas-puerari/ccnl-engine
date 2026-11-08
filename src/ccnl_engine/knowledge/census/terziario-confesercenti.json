@@ -67,18 +67,34 @@
       }
     },
     {
-      "id": "holiday_during_injury",
-      "institute": "sickness",
+      "id": "injury_integration_missing",
+      "institute": "workplace_injury",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 191 (p. 145): a festività falling in a sickness is topped up to 100% of the daily pay net of the INPS share (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury, and the holidays the CCNL adds to the national calendar (the patron saint).",
+      "rule": "Art. 189 (PDF p. 144): the ordinary integration of the INAIL indemnity (90% from the 5th to the 20th day, 100% from the 21st; apprentices 80% and 90%) is not modelled: the injury rules of the ruleset hold only the holiday target, so the ordinary injury days are paid at the INAIL share; the holiday reaches 100% net of that share.",
       "calculation": "ccnl/terziario-confesercenti:coverage.notes",
       "state": "absent",
-      "remediation": "Top up the INAIL indemnity of a holiday falling in an injury to 100%, and add the patron saint as an employer fact.",
+      "remediation": "Encode the integration bands of the injury article (insured_absence.injury.integration_bands).",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "terziario-confesercenti/holiday_during_injury"
+          "terziario-confesercenti/injury_integration_missing"
+        ]
+      }
+    },
+    {
+      "id": "local_holiday_during_absence",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.",
+      "calculation": "ccnl/terziario-confesercenti:coverage.notes",
+      "state": "absent",
+      "remediation": "Provide the employer-specific patron saint holiday.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "terziario-confesercenti/local_holiday_during_absence"
         ]
       }
     },

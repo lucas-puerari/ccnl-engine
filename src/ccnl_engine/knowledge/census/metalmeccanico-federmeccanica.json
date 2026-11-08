@@ -51,18 +51,18 @@
       }
     },
     {
-      "id": "holiday_during_injury",
+      "id": "holiday_outside_calendar",
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 9 tops up reduced sickness pay on holidays in letters b) and c) to full global daily pay (sickness_rules.holiday). The INAIL top-up for injury, the holiday top-up during maternity or puerperium, and the local patron saint or substitute holiday are not calculated; 29 June, a letter b holiday in Rome only, is outside the national calendar.",
+      "rule": "Art. 9 (Sez. IV Tit. III): the holidays of letters b and c in a sickness or a work injury reach 100% (sickness_rules.holiday and insured_absence.injury.holiday). Not calculated: the holiday top-up during pregnancy and puerperium, the local patron saint or its substitute, and 29 June, a letter b holiday in Rome only, outside the national calendar.",
       "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
       "state": "absent",
-      "remediation": "Integrate the INAIL indemnity on injury holidays, add the maternity/puerperium holiday top-up, and supply the local patron saint or substitute as an employer fact.",
+      "remediation": "Top up the holidays of pregnancy and puerperium, and the local holidays, as employer facts.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "metalmeccanico-federmeccanica/holiday_during_injury"
+          "metalmeccanico-federmeccanica/holiday_outside_calendar"
         ]
       }
     },

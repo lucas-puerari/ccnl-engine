@@ -136,7 +136,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 17 | I022 | [CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)](autoferrotranvieri-internavigatori.md) | trasporti | ~120k | 2024 | ⚠️ | inps_employer, pension_fund_contribution | 0 / 139 / 1 / 0 | 🧪 | 🤖 |
 | 18 | IC35 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | Autorimesse e noleggio automezzi | ~41k | 2025 | ✅ | parental_leave, welfare | 55 / 40 / 1 / 1 | 🧪 | 🤖 |
 | 19 | I192 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | autostrade e trafori — addetti alle concessionarie autostradali | ~15k | 2023 | ✅ | — | 55 / 96 / 1 / 1 | 🧪 | 🤖 |
-| 20 | H601 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | Terziario | ~22k | 2025 | ⚠️ | base_salary, inps_employer, maternity_leave, sickness | 37 / 7 / 1 / 1 | 🧪 | 🤖 |
+| 20 | H601 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | Terziario | ~22k | 2025 | ⚠️ | base_salary, inps_employer, maternity_leave, sickness, workplace_injury | 37 / 7 / 1 / 1 | 🧪 | 🤖 |
 | 21 | G022 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | carta-cartone | ~35k | 2026 | ⚠️ | base_salary | 14 / 61 / 1 / 0 | 🧪 | 🤖 |
 | 22 | T011 | [CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)](sanita-privata-aiop-aris.md) | Sanità privata | ~150k | 2020 | ⚠️ | base_salary, overtime, seniority | 36 / 2 / 0 / 0 | 🧪 | 🤖 |
 | 23 | F032 | [CCNL Cemento, Calce e Gesso — Industria (Federbeton)](cemento-calce-gesso-industria.md) | industria del cemento calce e gesso | ~25k | — | ⚠️ | seniority | 45 / 36 / 1 / 0 | 🧪 | 🤖 |
@@ -152,7 +152,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 33 | S305 | [CCNL Comparto Istruzione e Ricerca 2025-2027 (trattamento economico) - ARAN, Università, tecnologi a tempo indeterminato](universita-tecnologi-aran.md) | Pubblica Amministrazione | ~1,2M | 2026 | ⚠️ | base_salary, pension_fund_contribution, sickness | 2 / 4 / 1 / 0 | 🧪 | 🤖 |
 | 34 | S205 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | Pubblica Amministrazione | ~580k | 2025 | ⚠️ | base_salary | 16 / 8 / 0 / 0 | 👁 | 🤖✓ |
 | 35 | G029 | [CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico](informatica-pmi-unimatica.md) | informatica-servizi-innovativi | ~20k | — | ⚠️ | base_salary, seniority | 2 / 39 / 1 / 0 | 🧪 | 🤖 |
-| 36 | A141 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | Agricoltura | ~2k | 2023 | ⚠️ | inps_employer | 34 / 21 / 1 / 0 | 🧪 | 🤖 |
+| 36 | A141 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | Agricoltura | ~2k | 2023 | ⚠️ | base_salary, inps_employer | 34 / 21 / 1 / 0 | 🧪 | 🤖 |
 | 37 | A131 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | Agricoltura | ~4k | 2025 | ⚠️ | inps_employer, seniority | 50 / 10 / 1 / 1 | 🧪 | 🤖 |
 | 38 | T151 | [CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)](cooperative-sociali.md) | servizi socio-assistenziali | ~380k | — | ⚠️ | base_salary, inps_employer | 62 / 47 / 0 / 0 | 👁 | 🤖✓ |
 | 39 | A016 | [CCNL Cooperative e Consorzi Agricoli](cooperative-consorzi-agricoli.md) | cooperative e consorzi agricoli — impiegati e operai agricoli | ~60k | 2024 | ⚠️ | base_salary | 34 / 8 / 0 / 0 | 🧪 | 🤖 |
@@ -165,7 +165,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 46 | H016 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | distribuzione-cooperativa | ~63k | — | ⚠️ | base_salary, seniority | 10 / 53 / 1 / 0 | 🧪 | 🤖 |
 | 47 | F018 | [CCNL Edilizia PMI CONFAPI ANIEM](edilizia-pmi-confapi-aniem.md) | Edilizia | ~70000 | 2025 | ⚠️ | base_salary, bilateral_funds, pension_fund_contribution, seniority, territorial_supplement | 15 / 30 / 1 / 0 | 🧪 | 🤖 |
 | 48 | F015 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | edilizia | ~350k | — | ⚠️ | base_salary, bilateral_funds, inps_employer, seniority | 29 / 45 / 1 / 0 | 🧪 | 🤖 |
-| 49 | F016 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | Edilizia | ~90000 | 2025 | ⚠️ | bilateral_funds, seniority | 25 / 33 / 1 / 0 | 🧪 | 🤖 |
+| 49 | F016 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | Edilizia | ~90000 | 2025 | ⚠️ | base_salary, bilateral_funds, seniority | 25 / 33 / 1 / 0 | 🧪 | 🤖 |
 | 50 | F012 | [CCNL Edilizia — Industria (ANCE), impiegati e quadri](edilizia-ance-impiegati.md) | edilizia | — | — | ⚠️ | base_salary, overtime, seniority, sickness, territorial_supplement | 37 / 23 / 0 / 0 | 🏭 | 🤖✓ |
 | 51 | F012 | [CCNL Edilizia — Industria (ANCE), operai](edilizia-ance.md) | edilizia | ~550k | 2025 | ⚠️ | base_salary, bilateral_funds, overtime, sickness, territorial_supplement | 47 / 7 / 0 / 0 | 👁 | 🤖✓ |
 | 52 | B254 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | energia | ~38k | — | ✅ | — | 115 / 56 / 1 / 0 | 🧪 | 🤖 |
@@ -177,7 +177,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 58 | G011 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | grafica-editoria | ~70k | — | ⚠️ | seniority | 2 / 70 / 1 / 0 | 🧪 | 🤖 |
 | 59 | T511 | [CCNL Gruppo ANAS](anas.md) | anas spa - personale non dirigente | ~7k | 2025 | ✅ | — | 29 / 14 / 1 / 0 | 🧪 | 🤖 |
 | 60 | K540 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | servizi ambientali | ~65k | 2025 | ⚠️ | inps_employer, pension_fund_contribution, seniority | 68 / 76 / 1 / 0 | 🧪 | 🤖 |
-| 61 | H077 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | impianti sportivi, palestre e attività sportive | 35533 | 2024 | ⚠️ | base_salary, sickness | 28 / 4 / 1 / 1 | 🧪 | 🤖 |
+| 61 | H077 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | impianti sportivi, palestre e attività sportive | 35533 | 2024 | ⚠️ | base_salary, sickness, workplace_injury | 28 / 4 / 1 / 1 | 🧪 | 🤖 |
 | 62 | A021 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | agricoltura | ~80k | 2024 | ⚠️ | base_salary, bilateral_funds | 7 / 8 / 1 / 1 | 🧪 | 🤖 |
 | 63 | B011 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | chimica | ~210k | — | ⚠️ | base_salary, leave, overtime, sickness, workplace_injury | 126 / 6 / 0 / 0 | 👁 | 🤖✓ |
 | 64 | H05B | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | turismo — alberghi, campeggi, villaggi e strutture ricettive | ~40k | 2025 | ⚠️ | base_salary | 36 / 10 / 1 / 0 | 🧪 | 🤖 |
@@ -210,7 +210,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 91 | H341 | [CCNL Ortofrutticoli ed Agrumari (Import-Export)](ortofrutticoli-agrumari.md) | ortofrutticoli ed agrumari import-export | ~60000 | 2024 | ⚠️ | base_salary, leave, seniority, sickness | 47 / 0 / 7 / 0 | 🧪 | 🤖 |
 | 92 | E023 | [CCNL Panificazione e Settori Affini — Industria (Assipan/Fiesa)](panificazione-assipan.md) | alimentare | ~20k | 2025 | ✅ | — | 35 / 14 / 1 / 0 | 🧪 | 🤖 |
 | 93 | K700 | [CCNL Poste Italiane S.p.A. (personale non dirigente)](poste-italiane-k700.md) | Servizi postali | ~117k | 2024 | ⚠️ | base_salary, inps_employer, seniority, sickness, una_tantum | 1 / 53 / 1 / 0 | 🧪 | 🤖 |
-| 94 | T091 | [CCNL RSA e Strutture Residenziali Socio-Assistenziali (AIOP)](rsa-aiop.md) | residenze sanitarie assistenziali — personale non medico | ~17k | 2012 | ⚠️ | base_salary, seniority, una_tantum | 24 / 8 / 1 / 0 | 🧪 | 🤖 |
+| 94 | T091 | [CCNL RSA e Strutture Residenziali Socio-Assistenziali (AIOP)](rsa-aiop.md) | residenze sanitarie assistenziali — personale non medico | ~17k | 2012 | ⚠️ | base_salary, seniority | 24 / 8 / 1 / 0 | 🧪 | 🤖 |
 | 95 | G091 | [CCNL Radiotelevisivo — Settore Radiofonico](radiotelevisive-radiofonico.md) | radiotelevisione — settore radiofonico | — | 2026 | ⚠️ | inps_employer, seniority | 13 / 0 / 8 / 0 | 🧪 | 🤖 |
 | 96 | G091 | [CCNL Radiotelevisivo — Settore Televisivo Multimediale](radiotelevisive-televisivo.md) | radiotelevisione — settore televisivo multimediale | — | 2026 | ⚠️ | inps_employer, seniority | 28 / 0 / 11 / 0 | 🧪 | 🤖 |
 | 97 | K711 | [CCNL Recapito Corrispondenza (FISE-ARE)](recapito-corrispondenza-fise.md) | Recapito corrispondenza e spedizioni | ~1k | 2023 | ✅ | — | 32 / 15 / 1 / 1 | 🧪 | 🤖 |
@@ -221,7 +221,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 102 | A181 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)](sistemazioni-idraulico-forestali-impiegati.md) | sistemazioni idraulico-forestali e idraulico-agrarie — impiegati | ~430 (impiegati subset) | 2025 | ⚠️ | base_salary, inps_employer | 22 / 6 / 2 / 0 | 🧪 | 🤖 |
 | 103 | A181 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | sistemazioni idraulico-forestali e idraulico-agrarie — operai a tempo indeterminato | ~430 (operai OTI subset) | 2025 | ⚠️ | base_salary, inps_employer, seniority | 16 / 5 / 2 / 0 | 🧪 | 🤖 |
 | 104 | K411 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | telecomunicazioni | ~110k | 2025 | ⚠️ | inps_employer, seniority | 11 / 35 / 1 / 0 | 🧪 | 🤖 |
-| 105 | H012 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | Terziario distribuzione e servizi | ~230k | 2024 | ⚠️ | base_salary, overtime, sickness, territorial_supplement, una_tantum | 92 / 2 / 0 / 0 | 👁 | 🤖✓ |
+| 105 | H012 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | Terziario distribuzione e servizi | ~230k | 2024 | ⚠️ | base_salary, overtime, sickness, territorial_supplement, una_tantum, workplace_injury | 92 / 2 / 0 / 0 | 👁 | 🤖✓ |
 | 106 | H011 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | terziario | ~800k | 2024 | ⚠️ | base_salary, sickness | 86 / 2 / 0 / 0 | 🏭 | 🤖✓ |
 | 107 | D018 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | tessile abbigliamento moda PMI | ~48k | 2025 | ⚠️ | base_salary, pension_fund_contribution, seniority | 42 / 0 / 5 / 1 | 🧪 | 🔍 |
 | 108 | I810 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | trasporto aereo | ~40k | 2025 | ⚠️ | base_salary, sickness | 45 / 50 / 1 / 0 | 🧪 | 🤖 |
@@ -242,7 +242,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 123 | D121 | [CCNL per i lavoratori addetti all'industria delle calzature](calzaturiero-assocalzaturifici.md) | industria | ~75k | — | ✅ | — | 32 / 6 / 1 / 1 | 🧪 | 🤖 |
 | 124 | C021 | [CCNL per i lavoratori addetti all'industria orafa, argentiera e della gioielleria (Federorafi)](orafi-argentieri-industria-federorafi.md) | industria | ~18k | — | ✅ | — | 32 / 33 / 1 / 0 | 🧪 | 🤖 |
 | 125 | D111 | [CCNL per i lavoratori addetti alle industrie delle pelli e dei succedanei della pelle (Assopellettieri)](pelli-cuoio-industria-assopellettieri.md) | industria | ~17k | — | ⚠️ | base_salary | 28 / 7 / 1 / 1 | 🧪 | 🤖 |
-| 126 | E012 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | industria | ~145k | — | ✅ | bilateral_funds | 275 / 0 / 0 / 0 | 👁 | 🤖✓ |
+| 126 | E012 | [CCNL per i lavoratori dell'industria alimentare (Federalimentare)](alimentari-federalimentare.md) | industria | ~145k | — | ⚠️ | base_salary, bilateral_funds | 275 / 0 / 0 / 0 | 👁 | 🤖✓ |
 | 127 | B101 | [CCNL per i lavoratori dell'industria conciaria (UNIC)](concia-unic.md) | industria | ~22.6k | — | ✅ | overtime | 58 / 1 / 0 / 0 | 👁 | 🤖✓ |
 | 128 | F051 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | industria | ~90k | — | ⚠️ | base_salary | 17 / 88 / 1 / 0 | 🧪 | 🤖 |
 | 129 | D014 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | industria | ~160k | — | ✅ | — | 40 / 7 / 1 / 1 | 🧪 | 🤖 |

@@ -19,15 +19,18 @@ from ccnl_engine.absence.insured.extraordinary.models import (
     ExtraordinaryLeaveRates,
     YearCeiling,
 )
+from ccnl_engine.absence.insured.injury_models import InjuryIntegrationBand
 from ccnl_engine.absence.insured.maternity_holiday import MaternityHoliday
 from ccnl_engine.absence.insured.parental.models import ParentalRates
 from ccnl_engine.absence.insured.parental.top_up import ParentalTopUp
 from ccnl_engine.provenance.ruleset.models import RulesetIdentity
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
+from ccnl_engine.sickness.holiday.models import SicknessHoliday
 
 __all__ = [
     "ExtraordinaryLeaveRates",
     "InjuryBand",
+    "InjuryIntegrationBand",
     "InjuryRates",
     "InjuryRules",
     "InsuredAbsenceRates",
@@ -209,19 +212,6 @@ class MaternityRules(BaseModel):
     provenance: RuleProvenance
 
 
-class InjuryIntegrationBand(BaseModel):
-    """Share of the pay the CCNL tops the INAIL indemnity up to, from a day.
-
-    ``day_from`` counts from the injury day (day 0); ``rate`` holds until the
-    next band, ``0`` ending the top-up.
-    """
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    day_from: int = Field(ge=1)
-    rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
-
-
 class InjuryRules(BaseModel):
     """What a CCNL adds to the statutory pay of a work injury.
 
@@ -237,11 +227,13 @@ class InjuryRules(BaseModel):
             payslip (and claims it back from INAIL).
         advanced_permanent_only: Whether it advances it to permanent
             workers only.
+        holiday: Target of a covered holiday during the injury, if any.
         provenance: Source of the clause.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
+    holiday: SicknessHoliday | None = None
     carenza_rate: Decimal | None = Field(default=None, gt=Decimal(0), le=Decimal(1))
     integration_rate: Decimal | None = Field(default=None, gt=Decimal(0), le=Decimal(1))
     integration_bands: tuple[InjuryIntegrationBand, ...] = ()

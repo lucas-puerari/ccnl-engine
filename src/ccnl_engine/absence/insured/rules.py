@@ -28,6 +28,10 @@ from datetime import date, timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.absence.insured.injury_integration import (
+    holiday_extra,
+    integration_target,
+)
 from ccnl_engine.absence.insured.maternity_base import maternity_daily_base
 from ccnl_engine.absence.insured.maternity_holiday import holiday_top_up
 from ccnl_engine.compensation.proration.rules import payable_days
@@ -214,6 +218,7 @@ def injury_pay(
     weekly_hours: Decimal,
     rates: InjuryRates,
     rules: InjuryRules | None,
+    holidays: frozenset[date] = frozenset(),
 ) -> InsuredPay:
     """Return the deduction, the waiting period, the INAIL share and the top-up.
 
@@ -227,6 +232,7 @@ def injury_pay(
         weekly_hours: Normal weekly hours, for the daily base.
         rates: The statutory measures.
         rules: The CCNL treatment, ``None`` for the statutory one.
+        holidays: Covered national weekday holidays of the injury episode.
 
     Returns:
         The amounts, each rounded to the cent.
@@ -250,12 +256,25 @@ def injury_pay(
     days = _days(indemnified_from, last)
     integration = _ZERO
     if rules is not None and days:
-        target = _integration_target(
+        target = integration_target(
             rules, pay, injury_on, indemnified_from, last, deduction - carenza_pay
         )
         if target is not None:
             insurer = pay.grossed(indemnity, net_basis=rules.net_basis)
             integration = money(max(target - insurer, _ZERO))
+    if rules is not None and rules.holiday is not None:
+        integration += holiday_extra(
+            rules,
+            rates,
+            pay,
+            injury_on,
+            first,
+            last,
+            waiting_end,
+            daily,
+            holidays,
+            rules.holiday,
+        )
     return InsuredPay(
         units,
         deduction,
@@ -265,34 +284,3 @@ def injury_pay(
         carenza,
         carenza_units,
     )
-
-
-def _integration_target(
-    rules: InjuryRules,
-    pay: MonthPay,
-    injury_on: date,
-    first: date,
-    last: date,
-    indemnified_pay: Decimal,
-) -> Decimal | None:
-    """Return the pay the top-up reaches on the indemnified days.
-
-    Returns:
-        ``integration_rate`` of their pay, else the rate of each band on
-        the pay of its days; ``None`` without a top-up.
-    """
-    if rules.integration_rate is not None:
-        return rules.integration_rate * indemnified_pay
-    if not rules.integration_bands:
-        return None
-    target = _ZERO
-    bands = rules.integration_bands
-    for band, after in zip(bands, (*bands[1:], None), strict=True):
-        start = max(first, injury_on + timedelta(days=band.day_from))
-        end = (
-            last
-            if after is None
-            else min(last, injury_on + timedelta(days=after.day_from - 1))
-        )
-        target += band.rate * pay.deducted(start, end)[1]
-    return target

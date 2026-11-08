@@ -74,7 +74,13 @@ def test_bundled_missing_notes_and_limitations() -> None:
     }
     assert limited == {
         "assicurazioni-ania": ["base_salary", "inps_employer"],
-        "ced-assoced": ["base_salary", "inps_employer", "maternity_leave", "sickness"],
+        "ced-assoced": [
+            "base_salary",
+            "inps_employer",
+            "maternity_leave",
+            "sickness",
+            "workplace_injury",
+        ],
         "ortofrutticoli-agrumari": [
             "base_salary",
             "leave",

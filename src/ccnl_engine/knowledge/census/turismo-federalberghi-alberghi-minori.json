@@ -387,6 +387,22 @@
       }
     },
     {
+      "id": "small_hotel_legacy_award",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 227 of the cached 2010 hotel-sector scan (PDF p. 183) abolishes the former seniority prize effective 31 May 1986 but preserves acquired rights of workers then in service. The referenced Annex G is missing from the cached scan, so its amounts cannot be verified for smaller hotels; the different Federturismo agreement cannot establish them. No legacy prize is encoded.",
+      "calculation": "ccnl/turismo-federalberghi-alberghi-minori:coverage.notes",
+      "state": "unverified",
+      "remediation": "Obtain Annex G and verify current applicability and cohort amounts for smaller hotels before modelling.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "turismo-federalberghi-alberghi-minori/small_hotel_legacy_award"
+        ]
+      }
+    },
+    {
       "id": "sunday_holiday_ccnl_clause",
       "institute": "sunday_holiday",
       "variant": "all",

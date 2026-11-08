@@ -301,6 +301,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     SIGNATORIES: CONFAPI ANIEM + FILLEA-CGIL + FENEAL-UIL + FILCA-CISL. Testo definitivo signed 9 settembre 2025. Contract period 1.7.2022-30.6.2025.
     
+    Art. 32 of the cached materials-construction PDF (pp. 112–114) awards cemento workers a non-recurring seniority payment: operai one listed monthly pay at 15 years, intermedi five-sixths at 15 and 23 years, and clerical staff/managers one month at 15 and 23 years. This agreement file covers lapidei only; these cemento terms must not be applied to its levels.
+    
 
 ## Raw data
 

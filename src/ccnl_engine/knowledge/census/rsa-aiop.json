@@ -307,13 +307,13 @@
     },
     {
       "id": "seniority_premium_2023",
-      "institute": "una_tantum",
+      "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Seniority: CCNL RSA-AIOP provides a flat EUR 40/month after 5 years of service (levels A-E3 only; F/G/H excluded). Modelled as cadence_months=60, maximum_count=1 — correct for new hires (single increment at month 60). Oct 2023 'premio di anzianita' (EUR 40 one-time for 10+ year workers) is a one-time payment, out_of_scope.",
+      "rule": "Seniority: CCNL RSA-AIOP provides a flat EUR 40/month after 5 years of service (levels A-E3 only; F/G/H excluded). Modelled as cadence_months=60, maximum_count=1 — correct for new hires (single increment at month 60). The Oct 2023 'premio di anzianità' is EUR 40 gross on each of thirteen monthly payments, TFR-relevant, for levels A–E3 with ten years at the same employer or group already completed on 3 October 2023; ratification was a condition. It is not the five-year increment and is not modelled: an in_service_on allowance alone cannot establish ten years of service on the signing date.",
       "calculation": "ccnl/rsa-aiop:coverage.notes",
       "state": "absent",
-      "remediation": "Model or track the Oct 2023 one-time premio di anzianità (EUR 40 to workers with 10+ years) as an una tantum.",
+      "remediation": "Verify ratification and add a monthly EUR 40 allowance for levels A–E3 gated by service of at least ten years on 3 October 2023 and employment on that date; include thirteen payments and TFR.",
       "origin": "seeded",
       "links": {
         "limitations": [
