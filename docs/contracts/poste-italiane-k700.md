@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer, seniority, sickness, una_tantum |
+| **Limits of this contract** | base_salary, inps_employer, seniority, una_tantum |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-23 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 67 - Tredicesima mensilità (p. 141): "quanti sono i mesi di servizio prestati presso la Società, computando come mese intero la frazione di mese pari o superiore a 15 giorni.". Match: at_least 15. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 83 - Preavviso, p. 151). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-07 | gpt-6-sol (ai) | Annual minimi tabellari of Allegato 9 read from the page image by an independent session of another model without being told the expected value; divisor from art. 65 read by a separate session. | confirmed | 35 monthly minimums equal one twelfth of the printed annual amount (art. 65 I: monthly base pay is one twelfth of the minimum; 13th and 14th are separate payments, arts. 67-68). |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 41 II special comporto eligibility, rolling 48-month count and full fixed pay, PDF pp. 111–113. | confirmed | A documented qualifying condition changes the limit and full-pay days to 730; ordinary days still count in the 48-month window. |
 
 ## Salary table
 
@@ -110,13 +111,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Let the caller state the retribuzione individuale di anzianità and the posizioni economiche differenziate (e.g. EarnedIncrements or an individual allowance) and record the limitation.
-
-!!! warning "poste-italiane-k700/sickness_comporto_speciale · sickness · impact yes · open"
-    SICKNESS (Art. 41 II): the comporto speciale of the workers with a serious illness listed in letter A), a disability under L. 68/99 or on life-saving therapy keeps the job for 730 days in the 48 months, with the whole fixed pay for all of them; the engine applies the comporto ordinario (609 days, 502 paid) to every worker.
-
-    **Applies when:** `sickness` applies.
-
-    **Remediation:** Take the serious illness, disability or life-saving therapy of Art. 41 II as a fact of the episode and apply the 730 days at full pay.
 
 !!! warning "poste-italiane-k700/vacanza_contrattuale_2024 · una_tantum · impact yes · open"
     VACANZA CONTRATTUALE 2024 (Allegato 10, p. 178): the 'competenze contrattuali arretrate' for the first half of 2024 (A1 397.79 to F 244.92), paid with the September 2024 pay to the permanent workers in service on 23 July 2024 'nella misura di 1/12 per ogni mese di servizio', are not paid: twelfths of a six-month period leave the full amount unsettled.
@@ -312,6 +306,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SIMPLIFICATION: industria CIGO (1.70-2.00%) included in employer INPS rate. Poste Italiane is not a manufacturing firm and is not CIGO-subject; actual employer cost is lower. Verify against INPS circ. for the correct Poste INPS classification.
     
     ANTICIPO 2024 (Allegato 10, p. 178): the 'anticipo sui futuri miglioramenti economici' (A1 928.18 to F 571.47) for July 2024 to August 2025 is the una tantum ANTICIPO_2024, paid with the September 2024 pay to the permanent workers in service on 23 July 2024; the paga base keeps the pre-renewal amount for that window. The 'competenze contrattuali arretrate' of the same page (vacanza contrattuale of the first half of 2024, A1 397.79 to F 244.92, '1/12 per ogni mese di servizio') are not modelled: the share of a six-month period in twelfths is not settled by the text.
+    
+    Art. 41 II: 730 days of retention and full fixed pay over 48 months when Poste special eligibility is documented (listed serious illness with current certification, L. 68/99 certified disability, or certified related life-saving therapy). Ordinary and special episodes both count toward the same window. Without eligibility, ordinary 609/502 applies. The Art. 22 XIII fixed-term contract-length limits remain outside this band.
     
 
 ## Raw data

@@ -103,6 +103,8 @@ class SicknessSeniorityBand(BaseModel):
         serious_comporto_days: Comporto of a serious illness the CCNL
             extends (Concia art. 60 B: 2, 3, 4 months more), ``None``
             when it does not.
+        serious_full_pay_days: Full-pay days within the same window when
+            the serious comporto applies (Poste Art. 41 II: 730).
         single_comporto_days: Comporto of one illness and the relapses it
             continues, shorter than the window's (Orafi art. 35: 183 of 274).
     """
@@ -113,6 +115,7 @@ class SicknessSeniorityBand(BaseModel):
     full_pay_days: int = Field(ge=1)
     comporto_days: int = Field(ge=1)
     serious_comporto_days: int | None = Field(default=None, ge=1)
+    serious_full_pay_days: int | None = Field(default=None, ge=1)
     single_comporto_days: int | None = Field(default=None, ge=1)
     window_months: int | None = Field(default=None, ge=1)
     steps: tuple[SicknessDayBand, ...] = ()
@@ -174,6 +177,8 @@ class SicknessCumulation(BaseModel):
             art. 60 C: "assenza per malattia iniziata dopo dodici mesi dal
             giorno in cui è cessato il diritto al trattamento economico del
             100%"); ``None`` without such a rule.
+        poste_special_eligibility: Select Art. 41 II documented eligibility
+            instead of the general serious-illness flag for extended limits.
         periodic_checks_outside_comporto: Whether the episodes of periodic
             checks (``SicknessEpisode.periodic_check``) are left out of the
             comporto (Concia art. 60 B).
@@ -193,6 +198,7 @@ class SicknessCumulation(BaseModel):
     fixed_term_comporto_days: int | None = Field(default=None, ge=1)
     restart_after_full_pay_months: int | None = Field(default=None, ge=1)
     periodic_checks_outside_comporto: bool = False
+    poste_special_eligibility: bool = False
     comporto_over_chain: bool = False
 
     @model_validator(mode="after")
