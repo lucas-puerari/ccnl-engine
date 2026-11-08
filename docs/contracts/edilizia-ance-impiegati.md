@@ -68,6 +68,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Art. 92 in the ANCE text of 4 April 2019 (pp. 4-8), applied to contracts from 1 April 2019. Final encoding (dual_apprenticeship JSON) checked against the PDFs by a separate model session (.private flv2). | flagged | Semesters, conventional levels 2 and 1 and the third-level table match. The base also names the premio di produzione and the elemento variabile, which the bundle does not hold (limitations provincial_production_premium and provincial_evr).<br>A failed-title prorogation keeps the pay of the previous year (p. 6): recorded as dual_apprenticeship_prorogation.<br>Ambiguous in the text, kept as read: the base of the 10% training share ('di quella che gli sarebbe dovuta'). |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 66 of the CCNL edilizia industria 2010 (PDF p. 78). A separate model session rejected a first encoding (pay counted over the 30-month window); the merged per-illness encoding was checked again by a separate session (.private flv2), which confirmed the bands and kept the three extra months of several illnesses as unmodelled. | flagged | Replaced the six-month rule with the seniority bands of one illness and the 30-month comporto of art. 66.<br>The separate session read the 30-month periods as job retention only: the pay of the three extra months of several illnesses is left as a limitation. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 43 (PDF p. 66) and art. 61 (PDF p. 75) of the CCNL 19 April 2010, the renewals of 2014, 2018, 2022 and 2025 for amendments, and the Sunday-holiday code of the engine, by a separate model session. | flagged | Confirmed: the quota of '11-04' at 1/25 is paid on the first Sunday of every November, a second quota when 1 November is that Sunday (art. 61 and art. 43); no renewal amends art. 43.<br>Flagged, kept under november_4_holiday: a worker not employed on the first Sunday of November gets no quota; the 'retribuzione stessa' is read as the monthly pay of the chain. |
+| 2026-11-08 | gpt-6-sol (ai) | Art. 65, 44, 63, 72 and 76 of the CCNL 19 April 2010 against the loyalty premium encoding, by a separate model session. | flagged | Confirmed: one month of the art. 44 elements 1-15 on the hire anniversary after 20 years of uninterrupted actual service, then every year; impiegati and quadri (art. 76, with the function allowance); in the TFR base (art. 72); out of the 13th (art. 63, item 18 of art. 44).<br>Flagged, kept in the limitation loyalty_premium: the run chain stands for the elements 1-15, the employment start for the qualifying service, the anniversary month for the date; the pro rata at a non-disciplinary dismissal is not paid. |
 
 ## Salary table
 
@@ -130,11 +131,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add the provincial EVR as an input.
 
 !!! warning "edilizia-ance-impiegati/loyalty_premium · base_salary · impact yes · open"
-    Art. 65: the premio di fedeltà of one month a year after 20 years of service.
+    Art. 65: the annual loyalty award is paid on the hire-anniversary month after 20 years of uninterrupted actual service, using the run-chain monthly pay as an approximation of Art. 44 items 1-15. Not modelled: the whole-month twelfths due after a non-disciplinary dismissal, conventional seniority and interruptions or group-company service not represented by the hire date, and the exact Art. 44 elements (including territorial and individual components) actually summed in the award.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `base_salary` applies; category in impiegato, quadro; seniority of at least 240 months.
 
-    **Remediation:** Model the premio di fedeltà on seniority.
+    **Remediation:** Represent qualifying actual service and the Art. 44 items 1-15 individually, and pay whole-month twelfths on eligible non-disciplinary dismissal.
 
 !!! warning "edilizia-ance-impiegati/special_allowances · base_salary · impact yes · open"
     Art. 47, 50 and 52: the indennità speciale, di cassa and for alta montagna, cassoni and galleria.
