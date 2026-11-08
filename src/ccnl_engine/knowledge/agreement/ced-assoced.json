@@ -1894,7 +1894,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "089bb9c335043dfec4c6a1005d03dd2e0e69397f0017fcfd52ef35b19261af8f",
+    "source_hash": "2c7e1e8c87a50caa98080f139682a0b9feae79770cf790df341bbc4f7cfab241",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2101,7 +2101,7 @@
             "section": "Art. 149 - Festività nel periodo di malattia o infortunio",
             "quote": "Ai sensi della L. 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad un'indennità integrativa di quella a carico rispettivamente dell'INPS e dell'INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all'art. 168."
           },
-          "transformation": "On a national holiday (not a Sunday) falling in a sickness within the comporto, the integration target of the day is 100% of the daily pay, the INPS share of the day netted (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury.",
+          "transformation": "On a national holiday (not a Sunday) falling in a sickness within the comporto, the integration target of the day is 100% of the daily pay, the INPS share of the day netted (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury. The national calendar adds 4 October from 2026 (L. 151/2025), which this text, signed before, does not list: excluded (excluded_days 10-04).",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
@@ -2111,7 +2111,10 @@
             "verification_status": "verified",
             "review_id": "2026-11-08-ai-ced-assoced-holiday-in-sickness"
           }
-        }
+        },
+        "excluded_days": [
+          "10-04"
+        ]
       }
     }
   },

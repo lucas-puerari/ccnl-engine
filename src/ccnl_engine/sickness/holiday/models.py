@@ -22,10 +22,14 @@ class SicknessHoliday(BaseModel):
 
     Attributes:
         rate: Share of the daily pay the holiday reaches, INPS included.
+        excluded_days: Codes of the national calendar (``MM-DD``,
+            ``easter_monday``) the clause does not cover, e.g. ``10-04``,
+            a holiday from 2026 that a text signed before does not list.
         provenance: The clause.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     rate: Decimal = Field(gt=Decimal(0), le=Decimal(1))
+    excluded_days: tuple[str, ...] = ()
     provenance: RuleProvenance
