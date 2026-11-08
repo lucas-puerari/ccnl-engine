@@ -4742,7 +4742,7 @@
             "verified_by": "claude-opus-5-5",
             "verified_at": "2026-11-08T12:40:50Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-ai-commercio-gross-holiday"
+            "review_id": "2026-11-08-gpt-commercio-gross-holiday"
           }
         }
       },
@@ -5158,7 +5158,7 @@
               "verified_by": "claude-opus-5-5",
               "verified_at": "2026-11-08T12:40:50Z",
               "verification_status": "verified",
-              "review_id": "2026-11-08-ai-commercio-gross-holiday"
+              "review_id": "2026-11-08-gpt-commercio-gross-holiday"
             }
           }
         }
@@ -5637,12 +5637,12 @@
         ]
       },
       {
-        "id": "2026-11-08-ai-commercio-gross-holiday",
+        "id": "2026-11-08-gpt-commercio-gross-holiday",
         "date": "2026-11-08",
-        "reviewer": "claude-opus-5-5",
+        "reviewer": "gpt-6-sol",
         "reviewer_kind": "ai",
-        "scope": "Art. 191 gross holiday target for sickness and injury, art. 154 national holiday list and engine basis handling.",
-        "outcome": "confirmed",
+        "scope": "Holiday target of the sickness and injury absence on the gross daily quota, against the net-basis integration, by a separate model session.",
+        "outcome": "flagged",
         "sources": [
           {
             "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
@@ -5650,9 +5650,11 @@
           }
         ],
         "findings": [
-          "May 1 sickness pays 34.26 INPS plus 34.26 employer on a 68.52 gross quota; the national calendar cannot identify the local patron saint."
+          "Confirmed: the holiday target of the encoded days is computed on the gross daily quota, not the net basis of the ordinary integration.",
+          "Confirmed: holidays of a year-crossing absence are classified by their own year.",
+          "Flagged: the injury path is confirmed for the tested day only; general claims beyond the tested cases are unsupported."
         ],
-        "independence": "same_process",
+        "independence": "separate_model",
         "checked": [
           "work_rules.sickness_rules",
           "work_rules.insured_absence.injury"
