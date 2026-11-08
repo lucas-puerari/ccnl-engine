@@ -47,6 +47,19 @@
   "coverage": {
     "notes": [
       {
+        "kind": "simplification",
+        "text": "Art. 61: the holiday top-up during injury (INAIL), pregnancy and puerperium, Easter Sunday and the local patron saint is not calculated; only national weekday holidays in sickness are covered.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "holiday_during_injury",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model injury and maternity holiday treatments and employer-specific and Sunday holiday dates."
+        }
+      },
+      {
         "kind": "source",
         "text": "Primary source: CCNL Esercizi Cinematografici 2023-2026 (FISTel CISL, signed 16/10/2025). Art. 54: period 01/01/2023-31/12/2026. Three salary tranches: 01/01/2023, 01/11/2024, 01/07/2025 from salary tables (pages 59-65 of the PDF). Baseline (31/12/2022 column) used only for increment verification, not modelled as a separate period."
       },
@@ -188,6 +201,27 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-anec-holiday",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 61, cached PDF pp. 46-47, national weekday holidays and sickness paragraph.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+            "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
+          }
+        ],
+        "findings": [
+          "Art. 61 tops up sickness treatment to full daily pay on national weekday holidays; injury, maternity, Easter Sunday and the patron saint remain unmodelled."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.holiday"
         ]
       }
     ]
@@ -2774,7 +2808,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "7164599ae177a2bcf49b366eb0cd32a02be47caafff1adc2c9e193b11ada7001",
+    "source_hash": "e74f3d31e624859264932e5366babe8b42fcc45844700511f165980f05d0df56",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2978,6 +3012,34 @@
       }
     },
     "sickness_rules": {
+      "holiday": {
+        "rate": "1",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "anec-holiday-2025",
+              "title": "CCNL Esercizi Cinematografici 2023-2026",
+              "kind": "associazione",
+              "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+              "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
+            },
+            "page": "47",
+            "section": "Art. 61 - Festività, sickness paragraph",
+            "quote": "In caso di assenza dovuta a malattia, infortunio, gravidanza e puerperio, nei giorni festivi innanzi elencati l'azienda integrerà il trattamento economico corrisposto dagli istituti assistenziali ed assicurativi fino a raggiungere l'intera retribuzione giornaliera prevista dal 2° comma del presente articolo."
+          },
+          "transformation": "On a national weekday holiday within the sickness comporto, top up the daily treatment to 100% after crediting the institutional sickness indemnity. Injury, maternity, Easter Sunday and the local patron saint are not calculated by this rule.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T10:35:27Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T10:35:27Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-anec-holiday"
+          }
+        }
+      },
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
       "net_basis": true,

@@ -56,6 +56,19 @@
   "coverage": {
     "notes": [
       {
+        "kind": "simplification",
+        "text": "Art. 71(5): the INAIL holiday top-up during injury and the local patron saint holiday are not calculated. Art. 60(2-3) additionally pays a coincident Saturday, Sunday or other holiday during sickness; this separate additional payment is not calculated.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "holiday_during_injury",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Calculate the INAIL offset, local patron saint and the distinct coincident-holiday payment."
+        }
+      },
+      {
         "kind": "info",
         "text": "STAFF: tables for non-travelling staff (clerical employees and sedentary workers). The travelling staff (personale viaggiante, drivers and riders: letters C3 to L of pp. 25-26, tables pp. 81-82) is modelled in logistica-trasporto-confetra-viaggiante."
       },
@@ -2731,7 +2744,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "e771eb4ddbfd486b2f6abfcf3b1435dd400a17e4ac2129b6552d1df2535c1aeb",
+    "source_hash": "7822569b2b1f8c87622ed78a1d842dd9228adf913223728e5c1e0dd568140784",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3166,6 +3179,34 @@
       }
     },
     "sickness_rules": {
+      "holiday": {
+        "rate": "1",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "logistica-confetra-holiday-2025",
+              "title": "CCNL Logistica, Trasporto Merci e Spedizione, testo unico 2025",
+              "kind": "associazione",
+              "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+              "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+            },
+            "page": "93",
+            "section": "Art. 71(1)(b,c), (5)",
+            "quote": "Qualora le festività indicate nelle lettere b) e c), ricorrano nel periodo di assenza dovuta a malattia o ad infortunio, compensato con retribuzione, ridotta ai sensi del successivo art.77 (trattamento malattia - infortunio), l'azienda integrerà tale trattamento fino a raggiungere per la giornata festiva l'intera retribuzione di fatto."
+          },
+          "transformation": "Top up reduced sickness treatment on national weekday holidays to 100% of daily actual pay after crediting the INPS share. Art. 71(b,c) includes all national weekday holidays; the local patron saint and injury are not calculated.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T10:35:27Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T10:35:27Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-logistica-confetra-holiday"
+          }
+        }
+      },
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
       "cumulation": {
@@ -3916,6 +3957,27 @@
         "checked": [
           "work_rules.insured_absence.maternity",
           "work_rules.insured_absence.injury"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-logistica-confetra-holiday",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 71(1)(b,c), (5), cached PDF p. 93; Art. 60(2-3), p. 85.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "National weekday holidays are within art. 71(b,c); reduced sickness pay reaches full daily actual pay. Injury, patron saint and art. 60 coincident-holiday payment remain outside this rule."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.holiday"
         ]
       }
     ],
