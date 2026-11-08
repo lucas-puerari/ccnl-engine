@@ -94,7 +94,7 @@
       },
       {
         "kind": "info",
-        "text": "HOURLY DIVISOR: Art. 187 c. 2 (2011 official text, p. 201): 165 for the normal week of 38 hours (art. 113 c. 1), 167 for 38.5, 168 for 39 and 40, 182 for 42, 184 from 42.5 to 44. The engine keeps 165 and reads the others from Employment.full_time_weekly_hours (38.5, 39, 40, 42, 42.5, 43, 43.5, 44); staff hired after 22 December 2011 work 40 hours (art. 113 c. 5) and state it.",
+        "text": "HOURLY DIVISOR: Art. 187 c. 2 (2011 official text, p. 201): 165 for the normal week of 38 hours (art. 113 c. 1), 167 for 38.5, 168 for 39 and 40, 182 for 42, 184 from 42.5 to 44. The engine keeps 165 and reads the others from Employment.full_time_weekly_hours (38.5, 39, 40, 42, 42.5, 43, 43.5, 44); for the life of that contract, the staff hired after its signature work 40 hours (art. 113 c. 5) and state it. The cooperative minori of title XV keep their own 40-hour week and divisor (art. 187 c. 3, art. 147): not told apart.",
         "capability": "workplace_injury"
       },
       {
@@ -2949,7 +2949,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
     "verification_status": "unverified",
-    "source_hash": "b748d957012f4bdee2cfdfea2b32b5c13e01e9d2d636e9ed9eca50c234954845",
+    "source_hash": "673112b5b43843cdf24c8922ec9596c06048f3360c428432160df01676cd8af9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3119,7 +3119,7 @@
               },
               "page": "201",
               "section": "Art. 187 c. 2 - Divisori orari",
-              "quote": "La quota oraria della retribuzione, sia normale che di fatto, si ottiene dividendo l’importo mensile per i seguenti divisori orari: 184 – per il personale la cui durata normale di lavoro è di 42 ore e mezzo settimanali e fino a 44 ore settimanali"
+              "quote": "167 – per il personale la cui durata normale di lavoro è di 38 ore e mezza settimanali;"
             },
             "transformation": "Divisor 167 for a normal week of 38.5 hours ('184 – per il personale la cui durata normale di lavoro è di 42 ore e mezzo settimanali e fino a 44 ore settimanali'; '167 – [...] 38 ore e mezza settimanali').",
             "note": "The 2008 text (art. 172) had 173 for 40 hours and 169 for 39; the 2011 renewal set 168 for both. Art. 113 c. 5 (p. 152) puts the staff hired after 22 December 2011 on 40 hours with divisor 168. The renewals of 19 February 2019 (economic only) and 29 March 2024 do not amend art. 187.",

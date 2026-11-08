@@ -101,7 +101,9 @@ def _divisor(week: int) -> WeekDivisor:
     assert rules is not None
     assert rules.time_supplements is not None
     provenance = rules.time_supplements.week_divisors[0].provenance
-    return WeekDivisor(weekly_hours=week, divisor=Decimal(182), provenance=provenance)
+    return WeekDivisor(
+        weekly_hours=Decimal(week), divisor=Decimal(182), provenance=provenance
+    )
 
 
 @pytest.mark.parametrize(
@@ -114,7 +116,7 @@ def test_week_divisors_need_the_ccnl_week_and_distinct_weeks(
     """Without the CCNL week, with it again, or one week twice: rejected."""
     with pytest.raises(ValidationError, match="week_divisors"):
         TimeSupplements(
-            hourly_divisor_weekly_hours=own,
+            hourly_divisor_weekly_hours=None if own is None else Decimal(own),
             week_divisors=tuple(_divisor(w) for w in weeks),
         )
 
@@ -122,6 +124,7 @@ def test_week_divisors_need_the_ccnl_week_and_distinct_weeks(
 def test_distinct_week_divisors_are_accepted() -> None:
     """40 for the CCNL divisor, 42 and 45 apart."""
     supplements = TimeSupplements(
-        hourly_divisor_weekly_hours=40, week_divisors=(_divisor(42), _divisor(45))
+        hourly_divisor_weekly_hours=Decimal(40),
+        week_divisors=(_divisor(42), _divisor(45)),
     )
     assert [w.weekly_hours for w in supplements.week_divisors] == [42, 45]
