@@ -86,7 +86,7 @@ def year_result() -> CompetenceYearResult:
             "metalmeccanico-federmeccanica",
             "C3",
             facts=resident(),
-            opening_state=fresh_tax_year(2026),
+            opening_state=fresh_tax_year(2026, leave_balances=()),
             current_year=employment_only(2026),
         ),
         repo=bundled_repository(),

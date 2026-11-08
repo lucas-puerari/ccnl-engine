@@ -19,6 +19,7 @@ from decimal import Decimal
 from ccnl_engine import PayrollEngine
 from ccnl_engine.inputs import (
     InpsBaseYtd,
+    LeaveBalance,
     OpeningBalances,
     PaymentId,
     PayrollRunId,
@@ -28,8 +29,15 @@ from ccnl_engine.inputs import (
 __all__ = ["fresh_tax_year", "unpaid_months_before"]
 
 
-def fresh_tax_year(year: int = 2026) -> PeriodState:
+def fresh_tax_year(
+    year: int = 2026, *, leave_balances: tuple[LeaveBalance, ...] | None = None
+) -> PeriodState:
     """Return the state that opens ``year`` with nothing carried into it.
+
+    Args:
+        year: The tax year.
+        leave_balances: The leave carried in, ``None`` when unknown; ``()``
+            states that none is carried (the PAR of a conto ore included).
 
     Returns:
         The imported state of ``year``: no payment, no obligation, and an
@@ -41,6 +49,7 @@ def fresh_tax_year(year: int = 2026) -> PeriodState:
             inps_bases=(InpsBaseYtd(year, Decimal(0), Decimal(0)),),
             recoveries=(),
             surtax_obligations=(),
+            leave_balances=leave_balances,
         )
     )
 

@@ -3355,7 +3355,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "f3382f009747417010eb299a101626646126de847d02ae1bb6ff5bb150722f8b",
+    "source_hash": "8446c24557f3c1571da3b1c0309eed7d6859575c2bace9a855bcbc1f64dc6288",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -3938,7 +3938,7 @@
             "section": "Sez. Quarta, Titolo III, Art. 5 - Permessi annui retribuiti",
             "quote": "I permessi eventualmente non fruiti entro l’anno di maturazione confluiscono in un apposito Conto ore individuale per un ulteriore periodo di 24 mesi, per consentirne la fruizione da parte del lavoratore secondo le modalità di preavviso ed alle condizioni precedentemente indicate. Al termine di tale periodo, le eventuali ore che risultassero ancora accantonate, saranno liquidate con la retribuzione in atto al momento della scadenza."
           },
-          "transformation": "The PAR of a year not taken by its end go to the conto ore for 24 more months: the residual of year Y is paid with the December pay of Y+2 (carry_years 2, carry_until_month 12), at the pay of that run, the 'retribuzione in atto al momento della scadenza'; the hours valued at the basis of the residual leave of the termination. The run is the engine's: the text names the expiry, not a payslip.",
+          "transformation": "The PAR of a year not taken by its end go to the conto ore for 24 more months: the residual of year Y is paid with the December pay of Y+2 (carry_years 2, carry_until_month 12), at the pay of that run, the 'retribuzione in atto al momento della scadenza'; the hours valued at the hourly pay, the monthly pay over 173 (Tit. IV art. 3, p. 173: 'La retribuzione oraria [...] ai fini dei vari istituti contrattuali'), whatever the basis of the termination, which the text does not give (the PAR left at the end of the employment stay unpaid). The run is the engine's: the text names the expiry, not a payslip.",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
@@ -3949,7 +3949,8 @@
             "verification_status": "verified",
             "review_id": "2026-11-08-gpt-metalmeccanico-federmeccanica-par-conto-ore"
           }
-        }
+        },
+        "permits_hourly": true
       }
     },
     "sickness_rules": {

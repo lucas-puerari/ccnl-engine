@@ -87,7 +87,8 @@ class LeaveTermination(BaseModel):
 
     Attributes:
         ferie_divisor: Divisor of the monthly pay that gives the indemnity
-            of one day of ferie (Commercio Art. 159: twenty-six).
+            of one day of ferie (Commercio Art. 159: twenty-six); ``None``
+            when the text read gives none: the ferie left are not paid.
         permits_hourly: Whether the hours of the permit buckets left are
             paid at the hourly quota of the monthly pay (the monthly pay
             over the hourly divisor of the CCNL).  ``False`` when the text
@@ -97,7 +98,7 @@ class LeaveTermination(BaseModel):
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    ferie_divisor: Decimal = Field(gt=_ZERO)
+    ferie_divisor: Decimal | None = Field(default=None, gt=_ZERO)
     permits_hourly: bool
     provenance: RuleProvenance | None = None
 
@@ -175,6 +176,11 @@ class PermitDeadline(BaseModel):
             dell'anno successivo; qualora ciò non avvenga decadranno e
             saranno pagati"); ``EmployerProfile.permit_carryover`` is then
             not read.
+        permits_hourly: Whether the hours left at the deadline are paid at
+            the hourly quota of the monthly pay whatever the basis of the
+            termination (Federmeccanica: "liquidate con la retribuzione in
+            atto", the hourly pay of Tit. IV art. 3 "ai fini dei vari
+            istituti contrattuali").
         carry_years: Years after the year of the permits whose
             ``carry_until_month`` ends the carry (Federmeccanica Sez. IV Tit.
             III art. 5: "un ulteriore periodo di 24 mesi", 2).
@@ -185,6 +191,7 @@ class PermitDeadline(BaseModel):
 
     carry_until_month: int = Field(ge=1, le=12)
     carry_years: int = Field(default=1, ge=1, le=3)
+    permits_hourly: bool = False
     buckets: tuple[LeaveBucket, ...] = Field(min_length=1)
     carry_fixed: bool = False
     provenance: RuleProvenance | None = None
