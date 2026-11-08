@@ -182,8 +182,8 @@
         ]
       },
       {
-        "id": "2026-11-09-gpt-fism-salario-anzianita",
-        "date": "2026-11-09",
+        "id": "2026-11-08-gpt-fism-salario-anzianita",
+        "date": "2026-11-08",
         "reviewer": "gpt-6-sol",
         "reviewer_kind": "ai",
         "scope": "Art. 46 (PDF pp. 35-36) against the encoding of the salario di anzianità, by a separate model session.",
@@ -2439,7 +2439,7 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "482d1faa2e2a2cb26eb6550822d1977486993b364ffd9f9eb161495731344a86",
+    "source_hash": "b5698ae9fcd5384ad7224506797d145149d2916a67364a6ea36f25519f03c4fc",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

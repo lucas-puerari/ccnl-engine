@@ -282,8 +282,8 @@
         ]
       },
       {
-        "id": "2026-11-09-ai-fiaip-fonte",
-        "date": "2026-11-09",
+        "id": "2026-11-08-ai-fiaip-fonte",
+        "date": "2026-11-08",
         "reviewer": "claude-opus-5-5",
         "reviewer_kind": "ai",
         "scope": "Art. 15 of the CCNL FIAIP 2025 (PDF p. 26, text layer).",
@@ -664,12 +664,12 @@
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-09T00:30:00Z",
+            "extraction_timestamp": "2026-11-08T09:00:00Z",
             "effective_from": "2025-05-01",
             "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-09T00:30:00Z",
+            "verified_at": "2026-11-08T09:00:00Z",
             "verification_status": "verified",
-            "review_id": "2026-11-09-ai-fiaip-fonte"
+            "review_id": "2026-11-08-ai-fiaip-fonte"
           }
         }
       }
@@ -1900,7 +1900,7 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "c107692005e9520912bfbed46353f9ea4441e554270f357c3357e5e8b453ffac"
+    "source_hash": "41fb2ac8cdfeb91f58d59962e1237013d6f706f3471f5b20fa218cb9140e3bc5"
   },
   "work_rules": {
     "notice": {

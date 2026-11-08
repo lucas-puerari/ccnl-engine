@@ -230,8 +230,8 @@
         ]
       },
       {
-        "id": "2026-11-09-gpt-marittimi-level-superminimi",
-        "date": "2026-11-09",
+        "id": "2026-11-08-gpt-marittimi-level-superminimi",
+        "date": "2026-11-08",
         "reviewer": "gpt-6-sol",
         "reviewer_kind": "ai",
         "scope": "Allegato 1 nn. 2-5 (PDF p. 32) against the encoding of the superminimi by years in the level, by a separate model session.",
@@ -2665,7 +2665,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "0fb9dc5a71776b02b8975a84e2f36d05299300f5d4ca086b047286dba3c8430e",
+    "source_hash": "a907258f7c5c9514b63a29395142ea7e60e7c1eaf43adb94d68c6e50cfd502a3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

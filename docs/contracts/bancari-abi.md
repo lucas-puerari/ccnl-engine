@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-11-23 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2026-03-01 |
 
 ## Review history
@@ -69,7 +69,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-17 | claude-opus-5-5 (ai) | Periodic review due 2026-12-31: the stipendi from 2023 and the scatti against the CCNL ABI of 23 November 2023, the hourly divisor, and the readiness of the file. | flagged | The 36 stipendi of the nine levels from 2023 and the scatti (QD4 and QD3 95,31, QD2 to 3A1 41,55, 1a and 2a area 29,07) are printed in the texts read. Match.<br>Flagged: the hourly divisor of the file (162, then 160) has no provenance. Art. 114 c. 15 of the testo coordinato computes the paga oraria 'secondo il comune criterio (1/360 della retribuzione annua per ogni giornata diviso 7,4)': on thirteen monthly payments the monthly pay over 204,92, not over 160. Every amount the engine derives from the hourly divisor (absence deductions, the hourly rate of the overtime bands) is affected; the elements of the 'retribuzione annua' were not read.<br>Not promoted to reviewed: verification.confidence is unverified and the hourly divisor is unsourced. The two derived rules (the solidarity fund rates and the absence rule) stay derived. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The sick pay and the comporto of the CCNL (work_rules.sickness_rules), read on the signed text. | corrected | Art. 66 (p. 99): c. 1 keeps the job and the whole pay for 6, 8, 12, 15, 18, 22 months by seniority; c. 2 lets the bank count instead over the 48 months before the last day, with 8 to 24 months. The file stored the option of c. 2 as the rule: corrected to the bands of c. 1 for one illness, the option of c. 2 in the note. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 103 c. 3 of the coordinated text (p. 142), text layer. | corrected | Added seniority_increments.freezes 2013-01-01 to 2014-08-01: 'Nel periodo 1° gennaio 2013 – 31 luglio 2014 non matura l'anzianità ... ai fini degli scatti di anzianità'. |
-| 2026-11-09 | claude-opus-5-5 (ai) | Artt. 50, 90, 93, 94, 102, 103 and Allegato 2 (PDF p. 165) of the CCNL ABI 23 November 2023 (FABI text). | corrected | The importo ex ristrutturazione tabellare is owed for each scatto matured ('per ciascuno scatto di anzianità'), with the scatto: added to the amount of each scatto by level.<br>It enters the TFR base (art. 90) and is frozen with the scatti (art. 103). |
+| 2026-11-08 | claude-opus-5-5 (ai) | Artt. 50, 90, 93, 94, 102, 103 and Allegato 2 (PDF p. 165) of the CCNL ABI 23 November 2023 (FABI text). | corrected | The importo ex ristrutturazione tabellare is owed for each scatto matured ('per ciascuno scatto di anzianità'), with the scatto: added to the amount of each scatto by level.<br>It enters the TFR base (art. 90) and is frozen with the scatti (art. 103).<br>A separate reading corrected the article of the exclusion (art. 68 c. 7, not 72) and recalled the older cohorts of art. 103 and art. 100. |
+| 2026-11-08 | gpt-6-sol (ai) | Artt. 68, 93, 94, 100, 102, 103 and Allegato 2 of the CCNL ABI 23 November 2023 against the importo ex ristrutturazione added to each scatto, by a separate model session. | corrected | Confirmed the amounts per scatto by level and their place in the TFR base.<br>Corrected: the exclusion is art. 68 c. 7, not art. 72; the older cohorts (art. 103 c. 2, art. 100) are recalled in the note. |
 
 ## Salary table
 
@@ -344,7 +345,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     APPRENTICE SENIORITY (Art. 36 - Apprendistato professionalizzante, punto 5 Anzianità, p. 54): no increment during the apprenticeship; half of it counts for the increments when the employment continues, which the caller states in Employment.seniority.
     
-    Importo ex ristrutturazione tabellare (artt. 93, 102; Allegato 2 p. 165): owed for each scatto matured, 14.30 (QD3, QD4), 7.99 (QD1, QD2, 3a Area), 5.59 (Area Unificata) a month on 13 payments, in the TFR base (art. 90), frozen with the scatti from 1 January 2013 to 31 July 2014 (art. 103): it is part of the amount of each scatto (parameters.seniority_increments). Art. 72 c. 7 leaves it out of the scatti paid in one case of that article.
+    Importo ex ristrutturazione tabellare (artt. 93, 102; Allegato 2 p. 165): owed for each scatto matured, 14.30 (QD3, QD4), 7.99 (QD1, QD2, 3a Area), 5.59 (Area Unificata) a month on 13 payments, in the TFR base (art. 90), frozen with the scatti from 1 January 2013 to 31 July 2014 (art. 103): it is part of the amount of each scatto (parameters.seniority_increments). Art. 68 c. 7 (PDF p. 104) leaves it out in the case of that article ('con l'esclusione pertanto dell'importo ex ristrutturazione tabellare'). The staff in service on 19 December 1994 keep up to 12 scatti (art. 103 c. 2) and the former 1a and 2a areas keep the 'Integrazione stipendio ex ccnl 2019' (art. 100): see the limitations on the scatti.
     
     Apprenticeship: https://www.ccnlbancari.it/ Art. 35, post-rinnovo 2023-11-23.
     

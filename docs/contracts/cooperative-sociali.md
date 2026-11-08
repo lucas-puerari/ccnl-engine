@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-11-20 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2025-10-01 |
 
 ## Review history
@@ -66,8 +66,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | asi_health_contribution: Art. 87 covers permanent employees from 2013-05-01 at €5 employer/month, increased by €5 to €10 from 2025-01-01; Art. 28(A)(1), PDF p. 55, calls apprenticeship an open-ended contract. cooperative-sociali.json already specifies these periods and amounts, permanent_only=true and ap |
 | 2026-11-08 | gpt-6-sol (ai) | Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image. | corrected | The injury rule had no top-up of the INAIL indemnity; added: {"integration_bands": [{"day_from": 4, "rate": "1"}, {"day_from": 180, "rate": "0"}], "carenza_rate": "1"} |
-| 2026-11-09 | claude-opus-5-5 (ai) | Artt. 47, 57, 78 and 79 of the CCNL Cooperative sociali, testo completo 2025 (PDF pp. 78-86, 93-94, 109-110, text layer). | confirmed | Art. 78: indennità professionali 61.97 (infermiere generico, D1), 154.94 (infermiere, terapisti, D2), 258.23 (medico, E2 or F1), 232.41 (direttore, F2): role allowances.<br>Art. 47: ETDR educatore 41 EUR from 1 January 2025, 82 from 1 September 2025, ended on 1 January 2026.<br>Art. 57: reperibilità in struttura 77.47 EUR a month; the 20 EUR a night stays outside. |
-| 2026-11-09 | gpt-6-sol (ai) | Artt. 47, 57, 78, 79 and 81 of the CCNL Cooperative sociali 2025 against the role allowances, by a separate model session. | corrected | Confirmed the indennità professionali, their levels and amounts, the ETDR and the reperibilità in struttura.<br>Corrected: the indennità di cassa 30.99 (art. 81) and the affiancamento 50 (art. 78) are fixed monthly amounts too: added as role allowances.<br>Flagged: the conditions of the roles (ETDR categories, medico F1 experience, reperibilità programming) are caller-stated: limitation role_conditions_caller_stated. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Artt. 47, 57, 78 and 79 of the CCNL Cooperative sociali, testo completo 2025 (PDF pp. 78-86, 93-94, 109-110, text layer). | confirmed | Art. 78: indennità professionali 61.97 (infermiere generico, D1), 154.94 (infermiere, terapisti, D2), 258.23 (medico, E2 or F1), 232.41 (direttore, F2): role allowances.<br>Art. 47: ETDR educatore 41 EUR from 1 January 2025, 82 from 1 September 2025, ended on 1 January 2026.<br>Art. 57: reperibilità in struttura 77.47 EUR a month; the 20 EUR a night stays outside. |
+| 2026-11-08 | gpt-6-sol (ai) | Artt. 47, 57, 78, 79 and 81 of the CCNL Cooperative sociali 2025 against the role allowances, by a separate model session. | corrected | Confirmed the indennità professionali, their levels and amounts, the ETDR and the reperibilità in struttura.<br>Corrected: the indennità di cassa 30.99 (art. 81) and the affiancamento 50 (art. 78) are fixed monthly amounts too: added as role allowances.<br>Flagged: the conditions of the roles (ETDR categories, medico F1 experience, reperibilità programming) are caller-stated: limitation role_conditions_caller_stated. |
 
 ## Salary table
 
