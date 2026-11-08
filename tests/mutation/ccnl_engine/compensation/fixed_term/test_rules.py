@@ -129,3 +129,28 @@ def test_a_ccnl_without_work_rules_keeps_none() -> None:
     ccnl = with_fixed_term_pay(bare, WorkerCategory.OPERAIO, FixedTerm())
     assert ccnl.work_rules is None
     assert ccnl.parameters.hourly_pay is not None
+
+
+def test_a_cooperative_otd_is_paid_the_hours_and_the_terzo_elemento() -> None:
+    """Cooperative e consorzi agricoli, art. 60 (verbale 2024, p. 14)."""
+    ccnl = load_ccnl("cooperative-consorzi-agricoli")
+    level = ccnl.level_by_code("5")
+    hourly = level.base_salary.value_at(date(2026, 1, 1)) / Decimal(169)
+    result = regular_period(
+        employment=Employment(
+            ccnl_id="cooperative-consorzi-agricoli",
+            level_code="5",
+            category=WorkerCategory.OPERAIO,
+            seniority=new_hire(),
+            pension_fund=NoPensionFund(),
+            contract_type=FixedTerm(),
+        ),
+        current_year=employment_only(),
+        ordinary_hours_worked=ContributableHours(Decimal(100)),
+    )
+    pay = {i.item_id.removesuffix("-regular"): i.amount for i in result.pay_items}
+    paid = (hourly * 100).quantize(Decimal("0.01"))
+    assert pay["base_salary_2026-01"] == paid
+    assert pay["terzo_elemento_2026-01"] == (paid * Decimal("0.3044")).quantize(
+        Decimal("0.01")
+    )

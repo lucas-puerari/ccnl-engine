@@ -592,7 +592,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cooperative-consorzi-agricoli",
       "ruleset_version": "2026.2",
-      "source_hash": "727f96304cc62cf8b7fe2bd174dfed2adfc5880604d4a532efaa83c720cf2acd",
+      "source_hash": "005dd1b7cb2f9b497e7a944a0fd20df95df555413de49222f77d93cb5ba0ae8a",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/cooperative-consorzi-agricoli.json.gz"
@@ -3101,7 +3101,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "4811af12aac01176111fadccdf1499a95c74eab818a98ef85c85d558c75b2f69",
+      "source_hash": "aeaf7f613ff0c54dcc55343f982cd00c74ce93d5c0b47a61be2348698b5591f7",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/cooperative-consorzi-agricoli.json.gz",
