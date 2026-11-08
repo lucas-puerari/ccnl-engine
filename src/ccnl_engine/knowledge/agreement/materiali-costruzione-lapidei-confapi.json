@@ -111,6 +111,19 @@
       {
         "kind": "info",
         "text": "Art. 32 of the cached materials-construction PDF (pp. 112–114) awards cemento workers a non-recurring seniority payment: operai one listed monthly pay at 15 years, intermedi five-sixths at 15 and 23 years, and clerical staff/managers one month at 15 and 23 years. This agreement file covers lapidei only; these cemento terms must not be applied to its levels."
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 52 also allows the leave by the hour, which gets no top-up; 'un periodo non superiore a tre mesi' is read as 90 days of leave; the company provisions it lets the employer absorb are not read. The top-up is computed on the INPS daily base of the leave (art. 23 D.Lgs. 151/2001), as the text gives no pay base of its own. The days already topped up by earlier leave events of the child are a fact of the event (ParentalLeaveEvent.topped_up_days_before).",
+        "capability": "parental_leave",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "parental_top_up_scope",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Top up the hourly leave, read the pay base the CCNL means, and carry the days topped up per child in the state."
+        }
       }
     ]
   },
@@ -154,6 +167,49 @@
         ],
         "findings": [
           "Art. 28 - Tredicesima mensilità (o gratifica natalizia) (p. 103): \"Nel caso di inizio o cessazione del rapporto durante il corso dell'anno, l'impiegato avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi interi di servizio prestato presso l'azienda. La frazione di mese superiore ai 15 giorni va considerata a questi effetti come mese intero.\". Match: more_than 15."
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-materiali-costruzione-lapidei-confapi-parental-top-up",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Parental indemnity supplement, Art. 52 - Genitorialità, PDF p. 151.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+            "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
+          }
+        ],
+        "findings": [
+          "Added work_rules.insured_absence.parental: 0.5 up to 90 eligible days."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.insured_absence.parental"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-materiali-costruzione-lapidei-confapi-parental-top-up",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "The parental leave clause against the CCNL top-up encoding, by a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+            "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
+          }
+        ],
+        "findings": [
+          "Confirmed the rate and the cap of the clause.",
+          "Corrected: the counter of the days already topped up holds only the earlier leave events (documented and tested); the hourly leave, the pay base and the three months read as 90 days are recorded as limitation parental_top_up_scope."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.parental"
         ]
       }
     ]
@@ -2417,6 +2473,42 @@
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "441c0232f7af6805bec70f8c3cdc0dc3c0d0046436fb58ef304e2f220f370214"
+    "source_hash": "653bc1cd1665e169235b657b1f9bc1fd28f94071ffde1be14fcc6a40dc461389"
+  },
+  "work_rules": {
+    "insured_absence": {
+      "parental": {
+        "rate": "0.5",
+        "max_days": 90,
+        "valid_from": "2025-07-01",
+        "only_standard_rate": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "materiali-costruzione-lapidei-confapi-parental-source",
+              "title": "materiali-costruzione-lapidei-confapi collective agreement",
+              "kind": "associazione",
+              "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+              "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
+            },
+            "page": "151",
+            "section": "Art. 52 - Genitorialità",
+            "quote": "A far data dal 01/07/2025 per il periodo di congedo parentale di cui all’art. 32 D.lgs. n.151/2001 lett. a) e b), l’indennità prevista nella misura del 30 % della retribuzione è integrata fino al 50% della retribuzione stessa per un periodo non superiore a tre mesi nell’arco del periodo di assenza, esclusi i periodi in cui è prevista dalla legge un’indennità superiore al 30%."
+          },
+          "transformation": "Top up eligible statutory parental indemnity to 0.5 of daily pay for up to 90 days; three months converted to 90 days using the INPS thirty-day convention. Only the standard 30% rate and art. 32(1)(a)/(b) qualify.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T11:32:02Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T11:32:02Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-materiali-costruzione-lapidei-confapi-parental-top-up",
+            "effective_from": "2025-07-01"
+          }
+        }
+      }
+    }
   }
 }

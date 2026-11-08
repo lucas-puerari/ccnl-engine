@@ -79,6 +79,10 @@ class ParentalLeaveEvent:
         parental_base_pay: Pay of the month before the leave, which the
             INPS indemnity is computed on (art. 23, which art. 34 c. 1
             applies); ``None`` when not stated.
+        topped_up_days_before: Days of the CCNL top-up already paid for the
+            child by EARLIER leave events; the earlier months of this event
+            are counted by the run from ``started_on`` and must not be
+            included.  ``None`` when not stated: no top-up is paid.
 
     Raises:
         InvalidInputError: When a day is not a date, the leave ends before
@@ -93,6 +97,7 @@ class ParentalLeaveEvent:
     protection_ended_on: date | None = None
     single_parent: bool = False
     parental_base_pay: InpsSicknessBase | None = None
+    topped_up_days_before: int | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         for name in ("started_on", "ended_on", "child_born_on"):
@@ -114,6 +119,13 @@ class ParentalLeaveEvent:
         require_bool(
             self.single_parent, "ParentalLeaveEvent.single_parent", feature=_PARENTAL
         )
+        if self.topped_up_days_before is not None:
+            require_int(
+                self.topped_up_days_before,
+                "ParentalLeaveEvent.topped_up_days_before",
+                feature=_PARENTAL,
+                minimum=0,
+            )
         require_instance(
             self.parental_base_pay,
             InpsSicknessBase,

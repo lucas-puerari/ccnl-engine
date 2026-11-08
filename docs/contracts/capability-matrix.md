@@ -156,7 +156,7 @@ never grow.
 | 15 | [CCNL Attivita Minerarie (ASSORISORSE)](attivita-minerarie-assorisorse.md) | ✅ | — | 36 / 0 / 2 / 1 |
 | 16 | [CCNL Attività Ferroviarie — AGENS](trasporto-ferroviario-agens.md) | ⚠️ | base_salary, inps_employer, seniority | 50 / 6 / 1 / 0 |
 | 17 | [CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)](autoferrotranvieri-internavigatori.md) | ⚠️ | inps_employer, pension_fund_contribution | 0 / 139 / 1 / 0 |
-| 18 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | ✅ | welfare | 55 / 40 / 1 / 1 |
+| 18 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | ✅ | parental_leave, welfare | 55 / 40 / 1 / 1 |
 | 19 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | ✅ | — | 55 / 96 / 1 / 1 |
 | 20 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | ⚠️ | base_salary, inps_employer, maternity_leave, sickness, workplace_injury | 37 / 7 / 1 / 1 |
 | 21 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | ⚠️ | base_salary | 14 / 61 / 1 / 0 |
@@ -219,7 +219,7 @@ never grow.
 | 78 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra)](logistica-trasporto-confetra.md) | ⚠️ | absence, base_salary, overtime, parental_leave, sickness | 65 / 3 / 0 / 0 |
 | 79 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra) - Personale viaggiante](logistica-trasporto-confetra-viaggiante.md) | ⚠️ | absence, base_salary, sickness | 56 / 30 / 0 / 0 |
 | 80 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | ⚠️ | base_salary, una_tantum | 26 / 19 / 1 / 0 |
-| 81 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | ⚠️ | inps_employer, pension_fund_contribution | 41 / 8 / 21 / 0 |
+| 81 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | ⚠️ | inps_employer, parental_leave, pension_fund_contribution | 41 / 8 / 21 / 0 |
 | 82 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | ⚠️ | base_salary, inps_employer | 37 / 9 / 1 / 0 |
 | 83 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | ⚠️ | base_salary, inps_employer | 71 / 12 / 0 / 0 |
 | 84 | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | ✅ | overtime | 25 / 22 / 0 / 0 |

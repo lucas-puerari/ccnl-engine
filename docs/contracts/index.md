@@ -134,7 +134,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 15 | B282 | [CCNL Attivita Minerarie (ASSORISORSE)](attivita-minerarie-assorisorse.md) | Industria estrattiva - Miniere, cave, saline, metallurgia estrattiva | ~3000 | 2022 | ✅ | — | 36 / 0 / 2 / 1 | 🧪 | 🤖 |
 | 16 | I320 | [CCNL Attività Ferroviarie — AGENS](trasporto-ferroviario-agens.md) | trasporto | ~75k | 2025 | ⚠️ | base_salary, inps_employer, seniority | 50 / 6 / 1 / 0 | 🧪 | 🤖 |
 | 17 | I022 | [CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)](autoferrotranvieri-internavigatori.md) | trasporti | ~120k | 2024 | ⚠️ | inps_employer, pension_fund_contribution | 0 / 139 / 1 / 0 | 🧪 | 🤖 |
-| 18 | IC35 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | Autorimesse e noleggio automezzi | ~41k | 2025 | ✅ | welfare | 55 / 40 / 1 / 1 | 🧪 | 🤖 |
+| 18 | IC35 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | Autorimesse e noleggio automezzi | ~41k | 2025 | ✅ | parental_leave, welfare | 55 / 40 / 1 / 1 | 🧪 | 🤖 |
 | 19 | I192 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | autostrade e trafori — addetti alle concessionarie autostradali | ~15k | 2023 | ✅ | — | 55 / 96 / 1 / 1 | 🧪 | 🤖 |
 | 20 | H601 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | Terziario | ~22k | 2025 | ⚠️ | base_salary, inps_employer, maternity_leave, sickness, workplace_injury | 37 / 7 / 1 / 1 | 🧪 | 🤖 |
 | 21 | G022 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | carta-cartone | ~35k | 2026 | ⚠️ | base_salary | 14 / 61 / 1 / 0 | 🧪 | 🤖 |
@@ -197,7 +197,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 78 | I100 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra)](logistica-trasporto-confetra.md) | logistica | ~430k | 2024 | ⚠️ | absence, base_salary, overtime, parental_leave, sickness | 65 / 3 / 0 / 0 | 👁 | 🤖✓ |
 | 79 | I100 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra) - Personale viaggiante](logistica-trasporto-confetra-viaggiante.md) | logistica | ~430k | 2024 | ⚠️ | absence, base_salary, sickness | 56 / 30 / 0 / 0 | 👁 | 🤖✓ |
 | 80 | I391 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | navigazione marittima — personale di terra | ~15k | — | ⚠️ | base_salary, una_tantum | 26 / 19 / 1 / 0 | 🧪 | 🤖 |
-| 81 | F020 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | Industria materiali da costruzione — Lapidei piccola industria | ~5000 | 2025 | ⚠️ | inps_employer, pension_fund_contribution | 41 / 8 / 21 / 0 | 🧪 | 🤖 |
+| 81 | F020 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | Industria materiali da costruzione — Lapidei piccola industria | ~5000 | 2025 | ⚠️ | inps_employer, parental_leave, pension_fund_contribution | 41 / 8 / 21 / 0 | 🧪 | 🤖 |
 | 82 | C016 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | metalmeccanico cooperativo | ~28k | — | ⚠️ | base_salary, inps_employer | 37 / 9 / 1 / 0 | 🧪 | 🤖 |
 | 83 | C030 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | metalmeccanico | ~350k | 2024 | ⚠️ | base_salary, inps_employer | 71 / 12 / 0 / 0 | 🧪 | 🤖 |
 | 84 | C01A | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | metalmeccanico | ~100k | — | ✅ | overtime | 25 / 22 / 0 / 0 | 🧪 | 🤖 |
