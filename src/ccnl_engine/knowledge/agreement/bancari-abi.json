@@ -91,19 +91,6 @@
       },
       {
         "kind": "simplification",
-        "text": "IMPORTO EX RISTRUTTURAZIONE: the tables of the renewal print, next to the scatto, an 'importo ex ristrutturazione' (14,30 for QD3 and QD4, 7,99 for QD1, QD2 and the 3a Area, 5,59 for the Area Unificata); the bundle does not pay it. TERM: the renewal of 23 November 2023 expires on 31 March 2026 (Art. 1); the tables stay those of March 2026 until a renewal is read.",
-        "capability": "seniority",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "ex_ristrutturazione_amount",
-          "applies_when": {
-            "trigger": "run"
-          },
-          "remediation": "Source who receives the importo ex ristrutturazione and model it with the scatti, then remove this note."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "SCATTI: the freeze of 1 January 2013 - 31 July 2014 (Art. 103 c. 3, testo coordinato p. 142) is modelled (seniority_increments.freezes: the months the engine ages across it do not count; the months the caller states are kept as recognised). Staff in service on 19 December 1994 keep a maximum of 12 scatti (Art. 94 c. 2, Art. 103 c. 2): the engine caps every worker at 8.",
         "capability": "seniority",
         "monetary_impact": "yes",
@@ -163,6 +150,11 @@
       {
         "kind": "info",
         "text": "APPRENTICE SENIORITY (Art. 36 - Apprendistato professionalizzante, punto 5 Anzianità, p. 54): no increment during the apprenticeship; half of it counts for the increments when the employment continues, which the caller states in Employment.seniority."
+      },
+      {
+        "kind": "info",
+        "text": "Importo ex ristrutturazione tabellare (artt. 93, 102; Allegato 2 p. 165): owed for each scatto matured, 14.30 (QD3, QD4), 7.99 (QD1, QD2, 3a Area), 5.59 (Area Unificata) a month on 13 payments, in the TFR base (art. 90), frozen with the scatti from 1 January 2013 to 31 July 2014 (art. 103): it is part of the amount of each scatto (parameters.seniority_increments). Art. 72 c. 7 leaves it out of the scatti paid in one case of that article.",
+        "capability": "seniority"
       }
     ]
   },
@@ -259,7 +251,7 @@
             {
               "valid_from": "2023-07-01",
               "valid_until": null,
-              "value": "95.31"
+              "value": "109.61"
             }
           ]
         },
@@ -268,7 +260,7 @@
             {
               "valid_from": "2023-07-01",
               "valid_until": null,
-              "value": "95.31"
+              "value": "109.61"
             }
           ]
         },
@@ -277,7 +269,7 @@
             {
               "valid_from": "2023-07-01",
               "valid_until": null,
-              "value": "41.55"
+              "value": "49.54"
             }
           ]
         },
@@ -286,7 +278,7 @@
             {
               "valid_from": "2023-07-01",
               "valid_until": null,
-              "value": "41.55"
+              "value": "49.54"
             }
           ]
         },
@@ -295,7 +287,7 @@
             {
               "valid_from": "2023-07-01",
               "valid_until": null,
-              "value": "41.55"
+              "value": "49.54"
             }
           ]
         },
@@ -304,7 +296,7 @@
             {
               "valid_from": "2023-07-01",
               "valid_until": null,
-              "value": "41.55"
+              "value": "49.54"
             }
           ]
         },
@@ -313,7 +305,7 @@
             {
               "valid_from": "2023-07-01",
               "valid_until": null,
-              "value": "41.55"
+              "value": "49.54"
             }
           ]
         },
@@ -322,7 +314,7 @@
             {
               "valid_from": "2023-07-01",
               "valid_until": null,
-              "value": "41.55"
+              "value": "49.54"
             }
           ]
         },
@@ -331,7 +323,7 @@
             {
               "valid_from": "2023-07-01",
               "valid_until": null,
-              "value": "29.07"
+              "value": "34.66"
             }
           ]
         }
@@ -1880,7 +1872,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "47259d8906eded09def3f6a30416705ca8e10ee39d8ca2e84824d1d1a2d267e7",
+    "source_hash": "05681235690105366bfe70addbc943dc255a33d8ee436d6a45d7e33469ccaa8b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2456,6 +2448,28 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-abi-ex-ristrutturazione",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 50, 90, 93, 94, 102, 103 and Allegato 2 (PDF p. 165) of the CCNL ABI 23 November 2023 (FABI text).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+            "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
+          }
+        ],
+        "findings": [
+          "The importo ex ristrutturazione tabellare is owed for each scatto matured ('per ciascuno scatto di anzianità'), with the scatto: added to the amount of each scatto by level.",
+          "It enters the TFR base (art. 90) and is frozen with the scatti (art. 103)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments.amount_by_level"
         ]
       }
     ]
