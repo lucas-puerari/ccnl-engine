@@ -35,6 +35,7 @@ from tests.knowledge.ccnl_engine.contribution.oracles import (
 )
 from tests.knowledge.ccnl_engine.period.builders import (
     CONCIA_D2,
+    FACTS,
     competence_year,
     regular_run,
 )
@@ -315,16 +316,26 @@ def test_agricultural_fixed_term_pays_no_naspi_surcharge() -> None:
         category=WorkerCategory.OPERAIO,
     )
     renewed = FixedTerm(renewals=1, naspi_exclusion=NaspiExclusion.NONE)
-    permanent, _ = _employer(agricultural)
-    fixed_term, result = _employer(replace(agricultural, contract_type=renewed))
-
-    base = next(
-        c.base
-        for c in result.contribution_breakdown.components
-        if c.name == "non_ivs_employer"
+    permanent, open_ended = _employer(agricultural)
+    hours = replace(FACTS, ordinary_hours_worked=ContributableHours(Decimal(169)))
+    result = ENGINE.calculate_period(
+        regular_run(
+            1, employment=replace(agricultural, contract_type=renewed), facts=hours
+        )
     )
-    expected = (base * Decimal("0.0020")).quantize(Decimal("0.01"))
-    assert abs(permanent - fixed_term - expected) <= Decimal("0.01")
+    fixed_term = _account(result, "employer_contributions")
+
+    def _rate(amount: Decimal, run: PeriodResult) -> Decimal:
+        base = next(
+            c.base
+            for c in run.contribution_breakdown.components
+            if c.name == "non_ivs_employer"
+        )
+        return amount / base
+
+    assert abs(
+        _rate(permanent, open_ended) - _rate(fixed_term, result) - Decimal("0.0020")
+    ) < Decimal("0.00002")
     assert not _missing_facts(result)
 
 

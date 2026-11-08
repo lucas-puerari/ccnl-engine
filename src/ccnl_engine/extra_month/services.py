@@ -13,6 +13,8 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.calendar.services import standard_calendar
+from ccnl_engine.compensation.fixed_term.rules import covers
+from ccnl_engine.errors import OutOfScopeError
 from ccnl_engine.extra_month.models import ExtraMonthAccrual
 from ccnl_engine.extra_month.qualification.services import month_accrual_rule
 from ccnl_engine.extra_month.schedule.models import (
@@ -53,6 +55,7 @@ def run_accrual(
     if request.extra_month_accrual is not None:
         return request.extra_month_accrual
     kind = ExtraMonthKind(run.run_kind.value)
+    _reject_folded(request, ccnl, kind)
     standard = standard_calendar(ccnl, run.year, competence)
     max_fraction = next(
         (s.max_fraction for s in standard.extra_months if s.kind is kind),
@@ -66,6 +69,28 @@ def run_accrual(
         rule=month_accrual_rule(ccnl),
         pattern=request.work_pattern,
     )
+
+
+def _reject_folded(
+    request: PeriodCalculationRequest, ccnl: CCNL, kind: ExtraMonthKind
+) -> None:
+    """Refuse an extra month the CCNL pays in a percentage on the hours.
+
+    Raises:
+        OutOfScopeError: For a worker paid by the fixed-term pay of the
+            CCNL (operai agricoli OTD: in the terzo elemento).
+    """
+    level = next((lv for lv in ccnl.levels if lv.code == request.level_code), None)
+    category = request.category or (None if level is None else level.category)
+    if covers(ccnl, category, request.contract_type):
+        msg = f"'{ccnl.meta.ccnl_id}' pays this worker's {kind.value} in a percentage"
+        raise OutOfScopeError(
+            msg,
+            reason="extra_month_in_percentage",
+            feature="base_salary",
+            ruleset=ccnl.meta.ccnl_id,
+            remediation="Do not run the extra month: the hours already pay it.",
+        )
 
 
 def run_schedule(
