@@ -766,7 +766,6 @@
     ],
     "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json": [
       "dirigenza-sanitaria-medico-veterinaria-aran/approximate_hourly_divisor",
-      "dirigenza-sanitaria-medico-veterinaria-aran/complex_structure_allowance",
       "dirigenza-sanitaria-medico-veterinaria-aran/position_pay_missing",
       "dirigenza-sanitaria-medico-veterinaria-aran/specificita_pre_2025_estimated",
       "dirigenza-sanitaria-medico-veterinaria-aran/tabellare_pre_2024_estimated"

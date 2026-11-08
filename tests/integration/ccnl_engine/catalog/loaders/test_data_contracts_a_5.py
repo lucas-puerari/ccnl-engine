@@ -244,11 +244,17 @@ class TestLoadDirigenzaSanitariaMedicoVeterinariaAran:
     def test_dirigenza_sanitaria_medico_veterinaria_aran_specificita_allowance(
         self,
     ) -> None:
-        """DIRIGENTE has one fixed allowance: SPECIFICITA_MEDICO_VETERINARIA."""
+        """Specificità, and the struttura complessa allowance of art. 16."""
         ccnl = load_ccnl("dirigenza-sanitaria-medico-veterinaria-aran")
         lv = ccnl.level_by_code("DIRIGENTE")
-        assert len(lv.fixed_allowances) == 1
-        assert lv.fixed_allowances[0].code == "SPECIFICITA_MEDICO_VETERINARIA"
+        assert [a.code for a in lv.fixed_allowances] == [
+            "SPECIFICITA_MEDICO_VETERINARIA",
+            "IND_DIREZIONE_STRUTTURA_COMPLESSA",
+        ]
+        sc = lv.fixed_allowances[1]
+        assert sc.role == "direttore_sc"
+        assert sc.monthly.value_at(date(2026, 1, 1)) == Decimal("858.23")
+        assert sc.monthly.value_at(date(2023, 1, 1)) == Decimal("809.62")
         assert lv.fixed_allowances[0].monthly.value_at(date(2026, 1, 1)) == Decimal(
             "728.15"
         )
@@ -319,11 +325,17 @@ class TestLoadDirigenzaSanitariaAreaSanitaAran:
     def test_dirigenza_sanitaria_area_sanita_aran_specificita_allowance(
         self,
     ) -> None:
-        """DIRIGENTE has one fixed allowance: SPECIFICITA_SANITARIA (124.19)."""
+        """Specificità (124.19), and the struttura complessa allowance."""
         ccnl = load_ccnl("dirigenza-sanitaria-area-sanita-aran")
         lv = ccnl.level_by_code("DIRIGENTE")
-        assert len(lv.fixed_allowances) == 1
-        assert lv.fixed_allowances[0].code == "SPECIFICITA_SANITARIA"
+        assert [a.code for a in lv.fixed_allowances] == [
+            "SPECIFICITA_SANITARIA",
+            "IND_DIREZIONE_STRUTTURA_COMPLESSA",
+        ]
+        sc = lv.fixed_allowances[1]
+        assert sc.role == "direttore_sc"
+        assert sc.monthly.value_at(date(2026, 1, 1)) == Decimal("858.23")
+        assert sc.monthly.value_at(date(2023, 1, 1)) == Decimal("809.62")
         assert lv.fixed_allowances[0].monthly.value_at(date(2026, 1, 1)) == Decimal(
             "124.19"
         )

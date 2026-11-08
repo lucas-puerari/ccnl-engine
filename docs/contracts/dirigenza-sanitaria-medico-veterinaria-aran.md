@@ -37,7 +37,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, workplace_injury |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 8 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 0 verified / 9 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | single_rate_across_tier_threshold: Verified source PDF SHA-256. Art. 38(10) sets successive nine-, three- and six-month sickness bands. The agreement JSON already declares [1,10) at 1, [10,13) at 0.9, and [13,infinity) at 0.5. SickPayRules.target_rate(index) selects the tier for each sick-day index; classify_days  |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 16 CCNL Area Sanità 27.2.2026 (PDF p. 23) and art. 80 CCNL 23.1.2024 (PDF p. 114), read on the text layer. | confirmed | The indennità di direzione di struttura complessa is 10,525 EUR a year from 2022 and 11,157 EUR from 1 January 2024, on 13 payments, owed to the dirigente with an incarico di direzione di struttura complessa: added with the role 'direttore_sc'. |
 
 ## Salary table
 
@@ -86,13 +87,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Take the retribuzione di posizione (Art. 14) and its Art. 17 guaranteed minimum (note 7) as a worker fact by type of incarico.
-
-!!! warning "dirigenza-sanitaria-medico-veterinaria-aran/complex_structure_allowance · base_salary · impact yes · open"
-    Indennità per incarico di direzione di struttura complessa (Art. 16): 11.157€/anno per 13 mensilità. Non modellata come fixed_allowance — assegnata solo ai direttori di SC, non a tutti i dirigenti.
-
-    **Applies when:** `base_salary` applies.
-
-    **Remediation:** Add the 11.157 EUR/year (13 months) allowance of Art. 16 restricted to a role such as 'direttore_sc' (Allowance.role).
 
 !!! warning "dirigenza-sanitaria-medico-veterinaria-aran/approximate_hourly_divisor · workplace_injury · impact unknown · open"
     Hourly divisor 165 = 38h/settimana × 52/12, arrotondato. Art. 27 CCNL 23.1.2024 (Orario di lavoro dei dirigenti) non modificato dal CCNL 27.02.2026. Il divisore 165 è un'approssimazione — i dirigenti SSN non hanno un orario fisso misurabile.
@@ -294,6 +288,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Rinnovo 2025-2027: ARAN ha convocato primo tavolo il 22/07/2026 presentando quantificazione economica con risorse ordinarie pari al 5,40%. Trattativa in corso al 2026-09-09; nessun accordo firmato. Fonte: consulentidellavoro.vi.it, vet33.it.
     
     PENSION FUND. Perseo Sirio (1% + 1% of the retribuzione utile ai fini del TFR). Enrolment is a fact: the silenzio-assenso of the hires from 2 January 2019 (accordo ARAN 16/09/2021) is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual.
+    
+    Art. 16 CCNL 27.2.2026 (art. 80 CCNL 23.1.2024): the indennità di direzione di struttura complessa, 11,157 EUR a year on 13 payments from 2024 (10,525 from 2022), is paid with the role 'direttore_sc' at 858.23 a month (809.62 before 2024); the yearly amount differs from 13 payments by 1 cent of rounding.
     
     Stipendio tabellare da Art. 11 CCNL 27.02.2026: incremento +230€/mese da 1/1/2024, valore a regime 50.005,77€/anno per 13 mensilità = 3.846,60€/mese. Art. 11 riferisce Art. 61 comma 3 CCNL 23.1.2024 come base preesistente.
     

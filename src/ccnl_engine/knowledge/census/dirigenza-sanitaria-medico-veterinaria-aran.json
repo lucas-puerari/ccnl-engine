@@ -35,22 +35,6 @@
       }
     },
     {
-      "id": "complex_structure_allowance",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "Indennità per incarico di direzione di struttura complessa (Art. 16): 11.157€/anno per 13 mensilità. Non modellata come fixed_allowance — assegnata solo ai direttori di SC, non a tutti i dirigenti.",
-      "calculation": "ccnl/dirigenza-sanitaria-medico-veterinaria-aran:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the 11.157 EUR/year (13 months) allowance of Art. 16 restricted to a role such as 'direttore_sc' (Allowance.role).",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "dirigenza-sanitaria-medico-veterinaria-aran/complex_structure_allowance"
-        ]
-      }
-    },
-    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",
