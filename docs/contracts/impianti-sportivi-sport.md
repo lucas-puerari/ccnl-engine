@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 28 values read identically by both readings and equal to the file. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | integration_75_days_4_20: JSON sickness_rules.day_bands is [4,21) at 0.75 and [21,infinity) at 1; carenza_integration_rate=1, net_basis=true and apprentices_excluded=true. SickPayRules.target_rate(index) selects the matching band and _segment_pay() tops up INPS to that target (does not add 75% on top). Th |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 107 (PDF p. 85, text layer). | confirmed | Art. 107: the festività in a sickness or injury are topped up to 100% of the pay, net of the INPS and INAIL indemnity: sickness_rules.holiday rate 1; the injury part stays a limitation. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay. | confirmed | Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar. |
 
 ## Salary table
 
@@ -155,12 +156,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 103, align the computation, then resolve this limitation.
 
-!!! warning "impianti-sportivi-sport/holiday_during_injury · sickness · impact yes · open"
-    Art. 107 (p. 85): a festività falling in a sickness is topped up to 100% of the daily pay net of the INPS share (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury, and the holidays the CCNL adds to the national calendar (the patron saint).
+!!! warning "impianti-sportivi-sport/local_holiday_during_absence · sickness · impact yes · open"
+    The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Top up the INAIL indemnity of a holiday falling in an injury to 100%, and add the patron saint as an employer fact.
+    **Remediation:** Provide the employer-specific patron saint holiday.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

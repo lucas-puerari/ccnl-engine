@@ -8,9 +8,10 @@ if TYPE_CHECKING:
     from datetime import date
 
     from ccnl_engine.calendar.holiday.models import NationalHolidays
+    from ccnl_engine.sickness.holiday.models import SicknessHoliday
     from ccnl_engine.sickness.integration.models import SicknessRules
 
-__all__ = ["covered_holidays"]
+__all__ = ["covered_holidays", "covered_target_holidays"]
 
 _SUNDAY = 6
 
@@ -27,7 +28,17 @@ def covered_holidays(
     Returns:
         Their dates; none without a holiday target.
     """
-    target = rules.holiday
+    return covered_target_holidays(rules.holiday, calendar, year)
+
+
+def covered_target_holidays(
+    target: SicknessHoliday | None, calendar: NationalHolidays, year: int
+) -> frozenset[date]:
+    """Return the weekday national holidays eligible for this target.
+
+    Returns:
+        The covered dates, or none when no holiday clause is present.
+    """
     if target is None:
         return frozenset()
     covered = calendar.model_copy(

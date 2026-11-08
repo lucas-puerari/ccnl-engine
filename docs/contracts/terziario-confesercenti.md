@@ -69,6 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 53, 203 and 205 of the testo unico of 12 December 2019 (pp. 64, 152-153). | corrected | The apprentice is classified two then one level below with 'il conseguente trattamento economico'; 'il personale ha diritto a dieci scatti triennali' of fixed amounts per level, counting seniority 'dal giorno in cui il lavoratore è entrato a far parte dell'azienda, quali che siano le mansioni': the increments of the level the apprentice is paid at. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 69 of the testo unico 12 dicembre 2019 and the agreement of 2016 it incorporates. Final encoding (dual_apprenticeship JSON) checked against the PDFs by a separate model session (.private flv2). | confirmed | The percentages and the halves of the third level match; the year is read as the contract year and the 10% training share on the qualified-worker pay, which art. 69 and the 2016 agreement do not define.<br>Ambiguous in the text, kept as read: the base of the 10% training share ('di quella che gli sarebbe dovuta'). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 191 (PDF p. 145, text layer). | confirmed | Art. 191: the festività in a sickness or injury are topped up to 100% of the pay, net of the INPS and INAIL indemnity: sickness_rules.holiday rate 1; the injury part stays a limitation. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay. | confirmed | Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar. |
 
 ## Salary table
 
@@ -182,12 +183,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: leave_rules.permit_deadline with the employer fact permit_carryover, read on 2026-11-06.
 
-!!! warning "terziario-confesercenti/holiday_during_injury · sickness · impact yes · open"
-    Art. 191 (p. 145): a festività falling in a sickness is topped up to 100% of the daily pay net of the INPS share (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury, and the holidays the CCNL adds to the national calendar (the patron saint).
+!!! warning "terziario-confesercenti/local_holiday_during_absence · sickness · impact yes · open"
+    The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Top up the INAIL indemnity of a holiday falling in an injury to 100%, and add the patron saint as an employer fact.
+    **Remediation:** Provide the employer-specific patron saint holiday.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

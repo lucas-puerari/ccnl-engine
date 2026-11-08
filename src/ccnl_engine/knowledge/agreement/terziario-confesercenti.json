@@ -4151,15 +4151,15 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 191 (p. 145): a festività falling in a sickness is topped up to 100% of the daily pay net of the INPS share (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury, and the holidays the CCNL adds to the national calendar (the patron saint).",
+        "text": "The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "holiday_during_injury",
+          "variant": "local_holiday_during_absence",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Top up the INAIL indemnity of a holiday falling in an injury to 100%, and add the patron saint as an employer fact."
+          "remediation": "Provide the employer-specific patron saint holiday."
         }
       }
     ]
@@ -4171,7 +4171,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "a2d2b33759987235b61768d1a98e7dab7c5c7cd61ba1a8c603118beb54f2b14e",
+    "source_hash": "4da8713461c337b80c127f7d537f6da7a07d240a99319590a5ed9075ea401189",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5542,6 +5542,66 @@
           "verification_status": "unverified"
         }
       }
+    },
+    "insured_absence": {
+      "injury": {
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "terziario-confesercenti-holiday-clause",
+              "title": "CCNL Terziario, distribuzione e servizi (Confesercenti), testo",
+              "kind": "associazione",
+              "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+              "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+            },
+            "page": "145",
+            "section": "Art. 191 - Festività nel periodo di malattia o infortunio",
+            "quote": "Ai sensi della Legge 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad un’indennità integrativa di quella a carico rispettivamente dell’INPS e dell’INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all’art. 208."
+          },
+          "transformation": "On a covered national weekday holiday during a work injury, employer integration reaches 100% of the daily pay after subtracting INAIL indemnity and the ordinary CCNL integration already due on that day; the clause also covers sickness. The local patron saint is outside the national calendar.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T12:05:09Z",
+            "verified_at": "2026-11-08T12:05:09Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-terziario-confesercenti-injury-holiday",
+            "verified_by": "claude-opus-5-5"
+          }
+        },
+        "holiday": {
+          "rate": "1",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "terziario-confesercenti-holiday-clause",
+                "title": "CCNL Terziario, distribuzione e servizi (Confesercenti), testo",
+                "kind": "associazione",
+                "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+                "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+              },
+              "page": "145",
+              "section": "Art. 191 - Festività nel periodo di malattia o infortunio",
+              "quote": "Ai sensi della Legge 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad un’indennità integrativa di quella a carico rispettivamente dell’INPS e dell’INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all’art. 208."
+            },
+            "transformation": "On a covered national weekday holiday during a work injury, employer integration reaches 100% of the daily pay after subtracting INAIL indemnity and the ordinary CCNL integration already due on that day; the clause also covers sickness. The local patron saint is outside the national calendar.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T12:05:09Z",
+              "verified_at": "2026-11-08T12:05:09Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-terziario-confesercenti-injury-holiday",
+              "verified_by": "claude-opus-5-5"
+            }
+          },
+          "excluded_days": [
+            "10-04"
+          ]
+        }
+      }
     }
   },
   "verification": {
@@ -5791,6 +5851,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-terziario-confesercenti-injury-holiday",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+            "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+          }
+        ],
+        "findings": [
+          "Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.insured_absence.injury.holiday"
         ]
       }
     ],

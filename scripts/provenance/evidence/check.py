@@ -405,7 +405,8 @@ def _review_errors(tier: str, verification: Json) -> Iterator[str]:
 
     From :data:`REVIEW_RECORD_SINCE`, an entry records the sources it read,
     the fields or values it checked and its ``independence``; for a
-    ``production`` CCNL it must not be the run that extracted the values.
+    ``production`` CCNL a confirming review must not be the run that
+    extracted the values; a flagged review can record an unresolved finding.
 
     Yields:
         One reason per incomplete entry.
@@ -419,7 +420,11 @@ def _review_errors(tier: str, verification: Json) -> Iterator[str]:
         for key in ("sources", "checked", "independence"):
             if not review.get(key):
                 yield f"{entry} without {key}"
-        if tier == "production" and review.get("independence") == "same_process":
+        if (
+            tier == "production"
+            and review.get("independence") == "same_process"
+            and review.get("outcome") != "flagged"
+        ):
             yield f"{entry}: production reviewed by the process that extracted it"
 
 

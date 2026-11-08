@@ -73,6 +73,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | The permits of the six-day week, Art. 91 c.2 lett. B (PDF p. 47). | corrected | Art. 91 c.2: 40 hours of reduced time on five days, 66 on six: work_rules.leave_rules.week_days_annual_days[6].permit_hours rol 66. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | six_day_week_leave: Art. 99 grants 26 working days including Saturday for six days, 22 for Monday–Friday. Existing default_annual_days=22 and week_days_annual_days[6]=26 are selected through Employment.full_time_week_days by load_contract/with_week_days and credited by accrue_month. The six-day enti |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 124 (PDF p. 67, text layer). | confirmed | Art. 124: the festività in a sickness or injury are topped up to 100% of the pay, net of the INPS and INAIL indemnity: sickness_rules.holiday rate 1; the injury part stays a limitation. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay. | confirmed | Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar. |
 
 ## Salary table
 
@@ -176,12 +177,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: rol entry_ramp of art. 91 c.4 for the contratto di reimpiego (Permanent.entry_pay), read on 2026-11-06.
 
-!!! warning "studi-professionali-confprofessioni/holiday_during_injury · sickness · impact yes · open"
-    Art. 124 (p. 67): a festività falling in a sickness is topped up to 100% of the daily pay net of the INPS share (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury, and the holidays the CCNL adds to the national calendar (the patron saint).
+!!! warning "studi-professionali-confprofessioni/local_holiday_during_absence · sickness · impact yes · open"
+    The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Top up the INAIL indemnity of a holiday falling in an injury to 100%, and add the patron saint as an employer fact.
+    **Remediation:** Provide the employer-specific patron saint holiday.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

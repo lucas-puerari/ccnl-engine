@@ -361,6 +361,11 @@ _RECORDED: dict[str, object] = {
         ("reviewed", _RECORDED | {"independence": "same_process"}, []),
         (
             "production",
+            _RECORDED | {"independence": "same_process", "outcome": "flagged"},
+            [],
+        ),
+        (
+            "production",
             _RECORDED | {"independence": "same_process"},
             ["review r2: production reviewed by the process that extracted it"],
         ),

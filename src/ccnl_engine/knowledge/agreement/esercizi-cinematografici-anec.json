@@ -48,15 +48,15 @@
     "notes": [
       {
         "kind": "simplification",
-        "text": "Art. 61: the holiday top-up during injury (INAIL), pregnancy and puerperium, Easter Sunday and the local patron saint is not calculated; only national weekday holidays in sickness are covered.",
+        "text": "Art. 61: pregnancy and puerperium holiday top-ups, Easter Sunday and the local patron saint are not calculated; national weekday holidays during sickness and injury are covered.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "holiday_during_injury",
+          "variant": "other_holiday_during_absence",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model injury and maternity holiday treatments and employer-specific and Sunday holiday dates."
+          "remediation": "Provide employer-specific holidays and the remaining absence treatments."
         }
       },
       {
@@ -222,6 +222,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-esercizi-cinematografici-anec-injury-holiday",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+            "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
+          }
+        ],
+        "findings": [
+          "Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.insured_absence.injury.holiday"
         ]
       }
     ]
@@ -2808,7 +2829,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "60b7b02d34ea72318bcf9e5d22cf56f03dcaed80144abd6d36967e0577424342",
+    "source_hash": "c99b11c05f436211d5c97847a996e8876c02065412024d271e43961cc978702b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3325,6 +3346,66 @@
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-11-01T19:22:43Z",
           "verification_status": "unverified"
+        }
+      }
+    },
+    "insured_absence": {
+      "injury": {
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "anec-holiday-2025",
+              "title": "CCNL Esercizi Cinematografici 2023-2026",
+              "kind": "associazione",
+              "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+              "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
+            },
+            "page": "47",
+            "section": "Art. 61 - Festività, sickness paragraph",
+            "quote": "In caso di assenza dovuta a malattia, infortunio, gravidanza e puerperio, nei giorni festivi innanzi elencati l'azienda integrerà il trattamento economico corrisposto dagli istituti assistenziali ed assicurativi fino a raggiungere l'intera retribuzione giornaliera prevista dal 2° comma del presente articolo."
+          },
+          "transformation": "On a covered national weekday holiday during a work injury, employer integration reaches 100% of the daily pay after subtracting INAIL indemnity and the ordinary CCNL integration already due on that day; the clause also covers sickness. The local patron saint is outside the national calendar. Easter Sunday is excluded by the weekday-only holiday calendar.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T12:05:09Z",
+            "verified_at": "2026-11-08T12:05:09Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-esercizi-cinematografici-anec-injury-holiday",
+            "verified_by": "claude-opus-5-5"
+          }
+        },
+        "holiday": {
+          "rate": "1",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "anec-holiday-2025",
+                "title": "CCNL Esercizi Cinematografici 2023-2026",
+                "kind": "associazione",
+                "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
+              },
+              "page": "47",
+              "section": "Art. 61 - Festività, sickness paragraph",
+              "quote": "In caso di assenza dovuta a malattia, infortunio, gravidanza e puerperio, nei giorni festivi innanzi elencati l'azienda integrerà il trattamento economico corrisposto dagli istituti assistenziali ed assicurativi fino a raggiungere l'intera retribuzione giornaliera prevista dal 2° comma del presente articolo."
+            },
+            "transformation": "On a covered national weekday holiday during a work injury, employer integration reaches 100% of the daily pay after subtracting INAIL indemnity and the ordinary CCNL integration already due on that day; the clause also covers sickness. The local patron saint is outside the national calendar. Easter Sunday is excluded by the weekday-only holiday calendar.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T12:05:09Z",
+              "verified_at": "2026-11-08T12:05:09Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-esercizi-cinematografici-anec-injury-holiday",
+              "verified_by": "claude-opus-5-5"
+            }
+          },
+          "excluded_days": [
+            "10-04"
+          ]
         }
       }
     }

@@ -24,6 +24,7 @@ from ccnl_engine.absence.insured.inputs import (
 )
 from ccnl_engine.absence.insured.posting.services import post_lines
 from ccnl_engine.absence.insured.rules import InsuredPay, injury_pay, maternity_pay
+from ccnl_engine.calendar.holiday.loaders import load_national_holidays
 from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
@@ -36,6 +37,7 @@ from ccnl_engine.event.handlers import (
     _EventHandlerCtx,
 )
 from ccnl_engine.pay_item.services import _ZERO
+from ccnl_engine.sickness.holiday.rules import covered_target_holidays
 
 if TYPE_CHECKING:
     from datetime import date
@@ -234,6 +236,11 @@ def _handle_work_injury(event: WorkInjuryEvent, ctx: _EventHandlerCtx) -> EventE
         terms.weekly_hours,
         terms.rates.injury,
         rules,
+        covered_target_holidays(
+            None if rules is None else rules.holiday,
+            load_national_holidays(),
+            span[0].year,
+        ),
     )
     advanced = (
         rules is not None

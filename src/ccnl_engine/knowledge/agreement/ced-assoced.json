@@ -119,15 +119,15 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 149 (p. 97): a festività falling in a sickness is topped up to 100% of the daily pay net of the INPS share (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury, and the holidays the CCNL adds to the national calendar (the patron saint).",
+        "text": "The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "holiday_during_injury",
+          "variant": "local_holiday_during_absence",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Top up the INAIL indemnity of a holiday falling in an injury to 100%, and add the patron saint as an employer fact."
+          "remediation": "Provide the employer-specific patron saint holiday."
         }
       }
     ]
@@ -1894,7 +1894,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "2c7e1e8c87a50caa98080f139682a0b9feae79770cf790df341bbc4f7cfab241",
+    "source_hash": "2b48054ac497664794e311a2c5a953f09c25955b5d2fe3d0db6654cc1b212a3a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2116,6 +2116,66 @@
           "10-04"
         ]
       }
+    },
+    "insured_absence": {
+      "injury": {
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ced-assoced-holiday-clause",
+              "title": "CCNL CED, ICT, professioni digitali e STP, stesura 9 marzo 2022",
+              "kind": "associazione",
+              "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+              "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+            },
+            "page": "97",
+            "section": "Art. 149 - Festività nel periodo di malattia o infortunio",
+            "quote": "Ai sensi della L. 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad un'indennità integrativa di quella a carico rispettivamente dell'INPS e dell'INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all'art. 168."
+          },
+          "transformation": "On a covered national weekday holiday during a work injury, employer integration reaches 100% of the daily pay after subtracting INAIL indemnity and the ordinary CCNL integration already due on that day; the clause also covers sickness. The local patron saint is outside the national calendar.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T12:05:09Z",
+            "verified_at": "2026-11-08T12:05:09Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-ced-assoced-injury-holiday",
+            "verified_by": "claude-opus-5-5"
+          }
+        },
+        "holiday": {
+          "rate": "1",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ced-assoced-holiday-clause",
+                "title": "CCNL CED, ICT, professioni digitali e STP, stesura 9 marzo 2022",
+                "kind": "associazione",
+                "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+                "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+              },
+              "page": "97",
+              "section": "Art. 149 - Festività nel periodo di malattia o infortunio",
+              "quote": "Ai sensi della L. 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad un'indennità integrativa di quella a carico rispettivamente dell'INPS e dell'INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all'art. 168."
+            },
+            "transformation": "On a covered national weekday holiday during a work injury, employer integration reaches 100% of the daily pay after subtracting INAIL indemnity and the ordinary CCNL integration already due on that day; the clause also covers sickness. The local patron saint is outside the national calendar.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T12:05:09Z",
+              "verified_at": "2026-11-08T12:05:09Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-ced-assoced-injury-holiday",
+              "verified_by": "claude-opus-5-5"
+            }
+          },
+          "excluded_days": [
+            "10-04"
+          ]
+        }
+      }
     }
   },
   "verification": {
@@ -2182,6 +2242,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-ced-assoced-injury-holiday",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+            "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+          }
+        ],
+        "findings": [
+          "Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.insured_absence.injury.holiday"
         ]
       }
     ]
