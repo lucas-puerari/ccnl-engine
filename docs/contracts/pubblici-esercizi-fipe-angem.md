@@ -148,11 +148,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Confirm whether the 20% of art. 132 is added to the overtime rate on a festività; if so set the bands to 0.5 and 0.8, else close this note.
 
 !!! warning "pubblici-esercizi-fipe-angem/balneari_diurni_rules · sickness · impact yes · open"
-    BALNEARI AND ALBERGHI DIURNI (artt. 245, 250, 266 of the text of 8 February 2018): for an employer of the sub-sector stabilimenti_balneari or alberghi_diurni (EmployerProfile.subsector) the sickness pays the whole pay for the three days of carenza and 28% of the pay from the employer over the INPS indemnity (work_rules.subsector_rules); the non impiegati of the balneari have the hourly divisor 190 of the 44-hour week. Not modelled: the overtime threshold of the 44-hour week, and the INPS indemnity reduced by INPS (the 28% is added to the rate the engine computes).
+    BALNEARI AND ALBERGHI DIURNI (artt. 245, 250, 266 of the text of 8 February 2018): for an employer of the sub-sector stabilimenti_balneari or alberghi_diurni (EmployerProfile.subsector) the sickness pays the whole pay for the three days of carenza and 28% of the pay from the employer over the INPS indemnity (work_rules.subsector_rules); the non impiegati of the balneari have the hourly divisor 190 of the 44-hour week. The 44-hour week reaches the engine through the divisor alone: the caller states the overtime hours (OvertimeEvent). Not modelled: an INPS indemnity that INPS itself reduces (art. 250 c. 3: the employer does not make up the difference); the 28% is added to the rate the engine computes.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the 44-hour week of the balneari non impiegati in the overtime threshold.
+    **Remediation:** Let the caller state an INPS indemnity reduced by INPS and leave the difference unpaid.
 
 !!! warning "pubblici-esercizi-fipe-angem/guarantee_premium_2027 · base_salary · impact yes · open"
     Art. 13 c. 10 of the renewal of 5 June 2024: the guarantee premium paid with the November 2027 pay to workers without second-level bargaining. The caller pays it as a variable item.
