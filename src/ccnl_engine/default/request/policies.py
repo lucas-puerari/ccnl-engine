@@ -186,6 +186,14 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         _REPORTED,
         "unknown recognised seniority: a missing_fact seniority blocker",
     ),
+    "Employment.holiday_company_offset": requires_fact(
+        "base_salary",
+        "employment.holiday_company_offset",
+        _REPORTED,
+        "unknown company holiday compensation: a Confapi former legal operaio "
+        "with an eligible weekday holiday or weekend Epiphany has a "
+        "missing_fact holiday_company_offset blocker; zero states none",
+    ),
     "Employment.roles": requires_fact(
         "base_salary",
         "employment.roles",

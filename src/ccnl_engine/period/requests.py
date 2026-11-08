@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field, replace
+from dataclasses import dataclass, field
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -28,6 +28,7 @@ from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
 from ccnl_engine.pension_fund.inputs import PENSION_FUND_TYPES
+from ccnl_engine.period.request.opening_state import stated_opening
 from ccnl_engine.period.request.validators import employment_gap
 from ccnl_engine.regime.models import EmploymentSector
 from ccnl_engine.run.types import PeriodId
@@ -104,7 +105,7 @@ class PeriodCalculationRequest:
         weekly_rest_day: Day of the weekly rest, for a CCNL paying a holiday on it.
         seniority: Recognised seniority, aged to the competence month; ``None``
             unknown, a ``missing_fact`` blocker when the level pays on seniority.
-        roles: Role codes of the role-specific allowances, ``None`` unknown.
+        roles: Role codes of allowances and former-worker pay; ``None`` unknown.
         individual_elements: Pay agreed above the CCNL minimum, fixed allowances.
         category: Worker category declared on the employment.  ``None``
             takes the category fixed by the level, if any.  Must match the
@@ -140,6 +141,8 @@ class PeriodCalculationRequest:
             judged to miss them.
         tfr_fund: TFR fund at 31 December of the year before, if known;
             ``tfr_treasury_fund`` whether the TFR goes to the Fondo Tesoreria.
+        holiday_company_offset: Company compensation already paid for eligible
+            former-worker holiday supplements of this month; zero means none.
         erc_amount: Annual ERC of the CCNL grafici editoriali, if known;
             ``public_end_of_service`` the regime of a public employee.
         personal_withholdings: Garnishments and salary assignments notified
@@ -184,6 +187,7 @@ class PeriodCalculationRequest:
     tfr_fund: TfrFundBalance | None = None
     tfr_treasury_fund: bool | None = None
     erc_amount: Decimal | None = None
+    holiday_company_offset: Decimal | None = None
     public_end_of_service: PublicEndOfService | None = None
     personal_withholdings: tuple[PersonalWithholding, ...] = ()
 
@@ -250,14 +254,7 @@ class PeriodCalculationRequest:
             ``opening_state``, with the INPS base of other employments of
             ``current_year`` when it is of the competence year.
         """
-        year, facts = self.period_id.year, self.current_year
-        if facts is None or facts.tax_year != year:
-            return self.opening_state
-        accrual = self.opening_state.accrual
-        base = accrual.inps_base(year).stating_other_employers(
-            facts.other_employment_inps_base
-        )
-        return replace(self.opening_state, accrual=accrual.with_inps_base(base))
+        return stated_opening(self)
 
     def _field_specs(self) -> tuple[FieldSpec, ...]:
         """Return the fields an untyped caller may supply with a wrong type.
@@ -306,6 +303,7 @@ class PeriodCalculationRequest:
             ("tfr_fund", self.tfr_fund, TfrFundBalance, True),
             ("tfr_treasury_fund", self.tfr_treasury_fund, bool, True),
             ("erc_amount", self.erc_amount, Decimal, True),
+            ("holiday_company_offset", self.holiday_company_offset, Decimal, True),
             (
                 "public_end_of_service",
                 self.public_end_of_service,
