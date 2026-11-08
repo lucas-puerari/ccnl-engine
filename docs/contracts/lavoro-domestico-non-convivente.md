@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | assistance_contribution, base_salary, inps_employer, seniority |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -151,6 +151,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; from 2027-01-01.
 
     **Remediation:** Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note.
+
+!!! warning "lavoro-domestico-non-convivente/art34_hourly_allowances · base_salary · impact yes · open"
+    Art. 34 cc. 3, 4, 7 and Tabelle H, I, L (PDF pp. 44, 59): the non live-in worker is owed 0.84 an hour as baby sitter of level B super for children under six, 0.70 an hour at levels C super and D super assisting more than one non self-sufficient person, and the indennità of the UNI 11766:2019 certification (Tabella L prints a monthly 30.27). Not modelled: the ruleset pays a monthly equivalent of the hourly minimi and the hourly allowances would need the hours worked.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Pay the Tabella H and I hourly allowances on the hours worked, and the Tabella L monthly amount, with role gates.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

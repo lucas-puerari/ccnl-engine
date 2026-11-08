@@ -35,14 +35,30 @@
       }
     },
     {
+      "id": "art34_role_conditions",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 34 cc. 3, 4, 7: the role allowances hold while their condition does, which the caller states: 'baby_sitter_under_6' until each child assisted turns six, 'assistenza_piu_non_autosufficienti' while more than one non self-sufficient person is assisted, 'certificazione_uni_11766' while the UNI 11766:2019 certification is valid and was communicated in writing. Each is absorbable by a superminimo of better favour.",
+      "calculation": "ccnl/lavoro-domestico-convivente-orario-ridotto:coverage.notes",
+      "state": "absent",
+      "remediation": "State the age of the children, the persons assisted and the certification as worker facts.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "lavoro-domestico-convivente-orario-ridotto/art34_role_conditions"
+        ]
+      }
+    },
+    {
       "id": "babysitter_and_certification_allowances",
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "NOT MODELLED: students aged 16 to 40 (art. 14 c. 2) at levels other than C, B and B super, for whom Tabella B has no value; the Tabella H indennita of the baby sitter of level B super for children under six (art. 34 c. 3), 97,06 a month for Tabella B workers; the Tabella L indennita of art. 34 c. 7 for certified workers. None of them is paid.",
+      "rule": "NOT MODELLED: students aged 16 to 40 (art. 14 c. 2) at levels other than C, B and B super, for whom Tabella B has no value. The indennità of art. 34 cc. 3 and 7 (Tabelle H 97.06 and L 30.27) are role allowances.",
       "calculation": "ccnl/lavoro-domestico-convivente-orario-ridotto:coverage.notes",
       "state": "absent",
-      "remediation": "Model the Tabella H indennita (97,06 for a B super baby sitter of children under six) and the Tabella L indennita of certified workers as role-gated allowances (Allowance.role); the Tabella L one applies at any level.",
+      "remediation": "Source the Tabella B values of the other levels.",
       "origin": "seeded",
       "links": {
         "limitations": [

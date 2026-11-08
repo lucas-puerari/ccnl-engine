@@ -54,7 +54,7 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED: students aged 16 to 40 (art. 14 c. 2) at levels other than C, B and B super, for whom Tabella B has no value; the Tabella H indennita of the baby sitter of level B super for children under six (art. 34 c. 3), 97,06 a month for Tabella B workers; the Tabella L indennita of art. 34 c. 7 for certified workers. None of them is paid.",
+        "text": "NOT MODELLED: students aged 16 to 40 (art. 14 c. 2) at levels other than C, B and B super, for whom Tabella B has no value. The indennità of art. 34 cc. 3 and 7 (Tabelle H 97.06 and L 30.27) are role allowances.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -65,7 +65,7 @@
               "BS"
             ]
           },
-          "remediation": "Model the Tabella H indennita (97,06 for a B super baby sitter of children under six) and the Tabella L indennita of certified workers as role-gated allowances (Allowance.role); the Tabella L one applies at any level."
+          "remediation": "Source the Tabella B values of the other levels."
         }
       },
       {
@@ -194,6 +194,19 @@
             "effective_from": "2027-01-01"
           },
           "remediation": "Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 34 cc. 3, 4, 7: the role allowances hold while their condition does, which the caller states: 'baby_sitter_under_6' until each child assisted turns six, 'assistenza_piu_non_autosufficienti' while more than one non self-sufficient person is assisted, 'certificazione_uni_11766' while the UNI 11766:2019 certification is valid and was communicated in writing. Each is absorbable by a superminimo of better favour.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "art34_role_conditions",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "State the age of the children, the persons assisted and the certification as worker facts."
         }
       }
     ]
@@ -529,6 +542,72 @@
             },
             "transformation": "(2.33 + 2.33 + 2.00) x 30 = 199.80"
           }
+        },
+        {
+          "code": "IND_CERTIFICAZIONE_UNI",
+          "description": "Indennità della certificazione UNI 11766:2019 (art. 34 c. 7)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "30.27",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-lavoro-domestico-2025",
+                      "title": "CCNL sulla disciplina del rapporto di lavoro domestico, testo 2025 (Assindatcolf)",
+                      "kind": "associazione",
+                      "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                      "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+                    },
+                    "page": "44, 59",
+                    "section": "Art. 34 c. 7; Tabella L (minimi dal 1° gennaio 2026)",
+                    "quote": "Al lavoratore inquadrato nei livelli B), B super) e C super) in possesso della certificazione di qualità di cui alla norma tecnica UNI 11766:2019 in corso di validità, è dovuta l’indennità mensile di cui alla tabella L). Tale indennità è assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti dal lavoratore. [Tabella L: 30,27]"
+                  },
+                  "transformation": "EUR 30.27 a month (Tabella L) with the role 'certificazione_uni_11766' while the certification is valid and communicated. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T03:30:00Z",
+                    "effective_from": "2026-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T03:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-lavoro-domestico-convivente-orario-ridotto-art34-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "certificazione_uni_11766",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-lavoro-domestico-2025",
+                "title": "CCNL sulla disciplina del rapporto di lavoro domestico, testo 2025 (Assindatcolf)",
+                "kind": "associazione",
+                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+              },
+              "page": "44, 59",
+              "section": "Art. 34 c. 7; Tabella L (minimi dal 1° gennaio 2026)",
+              "quote": "Al lavoratore inquadrato nei livelli B), B super) e C super) in possesso della certificazione di qualità di cui alla norma tecnica UNI 11766:2019 in corso di validità, è dovuta l’indennità mensile di cui alla tabella L). Tale indennità è assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti dal lavoratore. [Tabella L: 30,27]"
+            },
+            "transformation": "EUR 30.27 a month (Tabella L) with the role 'certificazione_uni_11766' while the certification is valid and communicated. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T03:30:00Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T03:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-lavoro-domestico-convivente-orario-ridotto-art34-allowances"
+            }
+          }
         }
       ],
       "category": null,
@@ -637,6 +716,138 @@
               "review_id": "2026-10-12-ai"
             },
             "transformation": "(2.33 + 2.33 + 2.00) x 30 = 199.80"
+          }
+        },
+        {
+          "code": "IND_BABYSITTER",
+          "description": "Indennità del baby sitter B super, bambini sotto i sei anni (art. 34 c. 3)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "97.06",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-lavoro-domestico-2025",
+                      "title": "CCNL sulla disciplina del rapporto di lavoro domestico, testo 2025 (Assindatcolf)",
+                      "kind": "associazione",
+                      "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                      "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+                    },
+                    "page": "44, 59",
+                    "section": "Art. 34 c. 3; Tabella H (minimi dal 1° gennaio 2026)",
+                    "quote": "Sino al compimento del sesto anno di età di ciascun bambino assistito, l’assistente familiare inquadrata nel profilo B Super), lett. b) (baby sitter) avrà diritto a percepire, oltre al minimo retributivo di cui all’art. 35, anche l’indennità mensile di cui alla successiva tabella H). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore. [Tabella H: 97,06]"
+                  },
+                  "transformation": "EUR 97.06 a month (Tabella H, the column of the Tabella B workers) with the role 'baby_sitter_under_6', while a child assisted is under six. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T03:30:00Z",
+                    "effective_from": "2026-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T03:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-lavoro-domestico-convivente-orario-ridotto-art34-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "baby_sitter_under_6",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-lavoro-domestico-2025",
+                "title": "CCNL sulla disciplina del rapporto di lavoro domestico, testo 2025 (Assindatcolf)",
+                "kind": "associazione",
+                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+              },
+              "page": "44, 59",
+              "section": "Art. 34 c. 3; Tabella H (minimi dal 1° gennaio 2026)",
+              "quote": "Sino al compimento del sesto anno di età di ciascun bambino assistito, l’assistente familiare inquadrata nel profilo B Super), lett. b) (baby sitter) avrà diritto a percepire, oltre al minimo retributivo di cui all’art. 35, anche l’indennità mensile di cui alla successiva tabella H). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore. [Tabella H: 97,06]"
+            },
+            "transformation": "EUR 97.06 a month (Tabella H, the column of the Tabella B workers) with the role 'baby_sitter_under_6', while a child assisted is under six. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T03:30:00Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T03:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-lavoro-domestico-convivente-orario-ridotto-art34-allowances"
+            }
+          }
+        },
+        {
+          "code": "IND_CERTIFICAZIONE_UNI",
+          "description": "Indennità della certificazione UNI 11766:2019 (art. 34 c. 7)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "30.27",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-lavoro-domestico-2025",
+                      "title": "CCNL sulla disciplina del rapporto di lavoro domestico, testo 2025 (Assindatcolf)",
+                      "kind": "associazione",
+                      "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                      "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+                    },
+                    "page": "44, 59",
+                    "section": "Art. 34 c. 7; Tabella L (minimi dal 1° gennaio 2026)",
+                    "quote": "Al lavoratore inquadrato nei livelli B), B super) e C super) in possesso della certificazione di qualità di cui alla norma tecnica UNI 11766:2019 in corso di validità, è dovuta l’indennità mensile di cui alla tabella L). Tale indennità è assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti dal lavoratore. [Tabella L: 30,27]"
+                  },
+                  "transformation": "EUR 30.27 a month (Tabella L) with the role 'certificazione_uni_11766' while the certification is valid and communicated. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T03:30:00Z",
+                    "effective_from": "2026-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T03:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-09-ai-lavoro-domestico-convivente-orario-ridotto-art34-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "certificazione_uni_11766",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-lavoro-domestico-2025",
+                "title": "CCNL sulla disciplina del rapporto di lavoro domestico, testo 2025 (Assindatcolf)",
+                "kind": "associazione",
+                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+              },
+              "page": "44, 59",
+              "section": "Art. 34 c. 7; Tabella L (minimi dal 1° gennaio 2026)",
+              "quote": "Al lavoratore inquadrato nei livelli B), B super) e C super) in possesso della certificazione di qualità di cui alla norma tecnica UNI 11766:2019 in corso di validità, è dovuta l’indennità mensile di cui alla tabella L). Tale indennità è assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti dal lavoratore. [Tabella L: 30,27]"
+            },
+            "transformation": "EUR 30.27 a month (Tabella L) with the role 'certificazione_uni_11766' while the certification is valid and communicated. Absorbable by an individual superminimo: the caller states the superminimo net of the absorbed part.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T03:30:00Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T03:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-lavoro-domestico-convivente-orario-ridotto-art34-allowances"
+            }
           }
         }
       ],
@@ -785,7 +996,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "a4d7c356524b2e776bf91338d68983b2a91bd2cea82cb24bc133b74e3c76dd07",
+    "source_hash": "af690b32499b74a3291404f795217c7902ccf858cc68f78574b2c01585bd3d64",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },
@@ -1189,6 +1400,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.leave_rules"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-lavoro-domestico-convivente-orario-ridotto-art34-allowances",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 34 cc. 3, 4, 7 (PDF pp. 44-45) and the Tabelle H, I, L of the minimi from 1 January 2026 (PDF p. 59), text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+          }
+        ],
+        "findings": [
+          "Tabella H: B super baby sitter 138.54 a month (live-in), 97.06 (Tabella B workers), 0.84 an hour; Tabella I: C super and D super assisting more than one non self-sufficient person 119.66 a month, 0.70 an hour; Tabella L: B, B super and C super with the UNI 11766:2019 certification 30.27 a month: role allowances of the levels of this ruleset."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels[].fixed_allowances"
         ]
       }
     ],
