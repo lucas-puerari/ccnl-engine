@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, sickness |
+| **Limits of this contract** | base_salary, maternity_leave, sickness |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -74,6 +74,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | six_day_week_leave: Art. 99 grants 26 working days including Saturday for six days, 22 for Monday–Friday. Existing default_annual_days=22 and week_days_annual_days[6]=26 are selected through Employment.full_time_week_days by load_contract/with_week_days and credited by accrue_month. The six-day enti |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 124 (PDF p. 67, text layer). | confirmed | Art. 124: the festività in a sickness or injury are topped up to 100% of the pay, net of the INPS and INAIL indemnity: sickness_rules.holiday rate 1; the injury part stays a limitation. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 110(8), PDF p. 56: weekday holiday top-up during compulsory maternity and paternity. | confirmed | Verified the quoted clause against the cached PDF; encoded only the compulsory maternity holiday target. |
+| 2026-11-08 | gpt-6-sol (ai) | The maternity holiday clause against the encoding, by a separate model session. | corrected | Confirmed the 100% target net of the INPS share on the holidays of the compulsory leave.<br>Recorded as limitation maternity_holiday_scope: the Sunday holidays, the patron saint and 4 October. |
 
 ## Salary table
 
@@ -176,6 +177,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Top up the INAIL indemnity of a holiday falling in an injury to 100%, and add the patron saint as an employer fact.
+
+!!! warning "studi-professionali-confprofessioni/maternity_holiday_scope · maternity_leave · impact yes · open"
+    The holiday target applies on the weekday national holidays: a holiday on a Sunday (paid by its own quota), the patron saint and 4 October (a holiday from 2026, which the text, signed before, does not list) are not topped up; 'festività cadenti' covers them in the text.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Top up the holidays the clause covers beyond the weekday national calendar, and the items above.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

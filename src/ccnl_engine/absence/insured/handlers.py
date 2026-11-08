@@ -24,7 +24,6 @@ from ccnl_engine.absence.insured.inputs import (
 )
 from ccnl_engine.absence.insured.posting.services import post_lines
 from ccnl_engine.absence.insured.rules import InsuredPay, injury_pay, maternity_pay
-from ccnl_engine.calendar.holiday.loaders import load_national_holidays
 from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
@@ -196,7 +195,7 @@ def _handle_maternity_leave(
         rules,
         base.rmgg,
         (
-            load_national_holidays().between(*span)
+            rules.holiday.holidays(*span)
             if rules is not None and rules.holiday is not None
             else frozenset()
         ),

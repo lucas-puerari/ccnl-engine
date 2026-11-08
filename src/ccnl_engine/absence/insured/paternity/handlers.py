@@ -21,7 +21,6 @@ from ccnl_engine.absence.insured.handlers import (
 )
 from ccnl_engine.absence.insured.paternity.rules import paternity_pay
 from ccnl_engine.absence.insured.posting.services import post_lines
-from ccnl_engine.calendar.holiday.loaders import load_national_holidays
 
 if TYPE_CHECKING:
     from ccnl_engine.absence.insured.inputs import PaternityLeaveEvent
@@ -72,7 +71,7 @@ def _handle_paternity_leave(
         terms.rates.paternity,
         base.rmgg,
         holiday,
-        load_national_holidays().between(*span) if holiday is not None else frozenset(),
+        holiday.holidays(*span) if holiday is not None else frozenset(),
     )
     effect = post_lines(
         (

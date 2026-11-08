@@ -145,3 +145,22 @@ def test_no_paternity_top_up_outside_the_leave_days() -> None:
         load_national_holidays().between(date(2026, 5, 1), date(2026, 5, 4)),
     )
     assert result.integration == Decimal(0)
+
+
+def _ced_holiday() -> MaternityHoliday:
+    rules = load_ccnl("ced-assoced").work_rules
+    assert rules is not None
+    assert rules.insured_absence is not None
+    assert rules.insured_absence.maternity is not None
+    holiday = rules.insured_absence.maternity.holiday
+    assert holiday is not None
+    return holiday
+
+
+def test_the_holidays_of_the_clause_leave_out_the_excluded_codes() -> None:
+    """4 October 2027 is a Monday: in the calendar, not in CED (10-04 excluded)."""
+    ced = _ced_holiday()
+    every = ced.model_copy(update={"excluded_days": ()})
+    october = (date(2027, 10, 1), date(2027, 10, 31))
+    assert every.holidays(*october) == frozenset({date(2027, 10, 4)})
+    assert ced.holidays(*october) == frozenset()
