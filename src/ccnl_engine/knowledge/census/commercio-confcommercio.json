@@ -51,6 +51,22 @@
       }
     },
     {
+      "id": "holiday_during_injury",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 191 requires the INPS sickness benefit plus employer integration to reach 100% of the actual daily pay on a holiday, but no sickness_rules.holiday target is encoded: the net-basis integration of art. 187 grosses up the INPS benefit before subtracting it from the gross target, leaving the worker below 100%. Art. 154 lists all national-calendar holidays except 4 October (added in 2026); the patron saint is not in the national calendar. Injury holiday integration with INAIL is also not calculated.",
+      "calculation": "ccnl/commercio-confcommercio:coverage.notes",
+      "state": "absent",
+      "remediation": "Provide a gross-pay holiday target distinct from the net-basis art. 187 sickness integration and calculate the INAIL holiday top-up and local patron saint holiday.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "commercio-confcommercio/holiday_during_injury"
+        ]
+      }
+    },
+    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",
