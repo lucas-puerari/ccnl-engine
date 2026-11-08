@@ -39,10 +39,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 13 c. 10 of the renewal of 5 June 2024: the guarantee premium paid with the November 2027 pay to workers without second-level bargaining. The caller pays it as a variable item.",
+      "rule": "Art. 13 c. 10 of the renewal of 5 June 2024 (p. 7): the amounts of November 2027 (A and B 186, 1-3 158, 4-5 140, 6S-7 112) are parameters.equalisation_element. Approximated: the trigger, read from the second-level facts of 2026 where the text asks whether an agreement on the premio di risultato was defined by 31 October 2026 after a platform was presented; the proportion to the days actually worked in 2026, counted in months of more than 15 days; the absorption of comma 8, which takes any individual or collective treatment granted after 1 June 2024, the engine deducting only the individual elements. Not modelled: the welfare alternative of comma 11 and the crisis exemption of comma 13.",
       "calculation": "ccnl/pubblici-esercizi-fipe-angem-ristorazione-collettiva:coverage.notes",
       "state": "absent",
-      "remediation": "Model the 2027 guarantee premium as a conditional allowance.",
+      "remediation": "State the comma 10 condition and the days worked in 2026 as facts, take every treatment granted after 1 June 2024 into the absorption, and model commi 11 and 13.",
       "origin": "seeded",
       "links": {
         "limitations": [

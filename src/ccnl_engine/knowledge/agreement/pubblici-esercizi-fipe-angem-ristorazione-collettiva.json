@@ -112,15 +112,17 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 13 c. 10 of the renewal of 5 June 2024: the guarantee premium paid with the November 2027 pay to workers without second-level bargaining. The caller pays it as a variable item.",
+        "text": "Art. 13 c. 10 of the renewal of 5 June 2024 (p. 7): the amounts of November 2027 (A and B 186, 1-3 158, 4-5 140, 6S-7 112) are parameters.equalisation_element. Approximated: the trigger, read from the second-level facts of 2026 where the text asks whether an agreement on the premio di risultato was defined by 31 October 2026 after a platform was presented; the proportion to the days actually worked in 2026, counted in months of more than 15 days; the absorption of comma 8, which takes any individual or collective treatment granted after 1 June 2024, the engine deducting only the individual elements. Not modelled: the welfare alternative of comma 11 and the crisis exemption of comma 13.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "guarantee_premium_2027",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "outside_input",
+            "effective_from": "2027-11-01",
+            "effective_until": "2027-12-01"
           },
-          "remediation": "Model the 2027 guarantee premium as a conditional allowance."
+          "remediation": "State the comma 10 condition and the days worked in 2026 as facts, take every treatment granted after 1 June 2024 into the absorption, and model commi 11 and 13."
         }
       },
       {
@@ -491,7 +493,52 @@
           "note": "No worker share in this CCNL (unlike TDS). Alternative valid_from = CCNL 2018 signature (exact start not stated in the clause). Art. 186 c. 3 enrols the workers 'dipendenti da aziende dei Settori', ristorazione collettiva included (OCR of p. 17 read on 2026-11-05)."
         }
       }
-    ]
+    ],
+    "equalisation_element": {
+      "code": "PREMIO_GARANZIA_2027",
+      "yearly_by_level": {
+        "Qa": "186",
+        "Qb": "186",
+        "1": "158",
+        "2": "158",
+        "3": "158",
+        "4": "140",
+        "5": "140",
+        "6s": "112",
+        "6": "112",
+        "7": "112"
+      },
+      "paid_in_month": 11,
+      "paid_in_year": 2027,
+      "in_service_month_before": true,
+      "part_time_proportional": true,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "pe2024",
+            "title": "CCNL Pubblici Esercizi FIPE, accordo di rinnovo 5 giugno 2024 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://www.fipe.it/wp-content/uploads/2024/06/Contratto-CCNL-05_06_24.pdf",
+            "sha256": "b133dcca1351c72309389e53eeea21cb9b0459c82736423749206d6f11235c43"
+          },
+          "page": "7",
+          "section": "Art. 13 commi 5-10 - Premio di risultato, elemento di garanzia",
+          "quote": "(10) Qualora, nonostante la presentazione di una piattaforma integrativa ai sensi delle disposizioni dei precedenti articoli, non venga definito un accordo sul premio di risultato entro il 31 ottobre 2026, il datore di lavoro erogherà, con la retribuzione del mese di novembre 2027, i seguenti importi: A, B 186,00; 1, 2, 3 158,00; 4, 5 140,00; 6S, 6, 7 112,00. Si applicano a tali importi le disposizioni di cui ai commi 5, 6, 7 e 8 del presente articolo."
+        },
+        "transformation": "Paid with the November 2027 pay to the worker in service in October 2027 with six months of service (commi 5 and 10), in proportion to a part-time (comma 6), outside the TFR and every institute (comma 7). Approximations, kept under the limitation guarantee_premium_2027: the condition 'non venga definito un accordo sul premio di risultato entro il 31 ottobre 2026' is read from the employer's second-level facts of 2026 (EmployerProfile.second_level_premium, second_level_elements); the proportion 'alle giornate di effettiva prestazione' of 2026 is counted in months with more than 15 days of service; the absorption of comma 8 (treatments granted after 1 June 2024) deducts only the individual elements of the run.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T21:00:00Z",
+          "effective_from": "2027-11-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T21:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-pubblici-esercizi-fipe-angem-ristorazione-collettiva-guarantee-premium-2027"
+        }
+      }
+    }
   },
   "levels": [
     {
@@ -2646,7 +2693,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "ab1f3446817815c885c0408730cc8133992630bb1ac9e091168c81e28726d15b",
+    "source_hash": "1265cf84f9c10274e151d47086faea55386696418b996b894543e19db84d7044",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3606,6 +3653,28 @@
         "independence": "separate_session",
         "checked": [
           "parameters.health_funds"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-pubblici-esercizi-fipe-angem-ristorazione-collettiva-guarantee-premium-2027",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 13 commi 5-13 of the renewal of 5 June 2024 (pp. 6-8).",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://www.fipe.it/wp-content/uploads/2024/06/Contratto-CCNL-05_06_24.pdf",
+            "sha256": "b133dcca1351c72309389e53eeea21cb9b0459c82736423749206d6f11235c43"
+          }
+        ],
+        "findings": [
+          "Art. 13 c. 10: 186 (A, B), 158 (1-3), 140 (4-5), 112 (6S-7) with the November 2027 pay, with commi 5-8: as Federalberghi, but the absorption from 1 June 2024 and no territorial floor (c. 14).",
+          "Approximations kept under guarantee_premium_2027: trigger of c. 10, days worked of c. 5, absorption of c. 8."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.equalisation_element"
         ]
       }
     ],

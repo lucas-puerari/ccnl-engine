@@ -75,6 +75,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Maternity top-up (art. 200, 2024 renewal) and work injury (arts. 191, 193, 2018 text), read by a separate model session and checked on the page images (no text layer). | confirmed | Added work_rules.insured_absence.maternity and .injury.<br>Injury: the research omitted the top-up of art. 191 c. 4 (to 100% from the day of the injury); added from the page image. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | contract_catering_tranche_dates: 2018 art. 1(1) II covers catering/collective catering; signed 2024 table specifies September 2025 and September 2026 for that scope. The caller-selected sibling pubblici-esercizi-fipe-angem-ristorazione-collettiva.json stores all ten levels with June 2024 -> September 2025 -> Sep |
 | 2026-11-08 | gpt-6-sol (ai) | Artt. 160, 245, 250, 266 of the signed text of 8 February 2018 (scanned, PDF pp. 116, 166-168, 175-176), read on the page images by a separate model session; art. 250 also by the extraction session. | corrected | Added work_rules.subsector_rules for stabilimenti_balneari and alberghi_diurni: carenza paid in full, 28% employer share over INPS, divisor 190 for the balneari non impiegati. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 13 commi 5-13 of the renewal of 5 June 2024 (pp. 6-8). | flagged | Art. 13 c. 10: 186 (A, B), 158 (1-3), 140 (4-5), 112 (6S-7) with the November 2027 pay, with commi 5-8: as Federalberghi, but the absorption from 1 June 2024 and no territorial floor (c. 14).<br>Approximations kept under guarantee_premium_2027: trigger of c. 10, days worked of c. 5, absorption of c. 8. |
 
 ## Salary table
 
@@ -155,11 +156,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Let the caller state an INPS indemnity reduced by INPS and leave the difference unpaid.
 
 !!! warning "pubblici-esercizi-fipe-angem/guarantee_premium_2027 · base_salary · impact yes · open"
-    Art. 13 c. 10 of the renewal of 5 June 2024: the guarantee premium paid with the November 2027 pay to workers without second-level bargaining. The caller pays it as a variable item.
+    Art. 13 c. 10 of the renewal of 5 June 2024 (p. 7): the amounts of November 2027 (A and B 186, 1-3 158, 4-5 140, 6S-7 112) are parameters.equalisation_element. Approximated: the trigger, read from the second-level facts of 2026 where the text asks whether an agreement on the premio di risultato was defined by 31 October 2026 after a platform was presented; the proportion to the days actually worked in 2026, counted in months of more than 15 days; the absorption of comma 8, which takes any individual or collective treatment granted after 1 June 2024, the engine deducting only the individual elements. Not modelled: the welfare alternative of comma 11 and the crisis exemption of comma 13.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the 2027 guarantee premium as a conditional allowance.
+    **Remediation:** State the comma 10 condition and the days worked in 2026 as facts, take every treatment granted after 1 June 2024 into the absorption, and model commi 11 and 13.
 
 !!! warning "pubblici-esercizi-fipe-angem/balneari_and_seasonal_hours · leave · impact yes · open"
     LEAVE, STABILIMENTI BALNEARI (Art. 114 cc.2 and 4): 108 hours a year and 38 more hours after two years for the new hires, instead of 104 and 36; the seasonal contracts of Artt. 89-90 keep the whole reduction. The engine accrues the hours of the generalità.
