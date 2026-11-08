@@ -967,12 +967,14 @@
     "agreement/logistica-trasporto-confetra-viaggiante.json": [
       "logistica-trasporto-confetra-viaggiante/edr_2021_in_daily_base",
       "logistica-trasporto-confetra-viaggiante/holiday_during_injury",
+      "logistica-trasporto-confetra-viaggiante/magazzini_generali_holiday_in_sickness",
       "logistica-trasporto-confetra-viaggiante/travelling_allowances"
     ],
     "agreement/logistica-trasporto-confetra.json": [
       "logistica-trasporto-confetra/edr_2021_in_daily_base",
       "logistica-trasporto-confetra/holiday_during_injury",
       "logistica-trasporto-confetra/level_6j_2025",
+      "logistica-trasporto-confetra/magazzini_generali_holiday_in_sickness",
       "logistica-trasporto-confetra/maternity_sixth_month",
       "logistica-trasporto-confetra/sixth_day_overtime"
     ],

@@ -45,23 +45,11 @@ def _may(
     }
 
 
-def test_logistica_sedentary_holiday_top_up() -> None:
-    """One holiday: daily target 56.36 less half-rate 28.18 = 28.18 extra."""
+def test_logistica_holiday_is_not_topped_up_outside_its_section() -> None:
+    """Art. 71 c. 5 is of the ex Magazzini Generali employers: no top-up."""
     assert _may("logistica-trasporto-confetra", "4", WorkerCategory.OPERAIO) == {
         "abs": Decimal("507.13"),
         "inps": Decimal("338.05"),
-        "intg": Decimal("28.18"),
-    }
-
-
-def test_logistica_travelling_holiday_top_up() -> None:
-    """One holiday: daily target 49.94 less half-rate 24.97 = 24.97 extra."""
-    assert _may(
-        "logistica-trasporto-confetra-viaggiante", "I110", WorkerCategory.OPERAIO
-    ) == {
-        "abs": Decimal("449.44"),
-        "inps": Decimal("299.60"),
-        "intg": Decimal("24.97"),
     }
 
 

@@ -83,6 +83,22 @@
       }
     },
     {
+      "id": "magazzini_generali_holiday_in_sickness",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 71 c. 5 (Parte speciale, Sezione seconda, PDF p. 92): the top-up to 100% of the holidays in a sickness or injury applies only to the employers that came from the CCNL Magazzini Generali, a fact the request does not state: not applied.",
+      "calculation": "ccnl/logistica-trasporto-confetra-viaggiante:coverage.notes",
+      "state": "absent",
+      "remediation": "State whether the employer applies the Sezione seconda (ex Magazzini Generali) and apply the holiday target of art. 71 c. 5 then.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "logistica-trasporto-confetra-viaggiante/magazzini_generali_holiday_in_sickness"
+        ]
+      }
+    },
+    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",

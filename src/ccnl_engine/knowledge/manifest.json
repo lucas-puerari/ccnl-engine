@@ -371,7 +371,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/ced-assoced",
       "ruleset_version": "2026.2",
-      "source_hash": "089bb9c335043dfec4c6a1005d03dd2e0e69397f0017fcfd52ef35b19261af8f",
+      "source_hash": "2c7e1e8c87a50caa98080f139682a0b9feae79770cf790df341bbc4f7cfab241",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/ced-assoced.json.gz"
@@ -881,7 +881,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/esercizi-cinematografici-anec",
       "ruleset_version": "2026.2",
-      "source_hash": "e74f3d31e624859264932e5366babe8b42fcc45844700511f165980f05d0df56",
+      "source_hash": "60b7b02d34ea72318bcf9e5d22cf56f03dcaed80144abd6d36967e0577424342",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/esercizi-cinematografici-anec.json.gz"
@@ -1156,7 +1156,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/impianti-sportivi-sport",
       "ruleset_version": "2024.1",
-      "source_hash": "5d8a4d10e1e4a23d1ab6fbc6721dd2df6e7f8f9539de7d299dd2f47cf4ed32f9",
+      "source_hash": "76c4c08b9c3872dc35a1b2919d13b20f145a96777b5689ecdea6e27c6b3851ff",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/impianti-sportivi-sport.json.gz"
@@ -1394,7 +1394,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra-viaggiante",
       "ruleset_version": "2026.2",
-      "source_hash": "7fcc47270a0522d3040b5616e9dd6258ee73b73142c264f7a0eab1874c47cf85",
+      "source_hash": "a8b12b2a081b85244827d37d8046439d737f684f19ef4716deacd172821c6d54",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/logistica-trasporto-confetra-viaggiante.json.gz"
@@ -1411,7 +1411,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/logistica-trasporto-confetra",
       "ruleset_version": "2026.2",
-      "source_hash": "7822569b2b1f8c87622ed78a1d842dd9228adf913223728e5c1e0dd568140784",
+      "source_hash": "3f82c68b73014b682ac91767713a5cf3823f4e6808d7dca940564668e479096a",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/logistica-trasporto-confetra.json.gz"
@@ -2023,7 +2023,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/studi-professionali-confprofessioni",
       "ruleset_version": "2026.2",
-      "source_hash": "fd756976a5963034fa60357c340f35d10dbf6b70b5dc1ceaeab1272ff55dff23",
+      "source_hash": "b43ad2a69db50ea5b153b520051b3193d47cee4a60029d719b69bfb67c3b454c",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/studi-professionali-confprofessioni.json.gz"
@@ -2074,7 +2074,7 @@
       "valid_to": "2027-03-31",
       "ruleset_id": "ccnl/terziario-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "c3ee815ac4477c48f10ebf903794868e51214488721ab50076b3001b21339419",
+      "source_hash": "a2d2b33759987235b61768d1a98e7dab7c5c7cd61ba1a8c603118beb54f2b14e",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/terziario-confesercenti.json.gz"
@@ -4021,7 +4021,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "7123626c0a754beb1fdd72e44c815d7920eaeaf6f1a3bb3d1971848a7fb88454",
+      "source_hash": "c80e0579165d6a76ea228f79542ef6a7301f4ecb8a360712eb9a7a10890b6b83",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/logistica-trasporto-confetra-viaggiante.json.gz",
@@ -4041,7 +4041,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "4d440af58fb63c8eee351d69468e1bda627bce19e5b49be4ac0e545db45919d8",
+      "source_hash": "88a7e0147cc8e44136c33e30bf579bf003630e37e782359b901def469dbfd746",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/logistica-trasporto-confetra.json.gz",
