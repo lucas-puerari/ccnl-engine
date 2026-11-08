@@ -44,6 +44,13 @@ _CATALOG = load_capability_catalog(2026)
 
 #: ``requires_fact`` fields without a case, and why.
 _NOT_EXERCISED: dict[str, str] = {
+    "Employment.level_started_on": (
+        "only the Confetra 6J level before 2026 reads this date, but this "
+        "registry's period pairs run in 2026 (the bundle has no 2025 tax "
+        "tables); tests/mutation/ccnl_engine/compensation/element/"
+        "test_level_transition.py exercises the missing-fact issue and "
+        "its absence after the mandatory cutoff"
+    ),
     "InpsSicknessBase.full_month_pay": (
         "read only for an impiegato whose month before the illness was not "
         "worked in full; the cases run an operaio of industria, and INPS does "

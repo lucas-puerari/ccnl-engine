@@ -62,21 +62,19 @@ class PeriodCalculationRequest:
             (:class:`~ccnl_engine.calendar.tax_year.rules.TaxYearPolicy`),
             and is propagated to every ledger entry and pay item.
         ccnl_id: Slug (``metalmeccanico-federmeccanica``) or CNEL code (``E042``).
-        level_code: Worker's contractual level code, e.g. ``C3``.
+        level_code: Contractual level code, e.g. ``C3``.
+        level_started_on: Date the worker entered the level, if known.
         opening_state: State entering this period, with the history of
             the employment.  :meth:`PeriodState.zero` is the fact only for
             the first run of an employment whose start is stated; use
             :func:`~ccnl_engine.year.tax_year.closing.rules.close_tax_year` for the
-            first run of a later tax year.  A state that
-            misses the history gives a ``missing_fact opening_state`` issue
-            (:mod:`~ccnl_engine.balance.opening.rules`).
+            first run of a later tax year.  Missing history gives a
+            ``missing_fact opening_state`` issue.
         employer: The employer; its headcount resolves INPS rates (some
-            rates differ by firm size) and its activity the regimes that
-            exclude some activities.
+            rates differ by firm size) and its activity the applicable regimes.
         contribution_history: Pension history the IVS massimale eligibility
             is derived from.  ``None`` means not known: a run whose INPS base
-            crosses the massimale is then incomplete, with a ``missing_fact``
-            blocker for ``contribution_history``.
+            crosses the massimale gives a ``missing_fact`` blocker.
         events: Variable work events of the period (overtime, absences...).
         regione: ISO 3166-2:IT region code for the regional surtax, e.g.
             ``"IT-45"``, with ``"IT-BZ"`` / ``"IT-TN"`` for the autonomous
@@ -168,6 +166,7 @@ class PeriodCalculationRequest:
     work_pattern: WorkPattern | None = None
     weekly_rest_day: Weekday = Weekday.SUNDAY
     employment_period: EmploymentPeriod | None = None
+    level_started_on: date | None = None
     seniority: SeniorityFact | None = None
     roles: frozenset[str] | None = None
     individual_elements: tuple[IndividualElement, ...] = ()
@@ -270,6 +269,7 @@ class PeriodCalculationRequest:
             ("payment_date", self.payment_date, date, False),
             ("ccnl_id", self.ccnl_id, str, False),
             ("level_code", self.level_code, str, False),
+            ("level_started_on", self.level_started_on, date, True),
             ("opening_state", self.opening_state, PeriodState, False),
             (
                 "contract_type",

@@ -37,6 +37,7 @@ __all__ = [
     "ROLES_FACT",
     "fact_issues",
     "full_time_issue",
+    "level_start_issue",
     "no_pay_issue",
     "premium_issue",
     "provincial_issue",
@@ -52,6 +53,34 @@ PROVINCIAL_FACT = "provincial_pay_element"
 PREMIUM_FACT = "second_level_premium"
 SUBSECTOR_FACT = "subsector"
 SECTOR_FACT = "inps_sector"
+LEVEL_START_FACT = "level_started_on"
+
+
+def level_start_issue(ctx: RunContext) -> CalculationIssue | None:
+    """Name a missing entry-level start date before its mandatory cutoff.
+
+    Returns:
+        An incomplete base-salary issue, or ``None`` for ordinary levels,
+        known entry dates and months after the absolute cutoff.
+    """
+    level = ctx.contract.level
+    cutoff = level.transition_by
+    if (
+        level.transition_after_months is None
+        or ctx.request.level_started_on is not None
+        or (cutoff is not None and ctx.contract.tctx.competence >= cutoff)
+    ):
+        return None
+    return CalculationIssue(
+        code="entry_level_start_unknown",
+        capability="base_salary",
+        message=(
+            "the months in the entry level are unknown: the junior minimum "
+            "shown is provisional; state Employment.level_started_on"
+        ),
+        status=CalculationStatus.INCOMPLETE,
+        fact=LEVEL_START_FACT,
+    )
 
 
 def no_pay_issue(ctx: RunContext) -> CalculationIssue | None:
@@ -250,6 +279,7 @@ def fact_issues(ctx: RunContext) -> tuple[CalculationIssue | None, ...]:
         INPS sector and sub-sector issues, each ``None`` when not raised.
     """
     return (
+        level_start_issue(ctx),
         full_time_issue(ctx),
         no_pay_issue(ctx),
         roles_issue(ctx),

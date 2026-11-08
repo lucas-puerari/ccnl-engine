@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
+from datetime import date
 from decimal import Decimal
 from typing import Literal
 
@@ -85,20 +86,16 @@ class Employment:
     producing a payslip.
 
     Attributes:
-        ccnl_id: The CCNL, by slug (``"metalmeccanico-federmeccanica"``) or CNEL
-            code (``"E042"``); an id not held, or a CNEL code of several CCNLs,
-            raises :class:`~ccnl_engine.errors.UnknownCcnlError` at the run.
+        ccnl_id: CCNL slug or CNEL code; ambiguous or unknown ids raise
+            :class:`~ccnl_engine.errors.UnknownCcnlError` at the run.
         level_code: Contractual level code, e.g. ``"C3"``.
-        contract_type: :class:`Permanent`, :class:`FixedTerm` or :class:`Apprentice`,
-            always stated: it selects the NASpI surcharge of a fixed-term contract and
-            the art. 13 TUIR deduction minimum.
-        category: Worker category; its string value (e.g. ``"operaio"``) is accepted and
-            normalized.  ``None`` takes the category fixed by the level, if any.  The
-            calculation raises when the category differs from the one the level fixes,
-            or when it is ``None`` and seniority increments for the level differ by
-            category.
+        contract_type: Permanent, fixed term or apprentice; determines NASpI
+            surcharge and the art. 13 TUIR deduction minimum.
+        category: Worker category, accepting string values. ``None`` uses the
+            level's fixed category; incompatible or ambiguous categories raise.
         employment_period: Start and optional end of the employment. ``None`` when not
             tracked: a year then computes every run of the calendar with full ratei.
+        level_started_on: Entry date for time-limited levels (Confetra 6J).
         weekly_hours: Contracted weekly hours.  Required for domestic CCNLs to select
             the INPS bracket; below ``full_time_weekly_hours`` it scales the pay for
             part time.
@@ -189,6 +186,7 @@ class Employment:
     contract_type: Permanent | Apprentice | FixedTerm
     category: WorkerCategory | None = None
     employment_period: EmploymentPeriod | None = None
+    level_started_on: date | None = None
     weekly_hours: WeeklyHours | None = None
     full_time_weekly_hours: WeeklyHours | None = None
     full_time_week_days: int | None = None
@@ -283,6 +281,7 @@ class Employment:
                 False,
             ),
             ("employment_period", self.employment_period, EmploymentPeriod, True),
+            ("level_started_on", self.level_started_on, date, True),
             ("weekly_hours", self.weekly_hours, WeeklyHours, True),
             ("full_time_weekly_hours", self.full_time_weekly_hours, WeeklyHours, True),
             ("work_pattern", self.work_pattern, WorkPattern, True),

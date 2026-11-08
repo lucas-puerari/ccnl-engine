@@ -274,6 +274,7 @@ class PeriodInput:
             work_pattern=employment.work_pattern,
             weekly_rest_day=employment.weekly_rest_day,
             employment_period=employment.employment_period,
+            level_started_on=employment.level_started_on,
             seniority=employment.seniority,
             roles=employment.roles,
             individual_elements=employment.individual_elements,

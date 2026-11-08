@@ -83,18 +83,18 @@
       }
     },
     {
-      "id": "level_6j_2025",
+      "id": "level_6j_apprenticeship",
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "LEVEL 6° JUNIOR: not modelled. The profile existed only in 2025 (1,464.53 a month from 1.1.2025, p. 80; seniority step 18.78, art. 17; EDR 2021 7.58, p. 82) and ended on 31.12.2025 (p. 25: 'Il presente profilo avrà termine inderogabilmente il 31 dicembre 2025'), its workers moving to level 6; a level of the bundle must cover the whole span of the ruleset. The request has no override of the level amounts: a 2025 run of a 6J worker on level 6 pays the level 6 minimum (1,615.71) (review of 2026-10-30)",
+      "rule": "Level 6J transitions to level 6 after 12 months in the level or on 1 January 2026, whichever comes first. A missing level entry date in 2025 blocks payability. Apprentices in level 6J are refused because their 24-month transition is distinct.",
       "calculation": "ccnl/logistica-trasporto-confetra:coverage.notes",
       "state": "absent",
-      "remediation": "Model 6J for 2025 (a level closed on 2025-12-31, or a refusal of 6J runs), or record the limitation for 2025 runs.",
+      "remediation": "Implement the separate 24-month apprentice classification progression for level 6J.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "logistica-trasporto-confetra/level_6j_2025"
+          "logistica-trasporto-confetra/level_6j_apprenticeship"
         ]
       }
     },

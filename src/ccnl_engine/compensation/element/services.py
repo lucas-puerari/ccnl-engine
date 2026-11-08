@@ -12,6 +12,7 @@ from ccnl_engine.apprenticeship.rules import _apprentice_chain
 from ccnl_engine.compensation.element.rules import _level_chain
 from ccnl_engine.compensation.element.types import ApprenticeshipScaling
 from ccnl_engine.compensation.entry.rules import entry_level
+from ccnl_engine.compensation.entry.transition import transitioned_level
 from ccnl_engine.employment.apprentice.inputs import ApprenticeshipProgramme
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
 from ccnl_engine.errors import InvalidInputError
@@ -117,6 +118,7 @@ def _resolve_chain(
     weekly_hours: Decimal | None = None,
     full_time_weekly_hours: Decimal | None = None,
     hired_on: date | None = None,
+    level_started_on: date | None = None,
     seniority: SeniorityFact | None = None,
     career_months: int | None = None,
 ) -> tuple[MonthlyPayChain, ApprenticeshipScaling | None]:
@@ -150,6 +152,7 @@ def _resolve_chain(
             roles=roles,
             worker_category=worker_category,
             hired_on=hired_on,
+            level_started_on=level_started_on,
             career_months=career_months,
         )
         if (
@@ -202,6 +205,7 @@ def _contract_chain(
     roles: frozenset[str],
     worker_category: WorkerCategory | None,
     hired_on: date | None,
+    level_started_on: date | None = None,
     career_months: int | None = None,
 ) -> tuple[MonthlyPayChain, ApprenticeshipScaling | None]:
     """Return the level or apprentice chain of the contract, full time.
@@ -212,6 +216,7 @@ def _contract_chain(
     Returns:
         The chain and the apprenticeship scaling, as :func:`_resolve_chain`.
     """
+    level = transitioned_level(ccnl, level, contract_type, as_of, level_started_on)
     count = _seniority_count(ccnl, level, seniority_months, worker_category)
     scaling: ApprenticeshipScaling | None = None
     if isinstance(contract_type, Apprentice) and contract_type.programme in _DUAL:

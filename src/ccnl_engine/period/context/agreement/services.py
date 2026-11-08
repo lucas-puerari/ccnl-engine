@@ -8,10 +8,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.catalog.services import resolve_ccnl
 from ccnl_engine.compensation.category_months.rules import with_category_months
 from ccnl_engine.compensation.cohort.rules import with_hire_cohort
+from ccnl_engine.compensation.entry.transition import require_effective_salary
 from ccnl_engine.compensation.fixed_term.rules import (
     with_fixed_term_pay,
     with_fixed_term_tfr,
@@ -216,9 +216,9 @@ def load_contract(
         level = ccnl.level_by_code(request.level_code)
     except ValueError:
         raise UnknownLevelError(request.level_code, ccnl.meta.ccnl_id) from None
-    # The base salary of the level is the first rule every run reads.
-    with rule_scope(ruleset=ccnl.meta.ccnl_id, feature="base_salary"):
-        level.base_salary.value_at(tctx.competence)
+    level = require_effective_salary(
+        ccnl, level, request.contract_type, tctx.competence, request.level_started_on
+    )
     date_ctx = EffectiveDateContext.from_period(
         period_id.year, period_id.month, tctx.payment
     )

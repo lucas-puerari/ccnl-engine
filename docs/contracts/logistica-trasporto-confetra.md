@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 65 verified / 3 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 70 verified / 3 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -85,6 +85,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | Artt. 51-52 (PDF pp. 64-65) of the Testo Unico of 25 September 2025, text layer. | corrected | Sanilog and Ebilog, owed for every worker of the CCNL, were not modelled: employer cost and worker share were short. |
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 17 and 57 of the testo unico of 25 September 2025 (pp. 40-41, 73, 75). | corrected | Apprentices accrue the level increments in full: art. 17 c. 1 (pp. 40-41 of the testo unico of 25 September 2025) gives 'Ai lavoratori, per l'anzianità di servizio maturata presso la stessa azienda' a fixed amount of the level each biennio; art. 57 c. 7 (p. 73) counts the apprentice's probation 'agli effetti dell'anzianità di servizio'; cc. 8-9 and tables A-B (pp. 73, 75) apply the percentage to the 'minimo contrattuale' only. |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Level 6 junior classification and pay, PDF pp. 25, 41, 80, 82. | corrected | The 2025 minimum is 1464.53, the biennial step is 18.78, the separate element is 7.58, and the level ceases at the end of 2025; promotion after twelve months applies to hires since 2020. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 71(1)(b,c), (5), cached PDF p. 93; Art. 60(2-3), p. 85. | confirmed | National weekday holidays are within art. 71(b,c); reduced sickness pay reaches full daily actual pay. Injury, patron saint and art. 60 coincident-holiday payment remain outside this rule.<br>A separate review found art. 71 c. 5 restricted to the Sezione seconda (ex Magazzini Generali): the holiday target is removed and kept as a limitation. |
 
 ## Salary table
@@ -102,6 +103,7 @@ Latest effective values per level (monthly gross, EUR).
 | `4J` | Level 4 Junior — recently graded senior operator | € 1,865.27 | 2027-06-01 |
 | `5` | Level 5 — qualified operator (specialist warehouse worker) | € 1,817.10 | 2027-06-01 |
 | `6` | Level 6 — worker assigned to generic operational support tasks | € 1,703.67 | 2027-06-01 |
+| `6J` | Level 6 junior — simple tasks requiring practical training | € 1,703.67 | 2027-06-01 |
 
 ## Seniority increments
 
@@ -119,6 +121,7 @@ Latest effective values per level (monthly gross, EUR).
 | `4J` | € 22.34 |
 | `5` | € 22.21 |
 | `6` | € 20.66 |
+| `6J` | — |
 
 ## Apprenticeship
 
@@ -141,12 +144,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Calculate the INAIL offset, local patron saint and the distinct coincident-holiday payment.
 
-!!! warning "logistica-trasporto-confetra/level_6j_2025 · base_salary · impact yes · open"
-    LEVEL 6° JUNIOR: not modelled. The profile existed only in 2025 (1,464.53 a month from 1.1.2025, p. 80; seniority step 18.78, art. 17; EDR 2021 7.58, p. 82) and ended on 31.12.2025 (p. 25: 'Il presente profilo avrà termine inderogabilmente il 31 dicembre 2025'), its workers moving to level 6; a level of the bundle must cover the whole span of the ruleset. The request has no override of the level amounts: a 2025 run of a 6J worker on level 6 pays the level 6 minimum (1,615.71) (review of 2026-10-30)
+!!! warning "logistica-trasporto-confetra/level_6j_apprenticeship · base_salary · impact yes · open"
+    Level 6J transitions to level 6 after 12 months in the level or on 1 January 2026, whichever comes first. A missing level entry date in 2025 blocks payability. Apprentices in level 6J are refused because their 24-month transition is distinct.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model 6J for 2025 (a level closed on 2025-12-31, or a refusal of 6J runs), or record the limitation for 2025 runs.
+    **Remediation:** Implement the separate 24-month apprentice classification progression for level 6J.
 
 !!! warning "logistica-trasporto-confetra/edr_2021_in_daily_base · absence · impact unknown · open"
     EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; the 2021 EDR may still enter the daily base of absences and sickness, which 'nessuna incidenza su alcun istituto contrattuale' excludes.

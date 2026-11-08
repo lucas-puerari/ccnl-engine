@@ -344,13 +344,10 @@ class Level(BaseModel):
     Attributes:
         code, order, description: Code (``"D3"``), rank (1 = lowest), name.
         base_salary: Time-series of monthly base salaries for this level.
-        base_salary_by_subsector: The table of an employer's sub-sector.
-        base_salary_by_cohort, class_tables: Tables of the workers hired by a
-            date, the second by seniority class in place of the increments.
-        subsectors: The only sub-sectors the level exists in, empty for all.
-        fixed_allowances: Fixed monthly allowances of the level (EDR...).
-        category: Worker category fixed by this level, ``None`` when it
-            hosts more than one (``Employment.category`` then states it).
+        base_salary_by_cohort, class_tables: Hired-worker or seniority-class tables.
+        fixed_allowances: Fixed allowances (EDR...).
+        transition_to, transition_after_months, transition_by: Entry promotion.
+        category: Fixed worker category, or ``None`` for multiple categories.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -365,6 +362,9 @@ class Level(BaseModel):
     subsectors: tuple[str, ...] = ()
     fixed_allowances: tuple[Allowance, ...] = Field(default=())
     category: WorkerCategory | None = None
+    transition_to: str | None = None  # Classification reached after entry pay.
+    transition_after_months: int | None = Field(default=None, gt=0)
+    transition_by: date | None = None  # Absolute cutoff for the entry level.
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")

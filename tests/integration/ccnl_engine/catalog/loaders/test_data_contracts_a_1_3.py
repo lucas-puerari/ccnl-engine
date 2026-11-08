@@ -20,12 +20,16 @@ class TestLoadLogisticaTrasportoConfetra:
         assert ccnl.meta.ccnl_id == "logistica-trasporto-confetra"
         assert ccnl.meta.cnel_code == "I100"
 
-    def test_logistica_trasporto_confetra_has_9_levels(self) -> None:
-        """Contract must have exactly 9 levels (6J excluded, abolished Dec 2025)."""
+    def test_logistica_trasporto_confetra_has_10_levels(self) -> None:
+        """The 2025-only junior level is included with the nine lasting levels."""
         ccnl = load_ccnl("logistica-trasporto-confetra")
-        assert len(ccnl.levels) == 9
+        assert len(ccnl.levels) == 10
         codes = {lv.code for lv in ccnl.levels}
-        assert codes == {"Q", "1", "2", "3S", "3", "4", "4J", "5", "6"}
+        assert codes == {"Q", "1", "2", "3S", "3", "4", "4J", "5", "6", "6J"}
+        junior = ccnl.level_by_code("6J")
+        assert junior.transition_to == "6"
+        assert junior.transition_after_months == 12
+        assert junior.transition_by == date(2026, 1, 1)
 
     def test_logistica_trasporto_confetra_level_3s_salary_jan2025(self) -> None:
         """3S minimo plus EPA at the first tranche (Jan 2025): 1930.37 + 30.00."""
@@ -40,10 +44,11 @@ class TestLoadLogisticaTrasportoConfetra:
         assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("2000.37")
 
     def test_logistica_trasporto_confetra_level_ordering(self) -> None:
-        """Quadro must have the highest order; 6° livello the lowest."""
+        """Quadro has the highest order, and junior 6J the lowest."""
         ccnl = load_ccnl("logistica-trasporto-confetra")
         by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
-        assert by_order[0].code == "6"
+        assert by_order[0].code == "6J"
+        assert by_order[1].code == "6"
         assert by_order[-1].code == "Q"
 
     def test_logistica_trasporto_confetra_additional_months(self) -> None:
@@ -58,7 +63,7 @@ class TestLoadLogisticaTrasportoConfetra:
         assert ccnl.parameters.hourly_divisor.periods[0].value == Decimal(168)
 
     def test_logistica_trasporto_confetra_fixed_allowances(self) -> None:
-        """Every level holds the EDRs of 2011 and 2021 (4J only the 2021 one).
+        """Every level holds the EDRs of 2011 and 2021 (4J and 6J only 2021).
 
         The Quadri also hold 51.65 of indennità di funzione.
         """
@@ -66,6 +71,9 @@ class TestLoadLogisticaTrasportoConfetra:
         codes = {lv.code: {a.code for a in lv.fixed_allowances} for lv in ccnl.levels}
         assert codes.pop("Q") == {"IND_FUN", "EDR_2021", "EDR_2011"}
         assert codes.pop("4J") == {"EDR_2021"}
+        assert codes.pop("6J") == {"EDR_2021"}
+        junior = ccnl.level_by_code("6J").fixed_allowances[0]
+        assert junior.monthly.value_at(date(2025, 11, 1)) == Decimal("7.58")
         assert all(c == {"EDR_2021", "EDR_2011"} for c in codes.values())
         quadro = ccnl.level_by_code("Q").fixed_allowances[0]
         assert quadro.monthly.value_at(date(2026, 1, 1)) == Decimal("51.65")
