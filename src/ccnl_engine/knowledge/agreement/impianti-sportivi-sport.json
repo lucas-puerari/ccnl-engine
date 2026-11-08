@@ -2222,6 +2222,28 @@
           "work_rules.insured_absence.injury",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-08-gpt-impianti-sportivi-sport-injury-integration",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Art. 105 against the injury integration bands, by a separate model session.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+            "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+          }
+        ],
+        "findings": [
+          "Confirmed the waiting days at 60%, the bands from the INAIL indemnity and the day mapping from the injury day.",
+          "Flagged, kept as limitations: the apprentice rates of 80% and 90% are not selected; the general bands apply to them."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.injury"
+        ]
       }
     ]
   }

@@ -2425,6 +2425,28 @@
           "work_rules.insured_absence.injury",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-08-gpt-ced-assoced-injury-integration",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Art. 147 against the injury integration bands, by a separate model session.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+            "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+          }
+        ],
+        "findings": [
+          "Confirmed the waiting days at 60%, the bands from the INAIL indemnity and the day mapping from the injury day.",
+          "Flagged, kept as limitations: the 75% of the numeral against the '(cento per cento)' in words."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.injury"
+        ]
       }
     ]
   }
