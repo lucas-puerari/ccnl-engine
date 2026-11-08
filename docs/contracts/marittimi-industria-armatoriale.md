@@ -30,10 +30,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, una_tantum |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | una_tantum |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🟢 Verified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 26 verified / 15 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 26 verified / 19 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 26 (pp. 20-21) of the shore-staff section: the comporto is 10 months of one illness and 330 days of several within the last three years, with the whole pay; the carenza of the 4th-6th event of the year is paid 50%, from the 7th 30%. The file kept a comporto of 180 days of one illness with no event reduction: corrected (max_duration_days 304, a window of 36 months and 330 days, carenza_by_event). The 18 months of a serious illness are not modelled. |
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: Allegato 4 lett. a) (pp. 39, 41) and the aumenti periodici of the sezione personale di terra of 11 July 2024 (OCR). | corrected | 'Il periodo di apprendistato si computa ai fini dell'anzianità aziendale e di servizio' (p. 39); 'la percentuale si applica esclusivamente sul minimo contrattuale' (p. 41); the workers get an increment of a fixed amount per level each biennio: the level increments in full. |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 49 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
+| 2026-11-08 | claude-opus-5-5 (ai) | Allegato 1 nn. 2-5 (PDF p. 32), art. 17 and art. 33 of the Sezione personale di terra of 11 July 2024. | corrected | The superminimi by years in the level are in Allegato 1 nn. 2-5, not art. 18 as the note said: 7 EUR (IV, 8 years; III, 4 years with a diploma or 8 years), 11 EUR (II, 10 years, no further promotion).<br>Art. 17 puts the superminimo in the tredicesima and quattordicesima, art. 33 in the TFR base. |
 
 ## Salary table
 
@@ -102,13 +103,6 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "marittimi-industria-armatoriale/level_superminimo_art_18 · base_salary · impact yes · open"
-    SUPERMINIMO LIVELLO: Art. 18 provides additional EUR 7/month for L4 workers after 8 years in level, and EUR 7-11/month for L2-L3 workers under specific conditions. Individual-level amounts tied to personal history — not modellable in a standardised payroll engine (no per-worker tenure field). Out_of_scope structural limitation.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the Art. 18 superminimo (7 EUR for IV after 8 years in level, 7-11 EUR for II-III) as allowances gated on the time in level, or pay it as an IndividualElement and record the limitation.
 
 !!! warning "marittimi-industria-armatoriale/una_tantum_2024_2025 · una_tantum · impact yes · open"
     UNA TANTUM: backpay EUR 200 paid Jul 2024 + EUR 180 paid Jan 2025, uniform all levels. Lump-sum, not recurring. Out_of_scope per engine design (una tantum payments are not included in periodic payroll computation).
@@ -321,6 +315,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SENIORITY MAX: CCNL provides 10 max increments for workers hired before 31/12/1988; modelled as max=5 (post-1988 hires, the prevailing case for the active workforce — no one hired before 1988 is still accumulating scatti). Structural engine limitation for the pre-1988 grandfathered cohort.
     
     EAR FOR VIIQ: Allegato 1bis lists EAR only for VII (not VIIQ separately). VIIQ workers receive the same EAR as VII; the distinguishing element is INDENNITA_FUNZIONE (additional allowance for quadri). Structural design: VIIQ base = VII base, VIIQ fixed_allowances includes INDENNITA_FUNZIONE.
+    
+    Allegato 1 nn. 2-5 (p. 32; not art. 18): the superminimi by years in the level are fixed allowances gated on SeniorityFact.career_months: 7 EUR in level IV after 8 years; 7 EUR in level III after 4 years with the role 'diplomato' or after 8 years; 11 EUR in level II after 10 years with the role 'senza_passaggio'. Without career_months the run reads the service months.
     
 
 ## Raw data
