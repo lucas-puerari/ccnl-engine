@@ -1,0 +1,1 @@
+"""Loyalty premium rule tests."""

@@ -62,6 +62,7 @@ KIND_ACCOUNTS = frozenset({
 KIND_CAPABILITIES: dict[str, frozenset[str]] = {
     "base_salary_earning": frozenset({"base_salary"}),
     "fixed_allowance_earning": frozenset({"base_salary", "contractual_funds"}),
+    "loyalty_premium_earning": frozenset({"base_salary"}),
     "extra_month_earning": frozenset({"base_salary"}),
     "raccordo_element_earning": frozenset({"base_salary"}),
     "hourly_percentage_earning": frozenset({"base_salary"}),

@@ -4171,7 +4171,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "c3ee815ac4477c48f10ebf903794868e51214488721ab50076b3001b21339419",
+    "source_hash": "a2d2b33759987235b61768d1a98e7dab7c5c7cd61ba1a8c603118beb54f2b14e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5194,7 +5194,7 @@
             "section": "Art. 191 - Festività nel periodo di malattia o infortunio",
             "quote": "Ai sensi della Legge 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad un’indennità integrativa di quella a carico rispettivamente dell’INPS e dell’INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all’art. 208."
           },
-          "transformation": "On a national holiday (not a Sunday) falling in a sickness within the comporto, the integration target of the day is 100% of the daily pay, the INPS share of the day netted (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury.",
+          "transformation": "On a national holiday (not a Sunday) falling in a sickness within the comporto, the integration target of the day is 100% of the daily pay, the INPS share of the day netted (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury. The national calendar adds 4 October from 2026 (L. 151/2025), which this text, signed before, does not list: excluded (excluded_days 10-04).",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
@@ -5204,7 +5204,10 @@
             "verification_status": "verified",
             "review_id": "2026-11-08-ai-terziario-confesercenti-holiday-in-sickness"
           }
-        }
+        },
+        "excluded_days": [
+          "10-04"
+        ]
       }
     },
     "notice": {

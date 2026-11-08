@@ -12,6 +12,7 @@ from ccnl_engine.compensation.cohort.models import ClassTable, CohortSalary
 from ccnl_engine.compensation.equalisation.models import EqualisationElement
 from ccnl_engine.compensation.fixed_term.models import FixedTermPay
 from ccnl_engine.compensation.hourly.models import HourlyPay
+from ccnl_engine.compensation.loyalty.models import LoyaltyPremium
 from ccnl_engine.compensation.renewal_minimum.models import RenewalAgreement
 from ccnl_engine.compensation.una_tantum.models import UnaTantum
 from ccnl_engine.employment.category.models import WorkerCategory
@@ -277,13 +278,11 @@ class CCNLParameters(BaseModel):
     ``thirteenth_payment_day``, ``fourteenth_payment_day``: their pay days.
     ``assistance_contribution``, ``contractual_fund_contribution``: charged
     to a fund; ``additional_months_by_category``: the payments of a category.
-    ``flat_pay_max_weekly_hours``: hours paid at the full minimum (domestic: 30).
-    ``raccordo_element``: the ERC; ``enam_levels``: those owing ex ENAM.
-    ``solidarity_fund``: its fund of D.Lgs. 148/2015 art. 26, if modelled.
-    ``renewals``: those that raised the minimo (L. 199/2025 renewal regime);
-    ``health_funds``: health and bilateral funds, with their elemento distinto.
-    ``hourly_pay``, ``fixed_term_pay``: pay by the hour (operai edilizia, OTD);
-    ``seniority_increments_by_subsector``; ``una_tantum``; ``equalisation_element``.
+    ``flat_pay_max_weekly_hours``: hours at the full minimum (domestic: 30);
+    ``solidarity_fund``: D.Lgs. 148/2015 art. 26; ``raccordo_element``: ERC;
+    ``enam_levels``: ex ENAM; ``renewals``: raising the minimo (L. 199/2025);
+    ``health_funds``, with their elemento distinto; ``hourly_pay``,
+    ``fixed_term_pay`` (operai edilizia, OTD); ``loyalty_premium`` (fedeltà).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -313,6 +312,7 @@ class CCNLParameters(BaseModel):
     health_funds: tuple[ContractualFund, ...] = ()
     una_tantum: tuple[UnaTantum, ...] = ()
     equalisation_element: EqualisationElement | None = None
+    loyalty_premium: LoyaltyPremium | None = None
 
     @model_validator(mode="after")
     def _check_positive_params(self) -> Self:

@@ -17,6 +17,18 @@
     "legal_basis": "Art. 51 TUIR"
   },
   {
+    "policy_id": "it/earning/loyalty_premium",
+    "policy_version": "2026.1",
+    "kinds": ["loyalty_premium_earning"],
+    "effective_from": "2000-01-01",
+    "effective_until": null,
+    "tax": "ordinary",
+    "contribution": "included",
+    "tfr": "included",
+    "cost": "employee_cash",
+    "legal_basis": "Art. 51 TUIR; CCNL edilizia PMI ANIEM Art. 65 and Art. 72; CCNL edilizia artigianato Art. 65 and Art. 70"
+  },
+  {
     "policy_id": "it/earning/supplement",
     "policy_version": "2026.1",
     "kinds": [

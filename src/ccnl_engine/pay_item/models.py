@@ -24,6 +24,7 @@ __all__ = [
     "FringeBenefitItem",
     "HourlyPercentageEarning",
     "LeaveSettlementItem",
+    "LoyaltyPremiumEarning",
     "MaternityItem",
     "NightHolidayShiftEarning",
     "NoticeIndemnityItem",
@@ -71,6 +72,12 @@ class FixedAllowanceEarning(_PayItemBase):
 
     kind: Literal["fixed_allowance_earning"] = "fixed_allowance_earning"
     allowance_code: str = ""
+
+
+class LoyaltyPremiumEarning(_PayItemBase):
+    """Annual loyalty premium, excluded from extra-month pay."""
+
+    kind: Literal["loyalty_premium_earning"] = "loyalty_premium_earning"
 
 
 class SeniorityEarning(_PayItemBase):
@@ -153,17 +160,11 @@ class PublicTfrReduction(_PayItemBase):
 
 
 class FringeBenefitItem(_PayItemBase):
-    """Non-cash fringe benefit (auto aziendale, polizza, ecc.).
+    """Non-cash fringe benefit (auto, insurance, etc.).
 
-    Attributes:
-        threshold_annual: Annual exemption threshold applied to the worker
-            (L. 207/2024 art. 1 c. 390: 1,000 EUR, 2,000 EUR with a
-            declared fiscally dependent child).
-        ytd_total: Fringe value of the tax year including this benefit.
-        taxable_amount: Amount this benefit makes taxable for IRPEF and
-            INPS.  Zero while ``ytd_total`` stays within the threshold.  On
-            the benefit that crosses it the earlier exempt amounts of the
-            year become taxable too, so it can exceed ``amount``.
+    ``threshold_annual`` is the applicable exemption (L. 207/2024 art. 1
+    c. 390: EUR 1,000 or EUR 2,000 with a dependent child). ``ytd_total``
+    includes this benefit; ``taxable_amount`` may include earlier exempt pay.
     """
 
     kind: Literal["fringe_benefit_item"] = "fringe_benefit_item"
@@ -179,12 +180,10 @@ class StandbyEarning(_PayItemBase):
 
 
 class TravelAllowanceItem(_PayItemBase):
-    """Travel allowance (indennità di trasferta), paid in cash.
+    """Cash travel allowance with exempt and taxable amounts.
 
-    Attributes:
-        exempt_amount: Part left out of the IRPEF and INPS bases (art. 51
-            c. 5 TUIR): the days times the daily amount up to the cap.
-        taxable_amount: Part above the cap, income for IRPEF and INPS.
+    ``exempt_amount`` is below the art. 51 c. 5 TUIR daily cap;
+    ``taxable_amount`` exceeds it and enters IRPEF and INPS.
     """
 
     kind: Literal["travel_allowance_item"] = "travel_allowance_item"
@@ -291,6 +290,7 @@ class TaxRefundItem(_PayItemBase):
 PayItem = Annotated[
     BaseSalaryEarning
     | FixedAllowanceEarning
+    | LoyaltyPremiumEarning
     | SeniorityEarning
     | OvertimeEarning
     | NightHolidayShiftEarning

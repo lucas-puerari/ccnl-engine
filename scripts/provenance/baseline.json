@@ -817,7 +817,9 @@
       "edilizia-artigianato-cna/apprentice_seniority",
       "edilizia-artigianato-cna/cassa_edile_accruals_missing",
       "edilizia-artigianato-cna/cigo_rate_by_activity",
-      "edilizia-artigianato-cna/inps_sector_rates_unsourced"
+      "edilizia-artigianato-cna/inps_sector_rates_unsourced",
+      "edilizia-artigianato-cna/loyalty_dismissal_pro_rata",
+      "edilizia-artigianato-cna/loyalty_service_count"
     ],
     "agreement/edilizia-cooperative-ancpl.json": [
       "edilizia-cooperative-ancpl/apprentice_seniority",
@@ -830,6 +832,7 @@
       "edilizia-pmi-confapi-aniem/cassa_edile_accruals_missing",
       "edilizia-pmi-confapi-aniem/contractual_fund_partial",
       "edilizia-pmi-confapi-aniem/impiegati_premio_fedelta",
+      "edilizia-pmi-confapi-aniem/loyalty_service_count",
       "edilizia-pmi-confapi-aniem/operai_gruppo_3_track_merged",
       "edilizia-pmi-confapi-aniem/operai_seniority_ape",
       "edilizia-pmi-confapi-aniem/provincial_evr",
@@ -842,6 +845,7 @@
     ],
     "agreement/esercizi-cinematografici-anec.json": [
       "esercizi-cinematografici-anec/fpls_rates_approximated",
+      "esercizi-cinematografici-anec/holiday_during_injury",
       "esercizi-cinematografici-anec/sickness_hospital_exclusions",
       "esercizi-cinematografici-anec/sickness_net_basis"
     ],
@@ -969,11 +973,15 @@
     ],
     "agreement/logistica-trasporto-confetra-viaggiante.json": [
       "logistica-trasporto-confetra-viaggiante/edr_2021_in_daily_base",
+      "logistica-trasporto-confetra-viaggiante/holiday_during_injury",
+      "logistica-trasporto-confetra-viaggiante/magazzini_generali_holiday_in_sickness",
       "logistica-trasporto-confetra-viaggiante/travelling_allowances"
     ],
     "agreement/logistica-trasporto-confetra.json": [
       "logistica-trasporto-confetra/edr_2021_in_daily_base",
+      "logistica-trasporto-confetra/holiday_during_injury",
       "logistica-trasporto-confetra/level_6j_2025",
+      "logistica-trasporto-confetra/magazzini_generali_holiday_in_sickness",
       "logistica-trasporto-confetra/maternity_sixth_month",
       "logistica-trasporto-confetra/sixth_day_overtime"
     ],
@@ -1000,6 +1008,7 @@
       "metalmeccanico-confapi/child_sickness_and_oncological_permits",
       "metalmeccanico-confapi/elemento_perequativo",
       "metalmeccanico-confapi/flexibility_and_hours_bank",
+      "metalmeccanico-confapi/holiday_during_injury",
       "metalmeccanico-confapi/ipca_top_up",
       "metalmeccanico-confapi/ordinary_hours_premiums",
       "metalmeccanico-confapi/par_conto_ore_hourly_elements",
