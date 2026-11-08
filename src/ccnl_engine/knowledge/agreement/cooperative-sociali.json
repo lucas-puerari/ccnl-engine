@@ -127,7 +127,7 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED AMOUNTS: the night allowance of EUR 12.39 / 6.20 per night and the 10% of night-only custody staff (Art. 54); 15% on Sunday and holiday ordinary hours (Art. 55); the 10% shift allowance (Art. 56); the EUR 20 a night of the reperibilità in struttura (Art. 57; the 77.47 a month is a role allowance); pronta disponibilità EUR 1.55 an hour (Art. 58); the extra 1/26 of a holiday on the rest day (Art. 59) and the 4 days of ex festività (Art. 60); the 26 hours of night workers' permessi (Art. 54); the PTR (Art. 10, outside every institute); the salari di primo ingresso of type B (Art. 2 B.4); the territorial gradualità agreements (Art. 77); the maternity integration (Art. 63); the 100% integration of work injury to day 180 (Art. 72); the EUR 10 quota d'iscrizione of Previdenza Cooperativa (Art. 86). Sickness: no integration during the prova (Art. 71, Art. 28 M) and the comporto of 12 months in three years are not inputs. Apprenticeship: the 24-month track of the educatore professionale with title (Art. 28 N.2) is not expressible by level.",
+        "text": "NOT MODELLED AMOUNTS: the night allowance of EUR 12.39 / 6.20 per night and the 10% of night-only custody staff (Art. 54); 15% on Sunday and holiday ordinary hours (Art. 55); the 10% shift allowance (Art. 56); the EUR 20 a night of the reperibilità in struttura (Art. 57; the 77.47 a month is a role allowance); pronta disponibilità EUR 1.55 an hour (Art. 58); the extra 1/26 of a holiday on the rest day (Art. 59) and the 4 days of ex festività (Art. 60); the 26 hours of night workers' permessi (Art. 54); the PTR (Art. 10, outside every institute); the salari di primo ingresso of type B (Art. 2 B.4); the territorial gradualità agreements (Art. 77); the EUR 10 quota d'iscrizione of Previdenza Cooperativa (Art. 86). Sickness: no integration during the prova (Art. 71, Art. 28 M) and the comporto of 12 months in three years are not inputs. Apprenticeship: the 24-month track of the educatore professionale with title (Art. 28 N.2) is not expressible by level.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -135,7 +135,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the ETDR, the night, shift and availability allowances, the professional allowances and the prova exclusion of sickness."
+          "remediation": "Model per-night night work and in-structure availability, hourly rotating-shift, Sunday/holiday and pronta disponibilità events; leave and holiday settlement, probation-sensitive sickness, the qualified educator apprenticeship track, and the remaining named employer-specific or event-based items. Fixed ETDR, professional, in-structure monthly availability, cash-handling and temporary assignment allowances are already role-gated."
         }
       },
       {
@@ -6090,7 +6090,7 @@
     "effective_until": null,
     "source": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
     "verification_status": "unverified",
-    "source_hash": "470aeb1676bb6a98464482f2a3bf00878e173920561c58921aef2e74d2c4b5be",
+    "source_hash": "3b94b9fa4ddfaafcd23397f164ee0f68516fc55ded8f867231f8d156db0f3211",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -6798,6 +6798,29 @@
         ],
         "independence": "separate_model",
         "checked": [
+          "levels[].fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-fixed-elements-audit",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Fixed role allowances and remaining event-based limitations against the cached consolidated CCNL, PDF pp. 84, 92-94, 109-111.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+          }
+        ],
+        "findings": [
+          "Fixed ETDR, professional, in-structure availability, assignment and cash-handling allowances were already encoded with role gates and dated provenance; no duplicate amounts added.",
+          "Narrowed the limitation to the remaining event, shift, leave and probation logic; maternity and injury top-ups are already modeled."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "coverage.notes",
           "levels[].fixed_allowances"
         ]
       }
