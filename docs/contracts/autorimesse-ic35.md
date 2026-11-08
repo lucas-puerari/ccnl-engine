@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | welfare |
+| **Limits of this contract** | parental_leave, welfare |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 88 values read identically by both readings and equal to the file. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | long_week_divisors: Art. 19 assigns 42 hours to car drivers and 44 to custodians/night watchmen (mixed duties: 40); art. 40 sets hourly divisors 182, 191, and 173 respectively. autorimesse-ic35.json already has 40/173 and week_divisors 42/182 and 44/191. load_contract calls with_week_divisor using r |
 | 2026-11-08 | claude-opus-5-5 (ai) | Parental indemnity supplement, Art. 68, PDF p. 113. | confirmed | Added work_rules.insured_absence.parental: 0.8 up to 30 eligible days. |
+| 2026-11-08 | gpt-6-sol (ai) | The parental leave clause against the CCNL top-up encoding, by a separate model session. | corrected | Confirmed the rate and the cap of the clause.<br>Corrected: the counter of the days already topped up holds only the earlier leave events (documented and tested); the hourly leave, the pay base and adoption and foster care are recorded as limitation parental_top_up_scope. |
 
 ## Salary table
 
@@ -123,6 +124,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; contract type in apprentice.
 
     **Remediation:** Resolved: 85% and 90% over 24 months, art. 32 of the 2022 text, read on 2026-11-06.
+
+!!! warning "autorimesse-ic35/parental_top_up_scope · parental_leave · impact yes · open"
+    Art. 68 also allows the leave by the hour and extends it to adoption and foster care: the hourly leave (HourlyParentalLeaveEvent) gets no top-up. The top-up is computed on the INPS daily base of the leave (art. 23 D.Lgs. 151/2001), as the text gives no pay base of its own. The days already topped up by earlier leave events of the child are a fact of the event (ParentalLeaveEvent.topped_up_days_before).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Top up the hourly leave, read the pay base the CCNL means, and carry the days topped up per child in the state.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

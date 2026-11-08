@@ -107,6 +107,19 @@
           },
           "remediation": "Model the CIGO of D.Lgs. 148/2015 art. 13 c. 1 by activity (edile, lapidei) apart from the tax sector, then remove this note."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 52 also allows the leave by the hour, which gets no top-up; 'un periodo non superiore a tre mesi' is read as 90 days of leave; the company provisions it lets the employer absorb are not read. The top-up is computed on the INPS daily base of the leave (art. 23 D.Lgs. 151/2001), as the text gives no pay base of its own. The days already topped up by earlier leave events of the child are a fact of the event (ParentalLeaveEvent.topped_up_days_before).",
+        "capability": "parental_leave",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "parental_top_up_scope",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Top up the hourly leave, read the pay base the CCNL means, and carry the days topped up per child in the state."
+        }
       }
     ]
   },
@@ -169,6 +182,28 @@
           "Added work_rules.insured_absence.parental: 0.5 up to 90 eligible days."
         ],
         "independence": "same_process",
+        "checked": [
+          "work_rules.insured_absence.parental"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-materiali-costruzione-lapidei-confapi-parental-top-up",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "The parental leave clause against the CCNL top-up encoding, by a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+            "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
+          }
+        ],
+        "findings": [
+          "Confirmed the rate and the cap of the clause.",
+          "Corrected: the counter of the days already topped up holds only the earlier leave events (documented and tested); the hourly leave, the pay base and the three months read as 90 days are recorded as limitation parental_top_up_scope."
+        ],
+        "independence": "separate_model",
         "checked": [
           "work_rules.insured_absence.parental"
         ]
@@ -2434,7 +2469,7 @@
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "8a720a7799120cf3bd713b018bad0438d1ceb8a7034223e4afdd6b879eda7138"
+    "source_hash": "a59053b9ca7bd4a677013504a45713eb049d5405a0a55ae02c2106164acac008"
   },
   "work_rules": {
     "insured_absence": {

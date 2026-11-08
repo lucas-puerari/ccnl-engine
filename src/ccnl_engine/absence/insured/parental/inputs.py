@@ -79,6 +79,10 @@ class ParentalLeaveEvent:
         parental_base_pay: Pay of the month before the leave, which the
             INPS indemnity is computed on (art. 23, which art. 34 c. 1
             applies); ``None`` when not stated.
+        topped_up_days_before: Days of the CCNL top-up already paid for the
+            child by EARLIER leave events; the earlier months of this event
+            are counted by the run from ``started_on`` and must not be
+            included.  ``None`` when not stated: no top-up is paid.
 
     Raises:
         InvalidInputError: When a day is not a date, the leave ends before

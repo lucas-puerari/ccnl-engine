@@ -255,6 +255,27 @@ def test_autorimesse_prior_pieces_and_unknown_history() -> None:
     assert "parental_top_up_history_unknown" in {i.code for i in unknown.issues}
 
 
+def test_an_earlier_leave_and_the_earlier_month_of_this_one_both_count() -> None:
+    """10 days of an earlier leave; March 21 days here: April gets the last 0.
+
+    The counter holds only the earlier leaves (10); the run counts the 21
+    March days of this leave itself: 10 + 21 > 30, so April adds nothing
+    and March pays 20 days, 20 * 93.333333 * 50% = 933.33.
+    """
+    leave = ParentalLeaveEvent(
+        date(2026, 3, 11),
+        date(2026, 4, 9),
+        date(2022, 1, 1),
+        _NOTHING,
+        parental_base_pay=_FEBRUARY,
+        topped_up_days_before=10,
+    )
+    march = _run(leave, ccnl_id="autorimesse-ic35", level_code="C4")
+    april = _run(leave, ccnl_id="autorimesse-ic35", level_code="C4", month=4)
+    assert _amounts(march)["absence_integration_item"] == ("intg", Decimal("933.33"))
+    assert "absence_integration_item" not in _amounts(april)
+
+
 def test_lapidei_starts_in_july_and_excludes_enhanced_months() -> None:
     """On July 1 the 30% becomes eligible; enhanced months never qualify."""
 

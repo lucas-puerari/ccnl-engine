@@ -119,6 +119,19 @@
       {
         "kind": "info",
         "text": "APPRENTICE SENIORITY (Art. 32, p. 65 of the CCNL Autonoleggio-Autorimesse 2022-2024, https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL-AUTONOLEGGIO-ANIASA_2022-2024.pdf, sha256 fafa013d5843ab750bb1f6e0ccad3b3c60e560ada3a07e576793f68e4d40196e): 'L'intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell'anzianità di servizio, nonché ai fini degli aumenti periodici di anzianità.' Reading: the apprentice matures the art. 42 increments, paid at the amounts of the level (seniority_increments.apprentice_level_amount)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 68 also allows the leave by the hour and extends it to adoption and foster care: the hourly leave (HourlyParentalLeaveEvent) gets no top-up. The top-up is computed on the INPS daily base of the leave (art. 23 D.Lgs. 151/2001), as the text gives no pay base of its own. The days already topped up by earlier leave events of the child are a fact of the event (ParentalLeaveEvent.topped_up_days_before).",
+        "capability": "parental_leave",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "parental_top_up_scope",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Top up the hourly leave, read the pay base the CCNL means, and carry the days topped up per child in the state."
+        }
       }
     ]
   },
@@ -4133,7 +4146,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "c1e6e50a2796d8540b73cddf3a70822c5487cfefb251847df67682a07a43c12a",
+    "source_hash": "5d79b0d8c1135bd7c3893477514cfa5b22bdece60649346942d24534a6b9da2d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4563,6 +4576,28 @@
           "Added work_rules.insured_absence.parental: 0.8 up to 30 eligible days."
         ],
         "independence": "same_process",
+        "checked": [
+          "work_rules.insured_absence.parental"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-autorimesse-ic35-parental-top-up",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "The parental leave clause against the CCNL top-up encoding, by a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL-AUTONOLEGGIO-ANIASA_2022-2024.pdf",
+            "sha256": "fafa013d5843ab750bb1f6e0ccad3b3c60e560ada3a07e576793f68e4d40196e"
+          }
+        ],
+        "findings": [
+          "Confirmed the rate and the cap of the clause.",
+          "Corrected: the counter of the days already topped up holds only the earlier leave events (documented and tested); the hourly leave, the pay base and adoption and foster care are recorded as limitation parental_top_up_scope."
+        ],
+        "independence": "separate_model",
         "checked": [
           "work_rules.insured_absence.parental"
         ]

@@ -663,7 +663,8 @@
       "autoferrotranvieri-internavigatori/public_operator_inps_scheme"
     ],
     "agreement/autorimesse-ic35.json": [
-      "autorimesse-ic35/meal_voucher"
+      "autorimesse-ic35/meal_voucher",
+      "autorimesse-ic35/parental_top_up_scope"
     ],
     "agreement/aziende-termali-federterme.json": [
       "aziende-termali-federterme/apprentice_seniority",
@@ -987,7 +988,8 @@
     ],
     "agreement/materiali-costruzione-lapidei-confapi.json": [
       "materiali-costruzione-lapidei-confapi/cigo_rate_by_activity",
-      "materiali-costruzione-lapidei-confapi/contractual_fund_partial"
+      "materiali-costruzione-lapidei-confapi/contractual_fund_partial",
+      "materiali-costruzione-lapidei-confapi/parental_top_up_scope"
     ],
     "agreement/metalmeccanica-cooperative.json": [
       "metalmeccanica-cooperative/apprenticeship_from_federmeccanica",
