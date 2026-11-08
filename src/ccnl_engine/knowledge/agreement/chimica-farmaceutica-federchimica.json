@@ -157,7 +157,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 12 and Art. 20: the Easter payment of 1/25 and the holiday falling on a Sunday at 1/25.",
+        "text": "Art. 12: the Easter quota of 1/25 is of the 'retribuzione globale di fatto'; the engine pays it, as the holidays on a Sunday of art. 20, on the monthly pay of art. 15 point 1 (minimo, IPO, scatti, individual elements), without the other recurring allowances of the global pay (shift and similar).",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -165,7 +165,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Pay the Easter 1/25 and the Sunday holiday at 1/25."
+          "remediation": "Compute the Easter quota on the retribuzione globale di fatto (the recurring allowances of the month included)."
         }
       },
       {
@@ -5027,7 +5027,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "f4b74df26b9bbc4273155574b16cd382e8c3a7f909019a67b5a5d5ea620382d6",
+    "source_hash": "acb984c93da302f7263bbbf8291f25452fd18f42b483800d3cf237e87862adde",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -6138,7 +6138,8 @@
         "12-08",
         "12-25",
         "12-26",
-        "easter_monday"
+        "easter_monday",
+        "easter"
       ],
       "divisor": "25",
       "ex_november_fourth": {
@@ -6184,7 +6185,7 @@
           "section": "Art. 11 - Riposo settimanale - Giorni festivi",
           "quote": "Qualora una delle festività di cui alle lettere b) e c) cadesse di domenica è dovuta al lavoratore giornaliero o all’addetto al turno 2x5 o 2x6 una giornata di retribuzione calcolata secondo le norme di cui all’art. 20."
         },
-        "transformation": "Letters b) (25 aprile, 1 maggio, 2 giugno) and c) (Capodanno, Epifania, Assunzione, Ognissanti, Immacolata, Natale, S. Stefano, the patron saint, the day after Easter) of the national calendar; the patron saint is local and not in it. One daily quota a holiday. Art. 20 point 4: 'La retribuzione giornaliera si ottiene dividendo la retribuzione mensile per 25', the retribuzione mensile of art. 15 point 1 (minimo, IPO, scatti, individual elements): the minimo and IPO of the level, the scatti and the individual elements of the pay chain, over 25.",
+        "transformation": "Letters b) (25 aprile, 1 maggio, 2 giugno) and c) (Capodanno, Epifania, Assunzione, Ognissanti, Immacolata, Natale, S. Stefano, the patron saint, the day after Easter) of the national calendar; the patron saint is local and not in it. One daily quota a holiday. Art. 20 point 4: 'La retribuzione giornaliera si ottiene dividendo la retribuzione mensile per 25', the retribuzione mensile of art. 15 point 1 (minimo, IPO, scatti, individual elements): the minimo and IPO of the level, the scatti and the individual elements of the pay chain, over 25. Easter (Art. 12: 'Nella ricorrenza pasquale [...] verrà corrisposto a tutti i lavoratori l’importo di una quota giornaliera della retribuzione globale di fatto (1/25)'), always a Sunday, is paid with the same quota.",
         "note": "The 3x shift workers take rest days instead (Art. 11 last paragraphs): not told apart. 4 October, a holiday from 2026 (L. 151/2025), is not in the 2006 list: its Sunday stays open.",
         "extraction": {
           "method": "ai",
@@ -6446,6 +6447,28 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances[EAR]"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-federchimica-easter",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 11, 12 and 20 of the CCNL 10 May 2006 (CNEL 579, Word file).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/579",
+            "sha256": "a9926705b06590a6d8fbe2e6ab683c75d56dfd9e898e7b0f71fb377d7edef3d6"
+          }
+        ],
+        "findings": [
+          "The holidays on a Sunday at 1/25 (art. 11, 20) were already paid: the limitation was stale for them.",
+          "Art. 12: Easter pays to every worker a daily quota (1/25) of the retribuzione globale di fatto: added to work_rules.sunday_holidays.holidays; the base stays the art. 15 monthly pay, a residual limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sunday_holidays.holidays"
         ]
       }
     ],
