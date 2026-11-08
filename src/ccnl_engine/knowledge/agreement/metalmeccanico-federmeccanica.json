@@ -62,7 +62,7 @@
     "notes": [
       {
         "kind": "simplification",
-        "text": "Art. 9 tops up reduced sickness pay on holidays in letters b) and c) to full global daily pay (sickness_rules.holiday). The INAIL top-up for injury, the holiday top-up during maternity or puerperium, and the local patron saint or substitute holiday are not calculated.",
+        "text": "Art. 9 tops up reduced sickness pay on holidays in letters b) and c) to full global daily pay (sickness_rules.holiday). The INAIL top-up for injury, the holiday top-up during maternity or puerperium, and the local patron saint or substitute holiday are not calculated; 29 June, a letter b holiday in Rome only, is outside the national calendar.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -3381,7 +3381,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "5e885572d97099a95b57dac8936721fde6b0b983e04003315a32c8a08ffd6b80",
+    "source_hash": "cde1545269abc4e0acb300bade059b3477d9c4a40572b9f981995fdd2dba8b91",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -4074,7 +4074,7 @@
             "verified_by": "claude-opus-5-5",
             "verified_at": "2026-11-08T11:32:44Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-ai-metalmeccanico-federmeccanica-holiday-in-sickness"
+            "review_id": "2026-11-08-gpt-metalmeccanico-federmeccanica-holiday-in-sickness"
           }
         }
       }
@@ -6040,12 +6040,12 @@
         ]
       },
       {
-        "id": "2026-11-08-ai-metalmeccanico-federmeccanica-holiday-in-sickness",
+        "id": "2026-11-08-gpt-metalmeccanico-federmeccanica-holiday-in-sickness",
         "date": "2026-11-08",
-        "reviewer": "claude-opus-5-5",
+        "reviewer": "gpt-6-sol",
         "reviewer_kind": "ai",
-        "scope": "Art. 9 holiday-in-sickness target, letters a, b and c and the national calendar; checked the signed FIOM PDF at pp. 164-165 and a May 2026 pay calculation.",
-        "outcome": "corrected",
+        "scope": "Sez. IV Tit. III art. 9 against the holiday target in sickness, by a separate model session.",
+        "outcome": "flagged",
         "sources": [
           {
             "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
@@ -6053,10 +6053,10 @@
           }
         ],
         "findings": [
-          "Only letter b national holidays receive the sickness top-up; letter a and the new 4 October holiday are excluded. Letter c is local and cannot be represented by the national calendar.",
-          "INAIL holiday integration remains outside the sickness engine."
+          "Confirmed: the holidays of letters b and c in a sickness compensated with reduced pay reach 100%; excluded_days leaves exactly the national letter b days (04-25, 05-01, 06-02 and 10-04 out); Easter Monday 2026 adds 16.60.",
+          "Flagged: 29 June (Rome only) and the patron saint are outside the national calendar; injury and pregnancy holidays not topped up."
         ],
-        "independence": "same_process",
+        "independence": "separate_model",
         "checked": [
           "work_rules.sickness_rules.holiday"
         ]

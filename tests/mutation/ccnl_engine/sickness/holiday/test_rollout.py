@@ -48,6 +48,32 @@ def _may(
     }
 
 
+def test_logistica_holiday_is_not_topped_up_outside_its_section() -> None:
+    """Art. 71 c. 5 is of the ex Magazzini Generali employers: no top-up."""
+    assert _may("logistica-trasporto-confetra", "4", WorkerCategory.OPERAIO) == {
+        "abs": Decimal("507.13"),
+        "inps": Decimal("338.05"),
+    }
+
+
+def test_cinema_sickness_only_holiday_top_up() -> None:
+    """Seven paid days: 341.57 / 7 = 48.80; 170.79 + 24.40 = 195.19."""
+    assert _may(
+        "esercizi-cinematografici-anec",
+        "2",
+        WorkerCategory.IMPIEGATO,
+        start_year=2025,
+    ) == {"abs": Decimal("341.57"), "intg": Decimal("195.19")}
+
+
+def test_confapi_excluded_national_holiday_is_not_topped_up() -> None:
+    """May 1 is art. 32(a): eight days at 528.97, INPS 352.61; no top-up."""
+    assert _may("metalmeccanico-confapi", "3", WorkerCategory.OPERAIO) == {
+        "abs": Decimal("528.97"),
+        "inps": Decimal("352.61"),
+    }
+
+
 def _holiday_case(
     slug: str, level: str, start: date, holiday: date
 ) -> dict[str, Decimal]:
@@ -129,30 +155,4 @@ def test_confcommercio_may_first_net_basis_cannot_meet_gross_holiday_pay() -> No
         "abs": Decimal("68.52"),
         "inps": Decimal("34.26"),
         "intg": Decimal("13.43"),
-    }
-
-
-def test_logistica_holiday_is_not_topped_up_outside_its_section() -> None:
-    """Art. 71 c. 5 is of the ex Magazzini Generali employers: no top-up."""
-    assert _may("logistica-trasporto-confetra", "4", WorkerCategory.OPERAIO) == {
-        "abs": Decimal("507.13"),
-        "inps": Decimal("338.05"),
-    }
-
-
-def test_cinema_sickness_only_holiday_top_up() -> None:
-    """Seven paid days: 341.57 / 7 = 48.80; 170.79 + 24.40 = 195.19."""
-    assert _may(
-        "esercizi-cinematografici-anec",
-        "2",
-        WorkerCategory.IMPIEGATO,
-        start_year=2025,
-    ) == {"abs": Decimal("341.57"), "intg": Decimal("195.19")}
-
-
-def test_confapi_excluded_national_holiday_is_not_topped_up() -> None:
-    """May 1 is art. 32(a): eight days at 528.97, INPS 352.61; no top-up."""
-    assert _may("metalmeccanico-confapi", "3", WorkerCategory.OPERAIO) == {
-        "abs": Decimal("528.97"),
-        "inps": Decimal("352.61"),
     }

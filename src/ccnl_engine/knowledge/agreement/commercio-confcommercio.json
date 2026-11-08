@@ -3708,7 +3708,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "d074769de86ea20dd35cb878c975d529b68893a8d12598c38f5c95584e26aa58",
+    "source_hash": "4845ca4390dc94b5d714bba233a594c47e2b894126657c5410c993571b5e2ae5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5552,12 +5552,12 @@
         ]
       },
       {
-        "id": "2026-11-08-ai-commercio-confcommercio-holiday-in-sickness",
+        "id": "2026-11-08-gpt-commercio-confcommercio-holiday-in-sickness",
         "date": "2026-11-08",
-        "reviewer": "claude-opus-5-5",
+        "reviewer": "gpt-6-sol",
         "reviewer_kind": "ai",
-        "scope": "Art. 154 holiday list, art. 191 gross holiday target, art. 187 net-basis integration and a May 2026 sickness computation.",
-        "outcome": "flagged",
+        "scope": "Art. 187 and art. 191 of the testo unico 2019 against the decision not to encode the holiday target, by a separate model session.",
+        "outcome": "confirmed",
         "sources": [
           {
             "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
@@ -5565,10 +5565,9 @@
           }
         ],
         "findings": [
-          "A rate-one holiday target would gross up the INPS benefit on the net basis and underpay the gross daily holiday wage; no target was added.",
-          "Art. 154 omits the national-calendar 4 October holiday introduced in 2026."
+          "Confirmed: with the net-basis integration of art. 187, a 100% target pays 64.82 where the gross holiday pay of art. 191 is 68.52; the clause is kept as a limitation."
         ],
-        "independence": "same_process",
+        "independence": "separate_model",
         "checked": [
           "work_rules.sickness_rules"
         ]
