@@ -17,6 +17,7 @@ from ccnl_engine.compensation.hourly.services import (
     percentage_settlement,
 )
 from ccnl_engine.compensation.individual.rules import individual_element_decisions
+from ccnl_engine.compensation.loyalty.rules import loyalty_premium
 from ccnl_engine.compensation.raccordo.services import erc_settlement
 from ccnl_engine.compensation.renewal_minimum.services import (
     renewal_minimum,
@@ -154,6 +155,7 @@ def run_events(ctx: RunContext) -> RunEvents:
         contractual_funds(ctx).settlement,
         run_leave(ctx),
         sunday_holiday(ctx),
+        loyalty_premium(ctx),
     )
     totals = events.totals
     for part in parts:

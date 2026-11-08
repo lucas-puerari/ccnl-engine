@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | bilateral_funds, inps_employer, seniority |
+| **Limits of this contract** | base_salary, bilateral_funds, inps_employer, seniority |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -63,6 +63,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 28 values found verbatim on the cited pages and marked verified; 1 left as they were (derived or not on a text page). |
 | 2026-11-08 | gpt-6-sol (ai) | Data fixes proposed by one session from the signed text and confirmed by a second independent session. | corrected | Closed contractual_fund_uncovered. |
 | 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 65 loyalty premium on cached consolidated PDF page 93. | corrected | Annual anniversary award for clerical employees after twenty years; termination pro rata remains unmodelled. |
+| 2026-11-08 | gpt-6-sol (ai) | Art. 65, the elements of the monthly pay and the TFR article, against the loyalty premium encoding, by a separate model session. | corrected | Confirmed the 20 years, the anniversary and the one monthly pay.<br>Corrected: the TFR article is art. 70; the excluded conventional seniority and the 29 February anniversary are recorded as limitation loyalty_service_count. |
 
 ## Salary table
 
@@ -121,6 +123,13 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
+!!! warning "edilizia-artigianato-cna/loyalty_dismissal_pro_rata · base_salary · impact yes · open"
+    Art. 65 annual loyalty award is paid at the hire anniversary after twenty years, but whole-month twelfths on non-disciplinary dismissal are not calculated on a termination run.
+
+    **Applies when:** `base_salary` applies; category in impiegato, quadro; run kind in termination; seniority of at least 240 months.
+
+    **Remediation:** Calculate the full-month twelfths owed on non-disciplinary dismissal after entitlement.
+
 !!! warning "edilizia-artigianato-cna/cassa_edile_accruals_missing · bilateral_funds · impact yes · open"
     For blue-collar workers in construction the Cassa Edile / EPR bilateral system provides additional accrual benefits (annual leave, Christmas bonus, seniority) that are separate from INPS seniority increments. These are not modelled; only the tabular seniority increments are implemented.
 
@@ -155,6 +164,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies.
 
     **Remediation:** Model the CIGO of D.Lgs. 148/2015 art. 13 c. 1 by activity (edile, lapidei) apart from the tax sector, then remove this note.
+
+!!! warning "edilizia-artigianato-cna/loyalty_service_count · base_salary · impact yes · open"
+    Art. 65: the twenty years of uninterrupted actual service leave out 'le anzianità convenzionali di carattere militare'; the engine counts the years from the start of the employment period, so the caller states a start that leaves them out. The anniversary of a hire on 29 February falls on 28 February in a common year (the text does not say).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** State the years of actual service the premio counts as a worker fact.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
