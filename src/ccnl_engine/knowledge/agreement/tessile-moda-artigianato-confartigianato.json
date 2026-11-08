@@ -595,10 +595,10 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T13:00:00Z",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
           "effective_from": "2023-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-08T13:00:00Z",
+          "verified_at": "2026-11-08T09:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-tessile-moda-artigianato-confartigianato-fsba"
         }
@@ -4809,7 +4809,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
     "verification_status": "unverified",
-    "source_hash": "d36dcf1a51f00025213934e2cd9c6cb623c9823333c2f165afaf9fe9be4dda49",
+    "source_hash": "ced9fb7d289ff5f570d8806f19797150738934f4f778ebee23d6da061d526b0d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

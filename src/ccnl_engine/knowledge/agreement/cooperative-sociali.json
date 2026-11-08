@@ -6090,7 +6090,7 @@
     "effective_until": null,
     "source": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
     "verification_status": "unverified",
-    "source_hash": "aae5cacd878bb24e8e942a3a6a363edc30849d1e28c3c4da639d754540a61977",
+    "source_hash": "470aeb1676bb6a98464482f2a3bf00878e173920561c58921aef2e74d2c4b5be",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -6576,7 +6576,7 @@
             "extraction_timestamp": "2026-11-08T03:00:00Z",
             "effective_from": null,
             "verified_by": "gpt-6-sol",
-            "verified_at": "2026-11-08T14:00:00Z",
+            "verified_at": "2026-11-08T09:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-08-gpt-cooperative-sociali-injury-top-up"
           },

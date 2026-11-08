@@ -328,10 +328,10 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T13:00:00Z",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
           "effective_from": "2023-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-08T13:00:00Z",
+          "verified_at": "2026-11-08T09:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-acconciatura-estetica-confartigianato-fsba"
         }
@@ -1233,7 +1233,7 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "531b2420141c50a70fa37776a249f1d0dcdb1c071cb648a2adf60bc886f3a588",
+    "source_hash": "c914ecb5492faa75cab04f7fc600fa022390bdd2b22a64dba14b997b5afe43dc",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

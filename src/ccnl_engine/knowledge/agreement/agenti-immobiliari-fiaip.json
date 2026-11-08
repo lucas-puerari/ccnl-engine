@@ -572,10 +572,10 @@
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-08T17:00:00Z",
+            "extraction_timestamp": "2026-11-08T09:00:00Z",
             "effective_from": "2025-05-01",
             "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-08T17:00:00Z",
+            "verified_at": "2026-11-08T09:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-08-ai-agenti-immobiliari-fiaip-ebnaip"
           }
@@ -612,10 +612,10 @@
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-08T17:00:00Z",
+            "extraction_timestamp": "2026-11-08T09:00:00Z",
             "effective_from": "2025-05-01",
             "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-08T17:00:00Z",
+            "verified_at": "2026-11-08T09:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-08-ai-agenti-immobiliari-fiaip-ebnaip"
           }
@@ -1900,7 +1900,7 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "41fb2ac8cdfeb91f58d59962e1237013d6f706f3471f5b20fa218cb9140e3bc5"
+    "source_hash": "e89561c4d9beec11e519d59436a6e874668b61f7173bead5bf3ecf80c44381d6"
   },
   "work_rules": {
     "notice": {

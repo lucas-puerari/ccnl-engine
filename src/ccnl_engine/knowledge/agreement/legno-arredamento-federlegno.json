@@ -4909,7 +4909,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "4b865679af6ad5b26802daaeeeb3655f15a940234074b181daacc8b251b44993",
+    "source_hash": "9bb0be7c2ddc2d0e19b4878782ecf2fe8cc8fd36d903efbe1fb598c16480a822",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5191,7 +5191,7 @@
             "extraction_timestamp": "2026-11-08T03:00:00Z",
             "effective_from": null,
             "verified_by": "gpt-6-sol",
-            "verified_at": "2026-11-08T14:00:00Z",
+            "verified_at": "2026-11-08T09:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-08-gpt-legno-arredamento-federlegno-injury-top-up"
           }

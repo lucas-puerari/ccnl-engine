@@ -3915,7 +3915,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "26f63babce5d1e6b150d0d19fdfa88fb3ab1f8d4c2222b6fdf53ff41b702d3d4",
+    "source_hash": "87ed9ed3e4a5aea9ca47557ad32d4d9878307f3eee520ddc496fb2480a203687",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5276,7 +5276,7 @@
             "extraction_timestamp": "2026-11-08T03:00:00Z",
             "effective_from": null,
             "verified_by": "gpt-6-sol",
-            "verified_at": "2026-11-08T14:00:00Z",
+            "verified_at": "2026-11-08T09:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-08-gpt-dmo-federdistribuzione-injury-top-up"
           },

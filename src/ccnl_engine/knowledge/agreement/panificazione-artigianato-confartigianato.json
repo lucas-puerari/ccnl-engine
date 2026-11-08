@@ -397,10 +397,10 @@
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T13:00:00Z",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
           "effective_from": "2023-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-08T13:00:00Z",
+          "verified_at": "2026-11-08T09:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-panificazione-artigianato-confartigianato-fsba"
         }
@@ -2182,7 +2182,7 @@
     "effective_until": null,
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "78fa9013328477ad40796937b3c041fc0ff5ba575129fb1e5b4391ccd3fb0f22",
+    "source_hash": "9acb1145e17398f1324d9cad0afb73f949a66667e1ddf80c8dbf21cd1f283dfc",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -3080,7 +3080,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
     "verification_status": "unverified",
-    "source_hash": "ed5a1f3d6c76bda0a215fdcf2c08371af2399d9aced2ddeede6ff12b8c3e2f18",
+    "source_hash": "78650fe4944b153231f6fa0686b38c7b417b2466c6b593b7f41b5419aed3c45b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3361,7 +3361,7 @@
             "extraction_timestamp": "2026-11-08T03:00:00Z",
             "effective_from": null,
             "verified_by": "gpt-6-sol",
-            "verified_at": "2026-11-08T14:00:00Z",
+            "verified_at": "2026-11-08T09:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-08-gpt-elettrico-elettricita-futura-injury-top-up"
           },
