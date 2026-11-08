@@ -77,24 +77,6 @@
         "text": "SENIORITY MAX: CCNL provides 10 max increments for workers hired before 31/12/1988; modelled as max=5 (post-1988 hires, the prevailing case for the active workforce — no one hired before 1988 is still accumulating scatti). Structural engine limitation for the pre-1988 grandfathered cohort."
       },
       {
-        "kind": "simplification",
-        "text": "SUPERMINIMO LIVELLO: Art. 18 provides additional EUR 7/month for L4 workers after 8 years in level, and EUR 7-11/month for L2-L3 workers under specific conditions. Individual-level amounts tied to personal history — not modellable in a standardised payroll engine (no per-worker tenure field). Out_of_scope structural limitation.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "level_superminimo_art_18",
-          "applies_when": {
-            "trigger": "outside_input",
-            "levels": [
-              "II",
-              "III",
-              "IV"
-            ]
-          },
-          "remediation": "Model the Art. 18 superminimo (7 EUR for IV after 8 years in level, 7-11 EUR for II-III) as allowances gated on the time in level, or pay it as an IndividualElement and record the limitation."
-        }
-      },
-      {
         "kind": "info",
         "text": "EAR FOR VIIQ: Allegato 1bis lists EAR only for VII (not VIIQ separately). VIIQ workers receive the same EAR as VII; the distinguishing element is INDENNITA_FUNZIONE (additional allowance for quadri). Structural design: VIIQ base = VII base, VIIQ fixed_allowances includes INDENNITA_FUNZIONE."
       },
@@ -111,6 +93,11 @@
           },
           "remediation": "Pay the una tantum (200 EUR in July 2024, 180 EUR in January 2025) outside the engine (ArrearsEvent) and record it as an open limitation."
         }
+      },
+      {
+        "kind": "info",
+        "text": "Allegato 1 nn. 2-5 (p. 32; not art. 18): the superminimi by years in the level are fixed allowances gated on SeniorityFact.career_months: 7 EUR in level IV after 8 years; 7 EUR in level III after 4 years with the role 'diplomato' or after 8 years; 11 EUR in level II after 10 years with the role 'senza_passaggio'. Without career_months the run reads the service months.",
+        "capability": "base_salary"
       }
     ]
   },
@@ -198,6 +185,30 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-marittimi-level-superminimi",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Allegato 1 nn. 2-5 (PDF p. 32), art. 17 and art. 33 of the Sezione personale di terra of 11 July 2024.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+            "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+          }
+        ],
+        "findings": [
+          "The superminimi by years in the level are in Allegato 1 nn. 2-5, not art. 18 as the note said: 7 EUR (IV, 8 years; III, 4 years with a diploma or 8 years), 11 EUR (II, 10 years, no further promotion).",
+          "Art. 17 puts the superminimo in the tredicesima and quattordicesima, art. 33 in the TFR base."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels[1].fixed_allowances",
+          "levels[2].fixed_allowances",
+          "levels[3].fixed_allowances"
         ]
       }
     ]
@@ -807,6 +818,75 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "SUPERMINIMO_LIVELLO",
+          "description": "Superminimo after ten years in level II without a further promotion (Allegato 1 n. 5)",
+          "months_per_year": "14",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": null,
+                "value": "11.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-sezione-terra-2024",
+                      "title": "CCNL industria armatoriale, Sezione personale di terra - uffici e terminals delle Società di Navigazione, 11 luglio 2024 (FILT CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "32",
+                    "section": "Allegato 1, n. 5 - Superminimi",
+                    "quote": "5 - Ai lavoratori inquadrati nel 2° livello e per i quali non è previsto il passaggio al livello superiore verrà riconosciuto un superminimo individuale di € 11,00 qualora abbiano una anzianità di livello pari o superiore a 10 anni."
+                  },
+                  "transformation": "EUR 11 a month with the role 'senza_passaggio' (a worker 'per i quali non è previsto il passaggio al livello superiore') from 120 months in level II. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T22:00:00Z",
+                    "effective_from": "2024-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T22:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-level-superminimi"
+                  }
+                }
+              }
+            ]
+          },
+          "service_months_threshold": 120,
+          "career_service": true,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "marittimi-sezione-terra-2024",
+                "title": "CCNL industria armatoriale, Sezione personale di terra - uffici e terminals delle Società di Navigazione, 11 luglio 2024 (FILT CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+              },
+              "page": "32",
+              "section": "Allegato 1, n. 5 - Superminimi",
+              "quote": "5 - Ai lavoratori inquadrati nel 2° livello e per i quali non è previsto il passaggio al livello superiore verrà riconosciuto un superminimo individuale di € 11,00 qualora abbiano una anzianità di livello pari o superiore a 10 anni."
+            },
+            "transformation": "EUR 11 a month with the role 'senza_passaggio' (a worker 'per i quali non è previsto il passaggio al livello superiore') from 120 months in level II. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T22:00:00Z",
+              "effective_from": "2024-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T22:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-marittimi-level-superminimi"
+            }
+          },
+          "role": "senza_passaggio"
         }
       ],
       "provenance": {
@@ -1043,6 +1123,144 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "SUPERMINIMO_LIVELLO_DIPLOMA",
+          "description": "Superminimo of the impiegato with a diploma after four years in level III (Allegato 1 n. 3)",
+          "months_per_year": "14",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": null,
+                "value": "7.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-sezione-terra-2024",
+                      "title": "CCNL industria armatoriale, Sezione personale di terra - uffici e terminals delle Società di Navigazione, 11 luglio 2024 (FILT CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "32",
+                    "section": "Allegato 1, n. 3 - Superminimi",
+                    "quote": "3 - Agli impiegati con diploma di scuola media superiore, dopo quattro anni di permanenza nel 3° livello, sarà corrisposto un superminimo di € 7,00 mensili."
+                  },
+                  "transformation": "EUR 7 a month with the role 'diplomato' from 48 months in level III, until 96 months, when the superminimo of n. 4 takes over: the two are one superminimo of 7 EUR, never added. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T22:00:00Z",
+                    "effective_from": "2024-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T22:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-level-superminimi"
+                  }
+                }
+              }
+            ]
+          },
+          "service_months_threshold": 48,
+          "career_service": true,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "marittimi-sezione-terra-2024",
+                "title": "CCNL industria armatoriale, Sezione personale di terra - uffici e terminals delle Società di Navigazione, 11 luglio 2024 (FILT CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+              },
+              "page": "32",
+              "section": "Allegato 1, n. 3 - Superminimi",
+              "quote": "3 - Agli impiegati con diploma di scuola media superiore, dopo quattro anni di permanenza nel 3° livello, sarà corrisposto un superminimo di € 7,00 mensili."
+            },
+            "transformation": "EUR 7 a month with the role 'diplomato' from 48 months in level III, until 96 months, when the superminimo of n. 4 takes over: the two are one superminimo of 7 EUR, never added. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T22:00:00Z",
+              "effective_from": "2024-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T22:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-marittimi-level-superminimi"
+            }
+          },
+          "service_months_until": 96,
+          "role": "diplomato"
+        },
+        {
+          "code": "SUPERMINIMO_LIVELLO",
+          "description": "Superminimo after eight years in level III (Allegato 1 n. 4)",
+          "months_per_year": "14",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": null,
+                "value": "7.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-sezione-terra-2024",
+                      "title": "CCNL industria armatoriale, Sezione personale di terra - uffici e terminals delle Società di Navigazione, 11 luglio 2024 (FILT CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "32",
+                    "section": "Allegato 1, n. 4 - Superminimi",
+                    "quote": "4 - Agli altri impiegati di 3° livello, dopo otto anni di permanenza nello stesso, sarà corrisposto un superminimo di € 7,00 mensili."
+                  },
+                  "transformation": "EUR 7 a month from 96 months in level III, to every impiegato of the level (the diplomato included, whose superminimo of n. 3 ends there). The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T22:00:00Z",
+                    "effective_from": "2024-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T22:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-level-superminimi"
+                  }
+                }
+              }
+            ]
+          },
+          "service_months_threshold": 96,
+          "career_service": true,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "marittimi-sezione-terra-2024",
+                "title": "CCNL industria armatoriale, Sezione personale di terra - uffici e terminals delle Società di Navigazione, 11 luglio 2024 (FILT CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+              },
+              "page": "32",
+              "section": "Allegato 1, n. 4 - Superminimi",
+              "quote": "4 - Agli altri impiegati di 3° livello, dopo otto anni di permanenza nello stesso, sarà corrisposto un superminimo di € 7,00 mensili."
+            },
+            "transformation": "EUR 7 a month from 96 months in level III, to every impiegato of the level (the diplomato included, whose superminimo of n. 3 ends there). The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T22:00:00Z",
+              "effective_from": "2024-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T22:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-marittimi-level-superminimi"
+            }
+          }
         }
       ],
       "provenance": {
@@ -1277,6 +1495,74 @@
               "extraction_timestamp": "2026-09-07T15:03:36",
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "SUPERMINIMO_LIVELLO",
+          "description": "Superminimo after eight years in level IV (Allegato 1 n. 2)",
+          "months_per_year": "14",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": null,
+                "value": "7.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "marittimi-sezione-terra-2024",
+                      "title": "CCNL industria armatoriale, Sezione personale di terra - uffici e terminals delle Società di Navigazione, 11 luglio 2024 (FILT CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                      "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+                    },
+                    "page": "32",
+                    "section": "Allegato 1, n. 2 - Superminimi",
+                    "quote": "2 - Agli impiegati di 4° livello, dopo otto anni di permanenza nel livello, sarà corrisposto un superminimo di € 7,00 mensili."
+                  },
+                  "transformation": "EUR 7 a month from 96 months in level IV. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T22:00:00Z",
+                    "effective_from": "2024-07-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T22:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-marittimi-level-superminimi"
+                  }
+                }
+              }
+            ]
+          },
+          "service_months_threshold": 96,
+          "career_service": true,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "marittimi-sezione-terra-2024",
+                "title": "CCNL industria armatoriale, Sezione personale di terra - uffici e terminals delle Società di Navigazione, 11 luglio 2024 (FILT CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+                "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+              },
+              "page": "32",
+              "section": "Allegato 1, n. 2 - Superminimi",
+              "quote": "2 - Agli impiegati di 4° livello, dopo otto anni di permanenza nel livello, sarà corrisposto un superminimo di € 7,00 mensili."
+            },
+            "transformation": "EUR 7 a month from 96 months in level IV. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T22:00:00Z",
+              "effective_from": "2024-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T22:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-marittimi-level-superminimi"
             }
           }
         }
@@ -2338,7 +2624,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "39d9cb519224cc52f2441639aba4a0b9481c17b4df46731f2787e4719d0f1e79",
+    "source_hash": "f6a854d825c3d67b276550a91f7547a533c8aaa5b234cb1ab5505810860eb1d9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
