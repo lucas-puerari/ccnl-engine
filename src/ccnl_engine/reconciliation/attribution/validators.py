@@ -88,6 +88,7 @@ KIND_CAPABILITIES: dict[str, frozenset[str]] = {
     "absence_integration_item": frozenset({
         "maternity_leave",
         "parental_leave",
+        "paternity_leave",
         "workplace_injury",
     }),
     "absence_deduction": frozenset({

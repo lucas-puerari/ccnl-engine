@@ -13,7 +13,7 @@ from ccnl_engine.pay_item.rounding.policies import money
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.absence.insured.models import PaternityRates
+    from ccnl_engine.absence.insured.models import MaternityHoliday, PaternityRates
     from ccnl_engine.absence.insured.rules import MonthPay
 
 __all__ = ["paternity_pay"]
@@ -24,6 +24,8 @@ def paternity_pay(
     pay: MonthPay,
     rates: PaternityRates,
     rmgg: Decimal | None = None,
+    holiday: MaternityHoliday | None = None,
+    holidays: frozenset[date] = frozenset(),
 ) -> InsuredPay:
     """Return the deduction and the INPS indemnity of the paternity days.
 
@@ -33,12 +35,29 @@ def paternity_pay(
         rates: The INPS indemnity.
         rmgg: Daily base of the month before the leave (art. 23);
             ``None`` takes the monthly pay of the run instead.
+        holiday: CCNL target, if it covers compulsory paternity.
+        holidays: National holidays of the month.
 
     Returns:
-        The amounts, each rounded to the cent; no CCNL top-up, the
-        indemnity is already the whole pay.
+        The amounts, each rounded to the cent.
     """
     units, deduction = deducted_days(pay, days)
     daily = run_daily_base(pay, rates.daily_divisor) if rmgg is None else rmgg
     indemnity = money(rates.indemnity_rate * daily * len(days))
-    return InsuredPay(units, deduction, indemnity, len(days))
+    integration = Decimal(0)
+    if holiday is not None:
+        integration = sum(
+            (
+                money(
+                    max(
+                        holiday.rate * pay.deducted(day, day)[1]
+                        - rates.indemnity_rate * daily,
+                        Decimal(0),
+                    )
+                )
+                for day in days
+                if day in holidays and day.weekday() != 6
+            ),
+            Decimal(0),
+        )
+    return InsuredPay(units, deduction, indemnity, len(days), integration)

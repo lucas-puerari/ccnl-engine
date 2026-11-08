@@ -194,6 +194,11 @@ def _handle_maternity_leave(
         terms.rates.maternity,
         rules,
         base.rmgg,
+        (
+            rules.holiday.holidays(*span)
+            if rules is not None and rules.holiday is not None
+            else frozenset()
+        ),
     )
     effect = post_lines(
         (

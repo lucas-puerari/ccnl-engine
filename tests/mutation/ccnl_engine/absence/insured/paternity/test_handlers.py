@@ -130,3 +130,59 @@ def test_the_days_are_one_to_twenty_in_order(
     """Art. 27-bis: ten working days, twenty for a multiple birth."""
     with pytest.raises(InvalidInputError, match=match):
         PaternityLeaveEvent(days)
+
+
+def _may_run(ccnl_id: str, level: str) -> PeriodResult:
+    """Return May 2026 of a paternity leave day on Friday 1 May.
+
+    Returns:
+        The result of the run.
+    """
+    days = (date(2026, 5, 1),)
+    return PayrollEngine.bundled().calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(2026, 5),
+            payment_date=date(2026, 5, 27),
+            employment=Employment(
+                ccnl_id=ccnl_id,
+                level_code=level,
+                category=WorkerCategory.IMPIEGATO,
+                contract_type=Permanent(),
+                employment_period=EmploymentPeriod(_HIRED, None),
+                seniority=SeniorityFact.since(_HIRED, SenioritySource.EMPLOYER_RECORDS),
+                pension_fund=NoPensionFund(),
+                tfr_treasury_fund=False,
+            ),
+            employer=EmployerProfile(headcount=Headcount(20)),
+            facts=PeriodFacts(
+                events=(PaternityLeaveEvent(days, paternity_base_pay=_LOW_BASE),)
+            ),
+        )
+    )
+
+
+#: A month-before pay below the CCNL pay, so that INPS falls short of it.
+_LOW_BASE = InpsSicknessBase(Decimal(1500), Decimal(0))
+
+
+def test_the_holiday_of_a_paternity_leave_reaches_the_studi_target() -> None:
+    """Studi art. 110 c. 8: 1 May tops the INPS up to the daily quota.
+
+    The day's quota of the CCNL pay is the deduction; INPS pays 100% of
+    the lower RMGG of 1,500; the top-up is their difference.
+    """
+    amounts = _amounts(_may_run("studi-professionali-confprofessioni", "3"))
+    deduction = amounts["absence_deduction"][1]
+    inps = amounts["maternity_item"][1]
+    assert deduction > inps > Decimal(0)
+    assert amounts["absence_integration_item"] == ("intg", deduction - inps)
+
+
+@pytest.mark.parametrize(
+    ("ccnl_id", "level"),
+    [("ced-assoced", "3"), ("metalmeccanico-federmeccanica", "C3")],
+    ids=["maternity-holiday-only", "no-ccnl-rule"],
+)
+def test_no_paternity_holiday_target_adds_nothing(ccnl_id: str, level: str) -> None:
+    """CED tops up the maternity holidays only; Federmeccanica has no rule."""
+    assert "absence_integration_item" not in _amounts(_may_run(ccnl_id, level))

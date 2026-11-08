@@ -4,7 +4,7 @@ The run deducts the days of leave of its month at the CCNL daily quota and
 pays back the INPS indemnity, 100% of the pay of the month before the leave
 (art. 29 D.Lgs. 151/2001), advanced by the employer like the maternity
 indemnity and posted as ``maternity_item``: outside the INPS and TFR bases.
-No CCNL top-up: the indemnity is already the whole pay.
+A CCNL holiday target can still exceed the INPS daily base.
 """
 
 from __future__ import annotations
@@ -63,11 +63,21 @@ def _handle_paternity_leave(
         limitation=PATERNITY_BASE_LIMITATION,
     )
     days = event.days_within(*span)
-    pay = paternity_pay(days, terms.pay, terms.rates.paternity, base.rmgg)
+    maternity = None if terms.rules is None else terms.rules.maternity
+    holiday = None if maternity is None else maternity.paternity_holiday
+    pay = paternity_pay(
+        days,
+        terms.pay,
+        terms.rates.paternity,
+        base.rmgg,
+        holiday,
+        holiday.holidays(*span) if holiday is not None else frozenset(),
+    )
     effect = post_lines(
         (
             ("abs", -pay.deduction, _INTEGRATION, pay.units),
             ("inps", pay.indemnity, "maternity_item", Decimal(pay.days)),
+            ("intg", pay.integration, _INTEGRATION, Decimal(pay.days)),
         ),
         ctx,
     )
