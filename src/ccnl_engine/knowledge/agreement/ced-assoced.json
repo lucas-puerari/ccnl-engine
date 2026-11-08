@@ -145,15 +145,15 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 147 (PDF p. 97): the ordinary integration of the INAIL indemnity (60% on the first three days, then '75% (cento per cento)' from the 4th: the text is inconsistent) is not modelled: the injury rules of the ruleset hold only the holiday target, so the ordinary injury days are paid at the INAIL share; the holiday reaches 100% net of that share.",
+        "text": "Art. 147 prints 75% (cento per cento) for ordinary injury integration after the waiting period. The numerical 75% is encoded; the contradictory words could indicate a 100% intended rate. Confirm with the signatories before using this target as definitive.",
         "capability": "workplace_injury",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "injury_integration_missing",
+          "variant": "injury_rate_text_conflict",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Encode the integration bands of the injury article (insured_absence.injury.integration_bands)."
+          "remediation": "Obtain an authoritative clarification of the conflicting percentage in Art. 147."
         }
       }
     ]
@@ -1920,7 +1920,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "097045a4149fb8a642344b5fdbb9f996da024774662d95a505ccbe6e307f51a6",
+    "source_hash": "39ffbf0ce79fecc99d894bf0874b9c6c97357797907108a65cdbdf443da5820a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2211,24 +2211,24 @@
           "status": "verified",
           "location": {
             "source_document": {
-              "document_id": "ced-assoced-holiday-clause",
+              "document_id": "ced-assoced-injury-integration",
               "title": "CCNL CED, ICT, professioni digitali e STP, stesura 9 marzo 2022",
               "kind": "associazione",
               "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
               "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
             },
             "page": "97",
-            "section": "Art. 149 - Festività nel periodo di malattia o infortunio",
-            "quote": "Ai sensi della L. 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad un'indennità integrativa di quella a carico rispettivamente dell'INPS e dell'INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all'art. 168."
+            "section": "Art. 147 - Injury pay",
+            "quote": "1) 60% (sessanta per cento) per i primi tre giorni (periodo di carenza);\n2) 75% (cento per cento) per i giorni dal 4° in poi della retribuzione giornaliera netta cui il lavoratore\n     avrebbe avuto diritto in caso di normale svolgimento del rapporto. Per retribuzione giornaliera si intende\n     la quota giornaliera della retribuzione di fatto di cui all'art. 168."
           },
-          "transformation": "On a covered national weekday holiday during a work injury, employer integration reaches 100% of the daily pay after subtracting INAIL indemnity and the ordinary CCNL integration already due on that day; the clause also covers sickness. The local patron saint is outside the national calendar.",
+          "transformation": "The explicit numerical 75% is used rather than the contradictory parenthetical words (100%). The three days after the injury are paid at 60%; from offset 4 the INAIL benefit is topped up to 75% of net daily pay. The conflicting wording requires a clarification before a 100% target can be asserted.",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-08T12:05:09Z",
-            "verified_at": "2026-11-08T12:05:09Z",
+            "extraction_timestamp": "2026-11-08T12:41:14Z",
+            "verified_at": "2026-11-08T12:41:14Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-ai-ced-assoced-injury-holiday",
+            "review_id": "2026-11-08-ai-ced-assoced-injury-integration",
             "verified_by": "claude-opus-5-5"
           }
         },
@@ -2262,7 +2262,15 @@
           "excluded_days": [
             "10-04"
           ]
-        }
+        },
+        "carenza_rate": "0.60",
+        "integration_bands": [
+          {
+            "day_from": 4,
+            "rate": "0.75"
+          }
+        ],
+        "net_basis": true
       }
     }
   },
@@ -2394,6 +2402,28 @@
         "independence": "same_process",
         "checked": [
           "work_rules.insured_absence.injury.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-ced-assoced-injury-integration",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 147 - Injury pay, ordinary injury integration and waiting days against the cached PDF.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+            "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+          }
+        ],
+        "findings": [
+          "The explicit numerical 75% is used rather than the contradictory parenthetical words (100%). The three days after the injury are paid at 60%; from offset 4 the INAIL benefit is topped up to 75% of net daily pay. The conflicting wording requires a clarification before a 100% target can be asserted."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.insured_absence.injury",
+          "coverage.notes"
         ]
       }
     ]
