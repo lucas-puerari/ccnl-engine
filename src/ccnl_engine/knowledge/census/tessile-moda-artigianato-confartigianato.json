@@ -39,10 +39,10 @@
       "institute": "seniority",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "SUB-SECTOR LEVELS (chimica 5s and 7, ceramica A-G): the seniority table of the file (art. 67, tessile sector) has no row for them and the pages read (verbale of 22 July 2024, pp. 5-6) do not set one, so they accrue no seniority increments; they are in no apprenticeship track (the three tracks are the abbigliamento groups) no fixed allowance is modelled for them (the pages read do not settle one, such as the indennità di funzione of 6S) and their category is left to Employment.category.",
+      "rule": "SUB-SECTOR RULES (chimica and ceramica, art. 67-68, stesura 16 July 2024 pp. 89-95): their five biennial increments (seniority_increments_by_subsector) and three apprenticeship groups each (tracks naming the sub-sector) are modelled; apprentices 6 EUR per increment from 2025. Not modelled: the track of the impiegati amministrativi of all sectors (3 years, 70-90%), the fixed allowances of the sub-sector levels (such as the indennità di funzione of 6S), and their category, left to Employment.category.",
       "calculation": "ccnl/tessile-moda-artigianato-confartigianato:coverage.notes",
       "state": "absent",
-      "remediation": "Source the seniority increments and apprenticeship of the chimica and ceramica levels, then remove this note.",
+      "remediation": "Model the impiegati amministrativi track by category and the allowances of the sub-sector levels.",
       "origin": "seeded",
       "links": {
         "limitations": [

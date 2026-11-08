@@ -69,6 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The sick pay and the comporto of the CCNL (work_rules.sickness_rules), read on the signed text. | corrected | Art. 109 (pp. 126-127), operai Tessile, Abbigliamento, Calzaturiero: 80% for days 1-7, the first 3 not paid for an illness under 8 days, 100% of the net pay for days 8-180; Art. 97 (p. 116): 12 months. The file had a flat 80% and no carenza: corrected. Art. 97 holds both a 21-month and a 24-month paragraph on several illnesses, so no window is stored (note). |
 | 2026-11-07 | claude-opus-5-5 (ai) | The Nuovi minimi contrattuali of the chimica, concia, gomma, plastica, vetro (p. 5) and ceramica, terracotta, gres, decorazione di piastrelle (p. 6) tables of the verbale integrativo of 22 July 2024, page images. | confirmed | Chimica (p. 5): the 32 minimi of levels 1-7 and 5s for 1 July 2024, 1 January 2025, 1 October 2025 and 1 October 2026 read on the page image and added as the base_salary_by_subsector chimica of levels 1-6 and the chimica levels 5s and 7.<br>Ceramica (p. 6): the 28 minimi of levels A-G for the same four tranches read on the page image and added as the ceramica levels A-G. |
 | 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 67 and 68 of the stesura of 16 July 2024 (pp. 89-90, 94-96), tables read on the page images. | corrected | Added the increments and the apprenticeship tracks of the chimica and ceramica sub-sectors. |
 
 ## Salary table
 
@@ -122,6 +123,30 @@ percentage: 1.00
 Destination levels: `2`  
 percentage: 1.00
 
+**gruppo_1_chimica** (type: `percentage`)  
+Destination levels: `5s`, `6`, `7`  
+percentage: 1.00
+
+**gruppo_2_chimica** (type: `percentage`)  
+Destination levels: `4`, `5`  
+percentage: 1.00
+
+**gruppo_3_chimica** (type: `percentage`)  
+Destination levels: `2`, `3`  
+percentage: 1.00
+
+**gruppo_1_ceramica** (type: `percentage`)  
+Destination levels: `A`, `B`  
+percentage: 1.00
+
+**gruppo_2_ceramica** (type: `percentage`)  
+Destination levels: `C`, `D`  
+percentage: 1.00
+
+**gruppo_3_ceramica** (type: `percentage`)  
+Destination levels: `E`  
+percentage: 1.00
+
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
@@ -155,11 +180,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note.
 
 !!! warning "tessile-moda-artigianato-confartigianato/chimica_ceramica_level_rules · seniority · impact yes · open"
-    SUB-SECTOR LEVELS (chimica 5s and 7, ceramica A-G): the seniority table of the file (art. 67, tessile sector) has no row for them and the pages read (verbale of 22 July 2024, pp. 5-6) do not set one, so they accrue no seniority increments; they are in no apprenticeship track (the three tracks are the abbigliamento groups) no fixed allowance is modelled for them (the pages read do not settle one, such as the indennità di funzione of 6S) and their category is left to Employment.category.
+    SUB-SECTOR RULES (chimica and ceramica, art. 67-68, stesura 16 July 2024 pp. 89-95): their five biennial increments (seniority_increments_by_subsector) and three apprenticeship groups each (tracks naming the sub-sector) are modelled; apprentices 6 EUR per increment from 2025. Not modelled: the track of the impiegati amministrativi of all sectors (3 years, 70-90%), the fixed allowances of the sub-sector levels (such as the indennità di funzione of 6S), and their category, left to Employment.category.
 
     **Applies when:** `seniority` applies; level in 5s, 7, A, B, C, D, E, F, G.
 
-    **Remediation:** Source the seniority increments and apprenticeship of the chimica and ceramica levels, then remove this note.
+    **Remediation:** Model the impiegati amministrativi track by category and the allowances of the sub-sector levels.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

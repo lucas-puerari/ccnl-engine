@@ -178,7 +178,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SUB-SECTOR LEVELS (chimica 5s and 7, ceramica A-G): the seniority table of the file (art. 67, tessile sector) has no row for them and the pages read (verbale of 22 July 2024, pp. 5-6) do not set one, so they accrue no seniority increments; they are in no apprenticeship track (the three tracks are the abbigliamento groups) no fixed allowance is modelled for them (the pages read do not settle one, such as the indennità di funzione of 6S) and their category is left to Employment.category.",
+        "text": "SUB-SECTOR RULES (chimica and ceramica, art. 67-68, stesura 16 July 2024 pp. 89-95): their five biennial increments (seniority_increments_by_subsector) and three apprenticeship groups each (tracks naming the sub-sector) are modelled; apprentices 6 EUR per increment from 2025. Not modelled: the track of the impiegati amministrativi of all sectors (3 years, 70-90%), the fixed allowances of the sub-sector levels (such as the indennità di funzione of 6S), and their category, left to Employment.category.",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
@@ -197,7 +197,7 @@
               "G"
             ]
           },
-          "remediation": "Source the seniority increments and apprenticeship of the chimica and ceramica levels, then remove this note."
+          "remediation": "Model the impiegati amministrativi track by category and the allowances of the sub-sector levels."
         }
       }
     ]
@@ -299,6 +299,28 @@
         "independence": "same_process",
         "checked": [
           "parameters.solidarity_fund"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-tessile-moda-artigianato-chimica-ceramica",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 67 and 68 of the stesura of 16 July 2024 (pp. 89-90, 94-96), tables read on the page images.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confartigianatovicenza.it/wp-content/uploads/2026/01/01_CCNL-Area-Moda-Chimica-16.07.2024_stesura-definitiva.pdf",
+            "sha256": "a42631366ff40865c48517ad61ee7b93002a1a938945946741cff3161d30f310"
+          }
+        ],
+        "findings": [
+          "Added the increments and the apprenticeship tracks of the chimica and ceramica sub-sectors."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments_by_subsector",
+          "apprenticeship"
         ]
       }
     ]
@@ -579,6 +601,277 @@
           "verified_at": "2026-11-08T13:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-08-ai-tessile-moda-artigianato-confartigianato-fsba"
+        }
+      }
+    },
+    "seniority_increments_by_subsector": {
+      "chimica": {
+        "cadence_months": 24,
+        "maximum_count": 5,
+        "amount_by_level": {
+          "7": {
+            "periods": [
+              {
+                "valid_from": "2024-07-16",
+                "valid_until": null,
+                "value": "18.59"
+              }
+            ]
+          },
+          "6": {
+            "periods": [
+              {
+                "valid_from": "2024-07-16",
+                "valid_until": null,
+                "value": "17.04"
+              }
+            ]
+          },
+          "5s": {
+            "periods": [
+              {
+                "valid_from": "2024-07-16",
+                "valid_until": null,
+                "value": "16.01"
+              }
+            ]
+          },
+          "5": {
+            "periods": [
+              {
+                "valid_from": "2024-07-16",
+                "valid_until": null,
+                "value": "15.49"
+              }
+            ]
+          },
+          "4": {
+            "periods": [
+              {
+                "valid_from": "2024-07-16",
+                "valid_until": null,
+                "value": "14.46"
+              }
+            ]
+          },
+          "3": {
+            "periods": [
+              {
+                "valid_from": "2024-07-16",
+                "valid_until": null,
+                "value": "12.91"
+              }
+            ]
+          },
+          "2": {
+            "periods": [
+              {
+                "valid_from": "2024-07-16",
+                "valid_until": null,
+                "value": "11.88"
+              }
+            ]
+          },
+          "1": {
+            "periods": [
+              {
+                "valid_from": "2024-07-16",
+                "valid_until": null,
+                "value": "9.30"
+              }
+            ]
+          }
+        },
+        "apprentice_amount": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "6.00",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-area-moda-chimica-artigianato-2024-07-16",
+                    "title": "CCNL Area Tessile-Moda Chimica-Ceramica artigianato, Roma 16 luglio 2024, stesura definitiva firmata (Confartigianato Vicenza; scanned, read by OCR)",
+                    "kind": "associazione",
+                    "url": "https://www.confartigianatovicenza.it/wp-content/uploads/2026/01/01_CCNL-Area-Moda-Chimica-16.07.2024_stesura-definitiva.pdf",
+                    "published_on": "2024-07-16",
+                    "sha256": "a42631366ff40865c48517ad61ee7b93002a1a938945946741cff3161d30f310"
+                  },
+                  "page": "96",
+                  "section": "Art. 68 punto 14",
+                  "quote": "A decorrere dal 1° gennaio 2025 gli apprendisti anche con rapporto in corso hanno diritto agli scatti di anzianità che vengono maturati ed erogati con le stesse modalità dei lavoratori qualificati. L'importo dello scatto di anzianità maturato durante il periodo di apprendistato è di 6 euro, non rapportato alla percentuale di progressione retributiva."
+                },
+                "transformation": "6 EUR per increment of an apprentice, in every sector.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-08T09:00:00Z",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-08T09:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-08-ai-tessile-moda-artigianato-chimica-ceramica"
+                }
+              }
+            }
+          ]
+        },
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-area-moda-chimica-artigianato-2024-07-16",
+              "title": "CCNL Area Tessile-Moda Chimica-Ceramica artigianato, Roma 16 luglio 2024, stesura definitiva firmata (Confartigianato Vicenza; scanned, read by OCR)",
+              "kind": "associazione",
+              "url": "https://www.confartigianatovicenza.it/wp-content/uploads/2026/01/01_CCNL-Area-Moda-Chimica-16.07.2024_stesura-definitiva.pdf",
+              "published_on": "2024-07-16",
+              "sha256": "a42631366ff40865c48517ad61ee7b93002a1a938945946741cff3161d30f310"
+            },
+            "page": "89-90",
+            "section": "Art. 67, Settore chimica, concia gomma plastica, vetro",
+            "quote": "Ai lavoratori per l'anzianità di servizio maturata presso la stessa azienda indipendentemente da qualsiasi aumento di merito sarà corrisposto per ogni biennio e fino ad un massimo di 5 bienni un aumento in cifra fissa differenziata per ciascun livello retributivo. [p. 90] 7° 18,59; 6° 17,04; 5° S 16,01 solo settore vetro; 5° 15,49; 4° 14,46; 3° S 13,68 solo settore concia; 3° 12,91; 2° 11,88; 1° 9,30"
+          },
+          "transformation": "Five biennial increments at the amounts of the level (read on the page image); the 3° S of concia is not a level of the file.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T09:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T09:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-tessile-moda-artigianato-chimica-ceramica"
+          }
+        }
+      },
+      "ceramica": {
+        "cadence_months": 24,
+        "maximum_count": 5,
+        "amount_by_level": {
+          "A": {
+            "periods": [
+              {
+                "valid_from": "2024-07-16",
+                "valid_until": null,
+                "value": "11.36"
+              }
+            ]
+          },
+          "B": {
+            "periods": [
+              {
+                "valid_from": "2024-07-16",
+                "valid_until": null,
+                "value": "9.39"
+              }
+            ]
+          },
+          "C": {
+            "periods": [
+              {
+                "valid_from": "2024-07-16",
+                "valid_until": null,
+                "value": "8.78"
+              }
+            ]
+          },
+          "D": {
+            "periods": [
+              {
+                "valid_from": "2024-07-16",
+                "valid_until": null,
+                "value": "8.00"
+              }
+            ]
+          },
+          "E": {
+            "periods": [
+              {
+                "valid_from": "2024-07-16",
+                "valid_until": null,
+                "value": "7.75"
+              }
+            ]
+          },
+          "F": {
+            "periods": [
+              {
+                "valid_from": "2024-07-16",
+                "valid_until": null,
+                "value": "7.23"
+              }
+            ]
+          },
+          "G": {
+            "periods": [
+              {
+                "valid_from": "2024-07-16",
+                "valid_until": null,
+                "value": "6.97"
+              }
+            ]
+          }
+        },
+        "apprentice_amount": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "6.00",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-area-moda-chimica-artigianato-2024-07-16",
+                    "title": "CCNL Area Tessile-Moda Chimica-Ceramica artigianato, Roma 16 luglio 2024, stesura definitiva firmata (Confartigianato Vicenza; scanned, read by OCR)",
+                    "kind": "associazione",
+                    "url": "https://www.confartigianatovicenza.it/wp-content/uploads/2026/01/01_CCNL-Area-Moda-Chimica-16.07.2024_stesura-definitiva.pdf",
+                    "published_on": "2024-07-16",
+                    "sha256": "a42631366ff40865c48517ad61ee7b93002a1a938945946741cff3161d30f310"
+                  },
+                  "page": "96",
+                  "section": "Art. 68 punto 14",
+                  "quote": "A decorrere dal 1° gennaio 2025 gli apprendisti anche con rapporto in corso hanno diritto agli scatti di anzianità che vengono maturati ed erogati con le stesse modalità dei lavoratori qualificati. L'importo dello scatto di anzianità maturato durante il periodo di apprendistato è di 6 euro, non rapportato alla percentuale di progressione retributiva."
+                },
+                "transformation": "6 EUR per increment of an apprentice, in every sector.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-08T09:00:00Z",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-08T09:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-08-ai-tessile-moda-artigianato-chimica-ceramica"
+                }
+              }
+            }
+          ]
+        },
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-area-moda-chimica-artigianato-2024-07-16",
+              "title": "CCNL Area Tessile-Moda Chimica-Ceramica artigianato, Roma 16 luglio 2024, stesura definitiva firmata (Confartigianato Vicenza; scanned, read by OCR)",
+              "kind": "associazione",
+              "url": "https://www.confartigianatovicenza.it/wp-content/uploads/2026/01/01_CCNL-Area-Moda-Chimica-16.07.2024_stesura-definitiva.pdf",
+              "published_on": "2024-07-16",
+              "sha256": "a42631366ff40865c48517ad61ee7b93002a1a938945946741cff3161d30f310"
+            },
+            "page": "90",
+            "section": "Art. 67, Settore ceramica, terracotta, gres e decorazione di piastrelle",
+            "quote": "A partire dal 1° settembre 1980 vengono istituiti 5 aumenti periodici biennali di anzianità in cifra fissa per ciascun livello secondo gli importi qui di seguito riportati: A 11,36; B 9,39; C 8,78; D 8,00; E 7,75; F 7,23; G 6,97"
+          },
+          "transformation": "Five biennial increments at the amounts of the level (read on the page image).",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T09:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T09:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-tessile-moda-artigianato-chimica-ceramica"
+          }
         }
       }
     }
@@ -4033,6 +4326,480 @@
           "percentage": "1.00"
         }
       ]
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_1_chimica",
+      "destination_levels": [
+        "5s",
+        "6",
+        "7"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 30,
+          "months_until": 36,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 36,
+          "months_until": 42,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 42,
+          "months_until": 48,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 48,
+          "months_until": 54,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 54,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ],
+      "subsectors": [
+        "chimica"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-moda-chimica-artigianato-2024-07-16",
+            "title": "CCNL Area Tessile-Moda Chimica-Ceramica artigianato, Roma 16 luglio 2024, stesura definitiva firmata (Confartigianato Vicenza; scanned, read by OCR)",
+            "kind": "associazione",
+            "url": "https://www.confartigianatovicenza.it/wp-content/uploads/2026/01/01_CCNL-Area-Moda-Chimica-16.07.2024_stesura-definitiva.pdf",
+            "published_on": "2024-07-16",
+            "sha256": "a42631366ff40865c48517ad61ee7b93002a1a938945946741cff3161d30f310"
+          },
+          "page": "94",
+          "section": "Art. 68 punto 7",
+          "quote": "La retribuzione dell'apprendista è determinata mediante l'applicazione delle percentuali sotto indicate sulla retribuzione tabellare prevista dal presente C.C.N.L., relativa al livello salariale nel quale il lavoratore sarà inquadrato al termine del periodo di apprendistato [...] Settori chimica, concia, gomma-plastica, vetro: 1° 70% 70% 75% 75% 85% 85% 90% 90% 95% 100%; 2° 70% 70% 75% 75% 80% 80% 90% 100%; 3° 70% 70% 75% 75% 80% 100%"
+        },
+        "transformation": "Percentages of the tabellare of the destination level by semester; the last holds to the end of the track.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T09:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-tessile-moda-artigianato-chimica-ceramica"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_2_chimica",
+      "destination_levels": [
+        "4",
+        "5"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 30,
+          "months_until": 36,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 36,
+          "months_until": 42,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 42,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ],
+      "subsectors": [
+        "chimica"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-moda-chimica-artigianato-2024-07-16",
+            "title": "CCNL Area Tessile-Moda Chimica-Ceramica artigianato, Roma 16 luglio 2024, stesura definitiva firmata (Confartigianato Vicenza; scanned, read by OCR)",
+            "kind": "associazione",
+            "url": "https://www.confartigianatovicenza.it/wp-content/uploads/2026/01/01_CCNL-Area-Moda-Chimica-16.07.2024_stesura-definitiva.pdf",
+            "published_on": "2024-07-16",
+            "sha256": "a42631366ff40865c48517ad61ee7b93002a1a938945946741cff3161d30f310"
+          },
+          "page": "94",
+          "section": "Art. 68 punto 7",
+          "quote": "La retribuzione dell'apprendista è determinata mediante l'applicazione delle percentuali sotto indicate sulla retribuzione tabellare prevista dal presente C.C.N.L., relativa al livello salariale nel quale il lavoratore sarà inquadrato al termine del periodo di apprendistato [...] Settori chimica, concia, gomma-plastica, vetro: 1° 70% 70% 75% 75% 85% 85% 90% 90% 95% 100%; 2° 70% 70% 75% 75% 80% 80% 90% 100%; 3° 70% 70% 75% 75% 80% 100%"
+        },
+        "transformation": "Percentages of the tabellare of the destination level by semester; the last holds to the end of the track.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T09:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-tessile-moda-artigianato-chimica-ceramica"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_3_chimica",
+      "destination_levels": [
+        "2",
+        "3"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 30,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ],
+      "subsectors": [
+        "chimica"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-moda-chimica-artigianato-2024-07-16",
+            "title": "CCNL Area Tessile-Moda Chimica-Ceramica artigianato, Roma 16 luglio 2024, stesura definitiva firmata (Confartigianato Vicenza; scanned, read by OCR)",
+            "kind": "associazione",
+            "url": "https://www.confartigianatovicenza.it/wp-content/uploads/2026/01/01_CCNL-Area-Moda-Chimica-16.07.2024_stesura-definitiva.pdf",
+            "published_on": "2024-07-16",
+            "sha256": "a42631366ff40865c48517ad61ee7b93002a1a938945946741cff3161d30f310"
+          },
+          "page": "94",
+          "section": "Art. 68 punto 7",
+          "quote": "La retribuzione dell'apprendista è determinata mediante l'applicazione delle percentuali sotto indicate sulla retribuzione tabellare prevista dal presente C.C.N.L., relativa al livello salariale nel quale il lavoratore sarà inquadrato al termine del periodo di apprendistato [...] Settori chimica, concia, gomma-plastica, vetro: 1° 70% 70% 75% 75% 85% 85% 90% 90% 95% 100%; 2° 70% 70% 75% 75% 80% 80% 90% 100%; 3° 70% 70% 75% 75% 80% 100%"
+        },
+        "transformation": "Percentages of the tabellare of the destination level by semester; the last holds to the end of the track.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T09:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-tessile-moda-artigianato-chimica-ceramica"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_1_ceramica",
+      "destination_levels": [
+        "A",
+        "B"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 30,
+          "months_until": 36,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 36,
+          "months_until": 42,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 42,
+          "months_until": 48,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 48,
+          "months_until": 54,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 54,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ],
+      "subsectors": [
+        "ceramica"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-moda-chimica-artigianato-2024-07-16",
+            "title": "CCNL Area Tessile-Moda Chimica-Ceramica artigianato, Roma 16 luglio 2024, stesura definitiva firmata (Confartigianato Vicenza; scanned, read by OCR)",
+            "kind": "associazione",
+            "url": "https://www.confartigianatovicenza.it/wp-content/uploads/2026/01/01_CCNL-Area-Moda-Chimica-16.07.2024_stesura-definitiva.pdf",
+            "published_on": "2024-07-16",
+            "sha256": "a42631366ff40865c48517ad61ee7b93002a1a938945946741cff3161d30f310"
+          },
+          "page": "95",
+          "section": "Art. 68 punto 7",
+          "quote": "Settore ceramica, terracotta, gres e decorazione di piastrelle: 1° 70% 70% 75% 75% 85% 85% 85% 85% 95% 100%; 2° 70% 70% 75% 75% 85% 85% 90% 100%; 3° 70% 70% 75% 75% 80% 100%"
+        },
+        "transformation": "Percentages of the tabellare of the destination level by semester; the last holds to the end of the track.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T09:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-tessile-moda-artigianato-chimica-ceramica"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_2_ceramica",
+      "destination_levels": [
+        "C",
+        "D"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 30,
+          "months_until": 36,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 36,
+          "months_until": 42,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 42,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ],
+      "subsectors": [
+        "ceramica"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-moda-chimica-artigianato-2024-07-16",
+            "title": "CCNL Area Tessile-Moda Chimica-Ceramica artigianato, Roma 16 luglio 2024, stesura definitiva firmata (Confartigianato Vicenza; scanned, read by OCR)",
+            "kind": "associazione",
+            "url": "https://www.confartigianatovicenza.it/wp-content/uploads/2026/01/01_CCNL-Area-Moda-Chimica-16.07.2024_stesura-definitiva.pdf",
+            "published_on": "2024-07-16",
+            "sha256": "a42631366ff40865c48517ad61ee7b93002a1a938945946741cff3161d30f310"
+          },
+          "page": "95",
+          "section": "Art. 68 punto 7",
+          "quote": "Settore ceramica, terracotta, gres e decorazione di piastrelle: 1° 70% 70% 75% 75% 85% 85% 85% 85% 95% 100%; 2° 70% 70% 75% 75% 85% 85% 90% 100%; 3° 70% 70% 75% 75% 80% 100%"
+        },
+        "transformation": "Percentages of the tabellare of the destination level by semester; the last holds to the end of the track.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T09:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-tessile-moda-artigianato-chimica-ceramica"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_3_ceramica",
+      "destination_levels": [
+        "E"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 30,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ],
+      "subsectors": [
+        "ceramica"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-moda-chimica-artigianato-2024-07-16",
+            "title": "CCNL Area Tessile-Moda Chimica-Ceramica artigianato, Roma 16 luglio 2024, stesura definitiva firmata (Confartigianato Vicenza; scanned, read by OCR)",
+            "kind": "associazione",
+            "url": "https://www.confartigianatovicenza.it/wp-content/uploads/2026/01/01_CCNL-Area-Moda-Chimica-16.07.2024_stesura-definitiva.pdf",
+            "published_on": "2024-07-16",
+            "sha256": "a42631366ff40865c48517ad61ee7b93002a1a938945946741cff3161d30f310"
+          },
+          "page": "95",
+          "section": "Art. 68 punto 7",
+          "quote": "Settore ceramica, terracotta, gres e decorazione di piastrelle: 1° 70% 70% 75% 75% 85% 85% 85% 85% 95% 100%; 2° 70% 70% 75% 75% 85% 85% 90% 100%; 3° 70% 70% 75% 75% 80% 100%"
+        },
+        "transformation": "Percentages of the tabellare of the destination level by semester; the last holds to the end of the track.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T09:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T09:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-tessile-moda-artigianato-chimica-ceramica"
+        }
+      }
     }
   ],
   "ruleset": {
@@ -4042,7 +4809,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
     "verification_status": "unverified",
-    "source_hash": "8c9efb8b79df0a59512744868c0df4583aaa2eca6929262e20335aaaf0de2e2b",
+    "source_hash": "d36dcf1a51f00025213934e2cd9c6cb623c9823333c2f165afaf9fe9be4dda49",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
