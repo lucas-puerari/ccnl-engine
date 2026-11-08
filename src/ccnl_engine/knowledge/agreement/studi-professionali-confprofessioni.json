@@ -92,15 +92,15 @@
       },
       {
         "kind": "simplification",
-        "text": "Artt. 120-121: the comporto counted over the episodes of the 365 days before the last one, and the +90 days for serious illnesses paid 100% in months 7-8 and 70% in month 9.",
+        "text": "Artt. 120-121: the 365-day lookback is approximated by 12 calendar months. The documented listed serious illnesses receive 90 additional days (100% in months 7-8 and 70% in month 9); day hospital and life-saving therapy days are excluded from the comporto when stated.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "rolling_comporto_and_serious_illness",
+          "variant": "rolling_comporto_365_day_boundary",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "run"
           },
-          "remediation": "Model the rolling comporto and the serious-illness extension."
+          "remediation": "Replace the 12-calendar-month approximation with a day-exact 365-day lookback."
         }
       },
       {
@@ -2386,7 +2386,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "475303641ccb32609b14f160493a794ad60364b535d982b6dcda636be2f62bcc",
+    "source_hash": "cd799f92fb33a8eaf6fed26212d466c2c8273474f362e1e4a8cbe21bb9275732",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3085,6 +3085,26 @@
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "0.75",
       "max_duration_days": 180,
+      "excluded_treatment_days": true,
+      "comporto_bands": [
+        {
+          "seniority_months_from": 0,
+          "comporto_days": 180,
+          "serious_comporto_days": 270
+        }
+      ],
+      "serious_day_bands": [
+        {
+          "day_from": 181,
+          "day_until": 241,
+          "integration_rate": "1"
+        },
+        {
+          "day_from": 241,
+          "day_until": 271,
+          "integration_rate": "0.7"
+        }
+      ],
       "day_bands": [
         {
           "day_from": 4,
@@ -3108,27 +3128,28 @@
             "published_on": "2024-02-16",
             "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
           },
-          "page": "66",
-          "section": "Art. 121 - Trattamento economico di malattia; Art. 120 (p. 65)",
-          "quote": "75% (settantacinque per cento) della retribuzione di fatto dal 4º al 20º giorno; [...] 100% (cento per cento) della retribuzione di fatto dal 21º giorno in poi."
+          "page": "65-66",
+          "section": "Art. 120 - Periodo di comporto per malattia; Art. 121 - Trattamento economico di malattia",
+          "quote": "Nei casi di assenze dovute a patologie oncologiche di rilevante gravità, ictus o sclerosi multipla gravemente invalidanti, distrofia muscolare, morbo di Cooley ovvero periodi di degenza ospedaliera determinati da trapianti chirurgici di organi vitali, il periodo di comporto di cui al precedente capoverso sarà elevato di ulteriori 90 (novanta) giorni."
         },
-        "transformation": "Integration up to 100% of the gross retribuzione di fatto for days 1-3 (carenza), 75% for days 4-20 and 100% from day 21, stored as day_bands; comporto 180 days (Art. 120). Apprentices are covered (no exclusion). The comporto of Art. 120 sums the episodes of the 365 days before the last one: max_duration_days counts one episode, see the unmodelled note. Comporto of several illnesses (2026-11-01): the comporto sums the sick days of the 12 months before the day, up to 180 (the 'anno solare' the CCNL defines as 365 days back from the last illness, read as the 12 months before the day), on top of the 180 days of one illness. Source: https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf, p. 65, 66 (sha256 89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544): 'per anno solare si intende un periodo di 365 giorni partendo a ritroso dell’ultimo evento morboso.'",
+        "transformation": "Ordinary rates: 100% days 1-3, 75% days 4-20, 100% from day 21; 180 days of comporto. For the documented enumerated illnesses or hospital admission due to vital organ transplant (episode serious_illness), both the episode and 12-month window limits increase to 270 days. Days 181-240 are paid at 100%, days 241-270 at 70%. Dates stated as day hospital or life-saving therapy (excluded_comporto_days) do not count toward either comporto but still receive their ordinary day rate. The 12 calendar months are an approximation of the source's exact 365-day lookback; see the narrowed limitation. Verified against signed PDF pp. 65-66 on 2026-11-08.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "extraction_timestamp": "2026-11-08T13:26:08Z",
           "effective_from": "2024-02-16",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-13T07:21:14Z",
+          "verified_at": "2026-11-08T13:26:08Z",
           "verification_status": "verified",
-          "review_id": "2026-10-13-ai-production"
+          "review_id": "2026-11-08-ai-studi-serious-illness"
         }
       },
       "comporto_windows": [
         {
           "seniority_months_from": 0,
           "window_months": 12,
-          "comporto_days": 180
+          "comporto_days": 180,
+          "serious_comporto_days": 270
         }
       ],
       "holiday": {
@@ -4088,6 +4109,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.insured_absence.injury.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-studi-serious-illness",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules"
+        ],
+        "scope": "Art. 120-121, signed PDF pp. 65-66, listed serious illnesses and day hospital or life-saving therapy.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "The documented listed illness extends comporto by 90 days; months seven and eight pay 100%, month nine 70%; qualifying treatment days do not count. The 365-day lookback remains approximated by twelve calendar months."
         ]
       },
       {

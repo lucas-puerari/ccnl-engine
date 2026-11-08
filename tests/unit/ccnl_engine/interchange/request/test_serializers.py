@@ -108,7 +108,7 @@ from ccnl_engine.seniority.inputs import (
     SenioritySource,
 )
 from ccnl_engine.severance.provision.models import TfrFundBalance
-from ccnl_engine.sickness.models import SicknessEpisode
+from ccnl_engine.sickness.models import SeriousIllnessKind, SicknessEpisode
 from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
 from ccnl_engine.termination.inputs import TerminationTFREvent
 from ccnl_engine.termination.notice.inputs import NoticeIndemnityEvent
@@ -188,6 +188,8 @@ _EVENTS: dict[type, WorkEvent] = {
             date(2026, 3, 2),
             date(2026, 3, 13),
             hospital_stays=((date(2026, 3, 3), date(2026, 3, 5)),),
+            serious_illness_kind=SeriousIllnessKind.ONCOLOGICAL,
+            excluded_comporto_days=(date(2026, 3, 4),),
         ),
         StandbyEvent(_DAY, next(iter(StandbyKind)), Decimal(2), calls=1),
         TerminationTFREvent(_DAY, _AMOUNT, Decimal("0.23")),

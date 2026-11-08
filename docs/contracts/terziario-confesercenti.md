@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, overtime, sickness, territorial_supplement, una_tantum, workplace_injury |
+| **Limits of this contract** | base_salary, overtime, sickness, territorial_supplement, una_tantum |
 
-13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -72,6 +72,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay. | confirmed | Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 189 - Injury pay, ordinary injury integration and waiting days against the cached PDF. | corrected | The first three days following the injury are paid at 60%; the ordinary non-apprentice net-pay target is 90% on calendar days 5–20 (offsets 4–19) and 100% from day 21 (offset 20). Apprentices have different targets and are not distinguished by the injury model. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 189 against the injury integration bands, by a separate model session. | flagged | Confirmed the waiting days at 60%, the bands from the INAIL indemnity and the day mapping from the injury day.<br>Flagged, kept as limitations: the apprentice rates of 80% and 90% are not selected; the general bands apply to them. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 189 - Injury pay, PDF pp. 144-145: the integration targets of apprentices. | confirmed | The clause sets the targets of points 2) and 3) at 80% and 90% for apprentices; point 1) (60% for the waiting days) is unchanged.<br>Encoded as apprentice_bands at offsets 4 and 20, selected when the contract is an apprenticeship. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Local patron saint day in sickness and work injury holiday clauses. | confirmed | Art. 191 - Festività nel periodo di malattia o infortunio (p. 145): Ai sensi della Legge 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad un’indennità integrativa di quella a carico rispettivamente dell’INPS e dell’INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all’art. 208. The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged. |
 
 ## Salary table
@@ -192,13 +193,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Provide the employer-specific patron saint holiday.
-
-!!! warning "terziario-confesercenti/injury_apprentice_rates · workplace_injury · impact yes · open"
-    Art. 189 - Injury pay: the 80% target on days 5–20 and 90% target from day 21 for apprentices are not selectable; the general 90%/100% targets are encoded for all workers.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Add apprentice-specific injury integration targets.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

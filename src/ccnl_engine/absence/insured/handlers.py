@@ -231,7 +231,8 @@ def _handle_work_injury(event: WorkInjuryEvent, ctx: _EventHandlerCtx) -> EventE
     span = _span(event, terms, INJURY)
     if terms is None or terms.pay is None:
         return _no_quota(INJURY)
-    rules = None if terms.rules is None else terms.rules.injury
+    clause = None if terms.rules is None else terms.rules.injury
+    rules = None if clause is None else clause.for_worker(apprentice=terms.apprentice)
     pay = injury_pay(
         span[0],
         span[1],

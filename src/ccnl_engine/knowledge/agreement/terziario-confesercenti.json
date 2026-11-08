@@ -4161,19 +4161,6 @@
           },
           "remediation": "Provide the employer-specific patron saint holiday."
         }
-      },
-      {
-        "kind": "simplification",
-        "text": "Art. 189 - Injury pay: the 80% target on days 5–20 and 90% target from day 21 for apprentices are not selectable; the general 90%/100% targets are encoded for all workers.",
-        "capability": "workplace_injury",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "injury_apprentice_rates",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Add apprentice-specific injury integration targets."
-        }
       }
     ]
   },
@@ -4184,7 +4171,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "1c91efc9ef1ccffbc04916a6ff893880cb8705086544b238bf81a641bd5ed0bb",
+    "source_hash": "d8d8e6f3490638d0356c9b2b4fc524709926ddb400134c8f09e38a1055b6777c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5571,16 +5558,16 @@
             },
             "page": "144-145",
             "section": "Art. 189 - Injury pay",
-            "quote": "1)    60% (sessanta per cento) per i primi tre giorni (periodo di carenza);\n2)    90% (novanta per cento), per i giorni dal 5° al 20°;\n3)    100% (cento per cento) per i giorni dal 21° in poi della retribuzione giornaliera\n      netta cui il lavoratore avrebbe avuto diritto in caso di normale svolgimento del rap-\n      porto. Per retribuzione giornaliera si intende la quota giornaliera della retribuzione\n      di fatto di cui all’art. 208."
+            "quote": "1)    60% (sessanta per cento) per i primi tre giorni (periodo di carenza);\n2)    90% (novanta per cento), per i giorni dal 5° al 20°;\n3)    100% (cento per cento) per i giorni dal 21° in poi della retribuzione giornaliera\n      netta cui il lavoratore avrebbe avuto diritto in caso di normale svolgimento del rap-\n      porto. Per retribuzione giornaliera si intende la quota giornaliera della retribuzione\n      di fatto di cui all’art. 208.\n[...]\nPer gli apprendisti le misure previste dai punti 2) e 3) del precedente comma sono fis-\nsate rispettivamente nell’80% e nel 90%."
           },
-          "transformation": "The first three days following the injury are paid at 60%; the ordinary non-apprentice net-pay target is 90% on calendar days 5–20 (offsets 4–19) and 100% from day 21 (offset 20). Apprentices have different targets and are not distinguished by the injury model.",
+          "transformation": "The first three days following the injury are paid at 60%; the ordinary net-pay target is 90% on calendar days 5–20 (offsets 4–19) and 100% from day 21 (offset 20). For apprentices the targets of points 2) and 3) are 80% and 90% (apprentice_bands, same offsets); the waiting days stay at 60%.",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-08T12:41:14Z",
-            "verified_at": "2026-11-08T12:41:14Z",
+            "extraction_timestamp": "2026-11-08T13:36:42Z",
+            "verified_at": "2026-11-08T13:36:42Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-ai-terziario-confesercenti-injury-integration",
+            "review_id": "2026-11-08-ai-terziario-confesercenti-injury-apprentice-bands",
             "verified_by": "claude-opus-5-5"
           }
         },
@@ -5627,7 +5614,17 @@
             "rate": "1"
           }
         ],
-        "net_basis": true
+        "net_basis": true,
+        "apprentice_bands": [
+          {
+            "day_from": 4,
+            "rate": "0.80"
+          },
+          {
+            "day_from": 20,
+            "rate": "0.90"
+          }
+        ]
       }
     }
   },
@@ -5943,6 +5940,28 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.insured_absence.injury"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-terziario-confesercenti-injury-apprentice-bands",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 189 - Injury pay, PDF pp. 144-145: the integration targets of apprentices.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+            "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+          }
+        ],
+        "findings": [
+          "The clause sets the targets of points 2) and 3) at 80% and 90% for apprentices; point 1) (60% for the waiting days) is unchanged.",
+          "Encoded as apprentice_bands at offsets 4 and 20, selected when the contract is an apprenticeship."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.insured_absence.injury.apprentice_bands"
         ]
       },
       {

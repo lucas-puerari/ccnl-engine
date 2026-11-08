@@ -260,6 +260,10 @@ class SicknessRules(BaseModel):
         day_bands: Day-gated integration bands, for CCNLs that set the rate
             by the day of the episode; a day in a band takes its rate
             before any tier.
+        serious_day_bands: Override rates of the additional days of a
+            documented serious illness; other days keep the ordinary rates.
+        excluded_treatment_days: Leave stated qualifying treatment days out
+            of the comporto, not out of the pay calculation.
         comporto_calendar_year: Whether ``max_duration_days`` counts the
             sick days of every episode of the calendar year of the day
             (Commercio Art. 186: 180 days "in un anno solare") instead of
@@ -316,6 +320,8 @@ class SicknessRules(BaseModel):
     full_pay_integration_rate: Decimal = Field(ge=Decimal(0), le=Decimal(1))
     tiers: tuple[SicknessTier, ...] = Field(default=())
     day_bands: tuple[SicknessDayBand, ...] = Field(default=())
+    serious_day_bands: tuple[SicknessDayBand, ...] = Field(default=())
+    excluded_treatment_days: bool = False
     comporto_calendar_year: bool = False
     comporto_windows: tuple[ComportoWindow, ...] = ()
     comporto_bands: tuple[ComportoBand, ...] = ()
