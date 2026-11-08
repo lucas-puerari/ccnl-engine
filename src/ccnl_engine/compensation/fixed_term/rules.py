@@ -126,7 +126,7 @@ def overtime_tfr(
 ) -> Decimal:
     """Return the TFR of the non-occasional overtime of a fixed-term worker.
 
-    Operai agricoli, Allegato 14: "per le ore di lavoro non ordinario, svolto
+    Operai agricoli, art. 58: "per le ore di lavoro non ordinario, svolto
     a titolo non occasionale, tale misura è elevata al 10 per cento del
     salario contrattuale, limitatamente alle anzidette ore".
 

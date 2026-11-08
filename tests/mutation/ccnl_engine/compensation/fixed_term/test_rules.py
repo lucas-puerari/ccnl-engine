@@ -3,7 +3,7 @@
 The OTD is paid the salario of the hours worked (monthly over 169) and a
 terzo elemento of 30.44% on it "quale corrispettivo" of the festività, the
 ferie, the tredicesima and the quattordicesima, outside the TFR base
-(Allegato 14: "il TFR non si calcola sul terzo elemento").  Area 2,
+(art. 58: "il TFR non si calcola sul terzo elemento").  Area 2,
 January 2026: salario 1,330.25; 120 hours pay 1,330.25 / 169 x 120 =
 944.556 -> 944.56, terzo elemento 944.56 x 0.3044 = 287.524 -> 287.52.
 """
@@ -208,7 +208,7 @@ def _tfr(*, non_occasional: bool) -> Decimal:
 
 
 def test_non_occasional_overtime_accrues_ten_percent_tfr() -> None:
-    """Allegato 14: 10% of the salario of the non-occasional overtime hours.
+    """Art. 58: 10% of the salario of the non-occasional overtime hours.
 
     1,330.25 / 169 x 10 hours x 10% = 7.871 -> 7.87 on top of the 8.63%.
     """

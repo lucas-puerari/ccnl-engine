@@ -113,7 +113,7 @@
       },
       {
         "kind": "info",
-        "text": "OTD (Art. 50, p. 52): a fixed-term operaio is paid the hours worked (PeriodFacts.ordinary_hours_worked, salario over 169) with the terzo elemento of 30.44% on them (festività 5.45%, ferie 8.33%, tredicesima 8.33%, quattordicesima 8.33%), outside the TFR base; no extra month and no leave accrue (parameters.fixed_term_pay). The terzo elemento is also paid on the hours of the overtime events 'nella misura in atto per le ore ordinarie' (Art. 44, p. 48); the ordinary holiday and night hours are in the hours worked. The OTD accrues 8.63% of the salario of the hours paid and 10% on the overtime hours worked 'a titolo non occasionale' (p. 58; parameters.fixed_term_pay.tfr_rate and overtime_tfr_rate, OvertimeEvent.non_occasional)."
+        "text": "OTD (Art. 50, p. 52): a fixed-term operaio is paid the hours worked (PeriodFacts.ordinary_hours_worked, salario over 169) with the terzo elemento of 30.44% on them (festività 5.45%, ferie 8.33%, tredicesima 8.33%, quattordicesima 8.33%), outside the TFR base; no extra month and no leave accrue (parameters.fixed_term_pay). The terzo elemento is also paid on the hours of the overtime events 'nella misura in atto per le ore ordinarie' (Art. 44, p. 48); the ordinary holiday and night hours are in the hours worked. The OTD accrues 8.63% of the salario of the hours paid and 10% on the overtime hours worked 'a titolo non occasionale' (art. 58, PDF p. 58; parameters.fixed_term_pay.tfr_rate and overtime_tfr_rate, OvertimeEvent.non_occasional)."
       },
       {
         "kind": "simplification",
@@ -528,7 +528,7 @@
                   "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
                 },
                 "page": "58",
-                "section": "Art. 50 Retribuzione",
+                "section": "Art. 58 - Trattamento di fine rapporto (printed p. 57)",
                 "quote": "All'operaio a tempo determinato compete il TFR per l'effettivo lavoro ordinario svolto, pari all'8,63 per cento calcolato sul salario contrattuale definito dal contratto provinciale; per le ore di lavoro non ordinario, svolto a titolo non occasionale, tale misura è elevata al 10 per cento del salario contrattuale, limitatamente alle anzidette ore. In entrambi i casi il TFR non si calcola sul terzo elemento (Allegato n. 14)."
               },
               "transformation": "10% of the salario of the overtime hours the caller states non occasional (OvertimeEvent.non_occasional); the occasional overtime accrues no TFR.",
@@ -939,7 +939,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "14cb9857b0305ab13a616d59b0ea3856a8e01500b4797a6dec80a9824fae1236",
+    "source_hash": "3b0f4c99c1078253f033f5cc14f3b6e16aa606f755d1d94e2023858367664cb9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
