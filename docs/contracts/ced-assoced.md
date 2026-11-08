@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer, seniority |
+| **Limits of this contract** | base_salary, inps_employer |
 
-3 documented simplification(s) and 1 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 1 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 36 verified / 8 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 37 verified / 7 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -58,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 42 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 166 of the stesura of 9 March 2022 (PDF p. 106), text layer. | corrected | Modelled the scatti of the staff in service on 31 December 2018 (were none). |
 
 ## Salary table
 
@@ -78,7 +79,19 @@ Latest effective values per level (monthly gross, EUR).
 ## Seniority increments
 
 **Cadence:** every 24 months  
-**Maximum:** 0 increments
+**Maximum:** 5 increments
+
+| Level | Increment (monthly) |
+|---|---:|
+| `QDIR` | € 52.00 |
+| `Q` | € 47.00 |
+| `1` | € 44.00 |
+| `2` | € 40.00 |
+| `3S` | € 36.00 |
+| `3` | € 33.00 |
+| `4` | € 30.00 |
+| `5` | € 27.00 |
+| `6` | € 24.00 |
 
 ## Apprenticeship
 
@@ -94,13 +107,6 @@ under-level: `1`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "ced-assoced/grandfathered_scatti · seniority · impact yes · open"
-    Scatti di anzianita (Art. 166, 2022 stesura): abrogated from 01/01/2019. Grandfathered for personale in forza al 31-12-2018 only. New hires (post-2018): maximum_count=0. Per-level 2009 amounts: QDIR=52, Q=47, L1=44, L2=40, L3S=36, L3=33, L4=30, L5=27, L6=24 (frozen, not updated since 2009 across 2022 and 2025 renewals).
-
-    **Applies when:** `seniority` applies.
-
-    **Remediation:** Model the scatti frozen at 31/12/2018 for the staff then in service (amounts listed in the note) gated on the hire date, or tell the caller to pass them as Employment.individual_elements (absorbable false) as chimica-farmaceutica-federchimica does.
-
 !!! warning "ced-assoced/conditional_allowances_title_xxiii · base_salary · impact yes · open"
     Titolo XXIII conditional allowances not modelled: indennita di mensa (Art. 179), rimborso mezzi pubblici (Art. 180), indennita valori (Art. 181), and elemento economico di garanzia (Art. 177). These are condition-gated or azienda-specific and cannot be determined without employer-level data.
 
@@ -114,6 +120,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies.
 
     **Remediation:** Verify the H601 sub-sector INPS rate against the annual INPS circular.
+
+!!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
+    Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -298,6 +311,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Apprenticeship (Art. 23-24, 2022 stesura, ccnlced.it allegato): under_classification. First half 2 levels below, second half 1 level below. Level 5 exception: stays at Level 6 throughout 24-month track. Destination L2 duration 36 months (studiocerbone.com: 240 h/36 months for 2° livello). Source ccnlced.it showed '6 months' for L2 — treated as parsing artifact; 36 months adopted from studiocerbone.com.
     
     Salary tranches: 01/09/2025 (source-confirmed, redigo.info and kitech.it), 01/06/2026 (source-confirmed, both sources agree), 01/03/2027 (redigo.info only, single-source), 01/01/2028 (redigo.info only, single-source).
+    
+    SCATTI (Art. 166, stesura 9 March 2022, p. 106): abrogated from 1 January 2019, they keep maturing for the staff in service on 31 December 2018: five biennial increments from the hire date, QDIR 52, Q 47, 1° 44, 2° 40, 3°S 36, 3° 33, 4° 30, 5° 27, 6° 24 EUR (parameters.seniority_increments.hired_until).
     
 
 ## Raw data

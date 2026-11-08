@@ -306,11 +306,12 @@ class TestLoadCedAssoced:
         assert ccnl.meta.tax_sector == TaxSector.TERZIARIO
 
     def test_ced_assoced_seniority_cadence(self) -> None:
-        """Seniority abolished 2019 for new hires: biennial, maximum_count=0."""
+        """Art. 166: five biennial increments for the staff in service in 2018."""
         ccnl = load_ccnl("ced-assoced")
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
-        assert si.maximum_count == 0
+        assert si.maximum_count == 5
+        assert si.hired_until == date(2018, 12, 31)
 
 
 class TestLoadContoterzismoCaiagromec:

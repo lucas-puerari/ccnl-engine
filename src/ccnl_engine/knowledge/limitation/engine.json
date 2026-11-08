@@ -46,6 +46,7 @@
         "bcc-credito-cooperativo",
         "calzaturiero-assocalzaturifici",
         "carta-cartone-assocarta",
+        "ced-assoced",
         "cemento-calce-gesso-industria",
         "ceramica-industria-confindustria",
         "ceramica-sanitaria-stoviglieria-confindustria",
@@ -120,9 +121,9 @@
         "turismo-federalberghi-alberghi-minori",
         "uneba-uneba",
         "vigilanza-privata-assiv",
+        "vigilanza-privata-assiv-sf",
         "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf",
-        "vigilanza-privata-assiv-sf"
+        "vigilanza-privata-federdat-sf"
       ],
       "applies_when": {
         "trigger": "path",

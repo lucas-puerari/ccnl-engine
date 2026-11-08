@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.seniority.freeze.models import SeniorityFreeze
 
-__all__ = ["months_without_freeze"]
+__all__ = ["months_in_cohort", "months_without_freeze"]
 
 
 def _whole_months(start: date, end: date) -> int:
@@ -39,3 +39,27 @@ def months_without_freeze(
         if start < end:
             frozen += _whole_months(start, end)
     return max(months - frozen, 0)
+
+
+def months_in_cohort(
+    months: int,
+    hired_until: date | None,
+    competence: date,
+    hired_on: date | None = None,
+) -> int:
+    """Return ``months``, or 0 for a worker hired after ``hired_until``.
+
+    CED art. 166: the increments, abrogated from 1 January 2019, keep
+    maturing "esclusivamente per il personale in forza al 31-12-2018".
+    The hire date decides when stated; else the service of ``months``
+    ending on ``competence``, which at month precision counts a worker
+    hired in the month after ``hired_until`` as in service.
+
+    Returns:
+        ``months`` for a worker in service on ``hired_until``, else 0.
+    """
+    if hired_until is None:
+        return months
+    if hired_on is not None:
+        return months if hired_on <= hired_until else 0
+    return months if months >= _whole_months(hired_until, competence) else 0
