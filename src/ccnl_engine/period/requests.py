@@ -20,6 +20,7 @@ from ccnl_engine.employment.fact.inputs import (
     check_within_full_time,
 )
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
+from ccnl_engine.employment.level_start import check_level_start
 from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.employment.rest_day.inputs import Weekday
 from ccnl_engine.employment.rota.inputs import Rota
@@ -189,23 +190,20 @@ class PeriodCalculationRequest:
     def __post_init__(self) -> None:
         """Guard dates, cross-year state or schedule and hours above full time.
 
-        The tax year of the run is attributed from ``payment_date`` by
-        :class:`~ccnl_engine.calendar.tax_year.rules.TaxYearPolicy`; a set
-        ``opening_state.tax_year`` (a calculated state always carries it)
-        must match it.
+        Payment date determines the tax year; the opening state must match.
 
         Raises:
-            InvalidInputError: When a field is not of its declared type (for
-                example a raw ``int`` for ``weekly_hours``), when a regular
-                run falls in a month without a day of employment, when
-                ``payment_date`` is before the start of
-                the competence period, when ``opening_state.tax_year`` is not
-                ``None`` and differs from the attributed tax year, or when
-                ``withholding_schedule`` belongs to another tax year, or
-                when ``regione`` or ``comune_belfiore`` is malformed.
+            InvalidInputError: On malformed fields, absent employment in a
+                regular run, invalid level start, payment before competence,
+                conflicting tax years or malformed jurisdiction codes.
         """
         require_instances(
             "PeriodCalculationRequest", self._field_specs(), feature="period_request"
+        )
+        check_level_start(
+            self.level_started_on,
+            self.employment_period,
+            (self.period_id.year, self.period_id.month),
         )
         gap = employment_gap(self.period_id, self.run, self.employment_period)
         if gap is not None:

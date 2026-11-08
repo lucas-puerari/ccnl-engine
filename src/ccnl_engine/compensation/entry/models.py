@@ -1,11 +1,22 @@
 """The entry pay of a CCNL: a new hire paid below the level for some months."""
 
+from datetime import date
+
 from pydantic import BaseModel, ConfigDict, Field
 
 from ccnl_engine.apprenticeship.models import UnderClassificationPeriod
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
-__all__ = ["EntryPay"]
+__all__ = ["EntryPay", "TransitionHireBand"]
+
+
+class TransitionHireBand(BaseModel):
+    """Minimum hire date and level tenure for an entry-level promotion."""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    hired_from: date
+    after_months: int = Field(gt=0)
 
 
 class EntryPay(BaseModel):

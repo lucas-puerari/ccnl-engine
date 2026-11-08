@@ -165,6 +165,7 @@ class CCNL(BaseModel):
                 if (
                     level.transition_by is not None
                     or level.transition_after_months is not None
+                    or level.transition_hire_bands
                 ):
                     msg = f"level {level.code} has a transition without a target"
                     raise ValueError(msg)

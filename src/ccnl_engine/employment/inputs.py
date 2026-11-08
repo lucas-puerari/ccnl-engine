@@ -28,6 +28,7 @@ from ccnl_engine.employment.fact.inputs import (
     check_within_full_time,
 )
 from ccnl_engine.employment.fixed_term.inputs import FixedTerm
+from ccnl_engine.employment.level_start import check_level_start
 from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.employment.rest_day.inputs import Weekday, check_rest_day
 from ccnl_engine.employment.rota.inputs import Rota, check_rota
@@ -218,6 +219,7 @@ class Employment:
             self.level_code, "Employment.level_code", feature=FEATURE, non_blank=True
         )
         require_instances("Employment", self._typed_fields(), feature=FEATURE)
+        check_level_start(self.level_started_on, self.employment_period)
         if self.roles is not None:
             roles = frozenset_of(self.roles, "Employment.roles", _role, feature=FEATURE)
             object.__setattr__(self, "roles", roles)

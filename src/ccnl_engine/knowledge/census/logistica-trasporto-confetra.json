@@ -87,7 +87,7 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Level 6J transitions to level 6 after 12 months in the level or on 1 January 2026, whichever comes first. A missing level entry date in 2025 blocks payability. Apprentices in level 6J are refused because their 24-month transition is distinct.",
+      "rule": "Level 6J uses the 2018, 2019 and 2020 hire cohorts until the mandatory 1 January 2026 promotion. Pre-2018 hires and apprentices before the cutoff are refused without verified prior classification or apprentice progression. Promotions with matured seniority increments are refused unless the worker states earned increments at their original amounts; that fact preserves the unfinished biennium.",
       "calculation": "ccnl/logistica-trasporto-confetra:coverage.notes",
       "state": "absent",
       "remediation": "Implement the separate 24-month apprentice classification progression for level 6J.",

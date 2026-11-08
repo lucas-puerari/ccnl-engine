@@ -98,7 +98,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Level 6J transitions to level 6 after 12 months in the level or on 1 January 2026, whichever comes first. A missing level entry date in 2025 blocks payability. Apprentices in level 6J are refused because their 24-month transition is distinct.",
+        "text": "Level 6J uses the 2018, 2019 and 2020 hire cohorts until the mandatory 1 January 2026 promotion. Pre-2018 hires and apprentices before the cutoff are refused without verified prior classification or apprentice progression. Promotions with matured seniority increments are refused unless the worker states earned increments at their original amounts; that fact preserves the unfinished biennium.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -370,18 +370,18 @@
                     "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
                   },
                   "page": "41",
-                  "section": "Art. 17 c. 2, non-travelling workers, seniority steps",
-                  "quote": "6°J                                      18,78"
+                  "section": "Art. 17 cc. 2, 5 and 7, seniority steps and level changes",
+                  "quote": "6°J                                      18,78; In caso di passaggio di livello, il lavoratore manterrà l'importo degli scatti di anzianità maturati nel livello di provenienza; La frazione di biennio in corso al momento del passaggio del livello sarà utile agli effetti della maturazione del successivo scatto di anzianità del nuovo livello."
                 },
-                "transformation": "The stated amount for a completed biennium in level 6J.",
+                "transformation": "A completed 6J biennium pays EUR 18.78; on promotion matured amounts and unfinished biennia are preserved, not repriced at level 6. The earned-increments fact carries the preserved amount; without it, affected runs are refused.",
                 "extraction": {
                   "method": "ai",
                   "model": "claude-opus-5-5",
-                  "extraction_timestamp": "2026-11-08T13:22:51Z",
+                  "extraction_timestamp": "2026-11-08T14:14:11Z",
                   "verification_status": "verified",
                   "verified_by": "claude-opus-5-5",
-                  "verified_at": "2026-11-08T13:41:40Z",
-                  "review_id": "2026-11-08-ai-level-6j"
+                  "verified_at": "2026-11-08T14:14:11Z",
+                  "review_id": "2026-11-08-ai-level-6j-cohorts"
                 }
               }
             },
@@ -617,7 +617,6 @@
       "order": 0,
       "description": "Level 6 junior — simple tasks requiring practical training",
       "transition_to": "6",
-      "transition_after_months": 12,
       "transition_by": "2026-01-01",
       "base_salary": {
         "periods": [
@@ -669,15 +668,15 @@
                 "section": "Level 6 monthly minimum and EPA, 1 January 2026",
                 "quote": "6°                    (+33,03) 1.625,41               23,33   1.648,74      109"
               },
-              "transformation": "After the mandatory transition, 6J is an alias for level 6; the calculation selects level 6 before reading this fallback series.",
+              "transformation": "NEVER PAID: mandatory 1 January 2026 promotion selects level 6 before the salary lookup. This figure mirrors the corresponding level-6 salary series solely to satisfy the no-gap invariant; it is NOT an independently sourced 6J minimum. The 2027 printed total includes the June minimum increase; the January series uses the level-6 in-force minimum plus EPA.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-08T13:41:40Z",
+                "extraction_timestamp": "2026-11-08T14:14:11Z",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-08T13:41:40Z",
-                "review_id": "2026-11-08-ai-level-6j"
+                "verified_at": "2026-11-08T14:14:11Z",
+                "review_id": "2026-11-08-ai-level-6j-cohorts"
               }
             }
           },
@@ -699,15 +698,15 @@
                 "section": "Level 6 monthly minimum and EPA, 1 January 2027",
                 "quote": "6°             1.625,41               (+23,33) 46,66          1.680,33      109"
               },
-              "transformation": "After the mandatory transition, 6J aliases level 6: 1625.41 + 46.66 = 1672.07; the printed 1680.33 includes the June minimum rise, as explained in the level 6 table review.",
+              "transformation": "NEVER PAID: mandatory 1 January 2026 promotion selects level 6 before the salary lookup. This figure mirrors the corresponding level-6 salary series solely to satisfy the no-gap invariant; it is NOT an independently sourced 6J minimum. The 2027 printed total includes the June minimum increase; the January series uses the level-6 in-force minimum plus EPA.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-08T13:41:40Z",
+                "extraction_timestamp": "2026-11-08T14:14:11Z",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-08T13:41:40Z",
-                "review_id": "2026-11-08-ai-level-6j"
+                "verified_at": "2026-11-08T14:14:11Z",
+                "review_id": "2026-11-08-ai-level-6j-cohorts"
               }
             }
           },
@@ -729,15 +728,15 @@
                 "section": "Level 6 monthly minimum and EPA, 1 June 2027",
                 "quote": "6°         (+8,26) 1.633,67           (+23,33) 70,00             1.703,67      109"
               },
-              "transformation": "After the mandatory transition, 6J is an alias for level 6; the calculation selects level 6 before reading this fallback series.",
+              "transformation": "NEVER PAID: mandatory 1 January 2026 promotion selects level 6 before the salary lookup. This figure mirrors the corresponding level-6 salary series solely to satisfy the no-gap invariant; it is NOT an independently sourced 6J minimum. The 2027 printed total includes the June minimum increase; the January series uses the level-6 in-force minimum plus EPA.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-08T13:41:40Z",
+                "extraction_timestamp": "2026-11-08T14:14:11Z",
                 "verification_status": "verified",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-08T13:41:40Z",
-                "review_id": "2026-11-08-ai-level-6j"
+                "verified_at": "2026-11-08T14:14:11Z",
+                "review_id": "2026-11-08-ai-level-6j-cohorts"
               }
             }
           }
@@ -801,19 +800,33 @@
           },
           "page": "25",
           "section": "Level 6 junior classification and transition",
-          "quote": "dopo 12 mesi per i lavoratori assunti dal 1.1.2020; Il presente profilo avrà termine inderogabilmente il 31 dicembre 2025. Il personale inquadrato al presente livello a tale data passerà al 6° livello"
+          "quote": "dopo 24 mesi per i lavoratori assunti dal 1.1.2018; dopo 18 mesi per i lavoratori assunti dal 1.1.2019; dopo 12 mesi per i lavoratori assunti dal 1.1.2020; Il presente profilo avrà termine inderogabilmente il 31 dicembre 2025; I lavoratori non apprendisti inquadrati al 6° livello junior entro il 31 dicembre 2017 passeranno al 6° livello dopo 30 mesi di permanenza."
         },
-        "transformation": "Twelve months from entry into the level for hires since 2020, or 1 January 2026, whichever is earlier; apprenticeship requires separate progression.",
+        "transformation": "Hire cohorts since 2018 wait 24, 18, or 12 months in level 6J respectively, capped at 1 January 2026. Earlier hires are refused pending verified 2017 classification history; apprentices are refused before the cutoff. Post-cutoff salary entries are never paid: level 6 is selected before the lookup.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T13:22:51Z",
+          "extraction_timestamp": "2026-11-08T14:03:35Z",
           "verification_status": "verified",
-          "verified_at": "2026-11-08T13:41:40Z",
+          "verified_at": "2026-11-08T14:03:35Z",
           "verified_by": "claude-opus-5-5",
-          "review_id": "2026-11-08-ai-level-6j"
+          "review_id": "2026-11-08-ai-level-6j-cohorts"
         }
-      }
+      },
+      "transition_hire_bands": [
+        {
+          "hired_from": "2018-01-01",
+          "after_months": 24
+        },
+        {
+          "hired_from": "2019-01-01",
+          "after_months": 18
+        },
+        {
+          "hired_from": "2020-01-01",
+          "after_months": 12
+        }
+      ]
     },
     {
       "code": "6",
@@ -2999,7 +3012,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "91a6554bfc964850550e5925d7443c3712a45321ea7385ed02ddb73acd24e946",
+    "source_hash": "b3dddfed6e405a656dfa0a21523aa62ac159853787b8ff25b43d01496e79fa9d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4228,6 +4241,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-level-6j-cohorts",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Junior hire cohorts and mandatory cutoff, cached PDF pp. 25, 41, 80, 82.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "The junior minimum of 1464.53 ends with 2025; 2018/2019/2020 cohorts wait 24/18/12 months. Later junior salary values only mirror level 6 to satisfy the no-gap invariant and are never paid; prior-level matured increments and unfinished biennia must be preserved or affected runs refused."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels[6J]"
         ]
       }
     ],

@@ -87,6 +87,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Level 6 junior classification and pay, PDF pp. 25, 41, 80, 82. | corrected | The 2025 minimum is 1464.53, the biennial step is 18.78, the separate element is 7.58, and the level ceases at the end of 2025; promotion after twelve months applies to hires since 2020. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 71(1)(b,c), (5), cached PDF p. 93; Art. 60(2-3), p. 85. | confirmed | National weekday holidays are within art. 71(b,c); reduced sickness pay reaches full daily actual pay. Injury, patron saint and art. 60 coincident-holiday payment remain outside this rule.<br>A separate review found art. 71 c. 5 restricted to the Sezione seconda (ex Magazzini Generali): the holiday target is removed and kept as a limitation. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Junior hire cohorts and mandatory cutoff, cached PDF pp. 25, 41, 80, 82. | corrected | The junior minimum of 1464.53 ends with 2025; 2018/2019/2020 cohorts wait 24/18/12 months. Later junior salary values only mirror level 6 to satisfy the no-gap invariant and are never paid; prior-level matured increments and unfinished biennia must be preserved or affected runs refused. |
 
 ## Salary table
 
@@ -145,7 +146,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Calculate the INAIL offset, local patron saint and the distinct coincident-holiday payment.
 
 !!! warning "logistica-trasporto-confetra/level_6j_apprenticeship · base_salary · impact yes · open"
-    Level 6J transitions to level 6 after 12 months in the level or on 1 January 2026, whichever comes first. A missing level entry date in 2025 blocks payability. Apprentices in level 6J are refused because their 24-month transition is distinct.
+    Level 6J uses the 2018, 2019 and 2020 hire cohorts until the mandatory 1 January 2026 promotion. Pre-2018 hires and apprentices before the cutoff are refused without verified prior classification or apprentice progression. Promotions with matured seniority increments are refused unless the worker states earned increments at their original amounts; that fact preserves the unfinished biennium.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 

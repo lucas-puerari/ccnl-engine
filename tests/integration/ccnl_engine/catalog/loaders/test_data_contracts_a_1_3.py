@@ -28,7 +28,15 @@ class TestLoadLogisticaTrasportoConfetra:
         assert codes == {"Q", "1", "2", "3S", "3", "4", "4J", "5", "6", "6J"}
         junior = ccnl.level_by_code("6J")
         assert junior.transition_to == "6"
-        assert junior.transition_after_months == 12
+        assert junior.transition_after_months is None
+        assert [
+            (band.hired_from, band.after_months)
+            for band in junior.transition_hire_bands
+        ] == [
+            (date(2018, 1, 1), 24),
+            (date(2019, 1, 1), 18),
+            (date(2020, 1, 1), 12),
+        ]
         assert junior.transition_by == date(2026, 1, 1)
 
     def test_logistica_trasporto_confetra_level_3s_salary_jan2025(self) -> None:

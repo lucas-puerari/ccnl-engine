@@ -1,7 +1,4 @@
-"""CCNL, level, dates and yearly rules of one run.
-
-Tax rules of the payment's tax year, INPS rules of the competence year.
-"""
+"""CCNL and run rules: payment-year tax, competence-year INPS."""
 
 from __future__ import annotations
 
@@ -74,13 +71,8 @@ _CONTRIBUTION_FIELDS = (
 class RunContract:
     """CCNL, level, dates and yearly rules of a run.
 
-    ``provincial_unknown`` holds the national elements of the level left out
-    because the employer does not state whether a provincial element
-    replaces them, ``premium_unknown`` those a company premium replaces
-    (:mod:`ccnl_engine.compensation.provincial_element.services`).
-    ``sector_unknown`` holds the INPS
-    sectors of a CCNL applied in more than one when the employer does not
-    state its own: the run reads the sector of the CCNL.
+    ``provincial_unknown`` and ``premium_unknown`` mark elements awaiting
+    employer replacement facts. ``sector_unknown`` marks INPS alternatives.
     """
 
     ccnl: CCNL
@@ -217,7 +209,15 @@ def load_contract(
     except ValueError:
         raise UnknownLevelError(request.level_code, ccnl.meta.ccnl_id) from None
     level = require_effective_salary(
-        ccnl, level, request.contract_type, tctx.competence, request.level_started_on
+        ccnl,
+        level,
+        request.contract_type,
+        tctx.competence,
+        request.level_started_on,
+        hired_on=(
+            request.employment_period.started_on if request.employment_period else None
+        ),
+        seniority=request.seniority,
     )
     date_ctx = EffectiveDateContext.from_period(
         period_id.year, period_id.month, tctx.payment

@@ -9,6 +9,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.compensation.cohort.models import ClassTable, CohortSalary
+from ccnl_engine.compensation.entry.models import TransitionHireBand
 from ccnl_engine.compensation.equalisation.models import EqualisationElement
 from ccnl_engine.compensation.fixed_term.models import FixedTermPay
 from ccnl_engine.compensation.hourly.models import HourlyPay
@@ -341,12 +342,11 @@ class Level(BaseModel):
     Attributes:
         code, order, description: Code (``"D3"``), rank (1 = lowest), name.
         base_salary: Time-series of monthly base salaries for this level.
-        base_salary_by_subsector, subsectors: The table of an employer's
-            sub-sector; the only sub-sectors the level exists in, empty for all.
+        base_salary_by_subsector, subsectors: Sub-sector pay and eligibility.
         base_salary_by_cohort, class_tables: Hired-worker or seniority-class tables.
-        transition_to, transition_after_months, transition_by: Entry promotion.
-        fixed_allowances, category: Fixed allowances (EDR...); the worker
-            category the level fixes, ``None`` when ``Employment.category`` states it.
+        transition_to, transition_after_months, transition_hire_bands,
+            transition_by: Entry promotion.
+        fixed_allowances, category: Fixed allowances and optional worker category.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -363,6 +363,7 @@ class Level(BaseModel):
     category: WorkerCategory | None = None
     transition_to: str | None = None
     transition_after_months: int | None = Field(default=None, gt=0)
+    transition_hire_bands: tuple[TransitionHireBand, ...] = ()
     transition_by: date | None = None
     provenance: RuleProvenance | None = None
 

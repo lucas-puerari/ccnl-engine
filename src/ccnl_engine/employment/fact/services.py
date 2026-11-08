@@ -66,7 +66,7 @@ def level_start_issue(ctx: RunContext) -> CalculationIssue | None:
     level = ctx.contract.level
     cutoff = level.transition_by
     if (
-        level.transition_after_months is None
+        (level.transition_after_months is None and not level.transition_hire_bands)
         or ctx.request.level_started_on is not None
         or (cutoff is not None and ctx.contract.tctx.competence >= cutoff)
     ):
