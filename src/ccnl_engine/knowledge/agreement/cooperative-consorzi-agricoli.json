@@ -71,7 +71,7 @@
       },
       {
         "kind": "simplification",
-        "text": "OTD: a fixed-term operaio is paid the minimo conglobato giornaliero or orario plus a terzo elemento of 30.44% (festività 5.45%, ferie 8.33%, 13ma 8.33%, 14ma 8.33%) on 312 working days instead of the monthly payments (Art. 60, verbale 19 July 2024, p. 14); the engine pays the monthly structure.",
+        "text": "OTD (Art. 60, verbale 19 July 2024, pp. 14-15): a fixed-term operaio is paid the hours worked (PeriodFacts.ordinary_hours_worked, minimo over 169) with the terzo elemento of 30.44% on them (festività, ferie, 13ma, 14ma); no extra month and no leave pay accrue (parameters.fixed_term_pay). Not modelled: the terzo elemento on the salario integrativo of the second level, which the bundle does not hold; the TFR of art. 66 (not read: the terzo elemento stays in the TFR base); the balance of the ferie the OTD still takes, unpaid ('mera anticipazione economica').",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -84,7 +84,7 @@
               "operaio"
             ]
           },
-          "remediation": "Model the daily pay and the terzo elemento of the fixed-term operai, as the operai agricoli CCNL requires."
+          "remediation": "Read art. 66 for the TFR of the OTD and model the salario integrativo."
         }
       },
       {
@@ -1629,6 +1629,119 @@
           "review_id": "2026-10-18-ai-accrual-rule"
         }
       }
+    },
+    "fixed_term_pay": {
+      "categories": [
+        "operaio"
+      ],
+      "hourly_pay": {
+        "categories": [
+          "operaio"
+        ],
+        "percentages": [
+          {
+            "code": "TERZO_ELEMENTO",
+            "description": "Terzo elemento degli operai a tempo determinato (art. 60)",
+            "rate": {
+              "periods": [
+                {
+                  "valid_from": "2024-04-01",
+                  "valid_until": null,
+                  "value": "0.3044"
+                }
+              ]
+            },
+            "settlement": "cash",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+                  "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
+                  "kind": "associazione",
+                  "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+                  "published_on": "2024-07-19",
+                  "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
+                },
+                "page": "14",
+                "section": "Art. 60 Retribuzione, operai a tempo determinato",
+                "quote": "Per gli operai agricoli e florovivaisti con rapporto di lavoro a tempo determinato, gli elementi che costituiscono la retribuzione sono: a) Salario nazionale costituito da: minimo contrattuale conglobato giornaliero o orario (vedi tabella). All'operaio a tempo determinato compete inoltre una indennità (terzo elemento) pari al corrispettivo in percentuale dei seguenti istituti riconosciuti agli operai a tempo indeterminato e calcolata su 312 giorni lavorativi: Festività 5,45%; Ferie 8,33%; 13ma mensilità 8,33%; 14ma mensilità 8,33%; Totale 30,44%. Tale misura del 3° elemento, espressa in percentuale, ed in vigore dal 1.5.1991, è calcolata sul minimo contrattuale nazionale e sul salario integrativo."
+              },
+              "transformation": "30.44% of the minimo contrattuale conglobato of the hours worked, paid with the pay of the period. The verbale leaves the TFR base to art. 66, not read: the percentage stays in the TFR base.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-08T03:30:00Z",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-08T03:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-08-ai-cooperative-consorzi-agricoli-otd"
+              }
+            }
+          }
+        ],
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+              "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
+              "kind": "associazione",
+              "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+              "published_on": "2024-07-19",
+              "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
+            },
+            "page": "14",
+            "section": "Art. 60 Retribuzione",
+            "quote": "Agli effetti del computo dei vari istituti economici contrattuali la paga giornaliera si ottiene dividendo quella mensile per 26. Quella oraria si ottiene dividendo la paga mensile per 169."
+          },
+          "transformation": "The fixed-term operaio is paid the hours worked: the monthly minimo over the hourly divisor of 169 (the table's hourly minimo).",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T03:30:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-08T03:30:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-cooperative-consorzi-agricoli-otd"
+          }
+        }
+      },
+      "additional_months": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": null,
+            "value": "12"
+          }
+        ]
+      },
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-cooperative-agricole-verbale-2024-07-19",
+            "title": "Verbale di accordo di rinnovo del CCNL per i dipendenti di cooperative e consorzi agricoli, 19 luglio 2024, firmato, con All. n. 1 (FLAI CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+            "published_on": "2024-07-19",
+            "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
+          },
+          "page": "14-15",
+          "section": "Art. 60 Retribuzione",
+          "quote": "Per gli operai agricoli e florovivaisti con rapporto di lavoro a tempo determinato, gli elementi che costituiscono la retribuzione sono: a) Salario nazionale costituito da: minimo contrattuale conglobato giornaliero o orario (vedi tabella). All'operaio a tempo determinato compete inoltre una indennità (terzo elemento) pari al corrispettivo in percentuale dei seguenti istituti riconosciuti agli operai a tempo indeterminato e calcolata su 312 giorni lavorativi: Festività 5,45%; Ferie 8,33%; 13ma mensilità 8,33%; 14ma mensilità 8,33%; Totale 30,44%. Tale misura del 3° elemento, espressa in percentuale, ed in vigore dal 1.5.1991, è calcolata sul minimo contrattuale nazionale e sul salario integrativo. [p. 15] Tale riconoscimento economico deve intendersi quale mera anticipazione economica di quanto dovuto al lavoratore in caso dell'effettivo godimento o della eventuale mancata fruizione."
+        },
+        "transformation": "A fixed-term operaio (OTD) is paid by the hour with the terzo elemento: twelve monthly payments and no leave pay accrued; the ferie stay a right the worker takes unpaid (p. 15), whose balance the engine does not track.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T03:30:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T03:30:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-cooperative-consorzi-agricoli-otd"
+        }
+      }
     }
   },
   "apprenticeship": [
@@ -1661,7 +1774,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "727f96304cc62cf8b7fe2bd174dfed2adfc5880604d4a532efaa83c720cf2acd",
+    "source_hash": "005dd1b7cb2f9b497e7a944a0fd20df95df555413de49222f77d93cb5ba0ae8a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1956,6 +2069,27 @@
         "independence": "separate_model",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-cooperative-consorzi-agricoli-otd",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 60 of the verbale of 19 July 2024 (scanned pp. 14-15, read on the page images).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
+            "sha256": "67f866fda39e80945ddd67ba6a59c1489f419fce02f0ba2c771a237ade68a616"
+          }
+        ],
+        "findings": [
+          "Added parameters.fixed_term_pay for the OTD: hourly pay with the 30.44% terzo elemento and twelve monthly payments."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.fixed_term_pay"
         ]
       }
     ],
