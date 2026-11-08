@@ -222,6 +222,8 @@ class InjuryRules(BaseModel):
             indemnity up to, ``None`` for no top-up.
         integration_bands: The top-up by day, in place of one
             ``integration_rate`` (DMO art. 172: 90% to the 20th day, then 100%).
+        apprentice_bands: The top-up by day of an apprentice, in place of
+            ``integration_bands`` (Confesercenti art. 189: 80% and 90%).
         net_basis: Whether the measures are of the net pay.
         advanced: Whether the employer advances the INAIL indemnity on the
             payslip (and claims it back from INAIL).
@@ -237,6 +239,7 @@ class InjuryRules(BaseModel):
     carenza_rate: Decimal | None = Field(default=None, gt=Decimal(0), le=Decimal(1))
     integration_rate: Decimal | None = Field(default=None, gt=Decimal(0), le=Decimal(1))
     integration_bands: tuple[InjuryIntegrationBand, ...] = ()
+    apprentice_bands: tuple[InjuryIntegrationBand, ...] = ()
     net_basis: bool = False
     advanced: bool = False
     advanced_permanent_only: bool = False
@@ -244,14 +247,28 @@ class InjuryRules(BaseModel):
 
     @model_validator(mode="after")
     def _check_integration(self) -> Self:
-        days = [b.day_from for b in self.integration_bands]
         if self.integration_bands and self.integration_rate is not None:
             msg = "an injury top-up has an integration_rate or bands, not both"
             raise ValueError(msg)
-        if days != sorted(set(days)):
-            msg = f"injury integration bands must be in day order; got {days}"
+        if self.apprentice_bands and not self.integration_bands:
+            msg = "apprentice injury bands replace integration bands"
             raise ValueError(msg)
+        for bands in (self.integration_bands, self.apprentice_bands):
+            days = [b.day_from for b in bands]
+            if days != sorted(set(days)):
+                msg = f"injury integration bands must be in day order; got {days}"
+                raise ValueError(msg)
         return self
+
+    def for_worker(self, *, apprentice: bool) -> InjuryRules:
+        """Return the rules of the worker, with the apprentice bands if any.
+
+        Returns:
+            These rules, or a copy whose bands are the apprentice bands.
+        """
+        if not (apprentice and self.apprentice_bands):
+            return self
+        return self.model_copy(update={"integration_bands": self.apprentice_bands})
 
 
 class InsuredAbsenceRules(BaseModel):
