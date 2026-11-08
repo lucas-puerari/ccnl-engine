@@ -29,6 +29,7 @@ from ccnl_engine.period.services import (
 )
 from ccnl_engine.run.models import RunKind
 from ccnl_engine.run.types import PeriodId
+from ccnl_engine.seniority.inputs import SeniorityFact, SenioritySource
 
 
 def _context(
@@ -151,3 +152,38 @@ def test_cna_agreement_anniversary_is_posted_only_for_clerical_worker() -> None:
     assert len(award) == 1
     assert award[0].amount > 0
     assert not [i for i in may.pay_items if i.kind == "loyalty_premium_earning"]
+
+
+def test_ance_impiegato_twentieth_anniversary_amount_and_timing() -> None:
+    """The 20-year award is EUR 2,143.99; the preceding month pays zero.
+
+    EUR 1,564.31 minimum + 521.25 cost-of-living + 10.33 EDR
+    + 5 x 9.62 seniority increments = EUR 2,143.99.
+    This is the run-chain approximation of Art. 44 items 1-15; the provincial
+    and individual elements are absent. The preceding month pays EUR 0.
+    """
+
+    def run(month: int) -> PeriodResult:
+        return calculate_period(
+            PeriodCalculationRequest(
+                employer=EmployerProfile(headcount=Headcount(20)),
+                period_id=PeriodId(2026, month),
+                payment_date=date(2026, month, 27),
+                ccnl_id="edilizia-ance-impiegati",
+                level_code="4",
+                opening_state=PeriodState.zero(),
+                roles=frozenset(),
+                events=(),
+                employment_period=EmploymentPeriod(started_on=date(2006, 4, 15)),
+                seniority=SeniorityFact(239, date(2026, 3, 1), SenioritySource.PAYSLIP),
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
+
+    april = run(4)
+    march = run(3)
+    award = [i for i in april.pay_items if i.kind == "loyalty_premium_earning"]
+    assert len(award) == 1
+    assert award[0].amount == Decimal("2143.99")
+    assert not [i for i in march.pay_items if i.kind == "loyalty_premium_earning"]

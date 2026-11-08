@@ -15,7 +15,12 @@ from typing import Annotated, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.absence.insured.extraordinary.models import (
+    ExtraordinaryLeaveRates,
+    YearCeiling,
+)
 from ccnl_engine.absence.insured.injury_models import InjuryIntegrationBand
+from ccnl_engine.absence.insured.maternity_holiday import MaternityHoliday
 from ccnl_engine.absence.insured.parental.models import ParentalRates
 from ccnl_engine.provenance.ruleset.models import RulesetIdentity
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
@@ -29,6 +34,7 @@ __all__ = [
     "InjuryRules",
     "InsuredAbsenceRates",
     "InsuredAbsenceRules",
+    "MaternityHoliday",
     "MaternityRates",
     "MaternityRules",
     "RestPermitRates",
@@ -90,42 +96,6 @@ class RestPermitRates(BaseModel):
 
     indemnity_rate: Share
     provenance: RuleProvenance
-
-
-class YearCeiling(BaseModel):
-    """The most an indemnity pays a day in a year.
-
-    Attributes:
-        year: The calendar year.
-        amount: The daily maximum.
-    """
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    year: int
-    amount: Decimal = Field(gt=Decimal(0))
-
-
-class ExtraordinaryLeaveRates(BaseModel):
-    """INPS indemnity of the extraordinary leave (art. 42 c. 5 D.Lgs. 151/2001).
-
-    Attributes:
-        daily_ceilings: The daily maximum of each year INPS published.
-        provenance: Source of the measures.
-    """
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    daily_ceilings: tuple[YearCeiling, ...]
-    provenance: RuleProvenance
-
-    def ceiling(self, year: int) -> Decimal | None:
-        """Return the daily maximum of ``year``.
-
-        Returns:
-            The maximum, ``None`` for a year the bundle does not list.
-        """
-        return next((c.amount for c in self.daily_ceilings if c.year == year), None)
 
 
 class InjuryBand(BaseModel):
@@ -218,19 +188,25 @@ class MaternityRules(BaseModel):
 
     Attributes:
         integration_rate: Share of the pay the employer tops the indemnity
-            up to.
+            up to; ``None`` for a CCNL that tops up the holidays only.
         integration_days: Days of the leave, from its first day, the
             top-up is due for (five months: 150).
         net_basis: Whether the measure is of the net pay (the INPS share,
             free of contributions, is grossed up by the worker's INPS rate).
+        holiday: The target of a national holiday in the compulsory leave
+            (Studi art. 110 c. 8: "in modo da raggiungere complessivamente il
+            100%"), net of the INPS share and of the top-up of the day.
+        paternity_holiday: The same target in a compulsory paternity leave.
         provenance: Source of the clause.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    integration_rate: Share
-    integration_days: int = Field(ge=1)
-    net_basis: bool
+    integration_rate: Share | None = None
+    integration_days: int | None = Field(default=None, ge=1)
+    net_basis: bool = False
+    holiday: MaternityHoliday | None = None
+    paternity_holiday: MaternityHoliday | None = None
     provenance: RuleProvenance
 
 

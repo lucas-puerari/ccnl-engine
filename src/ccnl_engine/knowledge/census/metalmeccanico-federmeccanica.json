@@ -51,6 +51,22 @@
       }
     },
     {
+      "id": "holiday_outside_calendar",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 9 (Sez. IV Tit. III): the holidays of letters b and c in a sickness or a work injury reach 100% (sickness_rules.holiday and insured_absence.injury.holiday). Not calculated: the holiday top-up during pregnancy and puerperium, the local patron saint or its substitute, and 29 June, a letter b holiday in Rome only, outside the national calendar.",
+      "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
+      "state": "absent",
+      "remediation": "Top up the holidays of pregnancy and puerperium, and the local holidays, as employer facts.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-federmeccanica/holiday_outside_calendar"
+        ]
+      }
+    },
+    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",

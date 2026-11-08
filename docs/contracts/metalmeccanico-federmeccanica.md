@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, leave, overtime |
+| **Limits of this contract** | base_salary, leave, overtime, sickness |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -77,6 +77,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched for a divisor of the daily pay in the CCNL of 5 February 2021 (Sez. IV, Tit. III, Artt. 9, 10; Tit. IV, Art. 3) and in the OCR of the ipotesi of 22 November 2025. | confirmed | Art. 10 pays a day of ferie not taken at the 'retribuzione giornaliera globale di fatto' and no text read divides the monthly pay into it: the 1/26 of Art. 9 is limited to a festività on a Sunday. No termination basis is recorded. |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-08 | gpt-6-sol (ai) | The conto ore of the PAR not taken, the hourly pay of Tit. IV art. 3 and the leave settlement code path, by a separate model session in two rounds. | flagged | Round 1 found the payout blocked by the missing termination basis: the deadline now values the hours by the hour (PermitDeadline.permits_hourly), the termination path unchanged.<br>Round 2 confirmed the year offset (December of the second year after), the hourly valuation as the general hourly pay 'ai fini dei vari istituti contrattuali', and the test amounts (C3 131.27, level 5 132.42).<br>Flagged: the hourly pay of Tit. IV art. 3 adds the hourly elements (incentivi, cottimo), which the engine leaves out; kept under par_conto_ore_hourly_elements. |
+| 2026-11-08 | gpt-6-sol (ai) | Sez. IV Tit. III art. 9 against the holiday target in sickness, by a separate model session. | flagged | Confirmed: the holidays of letters b and c in a sickness compensated with reduced pay reach 100%; excluded_days leaves exactly the national letter b days (04-25, 05-01, 06-02 and 10-04 out); Easter Monday 2026 adds 16.60.<br>Flagged: 29 June (Rome only) and the patron saint are outside the national calendar; injury and pregnancy holidays not topped up. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay. | flagged | The Art. 9 letters b) and c) holiday clause was checked in the primary PDF in this process; independent review of the new injury-holiday extraction is still outstanding. |
 
 ## Salary table
@@ -129,6 +130,13 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "metalmeccanico-federmeccanica/holiday_outside_calendar · sickness · impact yes · open"
+    Art. 9 (Sez. IV Tit. III): the holidays of letters b and c in a sickness or a work injury reach 100% (sickness_rules.holiday and insured_absence.injury.holiday). Not calculated: the holiday top-up during pregnancy and puerperium, the local patron saint or its substitute, and 29 June, a letter b holiday in Rome only, outside the national calendar.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Top up the holidays of pregnancy and puerperium, and the local holidays, as employer facts.
 
 !!! warning "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement · overtime · impact yes · open"
     OVERTIME, QUOTE ESENTI: the 2025 ipotesi (p. 35) adds 8% to the overtime hours worked beyond the exempt quota of 40 or 48 hours a year; the engine does not count the overtime hours of the year, so it does not add it.

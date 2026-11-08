@@ -689,6 +689,7 @@
     "agreement/ced-assoced.json": [
       "ced-assoced/conditional_allowances_title_xxiii",
       "ced-assoced/local_holiday_during_absence",
+      "ced-assoced/maternity_holiday_scope",
       "ced-assoced/terziario_inps_rates_unverified"
     ],
     "agreement/cemento-calce-gesso-industria.json": [
@@ -720,6 +721,7 @@
       "cinema-audiovisivi-industria/fpls_rates_approximated"
     ],
     "agreement/commercio-confcommercio.json": [
+      "commercio-confcommercio/holiday_during_injury",
       "commercio-confcommercio/profile_specific_apprenticeship",
       "commercio-confcommercio/sickness_net_basis"
     ],
@@ -912,6 +914,9 @@
       "informatica-pmi-unimatica/apprentice_seniority",
       "informatica-pmi-unimatica/apprenticeship_duration_by_agreement"
     ],
+    "agreement/istituzioni-servizi-socio-assistenziali-anaste.json": [
+      "istituzioni-servizi-socio-assistenziali-anaste/maternity_holiday_scope"
+    ],
     "agreement/istruzione-ricerca-aran.json": [
       "istruzione-ricerca-aran/docenti_function_allowance",
       "istruzione-ricerca-aran/enam_base",
@@ -1020,6 +1025,7 @@
     ],
     "agreement/metalmeccanico-federmeccanica.json": [
       "metalmeccanico-federmeccanica/elemento_perequativo",
+      "metalmeccanico-federmeccanica/holiday_outside_calendar",
       "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement",
       "metalmeccanico-federmeccanica/par_conto_ore_hourly_elements",
       "metalmeccanico-federmeccanica/par_sector_and_shift_hours",
@@ -1157,7 +1163,7 @@
       "studi-professionali-confprofessioni/fourteenth_exclusion",
       "studi-professionali-confprofessioni/intermittent_availability",
       "studi-professionali-confprofessioni/local_holiday_during_absence",
-      "studi-professionali-confprofessioni/maternity_holiday_top_up",
+      "studi-professionali-confprofessioni/maternity_holiday_scope",
       "studi-professionali-confprofessioni/rolling_comporto_and_serious_illness",
       "studi-professionali-confprofessioni/travel_diaria",
       "studi-professionali-confprofessioni/unused_leave_hours"

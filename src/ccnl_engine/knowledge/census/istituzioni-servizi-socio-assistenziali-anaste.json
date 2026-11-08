@@ -67,6 +67,22 @@
       }
     },
     {
+      "id": "maternity_holiday_scope",
+      "institute": "maternity_leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 45 c. 23 (p. 43) also owes, for the compulsory absence for pregnancy and puerperium, 'la 13° mensilità limitatamente all'aliquota corrispondente al 20% della retribuzione': not paid by the engine. The holiday target applies on the weekday national holidays: a holiday on a Sunday (paid by its own quota), the patron saint and 4 October (a holiday from 2026, which the text, signed before, does not list) are not topped up; 'festività cadenti' covers them in the text.",
+      "calculation": "ccnl/istituzioni-servizi-socio-assistenziali-anaste:coverage.notes",
+      "state": "absent",
+      "remediation": "Top up the holidays the clause covers beyond the weekday national calendar, and the items above.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "istituzioni-servizi-socio-assistenziali-anaste/maternity_holiday_scope"
+        ]
+      }
+    },
+    {
       "id": "mid_month_level_change",
       "institute": "base_salary",
       "variant": "all",

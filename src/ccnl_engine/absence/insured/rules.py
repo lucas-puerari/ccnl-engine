@@ -32,10 +32,10 @@ from ccnl_engine.absence.insured.injury_integration import (
     holiday_extra,
     integration_target,
 )
+from ccnl_engine.absence.insured.maternity_base import maternity_daily_base
+from ccnl_engine.absence.insured.maternity_holiday import holiday_top_up
 from ccnl_engine.compensation.proration.rules import payable_days
-from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.sickness.base.rules import daily_base
 
 if TYPE_CHECKING:
     from ccnl_engine.absence.insured.models import (
@@ -45,10 +45,15 @@ if TYPE_CHECKING:
         MaternityRules,
     )
     from ccnl_engine.compensation.element.types import MonthlyPayChain
-    from ccnl_engine.sickness.base.inputs import InpsSicknessBase
     from ccnl_engine.sickness.term.rules import DailyQuota
 
-__all__ = ["InsuredPay", "MonthPay", "injury_pay", "maternity_pay"]
+__all__ = [
+    "InsuredPay",
+    "MonthPay",
+    "injury_pay",
+    "maternity_daily_base",
+    "maternity_pay",
+]
 
 _ZERO = Decimal(0)
 _ONE = Decimal(1)
@@ -146,6 +151,7 @@ def maternity_pay(
     rates: MaternityRates,
     rules: MaternityRules | None,
     rmgg: Decimal | None = None,
+    holidays: frozenset[date] = frozenset(),
 ) -> InsuredPay:
     """Return the deduction, the INPS indemnity and the top-up of the month.
 
@@ -158,6 +164,7 @@ def maternity_pay(
         rules: The CCNL top-up, ``None`` for none.
         rmgg: Daily base of the month before the leave (art. 23 D.Lgs.
             151/2001); ``None`` takes the monthly pay of the run instead.
+        holidays: National holidays of the leave month.
 
     Returns:
         The amounts, each rounded to the cent.
@@ -172,7 +179,14 @@ def maternity_pay(
         daily = rmgg
     indemnity = money(rates.indemnity_rate * daily * days)
     integration = _ZERO
-    if rules is not None and days:
+    covered = 0
+    end = leave_started_on - timedelta(days=1)
+    if (
+        rules is not None
+        and days
+        and rules.integration_rate is not None
+        and rules.integration_days is not None
+    ):
         end = leave_started_on + timedelta(days=rules.integration_days - 1)
         covered = _days(first, min(last, end))
         if covered:
@@ -180,6 +194,18 @@ def maternity_pay(
             target = rules.integration_rate * deduction * share
             insurer = pay.grossed(indemnity * share, net_basis=rules.net_basis)
             integration = money(max(target - insurer, _ZERO))
+    if rules is not None and rules.holiday is not None and days:
+        integration += holiday_top_up(
+            rules.holiday.rate,
+            holidays,
+            first,
+            last,
+            pay,
+            rates.indemnity_rate * daily,
+            integration,
+            covered,
+            end,
+        )
     return InsuredPay(units, deduction, indemnity, days, integration)
 
 
@@ -258,30 +284,3 @@ def injury_pay(
         carenza,
         carenza_units,
     )
-
-
-def maternity_daily_base(
-    base: InpsSicknessBase | None,
-    category: WorkerCategory | None,
-    monthly_payments: Decimal | None,
-) -> tuple[Decimal | None, bool]:
-    """Return the maternity daily base and whether the engine can compute one.
-
-    Art. 23 c. 4 D.Lgs. 151/2001: the pay of the month before the leave
-    over 30, with the daily rateo of the 13th and of the other payments
-    (c. 2), as the sickness base of an impiegato.  The base of an operaia
-    (c. 5) and of a month not worked in full is not computed.
-
-    Returns:
-        ``(rmgg, computable)``: the base, ``None`` without one; whether a
-        stated base would give one.
-    """
-    computable = (
-        category is not None
-        and category is not WorkerCategory.OPERAIO
-        and monthly_payments is not None
-        and (base is None or base.paid_days is None)
-    )
-    if not computable or base is None or monthly_payments is None:
-        return None, computable
-    return daily_base(base, category, monthly_payments), True

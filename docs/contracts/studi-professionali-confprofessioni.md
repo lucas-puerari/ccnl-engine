@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, sickness |
+| **Limits of this contract** | base_salary, maternity_leave, sickness |
 
 8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -73,6 +73,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | The permits of the six-day week, Art. 91 c.2 lett. B (PDF p. 47). | corrected | Art. 91 c.2: 40 hours of reduced time on five days, 66 on six: work_rules.leave_rules.week_days_annual_days[6].permit_hours rol 66. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | six_day_week_leave: Art. 99 grants 26 working days including Saturday for six days, 22 for Monday–Friday. Existing default_annual_days=22 and week_days_annual_days[6]=26 are selected through Employment.full_time_week_days by load_contract/with_week_days and credited by accrue_month. The six-day enti |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 124 (PDF p. 67, text layer). | confirmed | Art. 124: the festività in a sickness or injury are topped up to 100% of the pay, net of the INPS and INAIL indemnity: sickness_rules.holiday rate 1; the injury part stays a limitation. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 110(8), PDF p. 56: weekday holiday top-up during compulsory maternity and paternity. | confirmed | Verified the quoted clause against the cached PDF; encoded only the compulsory maternity holiday target. |
+| 2026-11-08 | gpt-6-sol (ai) | The maternity holiday clause against the encoding, by a separate model session. | corrected | Confirmed the 100% target net of the INPS share on the holidays of the compulsory leave.<br>Recorded as limitation maternity_holiday_scope: the Sunday holidays, the patron saint and 4 October. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay. | confirmed | Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar. |
 
 ## Salary table
@@ -135,13 +137,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the rolling comporto and the serious-illness extension.
 
-!!! warning "studi-professionali-confprofessioni/maternity_holiday_top_up · base_salary · impact yes · open"
-    Art. 110 c. 8: the employer top-up to 100% of the holidays during compulsory maternity or paternity leave.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the top-up of Art. 110.
-
 !!! warning "studi-professionali-confprofessioni/unused_leave_hours · base_salary · impact yes · open"
     Artt. 91, 92, 97 C, 98: the ROL (40 or 66 hours) and the 32 hours of ex festività paid when not taken, the festività falling on Sunday and the flexibility hours not recovered.
 
@@ -176,6 +171,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Resolved: rol entry_ramp of art. 91 c.4 for the contratto di reimpiego (Permanent.entry_pay), read on 2026-11-06.
+
+!!! warning "studi-professionali-confprofessioni/maternity_holiday_scope · maternity_leave · impact yes · open"
+    The holiday target applies on the weekday national holidays: a holiday on a Sunday (paid by its own quota), the patron saint and 4 October (a holiday from 2026, which the text, signed before, does not list) are not topped up; 'festività cadenti' covers them in the text.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Top up the holidays the clause covers beyond the weekday national calendar, and the items above.
 
 !!! warning "studi-professionali-confprofessioni/local_holiday_during_absence · sickness · impact yes · open"
     The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.
@@ -398,6 +400,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEAVE AT TERMINATION (Art. 137, p. 70): the indemnity for the ferie not taken is the monthly pay divided by 26 ('il computo dell’indennità sostitutiva delle ferie, si ottiene dividendo l’importo mensile per il divisore convenzionale 26'), for any weekly schedule, while the file accrues the 22 days of the settimana corta. The 32 hours of ex festività left are paid by the day, 8 hours at the monthly pay / 26 (the 'retribuzione normale giornaliera' of Art. 98); the 40 hours of ROL of the five-day week (Art. 91) at the monthly pay / 170.
     
     APPRENTICE SENIORITY (Art. 129, p. 119 of the CCNL completo 10 April 2026, https://www.confprofessioni.eu/wp-content/uploads/2026/07/00274046_CCNL_Studi_Professionali_2026.04.10_completo.pdf, sha256 35cc1ec44a282f39fa401949828f180897872a8c7907eb39d4f7a51420e04477): 'la disciplina sull’anzianità di servizio e sugli scatti di anzianità (di cui all’art. 134 del presente CCNL) è applicabile anche agli apprendisti e la decorrenza di questi istituti è quella della data di assunzione': the apprentice takes the scatti of art. 134 at the amounts of the level (seniority_increments.apprentice_level_amount).
+    
+    Art. 110(8): compulsory maternity and paternity holiday top-ups are modelled for leave days.
     
 
 ## Raw data
