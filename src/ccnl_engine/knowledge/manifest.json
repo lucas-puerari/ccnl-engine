@@ -745,7 +745,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-ance-impiegati",
       "ruleset_version": "2026.2",
-      "source_hash": "6c2c3415f7fb3ebacfea08915b9f4da6a9477624e313d4cd78a7e3c693861798",
+      "source_hash": "6c2554d846eae1aaeeccf4e08bca36c09f8a77db1c4255d633310453bc8a8e76",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/edilizia-ance-impiegati.json.gz"
@@ -3281,7 +3281,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "cb6353245b7fe3b73cda5fdc72305bc98c5b4868710e97956fe18d20df2b0338",
+      "source_hash": "352de07ea278a6dded68cb57b0648ee0bb99e44d62b83896aebeea5debc72311",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/edilizia-ance-impiegati.json.gz",
