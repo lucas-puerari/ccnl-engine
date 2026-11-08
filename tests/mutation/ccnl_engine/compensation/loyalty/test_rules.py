@@ -42,11 +42,17 @@ def _context(
         SimpleNamespace(
             contract=SimpleNamespace(
                 ccnl=SimpleNamespace(
+                    ruleset=None,
+                    meta=SimpleNamespace(ccnl_id="edilizia-artigianato-cna"),
                     parameters=SimpleNamespace(
                         loyalty_premium=SimpleNamespace(
-                            service_years=20, months=Decimal(1)
+                            service_years=20,
+                            months=Decimal(1),
+                            provenance=SimpleNamespace(
+                                location=SimpleNamespace(section="Art. 65")
+                            ),
                         )
-                    )
+                    ),
                 ),
                 tctx=SimpleNamespace(payment=date(2026, month, 27)),
             ),

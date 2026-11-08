@@ -14,6 +14,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.compensation.sunday_holiday.rules import monthly_pay
 from ccnl_engine.decision.models import CalculationDecision, CalculationStatus
+from ccnl_engine.decision.rules import _ccnl_rule
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.models import LoyaltyPremiumEarning
@@ -91,6 +92,8 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
     ):
         return LoyaltySettlement()
     amount = money(clause.months * monthly_pay(ctx.regular_chain, frozenset()))
+    rule, version = _ccnl_rule(ctx.contract.ccnl, year)
+    location = clause.provenance.location
     resolution = _require_resolution(ctx.resolver, _KIND, ctx.policy_context)
     treatment = _treatment_from_resolution(resolution)
     item_id = f"loyalty_premium_{ctx.run_id}"
@@ -101,7 +104,7 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
         payment_date=payment,
         quantity=clause.months,
         amount=amount,
-        source="CCNL Art. 65 loyalty premium",
+        source=f"Premio di fedeltà: {getattr(location, 'section', '')}",
     )
     entry = _make_entry(
         item_id,
@@ -121,8 +124,9 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
                 capability="base_salary",
                 status=CalculationStatus.FINAL,
                 reason_code="loyalty_anniversary",
-                rule="ccnl/art-65:loyalty-premium",
-                rule_version=str(year),
+                rule=f"{rule}:parameters.loyalty_premium",
+                rule_version=version,
+                source=location,
                 inputs={"service_years": str(clause.service_years), "monthly": amount},
                 amount=amount,
             ),

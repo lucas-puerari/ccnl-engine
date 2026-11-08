@@ -278,11 +278,11 @@ class CCNLParameters(BaseModel):
     ``thirteenth_payment_day``, ``fourteenth_payment_day``: their pay days.
     ``assistance_contribution``, ``contractual_fund_contribution``: charged
     to a fund; ``additional_months_by_category``: the payments of a category.
-    ``raccordo_element``: the ERC; ``enam_levels``: those owing ex ENAM.
-    ``renewals``: those that raised the minimo (L. 199/2025 renewal regime);
-    ``health_funds``: health and bilateral funds.
-    ``hourly_pay``, ``fixed_term_pay``: hourly pay; ``una_tantum``;
-    ``equalisation_element``; ``loyalty_premium``: annual award.
+    ``flat_pay_max_weekly_hours``: hours at the full minimum (domestic: 30);
+    ``solidarity_fund``: D.Lgs. 148/2015 art. 26; ``raccordo_element``: ERC;
+    ``enam_levels``: ex ENAM; ``renewals``: raising the minimo (L. 199/2025);
+    ``health_funds``, with their elemento distinto; ``hourly_pay``,
+    ``fixed_term_pay`` (operai edilizia, OTD); ``loyalty_premium`` (fedeltà).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
