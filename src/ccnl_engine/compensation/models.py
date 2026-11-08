@@ -280,13 +280,10 @@ class CCNLParameters(BaseModel):
     ``flat_pay_max_weekly_hours``: hours paid at the full minimum (domestic: 30).
     ``raccordo_element``: the ERC; ``enam_levels``: those owing ex ENAM.
     ``solidarity_fund``: its fund of D.Lgs. 148/2015 art. 26, if modelled.
-    ``renewals``: the renewals that raised the minimo, with signing date and
-    first tranche day (renewal regime of L. 199/2025).
-    ``health_funds``: the health and bilateral funds owed for every worker,
-    with the elemento distinto owed when the employer does not pay them.
-    ``hourly_pay``: the categories paid by the hour and the percentages on
-    those hours (operai edilizia); ``fixed_term_pay``: that of OTD workers.
-    ``una_tantum``, ``equalisation_element``: one-off and yearly amounts.
+    ``renewals``: those that raised the minimo (L. 199/2025 renewal regime);
+    ``health_funds``: health and bilateral funds, with their elemento distinto.
+    ``hourly_pay``, ``fixed_term_pay``: pay by the hour (operai edilizia, OTD);
+    ``seniority_increments_by_subsector``; ``una_tantum``; ``equalisation_element``.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -297,6 +294,9 @@ class CCNLParameters(BaseModel):
         default_factory=dict
     )
     seniority_increments: SeniorityIncrements
+    seniority_increments_by_subsector: dict[str, SeniorityIncrements] = Field(
+        default_factory=dict
+    )
     employer_funds: tuple[EmployerFund, ...] = Field(default=())
     accrual_rule: ExtraMonthAccrualRule | None = None
     thirteenth_payment_day: PaymentDay | None = None

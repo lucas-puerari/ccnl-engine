@@ -110,6 +110,7 @@ class ApprenticeshipPercentage(BaseModel):
     destination_levels: tuple[str, ...]
     periods: tuple[ApprenticeshipPeriod, ...]
     reference_level: str | None = None
+    subsectors: tuple[str, ...] = ()
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
@@ -128,6 +129,7 @@ class ApprenticeshipUnderClassification(BaseModel):
     name: str
     destination_levels: tuple[str, ...]
     periods: tuple[UnderClassificationPeriod, ...]
+    subsectors: tuple[str, ...] = ()
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")

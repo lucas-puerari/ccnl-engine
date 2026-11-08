@@ -97,7 +97,7 @@ def with_subsector(
             msg, field="EmployerProfile.subsector", feature="employer_facts"
         )
     _check_level(ccnl, subsector, level_code)
-    ccnl = _with_levels(ccnl, subsector)
+    ccnl = _with_sector_rules(_with_levels(ccnl, subsector), subsector)
     rules = ccnl.work_rules
     supplements = None if rules is None else rules.time_supplements
     bands: tuple[OvertimeBand | SupplementBand, ...] = (
@@ -194,3 +194,28 @@ def _with_levels(ccnl: CCNL, subsector: str | None) -> CCNL:
         for level in levels_for(ccnl.levels, subsector)
     )
     return ccnl.model_copy(update={"levels": levels})
+
+
+def _with_sector_rules(ccnl: CCNL, subsector: str | None) -> CCNL:
+    """Return the CCNL with the seniority and apprenticeship of the sub-sector.
+
+    Tessile-moda artigianato art. 67-68: the chimica and ceramica sectors
+    have their own increments and apprenticeship tables.  The increments of
+    ``seniority_increments_by_subsector`` replace the CCNL's; the
+    apprenticeship tracks naming the sub-sector replace those naming none.
+
+    Returns:
+        The CCNL, unchanged when neither depends on the sub-sector.
+    """
+    parameters = ccnl.parameters
+    own = parameters.seniority_increments_by_subsector.get(subsector or "")
+    named = [t for t in ccnl.apprenticeship if subsector in t.subsectors]
+    tracks = tuple(named or [t for t in ccnl.apprenticeship if not t.subsectors])
+    if own is None and tracks == ccnl.apprenticeship:
+        return ccnl
+    update: dict[str, object] = {"apprenticeship": tracks}
+    if own is not None:
+        update["parameters"] = parameters.model_copy(
+            update={"seniority_increments": own}
+        )
+    return ccnl.model_copy(update=update)
