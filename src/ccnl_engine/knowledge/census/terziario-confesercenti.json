@@ -67,22 +67,6 @@
       }
     },
     {
-      "id": "injury_apprentice_rates",
-      "institute": "workplace_injury",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 189 - Injury pay: the 80% target on days 5–20 and 90% target from day 21 for apprentices are not selectable; the general 90%/100% targets are encoded for all workers.",
-      "calculation": "ccnl/terziario-confesercenti:coverage.notes",
-      "state": "absent",
-      "remediation": "Add apprentice-specific injury integration targets.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "terziario-confesercenti/injury_apprentice_rates"
-        ]
-      }
-    },
-    {
       "id": "local_holiday_during_absence",
       "institute": "sickness",
       "variant": "all",

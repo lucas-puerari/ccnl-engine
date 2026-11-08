@@ -7,7 +7,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.insured.rules import MonthPay
-from ccnl_engine.employment.inputs import Permanent
+from ccnl_engine.employment.inputs import Apprentice, Permanent
 from ccnl_engine.sickness.services import sickness_terms
 
 if TYPE_CHECKING:
@@ -42,6 +42,7 @@ class InsuredTerms:
         hourly_divisor: CCNL monthly hours, for the INAIL daily base.
         weekly_hours: Full-time weekly hours, for the INAIL daily base.
         permanent: Whether the contract is permanent.
+        apprentice: Whether the contract is an apprenticeship.
         rule: Identifier of the CCNL rule.
         rule_version: Version of the CCNL ruleset.
         source: Location of the CCNL rule, if recorded.
@@ -64,6 +65,7 @@ class InsuredTerms:
     category: WorkerCategory | None = None
     monthly_payments: TimeSeries | None = None
     vertical: bool = False
+    apprentice: bool = False
 
 
 def insured_terms(ctx: RunContext) -> InsuredTerms:
@@ -101,6 +103,7 @@ def insured_terms(ctx: RunContext) -> InsuredTerms:
         hourly_divisor=ccnl.parameters.hourly_divisor.value_at(competence),
         weekly_hours=_DEFAULT_WEEKLY_HOURS if stated is None else stated.value,
         permanent=isinstance(ctx.request.contract_type, Permanent),
+        apprentice=isinstance(ctx.request.contract_type, Apprentice),
         rule=f"{name}:work_rules.insured_absence",
         rule_version=(
             str(competence.year) if ccnl.ruleset is None else ccnl.ruleset.version
