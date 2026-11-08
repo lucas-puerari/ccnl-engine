@@ -184,7 +184,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/assicurazioni-ania",
       "ruleset_version": "2026.2",
-      "source_hash": "1f7e03a86b14c48ee90c91c4a25937b4d8d1791dddcff3484f77d5b5e7b3c444",
+      "source_hash": "452f05f55237b4d7db16e568228db9b36637644e6a205b6f30e641f1a33acad6",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/assicurazioni-ania.json.gz"
@@ -2601,7 +2601,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "9d5c41356da4ea45e6e8facc66715103f2c689c5c66f81a66fc1c086cfa32d1e",
+      "source_hash": "1d3a281991399c8af053944abf631f0dd5742a2d57338a20c7bab7136a3b0139",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/assicurazioni-ania.json.gz",

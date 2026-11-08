@@ -8,7 +8,7 @@ from typing import Literal, Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
-from ccnl_engine.compensation.cohort.models import CohortSalary
+from ccnl_engine.compensation.cohort.models import ClassTable, CohortSalary
 from ccnl_engine.compensation.equalisation.models import EqualisationElement
 from ccnl_engine.compensation.fixed_term.models import FixedTermPay
 from ccnl_engine.compensation.hourly.models import HourlyPay
@@ -342,12 +342,11 @@ class Level(BaseModel):
     """A single classification level (*livello di inquadramento*).
 
     Attributes:
-        code: Code of the level within the CCNL (e.g. ``"D3"``).
-        order: Ranking from lowest to highest pay (1 = lowest).
-        description: Human-readable name of the classification level.
+        code, order, description: Code (``"D3"``), rank (1 = lowest), name.
         base_salary: Time-series of monthly base salaries for this level.
         base_salary_by_subsector: The table of an employer's sub-sector.
-        base_salary_by_cohort: The tables of the workers hired by a date.
+        base_salary_by_cohort, class_tables: Tables of the workers hired by a
+            date, the second by seniority class in place of the increments.
         subsectors: The only sub-sectors the level exists in, empty for all.
         fixed_allowances: Fixed monthly allowances of the level (EDR...).
         category: Worker category fixed by this level, ``None`` when it
@@ -362,6 +361,7 @@ class Level(BaseModel):
     base_salary: TimeSeries
     base_salary_by_subsector: dict[str, TimeSeries] = Field(default_factory=dict)
     base_salary_by_cohort: tuple[CohortSalary, ...] = ()
+    class_tables: tuple[ClassTable, ...] = ()
     subsectors: tuple[str, ...] = ()
     fixed_allowances: tuple[Allowance, ...] = Field(default=())
     category: WorkerCategory | None = None

@@ -657,9 +657,7 @@
     ],
     "agreement/assicurazioni-ania.json": [
       "assicurazioni-ania/funzionari_economic_allowance",
-      "assicurazioni-ania/inps_sector_rates_unsourced",
-      "assicurazioni-ania/pre_1999_hire_table",
-      "assicurazioni-ania/seniority_modal_class_difference"
+      "assicurazioni-ania/inps_sector_rates_unsourced"
     ],
     "agreement/autoferrotranvieri-internavigatori.json": [
       "autoferrotranvieri-internavigatori/priamo_pension_fund",
