@@ -9,6 +9,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.compensation.cohort.models import ClassTable, CohortSalary
+from ccnl_engine.compensation.entry.models import TransitionHireBand
 from ccnl_engine.compensation.equalisation.models import EqualisationElement
 from ccnl_engine.compensation.fixed_term.models import FixedTermPay
 from ccnl_engine.compensation.hourly.models import HourlyPay
@@ -39,12 +40,12 @@ class Allowance(BaseModel):
     apprenticeship-percentage base.  ``contribution_relevant`` false is
     rejected: the engine does not take an allowance out of the INPS base.
     ``apprenticeship_pct_relevant=False`` means the allowance is paid at full
-    value even for percentage-based apprentices (e.g. the EDR, which Italian
-    CCNL commonly leave out of the elements the apprenticeship percentage
-    applies to).  The default ``True`` reduces the allowance by the
-    percentage together with the base salary; a CCNL that lists the reduced
+    value even for percentage-based apprentices (e.g. the EDR, which CCNL often
+    leave out of the percentage base).  The default ``True`` reduces the
+    allowance by the percentage with the base salary; a CCNL that lists the reduced
     elements exempts every allowance it does not list.
 
+    ``absorbed_by_individual_excess`` offsets paid individual excess (capped).
     ``individual=True`` marks an element of the worker, not of the CCNL
     (:class:`~ccnl_engine.compensation.individual.inputs.IndividualElement`):
     the hourly base counts it as the CCNL says
@@ -57,9 +58,8 @@ class Allowance(BaseModel):
     ``service_months_threshold`` includes the allowance only when the
     recognised seniority (``Employment.seniority``) is known and at least
     this many months on the run; unknown, the run names the missing fact.
-    ``service_months_until`` closes the band (the RPD of the AFAM docenti).
-    ``career_service`` gates on ``SeniorityFact.career_months`` when stated
-    (Farmacie Tabella C: the years in level 1 and Area Q).
+    ``service_months_until`` closes the band (AFAM RPD); ``career_service`` gates on
+    ``SeniorityFact.career_months`` when stated (Farmacie Tabella C).
 
     ``part_time_proportionable=False`` marks allowances paid at their full
     contractual value whatever the part-time fraction (fixed welfare
@@ -95,6 +95,7 @@ class Allowance(BaseModel):
     career_service: bool = False
     in_service_on: date | None = None
     individual: bool = False
+    absorbed_by_individual_excess: bool = False
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
@@ -214,10 +215,7 @@ class ExtraMonthAccrualRule(BaseModel):
         days = self.min_days
         if self.comparison.by_days:
             if days is not None or self.working_days:
-                msg = (
-                    f"{self.comparison.value} has no threshold; "
-                    "leave min_days and working_days out"
-                )
+                msg = f"{self.comparison.value}: omit min_days and working_days"
                 raise ValueError(msg)
             return self
         more_than = self.comparison is AccrualComparison.MORE_THAN
@@ -344,13 +342,11 @@ class Level(BaseModel):
     Attributes:
         code, order, description: Code (``"D3"``), rank (1 = lowest), name.
         base_salary: Time-series of monthly base salaries for this level.
-        base_salary_by_subsector: The table of an employer's sub-sector.
-        base_salary_by_cohort, class_tables: Tables of the workers hired by a
-            date, the second by seniority class in place of the increments.
-        subsectors: The only sub-sectors the level exists in, empty for all.
-        fixed_allowances: Fixed monthly allowances of the level (EDR...).
-        category: Worker category fixed by this level, ``None`` when it
-            hosts more than one (``Employment.category`` then states it).
+        base_salary_by_subsector, subsectors: Sub-sector pay and eligibility.
+        base_salary_by_cohort, class_tables: Hired-worker or seniority-class tables.
+        transition_to, transition_after_months, transition_hire_bands,
+            transition_by: Entry promotion.
+        fixed_allowances, category: Fixed allowances and optional worker category.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -365,6 +361,10 @@ class Level(BaseModel):
     subsectors: tuple[str, ...] = ()
     fixed_allowances: tuple[Allowance, ...] = Field(default=())
     category: WorkerCategory | None = None
+    transition_to: str | None = None
+    transition_after_months: int | None = Field(default=None, gt=0)
+    transition_hire_bands: tuple[TransitionHireBand, ...] = ()
+    transition_by: date | None = None
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")

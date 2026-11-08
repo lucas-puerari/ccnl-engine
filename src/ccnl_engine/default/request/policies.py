@@ -180,6 +180,13 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         _PENDING,
         "the service months stand for the career of a career-gated allowance",
     ),
+    "Employment.level_started_on": requires_fact(
+        "base_salary",
+        "employment.level_started_on",
+        _REPORTED,
+        "an entry-level transition needs the level entry date; missing in "
+        "Confetra 6J before 2026, the pay is provisional and blocked",
+    ),
     "Employment.seniority": requires_fact(
         "seniority",
         "employment.seniority",

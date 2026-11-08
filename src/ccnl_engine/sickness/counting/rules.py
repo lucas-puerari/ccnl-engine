@@ -49,7 +49,10 @@ def with_window_counting(ccnl: CCNL, chosen: bool) -> CCNL:
     windows = rules.window_alternative
     bands = tuple(
         ComportoBand(
-            seniority_months_from=w.seniority_months_from, comporto_days=w.comporto_days
+            seniority_months_from=w.seniority_months_from,
+            comporto_days=w.comporto_days,
+            serious_comporto_days=w.serious_comporto_days,
+            oncological_comporto_days=w.oncological_comporto_days,
         )
         for w in windows
     )

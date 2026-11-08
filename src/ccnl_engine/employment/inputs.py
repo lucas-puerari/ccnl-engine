@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
+from datetime import date
 from decimal import Decimal
 from typing import Literal
 
@@ -28,6 +29,7 @@ from ccnl_engine.employment.fact.inputs import (
 )
 from ccnl_engine.employment.field_specs import employment_fields
 from ccnl_engine.employment.fixed_term.inputs import FixedTerm
+from ccnl_engine.employment.level_start import check_level_start
 from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.employment.rest_day.inputs import Weekday, check_rest_day
 from ccnl_engine.employment.rota.inputs import Rota, check_rota
@@ -82,20 +84,16 @@ class Employment:
     producing a payslip.
 
     Attributes:
-        ccnl_id: The CCNL, by slug (``"metalmeccanico-federmeccanica"``) or CNEL
-            code (``"E042"``); an id not held, or a CNEL code of several CCNLs,
-            raises :class:`~ccnl_engine.errors.UnknownCcnlError` at the run.
+        ccnl_id: CCNL slug or CNEL code; ambiguous or unknown ids raise
+            :class:`~ccnl_engine.errors.UnknownCcnlError` at the run.
         level_code: Contractual level code, e.g. ``"C3"``.
-        contract_type: :class:`Permanent`, :class:`FixedTerm` or :class:`Apprentice`,
-            always stated: it selects the NASpI surcharge of a fixed-term contract and
-            the art. 13 TUIR deduction minimum.
-        category: Worker category; its string value (e.g. ``"operaio"``) is accepted and
-            normalized.  ``None`` takes the category fixed by the level, if any.  The
-            calculation raises when the category differs from the one the level fixes,
-            or when it is ``None`` and seniority increments for the level differ by
-            category.
+        contract_type: Permanent, fixed term or apprentice; determines NASpI
+            surcharge and the art. 13 TUIR deduction minimum.
+        category: Worker category, accepting string values. ``None`` uses the
+            level's fixed category; incompatible or ambiguous categories raise.
         employment_period: Start and optional end of the employment. ``None`` when not
             tracked: a year then computes every run of the calendar with full ratei.
+        level_started_on: Entry date for time-limited levels (Confetra 6J).
         weekly_hours: Contracted weekly hours.  Required for domestic CCNLs to select
             the INPS bracket; below ``full_time_weekly_hours`` it scales the pay for
             part time.
@@ -190,6 +188,7 @@ class Employment:
     contract_type: Permanent | Apprentice | FixedTerm
     category: WorkerCategory | None = None
     employment_period: EmploymentPeriod | None = None
+    level_started_on: date | None = None
     weekly_hours: WeeklyHours | None = None
     full_time_weekly_hours: WeeklyHours | None = None
     full_time_week_days: int | None = None
@@ -222,6 +221,7 @@ class Employment:
             self.level_code, "Employment.level_code", feature=FEATURE, non_blank=True
         )
         require_instances("Employment", self._typed_fields(), feature=FEATURE)
+        check_level_start(self.level_started_on, self.employment_period)
         if self.roles is not None:
             roles = frozenset_of(self.roles, "Employment.roles", _role, feature=FEATURE)
             object.__setattr__(self, "roles", roles)

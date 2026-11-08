@@ -120,6 +120,7 @@ def _base_chain(
             else request.employment_period.started_on
         ),
         seniority=request.seniority,
+        level_started_on=request.level_started_on,
         career_months=(
             None
             if request.seniority is None

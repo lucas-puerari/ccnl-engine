@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -29,6 +30,7 @@ def employment_fields(
     return (
         ("contract_type", e.contract_type, contract_types, False),
         ("employment_period", e.employment_period, EmploymentPeriod, True),
+        ("level_started_on", e.level_started_on, date, True),
         ("weekly_hours", e.weekly_hours, WeeklyHours, True),
         ("full_time_weekly_hours", e.full_time_weekly_hours, WeeklyHours, True),
         ("work_pattern", e.work_pattern, WorkPattern, True),

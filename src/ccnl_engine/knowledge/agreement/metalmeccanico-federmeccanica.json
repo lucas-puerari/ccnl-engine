@@ -61,19 +61,6 @@
   "coverage": {
     "notes": [
       {
-        "kind": "simplification",
-        "text": "Art. 9 (Sez. IV Tit. III): the holidays of letters b and c in a sickness or a work injury reach 100% (sickness_rules.holiday and insured_absence.injury.holiday). Not calculated: the holiday top-up during pregnancy and puerperium, the local patron saint or its substitute, and 29 June, a letter b holiday in Rome only, outside the national calendar.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "holiday_outside_calendar",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Top up the holidays of pregnancy and puerperium, and the local holidays, as employer facts."
-        }
-      },
-      {
         "kind": "info",
         "text": "CONSOLIDATED MINIMUMS: the values in base_salary are the 'consolidated table minimums' of the CCNL Federmeccanica-Assistal, which incorporate base pay, contingenza, and EDR into a single figure (Federmeccanica practice since 2001). For this reason fixed_allowances is empty for all levels."
       },
@@ -216,6 +203,19 @@
             "trigger": "outside_input"
           },
           "remediation": "Add the hourly elements of Tit. IV art. 3 to the hourly pay of the PAR, and source the PAR left at the end of the employment."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 9 (Sez. IV Tit. III): the holidays of letters b and c in a sickness or a work injury reach 100% (sickness_rules.holiday and insured_absence.injury.holiday). Not calculated: the holiday top-up during pregnancy and puerperium, the patron saint substitute and 29 June, a letter b holiday in Rome only, outside the national calendar.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "holiday_outside_calendar",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Top up pregnancy and puerperium holidays, the substitute patron holiday and Rome-only 29 June when the applicable local facts are stated."
         }
       }
     ]
@@ -3381,7 +3381,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "53de93ad822515b2ae1ee9d4d2fce123ecb86afaa39638a0a6aa47ddef6d6794",
+    "source_hash": "6aea77bdf95bb1f1356d2dfa171773098a72fac64fa9c67ff2db609c38a9a7f3",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -4066,17 +4066,18 @@
             "section": "Sez. Quarta, Titolo III, Art. 9 - Festività",
             "quote": "Qualora le festività di cui ai punti b) e c) ricorrano nel periodo di assenza dovuta a malattia, gravidanza e puerperio, o ad infortunio compensati con retribuzione ridotta, l’azienda integrerà tale trattamento fino a raggiungere per la giornata festiva l’intera retribuzione globale."
           },
-          "transformation": "On a non-Sunday national-calendar holiday listed in art. 9(b), top up reduced sickness pay to 100% of global daily pay; exclude art. 9(a): 25 April, 1 May, 2 June, and 4 October (added to the national calendar after this agreement but absent from the list). The local patron saint or substitute of letter c), including Rome-only SS. Pietro e Paolo, is not in the national calendar. Injury (INAIL) and maternity are outside the sickness target.",
+          "transformation": "On a non-Sunday national-calendar holiday listed in art. 9(b), top up reduced sickness pay to 100% of global daily pay; exclude art. 9(a): 25 April, 1 May, 2 June, and 4 October (added to the national calendar after this agreement but absent from the list). The stated local patron saint day of letter c) is covered on weekdays; the substitute and Rome-only SS. Pietro e Paolo remain outside the national calendar. Injury (INAIL) and maternity are outside the sickness target.",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-08T11:32:44Z",
+            "extraction_timestamp": "2026-11-08T12:42:01Z",
             "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-08T11:32:44Z",
+            "verified_at": "2026-11-08T12:42:01Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-gpt-metalmeccanico-federmeccanica-holiday-in-sickness"
+            "review_id": "2026-11-08-gpt-metalmeccanico-federmeccanica-patron-holiday"
           }
-        }
+        },
+        "includes_patron_saint": true
       }
     },
     "standby_rules": {
@@ -5651,17 +5652,18 @@
               "section": "Sez. Quarta, Titolo III, Art. 9 - Festività, letters b) and c)",
               "quote": "Qualora le festività di cui ai punti b) e c) ricorrano nel periodo di assenza dovuta a malattia, gravidanza e puerperio, o ad infortunio compensati con retribuzione ridotta, l’azienda integrerà tale trattamento fino a raggiungere per la giornata festiva l’intera retribuzione globale."
             },
-            "transformation": "Only letter b) national weekday holidays are computable: letter c) is the employer-specific patron saint; letter a) is excluded. 4 October is absent from the 2021 clause. The target is 100% of the daily pay, less the INAIL benefit and ordinary CCNL integration already due. Full-pay days need no additional payment.",
+            "transformation": "Letter b) national weekday holidays and the stated local patron saint day of letter c) are covered; letter a) is excluded. The substitute and Rome-only SS. Pietro e Paolo remain outside the national calendar. 4 October is absent from the 2021 clause. The target is 100% of the daily pay, less the INAIL benefit and ordinary CCNL integration already due. Full-pay days need no additional payment.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T12:05:09Z",
-              "verified_at": "2026-11-08T12:05:09Z",
+              "extraction_timestamp": "2026-11-08T12:42:01Z",
+              "verified_at": "2026-11-08T12:42:01Z",
               "verification_status": "verified",
-              "review_id": "2026-11-08-gpt-metalmeccanico-federmeccanica-injury-holiday",
+              "review_id": "2026-11-08-gpt-metalmeccanico-federmeccanica-patron-holiday",
               "verified_by": "claude-opus-5-5"
             }
-          }
+          },
+          "includes_patron_saint": true
         }
       }
     }
@@ -6114,6 +6116,30 @@
         ],
         "independence": "separate_model",
         "checked": [
+          "work_rules.insured_absence.injury.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-metalmeccanico-federmeccanica-patron-holiday",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Art. 5 sez. IV tit. III (PDF pp. 164-165), patron saint day of letter c against the sickness and injury holiday target, by a separate model session.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          }
+        ],
+        "findings": [
+          "Confirmed: letter c (patron of the place of work) is in the absence top-up of p. 165, letter a is not.",
+          "Confirmed: a stated patron_saint_day adds one weekday holiday; a day coinciding with a national holiday or a Sunday adds nothing.",
+          "Kept as limitation: the substitute holiday agreed in place of the patron is not modelled."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sickness_rules.holiday",
           "work_rules.insured_absence.injury.holiday"
         ]
       }

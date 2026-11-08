@@ -92,15 +92,15 @@
       },
       {
         "kind": "simplification",
-        "text": "Artt. 120-121: the comporto counted over the episodes of the 365 days before the last one, and the +90 days for serious illnesses paid 100% in months 7-8 and 70% in month 9.",
+        "text": "Artt. 120-121: the 365-day lookback is approximated by 12 calendar months. The documented listed serious illnesses receive 90 additional days (100% in months 7-8 and 70% in month 9); day hospital and life-saving therapy days are excluded from the comporto when stated.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "rolling_comporto_and_serious_illness",
+          "variant": "rolling_comporto_365_day_boundary",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "run"
           },
-          "remediation": "Model the rolling comporto and the serious-illness extension."
+          "remediation": "Replace the 12-calendar-month approximation with a day-exact 365-day lookback."
         }
       },
       {
@@ -149,10 +149,6 @@
           },
           "remediation": "Model the trasferta diaria."
         }
-      },
-      {
-        "kind": "info",
-        "text": "Art. 143: extra remuneration months already received beyond the thirteenth at contract entry offset the fourteenth, up to its amount; merit bonuses are not absorbed. The worker states the full historical extra monthly amount (zero if none); absent facts block only workers hired at or before entry, or with an unknown start date."
       },
       {
         "kind": "info",
@@ -209,6 +205,10 @@
           },
           "remediation": "Provide the employer-specific patron saint holiday."
         }
+      },
+      {
+        "kind": "info",
+        "text": "Art. 143: extra remuneration months already received beyond the thirteenth at contract entry offset the fourteenth, up to its amount; merit bonuses are not absorbed. The worker states the full historical extra monthly amount (zero if none); absent facts block only workers hired at or before entry, or with an unknown start date."
       }
     ]
   },
@@ -283,36 +283,6 @@
           }
         }
       ]
-    },
-    "fourteenth_prior_extra_offset": {
-      "entry_on": "2024-02-16",
-      "provenance": {
-        "status": "verified",
-        "location": {
-          "source_document": {
-            "document_id": "ccnl-studi-professionali-2024-02-16",
-            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
-            "kind": "associazione",
-            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
-            "published_on": "2024-02-16",
-            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
-          },
-          "page": "1, 74",
-          "section": "Contract validity (p. 1); Art. 143 - Quattordicesima mensilità (p. 74)",
-          "quote": "Il presente Contratto Collettivo di Lavoro ha durata triennale dal 16 febbraio 2024 fino al 15 febbraio 2027. [...] Non hanno diritto alla quattordicesima mensilità tutti i lavoratori che alla data dell'entrata in vigore del presente contratto già percepiscono mensilità di retribuzione oltre la tredicesima, di importo almeno pari a quello del premio ferie di cui sopra; ove la parte di mensilità eccedente non raggiunga l'intero importo della quattordicesima mensilità di cui sopra, i lavoratori hanno diritto alla differenza tra l'ammontare del premio stesso e l'importo in atto percepito. Non sono assorbibili nella quattordicesima mensilità le gratifiche, indennità o premi erogati a titolo di merito individuale o collettivo."
-        },
-        "transformation": "On a fourteenth run or its termination settlement, subtract the worker's extra monthly remuneration already received at contract entry from the fourteenth entitlement (prorated by its accrued fraction), floored at zero. Exclude merit awards. A post-entry hire has no pre-existing entitlement at contract entry.",
-        "extraction": {
-          "method": "ai",
-          "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T13:33:48Z",
-          "effective_from": "2024-02-16",
-          "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-08T13:33:48Z",
-          "verification_status": "verified",
-          "review_id": "2026-11-08-ai-fourteenth-offset"
-        }
-      }
     },
     "seniority_increments": {
       "cadence_months": 36,
@@ -768,7 +738,37 @@
           "quote": "5°            1.315,12         91,36               1.406,48"
         }
       }
-    ]
+    ],
+    "fourteenth_prior_extra_offset": {
+      "entry_on": "2024-02-16",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+            "kind": "associazione",
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          },
+          "page": "1, 74",
+          "section": "Contract validity (p. 1); Art. 143 - Quattordicesima mensilità (p. 74)",
+          "quote": "Il presente Contratto Collettivo di Lavoro ha durata triennale dal 16 febbraio 2024 fino al 15 febbraio 2027. [...] Non hanno diritto alla quattordicesima mensilità tutti i lavoratori che alla data dell'entrata in vigore del presente contratto già percepiscono mensilità di retribuzione oltre la tredicesima, di importo almeno pari a quello del premio ferie di cui sopra; ove la parte di mensilità eccedente non raggiunga l'intero importo della quattordicesima mensilità di cui sopra, i lavoratori hanno diritto alla differenza tra l'ammontare del premio stesso e l'importo in atto percepito. Non sono assorbibili nella quattordicesima mensilità le gratifiche, indennità o premi erogati a titolo di merito individuale o collettivo."
+        },
+        "transformation": "On a fourteenth run or its termination settlement, subtract the worker's extra monthly remuneration already received at contract entry from the fourteenth entitlement (prorated by its accrued fraction), floored at zero. Exclude merit awards. A post-entry hire has no pre-existing entitlement at contract entry.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T13:33:48Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T13:33:48Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-fourteenth-offset"
+        }
+      }
+    }
   },
   "levels": [
     {
@@ -2407,7 +2407,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "597700211e943dc2b9c88a2e88497640818ce1e083c3510d8500b2241c95e303",
+    "source_hash": "8b1a5d9d8f04449bfecb432e22ae4952db6f5318f1622f52b4a49af3546d1c75",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3106,6 +3106,26 @@
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "0.75",
       "max_duration_days": 180,
+      "excluded_treatment_days": true,
+      "comporto_bands": [
+        {
+          "seniority_months_from": 0,
+          "comporto_days": 180,
+          "serious_comporto_days": 270
+        }
+      ],
+      "serious_day_bands": [
+        {
+          "day_from": 181,
+          "day_until": 241,
+          "integration_rate": "1"
+        },
+        {
+          "day_from": 241,
+          "day_until": 271,
+          "integration_rate": "0.7"
+        }
+      ],
       "day_bands": [
         {
           "day_from": 4,
@@ -3129,27 +3149,28 @@
             "published_on": "2024-02-16",
             "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
           },
-          "page": "66",
-          "section": "Art. 121 - Trattamento economico di malattia; Art. 120 (p. 65)",
-          "quote": "75% (settantacinque per cento) della retribuzione di fatto dal 4º al 20º giorno; [...] 100% (cento per cento) della retribuzione di fatto dal 21º giorno in poi."
+          "page": "65-66",
+          "section": "Art. 120 - Periodo di comporto per malattia; Art. 121 - Trattamento economico di malattia",
+          "quote": "Nei casi di assenze dovute a patologie oncologiche di rilevante gravità, ictus o sclerosi multipla gravemente invalidanti, distrofia muscolare, morbo di Cooley ovvero periodi di degenza ospedaliera determinati da trapianti chirurgici di organi vitali, il periodo di comporto di cui al precedente capoverso sarà elevato di ulteriori 90 (novanta) giorni."
         },
-        "transformation": "Integration up to 100% of the gross retribuzione di fatto for days 1-3 (carenza), 75% for days 4-20 and 100% from day 21, stored as day_bands; comporto 180 days (Art. 120). Apprentices are covered (no exclusion). The comporto of Art. 120 sums the episodes of the 365 days before the last one: max_duration_days counts one episode, see the unmodelled note. Comporto of several illnesses (2026-11-01): the comporto sums the sick days of the 12 months before the day, up to 180 (the 'anno solare' the CCNL defines as 365 days back from the last illness, read as the 12 months before the day), on top of the 180 days of one illness. Source: https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf, p. 65, 66 (sha256 89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544): 'per anno solare si intende un periodo di 365 giorni partendo a ritroso dell’ultimo evento morboso.'",
+        "transformation": "Ordinary rates: 100% days 1-3, 75% days 4-20, 100% from day 21; 180 days of comporto. For the documented enumerated illnesses or hospital admission due to vital organ transplant (episode serious_illness), both the episode and 12-month window limits increase to 270 days. Days 181-240 are paid at 100%, days 241-270 at 70%. Dates stated as day hospital or life-saving therapy (excluded_comporto_days) do not count toward either comporto but still receive their ordinary day rate. The 12 calendar months are an approximation of the source's exact 365-day lookback; see the narrowed limitation. Verified against signed PDF pp. 65-66 on 2026-11-08.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "extraction_timestamp": "2026-11-08T13:26:08Z",
           "effective_from": "2024-02-16",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-13T07:21:14Z",
+          "verified_at": "2026-11-08T13:26:08Z",
           "verification_status": "verified",
-          "review_id": "2026-10-13-ai-production"
+          "review_id": "2026-11-08-ai-studi-serious-illness"
         }
       },
       "comporto_windows": [
         {
           "seniority_months_from": 0,
           "window_months": 12,
-          "comporto_days": 180
+          "comporto_days": 180,
+          "serious_comporto_days": 270
         }
       ],
       "holiday": {
@@ -3168,20 +3189,21 @@
             "section": "Art. 124 - Festività nel periodo di malattia o infortunio",
             "quote": "Ai sensi della Legge 31 Marzo 1954, n° 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad una indennità integrativa di quella a carico rispettivamente dell’INPS e dell’INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di cui al Titolo XXVIII (Trattamento Economico)."
           },
-          "transformation": "On a national holiday (not a Sunday) falling in a sickness within the comporto, the integration target of the day is 100% of the daily pay, the INPS share of the day netted (sickness_rules.holiday). Not modelled: the same top-up on the INAIL indemnity of an injury. The national calendar adds 4 October from 2026 (L. 151/2025), which this text, signed before, does not list: excluded (excluded_days 10-04).",
+          "transformation": "On a national holiday (not a Sunday) falling in a sickness within the comporto, the integration target of the day is 100% of the daily pay, the INPS share of the day netted (sickness_rules.holiday). The injury holiday target nets the INAIL indemnity and ordinary daily integration. The national calendar adds 4 October from 2026 (L. 151/2025), which this text, signed before, does not list: excluded (excluded_days 10-04). The stated local patron saint day is covered on weekdays.",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-08T10:25:37Z",
+            "extraction_timestamp": "2026-11-08T12:42:01Z",
             "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-08T10:25:37Z",
+            "verified_at": "2026-11-08T12:42:01Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-ai-studi-professionali-confprofessioni-holiday-in-sickness"
+            "review_id": "2026-11-08-ai-studi-professionali-confprofessioni-patron-holiday"
           }
         },
         "excluded_days": [
           "10-04"
-        ]
+        ],
+        "includes_patron_saint": true
       }
     },
     "insured_absence": {
@@ -3227,20 +3249,21 @@
               "section": "Art. 124 - Festività nel periodo di malattia o infortunio",
               "quote": "Ai sensi della Legge 31 Marzo 1954, n° 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad una indennità integrativa di quella a carico rispettivamente dell’INPS e dell’INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di cui al Titolo XXVIII (Trattamento Economico)."
             },
-            "transformation": "On a covered national weekday holiday during a work injury, employer integration reaches 100% of the daily pay after subtracting INAIL indemnity and the ordinary CCNL integration already due on that day; the clause also covers sickness. The local patron saint is outside the national calendar.",
+            "transformation": "On a covered national weekday holiday during a work injury, employer integration reaches 100% of the daily pay after subtracting INAIL indemnity and the ordinary CCNL integration already due on that day; the clause also covers sickness. The stated local patron saint day is covered on weekdays.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T12:05:09Z",
-              "verified_at": "2026-11-08T12:05:09Z",
+              "extraction_timestamp": "2026-11-08T12:42:01Z",
+              "verified_at": "2026-11-08T12:42:01Z",
               "verification_status": "verified",
-              "review_id": "2026-11-08-ai-studi-professionali-confprofessioni-injury-holiday",
+              "review_id": "2026-11-08-ai-studi-professionali-confprofessioni-patron-holiday",
               "verified_by": "claude-opus-5-5"
             }
           },
           "excluded_days": [
             "10-04"
-          ]
+          ],
+          "includes_patron_saint": true
         }
       },
       "maternity": {
@@ -4106,6 +4129,49 @@
         ],
         "independence": "same_process",
         "checked": [
+          "work_rules.insured_absence.injury.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-studi-serious-illness",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules"
+        ],
+        "scope": "Art. 120-121, signed PDF pp. 65-66, listed serious illnesses and day hospital or life-saving therapy.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "The documented listed illness extends comporto by 90 days; months seven and eight pay 100%, month nine 70%; qualifying treatment days do not count. The 365-day lookback remains approximated by twelve calendar months."
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-studi-professionali-confprofessioni-patron-holiday",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Local patron saint day in sickness and work injury holiday clauses.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "Art. 124 - Festività nel periodo di malattia o infortunio (p. 67): Ai sensi della Legge 31 Marzo 1954, n° 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad una indennità integrativa di quella a carico rispettivamente dell’INPS e dell’INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di cui al Titolo XXVIII (Trattamento Economico). The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.holiday",
           "work_rules.insured_absence.injury.holiday"
         ]
       },
