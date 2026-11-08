@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, sickness |
 
-9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -155,13 +155,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Accrue the ratei during the leaves.
-
-!!! warning "turismo-federalberghi/hires_2016_ramp · base_salary · impact yes · open"
-    Verbale of 30 November 2016: the lower ramp of the hires of 14 November 2016. The caller pays these amounts as variable items.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the 2016 ramp.
 
 !!! warning "turismo-federalberghi/apprenticeship_durations_unsourced · base_salary · impact yes · open"
     APPRENTICESHIP DURATIONS: the durations of the professionalizzante come from the accord of 17 April 2012 as amended in 2014, of which no signed or CNEL copy was found (only aggregator copies); the percentages of art. 58 are verified. Every apprentice run carries this limitation.
@@ -359,6 +352,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SUB-SECTOR: the lower paga base of Art. 152 c. 2 (renewal of 5 July 2024, p. 43) for the alberghi a una e due stelle and the campeggi up to 1200 presenze-licenza is the sibling turismo-federalberghi-alberghi-minori.
     
     SENIORITY FROM AGE 18 (Art. 158 c. 2, p. 140): a worker hired from 1 June 1986 accrues the scatti only from the eighteenth birthday (SeniorityFact.birth_date; without it the service counts from the start). The rules of the workers in service on 1 June 1986 are not modelled.
+    
+    Verbale of 30 November 2016: the lower ramp of the hires from 14 November 2016 ran by calendar date (November 2016, August 2017, January 2018). The renewal of 5 July 2024 (CNEL 194291, p. 42) replaces the tables with one per level from July 2024, with no separate ramp: nothing of it applies to the tax years the engine computes.
     
     HOURLY RATE AND SUPPLEMENTS (artt. 148, 151, 216, 220 of the 2010 text): without a caller value the engine derives the hourly base (the art. 148 retribuzione over 172), the 25% on ordinary night hours from 24 to 6 (art. 216 c.1; 12% for the role qualifica_notturna, c.2: Employment.roles must be stated) and the 20% on the hours worked on a festività (art. 220). The night window of the lavoratori notturni (23:30-6:30, art. 218) only changes which hours the caller declares. Art. 220 also pays the festività hours themselves on top of the monthly pay: the engine posts the 20% only and the run is provisional. Not derived: the Sunday allowance of art. 126 (10% of the hourly paga base and contingenza: the bundle does not record that base_salary holds exactly those two voci), holiday overtime (art. 219 sets no rate). The divisors 190 and 192 of the 44- and 45-hour weeks are derived from Employment.full_time_weekly_hours; another week than 40, 44 or 45 is not derived.
     

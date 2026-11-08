@@ -76,17 +76,8 @@
         "text": "Tranches: 2025-07-01 (+3%) and 2026-01-01 (+2.2%). Both sourced from redigo.info primary table. No pre-July-2025 salary is modeled; engine returns no result for as_of before 2025-07-01."
       },
       {
-        "kind": "simplification",
-        "text": "Dual-cohort: workers hired by 15-07-2000 have a lower salary table (~1.4% below post-2000) not modeled here. Those workers are a declining cohort (tenure 25+ years); new hires always enter the post-2000 table.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "pre_2000_cohort_table_missing",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model the lower salary table for workers hired by 15-07-2000 behind a hire-date fact."
-        }
+        "kind": "info",
+        "text": "DUAL COHORT (Allegato A, PDF pp. 157 and 159; Allegato Q p. 230): the 'dipendenti in servizio al 15 luglio 2000' are paid a lower table than those 'assunti a decorrere dal 15/7/2000'; modelled as Level.base_salary_by_cohort, chosen by the hire date (EmploymentPeriod.started_on, else the start of the stated seniority). Tables from 1 July 2025."
       },
       {
         "kind": "simplification",
@@ -228,6 +219,29 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Allegato A (PDF pp. 157, 159) and Allegato Q (p. 230) of the text of 21 May 2025, text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+            "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+          }
+        ],
+        "findings": [
+          "Added the table of the staff in service on 15 July 2000 as base_salary_by_cohort.",
+          "Corrected the post-2000 base salaries that differed by a cent from the printed table: D115 2026-01-01 1764.29->1764.28; D116 2026-01-01 1779.62->1779.63; C127 2026-01-01 1948.38->1948.39; A157 2026-01-01 2408.65->2408.64; AQ164 2026-01-01 2516.04->2516.03"
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary_by_cohort",
+          "levels.base_salary"
         ]
       }
     ]
@@ -1064,7 +1078,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "1480.27",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "1513.09",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "D104",
@@ -1153,7 +1234,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "1539.48",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "1573.61",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "D107",
@@ -1242,7 +1390,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "1583.89",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "1619.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "D112",
@@ -1331,7 +1546,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "1657.92",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "1694.67",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "D115",
@@ -1373,7 +1655,7 @@
           {
             "valid_from": "2026-01-01",
             "valid_until": null,
-            "value": "1764.29",
+            "value": "1764.28",
             "provenance": {
               "status": "derived",
               "location": {
@@ -1413,7 +1695,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "1702.31",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "1740.05",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "D116",
@@ -1455,7 +1804,7 @@
           {
             "valid_from": "2026-01-01",
             "valid_until": null,
-            "value": "1779.62",
+            "value": "1779.63",
             "provenance": {
               "status": "derived",
               "location": {
@@ -1495,7 +1844,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "1717.11",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "1755.18",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "D117",
@@ -1584,7 +2000,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "1731.92",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "1770.32",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "C118",
@@ -1673,7 +2156,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "1746.73",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "1785.45",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "C122",
@@ -1762,7 +2312,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "1805.93",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "1845.97",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "C127",
@@ -1804,7 +2421,7 @@
           {
             "valid_from": "2026-01-01",
             "valid_until": null,
-            "value": "1948.38",
+            "value": "1948.39",
             "provenance": {
               "status": "derived",
               "location": {
@@ -1844,7 +2461,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "1879.94",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "1921.62",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "B128",
@@ -1933,7 +2617,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "1894.75",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "1936.75",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "B128_ex52",
@@ -2022,7 +2773,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "1894.75",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "1936.75",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "B132",
@@ -2111,7 +2929,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "1953.95",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "1997.27",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "B132_ex51",
@@ -2200,7 +3085,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "1953.95",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "1997.27",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "A134",
@@ -2289,7 +3241,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "1983.57",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "2027.54",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "A135",
@@ -2378,7 +3397,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "1998.36",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "2042.66",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "A157",
@@ -2420,7 +3506,7 @@
           {
             "valid_from": "2026-01-01",
             "valid_until": null,
-            "value": "2408.65",
+            "value": "2408.64",
             "provenance": {
               "status": "derived",
               "location": {
@@ -2460,7 +3546,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "2324.02",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "2375.54",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "A159",
@@ -2549,7 +3702,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "2353.63",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "2405.80",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "A160",
@@ -2638,7 +3858,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "2368.44",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "2420.94",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "AQ162",
@@ -2767,7 +4054,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "2398.04",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "2451.20",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "AQ164",
@@ -2809,7 +4163,7 @@
           {
             "valid_from": "2026-01-01",
             "valid_until": null,
-            "value": "2516.04",
+            "value": "2516.03",
             "provenance": {
               "status": "derived",
               "location": {
@@ -2889,7 +4243,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "2427.65",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "2481.46",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "A170",
@@ -2978,7 +4399,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "2516.46",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "2572.24",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "A184",
@@ -3067,7 +4555,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "2723.69",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "2784.07",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "AQ185",
@@ -3196,7 +4751,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "2738.51",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "2799.21",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "code": "AQ187",
@@ -3325,7 +4947,74 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "base_salary_by_cohort": [
+        {
+          "hired_until": "2000-07-14",
+          "base_salary": {
+            "periods": [
+              {
+                "valid_from": "2025-07-01",
+                "valid_until": "2026-01-01",
+                "value": "2768.11",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "2829.47",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "flai-ccnl-bonifica-2023-2026",
+                      "title": "CCNL consorzi di bonifica 2023-2026, accordo 21 maggio 2025 (FLAI CGIL)",
+                      "kind": "associazione",
+                      "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+                      "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+                    },
+                    "page": "157",
+                    "section": "Allegato A",
+                    "quote": "RETRIBUZIONE 2025-2026 DIPENDENTI IN SERVIZIO AL 15 LUGLIO 2000"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-08T06:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-08T06:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-08-ai-consorzi-di-bonifica-snebi-cohort"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
     }
   ],
   "ruleset": {
@@ -3335,7 +5024,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "af7c5761dc1cf93b8adf6b9b2ef6ffdfaa95097ad52ee6f8d52959b336278a5c",
+    "source_hash": "dd71d16213b652295db313aec701640b94807750831a9f5d51845896ca69f60e",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

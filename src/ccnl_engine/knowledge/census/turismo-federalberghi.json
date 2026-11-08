@@ -115,22 +115,6 @@
       }
     },
     {
-      "id": "hires_2016_ramp",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Verbale of 30 November 2016: the lower ramp of the hires of 14 November 2016. The caller pays these amounts as variable items.",
-      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the 2016 ramp.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "turismo-federalberghi/hires_2016_ramp"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",

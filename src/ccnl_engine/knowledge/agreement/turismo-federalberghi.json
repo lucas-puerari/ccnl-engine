@@ -3165,17 +3165,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "Verbale of 30 November 2016: the lower ramp of the hires of 14 November 2016. The caller pays these amounts as variable items.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "hires_2016_ramp",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model the 2016 ramp."
-        }
+        "kind": "info",
+        "text": "Verbale of 30 November 2016: the lower ramp of the hires from 14 November 2016 ran by calendar date (November 2016, August 2017, January 2018). The renewal of 5 July 2024 (CNEL 194291, p. 42) replaces the tables with one per level from July 2024, with no separate ramp: nothing of it applies to the tax years the engine computes."
       },
       {
         "kind": "simplification",
@@ -3232,7 +3223,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "f03e80d156753fc79a5cbc860d2263984611310219f0a2c0c5f8dddf79f20a85",
+    "source_hash": "94361b331970513cd13e8febc4ae9c471024d9b649d78286c3197dbd1fb2d424",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

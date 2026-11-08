@@ -175,7 +175,7 @@ never grow.
 | 34 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | ⚠️ | base_salary | 16 / 8 / 0 / 0 |
 | 35 | [CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico](informatica-pmi-unimatica.md) | ⚠️ | base_salary, seniority | 2 / 39 / 1 / 0 |
 | 36 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | ⚠️ | inps_employer | 34 / 21 / 1 / 0 |
-| 37 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | ⚠️ | base_salary, inps_employer, seniority | 50 / 10 / 1 / 1 |
+| 37 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | ⚠️ | inps_employer, seniority | 50 / 10 / 1 / 1 |
 | 38 | [CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)](cooperative-sociali.md) | ⚠️ | base_salary, inps_employer | 62 / 1 / 0 / 0 |
 | 39 | [CCNL Cooperative e Consorzi Agricoli](cooperative-consorzi-agricoli.md) | ⚠️ | base_salary | 34 / 8 / 0 / 0 |
 | 40 | [CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa](federcasa.md) | ⚠️ | base_salary, inps_employer | 1 / 23 / 1 / 0 |
