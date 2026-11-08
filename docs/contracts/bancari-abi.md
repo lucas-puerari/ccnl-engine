@@ -71,6 +71,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 103 c. 3 of the coordinated text (p. 142), text layer. | corrected | Added seniority_increments.freezes 2013-01-01 to 2014-08-01: 'Nel periodo 1° gennaio 2013 – 31 luglio 2014 non matura l'anzianità ... ai fini degli scatti di anzianità'. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Artt. 50, 90, 93, 94, 102, 103 and Allegato 2 (PDF p. 165) of the CCNL ABI 23 November 2023 (FABI text). | corrected | The importo ex ristrutturazione tabellare is owed for each scatto matured ('per ciascuno scatto di anzianità'), with the scatto: added to the amount of each scatto by level.<br>It enters the TFR base (art. 90) and is frozen with the scatti (art. 103).<br>A separate reading corrected the article of the exclusion (art. 68 c. 7, not 72) and recalled the older cohorts of art. 103 and art. 100. |
 | 2026-11-08 | gpt-6-sol (ai) | Artt. 68, 93, 94, 100, 102, 103 and Allegato 2 of the CCNL ABI 23 November 2023 against the importo ex ristrutturazione added to each scatto, by a separate model session. | corrected | Confirmed the amounts per scatto by level and their place in the TFR base.<br>Corrected: the exclusion is art. 68 c. 7, not art. 72; the older cohorts (art. 103 c. 2, art. 100) are recalled in the note. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 66 cc. 4-6, PDF p. 101, diagnosis-specific comporto and pay periods and dialysis exclusion. | corrected | The selected ordinary or 48-month period rises by 50% (12 to 30 months) for the listed cases, or doubles for oncological illness (36 months maximum); days necessary for dialysis do not count. |
 
 ## Salary table
 
@@ -142,12 +143,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add a Saturday kind and read the elements of the annual pay that art. 114 c. 15 divides.
 
-!!! warning "bancari-abi/abi_sickness_counting · sickness · impact yes · open"
-    SICKNESS COUNTING (Art. 66, CCNL 23 November 2023, p. 101): c. 1 keeps the job and the whole pay for 6, 8, 12, 15, 18 or 22 months of each illness by seniority (comporto_bands, 180 to 660 days); an employer that counts by c. 2 'con riferimento ai 48 mesi precedenti l'ultimo giorno di assenza considerato' (EmployerProfile.sickness_window_counting) has 8, 10, 14, 18, 22 or 24 months over that window (window_alternative, 240 to 720 days). The periods rise by 50% (at least 12, at most 30 months) for tbc, AIDS and disabilità grave (c. 4) and double for an oncological illness, at most 36 months (c. 5): not modelled.
+!!! warning "bancari-abi/abi_remaining_sickness_exceptions · sickness · impact yes · open"
+    SICKNESS COUNTING (Art. 66, CCNL 23 November 2023, p. 101): c. 1 keeps the job and the whole pay for 6, 8, 12, 15, 18 or 22 months of each illness by seniority (comporto_bands, 180 to 660 days); an employer that counts by c. 2 'con riferimento ai 48 mesi precedenti l'ultimo giorno di assenza considerato' (EmployerProfile.sickness_window_counting) has 8, 10, 14, 18, 22 or 24 months over that window (window_alternative, 240 to 720 days). The 50% extension (12 to 30 months) for tuberculosis requiring sanatorium admission or care, AIDS or severe disability, and the oncological double period (up to 36 months) apply when the episode states the qualifying diagnosis. Dialysis days must be stated to be excluded.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Apply the increases of Art. 66 cc. 4-5 to a serious or oncological episode.
+    **Remediation:** The last-period statutory minimum (c. 3), pension-eligible over-sixty ending (c. 8) and requested unpaid leave (c. 12) remain outside this calculation.
 
 !!! warning "bancari-abi/apprentice_net_equivalent_allowance · base_salary · impact yes · open"
     APPRENTICESHIP (Art. 36, testo coordinato p. 53): the apprentice of a 3a area profile is placed one level below the destination for the first 18 months, then paid the destination level 'con assegno temporaneo, corrispondente, al netto'; at most 3 years. Every 3a area level is a destination: an apprentice to 3A1 starts at the Area unificata (1e2A). The assegno equals the destination in net terms; the engine pays the destination gross.

@@ -27,6 +27,8 @@ class SicknessHoliday(BaseModel):
         excluded_days: Codes of the national calendar (``MM-DD``,
             ``easter_monday``) the clause does not cover, e.g. ``10-04``,
             a holiday from 2026 that a text signed before does not list.
+        includes_patron_saint: Whether the clause covers the employer's local
+            patron saint holiday when its date is stated.
         provenance: The clause.
     """
 
@@ -35,4 +37,5 @@ class SicknessHoliday(BaseModel):
     rate: Decimal = Field(gt=Decimal(0), le=Decimal(1))
     gross_basis: bool = False
     excluded_days: tuple[str, ...] = ()
+    includes_patron_saint: bool = False
     provenance: RuleProvenance

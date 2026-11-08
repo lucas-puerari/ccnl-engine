@@ -674,8 +674,8 @@
       "aziende-termali-federterme/terziario_inps_rates_unverified"
     ],
     "agreement/bancari-abi.json": [
+      "bancari-abi/abi_remaining_sickness_exceptions",
       "bancari-abi/abi_saturday_overtime_and_hourly_base",
-      "bancari-abi/abi_sickness_counting",
       "bancari-abi/apprentice_net_equivalent_allowance",
       "bancari-abi/inps_sector_rates_unsourced",
       "bancari-abi/scatti_freeze_2013_2014"
@@ -988,7 +988,7 @@
     "agreement/logistica-trasporto-confetra.json": [
       "logistica-trasporto-confetra/edr_2021_in_daily_base",
       "logistica-trasporto-confetra/holiday_during_injury",
-      "logistica-trasporto-confetra/level_6j_2025",
+      "logistica-trasporto-confetra/level_6j_apprenticeship",
       "logistica-trasporto-confetra/magazzini_generali_holiday_in_sickness",
       "logistica-trasporto-confetra/sixth_day_overtime",
       "logistica-trasporto-confetra/sixth_month_parental_leave"
@@ -1173,7 +1173,7 @@
       "studi-professionali-confprofessioni/intermittent_availability",
       "studi-professionali-confprofessioni/local_holiday_during_absence",
       "studi-professionali-confprofessioni/maternity_holiday_scope",
-      "studi-professionali-confprofessioni/rolling_comporto_and_serious_illness",
+      "studi-professionali-confprofessioni/rolling_comporto_365_day_boundary",
       "studi-professionali-confprofessioni/travel_diaria",
       "studi-professionali-confprofessioni/unused_leave_hours"
     ],

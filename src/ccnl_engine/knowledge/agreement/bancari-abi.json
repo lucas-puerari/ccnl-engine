@@ -117,15 +117,15 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS COUNTING (Art. 66, CCNL 23 November 2023, p. 101): c. 1 keeps the job and the whole pay for 6, 8, 12, 15, 18 or 22 months of each illness by seniority (comporto_bands, 180 to 660 days); an employer that counts by c. 2 'con riferimento ai 48 mesi precedenti l'ultimo giorno di assenza considerato' (EmployerProfile.sickness_window_counting) has 8, 10, 14, 18, 22 or 24 months over that window (window_alternative, 240 to 720 days). The periods rise by 50% (at least 12, at most 30 months) for tbc, AIDS and disabilità grave (c. 4) and double for an oncological illness, at most 36 months (c. 5): not modelled.",
+        "text": "SICKNESS COUNTING (Art. 66, CCNL 23 November 2023, p. 101): c. 1 keeps the job and the whole pay for 6, 8, 12, 15, 18 or 22 months of each illness by seniority (comporto_bands, 180 to 660 days); an employer that counts by c. 2 'con riferimento ai 48 mesi precedenti l'ultimo giorno di assenza considerato' (EmployerProfile.sickness_window_counting) has 8, 10, 14, 18, 22 or 24 months over that window (window_alternative, 240 to 720 days). The 50% extension (12 to 30 months) for tuberculosis requiring sanatorium admission or care, AIDS or severe disability, and the oncological double period (up to 36 months) apply when the episode states the qualifying diagnosis. Dialysis days must be stated to be excluded.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "abi_sickness_counting",
+          "variant": "abi_remaining_sickness_exceptions",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Apply the increases of Art. 66 cc. 4-5 to a serious or oncological episode."
+          "remediation": "The last-period statutory minimum (c. 3), pension-eligible over-sixty ending (c. 8) and requested unpaid leave (c. 12) remain outside this calculation."
         }
       },
       {
@@ -1872,7 +1872,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "c88e6f87a311ec6cadfb18152939a04364cfd97ea962fb4df7ec12e1297d4697",
+    "source_hash": "eaf6350282a01ce4c4cb04eba2a02ab6ac1022d02b0384a094298bd5a26b1428",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2169,59 +2169,84 @@
       "comporto_bands": [
         {
           "seniority_months_from": 0,
-          "comporto_days": 180
+          "comporto_days": 180,
+          "serious_comporto_days": 360,
+          "oncological_comporto_days": 360
         },
         {
           "seniority_months_from": 61,
-          "comporto_days": 240
+          "comporto_days": 240,
+          "serious_comporto_days": 360,
+          "oncological_comporto_days": 480
         },
         {
           "seniority_months_from": 121,
-          "comporto_days": 360
+          "comporto_days": 360,
+          "serious_comporto_days": 540,
+          "oncological_comporto_days": 720
         },
         {
           "seniority_months_from": 181,
-          "comporto_days": 450
+          "comporto_days": 450,
+          "serious_comporto_days": 675,
+          "oncological_comporto_days": 900
         },
         {
           "seniority_months_from": 241,
-          "comporto_days": 540
+          "comporto_days": 540,
+          "serious_comporto_days": 810,
+          "oncological_comporto_days": 1080
         },
         {
           "seniority_months_from": 301,
-          "comporto_days": 660
+          "comporto_days": 660,
+          "serious_comporto_days": 900,
+          "oncological_comporto_days": 1080
         }
       ],
+      "excluded_treatment_days": true,
       "window_alternative": [
         {
           "seniority_months_from": 0,
           "window_months": 48,
-          "comporto_days": 240
+          "comporto_days": 240,
+          "serious_comporto_days": 360,
+          "oncological_comporto_days": 480
         },
         {
           "seniority_months_from": 61,
           "window_months": 48,
-          "comporto_days": 300
+          "comporto_days": 300,
+          "serious_comporto_days": 450,
+          "oncological_comporto_days": 600
         },
         {
           "seniority_months_from": 121,
           "window_months": 48,
-          "comporto_days": 420
+          "comporto_days": 420,
+          "serious_comporto_days": 630,
+          "oncological_comporto_days": 840
         },
         {
           "seniority_months_from": 181,
           "window_months": 48,
-          "comporto_days": 540
+          "comporto_days": 540,
+          "serious_comporto_days": 810,
+          "oncological_comporto_days": 1080
         },
         {
           "seniority_months_from": 241,
           "window_months": 48,
-          "comporto_days": 660
+          "comporto_days": 660,
+          "serious_comporto_days": 900,
+          "oncological_comporto_days": 1080
         },
         {
           "seniority_months_from": 301,
           "window_months": 48,
-          "comporto_days": 720
+          "comporto_days": 720,
+          "serious_comporto_days": 900,
+          "oncological_comporto_days": 1080
         }
       ],
       "provenance": {
@@ -2235,21 +2260,21 @@
             "published_on": "2025-07-01",
             "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
           },
-          "page": "99",
-          "section": "Art. 66 c. 1 (Malattie e infortuni)",
-          "quote": "In caso di assenza per malattia o infortunio accertati, l'impresa conserva il posto e l'intero trattamento economico alla lavoratrice/lavoratore che abbia superato il periodo di prova per: a) fino a 5 anni 6; b) da oltre 5 anni e fino a 10 anni 8; c) da oltre 10 anni e fino a 15 anni 12; d) da oltre 15 anni e fino a 20 anni 15; e) da oltre 20 anni e fino a 25 anni 18; f) oltre i 25 anni 22"
+          "page": "101 (printed 99)",
+          "section": "Art. 66 cc. 1-6 (Malattie e infortuni)",
+          "quote": "In caso di malattia di carattere oncologico i periodi di conservazione del posto e dell’intero trattamento economico sono raddoppiati con un massimo di 36 mesi complessivi."
         },
-        "transformation": "Art. 66 c. 1: the job and the whole pay are kept for 6, 8, 12, 15, 18 or 22 months of an illness by seniority up to 5, 10, 15, 20, 25 years and over, months of 30 days (180, 240, 360, 450, 540, 660 days, from 61, 121, 181, 241, 301 completed months), stored as comporto_bands of the episode; the bank pays it all, the employees of credit being outside the INPS sick pay. The file stored the 48-month variant of c. 2 as the rule. Read on 2026-10-31.",
-        "note": "Art. 66 c. 2: 'I periodi di assenza per malattia e infortunio possono essere calcolati dall'impresa con riferimento ai 48 mesi precedenti l'ultimo giorno di assenza considerato. In tal caso i periodi [...] sono i seguenti: 8, 10, 14, 18, 22, 24' months. The choice is the employer's and no fact of the run states it: a bank that counts over the 48 months is not modelled (limitation sickness_cumulation_window). Not modelled: the periods raised by 50% (c. 4: tbc, AIDS, L. 104/1992 art. 3 c. 3, 12 to 30 months) or doubled for an oncological illness (c. 5, at most 36 months); the end of the treatment for a worker over sixty with the old-age pension requirements (c. 8); the unpaid aspettativa (c. 12) and the minimum of R.D.L. 1825/1924 for its last period (c. 3).",
+        "transformation": "Art. 66: retain ordinary seniority bands 180/240/360/450/540/660 days and the optional 48-month alternative 240/300/420/540/660/720 days. When the episode states tuberculosis requiring sanatorium admission or verified care, AIDS, or disability recognized under L. 104/1992 art. 3 c. 3, apply min(900, max(360, ordinary days x 1.5)) to the selected band. For an oncological illness apply min(1080, ordinary days x 2). The selected period is also paid in full. Months are converted to 30 days, including the 22.5 months (675 days) at 15 years' band. Stated dates strictly necessary for dialysis do not count toward either limit; other absent days do. A missing diagnosis selects ordinary limits. Verified against the signed PDF p. 101 on 2026-11-08.",
+        "note": "Art. 66 c. 2: 'I periodi di assenza per malattia e infortunio possono essere calcolati dall'impresa con riferimento ai 48 mesi precedenti l'ultimo giorno di assenza considerato. In tal caso i periodi [...] sono i seguenti: 8, 10, 14, 18, 22, 24' months. The choice is the employer's and no fact of the run states it: a bank that counts over the 48 months is not modelled (limitation sickness_cumulation_window). The diagnosis-specific periods of cc. 4-5 and dialysis exclusion of c. 6 require episode facts; not modelled: the end of the treatment for a worker over sixty with the old-age pension requirements (c. 8); the unpaid aspettativa (c. 12) and the minimum of R.D.L. 1825/1924 for its last period (c. 3).",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-31T18:00:00Z",
+          "extraction_timestamp": "2026-11-08T13:26:08Z",
           "effective_from": "2023-07-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-31T18:00:00Z",
+          "verified_at": "2026-11-08T13:26:08Z",
           "verification_status": "verified",
-          "review_id": "2026-10-31-ai-sickness-pay-texts"
+          "review_id": "2026-11-08-ai-abi-serious-illness"
         }
       }
     }
@@ -2493,6 +2518,27 @@
         "independence": "separate_model",
         "checked": [
           "parameters.seniority_increments.amount_by_level"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-abi-serious-illness",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules"
+        ],
+        "scope": "Art. 66 cc. 4-6, PDF p. 101, diagnosis-specific comporto and pay periods and dialysis exclusion.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+            "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
+          }
+        ],
+        "findings": [
+          "The selected ordinary or 48-month period rises by 50% (12 to 30 months) for the listed cases, or doubles for oncological illness (36 months maximum); days necessary for dialysis do not count."
         ]
       }
     ]
