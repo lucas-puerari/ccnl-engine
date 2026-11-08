@@ -108,7 +108,7 @@ def test_stored_day_rule_takes_no_threshold() -> None:
         comparison=AccrualComparison.DAYS_365, provenance=source
     )
     assert stored.min_days is None
-    with pytest.raises(ValueError, match="no threshold"):
+    with pytest.raises(ValueError, match="omit min_days and working_days"):
         ExtraMonthAccrualRule(
             min_days=15, comparison=AccrualComparison.DAYS_360, provenance=source
         )
