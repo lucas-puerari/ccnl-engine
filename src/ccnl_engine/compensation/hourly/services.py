@@ -4,14 +4,13 @@ The base of each percentage is the base salary and the allowances it names,
 as the run pays them on the hours worked
 (:class:`~ccnl_engine.compensation.proration.services.HourlyBasis`).  Each
 percentage is a gross earning (``hourly_percentage_earning``, policy
-``it/earning/hourly_percentage``) in the INPS, IRPEF and TFR bases.  One
-settled with the Cassa Edile is not paid to the worker: CCNL edilizia,
-Allegato D, computes the contributions and taxes on the whole gross, then
+``it/earning/hourly_percentage``) in the INPS, IRPEF and TFR bases, the
+TFR base only when ``tfr_relevant``.  One settled with the Cassa Edile is
+not paid to the worker: CCNL edilizia, Allegato D, taxes the gross, then
 withholds ``net_rate`` of the base as the accrual the employer remits to
 the Cassa, on the account of the worker's bilateral fund contributions.
-The net pay is the gross less contributions, taxes and that accrual.  The
-IRPEF projection of the tax year adds the percentages of a full month to
-each regular payment still to come (:func:`upcoming_percentages`).
+The net pay is the gross less contributions, taxes and that accrual; the
+IRPEF projection adds them to each regular payment to come.
 """
 
 from __future__ import annotations
@@ -211,11 +210,12 @@ def percentage_settlement(ctx: RunContext) -> ExtraMonthSettlement:
         items, entries = items + posted[0], entries + posted[1]
     treatment = _treatment_from_resolution(resolution)
     total = sum((a.amount for a in amounts), _ZERO)
+    tfr = sum((a.amount for a in amounts if a.percentage.tfr_relevant), _ZERO)
     return ExtraMonthSettlement(
         items=items,
         entries=entries,
         inps_base=total if treatment.inps else _ZERO,
-        tfr_base=total if treatment.tfr else _ZERO,
+        tfr_base=tfr if treatment.tfr else _ZERO,
         irpef_base=total if treatment.irpef else _ZERO,
     )
 

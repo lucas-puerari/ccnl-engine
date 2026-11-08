@@ -23,6 +23,7 @@ from ccnl_engine import (
 )
 from ccnl_engine.events import AgriculturalDays, SicknessEpisode
 from ccnl_engine.inputs import (
+    ContributableHours,
     EmploymentPeriod,
     FixedTerm,
     NoPensionFund,
@@ -66,7 +67,10 @@ def _run(
                         date(2026, 3, 13),
                         agricultural_days=days,
                     ),
-                )
+                ),
+                ordinary_hours_worked=ContributableHours(Decimal(120))
+                if isinstance(contract, FixedTerm)
+                else None,
             ),
         )
     )
@@ -85,7 +89,8 @@ def test_inps_pays_the_fixed_term_operaio_directly() -> None:
     advanced = _sickness(open_ended).inputs["inps_indemnity"]
     assert isinstance(advanced, Decimal)
     assert advanced > 0
-    assert _sickness(fixed).inputs["absence"] == _sickness(open_ended).inputs["absence"]
+    assert _sickness(fixed).inputs["absence"] == 0  # paid by the hour worked
+    assert _sickness(open_ended).inputs["absence"] == Decimal("617.10")
     assert "sickness_fixed_term_prior_work_unknown" not in issues
     (issue,) = (i for i in fixed.issues if i.code == _DAYS_UNKNOWN)
     assert (issue.fact, issue.status) == ("agricultural_days", "provisional")

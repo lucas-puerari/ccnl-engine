@@ -52,6 +52,8 @@ class HourlyPercentage(BaseModel):
         settlement: Who it is paid to.
         net_rate: Share of the base withheld from the pay and accrued with
             the Cassa Edile; set for ``cassa_edile`` alone.
+        tfr_relevant: Whether it enters the TFR base (operai agricoli OTD:
+            'il TFR non si calcola sul terzo elemento').
         provenance: Source of the clause.
 
     Raises:
@@ -67,6 +69,7 @@ class HourlyPercentage(BaseModel):
     base_allowances: tuple[str, ...] = ()
     settlement: PercentageSettlement
     net_rate: TimeSeries | None = None
+    tfr_relevant: bool = True
     provenance: RuleProvenance
 
     @model_validator(mode="after")
