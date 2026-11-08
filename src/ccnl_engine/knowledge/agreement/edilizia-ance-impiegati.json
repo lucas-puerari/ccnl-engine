@@ -171,7 +171,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 43: the 1/25 for the festività of 4 November.",
+        "text": "Art. 43: the 1/25 for the festività of 4 November is paid with every November pay, as the quota of '11-04' on the first Sunday of November (work_rules.sunday_holidays, divisor 25), in addition to a holiday of art. 61 on the same Sunday. Approximated: the text owes it 'per il mese di novembre'; the engine pays it to a worker employed on the first Sunday of November, not to one hired after it or leaving before it.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -179,7 +179,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Pay the 1/25 of 4 November."
+          "remediation": "Pay the 1/25 of art. 43 to every impiegato employed in November, whatever the first Sunday."
         }
       },
       {
@@ -2432,7 +2432,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "6c2c3415f7fb3ebacfea08915b9f4da6a9477624e313d4cd78a7e3c693861798",
+    "source_hash": "6c2554d846eae1aaeeccf4e08bca36c09f8a77db1c4255d633310453bc8a8e76",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3213,6 +3213,28 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.sickness_rules"
+        ]
+      },
+      {
+        "id": "2026-11-08-gpt-edilizia-ance-impiegati-november-fourth",
+        "date": "2026-11-08",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Art. 43 (PDF p. 66) and art. 61 (PDF p. 75) of the CCNL 19 April 2010, the renewals of 2014, 2018, 2022 and 2025 for amendments, and the Sunday-holiday code of the engine, by a separate model session.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "Confirmed: the quota of '11-04' at 1/25 is paid on the first Sunday of every November, a second quota when 1 November is that Sunday (art. 61 and art. 43); no renewal amends art. 43.",
+          "Flagged, kept under november_4_holiday: a worker not employed on the first Sunday of November gets no quota; the 'retribuzione stessa' is read as the monthly pay of the chain."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays"
         ]
       }
     ],
