@@ -36,6 +36,7 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "caller's hourly_rate"
     ),
     "OvertimeEvent.hourly_rate": absence_is_fact(_FROM_CCNL),
+    "OvertimeEvent.non_occasional": absence_is_fact("occasional overtime"),
     "NightShiftEvent.supplement_amount": absence_is_fact(_FROM_CCNL),
     "NightShiftEvent.hours": absence_is_fact(_SUPPLEMENT_HOURS),
     "NightShiftEvent.before_22": absence_is_fact(
@@ -108,9 +109,7 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         FactEnforcement.REPORTED,
         "unknown signing date: the renewal regime is undetermined, with a blocker",
     ),
-    "OvertimeEvent.multiplier": absence_is_fact(
-        "the multiplier of the CCNL band applies"
-    ),
+    "OvertimeEvent.multiplier": absence_is_fact("the CCNL band multiplier"),
     "OvertimeEvent.kind": absence_is_fact(
         "weekday overtime; a night or holiday band is a fact of the timesheet "
         "the event records"

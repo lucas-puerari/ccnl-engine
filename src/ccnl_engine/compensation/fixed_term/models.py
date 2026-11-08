@@ -34,6 +34,8 @@ class FixedTermPay(BaseModel):
         tfr_rate: Share of the TFR pay accrued as TFR, in place of the
             divisor of art. 2120 c.c. (OTD: 'pari all'8,63 per cento
             calcolato sul salario contrattuale'); ``None`` keeps the divisor.
+        overtime_tfr_rate: TFR on the ordinary pay of the non-occasional
+            overtime hours (OTD: 'elevata al 10 per cento').
         provenance: Source of the clause.
     """
 
@@ -43,4 +45,5 @@ class FixedTermPay(BaseModel):
     hourly_pay: HourlyPay
     additional_months: TimeSeries
     tfr_rate: TimeSeries | None = None
+    overtime_tfr_rate: TimeSeries | None = None
     provenance: RuleProvenance
