@@ -213,10 +213,7 @@ class ExtraMonthAccrualRule(BaseModel):
         days = self.min_days
         if self.comparison.by_days:
             if days is not None or self.working_days:
-                msg = (
-                    f"{self.comparison.value} has no threshold; "
-                    "leave min_days and working_days out"
-                )
+                msg = f"{self.comparison.value}: omit min_days and working_days"
                 raise ValueError(msg)
             return self
         more_than = self.comparison is AccrualComparison.MORE_THAN
@@ -344,10 +341,12 @@ class Level(BaseModel):
     Attributes:
         code, order, description: Code (``"D3"``), rank (1 = lowest), name.
         base_salary: Time-series of monthly base salaries for this level.
+        base_salary_by_subsector, subsectors: The table of an employer's
+            sub-sector; the only sub-sectors the level exists in, empty for all.
         base_salary_by_cohort, class_tables: Hired-worker or seniority-class tables.
-        fixed_allowances: Fixed allowances (EDR...).
         transition_to, transition_after_months, transition_by: Entry promotion.
-        category: Fixed worker category, or ``None`` for multiple categories.
+        fixed_allowances, category: Fixed allowances (EDR...); the worker
+            category the level fixes, ``None`` when ``Employment.category`` states it.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -362,9 +361,9 @@ class Level(BaseModel):
     subsectors: tuple[str, ...] = ()
     fixed_allowances: tuple[Allowance, ...] = Field(default=())
     category: WorkerCategory | None = None
-    transition_to: str | None = None  # Classification reached after entry pay.
+    transition_to: str | None = None
     transition_after_months: int | None = Field(default=None, gt=0)
-    transition_by: date | None = None  # Absolute cutoff for the entry level.
+    transition_by: date | None = None
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")

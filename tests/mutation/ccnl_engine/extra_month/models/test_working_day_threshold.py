@@ -58,7 +58,7 @@ def test_calendar_days_would_count_the_same_month() -> None:
 def test_day_based_rule_takes_no_working_days() -> None:
     """Working days qualify a threshold, not a day-based comparison."""
     source = RuleProvenance(status=ProvenanceStatus.ASSUMED, note="test")
-    with pytest.raises(ValueError, match="leave min_days and working_days out"):
+    with pytest.raises(ValueError, match="omit min_days and working_days"):
         ExtraMonthAccrualRule(
             comparison=AccrualComparison.DAYS_365, working_days=True, provenance=source
         )
