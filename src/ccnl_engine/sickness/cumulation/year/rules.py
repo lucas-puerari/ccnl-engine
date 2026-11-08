@@ -32,6 +32,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.sickness.comporto.models import window_of
 from ccnl_engine.sickness.cumulation.rules import CcnlDay
+from ccnl_engine.sickness.diagnosis import SeriousIllnessKind
 from ccnl_engine.sickness.window.rules import window_start
 
 if TYPE_CHECKING:
@@ -100,8 +101,15 @@ class YearTreatment:
         Returns:
             The recorded days and those of the episode.
         """
-        earlier = sum(_overlap(e, first, day) for e in self.earlier)
-        return earlier + _overlap(self.episode, first, day)
+        episodes = (*self.earlier, self.episode)
+        days = sum(_overlap(e, first, day) for e in episodes)
+        if self.rules.excluded_treatment_days:
+            days -= sum(
+                first <= excluded <= day
+                for e in episodes
+                for excluded in e.excluded_comporto_days or ()
+            )
+        return days
 
     def window_days(self, window: ComportoWindow, day: date) -> int:
         """Return the sick days of ``window`` ending on ``day``.
@@ -143,7 +151,23 @@ class YearTreatment:
     def limit(self) -> int:
         """Comporto of one illness: of the seniority band, if the CCNL has bands."""
         band = self.band
-        return self.rules.max_duration_days if band is None else band.comporto_days
+        return self._limit(band) if band is not None else self.rules.max_duration_days
+
+    def _limit(self, band: ComportoBand) -> int:
+        """Select the documented diagnosis-specific limit, if provided.
+
+        Returns:
+            The qualifying limit, otherwise the ordinary limit.
+        """
+        kind = self.episode.serious_illness_kind
+        if band.oncological_comporto_days is None:  # Studi: the stated illness
+            serious = bool(self.episode.serious_illness)
+        elif kind is SeriousIllnessKind.ONCOLOGICAL:  # ABI c. 5
+            return band.oncological_comporto_days
+        else:  # ABI c. 4: a documented diagnosis only
+            serious = kind is not None
+        extended = band.serious_comporto_days or band.comporto_days
+        return extended if serious else band.comporto_days
 
     @property
     def seniority_reach(self) -> bool:
@@ -220,13 +244,52 @@ class YearTreatment:
             and its rates.
         """
         limit = self.limit
-        count = self.year_days(day) if self.rules.comporto_calendar_year else index
+        count = self._count(index, day)
         window = self.window
-        summed = (
-            window is not None and self.window_days(window, day) > window.comporto_days
+        summed = window is not None and self.window_days(window, day) > self._limit(
+            window
         )
+        serious = self._serious_rate(day, count)
         return CcnlDay(
             beyond_comporto=count > limit or summed,
-            rate=self.target_rate(index),
-            carenza_rate=self.carenza_rate,
+            rate=self.target_rate(index) if serious is None else serious,
+            carenza_rate=self.carenza_rate if serious is None else serious,
         )
+
+    def _count(self, index: int, day: date) -> int:
+        """Count the day against one illness, excluding qualifying treatment.
+
+        Returns:
+            Days counted toward the episode or calendar-year limit.
+        """
+        count = self.year_days(day) if self.rules.comporto_calendar_year else index
+        if not self.rules.excluded_treatment_days or self.rules.comporto_calendar_year:
+            return count
+        chain = {self.episode.episode_id}
+        previous = self.episode.relapse_of
+        while previous is not None:
+            found = next((e for e in self.earlier if e.episode_id == previous), None)
+            if found is None or found.episode_id in chain:
+                break
+            chain.add(found.episode_id)
+            previous = found.relapse_of
+        return count - sum(
+            excluded <= day
+            for e in (*self.earlier, self.episode)
+            if e.episode_id in chain
+            for excluded in e.excluded_comporto_days or ()
+        )
+
+    def _serious_rate(self, day: date, count: int) -> Decimal | None:
+        """Rate of the additional days (Studi art. 121), carenza days included.
+
+        Returns:
+            The rate of the serious-illness band holding on the day, if any.
+        """
+        if not self.episode.serious_illness:
+            return None
+        window = self.window
+        paid_count = self.window_days(window, day) if window is not None else count
+        bands = self.rules.serious_day_bands
+        band = next((b for b in bands if b.holds(paid_count)), None)
+        return None if band is None else band.integration_rate

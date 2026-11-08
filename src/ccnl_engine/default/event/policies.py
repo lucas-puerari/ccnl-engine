@@ -240,10 +240,7 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "unknown pay of the month before the leave: the indemnity is computed "
         "on the pay of the run, with a missing_fact paternity_base_pay blocker",
     ),
-    "SicknessEpisode.periodic_check": absence_is_fact(
-        "an ordinary sickness absence; a periodic check is a fact of the "
-        "certificate the event records"
-    ),
+    "SicknessEpisode.periodic_check": absence_is_fact("an ordinary sickness absence"),
     "SicknessEpisode.daily_contributions": requires_fact(
         "sickness",
         "event.daily_contributions",
@@ -259,6 +256,8 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "the episode as an ordinary one, with a provisional "
         "sickness_serious_illness_unknown issue",
     ),
+    "SicknessEpisode.serious_illness_kind": absence_is_fact("the ordinary comporto"),
+    "SicknessEpisode.excluded_comporto_days": absence_is_fact("every sick day counts"),
     "SicknessEpisode.prior_worked_days": requires_fact(
         "sickness",
         "event.prior_worked_days",

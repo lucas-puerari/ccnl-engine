@@ -92,15 +92,15 @@
       },
       {
         "kind": "simplification",
-        "text": "Artt. 120-121: the comporto counted over the episodes of the 365 days before the last one, and the +90 days for serious illnesses paid 100% in months 7-8 and 70% in month 9.",
+        "text": "Artt. 120-121: the 365-day lookback is approximated by 12 calendar months. The documented listed serious illnesses receive 90 additional days (100% in months 7-8 and 70% in month 9); day hospital and life-saving therapy days are excluded from the comporto when stated.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "rolling_comporto_and_serious_illness",
+          "variant": "rolling_comporto_365_day_boundary",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "run"
           },
-          "remediation": "Model the rolling comporto and the serious-illness extension."
+          "remediation": "Replace the 12-calendar-month approximation with a day-exact 365-day lookback."
         }
       },
       {
@@ -136,10 +136,6 @@
           },
           "remediation": "Model the availability allowance."
         }
-      },
-      {
-        "kind": "info",
-        "text": "Art. 115: TravelAllowanceEvent uses total mission_hours for the daily EUR 15 (>8 to 24 hours) or EUR 30 (>24 hours), reduced by 10% when habitual_travel or mission_over_month is true. The caller determines whether the actual mission exceeds one calendar month and states the TFR treatment; documented expenses are separate reimbursements. The clause does not specify a diaria at exactly eight hours."
       },
       {
         "kind": "simplification",
@@ -209,6 +205,10 @@
           },
           "remediation": "Provide the employer-specific patron saint holiday."
         }
+      },
+      {
+        "kind": "info",
+        "text": "Art. 115: TravelAllowanceEvent uses total mission_hours for the daily EUR 15 (>8 to 24 hours) or EUR 30 (>24 hours), reduced by 10% when habitual_travel or mission_over_month is true. The caller determines whether the actual mission exceeds one calendar month and states the TFR treatment; documented expenses are separate reimbursements. The clause does not specify a diaria at exactly eight hours."
       }
     ]
   },
@@ -2377,7 +2377,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "9cc6abbc367330ef38490e94f2979cf045116915ef67cbf82cacafa3d95283dd",
+    "source_hash": "b42b891ecdbc9cf74213b03c127951afe8a8e72d192e93c564dc5cefa565b439",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3076,6 +3076,26 @@
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "0.75",
       "max_duration_days": 180,
+      "excluded_treatment_days": true,
+      "comporto_bands": [
+        {
+          "seniority_months_from": 0,
+          "comporto_days": 180,
+          "serious_comporto_days": 270
+        }
+      ],
+      "serious_day_bands": [
+        {
+          "day_from": 181,
+          "day_until": 241,
+          "integration_rate": "1"
+        },
+        {
+          "day_from": 241,
+          "day_until": 271,
+          "integration_rate": "0.7"
+        }
+      ],
       "day_bands": [
         {
           "day_from": 4,
@@ -3099,27 +3119,28 @@
             "published_on": "2024-02-16",
             "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
           },
-          "page": "66",
-          "section": "Art. 121 - Trattamento economico di malattia; Art. 120 (p. 65)",
-          "quote": "75% (settantacinque per cento) della retribuzione di fatto dal 4º al 20º giorno; [...] 100% (cento per cento) della retribuzione di fatto dal 21º giorno in poi."
+          "page": "65-66",
+          "section": "Art. 120 - Periodo di comporto per malattia; Art. 121 - Trattamento economico di malattia",
+          "quote": "Nei casi di assenze dovute a patologie oncologiche di rilevante gravità, ictus o sclerosi multipla gravemente invalidanti, distrofia muscolare, morbo di Cooley ovvero periodi di degenza ospedaliera determinati da trapianti chirurgici di organi vitali, il periodo di comporto di cui al precedente capoverso sarà elevato di ulteriori 90 (novanta) giorni."
         },
-        "transformation": "Integration up to 100% of the gross retribuzione di fatto for days 1-3 (carenza), 75% for days 4-20 and 100% from day 21, stored as day_bands; comporto 180 days (Art. 120). Apprentices are covered (no exclusion). The comporto of Art. 120 sums the episodes of the 365 days before the last one: max_duration_days counts one episode, see the unmodelled note. Comporto of several illnesses (2026-11-01): the comporto sums the sick days of the 12 months before the day, up to 180 (the 'anno solare' the CCNL defines as 365 days back from the last illness, read as the 12 months before the day), on top of the 180 days of one illness. Source: https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf, p. 65, 66 (sha256 89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544): 'per anno solare si intende un periodo di 365 giorni partendo a ritroso dell’ultimo evento morboso.'",
+        "transformation": "Ordinary rates: 100% days 1-3, 75% days 4-20, 100% from day 21; 180 days of comporto. For the documented enumerated illnesses or hospital admission due to vital organ transplant (episode serious_illness), both the episode and 12-month window limits increase to 270 days. Days 181-240 are paid at 100%, days 241-270 at 70%. Dates stated as day hospital or life-saving therapy (excluded_comporto_days) do not count toward either comporto but still receive their ordinary day rate. The 12 calendar months are an approximation of the source's exact 365-day lookback; see the narrowed limitation. Verified against signed PDF pp. 65-66 on 2026-11-08.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T07:21:14Z",
+          "extraction_timestamp": "2026-11-08T13:26:08Z",
           "effective_from": "2024-02-16",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-13T07:21:14Z",
+          "verified_at": "2026-11-08T13:26:08Z",
           "verification_status": "verified",
-          "review_id": "2026-10-13-ai-production"
+          "review_id": "2026-11-08-ai-studi-serious-illness"
         }
       },
       "comporto_windows": [
         {
           "seniority_months_from": 0,
           "window_months": 12,
-          "comporto_days": 180
+          "comporto_days": 180,
+          "serious_comporto_days": 270
         }
       ],
       "holiday": {
@@ -3306,86 +3327,6 @@
           "excluded_days": [
             "10-04"
           ]
-        }
-      }
-    },
-    "travel_allowance": {
-      "bands": [
-        {
-          "hours_from": "8",
-          "hours_from_exclusive": true,
-          "hours_until": "24",
-          "hours_until_inclusive": true,
-          "italy": {
-            "periods": [
-              {
-                "valid_from": "2024-02-16",
-                "valid_until": null,
-                "value": "15.00"
-              }
-            ]
-          },
-          "abroad": {
-            "periods": [
-              {
-                "valid_from": "2024-02-16",
-                "valid_until": null,
-                "value": "15.00"
-              }
-            ]
-          }
-        },
-        {
-          "hours_from": "24",
-          "hours_from_exclusive": true,
-          "italy": {
-            "periods": [
-              {
-                "valid_from": "2024-02-16",
-                "valid_until": null,
-                "value": "30.00"
-              }
-            ]
-          },
-          "abroad": {
-            "periods": [
-              {
-                "valid_from": "2024-02-16",
-                "valid_until": null,
-                "value": "30.00"
-              }
-            ]
-          }
-        }
-      ],
-      "mission_duration": true,
-      "habitual_discount": "0.10",
-      "long_mission_discount": "0.10",
-      "provenance": {
-        "status": "verified",
-        "location": {
-          "source_document": {
-            "document_id": "confprofessioni-eu-wp-content-uploads-2025-11-ccnl-studi-2024-integrale-definiti",
-            "title": "CCNL Studi Professionali 16 February 2024",
-            "kind": "altro",
-            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
-            "published_on": "2024-02-16",
-            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
-          },
-          "page": "64",
-          "section": "Art. 115 point 4, missions and travel",
-          "quote": "Una diaria di euro 15 (quindici) giornaliere per missioni eccedenti le 8 (otto) ore e fino alle 24 (ventiquattro) ore e di euro 30 (trenta) giornaliere per missioni eccedenti la giornata. Per missioni di durata superiore al mese verrà corrisposta una diaria ridotta del 10% (dieci per cento, pari rispettivamente a 13,50 Euro e 27,00 Euro giornaliere). Analogamente si procederà quando le attribuzioni del lavoratore comportino viaggi abituali."
-        },
-        "transformation": "Total mission duration selects a daily rate: over 8 through 24 hours EUR 15, over 24 hours EUR 30. Over one calendar month or habitual travel reduces the applicable daily rate by 10%, once even if both apply. No amount is inferred at exactly 8 hours. The clause does not establish a TFR inclusion rule, so the event must state tfr_base. Documented expenses are reimbursed separately.",
-        "extraction": {
-          "method": "ai",
-          "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-08T14:27:33Z",
-          "verified_at": "2026-11-08T14:27:33Z",
-          "verified_by": "claude-opus-5-5",
-          "verification_status": "verified",
-          "effective_from": "2024-02-16",
-          "review_id": "2026-11-08-ai-studi-travel"
         }
       }
     },
@@ -3728,6 +3669,86 @@
           "verified_at": "2026-11-01T11:25:29Z",
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice"
+        }
+      }
+    },
+    "travel_allowance": {
+      "bands": [
+        {
+          "hours_from": "8",
+          "hours_from_exclusive": true,
+          "hours_until": "24",
+          "hours_until_inclusive": true,
+          "italy": {
+            "periods": [
+              {
+                "valid_from": "2024-02-16",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "abroad": {
+            "periods": [
+              {
+                "valid_from": "2024-02-16",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          }
+        },
+        {
+          "hours_from": "24",
+          "hours_from_exclusive": true,
+          "italy": {
+            "periods": [
+              {
+                "valid_from": "2024-02-16",
+                "valid_until": null,
+                "value": "30.00"
+              }
+            ]
+          },
+          "abroad": {
+            "periods": [
+              {
+                "valid_from": "2024-02-16",
+                "valid_until": null,
+                "value": "30.00"
+              }
+            ]
+          }
+        }
+      ],
+      "mission_duration": true,
+      "habitual_discount": "0.10",
+      "long_mission_discount": "0.10",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "confprofessioni-eu-wp-content-uploads-2025-11-ccnl-studi-2024-integrale-definiti",
+            "title": "CCNL Studi Professionali 16 February 2024",
+            "kind": "altro",
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          },
+          "page": "64",
+          "section": "Art. 115 point 4, missions and travel",
+          "quote": "Una diaria di euro 15 (quindici) giornaliere per missioni eccedenti le 8 (otto) ore e fino alle 24 (ventiquattro) ore e di euro 30 (trenta) giornaliere per missioni eccedenti la giornata. Per missioni di durata superiore al mese verrà corrisposta una diaria ridotta del 10% (dieci per cento, pari rispettivamente a 13,50 Euro e 27,00 Euro giornaliere). Analogamente si procederà quando le attribuzioni del lavoratore comportino viaggi abituali."
+        },
+        "transformation": "Total mission duration selects a daily rate: over 8 through 24 hours EUR 15, over 24 hours EUR 30. Over one calendar month or habitual travel reduces the applicable daily rate by 10%, once even if both apply. No amount is inferred at exactly 8 hours. The clause does not establish a TFR inclusion rule, so the event must state tfr_base. Documented expenses are reimbursed separately.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T14:27:33Z",
+          "verified_at": "2026-11-08T14:27:33Z",
+          "verified_by": "claude-opus-5-5",
+          "verification_status": "verified",
+          "effective_from": "2024-02-16",
+          "review_id": "2026-11-08-ai-studi-travel"
         }
       }
     }
@@ -4157,6 +4178,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.insured_absence.injury.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-studi-serious-illness",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules"
+        ],
+        "scope": "Art. 120-121, signed PDF pp. 65-66, listed serious illnesses and day hospital or life-saving therapy.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "The documented listed illness extends comporto by 90 days; months seven and eight pay 100%, month nine 70%; qualifying treatment days do not count. The 365-day lookback remains approximated by twelve calendar months."
         ]
       },
       {

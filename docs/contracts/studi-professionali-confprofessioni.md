@@ -76,6 +76,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 110(8), PDF p. 56: weekday holiday top-up during compulsory maternity and paternity. | confirmed | Verified the quoted clause against the cached PDF; encoded only the compulsory maternity holiday target. |
 | 2026-11-08 | gpt-6-sol (ai) | The maternity holiday clause against the encoding, by a separate model session. | corrected | Confirmed the 100% target net of the INPS share on the holidays of the compulsory leave.<br>Recorded as limitation maternity_holiday_scope: the Sunday holidays, the patron saint and 4 October. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay. | confirmed | Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 120-121, signed PDF pp. 65-66, listed serious illnesses and day hospital or life-saving therapy. | corrected | The documented listed illness extends comporto by 90 days; months seven and eight pay 100%, month nine 70%; qualifying treatment days do not count. The 365-day lookback remains approximated by twelve calendar months. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Verified Art. 115 point 4 against the cached CCNL PDF page 64, including the duration thresholds and the single 10% reduction for habitual or over-month missions. | confirmed | — |
 
 ## Salary table
@@ -131,12 +132,12 @@ percentage: 0.60
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "studi-professionali-confprofessioni/rolling_comporto_and_serious_illness · sickness · impact yes · open"
-    Artt. 120-121: the comporto counted over the episodes of the 365 days before the last one, and the +90 days for serious illnesses paid 100% in months 7-8 and 70% in month 9.
+!!! warning "studi-professionali-confprofessioni/rolling_comporto_365_day_boundary · sickness · impact yes · open"
+    Artt. 120-121: the 365-day lookback is approximated by 12 calendar months. The documented listed serious illnesses receive 90 additional days (100% in months 7-8 and 70% in month 9); day hospital and life-saving therapy days are excluded from the comporto when stated.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `sickness` applies.
 
-    **Remediation:** Model the rolling comporto and the serious-illness extension.
+    **Remediation:** Replace the 12-calendar-month approximation with a day-exact 365-day lookback.
 
 !!! warning "studi-professionali-confprofessioni/unused_leave_hours · base_salary · impact yes · open"
     Artt. 91, 92, 97 C, 98: the ROL (40 or 66 hours) and the 32 hours of ex festività paid when not taken, the festività falling on Sunday and the flexibility hours not recovered.
@@ -389,8 +390,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     ENTRY PAY (Art. 56, p. 40): an over 50 or long-term unemployed hired a tempo indeterminato may be paid two levels below for 9 months and one for the 6 after (Permanent.entry_pay, CCNL entry_pay); not for level 5. The engine applies the largest reduction the clause allows ('fino a').
     
-    Art. 115: TravelAllowanceEvent uses total mission_hours for the daily EUR 15 (>8 to 24 hours) or EUR 30 (>24 hours), reduced by 10% when habitual_travel or mission_over_month is true. The caller determines whether the actual mission exceeds one calendar month and states the TFR treatment; documented expenses are separate reimbursements. The clause does not specify a diaria at exactly eight hours.
-    
     HOURLY RATE AND SUPPLEMENTS (artt. 93-97, 135, 137 of the CCNL of 16 February 2024): without a caller value the engine derives the hourly base (the art. 135 normale retribuzione over 170) and the 30% on festività hours paid as straordinario festivo (art. 97 lett. E with art. 95); art. 97 also pays the hours themselves, which the engine does not post: the run is provisional. Not derived, the caller states the amount: ordinary night work, which art. 93 leaves to the Area Professionale or second-level bargaining (the 30% of art. 95 is a night overtime rate); work on the weekly rest day ('la relativa sola maggiorazione', art. 97 lett. F, names no percentage).
     
     LEAVE AT TERMINATION (Art. 137, p. 70): the indemnity for the ferie not taken is the monthly pay divided by 26 ('il computo dell’indennità sostitutiva delle ferie, si ottiene dividendo l’importo mensile per il divisore convenzionale 26'), for any weekly schedule, while the file accrues the 22 days of the settimana corta. The 32 hours of ex festività left are paid by the day, 8 hours at the monthly pay / 26 (the 'retribuzione normale giornaliera' of Art. 98); the 40 hours of ROL of the five-day week (Art. 91) at the monthly pay / 170.
@@ -398,6 +397,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICE SENIORITY (Art. 129, p. 119 of the CCNL completo 10 April 2026, https://www.confprofessioni.eu/wp-content/uploads/2026/07/00274046_CCNL_Studi_Professionali_2026.04.10_completo.pdf, sha256 35cc1ec44a282f39fa401949828f180897872a8c7907eb39d4f7a51420e04477): 'la disciplina sull’anzianità di servizio e sugli scatti di anzianità (di cui all’art. 134 del presente CCNL) è applicabile anche agli apprendisti e la decorrenza di questi istituti è quella della data di assunzione': the apprentice takes the scatti of art. 134 at the amounts of the level (seniority_increments.apprentice_level_amount).
     
     Art. 110(8): compulsory maternity and paternity holiday top-ups are modelled for leave days.
+    
+    Art. 115: TravelAllowanceEvent uses total mission_hours for the daily EUR 15 (>8 to 24 hours) or EUR 30 (>24 hours), reduced by 10% when habitual_travel or mission_over_month is true. The caller determines whether the actual mission exceeds one calendar month and states the TFR treatment; documented expenses are separate reimbursements. The clause does not specify a diaria at exactly eight hours.
     
 
 ## Raw data

@@ -44,6 +44,7 @@ from ccnl_engine.event.facade import (
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.sickness.agricultural.inputs import AgriculturalDays
 from ccnl_engine.sickness.base.inputs import InpsSicknessBase, SpettacoloSicknessBase
+from ccnl_engine.sickness.diagnosis import SeriousIllnessKind
 
 __all__ = [
     "AbsenceEvent",
@@ -72,6 +73,7 @@ __all__ = [
     "ParentalLeaveTaken",
     "PaternityLeaveEvent",
     "PeriodId",
+    "SeriousIllnessKind",
     "ShiftKind",
     "ShiftWorkEvent",
     "SickLeaveEvent",

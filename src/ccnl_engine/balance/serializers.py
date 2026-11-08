@@ -48,7 +48,7 @@ from ccnl_engine.run.types import RunKind
 from ccnl_engine.severance.provision.models import TfrQuotaYtd
 from ccnl_engine.sickness.agricultural.inputs import AgriculturalDays
 from ccnl_engine.sickness.base.inputs import InpsSicknessBase, SpettacoloSicknessBase
-from ccnl_engine.sickness.models import SicknessEpisode
+from ccnl_engine.sickness.models import SeriousIllnessKind, SicknessEpisode
 from ccnl_engine.surtax.obligation.models import SurtaxComponent, SurtaxObligation
 from ccnl_engine.tax_credit.account.models import (
     SommaEsenteAccount,
@@ -97,6 +97,7 @@ STATE_TYPES: Mapping[str, type] = MappingProxyType({
         RecoveryPlan,
         RegimeCapAccount,
         RunKind,
+        SeriousIllnessKind,
         SicknessEpisode,
         SommaEsenteAccount,
         SpettacoloSicknessBase,
