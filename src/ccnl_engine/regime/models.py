@@ -56,12 +56,23 @@ class EmployerActivity(StrEnum):
             (L. 287/1991 art. 5).
         TOURISM: Comparto del turismo, other than thermal establishments.
         THERMAL_ESTABLISHMENT: Stabilimenti termali.
+        CONSTRUCTION: Building construction (edile), including artisan firms.
+        STONE_WORKING: Industrial stone working, or artisan stone extraction
+            and working linked to the quarry (D.Lgs. 148/2015 art. 10(n-o)).
+        STONE_WORKING_SEPARATE_WORKSHOP: Artisan stone working only in a
+            separate workshop, excluded from CIGO by art. 10(o): "con
+            esclusione di quelle che svolgono tale attività di lavorazione in
+            laboratori con strutture e organizzazione distinte dalla attività
+            di escavazione". Industrial firms under art. 10(n) are unaffected.
         OTHER: Any activity not listed above.
     """
 
     FOOD_AND_BEVERAGE_SERVICE = "food_and_beverage_service"
     TOURISM = "tourism"
     THERMAL_ESTABLISHMENT = "thermal_establishment"
+    CONSTRUCTION = "construction"
+    STONE_WORKING = "stone_working"
+    STONE_WORKING_SEPARATE_WORKSHOP = "stone_working_separate_workshop"
     OTHER = "other"
 
 
