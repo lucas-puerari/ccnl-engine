@@ -56,6 +56,10 @@ class HourlyParentalLeaveEvent:
         single_parent: Whether the parent is the only one.
         parental_base_pay: Pay of the month before the leave; ``None`` when
             not stated.
+        topped_up_days_before: Equivalent days of employer-supplemented leave
+            before this event, including earlier hourly leave. ``None`` when
+            the history is unknown; half a day of hourly leave counts as
+            half a day toward the collective cap.
 
     Raises:
         InvalidInputError: When a field is of the wrong type, the days are
@@ -70,6 +74,7 @@ class HourlyParentalLeaveEvent:
     protection_ended_on: date | None = None
     single_parent: bool = False
     parental_base_pay: InpsSicknessBase | None = None
+    topped_up_days_before: Decimal | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         name = "HourlyParentalLeaveEvent"
@@ -81,6 +86,13 @@ class HourlyParentalLeaveEvent:
             self.taken, ParentalLeaveTaken, f"{name}.taken", feature=_PARENTAL
         )
         require_bool(self.single_parent, f"{name}.single_parent", feature=_PARENTAL)
+        require_decimal(
+            self.topped_up_days_before,
+            f"{name}.topped_up_days_before",
+            feature=_PARENTAL,
+            minimum=Decimal(0),
+            optional=True,
+        )
         require_instance(
             self.parental_base_pay,
             InpsSicknessBase,
