@@ -135,7 +135,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 17 point 3: the festività (8 hours of the point 4 elements, with the 4.95% and the 18.5% on them), which PeriodFacts.ordinary_hours_worked leaves out.",
+        "text": "Art. 17 point 3: eight hours of pay, with 4.95% and 18.5% on the holiday treatment, are included when the caller supplies paid_holiday_days; horizontal part time scales the hours by agreed weekly hours. An unknown count raises a missing-fact issue; zero confirms none. Not modelled: 9.6 hours for discontinuous workers, the separate 4 November treatment and holiday placement in vertical or mixed part-time schedules. The caller must resolve local patron saint dates, employment eligibility and any suspension; no automatic holiday calendar is applied.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -143,7 +143,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add the festività hours to the hourly pay of the operai."
+          "remediation": "Resolve eligible holiday dates, discontinuous work and vertical or mixed schedules; supply the eligible count after checking employment and suspension conditions. Model the distinct 4 November treatment."
         }
       },
       {
@@ -554,6 +554,33 @@
       "categories": [
         "operaio"
       ],
+      "holiday_hours": "8",
+      "holiday_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-edilizia-industria-2010-fillea",
+            "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+            "kind": "associazione",
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "published_on": "2010-04-19",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          },
+          "page": "37-38, 27, 104",
+          "section": "Art. 17(3) Festività; Art. 18 Accantonamenti; Art. 5 B Riposi annui; Art. 78 Lavoro a tempo parziale",
+          "quote": "Per le festività di cui al punto 3), il trattamento economico è corrisposto dall’impresa all’operaio nella misura di otto ore degli elementi della retribuzione di cui al punto 4) dell’art. 24. [...] Il trattamento economico per le festività di cui al punto 3) è dovuto anche nel caso in cui tali festività coincidano con il sabato o la domenica. [p. 104] La retribuzione diretta ed indiretta, nonché tutti gli istituti contrattuali, saranno proporzionati all’orario di lavoro concordato, con riferimento al trattamento contrattuale dei lavoratori a tempo pieno."
+        },
+        "transformation": "For each eligible holiday stated by the caller, pay eight hourly quotas of the ordinary pay chain separately from hours actually worked; include this treatment in the existing 4.95% riposi and 18.5% Cassa Edile bases under Arts. 5 B and 18. Under Art. 78, multiply the holiday hours by agreed weekly hours divided by full-time weekly hours, just as for the hourly divisor, so the resulting pay is proportional. An absent count is reported as missing, not interpreted as zero. The caller resolves eligibility and local holidays; no dates are inferred.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-09T12:11:21Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-09T12:11:21Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-09-ai-holiday-hours-part-time"
+        }
+      },
       "percentages": [
         {
           "code": "RIPOSI_ANNUI",
@@ -1948,7 +1975,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "c144d967054e7e184a285f2e8d366c47f62844dd39d90db4ad7f50f236b7d2f6",
+    "source_hash": "5259a63fa46665a7a86d8649fba942b354fdde6c841db699c633f561f50feb2c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3270,6 +3297,50 @@
           "levels.fixed_allowances[CAPOSQUADRA]",
           "parameters.hourly_pay.percentages",
           "compensation.element.rules"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-holiday-hours",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 17(3), Art. 18 and Art. 5 B holiday treatment in the cached 2010 CCNL, checked against the hourly pay model.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "Eight hours per eligible holiday, including rest-day holidays; percentages also apply to the holiday treatment. Eligibility remains caller-stated."
+        ],
+        "checked": [
+          "parameters.hourly_pay.holiday_hours",
+          "parameters.hourly_pay.percentages"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-holiday-hours-part-time",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 78 proportional part-time pay and Art. 17 holiday treatment, verified on cached 2010 PDF pages 104 and 37.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "Horizontal part-time holiday hours are proportional to agreed weekly hours; unknown eligible days cannot mean zero. Vertical or mixed holiday placement and discontinuous work remain unresolved."
+        ],
+        "checked": [
+          "parameters.hourly_pay.holiday_hours",
+          "parameters.hourly_pay.holiday_provenance"
         ]
       }
     ],

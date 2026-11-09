@@ -183,10 +183,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 17 point 3: the festività (8 hours of the point 4 elements, with the 4.95% and the 18.5% on them), which PeriodFacts.ordinary_hours_worked leaves out.",
+      "rule": "Art. 17 point 3: eight hours of pay, with 4.95% and 18.5% on the holiday treatment, are included when the caller supplies paid_holiday_days; horizontal part time scales the hours by agreed weekly hours. An unknown count raises a missing-fact issue; zero confirms none. Not modelled: 9.6 hours for discontinuous workers, the separate 4 November treatment and holiday placement in vertical or mixed part-time schedules. The caller must resolve local patron saint dates, employment eligibility and any suspension; no automatic holiday calendar is applied.",
       "calculation": "ccnl/edilizia-ance:coverage.notes",
       "state": "absent",
-      "remediation": "Add the festività hours to the hourly pay of the operai.",
+      "remediation": "Resolve eligible holiday dates, discontinuous work and vertical or mixed schedules; supply the eligible count after checking employment and suspension conditions. Model the distinct 4 November treatment.",
       "origin": "seeded",
       "links": {
         "limitations": [
