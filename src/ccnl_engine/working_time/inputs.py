@@ -56,6 +56,9 @@ class OvertimeEvent:
         non_occasional: Whether the overtime is worked 'a titolo non
             occasionale', which a CCNL may count in the TFR (operai agricoli
             OTD: 10%); ``False`` is occasional overtime.
+        banked: Whether the worker elected compensatory rest for these hours.
+            Only an agreement with an overtime bank rule can pay the premium
+            alone; the hours remain a separate rest balance outside this event.
         weekly_hours_before: Total hours already worked in the week before
             this event; when supplied, weekly overtime tiers can be split
             across the event. Does not include the hours of this event.
@@ -67,6 +70,7 @@ class OvertimeEvent:
     multiplier: Decimal | None = None
     kind: OvertimeKind = OvertimeKind.WEEKDAY
     non_occasional: bool = False
+    banked: bool = False
     weekly_hours_before: Decimal | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
@@ -97,6 +101,7 @@ class OvertimeEvent:
         require_bool(
             self.non_occasional, "OvertimeEvent.non_occasional", feature=feature
         )
+        require_bool(self.banked, "OvertimeEvent.banked", feature=feature)
         kind = parse_enum(
             self.kind, OvertimeKind, "OvertimeEvent.kind", feature=feature
         )

@@ -67,22 +67,6 @@
       }
     },
     {
-      "id": "local_holiday_during_absence",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.",
-      "calculation": "ccnl/ced-assoced:coverage.notes",
-      "state": "absent",
-      "remediation": "Provide the employer-specific patron saint holiday.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "ced-assoced/local_holiday_during_absence"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",
@@ -103,10 +87,10 @@
       "institute": "maternity_leave",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 157 (p. 102) covers the holidays of the compulsory 'e facoltativa' absence: the top-up of the holidays of the optional (parental) leave is not paid. The holiday target applies on the weekday national holidays: a holiday on a Sunday (paid by its own quota), the patron saint and 4 October (a holiday from 2026, which the text, signed before, does not list) are not topped up; 'festività cadenti' covers them in the text.",
+      "rule": "Art. 157 (p. 102) covers compulsory and optional absence: the top-up of holidays during optional (parental) leave is not paid. A holiday on a Sunday (paid by its own quota) and 4 October (a holiday from 2026, which the text, signed before, does not list) are not topped up.",
       "calculation": "ccnl/ced-assoced:coverage.notes",
       "state": "absent",
-      "remediation": "Top up the holidays the clause covers beyond the weekday national calendar, and the items above.",
+      "remediation": "Top up holidays on optional (parental) leave and resolve the Sunday and 4 October scope against the applicable law.",
       "origin": "seeded",
       "links": {
         "limitations": [

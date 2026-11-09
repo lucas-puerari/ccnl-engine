@@ -135,44 +135,6 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 83 pays 15% for weekly hours 41-48 and 20% beyond hour 48. Both bands are present; the engine resolves weekly tiers when the event supplies weekly_hours_before. Without that worker fact, the caller must supply the multiplier for each tier.",
-        "capability": "overtime",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "overtime_weekly_hours_not_stated",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Supply OvertimeEvent.weekly_hours_before, or separate the hours and supply each tier's multiplier."
-        },
-        "provenance": {
-          "status": "verified",
-          "location": {
-            "source_document": {
-              "document_id": "ccnl-cusi-sport-2024",
-              "title": "CCNL Impianti e Attività Sportive 2024–2026 (CUSI)",
-              "kind": "altro",
-              "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
-              "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
-            },
-            "page": "76",
-            "section": "Art. 83 - Maggiorazione lavoro straordinario",
-            "quote": "- 15% per le prestazioni di lavoro dalla 41ª alla 48ª ora settimanale; - 20% per le prestazioni di lavoro eccedenti la 48ª ora settimanale."
-          },
-          "transformation": "Weekly hours before the event select and split the 15% and 20% non-cumulative overtime bands. Without that worker-specific hour count the applicable tier cannot be determined.",
-          "extraction": {
-            "method": "ai",
-            "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-09T20:46:09Z",
-            "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-09T20:46:09Z",
-            "verification_status": "verified",
-            "review_id": "2026-11-09-ai-weekly-overtime"
-          }
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "SIMPLIFICATION: Divisore orario. Art. 120 prevede 173 (40h) e 195 (45h). Solo il divisore 173 e modellato. Le assunzioni a 45h settimanali non sono gestite.",
         "capability": "workplace_injury",
         "monetary_impact": "unknown",
@@ -247,15 +209,40 @@
       },
       {
         "kind": "simplification",
-        "text": "The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.",
-        "capability": "sickness",
+        "text": "Art. 83 pays 15% for weekly hours 41-48 and 20% beyond hour 48. Both bands are present; the engine resolves weekly tiers when the event supplies weekly_hours_before. Without that worker fact, the caller must supply the multiplier for each tier.",
+        "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "local_holiday_during_absence",
+          "variant": "overtime_weekly_hours_not_stated",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Provide the employer-specific patron saint holiday."
+          "remediation": "Supply OvertimeEvent.weekly_hours_before, or separate the hours and supply each tier's multiplier."
+        },
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-cusi-sport-2024",
+              "title": "CCNL Impianti e Attività Sportive 2024–2026 (CUSI)",
+              "kind": "altro",
+              "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+              "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+            },
+            "page": "76",
+            "section": "Art. 83 - Maggiorazione lavoro straordinario",
+            "quote": "- 15% per le prestazioni di lavoro dalla 41ª alla 48ª ora settimanale; - 20% per le prestazioni di lavoro eccedenti la 48ª ora settimanale."
+          },
+          "transformation": "Weekly hours before the event select and split the 15% and 20% non-cumulative overtime bands. Without that worker-specific hour count the applicable tier cannot be determined.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-09T20:46:09Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-09T20:46:09Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-09-ai-weekly-overtime"
+          }
         }
       }
     ]
@@ -1517,7 +1504,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "f80367baed8ed3643b923bc86551c97603337d95be7b5cd69282e2d52508c1e6",
+    "source_hash": "e76291e824610931a08eb4c9eda4f95c525e5bf7306f4c72914a8ef3016fa87b",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -2377,6 +2364,28 @@
             "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
             "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
           }
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-sport-local-absence",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 107 and the patron saint holiday list, cached 2024 PDF p. 85.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+            "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+          }
+        ],
+        "findings": [
+          "Sickness and injury holiday targets already include the stated patron saint day; the local holiday limitation is stale."
+        ],
+        "checked": [
+          "work_rules.sickness_rules.holiday",
+          "work_rules.insured_absence.injury.holiday"
         ]
       },
       {

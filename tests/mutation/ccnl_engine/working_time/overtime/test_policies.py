@@ -77,7 +77,9 @@ def _overtime(
     return OvertimeEvent(_DAY, Decimal(10), _RATE, multiplier, kind)
 
 
-def _run(event: OvertimeEvent, slug: str = _METAL, level: str = "C3") -> PeriodResult:
+def _run(
+    event: OvertimeEvent, slug: str = _METAL, level: str = "C3", month: int = 3
+) -> PeriodResult:
     """Return the March 2026 run with ``event``, the renewal regime waived.
 
     Returns:
@@ -88,8 +90,8 @@ def _run(event: OvertimeEvent, slug: str = _METAL, level: str = "C3") -> PeriodR
             employer=EmployerProfile(
                 provincial_pay_element=False, headcount=Headcount(50)
             ),
-            period_id=PeriodId(year=2026, month=3),
-            payment_date=date(2026, 3, 27),
+            period_id=PeriodId(year=2026, month=month),
+            payment_date=date(2026, month, 27),
             ccnl_id=slug,
             level_code=level,
             category=WorkerCategory.IMPIEGATO if slug == _METAL else None,
