@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, overtime, seniority |
+| **Limits of this contract** | base_salary, overtime, seniority, standby |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-17 | claude-opus-5-5 (ai) | Periodic review due 2026-12-31: the minimi of every level against the CCNL of 8 October 2020, the status of the renewal, and the readiness of the file. | confirmed | The 28 minimi of the file are printed in the CCNL of 8 October 2020. Match.<br>No renewal of the CCNL 2016-2018 was signed by 2026-10-17: the unions report a contract in ultrattività and a dispute open in January 2026 (FP CGIL, letter to the Ministry of Health and the Conferenza delle Regioni); the 2020 tables stay in force.<br>Not promoted to reviewed: verification.confidence is unverified, the level records are derived from a CCNL text of 2020 with an aggregator as second source, and shift_on_call_allowances and part_time_supplementary_rate are open. The derived rule stays derived. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Frozen RIA, pay base, thirteenth and TFR, Arts. 56, 58, 66, 73. | confirmed | — |
 | 2026-11-09 | claude-opus-5-5 (ai) | Arts. 60-61 night hourly allowance and on-call turn pay in the cached signed contract. | confirmed | PDF p. 90 confirms EUR 2.74 per night hour and EUR 21.69 per 12-hour on-call turn; shorter turns of at least four hours pay pro rata plus 10%. Holiday and radiation allowances remain outside the derived calculation. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 4 effective start, Art. 73 TFR elements and Arts. 60-61 eligibility limitations for new event rates. | corrected | The signing date is 8 October 2020; Art. 4 makes the night and on-call event rates effective 9 October 2020.<br>Art. 73 lists TFR elements but does not name pronta disponibilità; non-TFR treatment remains an unverified modelling choice.<br>Art. 61(c) daily rotating shift allowances remain unmodelled; Art. 60 enterprise adoption and covered profiles are asserted by callers submitting events. |
 
 ## Salary table
 
@@ -146,6 +147,20 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Supply scheduled holiday shift duration, eligibility and radiation service facts and apply the holiday cap, night overlap, compensatory rest and on-call intervention rules before paying the remaining allowances.
+
+!!! warning "sanita-privata-aiop-aris/daily_rotating_shift_allowances · overtime · impact yes · open"
+    DAILY ROTATING SHIFT ALLOWANCES (Art. 61(c), p. 91): EUR 4.50 per actual service day for eligible staff stably rotating across three shifts, or EUR 2.06 per day for eligible staff stably alternating at least two shifts; the two are not cumulative. The night-hour allowance does not replace them. Monthly rotation, qualifying profiles and actual days are not derived from night hours.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Supply qualifying profiles, stable monthly rotation and actual eligible service days; implement the distinct daily rates with mutual exclusion.
+
+!!! warning "sanita-privata-aiop-aris/enterprise_on_call_adoption_profiles · standby · impact yes · open"
+    ENTERPRISE ON-CALL ADOPTION AND COVERED PROFILES (Art. 60, p. 89): enterprise-level evaluation and regulation, after consultation, defines the profiles involved. The caller asserts the enterprise has adopted the service and the worker is covered by submitting on-call events; the engine does not verify the enterprise agreement or profile eligibility.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Verify the enterprise-level adoption and covered profiles before submitting on-call events; add qualifying facts if automated validation is needed.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

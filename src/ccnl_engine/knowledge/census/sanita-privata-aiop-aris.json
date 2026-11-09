@@ -19,6 +19,22 @@
       }
     },
     {
+      "id": "daily_rotating_shift_allowances",
+      "institute": "overtime",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "DAILY ROTATING SHIFT ALLOWANCES (Art. 61(c), p. 91): EUR 4.50 per actual service day for eligible staff stably rotating across three shifts, or EUR 2.06 per day for eligible staff stably alternating at least two shifts; the two are not cumulative. The night-hour allowance does not replace them. Monthly rotation, qualifying profiles and actual days are not derived from night hours.",
+      "calculation": "ccnl/sanita-privata-aiop-aris:coverage.notes",
+      "state": "absent",
+      "remediation": "Supply qualifying profiles, stable monthly rotation and actual eligible service days; implement the distinct daily rates with mutual exclusion.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sanita-privata-aiop-aris/daily_rotating_shift_allowances"
+        ]
+      }
+    },
+    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",
@@ -31,6 +47,22 @@
       "links": {
         "limitations": [
           "disability_permit_tfr"
+        ]
+      }
+    },
+    {
+      "id": "enterprise_on_call_adoption_profiles",
+      "institute": "standby",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "ENTERPRISE ON-CALL ADOPTION AND COVERED PROFILES (Art. 60, p. 89): enterprise-level evaluation and regulation, after consultation, defines the profiles involved. The caller asserts the enterprise has adopted the service and the worker is covered by submitting on-call events; the engine does not verify the enterprise agreement or profile eligibility.",
+      "calculation": "ccnl/sanita-privata-aiop-aris:coverage.notes",
+      "state": "absent",
+      "remediation": "Verify the enterprise-level adoption and covered profiles before submitting on-call events; add qualifying facts if automated validation is needed.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "sanita-privata-aiop-aris/enterprise_on_call_adoption_profiles"
         ]
       }
     },

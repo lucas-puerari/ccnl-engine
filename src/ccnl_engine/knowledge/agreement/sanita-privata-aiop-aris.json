@@ -1980,6 +1980,32 @@
       {
         "kind": "info",
         "text": "PART-TIME SUPPLEMENTARY HOURS: the ore supplementari of a part-time worker take a 15% maggiorazione of the retribuzione oraria globale (Art. 22, CCNL 8 October 2020, p. 25), band OT_SUPPLEMENTARE for OvertimeKind.SUPPLEMENTARY."
+      },
+      {
+        "kind": "simplification",
+        "text": "DAILY ROTATING SHIFT ALLOWANCES (Art. 61(c), p. 91): EUR 4.50 per actual service day for eligible staff stably rotating across three shifts, or EUR 2.06 per day for eligible staff stably alternating at least two shifts; the two are not cumulative. The night-hour allowance does not replace them. Monthly rotation, qualifying profiles and actual days are not derived from night hours.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "daily_rotating_shift_allowances",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Supply qualifying profiles, stable monthly rotation and actual eligible service days; implement the distinct daily rates with mutual exclusion."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "ENTERPRISE ON-CALL ADOPTION AND COVERED PROFILES (Art. 60, p. 89): enterprise-level evaluation and regulation, after consultation, defines the profiles involved. The caller asserts the enterprise has adopted the service and the worker is covered by submitting on-call events; the engine does not verify the enterprise agreement or profile eligibility.",
+        "capability": "standby",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "enterprise_on_call_adoption_profiles",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Verify the enterprise-level adoption and covered profiles before submitting on-call events; add qualifying facts if automated validation is needed."
+        }
       }
     ]
   },
@@ -1990,7 +2016,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "6b27e269eaddce3fe382938c718b1db0a4ff35565efdb811ec2262299d047b4c",
+    "source_hash": "5c1d023fa1720068a83331946fd10849119a7cfc5efb5392d8a2c31e03aa9d9a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2226,7 +2252,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2020-10-08",
+                "valid_from": "2020-10-09",
                 "valid_until": null,
                 "value": "2.74"
               }
@@ -2244,20 +2270,20 @@
                 "published_on": "2020-10-08",
                 "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
               },
-              "page": "90",
-              "section": "Art. 61(b), Night and holiday service",
-              "quote": "euro 2,74 lorde per ogni ora di servizio prestato tra le 22.00 e le ore 6.00"
+              "page": "2, 90",
+              "section": "Art. 4 (effective date); Art. 61(b) (night service)",
+              "quote": "Gli effetti decorrono dal giorno successivo alla data di stipula, salvo che nel testo contrattuale non siano previste decorrenza diverse. | euro 2,74 lorde per ogni ora di servizio prestato tra le 22.00 e le ore 6.00"
             },
-            "transformation": "Fixed EUR amount for each stated ordinary night hour; no hourly wage multiplier.",
+            "transformation": "Fixed EUR amount for each stated ordinary night hour; no hourly wage multiplier. Signed 8 October 2020; Art. 4 starts effects the next day, 9 October 2020.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T18:27:21Z",
-              "verified_at": "2026-11-09T18:27:21Z",
+              "extraction_timestamp": "2026-11-09T18:47:35Z",
+              "verified_at": "2026-11-09T18:47:35Z",
               "verified_by": "claude-opus-5-5",
               "verification_status": "verified",
-              "effective_from": "2020-10-08",
-              "review_id": "2026-11-09-ai-shift-standby"
+              "effective_from": "2020-10-09",
+              "review_id": "2026-11-09-ai-sanita-effective-eligibility"
             }
           }
         },
@@ -2269,7 +2295,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2020-10-08",
+                "valid_from": "2020-10-09",
                 "valid_until": null,
                 "value": "2.74"
               }
@@ -2287,20 +2313,20 @@
                 "published_on": "2020-10-08",
                 "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
               },
-              "page": "90",
-              "section": "Art. 61(b), Night and holiday service",
-              "quote": "euro 2,74 lorde per ogni ora di servizio prestato tra le 22.00 e le ore 6.00"
+              "page": "2, 90",
+              "section": "Art. 4 (effective date); Art. 61(b) (night service)",
+              "quote": "Gli effetti decorrono dal giorno successivo alla data di stipula, salvo che nel testo contrattuale non siano previste decorrenza diverse. | euro 2,74 lorde per ogni ora di servizio prestato tra le 22.00 e le ore 6.00"
             },
-            "transformation": "Hours state only the part of the shift worked between 22:00 and 06:00; do not also submit a night event for the same hours.",
+            "transformation": "Hours state only the part of the shift worked between 22:00 and 06:00; do not also submit a night event for the same hours. Signed 8 October 2020; Art. 4 starts effects the next day, 9 October 2020.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T18:27:21Z",
-              "verified_at": "2026-11-09T18:27:21Z",
+              "extraction_timestamp": "2026-11-09T18:47:35Z",
+              "verified_at": "2026-11-09T18:47:35Z",
               "verified_by": "claude-opus-5-5",
               "verification_status": "verified",
-              "effective_from": "2020-10-08",
-              "review_id": "2026-11-09-ai-shift-standby"
+              "effective_from": "2020-10-09",
+              "review_id": "2026-11-09-ai-sanita-effective-eligibility"
             }
           }
         }
@@ -2314,7 +2340,7 @@
       "turn_rate": {
         "periods": [
           {
-            "valid_from": "2020-10-08",
+            "valid_from": "2020-10-09",
             "valid_until": null,
             "value": "21.69"
           }
@@ -2331,20 +2357,20 @@
             "published_on": "2020-10-08",
             "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
           },
-          "page": "90",
-          "section": "Art. 60, On-call duty",
-          "quote": "Detto servizio ha durata di 12 ore e dà diritto ad un compenso di 21,69 euro lorde per ogni 12 ore; qualora il turno di pronta disponibilità sia articolato in orari di minore durata, la predetta indennità viene corrisposta proporzionalmente alla durata stessa, maggiorata del 10%; l'articolazione del turno di pronta disponibilità non può avere, comunque, durata inferiore alle 4 ore."
+          "page": "2, 90, 99",
+          "section": "Art. 4 (effective date); Art. 60 (on-call); Art. 73 (TFR elements)",
+          "quote": "Gli effetti decorrono dal giorno successivo alla data di stipula, salvo che nel testo contrattuale non siano previste decorrenza diverse. | Detto servizio ha durata di 12 ore e dà diritto ad un compenso di 21,69 euro lorde per ogni 12 ore; qualora il turno di pronta disponibilità sia articolato in orari di minore durata, la predetta indennità viene corrisposta proporzionalmente alla durata stessa, maggiorata del 10%; l'articolazione del turno di pronta disponibilità non può avere, comunque, durata inferiore alle 4 ore. | Ai sensi dell'art. 2120, comma 2, cod. civ., le voci che rientrano nel t.f.r. sono le seguenti: - retribuzione come da posizione economica; - retribuzione individuale di anzianità ad personam; - elemento aggiuntivo di retribuzione (EADR) fino al 30 giugno 2020; - indennità per mansioni superiori; - indennità di coordinamento non revocabile; - superminimi; - assegni ad personam; - indennità specifiche; - indennità professionali; - premio di incentivazione; - tredicesima mensilità; - indennità sostitutiva del preavviso."
         },
-        "transformation": "One event per turn: 12 hours pays EUR 21.69; 4 to less than 12 hours pays 21.69 * hours / 12 * 1.10. Calls require a separate work event.",
+        "transformation": "One event per turn: 12 hours pays EUR 21.69; 4 to less than 12 hours pays 21.69 * hours / 12 * 1.10. Calls require a separate work event. Signed 8 October 2020; Art. 4 starts effects on 9 October 2020. Art. 73 lists TFR elements under Art. 2120(2) but does not name pronta disponibilità; in_tfr_base=false is a provisional modelling choice, not a verified exclusion (specific or professional indemnities could require interpretation).",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-09T18:27:21Z",
-          "verified_at": "2026-11-09T18:27:21Z",
+          "extraction_timestamp": "2026-11-09T18:47:35Z",
+          "verified_at": "2026-11-09T18:47:35Z",
           "verified_by": "claude-opus-5-5",
           "verification_status": "verified",
-          "effective_from": "2020-10-08",
-          "review_id": "2026-11-09-ai-shift-standby"
+          "effective_from": "2020-10-09",
+          "review_id": "2026-11-09-ai-sanita-effective-eligibility"
         }
       }
     },
@@ -2625,6 +2651,26 @@
         ],
         "findings": [
           "PDF p. 90 confirms EUR 2.74 per night hour and EUR 21.69 per 12-hour on-call turn; shorter turns of at least four hours pay pro rata plus 10%. Holiday and radiation allowances remain outside the derived calculation."
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-sanita-effective-eligibility",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 4 effective start, Art. 73 TFR elements and Arts. 60-61 eligibility limitations for new event rates.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+            "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
+          }
+        ],
+        "findings": [
+          "The signing date is 8 October 2020; Art. 4 makes the night and on-call event rates effective 9 October 2020.",
+          "Art. 73 lists TFR elements but does not name pronta disponibilità; non-TFR treatment remains an unverified modelling choice.",
+          "Art. 61(c) daily rotating shift allowances remain unmodelled; Art. 60 enterprise adoption and covered profiles are asserted by callers submitting events."
         ]
       }
     ]

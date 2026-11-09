@@ -1,8 +1,9 @@
 """The CCNL standby (reperibilità) rates and bands."""
 
 from decimal import Decimal
+from typing import Self
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
@@ -76,6 +77,26 @@ class StandbyRules(BaseModel):
     minimum_turn_hours: Decimal | None = Field(default=None, gt=Decimal(0))
     short_turn_premium: Decimal = Field(default=Decimal(0), ge=Decimal(0))
     provenance: RuleProvenance | None = None
+
+    @model_validator(mode="after")
+    def require_band_rates_without_turn_rate(self) -> Self:
+        """Require all legacy band inputs when there is no complete-turn rate.
+
+        Returns:
+            The validated standby rules.
+
+        Raises:
+            ValueError: If a non-turn ruleset lacks a band, divisor or call fee.
+        """
+        if self.turn_rate is None and (
+            not self.bands or self.hourly_divisor is None or self.call_fee is None
+        ):
+            msg = (
+                "standby rules without turn_rate require bands, "
+                "hourly_divisor and call_fee"
+            )
+            raise ValueError(msg)
+        return self
 
     def band_of(self, level_code: str) -> StandbyBand | None:
         """Return the band of a level.

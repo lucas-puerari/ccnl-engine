@@ -8,7 +8,9 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.agreement.validity.rules import SeriesGapError
 from ccnl_engine.balance.models import PeriodState
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.errors import MissingRuleError
 from ccnl_engine.event.facade import (
@@ -26,6 +28,8 @@ from ccnl_engine.period.services import (
     calculate_period,
 )
 from ccnl_engine.run.types import PeriodId
+from ccnl_engine.working_time.standby.handlers import _turn_pay
+from ccnl_engine.working_time.standby.models import StandbyRules
 
 
 def _run(*events: ShiftWorkEvent | NightShiftEvent | StandbyEvent) -> PeriodResult:
@@ -83,6 +87,89 @@ def test_ordinary_night_hours_use_the_same_fixed_rate() -> None:
     assert [d.amount for d in result.decisions if d.capability == "night_work"] == [
         Decimal("13.70")
     ]
+
+
+@pytest.mark.parametrize(
+    "event",
+    [
+        StandbyEvent(date(2020, 10, 8), StandbyKind.HOURS, Decimal(12)),
+        ShiftWorkEvent(date(2020, 10, 8), hours=Decimal(8), kind=ShiftKind.NIGHT),
+        NightShiftEvent(date(2020, 10, 8), hours=Decimal(8)),
+    ],
+)
+def test_signing_day_does_not_receive_new_rates(
+    event: ShiftWorkEvent | NightShiftEvent | StandbyEvent,
+) -> None:
+    """On 8 October, 12h standby and 8h night earn EUR 0 at new rates.
+
+    From 9 October they would earn EUR 21.69 and 8 * 2.74 = EUR 21.92.
+    """
+    work = load_ccnl("sanita-privata-aiop-aris").work_rules
+    assert work is not None
+    if isinstance(event, StandbyEvent):
+        assert work.standby_rules is not None
+        with pytest.raises(MissingRuleError, match="starts on 2020-10-09"):
+            _turn_pay(event, work.standby_rules, "ccnl/sanita-privata-aiop-aris")
+    else:
+        assert work.time_supplements is not None
+        code = (
+            "NIGHT_SHIFT_FIXED" if isinstance(event, ShiftWorkEvent) else "NIGHT_FIXED"
+        )
+        band = next(b for b in work.time_supplements.supplement_bands if b.code == code)
+        with pytest.raises(SeriesGapError):
+            band.rate.value_at(event.event_date)
+
+
+def test_rates_begin_day_after_signing() -> None:
+    """On 9 October, 12h standby plus 8 night hours pay 21.69 + 21.92 = EUR 43.61."""
+    work = load_ccnl("sanita-privata-aiop-aris").work_rules
+    assert work is not None
+    assert work.standby_rules is not None
+    assert work.time_supplements is not None
+    event = StandbyEvent(date(2020, 10, 9), StandbyKind.HOURS, Decimal(12))
+    _, standby_pay = _turn_pay(
+        event, work.standby_rules, "ccnl/sanita-privata-aiop-aris"
+    )
+    night = next(
+        b
+        for b in work.time_supplements.supplement_bands
+        if b.code == "NIGHT_SHIFT_FIXED"
+    )
+    night_pay = night.rate.value_at(date(2020, 10, 9)) * Decimal(8)
+    assert (standby_pay, night_pay) == (Decimal("21.69"), Decimal("21.92"))
+
+
+@pytest.mark.parametrize("missing", ["bands", "hourly_divisor", "call_fee"])
+def test_non_turn_rules_require_all_legacy_rate_inputs(missing: str) -> None:
+    """A legacy band must be complete before paying any turn (e.g. EUR 21.69)."""
+    data = {
+        "in_tfr_base": False,
+        "bands": [{"levels": ["D"], "rates": _legacy_rates()}],
+        "hourly_divisor": "16",
+        "call_fee": _legacy_rates()["worked_day"],
+    }
+    data.pop(missing)
+    with pytest.raises(
+        ValueError, match="without turn_rate require bands, hourly_divisor and call_fee"
+    ):
+        StandbyRules.model_validate(data)
+
+
+def _legacy_rates() -> dict[str, object]:
+    series = {
+        "periods": [{"valid_from": "2020-10-09", "valid_until": None, "value": "21.69"}]
+    }
+    return dict.fromkeys(
+        (
+            "worked_day",
+            "rest_day",
+            "holiday",
+            "week",
+            "week_holiday",
+            "week_holiday_rest_day",
+        ),
+        series,
+    )
 
 
 def test_intervention_is_not_a_standby_fee() -> None:

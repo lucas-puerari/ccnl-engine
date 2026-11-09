@@ -28,6 +28,7 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
 )
 from ccnl_engine.employment.fact.cigo import cigo_activity_issue
+from ccnl_engine.employment.fact.roles import ROLES_FACT, roles_issue
 from ccnl_engine.employment.fact.subsector import SUBSECTOR_FACT, subsector_issue
 from ccnl_engine.event.facade import AbsenceEvent
 
@@ -52,7 +53,6 @@ __all__ = [
 ]
 
 FULL_TIME_FACT = "full_time_weekly_hours"
-ROLES_FACT = "roles"
 NO_PAY_FACT = "no_pay_due"
 PROVINCIAL_FACT = "provincial_pay_element"
 PREMIUM_FACT = "second_level_premium"
@@ -139,45 +139,6 @@ def full_time_issue(ctx: RunContext) -> CalculationIssue | None:
         ),
         status=CalculationStatus.INCOMPLETE,
         fact=FULL_TIME_FACT,
-    )
-
-
-def roles_issue(ctx: RunContext) -> CalculationIssue | None:
-    """Return the missing-fact issue of unknown roles on a role-gated level.
-
-    Returns:
-        An incomplete issue naming ``roles`` when the roles are not stated
-        and the level has an allowance restricted to a role in force on the
-        competence date, else ``None``.
-    """
-    if ctx.request.roles is not None:
-        return None
-    competence = ctx.contract.tctx.competence
-    gated = sorted(
-        [
-            a.code
-            for a in ctx.contract.level.fixed_allowances
-            if a.role is not None and a.monthly.applies_on(competence)
-        ]
-        + [
-            a.code
-            for a in ctx.contract.ccnl.parameters.daily_presence_allowances
-            if (a.role is not None or a.excluded_role is not None)
-            and a.rate.applies_on(competence)
-        ]
-    )
-    if not gated:
-        return None
-    return CalculationIssue(
-        code="roles_unknown",
-        capability="base_salary",
-        message=(
-            f"the level pays allowances restricted to a role ({', '.join(gated)}) "
-            "and the roles of the worker are not stated: the amounts shown "
-            "leave them out; state Employment.roles (an empty set for none)"
-        ),
-        status=CalculationStatus.INCOMPLETE,
-        fact=ROLES_FACT,
     )
 
 
