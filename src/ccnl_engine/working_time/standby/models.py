@@ -57,15 +57,24 @@ class StandbyRules(BaseModel):
         call_fee: Amount for each call followed by an intervention.
         in_tfr_base: Whether the standby pay enters the TFR base (art. 2120
             c. 2 c.c. lets the CCNL exclude it).
+        turn_rate: Flat rate for a complete on-call turn, where the CCNL
+            specifies turns rather than separate day and week rates.
+        turn_hours: Duration of a complete turn in hours.
+        minimum_turn_hours: Minimum allowed shorter turn in hours.
+        short_turn_premium: Extra share paid on shorter turns pro rata.
         provenance: Source and status of the rules.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    bands: tuple[StandbyBand, ...] = Field(min_length=1)
-    hourly_divisor: Decimal = Field(gt=Decimal(0))
-    call_fee: TimeSeries
+    bands: tuple[StandbyBand, ...] = ()
+    hourly_divisor: Decimal | None = Field(default=None, gt=Decimal(0))
+    call_fee: TimeSeries | None = None
     in_tfr_base: bool
+    turn_rate: TimeSeries | None = None
+    turn_hours: Decimal | None = Field(default=None, gt=Decimal(0))
+    minimum_turn_hours: Decimal | None = Field(default=None, gt=Decimal(0))
+    short_turn_premium: Decimal = Field(default=Decimal(0), ge=Decimal(0))
     provenance: RuleProvenance | None = None
 
     def band_of(self, level_code: str) -> StandbyBand | None:

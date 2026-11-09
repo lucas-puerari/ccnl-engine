@@ -104,7 +104,10 @@ class SupplementBand(BaseModel):
         code: Identifier of the band, unique in the CCNL.
         description: What the band pays.
         work: The work it pays.
-        rate: Share of the hourly base (``0.25`` for 25%).
+        rate: Share of the hourly base (``0.25`` for 25%), or a fixed
+            amount per hour when ``fixed_per_hour`` is true.
+        fixed_per_hour: Whether the rate is an absolute EUR amount per hour
+            rather than a share of the worker's hourly base.
         base: Monthly pay elements of its hourly base when the CCNL names
             others than those of :attr:`TimeSupplements.hourly_base_method`
             (Pubblici Esercizi art. 130: paga base and contingenza only);
@@ -131,6 +134,7 @@ class SupplementBand(BaseModel):
     description: str
     work: SupplementWork
     rate: TimeSeries
+    fixed_per_hour: bool = False
     base: HourlyBaseMethod | None = None
     hours_paid_apart: bool | None
     role: str | None = None

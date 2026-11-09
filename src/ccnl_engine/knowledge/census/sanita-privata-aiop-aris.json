@@ -279,10 +279,10 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SHIFT, ON-CALL AND RISK ALLOWANCES (Art. 60-61, pp. 89-90): the indennità notturna of 2,74 euro an hour of shift between 22 and 6, the holiday shift indemnity of 17,82 euro (8,91 for half a shift or less), the pronta disponibilità of 21,69 euro per 12 hours and the radiation risk indemnity of 1.239,50 euro a year are not modelled: no field of the request states the shifts or the on-call duty of the worker.",
+      "rule": "SHIFT AND RISK ALLOWANCES (Arts. 60-61, pp. 90-91): night hours between 22:00 and 06:00 and on-call turns of 4 to 12 hours are paid from event facts. Holiday shifts (€17.82 above half the scheduled shift, €8.91 for at most half with at least two hours) remain unmodelled: scheduled shift length, night-holiday overlap and the one-per-holiday-day cap are not captured. Radiation risk (€1,239.50 annually) requires category A or medical radiology technician status and actual service time. On-call interventions, compensatory rest and the usual eight-day monthly limit are not inferred from standby turns. The source does not settle whether on-call pay enters the TFR base; the current non-TFR treatment needs independent verification.",
       "calculation": "ccnl/sanita-privata-aiop-aris:coverage.notes",
       "state": "absent",
-      "remediation": "Model the Art. 60-61 indemnities with facts naming the night and holiday shift hours and the on-call turns of the worker.",
+      "remediation": "Supply scheduled holiday shift duration, eligibility and radiation service facts and apply the holiday cap, night overlap, compensatory rest and on-call intervention rules before paying the remaining allowances.",
       "origin": "seeded",
       "links": {
         "limitations": [

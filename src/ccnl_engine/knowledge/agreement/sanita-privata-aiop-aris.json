@@ -1962,7 +1962,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SHIFT, ON-CALL AND RISK ALLOWANCES (Art. 60-61, pp. 89-90): the indennità notturna of 2,74 euro an hour of shift between 22 and 6, the holiday shift indemnity of 17,82 euro (8,91 for half a shift or less), the pronta disponibilità of 21,69 euro per 12 hours and the radiation risk indemnity of 1.239,50 euro a year are not modelled: no field of the request states the shifts or the on-call duty of the worker.",
+        "text": "SHIFT AND RISK ALLOWANCES (Arts. 60-61, pp. 90-91): night hours between 22:00 and 06:00 and on-call turns of 4 to 12 hours are paid from event facts. Holiday shifts (€17.82 above half the scheduled shift, €8.91 for at most half with at least two hours) remain unmodelled: scheduled shift length, night-holiday overlap and the one-per-holiday-day cap are not captured. Radiation risk (€1,239.50 annually) requires category A or medical radiology technician status and actual service time. On-call interventions, compensatory rest and the usual eight-day monthly limit are not inferred from standby turns. The source does not settle whether on-call pay enters the TFR base; the current non-TFR treatment needs independent verification.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -1970,7 +1970,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the Art. 60-61 indemnities with facts naming the night and holiday shift hours and the on-call turns of the worker."
+          "remediation": "Supply scheduled holiday shift duration, eligibility and radiation service facts and apply the holiday cap, night overlap, compensatory rest and on-call intervention rules before paying the remaining allowances."
         }
       },
       {
@@ -1990,7 +1990,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "1eff89e07d6bad84e86aea0d22d98b2c96df7edfc8664e39157a758e978c981d",
+    "source_hash": "6b27e269eaddce3fe382938c718b1db0a4ff35565efdb811ec2262299d047b4c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2216,7 +2216,137 @@
             }
           }
         }
+      ],
+      "supplement_bands": [
+        {
+          "code": "NIGHT_FIXED",
+          "description": "Night service from 22:00 to 06:00, per hour of ordinary service",
+          "work": "night",
+          "fixed_per_hour": true,
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-10-08",
+                "valid_until": null,
+                "value": "2.74"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-case-di-cura-private-2020-10-08",
+                "title": "CCNL personale non medico IRCCS e strutture sanitarie ospedaliere AIOP-ARIS, 8 ottobre 2020",
+                "kind": "associazione",
+                "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                "published_on": "2020-10-08",
+                "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
+              },
+              "page": "90",
+              "section": "Art. 61(b), Night and holiday service",
+              "quote": "euro 2,74 lorde per ogni ora di servizio prestato tra le 22.00 e le ore 6.00"
+            },
+            "transformation": "Fixed EUR amount for each stated ordinary night hour; no hourly wage multiplier.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T18:27:21Z",
+              "verified_at": "2026-11-09T18:27:21Z",
+              "verified_by": "claude-opus-5-5",
+              "verification_status": "verified",
+              "effective_from": "2020-10-08",
+              "review_id": "2026-11-09-ai-shift-standby"
+            }
+          }
+        },
+        {
+          "code": "NIGHT_SHIFT_FIXED",
+          "description": "Night shift service from 22:00 to 06:00, per hour",
+          "work": "night_shift",
+          "fixed_per_hour": true,
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-10-08",
+                "valid_until": null,
+                "value": "2.74"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-case-di-cura-private-2020-10-08",
+                "title": "CCNL personale non medico IRCCS e strutture sanitarie ospedaliere AIOP-ARIS, 8 ottobre 2020",
+                "kind": "associazione",
+                "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+                "published_on": "2020-10-08",
+                "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
+              },
+              "page": "90",
+              "section": "Art. 61(b), Night and holiday service",
+              "quote": "euro 2,74 lorde per ogni ora di servizio prestato tra le 22.00 e le ore 6.00"
+            },
+            "transformation": "Hours state only the part of the shift worked between 22:00 and 06:00; do not also submit a night event for the same hours.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T18:27:21Z",
+              "verified_at": "2026-11-09T18:27:21Z",
+              "verified_by": "claude-opus-5-5",
+              "verification_status": "verified",
+              "effective_from": "2020-10-08",
+              "review_id": "2026-11-09-ai-shift-standby"
+            }
+          }
+        }
       ]
+    },
+    "standby_rules": {
+      "in_tfr_base": false,
+      "turn_hours": "12",
+      "minimum_turn_hours": "4",
+      "short_turn_premium": "0.10",
+      "turn_rate": {
+        "periods": [
+          {
+            "valid_from": "2020-10-08",
+            "valid_until": null,
+            "value": "21.69"
+          }
+        ]
+      },
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-case-di-cura-private-2020-10-08",
+            "title": "CCNL personale non medico IRCCS e strutture sanitarie ospedaliere AIOP-ARIS, 8 ottobre 2020",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+            "published_on": "2020-10-08",
+            "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
+          },
+          "page": "90",
+          "section": "Art. 60, On-call duty",
+          "quote": "Detto servizio ha durata di 12 ore e dà diritto ad un compenso di 21,69 euro lorde per ogni 12 ore; qualora il turno di pronta disponibilità sia articolato in orari di minore durata, la predetta indennità viene corrisposta proporzionalmente alla durata stessa, maggiorata del 10%; l'articolazione del turno di pronta disponibilità non può avere, comunque, durata inferiore alle 4 ore."
+        },
+        "transformation": "One event per turn: 12 hours pays EUR 21.69; 4 to less than 12 hours pays 21.69 * hours / 12 * 1.10. Calls require a separate work event.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-09T18:27:21Z",
+          "verified_at": "2026-11-09T18:27:21Z",
+          "verified_by": "claude-opus-5-5",
+          "verification_status": "verified",
+          "effective_from": "2020-10-08",
+          "review_id": "2026-11-09-ai-shift-standby"
+        }
+      }
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -2477,6 +2607,24 @@
             "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
             "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
           }
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-shift-standby",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Arts. 60-61 night hourly allowance and on-call turn pay in the cached signed contract.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+            "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
+          }
+        ],
+        "findings": [
+          "PDF p. 90 confirms EUR 2.74 per night hour and EUR 21.69 per 12-hour on-call turn; shorter turns of at least four hours pay pro rata plus 10%. Holiday and radiation allowances remain outside the derived calculation."
         ]
       }
     ]

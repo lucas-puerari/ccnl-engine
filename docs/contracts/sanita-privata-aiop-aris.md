@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 36 verified / 2 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 38 verified / 2 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the pension, health and bilateral contributions of the file against the text read in the P1 review. | confirmed | The CCNL of 8 October 2020 sets no contractual pension, health or bilateral contribution: Art. 74 only confirms the will to institute a supplementary pension. None is modelled. |
 | 2026-10-17 | claude-opus-5-5 (ai) | Periodic review due 2026-12-31: the minimi of every level against the CCNL of 8 October 2020, the status of the renewal, and the readiness of the file. | confirmed | The 28 minimi of the file are printed in the CCNL of 8 October 2020. Match.<br>No renewal of the CCNL 2016-2018 was signed by 2026-10-17: the unions report a contract in ultrattività and a dispute open in January 2026 (FP CGIL, letter to the Ministry of Health and the Conferenza delle Regioni); the 2020 tables stay in force.<br>Not promoted to reviewed: verification.confidence is unverified, the level records are derived from a CCNL text of 2020 with an aggregator as second source, and shift_on_call_allowances and part_time_supplementary_rate are open. The derived rule stays derived. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Frozen RIA, pay base, thirteenth and TFR, Arts. 56, 58, 66, 73. | confirmed | — |
+| 2026-11-09 | claude-opus-5-5 (ai) | Arts. 60-61 night hourly allowance and on-call turn pay in the cached signed contract. | confirmed | PDF p. 90 confirms EUR 2.74 per night hour and EUR 21.69 per 12-hour on-call turn; shorter turns of at least four hours pay pro rata plus 10%. Holiday and radiation allowances remain outside the derived calculation. |
 
 ## Salary table
 
@@ -140,11 +141,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Verify whether the statutory IPCA adjustment applies to T011 under ultrattività and model it, or record the limitation.
 
 !!! warning "sanita-privata-aiop-aris/shift_on_call_allowances · overtime · impact yes · open"
-    SHIFT, ON-CALL AND RISK ALLOWANCES (Art. 60-61, pp. 89-90): the indennità notturna of 2,74 euro an hour of shift between 22 and 6, the holiday shift indemnity of 17,82 euro (8,91 for half a shift or less), the pronta disponibilità of 21,69 euro per 12 hours and the radiation risk indemnity of 1.239,50 euro a year are not modelled: no field of the request states the shifts or the on-call duty of the worker.
+    SHIFT AND RISK ALLOWANCES (Arts. 60-61, pp. 90-91): night hours between 22:00 and 06:00 and on-call turns of 4 to 12 hours are paid from event facts. Holiday shifts (€17.82 above half the scheduled shift, €8.91 for at most half with at least two hours) remain unmodelled: scheduled shift length, night-holiday overlap and the one-per-holiday-day cap are not captured. Radiation risk (€1,239.50 annually) requires category A or medical radiology technician status and actual service time. On-call interventions, compensatory rest and the usual eight-day monthly limit are not inferred from standby turns. The source does not settle whether on-call pay enters the TFR base; the current non-TFR treatment needs independent verification.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the Art. 60-61 indemnities with facts naming the night and holiday shift hours and the on-call turns of the worker.
+    **Remediation:** Supply scheduled holiday shift duration, eligibility and radiation service facts and apply the holiday cap, night overlap, compensatory rest and on-call intervention rules before paying the remaining allowances.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
