@@ -87,10 +87,10 @@
       "institute": "maternity_leave",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 157 (p. 102) covers compulsory and optional absence: the top-up of holidays during optional (parental) leave is not paid. A holiday on a Sunday (paid by its own quota) and 4 October (a holiday from 2026, which the text, signed before, does not list) are not topped up.",
+      "rule": "Art. 157 (p. 102) covers holidays during compulsory and optional absence. A Sunday holiday is paid by its own quota rather than topped up; 4 October, introduced after this text, remains excluded. Optional leave without an INPS indemnity is not topped up.",
       "calculation": "ccnl/ced-assoced:coverage.notes",
       "state": "absent",
-      "remediation": "Top up holidays on optional (parental) leave and resolve the Sunday and 4 October scope against the applicable law.",
+      "remediation": "Resolve the Sunday holiday's separate quota and whether 4 October and unindemnified optional leave qualify.",
       "origin": "seeded",
       "links": {
         "limitations": [
