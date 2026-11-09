@@ -278,10 +278,10 @@
       "institute": "seniority",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SENIORITY: frozen at 31/12/2005. Art. 29 clause 1 of the CCNL 2024 lists 'salario di anzianità maturato al 31/12/2005' as a retributive element. Art. 32 governs this frozen amount. No new scatti di anzianità accrue after 2005. The current progression mechanism is POC (Progressione Orizzontale di Carriera), calculated as 100% of the 3-year average of PAP productivity awards (Art. 38, in force from 31/08/2024), which is merit-conditioned and excluded from Layer 1. Maximum_count set to 0; amount_by_level set to 0.00 EUR for all levels. Cadence_months set to 1 (minimum legal value; maximum_count=0 so no scatti ever apply; historical quinquennial cadence noted here only).",
+      "rule": "SENIORITY: frozen at 31/12/2005. Art. 29 clause 1 of the CCNL 2024 lists 'salario di anzianità maturato al 31/12/2005' as a retributive element. Art. 32 governs this frozen amount. No new scatti di anzianità accrue after 2005. The current progression mechanism is POC (Progressione Orizzontale di Carriera), calculated as 100% of the 3-year average of PAP productivity awards (Art. 38, in force from 31/08/2024), which is merit-conditioned and excluded from Layer 1. Maximum_count set to 0; amount_by_level set to 0.00 EUR for all levels. Cadence_months set to 1 (minimum legal value; maximum_count=0 so no scatti ever apply; historical quinquennial cadence noted here only). Supply the worker's actual frozen monthly balance as IndividualElement(code='frozen_seniority', monthly=<preserved monthly balance>, absorbable=False, as_of=None, extra_months=True, tfr_relevant=True). Art. 32 explicitly makes it non-revaluable and non-absorbable; Art. 29 includes it in global pay and Art. 33 includes December pay in the thirteenth. Art. 90 includes non-occasional pay in the TFR base. The PDF supplies no universal historical amount.",
       "calculation": "ccnl/scuole-private-agidae:coverage.notes",
       "state": "absent",
-      "remediation": "Let the caller state the salario di anzianità maturato al 31/12/2005 (EarnedIncrements or an individual allowance) and record the limitation.",
+      "remediation": "Supply the worker's actual preserved monthly balance as an individual element; without that fact no historical amount can be inferred.",
       "origin": "seeded",
       "links": {
         "limitations": [

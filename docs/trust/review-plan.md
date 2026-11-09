@@ -14,7 +14,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 61 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 151 | 309 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 12 | 95 | 250 | 5 | `operai-agricoli-florovivaisti` |
-| edilizia | 4 | 710 000 | 2 | 93 | 124 | 0 | `edilizia-ance` |
+| edilizia | 4 | 710 000 | 2 | 93 | 131 | 0 | `edilizia-ance` |
 | credito | 3 | 348 000 | 2 | 19 | 99 | 0 | `bancari-abi` |
 
 ## pubblica-amministrazione
@@ -183,7 +183,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`edilizia-ance`](../contracts/edilizia-ance.md) (anchor) | 550 000 | reviewed | 0 | 7 | 47 | party or official | maintainer | 2027-02-28 |
 | [`edilizia-cooperative-ancpl`](../contracts/edilizia-cooperative-ancpl.md) | 90 000 | exploratory | 1 | 33 | 25 | party or official | none | none |
 | [`edilizia-pmi-confapi-aniem`](../contracts/edilizia-pmi-confapi-aniem.md) | 70 000 | exploratory | 1 | 30 | 15 | party or official | maintainer | 2027-03-01 |
-| [`edilizia-ance-impiegati`](../contracts/edilizia-ance-impiegati.md) | none | production | 0 | 23 | 37 | party or official | maintainer | 2027-02-28 |
+| [`edilizia-ance-impiegati`](../contracts/edilizia-ance-impiegati.md) | none | production | 0 | 23 | 44 | party or official | maintainer | 2027-02-28 |
 
 ## credito
 
