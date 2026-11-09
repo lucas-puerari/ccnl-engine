@@ -42,6 +42,7 @@ from ccnl_engine.inputs import (
     PublicEndOfService,
     WeeklyHours,
 )
+from ccnl_engine.period.facts.holiday import PaidHolidayDays
 from ccnl_engine.results import BlockerCode, CalculationStatus
 from tests.integration.ccnl_engine.surtax.residence.builders import resident
 from tests.knowledge.ccnl_engine.contribution.oracles import (
@@ -136,14 +137,25 @@ def _facts(slug: str, ccnl: CCNL) -> PeriodFacts:
 
     Returns:
         The hours of the domestic contracts; the resident facts with 173
-        ordinary hours worked on a CCNL that pays by the hour.
+        ordinary hours worked on a CCNL that pays by the hour; zero eligible
+        holidays where an hourly holiday quota is defined.
     """
     if slug in _DOMESTIC:
         return _DOMESTIC_FACTS
     if ccnl.parameters.hourly_pay is not None:
-        return replace(resident(), ordinary_hours_worked=_FULL_MONTH_HOURS)
+        return replace(
+            resident(),
+            ordinary_hours_worked=_FULL_MONTH_HOURS,
+            paid_holiday_days=(
+                PaidHolidayDays(0)
+                if ccnl.parameters.hourly_pay.holiday_hours is not None
+                else None
+            ),
+        )
     if ccnl.parameters.daily_presence_allowances:
         return replace(resident(), presence_days=20, site_presence_days=0)
+    if ccnl.parameters.meal_benefit_daily is not None:
+        return replace(resident(), meal_benefit_days=0)
     return resident()
 
 

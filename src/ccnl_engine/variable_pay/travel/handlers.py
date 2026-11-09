@@ -18,7 +18,7 @@ from ccnl_engine.pay_item.services import _ZERO, _require_resolution
 if TYPE_CHECKING:
     from ccnl_engine.variable_pay.inputs import TravelAllowanceEvent
     from ccnl_engine.variable_pay.models import TravelAllowanceRules
-    from ccnl_engine.working_time.models import CcnlTravelAllowance
+    from ccnl_engine.working_time.travel.models import CcnlTravelAllowance
 
 __all__ = ["TravelAllowanceAssessment", "TravelTerms", "_handle_travel_allowance"]
 
@@ -103,6 +103,13 @@ class TravelAllowanceAssessment:
                 "daily_cap": self.cap,
                 "exempt_amount": self.exempt,
                 "hours_away": "none" if event.hours_away is None else event.hours_away,
+                **(
+                    {"mission_hours": event.mission_hours}
+                    if event.mission_hours is not None
+                    else {}
+                ),
+                **({"habitual_travel": "true"} if event.habitual_travel else {}),
+                **({"mission_over_month": "true"} if event.mission_over_month else {}),
             },
             source=None if rules.provenance is None else rules.provenance.location,
             amount=self.taxable,
@@ -138,12 +145,49 @@ def _daily_amount(event: TravelAllowanceEvent, terms: TravelTerms | None) -> Dec
     if terms is None or rules is None:
         msg = "the CCNL of the run has no travel allowance amounts: state daily_amount"
         raise MissingRuleError(msg, as_of=event.event_date, feature=_FEATURE)
-    band = rules.band_of(event.hours_away or _ZERO)
+    if rules.mission_duration and event.mission_hours is None:
+        msg = "the CCNL requires the total mission duration in mission_hours"
+        raise MissingRuleError(msg, as_of=event.event_date, feature=_FEATURE)
+    if not rules.mission_duration and event.hours_away is None:
+        msg = "the CCNL requires hours_away for its daily travel bands"
+        raise MissingRuleError(msg, as_of=event.event_date, feature=_FEATURE)
+    hours = event.mission_hours if rules.mission_duration else event.hours_away
+    band = rules.band_of(hours or _ZERO)
+    if (
+        band is None
+        and rules.mission_duration
+        and any(
+            span.hours_from_exclusive and hours == span.hours_from
+            for span in rules.bands
+        )
+    ):
+        msg = "the CCNL does not state an allowance at this exact mission duration"
+        raise MissingRuleError(
+            msg,
+            as_of=event.event_date,
+            feature=_FEATURE,
+        )
     if band is None:
         return _ZERO
     series = band.abroad if event.abroad else band.italy
     with rule_scope(ruleset=terms.ruleset, feature=_FEATURE):
-        return series.value_at(event.event_date)
+        daily = series.value_at(event.event_date)
+    return _discounted_daily(event, rules, daily)
+
+
+def _discounted_daily(
+    event: TravelAllowanceEvent, rules: CcnlTravelAllowance, daily: Decimal
+) -> Decimal:
+    """Apply the larger applicable discount once.
+
+    Returns:
+        The rounded reduced rate, or the unchanged rate without a discount.
+    """
+    discount = max(
+        rules.habitual_discount if event.habitual_travel else _ZERO,
+        rules.long_mission_discount if event.mission_over_month else _ZERO,
+    )
+    return money(daily * (Decimal(1) - discount)) if discount else daily
 
 
 def _night(event: TravelAllowanceEvent, terms: TravelTerms | None) -> Decimal:
@@ -175,7 +219,7 @@ def _tfr_base(event: TravelAllowanceEvent, terms: TravelTerms | None) -> str:
     if event.tfr_base is not None:
         return event.tfr_base
     rules = None if terms is None else terms.rules
-    if rules is None:
+    if rules is None or rules.tfr_base is None:
         msg = (
             "the CCNL states no TFR rule for the allowance (art. 2120 c.c. "
             "leaves it to the CCNL)"

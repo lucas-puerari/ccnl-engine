@@ -12,7 +12,7 @@ from ccnl_engine.event.facade import WORK_EVENT_TYPES
 from ccnl_engine.family.inputs import FamilyComposition
 from ccnl_engine.period.facts.holiday import PaidHolidayDays
 from ccnl_engine.surtax.jurisdiction.types import check_surtax_codes
-from ccnl_engine.validators import require_instances, require_str
+from ccnl_engine.validators import require_instances, require_int, require_str
 
 if TYPE_CHECKING:
     from ccnl_engine.event.facade import WorkEvent
@@ -54,6 +54,12 @@ class PeriodFacts:
             withholds, a ``residence_unknown`` decision and a
             ``requirement_unresolved`` blocker on
             ``addizionale_comunale``.
+        meal_benefit_days: Days verified as eligible for an electronic
+            contractual meal voucher (including the employer's canteen and
+            shift conditions). ``None`` is unknown: a CCNL with a daily meal
+            rate reports a missing fact; zero declares no eligible days.
+            Exclude absences from the count. Paper vouchers have different
+            tax limits and must not be declared here.
         family_composition: Dependents for the Art. 12 TUIR deductions.
             ``None`` is unknown: when the employer withholds, a
             ``requirement_unresolved`` blocker on ``family_deductions``;
@@ -75,6 +81,7 @@ class PeriodFacts:
     events: tuple[WorkEvent, ...] = ()
     regione: str | None = None
     comune_belfiore: str | None = None
+    meal_benefit_days: int | None = None
     family_composition: FamilyComposition | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
@@ -113,6 +120,14 @@ class PeriodFacts:
         )
         validate_presence_days(
             self.presence_days, self.site_presence_days, owner="PeriodFacts"
+        )
+        require_int(
+            self.meal_benefit_days,
+            "PeriodFacts.meal_benefit_days",
+            feature=feature,
+            minimum=0,
+            maximum=31,
+            optional=True,
         )
         events = tuple_of(
             self.events,

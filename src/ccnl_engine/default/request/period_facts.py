@@ -20,10 +20,18 @@ PERIOD_FACT_DEFAULTS: dict[str, FieldDefault] = {
         "of the building CCNLs are left out, with a missing_fact "
         "ordinary_hours_worked blocker; other CCNLs do not read it",
     ),
-    "PeriodFacts.paid_holiday_days": absence_is_fact(
-        "no eligible holiday days stated: the hourly pay omits the holiday "
-        "treatment unless the caller supplies the count, including locally "
-        "eligible days; no date or suspension eligibility is inferred"
+    "PeriodFacts.paid_holiday_days": requires_fact(
+        "base_salary",
+        "facts.paid_holiday_days",
+        _PERIOD_REPORTED,
+        "unknown eligible paid holiday days: an hourly worker covered by a "
+        "CCNL holiday-hours rule has an incomplete base_salary amount and a "
+        "reported missing_fact paid_holiday_days issue; state zero to confirm "
+        "none. The caller resolves local patron saint dates, employment and "
+        "suspension eligibility; no holiday calendar or date is inferred. "
+        "For vertical or mixed part time, the count must reflect the agreed "
+        "work pattern and eligible days rather than assume every holiday is "
+        "a scheduled workday",
     ),
     "PeriodFacts.contributable_hours": requires_fact(
         "inps_employee",
@@ -49,6 +57,18 @@ PERIOD_FACT_DEFAULTS: dict[str, FieldDefault] = {
         "blocker; zero states no days at the site",
     ),
     "PeriodFacts.events": absence_is_fact("no work event in the period"),
+    "PeriodFacts.meal_benefit_days": requires_fact(
+        "welfare",
+        "facts.meal_benefit_days",
+        _PERIOD_REPORTED,
+        "unknown eligible electronic meal voucher days: on regular or termination "
+        "runs of a CCNL with a daily meal rate and an employer with more than "
+        "10 employees, the welfare amount is undetermined and a missing_fact "
+        "meal_benefit_days blocker is reported; state zero to confirm none. "
+        "The caller verifies the absence of a canteen, a lunch break or split "
+        "shift, attendance excluding ineligible absences, electronic delivery "
+        "and the applicable exemption limit; paper vouchers are not modelled",
+    ),
     "PeriodFacts.regione": requires_fact(
         "addizionale_regionale",
         "facts.regione",

@@ -92,7 +92,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Titolo XXIII conditional allowances not modelled: indennita di mensa (Art. 179), rimborso mezzi pubblici (Art. 180), indennita valori (Art. 181), and elemento economico di garanzia (Art. 177). These are condition-gated or azienda-specific and cannot be determined without employer-level data.",
+        "text": "Title XXIII: the daily meal benefit (Art. 179) is valued only when the caller supplies verified eligible days; the caller must check the absence of a canteen and a lunch break or split shift. Only caller-confirmed electronic vouchers are posted as exempt welfare; paper vouchers (different tax limits) remain unmodelled. The municipal public-transport subscription cost (Art. 180) and the episodic custody or transport of valuables above EUR 250 (Art. 181) remain unmodelled. Art. 177 was a conditional April 2025 one-off payment, not a Title XXIII allowance; it was repealed from September 2025.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -100,7 +100,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model Art. 177 elemento economico di garanzia and Arts. 179-181 (mensa, mezzi pubblici, valori) as conditional fixed allowances or caller-declared items once a fact can express their conditions."
+          "remediation": "For paper meal vouchers establish taxable value and treatment. For Art. 180 supply the actual municipal-only monthly public-transport subscription cost and verify the employer's limited-traffic-zone address. For Art. 181 supply each non-continuous custody/transport assignment and delivered value above EUR 250; establish its wage and TFR treatment before posting. Do not recur the repealed Art. 177 April 2025 one-off."
         }
       },
       {
@@ -178,6 +178,72 @@
             "status": "assumed",
             "location": null,
             "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+          }
+        }
+      ]
+    },
+    "meal_benefit_daily": {
+      "periods": [
+        {
+          "valid_from": "2022-04-01",
+          "valid_until": "2025-09-01",
+          "value": "6.00",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                "title": "CCNL CED, ICT, Professioni Digitali e STP, 9 March 2022",
+                "kind": "associazione",
+                "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+                "published_on": "2022-03-09",
+                "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+              },
+              "page": "112",
+              "section": "Arts. 178-179",
+              "quote": "Le indennità previste dal presente titolo saranno attribuite, caso per caso secondo le occorrenze, in tutti i CED che occupino più di 10 dipendenti, inclusi gli apprendisti. [...] I lavoratori in malattia, infortunio, ferie, permesso, recupero, aspettativa, maternità, sospensione disciplinare non hanno diritto a percepire le indennità. [...] una indennità sostitutiva del servizio mensa, cd. “ticket restaurant” pari a 6,00 Euro giornalieri."
+            },
+            "transformation": "EUR 6 per caller-verified eligible day from 1 April 2022; the posting supports only electronic vouchers at or below the applicable exemption, not paper vouchers. No monthly fixed allowance or entitlement on excluded absence days.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T15:46:26Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T15:46:26Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-ced-meal-benefit"
+            }
+          }
+        },
+        {
+          "valid_from": "2025-09-01",
+          "valid_until": null,
+          "value": "8.00",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ced-assoced-accordo-2025-pdf",
+                "title": "CCNL CED, ICT, Digital Professions and STP, 28 July 2025",
+                "kind": "associazione",
+                "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+                "published_on": "2025-07-28",
+                "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
+              },
+              "page": "32",
+              "section": "Art. 179 (modified); Art. 273 (p. 50)",
+              "quote": "I CED Le aziende che applicano il presente CCNL, con più di 10 dipendenti, che non abbiano attivato il servizio mensa erogheranno ai dipendenti, il cui orario di lavoro preveda la pausa pranzo ovvero una prestazione lavorativa suddivisa in due parti, una indennità sostitutiva del servizio mensa, cd. “ticket restaurant” pari a 8,00 euro giornalieri, da riconoscersi anche in caso di svolgimento di lavoro in modalità di Smart-Working."
+            },
+            "transformation": "EUR 8 per caller-verified eligible day from the renewal's 1 September 2025 effective date, including eligible smart-working days. The posting supports only electronic vouchers at or below the applicable exemption, not paper vouchers. Old and new opening words appear together in the revision text; only the new wording applies.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-08T15:46:26Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-08T15:46:26Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-08-ai-ced-meal-benefit"
+            }
           }
         }
       ]
@@ -1920,7 +1986,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "5a6958543bd29f011611275632bb37ed67e08ae386124b03291f718d3dcd238c",
+    "source_hash": "f22b653bd75ca9f72ca19b53c2d18d2d582fb762f11061e82506dc99e4e45c47",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2278,6 +2344,32 @@
   },
   "verification": {
     "reviews": [
+      {
+        "id": "2026-11-08-ai-ced-meal-benefit",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Arts. 178-181 of the 2022 agreement and the 2025 renewal, cached primary PDFs pp. 112 and 32, plus effective dates.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+            "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+          },
+          {
+            "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/ccnlced-ict-professioni-digitali-stp/accordo-ccnlced-versione-con-indice-e-testo-ricercabile-del-28-luglio-2025.pdf",
+            "sha256": "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
+          }
+        ],
+        "findings": [
+          "Daily meal benefit €6 from 2022 and €8 from September 2025; transport and valuables are variable and remain a limitation; Art. 177 repealed."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.meal_benefit_daily",
+          "coverage.notes"
+        ]
+      },
       {
         "id": "2026-11-08-ai-ced-assoced-tables",
         "date": "2026-11-08",

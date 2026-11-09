@@ -373,15 +373,19 @@ def _hourly_basis(
     with rule_scope(ruleset=ccnl.meta.ccnl_id, feature="base_salary"):
         divisor = ccnl.parameters.hourly_divisor.value_at(day)
     weekly, full = request.weekly_hours, request.full_time_weekly_hours
-    if weekly is not None and full is not None and weekly.value < full.value:
-        divisor = divisor * weekly.value / full.value
+    ratio = (
+        weekly.value / full.value
+        if weekly is not None and full is not None and weekly.value < full.value
+        else Decimal(1)
+    )
+    divisor *= ratio
     stated = request.ordinary_hours_worked
     pay: Rule = (f"{name}:hourly_pay", spec.provenance)
     holidays = getattr(request, "paid_holiday_days", None)
     holiday_hours = (
         None
         if holidays is None or spec.holiday_hours is None
-        else Decimal(holidays.value) * spec.holiday_hours
+        else Decimal(holidays.value) * spec.holiday_hours * ratio
     )
     holiday_rule: tuple[Rule, ...] = (
         ()

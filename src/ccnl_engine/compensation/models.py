@@ -149,7 +149,8 @@ class CCNLParameters(BaseModel):
     ``health_funds``, with their elemento distinto; ``hourly_pay``,
     ``fixed_term_pay`` (operai edilizia, OTD); ``loyalty_premium`` (fedeltà).
     ``daily_presence_allowances``: rates paid per counted qualifying day,
-    rather than a fraction of monthly pay.
+    rather than a fraction of monthly pay; ``meal_benefit_daily``: the
+    non-remunerative meal voucher value per eligible day.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -181,6 +182,7 @@ class CCNLParameters(BaseModel):
     equalisation_element: EqualisationElement | None = None
     loyalty_premium: LoyaltyPremium | None = None
     daily_presence_allowances: tuple[DailyPresenceAllowance, ...] = ()
+    meal_benefit_daily: TimeSeries | None = None
 
     @model_validator(mode="after")
     def _check_positive_params(self) -> Self:

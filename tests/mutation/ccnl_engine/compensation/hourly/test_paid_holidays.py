@@ -15,7 +15,7 @@ from ccnl_engine import (
     PeriodResult,
 )
 from ccnl_engine.balance.models import PeriodState
-from ccnl_engine.employment.fact.inputs import ContributableHours
+from ccnl_engine.employment.fact.inputs import ContributableHours, WeeklyHours
 from ccnl_engine.inputs import NoPensionFund, Permanent, WorkerCategory
 from ccnl_engine.period.facts.holiday import PaidHolidayDays
 from ccnl_engine.period.facts.inputs import PeriodFacts
@@ -26,7 +26,7 @@ from tests.knowledge.ccnl_engine.support import EMPLOYER, ENGINE
 pytestmark = pytest.mark.legal_scenario
 
 
-def _run(holidays: int) -> PeriodResult:
+def _run(holidays: int | None, *, part_time: bool = False) -> PeriodResult:
     return ENGINE.calculate_period(
         PeriodInput(
             run=PayrollRun.regular(year=2026, month=1),
@@ -38,11 +38,17 @@ def _run(holidays: int) -> PeriodResult:
                 seniority=new_hire(),
                 pension_fund=NoPensionFund(),
                 contract_type=Permanent(),
+                weekly_hours=WeeklyHours(Decimal(20)) if part_time else None,
+                full_time_weekly_hours=WeeklyHours(Decimal(40)) if part_time else None,
             ),
             employer=EMPLOYER,
             facts=PeriodFacts(
-                ordinary_hours_worked=ContributableHours(Decimal(160)),
-                paid_holiday_days=PaidHolidayDays(holidays),
+                ordinary_hours_worked=ContributableHours(
+                    Decimal(80 if part_time else 160)
+                ),
+                paid_holiday_days=(
+                    None if holidays is None else PaidHolidayDays(holidays)
+                ),
             ),
             opening_state=PeriodState.zero(),
             current_year=employment_only(),
@@ -118,6 +124,32 @@ def test_month_without_eligible_holidays_pays_worked_hours_only() -> None:
         ),
         Decimal(0),
     ) == Decimal(11)
+
+
+def test_horizontal_part_time_holiday_is_proportional() -> None:
+    """20/40 hours: 80 worked + 4 holiday, half the 160+8 full-time pay.
+
+    At 84/86.5 of half-month pay: minimo 518.26, contingenza 249.03,
+    EDR 5.02; 4.95% and 18.5% of 767.29 are 37.98 and 141.95.
+    Gross is 952.24; without the holiday 906.89 (increment 45.35).
+    """
+    result = _run(1, part_time=True)
+    assert result.period_gross == Decimal("952.24")
+    assert any(
+        d.inputs.get("paid_holiday_hours") == Decimal(4) for d in result.decisions
+    )
+    assert _run(0, part_time=True).period_gross == Decimal("906.89")
+
+
+def test_missing_holiday_count_is_reported_not_treated_as_zero() -> None:
+    """160 worked without a holiday count: 1,813.74 shown, not payable.
+
+    Stating zero confirms the same 1,813.74 with no missing holiday issue.
+    """
+    result = _run(None)
+    assert result.period_gross == Decimal("1813.74")
+    assert any(issue.fact == "paid_holiday_days" for issue in result.issues)
+    assert not any(issue.fact == "paid_holiday_days" for issue in _run(0).issues)
 
 
 def test_invalid_holiday_count_is_rejected() -> None:
