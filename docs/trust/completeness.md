@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 272 weak rules, 424 open limitations (424 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 272 weak rules, 425 open limitations (425 with a monetary impact).
 
 ## Declared window
 
@@ -93,9 +93,9 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [dmo-federdistribuzione](../contracts/dmo-federdistribuzione.md) | `commercio` | reviewed | — | 24 rows | 24 open requirements; 18 monetary limitations; 4 outside_input limitations; 20 non-native capabilities |
 | [edilizia-ance](../contracts/edilizia-ance.md) | `edilizia` | reviewed | — | 32 rows | 32 open requirements; 21 monetary limitations; 9 outside_input limitations; 20 non-native capabilities |
 | [edilizia-ance-impiegati](../contracts/edilizia-ance-impiegati.md) | `edilizia` | production | — | 31 rows | 31 open requirements; 23 monetary limitations; 6 outside_input limitations; 21 non-native capabilities |
-| [edilizia-artigianato-cna](../contracts/edilizia-artigianato-cna.md) | `edilizia` | exploratory | — | 28 rows | 28 open requirements; 1 weak rule; 24 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
+| [edilizia-artigianato-cna](../contracts/edilizia-artigianato-cna.md) | `edilizia` | exploratory | — | 28 rows | 28 open requirements; 1 weak rule; 25 monetary limitations; 21 non-native capabilities |
 | [edilizia-cooperative-ancpl](../contracts/edilizia-cooperative-ancpl.md) | `edilizia` | exploratory | — | 25 rows | 25 open requirements; 1 weak rule; 20 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
-| [edilizia-pmi-confapi-aniem](../contracts/edilizia-pmi-confapi-aniem.md) | `edilizia` | exploratory | — | 32 rows | 32 open requirements; 1 weak rule; 26 monetary limitations; 3 outside_input limitations; 20 non-native capabilities |
+| [edilizia-pmi-confapi-aniem](../contracts/edilizia-pmi-confapi-aniem.md) | `edilizia` | exploratory | — | 32 rows | 32 open requirements; 1 weak rule; 27 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
 | [elettrico-elettricita-futura](../contracts/elettrico-elettricita-futura.md) | `energia-utilities` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 18 non-native capabilities |
 | [energia-petrolio-confindustria](../contracts/energia-petrolio-confindustria.md) | `energia-utilities` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 18 non-native capabilities |
 | [enti-ricerca-aran](../contracts/enti-ricerca-aran.md) | `pubblico-impiego` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 18 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
@@ -114,7 +114,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [gomma-plastica-federazione-gomma-plastica](../contracts/gomma-plastica-federazione-gomma-plastica.md) | `chimica` | exploratory | — | 23 rows | 23 open requirements; 2 weak rules; 19 monetary limitations; 19 non-native capabilities |
 | [grafica-editoria-aieg](../contracts/grafica-editoria-aieg.md) | `carta-grafica` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 19 non-native capabilities |
 | [igiene-ambientale-utilitalia](../contracts/igiene-ambientale-utilitalia.md) | `energia-utilities` | exploratory | — | 25 rows | tables from 2026-02-01; 25 open requirements; 1 weak rule; 22 monetary limitations; 20 non-native capabilities |
-| [impianti-sportivi-sport](../contracts/impianti-sportivi-sport.md) | `sport` | exploratory | — | 26 rows | 26 open requirements; 2 weak rules; 20 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
+| [impianti-sportivi-sport](../contracts/impianti-sportivi-sport.md) | `sport` | exploratory | — | 27 rows | 27 open requirements; 2 weak rules; 20 monetary limitations; 3 outside_input limitations; 20 non-native capabilities |
 | [impiegati-tecnici-agricoli](../contracts/impiegati-tecnici-agricoli.md) | `agricoltura` | exploratory | — | 25 rows | 25 open requirements; 2 weak rules; 20 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [industria-turistica-federturismo](../contracts/industria-turistica-federturismo.md) | `turismo` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 19 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [informatica-pmi-unimatica](../contracts/informatica-pmi-unimatica.md) | `ict-telecomunicazioni` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 18 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
