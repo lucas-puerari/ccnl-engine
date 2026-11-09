@@ -142,11 +142,11 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "logistica-trasporto-confetra/holiday_during_injury · sickness · impact yes · open"
-    Art. 71(5): the INAIL holiday top-up during injury and the local patron saint holiday are not calculated. Art. 60(2-3) additionally pays a coincident Saturday, Sunday or other holiday during sickness; this separate additional payment is not calculated.
+    Art. 71 c. 5 (Sezione seconda) tops up reduced sickness or injury pay on letter b/c holidays only for workers of employers that applied the former Magazzini Generali agreement before 29 January 2005; employer eligibility is not stated, so this top-up is not calculated. Separately, art. 60 c. 2-3 pays an additional 1/22 of monthly global pay when a letter b holiday coincides with Saturday, Sunday or another holiday, including during injury or sickness; this additional payment is not calculated.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Calculate the INAIL offset, local patron saint and the distinct coincident-holiday payment.
+    **Remediation:** Establish the employer's eligibility for Sezione seconda before applying art. 71 c. 5; separately calculate the art. 60 c. 2-3 coincident-holiday 1/22 payment.
 
 !!! warning "logistica-trasporto-confetra/edr_2021_in_daily_base · absence · impact unknown · open"
     EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; the 2021 EDR may still enter the daily base of absences and sickness, which 'nessuna incidenza su alcun istituto contrattuale' excludes.
@@ -161,13 +161,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Add a sixth-day kind to the overtime event and a 50% band, then remove this note.
-
-!!! warning "logistica-trasporto-confetra/part_time_supplementary_rate · overtime · impact yes · open"
-    PART-TIME SUPPLEMENTARY HOURS: Art. 56 pays 18% of the global hourly pay on supplementary hours up to 30% of agreed annual hours, and 40% on the excess. OT_SUPPLEMENTARE derives the 18% rate only. A caller can split hours at the annual boundary and state multiplier 1.40 for the excess, but the engine cannot determine the boundary or split a crossing event from prior year-to-date hours. Saturday work has separate Art. 13 rates.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Supply agreed annual hours and prior supplementary hours to split an event crossing the 30% annual boundary; derive the 40% multiplier on its excess without a caller override.
 
 !!! note "logistica-trasporto-confetra/health_and_bilateral_funds · bilateral_funds · impact yes · resolved"
     HEALTH AND BILATERAL FUNDS (artt. 51-52, pp. 64-65): Sanilog EUR 150 a year from the employer for the permanent workers with the 10% INPS solidarity, Ebilog EUR 3.50 + 0.50 a month, and the EAR of EUR 8 on 12 months of an employer that does not pay Ebilog, when it states so in EmployerProfile.contractual_funds. The artisan section (EBNA, FSBA) is not modelled.
@@ -196,6 +189,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Implement the separate 24-month apprentice classification progression for level 6J.
+
+!!! warning "logistica-trasporto-confetra/part_time_supplementary_rate · overtime · impact yes · open"
+    PART-TIME SUPPLEMENTARY HOURS: Art. 56 pays 18% of the global hourly pay on supplementary hours up to 30% of agreed annual hours, and 40% on the excess. OT_SUPPLEMENTARE derives the 18% rate only. A caller can split hours at the annual boundary and state multiplier 1.40 for the excess, but the engine cannot determine the boundary or split a crossing event from prior year-to-date hours. Saturday work has separate Art. 13 rates.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Supply agreed annual hours and prior supplementary hours to split an event crossing the 30% annual boundary; derive the 40% multiplier on its excess without a caller override.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

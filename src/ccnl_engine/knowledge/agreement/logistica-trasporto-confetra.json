@@ -57,7 +57,7 @@
     "notes": [
       {
         "kind": "simplification",
-        "text": "Art. 71(5): the INAIL holiday top-up during injury and the local patron saint holiday are not calculated. Art. 60(2-3) additionally pays a coincident Saturday, Sunday or other holiday during sickness; this separate additional payment is not calculated.",
+        "text": "Art. 71 c. 5 (Sezione seconda) tops up reduced sickness or injury pay on letter b/c holidays only for workers of employers that applied the former Magazzini Generali agreement before 29 January 2005; employer eligibility is not stated, so this top-up is not calculated. Separately, art. 60 c. 2-3 pays an additional 1/22 of monthly global pay when a letter b holiday coincides with Saturday, Sunday or another holiday, including during injury or sickness; this additional payment is not calculated.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -65,7 +65,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Calculate the INAIL offset, local patron saint and the distinct coincident-holiday payment."
+          "remediation": "Establish the employer's eligibility for Sezione seconda before applying art. 71 c. 5; separately calculate the art. 60 c. 2-3 coincident-holiday 1/22 payment."
         }
       },
       {
@@ -140,20 +140,6 @@
       },
       {
         "kind": "simplification",
-        "text": "PART-TIME SUPPLEMENTARY HOURS: Art. 56 pays 18% of the global hourly pay on supplementary hours up to 30% of agreed annual hours, and 40% on the excess. OT_SUPPLEMENTARE derives the 18% rate only. A caller can split hours at the annual boundary and state multiplier 1.40 for the excess, but the engine cannot determine the boundary or split a crossing event from prior year-to-date hours. Saturday work has separate Art. 13 rates.",
-        "capability": "overtime",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "part_time_supplementary_rate",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Supply agreed annual hours and prior supplementary hours to split an event crossing the 30% annual boundary; derive the 40% multiplier on its excess without a caller override.",
-          "status": "open"
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "HEALTH AND BILATERAL FUNDS (artt. 51-52, pp. 64-65): Sanilog EUR 150 a year from the employer for the permanent workers with the 10% INPS solidarity, Ebilog EUR 3.50 + 0.50 a month, and the EAR of EUR 8 on 12 months of an employer that does not pay Ebilog, when it states so in EmployerProfile.contractual_funds. The artisan section (EBNA, FSBA) is not modelled.",
         "capability": "bilateral_funds",
         "monetary_impact": "yes",
@@ -206,6 +192,20 @@
             "effective_from": "2025-01-01"
           },
           "remediation": "Implement the separate 24-month apprentice classification progression for level 6J."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "PART-TIME SUPPLEMENTARY HOURS: Art. 56 pays 18% of the global hourly pay on supplementary hours up to 30% of agreed annual hours, and 40% on the excess. OT_SUPPLEMENTARE derives the 18% rate only. A caller can split hours at the annual boundary and state multiplier 1.40 for the excess, but the engine cannot determine the boundary or split a crossing event from prior year-to-date hours. Saturday work has separate Art. 13 rates.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "part_time_supplementary_rate",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Supply agreed annual hours and prior supplementary hours to split an event crossing the 30% annual boundary; derive the 40% multiplier on its excess without a caller override.",
+          "status": "open"
         }
       }
     ]
@@ -2999,7 +2999,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "7810bc0c96cd50f204e1396944c677fc96c2c3ed119d22e31db4464b0a0451fa",
+    "source_hash": "a879777b47a36759fcb631f256f606bd9f66d0714fffc80013ed4a41cfcf7281",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

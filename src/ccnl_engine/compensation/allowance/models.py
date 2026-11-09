@@ -28,7 +28,10 @@ class Allowance(BaseModel):
     elements exempts every allowance it does not list.
 
     ``percentage_rate`` calculates a role supplement on the worker's own
-    base pay plus ``percentage_base_allowances``. ``floor_level`` identifies
+    base pay plus ``percentage_base_allowances``. By default individual
+    elements are included; ``percentage_include_individual=False`` excludes
+    them when the clause enumerates only the contractual elements.
+    ``floor_level`` identifies
     the comparison level for a separate ordinary-remuneration integration,
     without changing contractual base salary or the supplement percentage.
     The integration is not the special supplement listed in Art. 24(4)
@@ -76,6 +79,7 @@ class Allowance(BaseModel):
     role: str | None = None
     percentage_rate: Decimal | None = Field(default=None, ge=0, le=1)
     percentage_base_allowances: tuple[str, ...] = ()
+    percentage_include_individual: bool = True
     floor_level: str | None = None
     months_per_year: int | None = Field(default=None, ge=1)
     tfr_relevant: bool = True
