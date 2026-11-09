@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from decimal import Decimal
-from enum import StrEnum
 from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import InvalidInputError
@@ -14,7 +13,11 @@ from ccnl_engine.validators import (
     require_date,
     require_decimal,
 )
-from ccnl_engine.working_time.overtime.inputs import OvertimeEvent, OvertimeKind
+from ccnl_engine.working_time.event_kinds import (
+    HolidayWorkKind,
+    OvertimeKind,
+    ShiftKind,
+)
 
 if TYPE_CHECKING:
     from datetime import date
@@ -34,40 +37,64 @@ __all__ = [
 ]
 
 
-class HolidayWorkKind(StrEnum):
-    """Which holiday or rest-day work a :class:`HolidayWorkEvent` pays.
+@dataclass(frozen=True)
+class OvertimeEvent:
+    """Overtime hours: INPS + IRPEF + TFR on computed gross.
 
     Attributes:
-        HOLIDAY: Hours worked on a public holiday (festività).
-        HOLIDAY_COMPENSATORY_REST: Hours worked on a public holiday or rest
-            day for which the worker takes a compensatory rest day.
-        SUNDAY: Ordinary hours worked on a Sunday by a worker whose weekly
-            rest falls on another day.
-        REST_DAY: Hours worked on the weekly rest day.
-        NIGHT_HOLIDAY: Hours worked on a public holiday at night (lavoro
-            festivo notturno), which a CCNL may pay at a rate of its own.
-        SATURDAY_SIXTH_DAY: Ordinary hours worked on Saturday or the sixth
-            day of the week (Alimentari art. 31).
+        event_date: Calendar date the overtime was worked.
+        hours: Overtime hours, above 0 and at most 744 (a month of 31 days).
+        hourly_rate: Base hourly rate in EUR, above 0; ``None`` derives it
+            from the CCNL hourly base (the run is rejected without one).
+        multiplier: Overtime multiplier applied to the hourly rate (e.g.
+            ``1.25`` for 25% supplement).  Must be > 0.  ``None`` (the
+            default) derives it from the CCNL band of ``kind`` as
+            ``1 + band``; the run is rejected when the CCNL has no single
+            percentage band for it.  An explicit value prevails over the
+            CCNL band.
+        kind: When the hours were worked, selecting the CCNL band.
+        non_occasional: Whether the overtime is worked 'a titolo non
+            occasionale', which a CCNL may count in the TFR (operai agricoli
+            OTD: 10%); ``False`` is occasional overtime.
+        banked: Whether the worker elected compensatory rest for these hours.
+            Only an agreement with an overtime bank rule can pay the premium
+            alone; the hours remain a separate rest balance outside this event.
     """
 
-    HOLIDAY = "holiday"
-    HOLIDAY_COMPENSATORY_REST = "holiday_compensatory_rest"
-    SUNDAY = "sunday"
-    REST_DAY = "rest_day"
-    NIGHT_HOLIDAY = "night_holiday"
-    SATURDAY_SIXTH_DAY = "saturday_sixth_day"
+    event_date: date
+    hours: Decimal
+    hourly_rate: Decimal | None = None
+    multiplier: Decimal | None = None
+    kind: OvertimeKind = OvertimeKind.WEEKDAY
+    non_occasional: bool = False
+    banked: bool = False
 
-
-class ShiftKind(StrEnum):
-    """Rotating shift a :class:`ShiftWorkEvent` pays.
-
-    Attributes:
-        DAY: A day shift of a rotation (turno diurno).
-        NIGHT: A night shift of a rotation (turno notturno).
-    """
-
-    DAY = "day"
-    NIGHT = "night"
+    def __post_init__(self) -> None:  # noqa: D105
+        feature = "overtime"
+        require_date(self.event_date, "OvertimeEvent.event_date", feature=feature)
+        require_decimal(
+            self.hours,
+            "OvertimeEvent.hours",
+            feature=feature,
+            positive=True,
+            maximum=_HOURS_IN_A_MONTH,
+        )
+        for name in ("hourly_rate", "multiplier"):
+            require_decimal(
+                getattr(self, name),
+                f"OvertimeEvent.{name}",
+                feature=feature,
+                positive=True,
+                optional=True,
+            )
+        require_bool(
+            self.non_occasional, "OvertimeEvent.non_occasional", feature=feature
+        )
+        require_bool(self.banked, "OvertimeEvent.banked", feature=feature)
+        kind = parse_enum(
+            self.kind, OvertimeKind, "OvertimeEvent.kind", feature=feature
+        )
+        object.__setattr__(self, "kind", kind)
 
 
 def _check_supplement(
@@ -157,12 +184,16 @@ class HolidayWorkEvent:
             CCNL band of ``kind`` and hourly base, ``hours`` required.
         hours: Hours worked that day, above 0 and at most 744.
         kind: Which holiday or rest-day work the hours are.
+        in_periodic_shift: Whether the worker is a turnista (rotating-shift
+            worker); ``None`` when unknown. Required only by bands excluding
+            such workers, even if these particular hours are outside a turn.
     """
 
     event_date: date
     supplement_amount: Decimal | None = None
     hours: Decimal | None = None
     kind: HolidayWorkKind = HolidayWorkKind.HOLIDAY
+    in_periodic_shift: bool | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         feature = "holiday_work"
@@ -177,6 +208,12 @@ class HolidayWorkEvent:
             self.kind, HolidayWorkKind, "HolidayWorkEvent.kind", feature=feature
         )
         object.__setattr__(self, "kind", kind)
+        if self.in_periodic_shift is not None:
+            require_bool(
+                self.in_periodic_shift,
+                "HolidayWorkEvent.in_periodic_shift",
+                feature=feature,
+            )
 
 
 @dataclass(frozen=True)

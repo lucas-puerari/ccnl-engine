@@ -259,22 +259,6 @@
       }
     },
     {
-      "id": "ordinary_hours_premiums",
-      "institute": "overtime",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 19 n. 12: the exclusion of the shift workers from the 8% of Sunday work with compensatory rest. The 8% of a Saturday in a six-day week (art. 5) is modelled (ANCE_SABATO_SEI_GIORNI, HolidayWorkKind.SATURDAY_SIXTH_DAY); the other premiums on ordinary hours are modelled (supplement_bands ANCE_*).",
-      "calculation": "ccnl/edilizia-ance:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the shift-worker exclusion of n. 12 and the Saturday premium of Art. 5.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "edilizia-ance/ordinary_hours_premiums"
-        ]
-      }
-    },
-    {
       "id": "parental_daily_base",
       "institute": "parental_leave",
       "variant": "all",
