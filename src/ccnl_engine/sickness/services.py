@@ -183,6 +183,10 @@ def sickness_terms(ctx: RunContext) -> SicknessTerms:
         apprentice=isinstance(ctx.request.contract_type, Apprentice),
         employee_rate=_employee_rate(ctx),
         paid_by_the_hour=ctx.proration.hourly is not None,
+        hourly_chain=ctx.full_time_chain,
+        weekly_hours=(
+            None if ctx.request.weekly_hours is None else ctx.request.weekly_hours.value
+        ),
         category=ctx.worker_category,
         monthly_payments=ccnl.parameters.additional_months,
         daily_base=_daily_base(ctx, regime),
