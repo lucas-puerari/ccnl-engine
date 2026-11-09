@@ -112,6 +112,9 @@ class HourlyPay(BaseModel):
     Attributes:
         categories: Worker categories paid by the hour.
         percentages: Percentages of the hourly elements on the same hours.
+        holiday_hours: Hours paid per caller-stated eligible holiday, separately
+            from hours actually worked.  ``None`` when no rule is encoded.
+        holiday_provenance: Source of the holiday treatment.
         provenance: Source of the clause.
 
     Raises:
@@ -122,10 +125,15 @@ class HourlyPay(BaseModel):
 
     categories: tuple[WorkerCategory, ...] = Field(min_length=1)
     percentages: tuple[HourlyPercentage, ...] = ()
+    holiday_hours: Decimal | None = Field(default=None, gt=0)
+    holiday_provenance: RuleProvenance | None = None
     provenance: RuleProvenance
 
     @model_validator(mode="after")
     def _check_codes(self) -> Self:
+        if (self.holiday_hours is None) != (self.holiday_provenance is None):
+            msg = "holiday hours require their own provenance"
+            raise ValueError(msg)
         codes = [p.code for p in self.percentages]
         if len(set(codes)) != len(codes):
             msg = f"hourly_pay percentages repeat a code: {codes}"

@@ -89,6 +89,7 @@ from ccnl_engine.irpef.other_income.inputs import (
 from ccnl_engine.leave.inputs import LeaveTakenEvent
 from ccnl_engine.leave.types import LeaveBucket
 from ccnl_engine.pension_fund.inputs import NoPensionFund, PensionFundEnrolment
+from ccnl_engine.period.facts.holiday import PaidHolidayDays
 from ccnl_engine.period.inputs import PeriodFacts, PeriodInput
 from ccnl_engine.personal_withholding.inputs import (
     PersonalWithholding,
@@ -313,6 +314,7 @@ def _facts(events: tuple[WorkEvent, ...]) -> PeriodFacts:
     return PeriodFacts(
         contributable_hours=ContributableHours(Decimal(120)),
         ordinary_hours_worked=None,
+        paid_holiday_days=PaidHolidayDays(1),
         events=events,
         regione="IT-45",
         comune_belfiore="F257",

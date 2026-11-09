@@ -10,6 +10,7 @@ from ccnl_engine.compensation.presence.inputs import validate_presence_days
 from ccnl_engine.employment.fact.inputs import ContributableHours
 from ccnl_engine.event.facade import WORK_EVENT_TYPES
 from ccnl_engine.family.inputs import FamilyComposition
+from ccnl_engine.period.facts.holiday import PaidHolidayDays
 from ccnl_engine.surtax.jurisdiction.types import check_surtax_codes
 from ccnl_engine.validators import require_instances, require_int, require_str
 
@@ -32,6 +33,8 @@ class PeriodFacts:
             an operaio then has a ``missing_fact`` blocker.  An
             ``AbsenceEvent`` of a worker paid by the hour is rejected: its
             hours are already left out of them.
+        paid_holiday_days: Caller-stated eligible holidays in this run, distinct
+            from hours worked; ``None`` leaves holiday treatment unrequested.
         presence_days: Days actually present at work in this month; ``None``
             means not supplied, zero means no qualifying days.
         site_presence_days: Of those days, days actually present at the
@@ -72,6 +75,7 @@ class PeriodFacts:
 
     contributable_hours: ContributableHours | None = None
     ordinary_hours_worked: ContributableHours | None = None
+    paid_holiday_days: PaidHolidayDays | None = None
     presence_days: int | None = None
     site_presence_days: int | None = None
     events: tuple[WorkEvent, ...] = ()
@@ -97,6 +101,7 @@ class PeriodFacts:
                     ContributableHours,
                     True,
                 ),
+                ("paid_holiday_days", self.paid_holiday_days, PaidHolidayDays, True),
                 (
                     "family_composition",
                     self.family_composition,

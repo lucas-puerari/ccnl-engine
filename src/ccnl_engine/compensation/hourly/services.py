@@ -90,10 +90,10 @@ class PercentageAmount:
 
 
 def run_percentages(ctx: RunContext) -> tuple[PercentageAmount, ...]:
-    """Return the percentages the run pays on the hours worked.
+    """Return the percentages the run pays on worked and paid-holiday hours.
 
     Returns:
-        One amount per percentage, on the hours worked and the overtime
+        One amount per percentage, on the paid hours and the overtime
         hours of a fixed-term worker; none unless paid by stated hours.
     """
     spec = ctx.contract.ccnl.parameters.hourly_pay
@@ -102,7 +102,8 @@ def run_percentages(ctx: RunContext) -> tuple[PercentageAmount, ...]:
         return ()
     chain, day = ctx.chain, ctx.contract.tctx.competence
     extra = overtime_hours(ctx.contract.ccnl, ctx.request.events)
-    scale = (hourly.hours + extra) / hourly.hours if hourly.hours else _ONE
+    paid_hours = hourly.hours + (hourly.holiday_hours or _ZERO)
+    scale = (paid_hours + extra) / paid_hours if paid_hours else _ONE
     amounts: list[PercentageAmount] = []
     with rule_scope(ruleset=ctx.contract.ccnl.meta.ccnl_id, feature="base_salary"):
         for percentage in spec.percentages:

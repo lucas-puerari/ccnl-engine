@@ -17,6 +17,7 @@ from ccnl_engine.sickness.cumulation.handlers import (
     year_issues,
 )
 from ccnl_engine.sickness.day.rules import SickDayKind
+from ccnl_engine.sickness.issue.daily_share import daily_share_issues
 from ccnl_engine.sickness.issue.rules import fixed_term_fact
 
 if TYPE_CHECKING:
@@ -101,7 +102,8 @@ def episode_issues(
     """
     if pay is None:
         return (_missing(episode, terms),)
-    issues: list[CalculationIssue] = []
+    issues: list[CalculationIssue] = list(daily_share_issues(episode, pay, terms))
+    rules = terms.rules
     kinds = {segment.kind for segment in pay.segments}
     if SickDayKind.BEYOND_COMPORTO in kinds:
         issues.append(
@@ -116,7 +118,6 @@ def episode_issues(
                 CalculationStatus.PROVISIONAL,
             )
         )
-    rules = terms.rules
     if (
         rules is not None
         and rules.inps_cover is None
@@ -203,6 +204,10 @@ def _inputs(
         "divisor": _NONE if quota is None else quota.divisor,
         "inps_cover": _NONE if cover is None else str(cover).lower(),
     }
+    if rules is not None and rules.ccnl.daily_share_reference_month is not None:
+        inputs["employer_share_wage_reference"] = (
+            f"{rules.ccnl.daily_share_reference_month:02d}-01 each calendar year"
+        )
     if pay is not None:
         inputs |= {
             "segments": _segments(pay),

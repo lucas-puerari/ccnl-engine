@@ -73,6 +73,7 @@ from ccnl_engine.irpef.other_income.inputs import (
     IncomeEstimateQuality,
 )
 from ccnl_engine.pension_fund.inputs import NoPensionFund, PensionFundEnrolment
+from ccnl_engine.period.facts.holiday import PaidHolidayDays
 from ccnl_engine.period.inputs import PeriodFacts, PeriodInput
 from ccnl_engine.personal_withholding.inputs import (
     PersonalWithholding,
@@ -178,6 +179,7 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             NaspiExclusion,
             NoPensionFund,
             OvertimeKind,
+            PaidHolidayDays,
             PayrollRun,
             PensionFundEnrolment,
             PersonalWithholding,

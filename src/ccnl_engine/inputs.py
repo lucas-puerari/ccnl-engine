@@ -79,6 +79,7 @@ from ccnl_engine.pension_fund.inputs import (
     NoPensionFund,
     PensionFundEnrolment,
 )
+from ccnl_engine.period.facts.holiday import PaidHolidayDays
 from ccnl_engine.personal_withholding.inputs import (
     PersonalWithholding,
     PersonalWithholdingKind,
@@ -131,6 +132,7 @@ __all__ = [
     "NaspiExclusion",
     "NoPensionFund",
     "OpeningBalances",
+    "PaidHolidayDays",
     "PaymentId",
     "PayrollRunId",
     "PensionFundEnrolment",
