@@ -1034,7 +1034,13 @@
     "agreement/multiservizi-anip.json": [
       "multiservizi-anip/anip_ipca_consuntivo",
       "multiservizi-anip/anip_unsigned_renewal",
-      "multiservizi-anip/multiservizi_unmodelled_rules",
+      "multiservizi-anip/multiservizi_apprenticeship_destinations",
+      "multiservizi-anip/multiservizi_duty_allowances_and_edar",
+      "multiservizi-anip/multiservizi_part_time_supplements",
+      "multiservizi-anip/multiservizi_pension_frozen_base",
+      "multiservizi-anip/multiservizi_seniority_maturation",
+      "multiservizi-anip/multiservizi_sickness_by_category_and_basis",
+      "multiservizi-anip/multiservizi_variable_time_premiums",
       "multiservizi-anip/renewal_not_signed_by_anip"
     ],
     "agreement/noleggio-autobus-conducente-anav.json": [
