@@ -431,6 +431,22 @@
       }
     },
     {
+      "id": "una_tantum_effective_work_months",
+      "institute": "una_tantum",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "The two una tantum installments are paid, but the agreement counts months of effective work; the engine counts months of employment, without reducing for months with no effective work. An absence spanning a covered month can overstate the payment.",
+      "calculation": "ccnl/noleggio-autobus-conducente-anav:coverage.notes",
+      "state": "absent",
+      "remediation": "Provide the covered months of effective work for this payment and count only those months when prorating each installment.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "noleggio-autobus-conducente-anav/una_tantum_effective_work_months"
+        ]
+      }
+    },
+    {
       "id": "una_tantum_readings",
       "institute": "base_salary",
       "variant": "all",
