@@ -58,7 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-06 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2027-06-01 |
 
 ## Review history
@@ -90,6 +90,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Level 6 junior classification and pay, PDF pp. 25, 41, 80, 82. | corrected | The 2025 minimum is 1464.53, the biennial step is 18.78, the separate element is 7.58, and the level ceases at the end of 2025; promotion after twelve months applies to hires since 2020. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Junior hire cohorts and mandatory cutoff, cached PDF pp. 25, 41, 80, 82. | corrected | The junior minimum of 1464.53 ends with 2025; 2018/2019/2020 cohorts wait 24/18/12 months. Later junior salary values only mirror level 6 to satisfy the no-gap invariant and are never paid; prior-level matured increments and unfinished biennia must be preserved or affected runs refused. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 64 c. 1(b), cached Confetra PDF p. 90; sixth-month parental leave after compulsory maternity. | corrected | The sixth month of absence targets 50% of global pay inclusive of statutory indemnity even when the leave after compulsory maternity is parental. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 56 supplementary hours on either side of the annual limit. | corrected | Art. 56, PDF p. 71: 'non possono superare, annualmente, il 30% della prestazione già concordata' at 18%; 'oltre il limite massimo complessivo annuale ... maggiorazione ... del 40%'. The 18% band remains; the 40% requires caller-split hours with an explicit multiplier because annual cumulative hours are unavailable. Corrected the limitation status to open. |
 
 ## Salary table
 
@@ -161,13 +162,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add a sixth-day kind to the overtime event and a 50% band, then remove this note.
 
-!!! note "logistica-trasporto-confetra/part_time_supplementary_rate · overtime · impact yes · resolved"
-    PART-TIME SUPPLEMENTARY HOURS: supplementary hours are paid with 18% of the hourly quota of the retribuzione globale (Art. 56, testo unico p. 71), band OT_SUPPLEMENTARE selected by OvertimeKind.SUPPLEMENTARY. The 40% past the annual limit is not modelled: the request does not count the supplementary hours of the year.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Count the supplementary hours of the year and pay the higher rate past the yearly limit.
-
 !!! note "logistica-trasporto-confetra/health_and_bilateral_funds · bilateral_funds · impact yes · resolved"
     HEALTH AND BILATERAL FUNDS (artt. 51-52, pp. 64-65): Sanilog EUR 150 a year from the employer for the permanent workers with the 10% INPS solidarity, Ebilog EUR 3.50 + 0.50 a month, and the EAR of EUR 8 on 12 months of an employer that does not pay Ebilog, when it states so in EmployerProfile.contractual_funds. The artisan section (EBNA, FSBA) is not modelled.
 
@@ -195,6 +189,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Implement the separate 24-month apprentice classification progression for level 6J.
+
+!!! warning "logistica-trasporto-confetra/part_time_supplementary_rate · overtime · impact yes · open"
+    PART-TIME SUPPLEMENTARY HOURS: Art. 56 pays 18% of the global hourly pay on supplementary hours up to 30% of agreed annual hours, and 40% on the excess. OT_SUPPLEMENTARE derives the 18% rate only. A caller can split hours at the annual boundary and state multiplier 1.40 for the excess, but the engine cannot determine the boundary or split a crossing event from prior year-to-date hours. Saturday work has separate Art. 13 rates.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Supply agreed annual hours and prior supplementary hours to split an event crossing the 30% annual boundary; derive the 40% multiplier on its excess without a caller override.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

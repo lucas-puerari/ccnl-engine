@@ -169,7 +169,7 @@
       },
       {
         "kind": "simplification",
-        "text": "The holiday target applies on the weekday national holidays: a holiday on a Sunday (paid by its own quota), the patron saint and 4 October (a holiday from 2026, which the text, signed before, does not list) are not topped up; 'festività cadenti' covers them in the text.",
+        "text": "A holiday on a Sunday (paid by its own quota) and 4 October (a holiday from 2026, which the text, signed before, does not list) are not topped up.",
         "capability": "maternity_leave",
         "monetary_impact": "yes",
         "limitation": {
@@ -177,20 +177,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Top up the holidays the clause covers beyond the weekday national calendar, and the items above."
-        }
-      },
-      {
-        "kind": "simplification",
-        "text": "The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "local_holiday_during_absence",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Provide the employer-specific patron saint holiday."
+          "remediation": "Resolve the Sunday and 4 October scope against the applicable law."
         }
       },
       {
@@ -2398,7 +2385,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "cfde1927de601850bd03417d6b8272ba92828cc2e79446f8834da2c2f37c15bd",
+    "source_hash": "c1ff838d1f660f3c5874edcc834677e77c38a9daf17f9dd3053c1287e0ca8c04",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3303,20 +3290,21 @@
               "section": "Art. 110(8)",
               "quote": "Per le festività cadenti nel periodo di assenza obbligatoria per maternità o paternità, la lavoratrice o il lavoratore padre hanno diritto ad una indennità integrativa, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione giornaliera, comprensiva degli eventuali superminimi, così come previsto dal presente contratto."
             },
-            "transformation": "Top up weekday national holidays during compulsory maternity leave to 100% of daily pay, net of INPS and ordinary CCNL integration; no ordinary maternity integration is inferred. Paternity and optional leave are not handled by this rule. 4 October, a holiday from 2026 the text does not list, is excluded (excluded_days 10-04).",
+            "transformation": "Top up weekday national holidays and the stated weekday patron saint day during compulsory maternity leave to 100% of daily pay, net of INPS and ordinary CCNL integration; no ordinary maternity integration is inferred. Paternity and optional leave are not handled by this rule. 4 October, a holiday from 2026 the text does not list, is excluded (excluded_days 10-04).",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T10:36:13Z",
-              "verified_at": "2026-11-08T10:36:13Z",
+              "extraction_timestamp": "2026-11-09T19:05:28Z",
+              "verified_at": "2026-11-09T19:05:28Z",
               "verification_status": "verified",
-              "review_id": "2026-11-08-ai-studi-professionali-confprofessioni-maternity-holiday",
+              "review_id": "2026-11-09-ai-studios-local-absence",
               "verified_by": "claude-opus-5-5"
             }
           },
           "excluded_days": [
             "10-04"
-          ]
+          ],
+          "includes_patron_saint": true
         },
         "paternity_holiday": {
           "rate": "1",
@@ -3336,20 +3324,21 @@
               "section": "Art. 110(8)",
               "quote": "Per le festività cadenti nel periodo di assenza obbligatoria per maternità o paternità, la lavoratrice o il lavoratore padre hanno diritto ad una indennità integrativa, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione giornaliera, comprensiva degli eventuali superminimi, così come previsto dal presente contratto."
             },
-            "transformation": "For a national weekday holiday taken as compulsory paternity leave, top up the INPS 100% daily indemnity to the CCNL daily pay when that is higher; no payment for a holiday outside the leave days. 4 October, a holiday from 2026 the text does not list, is excluded (excluded_days 10-04).",
+            "transformation": "For a national weekday holiday or the stated weekday patron saint day taken as compulsory paternity leave, top up the INPS 100% daily indemnity to the CCNL daily pay when that is higher; no payment for a holiday outside the leave days. 4 October, a holiday from 2026 the text does not list, is excluded (excluded_days 10-04).",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T10:44:41Z",
-              "verified_at": "2026-11-08T10:44:41Z",
+              "extraction_timestamp": "2026-11-09T19:05:28Z",
+              "verified_at": "2026-11-09T19:05:28Z",
               "verification_status": "verified",
-              "review_id": "2026-11-08-ai-studi-professionali-confprofessioni-maternity-holiday",
+              "review_id": "2026-11-09-ai-studios-local-absence",
               "verified_by": "claude-opus-5-5"
             }
           },
           "excluded_days": [
             "10-04"
-          ]
+          ],
+          "includes_patron_saint": true
         }
       }
     },
@@ -4283,6 +4272,30 @@
         "independence": "same_process",
         "checked": [
           "parameters.fourteenth_prior_extra_offset"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-studios-local-absence",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Arts. 110(8), 124 and the patron saint holiday list, cached 2024 PDF pp. 56 and 67.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "Sickness and injury already cover the stated patron saint day; compulsory maternity and paternity holiday targets now cover it too."
+        ],
+        "checked": [
+          "work_rules.sickness_rules.holiday",
+          "work_rules.insured_absence.injury.holiday",
+          "work_rules.insured_absence.maternity.holiday",
+          "work_rules.insured_absence.maternity.paternity_holiday"
         ]
       }
     ],

@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary, seniority, una_tantum |
 
 6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-23 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2026-08-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Articolo 48 - Tredicesima mensilità, comma 2 (p. 81): "il lavoratore non in prova avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestato. Le frazioni di mese non superiori ai 14 giorni non saranno calcolate, mentre saranno considerate come mese intero se superiori ai 14 giorni.". Added: more_than 14 (the file applied the engine default, at least 15 days). |
 | 2026-11-01 | claude-opus-5-5 (ai) | The una tantum of the renewal of 23 May 2025 (p. 1, OCR). | corrected | Renewal of 23 May 2025, p. 1: 600 EUR at C2 in two installments (June 2025, January 2026) for 1 January 2024 to 31 May 2025, staff in service on 23 May 2025, months with more than 15 days, part time by hours, outside the TFR: parameters.una_tantum[UT_2025]. |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 33 values found verbatim on the cited pages and marked verified; 3 left as they were (derived or not on a text page). |
+| 2026-11-09 | claude-opus-5-5 (ai) | Una Tantum of the signed renewal, PDF p. 1. | confirmed | Confirmed the C2 installments, service-on-signing condition, proportional service and part time, and TFR and Priamo exclusions; narrowed the obsolete exclusion note to the unmodelled effective-work-months condition. |
 
 ## Salary table
 
@@ -123,12 +124,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Verify the seniority amounts against the official ANAV CCNL text.
 
-!!! note "noleggio-autobus-conducente-anav/una_tantum_2025_2026 · una_tantum · impact yes · resolved"
-    SIMPLIFICATION: Una-tantum payment of 600 EUR at C2 (split June 2025 + Jan 2026) covering Jan-May 2025 gap is excluded: one-off, not a recurring salary element.
+!!! warning "noleggio-autobus-conducente-anav/una_tantum_effective_work_months · una_tantum · impact yes · open"
+    The two una tantum installments are paid, but the agreement counts months of effective work; the engine counts months of employment, without reducing for months with no effective work. An absence spanning a covered month can overstate the payment.
 
-    **Applies when:** `una_tantum` applies.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Resolved: parameters.una_tantum holds the installments of June 2025 and January 2026, paid by the engine as arrears of the covered months.
+    **Remediation:** Provide the covered months of effective work for this payment and count only those months when prorating each installment.
 
 !!! warning "noleggio-autobus-conducente-anav/salary_tables_from_proxy · base_salary · impact unknown · open"
     SIMPLIFICATION: salary tables sourced from kitech.it (dati proxy, verificare con testo ufficiale ANAV). No official CNEL PDF or ANAV archive source was found during research.
