@@ -375,7 +375,7 @@
       "institute": "seniority",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "PROVINCIAL SENIORITY: Art. 54 (pp. 55-56) sets the post-2006 amounts for five profiles, including the two super profiles, selected by Employment.roles. Provincial contracts assign the profiles within the three national areas; the file has no province-specific classification or later provincial scatto schedules. State the provincial worker profile explicitly and verify any provincial override separately.",
+      "rule": "PROVINCIAL SENIORITY: Art. 54 (pp. 55-56) grants increments only to permanent workers and sets the post-2006 amounts for five profiles, including the two super profiles, selected by Employment.roles. Provincial contracts assign the profiles within the three national areas; the file has no province-specific classification or later provincial scatto schedules. State the provincial worker profile explicitly and verify any provincial override separately.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
       "remediation": "Supply the provincial classification and any province-specific amounts; national profile figures are used until a provincial schedule is sourced.",

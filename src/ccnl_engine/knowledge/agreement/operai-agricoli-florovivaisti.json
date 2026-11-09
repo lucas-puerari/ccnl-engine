@@ -148,7 +148,7 @@
       },
       {
         "kind": "simplification",
-        "text": "PROVINCIAL SENIORITY: Art. 54 (pp. 55-56) sets the post-2006 amounts for five profiles, including the two super profiles, selected by Employment.roles. Provincial contracts assign the profiles within the three national areas; the file has no province-specific classification or later provincial scatto schedules. State the provincial worker profile explicitly and verify any provincial override separately.",
+        "text": "PROVINCIAL SENIORITY: Art. 54 (pp. 55-56) grants increments only to permanent workers and sets the post-2006 amounts for five profiles, including the two super profiles, selected by Employment.roles. Provincial contracts assign the profiles within the three national areas; the file has no province-specific classification or later provincial scatto schedules. State the provincial worker profile explicitly and verify any provincial override separately.",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
@@ -298,6 +298,7 @@
       ]
     },
     "seniority_increments": {
+      "permanent_only": true,
       "cadence_months": 24,
       "maximum_count": 5,
       "amount_by_level": {
@@ -366,19 +367,19 @@
           },
           "page": "55-56",
           "section": "Art. 54 (Scatti di anzianità)",
-          "quote": "Con decorrenza dal 1.7.2006 gli importi degli scatti di anzianità, ivi compresi quelli già maturati, attribuiti dai vigenti contratti provinciali ai profili professionali individuati nelle aree di cui all’art. 31 del presente contratto collettivo nazionale, sono incrementati nelle seguenti misure: • da € 8,99 a € 9,89 per gli operai comuni; • da € 10,33 a € 11,36 per gli operai qualificati; • da € 10,85 a € 11,93 per gli operai qualificati super; • da € 11,36 a € 12,50 per gli operai specializzati; • da € 11,62 a € 12,78 per gli operai specializzati super."
+          "quote": "Con decorrenza dal 1.2.1983, gli operai a tempo indeterminato, per ciascun biennio di anzianità di servizio presso la stessa azienda, hanno diritto, a titolo di aumento periodico di anzianità, alla corresponsione di una somma in cifra fissa pari ad € 8,99 mensili se operai comuni, ad € 10,33 mensili se operai qualificati, ad € 10,85 mensili se operai qualificati super, ad € 11,36 mensili se operai specializzati e ad € 11,62 mensili se operai specializzati super. Con decorrenza dal 1.7.2006 gli importi degli scatti di anzianità, ivi compresi quelli già maturati, attribuiti dai vigenti contratti provinciali ai profili professionali individuati nelle aree di cui all’art. 31 del presente contratto collettivo nazionale, sono incrementati nelle seguenti misure: • da € 8,99 a € 9,89 per gli operai comuni; • da € 10,33 a € 11,36 per gli operai qualificati; • da € 10,85 a € 11,93 per gli operai qualificati super; • da € 11,36 a € 12,50 per gli operai specializzati; • da € 11,62 a € 12,78 per gli operai specializzati super."
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-09T17:07:40Z",
+          "extraction_timestamp": "2026-11-09T17:24:00Z",
           "verification_status": "verified",
           "effective_from": "2006-07-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-09T17:07:40Z",
-          "review_id": "2026-11-09-ai-scatti"
+          "verified_at": "2026-11-09T17:24:00Z",
+          "review_id": "2026-11-09-ai-scatti-permanent"
         },
-        "transformation": "Every 24 months, at most 5; post-2006 figures assigned by provincial contracts: Area3 common 9.89, Area2 qualified 11.36 or qualified_super 11.93, Area1 specialized 12.50 or specialized_super 12.78. The national rule does not identify a worker's provincial profile or any subsequent local adjustment; the 2026 renewal does not amend Art. 54."
+        "transformation": "Only permanent workers receive these increments (permanent_only); fixed-term workers receive none under Art. 54. Every 24 months, at most 5; post-2006 figures assigned by provincial contracts: Area3 common 9.89, Area2 qualified 11.36 or qualified_super 11.93, Area1 specialized 12.50 or specialized_super 12.78. The national rule does not identify a worker's provincial profile or any subsequent local adjustment; the 2026 renewal does not amend Art. 54."
       }
     },
     "accrual_rule": {
@@ -963,7 +964,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "e05c34c5d9c798a13abec67397f677bf33a55ddbf2cc792958b59613f88a3c25",
+    "source_hash": "ad64427769e5a3bfa77e7f9d17a0215350751e5345c64b87a253ae78cb76d4b9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2235,6 +2236,24 @@
         ],
         "findings": [
           "The older figures on page 55 are superseded by the post-2006 figures on page 56 for provincial profile assignments; the provincial contracts and actual profile assignments remain unsourced."
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-scatti-permanent",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Article 54 permanent-worker eligibility, cached signed text PDF page 55.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+            "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+          }
+        ],
+        "findings": [
+          "Art. 54 explicitly grants biennial increments to permanent workers only; fixed-term workers have a separate, unmodelled element under the 2026 renewal."
         ]
       }
     ],

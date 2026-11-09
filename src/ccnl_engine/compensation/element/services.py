@@ -49,13 +49,17 @@ def _seniority_count(
     level: Level,
     seniority_months: int | None,
     worker_category: WorkerCategory | None,
+    contract_type: Permanent | FixedTerm | Apprentice,
 ) -> int:
     """Return the seniority increments matured by the worker.
 
     Returns:
         Zero when the seniority is not declared.
     """
-    if seniority_months is None:
+    if seniority_months is None or (
+        ccnl.parameters.seniority_increments.permanent_only
+        and isinstance(contract_type, FixedTerm)
+    ):
         return 0
     return _resolve_seniority_count(
         ccnl.parameters.seniority_increments,
@@ -168,11 +172,15 @@ def _resolve_chain(
         level = transitioned_level(
             ccnl, level, contract_type, as_of, level_started_on, hired_on=hired_on
         )
+        eligible_for_seniority = not isinstance(contract_type, Apprentice) and not (
+            ccnl.parameters.seniority_increments.permanent_only
+            and isinstance(contract_type, FixedTerm)
+        )
         if (
             seniority is not None
             and seniority.earned is not None
             and seniority_months is not None
-            and not isinstance(contract_type, Apprentice)
+            and eligible_for_seniority
         ):
             with rule_scope(feature="seniority"):
                 stated = earned_seniority(
@@ -191,7 +199,7 @@ def _resolve_chain(
             and seniority.promotion is not None
             and seniority_months is not None
             and _reprices_at_next(ccnl)
-            and not isinstance(contract_type, Apprentice)
+            and eligible_for_seniority
         ):
             promotion = seniority.promotion
             with rule_scope(feature="seniority"):
@@ -234,7 +242,9 @@ def _contract_chain(
     level = transitioned_level(
         ccnl, level, contract_type, as_of, level_started_on, hired_on=hired_on
     )
-    count = _seniority_count(ccnl, level, seniority_months, worker_category)
+    count = _seniority_count(
+        ccnl, level, seniority_months, worker_category, contract_type
+    )
     scaling: ApprenticeshipScaling | None = None
     if isinstance(contract_type, Apprentice) and contract_type.programme in _DUAL:
         chain = dual_chain(

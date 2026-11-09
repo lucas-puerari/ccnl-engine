@@ -11,7 +11,9 @@ from ccnl_engine.agreement.validators import _check_category_level_codes
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.comparison.ruleset.rules import _seniority_rules
 from ccnl_engine.compensation.element.rules import _level_chain
+from ccnl_engine.compensation.element.services import _resolve_chain
 from ccnl_engine.employment.fact.roles import roles_issue
+from ccnl_engine.employment.inputs import FixedTerm, Permanent
 from ccnl_engine.seniority.rules import _resolve_seniority_count
 
 if TYPE_CHECKING:
@@ -19,6 +21,27 @@ if TYPE_CHECKING:
 
 _CCNL = load_ccnl("operai-agricoli-florovivaisti")
 _AS_OF = date(2026, 7, 1)
+
+
+@pytest.mark.parametrize(
+    ("contract_type", "expected"),
+    [(FixedTerm(), "0"), (Permanent(), "23.86")],
+)
+def test_permanent_only_scatti_at_48_months(
+    contract_type: FixedTerm | Permanent, expected: str
+) -> None:
+    """At 48 months Area 2 super pays 2 x 11.93 = 23.86 only to permanent workers."""
+    chain, _ = _resolve_chain(
+        _CCNL,
+        _CCNL.level_by_code("Area2"),
+        contract_type,
+        _AS_OF,
+        seniority_months=48,
+        roles=frozenset({"qualified_super"}),
+        worker_category=None,
+        hired_on=date(2022, 6, 1),
+    )
+    assert chain.seniority == Decimal(expected)
 
 
 @pytest.mark.parametrize(
