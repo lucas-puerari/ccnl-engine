@@ -26,6 +26,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.policies import absence_decision, resolve_absence
 from ccnl_engine.decision.models import CalculationDecision, CalculationStatus
+from ccnl_engine.errors import MissingRuleError
 from ccnl_engine.event.facade import (
     AbsenceEvent,
     HolidayWorkEvent,
@@ -103,8 +104,19 @@ def _overtime(
 
     Returns:
         The paid event, the band and hourly rate decisions and the issues.
+
+    Raises:
+        MissingRuleError: When banked hours have no percentage bank rule.
     """
     rate = resolve_overtime_rate(event, bands)
+    if event.banked and (bands.bank_share is None or rate.hourly_amount is not None):
+        msg = "No percentage overtime bank rule applies to these hours"
+        raise MissingRuleError(
+            msg,
+            as_of=event.event_date,
+            feature="overtime",
+            remediation="Use an agreement with a verified overtime bank rule.",
+        )
     paid = rate.paid(event)
     decisions: list[CalculationDecision] = []
     if paid.hourly_rate is None:
@@ -128,9 +140,30 @@ def _overtime(
                 amount=_standard_event_gross(paid),
             )
         )
-    band = band_decision(paid, rate, bands, _standard_event_gross(paid))
-    decisions.extend(() if band is None else (band,))
-    return WorkResolution(paid, tuple(decisions), overtime_issues(paid, rate))
+    if event.banked:
+        assert bands.bank_share is not None
+        assert paid.multiplier is not None
+        paid = replace(paid, multiplier=(paid.multiplier - 1) * bands.bank_share)
+        if decisions:
+            decisions[0] = replace(decisions[0], amount=_standard_event_gross(paid))
+        decisions.append(
+            CalculationDecision(
+                capability="overtime",
+                status=CalculationStatus.FINAL,
+                reason_code="overtime_bank_premium",
+                rule=f"{bands.ruleset}:work_rules.time_supplements.overtime_bank_share",
+                rule_version=bands.version,
+                inputs={"hours": event.hours, "premium_share": bands.bank_share},
+                source=None
+                if bands.bank_source is None
+                else bands.bank_source.location,
+                amount=_standard_event_gross(paid),
+            )
+        )
+    else:
+        band = band_decision(paid, rate, bands, _standard_event_gross(paid))
+        decisions.extend(() if band is None else (band,))
+    return WorkResolution(paid, tuple(decisions), overtime_issues(event, rate))
 
 
 def resolve_work_event(

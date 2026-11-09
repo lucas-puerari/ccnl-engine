@@ -64,6 +64,11 @@ _NOT_EXERCISED: dict[str, str] = {
         "not cover the impiegati of industria; "
         "tests/mutation/ccnl_engine/sickness/base/test_rules.py shows the fallback"
     ),
+    "EmployerProfile.legacy_section_applicable": (
+        "read only when a listed holiday overlaps sickness or injury under a "
+        "legacy-section CCNL rule; tests/mutation/ccnl_engine/sickness/holiday/"
+        "test_legacy_section.py compares stated and unknown employer facts"
+    ),
     "EmployerProfile.patron_saint_day": (
         "local patron saint dates are specific to each CCNL and employer; "
         "tests/mutation/ccnl_engine/sickness/holiday/test_patron_day.py and "

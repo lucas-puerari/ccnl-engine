@@ -30,17 +30,18 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.decision.models import (
-    CalculationDecision,
     CalculationIssue,
     CalculationStatus,
     IssueCause,
 )
 from ccnl_engine.errors import MissingRuleError
 from ccnl_engine.working_time.models import TimeSupplementKind, WorkKind
+from ccnl_engine.working_time.overtime.decisions import CCNL_BAND_APPLIED, band_decision
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.event.facade import OvertimeEvent
+    from ccnl_engine.provenance.source.rule.models import RuleProvenance
     from ccnl_engine.working_time.models import OvertimeBand
 
 __all__ = [
@@ -49,11 +50,11 @@ __all__ = [
     "TIER_NOT_APPLIED",
     "CCNLOvertimeBands",
     "OvertimeRate",
+    "band_decision",
     "resolve_overtime_rate",
 ]
 
 CALLER_MULTIPLIER_DIFFERS = "caller_multiplier_differs_from_ccnl"
-CCNL_BAND_APPLIED = "ccnl_overtime_band_applied"
 TIER_NOT_APPLIED = "overtime_tier_not_applied"
 _OVERTIME_PREFIX = "OT_"
 _FALLBACK = {WorkKind.REST_DAY: WorkKind.HOLIDAY, WorkKind.SATURDAY: WorkKind.WEEKDAY}
@@ -65,12 +66,22 @@ class CCNLOvertimeBands:
 
     Attributes:
         bands: Time-supplement bands of the CCNL that apply to the worker's
-            level, empty when it has none.
+            level, empty when it has none. They identify the full premium
+            before a worker's rest election changes its immediate cash value.
+        bank_share: Fraction of the applicable overtime premium paid now
+            when the worker banks the base hour for later rest. Absent when
+            the CCNL does not define such a rule. This is not a bank balance
+            and carries neither a rest date nor a payout date.
+        bank_source: Provenance of that fraction, separate from the source
+            of each ordinary overtime band. It is cited in the decision
+            for the cash premium on banked hours.
         ruleset: Ruleset identifier of the CCNL.
         version: Ruleset version.
     """
 
     bands: tuple[OvertimeBand, ...] = ()
+    bank_share: Decimal | None = None
+    bank_source: RuleProvenance | None = None
     ruleset: str = "ccnl"
     version: str = "none"
 
@@ -90,9 +101,11 @@ class CCNLOvertimeBands:
         supplements = None if rules is None else rules.time_supplements
         every = () if supplements is None else supplements.overtime_bands
         bands = tuple(b for b in every if not b.levels or level_code in b.levels)
+        share = None if supplements is None else supplements.overtime_bank_share
+        source = None if supplements is None else supplements.overtime_bank_provenance
         if ccnl.ruleset is not None:
-            return cls(bands, ccnl.ruleset.id, ccnl.ruleset.version)
-        return cls(bands, f"ccnl/{ccnl.meta.ccnl_id}", str(year))
+            return cls(bands, share, source, ccnl.ruleset.id, ccnl.ruleset.version)
+        return cls(bands, share, source, f"ccnl/{ccnl.meta.ccnl_id}", str(year))
 
     def rule_of(self, band: OvertimeBand) -> str:
         """Return the rule identifier of ``band``.
@@ -288,42 +301,3 @@ def _issue(code: str, message: str, cause: IssueCause) -> tuple[CalculationIssue
 
 _PROVISIONAL = CalculationStatus.PROVISIONAL
 _OT, _MULTIPLIER = "overtime", "Pass OvertimeEvent.multiplier."
-
-
-def band_decision(
-    event: OvertimeEvent, rate: OvertimeRate, bands: CCNLOvertimeBands, amount: Decimal
-) -> CalculationDecision | None:
-    """Return the decision of a multiplier derived from the CCNL band.
-
-    Returns:
-        An ``overtime`` decision citing the band, provisional when higher
-        tiers were left out; ``None`` for a caller multiplier.
-    """
-    band = rate.band
-    if not rate.derived or band is None:
-        return None
-    provenance = band.provenance
-    paid: dict[str, Decimal | str] = (
-        {"band_hourly_amount": rate.hourly_amount}
-        if rate.hourly_amount is not None
-        else {"band_supplement": rate.supplement or Decimal(0)}
-    )
-    return CalculationDecision(
-        capability="overtime",
-        status=CalculationStatus.PROVISIONAL if rate.tiers else CalculationStatus.FINAL,
-        reason_code=CCNL_BAND_APPLIED,
-        rule=bands.rule_of(band),
-        rule_version=bands.version,
-        inputs={
-            "kind": event.kind.value,
-            "band_code": band.code,
-            **paid,
-            "multiplier": rate.multiplier,
-            "hours": event.hours,
-            "hourly_rate": (
-                "not_stated" if event.hourly_rate is None else event.hourly_rate
-            ),
-        },
-        source=None if provenance is None else provenance.location,
-        amount=amount,
-    )

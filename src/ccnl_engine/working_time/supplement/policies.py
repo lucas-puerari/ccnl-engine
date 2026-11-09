@@ -1,7 +1,8 @@
 """Supplement of ordinary night, holiday and shift hours from the CCNL band.
 
 A night, holiday or shift event without ``supplement_amount`` is paid
-``rate * hours * hourly base``: the band of its work in
+``rate * hours * hourly base`` (or ``rate * hours`` for a fixed per-hour
+allowance): the band of its work in
 ``work_rules.time_supplements.supplement_bands`` and the hourly base of
 :mod:`~ccnl_engine.working_time.hourly.policies`.  The band is the one in
 force on the event date, of the worker's level, and of a role the worker
@@ -110,18 +111,19 @@ class SupplementPay:
     """The supplement of an event and what it is computed from.
 
     Attributes:
-        amount: ``rate * hours * hourly base``, rounded to the cent.
+        amount: ``rate * hours * hourly base`` or ``rate * hours`` for
+            fixed hourly allowances, rounded to the cent.
         band: The CCNL band applied.
         rate: Its rate on the event date.
         hours: Hours of the event.
-        base: The hourly base.
+        base: The hourly base, absent for fixed per-hour allowances.
     """
 
     amount: Decimal
     band: SupplementBand
     rate: Decimal
     hours: Decimal
-    base: HourlyBase
+    base: HourlyBase | None
 
 
 def resolve_supplement(event: SupplementEvent, terms: HourlyTerms) -> SupplementPay:
@@ -158,10 +160,20 @@ def resolve_supplement(event: SupplementEvent, terms: HourlyTerms) -> Supplement
             )
         if event.in_periodic_shift:
             rate = Decimal(0)
-    base = terms.base(day, field, feature, band.base, supplement=True)
+    base = (
+        None
+        if band.fixed_per_hour
+        else terms.base(day, field, feature, band.base, supplement=True)
+    )
     # The event validation requires the hours when the amount is not stated.
     hours = event.hours or Decimal(0)
-    return SupplementPay(money(hours * rate * base.rate), band, rate, hours, base)
+    return SupplementPay(
+        money(hours * rate * (Decimal(1) if base is None else base.rate)),
+        band,
+        rate,
+        hours,
+        base,
+    )
 
 
 def supplement_decision(
@@ -189,9 +201,14 @@ def supplement_decision(
             "work": band.work.value,
             "band_code": band.code,
             "band_supplement": pay.rate,
+            "fixed_per_hour": str(band.fixed_per_hour).lower(),
             "hours": pay.hours,
-            **pay.base.inputs(),
-            "hourly_base_rule": terms.rule_of(BASE_PATH),
+            **({} if pay.base is None else pay.base.inputs()),
+            **(
+                {}
+                if pay.base is None
+                else {"hourly_base_rule": terms.rule_of(BASE_PATH)}
+            ),
             "hours_paid_apart": _PAID_APART[band.hours_paid_apart],
             **(
                 {"in_periodic_shift": "yes" if event.in_periodic_shift else "no"}
@@ -229,7 +246,8 @@ def supplement_issue(
     if paid_apart is False:
         return None
     day = event.event_date.isoformat()
-    hours = f"the {pay.hours} hours worked on {day} (hourly base {pay.base.rate:.4f})"
+    base = "" if pay.base is None else f" (hourly base {pay.base.rate:.4f})"
+    hours = f"the {pay.hours} hours worked on {day}{base}"
     why = (
         f"the CCNL band {pay.band.code} pays {hours} on top of the monthly pay"
         if paid_apart
