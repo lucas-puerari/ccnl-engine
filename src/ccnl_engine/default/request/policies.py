@@ -185,6 +185,13 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "an adult hire: on a CCNL that counts the increments from an age the "
         "service counts from the start, without a blocker",
     ),
+    "EmploymentPeriod.uninterrupted_service_started_on": requires_fact(
+        "base_salary",
+        "employment_period.uninterrupted_service_started_on",
+        _PENDING,
+        "the hire date stands for uninterrupted actual service when no separate "
+        "start is supplied; conventional seniority and breaks are not inferred",
+    ),
     "EmploymentPeriod.probation_until": requires_fact(
         "contractual_funds",
         "employment_period.probation_until",

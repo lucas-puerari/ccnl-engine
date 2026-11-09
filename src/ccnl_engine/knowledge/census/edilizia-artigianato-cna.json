@@ -134,11 +134,11 @@
       "id": "loyalty_service_count",
       "institute": "base_salary",
       "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 65: the twenty years of uninterrupted actual service leave out 'le anzianità convenzionali di carattere militare'; the engine counts the years from the start of the employment period, so the caller states a start that leaves them out. The anniversary of a hire on 29 February falls on 28 February in a common year (the text does not say).",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "Art. 65 does not specify the anniversary of a hire on 29 February in a common year; the engine uses 28 February.",
       "calculation": "ccnl/edilizia-artigianato-cna:coverage.notes",
       "state": "absent",
-      "remediation": "State the years of actual service the premio counts as a worker fact.",
+      "remediation": "Source the anniversary rule for a 29 February hire before changing the fallback.",
       "origin": "seeded",
       "links": {
         "limitations": [
