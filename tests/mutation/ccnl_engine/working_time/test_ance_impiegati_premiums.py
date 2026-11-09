@@ -13,6 +13,7 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.balance.models import PeriodState
+from ccnl_engine.decision.models import IssueCause
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.event.facade import HolidayWorkEvent, NightShiftEvent
 from ccnl_engine.period.requests import PeriodCalculationRequest
@@ -97,12 +98,22 @@ def test_night_holiday_excludes_periodic_shifts(in_shift: bool, expected: str) -
         if d.reason_code == "ccnl_supplement_applied" and d.capability == "holiday_work"
     )
     assert decision.inputs["band_code"] == "ANCE_IMP_FESTIVO_NOTTURNO"
+    assert decision.inputs["work"] == "night_holiday"
+    assert decision.inputs["hours"] == _HOURS
+    assert decision.inputs["band_supplement"] == (
+        Decimal(0) if in_shift else Decimal("0.50")
+    )
+    assert decision.inputs["in_periodic_shift"] == ("yes" if in_shift else "no")
+    assert decision.inputs["hours_paid_apart"] == "unconfirmed"
+    assert decision.reason_code == "ccnl_supplement_applied"
     assert decision.amount == Decimal(expected)
     assert decision.status.value == "provisional"
     if in_shift:
         assert any(
             issue.code == "supplement_shift_holiday_rate_unresolved"
             and issue.status.value == "provisional"
+            and issue.capability == "holiday_work"
+            and issue.cause is IssueCause.RULE
             and "10%" in issue.message
             for issue in result.issues
         )
