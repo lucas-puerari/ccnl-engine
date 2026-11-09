@@ -132,6 +132,54 @@ def test_metal_only_letter_b_and_reduced_days() -> None:
     assert date(2026, 4, 25) not in days
 
 
+def test_confapi_january_injury_month_tops_up_epiphany() -> None:
+    """Jan 1-7: Jan 1 waiting pays 60 and Jan 2-7 INAIL pays 6*60=360.
+
+    Daily global pay is 3000/30=100. Before art. 32, employer holiday
+    integration was 0; now Jan 1 and Jan 6 each add 100-60=40, so the
+    month slice pays 60+360+80=500 rather than 420.
+    """
+    paid = _paid(
+        "metalmeccanico-confapi",
+        date(2026, 1, 1),
+        date(2026, 1, 7),
+        date(2025, 12, 29),
+    )
+    assert (paid.carenza, paid.indemnity, paid.integration) == (
+        Decimal(60),
+        Decimal(360),
+        Decimal(80),
+    )
+
+
+def test_confapi_april_injury_month_excludes_liberation_day() -> None:
+    """Apr 24-26, 2028: INAIL pays 3*60=180 of 3*100 daily pay.
+
+    Before and after art. 32, April 25 (letter a) adds zero: the slice
+    pays 180, not the 220 due if the holiday were incorrectly included.
+    """
+    paid = _paid(
+        "metalmeccanico-confapi",
+        date(2028, 4, 24),
+        date(2028, 4, 26),
+        date(2028, 4, 20),
+    )
+    assert (paid.carenza, paid.indemnity, paid.integration) == (
+        Decimal(0),
+        Decimal(180),
+        Decimal(0),
+    )
+    work = load_ccnl("metalmeccanico-confapi").work_rules
+    assert work is not None
+    assert work.insured_absence is not None
+    injury = work.insured_absence.injury
+    assert injury is not None
+    days = covered_target_holidays(injury.holiday, load_national_holidays(), 2028)
+    assert date(2028, 4, 25) not in days
+    assert date(2028, 1, 6) in days
+    assert date(2028, 10, 4) not in days
+
+
 def test_confcommercio_injury_holiday_reaches_gross_quota() -> None:
     """Jan 6: 100 gross = 60 INAIL + 40 employer, despite net ordinary bands."""
     paid = _paid(

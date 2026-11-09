@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 37 verified / 23 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 44 verified / 23 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Art. 43 (PDF p. 66) and art. 61 (PDF p. 75) of the CCNL 19 April 2010, the renewals of 2014, 2018, 2022 and 2025 for amendments, and the Sunday-holiday code of the engine, by a separate model session. | flagged | Confirmed: the quota of '11-04' at 1/25 is paid on the first Sunday of every November, a second quota when 1 November is that Sunday (art. 61 and art. 43); no renewal amends art. 43.<br>Flagged, kept under november_4_holiday: a worker not employed on the first Sunday of November gets no quota; the 'retribuzione stessa' is read as the monthly pay of the chain. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 65, 44, 63, 72 and 76 of the CCNL 19 April 2010 against the loyalty premium encoding, by a separate model session. | flagged | Confirmed: one month of the art. 44 elements 1-15 on the hire anniversary after 20 years of uninterrupted actual service, then every year; impiegati and quadri (art. 76, with the function allowance); in the TFR base (art. 72); out of the 13th (art. 63, item 18 of art. 44).<br>Flagged, kept in the limitation loyalty_premium: the run chain stands for the elements 1-15, the employment start for the qualifying service, the anniversary month for the date; the pro rata at a non-disciplinary dismissal is not paid. |
 | 2026-11-09 | gpt-6-sol (ai) | Art. 92 (PDF pp. 4-6), extension of a first-level apprenticeship after a failed qualification, by a separate model session. | corrected | Confirmed: the employer may extend the contract up to one year; only when the title is not obtained does the pay stay at the previous contract year (p. 6).<br>Confirmed: the previous year is read by semester (85% at month 36, 90% at month 42 for the qualifica track).<br>Corrected: an extension starting before the end of the original contract of the track (p. 4) was accepted and could underpay; it is now rejected. |
+| 2026-11-09 | gpt-6-sol (ai) | Art. 50 (PDF p. 70), cash-handling allowance, and arts. 44, 47, 52, 63-64, 76 for the remaining limitations, by a separate model session. | confirmed | Confirmed: 8% of the monthly minimum and the ex-contingenza for an impiegato who normally handles money with liability for errors; no allowance without the attested role.<br>Confirmed: the allowance enters the thirteenth and the annual premium (art. 44 item 12, arts. 63-64).<br>Flagged: 1 February 2025 is the first salary tranche in the data, not the clause start; earlier eligibility is not encoded.<br>Confirmed: the art. 47, art. 52, art. 76 and provincial premium limitations stay open. |
 | 2026-11-09 | gpt-6-sol (ai) | Art. 54 (PDF p. 71), night-holiday work in periodic shifts against the 50% band, by a separate model session. | corrected | Confirmed: the 50% night-holiday band excludes the hours comprised in periodic shifts; ordinary holiday and other bands are unaffected.<br>Flagged and corrected: an excluded hour is now provisional, not final at zero, since no combined night-holiday periodic-shift rate is printed; the 10% night-shift band of the same page stays as encoded.<br>Confirmed: a missing in_periodic_shift fact blocks only the restricted band. |
 
 ## Salary table
@@ -140,11 +141,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Represent qualifying actual service and the Art. 44 items 1-15 individually, and pay whole-month twelfths on eligible non-disciplinary dismissal.
 
 !!! warning "edilizia-ance-impiegati/special_allowances · base_salary · impact yes · open"
-    Art. 47, 50 and 52: the indennità speciale, di cassa and for alta montagna, cassoni and galleria.
+    Artt. 47 and 52: the 25% special allowance for directors with responsibility for a company or department also depends on the unmodelled provincial production premium (and the option to deduct it from a superminimo set for those duties); the mountain and compressed-air caisson treatment depends on the operai's territorial rates; the EUR 25.82 monthly tunnel allowance is absorbed by same-purpose payments and by existing superminimi not granted for merit or another specific reason. Art. 50 cash handling with liability for errors is paid at 8% of minimum plus ex-contingenza when the role is attested.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the allowances of Artt. 47, 50 and 52.
+    **Remediation:** Source the provincial production premium and the operai's rates, and represent the specified superminimo absorption before paying the remaining allowances of Artt. 47 and 52.
 
 !!! warning "edilizia-ance-impiegati/provincial_meals_transport_travel · territorial_supplement · impact yes · open"
     Mensa, trasporto and trasferta, set by the provincial agreements (verbale 2025).
@@ -187,6 +188,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation.
+
+!!! warning "apprenticeship_pct_undeclared_components · base_salary · impact unknown · open"
+    A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.
+
+    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

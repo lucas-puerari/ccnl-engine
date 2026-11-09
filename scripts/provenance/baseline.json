@@ -942,7 +942,6 @@
       "lavoro-domestico-convivente-orario-ridotto/art34_role_conditions",
       "lavoro-domestico-convivente-orario-ridotto/extra_month_hours",
       "lavoro-domestico-convivente-orario-ridotto/hourly_inps_bracket_unvalidated",
-      "lavoro-domestico-convivente-orario-ridotto/hours_within_arrangement",
       "lavoro-domestico-convivente-orario-ridotto/students_other_levels"
     ],
     "agreement/lavoro-domestico-convivente.json": [
@@ -1009,7 +1008,7 @@
       "metalmeccanico-confapi/child_sickness_and_oncological_permits",
       "metalmeccanico-confapi/elemento_perequativo",
       "metalmeccanico-confapi/flexibility_and_hours_bank",
-      "metalmeccanico-confapi/holiday_during_injury",
+      "metalmeccanico-confapi/holiday_outside_calendar",
       "metalmeccanico-confapi/ipca_top_up",
       "metalmeccanico-confapi/ordinary_hours_premiums",
       "metalmeccanico-confapi/par_conto_ore_hourly_elements",
