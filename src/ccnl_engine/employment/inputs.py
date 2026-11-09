@@ -27,6 +27,7 @@ from ccnl_engine.employment.fact.inputs import (
     check_pattern_hours,
     check_within_full_time,
 )
+from ccnl_engine.employment.field_specs import employment_fields
 from ccnl_engine.employment.fixed_term.inputs import FixedTerm
 from ccnl_engine.employment.level_start import check_level_start
 from ccnl_engine.employment.period.inputs import EmploymentPeriod
@@ -34,7 +35,6 @@ from ccnl_engine.employment.rest_day.inputs import Weekday, check_rest_day
 from ccnl_engine.employment.rota.inputs import Rota, check_rota
 from ccnl_engine.employment.week_days.inputs import check_week_days
 from ccnl_engine.pension_fund.inputs import (
-    PENSION_FUND_TYPES,
     NoPensionFund,
     PensionFundEnrolment,
 )
@@ -139,6 +139,10 @@ class Employment:
         holiday_company_offset: Company holiday compensation already paid for the
             eligible former-worker holidays of this month. Zero states no
             offset; ``None`` means the company arrangement is unknown.
+        prior_extra_month_amount: Annual extra remuneration month(s) already
+            received beyond the thirteenth at the contract's entry, excluding
+            merit bonuses. Zero states none; ``None`` is unknown. The amount
+            is a full monthly amount, before accrual proration.
         erc_amount: Annual Elemento di Raccordo Contrattuale of the CCNL grafici
             editoriali (renewal of 19 January 2021), frozen in December 2020; zero when
             the worker has none.  It is paid with the tredicesima, by its months, and
@@ -189,6 +193,7 @@ class Employment:
     tfr_fund: TfrFundBalance | None = None
     tfr_treasury_fund: bool | None = None
     erc_amount: Decimal | None = None
+    prior_extra_month_amount: Decimal | None = None
     holiday_company_offset: Decimal | None = None
     public_end_of_service: PublicEndOfService | None = None
     individual_elements: tuple[IndividualElement, ...] = ()
@@ -247,6 +252,13 @@ class Employment:
             optional=True,
         )
         require_decimal(
+            self.prior_extra_month_amount,
+            "Employment.prior_extra_month_amount",
+            feature=FEATURE,
+            optional=True,
+            minimum=Decimal(0),
+        )
+        require_decimal(
             self.erc_amount,
             "Employment.erc_amount",
             feature=FEATURE,
@@ -270,26 +282,4 @@ class Employment:
             self.seniority.months_in_month(year, month)
 
     def _typed_fields(self) -> tuple[FieldSpec, ...]:
-        return (
-            (
-                "contract_type",
-                self.contract_type,
-                (Permanent, Apprentice, FixedTerm),
-                False,
-            ),
-            ("employment_period", self.employment_period, EmploymentPeriod, True),
-            ("level_started_on", self.level_started_on, date, True),
-            ("weekly_hours", self.weekly_hours, WeeklyHours, True),
-            ("full_time_weekly_hours", self.full_time_weekly_hours, WeeklyHours, True),
-            ("work_pattern", self.work_pattern, WorkPattern, True),
-            ("seniority", self.seniority, SeniorityFact, True),
-            (
-                "contribution_history",
-                self.contribution_history,
-                ContributionHistory,
-                True,
-            ),
-            ("pension_fund", self.pension_fund, PENSION_FUND_TYPES, True),
-            ("tfr_fund", self.tfr_fund, TfrFundBalance, True),
-            ("tfr_treasury_fund", self.tfr_treasury_fund, bool, True),
-        )
+        return employment_fields(self, (Permanent, Apprentice, FixedTerm))

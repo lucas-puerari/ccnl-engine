@@ -138,19 +138,6 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "Art. 143: the exclusion of the quattordicesima for workers already paid extra months. The una tantum of EUR 400 (EUR 200 in May 2024 and May 2025, p. 73) is historic and outside the TFR base.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "fourteenth_exclusion",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Add a worker fact for extra months already paid."
-        }
-      },
-      {
         "kind": "info",
         "text": "HOURLY RATE AND SUPPLEMENTS (artt. 93-97, 135, 137 of the CCNL of 16 February 2024): without a caller value the engine derives the hourly base (the art. 135 normale retribuzione over 170) and the 30% on festività hours paid as straordinario festivo (art. 97 lett. E with art. 95); art. 97 also pays the hours themselves, which the engine does not post: the run is provisional. Not derived, the caller states the amount: ordinary night work, which art. 93 leaves to the Area Professionale or second-level bargaining (the 30% of art. 95 is a night overtime rate); work on the weekly rest day ('la relativa sola maggiorazione', art. 97 lett. F, names no percentage)."
       },
@@ -209,6 +196,10 @@
       {
         "kind": "info",
         "text": "Art. 115: TravelAllowanceEvent uses total mission_hours for the daily EUR 15 (>8 to 24 hours) or EUR 30 (>24 hours), reduced by 10% when habitual_travel or mission_over_month is true. The caller determines whether the actual mission exceeds one calendar month and states the TFR treatment; documented expenses are separate reimbursements. The clause does not specify a diaria at exactly eight hours."
+      },
+      {
+        "kind": "info",
+        "text": "Art. 143: extra remuneration months already received beyond the thirteenth at contract entry offset the fourteenth, up to its amount; merit bonuses are not absorbed. The worker states the full historical extra monthly amount (zero if none); absent facts block only workers hired at or before entry, or with an unknown start date."
       }
     ]
   },
@@ -738,7 +729,37 @@
           "quote": "5°            1.315,12         91,36               1.406,48"
         }
       }
-    ]
+    ],
+    "fourteenth_prior_extra_offset": {
+      "entry_on": "2024-02-16",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+            "kind": "associazione",
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          },
+          "page": "1, 74",
+          "section": "Contract validity (p. 1); Art. 143 - Quattordicesima mensilità (p. 74)",
+          "quote": "Il presente Contratto Collettivo di Lavoro ha durata triennale dal 16 febbraio 2024 fino al 15 febbraio 2027. [...] Non hanno diritto alla quattordicesima mensilità tutti i lavoratori che alla data dell'entrata in vigore del presente contratto già percepiscono mensilità di retribuzione oltre la tredicesima, di importo almeno pari a quello del premio ferie di cui sopra; ove la parte di mensilità eccedente non raggiunga l'intero importo della quattordicesima mensilità di cui sopra, i lavoratori hanno diritto alla differenza tra l'ammontare del premio stesso e l'importo in atto percepito. Non sono assorbibili nella quattordicesima mensilità le gratifiche, indennità o premi erogati a titolo di merito individuale o collettivo."
+        },
+        "transformation": "On a fourteenth run or its termination settlement, subtract the worker's extra monthly remuneration already received at contract entry from the fourteenth entitlement (prorated by its accrued fraction), floored at zero. Exclude merit awards. A post-entry hire has no pre-existing entitlement at contract entry.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T13:33:48Z",
+          "effective_from": "2024-02-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-08T13:33:48Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-08-ai-fourteenth-offset"
+        }
+      }
+    }
   },
   "levels": [
     {
@@ -2377,7 +2398,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "c8b61957ece313f88d54c6f3f2314bd716ffc8e5cdf3579de7084dc35161a8e5",
+    "source_hash": "cfde1927de601850bd03417d6b8272ba92828cc2e79446f8834da2c2f37c15bd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4241,6 +4262,27 @@
             "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
             "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
           }
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-fourteenth-offset",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 143 fourteenth exclusion and difference for extra remuneration already received at contract entry, against the cached 2024 text, page 74.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "Only extra remuneration months already received at contract entry offset the fourteenth; merit bonuses remain outside the credit. A missing worker amount can affect only workers employed by the entry date or with an unknown start."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.fourteenth_prior_extra_offset"
         ]
       }
     ],

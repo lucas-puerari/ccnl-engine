@@ -25,6 +25,7 @@ from ccnl_engine.extra_month.models import (
     ExtraMonthAccrual,
     MonthAccrualRule,
 )
+from ccnl_engine.extra_month.offset.services import offset_fourteenth
 from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
 from ccnl_engine.extra_month.services import run_schedule
 from ccnl_engine.pay_item.rounding.policies import money
@@ -39,6 +40,7 @@ if TYPE_CHECKING:
     from ccnl_engine.compensation.element.types import MonthlyPayChain
     from ccnl_engine.employment.fact.inputs import WorkPattern
     from ccnl_engine.employment.period.inputs import EmploymentPeriod
+    from ccnl_engine.extra_month.offset.models import FourteenthPriorExtraOffset
     from ccnl_engine.period.requests import PeriodCalculationRequest
     from ccnl_engine.run.models import PayrollRunId
     from ccnl_engine.withholding.schedule.models import WithholdingSlot
@@ -178,6 +180,8 @@ def upcoming_recurring_gross(
     employment: EmploymentPeriod | None = None,
     rule: MonthAccrualRule = DEFAULT_MONTH_ACCRUAL_RULE,
     pattern: WorkPattern | None = None,
+    fourteenth_offset: FourteenthPriorExtraOffset | None = None,
+    prior_extra_month_amount: Decimal | None = None,
 ) -> Decimal:
     """Project the recurring gross of the slots after the current one.
 
@@ -199,6 +203,9 @@ def upcoming_recurring_gross(
         rule: Month-qualification rule of the CCNL ratei.
         pattern: Work pattern of a vertical part time, ``None`` for every
             month worked.
+        fourteenth_offset: Contract clause crediting a pre-existing extra month.
+        prior_extra_month_amount: Full historical extra monthly amount, excluding
+            merit awards; ``None`` when unknown.
 
     Returns:
         Sum of the projected gross of the upcoming slots, zero on the last.
@@ -210,6 +217,14 @@ def upcoming_recurring_gross(
             slot.run.run_kind,
             _slot_fraction(slot, employment, rule, pattern),
         )
+        if slot.run.run_kind == "fourteenth":
+            chain = offset_fourteenth(
+                chain,
+                fourteenth_offset,
+                employment,
+                prior_extra_month_amount,
+                _slot_fraction(slot, employment, rule, pattern),
+            )
         total += money(chain.base + chain.seniority + chain.allowances_total)
     return total
 

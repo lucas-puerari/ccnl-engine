@@ -6,6 +6,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.employer.inputs import EmployerProfile
+from ccnl_engine.employment.fact.inputs import PublicEndOfService
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
 from ccnl_engine.validators import FieldSpec
 
@@ -34,4 +35,10 @@ def contract_field_specs(request: PeriodCalculationRequest) -> tuple[FieldSpec, 
             True,
         ),
         ("events", request.events, (tuple, list), False),
+        (
+            "public_end_of_service",
+            request.public_end_of_service,
+            PublicEndOfService,
+            True,
+        ),
     )

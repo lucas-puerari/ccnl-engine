@@ -22,6 +22,7 @@ from ccnl_engine import (
     EmployerProfile,
     Employment,
     PayrollEngine,
+    PayrollRun,
     PeriodInput,
     TaxYearPlan,
 )
@@ -130,6 +131,28 @@ def _january(
         facts=facts,
         events=events,
         opening_state=PeriodState.zero(),
+    )
+
+
+def _studi_fourteenth(amount: Decimal | None) -> PeriodInput:
+    """Build the June fourteenth of a worker employed at contract entry.
+
+    Returns:
+        A run that must read the historical extra-month amount.
+    """
+    employment = replace(
+        CONCIA_D2,
+        ccnl_id="studi-professionali-confprofessioni",
+        level_code="4",
+        category=None,
+        seniority=None,
+        employment_period=EmploymentPeriod(date(2020, 1, 1)),
+        prior_extra_month_amount=amount,
+    )
+    return replace(
+        _january(employment),
+        run=PayrollRun.fourteenth(2026, 6),
+        payment_date=date(2026, 6, 28),
     )
 
 
@@ -418,6 +441,13 @@ def _on_probation(until: date | None) -> PeriodInput:
 
 #: The cases of each ``requires_fact`` field, keyed ``Type.field``.
 DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
+    "Employment.prior_extra_month_amount": (
+        DefaultCase(
+            _studi_fourteenth(Decimal(400)),
+            _studi_fourteenth(None),
+            "prior_extra_month_amount",
+        ),
+    ),
     "PeriodInput.current_year": (
         DefaultCase(
             _january(_PART_TIME),

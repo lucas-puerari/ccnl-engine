@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "fourteenth_exclusion",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 143: the exclusion of the quattordicesima for workers already paid extra months. The una tantum of EUR 400 (EUR 200 in May 2024 and May 2025, p. 73) is historic and outside the TFR base.",
-      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
-      "state": "absent",
-      "remediation": "Add a worker fact for extra months already paid.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "studi-professionali-confprofessioni/fourteenth_exclusion"
-        ]
-      }
-    },
-    {
       "id": "intermittent_availability",
       "institute": "base_salary",
       "variant": "all",

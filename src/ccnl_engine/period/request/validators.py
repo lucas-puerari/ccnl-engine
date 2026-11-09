@@ -8,11 +8,13 @@ result deep in the calculation.  Field types are checked with
 
 from __future__ import annotations
 
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.compensation.presence.inputs import validate_presence_days
 from ccnl_engine.period.request.meal import validate_meal_days
 from ccnl_engine.run.models import RunKind
+from ccnl_engine.validators import require_decimal
 
 if TYPE_CHECKING:
     from ccnl_engine.employment.period.inputs import EmploymentPeriod
@@ -20,7 +22,7 @@ if TYPE_CHECKING:
     from ccnl_engine.run.models import PayrollRun
     from ccnl_engine.run.types import PeriodId
 
-__all__ = ["check_day_counts", "employment_gap"]
+__all__ = ["check_day_counts", "check_prior_extra_amount", "employment_gap"]
 
 
 def employment_gap(
@@ -49,6 +51,21 @@ def employment_gap(
     return (
         f"regular run {period_id.year}-{period_id.month:02d} is outside the "
         f"employment ({employment.started_on} to {employment.ended_on})"
+    )
+
+
+def check_prior_extra_amount(amount: Decimal | None) -> None:
+    """Reject a negative pre-existing extra-month amount of a direct request.
+
+    ``require_decimal`` raises ``InvalidInputError`` for a value that is not
+    a ``Decimal`` of at least zero.
+    """
+    require_decimal(
+        amount,
+        "PeriodCalculationRequest.prior_extra_month_amount",
+        feature="period_request",
+        minimum=Decimal(0),
+        optional=True,
     )
 
 
