@@ -18,11 +18,14 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.errors import MissingRuleError
 from ccnl_engine.event.facade import OvertimeEvent, OvertimeKind
 from ccnl_engine.working_time.overtime.policies import (
     CCNLOvertimeBands,
     resolve_overtime_rate,
 )
+from ccnl_engine.working_time.subsector.rules import with_subsector
 
 _TUESDAY = date(2026, 3, 10)
 
@@ -52,7 +55,7 @@ def test_supplementary_hours_take_the_supplementare_band(
 
 
 def test_supplementary_resolution_of_the_limitations() -> None:
-    """Federmeccanica and logistica resolve it; edilizia keeps the incidence."""
+    """The annual Confetra boundary and Edilizia incidence remain open."""
     variant = "part_time_supplementary_rate"
 
     def status(slug: str) -> str:
@@ -66,8 +69,54 @@ def test_supplementary_resolution_of_the_limitations() -> None:
         return str(note.limitation.status)
 
     assert status("metalmeccanico-federmeccanica") == "resolved"
-    assert status("logistica-trasporto-confetra") == "resolved"
+    assert status("logistica-trasporto-confetra") == "open"
     assert status("edilizia-ance") == "open"
+
+
+@pytest.mark.parametrize(
+    ("category", "available"),
+    [(WorkerCategory.OPERAIO, True), (WorkerCategory.IMPIEGATO, False)],
+)
+def test_edilizia_direct_pay_band_only_covers_manual_workers(
+    category: WorkerCategory, available: bool
+) -> None:
+    """At EUR 12/hour, three manual supplementary hours pay EUR 43.20, not EUR 36."""
+    ccnl, _ = with_subsector(load_ccnl("edilizia-ance"), None, category)
+    bands = CCNLOvertimeBands.of(ccnl, 2026)
+    event = OvertimeEvent(
+        _TUESDAY, Decimal(3), Decimal(12), kind=OvertimeKind.SUPPLEMENTARY
+    )
+    if not available:
+        with pytest.raises(MissingRuleError):
+            resolve_overtime_rate(event, bands)
+    else:
+        rate = resolve_overtime_rate(event, bands)
+        assert event.hours * Decimal(12) * rate.multiplier == Decimal("43.20")
+
+
+def test_confetra_supplementary_boundary_with_caller_split() -> None:
+    """At EUR 12/hour, 1 hour at 18% plus 2 at 40% pays EUR 47.76 (vs EUR 42.48)."""
+    bands = CCNLOvertimeBands.of(load_ccnl("logistica-trasporto-confetra"), 2026)
+    below = OvertimeEvent(
+        _TUESDAY, Decimal(1), Decimal(12), kind=OvertimeKind.SUPPLEMENTARY
+    )
+    above = OvertimeEvent(
+        _TUESDAY,
+        Decimal(2),
+        Decimal(12),
+        multiplier=Decimal("1.40"),
+        kind=OvertimeKind.SUPPLEMENTARY,
+    )
+    low_rate = resolve_overtime_rate(below, bands)
+    high_rate = resolve_overtime_rate(above, bands)
+    assert low_rate.derived
+    assert low_rate.multiplier == Decimal("1.18")
+    assert not high_rate.derived
+    assert high_rate.multiplier == Decimal("1.40")
+    assert (
+        below.hours * Decimal(12) * low_rate.multiplier
+        + above.hours * Decimal(12) * high_rate.multiplier
+    ) == Decimal("47.76")
 
 
 def test_a_ccnl_without_the_band_asks_for_a_multiplier() -> None:
