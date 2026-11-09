@@ -119,7 +119,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 157 (p. 102) covers compulsory and optional absence: the top-up of holidays during optional (parental) leave is not paid. A holiday on a Sunday (paid by its own quota) and 4 October (a holiday from 2026, which the text, signed before, does not list) are not topped up.",
+        "text": "Art. 157 (p. 102) covers holidays during compulsory and optional absence. A Sunday holiday is paid by its own quota rather than topped up; 4 October, introduced after this text, remains excluded. Optional leave without an INPS indemnity is not topped up.",
         "capability": "maternity_leave",
         "monetary_impact": "yes",
         "limitation": {
@@ -127,7 +127,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Top up holidays on optional (parental) leave and resolve the Sunday and 4 October scope against the applicable law."
+          "remediation": "Resolve the Sunday holiday's separate quota and whether 4 October and unindemnified optional leave qualify."
         }
       },
       {
@@ -1973,7 +1973,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "61f2b38bbb0b4aa833826124b64784574686f325276558e194a0c8a8684c8a47",
+    "source_hash": "29a11ceef2f260675c3ef8c021fe35ba33d664796ca43930bd70d752f54e728d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2244,7 +2244,7 @@
               "section": "Art. 157",
               "quote": "Ai sensi della L. 1° marzo 1954, n. 90, per le festività cadenti nel periodo di assenza obbligatoria e facoltativa, la lavoratrice ha diritto ad un'indennità integrativa di quella a carico dell'INPS, da corrispondersi a carico del datore di lavoro in modo da raggiungere complessivamente il 100% (cento per cento) della quota giornaliera della retribuzione di fatto di cui all'art. 170."
             },
-            "transformation": "Top up weekday national holidays and the stated weekday patron saint day during compulsory maternity leave to 100% of daily pay, net of INPS and ordinary CCNL integration; no ordinary maternity integration is inferred. Paternity and optional leave are not handled by this rule. 4 October, a holiday from 2026 the text does not list, is excluded (excluded_days 10-04).",
+            "transformation": "Top up weekday national holidays and the stated weekday patron saint day during compulsory maternity leave to 100% of daily pay, net of INPS and ordinary CCNL integration; no ordinary maternity integration is inferred. Paternity has no holiday target; optional leave has a separate holiday target. 4 October, a holiday from 2026 the text does not list, is excluded (excluded_days 10-04).",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -2259,6 +2259,40 @@
             "10-04"
           ],
           "includes_patron_saint": true
+        },
+        "parental_holiday": {
+          "rate": "1",
+          "excluded_days": [
+            "10-04"
+          ],
+          "includes_patron_saint": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "fondoeasi-it-fondo-easi-ccnl-ced-ced-ict-professioni-digitali-e-stp-stesura-ccnl",
+                "title": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+                "kind": "altro",
+                "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+                "pages": [],
+                "published_on": "2022-03-09",
+                "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+              },
+              "page": "102",
+              "section": "Art. 157",
+              "quote": "Ai sensi della L. 1° marzo 1954, n. 90, per le festività cadenti nel periodo di assenza obbligatoria e facoltativa, la lavoratrice ha diritto ad un'indennità integrativa di quella a carico dell'INPS, da corrispondersi a carico del datore di lavoro in modo da raggiungere complessivamente il 100% (cento per cento) della quota giornaliera della retribuzione di fatto di cui all'art. 170."
+            },
+            "transformation": "Top up an indemnified optional-leave weekday holiday to the full daily CCNL pay after the INPS benefit and any ordinary CCNL top-up; include a stated local patron day. Sunday holidays receive their own quota and the unlisted 4 October remains excluded.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T21:29:23Z",
+              "verified_at": "2026-11-09T21:29:23Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-ced-optional-holiday",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
         }
       },
       "injury": {
@@ -2567,12 +2601,34 @@
           }
         ],
         "findings": [
-          "Sickness and injury already include the stated patron saint day; maternity now includes it too. Optional parental leave remains outside the maternity target."
+          "Sickness and injury already include the stated patron saint day; maternity now includes it too. Optional parental leave was outside the maternity target at the time of this review."
         ],
         "checked": [
           "work_rules.sickness_rules.holiday",
           "work_rules.insured_absence.injury.holiday",
           "work_rules.insured_absence.maternity.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-ced-optional-holiday",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 157, cached 2022 PDF p. 102: holidays during compulsory and optional leave.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+            "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+          }
+        ],
+        "findings": [
+          "The optional absence has the same daily holiday target as compulsory absence; the stated local patron is already a covered holiday."
+        ],
+        "checked": [
+          "work_rules.insured_absence.maternity.parental_holiday",
+          "coverage.notes"
         ]
       }
     ]

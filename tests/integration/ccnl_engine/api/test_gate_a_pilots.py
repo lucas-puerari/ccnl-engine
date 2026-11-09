@@ -197,7 +197,12 @@ def _base_case(
                 contract_type=Permanent(),
                 category=WorkerCategory.IMPIEGATO,
                 employment_period=EmploymentPeriod(_HIRED, None),
-                seniority=SeniorityFact.since(_HIRED, SenioritySource.EMPLOYER_RECORDS),
+                seniority=SeniorityFact(
+                    months=0,
+                    as_of=_HIRED,
+                    source=SenioritySource.EMPLOYER_RECORDS,
+                    apprenticeship_months=0,
+                ),
                 roles=frozenset(),
                 sector=EmploymentSector.PRIVATE,
                 pension_fund=NoPensionFund(),

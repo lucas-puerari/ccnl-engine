@@ -77,9 +77,15 @@ def new_hire(year: int = 2026) -> SeniorityFact:
     no run of ``year`` or of the year after pays an increment.
 
     Returns:
-        Zero months as of 1 January of ``year``, from the employer records.
+        Zero months as of 1 January of ``year``, from the employer records,
+        with no preceding apprenticeship.
     """
-    return SeniorityFact.since(date(year, 1, 1), SenioritySource.EMPLOYER_RECORDS)
+    return SeniorityFact(
+        months=0,
+        as_of=date(year, 1, 1),
+        source=SenioritySource.EMPLOYER_RECORDS,
+        apprenticeship_months=0,
+    )
 
 
 def pricing_category(
