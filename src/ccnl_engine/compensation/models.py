@@ -150,6 +150,8 @@ class CCNLParameters(BaseModel):
     ``daily_presence_allowances``: rates paid per counted qualifying day,
     rather than a fraction of monthly pay; ``meal_benefit_daily``: the
     non-remunerative meal voucher value per eligible day.
+    ``equalisation_element`` retains the legacy single yearly element;
+    ``equalisation_elements`` adds other yearly elements without replacing it.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -180,6 +182,7 @@ class CCNLParameters(BaseModel):
     health_funds: tuple[ContractualFund, ...] = ()
     una_tantum: tuple[UnaTantum, ...] = ()
     equalisation_element: EqualisationElement | None = None
+    equalisation_elements: tuple[EqualisationElement, ...] = ()
     loyalty_premium: LoyaltyPremium | None = None
     daily_presence_allowances: tuple[DailyPresenceAllowance, ...] = ()
     meal_benefit_daily: TimeSeries | None = None
