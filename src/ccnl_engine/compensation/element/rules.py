@@ -143,6 +143,7 @@ def _level_chain(
     worker_category: WorkerCategory | None = None,
     is_apprentice: bool,
     seniority_months: int | None = None,
+    increment_months: int | None = None,
     career_months: int | None = None,
 ) -> MonthlyPayChain:
     with rule_scope(feature="seniority"):
@@ -153,7 +154,9 @@ def _level_chain(
             as_of,
             worker_category=worker_category,
             is_apprentice=is_apprentice,
-            seniority_months=seniority_months,
+            seniority_months=(
+                seniority_months if increment_months is None else increment_months
+            ),
             roles=roles,
         )
     unsourced = (
@@ -162,7 +165,13 @@ def _level_chain(
         and ccnl.parameters.seniority_increments.apprentice_amount is None
         and seniority
         != _level_seniority(
-            ccnl, level, count, as_of, worker_category, seniority_months, roles
+            ccnl,
+            level,
+            count,
+            as_of,
+            worker_category,
+            seniority_months if increment_months is None else increment_months,
+            roles,
         )
     )
     with rule_scope(feature="base_salary"):
