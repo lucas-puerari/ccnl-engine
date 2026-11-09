@@ -696,6 +696,24 @@ def _hourly_parental(base: InpsSicknessBase | None, ended: date | None) -> Perio
     return replace(run, employment=employment, facts=PeriodFacts(events=(leave,)))
 
 
+def _hourly_topup(prior: Decimal | None) -> PeriodInput:
+    """Return an hourly leave with a stated or unknown collective top-up history.
+
+    Returns:
+        A March run under a collective supplement, with the prior equivalent
+        days supplied by the caller when known.
+    """
+    run = _hourly_parental(_FEBRUARY_PAY, _MATERNITY_END)
+    leave = run.facts.events[0]
+    assert isinstance(leave, HourlyParentalLeaveEvent)
+    employment = replace(run.employment, ccnl_id="autorimesse-ic35", level_code="C4")
+    return replace(
+        run,
+        employment=employment,
+        facts=PeriodFacts(events=(replace(leave, topped_up_days_before=prior),)),
+    )
+
+
 def _notice(cause: TerminationCause | None, just: bool | None) -> PeriodInput:
     """Return the March run of a C3 whose employment ends on 31 March.
 
@@ -857,6 +875,13 @@ def sickness_cases[C](
                 _hourly_parental(_FEBRUARY_PAY, _MATERNITY_END),
                 _hourly_parental(None, _MATERNITY_END),
                 "parental_base_pay",
+            ),
+        ),
+        "HourlyParentalLeaveEvent.topped_up_days_before": (
+            case(
+                _hourly_topup(Decimal(0)),
+                _hourly_topup(None),
+                "topped_up_days_before",
             ),
         ),
         "HourlyParentalLeaveEvent.protection_ended_on": (

@@ -6,17 +6,18 @@ sets no statutory rate, so the engine has no default multiplier:
 - an explicit ``OvertimeEvent.multiplier`` prevails.  When it differs from
   every CCNL percentage band of the event's kind, the run is provisional
   with issue ``caller_multiplier_differs_from_ccnl`` reporting both values;
-- without a multiplier the CCNL band of the event's kind gives it as
-  ``1 + band``;
+- without a multiplier, known ``weekly_hours_before`` splits the event
+  across the weekly bands of its kind and pays their weighted rate; otherwise
+  the unthresholded first-tier CCNL band gives ``1 + band``;
 - without a multiplier and without such a band the run is rejected with
   :class:`~ccnl_engine.errors.MissingRuleError`.
 
 The band of a kind is the single percentage overtime band (code ``OT_*``)
 that applies to it with no hour threshold and no context condition: the
-first tier of overtime.  Bands that start beyond a daily or weekly hour
-threshold depend on hours of the week an event does not carry; when a
-derived multiplier leaves them out, the run is provisional with issue
-``overtime_tier_not_applied``.  A band paid per shift, or not in force on
+first tier of overtime. Weekly thresholds can be applied when the event
+states its preceding weekly hours; otherwise higher tiers, and daily tiers
+without a daily hour position, remain unapplied and the run is provisional
+with issue ``overtime_tier_not_applied``.  A band paid per shift, or not in force on
 the event date, gives no multiplier.  A kind without a percentage band but
 with a band in EUR per hour (the PA tables of fixed hourly amounts) is paid
 that amount for each hour, in place of the hourly rate, with multiplier 1.
@@ -37,11 +38,11 @@ from ccnl_engine.decision.models import (
 from ccnl_engine.errors import MissingRuleError
 from ccnl_engine.working_time.models import TimeSupplementKind, WorkKind
 from ccnl_engine.working_time.overtime.decisions import CCNL_BAND_APPLIED, band_decision
+from ccnl_engine.working_time.overtime.models import CCNLOvertimeBands
+from ccnl_engine.working_time.overtime.weekly import weekly_rate
 
 if TYPE_CHECKING:
-    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.event.facade import OvertimeEvent
-    from ccnl_engine.provenance.source.rule.models import RuleProvenance
     from ccnl_engine.working_time.models import OvertimeBand
 
 __all__ = [
@@ -61,62 +62,6 @@ _FALLBACK = {WorkKind.REST_DAY: WorkKind.HOLIDAY, WorkKind.SATURDAY: WorkKind.WE
 
 
 @dataclass(frozen=True)
-class CCNLOvertimeBands:
-    """The overtime bands of a CCNL and the rule identity they are cited by.
-
-    Attributes:
-        bands: Time-supplement bands of the CCNL that apply to the worker's
-            level, empty when it has none. They identify the full premium
-            before a worker's rest election changes its immediate cash value.
-        bank_share: Fraction of the applicable overtime premium paid now
-            when the worker banks the base hour for later rest. Absent when
-            the CCNL does not define such a rule. This is not a bank balance
-            and carries neither a rest date nor a payout date.
-        bank_source: Provenance of that fraction, separate from the source
-            of each ordinary overtime band. It is cited in the decision
-            for the cash premium on banked hours.
-        ruleset: Ruleset identifier of the CCNL.
-        version: Ruleset version.
-    """
-
-    bands: tuple[OvertimeBand, ...] = ()
-    bank_share: Decimal | None = None
-    bank_source: RuleProvenance | None = None
-    ruleset: str = "ccnl"
-    version: str = "none"
-
-    @classmethod
-    def of(
-        cls, ccnl: CCNL, year: int, level_code: str | None = None
-    ) -> CCNLOvertimeBands:
-        """Return the bands of ``ccnl`` that apply to ``level_code``.
-
-        A band naming no level applies to every level; without a level only
-        those bands are kept.
-
-        Returns:
-            The bands with the CCNL ruleset, or its slug and ``year``.
-        """
-        rules = ccnl.work_rules
-        supplements = None if rules is None else rules.time_supplements
-        every = () if supplements is None else supplements.overtime_bands
-        bands = tuple(b for b in every if not b.levels or level_code in b.levels)
-        share = None if supplements is None else supplements.overtime_bank_share
-        source = None if supplements is None else supplements.overtime_bank_provenance
-        if ccnl.ruleset is not None:
-            return cls(bands, share, source, ccnl.ruleset.id, ccnl.ruleset.version)
-        return cls(bands, share, source, f"ccnl/{ccnl.meta.ccnl_id}", str(year))
-
-    def rule_of(self, band: OvertimeBand) -> str:
-        """Return the rule identifier of ``band``.
-
-        Returns:
-            ``<ruleset>:work_rules.time_supplements.overtime_bands[<code>]``.
-        """
-        return f"{self.ruleset}:work_rules.time_supplements.overtime_bands[{band.code}]"
-
-
-@dataclass(frozen=True)
 class OvertimeRate:
     """The multiplier an overtime event is paid with, and where it comes from.
 
@@ -124,12 +69,14 @@ class OvertimeRate:
         multiplier: Multiplier applied to the hourly rate.
         derived: ``True`` when it comes from the CCNL band, ``False`` when
             the caller supplied it.
-        band: The first-tier CCNL band of the event's kind, if any.
+        band: The first-tier or first applied CCNL band of the event's kind,
+            if any.
         supplement: Supplement of ``band`` on the event date (``0.25``).
         tiers: Percentage bands of the kind that start beyond an hour
             threshold, in force on the event date, with their supplement.
         hourly_amount: Amount in EUR of each hour when ``band`` is paid per
             hour; it replaces the hourly rate of the event.
+        weekly_slices: Band, supplement and hours for each resolved weekly tier.
     """
 
     multiplier: Decimal
@@ -138,6 +85,7 @@ class OvertimeRate:
     supplement: Decimal | None = None
     tiers: tuple[tuple[OvertimeBand, Decimal], ...] = ()
     hourly_amount: Decimal | None = None
+    weekly_slices: tuple[tuple[OvertimeBand, Decimal, Decimal], ...] = ()
 
     @property
     def derived_band(self) -> OvertimeBand | None:
@@ -232,7 +180,8 @@ def resolve_overtime_rate(
     """Return the multiplier ``event`` is paid with.
 
     Returns:
-        The caller's multiplier, or ``1 + band`` of the CCNL first tier.
+        The caller's multiplier, a weighted weekly-tier multiplier when
+        preceding weekly hours are stated, or ``1 + band`` of the first tier.
 
     Raises:
         MissingRuleError: When the event has no multiplier and the CCNL
@@ -244,6 +193,17 @@ def resolve_overtime_rate(
     band, supplement = (None, None) if base is None else base
     if event.multiplier is not None:
         return OvertimeRate(event.multiplier, False, band, supplement, tiers)
+    if event.weekly_hours_before is not None and matching:
+        multiplier, slices = weekly_rate(event, matching)
+        daily = tuple((b, r) for b, r in tiers if b.hour_threshold_per_day is not None)
+        return OvertimeRate(
+            multiplier,
+            True,
+            slices[0][0],
+            slices[0][1],
+            daily,
+            weekly_slices=slices,
+        )
     hourly = _hourly_band(bands, event) if band is None else None
     if hourly is not None:
         return OvertimeRate(Decimal(1), True, hourly[0], hourly_amount=hourly[1])
@@ -268,7 +228,7 @@ def overtime_issues(
     Returns:
         ``caller_multiplier_differs_from_ccnl`` for a caller multiplier
         matching no CCNL band of the kind, ``overtime_tier_not_applied``
-        for a derived multiplier that leaves out higher tiers, else none.
+        for a derived multiplier that leaves out unresolved tiers, else none.
     """
     day = event.event_date.isoformat()
     if rate.derived:
@@ -276,9 +236,9 @@ def overtime_issues(
             return ()
         codes = ", ".join(f"{b.code} ({1 + r})" for b, r in rate.tiers)
         message = (
-            f"overtime on {day}: the CCNL first-tier multiplier {rate.multiplier} "
-            f"is applied to every hour; the bands {codes} start beyond an hour "
-            "threshold the event does not carry: pass an explicit multiplier "
+            f"overtime on {day}: the CCNL multiplier {rate.multiplier} "
+            f"leaves out the bands {codes} beyond an hour threshold "
+            "the event does not carry: pass an explicit multiplier "
             "for the hours beyond it"
         )
         return _issue(TIER_NOT_APPLIED, message, IssueCause.RULE)
