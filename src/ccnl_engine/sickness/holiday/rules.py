@@ -5,13 +5,20 @@ from __future__ import annotations
 from datetime import date
 from typing import TYPE_CHECKING
 
+from ccnl_engine.decision.models import CalculationIssue, CalculationStatus, IssueCause
+
 if TYPE_CHECKING:
     from ccnl_engine.calendar.holiday.models import NationalHolidays
     from ccnl_engine.employer.inputs import EmployerProfile
     from ccnl_engine.sickness.holiday.models import SicknessHoliday
     from ccnl_engine.sickness.integration.models import SicknessRules
 
-__all__ = ["covered_holidays", "covered_target_holidays", "gross_holiday_boundary"]
+__all__ = [
+    "covered_holidays",
+    "covered_target_holidays",
+    "gross_holiday_boundary",
+    "legacy_section_issue",
+]
 
 _SUNDAY = 6
 
@@ -26,6 +33,41 @@ def gross_holiday_boundary(
     """
     return bool(
         target and target.gross_basis and (day in holidays or previous in holidays)
+    )
+
+
+def legacy_section_issue(
+    target: SicknessHoliday | None,
+    calendar: NationalHolidays,
+    first: date,
+    last: date,
+    employer: EmployerProfile | None,
+    capability: str,
+) -> CalculationIssue | None:
+    """Report an unknown legacy-section fact only when a covered holiday overlaps.
+
+    Returns:
+        A blocking missing-fact issue, or none if the fact is known or no
+        eligible holiday falls during the absence.
+    """
+    if (
+        target is None
+        or not target.requires_legacy_section
+        or (employer is not None and employer.legacy_section_applicable is not None)
+    ):
+        return None
+    unrestricted = target.model_copy(update={"requires_legacy_section": False})
+    days = covered_target_holidays(unrestricted, calendar, last.year, employer)
+    if not any(first <= day <= last for day in days):
+        return None
+    return CalculationIssue(
+        code="missing_fact",
+        message="The employer's legacy CCNL section is unknown; its holiday top-up "
+        "during sickness or injury is withheld.",
+        status=CalculationStatus.INCOMPLETE,
+        fact="legacy_section_applicable",
+        capability=capability,
+        cause=IssueCause.FACT,
     )
 
 
@@ -47,6 +89,19 @@ def covered_holidays(
     return covered_target_holidays(rules.holiday, calendar, year, employer)
 
 
+def _eligible_employer(
+    target: SicknessHoliday, employer: EmployerProfile | None
+) -> bool:
+    """Whether the employer qualifies for a restricted holiday target.
+
+    Returns:
+        True for an unrestricted target or a confirmed eligible employer.
+    """
+    return not getattr(target, "requires_legacy_section", False) or (
+        employer is not None and employer.legacy_section_applicable is True
+    )
+
+
 def covered_target_holidays(
     target: SicknessHoliday | None,
     calendar: NationalHolidays,
@@ -58,7 +113,7 @@ def covered_target_holidays(
     Returns:
         The covered dates, or none when no holiday clause is present.
     """
-    if target is None:
+    if target is None or not _eligible_employer(target, employer):
         return frozenset()
     covered = calendar.model_copy(
         update={

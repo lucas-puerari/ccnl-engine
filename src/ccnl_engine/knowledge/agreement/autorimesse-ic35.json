@@ -122,7 +122,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 68 also allows the leave by the hour and extends it to adoption and foster care: the hourly leave (HourlyParentalLeaveEvent) gets no top-up. The top-up is computed on the INPS daily base of the leave (art. 23 D.Lgs. 151/2001), as the text gives no pay base of its own. The days already topped up by earlier leave events of the child are a fact of the event (ParentalLeaveEvent.topped_up_days_before).",
+        "text": "Art. 68 extends parental leave to adoption and foster care, but the event records birth rather than entry into the family. Art. 79 sets the hourly quota at daily pay divided by contractual daily hours, permits administrative staff to take multiples of an hour (at least two), and operational staff half a day; the hourly event currently accepts only half-days. The top-up uses the INPS daily base (art. 23 D.Lgs. 151/2001), not an independently established collective pay base. Earlier topped-up days are supplied by the caller, not carried automatically between events.",
         "capability": "parental_leave",
         "monetary_impact": "yes",
         "limitation": {
@@ -130,7 +130,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Top up the hourly leave, read the pay base the CCNL means, and carry the days topped up per child in the state."
+          "remediation": "Support the Art. 79 administrative hourly quota and adoption/foster entry dates; verify the applicable collective pay base and carry topped-up days per child across events."
         }
       }
     ]
@@ -4146,7 +4146,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "5d79b0d8c1135bd7c3893477514cfa5b22bdece60649346942d24534a6b9da2d",
+    "source_hash": "6c4a1b313e5b772108b812d524d94f0801b769693477c1946e7bfd17c5aecb60",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4457,15 +4457,15 @@
             "section": "Art. 68",
             "quote": "Il congedo parentale dà diritto ad un’indennità del 30% fino a al compimento del 12° anno di età cosi come previsto dalla legge, elevato al 80% per i primi 30 giorni a carico aziendale, anche frazionato."
           },
-          "transformation": "Top up eligible statutory parental indemnity to 0.8 of daily pay for up to 30 days; three months converted to 90 days using the INPS thirty-day convention. Previously topped-up days count across split periods.",
+          "transformation": "Top up statutory parental indemnity to 0.8 of the daily base for up to 30 equivalent days, including half-day hourly leave. Art. 79 (PDF pp. 124–125) defines the hourly economic quota as daily pay divided by contractual daily hours; the current event represents its operational half-day form. Previously topped-up days count across split periods.",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-08T11:32:02Z",
+            "extraction_timestamp": "2026-11-09T20:50:24Z",
             "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-08T11:32:02Z",
+            "verified_at": "2026-11-09T20:50:24Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-ai-autorimesse-ic35-parental-top-up",
+            "review_id": "2026-11-09-ai-autorimesse-parental-hourly",
             "effective_from": null
           }
         }
@@ -4598,6 +4598,28 @@
           "Corrected: the counter of the days already topped up holds only the earlier leave events (documented and tested); the hourly leave, the pay base and adoption and foster care are recorded as limitation parental_top_up_scope."
         ],
         "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence.parental"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-autorimesse-parental-hourly",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Parental hourly supplement, Art. 68 and Art. 79, PDF pp. 113–114, 124–125.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL-AUTONOLEGGIO-ANIASA_2022-2024.pdf",
+            "sha256": "fafa013d5843ab750bb1f6e0ccad3b3c60e560ada3a07e576793f68e4d40196e"
+          }
+        ],
+        "findings": [
+          "Art. 79(b): gli importi orari del trattamento economico si determinano dividendo la retribuzione giornaliera per la durata dell’orario giornaliero come determinato dalla lettera a);",
+          "Art. 68 grants 80% for the first 30 days and equates adoption and foster care; the current hourly event models half-days only."
+        ],
+        "independence": "same_process",
         "checked": [
           "work_rules.insured_absence.parental"
         ]

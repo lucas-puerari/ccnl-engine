@@ -75,6 +75,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 32 p. 104 and Art. 38 p. 112: local patron, 2009 effective date and termination settlement. | confirmed | Local patron is letter c of Art. 32; the 80-minute entitlement starts in 2009. Art. 38 pays the annual amount with December wages, without an express earlier termination advance. Hourly cottimo and other hourly elements remain outside the computed base. |
 | 2026-11-09 | claude-opus-5-5 (ai) | PAR supplements of Arts. 21, 22 and 24 of the 2017 PDF and Art. 22 of the 2026 renewal, checked against cached PDFs. | confirmed | General 104 hours; entire-workforce sectors and eligible rotations add eight hours each; all employers add four hours from 2029. Unit headcount, restricted production areas, steel monetisation and company offsets remain limitations. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 32 pp. 104-105, letter b and c holidays during reduced sickness, maternity and injury pay. | confirmed | Letter a is excluded; 4 October is absent; letter c includes the stated local patron day. Maternity local patron and substitute days remain outside its holiday calendar. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 23 and Art. 29 paragraph 2 of the cached 2017 CCNL, physical PDF pages 94 and 102; immediate banked overtime premium only. | confirmed | The bank election covers every overtime hour worked in a month; banked hours pay 50% of the applicable premium immediately, with rest and any residual payout deferred. Flexible hours are not overtime and need a separate schedule model. |
 
 ## Salary table
 
@@ -145,13 +146,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model row i and the shift-worker column of the Art. 29 overtime rows.
 
-!!! warning "metalmeccanico-confapi/flexibility_and_hours_bank · overtime · impact yes · open"
-    Art. 23: flessibilità beyond 40 hours (15%/20%) and banca ore (50% of the overtime premium).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the flexibility and hours-bank premiums.
-
 !!! warning "metalmeccanico-confapi/sunday_holiday_and_ex_operai · base_salary · impact yes · open"
     The Sunday holiday quota is modelled. Art. 32 former legal operai hours cover national and stated local patron weekday holidays from 2009; Art. 38 December annual payment is separate. Unstated patron days, hourly elements beyond fixed monthly pay and nonstandard company holiday arrangements not specified by the caller remain outside the calculation.
 
@@ -221,6 +215,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Calculate the maternity top-up on stated patron days, the agreed substitute patron holiday and Rome-only 29 June when the local facts are available.
+
+!!! warning "metalmeccanico-confapi/flexibility_and_hours_bank · overtime · impact yes · open"
+    Art. 23 flexible hours above 40 per week (15% weekday, 20% Saturday) remain outside the model: they are not overtime. Art. 29 banked overtime pays half the applicable overtime premium now; the elected rest balance and eventual payout at current pay are not tracked. The election covers all overtime in the month and must be declared by the next month; callers must supply a consistent banked choice for each month's events.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model flexible schedule hours and compensation windows separately from overtime, and track elected overtime rest balances and their later liquidation.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

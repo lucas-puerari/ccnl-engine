@@ -87,10 +87,10 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 23: flessibilità beyond 40 hours (15%/20%) and banca ore (50% of the overtime premium).",
+      "rule": "Art. 23 flexible hours above 40 per week (15% weekday, 20% Saturday) remain outside the model: they are not overtime. Art. 29 banked overtime pays half the applicable overtime premium now; the elected rest balance and eventual payout at current pay are not tracked. The election covers all overtime in the month and must be declared by the next month; callers must supply a consistent banked choice for each month's events.",
       "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
       "state": "absent",
-      "remediation": "Model the flexibility and hours-bank premiums.",
+      "remediation": "Model flexible schedule hours and compensation windows separately from overtime, and track elected overtime rest balances and their later liquidation.",
       "origin": "seeded",
       "links": {
         "limitations": [
