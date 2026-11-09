@@ -83,22 +83,6 @@
       }
     },
     {
-      "id": "cigo_rate_by_activity",
-      "institute": "inps_employer",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "CIGO: artisan builders are within the CIGO (D.Lgs. 148/2015 art. 13 c. 1 (Normattiva, text in force on 2026-10-14, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148~art13!vig=2026-10-14, snapshot sha256 3f7019a244e01d36ac8e7c9e25bcf058c777c8ed758418ba261d83867672c46a)): 4.70% for the 'operai delle imprese dell'industria e artigianato edile' (lett. c) and 1.70% / 2.00% for their impiegati and quadri (lett. e-f). The artigianato table charges no CIGO, so the employer contributions of every worker are understated.",
-      "calculation": "ccnl/edilizia-artigianato-cna:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the CIGO of D.Lgs. 148/2015 art. 13 c. 1 by activity (edile, lapidei) apart from the tax sector, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "edilizia-artigianato-cna/cigo_rate_by_activity"
-        ]
-      }
-    },
-    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",

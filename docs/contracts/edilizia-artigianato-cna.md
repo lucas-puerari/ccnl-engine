@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, inps_employer, seniority |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-20 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 65 loyalty premium on cached consolidated PDF page 93. | corrected | Annual anniversary award for clerical employees after twenty years; termination pro rata remains unmodelled. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 65, the elements of the monthly pay and the TFR article, against the loyalty premium encoding, by a separate model session. | corrected | Confirmed the 20 years, the anniversary and the one monthly pay.<br>Corrected: the TFR article is art. 70; the excluded conventional seniority and the 29 February anniversary are recorded as limitation loyalty_service_count. |
+| 2026-11-09 | claude-opus-5-5 (ai) | INPS circular 76/2022 p. 7 CIGO activity rates and apprentices. | corrected | Artisan construction operai owe 4.70% CIGO and office staff owe the 1.70%/2.00% headcount rate. |
 
 ## Salary table
 
@@ -157,13 +158,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies; contract type in apprentice.
 
     **Remediation:** Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note.
-
-!!! warning "edilizia-artigianato-cna/cigo_rate_by_activity · inps_employer · impact yes · open"
-    CIGO: artisan builders are within the CIGO (D.Lgs. 148/2015 art. 13 c. 1 (Normattiva, text in force on 2026-10-14, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148~art13!vig=2026-10-14, snapshot sha256 3f7019a244e01d36ac8e7c9e25bcf058c777c8ed758418ba261d83867672c46a)): 4.70% for the 'operai delle imprese dell'industria e artigianato edile' (lett. c) and 1.70% / 2.00% for their impiegati and quadri (lett. e-f). The artigianato table charges no CIGO, so the employer contributions of every worker are understated.
-
-    **Applies when:** `inps_employer` applies.
-
-    **Remediation:** Model the CIGO of D.Lgs. 148/2015 art. 13 c. 1 by activity (edile, lapidei) apart from the tax sector, then remove this note.
 
 !!! warning "edilizia-artigianato-cna/loyalty_service_count · base_salary · impact yes · open"
     Art. 65: the twenty years of uninterrupted actual service leave out 'le anzianità convenzionali di carattere militare'; the engine counts the years from the start of the employment period, so the caller states a start that leaves them out. The anniversary of a hire on 29 February falls on 28 February in a common year (the text does not say).

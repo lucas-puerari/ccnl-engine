@@ -11,6 +11,34 @@
       "related": []
     },
     "tax_sector": "artigianato",
+    "cigo_activities": [
+      "construction"
+    ],
+    "cigo_provenance": {
+      "status": "verified",
+      "location": {
+        "source_document": {
+          "document_id": "inps-circular-76-2022-cigo",
+          "title": "INPS Circular 76/2022",
+          "kind": "inps_circolare",
+          "url": "https://www.fiscoetasse.com/files/17306/circolare-76-del-30-06-2022.pdf",
+          "sha256": "f181597163ae73a9918929b40186c69dffb92da5aebfe9653c41b5c1828bb952"
+        },
+        "page": "7",
+        "section": "3. Ordinary wage integration (CIGO); D.Lgs. 148/2015 art. 13(1)(c,e–f)",
+        "quote": "c) 4,70%della retribuzione imponibile ai fini previdenziali per gli operai delle imprese dell'industria e artigianato edile; e) 1,70% della retribuzione imponibile ai fini previdenziali per gli impiegati e quadri delle imprese dell'industria e artigianato edile e lapidei che occupano fino a 50 dipendenti; f) 2,00% della retribuzione imponibile ai fini previdenziali per gli impiegati e quadri delle imprese dell'industria e artigianato edile e lapidei che occupano oltre 50 dipendenti."
+      },
+      "transformation": "Add the construction CIGO share to artisan sector employer rates by category and headcount, including apprentices, without changing IVS.",
+      "extraction": {
+        "method": "ai",
+        "model": "claude-opus-5-5",
+        "extraction_timestamp": "2026-11-09T17:09:18Z",
+        "verified_by": "claude-opus-5-5",
+        "verified_at": "2026-11-09T17:09:18Z",
+        "verification_status": "verified",
+        "review_id": "2026-11-09-ai-cigo-activity"
+      }
+    },
     "validity": {
       "valid_from": "2025-05-01",
       "valid_until": "2028-09-30"
@@ -183,19 +211,6 @@
             ]
           },
           "remediation": "Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note."
-        }
-      },
-      {
-        "kind": "simplification",
-        "text": "CIGO: artisan builders are within the CIGO (D.Lgs. 148/2015 art. 13 c. 1 (Normattiva, text in force on 2026-10-14, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148~art13!vig=2026-10-14, snapshot sha256 3f7019a244e01d36ac8e7c9e25bcf058c777c8ed758418ba261d83867672c46a)): 4.70% for the 'operai delle imprese dell'industria e artigianato edile' (lett. c) and 1.70% / 2.00% for their impiegati and quadri (lett. e-f). The artigianato table charges no CIGO, so the employer contributions of every worker are understated.",
-        "capability": "inps_employer",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "cigo_rate_by_activity",
-          "applies_when": {
-            "trigger": "run"
-          },
-          "remediation": "Model the CIGO of D.Lgs. 148/2015 art. 13 c. 1 by activity (edile, lapidei) apart from the tax sector, then remove this note."
         }
       },
       {
@@ -2594,7 +2609,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "a7b94afeb8005ccfb0316ba13b8bedaa8c1d7a8cd330e05d2f719c52e0f82b1e",
+    "source_hash": "ba89f1aa5d2984625ad4b88548285ab90fe5ab1a067d1a3988a6d3fff8d9ddc5",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2920,6 +2935,28 @@
         "independence": "separate_model",
         "checked": [
           "parameters.loyalty_premium"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-cigo-activity",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "INPS circular 76/2022 p. 7 CIGO activity rates and apprentices.",
+        "outcome": "corrected",
+        "independence": "same_process",
+        "sources": [
+          {
+            "url": "https://www.fiscoetasse.com/files/17306/circolare-76-del-30-06-2022.pdf",
+            "sha256": "f181597163ae73a9918929b40186c69dffb92da5aebfe9653c41b5c1828bb952"
+          }
+        ],
+        "findings": [
+          "Artisan construction operai owe 4.70% CIGO and office staff owe the 1.70%/2.00% headcount rate."
+        ],
+        "checked": [
+          "meta.cigo_activities",
+          "meta.cigo_provenance"
         ]
       }
     ]
