@@ -42,6 +42,7 @@ from ccnl_engine.pay_item.services import (
     _treatment_from_resolution,
 )
 from ccnl_engine.sickness.day.rules import SickDayKind
+from ccnl_engine.sickness.holiday.rules import legacy_section_issue
 from ccnl_engine.sickness.issue.handlers import (
     CUMULATION_LIMITATION,
     episode_decision,
@@ -191,6 +192,14 @@ def _handle_sickness_episode(
     span = _span(event, terms)
     pay = episode_pay(event, span, terms)
     issues = episode_issues(event, pay, terms)
+    rules = terms.rules
+    if rules is not None and terms.holidays is not None:
+        employer = None if ctx.insured is None else ctx.insured.employer
+        missing = legacy_section_issue(
+            rules.ccnl.holiday, terms.holidays, *span, employer, "sickness"
+        )
+        if missing is not None:
+            issues = (*issues, missing)
     effect = EventEffect(
         decisions=[episode_decision(event, span, pay, terms, issues)],
         issues=list(issues),
