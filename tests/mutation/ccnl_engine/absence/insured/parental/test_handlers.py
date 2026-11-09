@@ -34,8 +34,16 @@ from ccnl_engine import (
     PeriodInput,
 )
 from ccnl_engine.absence.insured.parental.handlers import _top_up_days
+from ccnl_engine.absence.insured.parental.holiday import (
+    covered_parental_holidays,
+    parental_holiday_extra,
+    parental_holiday_units,
+)
 from ccnl_engine.absence.insured.parental.rules import ParentalDays
+from ccnl_engine.absence.insured.rules import MonthPay
+from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.compensation.element.types import MonthlyPayChain
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.events import (
@@ -51,6 +59,7 @@ from ccnl_engine.inputs import (
     SeniorityFact,
     SenioritySource,
 )
+from ccnl_engine.sickness.term.rules import DailyQuota
 
 if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
@@ -116,6 +125,123 @@ def _amounts(result: PeriodResult) -> dict[str, tuple[str, Decimal]]:
         for i in result.pay_items
         if "_evt" in i.item_id
     }
+
+
+def test_ced_optional_may_holiday_with_and_without_target() -> None:
+    """May 2026: daily 3000/30 = 100, INPS 30% of 100 = 30.
+
+    May 1 adds 100 - 30 = 70; with no target it adds zero. The
+    31-day INPS indemnity is 930 in either case.
+    """
+    rules = load_ccnl("ced-assoced").work_rules
+    assert rules is not None
+    assert rules.insured_absence is not None
+    maternity = rules.insured_absence.maternity
+    assert maternity is not None
+    assert maternity.parental_holiday is not None
+    first, last = date(2026, 5, 1), date(2026, 5, 31)
+    pay = MonthPay(
+        MonthlyPayChain(Decimal(3000), Decimal(0), ()),
+        DailyQuota(DailyDivisorMethod.BY_30, Decimal(30)),
+        0,
+        Decimal(0),
+    )
+    rates: dict[date, Decimal | None] = {
+        date(2026, 5, day): Decimal("0.30") for day in range(1, 32)
+    }
+    span = list(rates)
+    for target, expected in (
+        (None, Decimal(0)),
+        (maternity.parental_holiday, Decimal("70.00")),
+    ):
+        holidays = covered_parental_holidays(target, first, last, None)
+        assert parental_holiday_units(holidays, span, rates) == (1 if target else 0)
+        assert (
+            parental_holiday_extra(
+                target,
+                first,
+                last,
+                pay,
+                Decimal(100),
+                rates,
+                [],
+                Decimal(0),
+                [],
+                Decimal(0),
+                holidays,
+            )
+            == expected
+        )
+
+
+def test_optional_holiday_offsets_other_pay_and_skips_non_indemnified_days() -> None:
+    """May 1: 100 quota - 30 INPS - 20 ordinary top-up = 50.
+
+    With a sixth-month top-up of 80%, the shortfall is 20 instead.
+    Sunday May 3, a holiday outside the span and an unindemnified May 2
+    add nothing; with no other share the May 1 shortfall is 70.
+    """
+    rules = load_ccnl("ced-assoced").work_rules
+    assert rules is not None
+    assert rules.insured_absence is not None
+    maternity = rules.insured_absence.maternity
+    assert maternity is not None
+    target = maternity.parental_holiday
+    assert target is not None
+    may_day = date(2026, 5, 1)
+    pay = MonthPay(
+        MonthlyPayChain(Decimal(3000), Decimal(0), ()),
+        DailyQuota(DailyDivisorMethod.BY_30, Decimal(30)),
+        0,
+        Decimal(0),
+    )
+    rates: dict[date, Decimal | None] = {
+        may_day: Decimal("0.30"),
+        date(2026, 5, 2): None,
+        date(2026, 5, 3): Decimal("0.30"),
+    }
+    holidays = frozenset({date(2026, 4, 30), *rates})
+    for topped, ordinary_rate, sixth, sixth_rate, expected in (
+        ([], Decimal(0), [], Decimal(0), Decimal("70.00")),
+        ([may_day], Decimal("0.50"), [], Decimal(0), Decimal("50.00")),
+        ([], Decimal(0), [may_day], Decimal("0.80"), Decimal("20.00")),
+    ):
+        assert (
+            parental_holiday_extra(
+                target,
+                may_day,
+                date(2026, 5, 3),
+                pay,
+                Decimal(100),
+                rates,
+                topped,
+                ordinary_rate,
+                sixth,
+                sixth_rate,
+                holidays,
+            )
+            == expected
+        )
+    assert parental_holiday_units(holidays, list(rates), rates) == 1
+
+
+def test_ced_optional_may_holiday_is_posted_in_the_run() -> None:
+    """May 2026: 31 INPS days at 31.1111 = 964.44.
+
+    May 1 adds 71.60 - 31.1111 = 40.49; before the optional holiday
+    target the employer posted no integration.
+    """
+    leave = ParentalLeaveEvent(
+        date(2026, 5, 1),
+        date(2026, 5, 31),
+        _BORN,
+        _NOTHING,
+        _MATERNITY_END,
+        parental_base_pay=InpsSicknessBase(Decimal(1000), Decimal(0)),
+    )
+    result = _run(leave, ccnl_id="ced-assoced", level_code="3", month=5)
+    assert _amounts(result)["maternity_item"] == ("inps", Decimal("964.44"))
+    assert _amounts(result)["absence_integration_item"] == ("intg", Decimal("40.49"))
 
 
 def _limitations(result: PeriodResult) -> set[str]:
