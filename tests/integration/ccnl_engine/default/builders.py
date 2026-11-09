@@ -540,6 +540,12 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
             "holiday_company_offset",
         ),
     ),
+    "Employment.qualifying_shifts": (
+        _employment_pair(
+            replace(_CONFAPI_HOLIDAYS, qualifying_shifts=False),
+            _CONFAPI_HOLIDAYS,
+        ),
+    ),
     "Employment.roles": (
         _employment_pair(
             replace(_ALIMENTARI_1S, roles=frozenset({"quadro"})),

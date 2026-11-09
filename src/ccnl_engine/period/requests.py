@@ -100,6 +100,8 @@ class PeriodCalculationRequest:
             ``paid_holiday_days`` separately counts eligible paid holidays.
         full_time_weekly_hours: Full-time weekly hours, at least ``weekly_hours``;
             ``full_time_week_days`` its days, 5 or 6; ``rota`` a guard's rota.
+        qualifying_shifts: Worker in a rotation of at least 15 weekly shifts
+            including nights and/or weekends; ``None`` when unknown.
         work_pattern: Vertical or mixed part time: weekday hours summing to
             ``weekly_hours`` and the months worked.  A regular or termination run of a
             month not worked posts no monthly pay, and the months not worked accrue no
@@ -182,6 +184,7 @@ class PeriodCalculationRequest:
     full_time_weekly_hours: WeeklyHours | None = None
     full_time_week_days: int | None = None
     rota: Rota | None = None
+    qualifying_shifts: bool | None = None
     work_pattern: WorkPattern | None = None
     weekly_rest_day: Weekday = Weekday.SUNDAY
     employment_period: EmploymentPeriod | None = None

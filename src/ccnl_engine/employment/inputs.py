@@ -88,6 +88,9 @@ class Employment:
         full_time_week_days: Working days of the full-time week, 5 or 6; a CCNL
             that sets the daily pay by the week (Pulizia art. 34: 22 or 26) uses
             it.  ``None`` keeps the CCNL default divisor.
+        qualifying_shifts: Whether the worker works in a rotation of at least
+            15 shifts per week including nights and/or weekends; ``None``
+            when not stated. A day worker states ``False``.
         rota: Rota of a security guard (``5+1``, ``6+1+1``, ``5+2``); a CCNL
             that sets the ferie by rota (FEDERDAT art. 89: 25, 23 or 22 days)
             uses it.  ``None`` keeps the CCNL default days.
@@ -183,6 +186,7 @@ class Employment:
     full_time_weekly_hours: WeeklyHours | None = None
     full_time_week_days: int | None = None
     rota: Rota | None = None
+    qualifying_shifts: bool | None = None
     work_pattern: WorkPattern | None = None
     weekly_rest_day: Weekday = Weekday.SUNDAY
     seniority: SeniorityFact | None = None
@@ -230,6 +234,15 @@ class Employment:
                 feature=FEATURE,
             )
             object.__setattr__(self, "public_end_of_service", regime)
+        if self.qualifying_shifts is not None and not isinstance(
+            self.qualifying_shifts, bool
+        ):
+            reject(
+                "Employment.qualifying_shifts",
+                "a boolean",
+                self.qualifying_shifts,
+                feature=FEATURE,
+            )
         check_within_full_time(self.weekly_hours, self.full_time_weekly_hours)
         check_pattern_hours(self.weekly_hours, self.work_pattern)
         rest = check_rest_day(self.weekly_rest_day, self.work_pattern)
