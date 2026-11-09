@@ -279,10 +279,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SIMPLIFICATION: Quattordicesima transitoria. Art. 116 norma transitoria: i lavoratori in forza al 22/12/2015 ricevono un superminimo personale assorbibile equivalente alla quattordicesima folded-in (rata mensile decrescente fino al 31/10/2029). Per la popolazione corrente (post-2015): 13 mensilita. La quattordicesima residuale per i lavoratori ante-2015 non e modellata; it may be the same element as pre_2015_superminimo_missing, which a reading of Art. 116 settles. Allowances can depend on the date in service (Allowance.in_service_on) (review of 2026-10-30).",
+      "rule": "Art. 116 transitory rule folds the former fourteenth into a separate absorbable monthly superminimo for pre-22 December 2015 hires, decreasing through 31 October 2029; there is no residual separate fourteenth. The agreement has 13 months. The worker's original fourteenth and the dated decreasing/absorption schedule are not printed. IndividualElement(absorbable=True, as_of=<balance date>, extra_months=True, tfr_relevant=True) only reduces on minimum increases and cannot implement an independently declining schedule or determine the worker's balance; even a supplied balance alone is insufficient for future periods.",
       "calculation": "ccnl/impianti-sportivi-sport:coverage.notes",
       "state": "absent",
-      "remediation": "Read Art. 116 and model the residual quattordicesima as an allowance with in_service_on 2015-12-22, or resolve it as part of pre_2015_superminimo_missing.",
+      "remediation": "Obtain the worker's dated 14th-derived balances and the actual decrease/absorption schedule; model the monthly transition, not a separate fourteenth. No schedule is stated on the cited page.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -295,10 +295,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SIMPLIFICATION: Seniority. Il CCNL 2024 non contiene disposizioni su scatti di anzianita (parola 'scatti' assente dall'intero PDF). Regime transitorio: i lavoratori in forza al 22/12/2015 conservano un superminimo personale decrescente fino al 31/10/2029 (Art. 116 norma transitoria). Non modellato. Gli importi kitech (EUR 21.69-28.92) si riferiscono agli scatti ante-2015. Modellato: maximum_count=0. Allowances can depend on the date in service (Allowance.in_service_on, individual) (review of 2026-10-30).",
+      "rule": "Art. 116(b) preserves a non-absorbable superminimo for pre-22 December 2015 hires, separate from the declining 14th-derived element in the transitory rule. With the worker's actual monthly balance, pass IndividualElement(code='legacy_superminimo', monthly=<worker balance>, absorbable=False, as_of=None, extra_months=False, tfr_relevant=True). Art. 117 excludes Art. 116(b) from the pay-of-fact base used for the thirteenth; Art. 131 does not exclude recurring pay from TFR. The amount is not printed and cannot be inferred from a scatti schedule. maximum_count=0 stops new accruals only.",
       "calculation": "ccnl/impianti-sportivi-sport:coverage.notes",
       "state": "absent",
-      "remediation": "Model the decreasing personal superminimo of Art. 116 as an allowance with in_service_on 2015-12-22.",
+      "remediation": "Supply the worker's non-absorbable Art. 116(b) monthly balance as an individual element; absent that worker fact, no agreement-wide amount is available.",
       "origin": "seeded",
       "links": {
         "limitations": [

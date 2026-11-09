@@ -294,10 +294,10 @@
       "institute": "seniority",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SENIORITY (Art. 24): salario di anzianità by hire-date band, modelled as cumulative cohort allowances (in_service_on): 90 EUR from 1/01/2025 for hires to 31/12/2001, down to 20 EUR for hires to 1/01/2023 (two years at 1/01/2025); later hires get none. Not modelled: for hires before 31/12/1995 the scatti di anzianità (5% every two years) received at 31/12/1997, which depend on the worker's history.",
+      "rule": "Art. 24: hire-date cohort allowances remain modelled. For workers hired before 31 December 1995, add the worker's actual monthly pre-1998 scatti balance to the cohort amount using IndividualElement(code='pre_1998_scatti', monthly=<preserved monthly balance>, absorbable=False, as_of=None, extra_months=True, tfr_relevant=True). The balance is paid monthly, included in December pay for the thirteenth (Art. 21), and in ordinary TFR pay (Art. 66). Do not calculate a balance from the 5% rate without the historical worker pay and accrual record.",
       "calculation": "ccnl/scuole-private-laiche-aninsei:coverage.notes",
       "state": "absent",
-      "remediation": "Add the pre-1998 scatti of hires before 31/12/1995 as a worker fact when one is approved; the hire-date bands are modelled.",
+      "remediation": "Supply the worker's actual preserved monthly pre-1998 scatti balance as an individual element; without it, the old scatti cannot be reconstructed from the hire-date bands.",
       "origin": "seeded",
       "links": {
         "limitations": [

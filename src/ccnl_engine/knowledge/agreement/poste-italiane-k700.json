@@ -100,7 +100,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Legacy retribuzione individuale di anzianità (D.P.R. 335/1990) and posizioni economiche differenziate (CCNL 1997) not modeled.",
+        "text": "Art. 63 legacy individual seniority (RIA) is worker-specific: for a known monthly balance pass IndividualElement(code='legacy_ria', monthly=<worker balance>, absorbable=False, as_of=None, extra_months=True, tfr_relevant=True). Arts. 67–68 include it in both extra months and Art. 78 includes it in TFR. Differentiated economic positions are also worker-specific and belong to both extra months and TFR, but Art. 63 permits absorption only upon promotion to a higher level or pay position, not on every increase of the minimum; generic absorbable=True does not express this condition. No balance can be inferred from the agreement.",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
@@ -108,7 +108,32 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Let the caller state the retribuzione individuale di anzianità and the posizioni economiche differenziate (e.g. EarnedIncrements or an individual allowance) and record the limitation."
+          "remediation": "Supply the worker's RIA as the non-absorbable individual element described above. For differentiated economic positions, obtain the worker's balance and implement promotion-only absorption; do not use generic minimum-increase absorption."
+        },
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "poste-italiane-k700-personal-ccnl",
+              "title": "Poste Italiane 2024-2027",
+              "kind": "associazione",
+              "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
+              "sha256": "84ca233b59d12f2026028da61615d216d540f7c94a72b04c85713ade1115a437"
+            },
+            "page": "140-142, 148",
+            "section": "Arts. 63, 67, 68, 78",
+            "quote": "La retribuzione individuale di anzianità in godimento e l’elemento distintivo della retribuzione non saranno riassorbiti all’atto dell’eventuale passaggio al livello professionale superiore."
+          },
+          "transformation": "A caller-supplied RIA balance is non-absorbable; differentiated positions instead require promotion-only absorption. Extra months and TFR follow Arts. 67, 68 and 78.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-09T11:25:22Z",
+            "verified_at": "2026-11-09T11:25:22Z",
+            "verified_by": "claude-opus-5-5",
+            "verification_status": "verified",
+            "review_id": "2026-11-09-ai-personal-poste"
+          }
         }
       },
       {
@@ -229,6 +254,21 @@
         ],
         "checked": [
           "work_rules.sickness_rules.cumulation"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-personal-poste",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "RIA and promotion-only absorption, Arts. 63, 67, 68 and 78, pp. 140-142 and 148.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
+            "sha256": "84ca233b59d12f2026028da61615d216d540f7c94a72b04c85713ade1115a437"
+          }
         ]
       }
     ]
@@ -2074,7 +2114,7 @@
     "effective_until": null,
     "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "fb51f01db3b614db1109cc178e2bd3e99afd2c0e622414611b3d8133302281cd",
+    "source_hash": "3654ec555cef220a81fc48dfc81944b2f65bcdeb7db36bb511722111680b3d25",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-06-15 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 90 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
+| 2026-11-09 | claude-opus-5-5 (ai) | Historic scatti, thirteenth and TFR, pp. 51, 53, 82. | confirmed | — |
 
 ## Salary table
 
@@ -104,11 +105,11 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "scuole-private-laiche-aninsei/salario_di_anzianita · seniority · impact yes · open"
-    SENIORITY (Art. 24): salario di anzianità by hire-date band, modelled as cumulative cohort allowances (in_service_on): 90 EUR from 1/01/2025 for hires to 31/12/2001, down to 20 EUR for hires to 1/01/2023 (two years at 1/01/2025); later hires get none. Not modelled: for hires before 31/12/1995 the scatti di anzianità (5% every two years) received at 31/12/1997, which depend on the worker's history.
+    Art. 24: hire-date cohort allowances remain modelled. For workers hired before 31 December 1995, add the worker's actual monthly pre-1998 scatti balance to the cohort amount using IndividualElement(code='pre_1998_scatti', monthly=<preserved monthly balance>, absorbable=False, as_of=None, extra_months=True, tfr_relevant=True). The balance is paid monthly, included in December pay for the thirteenth (Art. 21), and in ordinary TFR pay (Art. 66). Do not calculate a balance from the 5% rate without the historical worker pay and accrual record.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the pre-1998 scatti of hires before 31/12/1995 as a worker fact when one is approved; the hire-date bands are modelled.
+    **Remediation:** Supply the worker's actual preserved monthly pre-1998 scatti balance as an individual element; without it, the old scatti cannot be reconstructed from the hire-date bands.
 
 !!! warning "scuole-private-laiche-aninsei/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.

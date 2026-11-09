@@ -31,6 +31,7 @@ from ccnl_engine.limitation.models import (
     MonetaryImpact,
     NoteLimitation,
 )
+from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.sickness.integration.models import SicknessRules
 from ccnl_engine.termination.notice.models import NoticeRules
 from ccnl_engine.working_time.models import TimeSupplements
@@ -59,7 +60,8 @@ class CoverageNote(BaseModel):
     move an amount (``yes`` or ``unknown``) it must name its capability and
     declare the :class:`~ccnl_engine.limitation.models.NoteLimitation`
     the engine records on the runs it concerns: no monetary simplification
-    stays free text.
+    stays free text. ``provenance`` records the checked source and extraction
+    for a coverage-note interpretation.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -69,6 +71,7 @@ class CoverageNote(BaseModel):
     capability: str | None = None
     monetary_impact: MonetaryImpact | None = None
     limitation: NoteLimitation | None = None
+    provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
     def _missing_names_capability(self) -> Self:
