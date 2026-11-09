@@ -177,7 +177,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 58 | G011 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | grafica-editoria | ~70k | — | ⚠️ | seniority | 2 / 70 / 1 / 0 | 🧪 | 🤖 |
 | 59 | T511 | [CCNL Gruppo ANAS](anas.md) | anas spa - personale non dirigente | ~7k | 2025 | ✅ | — | 29 / 14 / 1 / 0 | 🧪 | 🤖 |
 | 60 | K540 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | servizi ambientali | ~65k | 2025 | ⚠️ | inps_employer, pension_fund_contribution, seniority | 68 / 76 / 1 / 0 | 🧪 | 🤖 |
-| 61 | H077 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | impianti sportivi, palestre e attività sportive | 35533 | 2024 | ⚠️ | base_salary, sickness | 28 / 4 / 1 / 1 | 🧪 | 🤖 |
+| 61 | H077 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | impianti sportivi, palestre e attività sportive | 35533 | 2024 | ⚠️ | base_salary, overtime, sickness | 28 / 4 / 1 / 1 | 🧪 | 🤖 |
 | 62 | A021 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | agricoltura | ~80k | 2024 | ⚠️ | base_salary, bilateral_funds | 7 / 8 / 1 / 1 | 🧪 | 🤖 |
 | 63 | B011 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | chimica | ~210k | — | ⚠️ | base_salary, leave, overtime, sickness, workplace_injury | 126 / 6 / 0 / 0 | 👁 | 🤖✓ |
 | 64 | H05B | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | turismo — alberghi, campeggi, villaggi e strutture ricettive | ~40k | 2025 | ⚠️ | base_salary | 36 / 10 / 1 / 0 | 🧪 | 🤖 |

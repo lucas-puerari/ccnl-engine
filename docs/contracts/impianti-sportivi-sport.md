@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, sickness |
+| **Limits of this contract** | base_salary, overtime, sickness |
 
 9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -68,6 +68,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 105 - Injury pay, PDF pp. 84-85: the integration targets of apprentices. | confirmed | The clause sets the targets of points 2) and 3) at 80% and 90% for apprentices; point 1) (60% for the waiting days) is unchanged.<br>Encoded as apprentice_bands at offsets 4 and 20, selected when the contract is an apprenticeship. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Local patron saint day in sickness and work injury holiday clauses. | confirmed | Art. 107 - Festività nel periodo di malattia o infortunio (p. 85): Ai sensi della legge 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto a un'indennità integrativa di quella a carico rispettivamente dell'INPS e dell'INAIL da corrispondersi a carico del datore di lavoro in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all'art. 117. The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 116(b) balance versus 14th-derived declining amount, pp. 88-89, 91, 94. | confirmed | — |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 83 weekly overtime thresholds against the cached PDF page 76. | corrected | Both bands were already present; weekly hours preceding an event were not available to the resolver. |
 
 ## Salary table
 
@@ -126,12 +127,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Confirm the level VI track after the 2024 renewal and model its first semester.
 
-!!! note "impianti-sportivi-sport/overtime_over_48h_band_missing · overtime · impact yes · resolved"
-    OVERTIME (Art. 83, p. 76): 15% from the 41st to the 48th weekly hour (OT_DIURNO), 20% past the 48th (OT_DIURNO_OLTRE_48).
+!!! warning "impianti-sportivi-sport/overtime_weekly_hours_not_stated · overtime · impact yes · open"
+    Art. 83 pays 15% for weekly hours 41-48 and 20% beyond hour 48. Both bands are present; the engine resolves weekly tiers when the event supplies weekly_hours_before. Without that worker fact, the caller must supply the multiplier for each tier.
 
-    **Applies when:** `overtime` applies.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Resolved: overtime band OT_DIURNO_OLTRE_48 of 20% past 48 weekly hours, read on 2026-11-05.
+    **Remediation:** Supply OvertimeEvent.weekly_hours_before, or separate the hours and supply each tier's multiplier.
 
 !!! note "impianti-sportivi-sport/long_week_divisor_195 · workplace_injury · impact unknown · resolved"
     SIMPLIFICATION: Divisore orario. Art. 120 prevede 173 (40h) e 195 (45h). Solo il divisore 173 e modellato. Le assunzioni a 45h settimanali non sono gestite.

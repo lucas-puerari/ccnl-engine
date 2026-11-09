@@ -163,6 +163,22 @@
       }
     },
     {
+      "id": "overtime_weekly_hours_not_stated",
+      "institute": "overtime",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 83 pays 15% for weekly hours 41-48 and 20% beyond hour 48. Both bands are present; the engine resolves weekly tiers when the event supplies weekly_hours_before. Without that worker fact, the caller must supply the multiplier for each tier.",
+      "calculation": "ccnl/impianti-sportivi-sport:coverage.notes",
+      "state": "absent",
+      "remediation": "Supply OvertimeEvent.weekly_hours_before, or separate the hours and supply each tier's multiplier.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "impianti-sportivi-sport/overtime_weekly_hours_not_stated"
+        ]
+      }
+    },
+    {
       "id": "parental_daily_base",
       "institute": "parental_leave",
       "variant": "all",
