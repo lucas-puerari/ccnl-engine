@@ -80,11 +80,11 @@
       },
       {
         "kind": "info",
-        "text": "Seniority, impiegati: biennial scatti of 6.25% of the tabellare in force when each scatto matures plus the contingenza at 1/8/1983 (EUR 279.60), at most 8 and up to 50% of tabellare + 279.60 (art. 22, CNEL 105782 p. 41). A matured scatto keeps its amount: it is not recomputed at later tranches. The file holds one series per level (2021-2024 computed on the CNEL 139292 tables) and the engine prices every matured scatto at the run date; it pays scatti to levels 5, 6, 7 and Q, while the CCNL pays them to the impiegati of levels 2-7 and Q. Declared in multiservizi_unmodelled_rules."
+        "text": "Seniority, impiegati: biennial scatti of 6.25% of the tabellare in force when each scatto matures plus the contingenza at 1/8/1983 (EUR 279.60), at most 8 and up to 50% of tabellare + 279.60 (art. 22, CNEL 105782 p. 41). A matured scatto keeps its amount: it is not recomputed at later tranches. The file holds one series per level (2021-2024 computed on the CNEL 139292 tables) and the engine prices every matured scatto at the run date; it pays scatti to levels 5, 6, 7 and Q, while the CCNL pays them to the impiegati of levels 2-7 and Q. Declared in multiservizi_seniority_maturation."
       },
       {
         "kind": "info",
-        "text": "Seniority, operai: anzianità forfettaria di settore, one fixed monthly amount not paid for the first four years of sector seniority (art. 22, CNEL 105782 pp. 41-42; amounts in the table of p. 90). Modelled with first_cadence_months_by_level 48 and maximum_count_by_level 1 for levels 1 to 4; the CCNL also pays it to the operai of levels 5 and 6 (66.77, 82.99). Declared in multiservizi_unmodelled_rules."
+        "text": "Seniority, operai: anzianità forfettaria di settore, one fixed monthly amount not paid for the first four years of sector seniority (art. 22, CNEL 105782 pp. 41-42; amounts in the table of p. 90). Modelled with first_cadence_months_by_level 48 and maximum_count_by_level 1 for levels 1 to 4; the CCNL also pays it to the operai of levels 5 and 6 (66.77, 82.99). Declared in multiservizi_seniority_maturation."
       },
       {
         "kind": "info",
@@ -92,7 +92,7 @@
       },
       {
         "kind": "info",
-        "text": "Apprenticeship: two levels below the destination for the first half and one below for the second, destination II at level I throughout (art. 12, CNEL 105782 p. 37; the parametric positions are skipped). Durations come from the accord of 19 July 2012, read only in a third-party copy of the 2021 text: II 24, III 30, IV 30, V 36, VI 36, VII 36 months. The file models destinations 4 and 5 with 30 months each: destination 5 should last 36 and the other destinations are missing. Declared in multiservizi_unmodelled_rules."
+        "text": "Apprenticeship: two levels below the destination for the first half and one below for the second, destination II at level I throughout (art. 12, CNEL 105782 p. 37; the parametric positions are skipped). Durations come from the accord of 19 July 2012, read only in a third-party copy of the 2021 text: II 24, III 30, IV 30, V 36, VI 36, VII 36 months. The file models destinations 4 and 5 with 30 months each: destination 5 should last 36 and the other destinations are missing. The 2012 duration schedule has not been verified on the signed cached PDFs; declared in multiservizi_apprenticeship_destinations."
       },
       {
         "kind": "info",
@@ -126,15 +126,93 @@
       },
       {
         "kind": "simplification",
-        "text": "NOT MODELLED (CNEL 105782 and 139292): (1) worker type: levels 2 to 6 hold both impiegati and operai (art. 10), but the file keys seniority and category by level, so impiegati of levels 2-4 get the operai forfettaria instead of the biennial scatti of art. 22 and operai of levels 5-6 get scatti instead of the forfettaria (66.77, 82.99, p. 90); each scatto is priced on the tabellare in force at its maturation and capped at 50% of tabellare + 279.60, while the engine prices it at the run date. (2) Sickness (art. 51 as replaced in 2021, CNEL 139292 pp. 22-24): operai are topped up to 100% of the net retribuzione globale for days 1-180 and paid 50% of the gross one for days 181-270 (the file stops at day 180); impiegati get 100% for 5 months and 50% for 7; comporto 12 months in 36. (3) Absence: the daily quota is the monthly pay /22 on a 5-day week (art. 19, the norm of art. 30); the file divides by 26 unless Employment.full_time_week_days states 5. (4) Overtime is paid on quote of the retribuzione globale and its premiums on the retribuzione base, tabellare plus contingenza (art. 38); the premiums for holiday work (50%) and night work (20% in rotating shifts, 30% otherwise), the part-time supplementary hours (+28%, elastic clauses +10%, art. 33 as amended in 2021) and the 40 ROL hours (art. 42). (5) The allowances of art. 24 (disagio 15% of tabellare a day, maneggio denaro 3%, riscossione 5%, hourly allowances) and the EDAR ad personam. (6) Funds: Previambiente 1% + 1% of tabellare and contingenza for members (art. 54); ASIM and ONBSI are the limitation health_and_bilateral_funds. (7) Apprenticeship durations of the accord of 19 July 2012 (destination 5 lasts 36 months, destinations 2, 3, 6 and 7 are missing).",
-        "capability": "base_salary",
+        "text": "SENIORITY (CNEL 105782 art. 22, pp. 41-42, 90): Levels 2-6 include both operai and impiegati. The single level-based schedule assigns the wrong form of seniority to some workers: impiegati receive eight biennial scatti at most, operai one sector amount after four years (including levels 5 and 6). Scatti must retain their value at maturation and after promotion, with a ceiling of 50% of tabellare plus EUR 279.60; the existing schedule reprices every matured scatto at the current rate. Sector seniority survives contract changes within the sector.",
+        "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "multiservizi_unmodelled_rules",
+          "variant": "multiservizi_seniority_maturation",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Route scatti and forfettaria by worker category, preserve each matured amount across tranches and promotion, respect the ceiling and sector service history."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "SICKNESS (CNEL 139292 art. 51, pp. 22-24): operai receive a top-up to 100% of net global pay on days 1-180, then 50% of gross global pay on days 181-270. Impiegati receive 100% of stipendio plus contingenza for five months and 50% for seven; both are subject to a twelve-month comporto in a rolling 36-month window. The existing rule ends pay at day 180, uses gross throughout and does not route by category; the rolling comporto alone is represented.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "multiservizi_sickness_by_category_and_basis",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Apply separate category rules and day-dependent net/gross bases to operai; apply the separate stipendio-plus-contingenza impiegati bands."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "OVERTIME AND NIGHT WORK (CNEL 105782 art. 38, p. 57): ordinary overtime hours use global pay, whereas percentage supplements use base pay (tabellare and contingenza). Holiday work attracts 50%; ordinary night work attracts 20% in rotating shifts or 30% otherwise. The existing four overtime bands do not represent these ordinary holiday and night events or the separate bases.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "multiservizi_variable_time_premiums",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Key seniority and sickness by worker category, model the second sickness band, the /22 divisor as the default, the art. 38 and art. 24 premiums, the funds and the apprenticeship durations of the 2012 accord."
+          "remediation": "Separate global hourly pay from base-pay premiums and route holiday and rotating versus non-rotating night events without stacking premiums."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "PART-TIME SUPPLEMENTS (CNEL 139292 art. 33): supplementary hours and elastic clauses have distinct rates and eligibility. The four configured overtime bands do not cover them.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "multiservizi_part_time_supplements",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Verify the full part-time clause and route supplementary and elastic hours separately."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "VARIABLE ALLOWANCES (CNEL 105782 art. 24): hardship, cash-handling and collection duties require separate daily, hourly or percentage bases and qualifying work events. The retained personal EDAR is absorbed at the next qualifying seniority increment (art. 22 pp. 41-42). No amounts for work not evidenced by the source are inferred.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "multiservizi_duty_allowances_and_edar",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model each evidenced allowance on its own qualifying duty and base; track the individual EDAR and absorption at the first subsequent increment."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "COMPLEMENTARY PENSION (CNEL 105782 art. 54, pp. 69-70, 90): enrolled members contribute with their employer at 1% each on the tabellare and contingenza frozen at 1 January 2001, for twelve monthly payments. This is not a percentage of current pay. The eligible funds depend on the employer association (Previambiente, Fondapi or Cooperlavoro), and fixed-term membership depends on six months of work in the calendar year. ASIM and ONBSI are addressed by the separate health_and_bilateral_funds limitation.",
+        "capability": "pension_fund_contribution",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "multiservizi_pension_frozen_base",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Apply the per-level historical base to enrolled members on twelve months, enforce the membership conditions and employee and employer shares."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICESHIP (19 July 2012 accord): destination 5 is configured for 30 months rather than 36; destinations 2, 3, 6 and 7 are not configured. The cited duration schedule has not been verified on the cached signed 2011 or 2021 PDF and must not be inferred from a third-party copy.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "multiservizi_apprenticeship_destinations",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Obtain and verify the signed 2012 apprenticeship accord before changing durations or adding destinations."
         }
       },
       {
@@ -451,7 +529,7 @@
           "quote": "maggiorazione del 6,25% calcolata sulla retribuzione tabellare"
         },
         "transformation": "Scatti of levels 5, 6, 7, Q for 2021-2025: 6.25% x (tabellare of the CNEL 139292 tables pp. 32-34 + contingenza at 1/8/1983 279.60).",
-        "note": "Cadence 24 months, at most 8 scatti, forfettaria not paid in the first four years and its amounts (CNEL 105782 p. 90) match. The July 2025 scatti are derived from the ANIP-signed tabellare (CNEL 139292 p. 34) and the 279.60 reference: Q 115.77, 7 107.28, 6 95.22, 5 80.03. Art. 22 gives scatti to impiegati of levels 2-7 and Q and the forfettaria to operai of levels 1-6, priced at maturation and capped at 50% of tabellare + 279.60: declared in multiservizi_unmodelled_rules.",
+        "note": "Cadence 24 months, at most 8 scatti, forfettaria not paid in the first four years and its amounts (CNEL 105782 p. 90) match. The July 2025 scatti are derived from the ANIP-signed tabellare (CNEL 139292 p. 34) and the 279.60 reference: Q 115.77, 7 107.28, 6 95.22, 5 80.03. Art. 22 gives scatti to impiegati of levels 2-7 and Q and the forfettaria to operai of levels 1-6, priced at maturation and capped at 50% of tabellare + 279.60: declared in multiservizi_seniority_maturation.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
@@ -1252,7 +1330,7 @@
           "section": "Art. 10 Inquadramento, declaratorie",
           "quote": "Qualif.        esecutivi      comuni"
         },
-        "note": "Level 2 holds impiegati esecutivi AND operai comuni (Cat. Impiegati / Operai); JSON category 'operaio' fits only the operai. Matters for seniority (art. 22) and sickness (art. 51). The file keeps one category per level: declared in multiservizi_unmodelled_rules.",
+        "note": "Level 2 holds impiegati esecutivi AND operai comuni (Cat. Impiegati / Operai); JSON category 'operaio' fits only the operai. Matters for seniority (art. 22) and sickness (art. 51). The file keeps one category per level: declared in multiservizi_seniority_maturation and multiservizi_sickness_by_category_and_basis.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
@@ -1789,7 +1867,7 @@
           "section": "Art. 10 Inquadramento, declaratorie",
           "quote": "Qualif.          esecutivi       qualificati"
         },
-        "note": "Level 3 holds impiegati esecutivi AND operai qualificati; JSON category 'operaio' covers only the operai. The file keeps one category per level: declared in multiservizi_unmodelled_rules.",
+        "note": "Level 3 holds impiegati esecutivi AND operai qualificati; JSON category 'operaio' covers only the operai. The file keeps one category per level: declared in multiservizi_seniority_maturation and multiservizi_sickness_by_category_and_basis.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
@@ -2326,7 +2404,7 @@
           "section": "Art. 10 Inquadramento, declaratorie",
           "quote": "Qualif.          d'ordine        specializzati"
         },
-        "note": "Level 4 holds impiegati d'ordine AND operai specializzati; JSON category 'operaio' covers only the operai. The file keeps one category per level: declared in multiservizi_unmodelled_rules.",
+        "note": "Level 4 holds impiegati d'ordine AND operai specializzati; JSON category 'operaio' covers only the operai. The file keeps one category per level: declared in multiservizi_seniority_maturation and multiservizi_sickness_by_category_and_basis.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
@@ -2596,7 +2674,7 @@
           "section": "Art. 10 Inquadramento, declaratorie",
           "quote": "Qualif.        di concetto    provetti"
         },
-        "note": "Level 5 holds impiegati di concetto AND operai provetti; JSON category 'impiegato' covers only the impiegati. The file keeps one category per level: declared in multiservizi_unmodelled_rules.",
+        "note": "Level 5 holds impiegati di concetto AND operai provetti; JSON category 'impiegato' covers only the impiegati. The file keeps one category per level: declared in multiservizi_seniority_maturation and multiservizi_sickness_by_category_and_basis.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
@@ -2866,7 +2944,7 @@
           "section": "Art. 10 Inquadramento, declaratorie",
           "quote": "Cat.    Impiegati/Operai"
         },
-        "note": "Level 6 holds impiegati AND operai; JSON category 'impiegato' covers only the impiegati. The file keeps one category per level: declared in multiservizi_unmodelled_rules.",
+        "note": "Level 6 holds impiegati AND operai; JSON category 'impiegato' covers only the impiegati. The file keeps one category per level: declared in multiservizi_seniority_maturation and multiservizi_sickness_by_category_and_basis.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
@@ -3517,7 +3595,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "25ec17052508836ad7f636ef57d3d004df15b491d73e55973ca7b5d527d374db",
+    "source_hash": "56a99e4f26042e5bfa812ade0af33ab108a4ad2801249956bb5f8dee652782ce",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -3704,10 +3782,10 @@
       ]
     },
     "absence_rules": {
-      "daily_divisor_method": "by_26",
+      "daily_divisor_method": "by_22",
       "daily_hours": null,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "cnel-k511-105782",
@@ -3721,21 +3799,55 @@
           "section": "Art. 19 Determinazione del trattamento economico; art. 30 (p. 47)",
           "quote": "La determinazione della retribuzione giornaliera si ottiene dividendo la retribuzione mensile per 22"
         },
-        "note": "Art. 19 divides by 22 on a 5-day week, the norm of art. 30, and by 26 on a 6-day week; the file keeps by_26 unless Employment.full_time_week_days states 5 (week_days_methods).",
+        "note": "Art. 19 divides by 22 on the standard five-day week of art. 30, and by 26 where a six-day distribution is agreed. Employment.full_time_week_days selects the six-day exception.",
+        "transformation": "Use the ordinary five-day week as the default daily divisor, with the six-day exception selected by the employment schedule.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T09:25:49Z",
+          "extraction_timestamp": "2026-11-09T17:36:50Z",
           "effective_from": "2021-06-01",
-          "verification_status": "unverified"
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-09T17:36:50Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-09-ai-multiservizi-absence"
         }
       },
       "week_days_methods": [
         {
+          "days": 6,
+          "method": "by_26",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "40",
+              "section": "Art. 19 Determination of daily pay",
+              "quote": "La determinazione della retribuzione giornaliera si ottiene dividendo la retribuzione mensile per 22 nel caso di prestazione su 5 giorni settimanali e per 26 nel caso di prestazione su 6 giorni settimanali."
+            },
+            "transformation": "A stated six-day full-time week uses 26 rather than the five-day default of 22.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T17:36:50Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T17:36:50Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-multiservizi-absence"
+            }
+          }
+        },
+        {
           "days": 5,
           "method": "by_22",
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
                 "document_id": "cnel-k511-105782",
@@ -3752,11 +3864,14 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-05T09:00:00Z",
+              "extraction_timestamp": "2026-11-09T17:36:50Z",
               "effective_from": "2021-06-01",
-              "verification_status": "unverified"
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T17:36:50Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-multiservizi-absence"
             },
-            "transformation": "A full-time week of five days, the norm of art. 30, divides the monthly pay by 22 (art. 19); the default by_26 is the six-day week."
+            "transformation": "A stated five-day full-time week uses 22, the same as the ordinary default; a six-day week uses 26."
           }
         }
       ]
@@ -3942,7 +4057,7 @@
           "section": "Art. 51 as replaced by the 2021 renewal, operai (pp. 22-24)",
           "quote": "a partire dal primo giorno lavorativo di assenza e fino al 180° giorno, un’integrazione del [...] b) dal 181° giorno al 270° corresponsione del 50% della retribuzione globale."
         },
-        "note": "Carenza and days 1-180 at 100% match the operai rule, but on the net retribuzione globale; days 181-270 at 50%, the impiegati rule (100% for 5 months, 50% for 7, p. 23) and the comporto of 12 months in 36 (p. 22) are not modelled: declared in multiservizi_unmodelled_rules.",
+        "note": "Carenza and days 1-180 at 100% match the operai rule, but on the net retribuzione globale; days 181-270 at 50%, the impiegati rule (100% for 5 months, 50% for 7, p. 23) and the impiegati pay rule (p. 23) are not modelled; the 12-month rolling comporto (p. 22) is already represented: declared in multiservizi_sickness_by_category_and_basis.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
@@ -4078,7 +4193,7 @@
           "Closed cigs_threshold_16_to_50: terziario.json already charges the CIGS above 15 employees (D.Lgs. 148/2015 arts. 20 and 23).",
           "Closed apprentice_seniority: apprentices are paid tabellare, contingenza and EDR only (art. 12), apprentice_amount 0 (derived).",
           "Corrected the notes on the July 2025 values (the 2021 fifth tranche is the operative ANIP amount), on scatti recomputed at every tranche, on the apprenticeship durations, on the 2025 signatories and on the worker estimate.",
-          "Declared multiservizi_unmodelled_rules: seniority and sickness by worker type, the 181-270 sickness band, the /22 divisor, the overtime base and premiums, the art. 24 allowances, the funds and the apprenticeship durations.",
+          "Separate limitations remain for seniority maturation and worker category, sickness basis and bands, variable time premiums, duty allowances and EDAR, pension historical base, and apprenticeship destinations. The ordinary five-day daily divisor is /22, with /26 on a six-day week.",
           "hourly_base_method gross_incl_allowances: the art. 38 premiums are on tabellare plus contingenza.",
           "Left derived: the periods from July 2025 (renewal not signed by ANIP, re-cited to CNEL 234752), the seniority block, the contingenza of the parametric positions, levels 2 to 6 (mixed categories), absence and sickness rules.",
           "The aggregator sources (oristano summary, redigo, kitech, ccnlportatili) are replaced by the CNEL deposits."
@@ -4244,6 +4359,32 @@
         ],
         "checked": [
           "levels.base_salary.periods",
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-multiservizi-absence",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 19 daily pay and art. 30 ordinary working week, cached signed CNEL 105782; separate limitations for the remaining clauses in CNEL 105782 and 139292.",
+        "outcome": "corrected",
+        "independence": "same_process",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+            "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+          },
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+            "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
+          }
+        ],
+        "findings": [
+          "Art. 19 prints 22 for a five-day week and 26 for six days; art. 30 makes five days the normal distribution. The historical pension base and the missing signed 2012 apprenticeship accord prevent assuming current pay bases or durations."
+        ],
+        "checked": [
+          "work_rules.absence_rules",
           "coverage.notes"
         ]
       }
