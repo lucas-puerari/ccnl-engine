@@ -157,3 +157,23 @@ def test_the_ancc_divides_by_the_divisor_of_art_187(week: str, divisor: int) -> 
         load_ccnl("distribuzione-cooperativa-ancc"), WeeklyHours(Decimal(week))
     )
     assert ccnl.parameters.hourly_divisor.value_at(date(2026, 3, 1)) == divisor
+
+
+@pytest.mark.parametrize(
+    ("week", "hourly_rate"), [("38.5", "7.4038"), ("42.5", "6.7197")]
+)
+def test_ancc_half_hour_week_hourly_rate(week: str, hourly_rate: str) -> None:
+    """Art. 187 half-hour week hourly rates.
+
+    Level 4 March 2026 monthly 1,236.43 / 167 = 7.4038;
+    / 184 = 6.7197 per hour, rounded to four decimal places.
+    """
+    day = date(2026, 3, 1)
+    ccnl = with_week_divisor(
+        load_ccnl("distribuzione-cooperativa-ancc"), WeeklyHours(Decimal(week))
+    )
+    monthly = next(
+        level for level in ccnl.levels if level.code == "4"
+    ).base_salary.value_at(day)
+    divisor = ccnl.parameters.hourly_divisor.value_at(day)
+    assert (monthly / divisor).quantize(Decimal("0.0001")) == Decimal(hourly_rate)
