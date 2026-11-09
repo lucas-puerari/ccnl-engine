@@ -99,18 +99,114 @@
       }
     },
     {
-      "id": "multiservizi_unmodelled_rules",
+      "id": "multiservizi_apprenticeship_destinations",
       "institute": "base_salary",
       "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "NOT MODELLED (CNEL 105782 and 139292): (1) worker type: levels 2 to 6 hold both impiegati and operai (art. 10), but the file keys seniority and category by level, so impiegati of levels 2-4 get the operai forfettaria instead of the biennial scatti of art. 22 and operai of levels 5-6 get scatti instead of the forfettaria (66.77, 82.99, p. 90); each scatto is priced on the tabellare in force at its maturation and capped at 50% of tabellare + 279.60, while the engine prices it at the run date. (2) Sickness (art. 51 as replaced in 2021, CNEL 139292 pp. 22-24): operai are topped up to 100% of the net retribuzione globale for days 1-180 and paid 50% of the gross one for days 181-270 (the file stops at day 180); impiegati get 100% for 5 months and 50% for 7; comporto 12 months in 36. (3) Absence: the daily quota is the monthly pay /22 on a 5-day week (art. 19, the norm of art. 30); the file divides by 26 unless Employment.full_time_week_days states 5. (4) Overtime is paid on quote of the retribuzione globale and its premiums on the retribuzione base, tabellare plus contingenza (art. 38); the premiums for holiday work (50%) and night work (20% in rotating shifts, 30% otherwise), the part-time supplementary hours (+28%, elastic clauses +10%, art. 33 as amended in 2021) and the 40 ROL hours (art. 42). (5) The allowances of art. 24 (disagio 15% of tabellare a day, maneggio denaro 3%, riscossione 5%, hourly allowances) and the EDAR ad personam. (6) Funds: Previambiente 1% + 1% of tabellare and contingenza for members (art. 54); ASIM and ONBSI are the limitation health_and_bilateral_funds. (7) Apprenticeship durations of the accord of 19 July 2012 (destination 5 lasts 36 months, destinations 2, 3, 6 and 7 are missing).",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "APPRENTICESHIP (19 July 2012 accord): destination 5 is configured for 30 months rather than 36; destinations 2, 3, 6 and 7 are not configured. The cited duration schedule has not been verified on the cached signed 2011 or 2021 PDF and must not be inferred from a third-party copy.",
       "calculation": "ccnl/multiservizi-anip:coverage.notes",
       "state": "absent",
-      "remediation": "Key seniority and sickness by worker category, model the second sickness band, the /22 divisor as the default, the art. 38 and art. 24 premiums, the funds and the apprenticeship durations of the 2012 accord.",
+      "remediation": "Obtain and verify the signed 2012 apprenticeship accord before changing durations or adding destinations.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "multiservizi-anip/multiservizi_unmodelled_rules"
+          "multiservizi-anip/multiservizi_apprenticeship_destinations"
+        ]
+      }
+    },
+    {
+      "id": "multiservizi_duty_allowances_and_edar",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "VARIABLE ALLOWANCES (CNEL 105782 art. 24): hardship, cash-handling and collection duties require separate daily, hourly or percentage bases and qualifying work events. The retained personal EDAR is absorbed at the next qualifying seniority increment (art. 22 pp. 41-42). No amounts for work not evidenced by the source are inferred.",
+      "calculation": "ccnl/multiservizi-anip:coverage.notes",
+      "state": "absent",
+      "remediation": "Model each evidenced allowance on its own qualifying duty and base; track the individual EDAR and absorption at the first subsequent increment.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "multiservizi-anip/multiservizi_duty_allowances_and_edar"
+        ]
+      }
+    },
+    {
+      "id": "multiservizi_part_time_supplements",
+      "institute": "overtime",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "PART-TIME SUPPLEMENTS (CNEL 139292 art. 33): supplementary hours and elastic clauses have distinct rates and eligibility. The four configured overtime bands do not cover them.",
+      "calculation": "ccnl/multiservizi-anip:coverage.notes",
+      "state": "absent",
+      "remediation": "Verify the full part-time clause and route supplementary and elastic hours separately.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "multiservizi-anip/multiservizi_part_time_supplements"
+        ]
+      }
+    },
+    {
+      "id": "multiservizi_pension_frozen_base",
+      "institute": "pension_fund_contribution",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "COMPLEMENTARY PENSION (CNEL 105782 art. 54, pp. 69-70, 90): enrolled members contribute with their employer at 1% each on the tabellare and contingenza frozen at 1 January 2001, for twelve monthly payments. This is not a percentage of current pay. The eligible funds depend on the employer association (Previambiente, Fondapi or Cooperlavoro), and fixed-term membership depends on six months of work in the calendar year. ASIM and ONBSI are addressed by the separate health_and_bilateral_funds limitation.",
+      "calculation": "ccnl/multiservizi-anip:coverage.notes",
+      "state": "absent",
+      "remediation": "Apply the per-level historical base to enrolled members on twelve months, enforce the membership conditions and employee and employer shares.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "multiservizi-anip/multiservizi_pension_frozen_base"
+        ]
+      }
+    },
+    {
+      "id": "multiservizi_seniority_maturation",
+      "institute": "seniority",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SENIORITY (CNEL 105782 art. 22, pp. 41-42, 90): Levels 2-6 include both operai and impiegati. The single level-based schedule assigns the wrong form of seniority to some workers: impiegati receive eight biennial scatti at most, operai one sector amount after four years (including levels 5 and 6). Scatti must retain their value at maturation and after promotion, with a ceiling of 50% of tabellare plus EUR 279.60; the existing schedule reprices every matured scatto at the current rate. Sector seniority survives contract changes within the sector.",
+      "calculation": "ccnl/multiservizi-anip:coverage.notes",
+      "state": "absent",
+      "remediation": "Route scatti and forfettaria by worker category, preserve each matured amount across tranches and promotion, respect the ceiling and sector service history.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "multiservizi-anip/multiservizi_seniority_maturation"
+        ]
+      }
+    },
+    {
+      "id": "multiservizi_sickness_by_category_and_basis",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "SICKNESS (CNEL 139292 art. 51, pp. 22-24): operai receive a top-up to 100% of net global pay on days 1-180, then 50% of gross global pay on days 181-270. Impiegati receive 100% of stipendio plus contingenza for five months and 50% for seven; both are subject to a twelve-month comporto in a rolling 36-month window. The existing rule ends pay at day 180, uses gross throughout and does not route by category; the rolling comporto alone is represented.",
+      "calculation": "ccnl/multiservizi-anip:coverage.notes",
+      "state": "absent",
+      "remediation": "Apply separate category rules and day-dependent net/gross bases to operai; apply the separate stipendio-plus-contingenza impiegati bands.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "multiservizi-anip/multiservizi_sickness_by_category_and_basis"
+        ]
+      }
+    },
+    {
+      "id": "multiservizi_variable_time_premiums",
+      "institute": "overtime",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "OVERTIME AND NIGHT WORK (CNEL 105782 art. 38, p. 57): ordinary overtime hours use global pay, whereas percentage supplements use base pay (tabellare and contingenza). Holiday work attracts 50%; ordinary night work attracts 20% in rotating shifts or 30% otherwise. The existing four overtime bands do not represent these ordinary holiday and night events or the separate bases.",
+      "calculation": "ccnl/multiservizi-anip:coverage.notes",
+      "state": "absent",
+      "remediation": "Separate global hourly pay from base-pay premiums and route holiday and rotating versus non-rotating night events without stacking premiums.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "multiservizi-anip/multiservizi_variable_time_premiums"
         ]
       }
     },
