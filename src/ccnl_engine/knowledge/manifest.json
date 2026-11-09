@@ -1377,7 +1377,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/legno-lapidei-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "9c6b8d784eafeb9723af7414594bfb9afb00336c77d34c14f6ae86462b9c0091",
+      "source_hash": "9897263d45e5e4f48e528ec13199858a37beb1e37890ad0ed77658449de7b00f",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/legno-lapidei-artigianato-confartigianato.json.gz"

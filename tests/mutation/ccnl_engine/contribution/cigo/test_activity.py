@@ -117,6 +117,37 @@ def test_operai_activity_contributions(
     assert selected.contribution_breakdown.components[0].base == base
 
 
+@pytest.mark.parametrize("category", [WorkerCategory.OPERAIO, WorkerCategory.IMPIEGATO])
+def test_artisan_separate_workshop_owes_no_cigo(category: WorkerCategory) -> None:
+    """On EUR 2231, covered operai add 2231 x 3.30% = EUR 73.62.
+
+    The separate workshop stays at EUR 610.85 instead of EUR 684.47.
+    Office workers also stay at their sector-only rate, without 1.70% CIGO.
+    """
+    slug = "legno-lapidei-artigianato-confartigianato"
+    workshop = _run(
+        slug, "AS", EmployerActivity.STONE_WORKING_SEPARATE_WORKSHOP, category
+    )
+    sector = _run(slug, "AS", EmployerActivity.OTHER, category)
+    covered = _run(slug, "AS", EmployerActivity.STONE_WORKING, category)
+    assert (
+        workshop.contribution_breakdown.employer
+        == sector.contribution_breakdown.employer
+    )
+    assert (
+        workshop.contribution_breakdown.employee
+        == sector.contribution_breakdown.employee
+    )
+    assert (
+        covered.contribution_breakdown.employer
+        > workshop.contribution_breakdown.employer
+    )
+    assert all(i.code != "cigo_activity_unknown" for i in workshop.issues)
+    if category is WorkerCategory.OPERAIO:
+        assert workshop.contribution_breakdown.employer == Decimal("610.85")
+        assert covered.contribution_breakdown.employer == Decimal("684.47")
+
+
 def test_office_rate_is_smaller_than_construction_operaio_rate() -> None:
     """On 2764 taxable euros the office CIGO is 1.70%, not 4.70%."""
     generic = _run(

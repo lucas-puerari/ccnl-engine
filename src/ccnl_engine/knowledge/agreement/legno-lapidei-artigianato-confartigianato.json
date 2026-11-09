@@ -30,15 +30,15 @@
         "section": "3. Ordinary wage integration (CIGO); D.Lgs. 148/2015 art. 13(1)(d–f)",
         "quote": "d) 3,30%della retribuzione imponibile ai fini previdenziali per gli operai delle imprese dell'industria e artigianato lapidei; e) 1,70% della retribuzione imponibile ai fini previdenziali per gli impiegati e quadri delle imprese dell'industria e artigianato edile e lapidei che occupano fino a 50 dipendenti; f) 2,00% della retribuzione imponibile ai fini previdenziali per gli impiegati e quadri delle imprese dell'industria e artigianato edile e lapidei che occupano oltre 50 dipendenti."
       },
-      "transformation": "Add the CIGO share for stone-working employers by activity, category and headcount, including apprentices; wood-working employers retain the artisan sector rate.",
+      "transformation": "Apply these rates only to artisan stone extraction and quarry-linked working covered by D.Lgs. 148/2015 art. 10(o), including apprentices. Art. 10(o) excludes artisan stone working in workshops structurally and organizationally separate from extraction; those workshops and wood-working employers retain the artisan sector rate. Industrial stone firms remain covered by art. 10(n). The supplied headcount is used directly; the statutory previous-calendar-year average is not derived. 2027 rates remain provisional carryovers.",
       "extraction": {
         "method": "ai",
         "model": "claude-opus-5-5",
-        "extraction_timestamp": "2026-11-09T17:09:18Z",
+        "extraction_timestamp": "2026-11-09T17:31:03Z",
         "verified_by": "claude-opus-5-5",
-        "verified_at": "2026-11-09T17:09:18Z",
+        "verified_at": "2026-11-09T17:31:03Z",
         "verification_status": "verified",
-        "review_id": "2026-11-09-ai-cigo-activity"
+        "review_id": "2026-11-09-ai-cigo-workshop"
       }
     },
     "agreement_date": "2024-03-05",
@@ -290,7 +290,29 @@
           }
         ],
         "findings": [
-          "Stone-working artisans incur CIGO; other artisan activities retain their sector rates."
+          "Only artisan stone extraction and quarry-linked working incur CIGO; separate-workshop artisan stone working and wood activities retain sector rates. Industrial stone firms remain covered. The supplied headcount is not validated as the previous calendar year's average; 2027 rates are provisional."
+        ],
+        "checked": [
+          "meta.cigo_activities",
+          "meta.cigo_provenance"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-cigo-workshop",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "INPS circular 76/2022 page 7 rates, with D.Lgs. 148/2015 art. 10(o) workshop exclusion.",
+        "outcome": "corrected",
+        "independence": "same_process",
+        "sources": [
+          {
+            "url": "https://www.fiscoetasse.com/files/17306/circolare-76-del-30-06-2022.pdf",
+            "sha256": "f181597163ae73a9918929b40186c69dffb92da5aebfe9653c41b5c1828bb952"
+          }
+        ],
+        "findings": [
+          "Art. 10(o): con esclusione di quelle che svolgono tale attività di lavorazione in laboratori con strutture e organizzazione distinte dalla attività di escavazione. The circular's art. 13 rates apply only to employers covered by art. 10."
         ],
         "checked": [
           "meta.cigo_activities",
@@ -1931,7 +1953,7 @@
     "effective_until": null,
     "source": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
     "verification_status": "unverified",
-    "source_hash": "9c6b8d784eafeb9723af7414594bfb9afb00336c77d34c14f6ae86462b9c0091",
+    "source_hash": "9897263d45e5e4f48e528ec13199858a37beb1e37890ad0ed77658449de7b00f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

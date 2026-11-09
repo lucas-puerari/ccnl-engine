@@ -40,7 +40,11 @@ class Headcount:
     At least one: the worker being paid is an employee of the employer.
 
     Attributes:
-        value: Number of employees, ``>= 1``.
+        value: Number of employees, ``>= 1``. For the CIGO 50-person
+            threshold art. 13(2) requires the previous calendar year's
+            average (or the closing count of the first month for a new
+            employer). The engine uses this supplied value directly; it
+            does not derive or validate that statutory average.
 
     Raises:
         InvalidInputError: When ``value`` is not an int or is below 1.
@@ -91,8 +95,12 @@ class EmployerProfile:
             activities of c. 18, so its eligibility is then ``unknown``.
             Construction and stone-working employers may also owe activity-
             dependent CIGO (D.Lgs. 148/2015 art. 13 c. 1), independently of
-            their INPS sector. Only agreements covering these activities
-            require this fact to determine their CIGO contribution.
+            their INPS sector. Artisan stone working only in a workshop
+            structurally and organizationally separate from extraction is
+            excluded by art. 10(o); choose the separate-workshop activity.
+            Industrial stone working remains covered by art. 10(n). Only
+            agreements covering these activities require this fact to
+            determine their CIGO contribution.
         public_life_insurance: Whether a public employer enrols its staff in
             the Assicurazione Sociale Vita (ex ENPDEP): every "ente dotato di
             personalità giuridica di diritto pubblico" except the State, the
