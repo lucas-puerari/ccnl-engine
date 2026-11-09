@@ -620,6 +620,30 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
             CONCIA_D2, replace(CONCIA_D2, pension_fund=None), "pension_fund"
         ),
     ),
+    "PeriodFacts.meal_benefit_days": (
+        DefaultCase(
+            replace(
+                _january(
+                    replace(
+                        CONCIA_D2,
+                        ccnl_id="ced-assoced",
+                        level_code="4",
+                        category=WorkerCategory.IMPIEGATO,
+                    )
+                ),
+                facts=replace(FACTS, meal_benefit_days=0),
+            ),
+            _january(
+                replace(
+                    CONCIA_D2,
+                    ccnl_id="ced-assoced",
+                    level_code="4",
+                    category=WorkerCategory.IMPIEGATO,
+                )
+            ),
+            "meal_benefit_days",
+        ),
+    ),
     "PeriodFacts.regione": (
         DefaultCase(
             _january(),

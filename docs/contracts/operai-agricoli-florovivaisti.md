@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 11 verified / 6 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 22 verified / 6 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-05-28 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2026-06-01 |
 
 ## Review history
@@ -75,6 +75,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 77 — Preavviso di risoluzione del rapporto (testo non modificato dal rinnovo 28 maggio 2026), p. 69–70). | corrected | Notice bands checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | inps_on_actual_not_conventional_pay: The cited DL 338/1989 rule establishes a minimum contributory base, not a fixed annual conventional base replacing actual contractual pay; the cited INPS annex tabulates CCNL minima. The engine calculates INPS on monthly_gross + event_inps_base, raised to any configured minimum. <br>mountain_zone_reductions: INPS 43/2026 §7 sets 75% ex-mountain and 68% disadvantaged, excluding the article 25(4) contribution. The 2026 agricultural contribution JSON sets mountain=0.75, disadvantaged=0.68 and excluded_rate=0.0030; EmployerProfile.agricultural_zone feeds with_zone_reduction, which reduce |
 | 2026-11-08 | claude-opus-5-5 (ai) | Artt. 44, 50, 52, 53 and Allegato 14 of the CCNL 23 May 2022 (PDF pp. 48-58), text layer. | corrected | Added parameters.fixed_term_pay: hourly pay with the 30.44% terzo elemento, twelve monthly payments and no leave for the OTD.<br>Added parameters.fixed_term_pay.tfr_rate: 8.63% TFR of the OTD (Allegato 14).<br>Added parameters.fixed_term_pay.overtime_tfr_rate 0.10 on the non-occasional overtime hours (OvertimeEvent.non_occasional). |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 43–44 overtime and ordinary night/holiday premiums by sub-sector against cached FLAI PDF pp. 48–49. | corrected | Selected agricultural and floriculture time premiums with the existing sub-sector mechanism.<br>Regular night-shift exception and provincial salary inputs remain limited. |
+| 2026-11-09 | claude-opus-5-5 (ai) | FLAI full text pp. 49, 53 and signed 2026 Annex 1 p. 52: floriculture hourly floor, provenance, effective dates and open exceptions. | corrected | Corrected the 29% quote and /169 page; the signed annex prints hourly floriculture rates.<br>The 2022–2025 text begins 1 January 2022; its time bands now start then.<br>Regular-shift exceptions, provincial tariffs, third element and bank of hours remain limitations. |
 
 ## Salary table
 
@@ -114,11 +116,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add the provincial (CPL) supplement outside the engine.
 
 !!! warning "operai-agricoli-florovivaisti/florovivaisti_tables · base_salary · impact yes · open"
-    FLOROVIVAISTI NOT DISTINGUISHED. The CCNL covers both Operai Agricoli (OTA) and Operai Florovivaisti (OTF). OTF have separate (higher) tabelle retributive with their own area amounts. This file models OTA amounts only. Callers must use a separate file (not yet modelled) for OTF workers.
+    FLOROVIVAISTI MONTHLY PAY NOT DISTINGUISHED. Annex 1 hourly floriculture minima are used only for time events from June 2026. Monthly base salary and other monthly entitlements still use agricultural amounts; the earlier floriculture hourly floor is not sourced. Do not treat agricultural monthly wages as floriculture salaries.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the OTF salary tables as a separate file.
+    **Remediation:** Model floriculture monthly pay and historical hourly minima independently; supply contractual hourly rates where the national floor is unavailable.
 
 !!! warning "operai-agricoli-florovivaisti/inail_agricultural_premium · inail · impact yes · open"
     INAIL NOT MODELLED. INAIL agricultural premium (8.50% unified from 2026 per new tariff) is not modelled. The engine does not track INAIL.
@@ -162,12 +164,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Split the florovivaisti into their own levels or file, with a sickness rule paying 25% of the daily wage for 90 days a year past the third day.
 
-!!! warning "operai-agricoli-florovivaisti/florovivaisti_overtime_rates · overtime · impact yes · open"
-    FLOROVIVAISTI OVERTIME AND HOLIDAY WORK: the operai florovivaisti are paid 29% overtime, 40% holiday work, 48% night work, 50% holiday overtime and 55% night holiday work (Art. 44, p. 49), against the 25, 35, 40, 40 and 45% of the operai agricoli (Art. 43) the file pays; ordinary holiday work (35% and 40%) has no band. The request does not say whether the operaio is a florovivaista. The rates apply to the provincial salario contrattuale.
+!!! warning "operai-agricoli-florovivaisti/regular_night_shift_and_local_tariffs · overtime · impact yes · open"
+    Agricultural and floriculture premiums are selected by EmployerProfile.subsector. Remaining: the 10% regular-shift rule for night AND holiday work (Art. 43 p. 48, Art. 44 p. 49), provincial special tariffs, the third element on overtime/holiday/night hours, and the bank of hours are not fully routed; provincial contractual wages require local inputs.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Split the florovivaisti into their own levels or file with the Art. 44 rates.
+    **Remediation:** Supply the contractual hourly wage and provincial special tariffs; route the 10% regular-shift night and holiday exceptions, the third element on these hours and bank-of-hours elections separately.
 
 !!! warning "operai-agricoli-florovivaisti/agricoli_apprentice_provincial_levels · base_salary · impact unknown · open"
     APPRENTICESHIP (Allegato n. 10, CCNL 23 May 2022, pp. 122-123): two levels below the destination in the first 12 months, one level below in the next 12, the destination in the last 12 (Area 1 and 2: 36 months; Area 3: 24 months, from one level below, only for the highest provincial level of the area). The levels are the provincial professional levels inside each area, not the three national areas the file holds: the file places an Area1 apprentice at the Area3 and then the Area2 minimum, a reading the text does not support. A fixed-term apprentice operaio is never paid below the lowest level of the destination area (p. 125).

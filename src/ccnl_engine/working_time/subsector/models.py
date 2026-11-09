@@ -12,6 +12,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.sickness.integration.models import SicknessRules
 
 __all__ = ["SubsectorRules"]
@@ -25,6 +26,10 @@ class SubsectorRules(BaseModel):
             the CCNL's.
         hourly_divisor_by_category: Hourly divisor of the workers of a
             category, in place of the CCNL's.
+        hourly_minimum_by_level: Directly quoted hourly minimums, not monthly
+            salaries to be divided by the CCNL divisor. Unavailable dates
+            require an explicit caller rate.
+        hourly_minimum_provenance: Source of those hourly minimums.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -33,3 +38,5 @@ class SubsectorRules(BaseModel):
     hourly_divisor_by_category: dict[WorkerCategory, TimeSeries] = Field(
         default_factory=dict
     )
+    hourly_minimum_by_level: dict[str, TimeSeries] = Field(default_factory=dict)
+    hourly_minimum_provenance: RuleProvenance | None = None

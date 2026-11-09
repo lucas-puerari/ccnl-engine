@@ -14,6 +14,7 @@ from ccnl_engine.balance.obligation.models import (
     ULTERIORE_RECOVERY,
 )
 from ccnl_engine.compensation.fixed_term.rules import overtime_tfr
+from ccnl_engine.compensation.meal.services import meal_benefit
 from ccnl_engine.contribution.additional_ivs.services import (
     additional_ivs_position,
 )
@@ -67,7 +68,7 @@ def variable_events(
     request, opening = ctx.request, ctx.opening
     var_pay = ctx.var_pay_rules
     return _process_events(
-        request.events,
+        (*request.events, *meal_benefit(ctx)),
         ctx.cp,
         ctx.contract.tctx.payment,
         ctx.run_id,
