@@ -26,6 +26,13 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
     IssueCause,
 )
+from ccnl_engine.sickness.cumulation.hospital_issues import (
+    HOSPITAL_STAY,
+    HOSPITAL_STAY_UNKNOWN,
+)
+from ccnl_engine.sickness.cumulation.hospital_issues import (
+    hospital_issue as _hospital_issue,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.sickness.cumulation.results import CumulationReport
@@ -57,12 +64,8 @@ SENIORITY_UNKNOWN = "sickness_seniority_unknown"
 EXEMPTION_UNKNOWN = "sickness_short_absence_exemption_unknown"
 #: The seniority band changes within the days paid.
 BAND_CHANGES = "sickness_seniority_band_changes"
-#: A day is paid at the reduced rate and hospital stays are not modelled.
-HOSPITAL_STAY = "sickness_hospital_stay_not_modelled"
 #: A day is paid at the reduced rate and a serious illness is not stated.
 SERIOUS_ILLNESS_UNKNOWN = "sickness_serious_illness_unknown"
-#: A day is paid at the reduced rate and the hospital stays are not stated.
-HOSPITAL_STAY_UNKNOWN = "sickness_hospital_stays_unknown"
 #: The full-pay and comporto days of a fixed-term contract are not scaled.
 FIXED_TERM = "sickness_fixed_term_proportion"
 
@@ -152,47 +155,6 @@ def _serious_issue(
         ),
         status=_PROVISIONAL,
         fact="serious_illness",
-    )
-
-
-def _hospital_issue(
-    episode: SicknessEpisode, report: CumulationReport, terms: SicknessTerms
-) -> CalculationIssue | None:
-    """Return the issue of reduced days a hospital stay could change.
-
-    Returns:
-        For a CCNL that pays long stays in full, a missing-fact issue when
-        the stays are not stated; for one without that rule, an issue that
-        stays are not modelled; ``None`` without reduced days.
-    """
-    if not report.reduced:
-        return None
-    name = f"sickness episode '{episode.episode_id}'"
-    rules = terms.rules
-    cumulation = None if rules is None else rules.ccnl.cumulation
-    if cumulation is not None and cumulation.hospital_stay is not None:
-        if episode.hospital_stays is not None:
-            return None
-        return CalculationIssue(
-            code=HOSPITAL_STAY_UNKNOWN,
-            capability="sickness",
-            message=(
-                f"{name}: days are paid at the reduced rate; a hospital stay "
-                "the CCNL pays in full could change them: state the stays of "
-                "the episode (SicknessEpisode.hospital_stays)"
-            ),
-            status=_PROVISIONAL,
-            fact="hospital_stays",
-        )
-    return CalculationIssue(
-        code=HOSPITAL_STAY,
-        capability="sickness",
-        message=(
-            f"{name}: days are paid at the reduced rate; a hospital stay the "
-            "CCNL could pay in full is not modelled for it"
-        ),
-        status=_PROVISIONAL,
-        cause=IssueCause.RULE,
     )
 
 
