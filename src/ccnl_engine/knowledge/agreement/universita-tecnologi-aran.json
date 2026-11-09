@@ -480,7 +480,56 @@
         }
       ]
     },
-    "employer_funds": [],
+    "employer_funds": [
+      {
+        "code": "PERSEO_SIRIO",
+        "description": "Perseo Sirio complementary pension fund for public employees",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-03-01",
+              "valid_until": null,
+              "value": "0.01"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-03-01",
+              "valid_until": null,
+              "value": "0.01"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "perseo-sirio-nota-informativa-2026",
+              "title": "Perseo Sirio information note, public employee contribution schedule",
+              "kind": "altro",
+              "url": "https://www.fondoperseosirio.it/wp-content/uploads/2026/07/Nota-Info-completa_18.12.25.pdf",
+              "sha256": "6f20d3b8cb79694edd8fe406a8172ea14fd1f7f8794175f2f7f31745cb2a33ef"
+            },
+            "page": "14 (schedule p. 3 of 5)",
+            "section": "I destinatari e i contributi, Dipendenti pubblici, notes 1, 4 and 5",
+            "quote": "Assunti dopo il 31-dic-2000 ovvero a tempo determinato 100% (2) 1% 1% -; Assunti prima del 1-gen-2001 (optanti) 28,94% (3) 1% 1% 1,5% (4); (5) In percentuale della retribuzione utile ai fini del calcolo del TFR."
+          },
+          "transformation": "The official fund schedule sets 1% employer and 1% worker on TFR pay for public employees, including university employees named among the beneficiaries on p. 12. University CCNL 2006-2009 art. 94 p. 65 directs financing under the 1999 framework. The series starts at the tecnologi ruleset boundary, not the original rate commencement. Enrolment is an employment fact; public TFR is accrued notionally, not transferred monthly.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-09T20:03:26Z",
+            "verification_status": "verified",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-09T20:03:26Z",
+            "review_id": "2026-11-09-perseo-technologists"
+          }
+        }
+      }
+    ],
     "accrual_rule": {
       "min_days": 15,
       "comparison": "more_than",
@@ -642,15 +691,15 @@
       },
       {
         "kind": "simplification",
-        "text": "PENSION FUND: the university staff join the Fondo Perseo Sirio, not modelled here (the scuola fund Espero does not apply).",
+        "text": "For public employees enrolled in Perseo Sirio before 2001 who opted into the TFR regime, the additional 1.5% of the TFS contribution base is accrued notionally by INPS, not paid as an employer fund contribution. Its accrual and the 28.94% notional TFR allocation are not calculated by this run.",
         "capability": "pension_fund_contribution",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "perseo_sirio_not_modelled",
+          "variant": "perseo_sirio_notional_accrual",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the employer and employee rates of Fondo Perseo Sirio."
+          "remediation": "Model the notional INPS allocation for pre-2001 TFR optants separately from the 1% employer cash contribution."
         }
       }
     ]
@@ -662,7 +711,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "862eb33eaf46fac7838dfe95aba61580374e7ac482296b8410a800ca18c11654",
+    "source_hash": "547e8c6a1da9c20d7e2c50edd659de840c0fa6b9231e296ea0768aa1a40db867",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -791,6 +840,31 @@
         ],
         "findings": [
           "The tecnologi of the universities, introduced from 1.3.2026, are now a level with their six posizioni stipendiali."
+        ]
+      },
+      {
+        "id": "2026-11-09-perseo-technologists",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Perseo Sirio employer and worker pension contributions for university technologists",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-UNIVERSITA-2006-09_Rev.pdf",
+            "sha256": "53f4287478134e36ad0ce7ec0b143160cab0b954aeee2da6dafde70ba2af5e2f"
+          },
+          {
+            "url": "https://www.fondoperseosirio.it/wp-content/uploads/2026/07/Nota-Info-completa_18.12.25.pdf",
+            "sha256": "6f20d3b8cb79694edd8fe406a8172ea14fd1f7f8794175f2f7f31745cb2a33ef"
+          }
+        ],
+        "findings": [
+          "University CCNL art. 94 p. 65 points to framework financing; the fund schedule p. 3 specifies 1% each on TFR pay; notional incentives remain outside the cash contribution."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.employer_funds[PERSEO_SIRIO]"
         ]
       }
     ]

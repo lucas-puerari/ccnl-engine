@@ -47,11 +47,10 @@ from ccnl_engine.working_time.hourly.policies import (
     reject_underived,
 )
 from ccnl_engine.working_time.inputs import ShiftKind
+from ccnl_engine.working_time.supplement.bands import band_for
 from ccnl_engine.working_time.supplement.models import SupplementWork
 
 if TYPE_CHECKING:
-    from datetime import date
-
     from ccnl_engine.working_time.hourly.policies import HourlyBase, HourlyTerms
     from ccnl_engine.working_time.supplement.models import SupplementBand
 
@@ -127,61 +126,6 @@ class SupplementPay:
     base: HourlyBase | None
 
 
-def _in_force(
-    terms: HourlyTerms, work: SupplementWork, day: date
-) -> list[tuple[SupplementBand, Decimal]]:
-    """Return the bands of ``work`` for the worker's level in force on ``day``.
-
-    Returns:
-        Each band with its rate on ``day``.
-    """
-    supplements = terms.supplements
-    bands = () if supplements is None else supplements.supplement_bands
-    found: list[tuple[SupplementBand, Decimal]] = []
-    for band in bands:
-        period = band.rate.period_at(day)
-        if (
-            band.work is work
-            and (not band.levels or terms.level_code in band.levels)
-            and period is not None
-            and period.value is not None
-        ):
-            found.append((band, period.value))
-    return found
-
-
-def _band(
-    terms: HourlyTerms, work: SupplementWork, day: date
-) -> tuple[SupplementBand, Decimal] | str | Unstated:
-    """Return the band of ``work`` the worker is paid with on ``day``.
-
-    Returns:
-        The band and its rate, or the reason none can be chosen.
-    """
-    found = _in_force(terms, work, day)
-    if not found:
-        return (
-            f"the CCNL ({terms.ruleset}) has no {work.value} supplement band "
-            "the engine applies (see its coverage notes)"
-        )
-    roles = sorted({b.role for b, _ in found if b.role is not None})
-    if roles and terms.roles is None:
-        return Unstated(
-            "Employment.roles",
-            f"the CCNL ({terms.ruleset}) pays {work.value} work apart for the "
-            f"roles {', '.join(roles)} and Employment.roles is not stated",
-        )
-    held = terms.roles or frozenset()
-    chosen = next(((b, r) for b, r in found if b.role in held), None)
-    chosen = chosen or next(((b, r) for b, r in found if b.role is None), None)
-    if chosen is None:
-        return (
-            f"the CCNL ({terms.ruleset}) has a {work.value} supplement band "
-            f"only for the roles {', '.join(roles)}"
-        )
-    return chosen
-
-
 def resolve_supplement(event: SupplementEvent, terms: HourlyTerms) -> SupplementPay:
     """Return the CCNL supplement of an event without ``supplement_amount``.
 
@@ -199,10 +143,23 @@ def resolve_supplement(event: SupplementEvent, terms: HourlyTerms) -> Supplement
     if work is None:
         unstated = Unstated("ShiftWorkEvent.kind", "ShiftWorkEvent.kind is not stated")
         reject_underived(field, feature, day, unstated)
-    found = _band(terms, work, day)
+    found = band_for(terms, work, day)
     if isinstance(found, str | Unstated):
         reject_underived(field, feature, day, found)
     band, rate = found
+    if band.excludes_periodic_shift and isinstance(event, HolidayWorkEvent):
+        if event.in_periodic_shift is None:
+            reject_underived(
+                field,
+                feature,
+                day,
+                Unstated(
+                    "HolidayWorkEvent.in_periodic_shift",
+                    "whether the worker is a turnista is not stated",
+                ),
+            )
+        if event.in_periodic_shift:
+            rate = Decimal(0)
     base = (
         None
         if band.fixed_per_hour
@@ -253,6 +210,11 @@ def supplement_decision(
                 else {"hourly_base_rule": terms.rule_of(BASE_PATH)}
             ),
             "hours_paid_apart": _PAID_APART[band.hours_paid_apart],
+            **(
+                {"in_periodic_shift": "yes" if event.in_periodic_shift else "no"}
+                if band.excludes_periodic_shift and isinstance(event, HolidayWorkEvent)
+                else {}
+            ),
         },
         source=provenance.location,
         amount=pay.amount,
@@ -269,6 +231,18 @@ def supplement_issue(
         or does not settle it, else ``None``.
     """
     paid_apart = pay.band.hours_paid_apart
+    if pay.band.excludes_periodic_shift and pay.rate == 0:
+        if paid_apart is False:
+            return None
+        return CalculationIssue(
+            "supplement_shift_holiday_rate_unresolved",
+            f"{pay.band.code} excludes shifts: zero is only the excluded band; "
+            "Art. 54 states a 10% periodic night-shift rate, but no combined "
+            "night-holiday periodic-shift rate or stacking rule is established",
+            CalculationStatus.PROVISIONAL,
+            capability=_FEATURES[type(event)],
+            cause=IssueCause.RULE,
+        )
     if paid_apart is False:
         return None
     day = event.event_date.isoformat()

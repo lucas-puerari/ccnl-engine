@@ -53,7 +53,16 @@ def _run(
             category=category,
             opening_state=PeriodState.zero(),
             roles=roles,
-            events=(_EVENT,),
+            events=(
+                HolidayWorkEvent(
+                    _EVENT.event_date,
+                    hours=_EVENT.hours,
+                    kind=_EVENT.kind,
+                    in_periodic_shift=False,
+                )
+                if slug == "edilizia-ance-impiegati"
+                else _EVENT,
+            ),
         ),
         repo=bundled_repository(),
         resolver=bundled_policies(),

@@ -810,7 +810,6 @@
       "edilizia-ance/entry_premium_2022",
       "edilizia-ance/hardship_allowances",
       "edilizia-ance/holiday_hours",
-      "edilizia-ance/ordinary_hours_premiums",
       "edilizia-ance/part_time_supplementary_rate",
       "edilizia-ance/provincial_evr",
       "edilizia-ance/provincial_meals_transport_travel",
@@ -843,7 +842,7 @@
       "edilizia-pmi-confapi-aniem/territorial_sector_allowance"
     ],
     "agreement/enti-ricerca-aran.json": [
-      "enti-ricerca-aran/perseo_sirio_not_modelled",
+      "enti-ricerca-aran/perseo_sirio_notional_accrual",
       "enti-ricerca-aran/research_allowances_missing",
       "enti-ricerca-aran/shared_rules_unchecked"
     ],
@@ -984,6 +983,7 @@
       "logistica-trasporto-confetra/holiday_during_injury",
       "logistica-trasporto-confetra/level_6j_apprenticeship",
       "logistica-trasporto-confetra/magazzini_generali_holiday_in_sickness",
+      "logistica-trasporto-confetra/part_time_supplementary_rate",
       "logistica-trasporto-confetra/sixth_day_overtime"
     ],
     "agreement/marittimi-industria-armatoriale.json": [
@@ -1245,11 +1245,11 @@
       "uneba-uneba/ermt_territorial"
     ],
     "agreement/universita-aran.json": [
-      "universita-aran/perseo_sirio_not_modelled",
+      "universita-aran/perseo_sirio_notional_accrual",
       "universita-aran/shared_rules_unchecked"
     ],
     "agreement/universita-tecnologi-aran.json": [
-      "universita-tecnologi-aran/perseo_sirio_not_modelled",
+      "universita-tecnologi-aran/perseo_sirio_notional_accrual",
       "universita-tecnologi-aran/shared_rules_unchecked",
       "universita-tecnologi-aran/tecnologi_allowances"
     ],
