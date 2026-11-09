@@ -43,6 +43,11 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "no election to bank overtime: pay the ordinary overtime hour and "
         "its full premium; a rest election must be stated by the caller"
     ),
+    "OvertimeEvent.weekly_hours_before": absence_is_fact(
+        "unknown preceding hours of the week: threshold-only overtime bands "
+        "cannot be selected without this timesheet fact or a caller multiplier; "
+        "the event is rejected when no unthresholded band applies"
+    ),
     "NightShiftEvent.supplement_amount": absence_is_fact(_FROM_CCNL),
     "NightShiftEvent.hours": absence_is_fact(_SUPPLEMENT_HOURS),
     "NightShiftEvent.before_22": absence_is_fact(

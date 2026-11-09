@@ -813,6 +813,21 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
         DefaultCase(_turismo_young(birth), _turismo_young(None))
         for birth in (date(1990, 4, 2), date(2009, 4, 2))
     ),
+    "EmploymentPeriod.uninterrupted_service_started_on": (
+        _employment_pair(
+            replace(
+                CONCIA_D2,
+                employment_period=EmploymentPeriod(
+                    date(2025, 1, 1),
+                    uninterrupted_service_started_on=date(2025, 1, 2),
+                ),
+            ),
+            replace(
+                CONCIA_D2,
+                employment_period=EmploymentPeriod(date(2025, 1, 1)),
+            ),
+        ),
+    ),
     "EmploymentPeriod.probation_until": tuple(
         DefaultCase(_on_probation(until), _on_probation(None))
         for until in (date(2026, 2, 28), date(2026, 3, 31))
