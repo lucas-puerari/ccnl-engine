@@ -16,6 +16,7 @@ import pytest
 
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import HolidayWorkEvent, NightShiftEvent, OvertimeEvent
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.period.results import PeriodResult
@@ -25,6 +26,7 @@ from ccnl_engine.period.services import (
     calculate_period,
 )
 from ccnl_engine.run.types import PeriodId
+from ccnl_engine.working_time.inputs import HolidayWorkKind
 
 _HOURS = Decimal(8)
 
@@ -87,6 +89,41 @@ def test_the_ordinary_hour_premiums(
     assert (decision.inputs["band_code"], decision.amount) == (band, Decimal(amount))
     assert decision.inputs["hourly_base_monthly"] == Decimal("1823.74")
     assert "hourly_base[EDR]" not in decision.inputs
+
+
+@pytest.mark.parametrize(("in_shift", "expected"), [(False, "6.75"), (True, "0.00")])
+def test_sunday_rest_excludes_shift_workers(in_shift: bool, expected: str) -> None:
+    """8 Sunday hours on 1823.74 / 173: non-shift 8% = 6.75; shift = 0."""
+    event = HolidayWorkEvent(
+        date(2026, 3, 15),
+        hours=_HOURS,
+        kind=HolidayWorkKind.HOLIDAY_COMPENSATORY_REST,
+        in_periodic_shift=in_shift,
+    )
+    (decision,) = (
+        d
+        for d in _run(event).decisions
+        if d.reason_code == "ccnl_supplement_applied" and d.capability == "holiday_work"
+    )
+    assert decision.inputs["band_code"] == "ANCE_DOMENICA_RIPOSO"
+    assert decision.inputs["in_periodic_shift"] == ("yes" if in_shift else "no")
+    assert decision.amount == Decimal(expected)
+
+
+def test_shift_fact_is_needed_only_for_the_restricted_band() -> None:
+    """Other holiday bands need no shift fact; Sunday needs it for 8% or 0%."""
+    with pytest.raises(InvalidInputError, match="worker is a turnista is not stated"):
+        _run(
+            HolidayWorkEvent(
+                date(2026, 3, 15),
+                hours=_HOURS,
+                kind=HolidayWorkKind.HOLIDAY_COMPENSATORY_REST,
+            )
+        )
+    assert any(
+        d.amount == Decimal("37.95") and d.reason_code == "ccnl_supplement_applied"
+        for d in _run(HolidayWorkEvent(date(2026, 3, 19), hours=_HOURS)).decisions
+    )
 
 
 def test_the_overtime_hour_leaves_the_edr_out() -> None:
