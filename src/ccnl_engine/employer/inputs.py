@@ -89,6 +89,10 @@ class EmployerProfile:
             some activities.  ``None`` means not known: the night, holiday
             and shift substitute tax (L. 199/2025 art. 1 c. 11) excludes the
             activities of c. 18, so its eligibility is then ``unknown``.
+            Construction and stone-working employers may also owe activity-
+            dependent CIGO (D.Lgs. 148/2015 art. 13 c. 1), independently of
+            their INPS sector. Only agreements covering these activities
+            require this fact to determine their CIGO contribution.
         public_life_insurance: Whether a public employer enrols its staff in
             the Assicurazione Sociale Vita (ex ENPDEP): every "ente dotato di
             personalità giuridica di diritto pubblico" except the State, the

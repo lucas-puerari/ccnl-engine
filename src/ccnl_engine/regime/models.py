@@ -56,12 +56,16 @@ class EmployerActivity(StrEnum):
             (L. 287/1991 art. 5).
         TOURISM: Comparto del turismo, other than thermal establishments.
         THERMAL_ESTABLISHMENT: Stabilimenti termali.
+        CONSTRUCTION: Building construction (edile), including artisan firms.
+        STONE_WORKING: Stone working (lapidei), including artisan firms.
         OTHER: Any activity not listed above.
     """
 
     FOOD_AND_BEVERAGE_SERVICE = "food_and_beverage_service"
     TOURISM = "tourism"
     THERMAL_ESTABLISHMENT = "thermal_establishment"
+    CONSTRUCTION = "construction"
+    STONE_WORKING = "stone_working"
     OTHER = "other"
 
 
