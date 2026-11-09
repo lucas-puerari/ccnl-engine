@@ -17,8 +17,9 @@ from ccnl_engine.sickness.term.rules import DailyQuota
 def test_march_patron_holiday_requires_target_and_local_date(name: str) -> None:
     """31 INPS days x 80 = 2480; ordinary integration = 3000 - 2480 = 520.
 
-    March 19's full daily target is 3000/31 = 96.77; ordinary daily pay
-    is 3000/31 minus 80 = 16.77, so the added holiday portion is 3.23.
+    March 19's full daily pay is 3000/30 = 100 (30-day quota); INPS pays 80
+    and the month's ordinary integration is (3000 - 31 x 80)/31 = 16.77 a
+    day, so the added holiday portion is 100 - 80 - 16.77 = 3.23.
     Without the holiday target or local date integration stays 520.00.
     """
     rules = load_ccnl(name).work_rules
