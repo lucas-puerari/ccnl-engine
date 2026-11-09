@@ -68,7 +68,7 @@ def test_supplementary_resolution_of_the_limitations() -> None:
         assert note.limitation is not None
         return str(note.limitation.status)
 
-    assert status("metalmeccanico-federmeccanica") == "resolved"
+    assert status("metalmeccanico-federmeccanica") == "open"
     assert status("logistica-trasporto-confetra") == "open"
     assert status("edilizia-ance") == "open"
 
@@ -117,6 +117,31 @@ def test_confetra_supplementary_boundary_with_caller_split() -> None:
         below.hours * Decimal(12) * low_rate.multiplier
         + above.hours * Decimal(12) * high_rate.multiplier
     ) == Decimal("47.76")
+
+
+def test_federmeccanica_supplementary_boundary_with_caller_split() -> None:
+    """At EUR 12/hour, 1 hour at 10% plus 2 at 20% pays EUR 42 (vs EUR 39.60)."""
+    bands = CCNLOvertimeBands.of(load_ccnl("metalmeccanico-federmeccanica"), 2026)
+    below = OvertimeEvent(
+        _TUESDAY, Decimal(1), Decimal(12), kind=OvertimeKind.SUPPLEMENTARY
+    )
+    above = OvertimeEvent(
+        _TUESDAY,
+        Decimal(2),
+        Decimal(12),
+        multiplier=Decimal("1.20"),
+        kind=OvertimeKind.SUPPLEMENTARY,
+    )
+    low_rate = resolve_overtime_rate(below, bands)
+    high_rate = resolve_overtime_rate(above, bands)
+    assert low_rate.derived
+    assert low_rate.multiplier == Decimal("1.10")
+    assert not high_rate.derived
+    assert high_rate.multiplier == Decimal("1.20")
+    assert (
+        below.hours * Decimal(12) * low_rate.multiplier
+        + above.hours * Decimal(12) * high_rate.multiplier
+    ) == Decimal(42)
 
 
 def test_a_ccnl_without_the_band_asks_for_a_multiplier() -> None:

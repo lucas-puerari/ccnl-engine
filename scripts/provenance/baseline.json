@@ -1030,6 +1030,7 @@
       "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement",
       "metalmeccanico-federmeccanica/par_conto_ore_hourly_elements",
       "metalmeccanico-federmeccanica/par_sector_and_shift_hours",
+      "metalmeccanico-federmeccanica/part_time_supplementary_rate",
       "metalmeccanico-federmeccanica/shift_and_multiweek_premiums"
     ],
     "agreement/multiservizi-anip.json": [

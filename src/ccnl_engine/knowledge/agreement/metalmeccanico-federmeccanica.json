@@ -133,7 +133,7 @@
       },
       {
         "kind": "simplification",
-        "text": "PART-TIME SUPPLEMENTARY HOURS: supplementary work up to 40 hours a week is paid with an all-inclusive 10% (CCNL 5 February 2021, p. 58), band OT_SUPPLEMENTARE selected by OvertimeKind.SUPPLEMENTARY. The higher rate of the hours past the yearly limit is not modelled: the request does not count the supplementary hours of the year.",
+        "text": "PART-TIME SUPPLEMENTARY HOURS: work up to 40 weekly hours earns an all-inclusive 10% on the overtime-premium pay elements until supplementary hours exceed 50% of agreed annual part-time hours; the excess earns 20% (CCNL 5 February 2021, PDF p. 58). OT_SUPPLEMENTARE derives only 10%. A caller may split hours at the boundary and explicitly supply multiplier 1.20 for the excess; the engine cannot count year-to-date supplementary hours or split an event that crosses the boundary. The elastic clauses of the same section (PDF p. 57: 10% for a rearranged placement of hours, 15% for an increase in duration up to 25% of the normal annual part-time hours) and the conditions of supplementary work (specific needs, notice to the RSU, no proven individual impediment) are not modelled.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -141,8 +141,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Count the supplementary hours of the year and pay the higher rate past the yearly limit.",
-          "status": "resolved"
+          "remediation": "Supply agreed annual part-time hours and prior supplementary hours to split crossing events and derive the 20% rate on the excess without a caller override.",
+          "status": "open"
         }
       },
       {
@@ -3381,7 +3381,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "6aea77bdf95bb1f1356d2dfa171773098a72fac64fa9c67ff2db609c38a9a7f3",
+    "source_hash": "7261b7d252956ab580248a9fa708379e7fde6fb1b328306e8cc5503c3cc7081e",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -6141,6 +6141,30 @@
         "checked": [
           "work_rules.sickness_rules.holiday",
           "work_rules.insured_absence.injury.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-09-gpt-metalmeccanico-federmeccanica-supplementary",
+        "date": "2026-11-09",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "independence": "separate_model",
+        "checked": [
+          "coverage.notes",
+          "work_rules.time_supplements.overtime_bands"
+        ],
+        "scope": "Part-time supplementary work (Sez. IV Tit. I C, PDF pp. 57-58), by a separate model session.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          }
+        ],
+        "findings": [
+          "Confirmed: 10% up to 50% of the normal annual part-time hours and 20% beyond, only up to 40 weekly hours, on the overtime-premium pay elements.",
+          "Confirmed: the engine derives only the 10% band; the 20% excess is a caller-supplied multiplier, and the annual count is outside the engine.",
+          "Flagged and added to the limitation: the elastic clauses (10% and 15%) and the conditions of supplementary work."
         ]
       }
     ],
