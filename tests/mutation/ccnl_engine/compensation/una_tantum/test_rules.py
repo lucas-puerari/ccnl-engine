@@ -18,6 +18,7 @@ from ccnl_engine.run.models import RunKind
 from ccnl_engine.run.types import PeriodId
 
 if TYPE_CHECKING:
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.period.requests import PeriodCalculationRequest
 
 _FIAIP = load_ccnl("agenti-immobiliari-fiaip")
@@ -219,6 +220,30 @@ def test_anav_pays_the_months_above_fifteen_days_to_the_staff_in_service(
     events, _ = una_tantum_events(_january_2026(hired), _ANAV, RunKind.REGULAR)
     assert [str(e.amount) for e in events] == amounts
     assert all(e.reference_period == PeriodId(2025, 5) for e in events)
+
+
+@pytest.mark.parametrize(
+    ("agreement", "period_request", "expected"),
+    [
+        (_FIAIP, _request(date(2023, 12, 31)), Decimal("100.00")),
+        (_FIAIP, _request(date(2025, 5, 2)), Decimal("0.00")),
+        (_ANAV, _january_2026(date(2023, 12, 31)), Decimal("300.00")),
+        (_ANAV, _january_2026(date(2025, 5, 24)), Decimal("0.00")),
+    ],
+)
+def test_renewal_payment_month_requires_an_eligible_hire(
+    agreement: CCNL,
+    period_request: PeriodCalculationRequest,
+    expected: Decimal,
+) -> None:
+    """IV: 100 x 16/16 = 100 in September; C2: 600/2 x 17/17 = 300 in January.
+
+    Hiring 2 May 2025 is after the FIAIP covered period; hiring 24 May
+    2025 misses the ANAV signature date. Both receive zero.
+    """
+    events, met = una_tantum_events(period_request, agreement, RunKind.REGULAR)
+    assert met
+    assert sum((event.amount for event in events), Decimal(0)) == expected
 
 
 def test_an_employment_ended_before_the_signing_is_owed_nothing() -> None:

@@ -65,7 +65,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/agenti-immobiliari-fiaip",
       "ruleset_version": "2026.2",
-      "source_hash": "e89561c4d9beec11e519d59436a6e874668b61f7173bead5bf3ecf80c44381d6",
+      "source_hash": "e335dc8a16557808df6d15dcece1fa2b423f7704fd9eca567464e1ef5d9d96c8",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/agenti-immobiliari-fiaip.json.gz"
@@ -1564,7 +1564,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "ccnl/noleggio-autobus-conducente-anav",
       "ruleset_version": "1.0.0",
-      "source_hash": "adc569ad424bf64a175bc2a00d448949f586f9bb57d3f26124d8b8c0ac660cea",
+      "source_hash": "016b5a5c9b02e5777756df1d78abe1cd549ff19960d8aa369eaabf08afe148ca",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/noleggio-autobus-conducente-anav.json.gz"
@@ -4221,7 +4221,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "32e6c47e20130440a3afcaf97b6a5c38c76cd263d44e6ffa3bdc29963aece9fa",
+      "source_hash": "5d518e0051a2314296091a4a81cfa41755cc8e9d9ac29616da23157dd5b9dbca",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/noleggio-autobus-conducente-anav.json.gz",

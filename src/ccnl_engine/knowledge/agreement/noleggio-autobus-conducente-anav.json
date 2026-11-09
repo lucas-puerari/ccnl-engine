@@ -104,13 +104,15 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Una-tantum payment of 600 EUR at C2 (split June 2025 + Jan 2026) covering Jan-May 2025 gap is excluded: one-off, not a recurring salary element.",
+        "text": "The two una tantum installments are paid, but the agreement counts months of effective work; the engine counts months of employment, without reducing for months with no effective work. An absence spanning a covered month can overstate the payment.",
         "capability": "una_tantum",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "una_tantum_2025_2026",
-          "remediation": "Resolved: parameters.una_tantum holds the installments of June 2025 and January 2026, paid by the engine as arrears of the covered months.",
-          "status": "resolved"
+          "variant": "una_tantum_effective_work_months",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Provide the covered months of effective work for this payment and count only those months when prorating each installment."
         }
       },
       {
@@ -234,6 +236,27 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-una-tantum-scope",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Una Tantum of the signed renewal, PDF p. 1.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+            "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
+          }
+        ],
+        "findings": [
+          "Confirmed the C2 installments, service-on-signing condition, proportional service and part time, and TFR and Priamo exclusions; narrowed the obsolete exclusion note to the unmodelled effective-work-months condition."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.una_tantum"
         ]
       }
     ]
@@ -471,18 +494,18 @@
             },
             "page": "1",
             "section": "Una Tantum",
-            "quote": "A integrale copertura del periodo dal 1° gennaio 2024 al 31 maggio 2025, al personale in forza alla data di sottoscrizione del presente accordo [...] viene riconosciuta la somma una tantum di 600 euro lordi (seicento) al livello C2 da riparametrare secondo la vigente scala parametrale (100 — 200). La predetta somma è corrisposta in due rate di eguale importo, rispettivamente con le retribuzioni dei mesi di giugno 2025 e di gennaio 2026."
+            "quote": "A integrale copertura del periodo dal 1° gennaio 2024 al 31 maggio 2025, al personale in forza alla data di sottoscrizione del presente accordo [...] viene riconosciuta la somma una tantum di 600 euro lordi (seicento) al livello C2 da riparametrare secondo la vigente scala parametrale (100 — 200). La predetta somma è corrisposta in due rate di eguale importo, rispettivamente con le retribuzioni dei mesi di giugno 2025 e di gennaio 2026. [...] verrà rapportata ai mesi di effettiva prestazione (computando come mese intero la frazione superiore ai 15 giorni e non tenendo conto delle frazioni inferiori) [...] sarà riproporzionata nei casi di lavoro part-time, sulla base dell’orario stabilito nel contratto individuale; [...] non ha alcun effetto essendo comprensiva di ogni incidenza su tutti gli istituti contrattuali e di legge e non rientra nella base di computo del T.F.R e della contribuzione al Fondo Priamo."
           },
           "transformation": "Each installment is 300 EUR x the parameter of the level / 134 (C2), rounded to the cent: the scale of the base_salary transformations of this file (C4 100, C3 125, C2 134, C1 152, B3 155, B2 162, B1 170, A2 188, A1, Q2, Q1 200). Paid to the staff in service on 23 May 2025, the signing date, by the months of the period with more than 15 days of service ('computando come mese intero la frazione superiore ai 15 giorni'), part time by its hours, outside the TFR base ('non rientra nella base di computo del T.F.R'). The scanned page was read by OCR.",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-01T10:54:25Z",
+            "extraction_timestamp": "2026-11-09T20:45:48Z",
             "effective_from": "2024-01-01",
             "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-01T10:54:25Z",
+            "verified_at": "2026-11-09T20:45:48Z",
             "verification_status": "verified",
-            "review_id": "2026-11-01-ai-una-tantum"
+            "review_id": "2026-11-09-ai-una-tantum-scope"
           }
         }
       }
@@ -3957,7 +3980,7 @@
     "effective_until": "2026-12-31",
     "source": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "adc569ad424bf64a175bc2a00d448949f586f9bb57d3f26124d8b8c0ac660cea",
+    "source_hash": "016b5a5c9b02e5777756df1d78abe1cd549ff19960d8aa369eaabf08afe148ca",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }
