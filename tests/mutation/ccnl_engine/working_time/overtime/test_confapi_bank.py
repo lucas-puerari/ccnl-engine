@@ -9,6 +9,7 @@ from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.errors import InvalidInputError, MissingRuleError
 from ccnl_engine.event.facade import OvertimeEvent, OvertimeKind
 from tests.mutation.ccnl_engine.working_time.overtime.test_policies import (
@@ -75,3 +76,35 @@ def test_bank_election_is_boolean() -> None:
     """A string election cannot silently turn EUR 24 into EUR 2."""
     with pytest.raises(InvalidInputError, match="banked"):
         OvertimeEvent(date(2026, 3, 10), Decimal(2), Decimal(10), banked="yes")  # type: ignore[arg-type]
+
+
+def test_bank_without_a_rule_names_the_gap() -> None:
+    """The rejection cites the event date, the capability and the remedy."""
+    day = date(2026, 3, 10)
+    with pytest.raises(MissingRuleError) as raised:
+        _run(OvertimeEvent(day, Decimal(2), Decimal(10), banked=True))
+    error = raised.value
+    assert error.as_of == day
+    assert error.feature == "overtime"
+    assert error.detail == "No percentage overtime bank rule applies to these hours"
+    assert error.remediation == "Use an agreement with a verified overtime bank rule."
+
+
+def test_bank_decision_cites_the_bank_share() -> None:
+    """Art. 29: the decision records 2 hours, the 0.50 share and EUR 2.00."""
+    banked = _run(
+        OvertimeEvent(date(2026, 3, 10), Decimal(2), Decimal(10), banked=True),
+        "metalmeccanico-confapi",
+        "5",
+    )
+    decision = next(
+        d for d in banked.decisions if d.reason_code == "overtime_bank_premium"
+    )
+    assert decision.capability == "overtime"
+    assert decision.status is CalculationStatus.FINAL
+    assert decision.rule.endswith(":work_rules.time_supplements.overtime_bank_share")
+    assert decision.rule_version
+    assert decision.inputs == {"hours": Decimal(2), "premium_share": Decimal("0.50")}
+    assert decision.source is not None
+    assert decision.source.page
+    assert decision.amount == Decimal("2.00")
