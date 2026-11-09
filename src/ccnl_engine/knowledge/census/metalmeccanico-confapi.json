@@ -263,10 +263,10 @@
       "institute": "leave",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "LEAVE, PAR (Artt. 21-22 and renewal of 4 June 2026, p. 18): 8 more hours in the sectors listed by Art. 21 and for the turnisti on 15 or more shifts a week; 4 more hours from 1 January 2027 to 31 December 2028 in the companies with at least 50 employees per unità produttiva and from 2029 in every company (the sentence is an insertion of the scan, read by OCR). The engine accrues the 104 hours of the generalità.",
+      "rule": "LEAVE, PAR (Artt. 21-22, 24 and renewal of 4 June 2026, p. 18): the engine adds 8 hours for the whole-workforce sectors of Art. 21(b), 8 for qualifying rotating shifts outside steel, and 4 for all workers from 2029. Not modelled: the Art. 21(a) production/maintenance-area restriction (and southern auto shift exception), the steel shift permit paid with the Christmas bonus instead of credited, the 2027–28 four hours restricted to production units of at least 50 workers (employer headcount is not unit headcount), and absorption by company-level reductions. The 104-hour base remains payable for all workers.",
       "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
       "state": "absent",
-      "remediation": "Add employment facts for the sector, the shift pattern and the size of the unità produttiva, and the 2027 hours.",
+      "remediation": "Model worker production area and unit headcount, steel shift monetisation and company-level offsets; the 2027–28 four hours cannot use employer headcount as unit headcount.",
       "origin": "seeded",
       "links": {
         "limitations": [
