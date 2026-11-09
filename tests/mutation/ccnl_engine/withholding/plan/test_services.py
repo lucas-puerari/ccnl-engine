@@ -19,6 +19,7 @@ from ccnl_engine.calendar.schedule.models import PayrollRunCount
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.element.types import MonthlyPayChain
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
+from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
@@ -248,6 +249,31 @@ class TestUpcomingRecurringGross:
             Decimal(12600),
             Decimal(13000),
         )
+
+    def test_a_later_hire_keeps_the_whole_fourteenth_with_seniority(self) -> None:
+        """Hired in 2025, after the entry of art. 143: no offset applies.
+
+        Each slot pays 1000 base + 50 seniority = 1050; 13 slots = 13650,
+        although 400 of prior extra months is stated.
+        """
+        slots = calendar_schedule(
+            WorkCalendar.from_additional_months(_YEAR, Decimal(14))
+        ).slots[1:]
+        rule = load_ccnl(
+            "studi-professionali-confprofessioni"
+        ).parameters.fourteenth_prior_extra_offset
+        assert rule is not None
+        chain = MonthlyPayChain(
+            base=Decimal(1000), seniority=Decimal(50), allowances=()
+        )
+        gross = upcoming_recurring_gross(
+            chain,
+            slots,
+            EmploymentPeriod(date(2025, 1, 1), None),
+            fourteenth_offset=rule,
+            prior_extra_month_amount=Decimal(400),
+        )
+        assert gross == Decimal(13650)
 
     def test_last_slot_has_nothing_upcoming(self) -> None:
         """On the last slot the projection adds nothing."""
