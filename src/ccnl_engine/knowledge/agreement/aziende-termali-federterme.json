@@ -105,7 +105,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Fondi bilaterali non modellati (EBITERME, FONTUR assistenza sanitaria). Contributi datoriali non quantificati. employer_cost_annual sottostimato.",
+        "text": "SIMPLIFICATION: The Observatorio monthly levy and the annual FONTUR health contribution are accrued, but the EUR 15 one-time first-enrolment employer fee, annual upfront remittance and first-year proration are not automatically posted. Fixed-term written opt-in and non-worked-month recovery are not represented; no separate EBITERME payment amount is established by the cited clauses. Employer cost can be understated at first enrolment.",
         "capability": "bilateral_funds",
         "monetary_impact": "yes",
         "limitation": {
@@ -116,7 +116,7 @@
           "totals": [
             "employer_cost"
           ],
-          "remediation": "Pass the EBITERME and FONTUR contributions as a bilateral fund event, or source and model them."
+          "remediation": "Supply the known first-enrolment fee as a bilateral fund event; establish any separate EBITERME contribution from an official source and model enrolment timing and fixed-term opt-in before removing this limitation."
         }
       },
       {
@@ -175,6 +175,156 @@
         }
       ]
     },
+    "health_funds": [
+      {
+        "code": "osservatorio_nazionale_terme",
+        "description": "National observatory levy, Art. 1 C; recipient not identified as EBITERME",
+        "rate_allowances": [
+          "CONTINGENZA"
+        ],
+        "employer": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-10-01",
+                "valid_until": null,
+                "value": "0.001"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-10-01",
+                "valid_until": null,
+                "value": "0.001"
+              }
+            ]
+          }
+        },
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "aziende-termali-ccnl-2024-pdf",
+              "title": "CCNL Aziende Termali 2024-2027",
+              "kind": "associazione",
+              "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+              "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+            },
+            "page": "10",
+            "section": "Art. 1 C, declaration of the parties",
+            "quote": "attraverso quote mensili versate da tutte le aziende e dai loro dipendenti, la cui misura è stabilità nello 0,20% di paga base e contingenza, di cui lo 0,10% a carico del lavoratore e lo 0,10% a carico del datore di lavoro con effetti economici a decorrere dal 31/01/2005."
+          },
+          "transformation": "Each party pays 0.10% of base salary plus the separately listed CONTINGENZA allowance. The series begins at this ruleset's October 2024 coverage, not at the historical January 2005 inception.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-09T23:05:30Z",
+            "effective_from": "2024-10-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-09T23:05:30Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-10-ai-terme-funds"
+          }
+        }
+      },
+      {
+        "code": "fontur_terme",
+        "description": "FONTUR health assistance for permanent workers and apprentices, Art. 77 and thermal-sector fund regulation",
+        "permanent_only": true,
+        "apprentices_permanent": true,
+        "employer": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "120"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "24"
+              }
+            ]
+          }
+        },
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "16",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aziende-termali-ccnl-2024-pdf",
+                      "title": "CCNL Aziende Termali 2024-2027",
+                      "kind": "associazione",
+                      "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+                      "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+                    },
+                    "page": "68",
+                    "section": "Art. 77(VIII)",
+                    "quote": "L'azienda che ometta il versamento delle suddette quote è tenuta ad erogare alla lavoratrice/al lavoratore un elemento distinto della retribuzione non assorbibile di importo pari ad euro 16,00 lordi, da corrispondere per 14 mensilità e che rientra nella retribuzione, di cui all'artt. 82 e 83"
+                  },
+                  "transformation": "The gross alternative applies in the covered 2025-and-later health-fund period, on 14 pay months and in the TFR base.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:05:30Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:05:30Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-terme-funds"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "fontur-regolamento-terme-2025",
+              "title": "FONTUR regulation for thermal establishments, enrolment and contributions",
+              "kind": "associazione",
+              "url": "https://www.fontur.it/Fontur.PORTAL.WEB/Upload/docs/REGOLAMENTO_FONTUR_CCNL_TERME_2025.pdf",
+              "sha256": "e9d91808f8484356bc9126ac044eb9f55b7edade0f188c7b29a1a209e29ccb95"
+            },
+            "page": "1-2",
+            "section": "Art. 2(2,5), Art. 3(2,3,3.1); CCNL Art. 77(III, IV, VIII), pp. 67-68",
+            "quote": "è obbligatoria l’iscrizione in relazione ai rapporti di lavoro a tempo indeterminato, compresi gli apprendisti. [...] A decorrere dal 1° gennaio 2025 il contributo annuale è pari a centoquarantaquattro euro (€ 144), di cui centoventi euro a carico del datore di lavoro, per ciascun lavoratore assunto sia a tempo pieno sia a tempo parziale, e ventiquattro euro a carico del lavoratore. [...] la quota a carico del lavoratore, che sarà trattenuta mensilmente dalla retribuzione del dipendente."
+          },
+          "transformation": "Accrue the annual EUR 120/24 as EUR 10/2 per ordinary month; the regulation requires one annual advance payment and prorates first-year enrolments, neither of which is represented by this accrual. CCNL Art. 77(VIII), PDF pp. 67-68, provides a EUR 16 gross non-absorbable element for 14 payments when the employer omits fund payments; it enters remuneration under Arts. 82-83. The EUR 15 first-enrolment fee is not a recurring amount and remains a limitation.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-09T23:05:30Z",
+            "effective_from": "2025-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-09T23:05:30Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-10-ai-terme-funds"
+          }
+        }
+      }
+    ],
     "seniority_increments": {
       "cadence_months": 24,
       "maximum_count": 5,
@@ -2715,7 +2865,7 @@
     "effective_until": null,
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
     "verification_status": "unverified",
-    "source_hash": "e0cc043a309babc08a87294a25a9946717e65eef53e36e8ff3970110895a8dcd",
+    "source_hash": "6c461cff6feefb91962c782c1e12a9736d34b40c816260e80c6af76585de6fbd",
     "published_at": "2026-09-12",
     "source_type": "commercial_secondary"
   },
@@ -2764,6 +2914,32 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-terme-funds",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Observatory levy and FONTUR thermal-sector health contribution against the signed agreement and official fund regulation.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+            "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+          },
+          {
+            "url": "https://www.fontur.it/Fontur.PORTAL.WEB/Upload/docs/REGOLAMENTO_FONTUR_CCNL_TERME_2025.pdf",
+            "sha256": "e9d91808f8484356bc9126ac044eb9f55b7edade0f188c7b29a1a209e29ccb95"
+          }
+        ],
+        "findings": [
+          "Monthly observatory shares and annual FONTUR shares verified; enrolment fee and payment timing remain unmodelled."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.health_funds",
+          "coverage.notes"
         ]
       }
     ]
