@@ -67,22 +67,6 @@
       }
     },
     {
-      "id": "local_holiday_during_absence",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.",
-      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
-      "state": "absent",
-      "remediation": "Provide the employer-specific patron saint holiday.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "studi-professionali-confprofessioni/local_holiday_during_absence"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",
@@ -103,10 +87,10 @@
       "institute": "maternity_leave",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "The holiday target applies on the weekday national holidays: a holiday on a Sunday (paid by its own quota), the patron saint and 4 October (a holiday from 2026, which the text, signed before, does not list) are not topped up; 'festività cadenti' covers them in the text.",
+      "rule": "A holiday on a Sunday (paid by its own quota) and 4 October (a holiday from 2026, which the text, signed before, does not list) are not topped up.",
       "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
       "state": "absent",
-      "remediation": "Top up the holidays the clause covers beyond the weekday national calendar, and the items above.",
+      "remediation": "Resolve the Sunday and 4 October scope against the applicable law.",
       "origin": "seeded",
       "links": {
         "limitations": [

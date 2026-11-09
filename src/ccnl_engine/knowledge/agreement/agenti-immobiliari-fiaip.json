@@ -96,20 +96,6 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: Una tantum payments (01/09/2025 and 01/05/2026) for employees hired before 01/01/2024 not modelled. One-time payments only; not part of ongoing monthly retribuzione.",
-        "capability": "una_tantum",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "una_tantum_2025_2026",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Resolved: parameters.una_tantum holds the installments of 1 September 2025 and 1 May 2026, paid by the engine as arrears of the covered months.",
-          "status": "resolved"
-        }
-      },
-      {
         "kind": "info",
         "text": "Source provenance: values extracted from signed CCNL 19/05/2025 PDF distributed by FIAIP/EBNAIP. The direct PDF download URL was not recorded; the homepage https://www.ebnaip.it/ was used as the source anchor. All values verified page-by-page against the original document."
       },
@@ -300,6 +286,27 @@
         "independence": "same_process",
         "checked": [
           "parameters.employer_funds"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-una-tantum-quote",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 163, una tantum table and hire-date clause, PDF pp. 97-98.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+            "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+          }
+        ],
+        "findings": [
+          "Verified both installments for all seven levels against the final PDF, including the 1 January 2024 full-payment cutoff and proportional payment for later hires through 1 May 2025. Removed an obsolete exclusion note."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.una_tantum"
         ]
       }
     ]
@@ -498,18 +505,18 @@
             },
             "page": "97-98",
             "section": "Art. 163, tabella 'UNA TANTUM'",
-            "quote": "L'erogazione dell'una tantum sarà effettuata ai dipendenti con assunzione precedente al 1° gennaio 2024. Ai dipendenti assunti nel periodo dai 1° gennaio 2024 alla data del 1° maggio 2025 saranno erogate le quote di una tantum proporzionalmente ai mesi lavorati tra la data di assunzione e il 1° maggio 2025"
+            "quote": "UNA TANTUM\nDecorrenza\nLivelli    01/09/2025           01/05/2026\nQ          €    149,47          €       149,47\nI          €    137,96          €       137,96\nII         €    123,75          €       123,75\nIII        €    110,52          €       110,52\nIV         €    100,00          €       100,00\nV          €    93,50           €       93,50\nVI         €    87,28           €       87,28\nL'erogazione dell'una tantum sarà effettuata ai dipendenti con assunzione precedente al 1° gennaio.\n2024\nAi dipendenti assunti nel periodo dai 1° gennaio 2024 alla data del 1° maggio 2025 saranno erogate le quote di una tantum proporzionalmente ai mesi lavorati tra la data di assunzione e il 1° maggio 2025, sia per la quota scadente il 1° settembre 2025, sia per la quota scadente il 1 ° maggio 2026."
           },
           "transformation": "Two installments, decorrenza 01/09/2025 and 01/05/2026, of the per-level amounts of the table (IV 100.00). The covered period is read from the clause as 1 January 2024 to 30 April 2025: full to a hire before it, by the months worked from the hire to 1 May 2025 over its 16 months to a hire within it, nothing after.",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-01T10:38:57Z",
+            "extraction_timestamp": "2026-11-09T20:45:48Z",
             "effective_from": "2025-05-01",
             "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-01T10:38:57Z",
+            "verified_at": "2026-11-09T20:45:48Z",
             "verification_status": "verified",
-            "review_id": "2026-11-01-ai-una-tantum"
+            "review_id": "2026-11-09-ai-una-tantum-quote"
           }
         }
       }
@@ -1900,7 +1907,7 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "e89561c4d9beec11e519d59436a6e874668b61f7173bead5bf3ecf80c44381d6"
+    "source_hash": "e335dc8a16557808df6d15dcece1fa2b423f7704fd9eca567464e1ef5d9d96c8"
   },
   "work_rules": {
     "notice": {

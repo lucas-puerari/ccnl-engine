@@ -71,7 +71,14 @@ def _handle_paternity_leave(
         terms.rates.paternity,
         base.rmgg,
         holiday,
-        holiday.holidays(*span) if holiday is not None else frozenset(),
+        (
+            holiday.holidays(
+                *span,
+                None if terms.employer is None else terms.employer.patron_saint_day,
+            )
+            if holiday is not None
+            else frozenset()
+        ),
     )
     effect = post_lines(
         (

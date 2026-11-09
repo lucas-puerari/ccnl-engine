@@ -217,19 +217,6 @@
           "variant": "sickness_net_basis",
           "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 103, align the computation, then resolve this limitation."
         }
-      },
-      {
-        "kind": "simplification",
-        "text": "The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "local_holiday_during_absence",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Provide the employer-specific patron saint holiday."
-        }
       }
     ]
   },
@@ -1490,7 +1477,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "d9a5d37a9edd475900fd6d0c69c98b5d17bc5390a07d5ea3364db49b64a85d62",
+    "source_hash": "b025a279b4246503a2bc5e874ee07fcec58cd84877c9fd4efe6d8b043ff5a17a",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -2350,6 +2337,28 @@
             "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
             "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
           }
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-sport-local-absence",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 107 and the patron saint holiday list, cached 2024 PDF p. 85.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+            "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+          }
+        ],
+        "findings": [
+          "Sickness and injury holiday targets already include the stated patron saint day; the local holiday limitation is stale."
+        ],
+        "checked": [
+          "work_rules.sickness_rules.holiday",
+          "work_rules.insured_absence.injury.holiday"
         ]
       }
     ]
