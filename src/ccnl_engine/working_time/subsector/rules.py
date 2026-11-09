@@ -120,8 +120,16 @@ def with_subsector(
             "differs by category: state Employment.category"
         )
         raise InvalidInputError(msg, field="Employment.category", feature="overtime")
+    sector_rule = rules.subsector_rules.get(stated or "")
+    hourly_update: dict[str, object] = {}
+    if sector_rule is not None and sector_rule.hourly_minimum_by_level:
+        hourly_update = {
+            "hourly_minimum_by_level": sector_rule.hourly_minimum_by_level,
+            "hourly_base_provenance": sector_rule.hourly_minimum_provenance,
+        }
     supplements = supplements.model_copy(
         update={
+            **hourly_update,
             "overtime_bands": tuple(
                 b for b in supplements.overtime_bands if _applies(b, stated, category)
             ),

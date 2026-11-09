@@ -135,10 +135,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "FLOROVIVAISTI NOT DISTINGUISHED. The CCNL covers both Operai Agricoli (OTA) and Operai Florovivaisti (OTF). OTF have separate (higher) tabelle retributive with their own area amounts. This file models OTA amounts only. Callers must use a separate file (not yet modelled) for OTF workers.",
+      "rule": "FLOROVIVAISTI MONTHLY PAY NOT DISTINGUISHED. Annex 1 hourly floriculture minima are used only for time events from June 2026. Monthly base salary and other monthly entitlements still use agricultural amounts; the earlier floriculture hourly floor is not sourced. Do not treat agricultural monthly wages as floriculture salaries.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
-      "remediation": "Model the OTF salary tables as a separate file.",
+      "remediation": "Model floriculture monthly pay and historical hourly minima independently; supply contractual hourly rates where the national floor is unavailable.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -423,10 +423,10 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "The agricultural and floriculture overtime and ordinary holiday/night premiums are selected by EmployerProfile.subsector. Remaining: regular night shifts attract a 10% exception (Arts. 43–44) not routed by these bands; provincial contractual wages and special-work tariffs require local inputs.",
+      "rule": "Agricultural and floriculture premiums are selected by EmployerProfile.subsector. Remaining: the 10% regular-shift rule for night AND holiday work (Art. 43 p. 48, Art. 44 p. 49), provincial special tariffs, the third element on overtime/holiday/night hours, and the bank of hours are not fully routed; provincial contractual wages require local inputs.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
-      "remediation": "Select the regular night-shift exception separately and supply the provincial contractual wage and any applicable local special-work tariff.",
+      "remediation": "Supply the contractual hourly wage and provincial special tariffs; route the 10% regular-shift night and holiday exceptions, the third element on these hours and bank-of-hours elections separately.",
       "origin": "seeded",
       "links": {
         "limitations": [
