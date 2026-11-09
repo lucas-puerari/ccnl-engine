@@ -202,8 +202,9 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "seniority.apprenticeship_months",
         _REPORTED,
         "unknown past apprenticeship duration: a CCNL that credits a share "
-        "towards increments blocks the seniority amount until it is stated, "
-        "or zero confirms no preceding apprenticeship",
+        "towards increments shows the service alone, a lower bound, with a "
+        "missing_fact apprenticeship_months blocker; zero confirms no "
+        "preceding apprenticeship",
     ),
     "Employment.level_started_on": requires_fact(
         "base_salary",

@@ -25,8 +25,9 @@ def credited_increment_months(
     Other benefits still use the uncredited service months.
 
     Returns:
-        Months applicable to increments, or ``None`` if a required duration
-        or the ordinary seniority fact is missing.
+        Months applicable to increments: the service months alone when the
+        duration is unknown (a lower bound, reported as provisional), and
+        ``None`` only without the ordinary seniority fact.
     """
     if (
         months is None
@@ -38,6 +39,6 @@ def credited_increment_months(
         None if request.seniority is None else request.seniority.apprenticeship_months
     )
     if duration is None:
-        return None
+        return months
     total = Decimal(months) + Decimal(duration) * rules.apprenticeship_credit_share
     return int(total // 1)

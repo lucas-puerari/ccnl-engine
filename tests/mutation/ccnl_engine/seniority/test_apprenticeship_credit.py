@@ -14,6 +14,7 @@ from typing import TYPE_CHECKING, cast
 
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.element.services import _resolve_chain
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employment.inputs import Apprentice, Permanent
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.seniority.credit import credited_increment_months
@@ -74,9 +75,12 @@ def test_fractional_credit_moves_first_increment_to_february() -> None:
 
 
 def test_unknown_duration_blocks_and_apprentices_do_not_get_credit() -> None:
-    """An absent duration blocks payment; current apprentices have no credited step."""
+    """An absent duration counts the service alone and names the fact.
+
+    Current apprentices have no credited step.
+    """
     request = _request(None)
-    assert credited_increment_months(1, _RULES, request) is None
+    assert credited_increment_months(1, _RULES, request) == 1
     ctx = cast(
         "RunContext",
         SimpleNamespace(
@@ -91,9 +95,13 @@ def test_unknown_duration_blocks_and_apprentices_do_not_get_credit() -> None:
         ),
     )
     run = run_seniority(ctx)
-    assert run.missing
-    assert run.issue() is not None
-    assert run.issue().fact == "apprenticeship_months"  # type: ignore[union-attr]
+    assert not run.missing
+    assert run.apprenticeship_missing
+    issue = run.issue()
+    assert issue is not None
+    assert issue.fact == "apprenticeship_months"
+    assert issue.status is CalculationStatus.INCOMPLETE
+    assert run.months == 1
     apprentice = cast(
         "PeriodCalculationRequest",
         SimpleNamespace(seniority=request.seniority, contract_type=Apprentice(1)),

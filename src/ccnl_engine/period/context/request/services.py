@@ -106,8 +106,8 @@ def _base_chain(
             contract.tctx.competence,
             None if period is None else period.started_on,
         )
-    # Unknown apprenticeship duration must not produce a payable increment.
-    # Other service-gated elements continue to use the ordinary service months.
+    # An unknown apprenticeship duration counts the service alone (a lower
+    # bound); other service-gated elements use the ordinary service months.
     increment_months = credited_increment_months(
         months, contract.ccnl.parameters.seniority_increments, request
     )
@@ -117,7 +117,7 @@ def _base_chain(
         request.contract_type,
         contract.tctx.competence,
         seniority_months=months,
-        increment_months=-1 if increment_months is None else increment_months,
+        increment_months=increment_months,
         roles=request.roles or frozenset(),
         worker_category=worker_category,
         weekly_hours=_hours_value(request.weekly_hours) if part_time else None,
