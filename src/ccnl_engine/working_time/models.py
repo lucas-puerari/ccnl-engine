@@ -116,6 +116,10 @@ class TimeSupplements(BaseModel):
     ``gross_incl_allowances`` base leaves out (Logistica art. 74: the EDR of
     2021 has "nessuna incidenza su alcun istituto contrattuale").
 
+    ``overtime_bank_share`` is the fraction of the ordinary overtime premium
+    paid immediately when the worker elects rest instead of payment; it does
+    not value the deferred base hours or track a rest balance. Its provenance
+    identifies the bank clause, separately from the overtime band.
     ``overtime_bands`` is an ordered list of :class:`OvertimeBand` entries.
     All applicable bands accumulate (no "first match wins" truncation) unless
     a CCNL-specific note says otherwise.  ``supplement_bands`` are the
@@ -132,6 +136,10 @@ class TimeSupplements(BaseModel):
     individual_elements: IndividualElementsRule | None = None
     hourly_base_excluded: tuple[str, ...] = Field(default=())
     overtime_bands: tuple[OvertimeBand, ...] = Field(default=())
+    overtime_bank_share: Decimal | None = Field(
+        default=None, gt=Decimal(0), le=Decimal(1)
+    )
+    overtime_bank_provenance: RuleProvenance | None = None
     supplement_bands: tuple[SupplementBand, ...] = Field(default=())
 
     @model_validator(mode="after")

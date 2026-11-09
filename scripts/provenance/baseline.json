@@ -1130,6 +1130,8 @@
       "sanita-aran/renewal_2025_2027_not_modelled"
     ],
     "agreement/sanita-privata-aiop-aris.json": [
+      "sanita-privata-aiop-aris/daily_rotating_shift_allowances",
+      "sanita-privata-aiop-aris/enterprise_on_call_adoption_profiles",
       "sanita-privata-aiop-aris/frozen_individual_seniority",
       "sanita-privata-aiop-aris/shift_on_call_allowances",
       "sanita-privata-aiop-aris/statutory_ipca_adjustment"
