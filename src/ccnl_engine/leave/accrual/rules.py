@@ -78,6 +78,9 @@ class AccrualFacts:
         full_time_week: Full-time weekly hours of the contract, ``None``
             when not stated.
         subsector: Sub-sector of the employer, ``None`` when not stated.
+        qualifying_shifts: Whether the worker works in a system of at least
+            15 weekly shifts including night and/or weekend shifts; ``None``
+            when unknown.
         entry_pay: Whether the worker was hired on the entry pay of the CCNL
             (``Permanent.entry_pay``; Studi art. 56, the contratto di
             reimpiego).
@@ -92,6 +95,7 @@ class AccrualFacts:
     part_time_ratio: Decimal | None = None
     full_time_week: Decimal | None = None
     subsector: str | None = None
+    qualifying_shifts: bool | None = None
     entry_pay: bool = False
 
     @property
@@ -185,7 +189,20 @@ def _permit(permit: PermitRules, facts: AccrualFacts) -> tuple[Decimal, bool]:
         hire and the part-time ratio, when the month is credited.
     """
     credited, exact = _credit(permit.month_credit, facts.service)
-    hours = permit.hours_for(facts.headcount, facts.full_time_week, facts.subsector)
+    hours = permit.hours_for(
+        facts.headcount,
+        facts.full_time_week,
+        facts.subsector,
+        day=facts.last_day,
+        qualifying_shifts=facts.qualifying_shifts,
+    )
+    if any(
+        item.shift_fact_unknown(
+            facts.last_day, facts.subsector, facts.qualifying_shifts
+        )
+        for item in permit.extra_hours
+    ):
+        exact = False
     ramp = permit.ramp
     months = facts.months_since_hire()
     if facts.entry_pay and permit.entry_ramp:

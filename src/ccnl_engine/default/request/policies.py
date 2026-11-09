@@ -151,6 +151,16 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
     "Employment.rota": absence_is_fact(
         "the leave days of the CCNL default rota (FEDERDAT: 5+1, 25 days)"
     ),
+    "Employment.qualifying_shifts": requires_fact(
+        "leave",
+        "employment.qualifying_shifts",
+        _PENDING,
+        "unknown rotation: where a CCNL grants additional PAR hours to a "
+        "worker in at least 15 weekly shifts including night and/or weekend "
+        "work, the base PAR is credited but its balance is inexact; when the "
+        "shift clause cannot grant leave (before its effective date or for "
+        "sectors paid instead) the missing shift fact does not affect leave",
+    ),
     "Employment.work_pattern": absence_is_fact(
         "a horizontal part time or a full time: every month is worked and "
         "weekly_hours alone sets the part-time ratio"
