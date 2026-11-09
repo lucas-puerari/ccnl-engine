@@ -19,6 +19,22 @@
       }
     },
     {
+      "id": "apprenticeship_pct_undeclared_components",
+      "institute": "base_salary",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.",
+      "calculation": "ccnl_engine.apprenticeship.rules (percentage track chain)",
+      "state": "unverified",
+      "remediation": "Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "apprenticeship_pct_undeclared_components"
+        ]
+      }
+    },
+    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",
@@ -423,10 +439,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 47, 50 and 52: the indennità speciale, di cassa and for alta montagna, cassoni and galleria.",
+      "rule": "Artt. 47 and 52: the 25% special allowance for directors with responsibility for a company or department also depends on the unmodelled provincial production premium (and the option to deduct it from a superminimo set for those duties); the mountain and compressed-air caisson treatment depends on the operai's territorial rates; the EUR 25.82 monthly tunnel allowance is absorbed by same-purpose payments and by existing superminimi not granted for merit or another specific reason. Art. 50 cash handling with liability for errors is paid at 8% of minimum plus ex-contingenza when the role is attested.",
       "calculation": "ccnl/edilizia-ance-impiegati:coverage.notes",
       "state": "absent",
-      "remediation": "Model the allowances of Artt. 47, 50 and 52.",
+      "remediation": "Source the provincial production premium and the operai's rates, and represent the specified superminimo absorption before paying the remaining allowances of Artt. 47 and 52.",
       "origin": "seeded",
       "links": {
         "limitations": [

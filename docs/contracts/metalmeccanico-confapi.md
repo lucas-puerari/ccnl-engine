@@ -74,6 +74,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 32 and Art. 38 of the 2017 CCNL, physical PDF pages 104 and 112, former-worker holiday hours and December pay. | confirmed | The Sunday daily quota already exists. Former legal operai receive 80 minutes for weekday holidays and January weekend Epiphany, subject to company offset; former Part One workers in service on 2008-12-31 receive a non-absorbable 11h10 December annual payment. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 32 p. 104 and Art. 38 p. 112: local patron, 2009 effective date and termination settlement. | confirmed | Local patron is letter c of Art. 32; the 80-minute entitlement starts in 2009. Art. 38 pays the annual amount with December wages, without an express earlier termination advance. Hourly cottimo and other hourly elements remain outside the computed base. |
 | 2026-11-09 | claude-opus-5-5 (ai) | PAR supplements of Arts. 21, 22 and 24 of the 2017 PDF and Art. 22 of the 2026 renewal, checked against cached PDFs. | confirmed | General 104 hours; entire-workforce sectors and eligible rotations add eight hours each; all employers add four hours from 2029. Unit headcount, restricted production areas, steel monetisation and company offsets remain limitations. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 32 pp. 104-105, letter b and c holidays during reduced sickness, maternity and injury pay. | confirmed | Letter a is excluded; 4 October is absent; letter c includes the stated local patron day. Maternity local patron and substitute days remain outside its holiday calendar. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 23 and Art. 29 paragraph 2 of the cached 2017 CCNL, physical PDF pages 94 and 102; immediate banked overtime premium only. | confirmed | The bank election covers every overtime hour worked in a month; banked hours pay 50% of the applicable premium immediately, with rest and any residual payout deferred. Flexible hours are not overtime and need a separate schedule model. |
 
 ## Salary table
@@ -208,12 +209,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add the hourly elements of art. 38 to the hourly pay of the PAR, and source the PAR left at the end of the employment.
 
-!!! warning "metalmeccanico-confapi/holiday_during_injury · sickness · impact yes · open"
-    Art. 32 tops up reduced sickness, maternity and injury treatment only on holidays in letters b) and c). The national calendar also includes the excluded letter a) holidays (25 April, 1 May and 2 June). A blanket sickness_rules.holiday would overpay those days, so the sickness holiday top-up is not calculated. The injury (INAIL) and local patron saint treatments are also not calculated.
+!!! warning "metalmeccanico-confapi/holiday_outside_calendar · sickness · impact yes · open"
+    Art. 32(b,c) holiday top-ups are modelled for sickness, compulsory maternity and injury, excluding letter a) and 4 October. Stated local patron days are covered for sickness and injury. Not calculated: the maternity top-up on a local patron day, the locally agreed substitute for the patron day, and Rome-only 29 June, which are outside the national holiday calendar.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Support contract-scoped holiday dates before implementing the sickness and injury top-ups of art. 32(b,c).
+    **Remediation:** Calculate the maternity top-up on stated patron days, the agreed substitute patron holiday and Rome-only 29 June when the local facts are available.
 
 !!! warning "metalmeccanico-confapi/flexibility_and_hours_bank · overtime · impact yes · open"
     Art. 23 flexible hours above 40 per week (15% weekday, 20% Saturday) remain outside the model: they are not overtime. Art. 29 banked overtime pays half the applicable overtime premium now; the elected rest balance and eventual payout at current pay are not tracked. The election covers all overtime in the month and must be declared by the next month; callers must supply a consistent banked choice for each month's events.
