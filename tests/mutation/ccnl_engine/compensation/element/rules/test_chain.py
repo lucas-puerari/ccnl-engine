@@ -317,6 +317,7 @@ def test_the_chain_passes_the_worker_to_the_seniority_rule(
         "worker_category": WorkerCategory.IMPIEGATO,
         "is_apprentice": False,
         "seniority_months": 30,
+        "roles": frozenset(),
     }
     assert chain.seniority == Decimal(30)
     assert chain.base == Decimal("2000.00")
@@ -438,6 +439,7 @@ def test_the_level_amount_is_read_for_the_same_worker_as_qualified(
             "worker_category": WorkerCategory.OPERAIO,
             "is_apprentice": False,
             "seniority_months": 30,
+            "roles": frozenset(),
         },
     )
 

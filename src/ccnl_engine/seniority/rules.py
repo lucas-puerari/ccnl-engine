@@ -185,6 +185,7 @@ def _seniority_amount(
     worker_category: WorkerCategory | None,
     is_apprentice: bool,
     seniority_months: int | None,
+    roles: frozenset[str] = frozenset(),
 ) -> Decimal:
     """Resolve the monthly seniority amount for one level on one date.
 
@@ -225,7 +226,14 @@ def _seniority_amount(
         if cat_amounts is not None and level_code in cat_amounts:
             raw = cat_amounts[level_code].value_at(as_of)
             return money(raw * count)
-    if level_code in seniority_rules.amount_by_level:
-        raw = seniority_rules.amount_by_level[level_code].value_at(as_of)
-        return money(raw * count)
+    series = next(
+        (
+            seniority_rules.amount_by_level_by_role[role][level_code]
+            for role in sorted(roles)
+            if level_code in seniority_rules.amount_by_level_by_role.get(role, {})
+        ),
+        seniority_rules.amount_by_level.get(level_code),
+    )
+    if series is not None:
+        return money(series.value_at(as_of) * count)
     return _ZERO
