@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from datetime import date
 from enum import StrEnum
 
+from ccnl_engine.employment.period.collective import CollectiveDismissal
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.validators import parse_enum, require_bool, require_date
 
@@ -71,36 +72,16 @@ _CASE_CAUSE = {
 
 
 @dataclass(frozen=True, slots=True)
-class CollectiveDismissal:
-    """A dismissal at the end of a collective procedure (L. 223/1991 art. 4).
-
-    Attributes:
-        union_agreement: Whether the declaration of redundancy was the
-            object of a union agreement; without one the contribution is
-            three times (L. 92/2012 art. 2 c. 35).
-        cigs_employer: Whether the employer owes the CIGS contribution (art.
-            23 D.Lgs. 148/2015); its rate is 82% (L. 205/2017 art. 1 c. 137).
-
-    Raises:
-        InvalidInputError: When a flag is not a ``bool``.
-    """
-
-    union_agreement: bool
-    cigs_employer: bool
-
-    def __post_init__(self) -> None:  # noqa: D105
-        for name in ("union_agreement", "cigs_employer"):
-            require_bool(
-                getattr(self, name), f"CollectiveDismissal.{name}", feature=FEATURE
-            )
-
-
-@dataclass(frozen=True, slots=True)
 class EmploymentPeriod:
     """Start and optional end of the employment relationship.
 
     Attributes:
         started_on: First day of employment.
+        uninterrupted_service_started_on: First day of the current uninterrupted
+            actual service counted for service-gated awards. State the date from
+            employer records when it differs from the hire date (for example,
+            after a break or on a group transfer). It must exclude conventional
+            seniority that is not actual service. ``None`` uses ``started_on``.
         ended_on: Last day of employment, or ``None`` for an open-ended
             relationship.  Must not precede ``started_on``.
         ended_by: How the employment ends, with ``ended_on``; ``None`` when
@@ -117,7 +98,8 @@ class EmploymentPeriod:
 
     Raises:
         InvalidInputError: When a date is not a ``date``, ``ended_on`` or
-            ``probation_until`` is before ``started_on``, ``ended_by``
+            ``probation_until`` is before ``started_on``, the service start
+            is after ``ended_on``, ``ended_by``
             comes without ``ended_on``,
             ``just_cause`` with a cause other than a dismissal or a
             resignation, or ``naspi_case`` without its own cause.
@@ -129,9 +111,16 @@ class EmploymentPeriod:
     just_cause: bool | None = None
     naspi_case: NaspiCase | CollectiveDismissal | None = None
     probation_until: date | None = None
+    uninterrupted_service_started_on: date | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_date(self.started_on, "EmploymentPeriod.started_on", feature=FEATURE)
+        require_date(
+            self.uninterrupted_service_started_on,
+            "EmploymentPeriod.uninterrupted_service_started_on",
+            feature=FEATURE,
+            optional=True,
+        )
         require_date(
             self.probation_until,
             "EmploymentPeriod.probation_until",
@@ -158,6 +147,17 @@ class EmploymentPeriod:
             )
             raise InvalidInputError(
                 msg, field="EmploymentPeriod.ended_on", feature=FEATURE
+            )
+        if (
+            self.ended_on is not None
+            and self.uninterrupted_service_started_on is not None
+            and self.uninterrupted_service_started_on > self.ended_on
+        ):
+            msg = "uninterrupted service cannot start after employment ends"
+            raise InvalidInputError(
+                msg,
+                field="EmploymentPeriod.uninterrupted_service_started_on",
+                feature=FEATURE,
             )
         if self.ended_by is not None:
             object.__setattr__(self, "ended_by", self._cause())
