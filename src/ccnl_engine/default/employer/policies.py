@@ -95,6 +95,15 @@ EMPLOYER_DEFAULTS: Mapping[str, FieldDefault] = {
         "runs of December and of the deadline pay nothing, with a "
         "missing_fact permit_carryover blocker",
     ),
+    "EmployerProfile.legacy_section_applicable": requires_fact(
+        "sickness",
+        "employer.legacy_section_applicable",
+        _REPORTED,
+        "unknown legacy section: a holiday during sickness or injury is not "
+        "topped up under a rule restricted to employers carried forward "
+        "from a previous CCNL, and the run has a missing_fact "
+        "legacy_section_applicable blocker",
+    ),
     "EmployerProfile.patron_saint_day": requires_fact(
         "sickness",
         "employer.patron_saint_day",

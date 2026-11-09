@@ -147,6 +147,7 @@ def test_sunday_decision_identifies_the_rule_and_each_factor() -> None:
     assert pay.amount == Decimal("24.00")
     assert pay.hours == Decimal(8)
     assert pay.rate == Decimal("0.30")
+    assert pay.base is not None
     assert pay.base.rate == Decimal(10)
     assert decision.amount == Decimal("24.00")
     assert decision.capability == "holiday_work"
