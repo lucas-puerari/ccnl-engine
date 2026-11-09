@@ -59,6 +59,8 @@ from ccnl_engine.inputs import (
     WorkerCategory,
     WorkPattern,
 )
+from ccnl_engine.leave.balance.models import LeaveAccount, LeaveBalance
+from ccnl_engine.leave.types import LeaveBucket
 from tests.integration.ccnl_engine.default.event.builders import (
     absence_cases,
 )
@@ -131,6 +133,33 @@ def _january(
         facts=facts,
         events=events,
         opening_state=PeriodState.zero(),
+    )
+
+
+def _par_expiry(elements: Decimal | None) -> PeriodInput:
+    """Build a run with ten hours of PAR left at their expiry.
+
+    Returns:
+        The December run with the caller's hourly elements fact.
+    """
+    employment = replace(
+        CONCIA_D2,
+        ccnl_id="metalmeccanico-confapi",
+        level_code="5",
+        category=None,
+        seniority=None,
+        employment_period=EmploymentPeriod(date(2020, 1, 1)),
+    )
+    opening = PeriodState.zero()
+    balance = LeaveBalance(LeaveBucket.ROL, 2025, Decimal(120), Decimal(0))
+    return replace(
+        _january(employment),
+        run=PayrollRun.regular(2027, 12),
+        payment_date=date(2027, 12, 27),
+        opening_state=replace(
+            opening, accrual=replace(opening.accrual, leave=LeaveAccount((balance,)))
+        ),
+        facts=replace(FACTS, hourly_pay_elements=elements),
     )
 
 
@@ -655,6 +684,9 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
         _employment_pair(
             CONCIA_D2, replace(CONCIA_D2, pension_fund=None), "pension_fund"
         ),
+    ),
+    "PeriodFacts.hourly_pay_elements": (
+        DefaultCase(_par_expiry(Decimal(0)), _par_expiry(None), "hourly_pay_elements"),
     ),
     "PeriodFacts.meal_benefit_days": (
         DefaultCase(

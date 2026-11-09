@@ -20,6 +20,16 @@ PERIOD_FACT_DEFAULTS: dict[str, FieldDefault] = {
         "of the building CCNLs are left out, with a missing_fact "
         "ordinary_hours_worked blocker; other CCNLs do not read it",
     ),
+    "PeriodFacts.hourly_pay_elements": requires_fact(
+        "leave",
+        "facts.hourly_pay_elements",
+        _PERIOD_REPORTED,
+        "unknown additional hourly remuneration: when a CCNL includes hourly "
+        "elements in the pay of permits expiring at their deadline, the "
+        "payout is blocked by missing_fact hourly_pay_elements; state zero "
+        "to confirm no additional hourly elements. Monthly remuneration "
+        "already included in monthly pay must not be repeated",
+    ),
     "PeriodFacts.paid_holiday_days": requires_fact(
         "base_salary",
         "facts.paid_holiday_days",
