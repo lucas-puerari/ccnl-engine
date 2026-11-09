@@ -31,6 +31,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.compensation.proration.rules import payable_days
 from ccnl_engine.sickness.agricultural import rules as agricultural
 from ccnl_engine.sickness.day.annual import InpsDays, daily_share, take
+from ccnl_engine.sickness.day.previous import used_before
 from ccnl_engine.sickness.holiday.rules import gross_holiday_boundary
 from ccnl_engine.sickness.window.rules import window_start
 
@@ -204,6 +205,8 @@ def _walk(
     history: SicknessHistory,
     rules: SickPayRules,
     inps: InpsDays,
+    *,
+    chain_days: int | None = None,
 ) -> Iterator[tuple[date, int, _Day]]:
     """Yield each day of ``span`` with its index and treatment.
 
@@ -211,6 +214,8 @@ def _walk(
         ``(day, index, treatment)`` in day order.
     """
     offset = history.offset(episode)
+    if chain_days is None:
+        chain_days = history.chain_days(episode)
     ccnl: DayTreatment = rules.treatment(episode, history)
     limit = _fixed_term_limit(episode, rules)
     required = rules.inps.min_daily_contributions
@@ -222,39 +227,23 @@ def _walk(
         day = first + timedelta(days=step)
         index = offset + (day - episode.started_on).days + 1
         treatment = ccnl(index, day)
-        extra = daily_share(
-            episode, day, rules, inps, beyond_comporto=treatment.beyond_comporto
+        extra = (
+            daily_share(
+                episode,
+                day,
+                rules,
+                inps,
+                beyond_comporto=treatment.beyond_comporto,
+                chain_days=chain_days,
+            )
+            if rules.worker.hired_on is None or day >= rules.worker.hired_on
+            else _ZERO
         )
         yield (
             day,
             index,
             _classify(index, day, rules, inps, (treatment, limit), extra),
         )
-
-
-def _used_before(
-    episode: SicknessEpisode,
-    first: date,
-    history: SicknessHistory,
-    rules: SickPayRules,
-) -> InpsDays:
-    """Return the INPS days paid before ``first``, walking every earlier day.
-
-    Returns:
-        The days paid per calendar year by the earlier episodes and by the
-        days of ``episode`` before ``first``.
-    """
-    inps = InpsDays()
-    for earlier in history.earlier(episode):
-        span = (earlier.started_on, earlier.ended_on)
-        for _ in _walk(earlier, span, history, rules, inps):
-            pass
-    head = episode.before(first)
-    if head is not None:
-        span = (head.started_on, head.ended_on)
-        for _ in _walk(episode, span, history, rules, inps):
-            pass
-    return inps
 
 
 def classify_days(
@@ -269,7 +258,7 @@ def classify_days(
         The segments of ``span`` in day order, using ``history`` and ``rules``.
     """
     history.check(episode, span[0])
-    inps = _used_before(episode, span[0], history, rules)
+    inps = used_before(episode, span[0], history, rules, _walk)
     segments: list[SickDaySegment] = []
     for day, index, treatment in _walk(episode, span, history, rules, inps):
         last = segments[-1] if segments else None

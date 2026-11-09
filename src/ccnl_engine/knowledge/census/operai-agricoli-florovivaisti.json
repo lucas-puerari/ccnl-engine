@@ -115,27 +115,11 @@
       }
     },
     {
-      "id": "florovivaisti_overtime_rates",
-      "institute": "overtime",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "FLOROVIVAISTI OVERTIME AND HOLIDAY WORK: the operai florovivaisti are paid 29% overtime, 40% holiday work, 48% night work, 50% holiday overtime and 55% night holiday work (Art. 44, p. 49), against the 25, 35, 40, 40 and 45% of the operai agricoli (Art. 43) the file pays; ordinary holiday work (35% and 40%) has no band. The request does not say whether the operaio is a florovivaista. The rates apply to the provincial salario contrattuale.",
-      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
-      "state": "absent",
-      "remediation": "Split the florovivaisti into their own levels or file with the Art. 44 rates.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "operai-agricoli-florovivaisti/florovivaisti_overtime_rates"
-        ]
-      }
-    },
-    {
       "id": "florovivaisti_sickness_integration",
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "FLOROVIVAISTI SICKNESS (remaining limits): State EmployerProfile.subsector=florovivaisti for the permanent-worker supplement; without a sub-sector the agricultural rule applies. The provincial contractual daily wage on February 1 is not printed in the national clause and must be supplied for each year of sickness; an unknown wage or INPS recognition leaves the employer supplement unpaid and flagged. Art. 62 also grants fixed-term workers the supplement after 30 continuous days with the same employer, from day 31 for up to 45 days per year; this entitlement is not modeled.",
+      "rule": "FLOROVIVAISTI SICKNESS (remaining limits): State EmployerProfile.subsector=florovivaisti for the permanent-worker supplement; without a sub-sector the agricultural rule applies. The provincial contractual daily wage on February 1 is not printed in the national clause and must be supplied for each year of sickness, already prorated for a part-time worker under Art. 17(c) p. 10; an unknown wage or INPS recognition leaves the employer supplement unpaid and flagged. Previously posted months must be rerun if a later relapse extends a short illness beyond three days. Art. 62 also grants fixed-term workers the supplement after 30 continuous days with the same employer, from day 31 for up to 45 days per year; this entitlement is not modeled.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
       "remediation": "State the existing employer sub-sector and the February 1 contractual daily wage by year for permanent workers; source or supply continuous days with the employer and encode the 45-day fixed-term supplement after day 30.",
@@ -151,10 +135,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "FLOROVIVAISTI NOT DISTINGUISHED. The CCNL covers both Operai Agricoli (OTA) and Operai Florovivaisti (OTF). OTF have separate (higher) tabelle retributive with their own area amounts. This file models OTA amounts only. Callers must use a separate file (not yet modelled) for OTF workers.",
+      "rule": "FLOROVIVAISTI MONTHLY PAY NOT DISTINGUISHED. Annex 1 hourly floriculture minima are used only for time events from June 2026. Monthly base salary and other monthly entitlements still use agricultural amounts; the earlier floriculture hourly floor is not sourced. Do not treat agricultural monthly wages as floriculture salaries.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
-      "remediation": "Model the OTF salary tables as a separate file.",
+      "remediation": "Model floriculture monthly pay and historical hourly minima independently; supply contractual hourly rates where the national floor is unavailable.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -431,6 +415,22 @@
       "links": {
         "limitations": [
           "provisional_ruleset"
+        ]
+      }
+    },
+    {
+      "id": "regular_night_shift_and_local_tariffs",
+      "institute": "overtime",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Agricultural and floriculture premiums are selected by EmployerProfile.subsector. Remaining: the 10% regular-shift rule for night AND holiday work (Art. 43 p. 48, Art. 44 p. 49), provincial special tariffs, the third element on overtime/holiday/night hours, and the bank of hours are not fully routed; provincial contractual wages require local inputs.",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "absent",
+      "remediation": "Supply the contractual hourly wage and provincial special tariffs; route the 10% regular-shift night and holiday exceptions, the third element on these hours and bank-of-hours elections separately.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/regular_night_shift_and_local_tariffs"
         ]
       }
     },

@@ -44,6 +44,18 @@ PERIOD_FACT_DEFAULTS: dict[str, FieldDefault] = {
         "blocker; zero states no days at the site",
     ),
     "PeriodFacts.events": absence_is_fact("no work event in the period"),
+    "PeriodFacts.meal_benefit_days": requires_fact(
+        "welfare",
+        "facts.meal_benefit_days",
+        _PERIOD_REPORTED,
+        "unknown eligible electronic meal voucher days: on regular or termination "
+        "runs of a CCNL with a daily meal rate and an employer with more than "
+        "10 employees, the welfare amount is undetermined and a missing_fact "
+        "meal_benefit_days blocker is reported; state zero to confirm none. "
+        "The caller verifies the absence of a canteen, a lunch break or split "
+        "shift, attendance excluding ineligible absences, electronic delivery "
+        "and the applicable exemption limit; paper vouchers are not modelled",
+    ),
     "PeriodFacts.regione": requires_fact(
         "addizionale_regionale",
         "facts.regione",

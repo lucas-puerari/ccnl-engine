@@ -239,15 +239,15 @@ def episode_pay(
     counted = terms.counted
     before = _quota(chain, counted, quota.divisor)
     for segment, unit in zip(segments, units, strict=True):  # pragma: no mutate
-        if unit == _ZERO:
-            continue
-        counted += unit
-        reached = _quota(chain, counted, quota.divisor)
-        base, before = reached - before, reached
-        absence += _ZERO if terms.paid_by_the_hour else base
-        paid = _segment_pay(
-            segment, base, (rules, terms), excluded=excluded, inps_base=inps_base
-        )
+        paid = (_ZERO, _ZERO, _ZERO)
+        if unit != _ZERO:
+            counted += unit
+            reached = _quota(chain, counted, quota.divisor)
+            base, before = reached - before, reached
+            absence += _ZERO if terms.paid_by_the_hour else base
+            paid = _segment_pay(
+                segment, base, (rules, terms), excluded=excluded, inps_base=inps_base
+            )
         reference_wage = (episode.contractual_daily_wage_by_year or {}).get(
             segment.first.year, _ZERO
         )

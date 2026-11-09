@@ -57,6 +57,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
+| 2026-11-08 | claude-opus-5-5 (ai) | Arts. 178-181 of the 2022 agreement and the 2025 renewal, cached primary PDFs pp. 112 and 32, plus effective dates. | corrected | Daily meal benefit €6 from 2022 and €8 from September 2025; transport and valuables are variable and remain a limitation; Art. 177 repealed. |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 42 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 166 of the stesura of 9 March 2022 (PDF p. 106), text layer. | corrected | Modelled the scatti of the staff in service on 31 December 2018 (were none). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 149 (PDF p. 97, text layer). | confirmed | Art. 149: the festività in a sickness or injury are topped up to 100% of the pay, net of the INPS and INAIL indemnity: sickness_rules.holiday rate 1; the injury part stays a limitation. |
@@ -115,11 +116,11 @@ under-level: `1`
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "ced-assoced/conditional_allowances_title_xxiii · base_salary · impact yes · open"
-    Titolo XXIII conditional allowances not modelled: indennita di mensa (Art. 179), rimborso mezzi pubblici (Art. 180), indennita valori (Art. 181), and elemento economico di garanzia (Art. 177). These are condition-gated or azienda-specific and cannot be determined without employer-level data.
+    Title XXIII: the daily meal benefit (Art. 179) is valued only when the caller supplies verified eligible days; the caller must check the absence of a canteen and a lunch break or split shift. Only caller-confirmed electronic vouchers are posted as exempt welfare; paper vouchers (different tax limits) remain unmodelled. The municipal public-transport subscription cost (Art. 180) and the episodic custody or transport of valuables above EUR 250 (Art. 181) remain unmodelled. Art. 177 was a conditional April 2025 one-off payment, not a Title XXIII allowance; it was repealed from September 2025.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model Art. 177 elemento economico di garanzia and Arts. 179-181 (mensa, mezzi pubblici, valori) as conditional fixed allowances or caller-declared items once a fact can express their conditions.
+    **Remediation:** For paper meal vouchers establish taxable value and treatment. For Art. 180 supply the actual municipal-only monthly public-transport subscription cost and verify the employer's limited-traffic-zone address. For Art. 181 supply each non-continuous custody/transport assignment and delivered value above EUR 250; establish its wage and TFR treatment before posting. Do not recur the repealed Art. 177 April 2025 one-off.
 
 !!! warning "ced-assoced/terziario_inps_rates_unverified · inps_employer · impact unknown · open"
     INPS terziario rates reused from 2026-terziario.json (same sector as H016). Verify against annual INPS circular for exact H601 sub-sector rate.

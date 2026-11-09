@@ -55,6 +55,7 @@ def daily_share(
     days: InpsDays,
     *,
     beyond_comporto: bool,
+    chain_days: int,
 ) -> Decimal:
     """Select and count the employer share only on eligible days.
 
@@ -75,7 +76,7 @@ def daily_share(
     if (
         episode.inps_recognized is not True
         or day.year not in (episode.contractual_daily_wage_by_year or {})
-        or (episode.ended_on - episode.started_on).days < minimum
+        or chain_days <= minimum
     ):
         return _ZERO
     return share if take(days.employer_share, day, limit) else _ZERO

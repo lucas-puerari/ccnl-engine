@@ -8,6 +8,7 @@ These synthetic wages illustrate Art. 62; no provincial wage is asserted.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date, timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -35,6 +36,7 @@ from ccnl_engine.inputs import (
     SenioritySource,
     WorkerCategory,
 )
+from ccnl_engine.sickness.cumulation.worker import SicknessWorker
 from ccnl_engine.sickness.day.models import SickPayRules
 from ccnl_engine.sickness.day.rules import SickDayKind, classify_days
 from ccnl_engine.sickness.indemnity.models import (
@@ -96,11 +98,16 @@ def _pay(
     history: SicknessHistory = _EMPTY_HISTORY,
     *,
     florovivaisti: bool = True,
+    counted: Decimal = Decimal(0),
+    hired_on: date | None = None,
 ) -> tuple[Decimal, Decimal]:
-    rules = _rules(florovivaisti=florovivaisti)
+    rules = replace(
+        _rules(florovivaisti=florovivaisti), worker=SicknessWorker(hired_on=hired_on)
+    )
     terms = SicknessTerms(
         rules=rules,
         history=history,
+        counted=counted,
         quota=DailyQuota(DailyDivisorMethod.BY_26, Decimal(26)),
         chain=MonthlyPayChain(base=Decimal(2600), seniority=Decimal(0), allowances=()),
     )
@@ -114,6 +121,58 @@ def test_five_days_pay_waiting_days_retroactively() -> None:
     episode = _episode("five", _START, 5)
     assert _pay(episode) == (Decimal(60), Decimal(40))
     assert _pay(episode, florovivaisti=False) == (Decimal(0), Decimal(0))
+
+
+def test_zero_monthly_quota_still_pays_daily_supplement() -> None:
+    """26 prior units leave zero quota: five EUR 80 days still pay EUR 100."""
+    assert _pay(_episode("quota", _START, 5), counted=Decimal(26)) == (
+        Decimal(60),
+        Decimal(40),
+    )
+
+
+def test_relapse_chain_qualifies_both_waiting_and_later_days() -> None:
+    """Two days plus two recognized relapse days exceed three: EUR 40 + 40."""
+    first = _episode("initial", _START, 2)
+    relapse = replace(
+        _episode("relapse", _START + timedelta(days=4), 2), relapse_of="initial"
+    )
+    history = SicknessHistory((first,))
+    assert _pay(first) == (Decimal(0), Decimal(0))
+    assert _pay(relapse, history) == (Decimal(20), Decimal(20))
+    # When the full chain is known, its first two days are also entitled.
+    earlier_segments = classify_days(
+        first, (first.started_on, first.ended_on), SicknessHistory((relapse,)), _rules()
+    )
+    assert [(s.kind, s.daily_share) for s in earlier_segments] == [
+        (SickDayKind.CARENZA, Decimal("0.25"))
+    ]
+    assert SicknessHistory((first, relapse)).chain_days(relapse) == 4
+
+
+def test_employment_bounds_the_annual_paid_day_counter() -> None:
+    """Of 89 earlier days only May 26-28 are employed: five more pay EUR 100."""
+    earlier = _episode("outside", date(2026, 3, 1), 89)
+    later = _episode("inside", _START, 5)
+    assert _pay(later, SicknessHistory((earlier,)), hired_on=date(2026, 5, 26)) == (
+        Decimal(60),
+        Decimal(40),
+    )
+    assert _pay(later, SicknessHistory((earlier,)), hired_on=date(2026, 6, 1)) == (
+        Decimal(60),
+        Decimal(40),
+    )
+    # 87 paid earlier days leave three of the five days at EUR 20.
+    assert _pay(later, SicknessHistory((earlier,)), hired_on=date(2026, 3, 3)) == (
+        Decimal(60),
+        Decimal(0),
+    )
+
+
+def test_part_time_input_wage_is_already_prorated() -> None:
+    """At half time caller supplies EUR 40, not EUR 80: 5 * 25% * 40 = 50."""
+    episode = _episode("half", _START, 5, wages={2026: Decimal(40)})
+    assert _pay(episode) == (Decimal(30), Decimal(20))
 
 
 def test_three_days_or_unrecognized_illness_pay_no_supplement() -> None:

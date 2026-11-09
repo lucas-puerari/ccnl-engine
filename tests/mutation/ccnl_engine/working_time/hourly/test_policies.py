@@ -11,8 +11,11 @@ from ccnl_engine.agreement.validity.rules import TimeSeries, ValidityPeriod
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.element.types import MonthlyPayChain
 from ccnl_engine.compensation.models import Allowance
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.errors import MissingRuleError
+from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 from ccnl_engine.working_time.hourly.policies import HourlyTerms
+from ccnl_engine.working_time.subsector.rules import with_subsector
 from ccnl_engine.working_time.supplement.models import HourlyBaseMethod
 
 _COMMERCIO = load_ccnl("commercio-confcommercio")
@@ -133,6 +136,47 @@ def test_commercio_counts_the_superminimo_in_the_hour_only() -> None:
         "not_included",
     )
     assert terms.hour_only
+
+
+def _floriculture_terms(**changes: object) -> HourlyTerms:
+    ccnl, missing = with_subsector(
+        load_ccnl("operai-agricoli-florovivaisti"),
+        "florovivaisti",
+        WorkerCategory.OPERAIO,
+    )
+    assert not missing
+    return _terms(ccnl=ccnl, level_code="Area1", **changes)
+
+
+def test_unverified_direct_hourly_minimum_is_not_derived() -> None:
+    """A 9.28033 hourly floor without verified evidence must not pay 8h x 40%."""
+    terms = _floriculture_terms()
+    assert terms.ccnl is not None
+    assert terms.ccnl.work_rules is not None
+    work = terms.ccnl.work_rules
+    supplements = work.time_supplements
+    assert supplements is not None
+    assert supplements.hourly_base_provenance is not None
+    unverified = supplements.hourly_base_provenance.model_copy(
+        update={"status": ProvenanceStatus.ASSUMED}
+    )
+    changed = work.model_copy(
+        update={
+            "time_supplements": supplements.model_copy(
+                update={"hourly_base_provenance": unverified}
+            )
+        }
+    )
+    ccnl = terms.ccnl.model_copy(update={"work_rules": changed})
+    assert "no verified hourly minimum" in _reject(
+        _terms(ccnl=ccnl, level_code="Area1"), date(2026, 6, 19)
+    )
+
+
+def test_direct_hourly_floor_does_not_hide_individual_elements() -> None:
+    """8h x 9.28033 x .40 = 29.70 excludes a EUR 168 superminimum: reject."""
+    terms = _floriculture_terms(chain=_with_superminimo())
+    assert "individual elements" in _reject(terms, date(2026, 6, 19))
 
 
 def test_gross_incl_allowances_leaves_the_excluded_allowances_out() -> None:
