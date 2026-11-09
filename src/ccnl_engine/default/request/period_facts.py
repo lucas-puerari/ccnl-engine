@@ -1,24 +1,20 @@
-"""Defaults of the per-run facts within a public period request."""
+"""Default policies for facts supplied for one payroll period."""
 
-from __future__ import annotations
+from ccnl_engine.default.models import (
+    FactEnforcement,
+    FieldDefault,
+    absence_is_fact,
+    requires_fact,
+)
 
-from typing import TYPE_CHECKING
+_PERIOD_REPORTED = FactEnforcement.REPORTED
+_PERIOD_REQUIREMENT = FactEnforcement.REQUIREMENT
 
-from ccnl_engine.default.models import FactEnforcement, absence_is_fact, requires_fact
-
-if TYPE_CHECKING:
-    from collections.abc import Mapping
-
-    from ccnl_engine.default.models import FieldDefault
-
-_REPORTED = FactEnforcement.REPORTED
-_REQUIREMENT = FactEnforcement.REQUIREMENT
-
-PERIOD_FACT_DEFAULTS: Mapping[str, FieldDefault] = {
+PERIOD_FACT_DEFAULTS: dict[str, FieldDefault] = {
     "PeriodFacts.ordinary_hours_worked": requires_fact(
         "pension_fund_contribution",
         "facts.ordinary_hours_worked",
-        _REPORTED,
+        _PERIOD_REPORTED,
         "unknown hours: the pay of a worker a CCNL pays by the hour "
         "(hourly_pay) and the Prevedi contractual contribution of an operaio "
         "of the building CCNLs are left out, with a missing_fact "
@@ -27,15 +23,31 @@ PERIOD_FACT_DEFAULTS: Mapping[str, FieldDefault] = {
     "PeriodFacts.contributable_hours": requires_fact(
         "inps_employee",
         "facts.contributable_hours",
-        _REPORTED,
+        _PERIOD_REPORTED,
         "a domestic CCNL raises MissingRequiredFactError without it; other "
         "CCNLs do not read it",
+    ),
+    "PeriodFacts.presence_days": requires_fact(
+        "base_salary",
+        "facts.presence_days",
+        _PERIOD_REPORTED,
+        "unknown actual presence days: a regular run with a qualifying daily "
+        "allowance leaves that earning out and reports a missing_fact "
+        "presence_days blocker; zero states no days present",
+    ),
+    "PeriodFacts.site_presence_days": requires_fact(
+        "base_salary",
+        "facts.site_presence_days",
+        _PERIOD_REPORTED,
+        "unknown work-site presence days: only a worker qualifying for a "
+        "site-based daily allowance has a missing_fact site_presence_days "
+        "blocker; zero states no days at the site",
     ),
     "PeriodFacts.events": absence_is_fact("no work event in the period"),
     "PeriodFacts.meal_benefit_days": requires_fact(
         "welfare",
         "facts.meal_benefit_days",
-        _REPORTED,
+        _PERIOD_REPORTED,
         "unknown eligible electronic meal voucher days: on regular or termination "
         "runs of a CCNL with a daily meal rate and an employer with more than "
         "10 employees, the welfare amount is undetermined and a missing_fact "
@@ -47,19 +59,19 @@ PERIOD_FACT_DEFAULTS: Mapping[str, FieldDefault] = {
     "PeriodFacts.regione": requires_fact(
         "addizionale_regionale",
         "facts.regione",
-        _REQUIREMENT,
+        _PERIOD_REQUIREMENT,
         "unknown residence: the regional surtax is not ruled out",
     ),
     "PeriodFacts.comune_belfiore": requires_fact(
         "addizionale_comunale",
         "facts.comune_belfiore",
-        _REQUIREMENT,
+        _PERIOD_REQUIREMENT,
         "unknown residence: the municipal surtax is not ruled out",
     ),
     "PeriodFacts.family_composition": requires_fact(
         "family_deductions",
         "facts.family_composition",
-        _REQUIREMENT,
+        _PERIOD_REQUIREMENT,
         "unknown family: the art. 12 TUIR deductions are not ruled out; an "
         "empty FamilyComposition states that there is no dependant",
     ),

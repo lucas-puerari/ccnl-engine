@@ -1,4 +1,4 @@
-"""Validated facts that hold in one payroll run."""
+"""Run-scoped facts supplied for a single payroll period."""
 
 from __future__ import annotations
 
@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from ccnl_engine.collection.validators import items_of_type, tuple_of
+from ccnl_engine.compensation.presence.inputs import validate_presence_days
 from ccnl_engine.employment.fact.inputs import ContributableHours
 from ccnl_engine.event.facade import WORK_EVENT_TYPES
 from ccnl_engine.family.inputs import FamilyComposition
@@ -31,6 +32,10 @@ class PeriodFacts:
             an operaio then has a ``missing_fact`` blocker.  An
             ``AbsenceEvent`` of a worker paid by the hour is rejected: its
             hours are already left out of them.
+        presence_days: Days actually present at work in this month; ``None``
+            means not supplied, zero means no qualifying days.
+        site_presence_days: Of those days, days actually present at the
+            contractual work site; ``None`` means not supplied.
         events: Variable work events of the run (overtime, absences,
             bonuses, supplements), each one of the
             :data:`~ccnl_engine.event.types.WorkEvent` types.  A
@@ -48,10 +53,10 @@ class PeriodFacts:
             ``addizionale_comunale``.
         meal_benefit_days: Days verified as eligible for an electronic
             contractual meal voucher (including the employer's canteen and
-            shift conditions). ``None`` means no voucher declared; zero is
-            an explicit declaration of no eligible days. Exclude absences
-            from the count. Paper vouchers have different tax limits and
-            must not be declared here.
+            shift conditions). ``None`` is unknown: a CCNL with a daily meal
+            rate reports a missing fact; zero declares no eligible days.
+            Exclude absences from the count. Paper vouchers have different
+            tax limits and must not be declared here.
         family_composition: Dependents for the Art. 12 TUIR deductions.
             ``None`` is unknown: when the employer withholds, a
             ``requirement_unresolved`` blocker on ``family_deductions``;
@@ -67,11 +72,13 @@ class PeriodFacts:
 
     contributable_hours: ContributableHours | None = None
     ordinary_hours_worked: ContributableHours | None = None
+    presence_days: int | None = None
+    site_presence_days: int | None = None
     events: tuple[WorkEvent, ...] = ()
     regione: str | None = None
     comune_belfiore: str | None = None
-    family_composition: FamilyComposition | None = None
     meal_benefit_days: int | None = None
+    family_composition: FamilyComposition | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         feature = "period_facts"
@@ -106,14 +113,17 @@ class PeriodFacts:
             feature=feature,
             optional=True,
         )
-        if self.meal_benefit_days is not None:
-            require_int(
-                self.meal_benefit_days,
-                "PeriodFacts.meal_benefit_days",
-                feature=feature,
-                minimum=0,
-                maximum=31,
-            )
+        validate_presence_days(
+            self.presence_days, self.site_presence_days, owner="PeriodFacts"
+        )
+        require_int(
+            self.meal_benefit_days,
+            "PeriodFacts.meal_benefit_days",
+            feature=feature,
+            minimum=0,
+            maximum=31,
+            optional=True,
+        )
         events = tuple_of(
             self.events,
             "PeriodFacts.events",

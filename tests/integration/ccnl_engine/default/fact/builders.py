@@ -284,6 +284,33 @@ def _operaio(
     return replace(request, facts=replace(request.facts, ordinary_hours_worked=worked))
 
 
+def _airport_presence(
+    january: Callable[[Employment], PeriodInput],
+    roles: frozenset[str],
+    work_days: int,
+    site_days: int | None,
+) -> PeriodInput:
+    """Build a sourced airport daily-allowance case with stated roles.
+
+    Returns:
+        A January request with independent work and site attendance counts.
+    """
+    employment = replace(
+        CONCIA_D2,
+        ccnl_id="trasporto-aereo-assaeroporti",
+        level_code="9",
+        category=WorkerCategory.OPERAIO,
+        roles=roles,
+    )
+    request = january(employment)
+    return replace(
+        request,
+        facts=replace(
+            request.facts, presence_days=work_days, site_presence_days=site_days
+        ),
+    )
+
+
 def pension_cases[C](
     pair: Callable[[Employment, Employment, str], C],
     january: Callable[[Employment], PeriodInput],
@@ -294,7 +321,23 @@ def pension_cases[C](
     Returns:
         The cases keyed ``Type.field``.
     """
+    plain = _airport_presence(january, frozenset(), 20, None)
+    airport = _airport_presence(january, frozenset({"airport_within_20km"}), 20, 20)
     return {
+        "PeriodFacts.presence_days": (
+            case(
+                plain,
+                replace(plain, facts=replace(plain.facts, presence_days=None)),
+                "presence_days",
+            ),
+        ),
+        "PeriodFacts.site_presence_days": (
+            case(
+                airport,
+                replace(airport, facts=replace(airport.facts, site_presence_days=None)),
+                "site_presence_days",
+            ),
+        ),
         "PeriodFacts.ordinary_hours_worked": (
             case(
                 _operaio(january, Decimal(160)),

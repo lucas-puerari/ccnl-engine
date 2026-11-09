@@ -990,8 +990,7 @@
       "logistica-trasporto-confetra/holiday_during_injury",
       "logistica-trasporto-confetra/level_6j_apprenticeship",
       "logistica-trasporto-confetra/magazzini_generali_holiday_in_sickness",
-      "logistica-trasporto-confetra/sixth_day_overtime",
-      "logistica-trasporto-confetra/sixth_month_parental_leave"
+      "logistica-trasporto-confetra/sixth_day_overtime"
     ],
     "agreement/marittimi-industria-armatoriale.json": [
       "marittimi-industria-armatoriale/level_years_from_service",
@@ -1096,8 +1095,7 @@
     "agreement/poste-italiane-k700.json": [
       "poste-italiane-k700/edr_pre_privatization",
       "poste-italiane-k700/fondo_quiescenza_poste_rates",
-      "poste-italiane-k700/legacy_individual_seniority",
-      "poste-italiane-k700/sickness_comporto_speciale"
+      "poste-italiane-k700/legacy_individual_seniority"
     ],
     "agreement/pubblici-esercizi-fipe-angem-ristorazione-collettiva.json": [
       "pubblici-esercizi-fipe-angem-ristorazione-collettiva/guarantee_premium_2027",

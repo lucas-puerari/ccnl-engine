@@ -17,6 +17,7 @@ from ccnl_engine.compensation.hourly.services import (
     percentage_settlement,
 )
 from ccnl_engine.compensation.individual.rules import individual_element_decisions
+from ccnl_engine.compensation.legacy_holiday.services import legacy_holiday_payment
 from ccnl_engine.compensation.loyalty.rules import loyalty_premium
 from ccnl_engine.compensation.meal.services import meal_benefit_decisions
 from ccnl_engine.compensation.raccordo.services import erc_settlement
@@ -147,7 +148,7 @@ def run_events(ctx: RunContext) -> RunEvents:
         ctx.monthly_gross,
         with_sickness=any(i.code == WITH_UNPAID_ABSENCE for i in events.totals.issues),
     )
-    parts = (
+    parts = (  # noqa: RUF005
         settlement,
         erc,
         reduction,
@@ -157,7 +158,7 @@ def run_events(ctx: RunContext) -> RunEvents:
         run_leave(ctx),
         sunday_holiday(ctx),
         loyalty_premium(ctx),
-    )
+    ) + legacy_holiday_payment(ctx)
     totals = events.totals
     for part in parts:
         totals = part.added_to(totals)

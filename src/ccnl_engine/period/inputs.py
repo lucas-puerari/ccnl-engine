@@ -25,7 +25,7 @@ from ccnl_engine.employer.inputs import EmployerProfile
 from ccnl_engine.employment.inputs import Employment
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
-from ccnl_engine.period.facts import PeriodFacts
+from ccnl_engine.period.facts.inputs import PeriodFacts as PeriodFacts  # noqa: PLC0414
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.run.models import PayrollRun
 from ccnl_engine.run.types import PeriodId
@@ -160,7 +160,6 @@ class PeriodInput:
             contract_type=employment.contract_type,
             contribution_history=employment.contribution_history,
             events=facts.events,
-            meal_benefit_days=facts.meal_benefit_days,
             regione=facts.regione,
             comune_belfiore=facts.comune_belfiore,
             family_composition=facts.family_composition,
@@ -177,6 +176,9 @@ class PeriodInput:
             level_started_on=employment.level_started_on,
             seniority=employment.seniority,
             roles=employment.roles,
+            presence_days=facts.presence_days,
+            site_presence_days=facts.site_presence_days,
+            meal_benefit_days=facts.meal_benefit_days,
             individual_elements=employment.individual_elements,
             category=employment.category,
             sector=employment.sector,
@@ -184,6 +186,7 @@ class PeriodInput:
             tfr_fund=employment.tfr_fund,
             tfr_treasury_fund=employment.tfr_treasury_fund,
             erc_amount=employment.erc_amount,
+            holiday_company_offset=employment.holiday_company_offset,
             public_end_of_service=employment.public_end_of_service,
             personal_withholdings=employment.personal_withholdings,
             prior_year=self.prior_year,

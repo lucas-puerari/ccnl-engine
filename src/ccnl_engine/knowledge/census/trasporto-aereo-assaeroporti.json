@@ -295,10 +295,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SUPPLEMENTARY ALLOWANCES. The daily allowances of presence (Art. G24: 2.73 or 3.97 EUR, 3 more from 1 July 2025; G25 turno 0.26; G26 campo 0.21 or 0.26) are not modelled: they need the days of presence. The una tantum of 500 EUR of Art. G20 is of July 2025, before the window of the engine. The indennità maneggio denaro (G27) and the DPI contribution (G37 ter) are modelled by role.",
+      "rule": "DAILY PRESENCE ALLOWANCES. Artt. G24-G26 pay the sourced rates per stated presence day in regular runs, selected by shift, airport-distance and company-absorption role facts. Art. G24 also contributes to holiday pay from 1 July 2025, but the engine does not yet calculate its holiday-day portion; the daily rate is not paid for those absent days. The amount of the existing company shift allowance that absorbs G25 at SEA and Aeroporto Friuli Venezia Giulia is not stated by this source and is not paid. The G20 one-off of July 2025 precedes the engine window; G27 cash handling and G37 ter DPI are already role allowances.",
       "calculation": "ccnl/trasporto-aereo-assaeroporti:coverage.notes",
       "state": "absent",
-      "remediation": "Model the daily allowances of presence of Artt. G24-G26 with the days of presence of the month, then resolve this limitation.",
+      "remediation": "Compute the G24 holiday-day pay for leave taken from July 2025 and source the existing company shift allowance where G25 is absorbed; the regular-run actual-presence daily rates are modelled.",
       "origin": "seeded",
       "links": {
         "limitations": [

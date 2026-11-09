@@ -5,7 +5,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.default.models import FactEnforcement, absence_is_fact, requires_fact
-from ccnl_engine.default.request.facts import PERIOD_FACT_DEFAULTS
+from ccnl_engine.default.request.period_facts import PERIOD_FACT_DEFAULTS
+from ccnl_engine.default.request.role_policies import ROLE_DEFAULTS
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -194,15 +195,7 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         _REPORTED,
         "unknown recognised seniority: a missing_fact seniority blocker",
     ),
-    "Employment.roles": requires_fact(
-        "base_salary",
-        "employment.roles",
-        _REPORTED,
-        "unknown roles: a run whose level has an allowance restricted to a role "
-        "in force leaves it out and has a missing_fact roles blocker; a "
-        "supplement the CCNL pays apart for a role is not derived; an empty "
-        "set states that the worker holds no role",
-    ),
+    **ROLE_DEFAULTS,
     "Employment.contribution_history": requires_fact(
         "inps_employee",
         "employment.contribution_history",
