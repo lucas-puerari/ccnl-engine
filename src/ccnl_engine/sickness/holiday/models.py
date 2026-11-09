@@ -29,6 +29,8 @@ class SicknessHoliday(BaseModel):
             a holiday from 2026 that a text signed before does not list.
         includes_patron_saint: Whether the clause covers the employer's local
             patron saint holiday when its date is stated.
+        requires_legacy_section: Apply only to employers covered by a
+            carried-forward section of the CCNL.
         provenance: The clause.
     """
 
@@ -38,4 +40,5 @@ class SicknessHoliday(BaseModel):
     gross_basis: bool = False
     excluded_days: tuple[str, ...] = ()
     includes_patron_saint: bool = False
+    requires_legacy_section: bool = False
     provenance: RuleProvenance

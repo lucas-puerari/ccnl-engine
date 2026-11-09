@@ -165,6 +165,10 @@ class EmployerProfile:
         patron_saint_day: Local patron saint holiday as ``MM-DD``. ``None``
             means not stated; a clause that covers it then does not apply
             to that day.
+        legacy_section_applicable: Whether the employer belongs to a legacy
+            section of the CCNL carried forward from a previous agreement.
+            ``None`` means unknown; a rule restricted to that section is
+            withheld with a ``missing_fact`` blocker.
         permit_carryover: How the employer settles the permits not taken
             within their year, on a CCNL that leaves the choice
             (``LeaveRules.permit_deadline``, Commercio Art. 158): ``True``
@@ -180,8 +184,8 @@ class EmployerProfile:
             ``inps_sector`` not a :class:`TaxSector` value or
             ``public_life_insurance``, ``fis_reduction``,
             ``provincial_pay_element``, ``second_level_premium``,
-            ``permit_carryover`` or ``sickness_window_counting`` is not a
-            bool, or ``subsector`` is
+            ``permit_carryover``, ``legacy_section_applicable`` or
+            ``sickness_window_counting`` is not a bool, or ``subsector`` is
             not a non-blank string.
     """
 
@@ -199,6 +203,7 @@ class EmployerProfile:
     sickness_window_counting: bool = False
     permit_carryover: bool | None = None
     patron_saint_day: str | None = None
+    legacy_section_applicable: bool | None = None
     second_level_elements: tuple[SecondLevelElement, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
@@ -270,6 +275,7 @@ class EmployerProfile:
             "cigs_indotto",
             "sickness_window_counting",
             "permit_carryover",
+            "legacy_section_applicable",
         ):
             value = getattr(self, name)
             if value is not None:
