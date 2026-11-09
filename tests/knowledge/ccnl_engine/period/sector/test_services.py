@@ -738,6 +738,9 @@ def _stated_gaps(
     if _period(s).ended_on is not None and not s.fixed_term:
         # The end does not state its NASpI case (EmploymentPeriod.naspi_case).
         expected.add((BlockerCode.MISSING_FACT, "naspi_dismissal", "naspi_case"))
+    if s.ccnl == _EDIL:
+        # The year scenario states worked hours but no eligible holiday count.
+        expected.add((BlockerCode.MISSING_FACT, "base_salary", "paid_holiday_days"))
     if s.ccnl in {_EDIL, _EDILIZIA_IMPIEGATI}:
         expected.add((
             BlockerCode.CAPABILITY_NOT_COMPUTED,

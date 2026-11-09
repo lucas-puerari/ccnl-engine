@@ -39,6 +39,7 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "no_pay_due": "AbsenceEvent.no_pay_due",
     "opening_state": "PeriodInput.opening_state",
     "ordinary_hours_worked": "PeriodFacts.ordinary_hours_worked",
+    "paid_holiday_days": "PeriodFacts.paid_holiday_days",
     "presence_days": "PeriodFacts.presence_days",
     "site_presence_days": "PeriodFacts.site_presence_days",
     "other_employers": "InpsBaseYtd.other_employers",
