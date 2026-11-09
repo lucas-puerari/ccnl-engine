@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, overtime, sickness, territorial_supplement |
 
-14 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -83,6 +83,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 17(3), Art. 18 and Art. 5 B holiday treatment in the cached 2010 CCNL, checked against the hourly pay model. | corrected | Eight hours per eligible holiday, including rest-day holidays; percentages also apply to the holiday treatment. Eligibility remains caller-stated. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 78 proportional part-time pay and Art. 17 holiday treatment, verified on cached 2010 PDF pages 104 and 37. | corrected | Horizontal part-time holiday hours are proportional to agreed weekly hours; unknown eligible days cannot mean zero. Vertical or mixed holiday placement and discontinuous work remain unresolved. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Direct hourly sickness integration and episode-length waiting tiers under Art. 26 of the signed 2010 agreement, PDF pp. 50–51; weekly hours under Art. 5, PDF p. 26. | corrected | The employer pays direct coefficients on a separate hourly base, not a target net of INPS. Waiting coefficients depend on the full episode; six payable days exclude holidays. Cassa Edile accruals and short-episode annual rest remain unmodelled. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 92 first-level failed-title extension, cached ANCE PDF p. 6, both first-level tracks. | confirmed | The maximum extension is one year; failure to obtain the title retains the previous year's pay, while competence consolidation progresses normally. |
 
 ## Salary table
 
@@ -197,13 +198,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `bilateral_funds` applies.
 
     **Remediation:** Pass the provincial Cassa Edile contribution as a bilateral fund event, or model the provincial rates.
-
-!!! warning "edilizia-ance/dual_apprenticeship_prorogation · base_salary · impact yes · open"
-    FIRST-LEVEL PROROGATION (Art. 92, ANCE text of 4 April 2019, p. 6): 'Per l'apprendista che invece non abbia conseguito il titolo di istruzione, in caso di proroga il trattamento economico è quello dell'anno precedente'. The engine pays the semester of Apprentice.months_elapsed: a prorogued apprentice who failed the title is paid the next semester's percentage.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Let the caller state a failed title, and pay the previous year's percentage.
 
 !!! warning "edilizia-ance/edilizia_operai_sickness · sickness · impact yes · open"
     SICKNESS (Art. 26): direct employer integration uses hourly minimum and ex contingenza (plus territorial allowance where available), excluding EDR, times one sixth of contracted weekly hours on six days a week excluding holidays. Waiting days 1-3 are unpaid for episodes of at most six days, paid at 0.5495 above six and 1.0495 above twelve; INPS-covered days 4-20 use 0.3795 and days 21-180 use 0.1565; non-INPS-covered days 181-365 use 0.5495. Not modelled: the 4.95% annual-rest payment for waiting days of episodes up to six days and on the injury day (60% on injury days 1-3); Cassa Edile sickness and injury accruals (18.5% gross, 14.2% net for sickness waiting days and from day 4; 7.4% and 5.7% on injury days 4-90; 4.6% and 3.6% from day 91) and the no-direct-pay exception of Allegato D point 4. Provincial territorial pay and actual site hours are not bundled, so only known components enter the base. Sick hours do not deduct from hourly worked pay.
@@ -401,6 +395,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     OPERAI: twelve monthly payments; paid by the hour worked (Allegato A, parameters.hourly_pay; state PeriodFacts.ordinary_hours_worked); ferie and gratifica natalizia are the 18.5% of the paga base and ex contingenza accrued with the Cassa Edile net of the withholdings (Art. 16 and 18, Allegato D: 14.2% withheld from the net pay), not extra months; the riposi annui are the 4.95% paid with the pay (Art. 5 B). No scatti di anzianità: the operai receive the APE through the Cassa Edile (Art. 29). The TFR is paid by the employer under L. 297/1982 (Art. 33). Prevedi: the contractual contribution of an operaio is an amount per ordinary hour worked (state PeriodFacts.ordinary_hours_worked).
     
     FIRST- AND THIRD-LEVEL APPRENTICES (Art. 92, ANCE text of 4 April 2019): modelled in dual_apprenticeship (first level at the conventional level 2 or 1, 65-90% by semester; third level 70-90% by semester for six semesters; on minimo, ex contingenza and EDR; training at the employer 10% of the work pay, school hours unpaid). Not modelled: the provincial elements of the base (indennità territoriale, premio di produzione, elemento variabile). The contributions of these apprentices are the engine limitation dual_apprenticeship_contributions.
+    
+    FIRST-LEVEL FAILED-TITLE EXTENSION (Art. 92, p. 6): for up to one year after failing the qualification, use the previous year's apprenticeship pay phase. Set Apprentice.failed_title_extension_start_month to the first month of the extension; leave it unset for ordinary or competence-consolidation pay.
     
 
 ## Raw data

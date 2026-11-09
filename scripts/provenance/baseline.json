@@ -791,7 +791,6 @@
     ],
     "agreement/edilizia-ance-impiegati.json": [
       "edilizia-ance-impiegati/apprentice_seniority",
-      "edilizia-ance-impiegati/dual_apprenticeship_prorogation",
       "edilizia-ance-impiegati/edilizia_impiegati_sickness",
       "edilizia-ance-impiegati/loyalty_premium",
       "edilizia-ance-impiegati/november_4_holiday",
@@ -807,7 +806,6 @@
       "edilizia-ance/capisquadra_supplement",
       "edilizia-ance/cassa_edile_contribution",
       "edilizia-ance/contribution_reduction",
-      "edilizia-ance/dual_apprenticeship_prorogation",
       "edilizia-ance/edilizia_operai_sickness",
       "edilizia-ance/entry_premium_2022",
       "edilizia-ance/hardship_allowances",
@@ -1037,7 +1035,13 @@
     "agreement/multiservizi-anip.json": [
       "multiservizi-anip/anip_ipca_consuntivo",
       "multiservizi-anip/anip_unsigned_renewal",
-      "multiservizi-anip/multiservizi_unmodelled_rules",
+      "multiservizi-anip/multiservizi_apprenticeship_destinations",
+      "multiservizi-anip/multiservizi_duty_allowances_and_edar",
+      "multiservizi-anip/multiservizi_part_time_supplements",
+      "multiservizi-anip/multiservizi_pension_frozen_base",
+      "multiservizi-anip/multiservizi_seniority_maturation",
+      "multiservizi-anip/multiservizi_sickness_by_category_and_basis",
+      "multiservizi-anip/multiservizi_variable_time_premiums",
       "multiservizi-anip/renewal_not_signed_by_anip"
     ],
     "agreement/noleggio-autobus-conducente-anav.json": [

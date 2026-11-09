@@ -35,9 +35,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary |
+| **Limits of this contract** | base_salary, overtime, pension_fund_contribution, seniority, sickness |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+10 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 67 verified / 16 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 68 verified / 15 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2021-06-08 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2025-07-01 |
 
 ## Review history
@@ -63,7 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-09-18 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-13 | claude-opus-5-5 (ai) | Signatories of the renewals behind the salary periods from July 2025. | flagged | The renewal of 13 June 2025 (CNEL K511, deposits 234754 and 234752) is not signed by ANIP; the file pays its minima from July 2025. Declared as the limitation anip_unsigned_renewal; values left unchanged pending an ANIP amount. |
-| 2026-10-13 | claude-opus-5-5 (ai) | Limited scope, tier unchanged: the rules that do not depend on the missing ANIP amounts, read in the CNEL K511 deposits 105782 (2011 text) and 139292 (2021 renewal); the salary periods from July 2025 stay as they are. | corrected | 66 records verified: the 2021-2024 tabellare, contingenza and EDR of levels 1-7 and Q, the quadri allowance, the levels 1, 2par115, 4par125, 7 and Q, the divisor 173, the 14 monthly payments and their accrual rule, the overtime rates and 22 days of leave.<br>Added the payment days of the tredicesima (20 December) and quattordicesima (15 July, window July to June), arts. 20-21.<br>The 2par115 and 4par125 tabellare is computed (April 2013 amount plus the parametric increments): derived, descriptions corrected to the notes a verbale of art. 10.<br>Closed cigs_threshold_16_to_50: terziario.json already charges the CIGS above 15 employees (D.Lgs. 148/2015 arts. 20 and 23).<br>Closed apprentice_seniority: apprentices are paid tabellare, contingenza and EDR only (art. 12), apprentice_amount 0 (derived).<br>Corrected the notes on the July 2025 values (the 2021 fifth tranche is the operative ANIP amount), on scatti recomputed at every tranche, on the apprenticeship durations, on the 2025 signatories and on the worker estimate.<br>Declared multiservizi_unmodelled_rules: seniority and sickness by worker type, the 181-270 sickness band, the /22 divisor, the overtime base and premiums, the art. 24 allowances, the funds and the apprenticeship durations.<br>hourly_base_method gross_incl_allowances: the art. 38 premiums are on tabellare plus contingenza.<br>Left derived: the periods from July 2025 (renewal not signed by ANIP, re-cited to CNEL 234752), the seniority block, the contingenza of the parametric positions, levels 2 to 6 (mixed categories), absence and sickness rules.<br>The aggregator sources (oristano summary, redigo, kitech, ccnlportatili) are replaced by the CNEL deposits. |
+| 2026-10-13 | claude-opus-5-5 (ai) | Limited scope, tier unchanged: the rules that do not depend on the missing ANIP amounts, read in the CNEL K511 deposits 105782 (2011 text) and 139292 (2021 renewal); the salary periods from July 2025 stay as they are. | corrected | 66 records verified: the 2021-2024 tabellare, contingenza and EDR of levels 1-7 and Q, the quadri allowance, the levels 1, 2par115, 4par125, 7 and Q, the divisor 173, the 14 monthly payments and their accrual rule, the overtime rates and 22 days of leave.<br>Added the payment days of the tredicesima (20 December) and quattordicesima (15 July, window July to June), arts. 20-21.<br>The 2par115 and 4par125 tabellare is computed (April 2013 amount plus the parametric increments): derived, descriptions corrected to the notes a verbale of art. 10.<br>Closed cigs_threshold_16_to_50: terziario.json already charges the CIGS above 15 employees (D.Lgs. 148/2015 arts. 20 and 23).<br>Closed apprentice_seniority: apprentices are paid tabellare, contingenza and EDR only (art. 12), apprentice_amount 0 (derived).<br>Corrected the notes on the July 2025 values (the 2021 fifth tranche is the operative ANIP amount), on scatti recomputed at every tranche, on the apprenticeship durations, on the 2025 signatories and on the worker estimate.<br>Separate limitations remain for seniority maturation and worker category, sickness basis and bands, variable time premiums, duty allowances and EDAR, pension historical base, and apprenticeship destinations. The ordinary five-day daily divisor is /22, with /26 on a six-day week.<br>hourly_base_method gross_incl_allowances: the art. 38 premiums are on tabellare plus contingenza.<br>Left derived: the periods from July 2025 (renewal not signed by ANIP, re-cited to CNEL 234752), the seniority block, the contingenza of the parametric positions, levels 2 to 6 (mixed categories), absence and sickness rules.<br>The aggregator sources (oristano summary, redigo, kitech, ccnlportatili) are replaced by the CNEL deposits. |
 | 2026-11-05 | claude-opus-5-5 (ai) | The ferie days of the six-day week, Art. 42 Ferie (PDF p. 61), read by a separate research session and checked again on the text layer. | corrected | Art. 42 Ferie: 22 working days in the five-day week, 26 in the six-day week: work_rules.leave_rules.week_days_annual_days 6/26, read when Employment.full_time_week_days is 6. |
 | 2026-11-05 | claude-opus-5-5 (ai) | Ferie accrual, permits and their settlement: arts. 19 (PDF p. 40), 41 and 42 (pp. 60-61) of the 2011 definitive text, read by a separate research session and checked again on the text layer; the 2021 renewal read for amendments. | corrected | Art. 42: twelfths with the month over 15 days, 40 hours of reduced time a year: work_rules.leave_rules.ferie_accrual and permits.<br>Art. 41: the ex festività are compensatory permits for the days worked, not a yearly bank.<br>The 2025 renewal (72 hours according to the union summary) was not read in a primary text. |
 | 2026-11-05 | claude-opus-5-5 (ai) | Art. 66 (PDF p. 29) of the ipotesi of 8 June 2021, OCR of the scan. | corrected | ONBSI was not modelled: the contractual funds held no reduced worker share; the model now has reduced_employee. |
@@ -71,6 +71,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | health_and_bilateral_funds: For modeled runs from July 2021, parameters.health_funds already contains ASIM employer EUR 4/month through 28 weekly hours and EUR 6 above, permanent workers only, and ONBSI EUR 0.25 per party under 20 weekly hours and EUR 0.50 per party otherwise, on ordinary months only (12, n |
 | 2026-11-08 | claude-opus-5-5 (ai) | Cached CNEL 139292 PDF page 34, July 2025 tabellare for all eight printed levels; two parametric positions derived; later unsigned salary periods excluded. | corrected | Verified all eight printed monthly minima against PDF page 34; derived two unprinted parametric positions from prior signed periods and signed tranche increments.<br>Excluded all unsigned salary periods from May 2026 onward; the signed July 2025 tranche remains in force until further ANIP evidence. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 19 daily pay and art. 30 ordinary working week, cached signed CNEL 105782; separate limitations for the remaining clauses in CNEL 105782 and 139292. | corrected | Art. 19 prints 22 for a five-day week and 26 for six days; art. 30 makes five days the normal distribution. The historical pension base and the missing signed 2012 apprenticeship accord prevent assuming current pay bases or durations. |
 
 ## Salary table
 
@@ -126,12 +127,54 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source an ANIP-signed later minimum or verified IPCA adjustment before adding subsequent tranches.
 
-!!! warning "multiservizi-anip/multiservizi_unmodelled_rules · base_salary · impact yes · open"
-    NOT MODELLED (CNEL 105782 and 139292): (1) worker type: levels 2 to 6 hold both impiegati and operai (art. 10), but the file keys seniority and category by level, so impiegati of levels 2-4 get the operai forfettaria instead of the biennial scatti of art. 22 and operai of levels 5-6 get scatti instead of the forfettaria (66.77, 82.99, p. 90); each scatto is priced on the tabellare in force at its maturation and capped at 50% of tabellare + 279.60, while the engine prices it at the run date. (2) Sickness (art. 51 as replaced in 2021, CNEL 139292 pp. 22-24): operai are topped up to 100% of the net retribuzione globale for days 1-180 and paid 50% of the gross one for days 181-270 (the file stops at day 180); impiegati get 100% for 5 months and 50% for 7; comporto 12 months in 36. (3) Absence: the daily quota is the monthly pay /22 on a 5-day week (art. 19, the norm of art. 30); the file divides by 26 unless Employment.full_time_week_days states 5. (4) Overtime is paid on quote of the retribuzione globale and its premiums on the retribuzione base, tabellare plus contingenza (art. 38); the premiums for holiday work (50%) and night work (20% in rotating shifts, 30% otherwise), the part-time supplementary hours (+28%, elastic clauses +10%, art. 33 as amended in 2021) and the 40 ROL hours (art. 42). (5) The allowances of art. 24 (disagio 15% of tabellare a day, maneggio denaro 3%, riscossione 5%, hourly allowances) and the EDAR ad personam. (6) Funds: Previambiente 1% + 1% of tabellare and contingenza for members (art. 54); ASIM and ONBSI are the limitation health_and_bilateral_funds. (7) Apprenticeship durations of the accord of 19 July 2012 (destination 5 lasts 36 months, destinations 2, 3, 6 and 7 are missing).
+!!! warning "multiservizi-anip/multiservizi_seniority_maturation · seniority · impact yes · open"
+    SENIORITY (CNEL 105782 art. 22, pp. 41-42, 90): Levels 2-6 include both operai and impiegati. The single level-based schedule assigns the wrong form of seniority to some workers: impiegati receive eight biennial scatti at most, operai one sector amount after four years (including levels 5 and 6). Scatti must retain their value at maturation and after promotion, with a ceiling of 50% of tabellare plus EUR 279.60; the existing schedule reprices every matured scatto at the current rate. Sector seniority survives contract changes within the sector.
+
+    **Applies when:** `seniority` applies.
+
+    **Remediation:** Route scatti and forfettaria by worker category, preserve each matured amount across tranches and promotion, respect the ceiling and sector service history.
+
+!!! warning "multiservizi-anip/multiservizi_sickness_by_category_and_basis · sickness · impact yes · open"
+    SICKNESS (CNEL 139292 art. 51, pp. 22-24): operai receive a top-up to 100% of net global pay on days 1-180, then 50% of gross global pay on days 181-270. Impiegati receive 100% of stipendio plus contingenza for five months and 50% for seven; both are subject to a twelve-month comporto in a rolling 36-month window. The existing rule ends pay at day 180, uses gross throughout and does not route by category; the rolling comporto alone is represented.
+
+    **Applies when:** `sickness` applies.
+
+    **Remediation:** Apply separate category rules and day-dependent net/gross bases to operai; apply the separate stipendio-plus-contingenza impiegati bands.
+
+!!! warning "multiservizi-anip/multiservizi_variable_time_premiums · overtime · impact yes · open"
+    OVERTIME AND NIGHT WORK (CNEL 105782 art. 38, p. 57): ordinary overtime hours use global pay, whereas percentage supplements use base pay (tabellare and contingenza). Holiday work attracts 50%; ordinary night work attracts 20% in rotating shifts or 30% otherwise. The existing four overtime bands do not represent these ordinary holiday and night events or the separate bases.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Key seniority and sickness by worker category, model the second sickness band, the /22 divisor as the default, the art. 38 and art. 24 premiums, the funds and the apprenticeship durations of the 2012 accord.
+    **Remediation:** Separate global hourly pay from base-pay premiums and route holiday and rotating versus non-rotating night events without stacking premiums.
+
+!!! warning "multiservizi-anip/multiservizi_part_time_supplements · overtime · impact yes · open"
+    PART-TIME SUPPLEMENTS (CNEL 139292 art. 33): supplementary hours and elastic clauses have distinct rates and eligibility. The four configured overtime bands do not cover them.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Verify the full part-time clause and route supplementary and elastic hours separately.
+
+!!! warning "multiservizi-anip/multiservizi_duty_allowances_and_edar · base_salary · impact yes · open"
+    VARIABLE ALLOWANCES (CNEL 105782 art. 24): hardship, cash-handling and collection duties require separate daily, hourly or percentage bases and qualifying work events. The retained personal EDAR is absorbed at the next qualifying seniority increment (art. 22 pp. 41-42). No amounts for work not evidenced by the source are inferred.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model each evidenced allowance on its own qualifying duty and base; track the individual EDAR and absorption at the first subsequent increment.
+
+!!! warning "multiservizi-anip/multiservizi_pension_frozen_base · pension_fund_contribution · impact yes · open"
+    COMPLEMENTARY PENSION (CNEL 105782 art. 54, pp. 69-70, 90): enrolled members contribute with their employer at 1% each on the tabellare and contingenza frozen at 1 January 2001, for twelve monthly payments. This is not a percentage of current pay. The eligible funds depend on the employer association (Previambiente, Fondapi or Cooperlavoro), and fixed-term membership depends on six months of work in the calendar year. ASIM and ONBSI are addressed by the separate health_and_bilateral_funds limitation.
+
+    **Applies when:** `pension_fund_contribution` applies.
+
+    **Remediation:** Apply the per-level historical base to enrolled members on twelve months, enforce the membership conditions and employee and employer shares.
+
+!!! warning "multiservizi-anip/multiservizi_apprenticeship_destinations · base_salary · impact yes · open"
+    APPRENTICESHIP (19 July 2012 accord): destination 5 is configured for 30 months rather than 36; destinations 2, 3, 6 and 7 are not configured. The cited duration schedule has not been verified on the cached signed 2011 or 2021 PDF and must not be inferred from a third-party copy.
+
+    **Applies when:** `base_salary` applies.
+
+    **Remediation:** Obtain and verify the signed 2012 apprenticeship accord before changing durations or adding destinations.
 
 !!! warning "multiservizi-anip/renewal_not_signed_by_anip · base_salary · impact yes · open"
     SIGNATORIES: ANIP is not among the original signatories of the 13 June 2025 renewal and the 6 August 2025 tables (CNEL 234754, 234752); a later ANIP accession or a separate ANIP agreement was not found but is not excluded. From July 2025 the file applies the ANIP-signed fifth tranche of the 8 June 2021 renewal (CNEL 139292 p. 34); with an accession the 2025 renewal minima (level 2 819.21 from July 2025) would apply instead.
@@ -331,13 +374,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     additional_months 14: tredicesima by 20 December (art. 20) and quattordicesima by 15 July (art. 21), each one retribuzione globale mensile (CNEL 105782 p. 41). The quattordicesima accrues from 1 July to 30 June.
     
-    Seniority, impiegati: biennial scatti of 6.25% of the tabellare in force when each scatto matures plus the contingenza at 1/8/1983 (EUR 279.60), at most 8 and up to 50% of tabellare + 279.60 (art. 22, CNEL 105782 p. 41). A matured scatto keeps its amount: it is not recomputed at later tranches. The file holds one series per level (2021-2024 computed on the CNEL 139292 tables) and the engine prices every matured scatto at the run date; it pays scatti to levels 5, 6, 7 and Q, while the CCNL pays them to the impiegati of levels 2-7 and Q. Declared in multiservizi_unmodelled_rules.
+    Seniority, impiegati: biennial scatti of 6.25% of the tabellare in force when each scatto matures plus the contingenza at 1/8/1983 (EUR 279.60), at most 8 and up to 50% of tabellare + 279.60 (art. 22, CNEL 105782 p. 41). A matured scatto keeps its amount: it is not recomputed at later tranches. The file holds one series per level (2021-2024 computed on the CNEL 139292 tables) and the engine prices every matured scatto at the run date; it pays scatti to levels 5, 6, 7 and Q, while the CCNL pays them to the impiegati of levels 2-7 and Q. Declared in multiservizi_seniority_maturation.
     
-    Seniority, operai: anzianità forfettaria di settore, one fixed monthly amount not paid for the first four years of sector seniority (art. 22, CNEL 105782 pp. 41-42; amounts in the table of p. 90). Modelled with first_cadence_months_by_level 48 and maximum_count_by_level 1 for levels 1 to 4; the CCNL also pays it to the operai of levels 5 and 6 (66.77, 82.99). Declared in multiservizi_unmodelled_rules.
+    Seniority, operai: anzianità forfettaria di settore, one fixed monthly amount not paid for the first four years of sector seniority (art. 22, CNEL 105782 pp. 41-42; amounts in the table of p. 90). Modelled with first_cadence_months_by_level 48 and maximum_count_by_level 1 for levels 1 to 4; the CCNL also pays it to the operai of levels 5 and 6 (66.77, 82.99). Declared in multiservizi_seniority_maturation.
     
     Contingenza of 2par115 and 4par125: no text prints one. The notes a verbale of art. 10 (CNEL 105782 p. 30) classify these workers at level 2 with parameter 115 and at level IV with parameter 125, so the file applies the contingenza of levels 2 and 4.
     
-    Apprenticeship: two levels below the destination for the first half and one below for the second, destination II at level I throughout (art. 12, CNEL 105782 p. 37; the parametric positions are skipped). Durations come from the accord of 19 July 2012, read only in a third-party copy of the 2021 text: II 24, III 30, IV 30, V 36, VI 36, VII 36 months. The file models destinations 4 and 5 with 30 months each: destination 5 should last 36 and the other destinations are missing. Declared in multiservizi_unmodelled_rules.
+    Apprenticeship: two levels below the destination for the first half and one below for the second, destination II at level I throughout (art. 12, CNEL 105782 p. 37; the parametric positions are skipped). Durations come from the accord of 19 July 2012, read only in a third-party copy of the 2021 text: II 24, III 30, IV 30, V 36, VI 36, VII 36 months. The file models destinations 4 and 5 with 30 months each: destination 5 should last 36 and the other destinations are missing. The 2012 duration schedule has not been verified on the signed cached PDFs; declared in multiservizi_apprenticeship_destinations.
     
     July 2025 values: the renewal of 8 June 2021 (CNEL 139292, signed by ANIP) sets a fifth tranche from 1 July 2025 (level 2 +10.00, tabellare 779.21, p. 34), provisional under the art. 73 consuntivo. The renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025 (CNEL 234752) raise level 2 to 819.21 from the same date, but ANIP signed neither. The file applies the ANIP-signed 2021 fifth tranche from July 2025 and excludes the later unsigned tranches (see anip_unsigned_renewal). No ANIP amount for the art. 73 consuntivo or the IPCA increments of art. 73-bis and 73-ter was found.
     
