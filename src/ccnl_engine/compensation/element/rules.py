@@ -182,7 +182,8 @@ def _level_chain(
                 (
                     value
                     for item, value in allowances
-                    if item.code in named or item.individual
+                    if item.code in named
+                    or (allowance.percentage_include_individual and item.individual)
                 ),
                 start=base * 0,
             )

@@ -150,7 +150,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 47, 50 and 52: the indennità speciale, di cassa and for alta montagna, cassoni and galleria.",
+        "text": "Artt. 47 and 52: the 25% special allowance for directors with responsibility for a company or department also depends on the unmodelled provincial production premium (and the option to deduct it from a superminimo set for those duties); the mountain and compressed-air caisson treatment depends on the operai's territorial rates; the EUR 25.82 monthly tunnel allowance is absorbed by same-purpose payments and by existing superminimi not granted for merit or another specific reason. Art. 50 cash handling with liability for errors is paid at 8% of minimum plus ex-contingenza when the role is attested.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -158,7 +158,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the allowances of Artt. 47, 50 and 52."
+          "remediation": "Source the provincial production premium and the operai's rates, and represent the specified superminimo absorption before paying the remaining allowances of Artt. 47 and 52."
         }
       },
       {
@@ -1006,6 +1006,51 @@
           }
         },
         {
+          "code": "CASH_HANDLING",
+          "description": "Cash handling with liability for errors (Art. 50)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "cash_handler_with_error_liability",
+          "percentage_rate": "0.08",
+          "percentage_base_allowances": [
+            "CONTINGENZA"
+          ],
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "70",
+              "section": "Art. 50 Indennità di cassa e di maneggio di denaro",
+              "quote": "All’impiegato che ha normalmente maneggio di denaro con onere per errori, deve essere corrisposta una maggiorazione dell’otto per cento dello stipendio minimo mensile e dell’ex indennità di contingenza."
+            },
+            "transformation": "Apply 8% to the current national monthly minimum plus ex-contingenza only, for an employee normally handling cash with liability for errors. The placeholder monthly zero is replaced by the computed percentage. Art. 44 item 12 includes the allowance in the monthly pay; Arts. 63 and 64 include item 12 in the extra months. Individual pay elements do not enter the percentage base. Earliest available salary tranche is 1 February 2025; the clause states no later start or end date.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T19:01:26Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T19:01:26Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-edilizia-ance-impiegati-cash-handling"
+            }
+          }
+        },
+        {
           "code": "EDR",
           "description": "Elemento distinto della retribuzione (Protocollo 31 luglio 1992)",
           "monthly": {
@@ -1211,6 +1256,51 @@
               "extraction_timestamp": "2026-10-13T07:47:58Z",
               "effective_from": "2025-02-01",
               "verification_status": "unverified"
+            }
+          }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash handling with liability for errors (Art. 50)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "cash_handler_with_error_liability",
+          "percentage_rate": "0.08",
+          "percentage_base_allowances": [
+            "CONTINGENZA"
+          ],
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "70",
+              "section": "Art. 50 Indennità di cassa e di maneggio di denaro",
+              "quote": "All’impiegato che ha normalmente maneggio di denaro con onere per errori, deve essere corrisposta una maggiorazione dell’otto per cento dello stipendio minimo mensile e dell’ex indennità di contingenza."
+            },
+            "transformation": "Apply 8% to the current national monthly minimum plus ex-contingenza only, for an employee normally handling cash with liability for errors. The placeholder monthly zero is replaced by the computed percentage. Art. 44 item 12 includes the allowance in the monthly pay; Arts. 63 and 64 include item 12 in the extra months. Individual pay elements do not enter the percentage base. Earliest available salary tranche is 1 February 2025; the clause states no later start or end date.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T19:01:26Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T19:01:26Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-edilizia-ance-impiegati-cash-handling"
             }
           }
         },
@@ -1424,6 +1514,51 @@
           }
         },
         {
+          "code": "CASH_HANDLING",
+          "description": "Cash handling with liability for errors (Art. 50)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "cash_handler_with_error_liability",
+          "percentage_rate": "0.08",
+          "percentage_base_allowances": [
+            "CONTINGENZA"
+          ],
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "70",
+              "section": "Art. 50 Indennità di cassa e di maneggio di denaro",
+              "quote": "All’impiegato che ha normalmente maneggio di denaro con onere per errori, deve essere corrisposta una maggiorazione dell’otto per cento dello stipendio minimo mensile e dell’ex indennità di contingenza."
+            },
+            "transformation": "Apply 8% to the current national monthly minimum plus ex-contingenza only, for an employee normally handling cash with liability for errors. The placeholder monthly zero is replaced by the computed percentage. Art. 44 item 12 includes the allowance in the monthly pay; Arts. 63 and 64 include item 12 in the extra months. Individual pay elements do not enter the percentage base. Earliest available salary tranche is 1 February 2025; the clause states no later start or end date.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T19:01:26Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T19:01:26Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-edilizia-ance-impiegati-cash-handling"
+            }
+          }
+        },
+        {
           "code": "EDR",
           "description": "Elemento distinto della retribuzione (Protocollo 31 luglio 1992)",
           "monthly": {
@@ -1629,6 +1764,51 @@
               "extraction_timestamp": "2026-10-13T07:47:58Z",
               "effective_from": "2025-02-01",
               "verification_status": "unverified"
+            }
+          }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash handling with liability for errors (Art. 50)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "cash_handler_with_error_liability",
+          "percentage_rate": "0.08",
+          "percentage_base_allowances": [
+            "CONTINGENZA"
+          ],
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "70",
+              "section": "Art. 50 Indennità di cassa e di maneggio di denaro",
+              "quote": "All’impiegato che ha normalmente maneggio di denaro con onere per errori, deve essere corrisposta una maggiorazione dell’otto per cento dello stipendio minimo mensile e dell’ex indennità di contingenza."
+            },
+            "transformation": "Apply 8% to the current national monthly minimum plus ex-contingenza only, for an employee normally handling cash with liability for errors. The placeholder monthly zero is replaced by the computed percentage. Art. 44 item 12 includes the allowance in the monthly pay; Arts. 63 and 64 include item 12 in the extra months. Individual pay elements do not enter the percentage base. Earliest available salary tranche is 1 February 2025; the clause states no later start or end date.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T19:01:26Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T19:01:26Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-edilizia-ance-impiegati-cash-handling"
             }
           }
         },
@@ -1842,6 +2022,51 @@
           }
         },
         {
+          "code": "CASH_HANDLING",
+          "description": "Cash handling with liability for errors (Art. 50)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "cash_handler_with_error_liability",
+          "percentage_rate": "0.08",
+          "percentage_base_allowances": [
+            "CONTINGENZA"
+          ],
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "70",
+              "section": "Art. 50 Indennità di cassa e di maneggio di denaro",
+              "quote": "All’impiegato che ha normalmente maneggio di denaro con onere per errori, deve essere corrisposta una maggiorazione dell’otto per cento dello stipendio minimo mensile e dell’ex indennità di contingenza."
+            },
+            "transformation": "Apply 8% to the current national monthly minimum plus ex-contingenza only, for an employee normally handling cash with liability for errors. The placeholder monthly zero is replaced by the computed percentage. Art. 44 item 12 includes the allowance in the monthly pay; Arts. 63 and 64 include item 12 in the extra months. Individual pay elements do not enter the percentage base. Earliest available salary tranche is 1 February 2025; the clause states no later start or end date.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T19:01:26Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T19:01:26Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-edilizia-ance-impiegati-cash-handling"
+            }
+          }
+        },
+        {
           "code": "EDR",
           "description": "Elemento distinto della retribuzione (Protocollo 31 luglio 1992)",
           "monthly": {
@@ -2047,6 +2272,51 @@
               "extraction_timestamp": "2026-10-13T07:47:58Z",
               "effective_from": "2025-02-01",
               "verification_status": "unverified"
+            }
+          }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash handling with liability for errors (Art. 50)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "cash_handler_with_error_liability",
+          "percentage_rate": "0.08",
+          "percentage_base_allowances": [
+            "CONTINGENZA"
+          ],
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "70",
+              "section": "Art. 50 Indennità di cassa e di maneggio di denaro",
+              "quote": "All’impiegato che ha normalmente maneggio di denaro con onere per errori, deve essere corrisposta una maggiorazione dell’otto per cento dello stipendio minimo mensile e dell’ex indennità di contingenza."
+            },
+            "transformation": "Apply 8% to the current national monthly minimum plus ex-contingenza only, for an employee normally handling cash with liability for errors. The placeholder monthly zero is replaced by the computed percentage. Art. 44 item 12 includes the allowance in the monthly pay; Arts. 63 and 64 include item 12 in the extra months. Individual pay elements do not enter the percentage base. Earliest available salary tranche is 1 February 2025; the clause states no later start or end date.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T19:01:26Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T19:01:26Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-edilizia-ance-impiegati-cash-handling"
             }
           }
         },
@@ -2260,6 +2530,51 @@
           }
         },
         {
+          "code": "CASH_HANDLING",
+          "description": "Cash handling with liability for errors (Art. 50)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-02-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "cash_handler_with_error_liability",
+          "percentage_rate": "0.08",
+          "percentage_base_allowances": [
+            "CONTINGENZA"
+          ],
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-edilizia-industria-2010-fillea",
+                "title": "CCNL 19 aprile 2010 per i dipendenti delle imprese edili ed affini, testo completo (FILLEA CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+                "published_on": "2010-04-19",
+                "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+              },
+              "page": "70",
+              "section": "Art. 50 Indennità di cassa e di maneggio di denaro",
+              "quote": "All’impiegato che ha normalmente maneggio di denaro con onere per errori, deve essere corrisposta una maggiorazione dell’otto per cento dello stipendio minimo mensile e dell’ex indennità di contingenza."
+            },
+            "transformation": "Apply 8% to the current national monthly minimum plus ex-contingenza only, for an employee normally handling cash with liability for errors. The placeholder monthly zero is replaced by the computed percentage. Art. 44 item 12 includes the allowance in the monthly pay; Arts. 63 and 64 include item 12 in the extra months. Individual pay elements do not enter the percentage base. Earliest available salary tranche is 1 February 2025; the clause states no later start or end date.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T19:01:26Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T19:01:26Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-gpt-edilizia-ance-impiegati-cash-handling"
+            }
+          }
+        },
+        {
           "code": "EDR",
           "description": "Elemento distinto della retribuzione (Protocollo 31 luglio 1992)",
           "monthly": {
@@ -2455,7 +2770,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "7b279a571c341e7dbbb898245e1564aec7ff110c107aead7d4d9090071fccfc5",
+    "source_hash": "d386a885d84050aef77b5168468a2939e95f9e0f42f6d52c98456f0898785395",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3305,6 +3620,31 @@
         "checked": [
           "dual_apprenticeship[diploma_ifts].failed_title_extension",
           "dual_apprenticeship[qualifica_altri].failed_title_extension"
+        ]
+      },
+      {
+        "id": "2026-11-09-gpt-edilizia-ance-impiegati-cash-handling",
+        "date": "2026-11-09",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Art. 50 (PDF p. 70), cash-handling allowance, and arts. 44, 47, 52, 63-64, 76 for the remaining limitations, by a separate model session.",
+        "outcome": "confirmed",
+        "independence": "separate_model",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "Confirmed: 8% of the monthly minimum and the ex-contingenza for an impiegato who normally handles money with liability for errors; no allowance without the attested role.",
+          "Confirmed: the allowance enters the thirteenth and the annual premium (art. 44 item 12, arts. 63-64).",
+          "Flagged: 1 February 2025 is the first salary tranche in the data, not the clause start; earlier eligibility is not encoded.",
+          "Confirmed: the art. 47, art. 52, art. 76 and provincial premium limitations stay open."
+        ],
+        "checked": [
+          "levels.fixed_allowances",
+          "coverage.notes"
         ]
       }
     ],
