@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2017-07-03 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -76,6 +76,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | PAR supplements of Arts. 21, 22 and 24 of the 2017 PDF and Art. 22 of the 2026 renewal, checked against cached PDFs. | confirmed | General 104 hours; entire-workforce sectors and eligible rotations add eight hours each; all employers add four hours from 2029. Unit headcount, restricted production areas, steel monetisation and company offsets remain limitations. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 32 pp. 104-105, letter b and c holidays during reduced sickness, maternity and injury pay. | confirmed | Letter a is excluded; 4 October is absent; letter c includes the stated local patron day. Maternity local patron and substitute days remain outside its holiday calendar. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 23 and Art. 29 paragraph 2 of the cached 2017 CCNL, physical PDF pages 94 and 102; immediate banked overtime premium only. | confirmed | The bank election covers every overtime hour worked in a month; banked hours pay 50% of the applicable premium immediately, with rest and any residual payout deferred. Flexible hours are not overtime and need a separate schedule model. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Art. 32(b,c), physical PDF pp. 104-105, maternity holiday and local holiday selection. | confirmed | The maternity holiday target exists; letters b and c cover reduced-pay pregnancy and puerperium holidays. The employer-stated patron date can denote the locally agreed substitute or 29 June in Rome; neither is inferred without the local fact. |
 
 ## Salary table
 
@@ -210,11 +211,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add the hourly elements of art. 38 to the hourly pay of the PAR, and source the PAR left at the end of the employment.
 
 !!! warning "metalmeccanico-confapi/holiday_outside_calendar · sickness · impact yes · open"
-    Art. 32(b,c) holiday top-ups are modelled for sickness, compulsory maternity and injury, excluding letter a) and 4 October. Stated local patron days are covered for sickness and injury. Not calculated: the maternity top-up on a local patron day, the locally agreed substitute for the patron day, and Rome-only 29 June, which are outside the national holiday calendar.
+    Art. 32(b,c) holiday top-ups are modelled for sickness, compulsory maternity and injury, excluding letter a) and 4 October. A stated patron_saint_day covers the local patron day, its locally agreed substitute, or Rome-only 29 June when applicable. Without the applicable local date from the employer, these holidays cannot be calculated.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Calculate the maternity top-up on stated patron days, the agreed substitute patron holiday and Rome-only 29 June when the local facts are available.
+    **Remediation:** State the applicable local patron holiday date (including a locally agreed substitute or Rome-only 29 June) as employer.patron_saint_day.
 
 !!! warning "metalmeccanico-confapi/flexibility_and_hours_bank · overtime · impact yes · open"
     Art. 23 flexible hours above 40 per week (15% weekday, 20% Saturday) remain outside the model: they are not overtime. Art. 29 banked overtime pays half the applicable overtime premium now; the elected rest balance and eventual payout at current pay are not tracked. The election covers all overtime in the month and must be declared by the next month; callers must supply a consistent banked choice for each month's events.
