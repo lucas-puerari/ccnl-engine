@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from ccnl_engine.compensation.element.types import MonthlyPayChain
     from ccnl_engine.employment.period.inputs import EmploymentPeriod
     from ccnl_engine.extra_month.offset.models import FourteenthPriorExtraOffset
+    from ccnl_engine.extra_month.settlement.services import ExtraMonthSettlement
     from ccnl_engine.period.context.services import RunContext
 
 
@@ -107,3 +108,33 @@ def offset_fourteenth(
         remaining -= value - adjusted
         allowances.append((allowance, adjusted))
     return replace(chain, base=base, seniority=seniority, allowances=tuple(allowances))
+
+
+def offset_terms(
+    ctx: RunContext,
+) -> tuple[FourteenthPriorExtraOffset | None, EmploymentPeriod | None, Decimal | None]:
+    """Return the offset clause, employment and stated amount of the run.
+
+    Returns:
+        The arguments :func:`settle_extra_months` takes for the offset.
+    """
+    return (
+        ctx.contract.ccnl.parameters.fourteenth_prior_extra_offset,
+        ctx.request.employment_period,
+        ctx.request.prior_extra_month_amount,
+    )
+
+
+def with_offset_issue(
+    settlement: ExtraMonthSettlement, ctx: RunContext
+) -> ExtraMonthSettlement:
+    """Add the missing-fact issue of an unknown prior extra month, if any.
+
+    Returns:
+        ``settlement``, with the issue appended when :func:`run_offset_issue`
+        reports one.
+    """
+    issue = run_offset_issue(ctx)
+    if issue is None:
+        return settlement
+    return replace(settlement, issues=(*settlement.issues, issue))

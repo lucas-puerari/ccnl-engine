@@ -3,10 +3,9 @@
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
-from typing import Literal
 
 from ccnl_engine.collection.validators import frozenset_of
 from ccnl_engine.compensation.individual.inputs import (
@@ -19,6 +18,7 @@ from ccnl_engine.employment.category.models import (
     WorkerCategory,
     parse_worker_category,
 )
+from ccnl_engine.employment.contract.types import Contract, Permanent, _role
 from ccnl_engine.employment.fact.inputs import (
     FEATURE,
     PublicEndOfService,
@@ -34,7 +34,10 @@ from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.employment.rest_day.inputs import Weekday, check_rest_day
 from ccnl_engine.employment.rota.inputs import Rota, check_rota
 from ccnl_engine.employment.week_days.inputs import check_week_days
-from ccnl_engine.pension_fund.inputs import NoPensionFund, PensionFundEnrolment
+from ccnl_engine.pension_fund.inputs import (
+    NoPensionFund,
+    PensionFundEnrolment,
+)
 from ccnl_engine.personal_withholding.inputs import (
     PersonalWithholding,
     check_personal_withholdings,
@@ -55,23 +58,6 @@ __all__ = ["Apprentice", "Contract", "Employment", "FixedTerm", "Permanent"]
 
 #: A CCNL file name of the bundle: no directory, no other extension.
 _CCNL_ID = re.compile(r"[a-z0-9][a-z0-9-]*|[A-Z][A-Z0-9]{3}")
-
-
-@dataclass(frozen=True, slots=True)
-class Permanent:
-    """Open-ended contract; ``entry_pay`` takes the entry pay of the CCNL."""
-
-    type: Literal["permanent"] = field(default="permanent", init=False)
-    entry_pay: bool = False
-
-
-#: Every supported employment contract type.
-type Contract = Permanent | FixedTerm | Apprentice
-
-
-def _role(value: object, path: str) -> str:
-    require_str(value, path, feature=FEATURE, non_blank=True)
-    return str(value)
 
 
 @dataclass(frozen=True)
@@ -117,7 +103,8 @@ class Employment:
             not known: a run whose level pays seniority increments or service-gated
             allowances then has a ``missing_fact`` blocker, and its amounts leave them
             out.
-        roles: Role codes that unlock role-specific contractual allowances, each a
+        roles: Role codes for contractual allowances and legacy holiday clauses
+            (``former_legal_operaio`` or ``former_part_one_2008``), each a
             non-blank string.  A set is accepted and stored as a frozenset; an empty set
             states that the worker holds no role. ``None`` means not known: a run whose
             level has an allowance restricted to a role then has a ``missing_fact``
@@ -149,6 +136,9 @@ class Employment:
             ``missing_fact`` blocker.  Domestic work and the public administrations are
             outside the Fondo: ``True`` there raises ``InvalidInputError``, ``None`` and
             ``False`` keep the TFR in the company.
+        holiday_company_offset: Company holiday compensation already paid for the
+            eligible former-worker holidays of this month. Zero states no
+            offset; ``None`` means the company arrangement is unknown.
         prior_extra_month_amount: Annual extra remuneration month(s) already
             received beyond the thirteenth at the contract's entry, excluding
             merit bonuses. Zero states none; ``None`` is unknown. The amount
@@ -204,6 +194,7 @@ class Employment:
     tfr_treasury_fund: bool | None = None
     erc_amount: Decimal | None = None
     prior_extra_month_amount: Decimal | None = None
+    holiday_company_offset: Decimal | None = None
     public_end_of_service: PublicEndOfService | None = None
     individual_elements: tuple[IndividualElement, ...] = ()
     personal_withholdings: tuple[PersonalWithholding, ...] = ()
@@ -253,6 +244,13 @@ class Employment:
             self.personal_withholdings, "Employment.personal_withholdings"
         )
         object.__setattr__(self, "personal_withholdings", withholdings)
+        require_decimal(
+            self.holiday_company_offset,
+            "Employment.holiday_company_offset",
+            feature=FEATURE,
+            minimum=Decimal(0),
+            optional=True,
+        )
         require_decimal(
             self.prior_extra_month_amount,
             "Employment.prior_extra_month_amount",

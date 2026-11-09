@@ -39,10 +39,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "CAPISQUADRA (classification, p. 103; Art. 24 point 4): the 10% maggiorazione of the operaio put in charge of at least five operai is the allowance CAPOSQUADRA (role 'caposquadra'), in the base of the riposi annui and Cassa Edile percentages. Not modelled: its provincial elements (EET, indennità territoriale) and the floor of the level 2 pay plus 10% for a caposquadra classified lower.",
+      "rule": "CAPISQUADRA (classification, p. 103; Art. 24 point 4): the 10% maggiorazione of the operaio put in charge of at least five operai is the allowance CAPOSQUADRA (role 'caposquadra'), in the base of the riposi annui and Cassa Edile percentages. Not modelled: provincial EET/ITS and piecework minimum in the percentage base; assignment duration is supplied by the role input.",
       "calculation": "ccnl/edilizia-ance:coverage.notes",
       "state": "absent",
-      "remediation": "Model the provincial elements of its base and the level 2 floor.",
+      "remediation": "Supply provincial and piecework components of the percentage base and assignment duration.",
       "origin": "seeded",
       "links": {
         "limitations": [

@@ -5,7 +5,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.default.models import FactEnforcement, absence_is_fact, requires_fact
-from ccnl_engine.default.request.apprentice import APPRENTICE_DEFAULTS
+from ccnl_engine.default.request.period_facts import PERIOD_FACT_DEFAULTS
+from ccnl_engine.default.request.role_policies import ROLE_DEFAULTS
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -44,7 +45,35 @@ _FIRST_RUN = absence_is_fact(
 
 #: Classification of each defaulted field of the root request types.
 REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
-    **APPRENTICE_DEFAULTS,
+    "Apprentice.programme": absence_is_fact(
+        "a professionalising apprenticeship (D.Lgs. 81/2015 art. 44), the one "
+        "the apprenticeship tracks of the CCNL pay"
+    ),
+    "Apprentice.school_year": requires_fact(
+        "base_salary",
+        "employment.contract_type.school_year",
+        _REPORTED,
+        "unknown school year: a dual track paying by it raises a missing-fact error",
+    ),
+    "Apprentice.programme_months": requires_fact(
+        "base_salary",
+        "employment.contract_type.programme_months",
+        _REPORTED,
+        "unknown programme length: a dual track paying by its half or length "
+        "raises a missing-fact error",
+    ),
+    "Apprentice.hours": requires_fact(
+        "base_salary",
+        "employment.contract_type.hours",
+        _REPORTED,
+        "unknown hours: a first- or third-level apprentice raises a missing-fact error",
+    ),
+    "Apprentice.track": requires_fact(
+        "base_salary",
+        "employment.contract_type.track",
+        _REPORTED,
+        "the unique track of the level; several tracks raise an input error",
+    ),
     "PeriodInput.facts": _CONTAINER,
     "PeriodInput.prior_year": _CONTAINER,
     "PeriodInput.current_year": _CURRENT_YEAR,
@@ -166,15 +195,7 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         _REPORTED,
         "unknown recognised seniority: a missing_fact seniority blocker",
     ),
-    "Employment.roles": requires_fact(
-        "base_salary",
-        "employment.roles",
-        _REPORTED,
-        "unknown roles: a run whose level has an allowance restricted to a role "
-        "in force leaves it out and has a missing_fact roles blocker; a "
-        "supplement the CCNL pays apart for a role is not derived; an empty "
-        "set states that the worker holds no role",
-    ),
+    **ROLE_DEFAULTS,
     "Employment.contribution_history": requires_fact(
         "inps_employee",
         "employment.contribution_history",
@@ -240,40 +261,5 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "are undetermined and the run has a missing_fact pension_fund blocker; "
         "NoPensionFund states the non-enrolment",
     ),
-    "PeriodFacts.ordinary_hours_worked": requires_fact(
-        "pension_fund_contribution",
-        "facts.ordinary_hours_worked",
-        _REPORTED,
-        "unknown hours: the pay of a worker a CCNL pays by the hour "
-        "(hourly_pay) and the Prevedi contractual contribution of an operaio "
-        "of the building CCNLs are left out, with a missing_fact "
-        "ordinary_hours_worked blocker; other CCNLs do not read it",
-    ),
-    "PeriodFacts.contributable_hours": requires_fact(
-        "inps_employee",
-        "facts.contributable_hours",
-        _REPORTED,
-        "a domestic CCNL raises MissingRequiredFactError without it; other "
-        "CCNLs do not read it",
-    ),
-    "PeriodFacts.events": absence_is_fact("no work event in the period"),
-    "PeriodFacts.regione": requires_fact(
-        "addizionale_regionale",
-        "facts.regione",
-        _REQUIREMENT,
-        "unknown residence: the regional surtax is not ruled out",
-    ),
-    "PeriodFacts.comune_belfiore": requires_fact(
-        "addizionale_comunale",
-        "facts.comune_belfiore",
-        _REQUIREMENT,
-        "unknown residence: the municipal surtax is not ruled out",
-    ),
-    "PeriodFacts.family_composition": requires_fact(
-        "family_deductions",
-        "facts.family_composition",
-        _REQUIREMENT,
-        "unknown family: the art. 12 TUIR deductions are not ruled out; an "
-        "empty FamilyComposition states that there is no dependant",
-    ),
+    **PERIOD_FACT_DEFAULTS,
 }

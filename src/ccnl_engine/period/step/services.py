@@ -1,6 +1,9 @@
 """Steps of one run: events, amounts and decisions.
 
-They orchestrate collaborators; credits and postings follow in :mod:`.period._posting`.
+Each step reads the run context and the outputs of the steps before it;
+the credits and the postings follow in :mod:`.period._posting`. The steps
+only orchestrate: the inputs they gather come from :mod:`._pipeline_inputs`
+and the formulas live in the collaborators they call.
 """
 
 from __future__ import annotations
@@ -14,6 +17,7 @@ from ccnl_engine.compensation.hourly.services import (
     percentage_settlement,
 )
 from ccnl_engine.compensation.individual.rules import individual_element_decisions
+from ccnl_engine.compensation.legacy_holiday.services import legacy_holiday_payment
 from ccnl_engine.compensation.loyalty.rules import loyalty_premium
 from ccnl_engine.compensation.raccordo.services import erc_settlement
 from ccnl_engine.compensation.renewal_minimum.services import (
@@ -30,7 +34,7 @@ from ccnl_engine.contribution.ceiling.services import (
 from ccnl_engine.contribution.minimum_base.services import run_minimum_base
 from ccnl_engine.decision.rules import contract_decisions
 from ccnl_engine.extra_month.decision.services import accrual_decisions
-from ccnl_engine.extra_month.offset.services import run_offset_issue
+from ccnl_engine.extra_month.offset.services import offset_terms, with_offset_issue
 from ccnl_engine.extra_month.settlement.services import settle_extra_months
 from ccnl_engine.fund.assistance.policies import assistance_decision
 from ccnl_engine.fund.health.services import contractual_funds
@@ -135,13 +139,9 @@ def run_events(ctx: RunContext) -> RunEvents:
         ctx.run_id,
         ctx.resolver,
         ctx.policy_context,
-        ctx.contract.ccnl.parameters.fourteenth_prior_extra_offset,
-        ctx.request.employment_period,
-        ctx.request.prior_extra_month_amount,
+        *offset_terms(ctx),
     )
-    offset_issue = run_offset_issue(ctx)
-    if offset_issue is not None:
-        settlement = replace(settlement, issues=(*settlement.issues, offset_issue))
+    settlement = with_offset_issue(settlement, ctx)
     erc = erc_settlement(ctx)
     hourly = percentage_settlement(ctx)
     reduction = public_tfr_reduction(ctx, events.totals)
@@ -150,7 +150,7 @@ def run_events(ctx: RunContext) -> RunEvents:
         ctx.monthly_gross,
         with_sickness=any(i.code == WITH_UNPAID_ABSENCE for i in events.totals.issues),
     )
-    parts = (
+    parts = (  # noqa: RUF005
         settlement,
         erc,
         reduction,
@@ -160,7 +160,7 @@ def run_events(ctx: RunContext) -> RunEvents:
         run_leave(ctx),
         sunday_holiday(ctx),
         loyalty_premium(ctx),
-    )
+    ) + legacy_holiday_payment(ctx)
     totals = events.totals
     for part in parts:
         totals = part.added_to(totals)
