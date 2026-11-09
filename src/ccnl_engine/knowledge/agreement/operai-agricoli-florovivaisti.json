@@ -147,19 +147,6 @@
         "monetary_impact": "no"
       },
       {
-        "kind": "simplification",
-        "text": "PROVINCIAL SENIORITY: Art. 54 (pp. 55-56) grants increments only to permanent workers and sets the post-2006 amounts for five profiles, including the two super profiles, selected by Employment.roles. Provincial contracts assign the profiles within the three national areas; the file has no province-specific classification or later provincial scatto schedules. State the provincial worker profile explicitly and verify any provincial override separately.",
-        "capability": "seniority",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "provincial_profile_scatti",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Supply the provincial classification and any province-specific amounts; national profile figures are used until a provincial schedule is sourced."
-        }
-      },
-      {
         "kind": "info",
         "text": "HISTORICAL PERIODS ADDED (2026-09-09). Three salary periods now modelled per area: (1) 2023-01-01: INPS Circ. n.94/2024 Allegato 1 (primary source, Area1=1389.15, Area2=1266.90, Area3=944.62). (2) 2025-01-01: Dottrinalavoro Jan 2025 PDF (Area1=1458.61, Area2=1330.25, Area3=991.85). Cross-check: 2025 values / 2023 values = 1.050 (approx. +5% tranche per 2022-2025 CCNL). (3) 2026-06-01: minimi di area of the 2026-2029 renewal (Allegato n. 1, both increases included). 2023-01-01 is the earliest verified period; pre-2023 values not modelled."
       },
@@ -215,15 +202,19 @@
       },
       {
         "kind": "simplification",
-        "text": "FLOROVIVAISTI SICKNESS: the operaio florovivaista a tempo indeterminato receives from the employer, on top of the INPS indemnity, 25% of the contractual daily wage for at most 90 days a year, from the first day when the sickness lasts more than three days (Art. 62, verbale of 28 May 2026, p. 38); the file pays the operai agricoli rule, with no employer integration, and the request does not say whether the operaio is a florovivaista.",
+        "text": "FLOROVIVAISTI SICKNESS (remaining limits): State EmployerProfile.subsector=florovivaisti for the permanent-worker supplement; without a sub-sector the agricultural rule applies. The provincial contractual daily wage on February 1 is not printed in the national clause and must be supplied for each year of sickness, already prorated for a part-time worker under Art. 17(c) p. 10; an unknown wage or INPS recognition leaves the employer supplement unpaid and flagged. Previously posted months must be rerun if a later relapse extends a short illness beyond three days. Art. 62 also grants fixed-term workers the supplement after 30 continuous days with the same employer, from day 31 for up to 45 days per year; this entitlement is not modeled.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "florovivaisti_sickness_integration",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "outside_input",
+            "contract_types": [
+              "fixed_term",
+              "permanent"
+            ]
           },
-          "remediation": "Split the florovivaisti into their own levels or file, with a sickness rule paying 25% of the daily wage for 90 days a year past the third day."
+          "remediation": "State the existing employer sub-sector and the February 1 contractual daily wage by year for permanent workers; source or supply continuous days with the employer and encode the 45-day fixed-term supplement after day 30."
         }
       },
       {
@@ -270,6 +261,19 @@
       {
         "kind": "info",
         "text": "APPRENTICE INPS RATES (contribution/2026/agricoltura.json): employer 10% plus NASpI 1.61% (INPS circ. 108/2018 par. 3.2, applied to the agricultural contribution by circ. 116/2013 par. 1) plus CISOA 1.50% (circ. 1/2023; 'CIS operai agricoli 1,5000' of circ. 43/2026 allegato 1) = 13.11% (4.61% and 6.11% in the first two years up to nine employees); worker 5.84%."
+      },
+      {
+        "kind": "simplification",
+        "text": "PROVINCIAL SENIORITY: Art. 54 (pp. 55-56) grants increments only to permanent workers and sets the post-2006 amounts for five profiles, including the two super profiles, selected by Employment.roles. Provincial contracts assign the profiles within the three national areas; the file has no province-specific classification or later provincial scatto schedules. State the provincial worker profile explicitly and verify any provincial override separately.",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "provincial_profile_scatti",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Supply the provincial classification and any province-specific amounts; national profile figures are used until a provincial schedule is sourced."
+        }
       }
     ]
   },
@@ -964,7 +968,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "ad64427769e5a3bfa77e7f9d17a0215350751e5345c64b87a253ae78cb76d4b9",
+    "source_hash": "155b60646f1fea9a767bb5697288edf6ef392c3a0c1c0c007a7389a5330a3e7b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1710,6 +1714,103 @@
         }
       }
     },
+    "subsector_rules": {
+      "florovivaisti": {
+        "hourly_minimum_by_level": {
+          "Area1": {
+            "periods": [
+              {
+                "valid_from": "2026-06-01",
+                "valid_until": null,
+                "value": "9.28033"
+              }
+            ]
+          },
+          "Area2": {
+            "periods": [
+              {
+                "valid_from": "2026-06-01",
+                "valid_until": null,
+                "value": "8.50259"
+              }
+            ]
+          },
+          "Area3": {
+            "periods": [
+              {
+                "valid_from": "2026-06-01",
+                "valid_until": null,
+                "value": "7.9876"
+              }
+            ]
+          }
+        },
+        "hourly_minimum_provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "verbale-ccnl-operai-agricoli-2026-05-28",
+              "title": "Verbale di accordo di rinnovo del CCNL operai agricoli e florovivaisti 2026-2029, 28 maggio 2026",
+              "kind": "associazione",
+              "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
+              "published_on": "2026-05-28",
+              "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
+            },
+            "page": "52",
+            "section": "Allegato n. 1, Tabella n. 2 (Minimi salariali di area orari — Operai florovivaisti)",
+            "quote": "MINIMI SALARIALI DI AREA ORARI\n\n                Tabella n. 2\n\n      OPERAI FLOROVIVAISTI\n\n       Area 1                  9,28033\n       Area2                   8,50259\n       Area3                    7,9876"
+          },
+          "transformation": "The annex prints floriculture hourly minima, not agricultural monthly minima / 169. National minima apply from 1 June 2026 in provinces without a CPL; in other provinces the CPL renewal date controls (cpl_minimi_timing limitation). Before June a caller supplies the contractual hourly wage.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-09T08:08:53Z",
+            "verified_at": "2026-11-09T08:08:53Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-09-floriculture-hourly-correction",
+            "verified_by": "claude-opus-5-5",
+            "effective_from": "2026-06-01"
+          }
+        },
+        "sickness_rules": {
+          "carenza_integration_rate": "0",
+          "full_pay_integration_rate": "0",
+          "max_duration_days": 180,
+          "inps_regime": "agricoltura",
+          "annual_daily_share": "0.25",
+          "daily_share_min_days": 3,
+          "daily_share_annual_max_days": 90,
+          "daily_share_reference_month": 2,
+          "permanent_only": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "verbale-ccnl-operai-agricoli-2026-05-28",
+                "title": "Verbale di accordo di rinnovo del CCNL operai agricoli e florovivaisti 2026-2029, 28 maggio 2026",
+                "kind": "associazione",
+                "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
+                "published_on": "2026-05-28",
+                "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
+              },
+              "page": "38",
+              "section": "Art. 62 (Malattia ed infortunio operai florovivaisti)",
+              "quote": "In caso di malattia, l'operaio, in aggiunta al trattamento di legge, avrà diritto, per un periodo massimo di 90 giornate in un anno, all' erogazione, da parte del datore di lavoro, di una indennità giornaliera, nella misura del 25 per cento del salario giornaliero contrattuale relativo al profilo professionale di appartenenza, in vigore al 1 ° febbraio dell'anno in corso. L'indennità sarà corrisposta dal giorno in cui si è verificata la malattia, se questa si protrae oltre il terzo giorno, e subordinatamente al riconoscimento della malattia stessa da parte dell'INPS."
+            },
+            "transformation": "Permanent workers of the florovivaisti sub-sector receive an additional 25% of the stated contractual daily wage as of February 1 of each year, on all employed days of recognized illness lasting more than three days across a relapse chain, up to 90 paid days per calendar year. The wage is an episode fact because provincial contractual daily wages are not printed here; the caller supplies the wage prorated for part-time work per Art. 17(c) p. 10. Unknown recognition or wage leaves the supplement unpaid with an issue. Previously posted months need rerunning after a qualifying relapse; fixed-term entitlement remains a limitation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T12:11:53Z",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T12:11:53Z",
+              "review_id": "2026-11-09-ai-florovivaisti-sickness-fix"
+            }
+          }
+        }
+      }
+    },
     "sickness_rules": {
       "carenza_integration_rate": "0",
       "full_pay_integration_rate": "0",
@@ -1740,7 +1841,7 @@
           "verified_at": "2026-10-15T09:23:49Z",
           "review_id": "2026-10-15-ai-leave-sickness"
         },
-        "transformation": "The operaio agricolo keeps the job for 180 days and has no employer integration in the CCNL: the integrations are paid by the provincial Casse extra legem (Art. 8 and 63), outside the payroll. The florovivaisti integration of Art. 62 is declared as a limitation."
+        "transformation": "The operaio agricolo keeps the job for 180 days and has no employer integration in the CCNL: the integrations are paid by the provincial Casse extra legem (Art. 8 and 63), outside the payroll. The distinct permanent florovivaisti integration is selected through the employer sub-sector."
       }
     },
     "notice": {
@@ -1802,66 +1903,6 @@
           "verified_by": "claude-opus-5-5",
           "verified_at": "2026-11-01T18:33:13Z",
           "review_id": "2026-11-01-ai-notice-3"
-        }
-      }
-    },
-    "subsector_rules": {
-      "florovivaisti": {
-        "hourly_minimum_by_level": {
-          "Area1": {
-            "periods": [
-              {
-                "valid_from": "2026-06-01",
-                "valid_until": null,
-                "value": "9.28033"
-              }
-            ]
-          },
-          "Area2": {
-            "periods": [
-              {
-                "valid_from": "2026-06-01",
-                "valid_until": null,
-                "value": "8.50259"
-              }
-            ]
-          },
-          "Area3": {
-            "periods": [
-              {
-                "valid_from": "2026-06-01",
-                "valid_until": null,
-                "value": "7.9876"
-              }
-            ]
-          }
-        },
-        "hourly_minimum_provenance": {
-          "status": "verified",
-          "location": {
-            "source_document": {
-              "document_id": "verbale-ccnl-operai-agricoli-2026-05-28",
-              "title": "Verbale di accordo di rinnovo del CCNL operai agricoli e florovivaisti 2026-2029, 28 maggio 2026",
-              "kind": "associazione",
-              "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
-              "published_on": "2026-05-28",
-              "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
-            },
-            "page": "52",
-            "section": "Allegato n. 1, Tabella n. 2 (Minimi salariali di area orari — Operai florovivaisti)",
-            "quote": "MINIMI SALARIALI DI AREA ORARI\n\n                Tabella n. 2\n\n      OPERAI FLOROVIVAISTI\n\n       Area 1                  9,28033\n       Area2                   8,50259\n       Area3                    7,9876"
-          },
-          "transformation": "The annex prints floriculture hourly minima, not agricultural monthly minima / 169. National minima apply from 1 June 2026 in provinces without a CPL; in other provinces the CPL renewal date controls (cpl_minimi_timing limitation). Before June a caller supplies the contractual hourly wage.",
-          "extraction": {
-            "method": "ai",
-            "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-09T08:08:53Z",
-            "verified_at": "2026-11-09T08:08:53Z",
-            "verification_status": "verified",
-            "review_id": "2026-11-09-floriculture-hourly-correction",
-            "verified_by": "claude-opus-5-5",
-            "effective_from": "2026-06-01"
-          }
         }
       }
     }
@@ -2218,6 +2259,25 @@
           "Corrected the 29% quote and /169 page; the signed annex prints hourly floriculture rates.",
           "The 2022–2025 text begins 1 January 2022; its time bands now start then.",
           "Regular-shift exceptions, provincial tariffs, third element and bank of hours remain limitations."
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-florovivaisti-sickness-fix",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 62 p. 38 and Art. 17(c) p. 10 of the signed renewal, checked against the cached PDF and SHA-256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
+            "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
+          }
+        ],
+        "findings": [
+          "The daily 25% remains payable with zero monthly quota units; count only employed paid days toward 90 and the known relapse chain toward the more-than-three-day threshold.",
+          "Art. 17(c) p. 10: 'applicazione di tutti gli istituti diretti ed indiretti previsti dal presente CCNL per la prestazione ad orario ordinario, in proporzione all'orario ridotto.' The caller supplies the prorated part-time wage; previously posted months require rerunning after an extension; fixed-term 45-day entitlement remains unimplemented."
         ]
       },
       {

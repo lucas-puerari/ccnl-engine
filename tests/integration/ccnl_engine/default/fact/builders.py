@@ -46,6 +46,7 @@ from ccnl_engine.inputs import (
     TaxSector,
     WorkerCategory,
 )
+from ccnl_engine.period.facts.holiday import PaidHolidayDays
 from tests.integration.ccnl_engine.withholding.builders import paid_before
 from tests.knowledge.ccnl_engine.period.builders import CONCIA_D2
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
@@ -281,7 +282,14 @@ def _operaio(
     )
     request = january(employment)
     worked = None if hours is None else ContributableHours(hours)
-    return replace(request, facts=replace(request.facts, ordinary_hours_worked=worked))
+    return replace(
+        request,
+        facts=replace(
+            request.facts,
+            ordinary_hours_worked=worked,
+            paid_holiday_days=PaidHolidayDays(0),
+        ),
+    )
 
 
 def _airport_presence(
@@ -323,6 +331,7 @@ def pension_cases[C](
     """
     plain = _airport_presence(january, frozenset(), 20, None)
     airport = _airport_presence(january, frozenset({"airport_within_20km"}), 20, 20)
+    operaio = _operaio(january, Decimal(160))
     return {
         "PeriodFacts.presence_days": (
             case(
@@ -336,6 +345,13 @@ def pension_cases[C](
                 airport,
                 replace(airport, facts=replace(airport.facts, site_presence_days=None)),
                 "site_presence_days",
+            ),
+        ),
+        "PeriodFacts.paid_holiday_days": (
+            case(
+                operaio,
+                replace(operaio, facts=replace(operaio.facts, paid_holiday_days=None)),
+                "paid_holiday_days",
             ),
         ),
         "PeriodFacts.ordinary_hours_worked": (
@@ -708,6 +724,34 @@ def _extraordinary(last_pay: Decimal | None) -> PeriodInput:
     return replace(run, employment=employment, facts=PeriodFacts(events=(leave,)))
 
 
+def _florovivaisti_sickness(
+    recognized: bool | None, wage: Decimal | None
+) -> PeriodInput:
+    """Return a five-day permanent-worker episode requiring both supplement facts.
+
+    Returns:
+        The March run with a hypothetical contractual daily wage as of
+        February 1, or without that wage.
+    """
+    episode = SicknessEpisode(
+        "sick",
+        date(2026, 3, 2),
+        date(2026, 3, 6),
+        inps_recognized=recognized,
+        contractual_daily_wage_by_year=None if wage is None else {2026: wage},
+    )
+    run = _march(PeriodState.zero(), episode)
+    return replace(
+        run,
+        employment=replace(
+            _EMPLOYMENT,
+            ccnl_id="operai-agricoli-florovivaisti",
+            level_code="Area1",
+        ),
+        employer=replace(run.employer, subsector="florovivaisti"),
+    )
+
+
 def sickness_cases[C](
     case: Callable[[PeriodInput, PeriodInput, str], C],
 ) -> Mapping[str, tuple[C, ...]]:
@@ -717,6 +761,20 @@ def sickness_cases[C](
         The cases keyed ``Type.field``.
     """
     return {
+        "SicknessEpisode.inps_recognized": (
+            case(
+                _florovivaisti_sickness(True, Decimal(80)),
+                _florovivaisti_sickness(None, Decimal(80)),
+                "inps_recognized",
+            ),
+        ),
+        "SicknessEpisode.contractual_daily_wage_by_year": (
+            case(
+                _florovivaisti_sickness(True, Decimal(80)),
+                _florovivaisti_sickness(True, None),
+                "contractual_daily_wage_by_year",
+            ),
+        ),
         "SicknessEpisode.short_absence_exempt": (
             case(
                 _short_absences(False),

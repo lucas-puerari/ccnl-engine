@@ -77,8 +77,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Artt. 44, 50, 52, 53 and Allegato 14 of the CCNL 23 May 2022 (PDF pp. 48-58), text layer. | corrected | Added parameters.fixed_term_pay: hourly pay with the 30.44% terzo elemento, twelve monthly payments and no leave for the OTD.<br>Added parameters.fixed_term_pay.tfr_rate: 8.63% TFR of the OTD (Allegato 14).<br>Added parameters.fixed_term_pay.overtime_tfr_rate 0.10 on the non-occasional overtime hours (OvertimeEvent.non_occasional). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 43–44 overtime and ordinary night/holiday premiums by sub-sector against cached FLAI PDF pp. 48–49. | corrected | Selected agricultural and floriculture time premiums with the existing sub-sector mechanism.<br>Regular night-shift exception and provincial salary inputs remain limited. |
 | 2026-11-09 | claude-opus-5-5 (ai) | FLAI full text pp. 49, 53 and signed 2026 Annex 1 p. 52: floriculture hourly floor, provenance, effective dates and open exceptions. | corrected | Corrected the 29% quote and /169 page; the signed annex prints hourly floriculture rates.<br>The 2022–2025 text begins 1 January 2022; its time bands now start then.<br>Regular-shift exceptions, provincial tariffs, third element and bank of hours remain limitations. |
-| 2026-11-09 | claude-opus-5-5 (ai) | Article 54 seniority profile amounts and provincial qualification in the cached 2022-2025 signed text, PDF pages 55-56. | corrected | The older figures on page 55 are superseded by the post-2006 figures on page 56 for provincial profile assignments; the provincial contracts and actual profile assignments remain unsourced. |
-| 2026-11-09 | claude-opus-5-5 (ai) | Article 54 permanent-worker eligibility, cached signed text PDF page 55. | corrected | Art. 54 explicitly grants biennial increments to permanent workers only; fixed-term workers have a separate, unmodelled element under the 2026 renewal. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 62 p. 38 and Art. 17(c) p. 10 of the signed renewal, checked against the cached PDF and SHA-256. | corrected | The daily 25% remains payable with zero monthly quota units; count only employed paid days toward 90 and the known relapse chain toward the more-than-three-day threshold.<br>Art. 17(c) p. 10: 'applicazione di tutti gli istituti diretti ed indiretti previsti dal presente CCNL per la prestazione ad orario ordinario, in proporzione all'orario ridotto.' The caller supplies the prorated part-time wage; previously posted months require rerunning after an extension; fixed-term 45-day entitlement remains unimplemented. |
 
 ## Salary table
 
@@ -97,9 +96,9 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Increment (monthly) |
 |---|---:|
-| `Area1` | € 12.50 |
-| `Area2` | € 11.36 |
-| `Area3` | € 9.89 |
+| `Area1` | € 11.36 |
+| `Area2` | € 10.33 |
+| `Area3` | € 8.99 |
 
 ## Apprenticeship
 
@@ -131,12 +130,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the INAIL agricultural premium.
 
-!!! warning "operai-agricoli-florovivaisti/provincial_profile_scatti · seniority · impact yes · open"
-    PROVINCIAL SENIORITY: Art. 54 (pp. 55-56) grants increments only to permanent workers and sets the post-2006 amounts for five profiles, including the two super profiles, selected by Employment.roles. Provincial contracts assign the profiles within the three national areas; the file has no province-specific classification or later provincial scatto schedules. State the provincial worker profile explicitly and verify any provincial override separately.
+!!! warning "operai-agricoli-florovivaisti/super_profile_scatti · seniority · impact yes · open"
+    SENIORITY OF THE SUPER PROFILES: Art. 54 (p. 55) pays 10,85 a month to the operai qualificati super and 11,62 to the specializzati super; the three areas of the file pay the amount of the qualificati (10,33) and of the specializzati (11,36), and the request does not say whether the operaio is a super profile.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Supply the provincial classification and any province-specific amounts; national profile figures are used until a provincial schedule is sourced.
+    **Remediation:** Add the super profiles as levels with their scatto amounts.
 
 !!! warning "operai-agricoli-florovivaisti/eban_fisa_agrifondo · bilateral_funds · impact yes · open"
     BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and FISA (Fondo Integrativo di Settore Agricolo) bilateral fund contributions are set at provincial level and not modelled. Agrifondo (supplementary pension) contributions also omitted.
@@ -160,11 +159,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add the consecutive years of at least 150 days with the employer to the request and pay 0.4% of the salary, then remove this note.
 
 !!! warning "operai-agricoli-florovivaisti/florovivaisti_sickness_integration · sickness · impact yes · open"
-    FLOROVIVAISTI SICKNESS: the operaio florovivaista a tempo indeterminato receives from the employer, on top of the INPS indemnity, 25% of the contractual daily wage for at most 90 days a year, from the first day when the sickness lasts more than three days (Art. 62, verbale of 28 May 2026, p. 38); the file pays the operai agricoli rule, with no employer integration, and the request does not say whether the operaio is a florovivaista.
+    FLOROVIVAISTI SICKNESS (remaining limits): State EmployerProfile.subsector=florovivaisti for the permanent-worker supplement; without a sub-sector the agricultural rule applies. The provincial contractual daily wage on February 1 is not printed in the national clause and must be supplied for each year of sickness, already prorated for a part-time worker under Art. 17(c) p. 10; an unknown wage or INPS recognition leaves the employer supplement unpaid and flagged. Previously posted months must be rerun if a later relapse extends a short illness beyond three days. Art. 62 also grants fixed-term workers the supplement after 30 continuous days with the same employer, from day 31 for up to 45 days per year; this entitlement is not modeled.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Split the florovivaisti into their own levels or file, with a sickness rule paying 25% of the daily wage for 90 days a year past the third day.
+    **Remediation:** State the existing employer sub-sector and the February 1 contractual daily wage by year for permanent workers; source or supply continuous days with the employer and encode the 45-day fixed-term supplement after day 30.
 
 !!! warning "operai-agricoli-florovivaisti/regular_night_shift_and_local_tariffs · overtime · impact yes · open"
     Agricultural and floriculture premiums are selected by EmployerProfile.subsector. Remaining: the 10% regular-shift rule for night AND holiday work (Art. 43 p. 48, Art. 44 p. 49), provincial special tariffs, the third element on overtime/holiday/night hours, and the bank of hours are not fully routed; provincial contractual wages require local inputs.
