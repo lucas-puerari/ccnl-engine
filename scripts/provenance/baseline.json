@@ -822,7 +822,6 @@
       "edilizia-artigianato-cna/apprentice_inps_rates_unsourced",
       "edilizia-artigianato-cna/apprentice_seniority",
       "edilizia-artigianato-cna/cassa_edile_accruals_missing",
-      "edilizia-artigianato-cna/cigo_rate_by_activity",
       "edilizia-artigianato-cna/inps_sector_rates_unsourced",
       "edilizia-artigianato-cna/loyalty_dismissal_pro_rata",
       "edilizia-artigianato-cna/loyalty_service_count"
@@ -932,7 +931,6 @@
     ],
     "agreement/lapidei-industria.json": [
       "lapidei-industria/apprenticeship_passthrough",
-      "lapidei-industria/cigo_rate_by_activity",
       "lapidei-industria/daily_divisor_25"
     ],
     "agreement/laterizi-industria-f021.json": [
@@ -974,7 +972,6 @@
     ],
     "agreement/legno-lapidei-artigianato-confartigianato.json": [
       "legno-lapidei-artigianato-confartigianato/apprentice_inps_rates_unsourced",
-      "legno-lapidei-artigianato-confartigianato/cigo_rate_by_activity",
       "legno-lapidei-artigianato-confartigianato/impiegati_apprenticeship_duration",
       "legno-lapidei-artigianato-confartigianato/inps_sector_rates_unsourced",
       "legno-lapidei-artigianato-confartigianato/lapidei_tables_not_modelled"
@@ -997,7 +994,6 @@
       "marittimi-industria-armatoriale/una_tantum_2024_2025"
     ],
     "agreement/materiali-costruzione-lapidei-confapi.json": [
-      "materiali-costruzione-lapidei-confapi/cigo_rate_by_activity",
       "materiali-costruzione-lapidei-confapi/contractual_fund_partial",
       "materiali-costruzione-lapidei-confapi/parental_top_up_scope"
     ],

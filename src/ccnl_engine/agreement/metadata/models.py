@@ -17,6 +17,8 @@ from ccnl_engine.provenance.ruleset.models import (
 )
 from ccnl_engine.provenance.source.extraction.models import ExtractionTrace
 from ccnl_engine.provenance.source.models import SourceDocument
+from ccnl_engine.provenance.source.rule.models import RuleProvenance
+from ccnl_engine.regime.models import EmployerActivity
 
 
 class CCNLVerification(BaseModel):
@@ -118,6 +120,11 @@ class CCNLMeta(BaseModel):
             88/1989), when more than one; ``tax_sector`` is among them and
             ``EmployerProfile.inps_sector`` chooses.  ``None``: every
             employer is in ``tax_sector``.
+        cigo_activities: Activities covered by the ordinary wage integration
+            contribution in addition to, or instead of, the generic sector
+            rate. An empty set leaves the sector rates unchanged.
+        cigo_provenance: Source of the statutory activity-dependent CIGO
+            contribution for the listed activities.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -137,6 +144,8 @@ class CCNLMeta(BaseModel):
     public_pension_fund: PublicPensionFund | None = None
     public_life_insurance: bool | None = None
     inps_sectors: frozenset[TaxSector] | None = Field(None, min_length=2)
+    cigo_activities: frozenset[EmployerActivity] = frozenset()
+    cigo_provenance: RuleProvenance | None = None
 
     @property
     def withholding_agent(self) -> bool:

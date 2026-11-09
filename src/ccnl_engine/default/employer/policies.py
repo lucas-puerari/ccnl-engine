@@ -22,7 +22,8 @@ EMPLOYER_DEFAULTS: Mapping[str, FieldDefault] = {
         "employer.activity",
         _REPORTED,
         "unknown activity: the regime that excludes some activities is "
-        "undetermined, with a blocker",
+        "undetermined, with a blocker; a CCNL covering construction or "
+        "stone-working may also have an incomplete CIGO employer rate",
     ),
     "EmployerProfile.public_life_insurance": requires_fact(
         "inps_employee",

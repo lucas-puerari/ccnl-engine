@@ -30,10 +30,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer, parental_leave, pension_fund_contribution |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | parental_leave, pension_fund_contribution |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-09-09 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2025-01-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 28 - Tredicesima mensilità (o gratifica natalizia) (p. 103): "Nel caso di inizio o cessazione del rapporto durante il corso dell'anno, l'impiegato avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi interi di servizio prestato presso l'azienda. La frazione di mese superiore ai 15 giorni va considerata a questi effetti come mese intero.". Match: more_than 15. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Parental indemnity supplement, Art. 52 - Genitorialità, PDF p. 151. | confirmed | Added work_rules.insured_absence.parental: 0.5 up to 90 eligible days. |
 | 2026-11-08 | gpt-6-sol (ai) | The parental leave clause against the CCNL top-up encoding, by a separate model session. | corrected | Confirmed the rate and the cap of the clause.<br>Corrected: the counter of the days already topped up holds only the earlier leave events (documented and tested); the hourly leave, the pay base and the three months read as 90 days are recorded as limitation parental_top_up_scope. |
+| 2026-11-09 | claude-opus-5-5 (ai) | INPS circular 76/2022 p. 7 CIGO activity rates and apprentices. | corrected | Stone-working operai owe 3.30% CIGO rather than the general industry share. |
 
 ## Salary table
 
@@ -103,13 +104,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `pension_fund_contribution` applies; the run takes the engine code path.
 
     **Remediation:** Source the rule of the accordo of 10 November 2020 for a partial month and part time and model it, then remove this note.
-
-!!! warning "materiali-costruzione-lapidei-confapi/cigo_rate_by_activity · inps_employer · impact yes · open"
-    CIGO: the operai of the stone-working firms owe 3.30% ('operai delle imprese dell'industria e artigianato lapidei', D.Lgs. 148/2015 art. 13 c. 1 (Normattiva, text in force on 2026-10-14, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148~art13!vig=2026-10-14, snapshot sha256 3f7019a244e01d36ac8e7c9e25bcf058c777c8ed758418ba261d83867672c46a), lett. d); the industria table charges the 1.70% / 2.00% of lett. a-b, so the employer contributions of an operaio are understated by 1.60 or 1.30 points. Impiegati and quadri owe the 1.70% / 2.00% of lett. e-f the table already charges.
-
-    **Applies when:** `inps_employer` applies; category in operaio.
-
-    **Remediation:** Model the CIGO of D.Lgs. 148/2015 art. 13 c. 1 by activity (edile, lapidei) apart from the tax sector, then remove this note.
 
 !!! warning "materiali-costruzione-lapidei-confapi/parental_top_up_scope · parental_leave · impact yes · open"
     Art. 52 also allows the leave by the hour, which gets no top-up; 'un periodo non superiore a tre mesi' is read as 90 days of leave; the company provisions it lets the employer absorb are not read. The top-up is computed on the INPS daily base of the leave (art. 23 D.Lgs. 151/2001), as the text gives no pay base of its own. The days already topped up by earlier leave events of the child are a fact of the event (ParentalLeaveEvent.topped_up_days_before).
