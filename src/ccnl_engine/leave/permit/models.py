@@ -8,10 +8,11 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.leave.permit.supplements import PermitExtraHours
 from ccnl_engine.leave.types import LeaveBucket, MonthCredit
 from ccnl_engine.provenance.source.rule.models import RuleProvenance  # noqa: TC001
 
-__all__ = ["NewHireRamp", "PermitHours", "PermitRules", "RampStep"]
+__all__ = ["NewHireRamp", "PermitExtraHours", "PermitHours", "PermitRules", "RampStep"]
 
 _ZERO = Decimal(0)
 _ONE = Decimal(1)
@@ -167,6 +168,8 @@ class PermitRules(BaseModel):
             the monthly pay over the ferie divisor; ``None`` when they are
             paid by the hour.
         week_absorption: Hours a shorter full-time week absorbs, by week.
+        extra_hours: Dated, sector- or worker-shift-specific hours added to
+            the base entitlement, never replacing it.
         provenance: Source of the hours.
     """
 
@@ -180,6 +183,7 @@ class PermitRules(BaseModel):
     entry_ramp: tuple[RampStep, ...] = ()
     day_hours: Decimal | None = Field(default=None, gt=_ZERO)
     week_absorption: tuple[WeekAbsorption, ...] = ()
+    extra_hours: tuple[PermitExtraHours, ...] = ()
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
@@ -212,6 +216,9 @@ class PermitRules(BaseModel):
         headcount: int,
         week: Decimal | None = None,
         subsector: str | None = None,
+        *,
+        day: date | None = None,
+        qualifying_shifts: bool | None = None,
     ) -> Decimal:
         """Return the yearly hours of a full-time worker of an employer.
 
@@ -239,4 +246,23 @@ class PermitRules(BaseModel):
             a for a in same_week if not a.subsectors
         ]
         absorbed = sum((a.hours for a in chosen), _ZERO)
-        return max(hours - absorbed, _ZERO)
+        return max(hours - absorbed, _ZERO) + self._extra_for(
+            day, subsector, qualifying_shifts
+        )
+
+    def _extra_for(
+        self, day: date | None, subsector: str | None, shifts: bool | None
+    ) -> Decimal:
+        """Sum the applicable additive annual hours.
+
+        Returns:
+            Extra annual hours for a dated competence month.
+        """
+        return sum(
+            (
+                item.hours
+                for item in self.extra_hours
+                if day is not None and item.applies(day, subsector, shifts)
+            ),
+            _ZERO,
+        )
