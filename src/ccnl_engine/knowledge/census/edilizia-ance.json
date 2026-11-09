@@ -259,22 +259,6 @@
       }
     },
     {
-      "id": "ordinary_hours_premiums",
-      "institute": "overtime",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 19 n. 12: the exclusion of the shift workers from the 8% of Sunday work with compensatory rest. The 8% of a Saturday in a six-day week (art. 5) is modelled (ANCE_SABATO_SEI_GIORNI, HolidayWorkKind.SATURDAY_SIXTH_DAY); the other premiums on ordinary hours are modelled (supplement_bands ANCE_*).",
-      "calculation": "ccnl/edilizia-ance:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the shift-worker exclusion of n. 12 and the Saturday premium of Art. 5.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "edilizia-ance/ordinary_hours_premiums"
-        ]
-      }
-    },
-    {
       "id": "parental_daily_base",
       "institute": "parental_leave",
       "variant": "all",
@@ -359,10 +343,10 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "PART-TIME SUPPLEMENTARY HOURS: the operai are paid the supplementary hours with the hourly quota raised by 20% (Art. 78, pp. 90-91), modelled as the OT_SUPPLEMENTARE band of OvertimeKind.SUPPLEMENTARY; the CCNL gives that pay 'incidenza su tutti gli istituti retributivi legali e contrattuali, indiretti e differiti, compresi le contribuzioni e gli accantonamenti in Cassa Edile', which the engine does not apply (an overtime pay stays out of the TFR base and of the Cassa Edile accruals), nor the 10% of the flexible clauses.",
+      "rule": "PART-TIME SUPPLEMENTARY HOURS: Art. 78 pays horizontal part-time operai 20% on the direct hourly remuneration up to 40 weekly hours. OT_SUPPLEMENTARE applies only to operai; the engine does not apply its incidence to deferred pay, TFR or Cassa Edile accruals. For impiegati Art. 78 also sets 20%, but on different Art. 44 elements, all-inclusive and without TFR incidence; that base is not derived here. The 10% for flexible clauses is separate and not modelled.",
       "calculation": "ccnl/edilizia-ance:coverage.notes",
       "state": "absent",
-      "remediation": "Give the supplementary pay of the operai its incidence on the TFR base and the Cassa Edile accruals, then remove this note.",
+      "remediation": "Model the operai incidence on deferred pay, TFR and Cassa Edile accruals, and the distinct impiegati hourly base before resolving this note.",
       "origin": "seeded",
       "links": {
         "limitations": [

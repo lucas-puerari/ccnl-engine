@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, overtime, sickness, territorial_supplement |
 
-13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -84,6 +84,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 78 proportional part-time pay and Art. 17 holiday treatment, verified on cached 2010 PDF pages 104 and 37. | corrected | Horizontal part-time holiday hours are proportional to agreed weekly hours; unknown eligible days cannot mean zero. Vertical or mixed holiday placement and discontinuous work remain unresolved. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Direct hourly sickness integration and episode-length waiting tiers under Art. 26 of the signed 2010 agreement, PDF pp. 50–51; weekly hours under Art. 5, PDF p. 26. | corrected | The employer pays direct coefficients on a separate hourly base, not a target net of INPS. Waiting coefficients depend on the full episode; six payable days exclude holidays. Cassa Edile accruals and short-episode annual rest remain unmodelled. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 92 first-level failed-title extension, cached ANCE PDF p. 6, both first-level tracks. | confirmed | The maximum extension is one year; failure to obtain the title retains the previous year's pay, while competence consolidation progresses normally. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 19 n. 12 Sunday shift-worker exclusion, PDF page 40 | corrected | The 8% Sunday compensatory-rest premium excludes shift workers. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 78 scope of the supplementary rate for manual and clerical workers. | corrected | Art. 78, printed pp. 90-91: 'Per il personale operaio, le eventuali ore di lavoro supplementare ... maggiorata di una percentuale del 20%'; the subsequent paragraph gives clerical workers a distinct Art. 44 base and excludes TFR. Restricted the existing direct-pay band to manual workers; clerical base and manual-worker accrual incidence remain open. |
 
 ## Salary table
 
@@ -150,13 +152,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the APE as a Cassa Edile payment.
 
-!!! warning "edilizia-ance/ordinary_hours_premiums · overtime · impact yes · open"
-    Art. 19 n. 12: the exclusion of the shift workers from the 8% of Sunday work with compensatory rest. The 8% of a Saturday in a six-day week (art. 5) is modelled (ANCE_SABATO_SEI_GIORNI, HolidayWorkKind.SATURDAY_SIXTH_DAY); the other premiums on ordinary hours are modelled (supplement_bands ANCE_*).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the shift-worker exclusion of n. 12 and the Saturday premium of Art. 5.
-
 !!! warning "edilizia-ance/hardship_allowances · base_salary · impact yes · open"
     Art. 20-21: the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario.
 
@@ -185,13 +180,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the indennità territoriale di settore with a fact naming the province, then remove this note.
 
-!!! warning "edilizia-ance/part_time_supplementary_rate · overtime · impact yes · open"
-    PART-TIME SUPPLEMENTARY HOURS: the operai are paid the supplementary hours with the hourly quota raised by 20% (Art. 78, pp. 90-91), modelled as the OT_SUPPLEMENTARE band of OvertimeKind.SUPPLEMENTARY; the CCNL gives that pay 'incidenza su tutti gli istituti retributivi legali e contrattuali, indiretti e differiti, compresi le contribuzioni e gli accantonamenti in Cassa Edile', which the engine does not apply (an overtime pay stays out of the TFR base and of the Cassa Edile accruals), nor the 10% of the flexible clauses.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Give the supplementary pay of the operai its incidence on the TFR base and the Cassa Edile accruals, then remove this note.
-
 !!! warning "edilizia-ance/cassa_edile_contribution · bilateral_funds · impact yes · open"
     CASSA EDILE CONTRIBUTION: the contribution to the Cassa Edile, set by the provincial agreements and shared by employer and worker (5,47% on the hourly elements in the Agrigento table of the Ministry of Labour of May 2025), is not modelled; only the 18.5% accrual for ferie and gratifica is. The worker's share lowers the net pay.
 
@@ -205,6 +193,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies.
 
     **Remediation:** Model the short-episode annual-rest payment and Cassa Edile accruals on sickness and injury, including site-hour and no-direct-pay rules.
+
+!!! warning "edilizia-ance/part_time_supplementary_rate · overtime · impact yes · open"
+    PART-TIME SUPPLEMENTARY HOURS: Art. 78 pays horizontal part-time operai 20% on the direct hourly remuneration up to 40 weekly hours. OT_SUPPLEMENTARE applies only to operai; the engine does not apply its incidence to deferred pay, TFR or Cassa Edile accruals. For impiegati Art. 78 also sets 20%, but on different Art. 44 elements, all-inclusive and without TFR incidence; that base is not derived here. The 10% for flexible clauses is separate and not modelled.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the operai incidence on deferred pay, TFR and Cassa Edile accruals, and the distinct impiegati hourly base before resolving this note.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-03 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 33 - Tredicesima mensilità (p. 21): "Nel caso di inizio o cessazione del rapporto di lavoro nel corso dell'anno, vanno corrisposti tanti dodicesimi dell'ultima mensilità percepita pari ai mesi di servizio prestati. 3. Le frazioni di mese vengono prese in considerazione solo se superiori a 15 giorni ed in tal caso equiparate ad un mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 12 values read identically by both readings and equal to the file. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Frozen and non-absorbable monthly seniority pay against Arts. 29, 32-33 on scanned PDF pages 20-21. | confirmed | — |
 
 ## Salary table
 
@@ -92,11 +93,11 @@ Latest effective values per level (monthly gross, EUR).
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "scuole-private-agidae/salario_di_anzianita · seniority · impact yes · open"
-    SENIORITY: frozen at 31/12/2005. Art. 29 clause 1 of the CCNL 2024 lists 'salario di anzianità maturato al 31/12/2005' as a retributive element. Art. 32 governs this frozen amount. No new scatti di anzianità accrue after 2005. The current progression mechanism is POC (Progressione Orizzontale di Carriera), calculated as 100% of the 3-year average of PAP productivity awards (Art. 38, in force from 31/08/2024), which is merit-conditioned and excluded from Layer 1. Maximum_count set to 0; amount_by_level set to 0.00 EUR for all levels. Cadence_months set to 1 (minimum legal value; maximum_count=0 so no scatti ever apply; historical quinquennial cadence noted here only).
+    SENIORITY: frozen at 31/12/2005. Art. 29 clause 1 of the CCNL 2024 lists 'salario di anzianità maturato al 31/12/2005' as a retributive element. Art. 32 governs this frozen amount. No new scatti di anzianità accrue after 2005. The current progression mechanism is POC (Progressione Orizzontale di Carriera), calculated as 100% of the 3-year average of PAP productivity awards (Art. 38, in force from 31/08/2024), which is merit-conditioned and excluded from Layer 1. Maximum_count set to 0; amount_by_level set to 0.00 EUR for all levels. Cadence_months set to 1 (minimum legal value; maximum_count=0 so no scatti ever apply; historical quinquennial cadence noted here only). Supply the worker's actual frozen monthly balance as IndividualElement(code='frozen_seniority', monthly=<preserved monthly balance>, absorbable=False, as_of=None, extra_months=True, tfr_relevant=True). Art. 32 explicitly makes it non-revaluable and non-absorbable; Art. 29 includes it in global pay and Art. 33 includes December pay in the thirteenth. Art. 90 includes non-occasional pay in the TFR base. The PDF supplies no universal historical amount.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Let the caller state the salario di anzianità maturato al 31/12/2005 (EarnedIncrements or an individual allowance) and record the limitation.
+    **Remediation:** Supply the worker's actual preserved monthly balance as an individual element; without that fact no historical amount can be inferred.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
