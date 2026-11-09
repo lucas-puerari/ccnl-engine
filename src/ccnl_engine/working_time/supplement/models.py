@@ -122,6 +122,8 @@ class SupplementBand(BaseModel):
         subsectors: Sub-sectors (``EmployerProfile.subsector``) the band is
             reserved to, as an overtime band (Alimentari art. 31 tables).
         categories: Worker categories the band is reserved to.
+        excludes_periodic_shift: Whether this band excludes rotating-shift
+            hours; ``False`` for bands without that restriction.
         provenance: Source of the band.
     """
 
@@ -137,4 +139,5 @@ class SupplementBand(BaseModel):
     levels: tuple[str, ...] = ()
     subsectors: tuple[str, ...] = ()
     categories: tuple[WorkerCategory, ...] = ()
+    excludes_periodic_shift: bool = False
     provenance: RuleProvenance

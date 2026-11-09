@@ -51,6 +51,14 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "work on a public holiday; a Sunday, rest day or compensatory rest is "
         "a fact of the timesheet the event records"
     ),
+    "HolidayWorkEvent.in_periodic_shift": requires_fact(
+        "holiday_work",
+        "event.in_periodic_shift",
+        FactEnforcement.REPORTED,
+        "unknown turnista (rotating-shift worker) status: only a CCNL band "
+        "excluding shift workers requires it when deriving its supplement; "
+        "other bands do not, regardless of the turn of these particular hours",
+    ),
     "ShiftWorkEvent.supplement_amount": absence_is_fact(_FROM_CCNL),
     "ShiftWorkEvent.hours": absence_is_fact(_SUPPLEMENT_HOURS),
     "ShiftWorkEvent.kind": absence_is_fact(
