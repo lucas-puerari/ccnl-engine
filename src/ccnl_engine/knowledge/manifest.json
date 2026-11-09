@@ -1156,7 +1156,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/impianti-sportivi-sport",
       "ruleset_version": "2024.1",
-      "source_hash": "b025a279b4246503a2bc5e874ee07fcec58cd84877c9fd4efe6d8b043ff5a17a",
+      "source_hash": "e76291e824610931a08eb4c9eda4f95c525e5bf7306f4c72914a8ef3016fa87b",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/impianti-sportivi-sport.json.gz"
@@ -3741,7 +3741,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "2ba151e5ebd7c146c5eb5a8efe026f722d45cd3528ff4cfbc211be0e897d3a7b",
+      "source_hash": "290c85a8c79610de635b42ea132d30e5db5584b2b5b76c4e419dcc4590d8b529",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/impianti-sportivi-sport.json.gz",
