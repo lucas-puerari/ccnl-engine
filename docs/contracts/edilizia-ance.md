@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, overtime, sickness, territorial_supplement |
 
-13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -84,6 +84,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 78 proportional part-time pay and Art. 17 holiday treatment, verified on cached 2010 PDF pages 104 and 37. | corrected | Horizontal part-time holiday hours are proportional to agreed weekly hours; unknown eligible days cannot mean zero. Vertical or mixed holiday placement and discontinuous work remain unresolved. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Direct hourly sickness integration and episode-length waiting tiers under Art. 26 of the signed 2010 agreement, PDF pp. 50–51; weekly hours under Art. 5, PDF p. 26. | corrected | The employer pays direct coefficients on a separate hourly base, not a target net of INPS. Waiting coefficients depend on the full episode; six payable days exclude holidays. Cassa Edile accruals and short-episode annual rest remain unmodelled. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 92 first-level failed-title extension, cached ANCE PDF p. 6, both first-level tracks. | confirmed | The maximum extension is one year; failure to obtain the title retains the previous year's pay, while competence consolidation progresses normally. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 19 n. 12 Sunday shift-worker exclusion, PDF page 40 | corrected | The 8% Sunday compensatory-rest premium excludes shift workers. |
 
 ## Salary table
 
@@ -149,13 +150,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the APE as a Cassa Edile payment.
-
-!!! warning "edilizia-ance/ordinary_hours_premiums · overtime · impact yes · open"
-    Art. 19 n. 12: the exclusion of the shift workers from the 8% of Sunday work with compensatory rest. The 8% of a Saturday in a six-day week (art. 5) is modelled (ANCE_SABATO_SEI_GIORNI, HolidayWorkKind.SATURDAY_SIXTH_DAY); the other premiums on ordinary hours are modelled (supplement_bands ANCE_*).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the shift-worker exclusion of n. 12 and the Saturday premium of Art. 5.
 
 !!! warning "edilizia-ance/hardship_allowances · base_salary · impact yes · open"
     Art. 20-21: the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario.

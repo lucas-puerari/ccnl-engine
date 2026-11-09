@@ -214,8 +214,12 @@
         }
       },
       {
+        "kind": "info",
+        "text": "FIRST-LEVEL FAILED-TITLE EXTENSION (Art. 92, p. 6): for up to one year after failing the qualification, use the previous year's apprenticeship pay phase. Set Apprentice.failed_title_extension_start_month to the first month of the extension; leave it unset for ordinary or competence-consolidation pay."
+      },
+      {
         "kind": "simplification",
-        "text": "Art. 54: the 50% of lavoro festivo notturno excludes the work 'compreso in turni periodici', and the table states no rate for it; the engine does not tell a shift worker apart and pays the 50% (supplement_bands ANCE_IMP_FESTIVO_NOTTURNO). The other premiums on ordinary hours are modelled (ANCE_IMP_*).",
+        "text": "Art. 54 excludes turnisti from the 50% night-holiday band; this exclusion is enforced. The same page states a 10% premium for night work in periodic shifts, covered by the existing ANCE_IMP_TURNO_NOTTURNO night_shift band (requested separately). No distinct combined night-holiday periodic-shift rate or stacking rule is stated: zero under the excluded 50% band is provisional, not total remuneration.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -223,12 +227,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Exclude the night holiday work in periodic shifts from the 50% of Art. 54 once a source sets its rate."
+          "remediation": "Determine whether the existing 10% periodic night-shift rate applies to these hours and how it combines with holiday pay before settling total remuneration."
         }
-      },
-      {
-        "kind": "info",
-        "text": "FIRST-LEVEL FAILED-TITLE EXTENSION (Art. 92, p. 6): for up to one year after failing the qualification, use the previous year's apprenticeship pay phase. Set Apprentice.failed_title_extension_start_month to the first month of the extension; leave it unset for ordinary or competence-consolidation pay."
       }
     ]
   },
@@ -2770,7 +2770,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "d386a885d84050aef77b5168468a2939e95f9e0f42f6d52c98456f0898785395",
+    "source_hash": "0924d673671e343e8fada4b7d50d82e50f6d77f9f79df4244be7a5a2cb4fe964",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3141,7 +3141,8 @@
         },
         {
           "code": "ANCE_IMP_FESTIVO_NOTTURNO",
-          "description": "Lavoro festivo notturno escluso quello in turni periodici (art. 54)",
+          "description": "Night holiday work outside periodic shifts (art. 54)",
+          "excludes_periodic_shift": true,
           "work": "night_holiday",
           "rate": {
             "periods": [
@@ -3168,16 +3169,16 @@
               "quote": "lavoro festivo notturno escluso quello compreso in turni periodici............................................................................................. 50%",
               "page": "71"
             },
-            "transformation": "50% on the elements of art. 44; the hours paid apart are not settled, as for ANCE_IMP_FESTIVO.",
+            "transformation": "50% on art. 44 elements outside periodic shifts; zero under this band for turnisti is provisional, not total remuneration. Art. 54 also states 10% for periodic night work (existing night_shift band); no distinct combined night-holiday periodic-shift rate or stacking rule is stated. Hours paid apart outside shifts remain unsettled.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-02T16:41:58Z",
+              "extraction_timestamp": "2026-11-09T17:58:09Z",
               "effective_from": "2025-02-01",
               "verification_status": "verified",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-02T16:41:58Z",
-              "review_id": "2026-11-02-ai-night-holiday"
+              "verified_at": "2026-11-09T17:58:09Z",
+              "review_id": "2026-11-09-gpt-edilizia-ance-impiegati-shift-exclusion"
             }
           }
         }
@@ -3645,6 +3646,29 @@
         "checked": [
           "levels.fixed_allowances",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-09-gpt-edilizia-ance-impiegati-shift-exclusion",
+        "date": "2026-11-09",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "independence": "separate_model",
+        "scope": "Art. 54 (PDF p. 71), night-holiday work in periodic shifts against the 50% band, by a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "Confirmed: the 50% night-holiday band excludes the hours comprised in periodic shifts; ordinary holiday and other bands are unaffected.",
+          "Flagged and corrected: an excluded hour is now provisional, not final at zero, since no combined night-holiday periodic-shift rate is printed; the 10% night-shift band of the same page stays as encoded.",
+          "Confirmed: a missing in_periodic_shift fact blocks only the restricted band."
+        ],
+        "checked": [
+          "work_rules.time_supplements.supplement_bands[ANCE_IMP_FESTIVO_NOTTURNO]"
         ]
       }
     ],

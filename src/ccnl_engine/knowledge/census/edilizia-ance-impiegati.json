@@ -215,10 +215,10 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 54: the 50% of lavoro festivo notturno excludes the work 'compreso in turni periodici', and the table states no rate for it; the engine does not tell a shift worker apart and pays the 50% (supplement_bands ANCE_IMP_FESTIVO_NOTTURNO). The other premiums on ordinary hours are modelled (ANCE_IMP_*).",
+      "rule": "Art. 54 excludes turnisti from the 50% night-holiday band; this exclusion is enforced. The same page states a 10% premium for night work in periodic shifts, covered by the existing ANCE_IMP_TURNO_NOTTURNO night_shift band (requested separately). No distinct combined night-holiday periodic-shift rate or stacking rule is stated: zero under the excluded 50% band is provisional, not total remuneration.",
       "calculation": "ccnl/edilizia-ance-impiegati:coverage.notes",
       "state": "absent",
-      "remediation": "Exclude the night holiday work in periodic shifts from the 50% of Art. 54 once a source sets its rate.",
+      "remediation": "Determine whether the existing 10% periodic night-shift rate applies to these hours and how it combines with holiday pay before settling total remuneration.",
       "origin": "seeded",
       "links": {
         "limitations": [

@@ -44,6 +44,13 @@ _CATALOG = load_capability_catalog(2026)
 
 #: ``requires_fact`` fields without a case, and why.
 _NOT_EXERCISED: dict[str, str] = {
+    "HolidayWorkEvent.in_periodic_shift": (
+        "read only by the ANCE bands that exclude shift workers (operai "
+        "art. 19 Sunday rest, impiegati art. 54 night-holiday); the registry's "
+        "pairs run Concia, whose holiday bands never read it; "
+        "tests/mutation/ccnl_engine/working_time/test_ance_ordinary_premiums.py "
+        "and test_ance_impiegati_premiums.py exercise the stated and unknown fact"
+    ),
     "Employment.level_started_on": (
         "only the Confetra 6J level before 2026 reads this date, but this "
         "registry's period pairs run in 2026 (the bundle has no 2025 tax "
