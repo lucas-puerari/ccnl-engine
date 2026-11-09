@@ -15,10 +15,16 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.employment.category.models import WorkerCategory
+from ccnl_engine.working_time.subsector.rules import with_subsector
 
 
-def _bands(slug: str) -> dict[str, Decimal]:
-    rules = load_ccnl(slug).work_rules
+def _bands(slug: str, subsector: str | None = None) -> dict[str, Decimal]:
+    ccnl = load_ccnl(slug)
+    if subsector is not None:
+        ccnl, missing = with_subsector(ccnl, subsector, WorkerCategory.OPERAIO)
+        assert not missing
+    rules = ccnl.work_rules
     assert rules is not None
     assert rules.time_supplements is not None
     return {
@@ -30,10 +36,11 @@ def _bands(slug: str) -> dict[str, Decimal]:
 
 
 @pytest.mark.parametrize(
-    ("slug", "expected"),
+    ("slug", "subsector", "expected"),
     [
         (
             "bancari-abi",
+            None,
             {
                 "weekday": "0.25",
                 "night": "0.55",
@@ -44,6 +51,7 @@ def _bands(slug: str) -> dict[str, Decimal]:
         ),
         (
             "operai-agricoli-florovivaisti",
+            "agricoli",
             {
                 "weekday": "0.25",
                 "night": "0.40",
@@ -52,7 +60,18 @@ def _bands(slug: str) -> dict[str, Decimal]:
             },
         ),
         (
+            "operai-agricoli-florovivaisti",
+            "florovivaisti",
+            {
+                "weekday": "0.29",
+                "night": "0.48",
+                "holiday": "0.50",
+                "night_holiday": "0.55",
+            },
+        ),
+        (
             "metalmeccanico-artigianato",
+            None,
             {
                 "weekday": "0.25",
                 "night": "0.55",
@@ -63,9 +82,11 @@ def _bands(slug: str) -> dict[str, Decimal]:
         ),
     ],
 )
-def test_bands_of_the_text(slug: str, expected: dict[str, str]) -> None:
-    """Each band of the file is the rate the article prints."""
-    assert _bands(slug) == {k: Decimal(v) for k, v in expected.items()}
+def test_bands_of_the_text(
+    slug: str, subsector: str | None, expected: dict[str, str]
+) -> None:
+    """Each selected sub-sector band is the rate its article prints."""
+    assert _bands(slug, subsector) == {k: Decimal(v) for k, v in expected.items()}
 
 
 def test_artisan_saturday_overtime_doubles_after_three_hours() -> None:

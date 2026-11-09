@@ -16,6 +16,10 @@ The engine derives it only from a sourced rule, never from a default:
   belongs to (``hourly_divisor_weekly_hours``), after ``week_divisors`` swapped
   in its own (Turismo art. 151: 190 for 44 hours, not 172).
 
+A sourced sub-sector hourly minimum instead supplies a direct hourly floor:
+it is never derived by dividing another sub-sector's monthly wage. A date
+without a sourced hourly floor requires the caller's contractual hourly rate.
+
 Otherwise the event needs the caller's value and the run is rejected with
 :class:`~ccnl_engine.errors.MissingRuleError` naming the reason.
 
@@ -37,6 +41,8 @@ from typing import TYPE_CHECKING, NoReturn
 
 from ccnl_engine.errors import InvalidInputError, MissingRuleError
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
+from ccnl_engine.working_time.hourly.base import HourlyBase
+from ccnl_engine.working_time.hourly.direct import direct_hourly_base
 from ccnl_engine.working_time.supplement.models import (
     HourlyBaseMethod,
     IndividualInBase,
@@ -54,45 +60,6 @@ __all__ = ["BASE_PATH", "HourlyBase", "HourlyTerms", "Unstated", "reject_underiv
 
 #: Path of the hourly base method in a CCNL file.
 BASE_PATH = "work_rules.time_supplements.hourly_base_method"
-
-
-@dataclass(frozen=True)
-class HourlyBase:
-    """The hourly rate of a CCNL on one day and what it is made of.
-
-    Attributes:
-        rate: ``monthly / divisor``, unrounded.
-        monthly: Sum of the monthly pay elements.
-        divisor: Hourly divisor of the CCNL in force on the day.
-        method: The elements the CCNL names.
-        components: Each element and its full-time monthly amount.
-        individual: ``included`` when the worker's individual elements
-            are among :attr:`components`, ``not_included`` when the CCNL
-            leaves them out, ``none`` without any.
-    """
-
-    rate: Decimal
-    monthly: Decimal
-    divisor: Decimal
-    method: HourlyBaseMethod
-    components: tuple[tuple[str, Decimal], ...]
-    individual: str = "none"
-
-    def inputs(self) -> dict[str, Decimal | str]:
-        """Return the decision inputs that show how the rate was built.
-
-        Returns:
-            The method, each component, the monthly sum, the divisor, the
-            rate and the individual elements left out.
-        """
-        return {
-            "hourly_base_method": self.method.value,
-            **{f"hourly_base[{name}]": amount for name, amount in self.components},
-            "hourly_base_monthly": self.monthly,
-            "hourly_divisor": self.divisor,
-            "hourly_base_rate": self.rate,
-            "individual_elements": self.individual,
-        }
 
 
 def _components(
@@ -231,7 +198,21 @@ class HourlyTerms:
             The hourly base; the event is rejected (``reject_underived``)
             when it cannot be derived on ``day``, or when the worker has
             individual elements and the CCNL rule on them is not verified.
+            A directly printed hourly floor is used only for dates and levels
+            explicitly present in the sub-sector's table.
         """
+        direct = direct_hourly_base(
+            self.supplements,
+            self.level_code,
+            self.chain,
+            day,
+            field,
+            feature,
+            method,
+            reject_underived,
+        )
+        if direct is not None:
+            return direct
         parts = self._parts(day)
         if isinstance(parts, str):
             reject_underived(field, feature, day, parts)

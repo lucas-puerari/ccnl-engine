@@ -1061,11 +1061,11 @@
       "operai-agricoli-florovivaisti/cpl_minimi_timing",
       "operai-agricoli-florovivaisti/eban_fisa_agrifondo",
       "operai-agricoli-florovivaisti/fixed_term_seniority_element",
-      "operai-agricoli-florovivaisti/florovivaisti_overtime_rates",
       "operai-agricoli-florovivaisti/florovivaisti_sickness_integration",
       "operai-agricoli-florovivaisti/florovivaisti_tables",
       "operai-agricoli-florovivaisti/inail_agricultural_premium",
       "operai-agricoli-florovivaisti/provincial_supplement",
+      "operai-agricoli-florovivaisti/regular_night_shift_and_local_tariffs",
       "operai-agricoli-florovivaisti/super_profile_scatti"
     ],
     "agreement/organizzazioni-allevatori-aia.json": [
@@ -1095,8 +1095,7 @@
     "agreement/poste-italiane-k700.json": [
       "poste-italiane-k700/edr_pre_privatization",
       "poste-italiane-k700/fondo_quiescenza_poste_rates",
-      "poste-italiane-k700/legacy_individual_seniority",
-      "poste-italiane-k700/sickness_comporto_speciale"
+      "poste-italiane-k700/legacy_individual_seniority"
     ],
     "agreement/pubblici-esercizi-fipe-angem-ristorazione-collettiva.json": [
       "pubblici-esercizi-fipe-angem-ristorazione-collettiva/guarantee_premium_2027",

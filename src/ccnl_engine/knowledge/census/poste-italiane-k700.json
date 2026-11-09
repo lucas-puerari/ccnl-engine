@@ -322,22 +322,6 @@
       }
     },
     {
-      "id": "sickness_comporto_speciale",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SICKNESS (Art. 41 II): the comporto speciale of the workers with a serious illness listed in letter A), a disability under L. 68/99 or on life-saving therapy keeps the job for 730 days in the 48 months, with the whole fixed pay for all of them; the engine applies the comporto ordinario (609 days, 502 paid) to every worker.",
-      "calculation": "ccnl/poste-italiane-k700:coverage.notes",
-      "state": "absent",
-      "remediation": "Take the serious illness, disability or life-saving therapy of Art. 41 II as a fact of the episode and apply the 730 days at full pay.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "poste-italiane-k700/sickness_comporto_speciale"
-        ]
-      }
-    },
-    {
       "id": "sunday_holiday_ccnl_clause",
       "institute": "sunday_holiday",
       "variant": "all",

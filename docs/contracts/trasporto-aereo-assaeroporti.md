@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-06-04 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-08 |
 | **Latest salary tranche** | 2027-07-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. G29 - Tredicesima mensilità (p. 43): "Le frazioni di mese pari o superiori a 15 giorni saranno considerate come mese intero.". Match: at_least 15. |
 | 2026-11-05 | claude-opus-5-5 (ai) | Artt. G6 and G23 of the 2025-2027 text (PDF pp. 40-41, 71, 82) and G6 of the 2025 text (p. 20), text layer. | confirmed | Level 9 has no amount in G23 and no worker stays there two years: 6 months under the 2025 G6, no classification at level 9 from 1 March 2026. The 0.00 of the file is the text. |
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the Parte specifica Gestori aeroportuali of 4 June 2025 (text layer). | confirmed | 66 printed monthly values found verbatim in the text and marked verified; 55 allowance values computed from a clause (maneggio denaro, contributo DPI) are not printed and keep their provenance. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Artt. G24-G26 daily presence allowances, 2025 and 2026 PDF pp. 41-42, text layers and SHA256 checks. | confirmed | G24: 2.73 and 3.97 per actual day, both increased by 3.00 from 1 July 2025; excluded from TFR, included in holiday pay from that date.<br>G25: 0.26 per shift-presence day, absorbed by the existing company allowance at the two named employers. G26: 0.21 up to 20 km and 0.26 beyond 20 km per airport-presence day. |
 
 ## Salary table
 
@@ -125,11 +126,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Resolved: level 9 accrues no increment (6 months at level 9 under the 2025 G6, no classification at level 9 from 1 March 2026), read on 2026-11-05.
 
 !!! warning "trasporto-aereo-assaeroporti/role_conditional_allowances · base_salary · impact yes · open"
-    SUPPLEMENTARY ALLOWANCES. The daily allowances of presence (Art. G24: 2.73 or 3.97 EUR, 3 more from 1 July 2025; G25 turno 0.26; G26 campo 0.21 or 0.26) are not modelled: they need the days of presence. The una tantum of 500 EUR of Art. G20 is of July 2025, before the window of the engine. The indennità maneggio denaro (G27) and the DPI contribution (G37 ter) are modelled by role.
+    DAILY PRESENCE ALLOWANCES. Artt. G24-G26 pay the sourced rates per stated presence day in regular runs, selected by shift, airport-distance and company-absorption role facts. Art. G24 also contributes to holiday pay from 1 July 2025, but the engine does not yet calculate its holiday-day portion; the daily rate is not paid for those absent days. The amount of the existing company shift allowance that absorbs G25 at SEA and Aeroporto Friuli Venezia Giulia is not stated by this source and is not paid. The G20 one-off of July 2025 precedes the engine window; G27 cash handling and G37 ter DPI are already role allowances.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the daily allowances of presence of Artt. G24-G26 with the days of presence of the month, then resolve this limitation.
+    **Remediation:** Compute the G24 holiday-day pay for leave taken from July 2025 and source the existing company shift allowance where G25 is absorbed; the regular-run actual-presence daily rates are modelled.
 
 !!! warning "trasporto-aereo-assaeroporti/art_g6_reclassification · base_salary · impact unknown · open"
     ART. G6 RECLASSIFICATION. A supplementary agreement of 23 March 2026 reportedly amended Art. G6 (professional classification). The amendment text was not retrieved; its effect on level codes and salary tables for as_of dates from 2026-03-01 onward is unverified. Hourly divisor taken from Art. G28 text; no official hourly-rate column available in the source for back-calculation cross-check.

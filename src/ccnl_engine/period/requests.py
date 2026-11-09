@@ -2,13 +2,12 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field, replace
+from dataclasses import dataclass, field
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.balance.models import PeriodState
-from ccnl_engine.calendar.tax_year.rules import TaxYearPolicy
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.employer.inputs import EmployerProfile
 from ccnl_engine.employment.fact.inputs import (
@@ -29,13 +28,16 @@ from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
 from ccnl_engine.pension_fund.inputs import PENSION_FUND_TYPES
-from ccnl_engine.period.request.validators import employment_gap
+from ccnl_engine.period.opening.requests import validate_tax_year
+from ccnl_engine.period.request.field_specs import contract_field_specs
+from ccnl_engine.period.request.opening_state import stated_opening
+from ccnl_engine.period.request.validators import check_day_counts, employment_gap
 from ccnl_engine.regime.models import EmploymentSector
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.seniority.inputs import SeniorityFact
 from ccnl_engine.severance.provision.models import TfrFundBalance
 from ccnl_engine.surtax.jurisdiction.types import check_surtax_codes
-from ccnl_engine.validators import FieldSpec, require_instances
+from ccnl_engine.validators import FieldSpec, require_decimal, require_instances
 
 if TYPE_CHECKING:
     from ccnl_engine.calendar.payment.models import PaymentId
@@ -103,7 +105,12 @@ class PeriodCalculationRequest:
         weekly_rest_day: Day of the weekly rest, for a CCNL paying a holiday on it.
         seniority: Recognised seniority, aged to the competence month; ``None``
             unknown, a ``missing_fact`` blocker when the level pays on seniority.
-        roles: Role codes of the role-specific allowances, ``None`` unknown.
+        roles: Role codes of allowances and former-worker pay; ``None`` unknown.
+        presence_days: Count of days actually present at work in the month.
+        site_presence_days: Subset of those days present at the work site.
+            ``None`` means the count is missing, not zero.
+        meal_benefit_days: Verified eligible days for electronic meal vouchers,
+            excluding absences; ``None`` is unknown. Not for paper vouchers.
         individual_elements: Pay agreed above the CCNL minimum, fixed allowances.
         category: Worker category declared on the employment.  ``None``
             takes the category fixed by the level, if any.  Must match the
@@ -139,6 +146,8 @@ class PeriodCalculationRequest:
             judged to miss them.
         tfr_fund: TFR fund at 31 December of the year before, if known;
             ``tfr_treasury_fund`` whether the TFR goes to the Fondo Tesoreria.
+        holiday_company_offset: Company compensation already paid for eligible
+            former-worker holiday supplements of this month; zero means none.
         erc_amount: Annual ERC of the CCNL grafici editoriali, if known;
             ``public_end_of_service`` the regime of a public employee.
         personal_withholdings: Garnishments and salary assignments notified
@@ -170,6 +179,9 @@ class PeriodCalculationRequest:
     level_started_on: date | None = None
     seniority: SeniorityFact | None = None
     roles: frozenset[str] | None = None
+    presence_days: int | None = None
+    site_presence_days: int | None = None
+    meal_benefit_days: int | None = None
     individual_elements: tuple[IndividualElement, ...] = ()
     category: WorkerCategory | None = None
     extra_month_accrual: ExtraMonthAccrual | None = None
@@ -184,6 +196,7 @@ class PeriodCalculationRequest:
     tfr_fund: TfrFundBalance | None = None
     tfr_treasury_fund: bool | None = None
     erc_amount: Decimal | None = None
+    holiday_company_offset: Decimal | None = None
     public_end_of_service: PublicEndOfService | None = None
     personal_withholdings: tuple[PersonalWithholding, ...] = ()
 
@@ -200,6 +213,13 @@ class PeriodCalculationRequest:
         require_instances(
             "PeriodCalculationRequest", self._field_specs(), feature="period_request"
         )
+        require_decimal(
+            self.holiday_company_offset,
+            "PeriodCalculationRequest.holiday_company_offset",
+            feature="period_request",
+            minimum=Decimal(0),
+            optional=True,
+        )
         check_level_start(
             self.level_started_on,
             self.employment_period,
@@ -212,33 +232,14 @@ class PeriodCalculationRequest:
         check_week_days(self.full_time_week_days)
         check_pattern_hours(self.weekly_hours, self.work_pattern)
         check_surtax_codes(self.regione, self.comune_belfiore)
-        competence = date(self.period_id.year, self.period_id.month, 1)
-        tax_year = TaxYearPolicy().attribute(competence, self.payment_date).tax_year
-        opening_year = self.opening_state.tax_year
-        if opening_year is not None and opening_year != tax_year:
-            msg = (
-                f"run {self.period_id.year}-{self.period_id.month:02d} paid on "
-                f"{self.payment_date.isoformat()} belongs to tax year {tax_year} "
-                f"(TUIR art. 51 c. 1), but opening_state is for tax year "
-                f"{opening_year}: open the new tax year with close_tax_year() "
-                "on the closing state of the last run of the previous year"
-            )
-            raise InvalidInputError(msg, feature="tax_year")
-        latest = self.opening_state.cash.obligations.latest_tax_year
-        if latest is not None and latest > tax_year:
-            msg = (
-                f"opening_state carries an obligation opened in {latest}, after "
-                f"the tax year of the run ({tax_year})"
-            )
-            raise InvalidInputError(msg, feature="tax_year")
+        check_day_counts(self)
+        validate_tax_year(
+            self.period_id,
+            self.payment_date,
+            self.opening_state,
+            self.withholding_schedule,
+        )
         object.__setattr__(self, "opening_state", self._stated_opening())
-        schedule = self.withholding_schedule
-        if schedule is not None and schedule.year != tax_year:
-            msg = (
-                f"withholding_schedule.year ({schedule.year}) "
-                f"does not match tax year ({tax_year})"
-            )
-            raise InvalidInputError(msg, feature="tax_year")
 
     def _stated_opening(self) -> PeriodState:
         """Return the opening state with the stated base of other employers.
@@ -247,14 +248,7 @@ class PeriodCalculationRequest:
             ``opening_state``, with the INPS base of other employments of
             ``current_year`` when it is of the competence year.
         """
-        year, facts = self.period_id.year, self.current_year
-        if facts is None or facts.tax_year != year:
-            return self.opening_state
-        accrual = self.opening_state.accrual
-        base = accrual.inps_base(year).stating_other_employers(
-            facts.other_employment_inps_base
-        )
-        return replace(self.opening_state, accrual=accrual.with_inps_base(base))
+        return stated_opening(self)
 
     def _field_specs(self) -> tuple[FieldSpec, ...]:
         """Return the fields an untyped caller may supply with a wrong type.
@@ -269,20 +263,7 @@ class PeriodCalculationRequest:
             ("level_code", self.level_code, str, False),
             ("level_started_on", self.level_started_on, date, True),
             ("opening_state", self.opening_state, PeriodState, False),
-            (
-                "contract_type",
-                self.contract_type,
-                (Permanent, Apprentice, FixedTerm),
-                False,
-            ),
-            ("employer", self.employer, EmployerProfile, False),
-            (
-                "contribution_history",
-                self.contribution_history,
-                ContributionHistory,
-                True,
-            ),
-            ("events", self.events, (tuple, list), False),
+            *contract_field_specs(self),
             ("weekly_hours", self.weekly_hours, WeeklyHours, True),
             ("contributable_hours", self.contributable_hours, ContributableHours, True),
             (
@@ -304,6 +285,7 @@ class PeriodCalculationRequest:
             ("tfr_fund", self.tfr_fund, TfrFundBalance, True),
             ("tfr_treasury_fund", self.tfr_treasury_fund, bool, True),
             ("erc_amount", self.erc_amount, Decimal, True),
+            ("holiday_company_offset", self.holiday_company_offset, Decimal, True),
             (
                 "public_end_of_service",
                 self.public_end_of_service,

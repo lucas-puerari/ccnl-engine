@@ -1,5 +1,5 @@
 <!-- auto-generated -- run: uv run python scripts/documentation/coverage_matrix/generate.py -->
-<!-- generated: 2026-11-08 -->
+<!-- generated: 2026-11-09 -->
 
 # CCNL Coverage
 
@@ -205,11 +205,11 @@ on unverified sources, or be well sourced and not cleared for production.
 | 86 | C011 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | metalmeccanico | ~1,7M | 2025 | ⚠️ | base_salary, leave, overtime, sickness | 90 / 1 / 0 / 0 | 🏭 | 🤖✓ |
 | 87 | IC36 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | Trasporti - Noleggio autobus con conducente | ~5422 | 2025 | ⚠️ | base_salary, seniority | 34 / 33 / 4 / 0 | 🧪 | 🤖 |
 | 88 | D271 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | industria occhialeria e ottica | ~20k | — | ✅ | — | 77 / 11 / 1 / 1 | 🧪 | 🤖 |
-| 89 | A011 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | agricoltura | ~600k | 2026 | ⚠️ | base_salary, bilateral_funds, inail, overtime, seniority, sickness, territorial_supplement | 11 / 6 / 1 / 0 | 🧪 | 🤖 |
+| 89 | A011 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | agricoltura | ~600k | 2026 | ⚠️ | base_salary, bilateral_funds, inail, overtime, seniority, sickness, territorial_supplement | 22 / 6 / 1 / 0 | 🧪 | 🤖 |
 | 90 | A221 | [CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)](organizzazioni-allevatori-aia.md) | Agricoltura | ~2k | 2024 | ⚠️ | base_salary, inps_employer | 40 / 7 / 1 / 0 | 🧪 | 🤖 |
 | 91 | H341 | [CCNL Ortofrutticoli ed Agrumari (Import-Export)](ortofrutticoli-agrumari.md) | ortofrutticoli ed agrumari import-export | ~60000 | 2024 | ⚠️ | base_salary, leave, seniority, sickness | 47 / 0 / 7 / 0 | 🧪 | 🤖 |
 | 92 | E023 | [CCNL Panificazione e Settori Affini — Industria (Assipan/Fiesa)](panificazione-assipan.md) | alimentare | ~20k | 2025 | ✅ | — | 35 / 14 / 1 / 0 | 🧪 | 🤖 |
-| 93 | K700 | [CCNL Poste Italiane S.p.A. (personale non dirigente)](poste-italiane-k700.md) | Servizi postali | ~117k | 2024 | ⚠️ | base_salary, inps_employer, seniority, sickness | 1 / 53 / 1 / 0 | 🧪 | 🤖 |
+| 93 | K700 | [CCNL Poste Italiane S.p.A. (personale non dirigente)](poste-italiane-k700.md) | Servizi postali | ~117k | 2024 | ⚠️ | base_salary, inps_employer, seniority | 1 / 53 / 1 / 0 | 🧪 | 🤖 |
 | 94 | T091 | [CCNL RSA e Strutture Residenziali Socio-Assistenziali (AIOP)](rsa-aiop.md) | residenze sanitarie assistenziali — personale non medico | ~17k | 2012 | ⚠️ | base_salary, seniority | 24 / 8 / 1 / 0 | 🧪 | 🤖 |
 | 95 | G091 | [CCNL Radiotelevisivo — Settore Radiofonico](radiotelevisive-radiofonico.md) | radiotelevisione — settore radiofonico | — | 2026 | ⚠️ | inps_employer, seniority | 13 / 0 / 8 / 0 | 🧪 | 🤖 |
 | 96 | G091 | [CCNL Radiotelevisivo — Settore Televisivo Multimediale](radiotelevisive-televisivo.md) | radiotelevisione — settore televisivo multimediale | — | 2026 | ⚠️ | inps_employer, seniority | 28 / 0 / 11 / 0 | 🧪 | 🤖 |

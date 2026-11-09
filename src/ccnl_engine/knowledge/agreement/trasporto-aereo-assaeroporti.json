@@ -82,7 +82,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SUPPLEMENTARY ALLOWANCES. The daily allowances of presence (Art. G24: 2.73 or 3.97 EUR, 3 more from 1 July 2025; G25 turno 0.26; G26 campo 0.21 or 0.26) are not modelled: they need the days of presence. The una tantum of 500 EUR of Art. G20 is of July 2025, before the window of the engine. The indennità maneggio denaro (G27) and the DPI contribution (G37 ter) are modelled by role.",
+        "text": "DAILY PRESENCE ALLOWANCES. Artt. G24-G26 pay the sourced rates per stated presence day in regular runs, selected by shift, airport-distance and company-absorption role facts. Art. G24 also contributes to holiday pay from 1 July 2025, but the engine does not yet calculate its holiday-day portion; the daily rate is not paid for those absent days. The amount of the existing company shift allowance that absorbs G25 at SEA and Aeroporto Friuli Venezia Giulia is not stated by this source and is not paid. The G20 one-off of July 2025 precedes the engine window; G27 cash handling and G37 ter DPI are already role allowances.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -90,7 +90,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the daily allowances of presence of Artt. G24-G26 with the days of presence of the month, then resolve this limitation."
+          "remediation": "Compute the G24 holiday-day pay for leave taken from July 2025 and source the existing company shift allowance where G25 is absorbed; the regular-run actual-presence daily rates are modelled."
         }
       },
       {
@@ -189,10 +189,250 @@
           "levels.base_salary",
           "levels.fixed_allowances"
         ]
+      },
+      {
+        "id": "2026-11-08-ai-presence-rates",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. G24-G26 daily presence allowances, 2025 and 2026 PDF pp. 41-42, text layers and SHA256 checks.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+            "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+          },
+          {
+            "url": "https://assaeroporti.com/wp-content/uploads/2026/03/CCNL-2025-2027-accessibile.pdf",
+            "sha256": "350fe520f50eda3ac9cf61b4c4ae0d820b0e483332bdc354f8c9944646048c7b"
+          }
+        ],
+        "findings": [
+          "G24: 2.73 and 3.97 per actual day, both increased by 3.00 from 1 July 2025; excluded from TFR, included in holiday pay from that date.",
+          "G25: 0.26 per shift-presence day, absorbed by the existing company allowance at the two named employers. G26: 0.21 up to 20 km and 0.26 beyond 20 km per airport-presence day."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.daily_presence_allowances"
+        ]
       }
     ]
   },
   "parameters": {
+    "daily_presence_allowances": [
+      {
+        "code": "G24_SHIFT_DAILY",
+        "description": "Daily allowance for actual presence on rotating shifts",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2025-07-01",
+              "value": "2.73"
+            },
+            {
+              "valid_from": "2025-07-01",
+              "valid_until": null,
+              "value": "5.73"
+            }
+          ]
+        },
+        "role": "rotating_shift_h16_h24",
+        "tfr_relevant": false,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-trasporto-aereo-assaeroporti-2025",
+              "title": "CCNL Parte Specifica Gestori Aeroportuali 2025-2027",
+              "kind": "associazione",
+              "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+              "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+            },
+            "page": "41",
+            "section": "Art. G24 paragraphs 1, 3 and 4",
+            "quote": "A ciascun dipendente viene corrisposta, per ogni giornata di effettiva presenza al lavoro, una indennità giornaliera di 2,73 euro. A decorrere dal 1° luglio 2025 tale indennità giornaliera verrà incrementata di 3,00 euro."
+          },
+          "transformation": "2.73 + 3.00 = 5.73 EUR per actual presence day on rotating shifts from July 2025; not part of TFR. Leave-pay treatment remains separately limited.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T15:48:19Z",
+            "verified_at": "2026-11-08T15:48:19Z",
+            "verified_by": "claude-opus-5-5",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-presence-rates"
+          }
+        }
+      },
+      {
+        "code": "G24_NONSHIFT_DAILY",
+        "description": "Daily allowance for actual presence outside rotating shifts",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2025-07-01",
+              "value": "3.97"
+            },
+            {
+              "valid_from": "2025-07-01",
+              "valid_until": null,
+              "value": "6.97"
+            }
+          ]
+        },
+        "excluded_role": "rotating_shift_h16_h24",
+        "tfr_relevant": false,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-trasporto-aereo-assaeroporti-2025",
+              "title": "CCNL Parte Specifica Gestori Aeroportuali 2025-2027",
+              "kind": "associazione",
+              "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+              "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+            },
+            "page": "41",
+            "section": "Art. G24 paragraph 2",
+            "quote": "Limitatamente al personale le cui prestazioni non sono regolate da un sistema di turni avvicendati (h16 e h24) e per il quale non trova applicazione quanto previsto al successivo art. G25, la misura giornaliera di cui al precedente comma viene stabilita in euro 3,97. A decorrere dal 1° luglio 2025 tale indennità giornaliera verrà incrementata di 3,00 euro."
+          },
+          "transformation": "3.97 + 3.00 = 6.97 EUR per actual presence day without rotating shifts from July 2025; not part of TFR. Leave-pay treatment remains separately limited.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T15:48:19Z",
+            "verified_at": "2026-11-08T15:48:19Z",
+            "verified_by": "claude-opus-5-5",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-presence-rates"
+          }
+        }
+      },
+      {
+        "code": "G25_SHIFT_DAILY",
+        "description": "Rotating-shift daily allowance unless absorbed by an existing company allowance",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "0.26"
+            }
+          ]
+        },
+        "role": "rotating_shift_h16_h24",
+        "excluded_role": "shift_allowance_absorbed",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-trasporto-aereo-assaeroporti-2025",
+              "title": "CCNL Parte Specifica Gestori Aeroportuali 2025-2027",
+              "kind": "associazione",
+              "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+              "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+            },
+            "page": "42",
+            "section": "Art. G25 paragraph 1 and Nota a verbale",
+            "quote": "viene corrisposta una indennità di € 0,26 per ciascuna giornata di presenza. Nota a verbale Per le Società SEA e Aeroporto Friuli Venezia Giulia S.p.A., l'indennità di cui al presente articolo si intende assorbita nella corrispondente indennità aziendale già in atto."
+          },
+          "transformation": "0.26 EUR for each shift presence day unless the employer's existing shift allowance absorbs this amount; the company amount is not sourced.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T15:48:19Z",
+            "verified_at": "2026-11-08T15:48:19Z",
+            "verified_by": "claude-opus-5-5",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-presence-rates"
+          }
+        }
+      },
+      {
+        "code": "G26_NEAR_DAILY",
+        "description": "Airport presence at most 20 km from city centre",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "0.21"
+            }
+          ]
+        },
+        "role": "airport_within_20km",
+        "day_kind": "site",
+        "exclusive_group": "airport_distance",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-trasporto-aereo-assaeroporti-2025",
+              "title": "CCNL Parte Specifica Gestori Aeroportuali 2025-2027",
+              "kind": "associazione",
+              "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+              "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+            },
+            "page": "42",
+            "section": "Art. G26 paragraph 1",
+            "quote": "Al personale dipendente che presta servizio in aeroporto viene corrisposta, per ogni giornata di presenza, una indennità di campo nelle seguenti misure: ove l'aeroporto disti fino a km 20 dal centro urbano, € 0,21 giornaliere; ove l'aeroporto disti più di km 20 dal centro urbano, € 0,26 giornaliere."
+          },
+          "transformation": "0.21 EUR per airport presence day for a work site at most 20 km from city centre.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T15:48:19Z",
+            "verified_at": "2026-11-08T15:48:19Z",
+            "verified_by": "claude-opus-5-5",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-presence-rates"
+          }
+        }
+      },
+      {
+        "code": "G26_FAR_DAILY",
+        "description": "Airport presence more than 20 km from city centre",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "0.26"
+            }
+          ]
+        },
+        "role": "airport_over_20km",
+        "day_kind": "site",
+        "exclusive_group": "airport_distance",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-trasporto-aereo-assaeroporti-2025",
+              "title": "CCNL Parte Specifica Gestori Aeroportuali 2025-2027",
+              "kind": "associazione",
+              "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+              "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+            },
+            "page": "42",
+            "section": "Art. G26 paragraph 1",
+            "quote": "Al personale dipendente che presta servizio in aeroporto viene corrisposta, per ogni giornata di presenza, una indennità di campo nelle seguenti misure: ove l'aeroporto disti fino a km 20 dal centro urbano, € 0,21 giornaliere; ove l'aeroporto disti più di km 20 dal centro urbano, € 0,26 giornaliere."
+          },
+          "transformation": "0.26 EUR per airport presence day for a work site more than 20 km from city centre.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-08T15:48:19Z",
+            "verified_at": "2026-11-08T15:48:19Z",
+            "verified_by": "claude-opus-5-5",
+            "verification_status": "verified",
+            "review_id": "2026-11-08-ai-presence-rates"
+          }
+        }
+      }
+    ],
     "hourly_divisor": {
       "periods": [
         {
@@ -4544,7 +4784,7 @@
     "effective_until": "2027-12-31",
     "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
     "verification_status": "unverified",
-    "source_hash": "d31e1e5d554be523619dafb2c7bcf138fe3405d9689eb3a7f12832e339e5e8a6",
+    "source_hash": "8be2caaba2025b7e9578ccf101f520684c184532c5ebfc5537de2079aa0c9eb8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

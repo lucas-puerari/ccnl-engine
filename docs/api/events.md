@@ -60,6 +60,13 @@ gross, net and employer cost according to its treatment; see
 
 ::: ccnl_engine.events.SeriousIllnessKind
 
+A sickness episode's `serious_illness_kind` records a documented condition, not
+an agreement-specific eligibility flag. The agreement selects eligible kinds
+through `SicknessCumulation.qualifying_kinds`; with an empty set, the existing
+`serious_illness` flag determines extended limits. For Art. 41 II, use a current
+specialist certificate for a listed grave pathology, certified L. 68/99 civil
+disability, or certified life-saving therapy related to either condition.
+
 ::: ccnl_engine.events.InpsSicknessBase
 
 ::: ccnl_engine.events.SpettacoloSicknessBase

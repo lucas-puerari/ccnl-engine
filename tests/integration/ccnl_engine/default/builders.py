@@ -181,6 +181,14 @@ _TABACCO_3A = replace(
     _UNCATEGORISED, ccnl_id="tabacco-apti", level_code="3A", pension_fund=None
 )
 _ALIFOND = PensionFundEnrolment("ALIFOND", Decimal("0.01"), tfr_to_fund=False)
+#: Confapi January 2026: New Year and Epiphany both fall on weekdays.
+_CONFAPI_HOLIDAYS = replace(
+    _UNCATEGORISED,
+    ccnl_id="metalmeccanico-confapi",
+    level_code="5",
+    roles=frozenset({"former_legal_operaio"}),
+    holiday_company_offset=Decimal(0),
+)
 #: Alimentari 1S, a quadro level paying the IND_FUNZIONE_QUADRO allowance
 #: to the holders of the role ``quadro``.
 _ALIMENTARI_1S = replace(
@@ -495,6 +503,13 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
     "Employment.seniority": (
         _employment_pair(CONCIA_D2, replace(CONCIA_D2, seniority=None), "seniority"),
     ),
+    "Employment.holiday_company_offset": (
+        _employment_pair(
+            _CONFAPI_HOLIDAYS,
+            replace(_CONFAPI_HOLIDAYS, holiday_company_offset=None),
+            "holiday_company_offset",
+        ),
+    ),
     "Employment.roles": (
         _employment_pair(
             replace(_ALIMENTARI_1S, roles=frozenset({"quadro"})),
@@ -603,6 +618,30 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
         ),
         _employment_pair(
             CONCIA_D2, replace(CONCIA_D2, pension_fund=None), "pension_fund"
+        ),
+    ),
+    "PeriodFacts.meal_benefit_days": (
+        DefaultCase(
+            replace(
+                _january(
+                    replace(
+                        CONCIA_D2,
+                        ccnl_id="ced-assoced",
+                        level_code="4",
+                        category=WorkerCategory.IMPIEGATO,
+                    )
+                ),
+                facts=replace(FACTS, meal_benefit_days=0),
+            ),
+            _january(
+                replace(
+                    CONCIA_D2,
+                    ccnl_id="ced-assoced",
+                    level_code="4",
+                    category=WorkerCategory.IMPIEGATO,
+                )
+            ),
+            "meal_benefit_days",
         ),
     ),
     "PeriodFacts.regione": (

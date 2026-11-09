@@ -22,122 +22,21 @@ from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.calendar.payment.models import PaymentId
 from ccnl_engine.collection.validators import items_of_type, tuple_of
 from ccnl_engine.employer.inputs import EmployerProfile
-from ccnl_engine.employment.fact.inputs import ContributableHours
 from ccnl_engine.employment.inputs import Employment
-from ccnl_engine.event.facade import WORK_EVENT_TYPES
-from ccnl_engine.family.inputs import FamilyComposition
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
+from ccnl_engine.period.facts.inputs import PeriodFacts as PeriodFacts  # noqa: PLC0414
 from ccnl_engine.period.requests import PeriodCalculationRequest
 from ccnl_engine.run.models import PayrollRun
 from ccnl_engine.run.types import PeriodId
-from ccnl_engine.surtax.jurisdiction.types import check_surtax_codes
-from ccnl_engine.validators import (
-    require_date,
-    require_instances,
-    require_str,
-)
+from ccnl_engine.validators import require_date, require_instances
 
 if TYPE_CHECKING:
-    from ccnl_engine.event.facade import WorkEvent
     from ccnl_engine.extra_month.models import ExtraMonthAccrual
     from ccnl_engine.run.models import PayrollRunId
     from ccnl_engine.withholding.schedule.models import WithholdingSchedule
 
 __all__ = ["PeriodFacts", "PeriodInput"]
-
-
-@dataclass(frozen=True)
-class PeriodFacts:
-    """Facts that hold in one payroll run.
-
-    Attributes:
-        contributable_hours: Hours worked and paid in the run that are
-            subject to INPS contributions.  Required for domestic CCNLs.
-        ordinary_hours_worked: Ordinary hours actually worked in the month,
-            sickness, ferie, permits, festività and other paid absences
-            left out: the hours a CCNL with ``hourly_pay`` pays its worker
-            (the operai of the building CCNLs) and the base of the Prevedi
-            contractual contribution of an operaio.  ``None`` is unknown:
-            an operaio then has a ``missing_fact`` blocker.  An
-            ``AbsenceEvent`` of a worker paid by the hour is rejected: its
-            hours are already left out of them.
-        events: Variable work events of the run (overtime, absences,
-            bonuses, supplements), each one of the
-            :data:`~ccnl_engine.event.types.WorkEvent` types.  A
-            list is accepted and stored as a tuple.
-        regione: ISO 3166-2:IT region code for the regional surtax, e.g.
-            ``"IT-45"``, ``"IT-BZ"`` / ``"IT-TN"`` for the autonomous
-            provinces.  ``None`` is unknown: when the employer
-            withholds, a ``residence_unknown`` decision and a
-            ``requirement_unresolved`` blocker on
-            ``addizionale_regionale``.
-        comune_belfiore: Belfiore code for the municipal surtax, e.g.
-            ``"F257"``.  ``None`` is unknown: when the employer
-            withholds, a ``residence_unknown`` decision and a
-            ``requirement_unresolved`` blocker on
-            ``addizionale_comunale``.
-        family_composition: Dependents for the Art. 12 TUIR deductions.
-            ``None`` is unknown: when the employer withholds, a
-            ``requirement_unresolved`` blocker on ``family_deductions``;
-            ``FamilyComposition()`` states that there is no dependant.  Its
-            children also select the fringe-benefit threshold: the higher
-            one when a child is within the own-income limit of art. 12
-            c. 2 TUIR (L. 207/2024 art. 1 c. 390).
-
-    Raises:
-        InvalidInputError: When a field is not of its type, an event is not
-            a work event, or a surtax code is malformed.
-    """
-
-    contributable_hours: ContributableHours | None = None
-    ordinary_hours_worked: ContributableHours | None = None
-    events: tuple[WorkEvent, ...] = ()
-    regione: str | None = None
-    comune_belfiore: str | None = None
-    family_composition: FamilyComposition | None = None
-
-    def __post_init__(self) -> None:  # noqa: D105
-        feature = "period_facts"
-        require_instances(
-            "PeriodFacts",
-            (
-                (
-                    "contributable_hours",
-                    self.contributable_hours,
-                    ContributableHours,
-                    True,
-                ),
-                (
-                    "ordinary_hours_worked",
-                    self.ordinary_hours_worked,
-                    ContributableHours,
-                    True,
-                ),
-                (
-                    "family_composition",
-                    self.family_composition,
-                    FamilyComposition,
-                    True,
-                ),
-            ),
-            feature=feature,
-        )
-        require_str(self.regione, "PeriodFacts.regione", feature=feature, optional=True)
-        require_str(
-            self.comune_belfiore,
-            "PeriodFacts.comune_belfiore",
-            feature=feature,
-            optional=True,
-        )
-        events = tuple_of(
-            self.events,
-            "PeriodFacts.events",
-            items_of_type(WORK_EVENT_TYPES, feature=feature, name="a WorkEvent"),
-            feature=feature,
-        )
-        object.__setattr__(self, "events", events)
-        check_surtax_codes(self.regione, self.comune_belfiore)
 
 
 @dataclass(frozen=True)
@@ -277,6 +176,9 @@ class PeriodInput:
             level_started_on=employment.level_started_on,
             seniority=employment.seniority,
             roles=employment.roles,
+            presence_days=facts.presence_days,
+            site_presence_days=facts.site_presence_days,
+            meal_benefit_days=facts.meal_benefit_days,
             individual_elements=employment.individual_elements,
             category=employment.category,
             sector=employment.sector,
@@ -284,6 +186,7 @@ class PeriodInput:
             tfr_fund=employment.tfr_fund,
             tfr_treasury_fund=employment.tfr_treasury_fund,
             erc_amount=employment.erc_amount,
+            holiday_company_offset=employment.holiday_company_offset,
             public_end_of_service=employment.public_end_of_service,
             personal_withholdings=employment.personal_withholdings,
             prior_year=self.prior_year,

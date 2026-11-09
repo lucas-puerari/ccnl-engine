@@ -22,6 +22,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.compensation.presence.issues import presence_issues
 from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
@@ -150,9 +151,17 @@ def roles_issue(ctx: RunContext) -> CalculationIssue | None:
         return None
     competence = ctx.contract.tctx.competence
     gated = sorted(
-        a.code
-        for a in ctx.contract.level.fixed_allowances
-        if a.role is not None and a.monthly.applies_on(competence)
+        [
+            a.code
+            for a in ctx.contract.level.fixed_allowances
+            if a.role is not None and a.monthly.applies_on(competence)
+        ]
+        + [
+            a.code
+            for a in ctx.contract.ccnl.parameters.daily_presence_allowances
+            if (a.role is not None or a.excluded_role is not None)
+            and a.rate.applies_on(competence)
+        ]
     )
     if not gated:
         return None
@@ -283,6 +292,7 @@ def fact_issues(ctx: RunContext) -> tuple[CalculationIssue | None, ...]:
         full_time_issue(ctx),
         no_pay_issue(ctx),
         roles_issue(ctx),
+        *presence_issues(ctx),
         provincial_issue(ctx),
         premium_issue(ctx),
         sector_issue(ctx),
