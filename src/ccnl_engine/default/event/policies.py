@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ccnl_engine.default.event.sickness import SICKNESS_DEFAULTS
+from ccnl_engine.default.event.travel import TRAVEL_DEFAULTS
 from ccnl_engine.default.models import (
     FactEnforcement,
     absence_is_fact,
@@ -135,23 +136,7 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "the engine computes the average rate of the reference income (art. 19 "
         "c. 1 TUIR)"
     ),
-    "TravelAllowanceEvent.daily_amount": absence_is_fact(
-        "the CCNL amount of the hours away; an amount of the employer's "
-        "policy is a fact the event records"
-    ),
-    "TravelAllowanceEvent.hours_away": absence_is_fact(
-        "read only without daily_amount, which then requires it"
-    ),
-    "TravelAllowanceEvent.tfr_base": absence_is_fact(
-        "the TFR rule of the CCNL; without one the event is rejected"
-    ),
-    "TravelAllowanceEvent.abroad": absence_is_fact(
-        "a trasferta in Italy; abroad is a fact the event records"
-    ),
-    "TravelAllowanceEvent.trasfertista": absence_is_fact(
-        "an ordinary trasferta; a worker bound to always different places "
-        "is a fact of the contract"
-    ),
+    **TRAVEL_DEFAULTS,
     "SicknessEpisode.hospital_stays": requires_fact(
         "sickness",
         "event.hospital_stays",

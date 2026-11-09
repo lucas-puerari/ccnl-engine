@@ -186,6 +186,12 @@ class TravelAllowanceEvent:
         trasfertista: Whether the worker is bound by contract to work in
             places always different (art. 51 c. 6 TUIR, 50% exempt):
             not supported, the event is rejected.
+        mission_hours: Total hours of a mission, for CCNLs with mission-duration
+            rather than daily-hours bands; may exceed 24.
+        habitual_travel: Whether duties require habitual travel for CCNL rates;
+            distinct from the fiscal status ``trasfertista``.
+        mission_over_month: Whether the mission exceeds one calendar month;
+            determined by the caller from the actual start and end dates.
 
     Raises:
         InvalidInputError: When a field is invalid, neither
@@ -202,6 +208,9 @@ class TravelAllowanceEvent:
     tfr_base: Literal["none", "whole", "above_exempt"] | None = None
     abroad: bool = False
     trasfertista: bool = False
+    mission_hours: Decimal | None = None
+    habitual_travel: bool = False
+    mission_over_month: bool = False
 
     def __post_init__(self) -> None:  # noqa: D105
         feature = "travel_allowance"
@@ -223,10 +232,27 @@ class TravelAllowanceEvent:
             maximum=Decimal(24),
             optional=True,
         )
-        if self.daily_amount is None and self.hours_away is None:
+        require_decimal(
+            self.mission_hours,
+            f"{name}.mission_hours",
+            feature=feature,
+            minimum=_ZERO,
+            optional=True,
+        )
+        if (
+            self.daily_amount is None
+            and self.hours_away is None
+            and self.mission_hours is None
+        ):
             msg = f"{name}: state daily_amount or the hours_away of the CCNL span"
             raise InvalidInputError(msg, field=f"{name}.hours_away", feature=feature)
-        for flag in ("outside_municipality", "abroad", "trasfertista"):
+        for flag in (
+            "outside_municipality",
+            "abroad",
+            "trasfertista",
+            "habitual_travel",
+            "mission_over_month",
+        ):
             require_bool(getattr(self, flag), f"{name}.{flag}", feature=feature)
         require_choice(
             self.meals_lodging, _MEALS_LODGING, f"{name}.meals_lodging", feature=feature

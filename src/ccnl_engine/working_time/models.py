@@ -2,7 +2,7 @@
 
 from decimal import Decimal
 from enum import StrEnum
-from typing import Literal, Self
+from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
@@ -228,65 +228,3 @@ class TimeSupplements(BaseModel):
             msg = "Ambiguous SupplementBand collisions: " + "; ".join(sorted(clashes))
             raise ValueError(msg)
         return bands
-
-
-class TravelAllowanceBand(BaseModel):
-    """Daily travel allowance of the CCNL for a span of hours away.
-
-    Attributes:
-        hours_from: First hour of the span (at least this many hours).
-        hours_until: Hours the span stays below; ``None`` for no limit.
-        italy: Daily amount of a trasferta in Italy.
-        abroad: Daily amount of a trasferta abroad.
-    """
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    hours_from: Decimal = Field(ge=Decimal(0))
-    hours_until: Decimal | None = None
-    italy: TimeSeries
-    abroad: TimeSeries
-
-    def holds(self, hours: Decimal) -> bool:
-        """Return whether ``hours`` away fall in the span.
-
-        Returns:
-            ``hours_from <= hours < hours_until``.
-        """
-        return hours >= self.hours_from and (
-            self.hours_until is None or hours < self.hours_until
-        )
-
-
-class CcnlTravelAllowance(BaseModel):
-    """CCNL amounts of the daily travel allowance (indennità di trasferta).
-
-    Attributes:
-        bands: Spans of hours away with their amounts; fewer hours than the
-            first span give no allowance.
-        tfr_base: What of the allowance enters the TFR base: ``"none"``,
-            ``"whole"``, or ``"above_exempt"`` (the part above the IRPEF
-            exemption, Logistica art. 62 c. 7).
-        night_allowance: Amount for each day of at least
-            :attr:`night_from_hours` away (Logistica art. 16: 0.93 per
-            trasferta of 18 to 24 hours), pay of the period that enters the
-            TFR base; ``None`` without one.
-        night_from_hours: Hours away from which the night allowance is due.
-        provenance: Source and status of the amounts.
-    """
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    bands: tuple[TravelAllowanceBand, ...] = Field(min_length=1)
-    tfr_base: Literal["none", "whole", "above_exempt"]
-    night_allowance: TimeSeries | None = None
-    night_from_hours: Decimal = Decimal(18)
-    provenance: RuleProvenance | None = None
-
-    def band_of(self, hours: Decimal) -> TravelAllowanceBand | None:
-        """Return the span of ``hours`` away.
-
-        Returns:
-            The band holding ``hours``, ``None`` below the first.
-        """
-        return next((b for b in self.bands if b.holds(hours)), None)
