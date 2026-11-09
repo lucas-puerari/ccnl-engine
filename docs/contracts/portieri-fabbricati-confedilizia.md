@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🟢 Verified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 34 verified / 5 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 37 verified / 5 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-10-30 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 33 values read identically by both readings and equal to the file. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | apprenticeship_24_month_profiles: Art. 36(5–6), PDF p. 36, requires 24 months for B2/B4/C4/D1/D3, with 80/85/90% of the qualified worker’s salario conglobato in equal thirds. The existing professionalizzante_24 track has precisely these destination levels and 0–8/8–16/16–24 month percentages; the engine selects t |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 122 c. 2-3 B5 short-schedule premium, PDF pp. 74-75, and Tabella B p. 10. | corrected | Art. 122 c. 2 raises the B5 salario conglobato by 15% for a weekly schedule below 8 hours; added allowance B5_ORARIO_RIDOTTO with the computed monthly values and resolved the limitation. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Table C and first-employment note on signed renewal PDF p. 11 (OCR checked against cached PDF). | corrected | First-employment C4 monthly rates are 1290.52, 1316.33 and 1342.66 in 2026, 2027 and 2028; maximum 12 months of effective service. Caller selects eligibility and changes to C4 when it ends. |
 
 ## Salary table
 
@@ -79,6 +80,7 @@ Latest effective values per level (monthly gross, EUR).
 | `D3` | D3 — addetto servizi generali (general services worker) | € 1,496.70 | 2028-01-01 |
 | `D4` | D4 — addetto servizi generali (general services worker) | € 1,496.70 | 2028-01-01 |
 | `B4` | B4 — addetto pulizie aree comuni (common areas cleaner) | € 1,396.57 | 2028-01-01 |
+| `C4_PRIMO_IMPIEGO` | C4 first-employment office clerk; caller selects only during the first 12 months of effective service, then switches to C4 | € 1,342.66 | 2028-01-01 |
 | `B5` | B5 — pulitore/lavascale (cleaner/stair cleaner) | € 1,315.60 | 2028-01-01 |
 
 ## Seniority increments
@@ -114,12 +116,19 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "portieri-fabbricati-confedilizia/c4_first_employment_rate · base_salary · impact yes · open"
-    EXCLUDED PROFILES: A1-A9 (portieri con alloggio, 45 h or 48 h/week — divisor would be 195 or 208, incompatible with single CCNLParameters.hourly_divisor; also alloggio in-kind not modelled). C1 and C2 (preposti alla direzione tecnica o amministrativa — Art. 62 comma 2 exempts them from the 40 h ceiling; no fixed hourly divisor applies). C4 primo impiego (entry-rate sub-classification at EUR 1290.52/2026, transitional not permanent level).
+!!! warning "portieri-fabbricati-confedilizia/excluded_profiles_divisor · base_salary · impact yes · open"
+    EXCLUDED PROFILES: A1-A9 (porters with accommodation, 45 or 48 h/week; their divisor and in-kind accommodation are not modeled). C1 and C2 (technical or administrative managers without a fixed hourly ceiling under Art. 62(2)).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the C4 primo impiego entry rate (EUR 1290.52 in 2026) as a separate level or a role-gated variant, or record a limitation.
+    **Remediation:** Model separate schedules and in-kind accommodation before including excluded profiles.
+
+!!! warning "portieri-fabbricati-confedilizia/c4_first_employment_eligibility · base_salary · impact yes · open"
+    FIRST-EMPLOYMENT C4: select C4_PRIMO_IMPIEGO only for a first-employment office clerk during at most 12 months of effective service. The engine cannot measure effective service or verify first employment; the caller must switch to C4 when eligibility expires. Elapsed calendar months are not a substitute for effective service. The published entry-rate table ends on 31 December 2028; the data model requires an open-ended final period, so a mandatory cutoff redirects to regular C4 on 1 January 2029 rather than paying the entry rate after its published end. The source does not specify an entry rate for 2029.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Caller verifies first employment and effective service and switches to C4 after at most 12 months; elapsed-month transition does not measure effective service.
 
 !!! note "portieri-fabbricati-confedilizia/b5_short_schedule_premium · base_salary · impact yes · resolved"
     B5 SHORT SCHEDULE (art. 122 c. 2, PDF p. 75): a B5 worker with stated weekly hours below 8 receives 15% of the salario conglobato as allowance B5_ORARIO_RIDOTTO, proportioned to the hours like the conglobato. The percentage base also counts the worker's individual elements, which art. 122 c. 2 does not name; a worker without stated weekly hours is treated as full time and receives nothing.
