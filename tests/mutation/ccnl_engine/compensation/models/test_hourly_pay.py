@@ -102,6 +102,23 @@ def test_percentage_codes_are_unique() -> None:
         })
 
 
+@pytest.mark.parametrize(
+    "fields",
+    [
+        {"holiday_hours": "8"},
+        {"holiday_provenance": _LOCATED},
+    ],
+)
+def test_holiday_hours_require_their_source(fields: dict[str, Any]) -> None:
+    """The eight-hour holiday quota cannot be published without its evidence."""
+    with pytest.raises(ValidationError, match="holiday hours require"):
+        HourlyPay.model_validate({
+            "categories": ["operaio"],
+            "provenance": _LOCATED,
+            **fields,
+        })
+
+
 def test_categories_are_required() -> None:
     """A clause that pays no category by the hour is rejected."""
     with pytest.raises(ValidationError):

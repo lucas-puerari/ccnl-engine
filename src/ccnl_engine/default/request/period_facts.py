@@ -20,6 +20,11 @@ PERIOD_FACT_DEFAULTS: dict[str, FieldDefault] = {
         "of the building CCNLs are left out, with a missing_fact "
         "ordinary_hours_worked blocker; other CCNLs do not read it",
     ),
+    "PeriodFacts.paid_holiday_days": absence_is_fact(
+        "no eligible holiday days stated: the hourly pay omits the holiday "
+        "treatment unless the caller supplies the count, including locally "
+        "eligible days; no date or suspension eligibility is inferred"
+    ),
     "PeriodFacts.contributable_hours": requires_fact(
         "inps_employee",
         "facts.contributable_hours",

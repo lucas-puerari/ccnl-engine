@@ -41,6 +41,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.agreement.validity.rules import rule_scope
+from ccnl_engine.compensation.proration.hourly import HourlyBasis
 from ccnl_engine.compensation.proration.rules import MonthProration
 from ccnl_engine.decision.models import CalculationIssue, CalculationStatus, IssueCause
 from ccnl_engine.errors import InvalidInputError
@@ -96,33 +97,6 @@ _HOURS_ISSUE = CalculationIssue(
     status=CalculationStatus.INCOMPLETE,
     fact="ordinary_hours_worked",
 )
-
-
-@dataclass(frozen=True)
-class HourlyBasis:
-    """Hours a run pays by the hour and what the monthly pay is divided by.
-
-    Attributes:
-        hours: Ordinary hours worked in the month, ``None`` when the run
-            does not state them.
-        divisor: Hourly divisor of the CCNL; for a part-time worker times
-            the part-time ratio, since the chain is already reduced by it:
-            the hours worked carry the part time.
-    """
-
-    hours: Decimal | None
-    divisor: Decimal
-
-    def apply(self, chain: MonthlyPayChain) -> MonthlyPayChain:
-        """Return the chain paid on the hours worked.
-
-        Returns:
-            Every component times ``hours / divisor``, rounded once; a zero
-            chain without the hours.
-        """
-        if self.hours is None:
-            return chain.scaled(Decimal(0))
-        return chain.prorated(self.hours, self.divisor)
 
 
 @dataclass(frozen=True)
@@ -226,7 +200,10 @@ class RunProration:
         hourly = self.hourly
         if hourly is not None:
             hours = _NONE if hourly.hours is None else hourly.hours
-            return {"ordinary_hours_worked": hours, "hourly_divisor": hourly.divisor}
+            inputs = {"ordinary_hours_worked": hours, "hourly_divisor": hourly.divisor}
+            if hourly.holiday_hours is not None:
+                inputs["paid_holiday_hours"] = hourly.holiday_hours
+            return inputs
         if self.span is None:
             return {}
         first, last = self.span
@@ -400,11 +377,24 @@ def _hourly_basis(
         divisor = divisor * weekly.value / full.value
     stated = request.ordinary_hours_worked
     pay: Rule = (f"{name}:hourly_pay", spec.provenance)
+    holidays = getattr(request, "paid_holiday_days", None)
+    holiday_hours = (
+        None
+        if holidays is None or spec.holiday_hours is None
+        else Decimal(holidays.value) * spec.holiday_hours
+    )
+    holiday_rule: tuple[Rule, ...] = (
+        ()
+        if holidays is None or spec.holiday_provenance is None
+        else ((f"{name}:hourly_pay.holiday_hours", spec.holiday_provenance),)
+    )
     return RunProration(
         span=span,
-        rules=(pay, _hourly_rule(ccnl, name, day)[1]),
+        rules=(pay, _hourly_rule(ccnl, name, day)[1], *holiday_rule),
         source=spec.provenance.location,
-        hourly=HourlyBasis(None if stated is None else stated.value, divisor),
+        hourly=HourlyBasis(
+            None if stated is None else stated.value, divisor, holiday_hours
+        ),
     )
 
 

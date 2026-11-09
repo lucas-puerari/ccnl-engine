@@ -38,6 +38,8 @@ state types.
 
 ::: ccnl_engine.inputs.ContributableHours
 
+::: ccnl_engine.inputs.PaidHolidayDays
+
 ::: ccnl_engine.inputs.SecondLevelAgreement
 
 ::: ccnl_engine.inputs.SecondLevelElement

@@ -28,9 +28,9 @@ from ccnl_engine.employment.week_days.inputs import check_week_days
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
-from ccnl_engine.pension_fund.inputs import PENSION_FUND_TYPES
+from ccnl_engine.period.facts.holiday import PaidHolidayDays
 from ccnl_engine.period.opening.requests import validate_tax_year
-from ccnl_engine.period.request.field_specs import contract_field_specs
+from ccnl_engine.period.request.fields import period_field_specs
 from ccnl_engine.period.request.opening_state import stated_opening
 from ccnl_engine.period.request.validators import employment_gap
 from ccnl_engine.regime.models import EmploymentSector
@@ -38,7 +38,7 @@ from ccnl_engine.run.types import PeriodId
 from ccnl_engine.seniority.inputs import SeniorityFact
 from ccnl_engine.severance.provision.models import TfrFundBalance
 from ccnl_engine.surtax.jurisdiction.types import check_surtax_codes
-from ccnl_engine.validators import FieldSpec, require_decimal, require_instances
+from ccnl_engine.validators import require_decimal, require_instances
 
 if TYPE_CHECKING:
     from ccnl_engine.calendar.payment.models import PaymentId
@@ -94,6 +94,7 @@ class PeriodCalculationRequest:
             contributions (domestic CCNLs).  ``ordinary_hours_worked``: the
             ordinary hours actually worked, which a CCNL with ``hourly_pay``
             pays (operai edili) and the Prevedi operai amount is due on.
+            ``paid_holiday_days`` separately counts eligible paid holidays.
         full_time_weekly_hours: Full-time weekly hours, at least ``weekly_hours``;
             ``full_time_week_days`` its days, 5 or 6; ``rota`` a guard's rota.
         work_pattern: Vertical or mixed part time: weekday hours summing to
@@ -169,6 +170,7 @@ class PeriodCalculationRequest:
     weekly_hours: WeeklyHours | None = None
     contributable_hours: ContributableHours | None = None
     ordinary_hours_worked: ContributableHours | None = None
+    paid_holiday_days: PaidHolidayDays | None = None
     full_time_weekly_hours: WeeklyHours | None = None
     full_time_week_days: int | None = None
     rota: Rota | None = None
@@ -252,46 +254,4 @@ class PeriodCalculationRequest:
         """
         return stated_opening(self)
 
-    def _field_specs(self) -> tuple[FieldSpec, ...]:
-        """Return the fields an untyped caller may supply with a wrong type.
-
-        Returns:
-            One spec per checked field: name, value, types, ``None`` allowed.
-        """
-        return (
-            ("period_id", self.period_id, PeriodId, False),
-            ("payment_date", self.payment_date, date, False),
-            ("ccnl_id", self.ccnl_id, str, False),
-            ("level_code", self.level_code, str, False),
-            ("level_started_on", self.level_started_on, date, True),
-            ("opening_state", self.opening_state, PeriodState, False),
-            *contract_field_specs(self),
-            ("weekly_hours", self.weekly_hours, WeeklyHours, True),
-            ("contributable_hours", self.contributable_hours, ContributableHours, True),
-            (
-                "ordinary_hours_worked",
-                self.ordinary_hours_worked,
-                ContributableHours,
-                True,
-            ),
-            ("full_time_weekly_hours", self.full_time_weekly_hours, WeeklyHours, True),
-            ("work_pattern", self.work_pattern, WorkPattern, True),
-            ("weekly_rest_day", self.weekly_rest_day, Weekday, False),
-            ("rota", self.rota, Rota, True),
-            ("employment_period", self.employment_period, EmploymentPeriod, True),
-            ("seniority", self.seniority, SeniorityFact, True),
-            ("sector", self.sector, EmploymentSector, True),
-            ("prior_year", self.prior_year, PriorYearTaxFacts, False),
-            ("current_year", self.current_year, CurrentYearTaxFacts, True),
-            ("pension_fund", self.pension_fund, PENSION_FUND_TYPES, True),
-            ("tfr_fund", self.tfr_fund, TfrFundBalance, True),
-            ("tfr_treasury_fund", self.tfr_treasury_fund, bool, True),
-            ("erc_amount", self.erc_amount, Decimal, True),
-            ("holiday_company_offset", self.holiday_company_offset, Decimal, True),
-            (
-                "public_end_of_service",
-                self.public_end_of_service,
-                PublicEndOfService,
-                True,
-            ),
-        )
+    _field_specs = period_field_specs

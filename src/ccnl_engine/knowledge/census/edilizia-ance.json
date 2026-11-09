@@ -183,10 +183,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 17 point 3: the festività (8 hours of the point 4 elements, with the 4.95% and the 18.5% on them), which PeriodFacts.ordinary_hours_worked leaves out.",
+      "rule": "Art. 17 point 3: eight hours of pay, with 4.95% and 18.5% on the holiday treatment, are included when the caller supplies paid_holiday_days. The caller must resolve local patron saint dates, employment eligibility and any suspension; no automatic holiday calendar is applied.",
       "calculation": "ccnl/edilizia-ance:coverage.notes",
       "state": "absent",
-      "remediation": "Add the festività hours to the hourly pay of the operai.",
+      "remediation": "Supply eligible paid_holiday_days for the run after resolving local dates and employment eligibility.",
       "origin": "seeded",
       "links": {
         "limitations": [

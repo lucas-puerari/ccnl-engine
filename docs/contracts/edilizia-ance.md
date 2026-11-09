@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-02-21 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -80,6 +80,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Caposquadra (printed p. 89, PDF p. 103) and Art. 24 points 3-4 of the CCNL 19 April 2010, via a research report, quotes checked on the text layer. | corrected | Added the role allowance CAPOSQUADRA (10% of paga base and ex contingenza) in the base of the hourly percentages. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Caposquadra percentage base and qualified-worker floor, CCNL 2010 PDF pp. 49 and 103. | corrected | Calculate the national supplement dynamically and lift base pay to the level 2 ordinary pay where required. Provincial, individual and piecework components remain unavailable. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Caposquadra qualified-worker remuneration integration and Art. 24 points 2–4, signed CCNL 2010 PDF pp. 49 and 103. | corrected | The level-2 shortfall is a separate earning, not a contractual base-pay increase; own individual elements reduce it and enter the special supplement and Art. 17–18 bases. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 17(3), Art. 18 and Art. 5 B holiday treatment in the cached 2010 CCNL, checked against the hourly pay model. | corrected | Eight hours per eligible holiday, including rest-day holidays; percentages also apply to the holiday treatment. Eligibility remains caller-stated. |
 
 ## Salary table
 
@@ -133,11 +134,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Supply provincial and piecework components of the percentage base and assignment duration.
 
 !!! warning "edilizia-ance/holiday_hours · base_salary · impact yes · open"
-    Art. 17 point 3: the festività (8 hours of the point 4 elements, with the 4.95% and the 18.5% on them), which PeriodFacts.ordinary_hours_worked leaves out.
+    Art. 17 point 3: eight hours of pay, with 4.95% and 18.5% on the holiday treatment, are included when the caller supplies paid_holiday_days. The caller must resolve local patron saint dates, employment eligibility and any suspension; no automatic holiday calendar is applied.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the festività hours to the hourly pay of the operai.
+    **Remediation:** Supply eligible paid_holiday_days for the run after resolving local dates and employment eligibility.
 
 !!! warning "edilizia-ance/entry_premium_2022 · base_salary · impact yes · open"
     Verbale of 3 March 2022, Allegato 5: the una tantum premio di ingresso of EUR 100 to operai under 29.
