@@ -187,6 +187,29 @@ class MonthlyPayChain:
             seniority_excluded_from=self.seniority_excluded_from,
         )
 
+    def for_weekly_hours(self, weekly_hours: Decimal | None) -> MonthlyPayChain:
+        """Drop the allowances of a shorter schedule than the worker's.
+
+        Returns:
+            The chain without the allowances whose ``below_weekly_hours`` is
+            not above ``weekly_hours``, or set when the hours are not stated.
+        """
+        kept = tuple(
+            (a, v)
+            for a, v in self.allowances
+            if a.below_weekly_hours is None
+            or (weekly_hours is not None and weekly_hours < a.below_weekly_hours)
+        )
+        if len(kept) == len(self.allowances):
+            return self
+        return MonthlyPayChain(
+            base=self.base,
+            seniority=self.seniority,
+            allowances=kept,
+            limitations=self.limitations,
+            seniority_excluded_from=self.seniority_excluded_from,
+        )
+
     @property
     def allowances_total(self) -> Decimal:
         """Rounded sum of the allowances paid in cash."""
