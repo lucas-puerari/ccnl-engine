@@ -90,7 +90,7 @@ def _history_reach(treatment: CumulativeTreatment, last: date) -> bool:
     known = treatment.worker.known_from
     if unknown == 0 or known is None:
         return False
-    band, cumulation, episode = treatment.band, treatment.cumulation, treatment.episode
+    cumulation, episode = treatment.cumulation, treatment.episode
     reset = cumulation.reset_after_days
     linked = reset is None or (treatment.chain[1] - known).days < reset
     short = cumulation.short_absences
@@ -102,7 +102,9 @@ def _history_reach(treatment: CumulativeTreatment, last: date) -> bool:
     )
     return (
         treatment.comporto_count(last) + unknown > treatment.comporto_limit()
-        or (linked and treatment.chain_days(last) + unknown > band.full_pay_days)
+        or (
+            linked and treatment.chain_days(last) + unknown > treatment.full_pay_limit()
+        )
         or short_unknown
     )
 
@@ -133,13 +135,19 @@ def cumulation_report(
     band = treatment.band
     chain, window = treatment.chain_days(last), treatment.window_days(last)
     first_band = treatment.cumulation.bands[0]
+    first_full = first_band.full_pay_days
+    if first_band.serious_full_pay_days is not None and treatment.special_eligible():
+        first_full = first_band.serious_full_pay_days
+    first_comporto = first_band.comporto_days
+    if first_band.serious_comporto_days is not None and treatment.special_eligible():
+        first_comporto = first_band.serious_comporto_days
     return CumulationReport(
         band=band,
         chain_days=chain,
         window_days=window,
         reduced=_reduced_paid(treatment, span),
         seniority_reach=treatment.worker.seniority is None
-        and (chain > first_band.full_pay_days or window > first_band.comporto_days),
+        and (chain > first_full or window > first_comporto),
         band_changes=treatment.band_on(last) != band,
         history_reach=_history_reach(treatment, last),
         exemption_reach=treatment.short.unknown,

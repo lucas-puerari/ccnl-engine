@@ -71,6 +71,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 98 (printed p. 182), Premesse p. 12 and the renewals of 26 May 2021, 24 July 2025 and 4 June 2026 for amendments to it. | corrected | Art. 98 sets 69.72 (quadri A) and 49.06 (quadri B) from 1 January 1991 and 32.75 for the quadri B of the oreficeria sector, without a date.<br>No renewal of 2021, 2025 or 2026 amends Art. 98 (an independent reading of the three signed texts found none).<br>Art. 50 p. 123 counts the indennità di funzione quadri in the 'retribuzione FONDAPI': added to the base of the fund.<br>An independent reading flagged that the 9th category also holds workers outside the declaratoria of the quadri A: the 69.72 is paid with the role 'quadro' on level 9 too; it confirmed Art. 50 (both contributions on the retribuzione FONDAPI) and found no absorption or 13th-month clause on Art. 98. |
 | 2026-11-08 | gpt-6-sol (ai) | The conto ore of the PAR not taken, the hourly pay of art. 38 and the leave settlement code path, by a separate model session in two rounds. | flagged | Round 1 found the payout blocked by the missing termination basis: the deadline now values the hours by the hour (PermitDeadline.permits_hourly), the termination path unchanged.<br>Round 2 confirmed the year offset (December of the second year after), the hourly valuation as the general hourly pay 'ai fini dei vari istituti contrattuali', and the test amounts (C3 131.27, level 5 132.42).<br>Flagged: the hourly pay of art. 38 adds the hourly elements (incentivi, cottimo), which the engine leaves out; kept under par_conto_ore_hourly_elements. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 32(a,b,c) and holiday-in-absence paragraph, cached PDF pp. 104-105. | confirmed | Art. 32 excludes letter a) (25 April, 1 May and 2 June); the national calendar includes these, so a blanket sickness holiday rule would overpay. Injury and patron saint also remain unmodelled. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 32 and Art. 38 of the 2017 CCNL, physical PDF pages 104 and 112, former-worker holiday hours and December pay. | confirmed | The Sunday daily quota already exists. Former legal operai receive 80 minutes for weekday holidays and January weekend Epiphany, subject to company offset; former Part One workers in service on 2008-12-31 receive a non-absorbable 11h10 December annual payment. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 32 p. 104 and Art. 38 p. 112: local patron, 2009 effective date and termination settlement. | confirmed | Local patron is letter c of Art. 32; the 80-minute entitlement starts in 2009. Art. 38 pays the annual amount with December wages, without an express earlier termination advance. Hourly cottimo and other hourly elements remain outside the computed base. |
 
 ## Salary table
 
@@ -149,11 +151,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the flexibility and hours-bank premiums.
 
 !!! warning "metalmeccanico-confapi/sunday_holiday_and_ex_operai · base_salary · impact yes · open"
-    The festività on a Sunday (1/26) and the 1 h 20' of the ex operai; the superminimo ex Parte prima of 11 h 10' a year (Art. 38).
+    The Sunday holiday quota is modelled. Art. 32 former legal operai hours cover national and stated local patron weekday holidays from 2009; Art. 38 December annual payment is separate. Unstated patron days, hourly elements beyond fixed monthly pay and nonstandard company holiday arrangements not specified by the caller remain outside the calculation.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Pay the Sunday holiday, the 1 h 20' and the Art. 38 superminimo.
+    **Remediation:** State the local patron day and company holiday offset when applicable; supply non-monthly hourly elements when available.
 
 !!! warning "metalmeccanico-confapi/six_day_leave · base_salary · impact yes · open"
     Art. 33: leave on a 6-day week and the transitional extra day.
