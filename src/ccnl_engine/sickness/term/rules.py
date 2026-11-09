@@ -80,6 +80,8 @@ class SicknessTerms:
             deduct nothing from the pay.
         weekly_hours: Contracted weekly hours for a direct hourly sick-pay
             coefficient; ``None`` uses the clause's full-time week.
+        hourly_chain: Full-time hourly wage components before part-time
+            proration; the contracted hours scale these exactly once.
     """
 
     employed: tuple[date, date] | None = None
@@ -97,6 +99,7 @@ class SicknessTerms:
     employee_rate: Decimal = Decimal(0)
     paid_by_the_hour: bool = False
     weekly_hours: Decimal | None = None
+    hourly_chain: MonthlyPayChain | None = None
     category: WorkerCategory | None = None
     monthly_payments: TimeSeries | None = None
     daily_base: RegimeDailyBase | None = None

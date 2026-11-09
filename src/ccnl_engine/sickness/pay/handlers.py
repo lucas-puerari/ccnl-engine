@@ -239,7 +239,9 @@ def episode_pay(
     inps_base = episode_daily_base(episode, terms)
     counted = terms.counted
     before = _quota(chain, counted, quota.divisor)
-    hourly_spec = rules.ccnl.hourly_employer_integration
+    hourly_spec = (
+        rules.ccnl.hourly_employer_integration if terms.paid_by_the_hour else None
+    )
     for segment, unit in zip(segments, units, strict=True):  # pragma: no mutate
         if unit == _ZERO and hourly_spec is None:
             continue

@@ -34,12 +34,12 @@ def hourly_segment_pay(
         The INPS amount unchanged and the direct employer cash for the
         waiting or indemnified segment. Other CCNLs retain their pay.
     """
-    if spec is None or excluded:
+    if spec is None or not terms.paid_by_the_hour or excluded:
         return paid
     direct = hourly_employer_pay(
         spec,
         segment,
-        chain,
+        terms.hourly_chain or chain,
         divisor,
         terms.weekly_hours or spec.standard_weekly_hours,
         frozenset()
