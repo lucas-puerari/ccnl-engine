@@ -31,6 +31,8 @@ from ccnl_engine.sickness.day.rules import (
     classify_days,
     segment_units,
 )
+from ccnl_engine.sickness.pay.daily_share import with_daily_share
+from ccnl_engine.sickness.pay.hourly import hourly_segment_pay
 
 if TYPE_CHECKING:
     from datetime import date
@@ -238,6 +240,9 @@ def episode_pay(
     inps_base = episode_daily_base(episode, terms)
     counted = terms.counted
     before = _quota(chain, counted, quota.divisor)
+    hourly_spec = (
+        rules.ccnl.hourly_employer_integration if terms.paid_by_the_hour else None
+    )
     for segment, unit in zip(segments, units, strict=True):  # pragma: no mutate
         paid = (_ZERO, _ZERO, _ZERO)
         if unit != _ZERO:
@@ -248,22 +253,17 @@ def episode_pay(
             paid = _segment_pay(
                 segment, base, (rules, terms), excluded=excluded, inps_base=inps_base
             )
-        reference_wage = (episode.contractual_daily_wage_by_year or {}).get(
-            segment.first.year, _ZERO
+        paid = hourly_segment_pay(
+            paid,
+            hourly_spec,
+            segment,
+            episode,
+            terms,
+            chain,
+            quota.divisor,
+            excluded=excluded,
         )
-        extra = (
-            money(
-                reference_wage
-                * Decimal((segment.last - segment.first).days + 1)
-                * segment.daily_share
-            )
-            if not excluded
-            else _ZERO
-        )
-        if segment.kind is SickDayKind.CARENZA:
-            paid = paid[0], paid[1], paid[2] + extra
-        else:
-            paid = paid[0], paid[1] + extra, paid[2]
+        paid = with_daily_share(paid, segment, episode, excluded=excluded)
         inps, integration, carenza = (
             inps + paid[0],
             integration + paid[1],

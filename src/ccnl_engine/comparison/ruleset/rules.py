@@ -116,6 +116,14 @@ def _seniority_rules(si: SeniorityIncrements) -> Iterator[DatedRule]:
             "EUR/month",
             ts,
         )
+    for role, by_level in si.amount_by_level_by_role.items():
+        for level_code, ts in by_level.items():
+            yield DatedRule(
+                f"parameters.seniority_increments.amount_by_level_by_role[{role}][{level_code}]",
+                f"Seniority increment - Role {role}, Level {level_code}",
+                "EUR/month",
+                ts,
+            )
     for i, tier in enumerate(si.tiers):
         yield from _tier_rules(tier, i)
     for cat, by_level in si.amount_by_level_by_category.items():

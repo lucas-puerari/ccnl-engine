@@ -38,6 +38,7 @@ def earned_seniority(
     as_of: date,
     *,
     worker_category: WorkerCategory | None,
+    roles: frozenset[str] = frozenset(),
 ) -> Decimal:
     """Return the seniority of a worker who stated the increments matured.
 
@@ -49,6 +50,7 @@ def earned_seniority(
         months_now: Months of service on the run.
         as_of: Date the CCNL amounts are read at.
         worker_category: Category of the worker.
+        roles: Professional profiles of the worker.
 
     Returns:
         The stated amount plus the CCNL amount of the increments matured
@@ -74,6 +76,7 @@ def earned_seniority(
             worker_category=worker_category,
             is_apprentice=False,
             seniority_months=None,
+            roles=roles,
         )
 
     return money(earned.monthly + priced(then + extra) - priced(then))
@@ -88,6 +91,7 @@ def promoted_seniority(
     as_of: date,
     *,
     worker_category: WorkerCategory | None,
+    roles: frozenset[str] = frozenset(),
 ) -> Decimal:
     """Return the seniority of a worker promoted since the last increment.
 
@@ -104,6 +108,7 @@ def promoted_seniority(
         months_now: Months of service on the run.
         as_of: Date the CCNL amounts are read at.
         worker_category: Category of the worker.
+        roles: Professional profiles of the worker.
 
     Returns:
         The increments matured on the promotion at the amounts of
@@ -125,4 +130,5 @@ def promoted_seniority(
         worker_category=worker_category,
         is_apprentice=False,
         seniority_months=None,
+        roles=roles,
     )

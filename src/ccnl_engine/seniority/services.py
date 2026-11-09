@@ -24,7 +24,7 @@ from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.employment.inputs import Apprentice
+from ccnl_engine.employment.inputs import Apprentice, FixedTerm
 from ccnl_engine.seniority.rules import (
     NOT_APPLICABLE_BY_CONTRACT,
     increments_apply,
@@ -158,11 +158,14 @@ def run_seniority(ctx: RunContext) -> RunSeniority:
     return RunSeniority(
         fact=request.seniority,
         months=seniority_months_at(request.seniority, ctx.contract.tctx.competence),
-        increments=increments_apply(
-            rules,
-            level.code,
-            ctx.worker_category,
-            apprentice=isinstance(request.contract_type, Apprentice),
+        increments=(
+            not (rules.permanent_only and isinstance(request.contract_type, FixedTerm))
+            and increments_apply(
+                rules,
+                level.code,
+                ctx.worker_category,
+                apprentice=isinstance(request.contract_type, Apprentice),
+            )
         ),
         gated=tuple(
             a.code
