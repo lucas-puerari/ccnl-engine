@@ -39,6 +39,10 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
     ),
     "OvertimeEvent.hourly_rate": absence_is_fact(_FROM_CCNL),
     "OvertimeEvent.non_occasional": absence_is_fact("occasional overtime"),
+    "OvertimeEvent.banked": absence_is_fact(
+        "no election to bank overtime: pay the ordinary overtime hour and "
+        "its full premium; a rest election must be stated by the caller"
+    ),
     "NightShiftEvent.supplement_amount": absence_is_fact(_FROM_CCNL),
     "NightShiftEvent.hours": absence_is_fact(_SUPPLEMENT_HOURS),
     "NightShiftEvent.before_22": absence_is_fact(
