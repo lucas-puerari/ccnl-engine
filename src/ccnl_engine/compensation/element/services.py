@@ -10,6 +10,10 @@ from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.apprenticeship.dual.rules import dual_chain
 from ccnl_engine.apprenticeship.rules import _apprentice_chain
 from ccnl_engine.compensation.element.rules import _level_chain
+from ccnl_engine.compensation.element.seniority_helpers import (
+    _cohort_rules,
+    _reprices_at_next,
+)
 from ccnl_engine.compensation.element.types import ApprenticeshipScaling
 from ccnl_engine.compensation.entry.rules import entry_level
 from ccnl_engine.compensation.entry.transition import (
@@ -45,13 +49,17 @@ def _seniority_count(
     level: Level,
     seniority_months: int | None,
     worker_category: WorkerCategory | None,
+    contract_type: Permanent | FixedTerm | Apprentice,
 ) -> int:
     """Return the seniority increments matured by the worker.
 
     Returns:
         Zero when the seniority is not declared.
     """
-    if seniority_months is None:
+    if seniority_months is None or (
+        ccnl.parameters.seniority_increments.permanent_only
+        and isinstance(contract_type, FixedTerm)
+    ):
         return 0
     return _resolve_seniority_count(
         ccnl.parameters.seniority_increments,
@@ -164,11 +172,15 @@ def _resolve_chain(
         level = transitioned_level(
             ccnl, level, contract_type, as_of, level_started_on, hired_on=hired_on
         )
+        eligible_for_seniority = not isinstance(contract_type, Apprentice) and not (
+            ccnl.parameters.seniority_increments.permanent_only
+            and isinstance(contract_type, FixedTerm)
+        )
         if (
             seniority is not None
             and seniority.earned is not None
             and seniority_months is not None
-            and not isinstance(contract_type, Apprentice)
+            and eligible_for_seniority
         ):
             with rule_scope(feature="seniority"):
                 stated = earned_seniority(
@@ -179,6 +191,7 @@ def _resolve_chain(
                     seniority_months,
                     as_of,
                     worker_category=worker_category,
+                    roles=roles,
                 )
             chain = replace(chain, seniority=stated)
         elif (
@@ -186,7 +199,7 @@ def _resolve_chain(
             and seniority.promotion is not None
             and seniority_months is not None
             and _reprices_at_next(ccnl)
-            and not isinstance(contract_type, Apprentice)
+            and eligible_for_seniority
         ):
             promotion = seniority.promotion
             with rule_scope(feature="seniority"):
@@ -198,6 +211,7 @@ def _resolve_chain(
                     seniority_months,
                     as_of,
                     worker_category=worker_category,
+                    roles=roles,
                 )
             chain = replace(chain, seniority=stated)
     chain = chain.for_hire_date(hired_on)
@@ -228,7 +242,9 @@ def _contract_chain(
     level = transitioned_level(
         ccnl, level, contract_type, as_of, level_started_on, hired_on=hired_on
     )
-    count = _seniority_count(ccnl, level, seniority_months, worker_category)
+    count = _seniority_count(
+        ccnl, level, seniority_months, worker_category, contract_type
+    )
     scaling: ApprenticeshipScaling | None = None
     if isinstance(contract_type, Apprentice) and contract_type.programme in _DUAL:
         chain = dual_chain(
@@ -271,30 +287,3 @@ def _contract_chain(
             career_months=career_months,
         )
     return chain, scaling
-
-
-def _cohort_rules(ccnl: CCNL, hired_on: date | None) -> CCNL:
-    """Return the CCNL whose apprentice increment is the one of the worker.
-
-    Returns:
-        ``ccnl`` with the cohort amount as the apprentice amount when the
-        worker was hired by the cohort day; ``ccnl`` itself otherwise.
-    """
-    rules = ccnl.parameters.seniority_increments
-    cohort = rules.apprentice_cohort
-    if cohort is None or hired_on is None or hired_on > cohort.in_service_on:
-        return ccnl
-    kept = rules.model_copy(update={"apprentice_amount": cohort.amount})
-    parameters = ccnl.parameters.model_copy(update={"seniority_increments": kept})
-    return ccnl.model_copy(update={"parameters": parameters})
-
-
-def _reprices_at_next(ccnl: CCNL) -> bool:
-    """Return whether the CCNL reprices the increments at the next one.
-
-    Returns:
-        ``True`` when its seniority rules state so; a CCNL without the
-        clause reprices them at once.
-    """
-    rule = ccnl.parameters.seniority_increments.on_promotion
-    return rule is not None and rule.at_next_increment

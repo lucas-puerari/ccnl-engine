@@ -74,6 +74,11 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         _REPORTED,
         "the unique track of the level; several tracks raise an input error",
     ),
+    "Apprentice.failed_title_extension_start_month": absence_is_fact(
+        "ordinary apprenticeship progression, or a competence-consolidation "
+        "extension; a failed-title extension is a fact the caller states, "
+        "and only a sourced first-level track can pay its previous-year phase"
+    ),
     "PeriodInput.facts": _CONTAINER,
     "PeriodInput.prior_year": _CONTAINER,
     "PeriodInput.current_year": _CURRENT_YEAR,
