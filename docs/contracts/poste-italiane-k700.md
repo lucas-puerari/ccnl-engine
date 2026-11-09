@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-23 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | gpt-6-sol (ai) | Annual minimi tabellari of Allegato 9 read from the page image by an independent session of another model without being told the expected value; divisor from art. 65 read by a separate session. | confirmed | 35 monthly minimums equal one twelfth of the printed annual amount (art. 65 I: monthly base pay is one twelfth of the minimum; 13th and 14th are separate payments, arts. 67-68). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Annex 10 first-semester 2024 vacancy arrears, page 178, against the cached PDF. | confirmed | Annex 10: A1 397.79, A2 361.14, B 319.11, C 300.00, D 289.69, E 265.57, F 244.92; one twelfth per first-semester month or fraction exceeding 15 days, permanent staff in service at signing, paid September 2024. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 41 II special comporto eligibility, rolling 48-month count and full fixed pay, PDF pp. 111–113. | confirmed | A documented listed grave pathology, certified L. 68/99 disability or certified related life-saving therapy changes the limit and full-pay days to 730; ordinary days still count in the 48-month window. |
+| 2026-11-09 | claude-opus-5-5 (ai) | RIA and promotion-only absorption, Arts. 63, 67, 68 and 78, pp. 140-142 and 148. | confirmed | — |
 
 ## Salary table
 
@@ -107,11 +108,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the Fondo Quiescenza Poste rates and apply them in place of the industria rates.
 
 !!! warning "poste-italiane-k700/legacy_individual_seniority · seniority · impact yes · open"
-    SIMPLIFICATION: Legacy retribuzione individuale di anzianità (D.P.R. 335/1990) and posizioni economiche differenziate (CCNL 1997) not modeled.
+    Art. 63 legacy individual seniority (RIA) is worker-specific: for a known monthly balance pass IndividualElement(code='legacy_ria', monthly=<worker balance>, absorbable=False, as_of=None, extra_months=True, tfr_relevant=True). Arts. 67–68 include it in both extra months and Art. 78 includes it in TFR. Differentiated economic positions are also worker-specific and belong to both extra months and TFR, but Art. 63 permits absorption only upon promotion to a higher level or pay position, not on every increase of the minimum; generic absorbable=True does not express this condition. No balance can be inferred from the agreement.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Let the caller state the retribuzione individuale di anzianità and the posizioni economiche differenziate (e.g. EarnedIncrements or an individual allowance) and record the limitation.
+    **Remediation:** Supply the worker's RIA as the non-absorbable individual element described above. For differentiated economic positions, obtain the worker's balance and implement promotion-only absorption; do not use generic minimum-increase absorption.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

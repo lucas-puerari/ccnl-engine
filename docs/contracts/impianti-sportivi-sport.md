@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-01-12 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2026-07-01 |
 
 ## Review history
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Art. 105 against the injury integration bands, by a separate model session. | flagged | Confirmed the waiting days at 60%, the bands from the INAIL indemnity and the day mapping from the injury day.<br>Flagged, kept as limitations: the apprentice rates of 80% and 90% are not selected; the general bands apply to them. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 105 - Injury pay, PDF pp. 84-85: the integration targets of apprentices. | confirmed | The clause sets the targets of points 2) and 3) at 80% and 90% for apprentices; point 1) (60% for the waiting days) is unchanged.<br>Encoded as apprentice_bands at offsets 4 and 20, selected when the contract is an apprenticeship. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Local patron saint day in sickness and work injury holiday clauses. | confirmed | Art. 107 - Festività nel periodo di malattia o infortunio (p. 85): Ai sensi della legge 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto a un'indennità integrativa di quella a carico rispettivamente dell'INPS e dell'INAIL da corrispondersi a carico del datore di lavoro in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all'art. 117. The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 116(b) balance versus 14th-derived declining amount, pp. 88-89, 91, 94. | confirmed | — |
 
 ## Salary table
 
@@ -105,11 +106,11 @@ Destination levels: `VI`
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "impianti-sportivi-sport/pre_2015_superminimo_missing · base_salary · impact yes · open"
-    SIMPLIFICATION: Seniority. Il CCNL 2024 non contiene disposizioni su scatti di anzianita (parola 'scatti' assente dall'intero PDF). Regime transitorio: i lavoratori in forza al 22/12/2015 conservano un superminimo personale decrescente fino al 31/10/2029 (Art. 116 norma transitoria). Non modellato. Gli importi kitech (EUR 21.69-28.92) si riferiscono agli scatti ante-2015. Modellato: maximum_count=0. Allowances can depend on the date in service (Allowance.in_service_on, individual) (review of 2026-10-30).
+    Art. 116(b) preserves a non-absorbable superminimo for pre-22 December 2015 hires, separate from the declining 14th-derived element in the transitory rule. With the worker's actual monthly balance, pass IndividualElement(code='legacy_superminimo', monthly=<worker balance>, absorbable=False, as_of=None, extra_months=False, tfr_relevant=True). Art. 117 excludes Art. 116(b) from the pay-of-fact base used for the thirteenth; Art. 131 does not exclude recurring pay from TFR. The amount is not printed and cannot be inferred from a scatti schedule. maximum_count=0 stops new accruals only.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the decreasing personal superminimo of Art. 116 as an allowance with in_service_on 2015-12-22.
+    **Remediation:** Supply the worker's non-absorbable Art. 116(b) monthly balance as an individual element; absent that worker fact, no agreement-wide amount is available.
 
 !!! warning "impianti-sportivi-sport/level_v_first_semester_overpaid · base_salary · impact yes · open"
     SIMPLIFICATION: Apprendistato livello V (Art. 30). Il livello V ha ordine 2 e il livello a ordine 0 non esiste; il primo semestre a 2 livelli sotto non e applicabile. SEMPLIFICAZIONE: primo semestre a 1 livello sotto (VI). L'apprendista percepisce piu del previsto contrattualmente nella prima meta. L'intera durata (36 mesi) e al livello VI.
@@ -147,11 +148,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Resolved: art. 84 covers ordinary night work only; LAVORO_NOTTURNO is not an overtime band, read on 2026-11-05.
 
 !!! warning "impianti-sportivi-sport/pre_2015_fourteenth_missing · base_salary · impact yes · open"
-    SIMPLIFICATION: Quattordicesima transitoria. Art. 116 norma transitoria: i lavoratori in forza al 22/12/2015 ricevono un superminimo personale assorbibile equivalente alla quattordicesima folded-in (rata mensile decrescente fino al 31/10/2029). Per la popolazione corrente (post-2015): 13 mensilita. La quattordicesima residuale per i lavoratori ante-2015 non e modellata; it may be the same element as pre_2015_superminimo_missing, which a reading of Art. 116 settles. Allowances can depend on the date in service (Allowance.in_service_on) (review of 2026-10-30).
+    Art. 116 transitory rule folds the former fourteenth into a separate absorbable monthly superminimo for pre-22 December 2015 hires, decreasing through 31 October 2029; there is no residual separate fourteenth. The agreement has 13 months. The worker's original fourteenth and the dated decreasing/absorption schedule are not printed. IndividualElement(absorbable=True, as_of=<balance date>, extra_months=True, tfr_relevant=True) only reduces on minimum increases and cannot implement an independently declining schedule or determine the worker's balance; even a supplied balance alone is insufficient for future periods.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Read Art. 116 and model the residual quattordicesima as an allowance with in_service_on 2015-12-22, or resolve it as part of pre_2015_superminimo_missing.
+    **Remediation:** Obtain the worker's dated 14th-derived balances and the actual decrease/absorption schedule; model the monthly transition, not a separate fourteenth. No schedule is stated on the cited page.
 
 !!! warning "impianti-sportivi-sport/sickness_net_basis · sickness · impact unknown · open"
     SICKNESS (Art. 103): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.
