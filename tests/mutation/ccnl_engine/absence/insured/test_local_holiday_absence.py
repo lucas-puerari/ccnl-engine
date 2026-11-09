@@ -27,7 +27,14 @@ _PAY = MonthPay(
 )
 
 
-@pytest.mark.parametrize("name", ["ced-assoced", "studi-professionali-confprofessioni"])
+@pytest.mark.parametrize(
+    "name",
+    [
+        "ced-assoced",
+        "istituzioni-servizi-socio-assistenziali-anaste",
+        "studi-professionali-confprofessioni",
+    ],
+)
 def test_maternity_march_patron_top_up(name: str) -> None:
     """March: 31 INPS days x 80 = 2480; 19 March adds 100 - 80 = 20.
 
