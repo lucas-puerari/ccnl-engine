@@ -26,6 +26,7 @@ from ccnl_engine import (
     PeriodInput,
     TaxYearPlan,
 )
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.events import (
     AbsenceEvent,
     AgriculturalDays,
@@ -52,6 +53,8 @@ from ccnl_engine.inputs import (
     PensionFundEnrolment,
     PeriodState,
     PriorYearTaxFacts,
+    SeniorityFact,
+    SenioritySource,
     TerminationCause,
     TfrFundBalance,
     TfrQuotaYtd,
@@ -61,6 +64,7 @@ from ccnl_engine.inputs import (
 )
 from ccnl_engine.leave.balance.models import LeaveAccount, LeaveBalance
 from ccnl_engine.leave.types import LeaveBucket
+from ccnl_engine.period.repositories import BundledKnowledgeRepository
 from tests.integration.ccnl_engine.default.event.builders import (
     absence_cases,
 )
@@ -87,6 +91,7 @@ from tests.knowledge.ccnl_engine.period.builders import (
 if TYPE_CHECKING:
     from collections.abc import Mapping
 
+    from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.events import WorkEvent
 
 __all__ = [
@@ -108,11 +113,13 @@ class DefaultCase:
         names: Detail of the blocker the default adds and the fact lacks,
             ``None`` when the scenario does not reach a branch the fact
             decides (the property alone is checked).
+        engine: Optional engine with an in-memory agreement rule for this pair.
     """
 
     true: Request
     default: Request
     names: str | None = None
+    engine: PayrollEngine | None = None
 
 
 def _january(
@@ -469,6 +476,53 @@ def _on_probation(until: date | None) -> PeriodInput:
 
 
 #: The cases of each ``requires_fact`` field, keyed ``Type.field``.
+class _FractionalCreditRepository(BundledKnowledgeRepository):
+    """Serve the verified share in memory without editing production knowledge."""
+
+    def load_ccnl(self, ccnl_id: str) -> CCNL:
+        """Return the unchanged agreement except for the tested credit rule.
+
+        Returns:
+            The agreement with an in-memory fractional-credit rule.
+        """
+        ccnl = load_ccnl(ccnl_id)
+        if ccnl_id != "metalmeccanico-confapi":
+            return ccnl
+        rules = ccnl.parameters.seniority_increments.model_copy(
+            update={"apprenticeship_credit_share": Decimal("0.65")}
+        )
+        return ccnl.model_copy(
+            update={
+                "parameters": ccnl.parameters.model_copy(
+                    update={"seniority_increments": rules}
+                )
+            }
+        )
+
+
+def _apprenticeship_credit(duration: int | None) -> PeriodInput:
+    """Return a retained worker with stated or unknown past apprenticeship.
+
+    Returns:
+        The January run of the retained worker.
+    """
+    seniority = SeniorityFact(
+        months=0,
+        as_of=date(2026, 1, 1),
+        source=SenioritySource.EMPLOYER_RECORDS,
+        apprenticeship_months=duration,
+    )
+    employment = replace(
+        CONCIA_D2,
+        ccnl_id="metalmeccanico-confapi",
+        level_code="2",
+        category=None,
+        seniority=seniority,
+        employment_period=EmploymentPeriod(date(2026, 1, 1)),
+    )
+    return _january(employment)
+
+
 DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
     "Employment.prior_extra_month_amount": (
         DefaultCase(
@@ -808,6 +862,14 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
     ),
     "BonusEvent.agreement_signed_on": (
         _event_pair(_renewal(), _renewal(None), "agreement_signed_on"),
+    ),
+    "SeniorityFact.apprenticeship_months": (
+        DefaultCase(
+            _apprenticeship_credit(36),
+            _apprenticeship_credit(None),
+            "apprenticeship_months",
+            PayrollEngine(repository=_FractionalCreditRepository()),
+        ),
     ),
     "SeniorityFact.birth_date": tuple(
         DefaultCase(_turismo_young(birth), _turismo_young(None))

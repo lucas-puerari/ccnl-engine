@@ -224,13 +224,20 @@ class TestLoadPortieriFabbricatiConfedilizia:
         ccnl = load_ccnl("portieri-fabbricati-confedilizia")
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 6, 1)) == 173
 
-    def test_portieri_fabbricati_confedilizia_no_fixed_allowances(
+    def test_portieri_fabbricati_confedilizia_only_b5_short_schedule(
         self,
     ) -> None:
-        """All 11 levels have empty fixed_allowances (conglobated model)."""
+        """Conglobated pay: only B5 has an allowance, the art. 122 c. 2 raise."""
         ccnl = load_ccnl("portieri-fabbricati-confedilizia")
-        for lv in ccnl.levels:
-            assert lv.fixed_allowances == ()
+        allowances = {
+            lv.code: tuple(a.code for a in lv.fixed_allowances)
+            for lv in ccnl.levels
+            if lv.fixed_allowances
+        }
+        assert allowances == {"B5": ("B5_ORARIO_RIDOTTO",)}
+        (raise_,) = next(lv for lv in ccnl.levels if lv.code == "B5").fixed_allowances
+        assert raise_.percentage_rate == Decimal("0.15")
+        assert raise_.below_weekly_hours == Decimal(8)
 
     def test_portieri_fabbricati_confedilizia_tax_sector(self) -> None:
         """tax_sector == TERZIARIO."""

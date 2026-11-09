@@ -89,7 +89,7 @@
       },
       {
         "kind": "simplification",
-        "text": "B5 PART-TIME NOTE: Art. 122 provides a 15% hourly premium for B5 (pulitori/lavascale) with weekly schedule below 8 hours. Not modelled (SIMPLIFICATION).",
+        "text": "B5 SHORT SCHEDULE (art. 122 c. 2, PDF p. 75): a B5 worker with stated weekly hours below 8 receives 15% of the salario conglobato as allowance B5_ORARIO_RIDOTTO, proportioned to the hours like the conglobato. The percentage base also counts the worker's individual elements, which art. 122 c. 2 does not name; a worker without stated weekly hours is treated as full time and receives nothing.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -100,7 +100,8 @@
               "B5"
             ]
           },
-          "remediation": "Model the Art. 122 15% hourly premium for B5 with a weekly schedule below 8 hours (e.g. a conditional allowance on part_time_pct below 0.2), or record it as a limitation."
+          "remediation": "Resolved: allowance B5_ORARIO_RIDOTTO gated by Employment.weekly_hours below 8, read on 2026-11-09.",
+          "status": "resolved"
         }
       },
       {
@@ -427,7 +428,59 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "B5_ORARIO_RIDOTTO",
+          "description": "Maggiorazione del 15% del salario conglobato dei B5 con orario settimanale inferiore a 8 ore (art. 122 c. 2)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": "2027-01-01",
+                "value": "189.68"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": "2028-01-01",
+                "value": "193.47"
+              },
+              {
+                "valid_from": "2028-01-01",
+                "valid_until": null,
+                "value": "197.34"
+              }
+            ]
+          },
+          "percentage_rate": "0.15",
+          "below_weekly_hours": "8",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                "kind": "associazione",
+                "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+              },
+              "page": "75",
+              "section": "Art. 122 c. 2-3",
+              "quote": "2. Per i lavoratori con profili professionali B5) e con orario di lavoro settimanale inferiore a 8 ore, il salario conglobato di cui al comma 1 lett.a) sarà maggiorato del 15%. 3. Per il calcolo della retribuzione gli importi di cui sopra saranno riportati al valore orario, utilizzando il coefficiente 173, di cui all'art. 117, comma 3, e moltiplicati per le ore da retribuire."
+            },
+            "transformation": "A B5 worker whose stated weekly hours are below 8 (exactly 8 excluded) receives 15% of the monthly salario conglobato (art. 122 c. 1 lett. a), not of the scatti or other allowances; the monthly values are 15% of the printed Tabella B conglobato (1264.51, 1289.80, 1315.60) and are proportioned with the conglobato to the stated hours over 40 (173 monthly hours).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T22:23:50Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T22:23:50Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-portieri-b5-short-schedule"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1754,7 +1807,7 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "6ddf62e4529d6734da91636cb37a2835513719e29f0ed5c7181ac183fa6686d2",
+    "source_hash": "af46c3d236f65d91df2a1612ac1888ac3a33d0858b98c5e30ea83a82759fd097",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1994,6 +2047,28 @@
         ],
         "independence": "separate_model",
         "checked": [
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-portieri-b5-short-schedule",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 122 c. 2-3 B5 short-schedule premium, PDF pp. 74-75, and Tabella B p. 10.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          }
+        ],
+        "findings": [
+          "Art. 122 c. 2 raises the B5 salario conglobato by 15% for a weekly schedule below 8 hours; added allowance B5_ORARIO_RIDOTTO with the computed monthly values and resolved the limitation."
+        ],
+        "checked": [
+          "levels[B5].fixed_allowances[B5_ORARIO_RIDOTTO]",
           "coverage.notes"
         ]
       }
