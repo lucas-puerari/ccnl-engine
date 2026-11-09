@@ -8,24 +8,24 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
-| pubblica-amministrazione | 14 | 7 548 000 | 14 | 231 | 182 | 0 | `funzioni-centrali-aran` |
+| pubblica-amministrazione | 14 | 7 548 000 | 14 | 231 | 188 | 0 | `funzioni-centrali-aran` |
 | terziario | 46 | 5 257 055 | 53 | 971 | 1714 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 49 | 4 969 900 | 155 | 1173 | 2293 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 61 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 151 | 309 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 12 | 95 | 250 | 5 | `operai-agricoli-florovivaisti` |
-| edilizia | 4 | 710 000 | 2 | 93 | 124 | 0 | `edilizia-ance` |
+| edilizia | 4 | 710 000 | 2 | 93 | 131 | 0 | `edilizia-ance` |
 | credito | 3 | 348 000 | 2 | 19 | 99 | 0 | `bancari-abi` |
 
 ## pubblica-amministrazione
 
 | CCNL | Workers | Readiness | Weak | Derived | Verified | Source | Owner | Next review |
 |---|---:|---|---:|---:|---:|---|---|---|
-| [`universita-aran`](../contracts/universita-aran.md) | 1 200 000 | exploratory | 5 | 4 | 20 | party or official | none | none |
+| [`universita-aran`](../contracts/universita-aran.md) | 1 200 000 | exploratory | 5 | 4 | 22 | party or official | none | none |
 | [`afam-aran`](../contracts/afam-aran.md) | 1 200 000 | exploratory | 2 | 13 | 24 | party or official | none | none |
-| [`enti-ricerca-aran`](../contracts/enti-ricerca-aran.md) | 1 200 000 | exploratory | 1 | 4 | 32 | party or official | none | none |
+| [`enti-ricerca-aran`](../contracts/enti-ricerca-aran.md) | 1 200 000 | exploratory | 1 | 4 | 34 | party or official | none | none |
 | [`istruzione-ricerca-aran`](../contracts/istruzione-ricerca-aran.md) | 1 200 000 | exploratory | 1 | 41 | 48 | party or official | none | none |
-| [`universita-tecnologi-aran`](../contracts/universita-tecnologi-aran.md) | 1 200 000 | exploratory | 1 | 4 | 2 | party or official | none | none |
+| [`universita-tecnologi-aran`](../contracts/universita-tecnologi-aran.md) | 1 200 000 | exploratory | 1 | 4 | 4 | party or official | none | none |
 | [`sanita-aran`](../contracts/sanita-aran.md) | 580 000 | reviewed | 0 | 8 | 16 | party or official | maintainer | 2027-01-31 |
 | [`funzioni-locali-aran`](../contracts/funzioni-locali-aran.md) | 400 000 | reviewed | 0 | 21 | 14 | party or official | maintainer | 2027-01-31 |
 | [`funzioni-centrali-aran`](../contracts/funzioni-centrali-aran.md) (anchor) | 250 000 | reviewed | 0 | 5 | 26 | party or official | maintainer | 2027-12-31 |
@@ -183,7 +183,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`edilizia-ance`](../contracts/edilizia-ance.md) (anchor) | 550 000 | reviewed | 0 | 7 | 47 | party or official | maintainer | 2027-02-28 |
 | [`edilizia-cooperative-ancpl`](../contracts/edilizia-cooperative-ancpl.md) | 90 000 | exploratory | 1 | 33 | 25 | party or official | none | none |
 | [`edilizia-pmi-confapi-aniem`](../contracts/edilizia-pmi-confapi-aniem.md) | 70 000 | exploratory | 1 | 30 | 15 | party or official | maintainer | 2027-03-01 |
-| [`edilizia-ance-impiegati`](../contracts/edilizia-ance-impiegati.md) | none | production | 0 | 23 | 37 | party or official | maintainer | 2027-02-28 |
+| [`edilizia-ance-impiegati`](../contracts/edilizia-ance-impiegati.md) | none | production | 0 | 23 | 44 | party or official | maintainer | 2027-02-28 |
 
 ## credito
 

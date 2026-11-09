@@ -692,7 +692,6 @@
     "agreement/ced-assoced.json": [
       "ced-assoced/conditional_allowances_title_xxiii",
       "ced-assoced/injury_rate_text_conflict",
-      "ced-assoced/local_holiday_during_absence",
       "ced-assoced/maternity_holiday_scope",
       "ced-assoced/terziario_inps_rates_unverified"
     ],
@@ -810,7 +809,6 @@
       "edilizia-ance/entry_premium_2022",
       "edilizia-ance/hardship_allowances",
       "edilizia-ance/holiday_hours",
-      "edilizia-ance/ordinary_hours_premiums",
       "edilizia-ance/part_time_supplementary_rate",
       "edilizia-ance/provincial_evr",
       "edilizia-ance/provincial_meals_transport_travel",
@@ -843,7 +841,7 @@
       "edilizia-pmi-confapi-aniem/territorial_sector_allowance"
     ],
     "agreement/enti-ricerca-aran.json": [
-      "enti-ricerca-aran/perseo_sirio_not_modelled",
+      "enti-ricerca-aran/perseo_sirio_notional_accrual",
       "enti-ricerca-aran/research_allowances_missing",
       "enti-ricerca-aran/shared_rules_unchecked"
     ],
@@ -901,7 +899,6 @@
     "agreement/impianti-sportivi-sport.json": [
       "impianti-sportivi-sport/level_v_first_semester_overpaid",
       "impianti-sportivi-sport/level_vi_whole_track_at_destination",
-      "impianti-sportivi-sport/local_holiday_during_absence",
       "impianti-sportivi-sport/pre_2015_fourteenth_missing",
       "impianti-sportivi-sport/pre_2015_superminimo_missing",
       "impianti-sportivi-sport/sickness_net_basis"
@@ -1010,7 +1007,7 @@
       "metalmeccanico-confapi/child_sickness_and_oncological_permits",
       "metalmeccanico-confapi/elemento_perequativo",
       "metalmeccanico-confapi/flexibility_and_hours_bank",
-      "metalmeccanico-confapi/holiday_during_injury",
+      "metalmeccanico-confapi/holiday_outside_calendar",
       "metalmeccanico-confapi/ipca_top_up",
       "metalmeccanico-confapi/ordinary_hours_premiums",
       "metalmeccanico-confapi/par_conto_ore_hourly_elements",
@@ -1049,7 +1046,8 @@
       "noleggio-autobus-conducente-anav/apprentice_seniority",
       "noleggio-autobus-conducente-anav/salary_tables_from_proxy",
       "noleggio-autobus-conducente-anav/seniority_from_ic35",
-      "noleggio-autobus-conducente-anav/t0_table_back_calculated"
+      "noleggio-autobus-conducente-anav/t0_table_back_calculated",
+      "noleggio-autobus-conducente-anav/una_tantum_effective_work_months"
     ],
     "agreement/ooss-unsic-confsal.json": [
       "ooss-unsic-confsal/apprentice_seniority",
@@ -1168,7 +1166,6 @@
     ],
     "agreement/studi-professionali-confprofessioni.json": [
       "studi-professionali-confprofessioni/intermittent_availability",
-      "studi-professionali-confprofessioni/local_holiday_during_absence",
       "studi-professionali-confprofessioni/maternity_holiday_scope",
       "studi-professionali-confprofessioni/rolling_comporto_365_day_boundary",
       "studi-professionali-confprofessioni/unused_leave_hours"
@@ -1182,7 +1179,6 @@
     ],
     "agreement/terziario-confesercenti.json": [
       "terziario-confesercenti/apprentice_sickness",
-      "terziario-confesercenti/local_holiday_during_absence",
       "terziario-confesercenti/provincial_third_elements",
       "terziario-confesercenti/sales_operators",
       "terziario-confesercenti/sickness_net_basis",
@@ -1245,11 +1241,11 @@
       "uneba-uneba/ermt_territorial"
     ],
     "agreement/universita-aran.json": [
-      "universita-aran/perseo_sirio_not_modelled",
+      "universita-aran/perseo_sirio_notional_accrual",
       "universita-aran/shared_rules_unchecked"
     ],
     "agreement/universita-tecnologi-aran.json": [
-      "universita-tecnologi-aran/perseo_sirio_not_modelled",
+      "universita-tecnologi-aran/perseo_sirio_notional_accrual",
       "universita-tecnologi-aran/shared_rules_unchecked",
       "universita-tecnologi-aran/tecnologi_allowances"
     ],
