@@ -138,11 +138,11 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "logistica-trasporto-confetra-viaggiante/holiday_during_injury · sickness · impact yes · open"
-    Art. 71(5): the INAIL holiday top-up during injury and the local patron saint holiday are not calculated. Art. 60(2-3) additionally pays a coincident Saturday, Sunday or other holiday during sickness; this separate additional payment is not calculated.
+    Art. 71 c. 5 (Sezione seconda) tops up reduced sickness or injury pay on letter b/c holidays only for workers of employers that applied the former Magazzini Generali agreement before 29 January 2005; employer eligibility is not stated, so this top-up is not calculated. Separately, art. 60 c. 2-3 pays an additional 1/22 of monthly global pay when a letter b holiday coincides with Saturday, Sunday or another holiday, including during injury or sickness; this additional payment is not calculated.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Calculate the INAIL offset, local patron saint and the distinct coincident-holiday payment.
+    **Remediation:** Establish the employer's eligibility for Sezione seconda before applying art. 71 c. 5; separately calculate the art. 60 c. 2-3 coincident-holiday 1/22 payment.
 
 !!! warning "logistica-trasporto-confetra-viaggiante/travelling_allowances · base_salary · impact yes · open"
     NOT MODELLED: the night allowance of art. 16 for a trasferta under 18 hours overlapping the night hours (paid only from 18 hours) and the 4.5 days of paid leave of art. 11 c. 11. The trasferta of art. 62 and the night allowance of a trasferta of 18-24 hours are paid by TravelAllowanceEvent; the 50% on Sunday and holiday work of art. 12 c. 4 by the supplement bands VIAG_DOMENICA and VIAG_FESTIVO.

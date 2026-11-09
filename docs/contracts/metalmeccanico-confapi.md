@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2017-07-03 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -73,6 +73,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 32(a,b,c) and holiday-in-absence paragraph, cached PDF pp. 104-105. | confirmed | Art. 32 excludes letter a) (25 April, 1 May and 2 June); the national calendar includes these, so a blanket sickness holiday rule would overpay. Injury and patron saint also remain unmodelled. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 32 and Art. 38 of the 2017 CCNL, physical PDF pages 104 and 112, former-worker holiday hours and December pay. | confirmed | The Sunday daily quota already exists. Former legal operai receive 80 minutes for weekday holidays and January weekend Epiphany, subject to company offset; former Part One workers in service on 2008-12-31 receive a non-absorbable 11h10 December annual payment. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 32 p. 104 and Art. 38 p. 112: local patron, 2009 effective date and termination settlement. | confirmed | Local patron is letter c of Art. 32; the 80-minute entitlement starts in 2009. Art. 38 pays the annual amount with December wages, without an express earlier termination advance. Hourly cottimo and other hourly elements remain outside the computed base. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 32 pp. 104-105, letter b and c holidays during reduced sickness, maternity and injury pay. | confirmed | Letter a is excluded; 4 October is absent; letter c includes the stated local patron day. Maternity local patron and substitute days remain outside its holiday calendar. |
 
 ## Salary table
 
@@ -213,12 +214,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add the hourly elements of art. 38 to the hourly pay of the PAR, and source the PAR left at the end of the employment.
 
-!!! warning "metalmeccanico-confapi/holiday_during_injury · sickness · impact yes · open"
-    Art. 32 tops up reduced sickness, maternity and injury treatment only on holidays in letters b) and c). The national calendar also includes the excluded letter a) holidays (25 April, 1 May and 2 June). A blanket sickness_rules.holiday would overpay those days, so the sickness holiday top-up is not calculated. The injury (INAIL) and local patron saint treatments are also not calculated.
+!!! warning "metalmeccanico-confapi/holiday_outside_calendar · sickness · impact yes · open"
+    Art. 32(b,c) holiday top-ups are modelled for sickness, compulsory maternity and injury, excluding letter a) and 4 October. Stated local patron days are covered for sickness and injury. Not calculated: the maternity top-up on a local patron day, the locally agreed substitute for the patron day, and Rome-only 29 June, which are outside the national holiday calendar.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Support contract-scoped holiday dates before implementing the sickness and injury top-ups of art. 32(b,c).
+    **Remediation:** Calculate the maternity top-up on stated patron days, the agreed substitute patron holiday and Rome-only 29 June when the local facts are available.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
