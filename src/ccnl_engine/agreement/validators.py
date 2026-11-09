@@ -78,6 +78,14 @@ def _check_flat_level_codes(existing: set[str], si: SeniorityIncrements) -> None
 
 
 def _check_category_level_codes(existing: set[str], si: SeniorityIncrements) -> None:
+    for role, amounts in si.amount_by_level_by_role.items():
+        for code in amounts:
+            if code not in existing:
+                msg = (
+                    f"seniority_increments.amount_by_level_by_role[{role!r}] "
+                    f"references level code {code!r} which does not exist in levels"
+                )
+                raise ValueError(msg)
     for cat, cat_amounts in si.amount_by_level_by_category.items():
         for code in cat_amounts:
             if code not in existing:

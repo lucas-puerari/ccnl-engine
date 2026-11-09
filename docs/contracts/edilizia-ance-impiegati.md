@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, overtime, seniority, sickness, territorial_supplement |
 
-11 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+10 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -69,6 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Art. 66 of the CCNL edilizia industria 2010 (PDF p. 78). A separate model session rejected a first encoding (pay counted over the 30-month window); the merged per-illness encoding was checked again by a separate session (.private flv2), which confirmed the bands and kept the three extra months of several illnesses as unmodelled. | flagged | Replaced the six-month rule with the seniority bands of one illness and the 30-month comporto of art. 66.<br>The separate session read the 30-month periods as job retention only: the pay of the three extra months of several illnesses is left as a limitation. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 43 (PDF p. 66) and art. 61 (PDF p. 75) of the CCNL 19 April 2010, the renewals of 2014, 2018, 2022 and 2025 for amendments, and the Sunday-holiday code of the engine, by a separate model session. | flagged | Confirmed: the quota of '11-04' at 1/25 is paid on the first Sunday of every November, a second quota when 1 November is that Sunday (art. 61 and art. 43); no renewal amends art. 43.<br>Flagged, kept under november_4_holiday: a worker not employed on the first Sunday of November gets no quota; the 'retribuzione stessa' is read as the monthly pay of the chain. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 65, 44, 63, 72 and 76 of the CCNL 19 April 2010 against the loyalty premium encoding, by a separate model session. | flagged | Confirmed: one month of the art. 44 elements 1-15 on the hire anniversary after 20 years of uninterrupted actual service, then every year; impiegati and quadri (art. 76, with the function allowance); in the TFR base (art. 72); out of the 13th (art. 63, item 18 of art. 44).<br>Flagged, kept in the limitation loyalty_premium: the run chain stands for the elements 1-15, the employment start for the qualifying service, the anniversary month for the date; the pro rata at a non-disciplinary dismissal is not paid. |
+| 2026-11-09 | gpt-6-sol (ai) | Art. 92 (PDF pp. 4-6), extension of a first-level apprenticeship after a failed qualification, by a separate model session. | corrected | Confirmed: the employer may extend the contract up to one year; only when the title is not obtained does the pay stay at the previous contract year (p. 6).<br>Confirmed: the previous year is read by semester (85% at month 36, 90% at month 42 for the qualifica track).<br>Corrected: an extension starting before the end of the original contract of the track (p. 4) was accepted and could underpay; it is now rejected. |
 | 2026-11-09 | gpt-6-sol (ai) | Art. 54 (PDF p. 71), night-holiday work in periodic shifts against the 50% band, by a separate model session. | corrected | Confirmed: the 50% night-holiday band excludes the hours comprised in periodic shifts; ordinary holiday and other bands are unaffected.<br>Flagged and corrected: an excluded hour is now provisional, not final at zero, since no combined night-holiday periodic-shift rate is printed; the 10% night-shift band of the same page stays as encoded.<br>Confirmed: a missing in_periodic_shift fact blocks only the restricted band. |
 
 ## Salary table
@@ -179,13 +180,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Determine whether the existing 10% periodic night-shift rate applies to these hours and how it combines with holiday pay before settling total remuneration.
-
-!!! warning "edilizia-ance-impiegati/dual_apprenticeship_prorogation · base_salary · impact yes · open"
-    FIRST-LEVEL PROROGATION (Art. 92, ANCE text of 4 April 2019, p. 6): 'Per l'apprendista che invece non abbia conseguito il titolo di istruzione, in caso di proroga il trattamento economico è quello dell'anno precedente'. The engine pays the semester of Apprentice.months_elapsed: a prorogued apprentice who failed the title is paid the next semester's percentage.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Let the caller state a failed title, and pay the previous year's percentage.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -383,6 +377,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     IMPIEGATI E QUADRI: fourteen monthly payments, the tredicesima (Art. 63, by 20 December) and the premio annuo of one month (Art. 64, paid on 30 June for the service from 1 July to 30 June, stored as 28 June). Five biennial scatti (Art. 49). Quadri: indennità di funzione of EUR 140 a month (Art. 76), by Employment.roles 'quadro'. Prevedi: a monthly contractual contribution by level, also on the extra months.
     
     FIRST- AND THIRD-LEVEL APPRENTICES (Art. 92, ANCE text of 4 April 2019): modelled in dual_apprenticeship (first level at the conventional level 2 or 1, 65-90% by semester; third level 70-90% by semester for six semesters; on minimo, ex contingenza and EDR; training at the employer 10% of the work pay, school hours unpaid). Not modelled: the provincial elements of the base (indennità territoriale, premio di produzione, elemento variabile). The contributions of these apprentices are the engine limitation dual_apprenticeship_contributions.
+    
+    FIRST-LEVEL FAILED-TITLE EXTENSION (Art. 92, p. 6): for up to one year after failing the qualification, use the previous year's apprenticeship pay phase. Set Apprentice.failed_title_extension_start_month to the first month of the extension; leave it unset for ordinary or competence-consolidation pay.
     
 
 ## Raw data

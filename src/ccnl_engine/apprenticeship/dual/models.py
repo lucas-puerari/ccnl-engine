@@ -78,6 +78,8 @@ class DualTrack(BaseModel):
         company_training_elements: Pay elements the training share is
             paid on; ``None`` for all.
         provenance: Source of the track.
+        failed_title_extension: Source of the rule paying the previous
+            year's rate during a failed-qualification extension, if any.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -94,6 +96,7 @@ class DualTrack(BaseModel):
     company_training_on: Literal["reference", "work"]
     company_training_elements: tuple[str, ...] | None = None
     provenance: RuleProvenance
+    failed_title_extension: RuleProvenance | None = None
 
     @model_validator(mode="after")
     def _distinct_periods(self) -> Self:

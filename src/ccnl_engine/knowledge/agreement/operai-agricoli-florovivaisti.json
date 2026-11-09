@@ -147,19 +147,6 @@
         "monetary_impact": "no"
       },
       {
-        "kind": "simplification",
-        "text": "SENIORITY OF THE SUPER PROFILES: Art. 54 (p. 55) pays 10,85 a month to the operai qualificati super and 11,62 to the specializzati super; the three areas of the file pay the amount of the qualificati (10,33) and of the specializzati (11,36), and the request does not say whether the operaio is a super profile.",
-        "capability": "seniority",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "super_profile_scatti",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Add the super profiles as levels with their scatto amounts."
-        }
-      },
-      {
         "kind": "info",
         "text": "HISTORICAL PERIODS ADDED (2026-09-09). Three salary periods now modelled per area: (1) 2023-01-01: INPS Circ. n.94/2024 Allegato 1 (primary source, Area1=1389.15, Area2=1266.90, Area3=944.62). (2) 2025-01-01: Dottrinalavoro Jan 2025 PDF (Area1=1458.61, Area2=1330.25, Area3=991.85). Cross-check: 2025 values / 2023 values = 1.050 (approx. +5% tranche per 2022-2025 CCNL). (3) 2026-06-01: minimi di area of the 2026-2029 renewal (Allegato n. 1, both increases included). 2023-01-01 is the earliest verified period; pre-2023 values not modelled."
       },
@@ -274,6 +261,19 @@
       {
         "kind": "info",
         "text": "APPRENTICE INPS RATES (contribution/2026/agricoltura.json): employer 10% plus NASpI 1.61% (INPS circ. 108/2018 par. 3.2, applied to the agricultural contribution by circ. 116/2013 par. 1) plus CISOA 1.50% (circ. 1/2023; 'CIS operai agricoli 1,5000' of circ. 43/2026 allegato 1) = 13.11% (4.61% and 6.11% in the first two years up to nine employees); worker 5.84%."
+      },
+      {
+        "kind": "simplification",
+        "text": "PROVINCIAL SENIORITY: Art. 54 (pp. 55-56) grants increments only to permanent workers and sets the post-2006 amounts for five profiles, including the two super profiles, selected by Employment.roles. Provincial contracts assign the profiles within the three national areas; the file has no province-specific classification or later provincial scatto schedules. State the provincial worker profile explicitly and verify any provincial override separately.",
+        "capability": "seniority",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "provincial_profile_scatti",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Supply the provincial classification and any province-specific amounts; national profile figures are used until a provincial schedule is sourced."
+        }
       }
     ]
   },
@@ -302,6 +302,7 @@
       ]
     },
     "seniority_increments": {
+      "permanent_only": true,
       "cadence_months": 24,
       "maximum_count": 5,
       "amount_by_level": {
@@ -310,7 +311,7 @@
             {
               "valid_from": "2022-06-01",
               "valid_until": null,
-              "value": "11.36"
+              "value": "12.50"
             }
           ]
         },
@@ -319,7 +320,7 @@
             {
               "valid_from": "2022-06-01",
               "valid_until": null,
-              "value": "10.33"
+              "value": "11.36"
             }
           ]
         },
@@ -328,9 +329,33 @@
             {
               "valid_from": "2022-06-01",
               "valid_until": null,
-              "value": "8.99"
+              "value": "9.89"
             }
           ]
+        }
+      },
+      "amount_by_level_by_role": {
+        "qualified_super": {
+          "Area2": {
+            "periods": [
+              {
+                "valid_from": "2022-06-01",
+                "valid_until": null,
+                "value": "11.93"
+              }
+            ]
+          }
+        },
+        "specialized_super": {
+          "Area1": {
+            "periods": [
+              {
+                "valid_from": "2022-06-01",
+                "valid_until": null,
+                "value": "12.78"
+              }
+            ]
+          }
         }
       },
       "provenance": {
@@ -344,21 +369,21 @@
             "published_on": "2022-05-23",
             "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
           },
-          "page": "55",
+          "page": "55-56",
           "section": "Art. 54 (Scatti di anzianità)",
-          "quote": "per ciascun biennio di anzianità di servizio presso la stessa azienda, hanno diritto [...] € 8,99 mensili se operai comuni, ad € 10,33 mensili se operai qualificati [...] ad € 11,36 mensili se operai specializzati"
+          "quote": "Con decorrenza dal 1.2.1983, gli operai a tempo indeterminato, per ciascun biennio di anzianità di servizio presso la stessa azienda, hanno diritto, a titolo di aumento periodico di anzianità, alla corresponsione di una somma in cifra fissa pari ad € 8,99 mensili se operai comuni, ad € 10,33 mensili se operai qualificati, ad € 10,85 mensili se operai qualificati super, ad € 11,36 mensili se operai specializzati e ad € 11,62 mensili se operai specializzati super. Con decorrenza dal 1.7.2006 gli importi degli scatti di anzianità, ivi compresi quelli già maturati, attribuiti dai vigenti contratti provinciali ai profili professionali individuati nelle aree di cui all’art. 31 del presente contratto collettivo nazionale, sono incrementati nelle seguenti misure: • da € 8,99 a € 9,89 per gli operai comuni; • da € 10,33 a € 11,36 per gli operai qualificati; • da € 10,85 a € 11,93 per gli operai qualificati super; • da € 11,36 a € 12,50 per gli operai specializzati; • da € 11,62 a € 12,78 per gli operai specializzati super."
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-15T10:58:37Z",
+          "extraction_timestamp": "2026-11-09T17:24:00Z",
           "verification_status": "verified",
-          "effective_from": "2026-01-01",
+          "effective_from": "2006-07-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-15T10:58:37Z",
-          "review_id": "2026-10-15-ai-texts"
+          "verified_at": "2026-11-09T17:24:00Z",
+          "review_id": "2026-11-09-ai-scatti-permanent"
         },
-        "transformation": "Every 24 months, at most 5; Area3 (comuni) 8,99, Area2 (qualificati) 10,33, Area1 (specializzati) 11,36. Art. 54 is not among the articles the verbale of 28 May 2026 amends."
+        "transformation": "Only permanent workers receive these increments (permanent_only); fixed-term workers receive none under Art. 54. Every 24 months, at most 5; post-2006 figures assigned by provincial contracts: Area3 common 9.89, Area2 qualified 11.36 or qualified_super 11.93, Area1 specialized 12.50 or specialized_super 12.78. The national rule does not identify a worker's provincial profile or any subsequent local adjustment; the 2026 renewal does not amend Art. 54."
       }
     },
     "accrual_rule": {
@@ -943,7 +968,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "155b60646f1fea9a767bb5697288edf6ef392c3a0c1c0c007a7389a5330a3e7b",
+    "source_hash": "6b95ddf2088fc1e3a064f1700b84726cf2ae0f744bd4d77376ac707548d01b03",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2253,6 +2278,42 @@
         "findings": [
           "The daily 25% remains payable with zero monthly quota units; count only employed paid days toward 90 and the known relapse chain toward the more-than-three-day threshold.",
           "Art. 17(c) p. 10: 'applicazione di tutti gli istituti diretti ed indiretti previsti dal presente CCNL per la prestazione ad orario ordinario, in proporzione all'orario ridotto.' The caller supplies the prorated part-time wage; previously posted months require rerunning after an extension; fixed-term 45-day entitlement remains unimplemented."
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-scatti",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Article 54 seniority profile amounts and provincial qualification in the cached 2022-2025 signed text, PDF pages 55-56.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+            "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+          }
+        ],
+        "findings": [
+          "The older figures on page 55 are superseded by the post-2006 figures on page 56 for provincial profile assignments; the provincial contracts and actual profile assignments remain unsourced."
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-scatti-permanent",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Article 54 permanent-worker eligibility, cached signed text PDF page 55.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+            "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+          }
+        ],
+        "findings": [
+          "Art. 54 explicitly grants biennial increments to permanent workers only; fixed-term workers have a separate, unmodelled element under the 2026 renewal."
         ]
       }
     ],

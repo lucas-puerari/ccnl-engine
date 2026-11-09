@@ -78,6 +78,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 43–44 overtime and ordinary night/holiday premiums by sub-sector against cached FLAI PDF pp. 48–49. | corrected | Selected agricultural and floriculture time premiums with the existing sub-sector mechanism.<br>Regular night-shift exception and provincial salary inputs remain limited. |
 | 2026-11-09 | claude-opus-5-5 (ai) | FLAI full text pp. 49, 53 and signed 2026 Annex 1 p. 52: floriculture hourly floor, provenance, effective dates and open exceptions. | corrected | Corrected the 29% quote and /169 page; the signed annex prints hourly floriculture rates.<br>The 2022–2025 text begins 1 January 2022; its time bands now start then.<br>Regular-shift exceptions, provincial tariffs, third element and bank of hours remain limitations. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 62 p. 38 and Art. 17(c) p. 10 of the signed renewal, checked against the cached PDF and SHA-256. | corrected | The daily 25% remains payable with zero monthly quota units; count only employed paid days toward 90 and the known relapse chain toward the more-than-three-day threshold.<br>Art. 17(c) p. 10: 'applicazione di tutti gli istituti diretti ed indiretti previsti dal presente CCNL per la prestazione ad orario ordinario, in proporzione all'orario ridotto.' The caller supplies the prorated part-time wage; previously posted months require rerunning after an extension; fixed-term 45-day entitlement remains unimplemented. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Article 54 seniority profile amounts and provincial qualification in the cached 2022-2025 signed text, PDF pages 55-56. | corrected | The older figures on page 55 are superseded by the post-2006 figures on page 56 for provincial profile assignments; the provincial contracts and actual profile assignments remain unsourced. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Article 54 permanent-worker eligibility, cached signed text PDF page 55. | corrected | Art. 54 explicitly grants biennial increments to permanent workers only; fixed-term workers have a separate, unmodelled element under the 2026 renewal. |
 
 ## Salary table
 
@@ -96,9 +98,9 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Increment (monthly) |
 |---|---:|
-| `Area1` | € 11.36 |
-| `Area2` | € 10.33 |
-| `Area3` | € 8.99 |
+| `Area1` | € 12.50 |
+| `Area2` | € 11.36 |
+| `Area3` | € 9.89 |
 
 ## Apprenticeship
 
@@ -129,13 +131,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the INAIL agricultural premium.
-
-!!! warning "operai-agricoli-florovivaisti/super_profile_scatti · seniority · impact yes · open"
-    SENIORITY OF THE SUPER PROFILES: Art. 54 (p. 55) pays 10,85 a month to the operai qualificati super and 11,62 to the specializzati super; the three areas of the file pay the amount of the qualificati (10,33) and of the specializzati (11,36), and the request does not say whether the operaio is a super profile.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Add the super profiles as levels with their scatto amounts.
 
 !!! warning "operai-agricoli-florovivaisti/eban_fisa_agrifondo · bilateral_funds · impact yes · open"
     BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and FISA (Fondo Integrativo di Settore Agricolo) bilateral fund contributions are set at provincial level and not modelled. Agrifondo (supplementary pension) contributions also omitted.
@@ -185,6 +180,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Add an employer fact for the CPL status of the province, or pass the minimo in force as an input.
+
+!!! warning "operai-agricoli-florovivaisti/provincial_profile_scatti · seniority · impact yes · open"
+    PROVINCIAL SENIORITY: Art. 54 (pp. 55-56) grants increments only to permanent workers and sets the post-2006 amounts for five profiles, including the two super profiles, selected by Employment.roles. Provincial contracts assign the profiles within the three national areas; the file has no province-specific classification or later provincial scatto schedules. State the provincial worker profile explicitly and verify any provincial override separately.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Supply the provincial classification and any province-specific amounts; national profile figures are used until a provincial schedule is sourced.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
