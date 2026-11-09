@@ -1734,7 +1734,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/portieri-fabbricati-confedilizia",
       "ruleset_version": "2026.2",
-      "source_hash": "05343c7f381ddf8aea90f8f5659a38b69ff5cc6b7a16a0d5efb1c1b6f09a66f3",
+      "source_hash": "5d2d69b8b28e1f85feefd0475b9e0aab1c29798dc975e13dcc19dba4cfefb4b9",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/portieri-fabbricati-confedilizia.json.gz"

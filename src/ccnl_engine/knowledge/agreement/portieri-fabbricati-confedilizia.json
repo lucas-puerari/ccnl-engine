@@ -102,7 +102,7 @@
       },
       {
         "kind": "simplification",
-        "text": "B5 SHORT SCHEDULE (art. 122 c. 2, PDF p. 75): a B5 worker with stated weekly hours below 8 receives 15% of the salario conglobato as allowance B5_ORARIO_RIDOTTO, proportioned to the hours like the conglobato. The percentage base also counts the worker's individual elements, which art. 122 c. 2 does not name; a worker without stated weekly hours is treated as full time and receives nothing.",
+        "text": "B5 SHORT SCHEDULE (art. 122 c. 2, PDF p. 75): a B5 worker with stated weekly hours below 8 receives 15% of the salario conglobato as allowance B5_ORARIO_RIDOTTO, proportioned to the hours like the conglobato. The percentage base is the conglobato alone, without scatti or individual elements (art. 122 c. 1 lett. a); a worker without stated weekly hours is treated as full time and receives nothing.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -465,6 +465,7 @@
             ]
           },
           "percentage_rate": "0.15",
+          "percentage_include_individual": false,
           "below_weekly_hours": "8",
           "provenance": {
             "status": "verified",
@@ -1947,7 +1948,7 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "05343c7f381ddf8aea90f8f5659a38b69ff5cc6b7a16a0d5efb1c1b6f09a66f3",
+    "source_hash": "5d2d69b8b28e1f85feefd0475b9e0aab1c29798dc975e13dcc19dba4cfefb4b9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -131,7 +131,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Caller verifies first employment and effective service and switches to C4 after at most 12 months; elapsed-month transition does not measure effective service.
 
 !!! note "portieri-fabbricati-confedilizia/b5_short_schedule_premium · base_salary · impact yes · resolved"
-    B5 SHORT SCHEDULE (art. 122 c. 2, PDF p. 75): a B5 worker with stated weekly hours below 8 receives 15% of the salario conglobato as allowance B5_ORARIO_RIDOTTO, proportioned to the hours like the conglobato. The percentage base also counts the worker's individual elements, which art. 122 c. 2 does not name; a worker without stated weekly hours is treated as full time and receives nothing.
+    B5 SHORT SCHEDULE (art. 122 c. 2, PDF p. 75): a B5 worker with stated weekly hours below 8 receives 15% of the salario conglobato as allowance B5_ORARIO_RIDOTTO, proportioned to the hours like the conglobato. The percentage base is the conglobato alone, without scatti or individual elements (art. 122 c. 1 lett. a); a worker without stated weekly hours is treated as full time and receives nothing.
 
     **Applies when:** `base_salary` applies; level in B5.
 
