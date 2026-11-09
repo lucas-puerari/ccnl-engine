@@ -110,6 +110,8 @@ class TimeSupplements(BaseModel):
     unless ``week_divisors`` holds the divisor of its week.
     ``individual_elements`` says whether the worker's individual elements
     enter the base (:class:`IndividualElementsRule`).
+    ``hourly_minimum_by_level`` holds direct hourly floors selected from a
+    sub-sector's own table, rather than a monthly minimum divided by 169.
     ``hourly_base_excluded`` names the allowances a
     ``gross_incl_allowances`` base leaves out (Logistica art. 74: the EDR of
     2021 has "nessuna incidenza su alcun istituto contrattuale").
@@ -124,6 +126,7 @@ class TimeSupplements(BaseModel):
 
     hourly_base_method: HourlyBaseMethod = HourlyBaseMethod.MINIMO_TABELLARE
     hourly_base_provenance: RuleProvenance | None = None
+    hourly_minimum_by_level: dict[str, TimeSeries] = Field(default_factory=dict)
     hourly_divisor_weekly_hours: Decimal | None = Field(default=None, gt=Decimal(0))
     week_divisors: tuple[WeekDivisor, ...] = Field(default=())
     individual_elements: IndividualElementsRule | None = None
