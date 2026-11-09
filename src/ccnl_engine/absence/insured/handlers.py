@@ -37,7 +37,10 @@ from ccnl_engine.event.handlers import (
     _EventHandlerCtx,
 )
 from ccnl_engine.pay_item.services import _ZERO
-from ccnl_engine.sickness.holiday.rules import covered_target_holidays
+from ccnl_engine.sickness.holiday.rules import (
+    covered_target_holidays,
+    legacy_section_issue,
+)
 
 if TYPE_CHECKING:
     from datetime import date
@@ -277,4 +280,13 @@ def _handle_work_injury(event: WorkInjuryEvent, ctx: _EventHandlerCtx) -> EventE
         )
     ]
     effect.issues = [] if rules is not None else [_not_modelled(INJURY)]
+    missing = legacy_section_issue(
+        None if rules is None else rules.holiday,
+        load_national_holidays(),
+        *span,
+        terms.employer,
+        INJURY,
+    )
+    if missing is not None:
+        effect.issues.append(missing)
     return effect

@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | absence, base_salary, overtime, sickness |
 
-8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -91,6 +91,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Junior hire cohorts and mandatory cutoff, cached PDF pp. 25, 41, 80, 82. | corrected | The junior minimum of 1464.53 ends with 2025; 2018/2019/2020 cohorts wait 24/18/12 months. Later junior salary values only mirror level 6 to satisfy the no-gap invariant and are never paid; prior-level matured increments and unfinished biennia must be preserved or affected runs refused. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 64 c. 1(b), cached Confetra PDF p. 90; sixth-month parental leave after compulsory maternity. | corrected | The sixth month of absence targets 50% of global pay inclusive of statutory indemnity even when the leave after compulsory maternity is parental. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 56 supplementary hours on either side of the annual limit. | corrected | Art. 56, PDF p. 71: 'non possono superare, annualmente, il 30% della prestazione già concordata' at 18%; 'oltre il limite massimo complessivo annuale ... maggiorazione ... del 40%'. The 18% band remains; the 40% requires caller-split hours with an explicit multiplier because annual cumulative hours are unavailable. Corrected the limitation status to open. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 71(5), section-two eligibility, physical PDF pp. 92-93; sickness and injury holiday targets. | corrected | Only employers covered before 29 January 2005 by the previous agreement qualify for the holiday top-up. |
 
 ## Salary table
 
@@ -142,11 +143,11 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "logistica-trasporto-confetra/holiday_during_injury · sickness · impact yes · open"
-    Art. 71 c. 5 (Sezione seconda) tops up reduced sickness or injury pay on letter b/c holidays only for workers of employers that applied the former Magazzini Generali agreement before 29 January 2005; employer eligibility is not stated, so this top-up is not calculated. Separately, art. 60 c. 2-3 pays an additional 1/22 of monthly global pay when a letter b holiday coincides with Saturday, Sunday or another holiday, including during injury or sickness; this additional payment is not calculated.
+    Art. 71(5) tops up letter (b) and (c) holidays in reduced paid sickness or injury for eligible legacy-section employers when EmployerProfile.legacy_section_applicable is true; an unknown fact blocks the target. Separately, art. 60(2-3) pays an additional 1/22 of monthly global pay when a letter (b) holiday coincides with Saturday, Sunday or another holiday, including during sickness or injury; this distinct payment is not calculated.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Establish the employer's eligibility for Sezione seconda before applying art. 71 c. 5; separately calculate the art. 60 c. 2-3 coincident-holiday 1/22 payment.
+    **Remediation:** Calculate the separate art. 60(2-3) coincident-holiday 1/22 payment.
 
 !!! warning "logistica-trasporto-confetra/edr_2021_in_daily_base · absence · impact unknown · open"
     EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; the 2021 EDR may still enter the daily base of absences and sickness, which 'nessuna incidenza su alcun istituto contrattuale' excludes.
@@ -175,13 +176,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies.
 
     **Remediation:** Resolved: the employer states its INPS sector (EmployerProfile.inps_sector, industria or terziario by the CSC of its ATECO in the INPS manual); without it the run has a missing_fact inps_sector blocker. Tested in tests/integration/ccnl_engine/api/test_engine_modes.py.
-
-!!! warning "logistica-trasporto-confetra/magazzini_generali_holiday_in_sickness · sickness · impact yes · open"
-    Art. 71 c. 5 (Parte speciale, Sezione seconda, PDF p. 92): the top-up to 100% of the holidays in a sickness or injury applies only to the employers that came from the CCNL Magazzini Generali, a fact the request does not state: not applied.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** State whether the employer applies the Sezione seconda (ex Magazzini Generali) and apply the holiday target of art. 71 c. 5 then.
 
 !!! warning "logistica-trasporto-confetra/level_6j_apprenticeship · base_salary · impact yes · open"
     Level 6J uses the 2018, 2019 and 2020 hire cohorts until the mandatory 1 January 2026 promotion. Pre-2018 hires and apprentices before the cutoff are refused without verified prior classification or apprentice progression. Promotions with matured seniority increments are refused unless the worker states earned increments at their original amounts; that fact preserves the unfinished biennium.
@@ -402,6 +396,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP TABELLA B (testo unico p. 75): the profili artigiani and equivalent profiles (addetti al magazzinaggio, alla manutenzione veicoli, alla movimentazione) are paid 90% in the first year, 95% in the second and 100% after, not the 75 and 85% of Tabella A. The profile, not the level, selects the table: track 'profili_artigiani' beside 'standard'; set Apprentice.track.
     
     INPS SECTOR OF THE EMPLOYER: INPS classifies an employer by the activity it carries out (art. 49 L. 88/1989), not by the CCNL it applies. The Manuale di classificazione dei datori di lavoro of May 2021 (ATECO 2007, PDF pp. 199-206) gives CSC 11501 (industria, trasporti) to 49.41.00 trasporto di merci su strada and 49.42.00 traslochi, 11505 (industria) to 52.24 movimento merci and 52.21.90, 11506 to 52.21.40 interporti, 11507 to 53.20.00 corrieri, and 70401 (terziario, intermediari) to 52.10.10 magazzini di custodia e deposito, 52.29.10 spedizionieri, 52.29.21 intermediari dei trasporti and 52.29.22 servizi logistici. The employers of this CCNL are therefore in the industria or in the terziario: meta.inps_sectors lists both and EmployerProfile.inps_sector chooses; without it the run reads the industria and has a missing_fact inps_sector blocker. INPS circ. 71/2025 moved the classification to ATECO 2025 from 1 April 2025 and announced a new edition of the manual, not found in this review: the CSC above are those of the 2021 edition.
+    
+    Art. 71(5), section two, PDF p. 93: a holiday listed in (b) or (c) during paid, reduced sickness or injury is topped up to the full daily actual remuneration only for employers covered by the carried-forward section (eligibility on p. 92). EmployerProfile.legacy_section_applicable selects the target; an unknown fact blocks the holiday top-up. The section-two daily quota and other section-specific treatment remain unmodelled.
     
 
 ## Raw data
