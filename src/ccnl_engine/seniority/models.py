@@ -2,6 +2,7 @@
 
 from collections.abc import Mapping
 from datetime import date
+from decimal import Decimal
 from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -63,6 +64,10 @@ class SeniorityIncrements(BaseModel):
     appartenenza") instead of ``apprentice_amount``;
     ``apprentice_pct_scaled`` reduces them by the apprenticeship percentage
     (Calzaturiero art. 23: "commisurati alle stesse percentuali del minimo").
+    ``apprenticeship_credit_share`` credits that fraction of a completed
+    apprenticeship to the increments after the worker is kept on; it does
+    not award increments during the apprenticeship. The caller supplies the
+    past duration separately from subsequent recognised service.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -98,6 +103,7 @@ class SeniorityIncrements(BaseModel):
     in_service_cohort: InServiceCohort | None = None
     apprentice_level_amount: bool = False
     apprentice_pct_scaled: bool = False
+    apprenticeship_credit_share: Decimal | None = Field(default=None, ge=0, le=1)
     provenance: RuleProvenance | None = None
 
     def requires_category(self, level_code: str) -> bool:

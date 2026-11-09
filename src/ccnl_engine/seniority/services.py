@@ -25,6 +25,7 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
 )
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm
+from ccnl_engine.seniority.credit import credited_increment_months
 from ccnl_engine.seniority.rules import (
     NOT_APPLICABLE_BY_CONTRACT,
     increments_apply,
@@ -93,6 +94,8 @@ class RunSeniority:
         gated: Codes of the allowances gated by months of service.
         amount: Seniority amount of the run's pay chain.
         source: Location of the seniority rules of the CCNL.
+        apprenticeship_missing: Whether a credited past apprenticeship has
+            an unknown duration: the increments count the service alone.
     """
 
     fact: SeniorityFact | None
@@ -101,6 +104,7 @@ class RunSeniority:
     gated: tuple[str, ...]
     amount: Decimal
     source: SourceLocation | None
+    apprenticeship_missing: bool = False
 
     @property
     def required(self) -> bool:
@@ -122,11 +126,27 @@ class RunSeniority:
         return INCREMENTS_APPLIED if self.amount else ZERO_CONFIRMED
 
     def issue(self) -> CalculationIssue | None:
-        """Return the missing-fact issue of a run without its seniority.
+        """Return the issue of a run without its seniority or its credit.
 
         Returns:
-            An incomplete issue naming ``seniority``, or ``None``.
+            An incomplete issue naming ``seniority``, or
+            ``apprenticeship_months`` when only the credited apprenticeship
+            is unknown, or ``None``.
         """
+        if self.apprenticeship_missing and not self.missing:
+            return CalculationIssue(
+                code="apprenticeship_duration_unknown",
+                capability=CAPABILITY,
+                message=(
+                    "the CCNL credits past apprenticeship towards seniority "
+                    "increments: the increments shown count the service only; "
+                    "state its completed duration, or zero when there was no "
+                    "preceding apprenticeship"
+                ),
+                status=CalculationStatus.INCOMPLETE,
+                source=self.source,
+                fact="apprenticeship_months",
+            )
         if not self.missing:
             return None
         gated = ", ".join(self.gated) or _NONE
@@ -155,9 +175,11 @@ def run_seniority(ctx: RunContext) -> RunSeniority:
     ccnl, level = ctx.contract.ccnl, ctx.contract.level
     rules = ccnl.parameters.seniority_increments
     request = ctx.request
+    months = seniority_months_at(request.seniority, ctx.contract.tctx.competence)
+    credited = credited_increment_months(months, rules, request)
     return RunSeniority(
         fact=request.seniority,
-        months=seniority_months_at(request.seniority, ctx.contract.tctx.competence),
+        months=credited,
         increments=(
             not (rules.permanent_only and isinstance(request.contract_type, FixedTerm))
             and increments_apply(
@@ -173,6 +195,24 @@ def run_seniority(ctx: RunContext) -> RunSeniority:
         ),
         amount=ctx.chain.seniority,
         source=None if rules.provenance is None else rules.provenance.location,
+        apprenticeship_missing=(
+            months is not None
+            and rules.apprenticeship_credit_share is not None
+            and not isinstance(request.contract_type, Apprentice)
+            and (
+                request.seniority is None
+                or request.seniority.apprenticeship_months is None
+            )
+            and not (
+                rules.permanent_only and isinstance(request.contract_type, FixedTerm)
+            )
+            and increments_apply(
+                rules,
+                level.code,
+                ctx.worker_category,
+                apprentice=False,
+            )
+        ),
     )
 
 
@@ -195,13 +235,20 @@ def seniority_decision(ctx: RunContext, run: RunSeniority) -> CalculationDecisio
         "as_of": _NONE if fact is None else fact.as_of.isoformat(),
         "source": _NONE if fact is None else fact.source.value,
         "months_at_run": _NONE if run.months is None else str(run.months),
+        "apprenticeship_months": (
+            _NONE
+            if fact is None or fact.apprenticeship_months is None
+            else str(fact.apprenticeship_months)
+        ),
         "increments_apply": str(run.increments).lower(),
         "gated_allowances": ",".join(run.gated) or _NONE,
     }
     return CalculationDecision(
         capability=CAPABILITY,
         status=(
-            CalculationStatus.PROVISIONAL if run.missing else CalculationStatus.FINAL
+            CalculationStatus.PROVISIONAL
+            if run.missing or run.apprenticeship_missing
+            else CalculationStatus.FINAL
         ),
         reason_code=run.reason,
         rule=rule,
