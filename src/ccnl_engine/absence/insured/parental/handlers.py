@@ -28,6 +28,7 @@ from ccnl_engine.absence.insured.parental.holiday import (
     covered_parental_holidays,
     parental_holiday_extra,
     parental_holiday_units,
+    parental_target,
 )
 from ccnl_engine.absence.insured.parental.rules import allocate, indemnity
 from ccnl_engine.absence.insured.parental.top_up import (
@@ -167,7 +168,7 @@ def _handle_parental_leave(
         else Decimal(0)
     )
     integration += sixth_month_integration(sixth_days, days.rates, daily, sixth)
-    holiday = getattr(maternity, "parental_holiday", None)
+    holiday = parental_target(maternity)
     has_rule = rules is not None or sixth is not None or holiday is not None
     holiday_days = covered_parental_holidays(
         holiday,
@@ -181,9 +182,9 @@ def _handle_parental_leave(
         daily,
         days.rates,
         eligible,
-        getattr(rules, "rate", Decimal(0)),
+        rules,
         sixth_days,
-        getattr(sixth, "next_integration_rate", Decimal(0)),
+        sixth,
         holiday_days,
     )
     pay = InsuredPay(

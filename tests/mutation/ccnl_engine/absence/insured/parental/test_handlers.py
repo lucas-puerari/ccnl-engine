@@ -62,6 +62,7 @@ from ccnl_engine.inputs import (
 from ccnl_engine.sickness.term.rules import DailyQuota
 
 if TYPE_CHECKING:
+    from ccnl_engine.absence.insured.models import InsuredAbsenceRules
     from ccnl_engine.period.results import PeriodResult
 
 _HIRED = date(2025, 1, 1)
@@ -165,13 +166,20 @@ def test_ced_optional_may_holiday_with_and_without_target() -> None:
                 Decimal(100),
                 rates,
                 [],
-                Decimal(0),
+                None,
                 [],
-                Decimal(0),
+                None,
                 holidays,
             )
             == expected
         )
+
+
+def _insured(ccnl_id: str) -> InsuredAbsenceRules:
+    rules = load_ccnl(ccnl_id).work_rules
+    assert rules is not None
+    assert rules.insured_absence is not None
+    return rules.insured_absence
 
 
 def test_optional_holiday_offsets_other_pay_and_skips_non_indemnified_days() -> None:
@@ -201,10 +209,19 @@ def test_optional_holiday_offsets_other_pay_and_skips_non_indemnified_days() -> 
         date(2026, 5, 3): Decimal("0.30"),
     }
     holidays = frozenset({date(2026, 4, 30), *rates})
-    for topped, ordinary_rate, sixth, sixth_rate, expected in (
-        ([], Decimal(0), [], Decimal(0), Decimal("70.00")),
-        ([may_day], Decimal("0.50"), [], Decimal(0), Decimal("50.00")),
-        ([], Decimal(0), [may_day], Decimal("0.80"), Decimal("20.00")),
+    top_up = _insured("autorimesse-ic35").parental
+    assert top_up is not None
+    top_up = top_up.model_copy(update={"rate": Decimal("0.50")})
+    following = _insured("logistica-trasporto-confetra").maternity
+    assert following is not None
+    following = following.model_copy(update={"next_integration_rate": Decimal("0.80")})
+    unset = following.model_copy(update={"next_integration_rate": None})
+    for topped, ordinary, sixth, sixth_rule, expected in (
+        ([], None, [], None, Decimal("70.00")),
+        ([], top_up, [], unset, Decimal("70.00")),
+        ([may_day], top_up, [], None, Decimal("50.00")),
+        ([], None, [may_day], following, Decimal("20.00")),
+        ([], None, [may_day], unset, Decimal("70.00")),
     ):
         assert (
             parental_holiday_extra(
@@ -215,9 +232,9 @@ def test_optional_holiday_offsets_other_pay_and_skips_non_indemnified_days() -> 
                 Decimal(100),
                 rates,
                 topped,
-                ordinary_rate,
+                ordinary,
                 sixth,
-                sixth_rate,
+                sixth_rule,
                 holidays,
             )
             == expected
@@ -550,3 +567,60 @@ def test_the_cohort_issue_explains_the_eighty_percent_months() -> None:
     assert issue.message.startswith(
         "the months INPS pays at 80% depend on the day the last maternity "
     )
+
+
+def _ced_may(patron_saint_day: str | None) -> PeriodResult:
+    """Return May 2026 of a CED optional leave over the whole month.
+
+    Returns:
+        The result of the run.
+    """
+    leave = ParentalLeaveEvent(
+        date(2026, 5, 1),
+        date(2026, 5, 31),
+        _BORN,
+        _NOTHING,
+        _MATERNITY_END,
+        parental_base_pay=InpsSicknessBase(Decimal(1000), Decimal(0)),
+    )
+    return PayrollEngine.bundled().calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(2026, 5),
+            payment_date=date(2026, 5, 27),
+            employment=Employment(
+                ccnl_id="ced-assoced",
+                level_code="3",
+                category=WorkerCategory.IMPIEGATO,
+                contract_type=Permanent(),
+                employment_period=EmploymentPeriod(_HIRED, None),
+                seniority=SeniorityFact.since(_HIRED, SenioritySource.EMPLOYER_RECORDS),
+                pension_fund=NoPensionFund(),
+                tfr_treasury_fund=False,
+            ),
+            employer=EmployerProfile(
+                headcount=Headcount(20), patron_saint_day=patron_saint_day
+            ),
+            facts=PeriodFacts(events=(leave,)),
+        )
+    )
+
+
+def test_a_stated_patron_day_is_a_covered_holiday_of_the_optional_leave() -> None:
+    """Monday 4 May as patron day adds a second 40.49 top-up to 1 May's."""
+    plain = _amounts(_ced_may(None))["absence_integration_item"]
+    patron = _amounts(_ced_may("05-04"))["absence_integration_item"]
+    assert plain == ("intg", Decimal("40.49"))
+    assert patron == ("intg", Decimal("80.98"))
+
+
+def test_a_ccnl_without_insured_absence_rules_pays_the_statutory_leave() -> None:
+    """Acconciatura has no CCNL rules of the leave: INPS only, no top-up."""
+    result = _run(
+        _march(),
+        category=WorkerCategory.OPERAIO,
+        ccnl_id="acconciatura-estetica-confartigianato",
+        level_code="3",
+    )
+    amounts = _amounts(result)
+    assert "maternity_item" in amounts
+    assert "absence_integration_item" not in amounts

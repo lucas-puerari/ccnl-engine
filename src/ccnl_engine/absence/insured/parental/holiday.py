@@ -10,7 +10,18 @@ from ccnl_engine.pay_item.rounding.policies import money
 
 if TYPE_CHECKING:
     from ccnl_engine.absence.insured.maternity_holiday import MaternityHoliday
+    from ccnl_engine.absence.insured.maternity_rules import MaternityRules
+    from ccnl_engine.absence.insured.parental.top_up import ParentalTopUp
     from ccnl_engine.absence.insured.rules import MonthPay
+
+
+def parental_target(maternity: MaternityRules | None) -> MaternityHoliday | None:
+    """Return the holiday target of the optional leave, if the CCNL has one.
+
+    Returns:
+        ``maternity.parental_holiday``, or ``None`` without maternity rules.
+    """
+    return None if maternity is None else maternity.parental_holiday
 
 
 def covered_parental_holidays(
@@ -55,9 +66,9 @@ def parental_holiday_extra(
     daily: Decimal,
     rates: dict[date, Decimal | None],
     topped_up: list[date],
-    top_up_rate: Decimal,
+    top_up: ParentalTopUp | None,
     sixth_days: list[date],
-    sixth_rate: Decimal,
+    sixth: MaternityRules | None,
     holidays: frozenset[date],
 ) -> Decimal:
     """Return the remaining employer share on holidays inside optional leave.
@@ -67,6 +78,12 @@ def parental_holiday_extra(
     """
     if target is None:
         return Decimal(0)
+    top_up_rate = Decimal(0) if top_up is None else top_up.rate
+    sixth_rate = (
+        Decimal(0)
+        if sixth is None or sixth.next_integration_rate is None
+        else sixth.next_integration_rate
+    )
     extra = Decimal(0)
     for day in holidays:
         if not first <= day <= last or day.weekday() == 6 or rates.get(day) is None:
