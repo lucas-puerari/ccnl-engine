@@ -103,9 +103,9 @@ formulas or caller-declared amounts.
 | `family_deductions` | Detrazioni familiari a carico (Art. 12 TUIR) | core | net | native | decided | decision | `facts.family_composition`, `current_year` | children, other_dependants, sole_parent_first_child, spouse, spouse_increase_bands | simplified | 4 / 0 / 4 / 0 |
 | `art15_deductions` | Detrazioni Art. 15 TUIR (interessi mutuo e oneri) | outside_input | net | unsupported | outside_input | — | `facts.art15_expenses` | — | unavailable | none bundled |
 | `overtime` | Lavoro straordinario e supplementare | scenario | work_rules | caller_supplied | event | event | — | ccnl_band_multiplier, caller_multiplier | caller-supplied | 186 / 303 / 7 / 0 |
-| `night_work` | Lavoro notturno | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 55 / 0 / 0 / 0 |
+| `night_work` | Lavoro notturno | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 56 / 0 / 0 / 0 |
 | `holiday_work` | Lavoro festivo | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 135 / 2 / 0 / 0 |
-| `shift_work` | Lavoro a turni | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 45 / 0 / 0 / 0 |
+| `shift_work` | Lavoro a turni | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 46 / 0 / 0 / 0 |
 | `standby` | Reperibilità (importi del CCNL per livello) | scenario | work_rules | native | event | event | — | — | implemented | none bundled |
 | `absence` | Assenze ingiustificate | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 16 / 0 / 0 / 0 |
 | `leave` | Ferie, ROL ed ex festività godute: retribuite nella paga del mese, scalano il saldo maturato | scenario | work_rules | native | event | event | — | — | implemented | 34 / 19 / 0 / 0 |
@@ -160,7 +160,7 @@ never grow.
 | 19 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | ✅ | — | 55 / 96 / 1 / 1 |
 | 20 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | ⚠️ | base_salary, inps_employer, maternity_leave, workplace_injury | 37 / 7 / 1 / 1 |
 | 21 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | ⚠️ | base_salary | 14 / 61 / 1 / 0 |
-| 22 | [CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)](sanita-privata-aiop-aris.md) | ⚠️ | base_salary, overtime, seniority | 36 / 2 / 0 / 0 |
+| 22 | [CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)](sanita-privata-aiop-aris.md) | ⚠️ | base_salary, overtime, seniority, standby | 38 / 2 / 0 / 0 |
 | 23 | [CCNL Cemento, Calce e Gesso — Industria (Federbeton)](cemento-calce-gesso-industria.md) | ⚠️ | seniority | 45 / 36 / 1 / 0 |
 | 24 | [CCNL Ceramica Industria (Confindustria) - Ceramica sanitaria e stoviglieria](ceramica-sanitaria-stoviglieria-confindustria.md) | ⚠️ | seniority | 52 / 18 / 1 / 1 |
 | 25 | [CCNL Ceramica Industria (Confindustria-Assopiastrelle)](ceramica-industria-confindustria.md) | ⚠️ | seniority | 48 / 12 / 1 / 1 |
@@ -199,7 +199,7 @@ never grow.
 | 58 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | ⚠️ | seniority | 2 / 70 / 1 / 0 |
 | 59 | [CCNL Gruppo ANAS](anas.md) | ✅ | — | 29 / 14 / 1 / 0 |
 | 60 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | ⚠️ | inps_employer, pension_fund_contribution, seniority | 68 / 76 / 1 / 0 |
-| 61 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | ⚠️ | base_salary, sickness | 28 / 4 / 1 / 1 |
+| 61 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | ⚠️ | base_salary, overtime, sickness | 28 / 4 / 1 / 1 |
 | 62 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | ⚠️ | base_salary, bilateral_funds | 7 / 8 / 1 / 1 |
 | 63 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | ⚠️ | base_salary, leave, overtime, sickness, workplace_injury | 126 / 6 / 0 / 0 |
 | 64 | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | ⚠️ | base_salary | 36 / 10 / 1 / 0 |

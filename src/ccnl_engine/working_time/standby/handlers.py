@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.validity.rules import rule_scope
@@ -50,6 +51,44 @@ def _series(rates: StandbyRates, kind: StandbyKind) -> TimeSeries:
     return series
 
 
+def _turn_pay(
+    event: StandbyEvent, rules: StandbyRules, ruleset: str
+) -> tuple[Decimal, Decimal]:
+    """Return the complete-turn hourly rate and the prorated turn payment.
+
+    Returns:
+        The hourly rate and the rounded turn payment.
+
+    Raises:
+        MissingRuleError: When the event does not describe a permitted turn.
+    """
+    duration = rules.turn_hours
+    minimum = rules.minimum_turn_hours
+    if (
+        event.kind is not StandbyKind.HOURS
+        or event.calls
+        or duration is None
+        or minimum is None
+        or not minimum <= event.quantity <= duration
+    ):
+        msg = "the CCNL turn rate requires a permitted turn duration without calls"
+        raise MissingRuleError(
+            msg,
+            as_of=event.event_date,
+            feature=_FEATURE,
+            ruleset=ruleset,
+            remediation=(
+                "state a permitted on-call turn; report interventions separately"
+            ),
+        )
+    assert rules.turn_rate is not None
+    with rule_scope(ruleset=ruleset, feature=_FEATURE):
+        complete_rate = rules.turn_rate.value_at(event.event_date)
+    rate = complete_rate / duration
+    multiplier = 1 + rules.short_turn_premium if event.quantity < duration else 1
+    return rate, money(rate * event.quantity * multiplier)
+
+
 def _handle_standby(event: StandbyEvent, ctx: _EventHandlerCtx) -> EventEffect:
     """Handle a standby period at the CCNL rates of the worker's level.
 
@@ -63,8 +102,9 @@ def _handle_standby(event: StandbyEvent, ctx: _EventHandlerCtx) -> EventEffect:
     """
     terms = ctx.standby
     rules = None if terms is None else terms.rules
-    band = None if rules is None else rules.band_of(terms.level_code)  # type: ignore[union-attr]
-    if terms is None or rules is None or band is None:
+    band = None if rules is None or terms is None else rules.band_of(terms.level_code)
+    turn = rules is not None and rules.turn_rate is not None
+    if terms is None or rules is None or (band is None and not turn):
         detail = (
             "the CCNL of the run has no standby rates"
             if terms is None or rules is None
@@ -77,12 +117,19 @@ def _handle_standby(event: StandbyEvent, ctx: _EventHandlerCtx) -> EventEffect:
             ruleset=None if terms is None else terms.ruleset,
             remediation="pay the standby as a bonus with the CCNL amount",
         )
-    with rule_scope(ruleset=terms.ruleset, feature=_FEATURE):
-        rate = _series(band.rates, event.kind).value_at(event.event_date)
-        fee = rules.call_fee.value_at(event.event_date)
-    if event.kind is StandbyKind.HOURS:
-        rate /= rules.hourly_divisor
-    standby = money(rate * event.quantity)
+    if turn:
+        rate, standby = _turn_pay(event, rules, terms.ruleset)
+        fee = _ZERO
+    else:
+        assert band is not None
+        assert rules.call_fee is not None
+        with rule_scope(ruleset=terms.ruleset, feature=_FEATURE):
+            rate = _series(band.rates, event.kind).value_at(event.event_date)
+            fee = rules.call_fee.value_at(event.event_date)
+        if event.kind is StandbyKind.HOURS:
+            assert rules.hourly_divisor is not None
+            rate /= rules.hourly_divisor
+        standby = money(rate * event.quantity)
     call_pay = money(fee * event.calls)
     gross = standby + call_pay
     resolution = _require_resolution(ctx.resolver, _KIND, ctx.context)

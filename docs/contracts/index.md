@@ -138,7 +138,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 19 | I192 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | autostrade e trafori — addetti alle concessionarie autostradali | ~15k | 2023 | ✅ | — | 55 / 96 / 1 / 1 | 🧪 | 🤖 |
 | 20 | H601 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | Terziario | ~22k | 2025 | ⚠️ | base_salary, inps_employer, maternity_leave, workplace_injury | 37 / 7 / 1 / 1 | 🧪 | 🤖 |
 | 21 | G022 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | carta-cartone | ~35k | 2026 | ⚠️ | base_salary | 14 / 61 / 1 / 0 | 🧪 | 🤖 |
-| 22 | T011 | [CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)](sanita-privata-aiop-aris.md) | Sanità privata | ~150k | 2020 | ⚠️ | base_salary, overtime, seniority | 36 / 2 / 0 / 0 | 🧪 | 🤖 |
+| 22 | T011 | [CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)](sanita-privata-aiop-aris.md) | Sanità privata | ~150k | 2020 | ⚠️ | base_salary, overtime, seniority, standby | 38 / 2 / 0 / 0 | 🧪 | 🤖 |
 | 23 | F032 | [CCNL Cemento, Calce e Gesso — Industria (Federbeton)](cemento-calce-gesso-industria.md) | industria del cemento calce e gesso | ~25k | — | ⚠️ | seniority | 45 / 36 / 1 / 0 | 🧪 | 🤖 |
 | 24 | B122 | [CCNL Ceramica Industria (Confindustria) - Ceramica sanitaria e stoviglieria](ceramica-sanitaria-stoviglieria-confindustria.md) | ceramica | ~23k | — | ⚠️ | seniority | 52 / 18 / 1 / 1 | 🧪 | 🤖 |
 | 25 | B122 | [CCNL Ceramica Industria (Confindustria-Assopiastrelle)](ceramica-industria-confindustria.md) | ceramica | ~23k | — | ⚠️ | seniority | 48 / 12 / 1 / 1 | 🧪 | 🤖 |
@@ -177,7 +177,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 58 | G011 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | grafica-editoria | ~70k | — | ⚠️ | seniority | 2 / 70 / 1 / 0 | 🧪 | 🤖 |
 | 59 | T511 | [CCNL Gruppo ANAS](anas.md) | anas spa - personale non dirigente | ~7k | 2025 | ✅ | — | 29 / 14 / 1 / 0 | 🧪 | 🤖 |
 | 60 | K540 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | servizi ambientali | ~65k | 2025 | ⚠️ | inps_employer, pension_fund_contribution, seniority | 68 / 76 / 1 / 0 | 🧪 | 🤖 |
-| 61 | H077 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | impianti sportivi, palestre e attività sportive | 35533 | 2024 | ⚠️ | base_salary, sickness | 28 / 4 / 1 / 1 | 🧪 | 🤖 |
+| 61 | H077 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | impianti sportivi, palestre e attività sportive | 35533 | 2024 | ⚠️ | base_salary, overtime, sickness | 28 / 4 / 1 / 1 | 🧪 | 🤖 |
 | 62 | A021 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | agricoltura | ~80k | 2024 | ⚠️ | base_salary, bilateral_funds | 7 / 8 / 1 / 1 | 🧪 | 🤖 |
 | 63 | B011 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | chimica | ~210k | — | ⚠️ | base_salary, leave, overtime, sickness, workplace_injury | 126 / 6 / 0 / 0 | 👁 | 🤖✓ |
 | 64 | H05B | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | turismo — alberghi, campeggi, villaggi e strutture ricettive | ~40k | 2025 | ⚠️ | base_salary | 36 / 10 / 1 / 0 | 🧪 | 🤖 |

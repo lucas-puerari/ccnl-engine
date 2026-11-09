@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | absence, base_salary, sickness |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -58,7 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-06 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2027-06-01 |
 
 ## Review history
@@ -77,6 +77,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | Artt. 51-52 (PDF pp. 64-65) of the Testo Unico of 25 September 2025, text layer. | corrected | Sanilog and Ebilog, owed for every worker of the CCNL, were not modelled: employer cost and worker share were short. |
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 17 and 57 of the testo unico of 25 September 2025 (pp. 40-41, 73, 75). | corrected | Apprentices accrue the level increments in full: art. 17 c. 1 (pp. 40-41 of the testo unico of 25 September 2025) gives 'Ai lavoratori, per l'anzianità di servizio maturata presso la stessa azienda' a fixed amount of the level each biennio; art. 57 c. 7 (p. 73) counts the apprentice's probation 'agli effetti dell'anzianità di servizio'; cc. 8-9 and tables A-B (pp. 73, 75) apply the percentage to the 'minimo contrattuale' only. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 71(1)(b,c), (5), cached PDF p. 93; Art. 60(2-3), p. 85. | confirmed | National weekday holidays are within art. 71(b,c); reduced sickness pay reaches full daily actual pay. Injury, patron saint and art. 60 coincident-holiday payment remain outside this rule.<br>A separate review found art. 71 c. 5 restricted to the Sezione seconda (ex Magazzini Generali): the holiday target is removed and kept as a limitation. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 71(5), section-two eligibility, PDF pp. 92-93; sickness holiday target. | corrected | Only legacy-section employers qualify; injury treatment is still absent for travelling staff. |
 
 ## Salary table
 
@@ -138,11 +139,11 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "logistica-trasporto-confetra-viaggiante/holiday_during_injury · sickness · impact yes · open"
-    Art. 71 c. 5 (Sezione seconda) tops up reduced sickness or injury pay on letter b/c holidays only for workers of employers that applied the former Magazzini Generali agreement before 29 January 2005; employer eligibility is not stated, so this top-up is not calculated. Separately, art. 60 c. 2-3 pays an additional 1/22 of monthly global pay when a letter b holiday coincides with Saturday, Sunday or another holiday, including during injury or sickness; this additional payment is not calculated.
+    Art. 71(5) tops up letter (b) and (c) holidays in reduced paid sickness for eligible legacy-section employers when EmployerProfile.legacy_section_applicable is true; an unknown fact blocks the target. The travelling agreement still lacks the injury treatment needed to apply the injury holiday target. Separately, art. 60(2-3) pays an additional 1/22 of monthly global pay when a letter (b) holiday coincides with Saturday, Sunday or another holiday, including during sickness or injury; that payment is not calculated.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Establish the employer's eligibility for Sezione seconda before applying art. 71 c. 5; separately calculate the art. 60 c. 2-3 coincident-holiday 1/22 payment.
+    **Remediation:** Model the travelling injury treatment before applying the injury holiday target; separately calculate the art. 60(2-3) coincident-holiday 1/22 payment.
 
 !!! warning "logistica-trasporto-confetra-viaggiante/travelling_allowances · base_salary · impact yes · open"
     NOT MODELLED: the night allowance of art. 16 for a trasferta under 18 hours overlapping the night hours (paid only from 18 hours) and the 4.5 days of paid leave of art. 11 c. 11. The trasferta of art. 62 and the night allowance of a trasferta of 18-24 hours are paid by TravelAllowanceEvent; the 50% on Sunday and holiday work of art. 12 c. 4 by the supplement bands VIAG_DOMENICA and VIAG_FESTIVO.
@@ -157,13 +158,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `absence` applies.
 
     **Remediation:** Exclude EDR_2021 from the daily base of absences and sickness (a relevance flag on the allowance), or source that it enters it.
-
-!!! warning "logistica-trasporto-confetra-viaggiante/magazzini_generali_holiday_in_sickness · sickness · impact yes · open"
-    Art. 71 c. 5 (Parte speciale, Sezione seconda, PDF p. 92): the top-up to 100% of the holidays in a sickness or injury applies only to the employers that came from the CCNL Magazzini Generali, a fact the request does not state: not applied.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** State whether the employer applies the Sezione seconda (ex Magazzini Generali) and apply the holiday target of art. 71 c. 5 then.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -374,6 +368,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     INPS: meta.inps_sectors lists industria (contribution/2026/industria.json) and terziario (contribution/2026/terziario.json); EmployerProfile.inps_sector chooses, and without it the run reads the industria with a missing_fact inps_sector blocker (see the INPS SECTOR OF THE EMPLOYER note) (review of 2026-10-30)
     
     INPS SECTOR OF THE EMPLOYER: INPS classifies an employer by the activity it carries out (art. 49 L. 88/1989), not by the CCNL it applies. The Manuale di classificazione dei datori di lavoro of May 2021 (ATECO 2007, PDF pp. 199-206) gives CSC 11501 (industria, trasporti) to 49.41.00 trasporto di merci su strada and 49.42.00 traslochi, 11505 (industria) to 52.24 movimento merci and 52.21.90, 11506 to 52.21.40 interporti, 11507 to 53.20.00 corrieri, and 70401 (terziario, intermediari) to 52.10.10 magazzini di custodia e deposito, 52.29.10 spedizionieri, 52.29.21 intermediari dei trasporti and 52.29.22 servizi logistici. The employers of this CCNL are therefore in the industria or in the terziario: meta.inps_sectors lists both and EmployerProfile.inps_sector chooses; without it the run reads the industria and has a missing_fact inps_sector blocker. INPS circ. 71/2025 moved the classification to ATECO 2025 from 1 April 2025 and announced a new edition of the manual, not found in this review: the CSC above are those of the 2021 edition.
+    
+    Art. 71(5), section two, physical PDF p. 93: a letter (b) or (c) holiday in paid reduced sickness or injury is topped up to full actual daily remuneration for employers carried forward from the previous agreement (eligibility p. 92). EmployerProfile.legacy_section_applicable selects the sickness target; the injury treatment and section-two daily quota are still not modelled for travelling staff.
     
 
 ## Raw data

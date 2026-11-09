@@ -215,10 +215,10 @@
       "institute": "parental_leave",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 52 also allows the leave by the hour, which gets no top-up; 'un periodo non superiore a tre mesi' is read as 90 days of leave; the company provisions it lets the employer absorb are not read. The top-up is computed on the INPS daily base of the leave (art. 23 D.Lgs. 151/2001), as the text gives no pay base of its own. The days already topped up by earlier leave events of the child are a fact of the event (ParentalLeaveEvent.topped_up_days_before).",
+      "rule": "Art. 52 permits hourly parental leave but does not specify its hourly quota: the event uses the statutory half-day fallback. This agreement also lacks a modelled daily absence quota, so its leave handler posts no payment until that quota is sourced. 'Un periodo non superiore a tre mesi' is read as 90 equivalent days; employer absorption of company provisions is not modelled. The top-up uses the INPS daily base (art. 23 D.Lgs. 151/2001), not an independently established collective pay base. Earlier topped-up days are supplied by the caller, not carried automatically between events.",
       "calculation": "ccnl/materiali-costruzione-lapidei-confapi:coverage.notes",
       "state": "absent",
-      "remediation": "Top up the hourly leave, read the pay base the CCNL means, and carry the days topped up per child in the state.",
+      "remediation": "Source a daily absence quota to activate the leave handler; verify the hourly quota and collective pay base, interpret the three-month cap, model company-provision absorption, and carry supplemented days per child across events.",
       "origin": "seeded",
       "links": {
         "limitations": [

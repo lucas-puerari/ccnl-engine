@@ -39,6 +39,15 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
     ),
     "OvertimeEvent.hourly_rate": absence_is_fact(_FROM_CCNL),
     "OvertimeEvent.non_occasional": absence_is_fact("occasional overtime"),
+    "OvertimeEvent.banked": absence_is_fact(
+        "no election to bank overtime: pay the ordinary overtime hour and "
+        "its full premium; a rest election must be stated by the caller"
+    ),
+    "OvertimeEvent.weekly_hours_before": absence_is_fact(
+        "unknown preceding hours of the week: threshold-only overtime bands "
+        "cannot be selected without this timesheet fact or a caller multiplier; "
+        "the event is rejected when no unthresholded band applies"
+    ),
     "NightShiftEvent.supplement_amount": absence_is_fact(_FROM_CCNL),
     "NightShiftEvent.hours": absence_is_fact(_SUPPLEMENT_HOURS),
     "NightShiftEvent.before_22": absence_is_fact(
@@ -215,6 +224,12 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         FactEnforcement.REPORTED,
         "unknown pay of the month before the leave: the indemnity is computed "
         "on the pay of the run, with a missing_fact parental_base_pay blocker",
+    ),
+    "HourlyParentalLeaveEvent.topped_up_days_before": requires_fact(
+        "parental_leave",
+        "event.topped_up_days_before",
+        FactEnforcement.REPORTED,
+        "Unknown prior equivalent days block the hourly CCNL top-up.",
     ),
     "HourlyParentalLeaveEvent.protection_ended_on": requires_fact(
         "parental_leave",

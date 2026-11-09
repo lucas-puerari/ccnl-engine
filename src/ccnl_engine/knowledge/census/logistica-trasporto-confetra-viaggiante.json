@@ -71,30 +71,14 @@
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 71 c. 5 (Sezione seconda) tops up reduced sickness or injury pay on letter b/c holidays only for workers of employers that applied the former Magazzini Generali agreement before 29 January 2005; employer eligibility is not stated, so this top-up is not calculated. Separately, art. 60 c. 2-3 pays an additional 1/22 of monthly global pay when a letter b holiday coincides with Saturday, Sunday or another holiday, including during injury or sickness; this additional payment is not calculated.",
+      "rule": "Art. 71(5) tops up letter (b) and (c) holidays in reduced paid sickness for eligible legacy-section employers when EmployerProfile.legacy_section_applicable is true; an unknown fact blocks the target. The travelling agreement still lacks the injury treatment needed to apply the injury holiday target. Separately, art. 60(2-3) pays an additional 1/22 of monthly global pay when a letter (b) holiday coincides with Saturday, Sunday or another holiday, including during sickness or injury; that payment is not calculated.",
       "calculation": "ccnl/logistica-trasporto-confetra-viaggiante:coverage.notes",
       "state": "absent",
-      "remediation": "Establish the employer's eligibility for Sezione seconda before applying art. 71 c. 5; separately calculate the art. 60 c. 2-3 coincident-holiday 1/22 payment.",
+      "remediation": "Model the travelling injury treatment before applying the injury holiday target; separately calculate the art. 60(2-3) coincident-holiday 1/22 payment.",
       "origin": "seeded",
       "links": {
         "limitations": [
           "logistica-trasporto-confetra-viaggiante/holiday_during_injury"
-        ]
-      }
-    },
-    {
-      "id": "magazzini_generali_holiday_in_sickness",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 71 c. 5 (Parte speciale, Sezione seconda, PDF p. 92): the top-up to 100% of the holidays in a sickness or injury applies only to the employers that came from the CCNL Magazzini Generali, a fact the request does not state: not applied.",
-      "calculation": "ccnl/logistica-trasporto-confetra-viaggiante:coverage.notes",
-      "state": "absent",
-      "remediation": "State whether the employer applies the Sezione seconda (ex Magazzini Generali) and apply the holiday target of art. 71 c. 5 then.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "logistica-trasporto-confetra-viaggiante/magazzini_generali_holiday_in_sickness"
         ]
       }
     },

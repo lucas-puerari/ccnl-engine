@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Parental indemnity supplement, Art. 52 - Genitorialità, PDF p. 151. | confirmed | Added work_rules.insured_absence.parental: 0.5 up to 90 eligible days. |
 | 2026-11-08 | gpt-6-sol (ai) | The parental leave clause against the CCNL top-up encoding, by a separate model session. | corrected | Confirmed the rate and the cap of the clause.<br>Corrected: the counter of the days already topped up holds only the earlier leave events (documented and tested); the hourly leave, the pay base and the three months read as 90 days are recorded as limitation parental_top_up_scope. |
 | 2026-11-09 | claude-opus-5-5 (ai) | INPS circular 76/2022 p. 7 CIGO activity rates and apprentices. | corrected | Stone-working operai owe 3.30% CIGO rather than the general industry share. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 52 hourly parental leave and supplement, PDF pp. 150–151. | confirmed | Art. 52 permits hourly parental leave on p. 150 and supplements the 30% indemnity to 50% from 1 July 2025 on p. 151; it does not print an hourly quota. |
 
 ## Salary table
 
@@ -106,11 +107,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the rule of the accordo of 10 November 2020 for a partial month and part time and model it, then remove this note.
 
 !!! warning "materiali-costruzione-lapidei-confapi/parental_top_up_scope · parental_leave · impact yes · open"
-    Art. 52 also allows the leave by the hour, which gets no top-up; 'un periodo non superiore a tre mesi' is read as 90 days of leave; the company provisions it lets the employer absorb are not read. The top-up is computed on the INPS daily base of the leave (art. 23 D.Lgs. 151/2001), as the text gives no pay base of its own. The days already topped up by earlier leave events of the child are a fact of the event (ParentalLeaveEvent.topped_up_days_before).
+    Art. 52 permits hourly parental leave but does not specify its hourly quota: the event uses the statutory half-day fallback. This agreement also lacks a modelled daily absence quota, so its leave handler posts no payment until that quota is sourced. 'Un periodo non superiore a tre mesi' is read as 90 equivalent days; employer absorption of company provisions is not modelled. The top-up uses the INPS daily base (art. 23 D.Lgs. 151/2001), not an independently established collective pay base. Earlier topped-up days are supplied by the caller, not carried automatically between events.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Top up the hourly leave, read the pay base the CCNL means, and carry the days topped up per child in the state.
+    **Remediation:** Source a daily absence quota to activate the leave handler; verify the hourly quota and collective pay base, interpret the three-month cap, model company-provision absorption, and carry supplemented days per child across events.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
