@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 2 verified / 4 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 4 verified / 4 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-07-01 |
-| **Last review** | 2026-10-12 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-12 | claude-opus-5-5 (ai) | Tecnologi a tempo indeterminato, Tabella B2 of the CCNL 2025-2027. | corrected | The tecnologi of the universities, introduced from 1.3.2026, are now a level with their six posizioni stipendiali. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Perseo Sirio employer and worker pension contributions for university technologists | corrected | University CCNL art. 94 p. 65 points to framework financing; the fund schedule p. 3 specifies 1% each on TFR pay; notional incentives remain outside the cash contribution. |
 
 ## Salary table
 
@@ -93,12 +94,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Read the university sections of the CCNL 2019-2021 (18/1/2024) for leave, absence and sickness.
 
-!!! warning "universita-tecnologi-aran/perseo_sirio_not_modelled · pension_fund_contribution · impact yes · open"
-    PENSION FUND: the university staff join the Fondo Perseo Sirio, not modelled here (the scuola fund Espero does not apply).
+!!! warning "universita-tecnologi-aran/perseo_sirio_notional_accrual · pension_fund_contribution · impact yes · open"
+    For public employees enrolled in Perseo Sirio before 2001 who opted into the TFR regime, the additional 1.5% of the TFS contribution base is accrued notionally by INPS, not paid as an employer fund contribution. Its accrual and the 28.94% notional TFR allocation are not calculated by this run.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the employer and employee rates of Fondo Perseo Sirio.
+    **Remediation:** Model the notional INPS allocation for pre-2001 TFR optants separately from the 1% employer cash contribution.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
