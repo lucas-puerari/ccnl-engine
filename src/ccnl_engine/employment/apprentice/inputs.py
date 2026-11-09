@@ -103,6 +103,10 @@ class Apprentice:
             apprentice; on an extra-month or final-settlement run, the
             hours of the period the ratei accrue over.  ``None`` when not
             stated.
+        failed_title_extension_start_month: First month (zero-based from
+            contract start) of an extension following failure to obtain the
+            qualification. ``None`` when no such extension applies. Only
+            tracks with a rule for this outcome can pay the extension.
 
     Raises:
         InvalidInputError: When a field has the wrong type or range.
@@ -114,6 +118,7 @@ class Apprentice:
     school_year: int | None = None
     programme_months: int | None = None
     hours: DualHours | None = None
+    failed_title_extension_start_month: int | None = None
     type: Literal["apprentice"] = field(default="apprentice", init=False)
 
     def __post_init__(self) -> None:  # noqa: D105
@@ -148,6 +153,13 @@ class Apprentice:
                 minimum=1,
                 optional=True,
             )
+        require_int(
+            self.failed_title_extension_start_month,
+            "Apprentice.failed_title_extension_start_month",
+            feature=_CONTRACT_FEATURE,
+            minimum=1,
+            optional=True,
+        )
         require_instance(
             self.hours,
             DualHours,
