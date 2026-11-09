@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-05-28 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2026-06-01 |
 
 ## Review history
@@ -75,6 +75,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 77 — Preavviso di risoluzione del rapporto (testo non modificato dal rinnovo 28 maggio 2026), p. 69–70). | corrected | Notice bands checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | inps_on_actual_not_conventional_pay: The cited DL 338/1989 rule establishes a minimum contributory base, not a fixed annual conventional base replacing actual contractual pay; the cited INPS annex tabulates CCNL minima. The engine calculates INPS on monthly_gross + event_inps_base, raised to any configured minimum. <br>mountain_zone_reductions: INPS 43/2026 §7 sets 75% ex-mountain and 68% disadvantaged, excluding the article 25(4) contribution. The 2026 agricultural contribution JSON sets mountain=0.75, disadvantaged=0.68 and excluded_rate=0.0030; EmployerProfile.agricultural_zone feeds with_zone_reduction, which reduce |
 | 2026-11-08 | claude-opus-5-5 (ai) | Artt. 44, 50, 52, 53 and Allegato 14 of the CCNL 23 May 2022 (PDF pp. 48-58), text layer. | corrected | Added parameters.fixed_term_pay: hourly pay with the 30.44% terzo elemento, twelve monthly payments and no leave for the OTD.<br>Added parameters.fixed_term_pay.tfr_rate: 8.63% TFR of the OTD (Allegato 14).<br>Added parameters.fixed_term_pay.overtime_tfr_rate 0.10 on the non-occasional overtime hours (OvertimeEvent.non_occasional). |
+| 2026-11-09 | claude-opus-5-5 (ai) | Permanent-worker florovivaisti sickness supplement, signed renewal Art. 62 p. 38, checked against the cached PDF and SHA-256. | corrected | The 25% is additional to statutory treatment, payable retroactively from day one after three days of recognized illness, at most 90 days per year, on the contractual daily wage in force February 1; provincial profile wage is not printed in this source.<br>Fixed-term workers have a separate entitlement after 30 continuous days at the employer, capped at 45 days per year; it remains a limitation. |
 
 ## Salary table
 
@@ -156,11 +157,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add the consecutive years of at least 150 days with the employer to the request and pay 0.4% of the salary, then remove this note.
 
 !!! warning "operai-agricoli-florovivaisti/florovivaisti_sickness_integration · sickness · impact yes · open"
-    FLOROVIVAISTI SICKNESS: the operaio florovivaista a tempo indeterminato receives from the employer, on top of the INPS indemnity, 25% of the contractual daily wage for at most 90 days a year, from the first day when the sickness lasts more than three days (Art. 62, verbale of 28 May 2026, p. 38); the file pays the operai agricoli rule, with no employer integration, and the request does not say whether the operaio is a florovivaista.
+    FLOROVIVAISTI SICKNESS (remaining limits): State EmployerProfile.subsector=florovivaisti for the permanent-worker supplement; without a sub-sector the agricultural rule applies. The provincial contractual daily wage on February 1 is not printed in the national clause and must be supplied for each year of sickness; an unknown wage or INPS recognition leaves the employer supplement unpaid and flagged. Art. 62 also grants fixed-term workers the supplement after 30 continuous days with the same employer, from day 31 for up to 45 days per year; this entitlement is not modeled.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Split the florovivaisti into their own levels or file, with a sickness rule paying 25% of the daily wage for 90 days a year past the third day.
+    **Remediation:** State the existing employer sub-sector and the February 1 contractual daily wage by year for permanent workers; source or supply continuous days with the employer and encode the 45-day fixed-term supplement after day 30.
 
 !!! warning "operai-agricoli-florovivaisti/florovivaisti_overtime_rates · overtime · impact yes · open"
     FLOROVIVAISTI OVERTIME AND HOLIDAY WORK: the operai florovivaisti are paid 29% overtime, 40% holiday work, 48% night work, 50% holiday overtime and 55% night holiday work (Art. 44, p. 49), against the 25, 35, 40, 40 and 45% of the operai agricoli (Art. 43) the file pays; ordinary holiday work (35% and 40%) has no band. The request does not say whether the operaio is a florovivaista. The rates apply to the provincial salario contrattuale.

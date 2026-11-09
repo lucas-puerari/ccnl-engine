@@ -248,6 +248,22 @@ def episode_pay(
         paid = _segment_pay(
             segment, base, (rules, terms), excluded=excluded, inps_base=inps_base
         )
+        reference_wage = (episode.contractual_daily_wage_by_year or {}).get(
+            segment.first.year, _ZERO
+        )
+        extra = (
+            money(
+                reference_wage
+                * Decimal((segment.last - segment.first).days + 1)
+                * segment.daily_share
+            )
+            if not excluded
+            else _ZERO
+        )
+        if segment.kind is SickDayKind.CARENZA:
+            paid = paid[0], paid[1], paid[2] + extra
+        else:
+            paid = paid[0], paid[1] + extra, paid[2]
         inps, integration, carenza = (
             inps + paid[0],
             integration + paid[1],

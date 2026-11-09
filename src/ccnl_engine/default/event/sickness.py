@@ -16,6 +16,21 @@ if TYPE_CHECKING:
     from ccnl_engine.default.models import FieldDefault
 
 SICKNESS_DEFAULTS: Mapping[str, FieldDefault] = {
+    "SicknessEpisode.inps_recognized": requires_fact(
+        "sickness",
+        "event.inps_recognized",
+        FactEnforcement.REPORTED,
+        "unknown recognition: an employer supplement conditional on INPS "
+        "recognition is unpaid, with a provisional sickness_recognition_unknown issue",
+    ),
+    "SicknessEpisode.contractual_daily_wage_by_year": requires_fact(
+        "sickness",
+        "event.contractual_daily_wage_by_year",
+        FactEnforcement.REPORTED,
+        "unknown reference-date contractual daily wage: an employer supplement "
+        "based on it is unpaid, with a provisional "
+        "sickness_reference_wage_unknown issue",
+    ),
     "SicknessEpisode.periodic_check": absence_is_fact("an ordinary sickness absence"),
     "SicknessEpisode.daily_contributions": requires_fact(
         "sickness",

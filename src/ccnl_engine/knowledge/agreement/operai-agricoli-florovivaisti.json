@@ -215,15 +215,19 @@
       },
       {
         "kind": "simplification",
-        "text": "FLOROVIVAISTI SICKNESS: the operaio florovivaista a tempo indeterminato receives from the employer, on top of the INPS indemnity, 25% of the contractual daily wage for at most 90 days a year, from the first day when the sickness lasts more than three days (Art. 62, verbale of 28 May 2026, p. 38); the file pays the operai agricoli rule, with no employer integration, and the request does not say whether the operaio is a florovivaista.",
+        "text": "FLOROVIVAISTI SICKNESS (remaining limits): State EmployerProfile.subsector=florovivaisti for the permanent-worker supplement; without a sub-sector the agricultural rule applies. The provincial contractual daily wage on February 1 is not printed in the national clause and must be supplied for each year of sickness; an unknown wage or INPS recognition leaves the employer supplement unpaid and flagged. Art. 62 also grants fixed-term workers the supplement after 30 continuous days with the same employer, from day 31 for up to 45 days per year; this entitlement is not modeled.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "florovivaisti_sickness_integration",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "outside_input",
+            "contract_types": [
+              "fixed_term",
+              "permanent"
+            ]
           },
-          "remediation": "Split the florovivaisti into their own levels or file, with a sickness rule paying 25% of the daily wage for 90 days a year past the third day."
+          "remediation": "State the existing employer sub-sector and the February 1 contractual daily wage by year for permanent workers; source or supply continuous days with the employer and encode the 45-day fixed-term supplement after day 30."
         }
       },
       {
@@ -939,7 +943,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "673e6c73c938a8c7e06f5ac196242647922f0f618755bcae027f6422aa3dba9e",
+    "source_hash": "fb0931f9631510e489b76826773f615dcec188443d72a69c4be7a80c7ad10d54",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1186,6 +1190,47 @@
         }
       }
     },
+    "subsector_rules": {
+      "florovivaisti": {
+        "sickness_rules": {
+          "carenza_integration_rate": "0",
+          "full_pay_integration_rate": "0",
+          "max_duration_days": 180,
+          "inps_regime": "agricoltura",
+          "annual_daily_share": "0.25",
+          "daily_share_min_days": 3,
+          "daily_share_annual_max_days": 90,
+          "daily_share_reference_month": 2,
+          "permanent_only": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "verbale-ccnl-operai-agricoli-2026-05-28",
+                "title": "Verbale di accordo di rinnovo del CCNL operai agricoli e florovivaisti 2026-2029, 28 maggio 2026",
+                "kind": "associazione",
+                "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
+                "published_on": "2026-05-28",
+                "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
+              },
+              "page": "38",
+              "section": "Art. 62 (Malattia ed infortunio operai florovivaisti)",
+              "quote": "In caso di malattia, l'operaio, in aggiunta al trattamento di legge, avrà diritto, per un periodo massimo di 90 giornate in un anno, all' erogazione, da parte del datore di lavoro, di una indennità giornaliera, nella misura del 25 per cento del salario giornaliero contrattuale relativo al profilo professionale di appartenenza, in vigore al 1 ° febbraio dell'anno in corso. L'indennità sarà corrisposta dal giorno in cui si è verificata la malattia, se questa si protrae oltre il terzo giorno, e subordinatamente al riconoscimento della malattia stessa da parte dell'INPS."
+            },
+            "transformation": "Permanent workers of the florovivaisti sub-sector receive an additional 25% of the stated contractual daily wage as of February 1 of each year, on all days of recognized illnesses longer than three days, up to 90 days per calendar year across episodes. The wage is an episode fact because provincial contractual daily wages are not printed here; unknown recognition or wage leaves the supplement unpaid with an issue. Fixed-term entitlement remains a limitation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T11:26:58Z",
+              "verification_status": "verified",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T11:26:58Z",
+              "review_id": "2026-11-09-ai-florovivaisti-sickness"
+            }
+          }
+        }
+      }
+    },
     "sickness_rules": {
       "carenza_integration_rate": "0",
       "full_pay_integration_rate": "0",
@@ -1216,7 +1261,7 @@
           "verified_at": "2026-10-15T09:23:49Z",
           "review_id": "2026-10-15-ai-leave-sickness"
         },
-        "transformation": "The operaio agricolo keeps the job for 180 days and has no employer integration in the CCNL: the integrations are paid by the provincial Casse extra legem (Art. 8 and 63), outside the payroll. The florovivaisti integration of Art. 62 is declared as a limitation."
+        "transformation": "The operaio agricolo keeps the job for 180 days and has no employer integration in the CCNL: the integrations are paid by the provincial Casse extra legem (Art. 8 and 63), outside the payroll. The distinct permanent florovivaisti integration is selected through the employer sub-sector."
       }
     },
     "notice": {
@@ -1591,6 +1636,25 @@
           "parameters.fixed_term_pay",
           "parameters.fixed_term_pay.tfr_rate",
           "parameters.fixed_term_pay.overtime_tfr_rate"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-florovivaisti-sickness",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Permanent-worker florovivaisti sickness supplement, signed renewal Art. 62 p. 38, checked against the cached PDF and SHA-256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
+            "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
+          }
+        ],
+        "findings": [
+          "The 25% is additional to statutory treatment, payable retroactively from day one after three days of recognized illness, at most 90 days per year, on the contractual daily wage in force February 1; provincial profile wage is not printed in this source.",
+          "Fixed-term workers have a separate entitlement after 30 continuous days at the employer, capped at 45 days per year; it remains a limitation."
         ]
       }
     ],

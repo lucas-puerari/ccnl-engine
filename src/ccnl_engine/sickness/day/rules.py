@@ -22,7 +22,7 @@ employer what INPS does not; days of the same treatment form a
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field, replace
+from dataclasses import dataclass, replace
 from datetime import date, timedelta
 from decimal import Decimal
 from enum import StrEnum
@@ -30,6 +30,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.compensation.proration.rules import payable_days
 from ccnl_engine.sickness.agricultural import rules as agricultural
+from ccnl_engine.sickness.day.annual import InpsDays, daily_share, take
 from ccnl_engine.sickness.holiday.rules import gross_holiday_boundary
 from ccnl_engine.sickness.window.rules import window_start
 
@@ -81,6 +82,7 @@ class SickDaySegment:
         worker_rate: Share of the daily pay the worker receives.
         inps_direct: Whether INPS pays its share to the worker directly,
             so the employer does not advance it.
+        daily_share: Additional employer fraction of the reference-date wage.
     """
 
     first: date
@@ -90,6 +92,7 @@ class SickDaySegment:
     inps_rate: Decimal
     worker_rate: Decimal
     inps_direct: bool = False
+    daily_share: Decimal = _ZERO
 
     @property
     def employer_rate(self) -> Decimal:
@@ -105,34 +108,7 @@ class _Day:
     inps_rate: Decimal
     worker_rate: Decimal
     inps_direct: bool = False
-
-
-@dataclass
-class _InpsDays:
-    """Days paid per calendar year, counted as days are walked.
-
-    ``used`` counts the INPS days, ``short_term`` the days of a yearly
-    fixed-term limit (D.L. 463/1983 art. 5 c. 3, the agricultural lists).
-    """
-
-    used: dict[int, int] = field(default_factory=dict)
-    short_term: dict[int, int] = field(default_factory=dict)
-
-    def take(self, day: date, limit: int) -> bool:
-        """Count ``day`` as paid when the year has room left.
-
-        Returns:
-            Whether INPS pays ``day``.
-        """
-        return _take(self.used, day, limit)
-
-
-def _take(used: dict[int, int], day: date, limit: int) -> bool:
-    count = used.get(day.year, 0)
-    if count >= limit:
-        return False
-    used[day.year] = count + 1
-    return True
+    daily_share: Decimal = _ZERO
 
 
 @dataclass(frozen=True)
@@ -150,10 +126,10 @@ class _FixedTermLimit:
     direct_after: int | None
     short_days: int
 
-    def allows(self, index: int, day: date, inps: _InpsDays) -> bool:
+    def allows(self, index: int, day: date, inps: InpsDays) -> bool:
         if self.days is not None:
             return index <= self.days
-        return _take(inps.short_term, day, self.short_days)
+        return take(inps.short_term, day, self.short_days)
 
 
 def _fixed_term_limit(
@@ -190,8 +166,9 @@ def _classify(
     index: int,
     day: date,
     rules: SickPayRules,
-    inps: _InpsDays,
+    inps: InpsDays,
     days: tuple[CcnlDay, _FixedTermLimit | agricultural.AgriculturalLimit | None],
+    daily_share: Decimal = _ZERO,
 ) -> _Day:
     """Return the kind, INPS rate and worker rate of sick day ``index``.
 
@@ -202,7 +179,9 @@ def _classify(
     if limit is not None and not limit.allows(index, day, inps):
         return _Day(SickDayKind.FIXED_TERM_LIMIT, _ZERO, _ZERO)
     if index <= rules.inps.carenza_days:
-        return _Day(SickDayKind.CARENZA, _ZERO, ccnl.carenza_rate)
+        return _Day(
+            SickDayKind.CARENZA, _ZERO, ccnl.carenza_rate, daily_share=daily_share
+        )
     band = rules.inps.band_rate(index) if rules.inps_cover else _ZERO
     paid = band > _ZERO and inps.take(day, rules.inps.annual_max_days)
     rate = band if paid else _ZERO
@@ -216,7 +195,7 @@ def _classify(
         return _Day(SickDayKind.BEYOND_COMPORTO, rate, rate, direct)
     share = rules.ccnl.employer_share
     worker = max(ccnl.rate, rate) if share is None else rate + share * paid
-    return _Day(SickDayKind.INDEMNIFIED, rate, worker, direct)
+    return _Day(SickDayKind.INDEMNIFIED, rate, worker, direct, daily_share)
 
 
 def _walk(
@@ -224,7 +203,7 @@ def _walk(
     span: tuple[date, date],
     history: SicknessHistory,
     rules: SickPayRules,
-    inps: _InpsDays,
+    inps: InpsDays,
 ) -> Iterator[tuple[date, int, _Day]]:
     """Yield each day of ``span`` with its index and treatment.
 
@@ -242,7 +221,15 @@ def _walk(
     for step in range((last - first).days + 1):
         day = first + timedelta(days=step)
         index = offset + (day - episode.started_on).days + 1
-        yield day, index, _classify(index, day, rules, inps, (ccnl(index, day), limit))
+        treatment = ccnl(index, day)
+        extra = daily_share(
+            episode, day, rules, inps, beyond_comporto=treatment.beyond_comporto
+        )
+        yield (
+            day,
+            index,
+            _classify(index, day, rules, inps, (treatment, limit), extra),
+        )
 
 
 def _used_before(
@@ -250,14 +237,14 @@ def _used_before(
     first: date,
     history: SicknessHistory,
     rules: SickPayRules,
-) -> _InpsDays:
+) -> InpsDays:
     """Return the INPS days paid before ``first``, walking every earlier day.
 
     Returns:
         The days paid per calendar year by the earlier episodes and by the
         days of ``episode`` before ``first``.
     """
-    inps = _InpsDays()
+    inps = InpsDays()
     for earlier in history.earlier(episode):
         span = (earlier.started_on, earlier.ended_on)
         for _ in _walk(earlier, span, history, rules, inps):
@@ -289,8 +276,13 @@ def classify_days(
         if (
             last is not None
             and last.kind is treatment.kind
-            and (last.inps_rate, last.worker_rate, last.inps_direct)
-            == (treatment.inps_rate, treatment.worker_rate, treatment.inps_direct)
+            and (last.inps_rate, last.worker_rate, last.inps_direct, last.daily_share)
+            == (
+                treatment.inps_rate,
+                treatment.worker_rate,
+                treatment.inps_direct,
+                treatment.daily_share,
+            )
             and not gross_holiday_boundary(
                 rules.ccnl.holiday, rules.holidays, day, last.last
             )
@@ -303,6 +295,7 @@ def classify_days(
                 last.inps_rate,
                 last.worker_rate,
                 last.inps_direct,
+                last.daily_share,
             )
             continue
         segments.append(
@@ -314,6 +307,7 @@ def classify_days(
                 treatment.inps_rate,
                 treatment.worker_rate,
                 treatment.inps_direct,
+                treatment.daily_share,
             )
         )
     return tuple(segments)

@@ -16,6 +16,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, replace
 from datetime import date, timedelta
+from decimal import Decimal
 
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.sickness.agricultural.inputs import AgriculturalDays
@@ -80,6 +81,11 @@ class SicknessEpisode:
             the month before the illness, or of the last daily contributions
             for a lavoratore dello spettacolo; ``None`` when not stated.
             A relapse without one takes that of the episode it continues.
+        inps_recognized: Whether INPS recognized this illness; read only by
+            a CCNL whose employer supplement requires recognition.
+        contractual_daily_wage_by_year: Contractual daily wage on the rule's
+            reference date in each calendar year of the episode; not the
+            statutory INPS base. Read only for a reference-date supplement.
         agricultural_days: Days of registration in the elenchi of an operaio
             agricolo a tempo determinato, the year before and the current
             one; ``None`` when not stated (INPS then pays up to 180 a year).
@@ -108,6 +114,8 @@ class SicknessEpisode:
     daily_contributions: int | None = None
     inps_base: InpsSicknessBase | SpettacoloSicknessBase | None = None
     agricultural_days: AgriculturalDays | None = None
+    inps_recognized: bool | None = None
+    contractual_daily_wage_by_year: dict[int, Decimal] | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         validate_episode(self)
