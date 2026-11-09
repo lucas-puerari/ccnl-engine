@@ -46,7 +46,7 @@
       },
       {
         "kind": "info",
-        "text": "HOURLY DIVISOR: 130 = 30 x 52 / 12 in the file; a run uses the weekly hours of the employment x 52 / 12 (flat_pay_max_weekly_hours), since the Tabella B pay does not change with the hours: B super at 10 weekly hours is 737,39 / 43,33 = 17,02 an hour. Work beyond the agreed hours is paid at the hourly retribuzione globale di fatto (art. 14 c. 2), with the art. 15 supplements outside the agreed time arrangement; the overtime bands are those of the convivente file."
+        "text": "HOURLY DIVISOR: 130 = 30 x 52 / 12 in the file; a run uses the weekly hours of the employment x 52 / 12 (flat_pay_max_weekly_hours), since the Tabella B pay does not change with the hours: B super at 10 weekly hours is 737,39 / 43,33 = 17,02 an hour. Work beyond the agreed hours is paid at the hourly retribuzione globale di fatto (art. 14 c. 2): classify hours within the adopted time arrangement as supplementare (zero supplement), and hours outside it as weekday, night or holiday for the art. 15 supplements; do not infer the arrangement from the calendar date alone."
       },
       {
         "kind": "info",
@@ -168,7 +168,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 14 c. 2: hours beyond the agreed ones within the agreed time arrangement are paid at the plain hourly retribuzione globale di fatto, only those outside it with the supplements of Art. 15. The request does not say where an hour falls, so the overtime bands of Art. 15 apply to every overtime hour stated.",
+        "text": "Art. 14 c. 2: hours beyond the agreed ones within the adopted time arrangement are paid at the plain hourly retribuzione globale di fatto (OvertimeEvent.kind=supplementare); hours outside it are classified by time of day / holiday for the supplements of Art. 15. The caller must verify the written arrangement and split hours crossing its boundary into separate events.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -176,7 +176,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add a fact for the extra hours within the agreed time arrangement and pay them without a supplement."
+          "remediation": "Resolved for caller-classified hours: use kind=supplementare for extra hours within the written arrangement and weekday/night/holiday for hours outside it; split hours at the arrangement boundary.",
+          "status": "resolved"
         }
       },
       {
@@ -993,7 +994,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "56d7e9b105fc060f3d467db00ae0f13ad5512042740454eb187832342aab5715",
+    "source_hash": "9e3919e1c90652351b9393919ab87c615121cf01eb71066992b7632e57cca366",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },
@@ -1001,6 +1002,49 @@
     "time_supplements": {
       "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
+        {
+          "code": "OT_IN_ARRANGEMENT",
+          "description": "Extra hours within the adopted time arrangement (Art. 14 c. 2)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-11-01",
+                "value": "0",
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "supplementare"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                "kind": "associazione",
+                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                "published_on": "2025-10-28",
+                "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+              },
+              "page": "24-25",
+              "section": "Art. 14 c. 2 (reduced-hours live-in arrangement)",
+              "quote": "Eventuali prestazioni lavorative eccedenti l’orario effettivo di lavoro concordato nell’atto scritto di cui al successivo comma 3 saranno retribuite con la retribuzione globale di fatto oraria, se collocate temporalmente all’interno della tipologia di articolazione dell’orario adottata; le prestazioni collocate temporalmente al di fuori di tale tipologia saranno retribuite in ogni caso con la retribuzione globale di fatto oraria con le maggiorazioni previste dall’art. 15."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T18:46:57Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T18:46:57Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-09-ai-domestic-arrangement"
+            },
+            "transformation": "For additional hours within the adopted arrangement, pay the hourly global actual remuneration with a zero supplement; the caller identifies these hours using the supplementary kind. Hours outside the arrangement retain the Art. 15 weekday, night or holiday bands. The written arrangement and the placement of each hour must be checked by the caller."
+          }
+        },
         {
           "code": "OT_DIURNO",
           "description": "Straordinario diurno (6-22)",
@@ -1463,6 +1507,28 @@
         "independence": "separate_model",
         "checked": [
           "levels[].fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-domestic-arrangement",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 14 c. 2, PDF pp. 24-25, Art. 14 c. 6 and Art. 15 c. 3, PDF pp. 26-27: extra hours within and outside the adopted arrangement and night hours.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+          }
+        ],
+        "findings": [
+          "Within-arrangement additional hours receive the hourly global actual remuneration without a supplement; outside hours receive Art. 15 supplements. The caller classifies and splits events at the arrangement boundary; ordinary night work remains a separate 20% supplement."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements.overtime_bands",
+          "coverage.notes"
         ]
       }
     ],

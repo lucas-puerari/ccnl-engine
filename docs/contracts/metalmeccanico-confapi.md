@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2017-07-03 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -73,6 +73,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 32(a,b,c) and holiday-in-absence paragraph, cached PDF pp. 104-105. | confirmed | Art. 32 excludes letter a) (25 April, 1 May and 2 June); the national calendar includes these, so a blanket sickness holiday rule would overpay. Injury and patron saint also remain unmodelled. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 32 and Art. 38 of the 2017 CCNL, physical PDF pages 104 and 112, former-worker holiday hours and December pay. | confirmed | The Sunday daily quota already exists. Former legal operai receive 80 minutes for weekday holidays and January weekend Epiphany, subject to company offset; former Part One workers in service on 2008-12-31 receive a non-absorbable 11h10 December annual payment. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 32 p. 104 and Art. 38 p. 112: local patron, 2009 effective date and termination settlement. | confirmed | Local patron is letter c of Art. 32; the 80-minute entitlement starts in 2009. Art. 38 pays the annual amount with December wages, without an express earlier termination advance. Hourly cottimo and other hourly elements remain outside the computed base. |
+| 2026-11-09 | claude-opus-5-5 (ai) | PAR supplements of Arts. 21, 22 and 24 of the 2017 PDF and Art. 22 of the 2026 renewal, checked against cached PDFs. | confirmed | General 104 hours; entire-workforce sectors and eligible rotations add eight hours each; all employers add four hours from 2029. Unit headcount, restricted production areas, steel monetisation and company offsets remain limitations. |
 
 ## Salary table
 
@@ -193,11 +194,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the IPCA top-up when the index is published.
 
 !!! warning "metalmeccanico-confapi/par_sector_shift_and_renewal_hours · leave · impact yes · open"
-    LEAVE, PAR (Artt. 21-22 and renewal of 4 June 2026, p. 18): 8 more hours in the sectors listed by Art. 21 and for the turnisti on 15 or more shifts a week; 4 more hours from 1 January 2027 to 31 December 2028 in the companies with at least 50 employees per unità produttiva and from 2029 in every company (the sentence is an insertion of the scan, read by OCR). The engine accrues the 104 hours of the generalità.
+    LEAVE, PAR (Artt. 21-22, 24 and renewal of 4 June 2026, p. 18): the engine adds 8 hours for the whole-workforce sectors of Art. 21(b), 8 for qualifying rotating shifts outside steel, and 4 for all workers from 2029. Not modelled: the Art. 21(a) production/maintenance-area restriction (and southern auto shift exception), the steel shift permit paid with the Christmas bonus instead of credited, the 2027–28 four hours restricted to production units of at least 50 workers (employer headcount is not unit headcount), and absorption by company-level reductions. The 104-hour base remains payable for all workers.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add employment facts for the sector, the shift pattern and the size of the unità produttiva, and the 2027 hours.
+    **Remediation:** Model worker production area and unit headcount, steel shift monetisation and company-level offsets; the 2027–28 four hours cannot use employer headcount as unit headcount.
 
 !!! warning "metalmeccanico-confapi/par_conto_ore_payout · leave · impact yes · open"
     LEAVE, CONTO ORE (Art. 22, p. 94): the residual PAR of a year are paid with the December pay two years later (work_rules.leave_rules.permit_deadline). Not modelled: 'L’attivazione del Conto ore individuale avverrà previo accertamento presso gli Enti previdenziali competenti' of the contributions on the hours set aside; the engine treats the conto ore as active.

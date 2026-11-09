@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | assistance_contribution, base_salary, inps_employer, overtime |
+| **Limits of this contract** | assistance_contribution, base_salary, inps_employer |
 
 9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🧑 Manual | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 15 verified / 5 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 16 verified / 5 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-10-28 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 34 cc. 3, 4, 7 (PDF pp. 44-45) and the Tabelle H, I, L of the minimi from 1 January 2026 (PDF p. 59), text layer. | corrected | Tabella H: B super baby sitter 138.54 a month (live-in), 97.06 (Tabella B workers), 0.84 an hour; Tabella I: C super and D super assisting more than one non self-sufficient person 119.66 a month, 0.70 an hour; Tabella L: B, B super and C super with the UNI 11766:2019 certification 30.27 a month: role allowances of the levels of this ruleset. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Verified the existing 2026 Table H and L allowances and narrowed the obsolete limitation to missing student levels and caller-attested eligibility. | confirmed | The cached signed PDF page 59 gives 97.06 monthly for BS in Table H and 30.27 monthly for B and BS in Table L; the existing level-local allowances already implement these values.<br>Child age and certification evidence are caller-attested roles; offsets against individual pay remain outside the fixed allowance model. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 34 cc. 3, 4, 7 and the Tabelle H, I, L (PDF pp. 44-45, 59) against the role allowances, by a separate model session. | corrected | Confirmed the amounts, levels and roles of the Tabelle H, I and L.<br>Corrected: the quotes now hold the article text alone (the table amounts are in the transformation); the certification needs a copy handed over; the allowance of c. 7 is absorbed by any better treatment received overall, not only a superminimo. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 14 c. 2, PDF pp. 24-25, Art. 14 c. 6 and Art. 15 c. 3, PDF pp. 26-27: extra hours within and outside the adopted arrangement and night hours. | corrected | Within-arrangement additional hours receive the hourly global actual remuneration without a supplement; outside hours receive Art. 15 supplements. The caller classifies and splits events at the arrangement boundary; ordinary night work remains a separate 20% supplement. |
 
 ## Salary table
 
@@ -135,12 +136,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the sick pay leaves the value in kind out, and BoardLodgingEvent pays it for the sick days outside hospital and the employer's home.
 
-!!! warning "lavoro-domestico-convivente-orario-ridotto/hours_within_arrangement · overtime · impact yes · open"
-    Art. 14 c. 2: hours beyond the agreed ones within the agreed time arrangement are paid at the plain hourly retribuzione globale di fatto, only those outside it with the supplements of Art. 15. The request does not say where an hour falls, so the overtime bands of Art. 15 apply to every overtime hour stated.
+!!! note "lavoro-domestico-convivente-orario-ridotto/hours_within_arrangement · overtime · impact yes · resolved"
+    Art. 14 c. 2: hours beyond the agreed ones within the adopted time arrangement are paid at the plain hourly retribuzione globale di fatto (OvertimeEvent.kind=supplementare); hours outside it are classified by time of day / holiday for the supplements of Art. 15. The caller must verify the written arrangement and split hours crossing its boundary into separate events.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add a fact for the extra hours within the agreed time arrangement and pay them without a supplement.
+    **Remediation:** Resolved for caller-classified hours: use kind=supplementare for extra hours within the written arrangement and weekday/night/holiday for hours outside it; split hours at the arrangement boundary.
 
 !!! warning "lavoro-domestico-convivente-orario-ridotto/annual_minimi_not_updated · base_salary · impact yes · open"
     ANNUAL MINIMI: the minimi of the CCNL are updated every year from 1 January by the Commissione nazionale (Art. 38, ISTAT variation of the consumer prices); the bundle holds the table of 2026. From 1 January 2027 the amounts are those of 2026 until the 2027 table is published and added, so a 2027 run is not payable.
@@ -312,7 +313,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 ??? note "Coverage notes"
     SALARY MODEL: TABELLA B of the CCNL of 28/10/2025, conviventi hired under art. 14 c. 2 (levels C, B and B super, up to 30 weekly hours, written act of c. 3). The monthly minimum is paid 'qualunque sia l'orario di lavoro osservato nel limite massimo delle 30 ore settimanali', so it is not proportioned to the hours and more than 30 weekly hours are rejected; board and lodging are due in full ('fermo restando l'obbligo di corresponsione dell'intera retribuzione in natura'). Values of 2026: B 702,25 (the signed text prints 702,35, the DOMINA and Commissione tables 702,25), BS 737,39, C 814,60.
     
-    HOURLY DIVISOR: 130 = 30 x 52 / 12 in the file; a run uses the weekly hours of the employment x 52 / 12 (flat_pay_max_weekly_hours), since the Tabella B pay does not change with the hours: B super at 10 weekly hours is 737,39 / 43,33 = 17,02 an hour. Work beyond the agreed hours is paid at the hourly retribuzione globale di fatto (art. 14 c. 2), with the art. 15 supplements outside the agreed time arrangement; the overtime bands are those of the convivente file.
+    HOURLY DIVISOR: 130 = 30 x 52 / 12 in the file; a run uses the weekly hours of the employment x 52 / 12 (flat_pay_max_weekly_hours), since the Tabella B pay does not change with the hours: B super at 10 weekly hours is 737,39 / 43,33 = 17,02 an hour. Work beyond the agreed hours is paid at the hourly retribuzione globale di fatto (art. 14 c. 2): classify hours within the adopted time arrangement as supplementare (zero supplement), and hours outside it as weekday, night or holiday for the art. 15 supplements; do not infer the arrangement from the calendar date alone.
     
     SENIORITY: biennale, 4% of the Tabella B minimum (art. 37 c. 1: 'sulla retribuzione minima contrattuale'), maximum 7 scatti: B 28,09, BS 29,50, C 32,58.
     
