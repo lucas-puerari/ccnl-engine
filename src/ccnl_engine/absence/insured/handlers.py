@@ -200,7 +200,10 @@ def _handle_maternity_leave(
         rules,
         base.rmgg,
         (
-            rules.holiday.holidays(*span)
+            rules.holiday.holidays(
+                *span,
+                None if terms.employer is None else terms.employer.patron_saint_day,
+            )
             if rules is not None and rules.holiday is not None
             else frozenset()
         ),

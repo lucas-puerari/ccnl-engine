@@ -692,7 +692,6 @@
     "agreement/ced-assoced.json": [
       "ced-assoced/conditional_allowances_title_xxiii",
       "ced-assoced/injury_rate_text_conflict",
-      "ced-assoced/local_holiday_during_absence",
       "ced-assoced/maternity_holiday_scope",
       "ced-assoced/terziario_inps_rates_unverified"
     ],
@@ -900,7 +899,6 @@
     "agreement/impianti-sportivi-sport.json": [
       "impianti-sportivi-sport/level_v_first_semester_overpaid",
       "impianti-sportivi-sport/level_vi_whole_track_at_destination",
-      "impianti-sportivi-sport/local_holiday_during_absence",
       "impianti-sportivi-sport/pre_2015_fourteenth_missing",
       "impianti-sportivi-sport/pre_2015_superminimo_missing",
       "impianti-sportivi-sport/sickness_net_basis"
@@ -1045,7 +1043,8 @@
       "noleggio-autobus-conducente-anav/apprentice_seniority",
       "noleggio-autobus-conducente-anav/salary_tables_from_proxy",
       "noleggio-autobus-conducente-anav/seniority_from_ic35",
-      "noleggio-autobus-conducente-anav/t0_table_back_calculated"
+      "noleggio-autobus-conducente-anav/t0_table_back_calculated",
+      "noleggio-autobus-conducente-anav/una_tantum_effective_work_months"
     ],
     "agreement/ooss-unsic-confsal.json": [
       "ooss-unsic-confsal/apprentice_seniority",
@@ -1164,7 +1163,6 @@
     ],
     "agreement/studi-professionali-confprofessioni.json": [
       "studi-professionali-confprofessioni/intermittent_availability",
-      "studi-professionali-confprofessioni/local_holiday_during_absence",
       "studi-professionali-confprofessioni/maternity_holiday_scope",
       "studi-professionali-confprofessioni/rolling_comporto_365_day_boundary",
       "studi-professionali-confprofessioni/unused_leave_hours"
@@ -1178,7 +1176,6 @@
     ],
     "agreement/terziario-confesercenti.json": [
       "terziario-confesercenti/apprentice_sickness",
-      "terziario-confesercenti/local_holiday_during_absence",
       "terziario-confesercenti/provincial_third_elements",
       "terziario-confesercenti/sales_operators",
       "terziario-confesercenti/sickness_net_basis",

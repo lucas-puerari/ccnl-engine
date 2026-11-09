@@ -186,3 +186,59 @@ def test_the_holiday_of_a_paternity_leave_reaches_the_studi_target() -> None:
 def test_no_paternity_holiday_target_adds_nothing(ccnl_id: str, level: str) -> None:
     """CED tops up the maternity holidays only; Federmeccanica has no rule."""
     assert "absence_integration_item" not in _amounts(_may_run(ccnl_id, level))
+
+
+#: A February below the daily pay of March, so that the INPS indemnity does
+#: not already reach the full pay of a covered holiday.
+_LOW_FEBRUARY = InpsSicknessBase(Decimal(1000), Decimal(0))
+
+
+def _studi_paternity(employer: EmployerProfile) -> Decimal:
+    """Return the CCNL integration of a Studi paternity leave over 16-20 March.
+
+    Returns:
+        The sum of the leave's items other than the deduction and the INPS
+        indemnity.
+    """
+    days = tuple(date(2026, 3, d) for d in (16, 17, 18, 19, 20))
+    result = PayrollEngine.bundled().calculate_period(
+        PeriodInput(
+            run=PayrollRun.regular(2026, 3),
+            payment_date=date(2026, 3, 27),
+            employment=Employment(
+                ccnl_id="studi-professionali-confprofessioni",
+                level_code="3",
+                category=WorkerCategory.IMPIEGATO,
+                contract_type=Permanent(),
+                employment_period=EmploymentPeriod(_HIRED, None),
+                seniority=SeniorityFact.since(_HIRED, SenioritySource.EMPLOYER_RECORDS),
+                pension_fund=NoPensionFund(),
+                tfr_treasury_fund=False,
+            ),
+            employer=employer,
+            facts=PeriodFacts(
+                events=(PaternityLeaveEvent(days, paternity_base_pay=_LOW_FEBRUARY),)
+            ),
+        )
+    )
+    return sum(
+        (
+            i.amount
+            for i in result.pay_items
+            if "_evt" in i.item_id and not i.item_id.endswith(("_abs", "_inps"))
+        ),
+        Decimal(0),
+    )
+
+
+def test_the_run_tops_up_a_stated_patron_day_in_paternity() -> None:
+    """Thursday 19 March, stated as the employer's patron, is topped up.
+
+    Without the stated day the leave has no covered holiday and no CCNL
+    integration; with it the patron day raises the integration.
+    """
+    plain = _studi_paternity(EmployerProfile(headcount=Headcount(10)))
+    patron = _studi_paternity(
+        EmployerProfile(headcount=Headcount(10), patron_saint_day="03-19")
+    )
+    assert patron > plain
