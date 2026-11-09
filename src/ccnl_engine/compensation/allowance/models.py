@@ -69,6 +69,9 @@ class Allowance(BaseModel):
     ``in_kind=True``: a benefit in kind (board and lodging, domestico art. 36),
     unpaid on a regular run but in the TFR base, paid in cash in extra months.
     ``tfr_relevant_from`` dates the TFR relevance (Federalimentare art. 73).
+    ``below_weekly_hours`` pays the allowance only to a worker whose stated
+    ``Employment.weekly_hours`` is below it (Portieri art. 122 c. 2: B5 under
+    8 weekly hours); a worker without stated hours works full time.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -93,6 +96,7 @@ class Allowance(BaseModel):
     service_months_until: int | None = Field(default=None, ge=1)
     career_service: bool = False
     in_service_on: date | None = None
+    below_weekly_hours: Decimal | None = Field(default=None, gt=0)
     individual: bool = False
     absorbed_by_individual_excess: bool = False
     provenance: RuleProvenance | None = None
