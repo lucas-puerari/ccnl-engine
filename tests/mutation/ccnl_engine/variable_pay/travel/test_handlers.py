@@ -40,6 +40,7 @@ from ccnl_engine.variable_pay.loaders import load_variable_pay_rules
 from ccnl_engine.variable_pay.travel.handlers import (
     TravelAllowanceAssessment,
     TravelTerms,
+    _discounted_daily,
 )
 from ccnl_engine.working_time.travel.models import CcnlTravelAllowance
 from scripts.provenance.rules import KNOWLEDGE_DIR
@@ -484,6 +485,65 @@ def test_studi_mission_duration_and_reduction(
     (decision,) = (d for d in decisions if d.capability == "travel_allowance")
     assert decision.inputs["daily_amount"] == Decimal(amount) / days
     assert decision.inputs["mission_hours"] == Decimal(hours)
+
+
+def test_no_discount_preserves_the_ccnl_daily_rate() -> None:
+    """Without a discount the daily rate is not rounded before the block total."""
+    rules = _studi_terms().rules
+    assert rules is not None
+    assert _discounted_daily(_trip(), rules, Decimal("15.005")) == Decimal("15.005")
+
+
+def test_discount_flags_are_recorded_with_the_paid_amount() -> None:
+    """The decision preserves both reasons for the 10% discount, once only."""
+    event = _trip(
+        daily_amount=None,
+        hours_away=None,
+        mission_hours=Decimal(48),
+        days=2,
+        habitual_travel=True,
+        mission_over_month=True,
+    )
+    paid, decisions = _processed(event, _studi_terms())
+    (decision,) = (d for d in decisions if d.capability == "travel_allowance")
+
+    assert paid == Decimal("54.00")  # 2 x (30.00 x 0.90)
+    assert decision.inputs["daily_amount"] == Decimal("27.00")
+    assert decision.inputs["habitual_travel"] == "true"
+    assert decision.inputs["mission_over_month"] == "true"
+
+
+@pytest.mark.parametrize(
+    ("event", "terms", "detail"),
+    [
+        (
+            _trip(daily_amount=None, hours_away=Decimal(20)),
+            _studi_terms(),
+            "the CCNL requires the total mission duration in mission_hours",
+        ),
+        (
+            _trip(daily_amount=None, mission_hours=Decimal(25)),
+            _terms(),
+            "the CCNL requires hours_away for its daily travel bands",
+        ),
+        (
+            _trip(daily_amount=None, mission_hours=Decimal(8)),
+            _studi_terms(),
+            "the CCNL does not state an allowance at this exact mission duration",
+        ),
+    ],
+    ids=["mission_hours", "hours_away", "exclusive_boundary"],
+)
+def test_missing_ccnl_hours_identify_the_rule_and_date(
+    event: TravelAllowanceEvent, terms: TravelTerms, detail: str
+) -> None:
+    """Missing hours and an excluded boundary report the precise CCNL failure."""
+    with pytest.raises(MissingRuleError) as raised:
+        _processed(event, terms)
+
+    assert raised.value.detail == detail
+    assert raised.value.as_of == _DAY
+    assert raised.value.feature == "travel_allowance"
 
 
 def test_daily_bands_do_not_use_total_mission_hours_as_daily_hours() -> None:
