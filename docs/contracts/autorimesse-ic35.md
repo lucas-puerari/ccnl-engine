@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-09 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2027-11-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | long_week_divisors: Art. 19 assigns 42 hours to car drivers and 44 to custodians/night watchmen (mixed duties: 40); art. 40 sets hourly divisors 182, 191, and 173 respectively. autorimesse-ic35.json already has 40/173 and week_divisors 42/182 and 44/191. load_contract calls with_week_divisor using r |
 | 2026-11-08 | claude-opus-5-5 (ai) | Parental indemnity supplement, Art. 68, PDF p. 113. | confirmed | Added work_rules.insured_absence.parental: 0.8 up to 30 eligible days. |
 | 2026-11-08 | gpt-6-sol (ai) | The parental leave clause against the CCNL top-up encoding, by a separate model session. | corrected | Confirmed the rate and the cap of the clause.<br>Corrected: the counter of the days already topped up holds only the earlier leave events (documented and tested); the hourly leave, the pay base and adoption and foster care are recorded as limitation parental_top_up_scope. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Parental hourly supplement, Art. 68 and Art. 79, PDF pp. 113–114, 124–125. | confirmed | Art. 79(b): gli importi orari del trattamento economico si determinano dividendo la retribuzione giornaliera per la durata dell’orario giornaliero come determinato dalla lettera a);<br>Art. 68 grants 80% for the first 30 days and equates adoption and foster care; the current hourly event models half-days only. |
 
 ## Salary table
 
@@ -126,11 +127,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Resolved: 85% and 90% over 24 months, art. 32 of the 2022 text, read on 2026-11-06.
 
 !!! warning "autorimesse-ic35/parental_top_up_scope · parental_leave · impact yes · open"
-    Art. 68 also allows the leave by the hour and extends it to adoption and foster care: the hourly leave (HourlyParentalLeaveEvent) gets no top-up. The top-up is computed on the INPS daily base of the leave (art. 23 D.Lgs. 151/2001), as the text gives no pay base of its own. The days already topped up by earlier leave events of the child are a fact of the event (ParentalLeaveEvent.topped_up_days_before).
+    Art. 68 extends parental leave to adoption and foster care, but the event records birth rather than entry into the family. Art. 79 sets the hourly quota at daily pay divided by contractual daily hours, permits administrative staff to take multiples of an hour (at least two), and operational staff half a day; the hourly event currently accepts only half-days. The top-up uses the INPS daily base (art. 23 D.Lgs. 151/2001), not an independently established collective pay base. Earlier topped-up days are supplied by the caller, not carried automatically between events.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Top up the hourly leave, read the pay base the CCNL means, and carry the days topped up per child in the state.
+    **Remediation:** Support the Art. 79 administrative hourly quota and adoption/foster entry dates; verify the applicable collective pay base and carry topped-up days per child across events.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

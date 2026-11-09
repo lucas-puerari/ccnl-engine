@@ -225,6 +225,12 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "unknown pay of the month before the leave: the indemnity is computed "
         "on the pay of the run, with a missing_fact parental_base_pay blocker",
     ),
+    "HourlyParentalLeaveEvent.topped_up_days_before": requires_fact(
+        "parental_leave",
+        "event.topped_up_days_before",
+        FactEnforcement.REPORTED,
+        "Unknown prior equivalent days block the hourly CCNL top-up.",
+    ),
     "HourlyParentalLeaveEvent.protection_ended_on": requires_fact(
         "parental_leave",
         "event.protection_ended_on",

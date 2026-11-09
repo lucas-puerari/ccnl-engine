@@ -35,11 +35,12 @@ from ccnl_engine.absence.insured.parental.handlers import (
 )
 from ccnl_engine.absence.insured.parental.hourly.rules import (
     allocate_hours,
+    hourly_top_up,
     hours_indemnity,
 )
 from ccnl_engine.absence.insured.posting.services import post_lines
 from ccnl_engine.absence.insured.rules import InsuredPay
-from ccnl_engine.decision.models import CalculationIssue, CalculationStatus
+from ccnl_engine.decision.models import CalculationIssue, CalculationStatus, IssueCause
 
 if TYPE_CHECKING:
     from ccnl_engine.absence.insured.parental.hourly.inputs import (
@@ -87,24 +88,54 @@ def _handle_hourly_parental(
     hours = event.hours_within(*span)
     in_span = [day for day in days if span[0] <= day <= span[1]]
     deduction = hours_pay(event.hours, span, ctx.hourly, PARENTAL, HOURS_UNDERIVED)
-    issues: list[CalculationIssue] = [_not_modelled(PARENTAL), *base.issues]
+    rule = None if terms.rules is None else terms.rules.parental
+    issues: list[CalculationIssue] = [
+        *([] if rule is not None else [_not_modelled(PARENTAL)]),
+        *base.issues,
+    ]
     if isinstance(deduction, CalculationIssue):
         issues.append(deduction)
         hours, deduction = _ZERO, _ZERO
     indemnity = hours_indemnity(days, *span, daily)
+    missing_counter = rule is not None and event.topped_up_days_before is None
+    integration, topped_up = hourly_top_up(
+        event, days, span, daily, rule, rates.indemnity_rate
+    )
     effect = post_lines(
         (
             ("abs", -deduction, _DEDUCTION, hours),
             ("inps", indemnity, "maternity_item", Decimal(len(in_span)) / _HALF),
+            ("intg", integration, "absence_integration_item", topped_up),
         ),
         ctx,
     )
-    pay = InsuredPay(hours, deduction, indemnity, len(in_span))
-    decision = _decision(PARENTAL, terms, span, pay, modelled=False, advanced=True)
+    pay = InsuredPay(hours, deduction, indemnity, len(in_span), integration)
+    decision = _decision(
+        PARENTAL,
+        terms,
+        span,
+        pay,
+        modelled=rule is not None and not missing_counter,
+        advanced=True,
+    )
     if any(i.code == HOURS_UNDERIVED for i in issues):
         incomplete = CalculationStatus.INCOMPLETE
         decision = replace(decision, status=incomplete, reason_code=HOURS_UNDERIVED)
     effect.decisions = [decision]
+    if missing_counter:
+        issues.append(
+            CalculationIssue(
+                code="parental_top_up_history_unknown",
+                message=(
+                    "HourlyParentalLeaveEvent.topped_up_days_before is required "
+                    "to cap the CCNL supplement across runs; no top-up is posted"
+                ),
+                status=CalculationStatus.INCOMPLETE,
+                capability=PARENTAL,
+                fact="topped_up_days_before",
+                cause=IssueCause.FACT,
+            )
+        )
     if unknown:
         issues.append(_cohort_issue())
     effect.issues = issues

@@ -974,14 +974,12 @@
     "agreement/logistica-trasporto-confetra-viaggiante.json": [
       "logistica-trasporto-confetra-viaggiante/edr_2021_in_daily_base",
       "logistica-trasporto-confetra-viaggiante/holiday_during_injury",
-      "logistica-trasporto-confetra-viaggiante/magazzini_generali_holiday_in_sickness",
       "logistica-trasporto-confetra-viaggiante/travelling_allowances"
     ],
     "agreement/logistica-trasporto-confetra.json": [
       "logistica-trasporto-confetra/edr_2021_in_daily_base",
       "logistica-trasporto-confetra/holiday_during_injury",
       "logistica-trasporto-confetra/level_6j_apprenticeship",
-      "logistica-trasporto-confetra/magazzini_generali_holiday_in_sickness",
       "logistica-trasporto-confetra/part_time_supplementary_rate",
       "logistica-trasporto-confetra/sixth_day_overtime"
     ],
@@ -1028,6 +1026,7 @@
       "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement",
       "metalmeccanico-federmeccanica/par_conto_ore_hourly_elements",
       "metalmeccanico-federmeccanica/par_sector_and_shift_hours",
+      "metalmeccanico-federmeccanica/part_time_supplementary_rate",
       "metalmeccanico-federmeccanica/shift_and_multiweek_premiums"
     ],
     "agreement/multiservizi-anip.json": [

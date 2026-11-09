@@ -53,7 +53,7 @@
     "notes": [
       {
         "kind": "simplification",
-        "text": "Art. 71 c. 5 (Sezione seconda) tops up reduced sickness or injury pay on letter b/c holidays only for workers of employers that applied the former Magazzini Generali agreement before 29 January 2005; employer eligibility is not stated, so this top-up is not calculated. Separately, art. 60 c. 2-3 pays an additional 1/22 of monthly global pay when a letter b holiday coincides with Saturday, Sunday or another holiday, including during injury or sickness; this additional payment is not calculated.",
+        "text": "Art. 71(5) tops up letter (b) and (c) holidays in reduced paid sickness for eligible legacy-section employers when EmployerProfile.legacy_section_applicable is true; an unknown fact blocks the target. The travelling agreement still lacks the injury treatment needed to apply the injury holiday target. Separately, art. 60(2-3) pays an additional 1/22 of monthly global pay when a letter (b) holiday coincides with Saturday, Sunday or another holiday, including during sickness or injury; that payment is not calculated.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -61,7 +61,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Establish the employer's eligibility for Sezione seconda before applying art. 71 c. 5; separately calculate the art. 60 c. 2-3 coincident-holiday 1/22 payment."
+          "remediation": "Model the travelling injury treatment before applying the injury holiday target; separately calculate the art. 60(2-3) coincident-holiday 1/22 payment."
         }
       },
       {
@@ -147,17 +147,8 @@
         "text": "INPS SECTOR OF THE EMPLOYER: INPS classifies an employer by the activity it carries out (art. 49 L. 88/1989), not by the CCNL it applies. The Manuale di classificazione dei datori di lavoro of May 2021 (ATECO 2007, PDF pp. 199-206) gives CSC 11501 (industria, trasporti) to 49.41.00 trasporto di merci su strada and 49.42.00 traslochi, 11505 (industria) to 52.24 movimento merci and 52.21.90, 11506 to 52.21.40 interporti, 11507 to 53.20.00 corrieri, and 70401 (terziario, intermediari) to 52.10.10 magazzini di custodia e deposito, 52.29.10 spedizionieri, 52.29.21 intermediari dei trasporti and 52.29.22 servizi logistici. The employers of this CCNL are therefore in the industria or in the terziario: meta.inps_sectors lists both and EmployerProfile.inps_sector chooses; without it the run reads the industria and has a missing_fact inps_sector blocker. INPS circ. 71/2025 moved the classification to ATECO 2025 from 1 April 2025 and announced a new edition of the manual, not found in this review: the CSC above are those of the 2021 edition."
       },
       {
-        "kind": "simplification",
-        "text": "Art. 71 c. 5 (Parte speciale, Sezione seconda, PDF p. 92): the top-up to 100% of the holidays in a sickness or injury applies only to the employers that came from the CCNL Magazzini Generali, a fact the request does not state: not applied.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "magazzini_generali_holiday_in_sickness",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "State whether the employer applies the Sezione seconda (ex Magazzini Generali) and apply the holiday target of art. 71 c. 5 then."
-        }
+        "kind": "source",
+        "text": "Art. 71(5), section two, physical PDF p. 93: a letter (b) or (c) holiday in paid reduced sickness or injury is topped up to full actual daily remuneration for employers carried forward from the previous agreement (eligibility p. 92). EmployerProfile.legacy_section_applicable selects the sickness target; the injury treatment and section-two daily quota are still not modelled for travelling staff."
       }
     ]
   },
@@ -3491,7 +3482,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "fa3fa070f48514cf44da3a9697abd09a00c3dd5ce4eec601708e3680ff030bad",
+    "source_hash": "073ae01813e32c1a5cf2735f538dc435302661f1507e9d6a2ddd64a9720903b9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3908,6 +3899,40 @@
       }
     },
     "sickness_rules": {
+      "holiday": {
+        "rate": "1",
+        "gross_basis": true,
+        "excluded_days": [
+          "10-04"
+        ],
+        "includes_patron_saint": true,
+        "requires_legacy_section": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-logistica-testo-unico-2025",
+              "title": "CCNL Logistica, Trasporto Merci e Spedizione, testo unico (25 September 2025)",
+              "kind": "associazione",
+              "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+              "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+            },
+            "page": "93",
+            "section": "Parte speciale, Sezione seconda, Art. 71 c. 5 (eligibility on p. 92)",
+            "quote": "Qualora le festività indicate nelle lettere b) e c), ricorrano nel periodo di assenza dovuta a malattia o ad infortunio, compensato con retribuzione, ridotta ai sensi del successivo art.77 (trattamento malattia - infortunio), l'azienda integrerà tale trattamento fino a raggiungere per la giornata festiva l'intera retribuzione di fatto."
+          },
+          "transformation": "For an employer covered by the legacy section, a listed weekday holiday in paid reduced sickness reaches 100% of actual daily remuneration; include the stated patron day and exclude the later 4 October holiday. Unknown eligibility withholds the target and blocks sickness. The corresponding injury rule is left unmodelled because this agreement has no injury treatment.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-09T21:08:04Z",
+            "verified_at": "2026-11-09T21:08:04Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-09-ai-legacy-holiday",
+            "verified_by": "claude-opus-5-5"
+          }
+        }
+      },
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
       "cumulation": {
@@ -4342,6 +4367,28 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-legacy-holiday",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 71(5), section-two eligibility, PDF pp. 92-93; sickness holiday target.",
+        "checked": [
+          "coverage.notes",
+          "work_rules.sickness_rules.holiday"
+        ],
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "Only legacy-section employers qualify; injury treatment is still absent for travelling staff."
         ]
       }
     ],

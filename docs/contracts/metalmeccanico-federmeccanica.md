@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-11-22 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -80,6 +80,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Sez. IV Tit. III art. 9 against the holiday target in sickness, by a separate model session. | flagged | Confirmed: the holidays of letters b and c in a sickness compensated with reduced pay reach 100%; excluded_days leaves exactly the national letter b days (04-25, 05-01, 06-02 and 10-04 out); Easter Monday 2026 adds 16.60.<br>Flagged: 29 June (Rome only) and the patron saint are outside the national calendar; injury and pregnancy holidays not topped up. |
 | 2026-11-08 | gpt-6-sol (ai) | Sez. IV Tit. III art. 9 (PDF pp. 164-165) against the holiday target in a work injury, by a separate model session. | flagged | Confirmed: the holidays of letter b in an injury compensated with reduced pay reach the whole daily pay; letter a (25 April, 1 May, 2 June) and 4 October excluded; the extra nets the INAIL share and the employer integration of the day; the waiting days and the injury day are not paid twice.<br>Flagged: 29 June (Rome) and the letter c holidays (patron saint, substitute) are outside the national calendar. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 5 sez. IV tit. III (PDF pp. 164-165), patron saint day of letter c against the sickness and injury holiday target, by a separate model session. | confirmed | Confirmed: letter c (patron of the place of work) is in the absence top-up of p. 165, letter a is not.<br>Confirmed: a stated patron_saint_day adds one weekday holiday; a day coinciding with a national holiday or a Sunday adds nothing.<br>Kept as limitation: the substitute holiday agreed in place of the patron is not modelled. |
+| 2026-11-09 | gpt-6-sol (ai) | Part-time supplementary work (Sez. IV Tit. I C, PDF pp. 57-58), by a separate model session. | confirmed | Confirmed: 10% up to 50% of the normal annual part-time hours and 20% beyond, only up to 40 weekly hours, on the overtime-premium pay elements.<br>Confirmed: the engine derives only the 10% band; the 20% excess is a caller-supplied multiplier, and the annual count is outside the engine.<br>Flagged and added to the limitation: the elastic clauses (10% and 15%) and the conditions of supplementary work. |
 
 ## Salary table
 
@@ -146,12 +147,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the shift column of Art. 7 and the multi-week premiums of Art. 5 with a fact naming the schedule of the worker, then remove this note.
 
-!!! note "metalmeccanico-federmeccanica/part_time_supplementary_rate · overtime · impact yes · resolved"
-    PART-TIME SUPPLEMENTARY HOURS: supplementary work up to 40 hours a week is paid with an all-inclusive 10% (CCNL 5 February 2021, p. 58), band OT_SUPPLEMENTARE selected by OvertimeKind.SUPPLEMENTARY. The higher rate of the hours past the yearly limit is not modelled: the request does not count the supplementary hours of the year.
+!!! warning "metalmeccanico-federmeccanica/part_time_supplementary_rate · overtime · impact yes · open"
+    PART-TIME SUPPLEMENTARY HOURS: work up to 40 weekly hours earns an all-inclusive 10% on the overtime-premium pay elements until supplementary hours exceed 50% of agreed annual part-time hours; the excess earns 20% (CCNL 5 February 2021, PDF p. 58). OT_SUPPLEMENTARE derives only 10%. A caller may split hours at the boundary and explicitly supply multiplier 1.20 for the excess; the engine cannot count year-to-date supplementary hours or split an event that crosses the boundary. The elastic clauses of the same section (PDF p. 57: 10% for a rearranged placement of hours, 15% for an increase in duration up to 25% of the normal annual part-time hours) and the conditions of supplementary work (specific needs, notice to the RSU, no proven individual impediment) are not modelled.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Count the supplementary hours of the year and pay the higher rate past the yearly limit.
+    **Remediation:** Supply agreed annual part-time hours and prior supplementary hours to split crossing events and derive the 20% rate on the excess without a caller override.
 
 !!! warning "metalmeccanico-federmeccanica/elemento_perequativo · base_salary · impact yes · open"
     ELEMENTO PEREQUATIVO (Sez. Quarta Tit. IV Art. 13, pp. 177-178): 485 euro a year with the June pay to the worker in service on 1 January of a company without second-level bargaining (EmployerProfile.second_level_premium false), for the months of the year before over twelve; the engine pays it (parameters.equalisation_element). Left open: the pay above the CCNL the worker received in the year before (superminimi, premi annui, other pay subject to contributions) has no field in the request; the engine reads it from the individual elements of the run, each amount on 31 December of the year before at the part-time fraction, for each month served, on twelve monthly payments, so an element agreed since, the share of the extra months or a yearly premium of the year before is not seen. A run without the employment period pays none; a second-level element the employer states counts when in force in the year before.
