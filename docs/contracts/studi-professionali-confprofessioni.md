@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, maternity_leave, sickness |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-02-16 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
@@ -80,6 +80,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Local patron saint day in sickness and work injury holiday clauses. | confirmed | Art. 124 - Festività nel periodo di malattia o infortunio (p. 67): Ai sensi della Legge 31 Marzo 1954, n° 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad una indennità integrativa di quella a carico rispettivamente dell’INPS e dell’INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di cui al Titolo XXVIII (Trattamento Economico). The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Verified Art. 115 point 4 against the cached CCNL PDF page 64, including the duration thresholds and the single 10% reduction for habitual or over-month missions. | confirmed | — |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 143 fourteenth exclusion and difference for extra remuneration already received at contract entry, against the cached 2024 text, page 74. | corrected | Only extra remuneration months already received at contract entry offset the fourteenth; merit bonuses remain outside the credit. A missing worker amount can affect only workers employed by the entry date or with an unknown start. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Arts. 110(8), 124 and the patron saint holiday list, cached 2024 PDF pp. 56 and 67. | corrected | Sickness and injury already cover the stated patron saint day; compulsory maternity and paternity holiday targets now cover it too. |
 
 ## Salary table
 
@@ -163,18 +164,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Resolved: rol entry_ramp of art. 91 c.4 for the contratto di reimpiego (Permanent.entry_pay), read on 2026-11-06.
 
 !!! warning "studi-professionali-confprofessioni/maternity_holiday_scope · maternity_leave · impact yes · open"
-    The holiday target applies on the weekday national holidays: a holiday on a Sunday (paid by its own quota), the patron saint and 4 October (a holiday from 2026, which the text, signed before, does not list) are not topped up; 'festività cadenti' covers them in the text.
+    A holiday on a Sunday (paid by its own quota) and 4 October (a holiday from 2026, which the text, signed before, does not list) are not topped up.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Top up the holidays the clause covers beyond the weekday national calendar, and the items above.
-
-!!! warning "studi-professionali-confprofessioni/local_holiday_during_absence · sickness · impact yes · open"
-    The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Provide the employer-specific patron saint holiday.
+    **Remediation:** Resolve the Sunday and 4 October scope against the applicable law.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-19 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2027-05-01 |
 
 ## Review history
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | quadri_function_allowance: The agreement's Q fixed_allowances already contains IND_FUNZIONE at EUR 250.00/month from 2025-05-01, restricted to role responsabile_unita and months_per_year=12. compensation/element/rules.py gates on the worker's roles; element/types.py excludes 12-month allowances from extra- |
 | 2026-11-08 | claude-opus-5-5 (ai) | EBNAIP contributions of art. 11 of the 2025 text, read on the text layer (analysis by a separate model session). | corrected | Added the QSC (1.60% employer, 0.30% worker of the monthly pay on 14 months; 2.40% E.A.R. to the worker when the employer does not pay, on 14 months, in the TFR) and the employer's flat quota of 12 EUR on twelve months. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 15 of the CCNL FIAIP 2025 (PDF p. 26, text layer). | corrected | Fon.Te.: employer 1.55% and worker 0.55% of the TFR base, the 0.05 quota associativa included (the old note added it on top); TFR 50% or 100% at the worker's choice; una tantum 15.50 EUR at enrolment. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 163, una tantum table and hire-date clause, PDF pp. 97-98. | confirmed | Verified both installments for all seven levels against the final PDF, including the 1 January 2024 full-payment cutoff and proportional payment for later hires through 1 May 2025. Removed an obsolete exclusion note. |
 
 ## Salary table
 
@@ -119,13 +120,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the Art. 55 two-year specialist track once its intermediate classification is sourced.
-
-!!! note "agenti-immobiliari-fiaip/una_tantum_2025_2026 · una_tantum · impact yes · resolved"
-    SIMPLIFICATION: Una tantum payments (01/09/2025 and 01/05/2026) for employees hired before 01/01/2024 not modelled. One-time payments only; not part of ongoing monthly retribuzione.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Resolved: parameters.una_tantum holds the installments of 1 September 2025 and 1 May 2026, paid by the engine as arrears of the covered months.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

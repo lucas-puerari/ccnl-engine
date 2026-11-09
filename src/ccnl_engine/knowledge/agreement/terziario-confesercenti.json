@@ -4148,19 +4148,6 @@
       {
         "kind": "info",
         "text": "FIRST- AND THIRD-LEVEL APPRENTICES (Art. 69): modelled in dual_apprenticeship (first level 50/50/65/70% of the qualified worker's pay by year of the contract, third level two then one level below the destination by half of the programme; training at the employer 10%, school hours unpaid). The contributions of these apprentices are the engine limitation dual_apprenticeship_contributions."
-      },
-      {
-        "kind": "simplification",
-        "text": "The local patron saint holiday during sickness or injury is not calculated: the national holiday calendar does not contain employer-specific holidays.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "local_holiday_during_absence",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Provide the employer-specific patron saint holiday."
-        }
       }
     ]
   },
@@ -4171,7 +4158,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "d8d8e6f3490638d0356c9b2b4fc524709926ddb400134c8f09e38a1055b6777c",
+    "source_hash": "262089d7483986a0a8f94b011c742ccedbf6a526a69abce65f7988a8d1ed785b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5981,6 +5968,28 @@
           "Art. 191 - Festività nel periodo di malattia o infortunio (p. 145): Ai sensi della Legge 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad un’indennità integrativa di quella a carico rispettivamente dell’INPS e dell’INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all’art. 208. The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged."
         ],
         "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.holiday",
+          "work_rules.insured_absence.injury.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-commerce-local-absence",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 191 and the patron saint holiday list, cached 2019 PDF p. 145.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+            "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+          }
+        ],
+        "findings": [
+          "Sickness and injury holiday targets already include the stated patron saint day; the local holiday limitation is stale."
+        ],
         "checked": [
           "work_rules.sickness_rules.holiday",
           "work_rules.insured_absence.injury.holiday"
