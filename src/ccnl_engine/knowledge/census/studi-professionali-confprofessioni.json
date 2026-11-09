@@ -371,22 +371,6 @@
       }
     },
     {
-      "id": "travel_diaria",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 115: the diaria of the trasferte, EUR 15 or 30 a day.",
-      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the trasferta diaria.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "studi-professionali-confprofessioni/travel_diaria"
-        ]
-      }
-    },
-    {
       "id": "una_tantum_readings",
       "institute": "base_salary",
       "variant": "all",
