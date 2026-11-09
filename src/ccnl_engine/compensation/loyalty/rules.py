@@ -164,7 +164,7 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
         entries=(entry,),
         decisions=(
             CalculationDecision(
-                capability="base_salary",
+                capability="bonus" if once else "base_salary",
                 status=CalculationStatus.FINAL,
                 reason_code="loyalty_anniversary",
                 rule=f"{rule}:parameters.loyalty_premium",
