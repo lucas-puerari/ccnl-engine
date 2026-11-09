@@ -11,6 +11,7 @@ from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.seniority.age.models import SeniorityAge
+from ccnl_engine.seniority.cohort.apprentice import ApprenticeCohort
 from ccnl_engine.seniority.cohort.models import InServiceCohort
 from ccnl_engine.seniority.freeze.models import SeniorityFreeze
 from ccnl_engine.types import FrozenDict
@@ -66,26 +67,6 @@ class SeniorityTier(BaseModel):
         return self
 
 
-class ApprenticeCohort(BaseModel):
-    """The apprentice increment kept by the apprentices of an earlier rule.
-
-    Tessile moda artigianato, renewal of 16 July 2024: "Agli apprendisti in
-    forza alla data di sottoscrizione del presente accordo di rinnovo
-    continua a trovare applicazione la disciplina degli aumenti periodici di
-    anzianità vigente alla data di assunzione".
-
-    Attributes:
-        in_service_on: Last hire date of the cohort: the day of signature.
-        amount: Increment of the cohort, in place of
-            :attr:`SeniorityIncrements.apprentice_amount`.
-    """
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    in_service_on: date
-    amount: TimeSeries
-
-
 class SeniorityIncrements(BaseModel):
     """Seniority increment (*scatti di anzianità*) rules for a CCNL.
 
@@ -101,6 +82,10 @@ class SeniorityIncrements(BaseModel):
     precedence). ``first_cadence_months`` and ``first_cadence_months_by_level``
     are also ignored in tiered mode; the first tier's ``cadence_months`` acts
     as the first cadence.
+
+    ``amount_by_level_by_role`` overrides the level amount for a worker
+    holding a named professional profile; an unstated role uses the level
+    amount provisionally when increments can be paid.
 
     ``apprentice_amount`` is the increment (if any) accrued during an
     apprenticeship, replacing the level amount; ``apprentice_cohort`` the
@@ -129,6 +114,9 @@ class SeniorityIncrements(BaseModel):
     cadence_months: int = Field(gt=0)
     maximum_count: int = Field(ge=0)
     amount_by_level: Mapping[str, TimeSeries]
+    amount_by_level_by_role: Mapping[str, Mapping[str, TimeSeries]] = Field(
+        default_factory=dict
+    )
     tiers: tuple[SeniorityTier, ...] = Field(default=())
     first_cadence_months: int | None = Field(default=None, gt=0)
     first_cadence_months_by_level: Mapping[str, int] = Field(default_factory=dict)
@@ -199,6 +187,7 @@ class SeniorityIncrements(BaseModel):
             "maximum_count_by_level": self.maximum_count_by_level,
             "maximum_count_by_category": self.maximum_count_by_category,
             "amount_by_level_by_category": self.amount_by_level_by_category,
+            "amount_by_level_by_role": self.amount_by_level_by_role,
         }
         set_fields = [k for k, v in flat_only.items() if v]
         if set_fields:
@@ -227,7 +216,8 @@ class SeniorityIncrements(BaseModel):
         if (
             self.maximum_count > 0
             and not self.amount_by_level
-            and not (self.amount_by_level_by_category)
+            and not self.amount_by_level_by_category
+            and not self.amount_by_level_by_role
         ):
             msg = (
                 "seniority_increments.maximum_count > 0 but neither "
@@ -267,6 +257,14 @@ class SeniorityIncrements(BaseModel):
     def _freeze_dicts(self) -> Self:
         object.__setattr__(  # noqa: PLC2801
             self, "amount_by_level", FrozenDict(self.amount_by_level)
+        )
+        object.__setattr__(  # noqa: PLC2801
+            self,
+            "amount_by_level_by_role",
+            FrozenDict({
+                role: FrozenDict(inner)
+                for role, inner in self.amount_by_level_by_role.items()
+            }),
         )
         object.__setattr__(  # noqa: PLC2801
             self,

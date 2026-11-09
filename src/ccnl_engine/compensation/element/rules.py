@@ -102,6 +102,7 @@ def _level_seniority(
     as_of: date,
     worker_category: WorkerCategory | None,
     seniority_months: int | None,
+    roles: frozenset[str] = frozenset(),
 ) -> Decimal | None:
     """Return the seniority the level pays a qualified worker, if readable.
 
@@ -122,6 +123,7 @@ def _level_seniority(
             worker_category=worker_category,
             is_apprentice=False,
             seniority_months=seniority_months,
+            roles=roles,
         )
     except SeriesGapError:
         return None
@@ -152,6 +154,7 @@ def _level_chain(
             worker_category=worker_category,
             is_apprentice=is_apprentice,
             seniority_months=seniority_months,
+            roles=roles,
         )
     unsourced = (
         is_apprentice
@@ -159,7 +162,7 @@ def _level_chain(
         and ccnl.parameters.seniority_increments.apprentice_amount is None
         and seniority
         != _level_seniority(
-            ccnl, level, count, as_of, worker_category, seniority_months
+            ccnl, level, count, as_of, worker_category, seniority_months, roles
         )
     )
     with rule_scope(feature="base_salary"):

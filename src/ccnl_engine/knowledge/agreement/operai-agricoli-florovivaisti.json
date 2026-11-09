@@ -148,15 +148,15 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY OF THE SUPER PROFILES: Art. 54 (p. 55) pays 10,85 a month to the operai qualificati super and 11,62 to the specializzati super; the three areas of the file pay the amount of the qualificati (10,33) and of the specializzati (11,36), and the request does not say whether the operaio is a super profile.",
+        "text": "PROVINCIAL SENIORITY: Art. 54 (pp. 55-56) sets the post-2006 amounts for five profiles, including the two super profiles, selected by Employment.roles. Provincial contracts assign the profiles within the three national areas; the file has no province-specific classification or later provincial scatto schedules. State the provincial worker profile explicitly and verify any provincial override separately.",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "super_profile_scatti",
+          "variant": "provincial_profile_scatti",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add the super profiles as levels with their scatto amounts."
+          "remediation": "Supply the provincial classification and any province-specific amounts; national profile figures are used until a provincial schedule is sourced."
         }
       },
       {
@@ -306,7 +306,7 @@
             {
               "valid_from": "2022-06-01",
               "valid_until": null,
-              "value": "11.36"
+              "value": "12.50"
             }
           ]
         },
@@ -315,7 +315,7 @@
             {
               "valid_from": "2022-06-01",
               "valid_until": null,
-              "value": "10.33"
+              "value": "11.36"
             }
           ]
         },
@@ -324,9 +324,33 @@
             {
               "valid_from": "2022-06-01",
               "valid_until": null,
-              "value": "8.99"
+              "value": "9.89"
             }
           ]
+        }
+      },
+      "amount_by_level_by_role": {
+        "qualified_super": {
+          "Area2": {
+            "periods": [
+              {
+                "valid_from": "2022-06-01",
+                "valid_until": null,
+                "value": "11.93"
+              }
+            ]
+          }
+        },
+        "specialized_super": {
+          "Area1": {
+            "periods": [
+              {
+                "valid_from": "2022-06-01",
+                "valid_until": null,
+                "value": "12.78"
+              }
+            ]
+          }
         }
       },
       "provenance": {
@@ -340,21 +364,21 @@
             "published_on": "2022-05-23",
             "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
           },
-          "page": "55",
+          "page": "55-56",
           "section": "Art. 54 (Scatti di anzianità)",
-          "quote": "per ciascun biennio di anzianità di servizio presso la stessa azienda, hanno diritto [...] € 8,99 mensili se operai comuni, ad € 10,33 mensili se operai qualificati [...] ad € 11,36 mensili se operai specializzati"
+          "quote": "Con decorrenza dal 1.7.2006 gli importi degli scatti di anzianità, ivi compresi quelli già maturati, attribuiti dai vigenti contratti provinciali ai profili professionali individuati nelle aree di cui all’art. 31 del presente contratto collettivo nazionale, sono incrementati nelle seguenti misure: • da € 8,99 a € 9,89 per gli operai comuni; • da € 10,33 a € 11,36 per gli operai qualificati; • da € 10,85 a € 11,93 per gli operai qualificati super; • da € 11,36 a € 12,50 per gli operai specializzati; • da € 11,62 a € 12,78 per gli operai specializzati super."
         },
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-15T10:58:37Z",
+          "extraction_timestamp": "2026-11-09T17:07:40Z",
           "verification_status": "verified",
-          "effective_from": "2026-01-01",
+          "effective_from": "2006-07-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-15T10:58:37Z",
-          "review_id": "2026-10-15-ai-texts"
+          "verified_at": "2026-11-09T17:07:40Z",
+          "review_id": "2026-11-09-ai-scatti"
         },
-        "transformation": "Every 24 months, at most 5; Area3 (comuni) 8,99, Area2 (qualificati) 10,33, Area1 (specializzati) 11,36. Art. 54 is not among the articles the verbale of 28 May 2026 amends."
+        "transformation": "Every 24 months, at most 5; post-2006 figures assigned by provincial contracts: Area3 common 9.89, Area2 qualified 11.36 or qualified_super 11.93, Area1 specialized 12.50 or specialized_super 12.78. The national rule does not identify a worker's provincial profile or any subsequent local adjustment; the 2026 renewal does not amend Art. 54."
       }
     },
     "accrual_rule": {
@@ -939,7 +963,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "09a9dd77f1f3e8bc1289b9d07b4d479065714942d14619573beb7dcf99945e33",
+    "source_hash": "e05c34c5d9c798a13abec67397f677bf33a55ddbf2cc792958b59613f88a3c25",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2193,6 +2217,24 @@
           "Corrected the 29% quote and /169 page; the signed annex prints hourly floriculture rates.",
           "The 2022–2025 text begins 1 January 2022; its time bands now start then.",
           "Regular-shift exceptions, provincial tariffs, third element and bank of hours remain limitations."
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-scatti",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Article 54 seniority profile amounts and provincial qualification in the cached 2022-2025 signed text, PDF pages 55-56.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+            "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+          }
+        ],
+        "findings": [
+          "The older figures on page 55 are superseded by the post-2006 figures on page 56 for provincial profile assignments; the provincial contracts and actual profile assignments remain unsourced."
         ]
       }
     ],

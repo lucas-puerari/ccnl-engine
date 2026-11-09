@@ -10,6 +10,10 @@ from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.apprenticeship.dual.rules import dual_chain
 from ccnl_engine.apprenticeship.rules import _apprentice_chain
 from ccnl_engine.compensation.element.rules import _level_chain
+from ccnl_engine.compensation.element.seniority_helpers import (
+    _cohort_rules,
+    _reprices_at_next,
+)
 from ccnl_engine.compensation.element.types import ApprenticeshipScaling
 from ccnl_engine.compensation.entry.rules import entry_level
 from ccnl_engine.compensation.entry.transition import (
@@ -179,6 +183,7 @@ def _resolve_chain(
                     seniority_months,
                     as_of,
                     worker_category=worker_category,
+                    roles=roles,
                 )
             chain = replace(chain, seniority=stated)
         elif (
@@ -198,6 +203,7 @@ def _resolve_chain(
                     seniority_months,
                     as_of,
                     worker_category=worker_category,
+                    roles=roles,
                 )
             chain = replace(chain, seniority=stated)
     chain = chain.for_hire_date(hired_on)
@@ -271,30 +277,3 @@ def _contract_chain(
             career_months=career_months,
         )
     return chain, scaling
-
-
-def _cohort_rules(ccnl: CCNL, hired_on: date | None) -> CCNL:
-    """Return the CCNL whose apprentice increment is the one of the worker.
-
-    Returns:
-        ``ccnl`` with the cohort amount as the apprentice amount when the
-        worker was hired by the cohort day; ``ccnl`` itself otherwise.
-    """
-    rules = ccnl.parameters.seniority_increments
-    cohort = rules.apprentice_cohort
-    if cohort is None or hired_on is None or hired_on > cohort.in_service_on:
-        return ccnl
-    kept = rules.model_copy(update={"apprentice_amount": cohort.amount})
-    parameters = ccnl.parameters.model_copy(update={"seniority_increments": kept})
-    return ccnl.model_copy(update={"parameters": parameters})
-
-
-def _reprices_at_next(ccnl: CCNL) -> bool:
-    """Return whether the CCNL reprices the increments at the next one.
-
-    Returns:
-        ``True`` when its seniority rules state so; a CCNL without the
-        clause reprices them at once.
-    """
-    rule = ccnl.parameters.seniority_increments.on_promotion
-    return rule is not None and rule.at_next_increment

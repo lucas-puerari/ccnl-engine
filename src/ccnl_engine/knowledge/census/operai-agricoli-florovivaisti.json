@@ -371,6 +371,22 @@
       }
     },
     {
+      "id": "provincial_profile_scatti",
+      "institute": "seniority",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "PROVINCIAL SENIORITY: Art. 54 (pp. 55-56) sets the post-2006 amounts for five profiles, including the two super profiles, selected by Employment.roles. Provincial contracts assign the profiles within the three national areas; the file has no province-specific classification or later provincial scatto schedules. State the provincial worker profile explicitly and verify any provincial override separately.",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "absent",
+      "remediation": "Supply the provincial classification and any province-specific amounts; national profile figures are used until a provincial schedule is sourced.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/provincial_profile_scatti"
+        ]
+      }
+    },
+    {
       "id": "provincial_supplement",
       "institute": "territorial_supplement",
       "variant": "all",
@@ -478,22 +494,6 @@
       "links": {
         "limitations": [
           "sunday_holiday_ccnl_clause"
-        ]
-      }
-    },
-    {
-      "id": "super_profile_scatti",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SENIORITY OF THE SUPER PROFILES: Art. 54 (p. 55) pays 10,85 a month to the operai qualificati super and 11,62 to the specializzati super; the three areas of the file pay the amount of the qualificati (10,33) and of the specializzati (11,36), and the request does not say whether the operaio is a super profile.",
-      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the super profiles as levels with their scatto amounts.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "operai-agricoli-florovivaisti/super_profile_scatti"
         ]
       }
     },
