@@ -13,7 +13,11 @@ from typing import TYPE_CHECKING
 from ccnl_engine.apprenticeship.dual.models import BASE, SENIORITY
 from ccnl_engine.compensation.element.rules import _level_chain
 from ccnl_engine.compensation.ladder.rules import level_below
-from ccnl_engine.errors import MissingRequiredFactError, OutOfScopeError
+from ccnl_engine.errors import (
+    InvalidInputError,
+    MissingRequiredFactError,
+    OutOfScopeError,
+)
 from ccnl_engine.pay_item.rounding.policies import money
 
 if TYPE_CHECKING:
@@ -125,8 +129,53 @@ def _holds(period: DualPeriod, apprentice: Apprentice, ccnl: CCNL) -> bool:
     return over is None or length > over
 
 
+def _check_extension_start(
+    track: DualTrack, apprentice: Apprentice, ccnl: CCNL, extension_start: int
+) -> None:
+    """Reject an extension that begins before the track's original end (art. 92).
+
+    The original contract lasts 3 years for the qualifica, 4 for the diploma,
+    1 for the certificate and 2 for the integrative course.
+
+    Raises:
+        InvalidInputError: When the extension begins before the original end.
+        MissingRequiredFactError: When an ambiguous route needs its length.
+    """
+    # The conventional level-1 track also covers the 24-month integrative
+    # course; the level-2 track covers both the 12-month certificate and
+    # the 48-month diploma. Do not infer a diploma from its pay level.
+    if track.name == "qualifica_altri":
+        original_months = apprentice.programme_months or 36
+        allowed = {24, 36}
+    else:
+        if apprentice.programme_months is None:
+            msg = "Apprentice.programme_months is required to identify the route"
+            raise MissingRequiredFactError(
+                msg,
+                feature=_FEATURE,
+                ruleset=ccnl.meta.ccnl_id,
+                remediation=(
+                    "State Apprentice.programme_months for the certificate or diploma."
+                ),
+            )
+        original_months = apprentice.programme_months
+        allowed = {12, 48}
+    if original_months not in allowed or extension_start < original_months:
+        field = "Apprentice.failed_title_extension_start_month"
+        msg = (
+            f"{field} must not precede the original contract end "
+            f"({original_months} months) of a supported educational route"
+        )
+        raise InvalidInputError(
+            msg, field=field, feature=_FEATURE, ruleset=ccnl.meta.ccnl_id
+        )
+
+
 def _period(track: DualTrack, apprentice: Apprentice, ccnl: CCNL) -> DualPeriod:
     """Return the period of ``track`` that pays the apprentice now.
+
+    An extension that begins before the original end is rejected by
+    :func:`_check_extension_start`.
 
     Returns:
         The first period that holds.
@@ -134,6 +183,25 @@ def _period(track: DualTrack, apprentice: Apprentice, ccnl: CCNL) -> DualPeriod:
     Raises:
         OutOfScopeError: When none does (a school year the CCNL leaves out).
     """
+    extension_start = apprentice.failed_title_extension_start_month
+    if extension_start is not None and track.failed_title_extension is not None:
+        _check_extension_start(track, apprentice, ccnl, extension_start)
+    if extension_start is not None and apprentice.months_elapsed >= extension_start:
+        if (
+            track.failed_title_extension is None
+            or apprentice.months_elapsed >= extension_start + 12
+        ):
+            msg = "No failed-title extension pay rule covers this month and track."
+            raise OutOfScopeError(
+                msg,
+                reason="no_period",
+                feature=_FEATURE,
+                ruleset=ccnl.meta.ccnl_id,
+                remediation=(
+                    "State a supported first-level extension of at most one year."
+                ),
+            )
+        apprentice = replace(apprentice, months_elapsed=apprentice.months_elapsed - 12)
     for period in track.periods:
         if _holds(period, apprentice, ccnl):
             return period

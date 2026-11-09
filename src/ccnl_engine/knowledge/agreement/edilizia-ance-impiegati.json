@@ -227,20 +227,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "FIRST-LEVEL PROROGATION (Art. 92, ANCE text of 4 April 2019, p. 6): 'Per l'apprendista che invece non abbia conseguito il titolo di istruzione, in caso di proroga il trattamento economico è quello dell'anno precedente'. The engine pays the semester of Apprentice.months_elapsed: a prorogued apprentice who failed the title is paid the next semester's percentage.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "dual_apprenticeship_prorogation",
-          "applies_when": {
-            "trigger": "outside_input",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Let the caller state a failed title, and pay the previous year's percentage."
-        }
+        "kind": "info",
+        "text": "FIRST-LEVEL FAILED-TITLE EXTENSION (Art. 92, p. 6): for up to one year after failing the qualification, use the previous year's apprenticeship pay phase. Set Apprentice.failed_title_extension_start_month to the first month of the extension; leave it unset for ordinary or competence-consolidation pay."
       }
     ]
   },
@@ -2467,7 +2455,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "61c3bf66e442d04e4345c059318b662b2098684dec9f595709035a647bafc886",
+    "source_hash": "7b279a571c341e7dbbb898245e1564aec7ff110c107aead7d4d9090071fccfc5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3294,6 +3282,30 @@
           "parameters.loyalty_premium",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-09-gpt-edilizia-ance-impiegati-failed-title-extension",
+        "date": "2026-11-09",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "independence": "separate_model",
+        "scope": "Art. 92 (PDF pp. 4-6), extension of a first-level apprenticeship after a failed qualification, by a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://ance.it/wp-content/uploads/archive/37937-Art%20%2092%20Apprendistato-Nota%20a%20verbale.pdf",
+            "sha256": "2c1dd751b7a557e1d9bd1cea08af236bf2d24c51bc8089c698ca27d79e084c29"
+          }
+        ],
+        "findings": [
+          "Confirmed: the employer may extend the contract up to one year; only when the title is not obtained does the pay stay at the previous contract year (p. 6).",
+          "Confirmed: the previous year is read by semester (85% at month 36, 90% at month 42 for the qualifica track).",
+          "Corrected: an extension starting before the end of the original contract of the track (p. 4) was accepted and could underpay; it is now rejected."
+        ],
+        "checked": [
+          "dual_apprenticeship[diploma_ifts].failed_title_extension",
+          "dual_apprenticeship[qualifica_altri].failed_title_extension"
+        ]
       }
     ],
     "owner": "maintainer",
@@ -3302,6 +3314,32 @@
   "dual_apprenticeship": [
     {
       "name": "diploma_ifts",
+      "failed_title_extension": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ance-art92-apprendistato-2019",
+            "title": "ANCE, Art. 92 ccnl industria e Art. 31 ccnl cooperative, Apprendistato (4 April 2019)",
+            "kind": "associazione",
+            "url": "https://ance.it/wp-content/uploads/archive/37937-Art%20%2092%20Apprendistato-Nota%20a%20verbale.pdf",
+            "published_on": "2019-04-04",
+            "sha256": "2c1dd751b7a557e1d9bd1cea08af236bf2d24c51bc8089c698ca27d79e084c29"
+          },
+          "page": "6",
+          "section": "Art. 92, first-level apprenticeship extension",
+          "quote": "Il datore di lavoro ha facoltà di prorogare fino ad un anno il contratto, ai sensi dell’art. 43, comma 4, del d.lgs. n. 81/2015, nonché dell’art. 4, comma 2, del decreto ministeriale 12 ottobre 2015. Nel caso di proroga finalizzata al consolidamento e all’acquisizione di ulteriori competenze, il trattamento economico dell’apprendista progredisce secondo quanto stabilito dalla disciplina generale. Per l’apprendista che invece non abbia conseguito il titolo di istruzione, in caso di proroga il trattamento economico è quello dell’anno precedente."
+        },
+        "transformation": "For a failed-title extension of at most 12 months, select the first-level semester 12 months before the current contract month. Other extensions progress normally.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-09T17:42:12Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-09T17:42:12Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-09-gpt-edilizia-ance-impiegati-failed-title-extension"
+        }
+      },
       "programme": "first_level",
       "destination_levels": [
         "1",
@@ -3389,6 +3427,32 @@
     },
     {
       "name": "qualifica_altri",
+      "failed_title_extension": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ance-art92-apprendistato-2019",
+            "title": "ANCE, Art. 92 ccnl industria e Art. 31 ccnl cooperative, Apprendistato (4 April 2019)",
+            "kind": "associazione",
+            "url": "https://ance.it/wp-content/uploads/archive/37937-Art%20%2092%20Apprendistato-Nota%20a%20verbale.pdf",
+            "published_on": "2019-04-04",
+            "sha256": "2c1dd751b7a557e1d9bd1cea08af236bf2d24c51bc8089c698ca27d79e084c29"
+          },
+          "page": "6",
+          "section": "Art. 92, first-level apprenticeship extension",
+          "quote": "Il datore di lavoro ha facoltà di prorogare fino ad un anno il contratto, ai sensi dell’art. 43, comma 4, del d.lgs. n. 81/2015, nonché dell’art. 4, comma 2, del decreto ministeriale 12 ottobre 2015. Nel caso di proroga finalizzata al consolidamento e all’acquisizione di ulteriori competenze, il trattamento economico dell’apprendista progredisce secondo quanto stabilito dalla disciplina generale. Per l’apprendista che invece non abbia conseguito il titolo di istruzione, in caso di proroga il trattamento economico è quello dell’anno precedente."
+        },
+        "transformation": "For a failed-title extension of at most 12 months, select the first-level semester 12 months before the current contract month. Other extensions progress normally.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-09T17:42:12Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-09T17:42:12Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-09-gpt-edilizia-ance-impiegati-failed-title-extension"
+        }
+      },
       "programme": "first_level",
       "destination_levels": [
         "1",
