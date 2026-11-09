@@ -234,16 +234,18 @@ class TestDefaultIsNotAFact:
             Dependent(DependentRelationship.SPOUSE)  # type: ignore[call-arg]
 
 
-def _blocked(request: Request) -> set[str]:
+def _blocked(request: Request, engine: PayrollEngine = _ENGINE) -> set[str]:
     """Return what the blockers of ``request`` block.
 
     Returns:
         The feature of each blocker, its detail when it names no feature.
     """
-    return {feature or detail for _, feature, detail in _triples(request)}
+    return {feature or detail for _, feature, detail in _triples(request, engine)}
 
 
-def _triples(request: Request) -> set[tuple[BlockerCode, str | None, str]]:
+def _triples(
+    request: Request, engine: PayrollEngine = _ENGINE
+) -> set[tuple[BlockerCode, str | None, str]]:
     """Return the blockers of ``request`` through the public facade.
 
     Returns:
@@ -251,12 +253,12 @@ def _triples(request: Request) -> set[tuple[BlockerCode, str | None, str]]:
     """
     if isinstance(request, PeriodInput):
         result: PeriodResult | CompetenceYearResult | TaxYearResult = (
-            _ENGINE.calculate_period(request)
+            engine.calculate_period(request)
         )
     elif isinstance(request, CompetenceYearPlan):
-        result = _ENGINE.calculate_competence_year(request)
+        result = engine.calculate_competence_year(request)
     else:
-        result = _ENGINE.calculate_tax_year(request)
+        result = engine.calculate_tax_year(request)
     return {(b.code, b.feature, b.detail) for b in result.blockers}
 
 
@@ -291,10 +293,12 @@ class TestTrueFactHasNoMoreBlockers:
         fact of a capability for the issue it then meets: the count is not
         the measure, what is blocked is.
         """
-        assert _blocked(case.true) <= _blocked(case.default)
+        engine = _ENGINE if case.engine is None else case.engine
+        assert _blocked(case.true, engine) <= _blocked(case.default, engine)
 
     @pytest.mark.parametrize("case", _NAMING_CASES)
     def test_default_names_the_fact(self, case: DefaultCase) -> None:
         """The default adds a blocker naming the fact the true run states."""
-        added = _triples(case.default) - _triples(case.true)
+        engine = _ENGINE if case.engine is None else case.engine
+        added = _triples(case.default, engine) - _triples(case.true, engine)
         assert case.names in {detail for _, _, detail in added}

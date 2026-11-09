@@ -197,6 +197,14 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         _PENDING,
         "the service months stand for the career of a career-gated allowance",
     ),
+    "SeniorityFact.apprenticeship_months": requires_fact(
+        "seniority",
+        "seniority.apprenticeship_months",
+        _REPORTED,
+        "unknown past apprenticeship duration: a CCNL that credits a share "
+        "towards increments blocks the seniority amount until it is stated, "
+        "or zero confirms no preceding apprenticeship",
+    ),
     "Employment.level_started_on": requires_fact(
         "base_salary",
         "employment.level_started_on",
