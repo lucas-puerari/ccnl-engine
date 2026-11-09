@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🟢 Verified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 33 verified / 5 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 34 verified / 5 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-10-30 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Art. 36 cc. 5-6 apprenticeship of the ipotesi of 30 October 2025 (p. 36, OCR). | corrected | The 24-month profiles run thirds of 8 months, not the 12-month periods of the 36-month track. |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 33 values read identically by both readings and equal to the file. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | apprenticeship_24_month_profiles: Art. 36(5–6), PDF p. 36, requires 24 months for B2/B4/C4/D1/D3, with 80/85/90% of the qualified worker’s salario conglobato in equal thirds. The existing professionalizzante_24 track has precisely these destination levels and 0–8/8–16/16–24 month percentages; the engine selects t |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 122 c. 2-3 B5 short-schedule premium, PDF pp. 74-75, and Tabella B p. 10. | corrected | Art. 122 c. 2 raises the B5 salario conglobato by 15% for a weekly schedule below 8 hours; added allowance B5_ORARIO_RIDOTTO with the computed monthly values and resolved the limitation. |
 
 ## Salary table
 
@@ -120,12 +121,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the C4 primo impiego entry rate (EUR 1290.52 in 2026) as a separate level or a role-gated variant, or record a limitation.
 
-!!! warning "portieri-fabbricati-confedilizia/b5_short_schedule_premium · base_salary · impact yes · open"
-    B5 PART-TIME NOTE: Art. 122 provides a 15% hourly premium for B5 (pulitori/lavascale) with weekly schedule below 8 hours. Not modelled (SIMPLIFICATION).
+!!! note "portieri-fabbricati-confedilizia/b5_short_schedule_premium · base_salary · impact yes · resolved"
+    B5 SHORT SCHEDULE (art. 122 c. 2, PDF p. 75): a B5 worker with stated weekly hours below 8 receives 15% of the salario conglobato as allowance B5_ORARIO_RIDOTTO, proportioned to the hours like the conglobato. The percentage base also counts the worker's individual elements, which art. 122 c. 2 does not name; a worker without stated weekly hours is treated as full time and receives nothing.
 
     **Applies when:** `base_salary` applies; level in B5.
 
-    **Remediation:** Model the Art. 122 15% hourly premium for B5 with a weekly schedule below 8 hours (e.g. a conditional allowance on part_time_pct below 0.2), or record it as a limitation.
+    **Remediation:** Resolved: allowance B5_ORARIO_RIDOTTO gated by Employment.weekly_hours below 8, read on 2026-11-09.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
