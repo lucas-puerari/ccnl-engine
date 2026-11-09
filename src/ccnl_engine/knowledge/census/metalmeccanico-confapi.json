@@ -99,18 +99,18 @@
       }
     },
     {
-      "id": "holiday_during_injury",
+      "id": "holiday_outside_calendar",
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 32 tops up reduced sickness, maternity and injury treatment only on holidays in letters b) and c). The national calendar also includes the excluded letter a) holidays (25 April, 1 May and 2 June). A blanket sickness_rules.holiday would overpay those days, so the sickness holiday top-up is not calculated. The injury (INAIL) and local patron saint treatments are also not calculated.",
+      "rule": "Art. 32(b,c) holiday top-ups are modelled for sickness, compulsory maternity and injury, excluding letter a) and 4 October. Stated local patron days are covered for sickness and injury. Not calculated: the maternity top-up on a local patron day, the locally agreed substitute for the patron day, and Rome-only 29 June, which are outside the national holiday calendar.",
       "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
       "state": "absent",
-      "remediation": "Support contract-scoped holiday dates before implementing the sickness and injury top-ups of art. 32(b,c).",
+      "remediation": "Calculate the maternity top-up on stated patron days, the agreed substitute patron holiday and Rome-only 29 June when the local facts are available.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "metalmeccanico-confapi/holiday_during_injury"
+          "metalmeccanico-confapi/holiday_outside_calendar"
         ]
       }
     },
