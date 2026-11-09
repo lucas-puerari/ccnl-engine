@@ -1,8 +1,9 @@
 """Pay the loyalty premium on the hire anniversary in a regular run.
 
 The fully employed run chain approximates the enumerated contractual pay
-components (ANIEM Art. 45 items 1-14; CNA Art. 48 items 1-12). It does not
-establish uninterrupted actual service or implement the dismissal pro rata.
+components (ANIEM Art. 45 items 1-14; CNA Art. 48 items 1-12). The caller
+states the uninterrupted actual service start when it differs from the hire
+date. The dismissal pro rata is not implemented.
 """
 
 from __future__ import annotations
@@ -87,7 +88,16 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
         year=year,
         day=min(period.started_on.day, calendar.monthrange(year, month)[1]),
     )
-    if year - period.started_on.year < clause.service_years or (
+    service_start = period.uninterrupted_service_started_on or period.started_on
+    qualifying_year = service_start.year + clause.service_years
+    qualifying_date = service_start.replace(
+        year=qualifying_year,
+        day=min(
+            service_start.day,
+            calendar.monthrange(qualifying_year, service_start.month)[1],
+        ),
+    )
+    if anniversary < qualifying_date or (
         period.ended_on is not None and period.ended_on < anniversary
     ):
         return LoyaltySettlement()

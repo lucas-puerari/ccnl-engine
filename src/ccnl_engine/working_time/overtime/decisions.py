@@ -9,10 +9,8 @@ from ccnl_engine.decision.models import CalculationDecision, CalculationStatus
 
 if TYPE_CHECKING:
     from ccnl_engine.event.facade import OvertimeEvent
-    from ccnl_engine.working_time.overtime.policies import (
-        CCNLOvertimeBands,
-        OvertimeRate,
-    )
+    from ccnl_engine.working_time.overtime.models import CCNLOvertimeBands
+    from ccnl_engine.working_time.overtime.policies import OvertimeRate
 
 CCNL_BAND_APPLIED = "ccnl_overtime_band_applied"
 
@@ -23,8 +21,9 @@ def band_decision(
     """Return the decision of a multiplier derived from the CCNL band.
 
     Returns:
-        An ``overtime`` decision citing the band, provisional when higher
-        tiers were left out; ``None`` for a caller multiplier.
+        An ``overtime`` decision citing the first applied band and listing
+        any resolved weekly slices, provisional when tiers were left out;
+        ``None`` for a caller multiplier.
     """
     band = rate.band
     if not rate.derived or band is None:
@@ -35,6 +34,11 @@ def band_decision(
         if rate.hourly_amount is not None
         else {"band_supplement": rate.supplement or Decimal(0)}
     )
+    if rate.weekly_slices:
+        paid["weekly_tiers"] = ", ".join(
+            f"{b.code}: {hours}h at {1 + supplement}"
+            for b, supplement, hours in rate.weekly_slices
+        )
     return CalculationDecision(
         capability="overtime",
         status=CalculationStatus.PROVISIONAL if rate.tiers else CalculationStatus.FINAL,
