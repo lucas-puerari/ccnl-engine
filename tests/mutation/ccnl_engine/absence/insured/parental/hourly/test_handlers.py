@@ -14,11 +14,14 @@ pays three months at 80% while the child is under six.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.absence.insured.parental.hourly.rules import hourly_top_up
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.events import (
     HourlyParentalLeaveEvent,
@@ -47,6 +50,85 @@ def _leave(
         average,
         protection_ended_on=date(2025, 9, 1),
     )
+
+
+def test_collective_hourly_supplement_and_statutory_only() -> None:
+    """Two four-hour days are one day: 2400/30 + 2*2400/360 = 93.3333.
+
+    With 14 monthly payments, INPS pays 28.00 at 30% and an 80% rule
+    adds 46.67. Without a top-up, 13 payments give INPS 26.00 only.
+    """
+    leave = HourlyParentalLeaveEvent(
+        (
+            LeaveHours(date(2026, 3, 2), Decimal(4)),
+            LeaveHours(date(2026, 3, 3), Decimal(4)),
+        ),
+        date(2022, 6, 1),
+        ParentalLeaveTaken(0, 0, 0),
+        Decimal(8),
+        parental_base_pay=InpsSicknessBase(Decimal(2400), Decimal(0)),
+        topped_up_days_before=Decimal(0),
+    )
+    topped = _amounts(_run(leave, ccnl_id="autorimesse-ic35", level_code="C4"))
+    plain = _amounts(_run(leave))
+    assert topped["maternity_item"] == ("inps", Decimal("28.00"))
+    assert plain["maternity_item"] == ("inps", Decimal("26.00"))
+    assert topped["absence_integration_item"] == ("intg", Decimal("46.67"))
+    assert "absence_integration_item" not in plain
+
+
+def test_half_day_remaining_under_collective_cap() -> None:
+    """With 89.5 of 90 days used, two four-hour days yield one half-day.
+
+    At 2400/30 + 2400/360 = 86.6667 per day, the 50%-less-30%
+    supplement for a single half-day is 86.6667 * 0.20 / 2 = 8.67.
+    """
+    leave = HourlyParentalLeaveEvent(
+        (
+            LeaveHours(date(2026, 3, 2), Decimal(4)),
+            LeaveHours(date(2026, 3, 3), Decimal(4)),
+        ),
+        date(2022, 6, 1),
+        ParentalLeaveTaken(0, 0, 0),
+        Decimal(8),
+        parental_base_pay=InpsSicknessBase(Decimal(2400), Decimal(0)),
+        topped_up_days_before=Decimal("89.5"),
+    )
+    work_rules = load_ccnl("materiali-costruzione-lapidei-confapi").work_rules
+    assert work_rules is not None
+    assert work_rules.insured_absence is not None
+    rule = work_rules.insured_absence.parental
+    assert hourly_top_up(
+        leave,
+        {date(2026, 3, 2): Decimal("0.3"), date(2026, 3, 3): Decimal("0.3")},
+        (date(2026, 3, 1), date(2026, 3, 31)),
+        Decimal(2400) / 30 + Decimal(2400) / 360,
+        rule,
+        Decimal("0.3"),
+    ) == (Decimal("8.67"), Decimal("0.5"))
+
+
+def test_missing_collective_history_does_not_post_a_supplement() -> None:
+    """Without the prior supplemented-day count, no 80% top-up is posted."""
+    result = _run(_leave(2, 3), ccnl_id="autorimesse-ic35", level_code="C4")
+    assert "absence_integration_item" not in _amounts(result)
+    assert "parental_top_up_history_unknown" in {issue.code for issue in result.issues}
+
+
+def test_standard_only_supplement_excludes_single_parent() -> None:
+    """The 50% rule excludes enhanced statutory months of a sole parent."""
+    leave = replace(_leave(2, 3), single_parent=True, topped_up_days_before=Decimal(0))
+    work_rules = load_ccnl("materiali-costruzione-lapidei-confapi").work_rules
+    assert work_rules is not None
+    assert work_rules.insured_absence is not None
+    assert hourly_top_up(
+        leave,
+        {date(2026, 3, 2): Decimal("0.3"), date(2026, 3, 3): Decimal("0.3")},
+        (date(2026, 3, 1), date(2026, 3, 31)),
+        Decimal(100),
+        work_rules.insured_absence.parental,
+        Decimal("0.3"),
+    ) == (Decimal(0), Decimal(0))
 
 
 def test_four_half_days_are_two_days_of_leave_at_80_percent() -> None:

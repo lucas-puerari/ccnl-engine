@@ -26,8 +26,9 @@ if TYPE_CHECKING:
         HourlyParentalLeaveEvent,
     )
     from ccnl_engine.absence.insured.parental.models import ParentalRates
+    from ccnl_engine.absence.insured.parental.top_up import ParentalTopUp
 
-__all__ = ["allocate_hours", "hours_indemnity"]
+__all__ = ["allocate_hours", "hourly_top_up", "hours_indemnity"]
 
 _ZERO = Decimal(0)
 _HALF = Decimal(2)
@@ -61,6 +62,46 @@ def allocate_hours(
     for first, second in zip(days[::2], days[1::2], strict=True):
         result[first] = result[second] = counters.take(first)
     return result, cohort_unknown(event, rates, result, counters)
+
+
+def hourly_top_up(
+    event: HourlyParentalLeaveEvent,
+    rates: dict[date, Decimal | None],
+    span: tuple[date, date],
+    daily: Decimal,
+    rule: ParentalTopUp | None,
+    standard_rate: Decimal,
+) -> tuple[Decimal, Decimal]:
+    """Top up eligible hourly leave in half-day equivalents, including earlier runs.
+
+    Returns:
+        The employer supplement and equivalent days posted in this run.
+        Earlier half-days of this event consume the cap before the run's days.
+    """
+    if rule is None or event.topped_up_days_before is None:
+        return _ZERO, _ZERO
+    if rule.only_standard_rate and event.single_parent:
+        return _ZERO, _ZERO
+    eligible = [
+        day
+        for day, rate in rates.items()
+        if day <= span[1]
+        and (rule.valid_from is None or day >= rule.valid_from)
+        and rate is not None
+        and (not rule.only_standard_rate or rate == standard_rate)
+    ]
+    remaining = max(_ZERO, Decimal(rule.max_days) - event.topped_up_days_before)
+    selected = [day for day in eligible[: int(remaining * _HALF)] if day >= span[0]]
+    amount = money(
+        sum(
+            (
+                max(_ZERO, rule.rate - (rates[day] or _ZERO)) * daily / _HALF
+                for day in selected
+            ),
+            _ZERO,
+        )
+    )
+    return amount, Decimal(len(selected)) / _HALF
 
 
 def hours_indemnity(

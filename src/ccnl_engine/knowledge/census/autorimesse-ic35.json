@@ -231,10 +231,10 @@
       "institute": "parental_leave",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 68 also allows the leave by the hour and extends it to adoption and foster care: the hourly leave (HourlyParentalLeaveEvent) gets no top-up. The top-up is computed on the INPS daily base of the leave (art. 23 D.Lgs. 151/2001), as the text gives no pay base of its own. The days already topped up by earlier leave events of the child are a fact of the event (ParentalLeaveEvent.topped_up_days_before).",
+      "rule": "Art. 68 extends parental leave to adoption and foster care, but the event records birth rather than entry into the family. Art. 79 sets the hourly quota at daily pay divided by contractual daily hours, permits administrative staff to take multiples of an hour (at least two), and operational staff half a day; the hourly event currently accepts only half-days. The top-up uses the INPS daily base (art. 23 D.Lgs. 151/2001), not an independently established collective pay base. Earlier topped-up days are supplied by the caller, not carried automatically between events.",
       "calculation": "ccnl/autorimesse-ic35:coverage.notes",
       "state": "absent",
-      "remediation": "Top up the hourly leave, read the pay base the CCNL means, and carry the days topped up per child in the state.",
+      "remediation": "Support the Art. 79 administrative hourly quota and adoption/foster entry dates; verify the applicable collective pay base and carry topped-up days per child across events.",
       "origin": "seeded",
       "links": {
         "limitations": [
