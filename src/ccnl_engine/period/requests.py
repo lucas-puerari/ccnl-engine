@@ -29,14 +29,16 @@ from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
 from ccnl_engine.pension_fund.inputs import PENSION_FUND_TYPES
-from ccnl_engine.period.opening.requests import stated_opening, validate_tax_year
+from ccnl_engine.period.opening.requests import validate_tax_year
+from ccnl_engine.period.request.field_specs import contract_field_specs
+from ccnl_engine.period.request.opening_state import stated_opening
 from ccnl_engine.period.request.validators import employment_gap
 from ccnl_engine.regime.models import EmploymentSector
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.seniority.inputs import SeniorityFact
 from ccnl_engine.severance.provision.models import TfrFundBalance
 from ccnl_engine.surtax.jurisdiction.types import check_surtax_codes
-from ccnl_engine.validators import FieldSpec, require_instances
+from ccnl_engine.validators import FieldSpec, require_decimal, require_instances
 
 if TYPE_CHECKING:
     from ccnl_engine.calendar.payment.models import PaymentId
@@ -104,7 +106,7 @@ class PeriodCalculationRequest:
         weekly_rest_day: Day of the weekly rest, for a CCNL paying a holiday on it.
         seniority: Recognised seniority, aged to the competence month; ``None``
             unknown, a ``missing_fact`` blocker when the level pays on seniority.
-        roles: Role codes of the role-specific allowances, ``None`` unknown.
+        roles: Role codes of allowances and former-worker pay; ``None`` unknown.
         presence_days: Count of days actually present at work in the month.
         site_presence_days: Subset of those days present at the work site.
             ``None`` means the count is missing, not zero.
@@ -143,6 +145,8 @@ class PeriodCalculationRequest:
             judged to miss them.
         tfr_fund: TFR fund at 31 December of the year before, if known;
             ``tfr_treasury_fund`` whether the TFR goes to the Fondo Tesoreria.
+        holiday_company_offset: Company compensation already paid for eligible
+            former-worker holiday supplements of this month; zero means none.
         erc_amount: Annual ERC of the CCNL grafici editoriali, if known;
             ``public_end_of_service`` the regime of a public employee.
         personal_withholdings: Garnishments and salary assignments notified
@@ -190,6 +194,7 @@ class PeriodCalculationRequest:
     tfr_fund: TfrFundBalance | None = None
     tfr_treasury_fund: bool | None = None
     erc_amount: Decimal | None = None
+    holiday_company_offset: Decimal | None = None
     public_end_of_service: PublicEndOfService | None = None
     personal_withholdings: tuple[PersonalWithholding, ...] = ()
 
@@ -205,6 +210,13 @@ class PeriodCalculationRequest:
         """
         require_instances(
             "PeriodCalculationRequest", self._field_specs(), feature="period_request"
+        )
+        require_decimal(
+            self.holiday_company_offset,
+            "PeriodCalculationRequest.holiday_company_offset",
+            feature="period_request",
+            minimum=Decimal(0),
+            optional=True,
         )
         check_level_start(
             self.level_started_on,
@@ -229,11 +241,7 @@ class PeriodCalculationRequest:
             self.opening_state,
             self.withholding_schedule,
         )
-        object.__setattr__(
-            self,
-            "opening_state",
-            self._stated_opening(),
-        )
+        object.__setattr__(self, "opening_state", self._stated_opening())
 
     def _stated_opening(self) -> PeriodState:
         """Return the opening state with the stated base of other employers.
@@ -242,9 +250,7 @@ class PeriodCalculationRequest:
             ``opening_state``, with the INPS base of other employments of
             ``current_year`` when it is of the competence year.
         """
-        return stated_opening(
-            self.period_id.year, self.current_year, self.opening_state
-        )
+        return stated_opening(self)
 
     def _field_specs(self) -> tuple[FieldSpec, ...]:
         """Return the fields an untyped caller may supply with a wrong type.
@@ -259,20 +265,7 @@ class PeriodCalculationRequest:
             ("level_code", self.level_code, str, False),
             ("level_started_on", self.level_started_on, date, True),
             ("opening_state", self.opening_state, PeriodState, False),
-            (
-                "contract_type",
-                self.contract_type,
-                (Permanent, Apprentice, FixedTerm),
-                False,
-            ),
-            ("employer", self.employer, EmployerProfile, False),
-            (
-                "contribution_history",
-                self.contribution_history,
-                ContributionHistory,
-                True,
-            ),
-            ("events", self.events, (tuple, list), False),
+            *contract_field_specs(self),
             ("weekly_hours", self.weekly_hours, WeeklyHours, True),
             ("contributable_hours", self.contributable_hours, ContributableHours, True),
             (
@@ -294,6 +287,7 @@ class PeriodCalculationRequest:
             ("tfr_fund", self.tfr_fund, TfrFundBalance, True),
             ("tfr_treasury_fund", self.tfr_treasury_fund, bool, True),
             ("erc_amount", self.erc_amount, Decimal, True),
+            ("holiday_company_offset", self.holiday_company_offset, Decimal, True),
             (
                 "public_end_of_service",
                 self.public_end_of_service,

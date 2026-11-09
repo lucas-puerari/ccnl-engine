@@ -39,9 +39,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | absence, base_salary, overtime, parental_leave, sickness |
+| **Limits of this contract** | absence, base_salary, overtime, sickness |
 
-9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -89,6 +89,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 64 c. 1(b), cached Confetra PDF p. 90; maternity integration periods. | corrected | The sixth-month target is 50% inclusive of statutory indemnity, not an additional payment. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Level 6 junior classification and pay, PDF pp. 25, 41, 80, 82. | corrected | The 2025 minimum is 1464.53, the biennial step is 18.78, the separate element is 7.58, and the level ceases at the end of 2025; promotion after twelve months applies to hires since 2020. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Junior hire cohorts and mandatory cutoff, cached PDF pp. 25, 41, 80, 82. | corrected | The junior minimum of 1464.53 ends with 2025; 2018/2019/2020 cohorts wait 24/18/12 months. Later junior salary values only mirror level 6 to satisfy the no-gap invariant and are never paid; prior-level matured increments and unfinished biennia must be preserved or affected runs refused. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Art. 64 c. 1(b), cached Confetra PDF p. 90; sixth-month parental leave after compulsory maternity. | corrected | The sixth month of absence targets 50% of global pay inclusive of statutory indemnity even when the leave after compulsory maternity is parental. |
 
 ## Salary table
 
@@ -187,13 +188,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** State whether the employer applies the Sezione seconda (ex Magazzini Generali) and apply the holiday target of art. 71 c. 5 then.
-
-!!! warning "logistica-trasporto-confetra/sixth_month_parental_leave · parental_leave · impact yes · open"
-    MATERNITY (Art. 64 c. 1 b, p. 90): the 50% top-up of the sixth month of absence is applied only to the days of a maternity leave event beyond day 150 (e.g. after an early interdiction). When the sixth month of absence is a parental leave (congedo parentale) after the five months of compulsory leave, no top-up is paid: the parental leave event does not carry the months of absence already elapsed.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Top up a parental leave that falls in the sixth month of absence from the start of the maternity leave to 50% of the monthly global pay.
 
 !!! warning "logistica-trasporto-confetra/level_6j_apprenticeship · base_salary · impact yes · open"
     Level 6J uses the 2018, 2019 and 2020 hire cohorts until the mandatory 1 January 2026 promotion. Pre-2018 hires and apprentices before the cutoff are refused without verified prior classification or apprentice progression. Promotions with matured seniority increments are refused unless the worker states earned increments at their original amounts; that fact preserves the unfinished biennium.

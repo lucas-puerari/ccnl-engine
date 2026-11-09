@@ -2,14 +2,12 @@
 
 from __future__ import annotations
 
-from dataclasses import replace
 from datetime import date
 from typing import TYPE_CHECKING
 
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.calendar.tax_year.rules import TaxYearPolicy
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
 from ccnl_engine.run.types import PeriodId
 
 if TYPE_CHECKING:
@@ -53,21 +51,3 @@ def validate_tax_year(
             f"does not match tax year ({tax_year})"
         )
         raise InvalidInputError(msg, feature="tax_year")
-
-
-def stated_opening(
-    year: int, facts: CurrentYearTaxFacts | None, opening: PeriodState
-) -> PeriodState:
-    """Return the opening state with the stated base of other employers.
-
-    Returns:
-        ``opening`` with the INPS base of other employments of ``facts``
-        when those facts belong to the competence year.
-    """
-    if facts is None or facts.tax_year != year:
-        return opening
-    accrual = opening.accrual
-    base = accrual.inps_base(year).stating_other_employers(
-        facts.other_employment_inps_base
-    )
-    return replace(opening, accrual=accrual.with_inps_base(base))

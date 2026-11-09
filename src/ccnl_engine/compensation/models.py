@@ -2,7 +2,7 @@
 
 from datetime import date
 from decimal import Decimal
-from typing import Literal, Self
+from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -10,6 +10,7 @@ from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.compensation.accrual_comparison.models import (
     AccrualComparison as AccrualComparison,  # noqa: PLC0414
 )
+from ccnl_engine.compensation.allowance.models import Allowance as Allowance  # noqa: PLC0414
 from ccnl_engine.compensation.cohort.models import ClassTable, CohortSalary
 from ccnl_engine.compensation.entry.models import TransitionHireBand
 from ccnl_engine.compensation.equalisation.models import EqualisationElement
@@ -29,96 +30,6 @@ from ccnl_engine.fund.models import (
 from ccnl_engine.fund.solidarity.models import SolidarityFund
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
 from ccnl_engine.seniority.models import SeniorityIncrements
-
-
-class Allowance(BaseModel):
-    """A named fixed monthly allowance attached to a CCNL level.
-
-    ``role`` restricts the allowance to workers holding that role (``None``
-    means every worker at the level). ``months_per_year`` overrides the
-    contract-wide ``additional_months`` for this allowance only. The
-    relevance flags exclude the allowance from the TFR base (with the
-    end-of-service base of a public employee and the fund bases on it) or the
-    apprenticeship-percentage base.  ``contribution_relevant`` false is
-    rejected: the engine does not take an allowance out of the INPS base.
-    ``apprenticeship_pct_relevant=False`` means the allowance is paid at full
-    value even for percentage-based apprentices (e.g. the EDR, which CCNL often
-    leave out of the percentage base).  The default ``True`` reduces the
-    allowance by the percentage with the base salary; a CCNL that lists the reduced
-    elements exempts every allowance it does not list.
-
-    ``absorbed_by_individual_excess`` offsets paid individual excess (capped).
-    ``individual=True`` marks an element of the worker, not of the CCNL
-    (:class:`~ccnl_engine.compensation.individual.inputs.IndividualElement`):
-    the hourly base counts it as the CCNL says
-    (:class:`~ccnl_engine.working_time.supplement.models.IndividualElementsRule`).
-
-    ``in_service_on`` limits the allowance to the workers in service on
-    that day (Logistica Confetra art. 60 c. 8: the EDR of the workers "in
-    servizio alla data del 26 gennaio 2011"): it is paid only when the
-    employment started on or before it, and not when the start is unknown.
-    ``service_months_threshold`` includes the allowance only when the
-    recognised seniority (``Employment.seniority``) is known and at least
-    this many months on the run; unknown, the run names the missing fact.
-    ``service_months_until`` closes the band (AFAM RPD); ``career_service`` gates on
-    ``SeniorityFact.career_months`` when stated (Farmacie Tabella C).
-
-    ``part_time_proportionable=False`` marks allowances paid at their full
-    contractual value whatever the part-time fraction (fixed welfare
-    contributions, presence-based indennità the CCNL do not reduce).
-
-    ``replaced_by`` names what replaces a national element paid only in its
-    absence: ``provincial_element`` (Commercio Art. 215, terzo elemento),
-    decided by ``EmployerProfile.provincial_pay_element``;
-    ``second_level_premium`` (Unionalimentari, elemento di garanzia
-    retributiva), decided by ``EmployerProfile.second_level_premium``.
-
-    ``in_kind=True``: a benefit in kind (board and lodging, domestico art. 36),
-    unpaid on a regular run but in the TFR base, paid in cash in extra months.
-    ``tfr_relevant_from`` dates the TFR relevance (Federalimentare art. 73).
-    """
-
-    model_config = ConfigDict(extra="forbid", frozen=True)
-
-    code: str
-    description: str
-    monthly: TimeSeries
-    role: str | None = None
-    months_per_year: int | None = Field(default=None, ge=1)
-    tfr_relevant: bool = True
-    tfr_relevant_from: date | None = None
-    contribution_relevant: bool = True
-    apprenticeship_pct_relevant: bool = True
-    part_time_proportionable: bool = True
-    in_kind: bool = False
-    replaced_by: Literal["provincial_element", "second_level_premium"] | None = None
-    service_months_threshold: int | None = Field(default=None, ge=0)
-    service_months_until: int | None = Field(default=None, ge=1)
-    career_service: bool = False
-    in_service_on: date | None = None
-    individual: bool = False
-    absorbed_by_individual_excess: bool = False
-    provenance: RuleProvenance | None = None
-
-    @model_validator(mode="after")
-    def _check_contribution_relevant(self) -> Self:
-        if not self.contribution_relevant:
-            msg = (
-                f"allowance {self.code}: contribution_relevant false is not "
-                "supported, the INPS base would keep it"
-            )
-            raise ValueError(msg)
-        return self
-
-    @property
-    def apprenticeship_pct_declared(self) -> bool:
-        """Whether the data states ``apprenticeship_pct_relevant``.
-
-        ``False`` when the flag holds its default: whether the CCNL reduces
-        the allowance for percentage apprentices was not sourced.
-        """
-        return "apprenticeship_pct_relevant" in self.model_fields_set
-
 
 _SHORTEST_MONTH_DAYS = 28
 
@@ -297,6 +208,13 @@ class CCNLParameters(BaseModel):
 
 class Level(BaseModel):
     """A single classification level (*livello di inquadramento*).
+
+    The ``base_salary`` series records the contractual minimum, not the
+    worker's complete ordinary remuneration. An individual element may
+    supplement it without changing the level minimum. Likewise, a
+    role-dependent qualified-worker floor can require a distinct allowance
+    rather than rewriting the minimum shared by every worker in the level.
+    Such pay is represented in the calculated pay chain, not in this table.
 
     Attributes:
         code, order, description: Code (``"D3"``), rank (1 = lowest), name.

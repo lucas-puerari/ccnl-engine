@@ -31,10 +31,10 @@ from decimal import Decimal
 from functools import cached_property
 from typing import TYPE_CHECKING
 
+from ccnl_engine.sickness.cumulation.worker import ShortAbsence, SicknessWorker
 from ccnl_engine.sickness.window.rules import months_after, window_start
 
 if TYPE_CHECKING:
-    from ccnl_engine.seniority.inputs import SeniorityFact
     from ccnl_engine.sickness.integration.models import (
         SicknessCumulation,
         SicknessRules,
@@ -65,37 +65,6 @@ class CcnlDay:
     beyond_comporto: bool
     rate: Decimal
     carenza_rate: Decimal
-
-
-@dataclass(frozen=True)
-class SicknessWorker:
-    """Facts of the worker the cumulated sickness is counted with.
-
-    Attributes:
-        seniority: Recognised seniority, ``None`` when not known.
-        hired_on: First day of the employment, ``None`` when not known.
-        known_from: First day from which the recorded episodes list every
-            sick day of the employment; ``None`` when they list all of them.
-        fixed_term: Whether the contract is fixed-term.
-    """
-
-    seniority: SeniorityFact | None = None
-    hired_on: date | None = None
-    known_from: date | None = None
-    fixed_term: bool = False
-
-
-@dataclass(frozen=True)
-class ShortAbsence:
-    """Rate of the first days of a short absence.
-
-    Attributes:
-        rate: The rate, ``1`` without a reduction.
-        unknown: Whether an unstated exemption could change it.
-    """
-
-    rate: Decimal = _ONE
-    unknown: bool = False
 
 
 def _restarts(episode: SicknessEpisode, ended: date | None, months: int | None) -> bool:
@@ -287,10 +256,31 @@ class CumulativeTreatment:
         """
         band = self.band
         extended = band.serious_comporto_days
-        serious = extended is not None and self.episode.serious_illness
+        serious = extended is not None and self.special_eligible()
         limit = extended if serious and extended is not None else band.comporto_days
         cap = self.cumulation.fixed_term_comporto_days
         return limit if cap is None or not self.worker.fixed_term else min(limit, cap)
+
+    def special_eligible(self) -> bool:
+        """Check this episode's eligibility for extended limits.
+
+        Returns:
+            Whether the episode qualifies for the extended limits.
+        """
+        if self.cumulation.qualifying_kinds:
+            return self.episode.serious_illness_kind in self.cumulation.qualifying_kinds
+        return self.episode.serious_illness is True
+
+    def full_pay_limit(self) -> int:
+        """Return the full-pay limit for this episode's qualifying condition.
+
+        Returns:
+            Extended full-pay days when eligible, else ordinary full-pay days.
+        """
+        extended = self.band.serious_full_pay_days
+        if extended is not None and self.special_eligible():
+            return extended
+        return self.band.full_pay_days
 
     def _counted(self, episode: SicknessEpisode) -> bool:
         """Return whether ``episode`` counts toward the comporto.
@@ -380,7 +370,7 @@ class CumulativeTreatment:
                 return self.rules.full_pay_integration_rate
             return self.cumulation.reduced_integration_rate
         band = self.band
-        if count <= band.full_pay_days:
+        if count <= self.full_pay_limit():
             return self.rules.full_pay_integration_rate
         step = band.step_rate(count)
         rate = self.cumulation.reduced_integration_rate if step is None else step
@@ -414,8 +404,8 @@ class CumulativeTreatment:
             first, last = self.episode.started_on, self.episode.ended_on
             days = (first + timedelta(days=n) for n in range((last - first).days + 1))
             return next(
-                (d for d in days if self.window_days(d) > self.band.full_pay_days),
+                (d for d in days if self.window_days(d) > self.full_pay_limit()),
                 last + timedelta(days=1),
             )
-        offset = self.band.full_pay_days - self.chain[0]
+        offset = self.full_pay_limit() - self.chain[0]
         return self.episode.started_on + timedelta(days=offset)
