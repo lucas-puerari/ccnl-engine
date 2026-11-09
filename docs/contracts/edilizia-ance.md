@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, overtime, sickness, territorial_supplement |
 
-14 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-02-21 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -80,6 +80,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Caposquadra (printed p. 89, PDF p. 103) and Art. 24 points 3-4 of the CCNL 19 April 2010, via a research report, quotes checked on the text layer. | corrected | Added the role allowance CAPOSQUADRA (10% of paga base and ex contingenza) in the base of the hourly percentages. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Caposquadra percentage base and qualified-worker floor, CCNL 2010 PDF pp. 49 and 103. | corrected | Calculate the national supplement dynamically and lift base pay to the level 2 ordinary pay where required. Provincial, individual and piecework components remain unavailable. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Caposquadra qualified-worker remuneration integration and Art. 24 points 2–4, signed CCNL 2010 PDF pp. 49 and 103. | corrected | The level-2 shortfall is a separate earning, not a contractual base-pay increase; own individual elements reduce it and enter the special supplement and Art. 17–18 bases. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 19 n. 12 Sunday shift-worker exclusion, PDF page 40 | corrected | The 8% Sunday compensatory-rest premium excludes shift workers. |
 
 ## Salary table
 
@@ -152,13 +153,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the APE as a Cassa Edile payment.
-
-!!! warning "edilizia-ance/ordinary_hours_premiums · overtime · impact yes · open"
-    Art. 19 n. 12: the exclusion of the shift workers from the 8% of Sunday work with compensatory rest. The 8% of a Saturday in a six-day week (art. 5) is modelled (ANCE_SABATO_SEI_GIORNI, HolidayWorkKind.SATURDAY_SIXTH_DAY); the other premiums on ordinary hours are modelled (supplement_bands ANCE_*).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the shift-worker exclusion of n. 12 and the Saturday premium of Art. 5.
 
 !!! warning "edilizia-ance/hardship_allowances · base_salary · impact yes · open"
     Art. 20-21: the indennità for lavori speciali disagiati, alta montagna and cantiere ferroviario.

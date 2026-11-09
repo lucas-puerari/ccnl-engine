@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-02-21 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -69,6 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Art. 66 of the CCNL edilizia industria 2010 (PDF p. 78). A separate model session rejected a first encoding (pay counted over the 30-month window); the merged per-illness encoding was checked again by a separate session (.private flv2), which confirmed the bands and kept the three extra months of several illnesses as unmodelled. | flagged | Replaced the six-month rule with the seniority bands of one illness and the 30-month comporto of art. 66.<br>The separate session read the 30-month periods as job retention only: the pay of the three extra months of several illnesses is left as a limitation. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 43 (PDF p. 66) and art. 61 (PDF p. 75) of the CCNL 19 April 2010, the renewals of 2014, 2018, 2022 and 2025 for amendments, and the Sunday-holiday code of the engine, by a separate model session. | flagged | Confirmed: the quota of '11-04' at 1/25 is paid on the first Sunday of every November, a second quota when 1 November is that Sunday (art. 61 and art. 43); no renewal amends art. 43.<br>Flagged, kept under november_4_holiday: a worker not employed on the first Sunday of November gets no quota; the 'retribuzione stessa' is read as the monthly pay of the chain. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 65, 44, 63, 72 and 76 of the CCNL 19 April 2010 against the loyalty premium encoding, by a separate model session. | flagged | Confirmed: one month of the art. 44 elements 1-15 on the hire anniversary after 20 years of uninterrupted actual service, then every year; impiegati and quadri (art. 76, with the function allowance); in the TFR base (art. 72); out of the 13th (art. 63, item 18 of art. 44).<br>Flagged, kept in the limitation loyalty_premium: the run chain stands for the elements 1-15, the employment start for the qualifying service, the anniversary month for the date; the pro rata at a non-disciplinary dismissal is not paid. |
+| 2026-11-09 | gpt-6-sol (ai) | Art. 54 (PDF p. 71), night-holiday work in periodic shifts against the 50% band, by a separate model session. | corrected | Confirmed: the 50% night-holiday band excludes the hours comprised in periodic shifts; ordinary holiday and other bands are unaffected.<br>Flagged and corrected: an excluded hour is now provisional, not final at zero, since no combined night-holiday periodic-shift rate is printed; the 10% night-shift band of the same page stays as encoded.<br>Confirmed: a missing in_periodic_shift fact blocks only the restricted band. |
 
 ## Salary table
 
@@ -173,11 +174,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the provincial premio di produzione with a fact naming the province, then remove this note.
 
 !!! warning "edilizia-ance-impiegati/ordinary_hours_premiums · overtime · impact yes · open"
-    Art. 54: the 50% of lavoro festivo notturno excludes the work 'compreso in turni periodici', and the table states no rate for it; the engine does not tell a shift worker apart and pays the 50% (supplement_bands ANCE_IMP_FESTIVO_NOTTURNO). The other premiums on ordinary hours are modelled (ANCE_IMP_*).
+    Art. 54 excludes turnisti from the 50% night-holiday band; this exclusion is enforced. The same page states a 10% premium for night work in periodic shifts, covered by the existing ANCE_IMP_TURNO_NOTTURNO night_shift band (requested separately). No distinct combined night-holiday periodic-shift rate or stacking rule is stated: zero under the excluded 50% band is provisional, not total remuneration.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Exclude the night holiday work in periodic shifts from the 50% of Art. 54 once a source sets its rate.
+    **Remediation:** Determine whether the existing 10% periodic night-shift rate applies to these hours and how it combines with holiday pay before settling total remuneration.
 
 !!! warning "edilizia-ance-impiegati/dual_apprenticeship_prorogation · base_salary · impact yes · open"
     FIRST-LEVEL PROROGATION (Art. 92, ANCE text of 4 April 2019, p. 6): 'Per l'apprendista che invece non abbia conseguito il titolo di istruzione, in caso di proroga il trattamento economico è quello dell'anno precedente'. The engine pays the semester of Apprentice.months_elapsed: a prorogued apprentice who failed the title is paid the next semester's percentage.

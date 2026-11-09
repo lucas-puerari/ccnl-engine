@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from decimal import Decimal
-from enum import StrEnum
 from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import InvalidInputError
@@ -13,6 +12,11 @@ from ccnl_engine.validators import (
     require_bool,
     require_date,
     require_decimal,
+)
+from ccnl_engine.working_time.event_kinds import (
+    HolidayWorkKind,
+    OvertimeKind,
+    ShiftKind,
 )
 
 if TYPE_CHECKING:
@@ -31,31 +35,6 @@ __all__ = [
     "ShiftKind",
     "ShiftWorkEvent",
 ]
-
-
-class OvertimeKind(StrEnum):
-    """When overtime was worked, selecting the CCNL band of the same work kind.
-
-    Attributes:
-        WEEKDAY: Daytime overtime on a working day (straordinario diurno).
-        NIGHT: Night overtime (straordinario notturno).
-        HOLIDAY: Overtime on a public holiday or rest day (straordinario festivo).
-        REST_DAY: Overtime on the weekly rest day where the CCNL pays it
-            apart from the holidays; without a rest-day band, as ``HOLIDAY``.
-        SATURDAY: Overtime on Saturday where the CCNL pays it apart
-            (Metalmeccanico artigianato); without a band, as ``WEEKDAY``.
-        NIGHT_HOLIDAY: Night overtime on a public holiday (festivo notturno).
-        SUPPLEMENTARY: Part-time hours beyond the agreed ones within the full
-            week (D.Lgs. 81/2015 art. 6 c. 2), at the supplementare band.
-    """
-
-    WEEKDAY = "weekday"
-    NIGHT = "night"
-    HOLIDAY = "holiday"
-    REST_DAY = "rest_day"
-    NIGHT_HOLIDAY = "night_holiday"
-    SATURDAY = "saturday"
-    SUPPLEMENTARY = "supplementare"
 
 
 @dataclass(frozen=True)
@@ -111,42 +90,6 @@ class OvertimeEvent:
             self.kind, OvertimeKind, "OvertimeEvent.kind", feature=feature
         )
         object.__setattr__(self, "kind", kind)
-
-
-class HolidayWorkKind(StrEnum):
-    """Which holiday or rest-day work a :class:`HolidayWorkEvent` pays.
-
-    Attributes:
-        HOLIDAY: Hours worked on a public holiday (festività).
-        HOLIDAY_COMPENSATORY_REST: Hours worked on a public holiday or rest
-            day for which the worker takes a compensatory rest day.
-        SUNDAY: Ordinary hours worked on a Sunday by a worker whose weekly
-            rest falls on another day.
-        REST_DAY: Hours worked on the weekly rest day.
-        NIGHT_HOLIDAY: Hours worked on a public holiday at night (lavoro
-            festivo notturno), which a CCNL may pay at a rate of its own.
-        SATURDAY_SIXTH_DAY: Ordinary hours worked on Saturday or the sixth
-            day of the week (Alimentari art. 31).
-    """
-
-    HOLIDAY = "holiday"
-    HOLIDAY_COMPENSATORY_REST = "holiday_compensatory_rest"
-    SUNDAY = "sunday"
-    REST_DAY = "rest_day"
-    NIGHT_HOLIDAY = "night_holiday"
-    SATURDAY_SIXTH_DAY = "saturday_sixth_day"
-
-
-class ShiftKind(StrEnum):
-    """Rotating shift a :class:`ShiftWorkEvent` pays.
-
-    Attributes:
-        DAY: A day shift of a rotation (turno diurno).
-        NIGHT: A night shift of a rotation (turno notturno).
-    """
-
-    DAY = "day"
-    NIGHT = "night"
 
 
 def _check_supplement(
@@ -236,12 +179,16 @@ class HolidayWorkEvent:
             CCNL band of ``kind`` and hourly base, ``hours`` required.
         hours: Hours worked that day, above 0 and at most 744.
         kind: Which holiday or rest-day work the hours are.
+        in_periodic_shift: Whether the worker is a turnista (rotating-shift
+            worker); ``None`` when unknown. Required only by bands excluding
+            such workers, even if these particular hours are outside a turn.
     """
 
     event_date: date
     supplement_amount: Decimal | None = None
     hours: Decimal | None = None
     kind: HolidayWorkKind = HolidayWorkKind.HOLIDAY
+    in_periodic_shift: bool | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         feature = "holiday_work"
@@ -256,6 +203,12 @@ class HolidayWorkEvent:
             self.kind, HolidayWorkKind, "HolidayWorkEvent.kind", feature=feature
         )
         object.__setattr__(self, "kind", kind)
+        if self.in_periodic_shift is not None:
+            require_bool(
+                self.in_periodic_shift,
+                "HolidayWorkEvent.in_periodic_shift",
+                feature=feature,
+            )
 
 
 @dataclass(frozen=True)
