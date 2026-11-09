@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2020-10-08 |
-| **Last review** | 2026-10-17 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2020-07-01 |
 
 ## Review history
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'part-time, tempo determinato, apprendistato e periodo di prova': the apprenticeship tracks and the part-time supplementary hours of the file against the text read in the P1 review. | corrected | Apprenticeship (p. 31): only the 36-month track (85% then 90%) was modelled; the 18-month and 24-month tracks are added. An apprentice now names the track.<br>Part-time supplementary hours are paid at 15% (Art. 22, p. 25): declared, the request cannot state them.<br>Probation and fixed-term rules carry no amount the engine computes. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'fondi sanitari, previdenza complementare, bilateralità e quote a carico di lavoratore e datore': the pension, health and bilateral contributions of the file against the text read in the P1 review. | confirmed | The CCNL of 8 October 2020 sets no contractual pension, health or bilateral contribution: Art. 74 only confirms the will to institute a supplementary pension. None is modelled. |
 | 2026-10-17 | claude-opus-5-5 (ai) | Periodic review due 2026-12-31: the minimi of every level against the CCNL of 8 October 2020, the status of the renewal, and the readiness of the file. | confirmed | The 28 minimi of the file are printed in the CCNL of 8 October 2020. Match.<br>No renewal of the CCNL 2016-2018 was signed by 2026-10-17: the unions report a contract in ultrattività and a dispute open in January 2026 (FP CGIL, letter to the Ministry of Health and the Conferenza delle Regioni); the 2020 tables stay in force.<br>Not promoted to reviewed: verification.confidence is unverified, the level records are derived from a CCNL text of 2020 with an aggregator as second source, and shift_on_call_allowances and part_time_supplementary_rate are open. The derived rule stays derived. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Frozen RIA, pay base, thirteenth and TFR, Arts. 56, 58, 66, 73. | confirmed | — |
 
 ## Salary table
 
@@ -125,11 +126,11 @@ percentage: 0.90
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "sanita-privata-aiop-aris/frozen_individual_seniority · seniority · impact yes · open"
-    Retribuzione individuale di anzianità frozen at 1993-12-31 per Art. 56 (no new seniority accruals). Modelled as seniority_increments.maximum_count=0.
+    Art. 56 freezes the worker's RIA balance acquired by 31 December 1993; maximum_count=0 stops new accrual but does not provide the balance. Supply the actual preserved monthly balance as IndividualElement(code='frozen_ria', monthly=<worker balance>, absorbable=False, as_of=None, extra_months=True, tfr_relevant=True). It is paid monthly and included in the Art. 58 daily/hourly base and Art. 66 thirteenth; Art. 73 applies the ordinary TFR base. No national amount is specified.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Let the caller state the RIA frozen at 1993-12-31 (EarnedIncrements or an individual allowance) and record the limitation.
+    **Remediation:** Require the worker's actual frozen monthly RIA balance as an individual element; without that fact, no historical amount can be inferred.
 
 !!! warning "sanita-privata-aiop-aris/statutory_ipca_adjustment · base_salary · impact unknown · open"
     CCNL applied in ultrattività; Decreto Lavoro 2026 introduced a statutory 30% IPCA auto-adjustment if no renewal within 12 months of expiry. If triggered, legally applicable 2026 minimums may exceed the 2020 Tabella 1 values modelled here. Engine models contractual tables only.
