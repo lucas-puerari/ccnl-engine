@@ -226,7 +226,7 @@
       },
       {
         "kind": "simplification",
-        "text": "PART-TIME SUPPLEMENTARY HOURS: the operai are paid the supplementary hours with the hourly quota raised by 20% (Art. 78, pp. 90-91), modelled as the OT_SUPPLEMENTARE band of OvertimeKind.SUPPLEMENTARY; the CCNL gives that pay 'incidenza su tutti gli istituti retributivi legali e contrattuali, indiretti e differiti, compresi le contribuzioni e gli accantonamenti in Cassa Edile', which the engine does not apply (an overtime pay stays out of the TFR base and of the Cassa Edile accruals), nor the 10% of the flexible clauses.",
+        "text": "PART-TIME SUPPLEMENTARY HOURS: Art. 78 pays horizontal part-time operai 20% on the direct hourly remuneration up to 40 weekly hours. OT_SUPPLEMENTARE applies only to operai; the engine does not apply its incidence to deferred pay, TFR or Cassa Edile accruals. For impiegati Art. 78 also sets 20%, but on different Art. 44 elements, all-inclusive and without TFR incidence; that base is not derived here. The 10% for flexible clauses is separate and not modelled.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -234,7 +234,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Give the supplementary pay of the operai its incidence on the TFR base and the Cassa Edile accruals, then remove this note."
+          "remediation": "Model the operai incidence on deferred pay, TFR and Cassa Edile accruals, and the distinct impiegati hourly base before resolving this note."
         }
       },
       {
@@ -1963,7 +1963,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "2e89812a1490e35865dc7da7dd5b67df6e4bcb6742fe2224946e3f22fccd1fac",
+    "source_hash": "089877f442b67ad9b9ca0e14f1ef819b8984bf406fdd96e471980e13d2302010",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2224,6 +2224,9 @@
           "applies_to_kinds": [
             "supplementare"
           ],
+          "categories": [
+            "operaio"
+          ],
           "provenance": {
             "status": "verified",
             "location": {
@@ -2242,12 +2245,12 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-17T10:11:39Z",
+              "extraction_timestamp": "2026-11-09T19:37:11Z",
               "verification_status": "verified",
               "effective_from": "2010-04-19",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-10-17T10:11:39Z",
-              "review_id": "2026-10-17-ai-supplementary"
+              "verified_at": "2026-11-09T19:37:11Z",
+              "review_id": "2026-11-09-ai-supplementary-scope"
             }
           }
         }
@@ -3414,6 +3417,28 @@
         "checked": [
           "dual_apprenticeship[diploma_ifts].failed_title_extension",
           "dual_apprenticeship[qualifica_altri].failed_title_extension"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-supplementary-scope",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements.overtime_bands",
+          "coverage.notes"
+        ],
+        "scope": "Art. 78 scope of the supplementary rate for manual and clerical workers.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "Art. 78, printed pp. 90-91: 'Per il personale operaio, le eventuali ore di lavoro supplementare ... maggiorata di una percentuale del 20%'; the subsequent paragraph gives clerical workers a distinct Art. 44 base and excludes TFR. Restricted the existing direct-pay band to manual workers; clerical base and manual-worker accrual incidence remain open."
         ]
       }
     ],
