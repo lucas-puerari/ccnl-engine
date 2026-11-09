@@ -13,6 +13,7 @@ from ccnl_engine.compensation.change.rules import MonthChange, blended, month_ch
 from ccnl_engine.compensation.element.services import _resolve_chain
 from ccnl_engine.compensation.equalisation.rules import equalisation_outcome
 from ccnl_engine.compensation.hourly.services import upcoming_percentages
+from ccnl_engine.compensation.presence.rules import add_daily_presence
 from ccnl_engine.compensation.proration.services import run_proration
 from ccnl_engine.compensation.una_tantum.rules import UNA_TANTUM, una_tantum_events
 from ccnl_engine.employment.category.rules import resolve_worker_category
@@ -232,6 +233,15 @@ def build_context(
     chain = proration.apply(
         _apply_extra_month_policy(chain, payment.run_id.kind, run_fraction(accrual))
     )
+    if payment.run_id.kind == "regular":
+        chain = add_daily_presence(
+            chain,
+            contract.ccnl.parameters.daily_presence_allowances,
+            competence,
+            request.roles or frozenset(),
+            request.presence_days,
+            request.site_presence_days,
+        )
     return RunContext(
         request=request,
         repo=effective_repo,
