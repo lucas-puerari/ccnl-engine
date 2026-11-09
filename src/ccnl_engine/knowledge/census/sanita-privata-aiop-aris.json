@@ -39,10 +39,10 @@
       "institute": "seniority",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Retribuzione individuale di anzianità frozen at 1993-12-31 per Art. 56 (no new seniority accruals). Modelled as seniority_increments.maximum_count=0.",
+      "rule": "Art. 56 freezes the worker's RIA balance acquired by 31 December 1993; maximum_count=0 stops new accrual but does not provide the balance. Supply the actual preserved monthly balance as IndividualElement(code='frozen_ria', monthly=<worker balance>, absorbable=False, as_of=None, extra_months=True, tfr_relevant=True). It is paid monthly and included in the Art. 58 daily/hourly base and Art. 66 thirteenth; Art. 73 applies the ordinary TFR base. No national amount is specified.",
       "calculation": "ccnl/sanita-privata-aiop-aris:coverage.notes",
       "state": "absent",
-      "remediation": "Let the caller state the RIA frozen at 1993-12-31 (EarnedIncrements or an individual allowance) and record the limitation.",
+      "remediation": "Require the worker's actual frozen monthly RIA balance as an individual element; without that fact, no historical amount can be inferred.",
       "origin": "seeded",
       "links": {
         "limitations": [

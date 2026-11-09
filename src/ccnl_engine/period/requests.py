@@ -31,7 +31,11 @@ from ccnl_engine.pension_fund.inputs import PENSION_FUND_TYPES
 from ccnl_engine.period.opening.requests import validate_tax_year
 from ccnl_engine.period.request.field_specs import contract_field_specs
 from ccnl_engine.period.request.opening_state import stated_opening
-from ccnl_engine.period.request.validators import check_day_counts, employment_gap
+from ccnl_engine.period.request.validators import (
+    check_day_counts,
+    check_prior_extra_amount,
+    employment_gap,
+)
 from ccnl_engine.regime.models import EmploymentSector
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.seniority.inputs import SeniorityFact
@@ -148,6 +152,9 @@ class PeriodCalculationRequest:
             ``tfr_treasury_fund`` whether the TFR goes to the Fondo Tesoreria.
         holiday_company_offset: Company compensation already paid for eligible
             former-worker holiday supplements of this month; zero means none.
+        prior_extra_month_amount: Full extra monthly remuneration already
+            received beyond the thirteenth at contract entry, excluding merit
+            bonuses; zero states none, ``None`` is unknown.
         erc_amount: Annual ERC of the CCNL grafici editoriali, if known;
             ``public_end_of_service`` the regime of a public employee.
         personal_withholdings: Garnishments and salary assignments notified
@@ -196,6 +203,7 @@ class PeriodCalculationRequest:
     tfr_fund: TfrFundBalance | None = None
     tfr_treasury_fund: bool | None = None
     erc_amount: Decimal | None = None
+    prior_extra_month_amount: Decimal | None = None
     holiday_company_offset: Decimal | None = None
     public_end_of_service: PublicEndOfService | None = None
     personal_withholdings: tuple[PersonalWithholding, ...] = ()
@@ -232,6 +240,7 @@ class PeriodCalculationRequest:
         check_week_days(self.full_time_week_days)
         check_pattern_hours(self.weekly_hours, self.work_pattern)
         check_surtax_codes(self.regione, self.comune_belfiore)
+        check_prior_extra_amount(self.prior_extra_month_amount)
         check_day_counts(self)
         validate_tax_year(
             self.period_id,
@@ -285,11 +294,6 @@ class PeriodCalculationRequest:
             ("tfr_fund", self.tfr_fund, TfrFundBalance, True),
             ("tfr_treasury_fund", self.tfr_treasury_fund, bool, True),
             ("erc_amount", self.erc_amount, Decimal, True),
+            ("prior_extra_month_amount", self.prior_extra_month_amount, Decimal, True),
             ("holiday_company_offset", self.holiday_company_offset, Decimal, True),
-            (
-                "public_end_of_service",
-                self.public_end_of_service,
-                PublicEndOfService,
-                True,
-            ),
         )

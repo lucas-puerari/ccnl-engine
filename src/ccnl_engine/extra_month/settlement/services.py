@@ -12,6 +12,7 @@ from dataclasses import dataclass, replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.extra_month.offset.services import offset_fourteenth
 from ccnl_engine.extra_month.schedule.models import ExtraMonthKind
 from ccnl_engine.ledger.models import AccountKind, LedgerEntry
 from ccnl_engine.pay_item.facade import ExtraMonthEarning, PayItem
@@ -29,8 +30,10 @@ if TYPE_CHECKING:
 
     from ccnl_engine.compensation.element.types import MonthlyPayChain
     from ccnl_engine.decision.models import CalculationIssue
+    from ccnl_engine.employment.period.inputs import EmploymentPeriod
     from ccnl_engine.event.total.handlers import _EventTotals
     from ccnl_engine.extra_month.models import ExtraMonthAccrual
+    from ccnl_engine.extra_month.offset.models import FourteenthPriorExtraOffset
     from ccnl_engine.pay_item.facade import CompetencePeriod
     from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
 
@@ -83,6 +86,9 @@ def settle_extra_months(
     run_id: str,
     resolver: PolicyResolver,
     context: PolicyContext,
+    fourteenth_offset: FourteenthPriorExtraOffset | None = None,
+    employment: EmploymentPeriod | None = None,
+    prior_extra_month_amount: Decimal | None = None,
 ) -> ExtraMonthSettlement:
     """Pay the ratei of ``settlements`` on this run.
 
@@ -94,7 +100,20 @@ def settle_extra_months(
         The earnings, their ledger entries and the bases they enter.
     """
     due = [
-        (accrual, _scaled(chain, accrual))
+        (
+            accrual,
+            offset_fourteenth(
+                _scaled(chain, accrual),
+                (
+                    fourteenth_offset
+                    if accrual.kind is ExtraMonthKind.FOURTEENTH
+                    else None
+                ),
+                employment,
+                prior_extra_month_amount,
+                accrual.fraction,
+            ),
+        )
         for accrual in settlements
         if accrual.accrued > 0
     ]

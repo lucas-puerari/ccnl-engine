@@ -61,7 +61,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY (Art. 24): salario di anzianità by hire-date band, modelled as cumulative cohort allowances (in_service_on): 90 EUR from 1/01/2025 for hires to 31/12/2001, down to 20 EUR for hires to 1/01/2023 (two years at 1/01/2025); later hires get none. Not modelled: for hires before 31/12/1995 the scatti di anzianità (5% every two years) received at 31/12/1997, which depend on the worker's history.",
+        "text": "Art. 24: hire-date cohort allowances remain modelled. For workers hired before 31 December 1995, add the worker's actual monthly pre-1998 scatti balance to the cohort amount using IndividualElement(code='pre_1998_scatti', monthly=<preserved monthly balance>, absorbable=False, as_of=None, extra_months=True, tfr_relevant=True). The balance is paid monthly, included in December pay for the thirteenth (Art. 21), and in ordinary TFR pay (Art. 66). Do not calculate a balance from the 5% rate without the historical worker pay and accrual record.",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
@@ -69,7 +69,32 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add the pre-1998 scatti of hires before 31/12/1995 as a worker fact when one is approved; the hire-date bands are modelled."
+          "remediation": "Supply the worker's actual preserved monthly pre-1998 scatti balance as an individual element; without it, the old scatti cannot be reconstructed from the hire-date bands."
+        },
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "aninsei-personal-ccnl",
+              "title": "ANINSEI 2024-2027",
+              "kind": "associazione",
+              "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+              "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+            },
+            "page": "51, 53, 82",
+            "section": "Arts. 21, 24, 66",
+            "quote": "Scatti di anzianità (5% ogni 2 anni) percepiti al 31/12/1997 + quanto sottoindicato in relazione all’anno alla data di assunzione"
+          },
+          "transformation": "The caller supplies the preserved pre-1998 monthly amount, added to the already modelled cohort amount; the thirteenth follows December pay and TFR follows ordinary pay.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-09T11:25:22Z",
+            "verified_at": "2026-11-09T11:25:22Z",
+            "verified_by": "claude-opus-5-5",
+            "verification_status": "verified",
+            "review_id": "2026-11-09-ai-personal-aninsei"
+          }
         }
       },
       {
@@ -5430,7 +5455,7 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "5533fa37df5a36dad9b162c4d809ad2229bfb1efcb4a13a09ac3f69b8fdd949a",
+    "source_hash": "d81c57f34fe43ad6aff14d74ff10617993ca72de9db98e20b5d825feeaa78744",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5765,6 +5790,21 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-personal-aninsei",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Historic scatti, thirteenth and TFR, pp. 51, 53, 82.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+            "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+          }
         ]
       }
     ]
