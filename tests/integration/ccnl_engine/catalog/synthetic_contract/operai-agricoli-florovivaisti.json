@@ -22,17 +22,17 @@
     {
       "level_code": "Area1",
       "as_of": "2026-06-01",
-      "expected_amount": "11.36"
+      "expected_amount": "12.50"
     },
     {
       "level_code": "Area2",
       "as_of": "2026-06-01",
-      "expected_amount": "10.33"
+      "expected_amount": "11.36"
     },
     {
       "level_code": "Area3",
       "as_of": "2026-06-01",
-      "expected_amount": "8.99"
+      "expected_amount": "9.89"
     }
   ],
   "apprenticeship_uc_checks": [

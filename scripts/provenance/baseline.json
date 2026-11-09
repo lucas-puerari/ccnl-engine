@@ -1060,9 +1060,9 @@
       "operai-agricoli-florovivaisti/florovivaisti_sickness_integration",
       "operai-agricoli-florovivaisti/florovivaisti_tables",
       "operai-agricoli-florovivaisti/inail_agricultural_premium",
+      "operai-agricoli-florovivaisti/provincial_profile_scatti",
       "operai-agricoli-florovivaisti/provincial_supplement",
-      "operai-agricoli-florovivaisti/regular_night_shift_and_local_tariffs",
-      "operai-agricoli-florovivaisti/super_profile_scatti"
+      "operai-agricoli-florovivaisti/regular_night_shift_and_local_tariffs"
     ],
     "agreement/organizzazioni-allevatori-aia.json": [
       "organizzazioni-allevatori-aia/apprentice_inps_rates_unsourced",
