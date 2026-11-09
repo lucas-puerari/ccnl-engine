@@ -17,6 +17,7 @@ from ccnl_engine.compensation.loyalty.rules import loyalty_premium
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.period.inputs import EmploymentPeriod
+from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.total.handlers import _EventTotals
 from ccnl_engine.pay_item.policies import PolicyContext
 from ccnl_engine.pay_item.selection.policies import CompetencePeriod
@@ -38,6 +39,9 @@ def _context(
     start: date | None = date(2006, 4, 15),
     *,
     kind: RunKind = RunKind.REGULAR,
+    service_start: date | None = None,
+    agreement: str = "edilizia-artigianato-cna",
+    year: int = 2026,
 ) -> RunContext:
     return cast(
         "RunContext",
@@ -45,24 +49,37 @@ def _context(
             contract=SimpleNamespace(
                 ccnl=SimpleNamespace(
                     ruleset=None,
-                    meta=SimpleNamespace(ccnl_id="edilizia-artigianato-cna"),
+                    meta=SimpleNamespace(ccnl_id=agreement),
                     parameters=SimpleNamespace(
                         loyalty_premium=SimpleNamespace(
                             service_years=20,
                             months=Decimal(1),
+                            recurrence="annual",
+                            categories=(
+                                WorkerCategory.IMPIEGATO,
+                                WorkerCategory.QUADRO,
+                            ),
+                            subsectors=(),
+                            manual_hours=None,
                             provenance=SimpleNamespace(
                                 location=SimpleNamespace(section="Art. 65")
                             ),
                         )
                     ),
                 ),
-                tctx=SimpleNamespace(payment=date(2026, month, 27)),
+                tctx=SimpleNamespace(payment=date(year, month, 27)),
             ),
             request=SimpleNamespace(
+                employer=SimpleNamespace(subsector=None),
                 employment_period=(
-                    None if start is None else EmploymentPeriod(started_on=start)
+                    None
+                    if start is None
+                    else EmploymentPeriod(
+                        started_on=start,
+                        uninterrupted_service_started_on=service_start,
+                    )
                 ),
-                period_id=SimpleNamespace(year=2026, month=month),
+                period_id=SimpleNamespace(year=year, month=month),
             ),
             worker_category=WorkerCategory.IMPIEGATO,
             run_kind=kind,
@@ -70,9 +87,9 @@ def _context(
                 base=Decimal(1800), seniority=Decimal(200), allowances=()
             ),
             resolver=bundled_policies(),
-            policy_context=PolicyContext(year=2026, as_of=date(2026, month, 27)),
-            run_id=f"2026_{month:02d}_regular",
-            cp=CompetencePeriod(year=2026, month=month),
+            policy_context=PolicyContext(year=year, as_of=date(year, month, 27)),
+            run_id=f"{year}_{month:02d}_regular",
+            cp=CompetencePeriod(year=year, month=month),
         ),
     )
 
@@ -120,6 +137,65 @@ def test_no_award_outside_qualifying_regular_anniversary(
     assert paid.amount == 0
     assert not paid.items
     assert not paid.entries
+
+
+@pytest.mark.parametrize(
+    "agreement", ["edilizia-artigianato-cna", "edilizia-pmi-confapi-aniem"]
+)
+def test_actual_uninterrupted_service_controls_award_month(agreement: str) -> None:
+    """EUR 1,800 + EUR 200 = EUR 2,000 in April 2026 with no excluded service.
+
+    With a 2007 actual-service start the same hire
+    anniversary pays EUR 0 in 2026, and EUR 2,000 in April 2027.
+    """
+    without = _context(agreement=agreement)
+    excluded = _context(service_start=date(2007, 4, 15), agreement=agreement)
+    vested = _context(
+        start=date(2005, 4, 15),
+        service_start=date(2006, 4, 15),
+        agreement=agreement,
+    )
+    assert loyalty_premium(without).amount == Decimal(2000)
+    assert loyalty_premium(excluded).amount == Decimal(0)
+    assert loyalty_premium(
+        _context(service_start=date(2007, 4, 15), agreement=agreement, year=2027)
+    ).amount == Decimal(2000)
+    assert loyalty_premium(vested).amount == Decimal(2000)
+
+
+def test_group_service_before_hire_preserves_hire_anniversary() -> None:
+    """A 2010 hire with group service since 2006 gets EUR 2,000 in April.
+
+    The April 2026 award is EUR 2,000, not EUR 0; March pays EUR 0.
+    """
+    april = _context(
+        start=date(2010, 4, 15),
+        service_start=date(2006, 4, 15),
+        agreement="edilizia-pmi-confapi-aniem",
+    )
+    march = _context(
+        3,
+        start=date(2010, 4, 15),
+        service_start=date(2006, 4, 15),
+        agreement="edilizia-pmi-confapi-aniem",
+    )
+    assert loyalty_premium(april).amount == Decimal(2000)
+    assert loyalty_premium(march).amount == 0
+
+
+def test_service_start_after_hire_anniversary_waits_for_next_year() -> None:
+    """Twenty years complete on April 30: April 15 pays EUR 0, not EUR 2,000."""
+    assert loyalty_premium(_context(service_start=date(2006, 4, 30))).amount == 0
+
+
+def test_actual_service_cannot_start_after_employment_ends() -> None:
+    """An impossible service start is rejected rather than paying EUR 2,000."""
+    with pytest.raises(InvalidInputError, match="uninterrupted service cannot start"):
+        EmploymentPeriod(
+            started_on=date(2006, 4, 15),
+            ended_on=date(2026, 4, 14),
+            uninterrupted_service_started_on=date(2026, 4, 15),
+        )
 
 
 def test_later_anniversary_still_pays() -> None:
@@ -195,6 +271,7 @@ def test_manual_milestone_without_hourly_divisor_pays_nothing(
         months=Decimal(1),
         recurrence="once",
         categories=(WorkerCategory.OPERAIO,),
+        subsectors=(),
         manual_hours=Decimal(200),
     )
     ctx.contract.ccnl.parameters.hourly_divisor = SimpleNamespace(

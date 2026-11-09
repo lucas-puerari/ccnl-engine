@@ -76,6 +76,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | PAR supplements of Arts. 21, 22 and 24 of the 2017 PDF and Art. 22 of the 2026 renewal, checked against cached PDFs. | confirmed | General 104 hours; entire-workforce sectors and eligible rotations add eight hours each; all employers add four hours from 2029. Unit headcount, restricted production areas, steel monetisation and company offsets remain limitations. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 32 pp. 104-105, letter b and c holidays during reduced sickness, maternity and injury pay. | confirmed | Letter a is excluded; 4 October is absent; letter c includes the stated local patron day. Maternity local patron and substitute days remain outside its holiday calendar. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 23 and Art. 29 paragraph 2 of the cached 2017 CCNL, physical PDF pages 94 and 102; immediate banked overtime premium only. | confirmed | The bank election covers every overtime hour worked in a month; banked hours pay 50% of the applicable premium immediately, with rest and any residual payout deferred. Flexible hours are not overtime and need a separate schedule model. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 10 p. 49 apprenticeship credit towards seniority increments. | corrected | Art. 10 counts the apprenticeship at 65% towards the increments of the worker kept on from 1 November 2018; added apprenticeship_credit_share 0.65 and resolved the limitation. |
 
 ## Salary table
 
@@ -174,12 +175,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the indemnity of Art. 58 bis and the permits of Art. 55 bis.
 
-!!! warning "metalmeccanico-confapi/apprentice_seniority_credit · base_salary · impact yes · open"
-    Art. 10 p. 49: the 65% credit of the apprenticeship for the seniority increments of the worker kept on.
+!!! note "metalmeccanico-confapi/apprentice_seniority_credit · base_salary · impact yes · resolved"
+    Art. 10 p. 49: 65% of the apprenticeship counts towards the seniority increments of the worker kept on (from 1 November 2018), modelled by apprenticeship_credit_share with the stated SeniorityFact.apprenticeship_months. The text does not say how a fractional credited month is rounded; the engine compares the exact credit with the increment threshold.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Credit 65% of the apprenticeship to the seniority.
+    **Remediation:** Resolved: apprenticeship_credit_share 0.65 on the stated apprenticeship months, read on 2026-11-09.
 
 !!! warning "metalmeccanico-confapi/ipca_top_up · base_salary · impact yes · open"
     Renewal of 4 June 2026: the IPCA top-up of June 2027 and 2028 above 2.653% and 2.729%.

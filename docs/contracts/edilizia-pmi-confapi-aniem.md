@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-04-15 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Artt. 63-64 of the harmonised text of 15 April 2025 (printed p. 95), via a research report; the quote checked on the text layer. | corrected | Added 14 monthly payments for impiegati and quadri; the premio annuo is the fourteenth, run in June (30 June is past the 1-28 range of PaymentDay). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 65 loyalty premium on cached harmonised text PDF page 96. | corrected | Annual anniversary award for clerical employees after twenty years; termination pro rata remains unmodelled. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 65, the elements of the monthly pay and the TFR article, against the loyalty premium encoding, by a separate model session. | corrected | Confirmed the 20 years, the anniversary and the one monthly pay.<br>Corrected: the TFR article is art. 72; the excluded conventional seniority and the 29 February anniversary are recorded as limitation loyalty_service_count. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 65 uninterrupted actual service and hire anniversary against the cached PDF page 96. | corrected | A separate actual uninterrupted service start can exclude conventional military, combatant and similar seniority without moving the hire anniversary; the common-year leap-day anniversary remains unspecified. |
 
 ## Salary table
 
@@ -178,11 +179,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the rule of the CCNL Confapi Aniem for a partial month and part time and model it, then remove this note.
 
 !!! warning "edilizia-pmi-confapi-aniem/loyalty_service_count · base_salary · impact yes · open"
-    Art. 65: the twenty years of uninterrupted actual service leave out 'le anzianità convenzionali di carattere militare, combattentistiche e simili'; the engine counts the years from the start of the employment period, so the caller states a start that leaves them out. The anniversary of a hire on 29 February falls on 28 February in a common year (the text does not say).
+    Art. 65 does not specify the anniversary of a hire on 29 February in a common year; the engine uses 28 February.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `base_salary` applies; the run takes the engine code path.
 
-    **Remediation:** State the years of actual service the premio counts as a worker fact.
+    **Remediation:** Source the anniversary rule for a 29 February hire before changing the fallback.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

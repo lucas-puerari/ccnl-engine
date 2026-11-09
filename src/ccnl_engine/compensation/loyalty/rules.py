@@ -1,8 +1,9 @@
 """Pay annual loyalty premiums or once-only milestones in a regular run.
 
 The fully employed run chain approximates the enumerated contractual pay
-components (ANIEM Art. 45 items 1-14; CNA Art. 48 items 1-12). It does not
-establish uninterrupted actual service or implement the dismissal pro rata.
+components (ANIEM Art. 45 items 1-14; CNA Art. 48 items 1-12). The caller
+states the uninterrupted actual service start when it differs from the hire
+date. The dismissal pro rata is not implemented.
 """
 
 from __future__ import annotations
@@ -81,6 +82,23 @@ def _award_amount(
     return money(clause.months * monthly)
 
 
+def _qualified_before(anniversary: date, qualifying_date: date) -> bool:
+    """Return whether the anniversary a year earlier had already qualified.
+
+    A once-only award is paid on the first anniversary on or after the
+    qualifying date, never again.
+
+    Returns:
+        ``True`` when the previous anniversary was on or after it.
+    """
+    year = anniversary.year - 1
+    previous = anniversary.replace(
+        year=year,
+        day=min(anniversary.day, calendar.monthrange(year, anniversary.month)[1]),
+    )
+    return previous >= qualifying_date
+
+
 def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
     """Pay a full monthly award on each qualifying hire anniversary month.
 
@@ -98,19 +116,10 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
         clause is None
         or period is None
         or ctx.run_kind is not RunKind.REGULAR
-        or ctx.worker_category
-        not in getattr(
-            clause,
-            "categories",
-            (WorkerCategory.IMPIEGATO, WorkerCategory.QUADRO),
-        )
+        or ctx.worker_category not in clause.categories
     ):
         return LoyaltySettlement()
-    subsectors = getattr(clause, "subsectors", ())
-    if (
-        subsectors
-        and getattr(ctx.request.employer, "subsector", None) not in subsectors
-    ):
+    if clause.subsectors and ctx.request.employer.subsector not in clause.subsectors:
         return LoyaltySettlement()
     month = ctx.request.period_id.month
     year = ctx.request.period_id.year
@@ -120,12 +129,20 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
         year=year,
         day=min(period.started_on.day, calendar.monthrange(year, month)[1]),
     )
-    years = year - period.started_on.year
+    service_start = period.uninterrupted_service_started_on or period.started_on
+    qualifying_year = service_start.year + clause.service_years
+    qualifying_date = service_start.replace(
+        year=qualifying_year,
+        day=min(
+            service_start.day,
+            calendar.monthrange(qualifying_year, service_start.month)[1],
+        ),
+    )
     if (
-        years < clause.service_years
+        anniversary < qualifying_date
         or (
-            getattr(clause, "recurrence", "annual") == "once"
-            and years != clause.service_years
+            clause.recurrence == "once"
+            and _qualified_before(anniversary, qualifying_date)
         )
         or (period.ended_on is not None and period.ended_on < anniversary)
     ):
