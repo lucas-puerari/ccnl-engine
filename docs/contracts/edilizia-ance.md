@@ -80,6 +80,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Caposquadra (printed p. 89, PDF p. 103) and Art. 24 points 3-4 of the CCNL 19 April 2010, via a research report, quotes checked on the text layer. | corrected | Added the role allowance CAPOSQUADRA (10% of paga base and ex contingenza) in the base of the hourly percentages. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Caposquadra percentage base and qualified-worker floor, CCNL 2010 PDF pp. 49 and 103. | corrected | Calculate the national supplement dynamically and lift base pay to the level 2 ordinary pay where required. Provincial, individual and piecework components remain unavailable. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Caposquadra qualified-worker remuneration integration and Art. 24 points 2–4, signed CCNL 2010 PDF pp. 49 and 103. | corrected | The level-2 shortfall is a separate earning, not a contractual base-pay increase; own individual elements reduce it and enter the special supplement and Art. 17–18 bases. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 17(3), Art. 18 and Art. 5 B holiday treatment in the cached 2010 CCNL, checked against the hourly pay model. | corrected | Eight hours per eligible holiday, including rest-day holidays; percentages also apply to the holiday treatment. Eligibility remains caller-stated. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 78 proportional part-time pay and Art. 17 holiday treatment, verified on cached 2010 PDF pages 104 and 37. | corrected | Horizontal part-time holiday hours are proportional to agreed weekly hours; unknown eligible days cannot mean zero. Vertical or mixed holiday placement and discontinuous work remain unresolved. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Direct hourly sickness integration and episode-length waiting tiers under Art. 26 of the signed 2010 agreement, PDF pp. 50–51; weekly hours under Art. 5, PDF p. 26. | corrected | The employer pays direct coefficients on a separate hourly base, not a target net of INPS. Waiting coefficients depend on the full episode; six payable days exclude holidays. Cassa Edile accruals and short-episode annual rest remain unmodelled. |
 
 ## Salary table
@@ -112,13 +114,6 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "edilizia-ance/edilizia_operai_sickness · sickness · impact yes · open"
-    SICKNESS (Art. 26): direct employer integration uses hourly minimum and ex contingenza (plus territorial allowance where available), excluding EDR, times one sixth of contracted weekly hours on six days a week excluding holidays. Waiting days 1-3 are unpaid for episodes of at most six days, paid at 0.5495 above six and 1.0495 above twelve; INPS-covered days 4-20 use 0.3795 and days 21-180 use 0.1565; non-INPS-covered days 181-365 use 0.5495. Not modelled: the 4.95% annual-rest payment for waiting days of episodes up to six days and on the injury day (60% on injury days 1-3); Cassa Edile sickness and injury accruals (18.5% gross, 14.2% net for sickness waiting days and from day 4; 7.4% and 5.7% on injury days 4-90; 4.6% and 3.6% from day 91) and the no-direct-pay exception of Allegato D point 4. Provincial territorial pay and actual site hours are not bundled, so only known components enter the base. Sick hours do not deduct from hourly worked pay.
-
-    **Applies when:** `sickness` applies.
-
-    **Remediation:** Model the short-episode annual-rest payment and Cassa Edile accruals on sickness and injury, including site-hour and no-direct-pay rules.
-
 !!! warning "edilizia-ance/provincial_evr · territorial_supplement · impact yes · open"
     Art. 46: the EVR set by the provincial agreements.
 
@@ -134,11 +129,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Supply provincial and piecework components of the percentage base and assignment duration.
 
 !!! warning "edilizia-ance/holiday_hours · base_salary · impact yes · open"
-    Art. 17 point 3: the festività (8 hours of the point 4 elements, with the 4.95% and the 18.5% on them), which PeriodFacts.ordinary_hours_worked leaves out.
+    Art. 17 point 3: eight hours of pay, with 4.95% and 18.5% on the holiday treatment, are included when the caller supplies paid_holiday_days; horizontal part time scales the hours by agreed weekly hours. An unknown count raises a missing-fact issue; zero confirms none. Not modelled: 9.6 hours for discontinuous workers, the separate 4 November treatment and holiday placement in vertical or mixed part-time schedules. The caller must resolve local patron saint dates, employment eligibility and any suspension; no automatic holiday calendar is applied.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the festività hours to the hourly pay of the operai.
+    **Remediation:** Resolve eligible holiday dates, discontinuous work and vertical or mixed schedules; supply the eligible count after checking employment and suspension conditions. Model the distinct 4 November treatment.
 
 !!! warning "edilizia-ance/entry_premium_2022 · base_salary · impact yes · open"
     Verbale of 3 March 2022, Allegato 5: the una tantum premio di ingresso of EUR 100 to operai under 29.
@@ -209,6 +204,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Let the caller state a failed title, and pay the previous year's percentage.
+
+!!! warning "edilizia-ance/edilizia_operai_sickness · sickness · impact yes · open"
+    SICKNESS (Art. 26): direct employer integration uses hourly minimum and ex contingenza (plus territorial allowance where available), excluding EDR, times one sixth of contracted weekly hours on six days a week excluding holidays. Waiting days 1-3 are unpaid for episodes of at most six days, paid at 0.5495 above six and 1.0495 above twelve; INPS-covered days 4-20 use 0.3795 and days 21-180 use 0.1565; non-INPS-covered days 181-365 use 0.5495. Not modelled: the 4.95% annual-rest payment for waiting days of episodes up to six days and on the injury day (60% on injury days 1-3); Cassa Edile sickness and injury accruals (18.5% gross, 14.2% net for sickness waiting days and from day 4; 7.4% and 5.7% on injury days 4-90; 4.6% and 3.6% from day 91) and the no-direct-pay exception of Allegato D point 4. Provincial territorial pay and actual site hours are not bundled, so only known components enter the base. Sick hours do not deduct from hourly worked pay.
+
+    **Applies when:** `sickness` applies.
+
+    **Remediation:** Model the short-episode annual-rest payment and Cassa Edile accruals on sickness and injury, including site-hour and no-direct-pay rules.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

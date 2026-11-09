@@ -15,6 +15,7 @@ from ccnl_engine.assurance.ruleset.services import run_rulesets
 from ccnl_engine.balance.closing.services import RunOutcome, closing_state
 from ccnl_engine.capability.registry.services import capability_report, case_facts
 from ccnl_engine.compensation.meal.services import meal_benefit_issue
+from ccnl_engine.compensation.proration.holiday import paid_holiday_issue
 from ccnl_engine.compensation.renewal_minimum.services import renewal_minimum
 from ccnl_engine.contribution.additional_ivs.rules import (
     MONTHLY_COMPONENT,
@@ -176,6 +177,7 @@ def _input_issues(
         pension_fund_issue(ctx),
         accrual_issue(ctx),
         ctx.proration.issue(),
+        paid_holiday_issue(ctx),
         meal_benefit_issue(ctx),
         minimum_base_issue(amounts.minimum_base),
         naspi_issue(ctx),

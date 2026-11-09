@@ -105,6 +105,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "NaspiExclusion",
         "NoPensionFund",
         "OpeningBalances",
+        "PaidHolidayDays",
         "PaymentId",
         "PayrollRunId",
         "PensionFundEnrolment",

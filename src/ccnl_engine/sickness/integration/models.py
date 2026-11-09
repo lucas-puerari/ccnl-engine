@@ -312,6 +312,13 @@ class SicknessRules(BaseModel):
             INPS indemnity it pays, in place of a target rate (Pubblici
             esercizi art. 250: 'una integrazione [...] pari al 28 per cento
             della retribuzione'); none when INPS pays nothing.
+        annual_daily_share: Additional employer fraction of the contractual
+            daily wage, including waiting days, if illness is recognized and
+            exceeds ``daily_share_min_days``. The episode states the wage on
+            the first of ``daily_share_reference_month`` of the day's year.
+        daily_share_min_days: Length the illness must exceed for retroactive pay.
+        daily_share_annual_max_days: Maximum paid days across episodes per year.
+        daily_share_reference_month: Month whose first day's wage applies.
         permanent_only: As a rule of a worker category, it covers only the
             permanent contracts (Tabacco art. 34: "l'impiegato con rapporto
             a tempo indeterminato"); the others keep the general rule.
@@ -347,6 +354,10 @@ class SicknessRules(BaseModel):
     permanent_only: bool = False
     employer_share: Decimal | None = Field(default=None, ge=0, le=1)
     hourly_employer_integration: HourlyEmployerIntegration | None = None
+    annual_daily_share: Decimal | None = Field(default=None, ge=0, le=1)
+    daily_share_min_days: int | None = Field(default=None, ge=1)
+    daily_share_annual_max_days: int | None = Field(default=None, ge=1)
+    daily_share_reference_month: int | None = Field(default=None, ge=1, le=12)
     inps_regime: str | None = None
     daily_divisor_method: DailyDivisorMethod | None = None
     holiday: SicknessHoliday | None = None
@@ -354,6 +365,16 @@ class SicknessRules(BaseModel):
 
     @model_validator(mode="after")
     def _one_model(self) -> Self:
+        if self.annual_daily_share is not None and (
+            self.daily_share_min_days is None
+            or self.daily_share_annual_max_days is None
+            or self.daily_share_reference_month is None
+        ):
+            msg = (
+                "an annual daily share requires a minimum duration, "
+                "annual cap and reference month"
+            )
+            raise ValueError(msg)
         check_windows(self.comporto_windows)
         check_windows(self.comporto_bands)
         check_windows(self.window_alternative)
