@@ -96,19 +96,6 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS (Art. 26): the employer pays a coefficient of the hourly minimo, ex contingenza and indennità territoriale times a sixth of the weekly hours, six days a week: 0.5495 for days 1-3 when the sickness lasts more than 6 days, 1.0495 when it lasts more than 12, 0.3795 for days 4-20 and 0.1565 for days 21-180 on top of the INPS indemnity, 0.5495 for days 181-365. The engine stores the coefficient plus the INPS rate of the day as the target (0.8795 and 0.8231), so its employer share is the coefficient on the engine's daily quota, which counts the EDR and not the indennità territoriale. Not modelled: the 1.0495 of a sickness over 12 days (paid 0.5495), the 4.95% paid for the carenza days of a sickness of up to 6 days and for the day of an injury (60% on days 1-3); the percentages accrued with the Cassa Edile during sickness and injury (Allegato D: 18.5% gross and 14.2% net for the carenza days and from day 4 of sickness, 7.4% and 5.7% for days 4-90 of injury or occupational disease, 4.6% and 3.6% from day 91); and the exception of Allegato D point 4: in a pay period without direct pay the conventional net does not apply and the actual withholdings are taken from the accruals. The sick hours of an operaio are not in the hours paid by the hour, so the sick days deduct nothing from the pay.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "edilizia_operai_sickness",
-          "applies_when": {
-            "trigger": "run"
-          },
-          "remediation": "Model the coefficients of Art. 26 on their own base."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "Art. 46: the EVR set by the provincial agreements.",
         "capability": "territorial_supplement",
         "monetary_impact": "yes",
@@ -261,6 +248,19 @@
             "trigger": "owed"
           },
           "remediation": "Pass the provincial Cassa Edile contribution as a bilateral fund event, or model the provincial rates."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "SICKNESS (Art. 26): direct employer integration uses hourly minimum and ex contingenza (plus territorial allowance where available), excluding EDR, times one sixth of contracted weekly hours on six days a week excluding holidays. Waiting days 1-3 are unpaid for episodes of at most six days, paid at 0.5495 above six and 1.0495 above twelve; INPS-covered days 4-20 use 0.3795 and days 21-180 use 0.1565; non-INPS-covered days 181-365 use 0.5495. Not modelled: the 4.95% annual-rest payment for waiting days of episodes up to six days and on the injury day (60% on injury days 1-3); Cassa Edile sickness and injury accruals (18.5% gross, 14.2% net for sickness waiting days and from day 4; 7.4% and 5.7% on injury days 4-90; 4.6% and 3.6% from day 91) and the no-direct-pay exception of Allegato D point 4. Provincial territorial pay and actual site hours are not bundled, so only known components enter the base. Sick hours do not deduct from hourly worked pay.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "edilizia_operai_sickness",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Model the short-episode annual-rest payment and Cassa Edile accruals on sickness and injury, including site-hour and no-direct-pay rules."
         }
       },
       {
@@ -1963,7 +1963,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "59db468f8ee847aae5d614e73573510decf2529f293f82508747fc6f0898ce05",
+    "source_hash": "5737bd37d2e2240788bc8fb7a9c72716794c3dc8c22e220b8a68ce2ba6428bf0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2698,8 +2698,8 @@
       }
     },
     "sickness_rules": {
-      "carenza_integration_rate": "0.5495",
-      "full_pay_integration_rate": "0.5495",
+      "carenza_integration_rate": "0",
+      "full_pay_integration_rate": "0",
       "max_duration_days": 365,
       "comporto_windows": [
         {
@@ -2714,16 +2714,53 @@
         }
       ],
       "carenza_min_days": 6,
+      "hourly_employer_integration": {
+        "base_allowances": [
+          "CONTINGENZA"
+        ],
+        "weekly_days": 6,
+        "standard_weekly_hours": "40",
+        "waiting_days": 3,
+        "waiting_tiers": [
+          {
+            "more_than_days": 6,
+            "coefficient": "0.5495"
+          },
+          {
+            "more_than_days": 12,
+            "coefficient": "1.0495"
+          }
+        ],
+        "day_bands": [
+          {
+            "day_from": 4,
+            "day_until": 21,
+            "coefficient": "0.3795",
+            "requires_inps": true
+          },
+          {
+            "day_from": 21,
+            "day_until": 181,
+            "coefficient": "0.1565",
+            "requires_inps": true
+          },
+          {
+            "day_from": 181,
+            "day_until": 366,
+            "coefficient": "0.5495"
+          }
+        ]
+      },
       "day_bands": [
         {
           "day_from": 4,
           "day_until": 21,
-          "integration_rate": "0.8795"
+          "integration_rate": "0"
         },
         {
           "day_from": 21,
           "day_until": 181,
-          "integration_rate": "0.8231"
+          "integration_rate": "0"
         }
       ],
       "provenance": {
@@ -2739,18 +2776,18 @@
           },
           "page": "50-51",
           "section": "Art. 26 Trattamento in caso di malattia (operai)",
-          "quote": "In caso di malattia, l’operaio non in prova ha diritto alla conservazione del posto per un periodo di nove mesi consecutivi (pari a 270 giorni di calendario), senza interruzione dell’anzianità. L’operaio con un’anzianità superiore a tre anni e mezzo ha diritto alla conservazione del posto per un periodo di dodici mesi consecutivi (pari a 365 giorni di calendario), senza interruzione dell’anzianità. Nel caso di più malattie o ricadute nella stessa malattia, l’operaio ha diritto alla conservazione del posto per un periodo massimo complessivo di nove mesi nell’arco di 20 mesi consecutivi. L’operaio con un’anzianità superiore a tre anni e mezzo ha diritto alla conservazione del posto per un periodo massimo complessivo di 12 mesi nell’arco di 24 mesi consecutivi. [...] c) dal 4° al 20° giorno, per le giornate indennizzate dall’INPS: 0,3795; d) dal 21° al 180° giorno, per le giornate indennizzate dall’INPS: 0,1565; e) dal 181° giorno al compimento del 365° giorno, per le sole giornate non indennizzate dall’INPS: 0,5495."
+          "quote": "In caso di malattia, l’operaio non in prova ha diritto alla conservazione del posto per un periodo di nove mesi consecutivi (pari a 270 giorni di calendario), senza interruzione dell’anzianità. L’operaio con un’anzianità superiore a tre anni e mezzo ha diritto alla conservazione del posto per un periodo di dodici mesi consecutivi (pari a 365 giorni di calendario), senza interruzione dell’anzianità. Nel caso di più malattie o ricadute nella stessa malattia, l’operaio ha diritto alla conservazione del posto per un periodo massimo complessivo di nove mesi nell’arco di 20 mesi consecutivi. L’operaio con un’anzianità superiore a tre anni e mezzo ha diritto alla conservazione del posto per un periodo massimo complessivo di 12 mesi nell’arco di 24 mesi consecutivi. [...] Durante l’assenza dal lavoro per malattia l’impresa, entro i limiti della conservazione del posto di cui al presente articolo, è tenuta ad erogare mensilmente all’operaio e all’apprendista non in prova un trattamento economico giornaliero pari all’importo che risulta moltiplicando le quote orarie sottoindicate della retribuzione costituita dal minimo di paga base, dall’elemento economico territoriale (in vigore fino al 31 dicembre 2010), dalla indennità territoriale di settore e dall’ex indennità di contingenza, per il numero di ore corrispondente alla divisione per sei dell’orario contrattuale settimanale in vigore nella circoscrizione durante l’assenza per malattia. [...] a) per il 1°, 2° e 3° giorno nel caso la malattia superi 6 giorni: 0,5495; b) per il 1°, 2° e 3° giorno nel caso la malattia superi 12 giorni: 1,0495; c) dal 4° al 20° giorno, per le giornate indennizzate dall’INPS: 0,3795; d) dal 21° al 180° giorno, per le giornate indennizzate dall’INPS: 0,1565; e) dal 181° giorno al compimento del 365° giorno, per le sole giornate non indennizzate dall’INPS: 0,5495. [...] Il trattamento economico giornaliero come sopra determinato è corrisposto dall’impresa all’operaio per sei giorni la settimana escluse le festività."
         },
-        "transformation": "Coefficients of the hourly elements paid by the employer for each illness: (a) 0.5495 for days 1-3 when the sickness lasts more than 6 days (carenza_min_days 6); (c) 0.3795 for days 4-20 and (d) 0.1565 for days 21-180 on top of the INPS 50% and 66.66%, stored as the targets 0.8795 and 0.8231; (e) 0.5495 for days 181-365, when INPS pays nothing (flat rate), so one illness is paid up to day 365. Comporto: the sick days of every illness within the 20 months that end on the day, at most 270 (nine months, the CCNL's own 270 calendar days), and within 24 months at most 365 past three and a half years of seniority; the band from 42 completed months reads 'superiore a tre anni e mezzo' as three and a half completed years. The comporto of one illness (270 and 365 days) is held by the same windows. Read on 2026-10-31.",
+        "transformation": "Direct employer coefficients on hourly minimum plus ex contingenza (and territorial allowance only when known), excluding EDR, times one sixth of contracted weekly hours. Art. 5 (PDF p. 26) sets the standard 40-hour week. Waiting days 1-3: 0 up to 6 days, 0.5495 above 6, 1.0495 above 12; INPS-covered days 4-20: 0.3795, days 21-180: 0.1565; days 181-365 without INPS: 0.5495. Six payable days weekly excluding holidays; direct employer payment independent of the INPS indemnity; zero target rates retain day segmentation without treating the employer coefficients as combined INPS targets. Comporto: the sick days of every illness within the 20 months that end on the day, at most 270 (nine months, the CCNL's own 270 calendar days), and within 24 months at most 365 past three and a half years of seniority; the band from 42 completed months reads 'superiore a tre anni e mezzo' as three and a half completed years. The comporto of one illness (270 and 365 days) is held by the same windows. Read on 2026-10-31.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-31T12:00:00Z",
+          "extraction_timestamp": "2026-11-09T17:08:28Z",
           "effective_from": "2025-02-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-31T12:00:00Z",
+          "verified_at": "2026-11-09T17:08:28Z",
           "verification_status": "verified",
-          "review_id": "2026-10-31-ai-sickness-comporto"
+          "review_id": "2026-11-09-ai-hourly-sickness"
         }
       }
     },
@@ -3329,6 +3366,32 @@
         "checked": [
           "parameters.hourly_pay.holiday_hours",
           "parameters.hourly_pay.holiday_provenance"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-hourly-sickness",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Direct hourly sickness integration and episode-length waiting tiers under Art. 26 of the signed 2010 agreement, PDF pp. 50–51; weekly hours under Art. 5, PDF p. 26.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          },
+          {
+            "url": "https://ance.it/wp-content/uploads/allegati/2026-TABELLA_RETRIBUZIONI_MARZO_2026.pdf",
+            "sha256": "29959db0aa086d2ca10e59a0aca6b6cbf59d686a741582320ff5a69ba5e0c07e"
+          }
+        ],
+        "findings": [
+          "The employer pays direct coefficients on a separate hourly base, not a target net of INPS. Waiting coefficients depend on the full episode; six payable days exclude holidays. Cassa Edile accruals and short-episode annual rest remain unmodelled."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.hourly_employer_integration",
+          "sickness.pay.handlers"
         ]
       },
       {

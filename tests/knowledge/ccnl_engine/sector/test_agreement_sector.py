@@ -2,9 +2,9 @@
 
 The tax sector picks both the sector file and the INPS contribution table
 of a run, so every declared sector must load for every bundled year.  An
-artisan CCNL takes the artisan table, and a CCNL whose operai owe a CIGO
-the tables do not carry (D.Lgs. 148/2015 art. 13 c. 1 lett. c-d) declares
-that gap as an open limitation instead of passing for payable.
+artisan CCNL takes the artisan table; a CCNL whose operai owe an activity-
+dependent CIGO contribution (D.Lgs. 148/2015 art. 13 c. 1 lett. c-d)
+configures that activity separately from its INPS sector, with provenance.
 """
 
 from __future__ import annotations
@@ -20,7 +20,7 @@ from scripts.provenance.rules import KNOWLEDGE_DIR
 
 _AGREEMENTS = sorted((KNOWLEDGE_DIR / "agreement").glob("*.json"))
 _YEARS = (2026, 2027)
-#: CCNLs of the building and stone-working firms whose CIGO no table holds.
+#: CCNLs of the building and stone-working firms with activity-dependent CIGO.
 _CIGO_BY_ACTIVITY = {
     "edilizia-artigianato-cna",
     "lapidei-industria",
@@ -64,13 +64,26 @@ def test_artisan_agreements_take_the_artisan_table() -> None:
     assert wrong == {}
 
 
-def test_cigo_by_activity_is_a_declared_limitation() -> None:
-    """The edile and lapidei CIGO gap blocks the runs it concerns."""
-    declared = {
+def test_cigo_by_activity_is_configured_and_verified() -> None:
+    """All four CIGO gaps are replaced by traced activity rules, not stale notes."""
+    configured = {
+        path.stem
+        for path in _AGREEMENTS
+        if _meta(path.stem)["meta"].get("cigo_activities")
+    }
+    stale = {
         path.stem
         for path in _AGREEMENTS
         for note in _meta(path.stem)["coverage"]["notes"]
         if (note.get("limitation") or {}).get("variant") == "cigo_rate_by_activity"
     }
-
-    assert declared == _CIGO_BY_ACTIVITY
+    assert configured == _CIGO_BY_ACTIVITY
+    assert stale == set()
+    for slug in configured:
+        meta = _meta(slug)["meta"]
+        expected = (
+            "construction" if slug == "edilizia-artigianato-cna" else "stone_working"
+        )
+        assert meta["cigo_activities"] == [expected]
+        assert meta["cigo_provenance"]["status"] == "verified"
+        assert meta["cigo_provenance"]["location"]["page"] == "7"

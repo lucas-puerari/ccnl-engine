@@ -18,15 +18,17 @@ from ccnl_engine.compensation.provincial_element.services import (
     without_replaced_elements,
 )
 from ccnl_engine.compensation.second_level.rules import with_second_level_elements
+from ccnl_engine.contribution.cigo.activity import with_activity_cigo
 from ccnl_engine.contribution.cigs.models import with_cigs_indotto
 from ccnl_engine.contribution.fis.models import with_fis_reduction
 from ccnl_engine.contribution.zone.models import with_zone_reduction
 from ccnl_engine.employment.context.models import EffectiveDateContext, TemporalContext
-from ccnl_engine.errors import InvalidInputError, UnknownLevelError
+from ccnl_engine.errors import UnknownLevelError
 from ccnl_engine.fund.solidarity.models import (
     with_solidarity_headcount,
     with_solidarity_tiers,
 )
+from ccnl_engine.period.context.agreement.sector import with_employer_sector
 from ccnl_engine.sickness.counting.rules import with_window_counting
 from ccnl_engine.sickness.variant.rules import with_sickness_variant
 from ccnl_engine.working_time.flat_pay.rules import flat_pay_divisor
@@ -85,45 +87,6 @@ class RunContract:
     sector_unknown: tuple[TaxSector, ...] = ()
     premium_unknown: tuple[str, ...] = ()
     subsector_unknown: bool = False
-
-
-def with_employer_sector(
-    ccnl: CCNL, stated: TaxSector | None
-) -> tuple[CCNL, tuple[TaxSector, ...]]:
-    """Return the CCNL read in the INPS sector of the employer.
-
-    A CCNL applied by employers of more than one INPS sector
-    (``CCNLMeta.inps_sectors``) is read in the sector the employer states,
-    so every rule that follows the sector (INPS rates, sickness cover, the
-    Fondo Tesoreria) follows the classification of the employer.
-
-    Returns:
-        The CCNL, with ``tax_sector`` the stated sector, and the sectors
-        left open when the CCNL lists several and none is stated.
-
-    Raises:
-        InvalidInputError: When the stated sector is not one the CCNL lists.
-    """
-    meta = ccnl.meta
-    allowed = meta.inps_sectors or frozenset({meta.tax_sector})
-    if stated is None:
-        open_sectors = () if len(allowed) == 1 else tuple(sorted(allowed))
-        return ccnl, open_sectors
-    if stated not in allowed:
-        msg = (
-            f"EmployerProfile.inps_sector is {stated}, but the employers of "
-            f"{meta.ccnl_id} are classified in {', '.join(sorted(allowed))}"
-        )
-        raise InvalidInputError(
-            msg,
-            field="EmployerProfile.inps_sector",
-            feature="inps_employer",
-            ruleset=meta.ccnl_id,
-        )
-    if stated is meta.tax_sector:
-        return ccnl, ()
-    sector_meta = meta.model_copy(update={"tax_sector": stated})
-    return ccnl.model_copy(update={"meta": sector_meta}), ()
 
 
 def _category(ccnl: CCNL, request: PeriodCalculationRequest) -> WorkerCategory | None:
@@ -234,6 +197,11 @@ def load_contract(
         ccnl.parameters.solidarity_fund,
         headcount,
     )
+    if request.employer.activity in ccnl.meta.cigo_activities:
+        assert request.employer.activity is not None
+        year_rules = with_activity_cigo(
+            year_rules, sector, request.employer.activity, headcount
+        )
     year_rules = with_fixed_term_tfr(
         year_rules,
         ccnl,

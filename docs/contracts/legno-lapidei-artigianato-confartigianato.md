@@ -38,7 +38,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -55,7 +55,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-05 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2026-10-01 |
 
 ## Review history
@@ -65,6 +65,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 47 - Gratifica natalizia per il Settore Legno, Arredamento, Mobili; Art. 47 bis - Gratifica natalizia per il Settore Escavazione e Lavorazione di materiali Lapidei (p. 45): "il lavoratore non in prova ha diritto a tanti dodicesimi dell'ammontare della 13° mensilità quanti sono i mesi di servizio prestati presso l'azienda. La frazione di mese superiore ai 15 giorni sarà considerata come mese intero. [...] La frazione di mese superiore a 15 giorni sarà considerata come mese intero.". Match: more_than 15. |
 | 2026-10-18 | claude-opus-5-5 (ai) | The conglobated retribuzione tabellare of the eight levels of the Imprese Artigiane, Settore Legno, Arredamento, Mobili table against the signed verbale integrativo of 15 March 2024, which prints the table after each of the four tranches (01/03/2024, 01/01/2025, 01/01/2026, 01/10/2026) of the renewal of 5 March 2024. | confirmed | The signed verbale integrativo of 15 March 2024 (signatures of CNA, Confartigianato Legno e Arredo, Confartigianato Marmisti, Casartigiani, CLAAI, Feneal, Filca, Fillea) prints, for the Imprese Artigiane Settore Legno, Arredamento, Mobili, the retribuzione tabellare before and after each tranche (PDF pp. 2-4). Image-only scan, read on the page images. The file models this table (not the PMI or Lapidei tables): all 32 values match.<br>The copy used is published by Confartigianato Imprese Vicenza, a territorial association of the signatory Confartigianato. Cross-checks: the signed ipotesi of 5 March 2024 (FILLEA-CGIL copy, PDF p. 7) prints the level D tranches 55/50/40/35; the FILLEA-CGIL leaflet prints the same 01/09/2022 base, per-level tranches and 01/10/2026 regime values for every level.<br>The printed item is the retribuzione tabellare (conglobated minimo, contingenza conglobata), matching the file's base_salary meaning.<br>Level C 01/03/2024 is printed '1639,4' (trailing zero dropped); recorded as 1639,40, equal to the file value.<br>The ruleset names a document of a signatory association: source_type contracting_party. |
 | 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included. |
+| 2026-11-09 | claude-opus-5-5 (ai) | INPS circular 76/2022 p. 7 CIGO activity rates and apprentices. | corrected | Only artisan stone extraction and quarry-linked working incur CIGO; separate-workshop artisan stone working and wood activities retain sector rates. Industrial stone firms remain covered. The supplied headcount is not validated as the previous calendar year's average; 2027 rates are provisional. |
+| 2026-11-09 | claude-opus-5-5 (ai) | INPS circular 76/2022 page 7 rates, with D.Lgs. 148/2015 art. 10(o) workshop exclusion. | corrected | Art. 10(o): con esclusione di quelle che svolgono tale attività di lavorazione in laboratori con strutture e organizzazione distinte dalla attività di escavazione. The circular's art. 13 rates apply only to employers covered by art. 10. |
 
 ## Salary table
 
@@ -149,13 +151,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies; contract type in apprentice.
 
     **Remediation:** Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note.
-
-!!! warning "legno-lapidei-artigianato-confartigianato/cigo_rate_by_activity · inps_employer · impact yes · open"
-    CIGO: an artisan firm of the lapidei is within the CIGO (D.Lgs. 148/2015 art. 13 c. 1 (Normattiva, text in force on 2026-10-14, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148~art13!vig=2026-10-14, snapshot sha256 3f7019a244e01d36ac8e7c9e25bcf058c777c8ed758418ba261d83867672c46a)): 3.30% for its operai (lett. d) and 1.70% / 2.00% for its impiegati and quadri (lett. e-f); a firm of the legno is not. The artigianato table charges no CIGO and the request does not say which kind of firm it is, so the employer contributions of a lapidei firm are understated.
-
-    **Applies when:** `inps_employer` applies.
-
-    **Remediation:** Model the CIGO of D.Lgs. 148/2015 art. 13 c. 1 by activity (edile, lapidei) apart from the tax sector, then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

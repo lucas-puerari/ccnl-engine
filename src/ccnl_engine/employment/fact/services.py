@@ -27,7 +27,9 @@ from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
 )
-from ccnl_engine.event.facade import AbsenceEvent, OvertimeEvent
+from ccnl_engine.employment.fact.cigo import cigo_activity_issue
+from ccnl_engine.employment.fact.subsector import SUBSECTOR_FACT, subsector_issue
+from ccnl_engine.event.facade import AbsenceEvent
 
 if TYPE_CHECKING:
     from ccnl_engine.period.context.services import RunContext
@@ -36,6 +38,8 @@ __all__ = [
     "FULL_TIME_FACT",
     "NO_PAY_FACT",
     "ROLES_FACT",
+    "SUBSECTOR_FACT",
+    "cigo_activity_issue",
     "fact_issues",
     "full_time_issue",
     "level_start_issue",
@@ -52,7 +56,6 @@ ROLES_FACT = "roles"
 NO_PAY_FACT = "no_pay_due"
 PROVINCIAL_FACT = "provincial_pay_element"
 PREMIUM_FACT = "second_level_premium"
-SUBSECTOR_FACT = "subsector"
 SECTOR_FACT = "inps_sector"
 LEVEL_START_FACT = "level_started_on"
 
@@ -253,39 +256,12 @@ def sector_issue(ctx: RunContext) -> CalculationIssue | None:
     )
 
 
-def subsector_issue(ctx: RunContext) -> CalculationIssue | None:
-    """Return the missing-fact issue of the sub-sector bands left out.
-
-    Returns:
-        An incomplete issue naming ``subsector`` when the CCNL sets its
-        overtime bands by sub-sector, the employer does not state its own
-        and the run prices an overtime event from the bands, else ``None``.
-    """
-    priced = any(
-        isinstance(e, OvertimeEvent) and e.multiplier is None
-        for e in ctx.request.events
-    )
-    if not (ctx.contract.subsector_unknown and priced):
-        return None
-    return CalculationIssue(
-        code="subsector_unknown",
-        capability="overtime",
-        message=(
-            "the CCNL sets its overtime premiums by sub-sector and the "
-            "employer does not state its own: the overtime shown is priced "
-            "with the first table of the CCNL; state EmployerProfile.subsector"
-        ),
-        status=CalculationStatus.INCOMPLETE,
-        fact=SUBSECTOR_FACT,
-    )
-
-
 def fact_issues(ctx: RunContext) -> tuple[CalculationIssue | None, ...]:
     """Return the issues of the employment facts, in a fixed order.
 
     Returns:
         The full time, no-pay, roles, provincial element, company premium,
-        INPS sector and sub-sector issues, each ``None`` when not raised.
+        INPS sector, CIGO activity and sub-sector issues, each ``None`` when not raised.
     """
     return (
         level_start_issue(ctx),
@@ -296,5 +272,6 @@ def fact_issues(ctx: RunContext) -> tuple[CalculationIssue | None, ...]:
         provincial_issue(ctx),
         premium_issue(ctx),
         sector_issue(ctx),
+        cigo_activity_issue(ctx),
         subsector_issue(ctx),
     )

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import InvalidInputError
@@ -44,6 +45,13 @@ def validate_episode(episode: SicknessEpisode) -> None:
         non_blank=True,
         optional=True,
     )
+    if episode.inps_recognized is not None:
+        require_bool(
+            episode.inps_recognized,
+            f"{_OWNER}.inps_recognized",
+            feature=_FEATURE,
+        )
+    _validate_reference_wages(episode)
     if episode.short_absence_exempt is not None:
         require_bool(
             episode.short_absence_exempt,
@@ -105,6 +113,28 @@ def validate_episode(episode: SicknessEpisode) -> None:
         feature=_FEATURE,
         optional=True,
     )
+
+
+def _validate_reference_wages(episode: SicknessEpisode) -> None:
+    """Reject invalid contractual daily wages by reference year.
+
+    Raises:
+        InvalidInputError: If a year or its wage is invalid.
+    """
+    wages = episode.contractual_daily_wage_by_year
+    if wages is not None and (
+        not isinstance(wages, dict)
+        or any(
+            type(year) is not int
+            or not isinstance(wage, Decimal)
+            or not wage.is_finite()
+            or wage < 0
+            for year, wage in wages.items()
+        )
+    ):
+        field = f"{_OWNER}.contractual_daily_wage_by_year"
+        msg = f"{field}: expected years mapped to nonnegative finite Decimal wages"
+        raise InvalidInputError(msg, field=field, feature=_FEATURE)
 
 
 def _validate_serious(episode: SicknessEpisode) -> None:

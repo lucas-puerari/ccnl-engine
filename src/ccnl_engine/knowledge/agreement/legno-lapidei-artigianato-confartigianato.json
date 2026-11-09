@@ -13,6 +13,34 @@
       ]
     },
     "tax_sector": "artigianato",
+    "cigo_activities": [
+      "stone_working"
+    ],
+    "cigo_provenance": {
+      "status": "verified",
+      "location": {
+        "source_document": {
+          "document_id": "inps-circular-76-2022-cigo",
+          "title": "INPS Circular 76/2022",
+          "kind": "inps_circolare",
+          "url": "https://www.fiscoetasse.com/files/17306/circolare-76-del-30-06-2022.pdf",
+          "sha256": "f181597163ae73a9918929b40186c69dffb92da5aebfe9653c41b5c1828bb952"
+        },
+        "page": "7",
+        "section": "3. Ordinary wage integration (CIGO); D.Lgs. 148/2015 art. 13(1)(d–f)",
+        "quote": "d) 3,30%della retribuzione imponibile ai fini previdenziali per gli operai delle imprese dell'industria e artigianato lapidei; e) 1,70% della retribuzione imponibile ai fini previdenziali per gli impiegati e quadri delle imprese dell'industria e artigianato edile e lapidei che occupano fino a 50 dipendenti; f) 2,00% della retribuzione imponibile ai fini previdenziali per gli impiegati e quadri delle imprese dell'industria e artigianato edile e lapidei che occupano oltre 50 dipendenti."
+      },
+      "transformation": "Apply these rates only to artisan stone extraction and quarry-linked working covered by D.Lgs. 148/2015 art. 10(o), including apprentices. Art. 10(o) excludes artisan stone working in workshops structurally and organizationally separate from extraction; those workshops and wood-working employers retain the artisan sector rate. Industrial stone firms remain covered by art. 10(n). The supplied headcount is used directly; the statutory previous-calendar-year average is not derived. 2027 rates remain provisional carryovers.",
+      "extraction": {
+        "method": "ai",
+        "model": "claude-opus-5-5",
+        "extraction_timestamp": "2026-11-09T17:31:03Z",
+        "verified_by": "claude-opus-5-5",
+        "verified_at": "2026-11-09T17:31:03Z",
+        "verification_status": "verified",
+        "review_id": "2026-11-09-ai-cigo-workshop"
+      }
+    },
     "agreement_date": "2024-03-05",
     "signatories": [
       "CNA Produzione",
@@ -172,19 +200,6 @@
           },
           "remediation": "Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note."
         }
-      },
-      {
-        "kind": "simplification",
-        "text": "CIGO: an artisan firm of the lapidei is within the CIGO (D.Lgs. 148/2015 art. 13 c. 1 (Normattiva, text in force on 2026-10-14, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-09-14;148~art13!vig=2026-10-14, snapshot sha256 3f7019a244e01d36ac8e7c9e25bcf058c777c8ed758418ba261d83867672c46a)): 3.30% for its operai (lett. d) and 1.70% / 2.00% for its impiegati and quadri (lett. e-f); a firm of the legno is not. The artigianato table charges no CIGO and the request does not say which kind of firm it is, so the employer contributions of a lapidei firm are understated.",
-        "capability": "inps_employer",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "cigo_rate_by_activity",
-          "applies_when": {
-            "trigger": "run"
-          },
-          "remediation": "Model the CIGO of D.Lgs. 148/2015 art. 13 c. 1 by activity (edile, lapidei) apart from the tax sector, then remove this note."
-        }
       }
     ]
   },
@@ -258,6 +273,50 @@
         "independence": "same_process",
         "checked": [
           "parameters.solidarity_fund"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-cigo-activity",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "INPS circular 76/2022 p. 7 CIGO activity rates and apprentices.",
+        "outcome": "corrected",
+        "independence": "same_process",
+        "sources": [
+          {
+            "url": "https://www.fiscoetasse.com/files/17306/circolare-76-del-30-06-2022.pdf",
+            "sha256": "f181597163ae73a9918929b40186c69dffb92da5aebfe9653c41b5c1828bb952"
+          }
+        ],
+        "findings": [
+          "Only artisan stone extraction and quarry-linked working incur CIGO; separate-workshop artisan stone working and wood activities retain sector rates. Industrial stone firms remain covered. The supplied headcount is not validated as the previous calendar year's average; 2027 rates are provisional."
+        ],
+        "checked": [
+          "meta.cigo_activities",
+          "meta.cigo_provenance"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-cigo-workshop",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "INPS circular 76/2022 page 7 rates, with D.Lgs. 148/2015 art. 10(o) workshop exclusion.",
+        "outcome": "corrected",
+        "independence": "same_process",
+        "sources": [
+          {
+            "url": "https://www.fiscoetasse.com/files/17306/circolare-76-del-30-06-2022.pdf",
+            "sha256": "f181597163ae73a9918929b40186c69dffb92da5aebfe9653c41b5c1828bb952"
+          }
+        ],
+        "findings": [
+          "Art. 10(o): con esclusione di quelle che svolgono tale attività di lavorazione in laboratori con strutture e organizzazione distinte dalla attività di escavazione. The circular's art. 13 rates apply only to employers covered by art. 10."
+        ],
+        "checked": [
+          "meta.cigo_activities",
+          "meta.cigo_provenance"
         ]
       }
     ]
@@ -1894,7 +1953,7 @@
     "effective_until": null,
     "source": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
     "verification_status": "unverified",
-    "source_hash": "bbbb50bce418ae933c0d244825320c29d928bac4ff77725c0676f97320ed2e7f",
+    "source_hash": "9897263d45e5e4f48e528ec13199858a37beb1e37890ad0ed77658449de7b00f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
