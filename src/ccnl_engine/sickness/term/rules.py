@@ -78,6 +78,8 @@ class SicknessTerms:
         paid_by_the_hour: Whether the run pays the worker by the hour
             worked: the sick hours are not among them, so the sick days
             deduct nothing from the pay.
+        weekly_hours: Contracted weekly hours for a direct hourly sick-pay
+            coefficient; ``None`` uses the clause's full-time week.
     """
 
     employed: tuple[date, date] | None = None
@@ -94,6 +96,7 @@ class SicknessTerms:
     apprentice: bool = False
     employee_rate: Decimal = Decimal(0)
     paid_by_the_hour: bool = False
+    weekly_hours: Decimal | None = None
     category: WorkerCategory | None = None
     monthly_payments: TimeSeries | None = None
     daily_base: RegimeDailyBase | None = None

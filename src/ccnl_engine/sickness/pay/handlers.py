@@ -31,6 +31,7 @@ from ccnl_engine.sickness.day.rules import (
     classify_days,
     segment_units,
 )
+from ccnl_engine.sickness.pay.hourly import hourly_segment_pay
 
 if TYPE_CHECKING:
     from datetime import date
@@ -238,8 +239,9 @@ def episode_pay(
     inps_base = episode_daily_base(episode, terms)
     counted = terms.counted
     before = _quota(chain, counted, quota.divisor)
+    hourly_spec = rules.ccnl.hourly_employer_integration
     for segment, unit in zip(segments, units, strict=True):  # pragma: no mutate
-        if unit == _ZERO:
+        if unit == _ZERO and hourly_spec is None:
             continue
         counted += unit
         reached = _quota(chain, counted, quota.divisor)
@@ -247,6 +249,16 @@ def episode_pay(
         absence += _ZERO if terms.paid_by_the_hour else base
         paid = _segment_pay(
             segment, base, (rules, terms), excluded=excluded, inps_base=inps_base
+        )
+        paid = hourly_segment_pay(
+            paid,
+            hourly_spec,
+            segment,
+            episode,
+            terms,
+            chain,
+            quota.divisor,
+            excluded=excluded,
         )
         inps, integration, carenza = (
             inps + paid[0],

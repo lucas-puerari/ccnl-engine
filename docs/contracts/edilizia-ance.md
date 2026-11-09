@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-02-21 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -80,6 +80,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Caposquadra (printed p. 89, PDF p. 103) and Art. 24 points 3-4 of the CCNL 19 April 2010, via a research report, quotes checked on the text layer. | corrected | Added the role allowance CAPOSQUADRA (10% of paga base and ex contingenza) in the base of the hourly percentages. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Caposquadra percentage base and qualified-worker floor, CCNL 2010 PDF pp. 49 and 103. | corrected | Calculate the national supplement dynamically and lift base pay to the level 2 ordinary pay where required. Provincial, individual and piecework components remain unavailable. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Caposquadra qualified-worker remuneration integration and Art. 24 points 2–4, signed CCNL 2010 PDF pp. 49 and 103. | corrected | The level-2 shortfall is a separate earning, not a contractual base-pay increase; own individual elements reduce it and enter the special supplement and Art. 17–18 bases. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Direct hourly sickness integration and episode-length waiting tiers under Art. 26 of the signed 2010 agreement, PDF pp. 50–51; weekly hours under Art. 5, PDF p. 26. | corrected | The employer pays direct coefficients on a separate hourly base, not a target net of INPS. Waiting coefficients depend on the full episode; six payable days exclude holidays. Cassa Edile accruals and short-episode annual rest remain unmodelled. |
 
 ## Salary table
 
@@ -112,11 +113,11 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "edilizia-ance/edilizia_operai_sickness · sickness · impact yes · open"
-    SICKNESS (Art. 26): the employer pays a coefficient of the hourly minimo, ex contingenza and indennità territoriale times a sixth of the weekly hours, six days a week: 0.5495 for days 1-3 when the sickness lasts more than 6 days, 1.0495 when it lasts more than 12, 0.3795 for days 4-20 and 0.1565 for days 21-180 on top of the INPS indemnity, 0.5495 for days 181-365. The engine stores the coefficient plus the INPS rate of the day as the target (0.8795 and 0.8231), so its employer share is the coefficient on the engine's daily quota, which counts the EDR and not the indennità territoriale. Not modelled: the 1.0495 of a sickness over 12 days (paid 0.5495), the 4.95% paid for the carenza days of a sickness of up to 6 days and for the day of an injury (60% on days 1-3); the percentages accrued with the Cassa Edile during sickness and injury (Allegato D: 18.5% gross and 14.2% net for the carenza days and from day 4 of sickness, 7.4% and 5.7% for days 4-90 of injury or occupational disease, 4.6% and 3.6% from day 91); and the exception of Allegato D point 4: in a pay period without direct pay the conventional net does not apply and the actual withholdings are taken from the accruals. The sick hours of an operaio are not in the hours paid by the hour, so the sick days deduct nothing from the pay.
+    SICKNESS (Art. 26): direct employer integration uses hourly minimum and ex contingenza (plus territorial allowance where available), excluding EDR, times one sixth of contracted weekly hours on six days a week excluding holidays. Waiting days 1-3 are unpaid for episodes of at most six days, paid at 0.5495 above six and 1.0495 above twelve; INPS-covered days 4-20 use 0.3795 and days 21-180 use 0.1565; non-INPS-covered days 181-365 use 0.5495. Not modelled: the 4.95% annual-rest payment for waiting days of episodes up to six days and on the injury day (60% on injury days 1-3); Cassa Edile sickness and injury accruals (18.5% gross, 14.2% net for sickness waiting days and from day 4; 7.4% and 5.7% on injury days 4-90; 4.6% and 3.6% from day 91) and the no-direct-pay exception of Allegato D point 4. Provincial territorial pay and actual site hours are not bundled, so only known components enter the base. Sick hours do not deduct from hourly worked pay.
 
     **Applies when:** `sickness` applies.
 
-    **Remediation:** Model the coefficients of Art. 26 on their own base.
+    **Remediation:** Model the short-episode annual-rest payment and Cassa Edile accruals on sickness and injury, including site-hour and no-direct-pay rules.
 
 !!! warning "edilizia-ance/provincial_evr · territorial_supplement · impact yes · open"
     Art. 46: the EVR set by the provincial agreements.
