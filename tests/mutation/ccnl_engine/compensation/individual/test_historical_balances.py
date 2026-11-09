@@ -1,9 +1,11 @@
-"""Hand oracle for four worker-specific historical monthly balances.
+"""Hand oracle for six worker-specific historical monthly balances.
 
 In January 2026 each worker has a preserved 100.00 EUR monthly balance:
 without the caller's element, the historical component is 0.00 EUR; with
 it, it is 100.00 EUR (difference 100.00 EUR). These are illustrative
-caller facts, not amounts asserted by any of the four agreements. The Sport
+caller facts, not amounts asserted by any of the six agreements. For FISM,
+the separate 15.00 EUR level-I Art. 46 allowance remains unchanged, so the
+monthly seniority total moves from 15.00 to 115.00 EUR. The Sport
 Art. 116(b) element is excluded from the thirteenth by Arts. 117 and 125;
 the other three are included. The declining 14th-derived Sport element is
 not tested here: its dated schedule is not given by the agreement.
@@ -38,6 +40,14 @@ from ccnl_engine.inputs import (
     ("agreement", "level", "code", "extra_months", "hire_date"),
     [
         ("poste-italiane-k700", "F", "legacy_ria", True, date(1990, 1, 1)),
+        ("scuole-materne-fism", "I", "legacy_scatti", True, date(1990, 1, 1)),
+        (
+            "scuole-private-agidae",
+            "L1",
+            "frozen_seniority",
+            True,
+            date(1990, 1, 1),
+        ),
         (
             "scuole-private-laiche-aninsei",
             "I",
