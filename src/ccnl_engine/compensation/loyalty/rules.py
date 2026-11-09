@@ -1,4 +1,4 @@
-"""Pay the loyalty premium on the hire anniversary in a regular run.
+"""Pay annual loyalty premiums or once-only milestones in a regular run.
 
 The fully employed run chain approximates the enumerated contractual pay
 components (ANIEM Art. 45 items 1-14; CNA Art. 48 items 1-12). It does not
@@ -9,15 +9,17 @@ from __future__ import annotations
 
 import calendar
 from dataclasses import dataclass, replace
+from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.compensation.loyalty.models import LoyaltyPremium
 from ccnl_engine.compensation.sunday_holiday.rules import monthly_pay
 from ccnl_engine.decision.models import CalculationDecision, CalculationStatus
 from ccnl_engine.decision.rules import _ccnl_rule
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.ledger.models import AccountKind
-from ccnl_engine.pay_item.models import LoyaltyPremiumEarning
+from ccnl_engine.pay_item.models import BonusEarning, LoyaltyPremiumEarning
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.pay_item.services import (
     _make_entry,
@@ -39,7 +41,7 @@ _KIND = "loyalty_premium_earning"
 class LoyaltySettlement:
     """The anniversary earning and its additions to the event bases."""
 
-    items: tuple[LoyaltyPremiumEarning, ...] = ()
+    items: tuple[LoyaltyPremiumEarning | BonusEarning, ...] = ()
     entries: tuple[LedgerEntry, ...] = ()
     decisions: tuple[CalculationDecision, ...] = ()
     amount: Decimal = _ZERO
@@ -61,9 +63,29 @@ class LoyaltySettlement:
         )
 
 
+def _award_amount(
+    ctx: RunContext, clause: LoyaltyPremium, anniversary: date
+) -> Decimal | None:
+    """Value monthly or hourly normal wages, or refuse an unknown hourly rate.
+
+    Returns:
+        Rounded award, or ``None`` when the hourly divisor is unavailable.
+    """
+    monthly = monthly_pay(ctx.regular_chain, frozenset())
+    hours = getattr(clause, "manual_hours", None)
+    if ctx.worker_category is WorkerCategory.OPERAIO and hours is not None:
+        divisor = ctx.contract.ccnl.parameters.hourly_divisor.period_at(anniversary)
+        if divisor is None or divisor.value is None:
+            return None
+        return money(hours * monthly / divisor.value)
+    return money(clause.months * monthly)
+
+
 def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
     """Pay a full monthly award on each qualifying hire anniversary month.
 
+    A once-only milestone pays solely on its qualifying anniversary; eligible
+    manual workers receive normal hourly pay times the configured hours.
     Without a known employment period, or on a non-regular run, pay nothing.
     February 29 hires celebrate on February 28 in non-leap years.
 
@@ -76,7 +98,18 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
         clause is None
         or period is None
         or ctx.run_kind is not RunKind.REGULAR
-        or ctx.worker_category not in {WorkerCategory.IMPIEGATO, WorkerCategory.QUADRO}
+        or ctx.worker_category
+        not in getattr(
+            clause,
+            "categories",
+            (WorkerCategory.IMPIEGATO, WorkerCategory.QUADRO),
+        )
+    ):
+        return LoyaltySettlement()
+    subsectors = getattr(clause, "subsectors", ())
+    if (
+        subsectors
+        and getattr(ctx.request.employer, "subsector", None) not in subsectors
     ):
         return LoyaltySettlement()
     month = ctx.request.period_id.month
@@ -87,18 +120,28 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
         year=year,
         day=min(period.started_on.day, calendar.monthrange(year, month)[1]),
     )
-    if year - period.started_on.year < clause.service_years or (
-        period.ended_on is not None and period.ended_on < anniversary
+    years = year - period.started_on.year
+    if (
+        years < clause.service_years
+        or (
+            getattr(clause, "recurrence", "annual") == "once"
+            and years != clause.service_years
+        )
+        or (period.ended_on is not None and period.ended_on < anniversary)
     ):
         return LoyaltySettlement()
-    amount = money(clause.months * monthly_pay(ctx.regular_chain, frozenset()))
+    amount = _award_amount(ctx, clause, anniversary)
+    if amount is None:
+        return LoyaltySettlement()
     rule, version = _ccnl_rule(ctx.contract.ccnl, year)
     location = clause.provenance.location
-    resolution = _require_resolution(ctx.resolver, _KIND, ctx.policy_context)
+    once = getattr(clause, "recurrence", "annual") == "once"
+    kind = "bonus_earning" if once else _KIND
+    resolution = _require_resolution(ctx.resolver, kind, ctx.policy_context)
     treatment = _treatment_from_resolution(resolution)
     item_id = f"loyalty_premium_{ctx.run_id}"
     payment = ctx.contract.tctx.payment
-    item = LoyaltyPremiumEarning(
+    item = (BonusEarning if once else LoyaltyPremiumEarning)(
         item_id=item_id,
         competence_period=ctx.cp,
         payment_date=payment,
@@ -109,7 +152,7 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
     entry = _make_entry(
         item_id,
         item_id,
-        _KIND,
+        kind,
         ctx.cp,
         payment,
         AccountKind.CASH_EARNINGS,

@@ -147,6 +147,8 @@ class CCNLParameters(BaseModel):
     ``enam_levels``: ex ENAM; ``renewals``: raising the minimo (L. 199/2025);
     ``health_funds``, with their elemento distinto; ``hourly_pay``,
     ``fixed_term_pay`` (operai edilizia, OTD); ``loyalty_premium`` (fedeltà).
+    Loyalty awards may recur annually or pay once at a service milestone,
+    with eligible worker categories and employer subsectors.
     ``daily_presence_allowances``: rates paid per counted qualifying day,
     rather than a fraction of monthly pay; ``meal_benefit_daily``: the
     non-remunerative meal voucher value per eligible day.
