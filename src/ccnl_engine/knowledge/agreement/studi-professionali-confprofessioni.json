@@ -139,19 +139,6 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 115: the diaria of the trasferte, EUR 15 or 30 a day.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "travel_diaria",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model the trasferta diaria."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "Art. 143: the exclusion of the quattordicesima for workers already paid extra months. The una tantum of EUR 400 (EUR 200 in May 2024 and May 2025, p. 73) is historic and outside the TFR base.",
         "capability": "base_salary",
         "monetary_impact": "yes",
@@ -218,6 +205,10 @@
           },
           "remediation": "Provide the employer-specific patron saint holiday."
         }
+      },
+      {
+        "kind": "info",
+        "text": "Art. 115: TravelAllowanceEvent uses total mission_hours for the daily EUR 15 (>8 to 24 hours) or EUR 30 (>24 hours), reduced by 10% when habitual_travel or mission_over_month is true. The caller determines whether the actual mission exceeds one calendar month and states the TFR treatment; documented expenses are separate reimbursements. The clause does not specify a diaria at exactly eight hours."
       }
     ]
   },
@@ -2386,7 +2377,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "cd799f92fb33a8eaf6fed26212d466c2c8273474f362e1e4a8cbe21bb9275732",
+    "source_hash": "c8b61957ece313f88d54c6f3f2314bd716ffc8e5cdf3579de7084dc35161a8e5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3682,6 +3673,86 @@
           "review_id": "2026-11-01-ai-notice"
         }
       }
+    },
+    "travel_allowance": {
+      "bands": [
+        {
+          "hours_from": "8",
+          "hours_from_exclusive": true,
+          "hours_until": "24",
+          "hours_until_inclusive": true,
+          "italy": {
+            "periods": [
+              {
+                "valid_from": "2024-02-16",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          },
+          "abroad": {
+            "periods": [
+              {
+                "valid_from": "2024-02-16",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          }
+        },
+        {
+          "hours_from": "24",
+          "hours_from_exclusive": true,
+          "italy": {
+            "periods": [
+              {
+                "valid_from": "2024-02-16",
+                "valid_until": null,
+                "value": "30.00"
+              }
+            ]
+          },
+          "abroad": {
+            "periods": [
+              {
+                "valid_from": "2024-02-16",
+                "valid_until": null,
+                "value": "30.00"
+              }
+            ]
+          }
+        }
+      ],
+      "mission_duration": true,
+      "habitual_discount": "0.10",
+      "long_mission_discount": "0.10",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "confprofessioni-eu-wp-content-uploads-2025-11-ccnl-studi-2024-integrale-definiti",
+            "title": "CCNL Studi Professionali 16 February 2024",
+            "kind": "altro",
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          },
+          "page": "64",
+          "section": "Art. 115 point 4, missions and travel",
+          "quote": "Una diaria di euro 15 (quindici) giornaliere per missioni eccedenti le 8 (otto) ore e fino alle 24 (ventiquattro) ore e di euro 30 (trenta) giornaliere per missioni eccedenti la giornata. Per missioni di durata superiore al mese verrà corrisposta una diaria ridotta del 10% (dieci per cento, pari rispettivamente a 13,50 Euro e 27,00 Euro giornaliere). Analogamente si procederà quando le attribuzioni del lavoratore comportino viaggi abituali."
+        },
+        "transformation": "Total mission duration selects a daily rate: over 8 through 24 hours EUR 15, over 24 hours EUR 30. Over one calendar month or habitual travel reduces the applicable daily rate by 10%, once even if both apply. No amount is inferred at exactly 8 hours. The clause does not establish a TFR inclusion rule, so the event must state tfr_base. Documented expenses are reimbursed separately.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-08T14:27:33Z",
+          "verified_at": "2026-11-08T14:27:33Z",
+          "verified_by": "claude-opus-5-5",
+          "verification_status": "verified",
+          "effective_from": "2024-02-16",
+          "review_id": "2026-11-08-ai-studi-travel"
+        }
+      }
     }
   },
   "verification": {
@@ -4152,6 +4223,24 @@
         "checked": [
           "work_rules.sickness_rules.holiday",
           "work_rules.insured_absence.injury.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-08-ai-studi-travel",
+        "date": "2026-11-08",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Verified Art. 115 point 4 against the cached CCNL PDF page 64, including the duration thresholds and the single 10% reduction for habitual or over-month missions.",
+        "outcome": "confirmed",
+        "checked": [
+          "work_rules.travel_allowance"
+        ],
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
         ]
       }
     ],

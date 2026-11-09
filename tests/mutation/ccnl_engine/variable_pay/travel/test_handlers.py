@@ -40,8 +40,9 @@ from ccnl_engine.variable_pay.loaders import load_variable_pay_rules
 from ccnl_engine.variable_pay.travel.handlers import (
     TravelAllowanceAssessment,
     TravelTerms,
+    _discounted_daily,
 )
-from ccnl_engine.working_time.models import CcnlTravelAllowance
+from ccnl_engine.working_time.travel.models import CcnlTravelAllowance
 from scripts.provenance.rules import KNOWLEDGE_DIR
 
 if TYPE_CHECKING:
@@ -438,6 +439,130 @@ def _processed(
 
 def _process(event: TravelAllowanceEvent, terms: TravelTerms | None) -> Decimal:
     return _processed(event, terms)[0]
+
+
+_STUDI_TRAVEL = json.loads(
+    (
+        KNOWLEDGE_DIR / "agreement" / "studi-professionali-confprofessioni.json"
+    ).read_text(encoding="utf-8")
+)["work_rules"]["travel_allowance"]
+
+
+def _studi_terms() -> TravelTerms:
+    return TravelTerms(
+        CcnlTravelAllowance.model_validate(_STUDI_TRAVEL), "ccnl/studi/2026"
+    )
+
+
+@pytest.mark.parametrize(
+    ("hours", "days", "habitual", "over_month", "amount"),
+    [
+        ("7", 1, False, False, "0.00"),
+        ("8.5", 1, False, False, "15.00"),
+        ("24", 1, False, False, "15.00"),
+        ("25", 2, False, False, "60.00"),
+        ("48", 2, True, False, "54.00"),
+        ("48", 2, False, True, "54.00"),
+        ("48", 2, True, True, "54.00"),
+        ("9", 3, True, False, "40.50"),
+    ],
+)
+def test_studi_mission_duration_and_reduction(
+    hours: str, days: int, habitual: bool, over_month: bool, amount: str
+) -> None:
+    """A 48-hour mission for two days pays 2 x 30 = 60, or 2 x 27 = 54."""
+    event = _trip(
+        daily_amount=None,
+        hours_away=None,
+        mission_hours=Decimal(hours),
+        days=days,
+        habitual_travel=habitual,
+        mission_over_month=over_month,
+    )
+    paid, decisions = _processed(event, _studi_terms())
+
+    assert paid == Decimal(amount)
+    (decision,) = (d for d in decisions if d.capability == "travel_allowance")
+    assert decision.inputs["daily_amount"] == Decimal(amount) / days
+    assert decision.inputs["mission_hours"] == Decimal(hours)
+
+
+def test_no_discount_preserves_the_ccnl_daily_rate() -> None:
+    """Without a discount the daily rate is not rounded before the block total."""
+    rules = _studi_terms().rules
+    assert rules is not None
+    assert _discounted_daily(_trip(), rules, Decimal("15.005")) == Decimal("15.005")
+
+
+def test_discount_flags_are_recorded_with_the_paid_amount() -> None:
+    """The decision preserves both reasons for the 10% discount, once only."""
+    event = _trip(
+        daily_amount=None,
+        hours_away=None,
+        mission_hours=Decimal(48),
+        days=2,
+        habitual_travel=True,
+        mission_over_month=True,
+    )
+    paid, decisions = _processed(event, _studi_terms())
+    (decision,) = (d for d in decisions if d.capability == "travel_allowance")
+
+    assert paid == Decimal("54.00")  # 2 x (30.00 x 0.90)
+    assert decision.inputs["daily_amount"] == Decimal("27.00")
+    assert decision.inputs["habitual_travel"] == "true"
+    assert decision.inputs["mission_over_month"] == "true"
+
+
+@pytest.mark.parametrize(
+    ("event", "terms", "detail"),
+    [
+        (
+            _trip(daily_amount=None, hours_away=Decimal(20)),
+            _studi_terms(),
+            "the CCNL requires the total mission duration in mission_hours",
+        ),
+        (
+            _trip(daily_amount=None, mission_hours=Decimal(25)),
+            _terms(),
+            "the CCNL requires hours_away for its daily travel bands",
+        ),
+        (
+            _trip(daily_amount=None, mission_hours=Decimal(8)),
+            _studi_terms(),
+            "the CCNL does not state an allowance at this exact mission duration",
+        ),
+    ],
+    ids=["mission_hours", "hours_away", "exclusive_boundary"],
+)
+def test_missing_ccnl_hours_identify_the_rule_and_date(
+    event: TravelAllowanceEvent, terms: TravelTerms, detail: str
+) -> None:
+    """Missing hours and an excluded boundary report the precise CCNL failure."""
+    with pytest.raises(MissingRuleError) as raised:
+        _processed(event, terms)
+
+    assert raised.value.detail == detail
+    assert raised.value.as_of == _DAY
+    assert raised.value.feature == "travel_allowance"
+
+
+def test_daily_bands_do_not_use_total_mission_hours_as_daily_hours() -> None:
+    """A 25-hour mission alone cannot select a different CCNL's daily band."""
+    with pytest.raises(MissingRuleError, match="hours_away"):
+        _processed(_trip(daily_amount=None, mission_hours=Decimal(25)), _terms())
+
+
+def test_studi_requires_mission_hours_and_explicit_tfr_base() -> None:
+    """A 25-hour mission needs its total duration and a caller TFR choice."""
+    with pytest.raises(MissingRuleError, match="mission_hours"):
+        _processed(_trip(daily_amount=None, hours_away=Decimal(20)), _studi_terms())
+    with pytest.raises(MissingRuleError, match="exact mission duration"):
+        _processed(_trip(daily_amount=None, mission_hours=Decimal(8)), _studi_terms())
+    with pytest.raises(MissingRuleError, match="no TFR rule"):
+        _processed(
+            _trip(daily_amount=None, mission_hours=Decimal(25), tfr_base=None),
+            _studi_terms(),
+        )
 
 
 def test_caps_without_a_ruleset_cite_the_tax_year_of_the_run() -> None:

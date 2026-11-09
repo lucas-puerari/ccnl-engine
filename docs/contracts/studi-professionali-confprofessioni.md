@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, maternity_leave, sickness |
 
-8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -78,6 +78,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay. | confirmed | Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 120-121, signed PDF pp. 65-66, listed serious illnesses and day hospital or life-saving therapy. | corrected | The documented listed illness extends comporto by 90 days; months seven and eight pay 100%, month nine 70%; qualifying treatment days do not count. The 365-day lookback remains approximated by twelve calendar months. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Local patron saint day in sickness and work injury holiday clauses. | confirmed | Art. 124 - Festività nel periodo di malattia o infortunio (p. 67): Ai sensi della Legge 31 Marzo 1954, n° 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad una indennità integrativa di quella a carico rispettivamente dell’INPS e dell’INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di cui al Titolo XXVIII (Trattamento Economico). The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged. |
+| 2026-11-08 | claude-opus-5-5 (ai) | Verified Art. 115 point 4 against the cached CCNL PDF page 64, including the duration thresholds and the single 10% reduction for habitual or over-month missions. | confirmed | — |
 
 ## Salary table
 
@@ -152,13 +153,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the availability allowance.
-
-!!! warning "studi-professionali-confprofessioni/travel_diaria · base_salary · impact yes · open"
-    Art. 115: the diaria of the trasferte, EUR 15 or 30 a day.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the trasferta diaria.
 
 !!! warning "studi-professionali-confprofessioni/fourteenth_exclusion · base_salary · impact yes · open"
     Art. 143: the exclusion of the quattordicesima for workers already paid extra months. The una tantum of EUR 400 (EUR 200 in May 2024 and May 2025, p. 73) is historic and outside the TFR base.
@@ -404,6 +398,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICE SENIORITY (Art. 129, p. 119 of the CCNL completo 10 April 2026, https://www.confprofessioni.eu/wp-content/uploads/2026/07/00274046_CCNL_Studi_Professionali_2026.04.10_completo.pdf, sha256 35cc1ec44a282f39fa401949828f180897872a8c7907eb39d4f7a51420e04477): 'la disciplina sull’anzianità di servizio e sugli scatti di anzianità (di cui all’art. 134 del presente CCNL) è applicabile anche agli apprendisti e la decorrenza di questi istituti è quella della data di assunzione': the apprentice takes the scatti of art. 134 at the amounts of the level (seniority_increments.apprentice_level_amount).
     
     Art. 110(8): compulsory maternity and paternity holiday top-ups are modelled for leave days.
+    
+    Art. 115: TravelAllowanceEvent uses total mission_hours for the daily EUR 15 (>8 to 24 hours) or EUR 30 (>24 hours), reduced by 10% when habitual_travel or mission_over_month is true. The caller determines whether the actual mission exceeds one calendar month and states the TFR treatment; documented expenses are separate reimbursements. The clause does not specify a diaria at exactly eight hours.
     
 
 ## Raw data
