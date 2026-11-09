@@ -178,6 +178,7 @@ class PeriodInput:
             roles=employment.roles,
             presence_days=facts.presence_days,
             site_presence_days=facts.site_presence_days,
+            meal_benefit_days=facts.meal_benefit_days,
             individual_elements=employment.individual_elements,
             category=employment.category,
             sector=employment.sector,

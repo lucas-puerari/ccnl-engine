@@ -8,7 +8,6 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.balance.models import PeriodState
-from ccnl_engine.compensation.presence.inputs import validate_presence_days
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.employer.inputs import EmployerProfile
 from ccnl_engine.employment.fact.inputs import (
@@ -33,6 +32,7 @@ from ccnl_engine.period.opening.requests import validate_tax_year
 from ccnl_engine.period.request.field_specs import contract_field_specs
 from ccnl_engine.period.request.opening_state import stated_opening
 from ccnl_engine.period.request.validators import (
+    check_day_counts,
     check_prior_extra_amount,
     employment_gap,
 )
@@ -113,6 +113,8 @@ class PeriodCalculationRequest:
         presence_days: Count of days actually present at work in the month.
         site_presence_days: Subset of those days present at the work site.
             ``None`` means the count is missing, not zero.
+        meal_benefit_days: Verified eligible days for electronic meal vouchers,
+            excluding absences; ``None`` is unknown. Not for paper vouchers.
         individual_elements: Pay agreed above the CCNL minimum, fixed allowances.
         category: Worker category declared on the employment.  ``None``
             takes the category fixed by the level, if any.  Must match the
@@ -186,6 +188,7 @@ class PeriodCalculationRequest:
     roles: frozenset[str] | None = None
     presence_days: int | None = None
     site_presence_days: int | None = None
+    meal_benefit_days: int | None = None
     individual_elements: tuple[IndividualElement, ...] = ()
     category: WorkerCategory | None = None
     extra_month_accrual: ExtraMonthAccrual | None = None
@@ -238,11 +241,7 @@ class PeriodCalculationRequest:
         check_pattern_hours(self.weekly_hours, self.work_pattern)
         check_surtax_codes(self.regione, self.comune_belfiore)
         check_prior_extra_amount(self.prior_extra_month_amount)
-        validate_presence_days(
-            self.presence_days,
-            self.site_presence_days,
-            owner="PeriodCalculationRequest",
-        )
+        check_day_counts(self)
         validate_tax_year(
             self.period_id,
             self.payment_date,

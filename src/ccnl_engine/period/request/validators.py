@@ -11,15 +11,18 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.compensation.presence.inputs import validate_presence_days
+from ccnl_engine.period.request.meal import validate_meal_days
 from ccnl_engine.run.models import RunKind
 from ccnl_engine.validators import require_decimal
 
 if TYPE_CHECKING:
     from ccnl_engine.employment.period.inputs import EmploymentPeriod
+    from ccnl_engine.period.requests import PeriodCalculationRequest
     from ccnl_engine.run.models import PayrollRun
     from ccnl_engine.run.types import PeriodId
 
-__all__ = ["check_prior_extra_amount", "employment_gap"]
+__all__ = ["check_day_counts", "check_prior_extra_amount", "employment_gap"]
 
 
 def employment_gap(
@@ -63,4 +66,21 @@ def check_prior_extra_amount(amount: Decimal | None) -> None:
         feature="period_request",
         minimum=Decimal(0),
         optional=True,
+    )
+
+
+def check_day_counts(request: PeriodCalculationRequest) -> None:
+    """Validate the presence and meal-voucher day counts of a request.
+
+    A count that is not an integer in its range, site days above the
+    presence days or meal days above the days of the competence month are
+    rejected with ``InvalidInputError`` by the validators called.
+    """
+    validate_presence_days(
+        request.presence_days,
+        request.site_presence_days,
+        owner="PeriodCalculationRequest",
+    )
+    validate_meal_days(
+        request.meal_benefit_days, request.period_id.year, request.period_id.month
     )

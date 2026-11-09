@@ -23,10 +23,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Titolo XXIII conditional allowances not modelled: indennita di mensa (Art. 179), rimborso mezzi pubblici (Art. 180), indennita valori (Art. 181), and elemento economico di garanzia (Art. 177). These are condition-gated or azienda-specific and cannot be determined without employer-level data.",
+      "rule": "Title XXIII: the daily meal benefit (Art. 179) is valued only when the caller supplies verified eligible days; the caller must check the absence of a canteen and a lunch break or split shift. Only caller-confirmed electronic vouchers are posted as exempt welfare; paper vouchers (different tax limits) remain unmodelled. The municipal public-transport subscription cost (Art. 180) and the episodic custody or transport of valuables above EUR 250 (Art. 181) remain unmodelled. Art. 177 was a conditional April 2025 one-off payment, not a Title XXIII allowance; it was repealed from September 2025.",
       "calculation": "ccnl/ced-assoced:coverage.notes",
       "state": "absent",
-      "remediation": "Model Art. 177 elemento economico di garanzia and Arts. 179-181 (mensa, mezzi pubblici, valori) as conditional fixed allowances or caller-declared items once a fact can express their conditions.",
+      "remediation": "For paper meal vouchers establish taxable value and treatment. For Art. 180 supply the actual municipal-only monthly public-transport subscription cost and verify the employer's limited-traffic-zone address. For Art. 181 supply each non-continuous custody/transport assignment and delivered value above EUR 250; establish its wage and TFR treatment before posting. Do not recur the repealed Art. 177 April 2025 one-off.",
       "origin": "seeded",
       "links": {
         "limitations": [

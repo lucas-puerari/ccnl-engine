@@ -19,6 +19,7 @@ from ccnl_engine.compensation.hourly.services import (
 from ccnl_engine.compensation.individual.rules import individual_element_decisions
 from ccnl_engine.compensation.legacy_holiday.services import legacy_holiday_payment
 from ccnl_engine.compensation.loyalty.rules import loyalty_premium
+from ccnl_engine.compensation.meal.services import meal_benefit_decisions
 from ccnl_engine.compensation.raccordo.services import erc_settlement
 from ccnl_engine.compensation.renewal_minimum.services import (
     renewal_minimum,
@@ -34,8 +35,7 @@ from ccnl_engine.contribution.ceiling.services import (
 from ccnl_engine.contribution.minimum_base.services import run_minimum_base
 from ccnl_engine.decision.rules import contract_decisions
 from ccnl_engine.extra_month.decision.services import accrual_decisions
-from ccnl_engine.extra_month.offset.services import offset_terms, with_offset_issue
-from ccnl_engine.extra_month.settlement.services import settle_extra_months
+from ccnl_engine.extra_month.settlement.run import run_settlement
 from ccnl_engine.fund.assistance.policies import assistance_decision
 from ccnl_engine.fund.health.services import contractual_funds
 from ccnl_engine.leave.services import run_leave
@@ -131,17 +131,7 @@ def run_events(ctx: RunContext) -> RunEvents:
         added, and the items and entries of events and settlements.
     """
     events = RunEvents(*variable_events(ctx))
-    settlement = settle_extra_months(
-        ctx.settlements,
-        ctx.regular_chain,
-        ctx.cp,
-        ctx.contract.tctx.payment,
-        ctx.run_id,
-        ctx.resolver,
-        ctx.policy_context,
-        *offset_terms(ctx),
-    )
-    settlement = with_offset_issue(settlement, ctx)
+    settlement = run_settlement(ctx)
     erc = erc_settlement(ctx)
     hourly = percentage_settlement(ctx)
     reduction = public_tfr_reduction(ctx, events.totals)
@@ -293,6 +283,7 @@ def run_decisions(
         + individual_element_decisions(ctx)
         + second_level_decisions(ctx)
         + totals.decisions
+        + meal_benefit_decisions(ctx)
         + amounts.decisions
         + caller_supplied_decisions(
             request.events, contract.ccnl, request.level_code, hourly_terms(ctx)
