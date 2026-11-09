@@ -187,6 +187,7 @@ class PeriodInput:
             tfr_fund=employment.tfr_fund,
             tfr_treasury_fund=employment.tfr_treasury_fund,
             erc_amount=employment.erc_amount,
+            prior_extra_month_amount=employment.prior_extra_month_amount,
             holiday_company_offset=employment.holiday_company_offset,
             public_end_of_service=employment.public_end_of_service,
             personal_withholdings=employment.personal_withholdings,

@@ -35,7 +35,7 @@ from ccnl_engine.contribution.ceiling.services import (
 from ccnl_engine.contribution.minimum_base.services import run_minimum_base
 from ccnl_engine.decision.rules import contract_decisions
 from ccnl_engine.extra_month.decision.services import accrual_decisions
-from ccnl_engine.extra_month.settlement.services import settle_extra_months
+from ccnl_engine.extra_month.settlement.run import run_settlement
 from ccnl_engine.fund.assistance.policies import assistance_decision
 from ccnl_engine.fund.health.services import contractual_funds
 from ccnl_engine.leave.services import run_leave
@@ -131,15 +131,7 @@ def run_events(ctx: RunContext) -> RunEvents:
         added, and the items and entries of events and settlements.
     """
     events = RunEvents(*variable_events(ctx))
-    settlement = settle_extra_months(
-        ctx.settlements,
-        ctx.regular_chain,
-        ctx.cp,
-        ctx.contract.tctx.payment,
-        ctx.run_id,
-        ctx.resolver,
-        ctx.policy_context,
-    )
+    settlement = run_settlement(ctx)
     erc = erc_settlement(ctx)
     hourly = percentage_settlement(ctx)
     reduction = public_tfr_reduction(ctx, events.totals)

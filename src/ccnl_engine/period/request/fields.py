@@ -9,7 +9,6 @@ from typing import TYPE_CHECKING
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
-    PublicEndOfService,
     WeeklyHours,
     WorkPattern,
 )
@@ -67,11 +66,6 @@ def period_field_specs(request: PeriodCalculationRequest) -> tuple[FieldSpec, ..
         ("tfr_fund", request.tfr_fund, TfrFundBalance, True),
         ("tfr_treasury_fund", request.tfr_treasury_fund, bool, True),
         ("erc_amount", request.erc_amount, Decimal, True),
+        ("prior_extra_month_amount", request.prior_extra_month_amount, Decimal, True),
         ("holiday_company_offset", request.holiday_company_offset, Decimal, True),
-        (
-            "public_end_of_service",
-            request.public_end_of_service,
-            PublicEndOfService,
-            True,
-        ),
     )
