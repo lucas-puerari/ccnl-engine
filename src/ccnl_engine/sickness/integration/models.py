@@ -22,6 +22,7 @@ from ccnl_engine.sickness.integration.condition.models import (
     SeriousIllnessRule,
     ShortAbsenceReduction,
 )
+from ccnl_engine.sickness.integration.hourly import HourlyEmployerIntegration
 
 _ONE = Decimal(1)
 
@@ -304,6 +305,9 @@ class SicknessRules(BaseModel):
             worker's INPS rate before the company tops it up.
         apprentices_excluded: The company owes apprentices no integration
             and no carenza (Commercio Art. 187: "né agli apprendisti").
+        hourly_employer_integration: Direct employer coefficients on a
+            separate hourly base and one sixth of contracted weekly hours,
+            independent of the INPS daily quota and statutory indemnity.
         employer_share: Share of the daily pay the employer adds to the
             INPS indemnity it pays, in place of a target rate (Pubblici
             esercizi art. 250: 'una integrazione [...] pari al 28 per cento
@@ -349,6 +353,7 @@ class SicknessRules(BaseModel):
     apprentices_excluded: bool = False
     permanent_only: bool = False
     employer_share: Decimal | None = Field(default=None, ge=0, le=1)
+    hourly_employer_integration: HourlyEmployerIntegration | None = None
     annual_daily_share: Decimal | None = Field(default=None, ge=0, le=1)
     daily_share_min_days: int | None = Field(default=None, ge=1)
     daily_share_annual_max_days: int | None = Field(default=None, ge=1)
