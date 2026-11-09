@@ -32,6 +32,7 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "inps_sector": "EmployerProfile.inps_sector",
     "just_cause": "EmploymentPeriod.just_cause",
     "level_started_on": "Employment.level_started_on",
+    "meal_benefit_days": "PeriodFacts.meal_benefit_days",
     "naspi_case": "EmploymentPeriod.naspi_case",
     "full_time_weekly_hours": "Employment.full_time_weekly_hours",
     "naspi_exclusion": "FixedTerm.naspi_exclusion",

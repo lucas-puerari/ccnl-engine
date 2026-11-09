@@ -2,6 +2,8 @@
 
 from datetime import date
 from decimal import Decimal
+from types import SimpleNamespace
+from typing import TYPE_CHECKING, cast
 
 import pytest
 
@@ -14,11 +16,17 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodInput,
 )
+from ccnl_engine.compensation.meal.services import meal_benefit, meal_benefit_issue
+from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.inputs import EmploymentPeriod, Permanent, WorkerCategory
 from ccnl_engine.period.repositories import BundledKnowledgeRepository
 from ccnl_engine.period.results import PeriodResult
+from ccnl_engine.run.types import RunKind
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
+
+if TYPE_CHECKING:
+    from ccnl_engine.period.context.services import RunContext
 
 
 def _run(
@@ -30,6 +38,8 @@ def _run(
     level: str = "4",
     ccnl_id: str = "ced-assoced",
     run: PayrollRun | None = None,
+    started_on: date | None = None,
+    ended_on: date | None = None,
 ) -> PeriodResult:
     return PayrollEngine.bundled().calculate_period(
         PeriodInput(
@@ -45,7 +55,9 @@ def _run(
                 ),
                 seniority=new_hire(year),
                 contract_type=Permanent(),
-                employment_period=EmploymentPeriod(date(year, month, 1)),
+                employment_period=EmploymentPeriod(
+                    started_on or date(year, month, 1), ended_on
+                ),
             ),
             employer=EmployerProfile(headcount=Headcount(headcount)),
             facts=PeriodFacts(
@@ -86,13 +98,165 @@ def test_daily_rate_change_is_dated() -> None:
     assert rates is not None
     assert rates.value_at(date(2025, 8, 31)) == Decimal("6.00")
     assert rates.value_at(date(2025, 9, 1)) == Decimal("8.00")
+    renewed = rates.period_at(date(2025, 9, 1))
+    assert renewed is not None
+    assert renewed.provenance is not None
+    location = renewed.provenance.location
+    assert location is not None
+    assert location.page == "32"
+    assert location.source_document.sha256 == (
+        "e197c24e9028d8f0924893d9bab708107b1ffb015d963ee06c8c2ddbe87a772e"
+    )
+
+
+def test_unknown_days_before_dated_rate_do_not_raise_issue() -> None:
+    """Before the first EUR 6 rate there is no EUR 6 or EUR 8 entitlement."""
+    ccnl = BundledKnowledgeRepository().load_ccnl("ced-assoced")
+    ctx = cast(
+        "RunContext",
+        SimpleNamespace(
+            request=SimpleNamespace(
+                meal_benefit_days=None,
+                employer=EmployerProfile(headcount=Headcount(11)),
+                run=PayrollRun.regular(2022, 1),
+            ),
+            contract=SimpleNamespace(
+                ccnl=ccnl, tctx=SimpleNamespace(competence=date(2022, 1, 1))
+            ),
+        ),
+    )
+    assert meal_benefit_issue(ctx) is None
+
+
+def test_direct_request_without_employment_span_can_post() -> None:
+    """Without a tracked span, 1 verified day * EUR 8 posts EUR 8."""
+    ccnl = BundledKnowledgeRepository().load_ccnl("ced-assoced")
+    ctx = cast(
+        "RunContext",
+        SimpleNamespace(
+            request=SimpleNamespace(
+                meal_benefit_days=1,
+                employer=EmployerProfile(headcount=Headcount(11)),
+                run=PayrollRun.regular(2026, 10),
+                employment_period=None,
+            ),
+            contract=SimpleNamespace(
+                ccnl=ccnl, tctx=SimpleNamespace(competence=date(2026, 10, 1))
+            ),
+        ),
+    )
+    assert meal_benefit(ctx)[0].amount == Decimal("8.00")
+
+
+def test_declared_days_without_employed_span_are_rejected() -> None:
+    """No employed October days cannot earn EUR 8 * 1 = EUR 8."""
+    ccnl = BundledKnowledgeRepository().load_ccnl("ced-assoced")
+    ctx = cast(
+        "RunContext",
+        SimpleNamespace(
+            request=SimpleNamespace(
+                meal_benefit_days=1,
+                employer=EmployerProfile(headcount=Headcount(11)),
+                run=PayrollRun.regular(2026, 10),
+                employment_period=SimpleNamespace(span_in_month=lambda _y, _m: None),
+            ),
+            contract=SimpleNamespace(
+                ccnl=ccnl, tctx=SimpleNamespace(competence=date(2026, 10, 1))
+            ),
+        ),
+    )
+    with pytest.raises(InvalidInputError, match="exceeds employed days"):
+        meal_benefit(ctx)
 
 
 def test_meal_benefit_does_not_guess_eligible_days() -> None:
-    """An unverified month and a declared zero-day month both pay EUR 0."""
+    """Unverified and zero-day months both pay EUR 0.
+
+    Only the unknown count blocks the calculation.
+    """
     for days in (None, 0):
         result = _run(year=2026, month=1, days=days)
         assert not [i for i in result.pay_items if i.kind == "welfare_item"]
+        issues = [i for i in result.issues if i.fact == "meal_benefit_days"]
+        assert len(issues) == (1 if days is None else 0)
+        if days is None:
+            assert issues[0].status == CalculationStatus.INCOMPLETE
+            assert any(
+                b.code == "missing_fact" and b.detail == "meal_benefit_days"
+                for b in result.blockers
+            )
+
+
+@pytest.mark.parametrize(
+    ("headcount", "ccnl_id", "run"),
+    [
+        (10, "ced-assoced", None),
+        (11, "commercio-confcommercio", None),
+        (11, "ced-assoced", PayrollRun.thirteenth(year=2026, payment_month=12)),
+    ],
+)
+def test_unknown_days_do_not_block_ineligible_runs(
+    headcount: int, ccnl_id: str, run: PayrollRun | None
+) -> None:
+    """Outside daily entitlement, zero hypothetical EUR 8 vouchers need no day fact."""
+    result = _run(
+        year=2026, month=12, days=None, headcount=headcount, ccnl_id=ccnl_id, run=run
+    )
+    assert not [i for i in result.issues if i.fact == "meal_benefit_days"]
+
+
+@pytest.mark.parametrize(
+    ("started_on", "ended_on", "days", "valid_days"),
+    [
+        (date(2026, 10, 21), None, 12, 11),
+        (date(2026, 10, 1), date(2026, 10, 10), 11, 10),
+    ],
+)
+def test_days_cannot_exceed_employed_span(
+    started_on: date, ended_on: date | None, days: int, valid_days: int
+) -> None:
+    """October hire/termination: 11/10 employed days pay EUR 88/80, not EUR 96/88."""
+    run = (
+        PayrollRun(run_kind=RunKind.TERMINATION, year=2026, month=10)
+        if ended_on is not None
+        else None
+    )
+    with pytest.raises(InvalidInputError, match="exceeds employed days"):
+        _run(
+            year=2026,
+            month=10,
+            days=days,
+            started_on=started_on,
+            ended_on=ended_on,
+            run=run,
+        )
+    result = _run(
+        year=2026,
+        month=10,
+        days=valid_days,
+        started_on=started_on,
+        ended_on=ended_on,
+        run=run,
+    )
+    assert (
+        sum(
+            (i.amount for i in result.pay_items if i.kind == "welfare_item"), Decimal(0)
+        )
+        == Decimal(8) * valid_days
+    )
+
+
+def test_unknown_days_on_termination_run() -> None:
+    """A terminated worker with unknown days posts EUR 0 and needs the fact."""
+    result = _run(
+        year=2026,
+        month=10,
+        days=None,
+        ended_on=date(2026, 10, 10),
+        run=PayrollRun(run_kind=RunKind.TERMINATION, year=2026, month=10),
+    )
+    assert not [i for i in result.pay_items if i.kind == "welfare_item"]
+    assert any(i.fact == "meal_benefit_days" for i in result.issues)
 
 
 def test_days_must_fit_competence_month() -> None:

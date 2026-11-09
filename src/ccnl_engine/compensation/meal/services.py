@@ -5,7 +5,11 @@ from __future__ import annotations
 from datetime import date
 from typing import TYPE_CHECKING
 
-from ccnl_engine.decision.models import CalculationDecision, CalculationStatus
+from ccnl_engine.decision.models import (
+    CalculationDecision,
+    CalculationIssue,
+    CalculationStatus,
+)
 from ccnl_engine.decision.rules import _ccnl_rule
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.run.types import RunKind
@@ -48,7 +52,46 @@ def meal_benefit(ctx: RunContext) -> tuple[WelfareEvent, ...]:
     if rate is None:
         msg = "no contractual daily meal benefit rate for this period"
         raise InvalidInputError(msg, feature="meal_benefit")
+    span = ctx.request.employment_period
+    if span is not None:
+        employed = span.span_in_month(competence.year, competence.month)
+        if employed is None or days > (employed[1] - employed[0]).days + 1:
+            msg = "meal_benefit_days exceeds employed days in the competence month"
+            raise InvalidInputError(msg, feature="meal_benefit")
     return (WelfareEvent(date(competence.year, competence.month, 1), rate * days),)
+
+
+def meal_benefit_issue(ctx: RunContext) -> CalculationIssue | None:
+    """Report an unknown eligible day count only when the daily benefit can apply.
+
+    Returns:
+        An incomplete missing-fact issue for an eligible run, or ``None``.
+    """
+    request = ctx.request
+    competence = ctx.contract.tctx.competence
+    series = ctx.contract.ccnl.parameters.meal_benefit_daily
+    if (
+        request.meal_benefit_days is not None
+        or request.employer.headcount.value <= 10
+        or (
+            request.run is not None
+            and request.run.run_kind not in {RunKind.REGULAR, RunKind.TERMINATION}
+        )
+        or series is None
+    ):
+        return None
+    if series.period_at(competence) is None:
+        return None
+    return CalculationIssue(
+        code="meal_benefit_days_unknown",
+        capability="welfare",
+        message=(
+            "eligible meal benefit days are unknown; state meal_benefit_days, "
+            "including zero when none are due"
+        ),
+        status=CalculationStatus.INCOMPLETE,
+        fact="meal_benefit_days",
+    )
 
 
 def meal_benefit_decisions(ctx: RunContext) -> tuple[CalculationDecision, ...]:

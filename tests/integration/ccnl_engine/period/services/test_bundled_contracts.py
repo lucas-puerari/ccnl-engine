@@ -142,6 +142,8 @@ def _facts(slug: str, ccnl: CCNL) -> PeriodFacts:
         return _DOMESTIC_FACTS
     if ccnl.parameters.hourly_pay is not None:
         return replace(resident(), ordinary_hours_worked=_FULL_MONTH_HOURS)
+    if ccnl.parameters.meal_benefit_daily is not None:
+        return replace(resident(), meal_benefit_days=0)
     return resident()
 
 
