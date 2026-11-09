@@ -61,16 +61,40 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Seniority. Il CCNL 2024 non contiene disposizioni su scatti di anzianita (parola 'scatti' assente dall'intero PDF). Regime transitorio: i lavoratori in forza al 22/12/2015 conservano un superminimo personale decrescente fino al 31/10/2029 (Art. 116 norma transitoria). Non modellato. Gli importi kitech (EUR 21.69-28.92) si riferiscono agli scatti ante-2015. Modellato: maximum_count=0. Allowances can depend on the date in service (Allowance.in_service_on, individual) (review of 2026-10-30).",
+        "text": "Art. 116(b) preserves a non-absorbable superminimo for pre-22 December 2015 hires, separate from the declining 14th-derived element in the transitory rule. With the worker's actual monthly balance, pass IndividualElement(code='legacy_superminimo', monthly=<worker balance>, absorbable=False, as_of=None, extra_months=False, tfr_relevant=True). Art. 117 excludes Art. 116(b) from the pay-of-fact base used for the thirteenth; Art. 131 does not exclude recurring pay from TFR. The amount is not printed and cannot be inferred from a scatti schedule. maximum_count=0 stops new accruals only.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "pre_2015_superminimo_missing",
           "applies_when": {
-            "trigger": "outside_input",
-            "effective_until": "2029-11-01"
+            "trigger": "outside_input"
           },
-          "remediation": "Model the decreasing personal superminimo of Art. 116 as an allowance with in_service_on 2015-12-22."
+          "remediation": "Supply the worker's non-absorbable Art. 116(b) monthly balance as an individual element; absent that worker fact, no agreement-wide amount is available."
+        },
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "sport-personal-ccnl",
+              "title": "Sport 2024-2026",
+              "kind": "associazione",
+              "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+              "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+            },
+            "page": "88-89, 91, 94",
+            "section": "Arts. 116(b), 117, 125, 131",
+            "quote": "b) superminimo non assorbibile per i dipendenti assunti ante 22/12/2015;"
+          },
+          "transformation": "A worker-supplied non-absorbable monthly superminimo is excluded from the thirteenth by Art. 117 and included in ordinary TFR pay under Art. 131.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-09T11:25:22Z",
+            "verified_at": "2026-11-09T11:25:22Z",
+            "verified_by": "claude-opus-5-5",
+            "verification_status": "verified",
+            "review_id": "2026-11-09-ai-personal-sport"
+          }
         }
       },
       {
@@ -147,7 +171,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Quattordicesima transitoria. Art. 116 norma transitoria: i lavoratori in forza al 22/12/2015 ricevono un superminimo personale assorbibile equivalente alla quattordicesima folded-in (rata mensile decrescente fino al 31/10/2029). Per la popolazione corrente (post-2015): 13 mensilita. La quattordicesima residuale per i lavoratori ante-2015 non e modellata; it may be the same element as pre_2015_superminimo_missing, which a reading of Art. 116 settles. Allowances can depend on the date in service (Allowance.in_service_on) (review of 2026-10-30).",
+        "text": "Art. 116 transitory rule folds the former fourteenth into a separate absorbable monthly superminimo for pre-22 December 2015 hires, decreasing through 31 October 2029; there is no residual separate fourteenth. The agreement has 13 months. The worker's original fourteenth and the dated decreasing/absorption schedule are not printed. IndividualElement(absorbable=True, as_of=<balance date>, extra_months=True, tfr_relevant=True) only reduces on minimum increases and cannot implement an independently declining schedule or determine the worker's balance; even a supplied balance alone is insufficient for future periods.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -156,7 +180,32 @@
             "trigger": "outside_input",
             "effective_until": "2029-11-01"
           },
-          "remediation": "Read Art. 116 and model the residual quattordicesima as an allowance with in_service_on 2015-12-22, or resolve it as part of pre_2015_superminimo_missing."
+          "remediation": "Obtain the worker's dated 14th-derived balances and the actual decrease/absorption schedule; model the monthly transition, not a separate fourteenth. No schedule is stated on the cited page."
+        },
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "sport-personal-ccnl",
+              "title": "Sport 2024-2026",
+              "kind": "associazione",
+              "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+              "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+            },
+            "page": "89",
+            "section": "Art. 116, transitory rule",
+            "quote": "Il superminimo assorbibile, per i dipendenti assunti ante 22/12/2015, è derivante dalla suddivisione dell’importo della 14^ mensilità nelle 13 attualmente previste, ed è erogato mensilmente in forma decrescente fino al 31/10/2029;"
+          },
+          "transformation": "The former fourteenth is a monthly declining element, not another extra month; the source gives neither the worker balance nor the dated decline steps.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-09T11:25:22Z",
+            "verified_at": "2026-11-09T11:25:22Z",
+            "verified_by": "claude-opus-5-5",
+            "verification_status": "verified",
+            "review_id": "2026-11-09-ai-personal-sport"
+          }
         }
       },
       {
@@ -1441,7 +1490,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "49426ccd7f7f95719d79a8bd8f0fbcb3308ff7b37dce687b6d09cbd5dc8726fb",
+    "source_hash": "d9a5d37a9edd475900fd6d0c69c98b5d17bc5390a07d5ea3364db49b64a85d62",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -2286,6 +2335,21 @@
         "checked": [
           "work_rules.sickness_rules.holiday",
           "work_rules.insured_absence.injury.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-personal-sport",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 116(b) balance versus 14th-derived declining amount, pp. 88-89, 91, 94.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+            "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+          }
         ]
       }
     ]
