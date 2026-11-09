@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2017-07-03 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -73,6 +73,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 32(a,b,c) and holiday-in-absence paragraph, cached PDF pp. 104-105. | confirmed | Art. 32 excludes letter a) (25 April, 1 May and 2 June); the national calendar includes these, so a blanket sickness holiday rule would overpay. Injury and patron saint also remain unmodelled. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 32 and Art. 38 of the 2017 CCNL, physical PDF pages 104 and 112, former-worker holiday hours and December pay. | confirmed | The Sunday daily quota already exists. Former legal operai receive 80 minutes for weekday holidays and January weekend Epiphany, subject to company offset; former Part One workers in service on 2008-12-31 receive a non-absorbable 11h10 December annual payment. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 32 p. 104 and Art. 38 p. 112: local patron, 2009 effective date and termination settlement. | confirmed | Local patron is letter c of Art. 32; the 80-minute entitlement starts in 2009. Art. 38 pays the annual amount with December wages, without an express earlier termination advance. Hourly cottimo and other hourly elements remain outside the computed base. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 23 and Art. 29 paragraph 2 of the cached 2017 CCNL, physical PDF pages 94 and 102; immediate banked overtime premium only. | confirmed | The bank election covers every overtime hour worked in a month; banked hours pay 50% of the applicable premium immediately, with rest and any residual payout deferred. Flexible hours are not overtime and need a separate schedule model. |
 
 ## Salary table
 
@@ -144,11 +145,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model row i and the shift-worker column of the Art. 29 overtime rows.
 
 !!! warning "metalmeccanico-confapi/flexibility_and_hours_bank · overtime · impact yes · open"
-    Art. 23: flessibilità beyond 40 hours (15%/20%) and banca ore (50% of the overtime premium).
+    Art. 23 flexible hours above 40 per week (15% weekday, 20% Saturday) remain outside the model: they are not overtime. Art. 29 banked overtime pays half the applicable overtime premium now; the elected rest balance and eventual payout at current pay are not tracked. The election covers all overtime in the month and must be declared by the next month; callers must supply a consistent banked choice for each month's events.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the flexibility and hours-bank premiums.
+    **Remediation:** Model flexible schedule hours and compensation windows separately from overtime, and track elected overtime rest balances and their later liquidation.
 
 !!! warning "metalmeccanico-confapi/sunday_holiday_and_ex_operai · base_salary · impact yes · open"
     The Sunday holiday quota is modelled. Art. 32 former legal operai hours cover national and stated local patron weekday holidays from 2009; Art. 38 December annual payment is separate. Unstated patron days, hourly elements beyond fixed monthly pay and nonstandard company holiday arrangements not specified by the caller remain outside the calculation.

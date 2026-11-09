@@ -168,7 +168,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 23: flessibilità beyond 40 hours (15%/20%) and banca ore (50% of the overtime premium).",
+        "text": "Art. 23 flexible hours above 40 per week (15% weekday, 20% Saturday) remain outside the model: they are not overtime. Art. 29 banked overtime pays half the applicable overtime premium now; the elected rest balance and eventual payout at current pay are not tracked. The election covers all overtime in the month and must be declared by the next month; callers must supply a consistent banked choice for each month's events.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -176,7 +176,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the flexibility and hours-bank premiums."
+          "remediation": "Model flexible schedule hours and compensation windows separately from overtime, and track elected overtime rest balances and their later liquidation."
         }
       },
       {
@@ -3298,7 +3298,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "de614444b8a9b36178c05c5fd611bf90a6a03bf61abb93ad64364bdb79943501",
+    "source_hash": "1d265d534fc6e0917ac158f60ef11bce7dec1fff146cb12f03bc92616a2e0453",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3361,6 +3361,33 @@
             "review_id": "2026-10-20-ai-individual-hourly-base",
             "effective_from": "2021-06-01"
           }
+        }
+      },
+      "overtime_bank_share": "0.50",
+      "overtime_bank_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-unionmeccanica-confapi-2017",
+            "title": "CCNL 3 luglio 2017 piccola e media industria metalmeccanica, orafa e installazione impianti (Unionmeccanica-Confapi, Fim-Cisl, Fiom-Cgil, Uilm-Uil), testo a stampa",
+            "kind": "associazione",
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "published_on": "2017-07-03",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          },
+          "page": "102",
+          "section": "Art. 29, paragraph 2 - Banca ore",
+          "quote": "Per le ore di straordinario che confluiscono nella ‘Banca ore’ verrà corrisposta la maggiorazione onnicomprensiva pari al 50% di quella prevista per il lavoro straordinario nelle varie modalità di esplicazione, da computare sugli elementi utili al calcolo delle maggiorazioni per lavoro straordinario, notturno e festivo."
+        },
+        "transformation": "When banked is elected, pay only half the applicable overtime supplement on the overtime hourly base; the ordinary hour becomes rest credit, not current cash. The election and the bank balance are caller responsibilities; no liquidation date is inferred.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-09T19:05:49Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-09T19:05:49Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-09-confapi-bank-premium"
         }
       },
       "overtime_bands": [
@@ -4847,6 +4874,28 @@
         "independence": "same_process",
         "checked": [
           "work_rules.legacy_holiday_payment"
+        ]
+      },
+      {
+        "id": "2026-11-09-confapi-bank-premium",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 23 and Art. 29 paragraph 2 of the cached 2017 CCNL, physical PDF pages 94 and 102; immediate banked overtime premium only.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          }
+        ],
+        "findings": [
+          "The bank election covers every overtime hour worked in a month; banked hours pay 50% of the applicable premium immediately, with rest and any residual payout deferred. Flexible hours are not overtime and need a separate schedule model."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements.overtime_bank_share",
+          "coverage.notes.flexibility_and_hours_bank"
         ]
       }
     ],
