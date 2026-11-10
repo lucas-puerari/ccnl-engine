@@ -1020,7 +1020,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/forze-polizia-ordinamento-civile",
       "ruleset_version": "2026.2",
-      "source_hash": "0dbcf499e37e3b3e1ab5c1bba9352262bbfa874b102e6d41718e98296b2af86f",
+      "source_hash": "016d06328fd6a6828d55de4681fc8b0c153c13f3fda0f86c4d2158dc3adc7f22",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/forze-polizia-ordinamento-civile.json.gz"
@@ -3581,7 +3581,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "4ff32de5b2254d0cb45e683084bb416ae8406532caa3e3b1a75834d7563ae4cc",
+      "source_hash": "b52c31605ac111390c909c21d824e351ed95a24497f7b8ad146244b2152c9498",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/forze-polizia-ordinamento-civile.json.gz",
