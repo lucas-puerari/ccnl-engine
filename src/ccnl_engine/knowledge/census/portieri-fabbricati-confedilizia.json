@@ -19,18 +19,18 @@
       }
     },
     {
-      "id": "c4_first_employment_rate",
+      "id": "c4_first_employment_eligibility",
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "EXCLUDED PROFILES: A1-A9 (portieri con alloggio, 45 h or 48 h/week — divisor would be 195 or 208, incompatible with single CCNLParameters.hourly_divisor; also alloggio in-kind not modelled). C1 and C2 (preposti alla direzione tecnica o amministrativa — Art. 62 comma 2 exempts them from the 40 h ceiling; no fixed hourly divisor applies). C4 primo impiego (entry-rate sub-classification at EUR 1290.52/2026, transitional not permanent level).",
+      "rule": "FIRST-EMPLOYMENT C4: select C4_PRIMO_IMPIEGO only for a first-employment office clerk during at most 12 months of effective service. The engine cannot measure effective service or verify first employment; the caller must switch to C4 when eligibility expires. Elapsed calendar months are not a substitute for effective service. The published entry-rate table ends on 31 December 2028; the data model requires an open-ended final period, so a mandatory cutoff redirects to regular C4 on 1 January 2029 rather than paying the entry rate after its published end. The source does not specify an entry rate for 2029.",
       "calculation": "ccnl/portieri-fabbricati-confedilizia:coverage.notes",
       "state": "absent",
-      "remediation": "Model the C4 primo impiego entry rate (EUR 1290.52 in 2026) as a separate level or a role-gated variant, or record a limitation.",
+      "remediation": "Caller verifies first employment and effective service and switches to C4 after at most 12 months; elapsed-month transition does not measure effective service.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "portieri-fabbricati-confedilizia/c4_first_employment_rate"
+          "portieri-fabbricati-confedilizia/c4_first_employment_eligibility"
         ]
       }
     },
@@ -47,6 +47,22 @@
       "links": {
         "limitations": [
           "disability_permit_tfr"
+        ]
+      }
+    },
+    {
+      "id": "excluded_profiles_divisor",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "EXCLUDED PROFILES: A1-A9 (porters with accommodation, 45 or 48 h/week; their divisor and in-kind accommodation are not modeled). C1 and C2 (technical or administrative managers without a fixed hourly ceiling under Art. 62(2)).",
+      "calculation": "ccnl/portieri-fabbricati-confedilizia:coverage.notes",
+      "state": "absent",
+      "remediation": "Model separate schedules and in-kind accommodation before including excluded profiles.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "portieri-fabbricati-confedilizia/excluded_profiles_divisor"
         ]
       }
     },
