@@ -24,12 +24,14 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.fund.models import EmployerFund
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.pension_fund.enrolment.rules import (
     check_category,
     fund_of,
     in_force,
 )
+from ccnl_engine.pension_fund.fixed_base import fixed_level_base
 from ccnl_engine.pension_fund.inputs import PENSION_FEATURE
 
 if TYPE_CHECKING:
@@ -38,7 +40,6 @@ if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.agreement.validity.rules import ValidityPeriod
     from ccnl_engine.employment.category.models import WorkerCategory
-    from ccnl_engine.fund.models import EmployerFund
     from ccnl_engine.pension_fund.inputs import (
         PensionFundEnrolment,
     )
@@ -78,6 +79,7 @@ class PensionFundTerms:
         conventional_base: Base of a fund on a conventional base, stated by
             the enrolment; ``None`` when not stated.
         enrolled_monthly: Fixed employer amount of an enrolled worker.
+        fixed_level_base: Historical fixed base of the worker's level, if set.
     """
 
     fund: EmployerFund
@@ -93,6 +95,7 @@ class PensionFundTerms:
     erc_unknown: bool = False
     conventional_base: Decimal | None = None
     enrolled_monthly: Decimal = _ZERO
+    fixed_level_base: Decimal = _ZERO
 
 
 @dataclass(frozen=True)
@@ -141,6 +144,7 @@ def resolve_terms(
     apprentice: bool,
     minimum_base: Decimal = _ZERO,
     erc_amount: Decimal | None = None,
+    level_code: str | None = None,
 ) -> PensionFundTerms:
     """Return the rates of the enrolment on ``day``.
 
@@ -201,6 +205,7 @@ def resolve_terms(
         erc_unknown=fund.erc_holder_rate is not None and erc_amount is None,
         conventional_base=enrolment.conventional_base,
         enrolled_monthly=_ZERO if fixed is None else fixed[1],
+        fixed_level_base=fixed_level_base(fund, level_code, day),
     )
 
 

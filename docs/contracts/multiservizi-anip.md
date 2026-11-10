@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 74 verified / 14 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 80 verified / 14 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -76,6 +76,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-10 | claude-opus-5-5 (ai) | Category-specific seniority amounts and remaining limitations, CNEL 105782 art. 22 pp. 41-42, 90. | corrected | The printed sector amounts include levels 5 and 6. Impiegati scatti are priced at maturation and kept after promotion; the automatic freeze and ceiling remain unsupported. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Sickness art. 51 in cached CNEL 105782 pp. 67-68 and its replacement in CNEL 139292 pp. 22-24; category bands and remaining basis differences. | corrected | Operai receive 100% net global pay to day 180 and 50% global pay to day 270; the latter is not stated as net. Impiegati receive stipendio and contingenza in full for five months and half for seven; both share the rolling 36-month comporto.<br>Rule-wide net_basis cannot switch at day 181; global pay cannot restrict the impiegati base to stipendio and contingenza. Those differences remain open. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Allegato 8 pp. 119-123 of the 2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement: maximum terms and pay grades effective 20 July 2012. | corrected | The annex prints II 24, III-IV 30, V-VII 36 months; the first half pays two ordinary levels below, the second half one below, except destination II at I throughout. The CNEL renewal has no amendment to these clauses. Individual reductions and extensions remain outside the maximum-term tracks. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Art. 54 pension rates, frozen per-level bases and fund eligibility in CNEL 105782 pp. 69-70, 90; membership routing remains limited. | corrected | Verified all ten configured level bases against the page 90 table and the 1% shares and twelve payments against pp. 69-70.<br>The printed Q and 7 illustrative 1% amounts (12.28) differ from 1% of the printed 1222.75 base (12.23); applied the stated percentage and base, not the inconsistent illustrative amount.<br>Association-dependent fund choice and six-month calendar-year fixed-term eligibility remain open. |
 
 ## Salary table
 
@@ -158,13 +159,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model each evidenced allowance on its own qualifying duty and base; track the individual EDAR and absorption at the first subsequent increment.
 
-!!! warning "multiservizi-anip/multiservizi_pension_frozen_base · pension_fund_contribution · impact yes · open"
-    COMPLEMENTARY PENSION (CNEL 105782 art. 54, pp. 69-70, 90): enrolled members contribute with their employer at 1% each on the tabellare and contingenza frozen at 1 January 2001, for twelve monthly payments. This is not a percentage of current pay. The eligible funds depend on the employer association (Previambiente, Fondapi or Cooperlavoro), and fixed-term membership depends on six months of work in the calendar year. ASIM and ONBSI are addressed by the separate health_and_bilateral_funds limitation.
-
-    **Applies when:** `pension_fund_contribution` applies.
-
-    **Remediation:** Apply the per-level historical base to enrolled members on twelve months, enforce the membership conditions and employee and employer shares.
-
 !!! warning "multiservizi-anip/renewal_not_signed_by_anip · base_salary · impact yes · open"
     SIGNATORIES: ANIP is not among the original signatories of the 13 June 2025 renewal and the 6 August 2025 tables (CNEL 234754, 234752); a later ANIP accession or a separate ANIP agreement was not found but is not excluded. From July 2025 the file applies the ANIP-signed fifth tranche of the 8 June 2021 renewal (CNEL 139292 p. 34); with an accession the 2025 renewal minima (level 2 819.21 from July 2025) would apply instead.
 
@@ -199,6 +193,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies.
 
     **Remediation:** Supply the individually agreed term and qualification or absence details before applying a shortened or extended progression; the tracks encode only the printed maximum terms.
+
+!!! warning "multiservizi-anip/multiservizi_pension_membership_eligibility · pension_fund_contribution · impact yes · open"
+    COMPLEMENTARY PENSION (CNEL 105782 art. 54, pp. 69-70): The frozen 1 January 2001 tabellare and contingenza bases, 1% employer and member shares and twelve monthly payments are modelled for enrolled workers. Fund eligibility still depends on the employer association (Previambiente for FISE, Fondapi for CONFAPI, Cooperlavoro for cooperatives, with a choice for non-affiliated employers); fixed-term membership requires six months of work within the calendar year. These eligibility facts are not established by the enrolment alone. ASIM and ONBSI are addressed by the separate health_and_bilateral_funds limitation.
+
+    **Applies when:** `pension_fund_contribution` applies.
+
+    **Remediation:** Verify the employer association and accumulated calendar-year fixed-term work before accepting the caller-selected fund and enrolment. No eligibility is inferred from the level or the fund code.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

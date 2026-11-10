@@ -112,6 +112,7 @@ def run_pension(inp: _AmountsInput) -> PensionContribution | None:
         FundContributionBase.TFR_BASE: inp.tfr_pay,
         FundContributionBase.CONTRACTUAL_MINIMUM: terms.minimum_base,
         FundContributionBase.CONVENTIONAL: terms.conventional_base or _ZERO,
+        FundContributionBase.FIXED_BY_LEVEL: terms.fixed_level_base,
     }
     fund = terms.fund
     fixed = terms.enrolled_monthly
