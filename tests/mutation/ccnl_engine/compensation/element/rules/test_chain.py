@@ -242,6 +242,47 @@ def test_percentage_allowance_without_floor(
     assert {a.code: value for a, value in chain.allowances}["SUPPLEMENT"] == 25
 
 
+def test_percentage_allowance_can_include_seniority(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """A 2381.17 salary plus a 53.10 increment pays 316.46 at 13%.
+
+    Without the role there is no allowance; without an increment the same
+    worker gets 309.55 (2381.17 * 0.13, rounded to cents).
+    """
+    monkeypatch.setattr(
+        rules,
+        "_seniority_amount",
+        lambda *args, **kwargs: Decimal("53.10") if args[2] else Decimal(0),
+    )
+    level: Any = SimpleNamespace(
+        code="1/2",
+        base_salary=_time_series("2381.17"),
+        fixed_allowances=(
+            _allowance(code="QUADRI_FUNCTION", monthly="0", role="quadro").model_copy(
+                update={
+                    "percentage_rate": Decimal("0.13"),
+                    "percentage_include_seniority": True,
+                }
+            ),
+        ),
+    )
+    ccnl = _ccnl()
+    with_increment = _level_chain(
+        ccnl, level, 1, frozenset({"quadro"}), _DAY, is_apprentice=False
+    )
+    assert with_increment.seniority == Decimal("53.10")
+    assert {a.code: amount for a, amount in with_increment.allowances} == {
+        "QUADRI_FUNCTION": Decimal("316.46")
+    }
+    without_increment = _level_chain(
+        ccnl, level, 0, frozenset({"quadro"}), _DAY, is_apprentice=False
+    )
+    assert without_increment.allowances[0][1] == Decimal("309.55")
+    without_role = _level_chain(ccnl, level, 1, frozenset(), _DAY, is_apprentice=False)
+    assert not without_role.allowances
+
+
 def test_percentage_allowance_uses_current_elements_before_separate_floor(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:

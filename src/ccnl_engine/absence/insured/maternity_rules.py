@@ -31,6 +31,7 @@ class MaternityRules(BaseModel):
             (Studi art. 110 c. 8: "in modo da raggiungere complessivamente il
             100%"), net of the INPS share and of the top-up of the day.
         paternity_holiday: The same target in a compulsory paternity leave.
+        parental_holiday: The holiday target during optional (parental) leave.
         provenance: Source of the clause.
     """
 
@@ -44,6 +45,7 @@ class MaternityRules(BaseModel):
     net_basis: bool = False
     holiday: MaternityHoliday | None = None
     paternity_holiday: MaternityHoliday | None = None
+    parental_holiday: MaternityHoliday | None = None
     provenance: RuleProvenance
 
     @model_validator(mode="after")

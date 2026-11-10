@@ -38,6 +38,7 @@ from ccnl_engine.period.context.agreement.services import load_contract
 from ccnl_engine.period.context.services import RunContext
 from ccnl_engine.period.payslip.services import resolve_payment
 from ccnl_engine.seniority.age.rules import months_from_age
+from ccnl_engine.seniority.credit import credited_increment_months
 from ccnl_engine.seniority.freeze.rules import (
     months_in_cohort,
     months_without_freeze,
@@ -105,12 +106,18 @@ def _base_chain(
             contract.tctx.competence,
             None if period is None else period.started_on,
         )
+    # An unknown apprenticeship duration counts the service alone (a lower
+    # bound); other service-gated elements use the ordinary service months.
+    increment_months = credited_increment_months(
+        months, contract.ccnl.parameters.seniority_increments, request
+    )
     return _resolve_chain(
         contract.ccnl,
         contract.level,
         request.contract_type,
         contract.tctx.competence,
         seniority_months=months,
+        increment_months=increment_months,
         roles=request.roles or frozenset(),
         worker_category=worker_category,
         weekly_hours=_hours_value(request.weekly_hours) if part_time else None,

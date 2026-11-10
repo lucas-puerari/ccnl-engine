@@ -220,7 +220,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 10 p. 49: the 65% credit of the apprenticeship for the seniority increments of the worker kept on.",
+        "text": "Art. 10 p. 49: 65% of the apprenticeship counts towards the seniority increments of the worker kept on (from 1 November 2018), modelled by apprenticeship_credit_share with the stated SeniorityFact.apprenticeship_months. The text does not say how a fractional credited month is rounded; the engine compares the exact credit with the increment threshold.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -228,7 +228,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Credit 65% of the apprenticeship to the seniority."
+          "remediation": "Resolved: apprenticeship_credit_share 0.65 on the stated apprenticeship months, read on 2026-11-09.",
+          "status": "resolved"
         }
       },
       {
@@ -514,6 +515,7 @@
           }
         }
       },
+      "apprenticeship_credit_share": "0.65",
       "provenance": {
         "status": "verified",
         "location": {
@@ -527,18 +529,18 @@
           },
           "page": "115-116",
           "section": "Art. 41 - Aumenti periodici di anzianità; Art. 10 (p. 49)",
-          "quote": "Il lavoratore per ogni biennio di anzianità di servizio prestato [...] in vigore dal 1° gennaio 2001 [...] Il numero massimo degli aumenti periodici maturabili è pari a 5."
+          "quote": "Il lavoratore per ogni biennio di anzianità di servizio prestato [...] in vigore dal 1° gennaio 2001 [...] Il numero massimo degli aumenti periodici maturabili è pari a 5. | Ai fini della maturazione degli aumenti periodici di anzianità, a decorrere dal 1° novembre 2018, il periodo di apprendistato sarà computato nella misura del 65%."
         },
-        "transformation": "Five biennial increments, amounts of the column 'in vigore dal 1° gennaio 2001', from the first day of the month after the biennio (p. 116). Apprentices accrue none during the apprenticeship (apprentice_amount 0): Art. 10 p. 49 counts the period, at 65% from 1 November 2018, only for the worker kept on ('Al lavoratore che venga mantenuto in servizio').",
+        "transformation": "Five biennial increments, amounts of the column 'in vigore dal 1° gennaio 2001', from the first day of the month after the biennio (p. 116). Apprentices accrue none during the apprenticeship (apprentice_amount 0): Art. 10 p. 49 counts the period, at 65% from 1 November 2018, only for the worker kept on ('Al lavoratore che venga mantenuto in servizio'). apprenticeship_credit_share 0.65 credits 65% of the completed apprenticeship (SeniorityFact.apprenticeship_months) towards the increments of the worker kept on; the credited months are not rounded, as the text is silent.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
           "extraction_timestamp": "2026-10-13T07:18:29Z",
           "effective_from": "2021-06-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-10-13T07:18:29Z",
+          "verified_at": "2026-11-09T22:32:27Z",
           "verification_status": "verified",
-          "review_id": "2026-10-13-ai-production"
+          "review_id": "2026-11-09-ai-confapi-apprentice-credit"
         }
       },
       "apprentice_amount": {
@@ -3298,7 +3300,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "15dbb6bf0246891fb113605a2a6e74f602104ebad80c1e8f7f499f9579265bd3",
+    "source_hash": "e096fe68eb4fb9b13d117626b3ed08b319c33e4bcaf8e762578472c2f70e2fb0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5151,6 +5153,28 @@
         "checked": [
           "work_rules.time_supplements.overtime_bank_share",
           "coverage.notes.flexibility_and_hours_bank"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-confapi-apprentice-credit",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 10 p. 49 apprenticeship credit towards seniority increments.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          }
+        ],
+        "findings": [
+          "Art. 10 counts the apprenticeship at 65% towards the increments of the worker kept on from 1 November 2018; added apprenticeship_credit_share 0.65 and resolved the limitation."
+        ],
+        "checked": [
+          "parameters.seniority_increments",
+          "coverage.notes"
         ]
       }
     ],

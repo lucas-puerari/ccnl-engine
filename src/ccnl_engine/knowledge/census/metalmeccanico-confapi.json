@@ -3,22 +3,6 @@
   "ccnl_id": "metalmeccanico-confapi",
   "requirements": [
     {
-      "id": "apprentice_seniority_credit",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 10 p. 49: the 65% credit of the apprenticeship for the seniority increments of the worker kept on.",
-      "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
-      "state": "absent",
-      "remediation": "Credit 65% of the apprenticeship to the seniority.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "metalmeccanico-confapi/apprentice_seniority_credit"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",

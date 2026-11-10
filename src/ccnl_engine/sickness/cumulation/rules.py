@@ -223,6 +223,14 @@ class CumulativeTreatment:
         first = self.window_first(day)
         earlier = sum(_overlap(e, first, day) for e in self.earlier if self._counted(e))
         own = _overlap(self.episode, first, day) if self._counted(self.episode) else 0
+        if self.cumulation.hospital_excluded_from_counts:
+            episodes = (e for e in (*self.earlier, self.episode) if self._counted(e))
+            hospital = sum(
+                _stay_overlap(stay, first, day)
+                for episode in episodes
+                for stay in episode.hospital_stays or ()
+            )
+            return earlier + own - hospital
         return earlier + own
 
     def comporto_count(self, day: date) -> int:

@@ -690,7 +690,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 4  14,89  15,26  15,58  15,90  16,09"
+                    "quote": "4  14,89  15,26  15,58  15,90  16,09"
                   },
                   "note": "Column lug 2024; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -701,7 +701,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -721,7 +722,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 4  14,89  15,26  15,58  15,90  16,09"
+                    "quote": "4  14,89  15,26  15,58  15,90  16,09"
                   },
                   "note": "Column giu 2025; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -732,7 +733,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -752,7 +754,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 4  14,89  15,26  15,58  15,90  16,09"
+                    "quote": "4  14,89  15,26  15,58  15,90  16,09"
                   },
                   "note": "Column mag 2026; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -763,7 +765,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -783,7 +786,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 4  14,89  15,26  15,58  15,90  16,09"
+                    "quote": "4  14,89  15,26  15,58  15,90  16,09"
                   },
                   "note": "Column apr 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -794,7 +797,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -814,7 +818,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 4  14,89  15,26  15,58  15,90  16,09"
+                    "quote": "4  14,89  15,26  15,58  15,90  16,09"
                   },
                   "note": "Column nov 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -825,7 +829,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               }
             ]
@@ -853,7 +858,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 5  14,19  14,54  14,85  15,16  15,33"
+                    "quote": "5  14,19  14,54  14,85  15,16  15,33"
                   },
                   "note": "Column lug 2024; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -864,7 +869,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -884,7 +890,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 5  14,19  14,54  14,85  15,16  15,33"
+                    "quote": "5  14,19  14,54  14,85  15,16  15,33"
                   },
                   "note": "Column giu 2025; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -895,7 +901,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -915,7 +922,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 5  14,19  14,54  14,85  15,16  15,33"
+                    "quote": "5  14,19  14,54  14,85  15,16  15,33"
                   },
                   "note": "Column mag 2026; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -926,7 +933,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -946,7 +954,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 5  14,19  14,54  14,85  15,16  15,33"
+                    "quote": "5  14,19  14,54  14,85  15,16  15,33"
                   },
                   "note": "Column apr 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -957,7 +965,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -977,7 +986,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 5  14,19  14,54  14,85  15,16  15,33"
+                    "quote": "5  14,19  14,54  14,85  15,16  15,33"
                   },
                   "note": "Column nov 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -988,7 +997,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               }
             ]
@@ -1016,7 +1026,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 6s  13,58  13,91  14,20  14,50  14,67"
+                    "quote": "6s  13,58  13,91  14,20  14,50  14,67"
                   },
                   "note": "Column lug 2024; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -1027,7 +1037,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -1047,7 +1058,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 6s  13,58  13,91  14,20  14,50  14,67"
+                    "quote": "6s  13,58  13,91  14,20  14,50  14,67"
                   },
                   "note": "Column giu 2025; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -1058,7 +1069,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -1078,7 +1090,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 6s  13,58  13,91  14,20  14,50  14,67"
+                    "quote": "6s  13,58  13,91  14,20  14,50  14,67"
                   },
                   "note": "Column mag 2026; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -1089,7 +1101,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -1109,7 +1122,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 6s  13,58  13,91  14,20  14,50  14,67"
+                    "quote": "6s  13,58  13,91  14,20  14,50  14,67"
                   },
                   "note": "Column apr 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -1120,7 +1133,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -1140,7 +1154,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 6s  13,58  13,91  14,20  14,50  14,67"
+                    "quote": "6s  13,58  13,91  14,20  14,50  14,67"
                   },
                   "note": "Column nov 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -1151,7 +1165,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               }
             ]
@@ -1179,7 +1194,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 6  13,41  13,74  14,03  14,32  14,48"
+                    "quote": "6  13,41  13,74  14,03  14,32  14,48"
                   },
                   "note": "Column lug 2024; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -1190,7 +1205,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -1210,7 +1226,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 6  13,41  13,74  14,03  14,32  14,48"
+                    "quote": "6  13,41  13,74  14,03  14,32  14,48"
                   },
                   "note": "Column giu 2025; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -1221,7 +1237,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -1241,7 +1258,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 6  13,41  13,74  14,03  14,32  14,48"
+                    "quote": "6  13,41  13,74  14,03  14,32  14,48"
                   },
                   "note": "Column mag 2026; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -1252,7 +1269,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -1272,7 +1290,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 6  13,41  13,74  14,03  14,32  14,48"
+                    "quote": "6  13,41  13,74  14,03  14,32  14,48"
                   },
                   "note": "Column apr 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -1283,7 +1301,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -1303,7 +1322,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 6  13,41  13,74  14,03  14,32  14,48"
+                    "quote": "6  13,41  13,74  14,03  14,32  14,48"
                   },
                   "note": "Column nov 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -1314,7 +1333,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               }
             ]
@@ -1342,7 +1362,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 7  12,55  12,86  13,13  13,40  13,56"
+                    "quote": "7  12,55  12,86  13,13  13,40  13,56"
                   },
                   "note": "Column lug 2024; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -1353,7 +1373,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -1373,7 +1394,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 7  12,55  12,86  13,13  13,40  13,56"
+                    "quote": "7  12,55  12,86  13,13  13,40  13,56"
                   },
                   "note": "Column giu 2025; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -1384,7 +1405,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -1404,7 +1426,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 7  12,55  12,86  13,13  13,40  13,56"
+                    "quote": "7  12,55  12,86  13,13  13,40  13,56"
                   },
                   "note": "Column mag 2026; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -1415,7 +1437,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -1435,7 +1458,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 7  12,55  12,86  13,13  13,40  13,56"
+                    "quote": "7  12,55  12,86  13,13  13,40  13,56"
                   },
                   "note": "Column apr 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -1446,7 +1469,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               },
               {
@@ -1466,7 +1490,7 @@
                     },
                     "page": "44",
                     "section": "EXTRA — replacement of Art. 155(3) table",
-                    "quote": "livelli  lug 2024  giu 2025  mag 2026  apr 2027  nov 2027; 7  12,55  12,86  13,13  13,40  13,56"
+                    "quote": "7  12,55  12,86  13,13  13,40  13,56"
                   },
                   "note": "Column nov 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
                   "extraction": {
@@ -1477,7 +1501,8 @@
                     "verified_at": "2026-11-09T23:06:47Z",
                     "verification_status": "verified",
                     "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
-                  }
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
                 }
               }
             ]
@@ -3818,7 +3843,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "aea75eba0377b9304f066ab7f3340d64f01c7e8b778ffaad7bcdd389780e13d8",
+    "source_hash": "0bb256b9c2b12b016a9590976f1f538bb41afeb13395a726c6f70b47a3ceab37",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },

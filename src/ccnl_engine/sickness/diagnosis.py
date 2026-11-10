@@ -20,6 +20,8 @@ class SeriousIllnessKind(StrEnum):
     """
 
     ONCOLOGICAL = "oncological"
+    MULTIPLE_SCLEROSIS = "multiple_sclerosis"
+    MUSCULAR_DYSTROPHY = "muscular_dystrophy"
     TUBERCULOSIS_CARE = "tuberculosis_care"
     AIDS = "aids"
     SEVERE_DISABILITY = "severe_disability"

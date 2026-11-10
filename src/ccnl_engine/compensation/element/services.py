@@ -124,6 +124,7 @@ def _resolve_chain(
     as_of: date,
     *,
     seniority_months: int | None = None,
+    increment_months: int | None = None,
     roles: frozenset[str] = frozenset(),
     worker_category: WorkerCategory | None = None,
     weekly_hours: Decimal | None = None,
@@ -164,6 +165,9 @@ def _resolve_chain(
             contract_type,
             as_of,
             seniority_months=seniority_months,
+            increment_months=(
+                seniority_months if increment_months is None else increment_months
+            ),
             roles=roles,
             worker_category=worker_category,
             hired_on=hired_on,
@@ -226,6 +230,7 @@ def _contract_chain(
     as_of: date,
     *,
     seniority_months: int | None,
+    increment_months: int | None,
     roles: frozenset[str],
     worker_category: WorkerCategory | None,
     hired_on: date | None,
@@ -244,7 +249,7 @@ def _contract_chain(
         ccnl, level, contract_type, as_of, level_started_on, hired_on=hired_on
     )
     count = _seniority_count(
-        ccnl, level, seniority_months, worker_category, contract_type
+        ccnl, level, increment_months, worker_category, contract_type
     )
     scaling: ApprenticeshipScaling | None = None
     if isinstance(contract_type, Apprentice) and contract_type.programme in _DUAL:
@@ -285,6 +290,7 @@ def _contract_chain(
             is_apprentice=False,
             worker_category=worker_category,
             seniority_months=seniority_months,
+            increment_months=increment_months,
             career_months=career_months,
         )
     return chain, scaling
