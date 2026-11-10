@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2020-10-08 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2020-07-01 |
 
 ## Review history
@@ -68,6 +68,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Frozen RIA, pay base, thirteenth and TFR, Arts. 56, 58, 66, 73. | confirmed | — |
 | 2026-11-09 | claude-opus-5-5 (ai) | Arts. 60-61 night hourly allowance and on-call turn pay in the cached signed contract. | confirmed | PDF p. 90 confirms EUR 2.74 per night hour and EUR 21.69 per 12-hour on-call turn; shorter turns of at least four hours pay pro rata plus 10%. Holiday and radiation allowances remain outside the derived calculation. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 4 effective start, Art. 73 TFR elements and Arts. 60-61 eligibility limitations for new event rates. | corrected | The signing date is 8 October 2020; Art. 4 makes the night and on-call event rates effective 9 October 2020.<br>Art. 73 lists TFR elements but does not name pronta disponibilità; non-TFR treatment remains an unverified modelling choice.<br>Art. 61(c) daily rotating shift allowances remain unmodelled; Art. 60 enterprise adoption and covered profiles are asserted by callers submitting events. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Art. 61(c)(1) and (4), cached PDF page 91, cover page 1 and Art. 4; daily shift rotation allowances. | confirmed | EUR 4.50 for specialized auxiliaries and eligible health/technical category B-DS staff on three shifts; EUR 2.06 for eligible A-DS operators alternating scheduled morning and afternoon shifts. Not cumulative. Actual service days are counted independently of night hours; Art. 4 makes effects start 9 October 2020. |
 
 ## Salary table
 
@@ -149,11 +150,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Supply scheduled holiday shift duration, eligibility and radiation service facts and apply the holiday cap, night overlap, compensatory rest and on-call intervention rules before paying the remaining allowances.
 
 !!! warning "sanita-privata-aiop-aris/daily_rotating_shift_allowances · overtime · impact yes · open"
-    DAILY ROTATING SHIFT ALLOWANCES (Art. 61(c), p. 91): EUR 4.50 per actual service day for eligible staff stably rotating across three shifts, or EUR 2.06 per day for eligible staff stably alternating at least two shifts; the two are not cumulative. The night-hour allowance does not replace them. Monthly rotation, qualifying profiles and actual days are not derived from night hours.
+    DAILY ROTATING SHIFT ALLOWANCES (Art. 61(c), p. 91): EUR 4.50 per counted actual service day for eligible staff stably rotating across three shifts, or EUR 2.06 for eligible staff stably alternating scheduled morning and afternoon shifts; these rates are mutually exclusive. Caller-stated roles assert both the qualifying profile and stable monthly rotation; night-hour facts do not establish either. The PDF cover prints 8 October 2020 and Art. 4 makes effects start the following day, 9 October 2020.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Supply qualifying profiles, stable monthly rotation and actual eligible service days; implement the distinct daily rates with mutual exclusion.
+    **Remediation:** Caller must verify qualifying profile, scheduled service and stable monthly rotation before stating a rotation role; no automatic inference from night hours. The engine does not independently verify qualifying roles or stable rotation.
 
 !!! warning "sanita-privata-aiop-aris/enterprise_on_call_adoption_profiles · standby · impact yes · open"
     ENTERPRISE ON-CALL ADOPTION AND COVERED PROFILES (Art. 60, p. 89): enterprise-level evaluation and regulation, after consultation, defines the profiles involved. The caller asserts the enterprise has adopted the service and the worker is covered by submitting on-call events; the engine does not verify the enterprise agreement or profile eligibility.

@@ -61,7 +61,7 @@
       },
       {
         "kind": "simplification",
-        "text": "EXCLUDED PROFILES: A1-A9 (porters with accommodation, 45 or 48 h/week; their divisor and in-kind accommodation are not modeled). C1 and C2 (technical or administrative managers without a fixed hourly ceiling under Art. 62(2)).",
+        "text": "A1-A9: monthly conglobated salary is available for full-time workers only. A1, A3, A5, A6, A8 work 45 hours/week (Art. 49; hourly divisor 195 under Art. 117(2)); A2, A4, A7, A9 with accommodation work 48 hours/week (Art. 43; hourly divisor 208 under Art. 117(1)). The engine still uses the agreement-wide divisor 173 for hourly calculations and cannot assign the 195/208 divisors by level. Free accommodation, electricity, water and heating under Art. 119 are not fully priced: Table A-bis prints only conventional TFR values (accommodation EUR 19.34, energy EUR 1.72, heating EUR 1.72), not a general monthly remuneration value; modelling these as an in-kind allowance would incorrectly include them in other bases. Substitute accommodation and heating depend on conditions not represented here. A-profile post-2004 seniority steps are EUR 10.00 per triennium (Art. 125); the pre-2004 frozen value and historical maturation rules require individual history. The PDF prints 2026-2028 amounts only; the open-ended 2028 period is not evidence of a new 2029 rate. C1 and C2 remain excluded (technical or administrative managers without a fixed hourly ceiling under Art. 62(2)).",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -69,7 +69,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model separate schedules and in-kind accommodation before including excluded profiles."
+          "remediation": "Use A salaries only for full-time monthly base pay; add level-specific hourly divisors and a TFR-only in-kind valuation before calculating hourly pay or accommodation-dependent bases. C1/C2 need separate schedule evidence."
         }
       },
       {
@@ -156,6 +156,321 @@
       "cadence_months": 36,
       "maximum_count": 12,
       "amount_by_level": {
+        "A1": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "10.00",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                    "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                    "kind": "associazione",
+                    "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                    "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                  },
+                  "page": "76",
+                  "section": "Art. 125(3)(c), porter profiles A",
+                  "quote": "c) per gli scatti maturati dal 1° gennaio 2004 in poi: € 10,00 cadauno."
+                },
+                "transformation": "Post-2004 A-profile seniority increment: EUR 10.00 per three-year step; pre-2004 accrued amounts remain a limitation.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-10T02:20:44Z",
+                  "effective_from": "2026-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-10T02:20:44Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-10-ai-a-profile-monthly"
+                }
+              }
+            }
+          ]
+        },
+        "A2": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "10.00",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                    "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                    "kind": "associazione",
+                    "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                    "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                  },
+                  "page": "76",
+                  "section": "Art. 125(3)(c), porter profiles A",
+                  "quote": "c) per gli scatti maturati dal 1° gennaio 2004 in poi: € 10,00 cadauno."
+                },
+                "transformation": "Post-2004 A-profile seniority increment: EUR 10.00 per three-year step; pre-2004 accrued amounts remain a limitation.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-10T02:20:44Z",
+                  "effective_from": "2026-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-10T02:20:44Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-10-ai-a-profile-monthly"
+                }
+              }
+            }
+          ]
+        },
+        "A3": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "10.00",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                    "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                    "kind": "associazione",
+                    "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                    "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                  },
+                  "page": "76",
+                  "section": "Art. 125(3)(c), porter profiles A",
+                  "quote": "c) per gli scatti maturati dal 1° gennaio 2004 in poi: € 10,00 cadauno."
+                },
+                "transformation": "Post-2004 A-profile seniority increment: EUR 10.00 per three-year step; pre-2004 accrued amounts remain a limitation.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-10T02:20:44Z",
+                  "effective_from": "2026-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-10T02:20:44Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-10-ai-a-profile-monthly"
+                }
+              }
+            }
+          ]
+        },
+        "A4": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "10.00",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                    "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                    "kind": "associazione",
+                    "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                    "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                  },
+                  "page": "76",
+                  "section": "Art. 125(3)(c), porter profiles A",
+                  "quote": "c) per gli scatti maturati dal 1° gennaio 2004 in poi: € 10,00 cadauno."
+                },
+                "transformation": "Post-2004 A-profile seniority increment: EUR 10.00 per three-year step; pre-2004 accrued amounts remain a limitation.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-10T02:20:44Z",
+                  "effective_from": "2026-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-10T02:20:44Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-10-ai-a-profile-monthly"
+                }
+              }
+            }
+          ]
+        },
+        "A5": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "10.00",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                    "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                    "kind": "associazione",
+                    "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                    "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                  },
+                  "page": "76",
+                  "section": "Art. 125(3)(c), porter profiles A",
+                  "quote": "c) per gli scatti maturati dal 1° gennaio 2004 in poi: € 10,00 cadauno."
+                },
+                "transformation": "Post-2004 A-profile seniority increment: EUR 10.00 per three-year step; pre-2004 accrued amounts remain a limitation.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-10T02:20:44Z",
+                  "effective_from": "2026-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-10T02:20:44Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-10-ai-a-profile-monthly"
+                }
+              }
+            }
+          ]
+        },
+        "A6": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "10.00",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                    "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                    "kind": "associazione",
+                    "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                    "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                  },
+                  "page": "76",
+                  "section": "Art. 125(3)(c), porter profiles A",
+                  "quote": "c) per gli scatti maturati dal 1° gennaio 2004 in poi: € 10,00 cadauno."
+                },
+                "transformation": "Post-2004 A-profile seniority increment: EUR 10.00 per three-year step; pre-2004 accrued amounts remain a limitation.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-10T02:20:44Z",
+                  "effective_from": "2026-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-10T02:20:44Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-10-ai-a-profile-monthly"
+                }
+              }
+            }
+          ]
+        },
+        "A7": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "10.00",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                    "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                    "kind": "associazione",
+                    "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                    "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                  },
+                  "page": "76",
+                  "section": "Art. 125(3)(c), porter profiles A",
+                  "quote": "c) per gli scatti maturati dal 1° gennaio 2004 in poi: € 10,00 cadauno."
+                },
+                "transformation": "Post-2004 A-profile seniority increment: EUR 10.00 per three-year step; pre-2004 accrued amounts remain a limitation.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-10T02:20:44Z",
+                  "effective_from": "2026-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-10T02:20:44Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-10-ai-a-profile-monthly"
+                }
+              }
+            }
+          ]
+        },
+        "A8": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "10.00",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                    "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                    "kind": "associazione",
+                    "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                    "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                  },
+                  "page": "76",
+                  "section": "Art. 125(3)(c), porter profiles A",
+                  "quote": "c) per gli scatti maturati dal 1° gennaio 2004 in poi: € 10,00 cadauno."
+                },
+                "transformation": "Post-2004 A-profile seniority increment: EUR 10.00 per three-year step; pre-2004 accrued amounts remain a limitation.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-10T02:20:44Z",
+                  "effective_from": "2026-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-10T02:20:44Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-10-ai-a-profile-monthly"
+                }
+              }
+            }
+          ]
+        },
+        "A9": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "10.00",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                    "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                    "kind": "associazione",
+                    "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                    "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                  },
+                  "page": "76",
+                  "section": "Art. 125(3)(c), porter profiles A",
+                  "quote": "c) per gli scatti maturati dal 1° gennaio 2004 in poi: € 10,00 cadauno."
+                },
+                "transformation": "Post-2004 A-profile seniority increment: EUR 10.00 per three-year step; pre-2004 accrued amounts remain a limitation.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-10T02:20:44Z",
+                  "effective_from": "2026-01-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-10T02:20:44Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-10-ai-a-profile-monthly"
+                }
+              }
+            }
+          ]
+        },
         "B1": {
           "periods": [
             {
@@ -344,8 +659,1169 @@
   },
   "levels": [
     {
-      "code": "B5",
+      "code": "A1",
       "order": 1,
+      "description": "A1 — porter without service accommodation (45 hours/week); full-time monthly base only",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1240.42",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "4",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-bis Portieri con profili professionali A1) / A2) / A5) (valori mensili in euro) Salario conglobato (art. 114) 1240,42 1265,23 | 1290,53"
+              },
+              "transformation": "A1: printed 2026 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1265.23",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "4",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-bis Portieri con profili professionali A1) / A2) / A5) (valori mensili in euro) Salario conglobato (art. 114) 1240,42 1265,23 | 1290,53"
+              },
+              "transformation": "A1: printed 2027 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1290.53",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "4",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-bis Portieri con profili professionali A1) / A2) / A5) (valori mensili in euro) Salario conglobato (art. 114) 1240,42 1265,23 | 1290,53"
+              },
+              "transformation": "A1: printed 2028 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+            "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "4",
+          "section": "Table A, Art. 114",
+          "quote": "Tabella A-bis Portieri con profili professionali A1) / A2) / A5) (valori mensili in euro) Salario conglobato (art. 114) 1240,42 1265,23 | 1290,53"
+        },
+        "transformation": "A1 uses the printed Table A-bis monthly salary; hourly divisors and accommodation are not modeled.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:17:39Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:17:39Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-a-profile-monthly"
+        }
+      }
+    },
+    {
+      "code": "A2",
+      "order": 2,
+      "description": "A2 — porter with service accommodation (48 hours/week); full-time monthly base only",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1240.42",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "4",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-bis Portieri con profili professionali A1) / A2) / A5) (valori mensili in euro) Salario conglobato (art. 114) 1240,42 1265,23 | 1290,53"
+              },
+              "transformation": "A2: printed 2026 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1265.23",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "4",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-bis Portieri con profili professionali A1) / A2) / A5) (valori mensili in euro) Salario conglobato (art. 114) 1240,42 1265,23 | 1290,53"
+              },
+              "transformation": "A2: printed 2027 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1290.53",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "4",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-bis Portieri con profili professionali A1) / A2) / A5) (valori mensili in euro) Salario conglobato (art. 114) 1240,42 1265,23 | 1290,53"
+              },
+              "transformation": "A2: printed 2028 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+            "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "4",
+          "section": "Table A, Art. 114",
+          "quote": "Tabella A-bis Portieri con profili professionali A1) / A2) / A5) (valori mensili in euro) Salario conglobato (art. 114) 1240,42 1265,23 | 1290,53"
+        },
+        "transformation": "A2 uses the printed Table A-bis monthly salary; hourly divisors and accommodation are not modeled.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:17:39Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:17:39Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-a-profile-monthly"
+        }
+      }
+    },
+    {
+      "code": "A3",
+      "order": 9,
+      "description": "A3 — porter without service accommodation (45 hours/week); full-time monthly base only",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1359.32",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "2",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A Portieri con profili professionali A3) / A4) (valori mensili in euro) Salario conglobato (art. 114) 1359,32 1386,50 1414,23"
+              },
+              "transformation": "A3: printed 2026 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1386.50",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "2",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A Portieri con profili professionali A3) / A4) (valori mensili in euro) Salario conglobato (art. 114) 1359,32 1386,50 1414,23"
+              },
+              "transformation": "A3: printed 2027 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1414.23",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "2",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A Portieri con profili professionali A3) / A4) (valori mensili in euro) Salario conglobato (art. 114) 1359,32 1386,50 1414,23"
+              },
+              "transformation": "A3: printed 2028 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+            "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "2",
+          "section": "Table A, Art. 114",
+          "quote": "Tabella A Portieri con profili professionali A3) / A4) (valori mensili in euro) Salario conglobato (art. 114) 1359,32 1386,50 1414,23"
+        },
+        "transformation": "A3 uses the printed Table A monthly salary; hourly divisors and accommodation are not modeled.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:17:39Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:17:39Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-a-profile-monthly"
+        }
+      }
+    },
+    {
+      "code": "A4",
+      "order": 10,
+      "description": "A4 — porter with service accommodation (48 hours/week); full-time monthly base only",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1359.32",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "2",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A Portieri con profili professionali A3) / A4) (valori mensili in euro) Salario conglobato (art. 114) 1359,32 1386,50 1414,23"
+              },
+              "transformation": "A4: printed 2026 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1386.50",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "2",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A Portieri con profili professionali A3) / A4) (valori mensili in euro) Salario conglobato (art. 114) 1359,32 1386,50 1414,23"
+              },
+              "transformation": "A4: printed 2027 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1414.23",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "2",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A Portieri con profili professionali A3) / A4) (valori mensili in euro) Salario conglobato (art. 114) 1359,32 1386,50 1414,23"
+              },
+              "transformation": "A4: printed 2028 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+            "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "2",
+          "section": "Table A, Art. 114",
+          "quote": "Tabella A Portieri con profili professionali A3) / A4) (valori mensili in euro) Salario conglobato (art. 114) 1359,32 1386,50 1414,23"
+        },
+        "transformation": "A4 uses the printed Table A monthly salary; hourly divisors and accommodation are not modeled.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:17:39Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:17:39Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-a-profile-monthly"
+        }
+      }
+    },
+    {
+      "code": "A5",
+      "order": 3,
+      "description": "A5 — porter without service accommodation (45 hours/week); full-time monthly base only",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1240.42",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "4",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-bis Portieri con profili professionali A1) / A2) / A5) (valori mensili in euro) Salario conglobato (art. 114) 1240,42 1265,23 | 1290,53"
+              },
+              "transformation": "A5: printed 2026 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1265.23",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "4",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-bis Portieri con profili professionali A1) / A2) / A5) (valori mensili in euro) Salario conglobato (art. 114) 1240,42 1265,23 | 1290,53"
+              },
+              "transformation": "A5: printed 2027 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1290.53",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "4",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-bis Portieri con profili professionali A1) / A2) / A5) (valori mensili in euro) Salario conglobato (art. 114) 1240,42 1265,23 | 1290,53"
+              },
+              "transformation": "A5: printed 2028 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+            "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "4",
+          "section": "Table A, Art. 114",
+          "quote": "Tabella A-bis Portieri con profili professionali A1) / A2) / A5) (valori mensili in euro) Salario conglobato (art. 114) 1240,42 1265,23 | 1290,53"
+        },
+        "transformation": "A5 uses the printed Table A-bis monthly salary; hourly divisors and accommodation are not modeled.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:17:39Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:17:39Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-a-profile-monthly"
+        }
+      }
+    },
+    {
+      "code": "A6",
+      "order": 6,
+      "description": "A6 — porter without service accommodation (45 hours/week); full-time monthly base only",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1299.79",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "6",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-ter Portieri con profili professionali A6) / A7) (valori mensili in euro) Salario conglobato (art. 114) 1299,79 | 1325,78 | 1352,29"
+              },
+              "transformation": "A6: printed 2026 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1325.78",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "6",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-ter Portieri con profili professionali A6) / A7) (valori mensili in euro) Salario conglobato (art. 114) 1299,79 | 1325,78 | 1352,29"
+              },
+              "transformation": "A6: printed 2027 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1352.29",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "6",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-ter Portieri con profili professionali A6) / A7) (valori mensili in euro) Salario conglobato (art. 114) 1299,79 | 1325,78 | 1352,29"
+              },
+              "transformation": "A6: printed 2028 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+            "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "6",
+          "section": "Table A, Art. 114",
+          "quote": "Tabella A-ter Portieri con profili professionali A6) / A7) (valori mensili in euro) Salario conglobato (art. 114) 1299,79 | 1325,78 | 1352,29"
+        },
+        "transformation": "A6 uses the printed Table A-ter monthly salary; hourly divisors and accommodation are not modeled.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:17:39Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:17:39Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-a-profile-monthly"
+        }
+      }
+    },
+    {
+      "code": "A7",
+      "order": 7,
+      "description": "A7 — porter with service accommodation (48 hours/week); full-time monthly base only",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1299.79",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "6",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-ter Portieri con profili professionali A6) / A7) (valori mensili in euro) Salario conglobato (art. 114) 1299,79 | 1325,78 | 1352,29"
+              },
+              "transformation": "A7: printed 2026 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1325.78",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "6",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-ter Portieri con profili professionali A6) / A7) (valori mensili in euro) Salario conglobato (art. 114) 1299,79 | 1325,78 | 1352,29"
+              },
+              "transformation": "A7: printed 2027 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1352.29",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "6",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-ter Portieri con profili professionali A6) / A7) (valori mensili in euro) Salario conglobato (art. 114) 1299,79 | 1325,78 | 1352,29"
+              },
+              "transformation": "A7: printed 2028 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+            "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "6",
+          "section": "Table A, Art. 114",
+          "quote": "Tabella A-ter Portieri con profili professionali A6) / A7) (valori mensili in euro) Salario conglobato (art. 114) 1299,79 | 1325,78 | 1352,29"
+        },
+        "transformation": "A7 uses the printed Table A-ter monthly salary; hourly divisors and accommodation are not modeled.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:17:39Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:17:39Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-a-profile-monthly"
+        }
+      }
+    },
+    {
+      "code": "A8",
+      "order": 11,
+      "description": "A8 — porter without service accommodation (45 hours/week); full-time monthly base only",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1361.48",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "8",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-quater Portieri con profili professionali A8) / A9) (valori mensili in euro) Salario conglobato (art. 114) 1361,48 | 1388,71 | 1416,48"
+              },
+              "transformation": "A8: printed 2026 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1388.71",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "8",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-quater Portieri con profili professionali A8) / A9) (valori mensili in euro) Salario conglobato (art. 114) 1361,48 | 1388,71 | 1416,48"
+              },
+              "transformation": "A8: printed 2027 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1416.48",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "8",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-quater Portieri con profili professionali A8) / A9) (valori mensili in euro) Salario conglobato (art. 114) 1361,48 | 1388,71 | 1416,48"
+              },
+              "transformation": "A8: printed 2028 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+            "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "8",
+          "section": "Table A, Art. 114",
+          "quote": "Tabella A-quater Portieri con profili professionali A8) / A9) (valori mensili in euro) Salario conglobato (art. 114) 1361,48 | 1388,71 | 1416,48"
+        },
+        "transformation": "A8 uses the printed Table A-quater monthly salary; hourly divisors and accommodation are not modeled.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:17:39Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:17:39Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-a-profile-monthly"
+        }
+      }
+    },
+    {
+      "code": "A9",
+      "order": 12,
+      "description": "A9 — porter with service accommodation (48 hours/week); full-time monthly base only",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1361.48",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "8",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-quater Portieri con profili professionali A8) / A9) (valori mensili in euro) Salario conglobato (art. 114) 1361,48 | 1388,71 | 1416,48"
+              },
+              "transformation": "A9: printed 2026 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1388.71",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "8",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-quater Portieri con profili professionali A8) / A9) (valori mensili in euro) Salario conglobato (art. 114) 1361,48 | 1388,71 | 1416,48"
+              },
+              "transformation": "A9: printed 2027 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1416.48",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "8",
+                "section": "Table A, Art. 114",
+                "quote": "Tabella A-quater Portieri con profili professionali A8) / A9) (valori mensili in euro) Salario conglobato (art. 114) 1361,48 | 1388,71 | 1416,48"
+              },
+              "transformation": "A9: printed 2028 full-time monthly conglobated salary.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:17:39Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:17:39Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-monthly"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+            "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "8",
+          "section": "Table A, Art. 114",
+          "quote": "Tabella A-quater Portieri con profili professionali A8) / A9) (valori mensili in euro) Salario conglobato (art. 114) 1361,48 | 1388,71 | 1416,48"
+        },
+        "transformation": "A9 uses the printed Table A-quater monthly salary; hourly divisors and accommodation are not modeled.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:17:39Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:17:39Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-a-profile-monthly"
+        }
+      }
+    },
+    {
+      "code": "B5",
+      "order": 4,
       "description": "B5 — pulitore/lavascale (cleaner/stair cleaner)",
       "base_salary": {
         "periods": [
@@ -516,7 +1992,7 @@
     },
     {
       "code": "C4_PRIMO_IMPIEGO",
-      "order": 2,
+      "order": 5,
       "transition_to": "C4",
       "transition_by": "2029-01-01",
       "description": "C4 first-employment office clerk; caller selects only during the first 12 months of effective service, then switches to C4",
@@ -643,7 +2119,7 @@
     },
     {
       "code": "B4",
-      "order": 3,
+      "order": 8,
       "description": "B4 — addetto pulizie aree comuni (common areas cleaner)",
       "base_salary": {
         "periods": [
@@ -761,7 +2237,7 @@
     },
     {
       "code": "D4",
-      "order": 4,
+      "order": 13,
       "description": "D4 — addetto servizi generali (general services worker)",
       "base_salary": {
         "periods": [
@@ -879,7 +2355,7 @@
     },
     {
       "code": "D3",
-      "order": 5,
+      "order": 14,
       "description": "D3 — addetto servizi generali (general services worker)",
       "base_salary": {
         "periods": [
@@ -997,7 +2473,7 @@
     },
     {
       "code": "D2",
-      "order": 6,
+      "order": 15,
       "description": "D2 — addetto servizi generali (general services worker)",
       "base_salary": {
         "periods": [
@@ -1115,7 +2591,7 @@
     },
     {
       "code": "D1",
-      "order": 7,
+      "order": 16,
       "description": "D1 — addetto servizi speciali (special services worker)",
       "base_salary": {
         "periods": [
@@ -1233,7 +2709,7 @@
     },
     {
       "code": "B3",
-      "order": 8,
+      "order": 17,
       "description": "B3 — portiere part-time (part-time doorman/caretaker)",
       "base_salary": {
         "periods": [
@@ -1351,7 +2827,7 @@
     },
     {
       "code": "B2",
-      "order": 9,
+      "order": 18,
       "description": "B2 — portiere (doorman/caretaker, standard profile)",
       "base_salary": {
         "periods": [
@@ -1469,7 +2945,7 @@
     },
     {
       "code": "C4",
-      "order": 10,
+      "order": 19,
       "description": "C4 — custode (custodian, 40 h/week without accommodation)",
       "base_salary": {
         "periods": [
@@ -1587,7 +3063,7 @@
     },
     {
       "code": "B1",
-      "order": 11,
+      "order": 20,
       "description": "B1 — portiere con mansioni di custodia (senior doorman with custody duties)",
       "base_salary": {
         "periods": [
@@ -1705,7 +3181,7 @@
     },
     {
       "code": "C3",
-      "order": 12,
+      "order": 21,
       "description": "C3 — custode qualificato (qualified custodian, senior grade)",
       "base_salary": {
         "periods": [
@@ -1948,7 +3424,7 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "5d2d69b8b28e1f85feefd0475b9e0aab1c29798dc975e13dcc19dba4cfefb4b9",
+    "source_hash": "b9249b5722cfdeea089ea1f58ee8b828bf5fdef6671579b724ec06059f50194d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2232,6 +3708,28 @@
         "independence": "same_process",
         "checked": [
           "levels.C4_PRIMO_IMPIEGO.base_salary",
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-a-profile-monthly",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Tables A, A-bis, A-ter, A-quater pp. 2, 4, 6, 8; Arts. 43, 49, 117, 119 pp. 40, 43, 72-73.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          }
+        ],
+        "findings": [
+          "Added nine printed full-time monthly salaries and Art. 125 post-2004 seniority steps of EUR 10.00; hourly divisors 195/208 and TFR-only accommodation valuation remain limitations."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.A1-A9.base_salary",
           "coverage.notes"
         ]
       }

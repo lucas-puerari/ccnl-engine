@@ -28,12 +28,14 @@ from ccnl_engine.contribution.base.other_employment.services import (
 from ccnl_engine.contribution.minimum_base.services import minimum_base_issue
 from ccnl_engine.contribution.naspi.services import naspi_issue
 from ccnl_engine.contribution.rate.rules import category_rate_issue
+from ccnl_engine.decision.models import CalculationIssue
 from ccnl_engine.decision.rules import with_open_facts
 from ccnl_engine.employment.fact.services import fact_issues
 from ccnl_engine.extra_month.decision.services import accrual_issue, run_accruals
 from ccnl_engine.extra_month.liquidation.services import settlement_issues
 from ccnl_engine.extra_month.progress.services import run_extra_month_progress
 from ccnl_engine.fund.health.services import contractual_funds
+from ccnl_engine.fund.solidarity.coverage import solidarity_coverage_issue
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.services import _sum_ledger
 from ccnl_engine.pension_fund.decision.services import pension_fund_issue
@@ -47,10 +49,7 @@ from ccnl_engine.withholding.cap.services import run_net
 
 if TYPE_CHECKING:
     from ccnl_engine.balance.models import PeriodState
-    from ccnl_engine.decision.models import (
-        CalculationDecision,
-        CalculationIssue,
-    )
+    from ccnl_engine.decision.models import CalculationDecision
     from ccnl_engine.ledger.models import LedgerEntry
     from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.period.posting.services import (
@@ -185,6 +184,7 @@ def _input_issues(
         additional_ivs_issue(ctx),
         ctx.opening_issue,
         other_employers_issue(ctx, base),
+        solidarity_coverage_issue(ctx),
     )
     raised = tuple(issue for issue in issues if issue is not None)
     renewal = renewal_minimum(ctx)

@@ -71,6 +71,9 @@ class SolidarityFund(BaseModel):
             rates are.
         covers_fixed_term: Whether a fund on top of the sector rates also
             charges the fixed-term workers (FSBA: every employee).
+        requires_employer_coverage: Whether the employer must confirm its
+            eligibility for this fund independently of its choice of CCNL.
+        covers_executives: Whether the ordinary contribution includes executives.
         provenance: Source of the rates and of the workers they cover.
     """
 
@@ -82,6 +85,8 @@ class SolidarityFund(BaseModel):
     wage_integration_tiers: tuple[SolidarityTier, ...] = ()
     top_up_tiers: tuple[SolidarityTier, ...] = ()
     covers_fixed_term: bool = False
+    requires_employer_coverage: bool = False
+    covers_executives: bool = True
     provenance: RuleProvenance
 
     @model_validator(mode="after")

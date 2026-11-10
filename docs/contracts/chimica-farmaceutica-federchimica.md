@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-04-15 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -71,6 +71,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Saturday premium of the signed text, found verbatim in the source (analysis by a separate model session, quote rechecked). | corrected | Added supplement band CHIM_SABATO. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 15 punti 1-2, art. 20 punto 4 and art. 9 of the CCNL of 10 May 2006 (CNEL 579), via a research report; the EAR amounts as already read in the base salaries. | corrected | Moved the EAR of categories A (190) and B (100) out of the base salary into the allowance EAR, outside the hourly quota. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 11, 12 and 20 of the CCNL 10 May 2006 (CNEL 579, Word file). | corrected | The holidays on a Sunday at 1/25 (art. 11, 20) were already paid: the limitation was stale for them.<br>Art. 12: Easter pays to every worker a daily quota (1/25) of the retribuzione globale di fatto: added to work_rules.sunday_holidays.holidays; the base stays the art. 15 monthly pay, a residual limitation. |
+| 2026-11-10 | claude-opus-5-5 (ai) | CNEL archive 579 DOC Art. 9(1), Art. 15(1), Art. 20(4) and scanned 2012, 2018, 2022 and 2025 amendments. | corrected | The 5% tier applies after 37h45 through 40 hours; the later amendments do not change point 1. |
 
 ## Salary table
 
@@ -111,11 +112,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model an under-classification by category paid at the minimo without IPO, with periods of half the contract duration.
 
 !!! warning "chimica-farmaceutica-federchimica/excess_hours · overtime · impact yes · open"
-    Art. 9 punto 1: the lavoro eccedente from 37h45 to 40 weekly hours at 5%.
+    Art. 9 point 1: the 5% premium from 37h45 to 40 weekly hours is resolved when OvertimeEvent.weekly_hours_before is supplied. The hourly event base includes the Art. 15(1) elements; the underlying hours may instead receive compensatory rest under Art. 8 E(2). Pluriperiodal calendar hours offset elsewhere are excluded under Art. 8 E(4); noncollective additional hours in that schedule have a separate 10% premium under Art. 9 clarification 3. Without the worker's schedule and compensatory-rest arrangement, those cases are not determined.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add a band for the lavoro eccedente at 5%.
+    **Remediation:** Supply the weekly position and separately account for pluriperiodal scheduling and the underlying pay/rest arrangement.
 
 !!! warning "chimica-farmaceutica-federchimica/ordinary_hours_premiums · overtime · impact yes · open"
     Art. 9 punti 9 and 11: the premiums of pluriperiodale work (10% beyond the 8th hour and on Saturday) and of the first 120 hours past the 2,024 of a year (30%), which the engine has no work for. The Saturday of a 4- or 6-day week (point 10, 10%) is modelled (CHIM_SABATO, HolidayWorkKind.SATURDAY_SIXTH_DAY); holiday, night, shift and 3x7 Sunday premiums are modelled.
