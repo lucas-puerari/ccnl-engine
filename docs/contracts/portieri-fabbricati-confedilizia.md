@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 122 c. 2-3 B5 short-schedule premium, PDF pp. 74-75, and Tabella B p. 10. | corrected | Art. 122 c. 2 raises the B5 salario conglobato by 15% for a weekly schedule below 8 hours; added allowance B5_ORARIO_RIDOTTO with the computed monthly values and resolved the limitation. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Table C and first-employment note on signed renewal PDF p. 11 (OCR checked against cached PDF). | corrected | First-employment C4 monthly rates are 1290.52, 1316.33 and 1342.66 in 2026, 2027 and 2028; maximum 12 months of effective service. Caller selects eligibility and changes to C4 when it ends. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Tables A, A-bis, A-ter, A-quater pp. 2, 4, 6, 8; Arts. 43, 49, 117, 119 pp. 40, 43, 72-73. | corrected | Added nine printed full-time monthly salaries and Art. 125 post-2004 seniority steps of EUR 10.00; hourly divisors 195/208 and TFR-only accommodation valuation remain limitations. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Art. 117(1)-(3) hourly coefficients and Arts. 119-120 ordinary pay elements, cached scanned PDF pp. 72-74. | corrected | A2/A4/A7/A9 use 208; A1/A3/A5/A6/A8 use 195; B/C/D use 173. |
 
 ## Salary table
 
@@ -80,18 +81,18 @@ Latest effective values per level (monthly gross, EUR).
 | `D2` | D2 — addetto servizi generali (general services worker) | € 1,496.70 | 2028-01-01 |
 | `D3` | D3 — addetto servizi generali (general services worker) | € 1,496.70 | 2028-01-01 |
 | `D4` | D4 — addetto servizi generali (general services worker) | € 1,496.70 | 2028-01-01 |
-| `A9` | A9 — porter with service accommodation (48 hours/week); full-time monthly base only | € 1,416.48 | 2028-01-01 |
-| `A8` | A8 — porter without service accommodation (45 hours/week); full-time monthly base only | € 1,416.48 | 2028-01-01 |
-| `A4` | A4 — porter with service accommodation (48 hours/week); full-time monthly base only | € 1,414.23 | 2028-01-01 |
-| `A3` | A3 — porter without service accommodation (45 hours/week); full-time monthly base only | € 1,414.23 | 2028-01-01 |
+| `A9` | A9 — porter with service accommodation (48 hours/week); full-time monthly base and level-specific hourly divisor | € 1,416.48 | 2028-01-01 |
+| `A8` | A8 — porter without service accommodation (45 hours/week); full-time monthly base and level-specific hourly divisor | € 1,416.48 | 2028-01-01 |
+| `A4` | A4 — porter with service accommodation (48 hours/week); full-time monthly base and level-specific hourly divisor | € 1,414.23 | 2028-01-01 |
+| `A3` | A3 — porter without service accommodation (45 hours/week); full-time monthly base and level-specific hourly divisor | € 1,414.23 | 2028-01-01 |
 | `B4` | B4 — addetto pulizie aree comuni (common areas cleaner) | € 1,396.57 | 2028-01-01 |
-| `A7` | A7 — porter with service accommodation (48 hours/week); full-time monthly base only | € 1,352.29 | 2028-01-01 |
-| `A6` | A6 — porter without service accommodation (45 hours/week); full-time monthly base only | € 1,352.29 | 2028-01-01 |
+| `A7` | A7 — porter with service accommodation (48 hours/week); full-time monthly base and level-specific hourly divisor | € 1,352.29 | 2028-01-01 |
+| `A6` | A6 — porter without service accommodation (45 hours/week); full-time monthly base and level-specific hourly divisor | € 1,352.29 | 2028-01-01 |
 | `C4_PRIMO_IMPIEGO` | C4 first-employment office clerk; caller selects only during the first 12 months of effective service, then switches to C4 | € 1,342.66 | 2028-01-01 |
 | `B5` | B5 — pulitore/lavascale (cleaner/stair cleaner) | € 1,315.60 | 2028-01-01 |
-| `A5` | A5 — porter without service accommodation (45 hours/week); full-time monthly base only | € 1,290.53 | 2028-01-01 |
-| `A2` | A2 — porter with service accommodation (48 hours/week); full-time monthly base only | € 1,290.53 | 2028-01-01 |
-| `A1` | A1 — porter without service accommodation (45 hours/week); full-time monthly base only | € 1,290.53 | 2028-01-01 |
+| `A5` | A5 — porter without service accommodation (45 hours/week); full-time monthly base and level-specific hourly divisor | € 1,290.53 | 2028-01-01 |
+| `A2` | A2 — porter with service accommodation (48 hours/week); full-time monthly base and level-specific hourly divisor | € 1,290.53 | 2028-01-01 |
+| `A1` | A1 — porter without service accommodation (45 hours/week); full-time monthly base and level-specific hourly divisor | € 1,290.53 | 2028-01-01 |
 
 ## Seniority increments
 
@@ -135,12 +136,12 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "portieri-fabbricati-confedilizia/excluded_profiles_divisor · base_salary · impact yes · open"
-    A1-A9: monthly conglobated salary is available for full-time workers only. A1, A3, A5, A6, A8 work 45 hours/week (Art. 49; hourly divisor 195 under Art. 117(2)); A2, A4, A7, A9 with accommodation work 48 hours/week (Art. 43; hourly divisor 208 under Art. 117(1)). The engine still uses the agreement-wide divisor 173 for hourly calculations and cannot assign the 195/208 divisors by level. Free accommodation, electricity, water and heating under Art. 119 are not fully priced: Table A-bis prints only conventional TFR values (accommodation EUR 19.34, energy EUR 1.72, heating EUR 1.72), not a general monthly remuneration value; modelling these as an in-kind allowance would incorrectly include them in other bases. Substitute accommodation and heating depend on conditions not represented here. A-profile post-2004 seniority steps are EUR 10.00 per triennium (Art. 125); the pre-2004 frozen value and historical maturation rules require individual history. The PDF prints 2026-2028 amounts only; the open-ended 2028 period is not evidence of a new 2029 rate. C1 and C2 remain excluded (technical or administrative managers without a fixed hourly ceiling under Art. 62(2)).
+!!! warning "portieri-fabbricati-confedilizia/unpriced_accommodation_and_excluded_profiles · base_salary · impact yes · open"
+    A1-A9: monthly conglobated salary and ordinary hourly base are available for full-time workers; other pay elements remain limited. A1, A3, A5, A6, A8 work 45 hours/week (Art. 49; hourly divisor 195 under Art. 117(2)); A2, A4, A7, A9 with accommodation work 48 hours/week (Art. 43; hourly divisor 208 under Art. 117(1)). The A-profile hourly coefficients are modelled per level. Free accommodation, electricity, water and heating under Art. 119 are not fully priced: Table A-bis prints only conventional TFR values (accommodation EUR 19.34, energy EUR 1.72, heating EUR 1.72), not a general monthly remuneration value; modelling these as an in-kind allowance would incorrectly include them in other bases. Substitute accommodation and heating depend on conditions not represented here. A-profile post-2004 seniority steps are EUR 10.00 per triennium (Art. 125); the pre-2004 frozen value and historical maturation rules require individual history. The PDF prints 2026-2028 amounts only; the open-ended 2028 period is not evidence of a new 2029 rate. C1 and C2 remain excluded (technical or administrative managers without a fixed hourly ceiling under Art. 62(2)).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Use A salaries only for full-time monthly base pay; add level-specific hourly divisors and a TFR-only in-kind valuation before calculating hourly pay or accommodation-dependent bases. C1/C2 need separate schedule evidence.
+    **Remediation:** A-profile hourly coefficients and ordinary hourly base are modelled; accommodation-dependent bases need TFR-only in-kind valuation. C1/C2 need separate schedule evidence.
 
 !!! warning "portieri-fabbricati-confedilizia/c4_first_employment_eligibility · base_salary · impact yes · open"
     FIRST-EMPLOYMENT C4: select C4_PRIMO_IMPIEGO only for a first-employment office clerk during at most 12 months of effective service. The engine cannot measure effective service or verify first employment; the caller must switch to C4 when eligibility expires. Elapsed calendar months are not a substitute for effective service. The published entry-rate table ends on 31 December 2028; the data model requires an open-ended final period, so a mandatory cutoff redirects to regular C4 on 1 January 2029 rather than paying the entry rate after its published end. The source does not specify an entry rate for 2029.

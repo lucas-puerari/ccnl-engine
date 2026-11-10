@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-06-20 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2026-09-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 32 values read identically by both readings and equal to the file. |
 | 2026-11-08 | gpt-6-sol (ai) | Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image. | corrected | The injury rule had no top-up of the INAIL indemnity; added: {"integration_rate": "1", "carenza_rate": "1"} |
+| 2026-11-10 | claude-opus-5-5 (ai) | Third-period intermediate remuneration clause in the signed 2016 agreement and components of the tabular minimum in the signed 2026 renewal. | confirmed | The third period pays an intermediate retribuzione at the level below destination; the 2026 table prints base, contingenza and EDR in each minimum. Averaging the full tabular minimum gives AE3 to AE4 EUR 2209.26 in September 2026. The clause does not enumerate payslip components or personal superminima. |
 
 ## Salary table
 
@@ -134,13 +135,6 @@ Destination levels: `AS4`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "legno-arredamento-federlegno/apprenticeship_midpoint_components · base_salary · impact yes · open"
-    APPRENTICESHIP MIDPOINT COMPONENTS: the 3rd period pays a 'retribuzione intermedia' between the current and the destination level (secondary source studiocerbone.com on the apprenticeship agreement); the CCNL text listed in the sources (direzionelavoro.it PDF) is no longer reachable, so whether the intermediate pay covers contingenza and EDR or the minimum table only is unverified. The engine averages the whole monthly pay, as the Federterme clause states; contingenza differs by about 1-2 EUR between adjacent levels.
-
-    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Read the CCNL Legno apprenticeship clause on the 3rd period and confirm which pay components the intermediate pay averages, then remove this note.
 
 !!! warning "legno-arredamento-federlegno/renewal_2026_ipotesi · base_salary · impact yes · open"
     RENEWAL 2026-2028 (ipotesi di accordo of 3 September 2026, pp. 52-53): the paga base from 1 September 2026 is modelled; the ipotesi is not yet a definitive text. Not modelled: the una tantum of December 2026 and the IPCA increases of 1 January 2027 and 2028, which the parties will set in later meetings.
@@ -361,6 +355,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     MANAGEMENT FUNCTION ALLOWANCE AD3: EUR 25.82/month, not included in the minimum pay table, modelled as a fixed_allowance for level AD3.
     
     INPS: industry sector rates from contribution/2026/industria.json (existing file reused). Employee 9.19% up to 15 employees, 9.49% above; employer (operai): up to 15 employees 30.68%, 16-50 employees 31.28%, >50 employees 31.58% (impiegati and quadri 28.46%, 29.06%, 29.36%). No substitute bilateral fund for CCNL Legno Industria (Fondimpresa for training only, does not affect INPS contribution rates) (review of 2026-10-30)
+    
+    APPRENTICESHIP MIDPOINT: the signed agreement of 13 December 2016, p. 35, sets third-period pay at the intermediate value between the current and destination categories. The signed 2026 renewal, p. 53, prints paga base, contingenza and EDR separately in each level's minimum. The engine averages both levels' entire tabular pay (base plus both fixed allowances); this is an interpretation of 'retribuzione', not an explicit enumeration of components in the apprenticeship clause. Personal superminima are not specified by this clause.
     
     APPRENTICE SENIORITY (Parte VII, Regolamentazione dell'apprendistato professionalizzante, p. 149 of the CCNL Legno industria, https://www.filcacisl.it/sindacato/wp-content/uploads/2022/04/Ccnl-Legno-Industria-definitivo1.pdf, sha256 591296abac43a018b9ffe08f60a521584129d9717e87a46583b8125a58d067bf): 'L’intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell’anzianità aziendale, anche ai fini degli aumenti periodici di anzianità; tali aumenti saranno corrisposti nelle misure previste dal livello di appartenenza': seniority_increments.apprentice_level_amount.
     

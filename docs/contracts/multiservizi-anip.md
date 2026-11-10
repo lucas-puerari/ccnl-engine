@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 79 verified / 15 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 80 verified / 14 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -74,6 +74,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 19 daily pay and art. 30 ordinary working week, cached signed CNEL 105782; separate limitations for the remaining clauses in CNEL 105782 and 139292. | corrected | Art. 19 prints 22 for a five-day week and 26 for six days; art. 30 makes five days the normal distribution. The historical pension base and the missing signed 2012 apprenticeship accord prevent assuming current pay bases or durations. |
 | 2026-11-10 | claude-opus-5-5 (ai) | CNEL 139292 art. 33 pp. 16-17 and CNEL 105782 art. 18 p. 40, art. 38 p. 57; supplementary and ordinary holiday/night supplements and percentage bases. | corrected | The 2021 ANIP-signed part-time amendment governs supplementary hours in 2026; elastic hours remain a limitation.<br>The 2011 art. 38 continues to set ordinary holiday and night rates, on base pay, with non-cumulation not automatically enforced. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Category-specific seniority amounts and remaining limitations, CNEL 105782 art. 22 pp. 41-42, 90. | corrected | The printed sector amounts include levels 5 and 6. Impiegati scatti are priced at maturation and kept after promotion; the automatic freeze and ceiling remain unsupported. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Sickness art. 51 in cached CNEL 105782 pp. 67-68 and its replacement in CNEL 139292 pp. 22-24; category bands and remaining basis differences. | corrected | Operai receive 100% net global pay to day 180 and 50% global pay to day 270; the latter is not stated as net. Impiegati receive stipendio and contingenza in full for five months and half for seven; both share the rolling 36-month comporto.<br>Rule-wide net_basis cannot switch at day 181; global pay cannot restrict the impiegati base to stipendio and contingenza. Those differences remain open. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 54 pension rates, frozen per-level bases and fund eligibility in CNEL 105782 pp. 69-70, 90; membership routing remains limited. | corrected | Verified all ten configured level bases against the page 90 table and the 1% shares and twelve payments against pp. 69-70.<br>The printed Q and 7 illustrative 1% amounts (12.28) differ from 1% of the printed 1222.75 base (12.23); applied the stated percentage and base, not the inconsistent illustrative amount.<br>Association-dependent fund choice and six-month calendar-year fixed-term eligibility remain open. |
 
 ## Salary table
@@ -124,13 +125,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source an ANIP-signed later minimum or verified IPCA adjustment before adding subsequent tranches.
 
-!!! warning "multiservizi-anip/multiservizi_sickness_by_category_and_basis · sickness · impact yes · open"
-    SICKNESS (CNEL 139292 art. 51, pp. 22-24): operai receive a top-up to 100% of net global pay on days 1-180, then 50% of gross global pay on days 181-270. Impiegati receive 100% of stipendio plus contingenza for five months and 50% for seven; both are subject to a twelve-month comporto in a rolling 36-month window. The existing rule ends pay at day 180, uses gross throughout and does not route by category; the rolling comporto alone is represented.
-
-    **Applies when:** `sickness` applies.
-
-    **Remediation:** Apply separate category rules and day-dependent net/gross bases to operai; apply the separate stipendio-plus-contingenza impiegati bands.
-
 !!! warning "multiservizi-anip/multiservizi_variable_time_premiums · overtime · impact yes · open"
     OVERTIME AND NIGHT WORK (CNEL 105782 art. 38, p. 57): ordinary overtime hours use global pay, whereas percentage supplements use base pay (tabellare and contingenza). Holiday work attracts 50%; ordinary night work attracts 20% in rotating shifts or 30% otherwise. The four overtime bands, the ordinary holiday band and the two night bands use the printed rates, with a separate tabellare-plus-contingenza premium base. The engine cannot automatically enforce the non-cumulation of simultaneous holiday and night premiums or the incidence of continuous night supplements on deferred pay.
 
@@ -179,6 +173,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies.
 
     **Remediation:** Source the current impiegati scatto amounts for levels 2-4; supply earned amounts and recognised sector service from worker records, and implement automatic maturation-date pricing and the 50% ceiling.
+
+!!! warning "multiservizi-anip/multiservizi_sickness_by_category_and_basis · sickness · impact yes · open"
+    SICKNESS (CNEL 139292 art. 51, pp. 22-24): category routing, the 100% net-global-pay operai band through day 180, the 50% band through day 270, the impiegati 100% first five months and 50% next seven months, and the rolling 36-month comporto are represented. Remaining: the operai 50% band is of gross global pay, while the model applies net_basis to the whole rule; impiegati pay is stipendio plus contingenza, while the engine uses global pay. The operai first working day and the impiegati non-probation and serious-fault conditions are not represented. The clause does not state a daily gross/net conversion or an amount for the excluded pay components.
+
+    **Applies when:** `sickness` applies.
+
+    **Remediation:** Apply gross rather than net basis to operai days 181-270, restrict impiegati pay to stipendio plus contingenza, and respect the first-working-day and eligibility conditions; use the worker's actual category at mixed-category levels.
 
 !!! warning "multiservizi-anip/multiservizi_pension_membership_eligibility · pension_fund_contribution · impact yes · open"
     COMPLEMENTARY PENSION (CNEL 105782 art. 54, pp. 69-70): The frozen 1 January 2001 tabellare and contingenza bases, 1% employer and member shares and twelve monthly payments are modelled for enrolled workers. Fund eligibility still depends on the employer association (Previambiente for FISE, Fondapi for CONFAPI, Cooperlavoro for cooperatives, with a choice for non-affiliated employers); fixed-term membership requires six months of work within the calendar year. These eligibility facts are not established by the enrolment alone. ASIM and ONBSI are addressed by the separate health_and_bilateral_funds limitation.

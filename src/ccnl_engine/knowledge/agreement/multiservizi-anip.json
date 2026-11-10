@@ -118,19 +118,6 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS (CNEL 139292 art. 51, pp. 22-24): operai receive a top-up to 100% of net global pay on days 1-180, then 50% of gross global pay on days 181-270. Impiegati receive 100% of stipendio plus contingenza for five months and 50% for seven; both are subject to a twelve-month comporto in a rolling 36-month window. The existing rule ends pay at day 180, uses gross throughout and does not route by category; the rolling comporto alone is represented.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "multiservizi_sickness_by_category_and_basis",
-          "applies_when": {
-            "trigger": "run"
-          },
-          "remediation": "Apply separate category rules and day-dependent net/gross bases to operai; apply the separate stipendio-plus-contingenza impiegati bands."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "OVERTIME AND NIGHT WORK (CNEL 105782 art. 38, p. 57): ordinary overtime hours use global pay, whereas percentage supplements use base pay (tabellare and contingenza). Holiday work attracts 50%; ordinary night work attracts 20% in rotating shifts or 30% otherwise. The four overtime bands, the ordinary holiday band and the two night bands use the printed rates, with a separate tabellare-plus-contingenza premium base. The engine cannot automatically enforce the non-cumulation of simultaneous holiday and night premiums or the incidence of continuous night supplements on deferred pay.",
         "capability": "overtime",
         "monetary_impact": "yes",
@@ -233,6 +220,19 @@
             "trigger": "run"
           },
           "remediation": "Source the current impiegati scatto amounts for levels 2-4; supply earned amounts and recognised sector service from worker records, and implement automatic maturation-date pricing and the 50% ceiling."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "SICKNESS (CNEL 139292 art. 51, pp. 22-24): category routing, the 100% net-global-pay operai band through day 180, the 50% band through day 270, the impiegati 100% first five months and 50% next seven months, and the rolling 36-month comporto are represented. Remaining: the operai 50% band is of gross global pay, while the model applies net_basis to the whole rule; impiegati pay is stipendio plus contingenza, while the engine uses global pay. The operai first working day and the impiegati non-probation and serious-fault conditions are not represented. The clause does not state a daily gross/net conversion or an amount for the excluded pay components.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "multiservizi_sickness_by_category_and_basis",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Apply gross rather than net basis to operai days 181-270, restrict impiegati pay to stipendio plus contingenza, and respect the first-working-day and eligibility conditions; use the worker's actual category at mixed-category levels."
         }
       },
       {
@@ -4895,7 +4895,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "553cf4716f519a1d8a610d56fd8fa971a1736ce655bbab9a5b4a2b2e8ad5ffb4",
+    "source_hash": "5f418f4bc6a4520c20730a2ff53d0b17bbe16aee5a0d68935263c49842463a08",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -5576,9 +5576,27 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 180,
+      "max_duration_days": 360,
+      "net_basis": true,
+      "day_bands": [
+        {
+          "day_from": 1,
+          "day_until": 181,
+          "integration_rate": "1"
+        },
+        {
+          "day_from": 181,
+          "day_until": 271,
+          "integration_rate": "0.5"
+        },
+        {
+          "day_from": 271,
+          "day_until": 361,
+          "integration_rate": "0"
+        }
+      ],
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
             "document_id": "cnel-k511-139292",
@@ -5590,17 +5608,20 @@
           },
           "page": "24",
           "section": "Art. 51 as replaced by the 2021 renewal, operai (pp. 22-24)",
-          "quote": "a partire dal primo giorno lavorativo di assenza e fino al 180° giorno, un’integrazione del [...] b) dal 181° giorno al 270° corresponsione del 50% della retribuzione globale."
+          "quote": "a) a partire dal primo giorno lavorativo di assenza e fino al 180° giorno, un’integrazione del trattamento INPS fino a raggiungere il 100% della retribuzione globale (art. 18, ultimo comma) netta; b) dal 181° giorno al 270° corresponsione del 50% della retribuzione globale."
         },
-        "note": "Carenza and days 1-180 at 100% match the operai rule, but on the net retribuzione globale; days 181-270 at 50%, the impiegati rule (100% for 5 months, 50% for 7, p. 23) and the impiegati pay rule (p. 23) are not modelled; the 12-month rolling comporto (p. 22) is already represented: declared in multiservizi_sickness_by_category_and_basis.",
+        "note": "The 50% band is of gross global pay; net_basis currently applies also after day 180. The worker's first day is specified as the first working day, while episode indices count calendar days. See multiservizi_sickness_by_category_and_basis.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-10-13T09:25:49Z",
+          "extraction_timestamp": "2026-11-10T00:51:00Z",
           "effective_from": "2021-07-01",
-          "verification_status": "unverified"
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T00:51:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-multiservizi-sickness"
         },
-        "transformation": "Comporto of several illnesses (2026-11-01): the comporto sums the sick days of the 36 months before the day, up to 360 (12 months, as 30-day months), on top of the 180 days of one illness. Source: https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292, p. 22 (sha256 4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167): 'Il diritto alla conservazione del posto viene a cessare qualora il lavoratore anche con più periodi di infermità raggiunga in complesso 12 mesi di assenza nell’arco di 36 mesi consecutivi.'"
+        "transformation": "Operai: the first 180 episode days at 100% of net global pay (net_basis), days 181-270 at 50%; the latter should be gross, but net_basis is rule-wide. After day 270 the employer target is zero through day 360 (the comporto, not the end of INPS cover). Art. 51 p. 22 retains the job for 12 months in a rolling 36 months (360 days using the existing 30-day-month convention)."
       },
       "comporto_windows": [
         {
@@ -5669,6 +5690,61 @@
             "verification_status": "verified",
             "review_id": "2026-11-08-gpt-multiservizi-anip-insured-absence"
           }
+        }
+      }
+    },
+    "sickness_rules_by_category": {
+      "impiegato": {
+        "carenza_integration_rate": "1",
+        "full_pay_integration_rate": "1",
+        "net_basis": false,
+        "max_duration_days": 360,
+        "day_bands": [
+          {
+            "day_from": 1,
+            "day_until": 151,
+            "integration_rate": "1"
+          },
+          {
+            "day_from": 151,
+            "day_until": 361,
+            "integration_rate": "0.5"
+          }
+        ],
+        "comporto_windows": [
+          {
+            "seniority_months_from": 0,
+            "window_months": 36,
+            "comporto_days": 360
+          }
+        ],
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-k511-139292",
+              "title": "Ipotesi di accordo per il rinnovo del CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, 8 giugno 2021 (CNEL K511, deposito 139292)",
+              "kind": "cnel",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+              "published_on": "2021-06-08",
+              "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
+            },
+            "page": "23",
+            "section": "Art. 51, treatment of impiegati (as replaced in 2021)",
+            "quote": "corresponsione, ad integrazione dei trattamenti INPS, dell’intera retribuzione (stipendio e contingenza) per 5 mesi e della metà di essa per gli altri 7 mesi."
+          },
+          "transformation": "The impiegati rule uses gross pay (no net qualification), full pay for five 30-day months (days 1-150), then half for seven (days 151-360). The existing gross daily base includes pay beyond stipendio and contingenza; that basis remains a limitation. The rolling 36-month comporto of 12 months follows art. 51 p. 22.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-10T00:51:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-10T00:51:00Z",
+            "verification_status": "verified",
+            "effective_from": "2021-07-01",
+            "review_id": "2026-11-10-ai-multiservizi-sickness"
+          },
+          "note": "The clause restricts this treatment to impiegati not on probation and excludes illness caused by their serious fault; these conditions are not represented. The engine's global daily pay includes components beyond stipendio and contingenza."
         }
       }
     }
@@ -5965,6 +6041,34 @@
         ],
         "checked": [
           "parameters.seniority_increments",
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-multiservizi-sickness",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Sickness art. 51 in cached CNEL 105782 pp. 67-68 and its replacement in CNEL 139292 pp. 22-24; category bands and remaining basis differences.",
+        "outcome": "corrected",
+        "independence": "same_process",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+            "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+          },
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+            "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
+          }
+        ],
+        "findings": [
+          "Operai receive 100% net global pay to day 180 and 50% global pay to day 270; the latter is not stated as net. Impiegati receive stipendio and contingenza in full for five months and half for seven; both share the rolling 36-month comporto.",
+          "Rule-wide net_basis cannot switch at day 181; global pay cannot restrict the impiegati base to stipendio and contingenza. Those differences remain open."
+        ],
+        "checked": [
+          "work_rules.sickness_rules",
+          "work_rules.sickness_rules_by_category.impiegato",
           "coverage.notes"
         ]
       },

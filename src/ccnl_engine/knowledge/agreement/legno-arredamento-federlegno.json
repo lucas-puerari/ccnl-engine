@@ -108,20 +108,8 @@
         "monetary_impact": "no"
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICESHIP MIDPOINT COMPONENTS: the 3rd period pays a 'retribuzione intermedia' between the current and the destination level (secondary source studiocerbone.com on the apprenticeship agreement); the CCNL text listed in the sources (direzionelavoro.it PDF) is no longer reachable, so whether the intermediate pay covers contingenza and EDR or the minimum table only is unverified. The engine averages the whole monthly pay, as the Federterme clause states; contingenza differs by about 1-2 EUR between adjacent levels.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "apprenticeship_midpoint_components",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Read the CCNL Legno apprenticeship clause on the 3rd period and confirm which pay components the intermediate pay averages, then remove this note."
-        }
+        "kind": "info",
+        "text": "APPRENTICESHIP MIDPOINT: the signed agreement of 13 December 2016, p. 35, sets third-period pay at the intermediate value between the current and destination categories. The signed 2026 renewal, p. 53, prints paga base, contingenza and EDR separately in each level's minimum. The engine averages both levels' entire tabular pay (base plus both fixed allowances); this is an interpretation of 'retribuzione', not an explicit enumeration of components in the apprenticeship clause. Personal superminima are not specified by this clause."
       },
       {
         "kind": "info",
@@ -280,6 +268,32 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.insured_absence.injury"
+        ]
+      },
+      {
+        "id": "2026-11-10-federlegno-apprenticeship-midpoint",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Third-period intermediate remuneration clause in the signed 2016 agreement and components of the tabular minimum in the signed 2026 renewal.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/04/Ccnl-Legno-Arredo-Industria-2016.pdf",
+            "sha256": "7208f8f6d2dd59c2d32956a3a58f28e26e1ba6e51c341a313ba82ad78c63a8ff"
+          },
+          {
+            "url": "https://das-fla-uat.s3.eu-west-1.amazonaws.com/private-files/2026-09/ipotesi-di-accordo-3-09-2026-firmata.pdf",
+            "sha256": "6549eadc62b506f5491b29c0a620b0dab0e25cd09453ac001453086d31be06b3"
+          }
+        ],
+        "findings": [
+          "The third period pays an intermediate retribuzione at the level below destination; the 2026 table prints base, contingenza and EDR in each minimum. Averaging the full tabular minimum gives AE3 to AE4 EUR 2209.26 in September 2026. The clause does not enumerate payslip components or personal superminima."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "apprenticeship",
+          "coverage.notes"
         ]
       }
     ]
@@ -4724,8 +4738,31 @@
         }
       ],
       "provenance": {
-        "status": "assumed",
-        "note": "The 3rd-period intermediate pay rests on a secondary summary (studiocerbone.com) of the apprenticeship agreement; the CCNL text in the sources (direzionelavoro.it PDF, CNEL F051) is no longer reachable, so no clause of the track is located."
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "federlegno-signed-agreement-2016-12-13",
+            "title": "Signed FederlegnoArredo agreement of 13 December 2016, apprenticeship rules (Filca-Cisl copy)",
+            "kind": "associazione",
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/04/Ccnl-Legno-Arredo-Industria-2016.pdf",
+            "published_on": "2016-12-13",
+            "sha256": "7208f8f6d2dd59c2d32956a3a58f28e26e1ba6e51c341a313ba82ad78c63a8ff"
+          },
+          "page": "35",
+          "section": "Parte settima, regolamentazione dell'apprendistato professionalizzante, per gli apprendisti assunti dal 26 aprile 2012; inquadramento e trattamento economico",
+          "quote": "nel terzo e ultimo periodo: un livello sotto quello di destinazione finale e retribuzione corrispondente al valore intermedio tra quello della categoria di appartenenza e quello della categoria di destinazione finale"
+        },
+        "transformation": "The third period keeps the lower classification and averages the current and destination levels' tabular pay. The 2026 signed renewal, PDF p. 53, prints paga base, contingenza and EDR as components of each minimum: AE3 1.634,62 + 516,53 + 10,33 = 2.161,48; AE4/AS1 1.728,95 + 517,76 + 10,33 = 2.257,04; mean 2.209,26. The clause says 'retribuzione' without enumerating components; the averaging of all three tabular components is an interpretation. Track-specific band offsets and period lengths remain modeled, not established by this quotation.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:58:26Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:58:26Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-federlegno-apprenticeship-midpoint"
+        },
+        "note": "The cited clause verifies the midpoint and one-level-below rule only; track-specific destination grouping, offsets in earlier periods and period lengths are modeled separately. The clause does not address personal superminima."
       }
     },
     {
@@ -4759,8 +4796,31 @@
         }
       ],
       "provenance": {
-        "status": "assumed",
-        "note": "The 3rd-period intermediate pay rests on a secondary summary (studiocerbone.com) of the apprenticeship agreement; the CCNL text in the sources (direzionelavoro.it PDF, CNEL F051) is no longer reachable, so no clause of the track is located."
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "federlegno-signed-agreement-2016-12-13",
+            "title": "Signed FederlegnoArredo agreement of 13 December 2016, apprenticeship rules (Filca-Cisl copy)",
+            "kind": "associazione",
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/04/Ccnl-Legno-Arredo-Industria-2016.pdf",
+            "published_on": "2016-12-13",
+            "sha256": "7208f8f6d2dd59c2d32956a3a58f28e26e1ba6e51c341a313ba82ad78c63a8ff"
+          },
+          "page": "35",
+          "section": "Parte settima, regolamentazione dell'apprendistato professionalizzante, per gli apprendisti assunti dal 26 aprile 2012; inquadramento e trattamento economico",
+          "quote": "nel terzo e ultimo periodo: un livello sotto quello di destinazione finale e retribuzione corrispondente al valore intermedio tra quello della categoria di appartenenza e quello della categoria di destinazione finale"
+        },
+        "transformation": "The third period keeps the lower classification and averages the current and destination levels' tabular pay. The 2026 signed renewal, PDF p. 53, prints paga base, contingenza and EDR as components of each minimum: AE3 1.634,62 + 516,53 + 10,33 = 2.161,48; AE4/AS1 1.728,95 + 517,76 + 10,33 = 2.257,04; mean 2.209,26. The clause says 'retribuzione' without enumerating components; the averaging of all three tabular components is an interpretation. Track-specific band offsets and period lengths remain modeled, not established by this quotation.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:58:26Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:58:26Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-federlegno-apprenticeship-midpoint"
+        },
+        "note": "The cited clause verifies the midpoint and one-level-below rule only; track-specific destination grouping, offsets in earlier periods and period lengths are modeled separately. The clause does not address personal superminima."
       }
     },
     {
@@ -4794,8 +4854,31 @@
         }
       ],
       "provenance": {
-        "status": "assumed",
-        "note": "The 3rd-period intermediate pay rests on a secondary summary (studiocerbone.com) of the apprenticeship agreement; the CCNL text in the sources (direzionelavoro.it PDF, CNEL F051) is no longer reachable, so no clause of the track is located."
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "federlegno-signed-agreement-2016-12-13",
+            "title": "Signed FederlegnoArredo agreement of 13 December 2016, apprenticeship rules (Filca-Cisl copy)",
+            "kind": "associazione",
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/04/Ccnl-Legno-Arredo-Industria-2016.pdf",
+            "published_on": "2016-12-13",
+            "sha256": "7208f8f6d2dd59c2d32956a3a58f28e26e1ba6e51c341a313ba82ad78c63a8ff"
+          },
+          "page": "35",
+          "section": "Parte settima, regolamentazione dell'apprendistato professionalizzante, per gli apprendisti assunti dal 26 aprile 2012; inquadramento e trattamento economico",
+          "quote": "nel terzo e ultimo periodo: un livello sotto quello di destinazione finale e retribuzione corrispondente al valore intermedio tra quello della categoria di appartenenza e quello della categoria di destinazione finale"
+        },
+        "transformation": "The third period keeps the lower classification and averages the current and destination levels' tabular pay. The 2026 signed renewal, PDF p. 53, prints paga base, contingenza and EDR as components of each minimum: AE3 1.634,62 + 516,53 + 10,33 = 2.161,48; AE4/AS1 1.728,95 + 517,76 + 10,33 = 2.257,04; mean 2.209,26. The clause says 'retribuzione' without enumerating components; the averaging of all three tabular components is an interpretation. Track-specific band offsets and period lengths remain modeled, not established by this quotation.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:58:26Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:58:26Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-federlegno-apprenticeship-midpoint"
+        },
+        "note": "The cited clause verifies the midpoint and one-level-below rule only; track-specific destination grouping, offsets in earlier periods and period lengths are modeled separately. The clause does not address personal superminima."
       }
     },
     {
@@ -4829,8 +4912,31 @@
         }
       ],
       "provenance": {
-        "status": "assumed",
-        "note": "The 3rd-period intermediate pay rests on a secondary summary (studiocerbone.com) of the apprenticeship agreement; the CCNL text in the sources (direzionelavoro.it PDF, CNEL F051) is no longer reachable, so no clause of the track is located."
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "federlegno-signed-agreement-2016-12-13",
+            "title": "Signed FederlegnoArredo agreement of 13 December 2016, apprenticeship rules (Filca-Cisl copy)",
+            "kind": "associazione",
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/04/Ccnl-Legno-Arredo-Industria-2016.pdf",
+            "published_on": "2016-12-13",
+            "sha256": "7208f8f6d2dd59c2d32956a3a58f28e26e1ba6e51c341a313ba82ad78c63a8ff"
+          },
+          "page": "35",
+          "section": "Parte settima, regolamentazione dell'apprendistato professionalizzante, per gli apprendisti assunti dal 26 aprile 2012; inquadramento e trattamento economico",
+          "quote": "nel terzo e ultimo periodo: un livello sotto quello di destinazione finale e retribuzione corrispondente al valore intermedio tra quello della categoria di appartenenza e quello della categoria di destinazione finale"
+        },
+        "transformation": "The third period keeps the lower classification and averages the current and destination levels' tabular pay. The 2026 signed renewal, PDF p. 53, prints paga base, contingenza and EDR as components of each minimum: AE3 1.634,62 + 516,53 + 10,33 = 2.161,48; AE4/AS1 1.728,95 + 517,76 + 10,33 = 2.257,04; mean 2.209,26. The clause says 'retribuzione' without enumerating components; the averaging of all three tabular components is an interpretation. Track-specific band offsets and period lengths remain modeled, not established by this quotation.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:58:26Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:58:26Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-federlegno-apprenticeship-midpoint"
+        },
+        "note": "The cited clause verifies the midpoint and one-level-below rule only; track-specific destination grouping, offsets in earlier periods and period lengths are modeled separately. The clause does not address personal superminima."
       }
     },
     {
@@ -4863,8 +4969,31 @@
         }
       ],
       "provenance": {
-        "status": "assumed",
-        "note": "The 3rd-period intermediate pay rests on a secondary summary (studiocerbone.com) of the apprenticeship agreement; the CCNL text in the sources (direzionelavoro.it PDF, CNEL F051) is no longer reachable, so no clause of the track is located."
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "federlegno-signed-agreement-2016-12-13",
+            "title": "Signed FederlegnoArredo agreement of 13 December 2016, apprenticeship rules (Filca-Cisl copy)",
+            "kind": "associazione",
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/04/Ccnl-Legno-Arredo-Industria-2016.pdf",
+            "published_on": "2016-12-13",
+            "sha256": "7208f8f6d2dd59c2d32956a3a58f28e26e1ba6e51c341a313ba82ad78c63a8ff"
+          },
+          "page": "35",
+          "section": "Parte settima, regolamentazione dell'apprendistato professionalizzante, per gli apprendisti assunti dal 26 aprile 2012; inquadramento e trattamento economico",
+          "quote": "nel terzo e ultimo periodo: un livello sotto quello di destinazione finale e retribuzione corrispondente al valore intermedio tra quello della categoria di appartenenza e quello della categoria di destinazione finale"
+        },
+        "transformation": "The third period keeps the lower classification and averages the current and destination levels' tabular pay. The 2026 signed renewal, PDF p. 53, prints paga base, contingenza and EDR as components of each minimum: AE3 1.634,62 + 516,53 + 10,33 = 2.161,48; AE4/AS1 1.728,95 + 517,76 + 10,33 = 2.257,04; mean 2.209,26. The clause says 'retribuzione' without enumerating components; the averaging of all three tabular components is an interpretation. Track-specific band offsets and period lengths remain modeled, not established by this quotation.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:58:26Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:58:26Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-federlegno-apprenticeship-midpoint"
+        },
+        "note": "The cited clause verifies the midpoint and one-level-below rule only; track-specific destination grouping, offsets in earlier periods and period lengths are modeled separately. The clause does not address personal superminima."
       }
     },
     {
@@ -4897,8 +5026,31 @@
         }
       ],
       "provenance": {
-        "status": "assumed",
-        "note": "The 3rd-period intermediate pay rests on a secondary summary (studiocerbone.com) of the apprenticeship agreement; the CCNL text in the sources (direzionelavoro.it PDF, CNEL F051) is no longer reachable, so no clause of the track is located."
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "federlegno-signed-agreement-2016-12-13",
+            "title": "Signed FederlegnoArredo agreement of 13 December 2016, apprenticeship rules (Filca-Cisl copy)",
+            "kind": "associazione",
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/04/Ccnl-Legno-Arredo-Industria-2016.pdf",
+            "published_on": "2016-12-13",
+            "sha256": "7208f8f6d2dd59c2d32956a3a58f28e26e1ba6e51c341a313ba82ad78c63a8ff"
+          },
+          "page": "35",
+          "section": "Parte settima, regolamentazione dell'apprendistato professionalizzante, per gli apprendisti assunti dal 26 aprile 2012; inquadramento e trattamento economico",
+          "quote": "nel terzo e ultimo periodo: un livello sotto quello di destinazione finale e retribuzione corrispondente al valore intermedio tra quello della categoria di appartenenza e quello della categoria di destinazione finale"
+        },
+        "transformation": "The third period keeps the lower classification and averages the current and destination levels' tabular pay. The 2026 signed renewal, PDF p. 53, prints paga base, contingenza and EDR as components of each minimum: AE3 1.634,62 + 516,53 + 10,33 = 2.161,48; AE4/AS1 1.728,95 + 517,76 + 10,33 = 2.257,04; mean 2.209,26. The clause says 'retribuzione' without enumerating components; the averaging of all three tabular components is an interpretation. Track-specific band offsets and period lengths remain modeled, not established by this quotation.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:58:26Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:58:26Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-federlegno-apprenticeship-midpoint"
+        },
+        "note": "The cited clause verifies the midpoint and one-level-below rule only; track-specific destination grouping, offsets in earlier periods and period lengths are modeled separately. The clause does not address personal superminima."
       }
     }
   ],
@@ -4909,7 +5061,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "9bb0be7c2ddc2d0e19b4878782ecf2fe8cc8fd36d903efbe1fb598c16480a822",
+    "source_hash": "b37b142da9bf236fe30e88edbce36311951d58b3b102ba609c86ae631395a1b1",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
