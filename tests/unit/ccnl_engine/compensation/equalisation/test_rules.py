@@ -339,7 +339,14 @@ _UNIONTESSILE = load_ccnl("tessile-pmi-uniontessile")
 def _egr(
     request: PeriodCalculationRequest, kind: RunKind = RunKind.REGULAR
 ) -> list[Decimal]:
-    outcome = equalisation_outcome(request, _UNIONTESSILE, kind)
+    egr_only = _UNIONTESSILE.model_copy(
+        update={
+            "parameters": _UNIONTESSILE.parameters.model_copy(
+                update={"equalisation_elements": ()}
+            )
+        }
+    )
+    outcome = equalisation_outcome(request, egr_only, kind)
     return [e.amount for e in outcome.events]
 
 
