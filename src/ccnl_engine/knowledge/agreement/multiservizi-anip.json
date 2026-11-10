@@ -84,10 +84,6 @@
       },
       {
         "kind": "info",
-        "text": "Apprenticeship: two levels below the destination for the first half and one below for the second, destination II at level I throughout (art. 12, CNEL 105782 p. 37; the parametric positions are skipped). Durations come from the accord of 19 July 2012, read only in a third-party copy of the 2021 text: II 24, III 30, IV 30, V 36, VI 36, VII 36 months. The file models destinations 4 and 5 with 30 months each: destination 5 should last 36 and the other destinations are missing. The 2012 duration schedule has not been verified on the signed cached PDFs; declared in multiservizi_apprenticeship_destinations."
-      },
-      {
-        "kind": "info",
         "text": "July 2025 values: the renewal of 8 June 2021 (CNEL 139292, signed by ANIP) sets a fifth tranche from 1 July 2025 (level 2 +10.00, tabellare 779.21, p. 34), provisional under the art. 73 consuntivo. The renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025 (CNEL 234752) raise level 2 to 819.21 from the same date, but ANIP signed neither. The file applies the ANIP-signed 2021 fifth tranche from July 2025 and excludes the later unsigned tranches (see anip_unsigned_renewal). No ANIP amount for the art. 73 consuntivo or the IPCA increments of art. 73-bis and 73-ter was found."
       },
       {
@@ -156,19 +152,6 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICESHIP (19 July 2012 accord): destination 5 is configured for 30 months rather than 36; destinations 2, 3, 6 and 7 are not configured. The cited duration schedule has not been verified on the cached signed 2011 or 2021 PDF and must not be inferred from a third-party copy.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "multiservizi_apprenticeship_destinations",
-          "applies_when": {
-            "trigger": "run"
-          },
-          "remediation": "Obtain and verify the signed 2012 apprenticeship accord before changing durations or adding destinations."
-        }
-      },
-      {
         "kind": "info",
         "capability": "leave",
         "text": "LEAVE (artt. 19, 41, 42 of the 2011 text): 22 days of ferie on five days, 26 on six (Employment.full_time_week_days), in twelfths with the month over 15 days; 40 hours a year of reduced time (art. 42). At termination a day of ferie is the monthly pay over 22 (26 on six days), an hour of permits over 173. The ex festività are compensatory permits for the abolished holidays worked (art. 41): not a bank, not accrued. The 2025 renewal (72 hours of permits according to the union summary) is not read in a primary text."
@@ -233,6 +216,23 @@
             "trigger": "run"
           },
           "remediation": "Apply gross rather than net basis to operai days 181-270, restrict impiegati pay to stipendio plus contingenza, and respect the first-working-day and eligibility conditions; use the worker's actual category at mixed-category levels."
+        }
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship: the 19 July 2012 agreement reproduced in the FILCAMS 2021 compiled CCNL, Allegato 8 pp. 119-123, applies from 20 July 2012. Its maximum terms are II 24, III-IV 30 and V-VII 36 months; the first half is paid two ordinary levels below the destination, the second half one below, except destination II at level I throughout. Parametric positions are skipped. The track models the maximum term; shorter individual terms, qualification-based reductions and extensions after prolonged absence require individual inputs and are not configured."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICESHIP (Allegato 8 of the 2021 compiled CCNL, reproducing the 19 July 2012 agreement): the tracks use the printed maximum duration. For destinations V-VII a relevant diploma shortens the term by 6 months and a relevant degree by 12 months; absence over 30 days extends the term by the absence duration. Individual term adjustments are not represented by the maximum-term tracks.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "multiservizi_apprenticeship_destinations",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Supply the individually agreed term and qualification or absence details before applying a shortened or extended progression; the tracks encode only the printed maximum terms."
         }
       },
       {
@@ -3975,9 +3975,55 @@
   "apprenticeship": [
     {
       "type": "under_classification",
-      "name": "destinazione_5",
+      "name": "destinazione_2",
       "destination_levels": [
-        "5"
+        "2"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 24,
+          "levels_below": 1
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "filcams-multiservizi-2021",
+            "title": "2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement",
+            "kind": "associazione",
+            "url": "https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0",
+            "published_on": "2021-06-08",
+            "sha256": "ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f"
+          },
+          "page": "120, 122",
+          "section": "Allegato 8, Durata; Trattamento economico",
+          "quote": "II      livello          24 mesi [...] Gli apprendisti con destinazione finale al secondo livello saranno inquadrati al primo livello per tutto il periodo."
+        },
+        "transformation": "Maximum term 24 months from 20 July 2012; destination II is paid at I throughout the term, then at II after completion. The compiled annex reproduces the 19 July 2012 agreement.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T03:00:15Z",
+          "effective_from": "2012-07-20",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T03:00:15Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-multiservizi-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "under_classification",
+      "name": "destinazione_3",
+      "destination_levels": [
+        "3"
       ],
       "periods": [
         {
@@ -3988,14 +4034,41 @@
         {
           "months_from": 15,
           "months_until": 30,
-          "levels_below": 1
+          "levels_below": 2
         },
         {
           "months_from": 30,
           "months_until": null,
           "levels_below": 0
         }
-      ]
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "filcams-multiservizi-2021",
+            "title": "2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement",
+            "kind": "associazione",
+            "url": "https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0",
+            "published_on": "2021-06-08",
+            "sha256": "ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f"
+          },
+          "page": "120, 122",
+          "section": "Allegato 8, Durata; Trattamento economico",
+          "quote": "III     livello          30 mesi [...] Il lavoratore assunto con contratto di apprendistato professionalizzante è inquadrato due livelli sotto quello di destinazione finale, per la prima metà del periodo e ad un livello inferiore per la seconda metà."
+        },
+        "transformation": "Maximum term 30 months from 20 July 2012; ordinary pay levels I for months 0-14 and II for 15-29, skipping parametric grades. The compiled annex reproduces the 19 July 2012 agreement.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T03:00:15Z",
+          "effective_from": "2012-07-20",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T03:00:15Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-multiservizi-apprenticeship"
+        }
+      }
     },
     {
       "type": "under_classification",
@@ -4019,7 +4092,187 @@
           "months_until": null,
           "levels_below": 0
         }
-      ]
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "filcams-multiservizi-2021",
+            "title": "2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement",
+            "kind": "associazione",
+            "url": "https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0",
+            "published_on": "2021-06-08",
+            "sha256": "ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f"
+          },
+          "page": "120, 122",
+          "section": "Allegato 8, Durata; Trattamento economico",
+          "quote": "IV      livello          30 mesi [...] Il lavoratore assunto con contratto di apprendistato professionalizzante è inquadrato due livelli sotto quello di destinazione finale, per la prima metà del periodo e ad un livello inferiore per la seconda metà."
+        },
+        "transformation": "Maximum term 30 months from 20 July 2012; ordinary pay levels II for months 0-14 and III for 15-29, skipping parametric grades. The compiled annex reproduces the 19 July 2012 agreement.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T03:00:15Z",
+          "effective_from": "2012-07-20",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T03:00:15Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-multiservizi-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "under_classification",
+      "name": "destinazione_5",
+      "destination_levels": [
+        "5"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 3
+        },
+        {
+          "months_from": 18,
+          "months_until": 36,
+          "levels_below": 1
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "filcams-multiservizi-2021",
+            "title": "2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement",
+            "kind": "associazione",
+            "url": "https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0",
+            "published_on": "2021-06-08",
+            "sha256": "ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f"
+          },
+          "page": "120, 122",
+          "section": "Allegato 8, Durata; Trattamento economico",
+          "quote": "V       livello          36 mesi [...] Il lavoratore assunto con contratto di apprendistato professionalizzante è inquadrato due livelli sotto quello di destinazione finale, per la prima metà del periodo e ad un livello inferiore per la seconda metà."
+        },
+        "transformation": "Maximum term 36 months from 20 July 2012; ordinary pay levels III for months 0-17 and IV for 18-35, skipping parametric grades. The compiled annex reproduces the 19 July 2012 agreement.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T03:00:15Z",
+          "effective_from": "2012-07-20",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T03:00:15Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-multiservizi-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "under_classification",
+      "name": "destinazione_6",
+      "destination_levels": [
+        "6"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 2
+        },
+        {
+          "months_from": 18,
+          "months_until": 36,
+          "levels_below": 1
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "filcams-multiservizi-2021",
+            "title": "2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement",
+            "kind": "associazione",
+            "url": "https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0",
+            "published_on": "2021-06-08",
+            "sha256": "ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f"
+          },
+          "page": "120, 122",
+          "section": "Allegato 8, Durata; Trattamento economico",
+          "quote": "VI      livello          36 mesi [...] Il lavoratore assunto con contratto di apprendistato professionalizzante è inquadrato due livelli sotto quello di destinazione finale, per la prima metà del periodo e ad un livello inferiore per la seconda metà."
+        },
+        "transformation": "Maximum term 36 months from 20 July 2012; ordinary pay levels IV for months 0-17 and V for 18-35, skipping parametric grades. The compiled annex reproduces the 19 July 2012 agreement.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T03:00:15Z",
+          "effective_from": "2012-07-20",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T03:00:15Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-multiservizi-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "under_classification",
+      "name": "destinazione_7",
+      "destination_levels": [
+        "7"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 2
+        },
+        {
+          "months_from": 18,
+          "months_until": 36,
+          "levels_below": 1
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "filcams-multiservizi-2021",
+            "title": "2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement",
+            "kind": "associazione",
+            "url": "https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0",
+            "published_on": "2021-06-08",
+            "sha256": "ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f"
+          },
+          "page": "120, 122",
+          "section": "Allegato 8, Durata; Trattamento economico",
+          "quote": "VII     livello          36 mesi [...] Il lavoratore assunto con contratto di apprendistato professionalizzante è inquadrato due livelli sotto quello di destinazione finale, per la prima metà del periodo e ad un livello inferiore per la seconda metà."
+        },
+        "transformation": "Maximum term 36 months from 20 July 2012; ordinary pay levels V for months 0-17 and VI for 18-35. The compiled annex reproduces the 19 July 2012 agreement.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T03:00:15Z",
+          "effective_from": "2012-07-20",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T03:00:15Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-multiservizi-apprenticeship"
+        }
+      }
     }
   ],
   "ruleset": {
@@ -4029,7 +4282,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "05619394374bdf1b8c3ce9c42b0c7028e00afeac61acb738652ac6271bb1ebc2",
+    "source_hash": "e8e5e1263352d98bc076144fbd75debd670d0d03ba509dc9480118f148bc7d6b",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -5203,6 +5456,32 @@
         "checked": [
           "work_rules.sickness_rules",
           "work_rules.sickness_rules_by_category.impiegato",
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-multiservizi-apprenticeship",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Allegato 8 pp. 119-123 of the 2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement: maximum terms and pay grades effective 20 July 2012.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0",
+            "sha256": "ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f"
+          },
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+            "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
+          }
+        ],
+        "findings": [
+          "The annex prints II 24, III-IV 30, V-VII 36 months; the first half pays two ordinary levels below, the second half one below, except destination II at I throughout. The CNEL renewal has no amendment to these clauses. Individual reductions and extensions remain outside the maximum-term tracks."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "apprenticeship",
           "coverage.notes"
         ]
       },
