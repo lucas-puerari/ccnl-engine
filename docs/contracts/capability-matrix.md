@@ -61,7 +61,7 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 4525 / 2119 / 205 / 28 |
+| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 4525 / 2161 / 205 / 28 |
 | `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 31 / 92 / 13 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | core | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 33 / 24 / 45 / 0 |
@@ -273,5 +273,5 @@ never grow.
 | 132 | [CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)](bancari-abi.md) | ⚠️ | base_salary, inps_employer, overtime, seniority, sickness | 43 / 2 / 0 / 0 |
 | 133 | [CCNL per i lavoratori dipendenti delle aziende termali](aziende-termali-federterme.md) | ⚠️ | base_salary, bilateral_funds, inps_employer, seniority | 0 / 65 / 1 / 0 |
 | 134 | [CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)](assicurazioni-ania.md) | ⚠️ | base_salary, inps_employer | 20 / 10 / 1 / 1 |
-| 135 | [DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinamento civile (Triennio 2022-2024)](forze-polizia-ordinamento-civile.md) | ⚠️ | base_salary, seniority | 0 / 70 / 1 / 1 |
+| 135 | [DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinamento civile (Triennio 2022-2024)](forze-polizia-ordinamento-civile.md) | ⚠️ | base_salary, seniority | 0 / 112 / 1 / 1 |
 | 136 | [Distribuzione Moderna Organizzata — Federdistribuzione](dmo-federdistribuzione.md) | ⚠️ | base_salary, sickness, territorial_supplement | 93 / 3 / 0 / 0 |
