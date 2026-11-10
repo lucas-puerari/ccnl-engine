@@ -1360,7 +1360,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/legno-arredamento-federlegno",
       "ruleset_version": "2026.2",
-      "source_hash": "9bb0be7c2ddc2d0e19b4878782ecf2fe8cc8fd36d903efbe1fb598c16480a822",
+      "source_hash": "b37b142da9bf236fe30e88edbce36311951d58b3b102ba609c86ae631395a1b1",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/legno-arredamento-federlegno.json.gz"
@@ -3981,7 +3981,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "5e4c6e015218a9a16c731b133e426d1edb3dc5b9a84929bb2e812e8f6ab7d499",
+      "source_hash": "232e824a3c1b6c82f508732082334b0c232b7f24aa88fb9d6dafe799d6e74f6c",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/legno-arredamento-federlegno.json.gz",

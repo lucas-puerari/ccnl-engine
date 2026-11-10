@@ -253,10 +253,11 @@ def test_unsourced_apprentice_seniority_is_an_open_limitation(
 def test_unsourced_midpoint_components_are_an_open_limitation(
     ccnls: tuple[CCNL, ...],
 ) -> None:
-    """Of the CCNLs with a midpoint period, only Federterme states its components.
+    """Only midpoints without a located basis carry a component limitation.
 
-    Its Art. 13 lett. g averages the whole pay; the others carry an open
-    limitation the midpoint path records.
+    Federterme's Art. 13 lett. g and Federlegno's signed 2016 clause with
+    the 2026 split-pay table support their respective midpoint calculations.
+    Other midpoint periods must retain an open limitation.
     """
     unsourced = {
         ccnl.meta.ccnl_id
@@ -265,7 +266,19 @@ def test_unsourced_midpoint_components_are_an_open_limitation(
         if lim.variant == MIDPOINT_VARIANT and lim.status is LimitationStatus.OPEN
     }
     midpoint = {c.meta.ccnl_id for c in ccnls if _has_midpoint(c)}
-    assert unsourced == midpoint - {"aziende-termali-federterme"}
+    assert unsourced == midpoint - {
+        "aziende-termali-federterme",
+        "legno-arredamento-federlegno",
+    }
+    federlegno = next(
+        c for c in ccnls if c.meta.ccnl_id == "legno-arredamento-federlegno"
+    )
+    assert all(
+        track.provenance is not None
+        and track.provenance.location is not None
+        and track.provenance.location.page == "35"
+        for track in federlegno.apprenticeship
+    )
 
 
 def test_the_cumulation_window_covers_the_per_episode_ccnls(
