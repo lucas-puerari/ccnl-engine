@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.collection.validators import items_of_type, tuple_of
@@ -12,7 +13,12 @@ from ccnl_engine.event.facade import WORK_EVENT_TYPES
 from ccnl_engine.family.inputs import FamilyComposition
 from ccnl_engine.period.facts.holiday import PaidHolidayDays
 from ccnl_engine.surtax.jurisdiction.types import check_surtax_codes
-from ccnl_engine.validators import require_instances, require_int, require_str
+from ccnl_engine.validators import (
+    require_decimal,
+    require_instances,
+    require_int,
+    require_str,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.event.facade import WorkEvent
@@ -33,6 +39,9 @@ class PeriodFacts:
             an operaio then has a ``missing_fact`` blocker.  An
             ``AbsenceEvent`` of a worker paid by the hour is rejected: its
             hours are already left out of them.
+        hourly_pay_elements: Sum of additional hourly remuneration elements
+            applicable to contractual hourly pay, excluding monthly elements
+            already in monthly pay. ``None`` means unknown, zero confirms none.
         paid_holiday_days: Caller-stated eligible holidays in this run, distinct
             from hours worked; ``None`` leaves holiday treatment unrequested.
         presence_days: Days actually present at work in this month; ``None``
@@ -76,6 +85,7 @@ class PeriodFacts:
     contributable_hours: ContributableHours | None = None
     ordinary_hours_worked: ContributableHours | None = None
     paid_holiday_days: PaidHolidayDays | None = None
+    hourly_pay_elements: Decimal | None = None
     presence_days: int | None = None
     site_presence_days: int | None = None
     events: tuple[WorkEvent, ...] = ()
@@ -116,6 +126,13 @@ class PeriodFacts:
             self.comune_belfiore,
             "PeriodFacts.comune_belfiore",
             feature=feature,
+            optional=True,
+        )
+        require_decimal(
+            self.hourly_pay_elements,
+            "PeriodFacts.hourly_pay_elements",
+            feature=feature,
+            minimum=Decimal(0),
             optional=True,
         )
         validate_presence_days(

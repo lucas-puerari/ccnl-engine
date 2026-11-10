@@ -152,7 +152,7 @@
       },
       {
         "kind": "simplification",
-        "text": "OVERTIME AND NIGHT WORK (CNEL 105782 art. 38, p. 57): ordinary overtime hours use global pay, whereas percentage supplements use base pay (tabellare and contingenza). Holiday work attracts 50%; ordinary night work attracts 20% in rotating shifts or 30% otherwise. The existing four overtime bands do not represent these ordinary holiday and night events or the separate bases.",
+        "text": "OVERTIME AND NIGHT WORK (CNEL 105782 art. 38, p. 57): ordinary overtime hours use global pay, whereas percentage supplements use base pay (tabellare and contingenza). Holiday work attracts 50%; ordinary night work attracts 20% in rotating shifts or 30% otherwise. The four overtime bands, the ordinary holiday band and the two night bands use the printed rates, with a separate tabellare-plus-contingenza premium base. The engine cannot automatically enforce the non-cumulation of simultaneous holiday and night premiums or the incidence of continuous night supplements on deferred pay.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -160,12 +160,12 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Separate global hourly pay from base-pay premiums and route holiday and rotating versus non-rotating night events without stacking premiums."
+          "remediation": "Do not stack simultaneous holiday and night premiums; account for continuous night premiums in deferred pay where applicable."
         }
       },
       {
         "kind": "simplification",
-        "text": "PART-TIME SUPPLEMENTS (CNEL 139292 art. 33): supplementary hours and elastic clauses have distinct rates and eligibility. The four configured overtime bands do not cover them.",
+        "text": "PART-TIME SUPPLEMENTS (CNEL 139292 art. 33): supplementary hours and elastic clauses have distinct rates and eligibility. OT_SUPPLEMENTARE covers additional hours at ordinary global hourly pay plus 28% of tabellare and contingenza. The engine does not defer the 28% to the following month or include its incidence in indirect and deferred pay including TFR; it does not route the distinct elastic-clause hours, enforce part-time eligibility or the full-time ceiling.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -173,20 +173,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Verify the full part-time clause and route supplementary and elastic hours separately."
-        }
-      },
-      {
-        "kind": "simplification",
-        "text": "VARIABLE ALLOWANCES (CNEL 105782 arts. 22 and 24): the 3% tabellare cash-handling allowance is modeled for a caller-stated role normally handling money with liability for errors. Hardship requires qualifying daily cleaning events and the correct daily tabellare base; collection requires qualifying collections above EUR 4.65 and a 5% retribuzione base; the hourly cleaning allowances require actual duty hours and non-cumulation where applicable. Personal EDAR retained under art. 22 requires an individual amount and absorption at the next qualifying seniority increment. No unsupported amounts or event counts are inferred.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "multiservizi_duty_allowances_and_edar",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Route qualifying hardship days, collection events and hourly duty hours to their distinct bases; track individual EDAR and its absorption at the next qualifying increment. The cash-handling role supplement is modeled."
+          "remediation": "Route elastic clauses separately (10% on global pay for shifted hours, plus 1.5% for additional hours); enforce part-time eligibility and the full-time ceiling, next-month settlement and incidence on deferred pay including TFR."
         }
       },
       {
@@ -246,6 +233,19 @@
             "effective_from": "2025-07-01"
           },
           "remediation": "Source the IPCA consuntivo of June 2025 and any later IPCA adjustment for ANIP and adjust the July 2025 minima."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "VARIABLE ALLOWANCES (CNEL 105782 arts. 22 and 24): the 3% tabellare cash-handling allowance is modeled for a caller-stated role normally handling money with liability for errors. Hardship requires qualifying daily cleaning events and the correct daily tabellare base; collection requires qualifying collections above EUR 4.65 and a 5% retribuzione base; the hourly cleaning allowances require actual duty hours and non-cumulation where applicable. Personal EDAR retained under art. 22 requires an individual amount and absorption at the next qualifying seniority increment. No unsupported amounts or event counts are inferred.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "multiservizi_duty_allowances_and_edar",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Route qualifying hardship days, collection events and hourly duty hours to their distinct bases; track individual EDAR and its absorption at the next qualifying increment. The cash-handling role supplement is modeled."
         }
       }
     ]
@@ -4015,7 +4015,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "fbc72c63fc3302ad02eb99e7663f3b1845b43f471115601b6377edcc6638dfcb",
+    "source_hash": "0462c9ff6503d74ef622dcd5174486c4967c2098417659e22b39824a734aa7ef",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -4025,6 +4025,7 @@
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
+          "premium_base": "minimo_e_contingenza",
           "description": "Straordinario feriale diurno",
           "kind": "percentage",
           "rate": {
@@ -4069,6 +4070,7 @@
         },
         {
           "code": "OT_NOTTURNO",
+          "premium_base": "minimo_e_contingenza",
           "description": "Straordinario feriale notturno",
           "kind": "percentage",
           "rate": {
@@ -4113,6 +4115,7 @@
         },
         {
           "code": "OT_FESTIVO",
+          "premium_base": "minimo_e_contingenza",
           "description": "Straordinario festivo",
           "kind": "percentage",
           "rate": {
@@ -4157,6 +4160,7 @@
         },
         {
           "code": "OT_NOTTURNO_FESTIVO",
+          "premium_base": "minimo_e_contingenza",
           "description": "Straordinario notturno festivo",
           "kind": "percentage",
           "rate": {
@@ -4198,8 +4202,239 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "OT_SUPPLEMENTARE",
+          "description": "Part-time supplementary hours up to full-time hours; ordinary hourly pay plus the 28% incidence supplement",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-08",
+                "value": 0.28,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "supplementare"
+          ],
+          "premium_base": "minimo_e_contingenza",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-139292",
+                "title": "Ipotesi di accordo per il rinnovo del CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, 8 giugno 2021 (CNEL K511, deposito 139292)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+                "published_on": "2021-06-08",
+                "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
+              },
+              "page": "17",
+              "section": "Art. 33 Lavoro a tempo parziale",
+              "quote": "Le ore di lavoro supplementare sono retribuite come ore ordinarie, incrementate ai sensi dell'art. 3, comma quarto, del decreto legislativo n. 61/2000, dell’art. 6, comma 2 del D.lgs. 81/2015 dell'incidenza della retribuzione delle ore supplementari su tutti gli istituti retributivi indiretti e differiti, compreso il TFR, determinata convenzionalmente e forfetariamente, tra le parti, nella misura del 28%, calcolato sulla retribuzione base e retribuito il mese successivo all'effettuazione della prestazione."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T23:38:44Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T23:38:44Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-time-supplements"
+            },
+            "transformation": "28% applies to the retribuzione base (tabellare plus contingenza), on top of the ordinary hourly global pay; only the immediate hour and premium are posted, not the deferred incidence or next-month timing."
+          }
         }
-      ]
+      ],
+      "supplement_bands": [
+        {
+          "code": "MS_FESTIVO",
+          "description": "Ordinary holiday hours",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "value": 0.5,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "base": "minimo_e_contingenza",
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "57",
+              "section": "Art. 38 Lavoro straordinario, notturno e festivo",
+              "quote": "5) lavoro compiuto nei giorni considerati festivi            50%"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T23:38:44Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T23:38:44Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-time-supplements"
+            },
+            "transformation": "The printed percentage is applied to the hourly tabellare plus contingenza; the monthly divisor is 173."
+          }
+        },
+        {
+          "code": "MS_NOTTURNO",
+          "description": "Ordinary night hours outside rotating shifts",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "value": 0.3,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "base": "minimo_e_contingenza",
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "57",
+              "section": "Art. 38 Lavoro straordinario, notturno e festivo",
+              "quote": "7) lavoro notturno, non compreso in turni avvicendati        30%"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T23:38:44Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T23:38:44Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-time-supplements"
+            },
+            "transformation": "The printed percentage is applied to the hourly tabellare plus contingenza; the monthly divisor is 173."
+          }
+        },
+        {
+          "code": "MS_NOTTURNO_TURNO",
+          "description": "Ordinary night hours in rotating shifts",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "value": 0.2,
+                "provenance": null,
+                "valid_until": null
+              }
+            ]
+          },
+          "base": "minimo_e_contingenza",
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "57",
+              "section": "Art. 38 Lavoro straordinario, notturno e festivo",
+              "quote": "6) lavoro notturno, compreso in turni avvicendati            20%"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T23:38:44Z",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T23:38:44Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-time-supplements"
+            },
+            "transformation": "The printed percentage is applied to the hourly tabellare plus contingenza; the monthly divisor is 173."
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-k511-105782",
+            "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+            "kind": "cnel",
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+            "published_on": "2011-05-31",
+            "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+          },
+          "page": "40",
+          "section": "Art. 18 Retribuzione",
+          "quote": "Per retribuzione globale mensile si intende quella risultante dalla somma della retribuzione base e di ogni eventuale superminimo o assegno “ad personam”, nonché di ogni altro compenso comunque denominato, corrisposti con carattere di continuità, esclusa ogni somma non avente carattere retributivo (rimborso spese, ecc.)."
+        },
+        "transformation": "The ordinary hour uses monthly global pay: tabellare, seniority and continuous cash allowances; divide by the Art. 19 divisor 173. Percentages use a separate base (tabellare and contingenza).",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-09T23:38:44Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-09T23:38:44Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-time-supplements"
+        }
+      },
+      "individual_elements": {
+        "in_hourly_base": "hour_only",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-k511-105782",
+              "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+              "kind": "cnel",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+              "published_on": "2011-05-31",
+              "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+            },
+            "page": "57",
+            "section": "Art. 38 Lavoro straordinario, notturno e festivo",
+            "quote": "Le percentuali di cui sopra verranno calcolate sulla quota oraria della retribuzione base al momento della liquidazione di esse."
+          },
+          "transformation": "Continuously paid individual elements enter the global hourly pay of the hour but not the tabellare-and-contingenza percentage premium.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-09T23:38:44Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-09T23:38:44Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-10-ai-time-supplements"
+          }
+        }
+      }
     },
     "absence_rules": {
       "daily_divisor_method": "by_22",
@@ -4806,6 +5041,29 @@
         "checked": [
           "work_rules.absence_rules",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-time-supplements",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "CNEL 139292 art. 33 pp. 16-17 and CNEL 105782 art. 18 p. 40, art. 38 p. 57; supplementary and ordinary holiday/night supplements and percentage bases.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+            "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+          },
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+            "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
+          }
+        ],
+        "findings": [
+          "The 2021 ANIP-signed part-time amendment governs supplementary hours in 2026; elastic hours remain a limitation.",
+          "The 2011 art. 38 continues to set ordinary holiday and night rates, on base pay, with non-cumulation not automatically enforced."
         ]
       },
       {

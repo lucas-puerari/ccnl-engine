@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 78 verified / 15 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 83 verified / 15 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -72,6 +72,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | health_and_bilateral_funds: For modeled runs from July 2021, parameters.health_funds already contains ASIM employer EUR 4/month through 28 weekly hours and EUR 6 above, permanent workers only, and ONBSI EUR 0.25 per party under 20 weekly hours and EUR 0.50 per party otherwise, on ordinary months only (12, n |
 | 2026-11-08 | claude-opus-5-5 (ai) | Cached CNEL 139292 PDF page 34, July 2025 tabellare for all eight printed levels; two parametric positions derived; later unsigned salary periods excluded. | corrected | Verified all eight printed monthly minima against PDF page 34; derived two unprinted parametric positions from prior signed periods and signed tranche increments.<br>Excluded all unsigned salary periods from May 2026 onward; the signed July 2025 tranche remains in force until further ANIP evidence. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 19 daily pay and art. 30 ordinary working week, cached signed CNEL 105782; separate limitations for the remaining clauses in CNEL 105782 and 139292. | corrected | Art. 19 prints 22 for a five-day week and 26 for six days; art. 30 makes five days the normal distribution. The historical pension base and the missing signed 2012 apprenticeship accord prevent assuming current pay bases or durations. |
+| 2026-11-10 | claude-opus-5-5 (ai) | CNEL 139292 art. 33 pp. 16-17 and CNEL 105782 art. 18 p. 40, art. 38 p. 57; supplementary and ordinary holiday/night supplements and percentage bases. | corrected | The 2021 ANIP-signed part-time amendment governs supplementary hours in 2026; elastic hours remain a limitation.<br>The 2011 art. 38 continues to set ordinary holiday and night rates, on base pay, with non-cumulation not automatically enforced. |
 | 2026-11-10 | claude-opus-5-5 (ai) | CNEL 105782 art. 24, page 43, cash handling on the tabellare; art. 22 EDAR and remaining art. 24 event-dependent duties remain limited. | corrected | The cash-handling duty is normally assigned and carries error liability, so caller-stated role gates its 3% tabellare supplement. Collection thresholds and hardship and hourly duty events cannot be inferred from a monthly role. |
 
 ## Salary table
@@ -143,25 +144,18 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Apply separate category rules and day-dependent net/gross bases to operai; apply the separate stipendio-plus-contingenza impiegati bands.
 
 !!! warning "multiservizi-anip/multiservizi_variable_time_premiums · overtime · impact yes · open"
-    OVERTIME AND NIGHT WORK (CNEL 105782 art. 38, p. 57): ordinary overtime hours use global pay, whereas percentage supplements use base pay (tabellare and contingenza). Holiday work attracts 50%; ordinary night work attracts 20% in rotating shifts or 30% otherwise. The existing four overtime bands do not represent these ordinary holiday and night events or the separate bases.
+    OVERTIME AND NIGHT WORK (CNEL 105782 art. 38, p. 57): ordinary overtime hours use global pay, whereas percentage supplements use base pay (tabellare and contingenza). Holiday work attracts 50%; ordinary night work attracts 20% in rotating shifts or 30% otherwise. The four overtime bands, the ordinary holiday band and the two night bands use the printed rates, with a separate tabellare-plus-contingenza premium base. The engine cannot automatically enforce the non-cumulation of simultaneous holiday and night premiums or the incidence of continuous night supplements on deferred pay.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Separate global hourly pay from base-pay premiums and route holiday and rotating versus non-rotating night events without stacking premiums.
+    **Remediation:** Do not stack simultaneous holiday and night premiums; account for continuous night premiums in deferred pay where applicable.
 
 !!! warning "multiservizi-anip/multiservizi_part_time_supplements · overtime · impact yes · open"
-    PART-TIME SUPPLEMENTS (CNEL 139292 art. 33): supplementary hours and elastic clauses have distinct rates and eligibility. The four configured overtime bands do not cover them.
+    PART-TIME SUPPLEMENTS (CNEL 139292 art. 33): supplementary hours and elastic clauses have distinct rates and eligibility. OT_SUPPLEMENTARE covers additional hours at ordinary global hourly pay plus 28% of tabellare and contingenza. The engine does not defer the 28% to the following month or include its incidence in indirect and deferred pay including TFR; it does not route the distinct elastic-clause hours, enforce part-time eligibility or the full-time ceiling.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Verify the full part-time clause and route supplementary and elastic hours separately.
-
-!!! warning "multiservizi-anip/multiservizi_duty_allowances_and_edar · base_salary · impact yes · open"
-    VARIABLE ALLOWANCES (CNEL 105782 arts. 22 and 24): the 3% tabellare cash-handling allowance is modeled for a caller-stated role normally handling money with liability for errors. Hardship requires qualifying daily cleaning events and the correct daily tabellare base; collection requires qualifying collections above EUR 4.65 and a 5% retribuzione base; the hourly cleaning allowances require actual duty hours and non-cumulation where applicable. Personal EDAR retained under art. 22 requires an individual amount and absorption at the next qualifying seniority increment. No unsupported amounts or event counts are inferred.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Route qualifying hardship days, collection events and hourly duty hours to their distinct bases; track individual EDAR and its absorption at the next qualifying increment. The cash-handling role supplement is modeled.
+    **Remediation:** Route elastic clauses separately (10% on global pay for shifted hours, plus 1.5% for additional hours); enforce part-time eligibility and the full-time ceiling, next-month settlement and incidence on deferred pay including TFR.
 
 !!! warning "multiservizi-anip/multiservizi_pension_frozen_base · pension_fund_contribution · impact yes · open"
     COMPLEMENTARY PENSION (CNEL 105782 art. 54, pp. 69-70, 90): enrolled members contribute with their employer at 1% each on the tabellare and contingenza frozen at 1 January 2001, for twelve monthly payments. This is not a percentage of current pay. The eligible funds depend on the employer association (Previambiente, Fondapi or Cooperlavoro), and fixed-term membership depends on six months of work in the calendar year. ASIM and ONBSI are addressed by the separate health_and_bilateral_funds limitation.
@@ -190,6 +184,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; from 2025-07-01.
 
     **Remediation:** Source the IPCA consuntivo of June 2025 and any later IPCA adjustment for ANIP and adjust the July 2025 minima.
+
+!!! warning "multiservizi-anip/multiservizi_duty_allowances_and_edar · base_salary · impact yes · open"
+    VARIABLE ALLOWANCES (CNEL 105782 arts. 22 and 24): the 3% tabellare cash-handling allowance is modeled for a caller-stated role normally handling money with liability for errors. Hardship requires qualifying daily cleaning events and the correct daily tabellare base; collection requires qualifying collections above EUR 4.65 and a 5% retribuzione base; the hourly cleaning allowances require actual duty hours and non-cumulation where applicable. Personal EDAR retained under art. 22 requires an individual amount and absorption at the next qualifying seniority increment. No unsupported amounts or event counts are inferred.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Route qualifying hardship days, collection events and hourly duty hours to their distinct bases; track individual EDAR and its absorption at the next qualifying increment. The cash-handling role supplement is modeled.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

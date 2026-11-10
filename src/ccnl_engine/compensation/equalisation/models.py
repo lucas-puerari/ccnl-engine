@@ -32,6 +32,7 @@ class EqualisationElement(BaseModel):
         yearly_by_level: Amount by level code, in place of :attr:`yearly`
             (Turismo art. 13 c. 10: A and B 186, 1-3 158...).
         paid_in_year: The only year it is paid in, ``None`` for every year.
+        paid_from_year: First year the element is payable, if specified.
         in_service_month_before: Whether it is owed to the worker in service
             in the month before its month with at least six months of
             service, and never at a termination (Turismo art. 13 c. 5),
@@ -48,6 +49,11 @@ class EqualisationElement(BaseModel):
         settled_on_termination: Whether a termination run before its month
             pays it with the final settlement; ``False`` pays it only in the
             regular run of its month.
+        reference_year_before: Whether service is counted in the year before
+            payment (the default) rather than the year of payment.
+        in_service_payment_month: Require service in the payment month instead
+            of on 1 January; do not settle on termination before payment.
+        deduct_individual: Whether individual pay reduces the yearly amount.
         provenance: The clause.
     """
 
@@ -57,11 +63,15 @@ class EqualisationElement(BaseModel):
     yearly: Decimal | None = Field(default=None, gt=0)
     yearly_by_level: dict[str, Decimal] = Field(default_factory=dict)
     paid_in_year: int | None = None
+    paid_from_year: int | None = None
     in_service_month_before: bool = False
     part_time_proportional: bool = False
     individual_excludes: bool = False
     settled_on_termination: bool = True
     bargaining_year_before: bool = True
+    reference_year_before: bool = True
+    in_service_payment_month: bool = False
+    deduct_individual: bool = True
     paid_in_month: int = Field(ge=1, le=12)
     month_min_days: int = Field(default=16, ge=1, le=31)
     provenance: RuleProvenance
