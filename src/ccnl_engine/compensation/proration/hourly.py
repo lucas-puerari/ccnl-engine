@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from decimal import Decimal
 
 from ccnl_engine.compensation.element.types import MonthlyPayChain
+from ccnl_engine.pay_item.rounding.policies import money
 
 
 @dataclass(frozen=True)
@@ -21,11 +22,13 @@ class HourlyBasis:
         holiday_hours: Paid holiday hours, counted separately from work.
             They do not enter the contribution based on hours actually worked.
             ``None`` when the caller has not stated eligible holidays.
+        rate: All-inclusive hourly amount selected by role and level, if any.
     """
 
     hours: Decimal | None
     divisor: Decimal
     holiday_hours: Decimal | None = None
+    rate: Decimal | None = None
 
     def apply(self, chain: MonthlyPayChain) -> MonthlyPayChain:
         """Return the chain paid on the hours worked.
@@ -37,6 +40,14 @@ class HourlyBasis:
         """
         if self.hours is None:
             return chain.scaled(Decimal(0))
+        if self.rate is not None:
+            return MonthlyPayChain(
+                base=money(self.rate * self.hours),
+                seniority=Decimal(0),
+                allowances=(),
+                limitations=chain.limitations,
+                seniority_excluded_from=chain.seniority_excluded_from,
+            )
         return chain.prorated(
             self.hours + (self.holiday_hours or Decimal(0)), self.divisor
         )

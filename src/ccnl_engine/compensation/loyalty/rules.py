@@ -162,7 +162,7 @@ def _award_anniversary(
     """
     month = ctx.request.period_id.month
     year = ctx.request.period_id.year
-    recognised = getattr(clause, "service_basis", "actual") == "recognised"
+    recognised = clause.service_basis == "recognised"
     anniversary = period.started_on.replace(
         year=year,
         day=min(period.started_on.day, calendar.monthrange(year, month)[1]),
@@ -204,7 +204,7 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
         return LoyaltySettlement()
     if clause.subsectors and ctx.request.employer.subsector not in clause.subsectors:
         return LoyaltySettlement()
-    if getattr(clause, "levels", ()) and ctx.request.level_code not in clause.levels:
+    if clause.levels and ctx.request.level_code not in clause.levels:
         return LoyaltySettlement()
     anniversary = _award_anniversary(ctx, clause, period)
     if anniversary is None:
