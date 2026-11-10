@@ -2210,7 +2210,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi",
       "ruleset_version": "2026.2",
-      "source_hash": "83ba789bc08d2091f70f933e429f8f6f693b9d6d6a3063f58ef5accbba2e8eee",
+      "source_hash": "68136d2794a1227a084c1a96a03795a2f9d7c1da82c8c5426d3c6796ccde06be",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/turismo-federalberghi.json.gz"
@@ -4981,7 +4981,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "29f782f7d9ad26c5ca62530bf6f78c540008ba1a8ef4f946f33d5a04a8cfe800",
+      "source_hash": "339d60c97dc88861b5c826c64e35e28c09a31828db472157115160280a76ed5d",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/turismo-federalberghi.json.gz",
