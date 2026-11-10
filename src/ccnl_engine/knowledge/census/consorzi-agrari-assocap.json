@@ -55,10 +55,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 43 (2024–2027 CCNL, PDF p. 40): employees already in service on 22 December 1997 retain a one-off, three-month award at 25 years with the same consorzio (including apprenticeship), excluded from TFR. Non-disciplinary termination after starting year 21 or 25 instead attracts two or three months; a qualifying short employer-initiated break may preserve prior service. Annual loyalty_premium would repeatedly overpay and cannot enforce the grandfathering.",
+      "rule": "Art. 43 (2024–2027 CCNL, PDF p. 40): the one-off three-month award for workers continuously employed since no later than 22 December 1997 is encoded; their 25-year milestone was reached by December 2022, before the agreement's 2025 run start. Art. 43(2) still awards two or three months on qualifying non-disciplinary termination before 25 years. Art. 43(3)–(4) preserves qualifying prior service across employer-initiated breaks of at most two months or specified interprovincial transfers. Repeated breaks can defer the milestone to 2026 or later; current employment inputs cannot reconstruct these histories or prove presence on the grandfathering date for a rehire.",
       "calculation": "ccnl/consorzi-agrari-assocap:coverage.notes",
       "state": "absent",
-      "remediation": "Implement a one-off cohort-gated three-month award with the Art. 43 termination and service rules.",
+      "remediation": "Represent qualifying earlier employment periods, actual cumulative service, historical cohort membership for rehires, and qualifying non-disciplinary termination; then calculate the postponed milestone or early-departure award.",
       "origin": "seeded",
       "links": {
         "limitations": [

@@ -32,7 +32,7 @@ from ccnl_engine.inputs import (
     SeniorityFact,
     SenioritySource,
 )
-from ccnl_engine.results import BlockerCode, MonetaryImpact
+from ccnl_engine.results import BlockerCode
 
 _ENGINE = PayrollEngine.bundled()
 _MIDPOINT = "legno-arredamento-federlegno/apprenticeship_midpoint_components"
@@ -72,15 +72,11 @@ def _ids(result: PeriodResult) -> set[str]:
     return {limitation.id for limitation in result.assurance.limitations}
 
 
-def test_midpoint_period_records_a_blocking_limitation() -> None:
-    """An apprentice paid the midpoint carries the limitation and its blocker."""
+def test_sourced_midpoint_period_has_no_component_limitation() -> None:
+    """A sourced third-period midpoint does not block the calculated pay."""
     result = _run("legno-arredamento-federlegno", "AE3", Apprentice(months_elapsed=30))
-    (limitation,) = (lim for lim in result.assurance.limitations if lim.id == _MIDPOINT)
-    assert limitation.monetary_impact is MonetaryImpact.YES
-    assert (BlockerCode.OPEN_LIMITATION, "base_salary", _MIDPOINT) in {
-        (b.code, b.feature, b.detail) for b in result.blockers
-    }
-    assert not result.is_payable
+    assert _MIDPOINT not in _ids(result)
+    assert all(b.detail != _MIDPOINT for b in result.blockers)
 
 
 @pytest.mark.parametrize(
