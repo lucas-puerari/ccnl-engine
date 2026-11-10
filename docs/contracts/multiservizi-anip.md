@@ -73,6 +73,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Cached CNEL 139292 PDF page 34, July 2025 tabellare for all eight printed levels; two parametric positions derived; later unsigned salary periods excluded. | corrected | Verified all eight printed monthly minima against PDF page 34; derived two unprinted parametric positions from prior signed periods and signed tranche increments.<br>Excluded all unsigned salary periods from May 2026 onward; the signed July 2025 tranche remains in force until further ANIP evidence. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 19 daily pay and art. 30 ordinary working week, cached signed CNEL 105782; separate limitations for the remaining clauses in CNEL 105782 and 139292. | corrected | Art. 19 prints 22 for a five-day week and 26 for six days; art. 30 makes five days the normal distribution. The historical pension base and the missing signed 2012 apprenticeship accord prevent assuming current pay bases or durations. |
 | 2026-11-10 | claude-opus-5-5 (ai) | CNEL 139292 art. 33 pp. 16-17 and CNEL 105782 art. 18 p. 40, art. 38 p. 57; supplementary and ordinary holiday/night supplements and percentage bases. | corrected | The 2021 ANIP-signed part-time amendment governs supplementary hours in 2026; elastic hours remain a limitation.<br>The 2011 art. 38 continues to set ordinary holiday and night rates, on base pay, with non-cumulation not automatically enforced. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Allegato 8 pp. 119-123 of the 2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement: maximum terms and pay grades effective 20 July 2012. | corrected | The annex prints II 24, III-IV 30, V-VII 36 months; the first half pays two ordinary levels below, the second half one below, except destination II at I throughout. The CNEL renewal has no amendment to these clauses. Individual reductions and extensions remain outside the maximum-term tracks. |
 
 ## Salary table
 
@@ -111,11 +112,23 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Apprenticeship
 
-**destinazione_5** (type: `under_classification`)  
-Destination levels: `5`
+**destinazione_2** (type: `under_classification`)  
+Destination levels: `2`
+
+**destinazione_3** (type: `under_classification`)  
+Destination levels: `3`
 
 **destinazione_4** (type: `under_classification`)  
 Destination levels: `4`
+
+**destinazione_5** (type: `under_classification`)  
+Destination levels: `5`
+
+**destinazione_6** (type: `under_classification`)  
+Destination levels: `6`
+
+**destinazione_7** (type: `under_classification`)  
+Destination levels: `7`
 
 ## Known simplifications
 
@@ -171,11 +184,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Apply the per-level historical base to enrolled members on twelve months, enforce the membership conditions and employee and employer shares.
 
 !!! warning "multiservizi-anip/multiservizi_apprenticeship_destinations · base_salary · impact yes · open"
-    APPRENTICESHIP (19 July 2012 accord): destination 5 is configured for 30 months rather than 36; destinations 2, 3, 6 and 7 are not configured. The cited duration schedule has not been verified on the cached signed 2011 or 2021 PDF and must not be inferred from a third-party copy.
+    APPRENTICESHIP (Allegato 8 of the 2021 compiled CCNL, reproducing the 19 July 2012 agreement): the tracks use the printed maximum duration. For destinations V-VII a relevant diploma shortens the term by 6 months and a relevant degree by 12 months; absence over 30 days extends the term by the absence duration. Individual term adjustments are not represented by the maximum-term tracks.
 
     **Applies when:** `base_salary` applies.
 
-    **Remediation:** Obtain and verify the signed 2012 apprenticeship accord before changing durations or adding destinations.
+    **Remediation:** Supply the individually agreed term and qualification or absence details before applying a shortened or extended progression; the tracks encode only the printed maximum terms.
 
 !!! warning "multiservizi-anip/renewal_not_signed_by_anip · base_salary · impact yes · open"
     SIGNATORIES: ANIP is not among the original signatories of the 13 June 2025 renewal and the 6 August 2025 tables (CNEL 234754, 234752); a later ANIP accession or a separate ANIP agreement was not found but is not excluded. From July 2025 the file applies the ANIP-signed fifth tranche of the 8 June 2021 renewal (CNEL 139292 p. 34); with an accession the 2025 renewal minima (level 2 819.21 from July 2025) would apply instead.
@@ -381,7 +394,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     Contingenza of 2par115 and 4par125: no text prints one. The notes a verbale of art. 10 (CNEL 105782 p. 30) classify these workers at level 2 with parameter 115 and at level IV with parameter 125, so the file applies the contingenza of levels 2 and 4.
     
-    Apprenticeship: two levels below the destination for the first half and one below for the second, destination II at level I throughout (art. 12, CNEL 105782 p. 37; the parametric positions are skipped). Durations come from the accord of 19 July 2012, read only in a third-party copy of the 2021 text: II 24, III 30, IV 30, V 36, VI 36, VII 36 months. The file models destinations 4 and 5 with 30 months each: destination 5 should last 36 and the other destinations are missing. The 2012 duration schedule has not been verified on the signed cached PDFs; declared in multiservizi_apprenticeship_destinations.
+    Apprenticeship: the 19 July 2012 agreement reproduced in the FILCAMS 2021 compiled CCNL, Allegato 8 pp. 119-123, applies from 20 July 2012. Its maximum terms are II 24, III-IV 30 and V-VII 36 months; the first half is paid two ordinary levels below the destination, the second half one below, except destination II at level I throughout. Parametric positions are skipped. The track models the maximum term; shorter individual terms, qualification-based reductions and extensions after prolonged absence require individual inputs and are not configured.
     
     July 2025 values: the renewal of 8 June 2021 (CNEL 139292, signed by ANIP) sets a fifth tranche from 1 July 2025 (level 2 +10.00, tabellare 779.21, p. 34), provisional under the art. 73 consuntivo. The renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025 (CNEL 234752) raise level 2 to 819.21 from the same date, but ANIP signed neither. The file applies the ANIP-signed 2021 fifth tranche from July 2025 and excludes the later unsigned tranches (see anip_unsigned_renewal). No ANIP amount for the art. 73 consuntivo or the IPCA increments of art. 73-bis and 73-ter was found.
     
