@@ -2159,7 +2159,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "ccnl/trasporto-ferroviario-agens",
       "ruleset_version": "2026.2",
-      "source_hash": "b0c9a7bb6eb3d17a9f44baa9c7cd61e14260292a6f3f2745f72de2da8d83da64",
+      "source_hash": "40240c632456ac04be1465fb4206d90b8a29e24245b3c15662bcda59f5579bff",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/trasporto-ferroviario-agens.json.gz"
@@ -4921,7 +4921,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "7fe7cebbe0005bac2f5bec441bddc8d3785c38ad4ae2c86eafe6bbf81cc2a00e",
+      "source_hash": "ca3475ce4a3124cec4d704caa17aa16386d4e5121ca9e15cf07fdea1269ccd3d",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/trasporto-ferroviario-agens.json.gz",
