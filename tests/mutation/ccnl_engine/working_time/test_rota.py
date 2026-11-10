@@ -64,11 +64,19 @@ def test_rota_days_exclude_seniority_tiers() -> None:
         leave.model_validate({**leave.model_dump(), "entitlement_tiers": [tier]})
 
 
-@pytest.mark.parametrize(("rota", "twelfths"), [(None, "25"), (Rota.SIX_ONE_ONE, "23")])
+@pytest.mark.parametrize(
+    ("rota", "twelfths"),
+    [
+        (None, "25"),
+        (Rota.FIVE_ONE, "25"),
+        (Rota.SIX_ONE_ONE, "23"),
+        (Rota.FIVE_TWO, "22"),
+    ],
+)
 def test_a_month_accrues_a_twelfth_of_the_rota(
     rota: Rota | None, twelfths: str
 ) -> None:
-    """Art. 89: a twelfth of the days of the year for each month of service."""
+    """Art. 89: one month earns 25/12, 23/12 or 22/12 days (25, 23 or 22 twelfths)."""
     result = calculate_period(
         PeriodCalculationRequest(
             employer=EmployerProfile(headcount=Headcount(10)),

@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 272 weak rules, 425 open limitations (425 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 272 weak rules, 420 open limitations (420 with a monetary impact).
 
 ## Declared window
 
@@ -123,18 +123,18 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [lapidei-industria](../contracts/lapidei-industria.md) | `materiali-estrattive` | exploratory | — | 25 rows | 25 open requirements; 2 weak rules; 21 monetary limitations; 19 non-native capabilities |
 | [laterizi-industria-f021](../contracts/laterizi-industria-f021.md) | `materiali-estrattive` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 19 non-native capabilities |
 | [lavanderie-industriali-assosistema](../contracts/lavanderie-industriali-assosistema.md) | `pulizia-multiservizi` | exploratory | — | 23 rows | tables from 2026-05-01; 23 open requirements; 2 weak rules; 19 monetary limitations; 19 non-native capabilities |
-| [lavoro-domestico-convivente](../contracts/lavoro-domestico-convivente.md) | `lavoro-domestico` | reviewed | — | 25 rows | 25 open requirements; 22 monetary limitations; 1 outside_input limitation; 22 non-native capabilities |
-| [lavoro-domestico-convivente-orario-ridotto](../contracts/lavoro-domestico-convivente-orario-ridotto.md) | `lavoro-domestico` | reviewed | — | 23 rows | 23 open requirements; 19 monetary limitations; 2 outside_input limitations; 21 non-native capabilities |
+| [lavoro-domestico-convivente](../contracts/lavoro-domestico-convivente.md) | `lavoro-domestico` | reviewed | — | 24 rows | 24 open requirements; 21 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
+| [lavoro-domestico-convivente-orario-ridotto](../contracts/lavoro-domestico-convivente-orario-ridotto.md) | `lavoro-domestico` | reviewed | — | 22 rows | 22 open requirements; 18 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
 | [lavoro-domestico-non-convivente](../contracts/lavoro-domestico-non-convivente.md) | `lavoro-domestico` | reviewed | — | 25 rows | 25 open requirements; 22 monetary limitations; 1 outside_input limitation; 22 non-native capabilities |
 | [legno-arredamento-federlegno](../contracts/legno-arredamento-federlegno.md) | `legno-arredamento` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 20 monetary limitations; 19 non-native capabilities |
-| [legno-lapidei-artigianato-confartigianato](../contracts/legno-lapidei-artigianato-confartigianato.md) | `legno-arredamento` | exploratory | — | 25 rows | 25 open requirements; 1 weak rule; 21 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
+| [legno-lapidei-artigianato-confartigianato](../contracts/legno-lapidei-artigianato-confartigianato.md) | `legno-arredamento` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 20 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [logistica-trasporto-confetra](../contracts/logistica-trasporto-confetra.md) | `trasporti-logistica` | reviewed | — | 25 rows | 25 open requirements; 19 monetary limitations; 4 outside_input limitations; 20 non-native capabilities |
 | [logistica-trasporto-confetra-viaggiante](../contracts/logistica-trasporto-confetra-viaggiante.md) | `trasporti-logistica` | reviewed | — | 23 rows | 23 open requirements; 19 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
 | [marittimi-industria-armatoriale](../contracts/marittimi-industria-armatoriale.md) | `trasporti-logistica` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 19 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [materiali-costruzione-lapidei-confapi](../contracts/materiali-costruzione-lapidei-confapi.md) | `materiali-estrattive` | exploratory | — | 42 rows | 42 open requirements; 21 weak rules; 18 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [metalmeccanica-cooperative](../contracts/metalmeccanica-cooperative.md) | `metalmeccanica` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 20 monetary limitations; 20 non-native capabilities |
 | [metalmeccanico-artigianato](../contracts/metalmeccanico-artigianato.md) | `metalmeccanica` | exploratory | 2026-12-31 | 24 rows | 24 open requirements; 20 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
-| [metalmeccanico-confapi](../contracts/metalmeccanico-confapi.md) | `metalmeccanica` | reviewed | — | 33 rows | 33 open requirements; 17 monetary limitations; 14 outside_input limitations; 21 non-native capabilities |
+| [metalmeccanico-confapi](../contracts/metalmeccanico-confapi.md) | `metalmeccanica` | reviewed | — | 32 rows | 32 open requirements; 17 monetary limitations; 13 outside_input limitations; 21 non-native capabilities |
 | [metalmeccanico-confimi-pmi](../contracts/metalmeccanico-confimi-pmi.md) | `metalmeccanica` | exploratory | — | 21 rows | tables from 2026-06-01; 21 open requirements; 18 monetary limitations; 1 outside_input limitation; 18 non-native capabilities |
 | [metalmeccanico-federmeccanica](../contracts/metalmeccanico-federmeccanica.md) | `metalmeccanica` | production | — | 26 rows | 26 open requirements; 18 monetary limitations; 6 outside_input limitations; 21 non-native capabilities |
 | [multiservizi-anip](../contracts/multiservizi-anip.md) | `pulizia-multiservizi` | exploratory | — | 29 rows | 29 open requirements; 24 monetary limitations; 3 outside_input limitations; 21 non-native capabilities |
@@ -143,7 +143,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [ooss-unsic-confsal](../contracts/ooss-unsic-confsal.md) | `organizzazioni-associative` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 21 monetary limitations; 20 non-native capabilities |
 | [operai-agricoli-florovivaisti](../contracts/operai-agricoli-florovivaisti.md) | `agricoltura` | exploratory | — | 32 rows | tables from 2026-06-01; 32 open requirements; 1 weak rule; 22 monetary limitations; 7 outside_input limitations; 21 non-native capabilities |
 | [orafi-argentieri-industria-federorafi](../contracts/orafi-argentieri-industria-federorafi.md) | `metalmeccanica` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 18 non-native capabilities |
-| [organizzazioni-allevatori-aia](../contracts/organizzazioni-allevatori-aia.md) | `agricoltura` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 20 monetary limitations; 20 non-native capabilities |
+| [organizzazioni-allevatori-aia](../contracts/organizzazioni-allevatori-aia.md) | `agricoltura` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 19 non-native capabilities |
 | [ortofrutticoli-agrumari](../contracts/ortofrutticoli-agrumari.md) | `commercio` | exploratory | — | 30 rows | 30 open requirements; 7 weak rules; 21 monetary limitations; 22 non-native capabilities |
 | [panificazione-artigianato-confartigianato](../contracts/panificazione-artigianato-confartigianato.md) | `alimentare` | exploratory | — | 25 rows | 25 open requirements; 22 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [panificazione-assipan](../contracts/panificazione-assipan.md) | `alimentare` | exploratory | 2026-12-31 | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 18 non-native capabilities |

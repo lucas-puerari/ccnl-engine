@@ -133,6 +133,33 @@ def _level_seniority(
 _EXTRA_MONTH_THRESHOLD = {"thirteenth": 13, "fourteenth": 14}
 
 
+def _percentage_supplement(
+    allowance: Allowance,
+    base: Decimal,
+    seniority: Decimal,
+    allowances: tuple[tuple[Allowance, Decimal], ...],
+) -> tuple[Decimal, Decimal]:
+    """Calculate a role supplement from the selected pay elements.
+
+    Returns:
+        The ordinary percentage base and its rounded role supplement.
+    """
+    named = allowance.percentage_base_allowances
+    own_elements = base + sum(
+        (
+            value
+            for item, value in allowances
+            if item.code in named
+            or (allowance.percentage_include_individual and item.individual)
+        ),
+        start=base * 0,
+    )
+    if allowance.percentage_include_seniority:
+        own_elements += seniority
+    assert allowance.percentage_rate is not None
+    return own_elements, money(own_elements * allowance.percentage_rate)
+
+
 def _level_chain(
     ccnl: CCNL,
     level: Level,
@@ -143,6 +170,7 @@ def _level_chain(
     worker_category: WorkerCategory | None = None,
     is_apprentice: bool,
     seniority_months: int | None = None,
+    increment_months: int | None = None,
     career_months: int | None = None,
 ) -> MonthlyPayChain:
     with rule_scope(feature="seniority"):
@@ -153,7 +181,9 @@ def _level_chain(
             as_of,
             worker_category=worker_category,
             is_apprentice=is_apprentice,
-            seniority_months=seniority_months,
+            seniority_months=(
+                seniority_months if increment_months is None else increment_months
+            ),
             roles=roles,
         )
     unsourced = (
@@ -162,7 +192,13 @@ def _level_chain(
         and ccnl.parameters.seniority_increments.apprentice_amount is None
         and seniority
         != _level_seniority(
-            ccnl, level, count, as_of, worker_category, seniority_months, roles
+            ccnl,
+            level,
+            count,
+            as_of,
+            worker_category,
+            seniority_months if increment_months is None else increment_months,
+            roles,
         )
     )
     with rule_scope(feature="base_salary"):
@@ -178,16 +214,9 @@ def _level_chain(
             if allowance.percentage_rate is None:
                 continue
             named = allowance.percentage_base_allowances
-            own_elements = base + sum(
-                (
-                    value
-                    for item, value in allowances
-                    if item.code in named
-                    or (allowance.percentage_include_individual and item.individual)
-                ),
-                start=base * 0,
+            own_elements, supplement = _percentage_supplement(
+                allowance, base, seniority, allowances
             )
-            supplement = money(own_elements * allowance.percentage_rate)
             allowances = (
                 *allowances[:index],
                 (allowance, supplement),
