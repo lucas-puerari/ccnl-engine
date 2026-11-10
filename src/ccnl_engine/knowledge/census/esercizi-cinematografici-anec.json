@@ -310,10 +310,10 @@
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "SICKNESS (Art. 64): the hospital stays (day hospital included), the life-saving therapies and the continuous absences over a month for serious illnesses (at most 90 days) are left out of the comporto and of the pay count; and from day 181 the CCNL pays 50% of its own integration, which the engine reads as 50% of the pay: a day INPS still indemnifies in a new year is paid only the INPS share.",
+      "rule": "SICKNESS (Art. 64): stated hospital stays, including day hospital, are excluded from the comporto and pay counts. Life-saving therapies, recurring certified treatments and continuous absences exceeding a month due to serious illness (up to 90 days) are not excluded. From day 181 the CCNL pays 50% of its own integration, but the engine reads this as 50% of pay: a day INPS still indemnifies in a new year is paid only the INPS share.",
       "calculation": "ccnl/esercizi-cinematografici-anec:coverage.notes",
       "state": "absent",
-      "remediation": "Leave the hospital stays, life-saving therapies and serious illnesses of Art. 64 out of the counts and pay half of the integration past day 180, then resolve this limitation.",
+      "remediation": "Exclude documented life-saving therapies, certified recurring treatments and qualifying continuous serious-illness absences from both counts; obtain hospital-stay facts when unstated, and pay half of the employer integration after day 180.",
       "origin": "seeded",
       "links": {
         "limitations": [
