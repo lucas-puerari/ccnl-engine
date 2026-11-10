@@ -147,18 +147,18 @@
       }
     },
     {
-      "id": "multiservizi_pension_frozen_base",
+      "id": "multiservizi_pension_membership_eligibility",
       "institute": "pension_fund_contribution",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "COMPLEMENTARY PENSION (CNEL 105782 art. 54, pp. 69-70, 90): enrolled members contribute with their employer at 1% each on the tabellare and contingenza frozen at 1 January 2001, for twelve monthly payments. This is not a percentage of current pay. The eligible funds depend on the employer association (Previambiente, Fondapi or Cooperlavoro), and fixed-term membership depends on six months of work in the calendar year. ASIM and ONBSI are addressed by the separate health_and_bilateral_funds limitation.",
+      "rule": "COMPLEMENTARY PENSION (CNEL 105782 art. 54, pp. 69-70): The frozen 1 January 2001 tabellare and contingenza bases, 1% employer and member shares and twelve monthly payments are modelled for enrolled workers. Fund eligibility still depends on the employer association (Previambiente for FISE, Fondapi for CONFAPI, Cooperlavoro for cooperatives, with a choice for non-affiliated employers); fixed-term membership requires six months of work within the calendar year. These eligibility facts are not established by the enrolment alone. ASIM and ONBSI are addressed by the separate health_and_bilateral_funds limitation.",
       "calculation": "ccnl/multiservizi-anip:coverage.notes",
       "state": "absent",
-      "remediation": "Apply the per-level historical base to enrolled members on twelve months, enforce the membership conditions and employee and employer shares.",
+      "remediation": "Verify the employer association and accumulated calendar-year fixed-term work before accepting the caller-selected fund and enrolment. No eligibility is inferred from the level or the fund code.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "multiservizi-anip/multiservizi_pension_frozen_base"
+          "multiservizi-anip/multiservizi_pension_membership_eligibility"
         ]
       }
     },

@@ -23,6 +23,8 @@ class FundContributionBase(StrEnum):
         CONTRACTUAL_MINIMUM: The contractual minimum of the level the run
             pays (*minimi contrattuali*, e.g. of Cometa): the base salary of
             the pay chain, prorated and scaled as the run pays it.
+        FIXED_BY_LEVEL: A fixed monthly base printed for each contractual level,
+            independent of the current wage and supplied by the fund rules.
         CONVENTIONAL: A fixed monthly base the fund applies to the worker,
             stated by ``PensionFundEnrolment.conventional_base``
             (Previambiente: the base pay of the level at 1 January 1997,
@@ -33,6 +35,7 @@ class FundContributionBase(StrEnum):
     TFR_BASE = "tfr_base"
     CONTRACTUAL_MINIMUM = "contractual_minimum"
     CONVENTIONAL = "conventional"
+    FIXED_BY_LEVEL = "fixed_by_level"
 
 
 class EmployerRateTier(BaseModel):
@@ -107,6 +110,8 @@ class EmployerFund(BaseModel):
     a worker may opt for (``PensionFundEnrolment.seniority_to_fund``).
     ``minimum_allowances`` names the allowances a ``CONTRACTUAL_MINIMUM``
     base counts with the minimum (Fondapi: the indennità di funzione quadri).
+    ``fixed_base_by_level`` holds dated fixed monthly bases for funds whose
+    contribution base is ``FIXED_BY_LEVEL``; each level has its own source.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -128,6 +133,7 @@ class EmployerFund(BaseModel):
     paid_month_only: bool = False
     seniority_conversion: SeniorityConversion | None = None
     minimum_allowances: tuple[str, ...] = ()
+    fixed_base_by_level: dict[str, TimeSeries] = Field(default_factory=dict)
 
     def rate_series(self) -> tuple[tuple[str, TimeSeries | None], ...]:
         """Return the series of the fund a run may read, by key.
