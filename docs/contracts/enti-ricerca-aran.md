@@ -270,7 +270,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     SCOPE: staff of the enti pubblici di ricerca (ASI included): levels IV-VIII (Tabella C3, one tabellare) and the ricercatori and tecnologi of levels I-III (Tabella C4, seven bands of anzianità di servizio as seniority steps), from 1.1.2024 (CCNL 2022-2024) and 2025-2027 (CCNL 2025-2027).
     
     For public employees hired before 2001 who opt into TFR and join Perseo Sirio, 28.94% of the TFR accrual is allocated notionally by INPS or the public employer (for staff not enrolled with INPS for end-of-service benefits). For those enrolled with INPS for TFS, the additional 1.5% of the TFS contribution base is also accrued notionally by INPS. Neither is a monthly cash fund contribution or extra employer payroll cost. The run posts the ordinary TFR base and accrual, not these outside-run notional allocations; transfer to the fund occurs on termination subject to the continuity condition. Fund information note, public employee schedule p. 3, note (1): 'Le quote di TFR dei dipendenti pubblici non sono versate al fondo ma sono accantonate figurativamente presso:'.
-
+    
 
 ## Raw data
 

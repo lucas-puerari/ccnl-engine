@@ -260,7 +260,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     SCOPE: personale tecnico-amministrativo of the universities and AOU (Aree Operatori, Collaboratori, Funzionari, Elevate Professionalità) and Collaboratori ed esperti linguistici, from 1.1.2024 (new classification of art. 92 CCNL 18/1/2024 from 1.5.2024, the earlier areas transposed by its allegato F). Tables: CCNL 2022-2024 Tabelle B2-B4 and CCNL 2025-2027 Tabelle B2-B4. The tecnologi a tempo indeterminato (Tabella B2 from 1.3.2026, posizioni stipendiali) are modelled in universita-tecnologi-aran. Not modelled: the differenziali economici di professionalità, which the caller pays as allowances. The Elevate Professionalità have no overtime table (B4). (review of 2026-10-30)
     
     For public employees hired before 2001 who opt into TFR and join Perseo Sirio, 28.94% of the TFR accrual is allocated notionally by INPS or the public employer (for staff not enrolled with INPS for end-of-service benefits). For those enrolled with INPS for TFS, the additional 1.5% of the TFS contribution base is also accrued notionally by INPS. Neither is a monthly cash fund contribution or extra employer payroll cost. The run posts the ordinary TFR base and accrual, not these outside-run notional allocations; transfer to the fund occurs on termination subject to the continuity condition. Fund information note, public employee schedule p. 3, note (1): 'Le quote di TFR dei dipendenti pubblici non sono versate al fondo ma sono accantonate figurativamente presso:'.
-
+    
 
 ## Raw data
 
