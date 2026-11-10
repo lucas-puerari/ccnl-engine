@@ -818,7 +818,6 @@
       "edilizia-artigianato-cna/apprentice_seniority",
       "edilizia-artigianato-cna/cassa_edile_accruals_missing",
       "edilizia-artigianato-cna/inps_sector_rates_unsourced",
-      "edilizia-artigianato-cna/loyalty_dismissal_pro_rata",
       "edilizia-artigianato-cna/loyalty_service_count"
     ],
     "agreement/edilizia-cooperative-ancpl.json": [
@@ -1079,7 +1078,7 @@
     ],
     "agreement/portieri-fabbricati-confedilizia.json": [
       "portieri-fabbricati-confedilizia/c4_first_employment_eligibility",
-      "portieri-fabbricati-confedilizia/excluded_profiles_divisor"
+      "portieri-fabbricati-confedilizia/unpriced_accommodation_and_excluded_profiles"
     ],
     "agreement/poste-italiane-k700.json": [
       "poste-italiane-k700/edr_pre_privatization",

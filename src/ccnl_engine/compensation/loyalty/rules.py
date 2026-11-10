@@ -3,7 +3,7 @@
 The fully employed run chain approximates the enumerated contractual pay
 components (ANIEM Art. 45 items 1-14; CNA Art. 48 items 1-12). The caller
 states the uninterrupted actual service start when it differs from the hire
-date. The dismissal pro rata is not implemented.
+date. Only clauses explicitly authorizing dismissal twelfths pay them.
 """
 
 from __future__ import annotations
@@ -16,7 +16,11 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.compensation.loyalty.models import LoyaltyPremium
 from ccnl_engine.compensation.sunday_holiday.rules import monthly_pay
-from ccnl_engine.decision.models import CalculationDecision, CalculationStatus
+from ccnl_engine.decision.models import (
+    CalculationDecision,
+    CalculationIssue,
+    CalculationStatus,
+)
 from ccnl_engine.decision.rules import _ccnl_rule
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.ledger.models import AccountKind
@@ -46,6 +50,7 @@ class LoyaltySettlement:
     items: tuple[LoyaltyPremiumEarning | BonusEarning, ...] = ()
     entries: tuple[LedgerEntry, ...] = ()
     decisions: tuple[CalculationDecision, ...] = ()
+    issues: tuple[CalculationIssue, ...] = ()
     amount: Decimal = _ZERO
     taxed: tuple[bool, bool, bool] = (False, False, False)
 
@@ -62,6 +67,7 @@ class LoyaltySettlement:
             tfr_base=totals.tfr_base + tfr,
             irpef_base=totals.irpef_base + irpef,
             decisions=totals.decisions + self.decisions,
+            issues=totals.issues + self.issues,
         )
 
 
@@ -180,7 +186,7 @@ def _award_anniversary(
     return anniversary
 
 
-def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
+def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:  # noqa: PLR0911
     """Pay a full monthly award on each qualifying hire anniversary month.
 
     A once-only milestone pays solely on its qualifying anniversary; eligible
@@ -197,12 +203,7 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
     """
     clause = ctx.contract.ccnl.parameters.loyalty_premium
     period = ctx.request.employment_period
-    if (
-        clause is None
-        or period is None
-        or ctx.run_kind is not RunKind.REGULAR
-        or ctx.worker_category not in clause.categories
-    ):
+    if clause is None or period is None or ctx.worker_category not in clause.categories:
         return LoyaltySettlement()
     in_service_on = clause.in_service_on
     if (
@@ -210,6 +211,12 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
     ) or (in_service_on is not None and period.started_on > in_service_on):
         return LoyaltySettlement()
     if clause.levels and ctx.request.level_code not in clause.levels:
+        return LoyaltySettlement()
+    if ctx.run_kind is RunKind.TERMINATION:
+        from ccnl_engine.compensation.loyalty.termination import dismissal_award  # noqa: PLC0415
+
+        return dismissal_award(ctx, clause, period)
+    if ctx.run_kind is not RunKind.REGULAR:
         return LoyaltySettlement()
     anniversary = _award_anniversary(ctx, clause, period)
     if anniversary is None:
