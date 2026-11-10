@@ -9,6 +9,7 @@ from decimal import Decimal
 
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.compensation.element.rules import _level_chain
 from ccnl_engine.seniority.rules import seniority_maximum
 
 
@@ -234,10 +235,41 @@ class TestLoadOrganizzazioniAllevatoriAia:
         assert val == Decimal("164.67")
 
     def test_organizzazioni_allevatori_aia_no_fixed_allowances(self) -> None:
-        """All 13 levels have no fixed allowances (conglobated model)."""
+        """The conglobated model has only a role-gated percentage in area 1."""
         ccnl = load_ccnl("organizzazioni-allevatori-aia")
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == ()
+            if lv.code.startswith("1/"):
+                assert len(lv.fixed_allowances) == 1
+                allowance = lv.fixed_allowances[0]
+                assert allowance.role == "quadro"
+                assert allowance.percentage_rate == Decimal("0.13")
+                assert allowance.percentage_include_seniority
+            else:
+                assert lv.fixed_allowances == ()
+
+    def test_organizzazioni_allevatori_aia_quadro_month(self) -> None:
+        """January 2025: 2381.17 + 53.10 + 13% of 2434.27 = 2750.73.
+
+        The 316.46 supplement also enters both extra months and the TFR base.
+        """
+        ccnl = load_ccnl("organizzazioni-allevatori-aia")
+        level = next(lv for lv in ccnl.levels if lv.code == "1/2")
+        chain = _level_chain(
+            ccnl,
+            level,
+            1,
+            frozenset({"quadro"}),
+            date(2025, 1, 1),
+            is_apprentice=False,
+        )
+        assert chain.base == Decimal("2381.17")
+        assert chain.seniority == Decimal("53.10")
+        allowance, amount = chain.allowances[0]
+        assert amount == Decimal("316.46")
+        assert chain.base + chain.seniority + amount == Decimal("2750.73")
+        assert allowance.tfr_relevant
+        assert allowance.months_per_year is None
+        assert ccnl.parameters.additional_months.value_at(date(2025, 1, 1)) == 14
 
     def test_organizzazioni_allevatori_aia_tax_sector(self) -> None:
         """Contract uses AGRICOLTURA tax sector."""

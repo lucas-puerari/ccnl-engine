@@ -31,6 +31,8 @@ class Allowance(BaseModel):
     base pay plus ``percentage_base_allowances``. By default individual
     elements are included; ``percentage_include_individual=False`` excludes
     them when the clause enumerates only the contractual elements.
+    ``percentage_include_seniority=True`` includes accrued seniority increases
+    when the clause uses the worker's monthly remuneration as its base.
     ``floor_level`` identifies
     the comparison level for a separate ordinary-remuneration integration,
     without changing contractual base salary or the supplement percentage.
@@ -55,6 +57,8 @@ class Allowance(BaseModel):
     ``service_months_until`` closes the band (the RPD of the AFAM docenti).
     ``career_service`` gates on ``SeniorityFact.career_months`` when stated
     (Farmacie Tabella C: the years in level 1 and Area Q).
+    ``level_service`` gates on completed months since
+    ``Employment.level_started_on``; an unknown date never qualifies.
 
     ``part_time_proportionable=False`` marks allowances paid at their full
     contractual value whatever the part-time fraction (fixed welfare
@@ -87,6 +91,7 @@ class Allowance(BaseModel):
     percentage_rate: Decimal | None = Field(default=None, ge=0, le=1)
     percentage_base_allowances: tuple[str, ...] = ()
     percentage_include_individual: bool = True
+    percentage_include_seniority: bool = False
     floor_level: str | None = None
     months_per_year: int | None = Field(default=None, ge=1)
     tfr_relevant: bool = True
@@ -99,6 +104,7 @@ class Allowance(BaseModel):
     service_months_threshold: int | None = Field(default=None, ge=0)
     service_months_until: int | None = Field(default=None, ge=1)
     career_service: bool = False
+    level_service: bool = False
     in_service_on: date | None = None
     below_weekly_hours: Decimal | None = Field(default=None, gt=0)
     individual: bool = False

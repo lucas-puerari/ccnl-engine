@@ -152,6 +152,24 @@ def test_confapi_january_injury_month_tops_up_epiphany() -> None:
     )
 
 
+def test_confapi_stated_patron_injury_top_up() -> None:
+    """March 19, 2026: 60 INAIL + 40 employer = 100 instead of 60.
+
+    Without a stated patron day the same injury pays only 60.
+    """
+    day = date(2026, 3, 19)
+    absent = _paid("metalmeccanico-confapi", day, day, date(2026, 3, 15))
+    stated = _paid(
+        "metalmeccanico-confapi",
+        day,
+        day,
+        date(2026, 3, 15),
+        EmployerProfile(headcount=Headcount(50), patron_saint_day="03-19"),
+    )
+    assert (absent.indemnity, absent.integration) == (Decimal(60), Decimal(0))
+    assert (stated.indemnity, stated.integration) == (Decimal(60), Decimal(40))
+
+
 def test_confapi_april_injury_month_excludes_liberation_day() -> None:
     """Apr 24-26, 2028: INAIL pays 3*60=180 of 3*100 daily pay.
 
@@ -178,6 +196,36 @@ def test_confapi_april_injury_month_excludes_liberation_day() -> None:
     assert date(2028, 4, 25) not in days
     assert date(2028, 1, 6) in days
     assert date(2028, 10, 4) not in days
+
+
+@pytest.mark.parametrize(
+    "name", ["logistica-trasporto-confetra", "logistica-trasporto-confetra-viaggiante"]
+)
+def test_confetra_legacy_injury_holiday_reaches_daily_pay(name: str) -> None:
+    """Jan 6, 2026: INAIL 60; the holiday adds to reach daily 100.
+
+    Without eligibility non-travelling pays 60; with it pays 100.
+    Travelling ordinary net integration adds 33.93 (60 + 33.93 = 93.93),
+    then the covered holiday adds only 6.07, reaching 100, not 133.93.
+    """
+    day = date(2026, 1, 6)
+    ineligible = _paid(
+        name,
+        day,
+        day,
+        date(2026, 1, 2),
+        EmployerProfile(headcount=Headcount(50), legacy_section_applicable=False),
+    )
+    eligible = _paid(
+        name,
+        day,
+        day,
+        date(2026, 1, 2),
+        EmployerProfile(headcount=Headcount(50), legacy_section_applicable=True),
+    )
+    ordinary = Decimal("33.93") if name.endswith("-viaggiante") else Decimal(0)
+    assert (ineligible.indemnity, ineligible.integration) == (Decimal(60), ordinary)
+    assert (eligible.indemnity, eligible.integration) == (Decimal(60), Decimal(40))
 
 
 def test_confcommercio_injury_holiday_reaches_gross_quota() -> None:

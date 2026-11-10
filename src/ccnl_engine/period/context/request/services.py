@@ -177,13 +177,16 @@ def _with_equalisation(
     Returns:
         The request with the bonus of the element, and the contract naming
         the element left out when the employer does not state whether it
-        has second-level bargaining.
+        has second-level bargaining. Multiple omitted elements are named.
     """
     outcome = equalisation_outcome(request, contract.ccnl, kind)
     if outcome.events:
         request = replace(request, events=(*request.events, *outcome.events))
-    if outcome.unknown is not None:
-        unknown = (*contract.premium_unknown, outcome.unknown)
+    unknown_codes = outcome.unknown_codes or (
+        (outcome.unknown,) if outcome.unknown is not None else ()
+    )
+    if unknown_codes:
+        unknown = (*contract.premium_unknown, *unknown_codes)
         contract = replace(contract, premium_unknown=unknown)
     return request, contract
 
