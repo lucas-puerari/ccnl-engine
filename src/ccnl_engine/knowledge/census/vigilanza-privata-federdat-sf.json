@@ -51,18 +51,18 @@
       }
     },
     {
-      "id": "level_f_2023",
+      "id": "level_f_transition_2026",
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "LEVEL F: the 2023 table pays a level F (865.68 EUR, art. 139); the 2026 table has none. The file models the levels A-E.",
+      "rule": "LEVEL F: the 2023 table pays level F until July 2026; the 2026 renewal prints no transition for F workers. The caller must restate the worker's level from July 2026. The caller must state F for the first 12 months of effective D duties, E for months 13-24 and D thereafter; progression is not automatic.",
       "calculation": "ccnl/vigilanza-privata-federdat-sf:coverage.notes",
       "state": "absent",
-      "remediation": "Add the level F of the 2023 table until the renewal of July 2026.",
+      "remediation": "Obtain a source for the classification of existing F workers at renewal; the published table gives no transition.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "vigilanza-privata-federdat-sf/level_f_2023"
+          "vigilanza-privata-federdat-sf/level_f_transition_2026"
         ]
       }
     },
