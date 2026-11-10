@@ -39,10 +39,10 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "OVERTIME: every band of art. 35 is modelled: 15% to the 48th weekly hour, 25% the 49th, 35% beyond; night 61% the first hour, 76% after (first hour read per day); holiday 71%. The percentages do not add up ('la maggiore assorbe la minore', p. 57). The engine pays the first tier of an overtime event and flags the bands past a threshold (overtime_tier_not_applied): the caller passes the multiplier for the hours past a threshold.",
+      "rule": "OVERTIME: Art. 35 weekday weekly bands (15% through the 48th hour, 25% for the 49th, 35% after) split automatically when weekly_hours_before is supplied. Without that position the first tier applies and later tiers are flagged. Night overtime is 61% for the first hour and 76% after; the first hour is interpreted per day, but the engine cannot split a night event by daily hours. Holiday overtime is 71%. Premiums do not accumulate ('la maggiore assorbe la minore', p. 57).",
       "calculation": "ccnl/concia-unic:coverage.notes",
       "state": "absent",
-      "remediation": "Pass the multiplier on the overtime event for the hours past a threshold; the engine does not split an event by weekly or daily hours.",
+      "remediation": "Supply weekly_hours_before to split weekday weekly tiers. For night overtime past the first daily hour, supply separately split events with explicit multipliers; daily tiers are not automatically split.",
       "origin": "seeded",
       "links": {
         "limitations": [
