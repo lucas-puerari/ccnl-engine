@@ -197,23 +197,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "Art. 34 cc. 3, 4, 7 and Tabelle H, I, L (PDF pp. 44, 59): the non live-in worker is owed 0.84 an hour as baby sitter of level B super for children under six, 0.70 an hour at levels C super and D super assisting more than one non self-sufficient person, and the indennità of the UNI 11766:2019 certification (Tabella L prints a monthly 30.27). Not modelled: the ruleset pays a monthly equivalent of the hourly minimi and the hourly allowances would need the hours worked.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "art34_hourly_allowances",
-          "applies_when": {
-            "trigger": "outside_input",
-            "levels": [
-              "BS",
-              "CS",
-              "DS",
-              "B"
-            ]
-          },
-          "remediation": "Pay the Tabella H and I hourly allowances on the hours worked, and the Tabella L monthly amount, with role gates."
-        }
+        "kind": "info",
+        "text": "Art. 34 cc. 3, 4 and 7: the caller states the baby-sitter-under-six, multiple non-self-sufficient persons and valid UNI 11766:2019 certification roles. Hourly allowances use paid hours stated by the caller; certification is EUR 30.27 monthly, without hourly conversion. Individual superminimi or other better treatment must be stated net of any absorption."
       }
     ]
   },
@@ -640,7 +625,77 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_CERTIFICAZIONE_UNI",
+          "description": "Valid UNI 11766:2019 certification communicated in writing with a copy",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "30.27",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                      "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                      "kind": "associazione",
+                      "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                      "published_on": "2025-10-28",
+                      "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+                    },
+                    "page": "45, 59",
+                    "section": "Art. 34 c. 7; Tabella L, 1 January 2026",
+                    "quote": "30,27"
+                  },
+                  "transformation": "EUR 30.27 monthly; role stated by caller; allowances under Art. 34 cc. 3 and 4 are absorbable by individual superminimi, under c. 7 by better treatment overall. Caller states any better treatment net of absorption. Applies from 1 January 2026; later annual revisions remain unmodelled. The printed amount is monthly also for non-live-in workers, and is not converted to or scaled by paid hours.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T00:14:09Z",
+                    "effective_from": "2026-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T00:14:09Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-domestic-hourly-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "certificazione_uni_11766",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                "kind": "associazione",
+                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                "published_on": "2025-10-28",
+                "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+              },
+              "page": "45, 59",
+              "section": "Art. 34 c. 7; Tabella L, 1 January 2026",
+              "quote": "Al lavoratore inquadrato nei livelli B), B super) e C super) in possesso della certificazione di qualità di cui alla norma tecnica UNI 11766:2019 in corso di validità, è dovuta l’indennità mensile di cui alla tabella L)."
+            },
+            "transformation": "EUR 30.27 monthly; role stated by caller; allowances under Art. 34 cc. 3 and 4 are absorbable by individual superminimi, under c. 7 by better treatment overall. Caller states any better treatment net of absorption. Applies from 1 January 2026; later annual revisions remain unmodelled. The printed amount is monthly also for non-live-in workers, and is not converted to or scaled by paid hours.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:14:09Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-10T00:14:09Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-domestic-hourly-allowances"
+            }
+          },
+          "part_time_proportionable": false
+        }
+      ],
       "category": null,
       "provenance": {
         "status": "verified",
@@ -707,7 +762,181 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "BABY_SITTER_UNDER_6",
+          "description": "Baby sitter of a child under six",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0",
+                "provenance": {
+                  "status": "derived",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                      "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                      "kind": "associazione",
+                      "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                      "published_on": "2025-10-28",
+                      "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+                    },
+                    "page": "44, 59",
+                    "section": "Art. 34 c. 3; Tabella H, 1 January 2026",
+                    "quote": "Sino al compimento del sesto anno di età di ciascun bambino assistito, l’assistente familiare inquadrata nel profilo B Super), lett. b) (baby sitter) avrà diritto a percepire, oltre al minimo retributivo di cui all’art. 35, anche l’indennità mensile di cui alla successiva tabella H). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore."
+                  },
+                  "transformation": "EUR 0.84 per paid hour; role stated by caller; allowances under Art. 34 cc. 3 and 4 are absorbable by individual superminimi, under c. 7 by better treatment overall. Caller states any better treatment net of absorption. Applies from 1 January 2026; later annual revisions remain unmodelled. Monthly zero is an internal placeholder, not a sourced monthly entitlement.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T00:14:09Z",
+                    "effective_from": "2026-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T00:14:09Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-domestic-hourly-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "baby_sitter_under_6",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                "kind": "associazione",
+                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                "published_on": "2025-10-28",
+                "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+              },
+              "page": "44, 59",
+              "section": "Art. 34 c. 3; Tabella H, 1 January 2026",
+              "quote": "Sino al compimento del sesto anno di età di ciascun bambino assistito, l’assistente familiare inquadrata nel profilo B Super), lett. b) (baby sitter) avrà diritto a percepire, oltre al minimo retributivo di cui all’art. 35, anche l’indennità mensile di cui alla successiva tabella H). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore."
+            },
+            "transformation": "EUR 0.84 per paid hour; role stated by caller; allowances under Art. 34 cc. 3 and 4 are absorbable by individual superminimi, under c. 7 by better treatment overall. Caller states any better treatment net of absorption. Applies from 1 January 2026; later annual revisions remain unmodelled. Monthly zero is an internal placeholder, not a sourced monthly entitlement.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:14:09Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-10T00:14:09Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-domestic-hourly-allowances"
+            }
+          },
+          "hourly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.84",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                      "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                      "kind": "associazione",
+                      "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                      "published_on": "2025-10-28",
+                      "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+                    },
+                    "page": "44, 59",
+                    "section": "Art. 34 c. 3; Tabella H, 1 January 2026",
+                    "quote": "0,84"
+                  },
+                  "transformation": "EUR 0.84 per paid hour; role stated by caller; allowances under Art. 34 cc. 3 and 4 are absorbable by individual superminimi, under c. 7 by better treatment overall. Caller states any better treatment net of absorption. Applies from 1 January 2026; later annual revisions remain unmodelled.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T00:14:09Z",
+                    "effective_from": "2026-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T00:14:09Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-domestic-hourly-allowances"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "code": "IND_CERTIFICAZIONE_UNI",
+          "description": "Valid UNI 11766:2019 certification communicated in writing with a copy",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "30.27",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                      "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                      "kind": "associazione",
+                      "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                      "published_on": "2025-10-28",
+                      "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+                    },
+                    "page": "45, 59",
+                    "section": "Art. 34 c. 7; Tabella L, 1 January 2026",
+                    "quote": "30,27"
+                  },
+                  "transformation": "EUR 30.27 monthly; role stated by caller; allowances under Art. 34 cc. 3 and 4 are absorbable by individual superminimi, under c. 7 by better treatment overall. Caller states any better treatment net of absorption. Applies from 1 January 2026; later annual revisions remain unmodelled. The printed amount is monthly also for non-live-in workers, and is not converted to or scaled by paid hours.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T00:14:09Z",
+                    "effective_from": "2026-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T00:14:09Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-domestic-hourly-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "certificazione_uni_11766",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                "kind": "associazione",
+                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                "published_on": "2025-10-28",
+                "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+              },
+              "page": "45, 59",
+              "section": "Art. 34 c. 7; Tabella L, 1 January 2026",
+              "quote": "Al lavoratore inquadrato nei livelli B), B super) e C super) in possesso della certificazione di qualità di cui alla norma tecnica UNI 11766:2019 in corso di validità, è dovuta l’indennità mensile di cui alla tabella L)."
+            },
+            "transformation": "EUR 30.27 monthly; role stated by caller; allowances under Art. 34 cc. 3 and 4 are absorbable by individual superminimi, under c. 7 by better treatment overall. Caller states any better treatment net of absorption. Applies from 1 January 2026; later annual revisions remain unmodelled. The printed amount is monthly also for non-live-in workers, and is not converted to or scaled by paid hours.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:14:09Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-10T00:14:09Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-domestic-hourly-allowances"
+            }
+          },
+          "part_time_proportionable": false
+        }
+      ],
       "category": null,
       "provenance": {
         "status": "verified",
@@ -841,7 +1070,181 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "MULTIPLE_NON_SELF_SUFFICIENT",
+          "description": "Assistance to more than one non-self-sufficient person",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0",
+                "provenance": {
+                  "status": "derived",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                      "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                      "kind": "associazione",
+                      "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                      "published_on": "2025-10-28",
+                      "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+                    },
+                    "page": "44-45, 59",
+                    "section": "Art. 34 c. 4; Tabella I, 1 January 2026",
+                    "quote": "Al lavoratore inquadrato nel livello C Super) o D Super) addetto all’assistenza di più di una persona non autosufficiente, è altresì dovuta l’indennità mensile nella misura di cui alla tabella I). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore."
+                  },
+                  "transformation": "EUR 0.70 per paid hour; role stated by caller; allowances under Art. 34 cc. 3 and 4 are absorbable by individual superminimi, under c. 7 by better treatment overall. Caller states any better treatment net of absorption. Applies from 1 January 2026; later annual revisions remain unmodelled. Monthly zero is an internal placeholder, not a sourced monthly entitlement.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T00:14:09Z",
+                    "effective_from": "2026-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T00:14:09Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-domestic-hourly-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "assistenza_piu_non_autosufficienti",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                "kind": "associazione",
+                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                "published_on": "2025-10-28",
+                "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+              },
+              "page": "44-45, 59",
+              "section": "Art. 34 c. 4; Tabella I, 1 January 2026",
+              "quote": "Al lavoratore inquadrato nel livello C Super) o D Super) addetto all’assistenza di più di una persona non autosufficiente, è altresì dovuta l’indennità mensile nella misura di cui alla tabella I). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore."
+            },
+            "transformation": "EUR 0.70 per paid hour; role stated by caller; allowances under Art. 34 cc. 3 and 4 are absorbable by individual superminimi, under c. 7 by better treatment overall. Caller states any better treatment net of absorption. Applies from 1 January 2026; later annual revisions remain unmodelled. Monthly zero is an internal placeholder, not a sourced monthly entitlement.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:14:09Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-10T00:14:09Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-domestic-hourly-allowances"
+            }
+          },
+          "hourly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.70",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                      "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                      "kind": "associazione",
+                      "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                      "published_on": "2025-10-28",
+                      "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+                    },
+                    "page": "44-45, 59",
+                    "section": "Art. 34 c. 4; Tabella I, 1 January 2026",
+                    "quote": "0,70"
+                  },
+                  "transformation": "EUR 0.70 per paid hour; role stated by caller; allowances under Art. 34 cc. 3 and 4 are absorbable by individual superminimi, under c. 7 by better treatment overall. Caller states any better treatment net of absorption. Applies from 1 January 2026; later annual revisions remain unmodelled.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T00:14:09Z",
+                    "effective_from": "2026-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T00:14:09Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-domestic-hourly-allowances"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "code": "IND_CERTIFICAZIONE_UNI",
+          "description": "Valid UNI 11766:2019 certification communicated in writing with a copy",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "30.27",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                      "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                      "kind": "associazione",
+                      "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                      "published_on": "2025-10-28",
+                      "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+                    },
+                    "page": "45, 59",
+                    "section": "Art. 34 c. 7; Tabella L, 1 January 2026",
+                    "quote": "30,27"
+                  },
+                  "transformation": "EUR 30.27 monthly; role stated by caller; allowances under Art. 34 cc. 3 and 4 are absorbable by individual superminimi, under c. 7 by better treatment overall. Caller states any better treatment net of absorption. Applies from 1 January 2026; later annual revisions remain unmodelled. The printed amount is monthly also for non-live-in workers, and is not converted to or scaled by paid hours.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T00:14:09Z",
+                    "effective_from": "2026-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T00:14:09Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-domestic-hourly-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "certificazione_uni_11766",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                "kind": "associazione",
+                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                "published_on": "2025-10-28",
+                "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+              },
+              "page": "45, 59",
+              "section": "Art. 34 c. 7; Tabella L, 1 January 2026",
+              "quote": "Al lavoratore inquadrato nei livelli B), B super) e C super) in possesso della certificazione di qualità di cui alla norma tecnica UNI 11766:2019 in corso di validità, è dovuta l’indennità mensile di cui alla tabella L)."
+            },
+            "transformation": "EUR 30.27 monthly; role stated by caller; allowances under Art. 34 cc. 3 and 4 are absorbable by individual superminimi, under c. 7 by better treatment overall. Caller states any better treatment net of absorption. Applies from 1 January 2026; later annual revisions remain unmodelled. The printed amount is monthly also for non-live-in workers, and is not converted to or scaled by paid hours.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:14:09Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-10T00:14:09Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-domestic-hourly-allowances"
+            }
+          },
+          "part_time_proportionable": false
+        }
+      ],
       "category": null,
       "provenance": {
         "status": "verified",
@@ -975,7 +1378,112 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "MULTIPLE_NON_SELF_SUFFICIENT",
+          "description": "Assistance to more than one non-self-sufficient person",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0",
+                "provenance": {
+                  "status": "derived",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                      "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                      "kind": "associazione",
+                      "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                      "published_on": "2025-10-28",
+                      "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+                    },
+                    "page": "44-45, 59",
+                    "section": "Art. 34 c. 4; Tabella I, 1 January 2026",
+                    "quote": "Al lavoratore inquadrato nel livello C Super) o D Super) addetto all’assistenza di più di una persona non autosufficiente, è altresì dovuta l’indennità mensile nella misura di cui alla tabella I). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore."
+                  },
+                  "transformation": "EUR 0.70 per paid hour; role stated by caller; allowances under Art. 34 cc. 3 and 4 are absorbable by individual superminimi, under c. 7 by better treatment overall. Caller states any better treatment net of absorption. Applies from 1 January 2026; later annual revisions remain unmodelled. Monthly zero is an internal placeholder, not a sourced monthly entitlement.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T00:14:09Z",
+                    "effective_from": "2026-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T00:14:09Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-domestic-hourly-allowances"
+                  }
+                }
+              }
+            ]
+          },
+          "role": "assistenza_piu_non_autosufficienti",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                "kind": "associazione",
+                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                "published_on": "2025-10-28",
+                "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+              },
+              "page": "44-45, 59",
+              "section": "Art. 34 c. 4; Tabella I, 1 January 2026",
+              "quote": "Al lavoratore inquadrato nel livello C Super) o D Super) addetto all’assistenza di più di una persona non autosufficiente, è altresì dovuta l’indennità mensile nella misura di cui alla tabella I). Tale indennità è assorbibile da eventuali superminimi individuali di miglior favore percepiti dal lavoratore."
+            },
+            "transformation": "EUR 0.70 per paid hour; role stated by caller; allowances under Art. 34 cc. 3 and 4 are absorbable by individual superminimi, under c. 7 by better treatment overall. Caller states any better treatment net of absorption. Applies from 1 January 2026; later annual revisions remain unmodelled. Monthly zero is an internal placeholder, not a sourced monthly entitlement.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:14:09Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-10T00:14:09Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-domestic-hourly-allowances"
+            }
+          },
+          "hourly": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.70",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                      "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                      "kind": "associazione",
+                      "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                      "published_on": "2025-10-28",
+                      "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+                    },
+                    "page": "44-45, 59",
+                    "section": "Art. 34 c. 4; Tabella I, 1 January 2026",
+                    "quote": "0,70"
+                  },
+                  "transformation": "EUR 0.70 per paid hour; role stated by caller; allowances under Art. 34 cc. 3 and 4 are absorbable by individual superminimi, under c. 7 by better treatment overall. Caller states any better treatment net of absorption. Applies from 1 January 2026; later annual revisions remain unmodelled.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T00:14:09Z",
+                    "effective_from": "2026-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T00:14:09Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-domestic-hourly-allowances"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
       "category": null,
       "provenance": {
         "status": "verified",
@@ -1012,7 +1520,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "52cc149b6766ce12a8eeb1c01bd30d780157509a69b2993c3897a85a0d954ce9",
+    "source_hash": "9441917449eefee0940b0ada98f1f1effc8dcdcc969931ea176b360f4d094699",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
@@ -1454,6 +1962,27 @@
         "independence": "separate_model",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-domestic-hourly-allowances",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "levels[].fixed_allowances"
+        ],
+        "scope": "Art. 34 cc. 3, 4, 7 and Tabelle H, I, L on the cached signed CCNL PDF, printed pp. 44-45 and 59; role-gated hourly and monthly allowances for non-live-in workers.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+          }
+        ],
+        "findings": [
+          "BS: EUR 0.84 per paid hour; CS and DS: EUR 0.70 per paid hour; B, BS and CS: EUR 30.27 per month for valid certification."
         ]
       }
     ],

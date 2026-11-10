@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 272 weak rules, 411 open limitations (411 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 272 weak rules, 410 open limitations (410 with a monetary impact).
 
 ## Declared window
 
@@ -125,7 +125,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [lavanderie-industriali-assosistema](../contracts/lavanderie-industriali-assosistema.md) | `pulizia-multiservizi` | exploratory | — | 23 rows | tables from 2026-05-01; 23 open requirements; 2 weak rules; 19 monetary limitations; 19 non-native capabilities |
 | [lavoro-domestico-convivente](../contracts/lavoro-domestico-convivente.md) | `lavoro-domestico` | reviewed | — | 24 rows | 24 open requirements; 21 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [lavoro-domestico-convivente-orario-ridotto](../contracts/lavoro-domestico-convivente-orario-ridotto.md) | `lavoro-domestico` | reviewed | — | 22 rows | 22 open requirements; 18 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
-| [lavoro-domestico-non-convivente](../contracts/lavoro-domestico-non-convivente.md) | `lavoro-domestico` | reviewed | — | 25 rows | 25 open requirements; 22 monetary limitations; 1 outside_input limitation; 22 non-native capabilities |
+| [lavoro-domestico-non-convivente](../contracts/lavoro-domestico-non-convivente.md) | `lavoro-domestico` | reviewed | — | 24 rows | 24 open requirements; 22 monetary limitations; 22 non-native capabilities |
 | [legno-arredamento-federlegno](../contracts/legno-arredamento-federlegno.md) | `legno-arredamento` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 19 non-native capabilities |
 | [legno-lapidei-artigianato-confartigianato](../contracts/legno-lapidei-artigianato-confartigianato.md) | `legno-arredamento` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 20 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [logistica-trasporto-confetra](../contracts/logistica-trasporto-confetra.md) | `trasporti-logistica` | reviewed | — | 25 rows | 25 open requirements; 19 monetary limitations; 4 outside_input limitations; 20 non-native capabilities |

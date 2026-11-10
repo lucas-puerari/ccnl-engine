@@ -11,7 +11,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 273 | 188 | 0 | `funzioni-centrali-aran` |
 | terziario | 46 | 5 257 055 | 53 | 970 | 1781 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 49 | 4 969 900 | 155 | 1172 | 2295 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
-| lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 61 | 0 | `lavoro-domestico-non-convivente` |
+| lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 67 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 151 | 309 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 12 | 95 | 254 | 5 | `operai-agricoli-florovivaisti` |
 | edilizia | 4 | 710 000 | 2 | 93 | 131 | 0 | `edilizia-ance` |
@@ -146,7 +146,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | CCNL | Workers | Readiness | Weak | Derived | Verified | Source | Owner | Next review |
 |---|---:|---|---:|---:|---:|---|---|---|
 | [`lavoro-domestico-convivente`](../contracts/lavoro-domestico-convivente.md) | 900 000 | reviewed | 0 | 7 | 28 | party or official | maintainer | 2027-01-31 |
-| [`lavoro-domestico-non-convivente`](../contracts/lavoro-domestico-non-convivente.md) (anchor) | 900 000 | reviewed | 0 | 0 | 17 | party or official | maintainer | 2027-01-31 |
+| [`lavoro-domestico-non-convivente`](../contracts/lavoro-domestico-non-convivente.md) (anchor) | 900 000 | reviewed | 0 | 0 | 23 | party or official | maintainer | 2027-01-31 |
 | [`lavoro-domestico-convivente-orario-ridotto`](../contracts/lavoro-domestico-convivente-orario-ridotto.md) | none | reviewed | 0 | 5 | 16 | party or official | maintainer | 2027-01-31 |
 
 ## artigianato

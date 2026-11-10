@@ -949,7 +949,6 @@
     ],
     "agreement/lavoro-domestico-non-convivente.json": [
       "lavoro-domestico-non-convivente/annual_minimi_not_updated",
-      "lavoro-domestico-non-convivente/art34_hourly_allowances",
       "lavoro-domestico-non-convivente/extra_month_hours",
       "lavoro-domestico-non-convivente/hourly_inps_bracket_unvalidated",
       "lavoro-domestico-non-convivente/meal_indennity",

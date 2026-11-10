@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | assistance_contribution, base_salary, inps_employer, seniority |
 
-8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 17 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 23 verified / 0 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-10-28 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'confrontare lordo, netto e costo azienda con esempi indipendenti': a run of the engine against the worked examples of a third-party guide (money.it, Costo colf e badanti 2026). | confirmed | Level CS, 2026: the hourly minimum 8,30 matches. 20 hours a week (effective hourly pay up to 9,61): 0,43 euro an hour of the worker and 1,27 of the employer; 30 hours a week (over 24 hours): 0,31 and 0,93. The engine applies the same bands. Match.<br>Deviation: the monthly pay of 20 hours is 719.34, half the rounded full-time 1438.67, against 8,30 x 20 x 52 / 12 = 719.33: one cent of rounding; decision: accepted and noted. The guide is a third-party page (hash of the copy read on 15 October 2026); Cas.Sa.Colf, tredicesima and TFR are not quantified there. |
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'ferie, permessi, festività, assenze, malattia e comporto': the sickness rule against the signed text of 28 October 2025. | confirmed | Art. 27 (p. 37): the three seniority bands, the 365-day count and the 50% / 100% pay match the file: verified. The +50% for oncological illness (c. 6) is declared. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | domestic_oncological_comporto: Art. 27(4)-(7) applies to non-conviventi: the ASL-documented oncological illness extends job-retention periods by 50%, not the 8/10/15 paid-day caps. The existing sickness bands have ordinary 10/45/180 and extended 15/68/270; the engine selects serious_comporto_days when Sickness |
+| 2026-11-10 | claude-opus-5-5 (ai) | Art. 34 cc. 3, 4, 7 and Tabelle H, I, L on the cached signed CCNL PDF, printed pp. 44-45 and 59; role-gated hourly and monthly allowances for non-live-in workers. | corrected | BS: EUR 0.84 per paid hour; CS and DS: EUR 0.70 per paid hour; B, BS and CS: EUR 30.27 per month for valid certification. |
 
 ## Salary table
 
@@ -151,13 +152,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; from 2027-01-01.
 
     **Remediation:** Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note.
-
-!!! warning "lavoro-domestico-non-convivente/art34_hourly_allowances · base_salary · impact yes · open"
-    Art. 34 cc. 3, 4, 7 and Tabelle H, I, L (PDF pp. 44, 59): the non live-in worker is owed 0.84 an hour as baby sitter of level B super for children under six, 0.70 an hour at levels C super and D super assisting more than one non self-sufficient person, and the indennità of the UNI 11766:2019 certification (Tabella L prints a monthly 30.27). Not modelled: the ruleset pays a monthly equivalent of the hourly minimi and the hourly allowances would need the hours worked.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Pay the Tabella H and I hourly allowances on the hours worked, and the Tabella L monthly amount, with role gates.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -345,6 +339,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SICKNESS (Art. 27): INPS pays no indemnity to domestic workers; the employer pays 50% of the retribuzione globale di fatto up to the third day and 100% from the fourth, for at most 8, 10 or 15 days in the 365 days that end on the sick day, within a comporto of 10, 45 or 180 days, for up to 6 months of seniority, up to 2 years and over 2 years. A sick day is a thirtieth of the monthly pay (chiarimento a verbale 2).
     
     NIGHT WORK (Art. 14 c. 6): ordinary work between 22.00 and 6.00 is paid with a 20% supplement of the hourly retribuzione globale di fatto; the engine takes its amount as a NightShiftEvent stated by the caller. The overtime bands are those of Art. 15 c. 3 (25% by day, 50% by night, 60% on a holiday or Sunday); night overtime on a holiday has no band of its own and a run that states it is rejected.
+    
+    Art. 34 cc. 3, 4 and 7: the caller states the baby-sitter-under-six, multiple non-self-sufficient persons and valid UNI 11766:2019 certification roles. Hourly allowances use paid hours stated by the caller; certification is EUR 30.27 monthly, without hourly conversion. Individual superminimi or other better treatment must be stated net of any absorption.
     
 
 ## Raw data

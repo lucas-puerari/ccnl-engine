@@ -434,11 +434,17 @@ class TestLoadLavoroDomesticoNonConvivente:
             assert assistance.employee_per_hour.value_at(day) == Decimal("0.02")
             assert assistance.employer_per_hour.value_at(day) == Decimal("0.04")
 
-    def test_lavoro_domestico_non_convivente_no_fixed_allowances(self) -> None:
-        """All levels have no fixed allowances (function indennità not applicable)."""
+    def test_lavoro_domestico_non_convivente_allowances_by_level(self) -> None:
+        """Only Art. 34 role allowances apply; no D/DS function allowance."""
         ccnl = load_ccnl("lavoro-domestico-non-convivente")
+        expected = {
+            "B": {"IND_CERTIFICAZIONE_UNI"},
+            "BS": {"BABY_SITTER_UNDER_6", "IND_CERTIFICAZIONE_UNI"},
+            "CS": {"MULTIPLE_NON_SELF_SUFFICIENT", "IND_CERTIFICAZIONE_UNI"},
+            "DS": {"MULTIPLE_NON_SELF_SUFFICIENT"},
+        }
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == ()
+            assert {a.code for a in lv.fixed_allowances} == expected.get(lv.code, set())
 
     def test_lavoro_domestico_non_convivente_tax_sector(self) -> None:
         """Contract declares LAVORO_DOMESTICO tax sector."""
