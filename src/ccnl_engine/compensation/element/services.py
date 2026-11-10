@@ -292,5 +292,6 @@ def _contract_chain(
             seniority_months=seniority_months,
             increment_months=increment_months,
             career_months=career_months,
+            level_started_on=level_started_on,
         )
     return chain, scaling
