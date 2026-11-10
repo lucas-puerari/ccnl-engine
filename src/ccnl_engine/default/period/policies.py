@@ -33,6 +33,14 @@ PERIOD_DEFAULTS: Mapping[str, FieldDefault] = {
         "notice indemnity, and the NASpI contribution of a resignation, have "
         "a missing_fact just_cause blocker",
     ),
+    "EmploymentPeriod.disciplinary_dismissal": requires_fact(
+        "base_salary",
+        "employment.employment_period.disciplinary_dismissal",
+        _REPORTED,
+        "a vested loyalty award on a dismissal whose disciplinary status is "
+        "not stated: the dismissal twelfths have a missing_fact "
+        "disciplinary_dismissal blocker",
+    ),
     "EmploymentPeriod.naspi_case": requires_fact(
         "naspi_dismissal",
         "employment.employment_period.naspi_case",

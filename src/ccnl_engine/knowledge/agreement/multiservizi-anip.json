@@ -84,10 +84,6 @@
       },
       {
         "kind": "info",
-        "text": "Apprenticeship: two levels below the destination for the first half and one below for the second, destination II at level I throughout (art. 12, CNEL 105782 p. 37; the parametric positions are skipped). Durations come from the accord of 19 July 2012, read only in a third-party copy of the 2021 text: II 24, III 30, IV 30, V 36, VI 36, VII 36 months. The file models destinations 4 and 5 with 30 months each: destination 5 should last 36 and the other destinations are missing. The 2012 duration schedule has not been verified on the signed cached PDFs; declared in multiservizi_apprenticeship_destinations."
-      },
-      {
-        "kind": "info",
         "text": "July 2025 values: the renewal of 8 June 2021 (CNEL 139292, signed by ANIP) sets a fifth tranche from 1 July 2025 (level 2 +10.00, tabellare 779.21, p. 34), provisional under the art. 73 consuntivo. The renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025 (CNEL 234752) raise level 2 to 819.21 from the same date, but ANIP signed neither. The file applies the ANIP-signed 2021 fifth tranche from July 2025 and excludes the later unsigned tranches (see anip_unsigned_renewal). No ANIP amount for the art. 73 consuntivo or the IPCA increments of art. 73-bis and 73-ter was found."
       },
       {
@@ -140,45 +136,6 @@
             "trigger": "outside_input"
           },
           "remediation": "Route elastic clauses separately (10% on global pay for shifted hours, plus 1.5% for additional hours); enforce part-time eligibility and the full-time ceiling, next-month settlement and incidence on deferred pay including TFR."
-        }
-      },
-      {
-        "kind": "simplification",
-        "text": "VARIABLE ALLOWANCES (CNEL 105782 art. 24): hardship, cash-handling and collection duties require separate daily, hourly or percentage bases and qualifying work events. The retained personal EDAR is absorbed at the next qualifying seniority increment (art. 22 pp. 41-42). No amounts for work not evidenced by the source are inferred.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "multiservizi_duty_allowances_and_edar",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model each evidenced allowance on its own qualifying duty and base; track the individual EDAR and absorption at the first subsequent increment."
-        }
-      },
-      {
-        "kind": "simplification",
-        "text": "COMPLEMENTARY PENSION (CNEL 105782 art. 54, pp. 69-70, 90): enrolled members contribute with their employer at 1% each on the tabellare and contingenza frozen at 1 January 2001, for twelve monthly payments. This is not a percentage of current pay. The eligible funds depend on the employer association (Previambiente, Fondapi or Cooperlavoro), and fixed-term membership depends on six months of work in the calendar year. ASIM and ONBSI are addressed by the separate health_and_bilateral_funds limitation.",
-        "capability": "pension_fund_contribution",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "multiservizi_pension_frozen_base",
-          "applies_when": {
-            "trigger": "run"
-          },
-          "remediation": "Apply the per-level historical base to enrolled members on twelve months, enforce the membership conditions and employee and employer shares."
-        }
-      },
-      {
-        "kind": "simplification",
-        "text": "APPRENTICESHIP (19 July 2012 accord): destination 5 is configured for 30 months rather than 36; destinations 2, 3, 6 and 7 are not configured. The cited duration schedule has not been verified on the cached signed 2011 or 2021 PDF and must not be inferred from a third-party copy.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "multiservizi_apprenticeship_destinations",
-          "applies_when": {
-            "trigger": "run"
-          },
-          "remediation": "Obtain and verify the signed 2012 apprenticeship accord before changing durations or adding destinations."
         }
       },
       {
@@ -246,6 +203,49 @@
             "trigger": "run"
           },
           "remediation": "Apply gross rather than net basis to operai days 181-270, restrict impiegati pay to stipendio plus contingenza, and respect the first-working-day and eligibility conditions; use the worker's actual category at mixed-category levels."
+        }
+      },
+      {
+        "kind": "info",
+        "text": "Apprenticeship: the 19 July 2012 agreement reproduced in the FILCAMS 2021 compiled CCNL, Allegato 8 pp. 119-123, applies from 20 July 2012. Its maximum terms are II 24, III-IV 30 and V-VII 36 months; the first half is paid two ordinary levels below the destination, the second half one below, except destination II at level I throughout. Parametric positions are skipped. The track models the maximum term; shorter individual terms, qualification-based reductions and extensions after prolonged absence require individual inputs and are not configured."
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICESHIP (Allegato 8 of the 2021 compiled CCNL, reproducing the 19 July 2012 agreement): the tracks use the printed maximum duration. For destinations V-VII a relevant diploma shortens the term by 6 months and a relevant degree by 12 months; absence over 30 days extends the term by the absence duration. Individual term adjustments are not represented by the maximum-term tracks.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "multiservizi_apprenticeship_destinations",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Supply the individually agreed term and qualification or absence details before applying a shortened or extended progression; the tracks encode only the printed maximum terms."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "COMPLEMENTARY PENSION (CNEL 105782 art. 54, pp. 69-70): The frozen 1 January 2001 tabellare and contingenza bases, 1% employer and member shares and twelve monthly payments are modelled for enrolled workers. Fund eligibility still depends on the employer association (Previambiente for FISE, Fondapi for CONFAPI, Cooperlavoro for cooperatives, with a choice for non-affiliated employers); fixed-term membership requires six months of work within the calendar year. These eligibility facts are not established by the enrolment alone. ASIM and ONBSI are addressed by the separate health_and_bilateral_funds limitation.",
+        "capability": "pension_fund_contribution",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "multiservizi_pension_membership_eligibility",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Verify the employer association and accumulated calendar-year fixed-term work before accepting the caller-selected fund and enrolment. No eligibility is inferred from the level or the fund code."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "VARIABLE ALLOWANCES (CNEL 105782 arts. 22 and 24): the 3% tabellare cash-handling allowance is modeled for a caller-stated role normally handling money with liability for errors. Hardship requires qualifying daily cleaning events and the correct daily tabellare base; collection requires qualifying collections above EUR 4.65 and a 5% retribuzione base; the hourly cleaning allowances require actual duty hours and non-cumulation where applicable. Personal EDAR retained under art. 22 requires an individual amount and absorption at the next qualifying seniority increment. No unsupported amounts or event counts are inferred.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "multiservizi_duty_allowances_and_edar",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Route qualifying hardship days, collection events and hourly duty hours to their distinct bases; track individual EDAR and its absorption at the next qualifying increment. The cash-handling role supplement is modeled."
         }
       }
     ]
@@ -809,6 +809,1292 @@
           }
         }
       }
+    ],
+    "employer_funds": [
+      {
+        "code": "PREVIAMBIENTE",
+        "description": "Previambiente complementary pension fund",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2021-07-01",
+              "valid_until": null,
+              "value": "0.01",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-k511-105782",
+                    "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                    "published_on": "2011-05-31",
+                    "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                  },
+                  "page": "70",
+                  "section": "Art. 54 - Previdenza complementare",
+                  "quote": "a) l’1%, a carico dell’Azienda, calcolato su minimo tabellare ed indennità di contingenza alla data dell'1/1/2001; (come da tabella allegata)\nb) l’1%, a carico del lavoratore, calcolato su minimo tabellare ed indennità di contingenza alla data dell'1/1/2001;\nI predetti contributi, ivi compresi gli importi prelevati dal T.F.R., saranno trattenuti in occasione della corresponsione delle competenze di ciascun mese per dodici mensilità\n• PREVIAMBIENTE, per i lavoratori delle aziende aderenti a FISE"
+                },
+                "transformation": "The employer owes 1% of the historical fixed base of the level for an enrolled worker; twelve monthly payments, not extra months. The enrolment names the fund; employer association eligibility remains a limitation.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-10T02:31:11Z",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-10T02:31:11Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-10-ai-multiservizi-pension"
+                }
+              }
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2021-07-01",
+              "valid_until": null,
+              "value": "0.01",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-k511-105782",
+                    "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                    "published_on": "2011-05-31",
+                    "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                  },
+                  "page": "70",
+                  "section": "Art. 54 - Previdenza complementare",
+                  "quote": "a) l’1%, a carico dell’Azienda, calcolato su minimo tabellare ed indennità di contingenza alla data dell'1/1/2001; (come da tabella allegata)\nb) l’1%, a carico del lavoratore, calcolato su minimo tabellare ed indennità di contingenza alla data dell'1/1/2001;"
+                },
+                "transformation": "The member contributes at least 1% of the same historical fixed base as the employer.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-10T02:31:11Z",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-10T02:31:11Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-10-ai-multiservizi-pension"
+                }
+              }
+            }
+          ]
+        },
+        "contribution_base": "fixed_by_level",
+        "fixed_base_by_level": {
+          "Q": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "1222.75",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "Q € 1.222,75"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level Q; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "7": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "1222.75",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "7° € 1.222,75"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 7; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "6": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "1090.21",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "6° € 1090,21"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 6; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "5": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "976.53",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "5° € 976,53"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 5; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "4": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "957.74",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "4° € 957,74"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 4; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "3": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "919.85",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "3° € 919,85"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 3; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "2": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "893.30",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "2° € 893,30"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 2; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "1": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "870.60",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "1° € 870,60"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 1; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "2par115": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "912.93",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "Parametro 115 € 912,93"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 2par115; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "4par125": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "952.52",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "Parametro 125 € 952,52"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 4par125; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "extra_months": false
+      },
+      {
+        "code": "FONDAPI",
+        "description": "Fondapi complementary pension fund",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2021-07-01",
+              "valid_until": null,
+              "value": "0.01",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-k511-105782",
+                    "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                    "published_on": "2011-05-31",
+                    "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                  },
+                  "page": "70",
+                  "section": "Art. 54 - Previdenza complementare",
+                  "quote": "a) l’1%, a carico dell’Azienda, calcolato su minimo tabellare ed indennità di contingenza alla data dell'1/1/2001; (come da tabella allegata)\nb) l’1%, a carico del lavoratore, calcolato su minimo tabellare ed indennità di contingenza alla data dell'1/1/2001;\nI predetti contributi, ivi compresi gli importi prelevati dal T.F.R., saranno trattenuti in occasione della corresponsione delle competenze di ciascun mese per dodici mensilità\n• FONDAPI, per i lavoratori delle aziende aderenti a CONFAPI"
+                },
+                "transformation": "The employer owes 1% of the historical fixed base of the level for an enrolled worker; twelve monthly payments, not extra months. The enrolment names the fund; employer association eligibility remains a limitation.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-10T02:31:11Z",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-10T02:31:11Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-10-ai-multiservizi-pension"
+                }
+              }
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2021-07-01",
+              "valid_until": null,
+              "value": "0.01",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-k511-105782",
+                    "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                    "published_on": "2011-05-31",
+                    "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                  },
+                  "page": "70",
+                  "section": "Art. 54 - Previdenza complementare",
+                  "quote": "a) l’1%, a carico dell’Azienda, calcolato su minimo tabellare ed indennità di contingenza alla data dell'1/1/2001; (come da tabella allegata)\nb) l’1%, a carico del lavoratore, calcolato su minimo tabellare ed indennità di contingenza alla data dell'1/1/2001;"
+                },
+                "transformation": "The member contributes at least 1% of the same historical fixed base as the employer.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-10T02:31:11Z",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-10T02:31:11Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-10-ai-multiservizi-pension"
+                }
+              }
+            }
+          ]
+        },
+        "contribution_base": "fixed_by_level",
+        "fixed_base_by_level": {
+          "Q": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "1222.75",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "Q € 1.222,75"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level Q; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "7": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "1222.75",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "7° € 1.222,75"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 7; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "6": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "1090.21",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "6° € 1090,21"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 6; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "5": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "976.53",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "5° € 976,53"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 5; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "4": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "957.74",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "4° € 957,74"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 4; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "3": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "919.85",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "3° € 919,85"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 3; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "2": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "893.30",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "2° € 893,30"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 2; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "1": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "870.60",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "1° € 870,60"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 1; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "2par115": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "912.93",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "Parametro 115 € 912,93"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 2par115; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "4par125": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "952.52",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "Parametro 125 € 952,52"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 4par125; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "extra_months": false
+      },
+      {
+        "code": "COOPERLAVORO",
+        "description": "Cooperlavoro complementary pension fund",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2021-07-01",
+              "valid_until": null,
+              "value": "0.01",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-k511-105782",
+                    "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                    "published_on": "2011-05-31",
+                    "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                  },
+                  "page": "70",
+                  "section": "Art. 54 - Previdenza complementare",
+                  "quote": "a) l’1%, a carico dell’Azienda, calcolato su minimo tabellare ed indennità di contingenza alla data dell'1/1/2001; (come da tabella allegata)\nb) l’1%, a carico del lavoratore, calcolato su minimo tabellare ed indennità di contingenza alla data dell'1/1/2001;\nI predetti contributi, ivi compresi gli importi prelevati dal T.F.R., saranno trattenuti in occasione della corresponsione delle competenze di ciascun mese per dodici mensilità\n• COOPERLAVORO, per i lavoratori delle imprese cooperative del settore"
+                },
+                "transformation": "The employer owes 1% of the historical fixed base of the level for an enrolled worker; twelve monthly payments, not extra months. The enrolment names the fund; employer association eligibility remains a limitation.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-10T02:31:11Z",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-10T02:31:11Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-10-ai-multiservizi-pension"
+                }
+              }
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2021-07-01",
+              "valid_until": null,
+              "value": "0.01",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-k511-105782",
+                    "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                    "published_on": "2011-05-31",
+                    "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                  },
+                  "page": "70",
+                  "section": "Art. 54 - Previdenza complementare",
+                  "quote": "a) l’1%, a carico dell’Azienda, calcolato su minimo tabellare ed indennità di contingenza alla data dell'1/1/2001; (come da tabella allegata)\nb) l’1%, a carico del lavoratore, calcolato su minimo tabellare ed indennità di contingenza alla data dell'1/1/2001;"
+                },
+                "transformation": "The member contributes at least 1% of the same historical fixed base as the employer.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-10T02:31:11Z",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-10T02:31:11Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-10-ai-multiservizi-pension"
+                }
+              }
+            }
+          ]
+        },
+        "contribution_base": "fixed_by_level",
+        "fixed_base_by_level": {
+          "Q": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "1222.75",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "Q € 1.222,75"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level Q; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "7": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "1222.75",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "7° € 1.222,75"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 7; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "6": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "1090.21",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "6° € 1090,21"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 6; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "5": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "976.53",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "5° € 976,53"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 5; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "4": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "957.74",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "4° € 957,74"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 4; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "3": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "919.85",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "3° € 919,85"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 3; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "2": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "893.30",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "2° € 893,30"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 2; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "1": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "870.60",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "1° € 870,60"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 1; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "2par115": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "912.93",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "Parametro 115 € 912,93"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 2par115; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          },
+          "4par125": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "952.52",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-k511-105782",
+                      "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, testo definitivo 31 maggio 2011 (CNEL K511, deposito 105782)",
+                      "kind": "cnel",
+                      "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                      "published_on": "2011-05-31",
+                      "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+                    },
+                    "page": "90",
+                    "section": "Art. 54 - Previdenza complementare",
+                    "quote": "Parametro 125 € 952,52"
+                  },
+                  "transformation": "The table prints the 1 January 2001 tabellare plus contingenza for level 4par125; this is a fixed monthly contribution base, not the current salary. The start matches the first salary period recorded in this bundle; no historical amount has been inferred.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T02:31:11Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-10T02:31:11Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-multiservizi-pension"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "extra_months": false
+      }
     ]
   },
   "levels": [
@@ -1052,6 +2338,48 @@
               "verified_at": "2026-10-13T09:25:49Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
             }
           }
         }
@@ -1326,6 +2654,48 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
         }
       ],
       "category": "operaio",
@@ -1589,6 +2959,48 @@
               "verified_at": "2026-10-13T09:25:49Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
             }
           }
         }
@@ -1863,6 +3275,48 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
         }
       ],
       "category": "operaio",
@@ -2126,6 +3580,48 @@
               "verified_at": "2026-10-13T09:25:49Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
             }
           }
         }
@@ -2400,6 +3896,48 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
         }
       ],
       "category": "operaio",
@@ -2668,6 +4206,48 @@
               "verified_at": "2026-10-13T09:25:49Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
             }
           }
         }
@@ -2940,6 +4520,48 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
         }
       ],
       "category": "impiegato",
@@ -3208,6 +4830,48 @@
               "verified_at": "2026-10-13T09:25:49Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
             }
           }
         }
@@ -3521,6 +5185,48 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
         }
       ],
       "category": "quadro",
@@ -3555,9 +5261,55 @@
   "apprenticeship": [
     {
       "type": "under_classification",
-      "name": "destinazione_5",
+      "name": "destinazione_2",
       "destination_levels": [
-        "5"
+        "2"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 24,
+          "levels_below": 1
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "filcams-multiservizi-2021",
+            "title": "2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement",
+            "kind": "associazione",
+            "url": "https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0",
+            "published_on": "2021-06-08",
+            "sha256": "ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f"
+          },
+          "page": "120, 122",
+          "section": "Allegato 8, Durata; Trattamento economico",
+          "quote": "II      livello          24 mesi [...] Gli apprendisti con destinazione finale al secondo livello saranno inquadrati al primo livello per tutto il periodo."
+        },
+        "transformation": "Maximum term 24 months from 20 July 2012; destination II is paid at I throughout the term, then at II after completion. The compiled annex reproduces the 19 July 2012 agreement.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T03:00:15Z",
+          "effective_from": "2012-07-20",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T03:00:15Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-multiservizi-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "under_classification",
+      "name": "destinazione_3",
+      "destination_levels": [
+        "3"
       ],
       "periods": [
         {
@@ -3568,14 +5320,41 @@
         {
           "months_from": 15,
           "months_until": 30,
-          "levels_below": 1
+          "levels_below": 2
         },
         {
           "months_from": 30,
           "months_until": null,
           "levels_below": 0
         }
-      ]
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "filcams-multiservizi-2021",
+            "title": "2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement",
+            "kind": "associazione",
+            "url": "https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0",
+            "published_on": "2021-06-08",
+            "sha256": "ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f"
+          },
+          "page": "120, 122",
+          "section": "Allegato 8, Durata; Trattamento economico",
+          "quote": "III     livello          30 mesi [...] Il lavoratore assunto con contratto di apprendistato professionalizzante è inquadrato due livelli sotto quello di destinazione finale, per la prima metà del periodo e ad un livello inferiore per la seconda metà."
+        },
+        "transformation": "Maximum term 30 months from 20 July 2012; ordinary pay levels I for months 0-14 and II for 15-29, skipping parametric grades. The compiled annex reproduces the 19 July 2012 agreement.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T03:00:15Z",
+          "effective_from": "2012-07-20",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T03:00:15Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-multiservizi-apprenticeship"
+        }
+      }
     },
     {
       "type": "under_classification",
@@ -3599,7 +5378,187 @@
           "months_until": null,
           "levels_below": 0
         }
-      ]
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "filcams-multiservizi-2021",
+            "title": "2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement",
+            "kind": "associazione",
+            "url": "https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0",
+            "published_on": "2021-06-08",
+            "sha256": "ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f"
+          },
+          "page": "120, 122",
+          "section": "Allegato 8, Durata; Trattamento economico",
+          "quote": "IV      livello          30 mesi [...] Il lavoratore assunto con contratto di apprendistato professionalizzante è inquadrato due livelli sotto quello di destinazione finale, per la prima metà del periodo e ad un livello inferiore per la seconda metà."
+        },
+        "transformation": "Maximum term 30 months from 20 July 2012; ordinary pay levels II for months 0-14 and III for 15-29, skipping parametric grades. The compiled annex reproduces the 19 July 2012 agreement.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T03:00:15Z",
+          "effective_from": "2012-07-20",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T03:00:15Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-multiservizi-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "under_classification",
+      "name": "destinazione_5",
+      "destination_levels": [
+        "5"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 3
+        },
+        {
+          "months_from": 18,
+          "months_until": 36,
+          "levels_below": 1
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "filcams-multiservizi-2021",
+            "title": "2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement",
+            "kind": "associazione",
+            "url": "https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0",
+            "published_on": "2021-06-08",
+            "sha256": "ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f"
+          },
+          "page": "120, 122",
+          "section": "Allegato 8, Durata; Trattamento economico",
+          "quote": "V       livello          36 mesi [...] Il lavoratore assunto con contratto di apprendistato professionalizzante è inquadrato due livelli sotto quello di destinazione finale, per la prima metà del periodo e ad un livello inferiore per la seconda metà."
+        },
+        "transformation": "Maximum term 36 months from 20 July 2012; ordinary pay levels III for months 0-17 and IV for 18-35, skipping parametric grades. The compiled annex reproduces the 19 July 2012 agreement.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T03:00:15Z",
+          "effective_from": "2012-07-20",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T03:00:15Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-multiservizi-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "under_classification",
+      "name": "destinazione_6",
+      "destination_levels": [
+        "6"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 2
+        },
+        {
+          "months_from": 18,
+          "months_until": 36,
+          "levels_below": 1
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "filcams-multiservizi-2021",
+            "title": "2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement",
+            "kind": "associazione",
+            "url": "https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0",
+            "published_on": "2021-06-08",
+            "sha256": "ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f"
+          },
+          "page": "120, 122",
+          "section": "Allegato 8, Durata; Trattamento economico",
+          "quote": "VI      livello          36 mesi [...] Il lavoratore assunto con contratto di apprendistato professionalizzante è inquadrato due livelli sotto quello di destinazione finale, per la prima metà del periodo e ad un livello inferiore per la seconda metà."
+        },
+        "transformation": "Maximum term 36 months from 20 July 2012; ordinary pay levels IV for months 0-17 and V for 18-35, skipping parametric grades. The compiled annex reproduces the 19 July 2012 agreement.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T03:00:15Z",
+          "effective_from": "2012-07-20",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T03:00:15Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-multiservizi-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "under_classification",
+      "name": "destinazione_7",
+      "destination_levels": [
+        "7"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 2
+        },
+        {
+          "months_from": 18,
+          "months_until": 36,
+          "levels_below": 1
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "filcams-multiservizi-2021",
+            "title": "2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement",
+            "kind": "associazione",
+            "url": "https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0",
+            "published_on": "2021-06-08",
+            "sha256": "ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f"
+          },
+          "page": "120, 122",
+          "section": "Allegato 8, Durata; Trattamento economico",
+          "quote": "VII     livello          36 mesi [...] Il lavoratore assunto con contratto di apprendistato professionalizzante è inquadrato due livelli sotto quello di destinazione finale, per la prima metà del periodo e ad un livello inferiore per la seconda metà."
+        },
+        "transformation": "Maximum term 36 months from 20 July 2012; ordinary pay levels V for months 0-17 and VI for 18-35. The compiled annex reproduces the 19 July 2012 agreement.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T03:00:15Z",
+          "effective_from": "2012-07-20",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T03:00:15Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-multiservizi-apprenticeship"
+        }
+      }
     }
   ],
   "ruleset": {
@@ -3609,7 +5568,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "9c5d7959fb9559f7a30703bc32e0040925841c22005efeae849c5f501e3eb445",
+    "source_hash": "8ad05425b7f5136ae91df8f8eb60198834e59a788560c929c29c3e04fb7e2220",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -4783,6 +6742,74 @@
         "checked": [
           "work_rules.sickness_rules",
           "work_rules.sickness_rules_by_category.impiegato",
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-multiservizi-apprenticeship",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Allegato 8 pp. 119-123 of the 2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement: maximum terms and pay grades effective 20 July 2012.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0",
+            "sha256": "ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f"
+          },
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+            "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167"
+          }
+        ],
+        "findings": [
+          "The annex prints II 24, III-IV 30, V-VII 36 months; the first half pays two ordinary levels below, the second half one below, except destination II at I throughout. The CNEL renewal has no amendment to these clauses. Individual reductions and extensions remain outside the maximum-term tracks."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "apprenticeship",
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-multiservizi-pension",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 54 pension rates, frozen per-level bases and fund eligibility in CNEL 105782 pp. 69-70, 90; membership routing remains limited.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+            "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+          }
+        ],
+        "findings": [
+          "Verified all ten configured level bases against the page 90 table and the 1% shares and twelve payments against pp. 69-70.",
+          "The printed Q and 7 illustrative 1% amounts (12.28) differ from 1% of the printed 1222.75 base (12.23); applied the stated percentage and base, not the inconsistent illustrative amount.",
+          "Association-dependent fund choice and six-month calendar-year fixed-term eligibility remain open."
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-multiservizi-cash",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "CNEL 105782 art. 24, page 43, cash handling on the tabellare; art. 22 EDAR and remaining art. 24 event-dependent duties remain limited.",
+        "outcome": "corrected",
+        "independence": "same_process",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+            "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+          }
+        ],
+        "findings": [
+          "The cash-handling duty is normally assigned and carries error liability, so caller-stated role gates its 3% tabellare supplement. Collection thresholds and hardship and hourly duty events cannot be inferred from a monthly role."
+        ],
+        "checked": [
+          "levels.fixed_allowances",
           "coverage.notes"
         ]
       }
