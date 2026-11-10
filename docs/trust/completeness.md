@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 272 weak rules, 416 open limitations (416 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 272 weak rules, 413 open limitations (413 with a monetary impact).
 
 ## Declared window
 
@@ -98,7 +98,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [edilizia-pmi-confapi-aniem](../contracts/edilizia-pmi-confapi-aniem.md) | `edilizia` | exploratory | — | 32 rows | 32 open requirements; 1 weak rule; 27 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
 | [elettrico-elettricita-futura](../contracts/elettrico-elettricita-futura.md) | `energia-utilities` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 18 non-native capabilities |
 | [energia-petrolio-confindustria](../contracts/energia-petrolio-confindustria.md) | `energia-utilities` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 18 non-native capabilities |
-| [enti-ricerca-aran](../contracts/enti-ricerca-aran.md) | `pubblico-impiego` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 18 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
+| [enti-ricerca-aran](../contracts/enti-ricerca-aran.md) | `pubblico-impiego` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 20 non-native capabilities |
 | [esercizi-cinematografici-anec](../contracts/esercizi-cinematografici-anec.md) | `spettacolo-media` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 20 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [farmacie-municipalizzate-assofarm](../contracts/farmacie-municipalizzate-assofarm.md) | `farmacie` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 20 monetary limitations; 20 non-native capabilities |
 | [farmacie-private-h121](../contracts/farmacie-private-h121.md) | `farmacie` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 19 non-native capabilities |
@@ -178,8 +178,8 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [turismo-federalberghi](../contracts/turismo-federalberghi.md) | `turismo` | production | — | 27 rows | 27 open requirements; 19 monetary limitations; 6 outside_input limitations; 20 non-native capabilities |
 | [turismo-federalberghi-alberghi-minori](../contracts/turismo-federalberghi-alberghi-minori.md) | `turismo` | exploratory | — | 28 rows | 28 open requirements; 19 monetary limitations; 7 outside_input limitations; 20 non-native capabilities |
 | [uneba-uneba](../contracts/uneba-uneba.md) | `socio-sanitario` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 18 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
-| [universita-aran](../contracts/universita-aran.md) | `pubblico-impiego` | exploratory | — | 25 rows | 25 open requirements; 5 weak rules; 17 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
-| [universita-tecnologi-aran](../contracts/universita-tecnologi-aran.md) | `pubblico-impiego` | exploratory | — | 22 rows | tables from 2026-03-01; 22 open requirements; 1 weak rule; 18 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
+| [universita-aran](../contracts/universita-aran.md) | `pubblico-impiego` | exploratory | — | 24 rows | 24 open requirements; 5 weak rules; 17 monetary limitations; 19 non-native capabilities |
+| [universita-tecnologi-aran](../contracts/universita-tecnologi-aran.md) | `pubblico-impiego` | exploratory | — | 21 rows | tables from 2026-03-01; 21 open requirements; 1 weak rule; 18 monetary limitations; 20 non-native capabilities |
 | [vetro-meccanizzato-assovetro](../contracts/vetro-meccanizzato-assovetro.md) | `chimica` | exploratory | — | 58 rows | 58 open requirements; 36 weak rules; 19 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [vigilanza-privata-assiv](../contracts/vigilanza-privata-assiv.md) | `vigilanza` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 20 monetary limitations; 20 non-native capabilities |
 | [vigilanza-privata-assiv-sf](../contracts/vigilanza-privata-assiv-sf.md) | `vigilanza` | exploratory | — | 25 rows | 25 open requirements; 3 weak rules; 20 monetary limitations; 20 non-native capabilities |
