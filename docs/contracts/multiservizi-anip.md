@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 80 verified / 14 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 90 verified / 14 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -77,6 +77,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-10 | claude-opus-5-5 (ai) | Sickness art. 51 in cached CNEL 105782 pp. 67-68 and its replacement in CNEL 139292 pp. 22-24; category bands and remaining basis differences. | corrected | Operai receive 100% net global pay to day 180 and 50% global pay to day 270; the latter is not stated as net. Impiegati receive stipendio and contingenza in full for five months and half for seven; both share the rolling 36-month comporto.<br>Rule-wide net_basis cannot switch at day 181; global pay cannot restrict the impiegati base to stipendio and contingenza. Those differences remain open. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Allegato 8 pp. 119-123 of the 2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement: maximum terms and pay grades effective 20 July 2012. | corrected | The annex prints II 24, III-IV 30, V-VII 36 months; the first half pays two ordinary levels below, the second half one below, except destination II at I throughout. The CNEL renewal has no amendment to these clauses. Individual reductions and extensions remain outside the maximum-term tracks. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 54 pension rates, frozen per-level bases and fund eligibility in CNEL 105782 pp. 69-70, 90; membership routing remains limited. | corrected | Verified all ten configured level bases against the page 90 table and the 1% shares and twelve payments against pp. 69-70.<br>The printed Q and 7 illustrative 1% amounts (12.28) differ from 1% of the printed 1222.75 base (12.23); applied the stated percentage and base, not the inconsistent illustrative amount.<br>Association-dependent fund choice and six-month calendar-year fixed-term eligibility remain open. |
+| 2026-11-10 | claude-opus-5-5 (ai) | CNEL 105782 art. 24, page 43, cash handling on the tabellare; art. 22 EDAR and remaining art. 24 event-dependent duties remain limited. | corrected | The cash-handling duty is normally assigned and carries error liability, so caller-stated role gates its 3% tabellare supplement. Collection thresholds and hardship and hourly duty events cannot be inferred from a monthly role. |
 
 ## Salary table
 
@@ -152,13 +153,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Route elastic clauses separately (10% on global pay for shifted hours, plus 1.5% for additional hours); enforce part-time eligibility and the full-time ceiling, next-month settlement and incidence on deferred pay including TFR.
 
-!!! warning "multiservizi-anip/multiservizi_duty_allowances_and_edar · base_salary · impact yes · open"
-    VARIABLE ALLOWANCES (CNEL 105782 art. 24): hardship, cash-handling and collection duties require separate daily, hourly or percentage bases and qualifying work events. The retained personal EDAR is absorbed at the next qualifying seniority increment (art. 22 pp. 41-42). No amounts for work not evidenced by the source are inferred.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model each evidenced allowance on its own qualifying duty and base; track the individual EDAR and absorption at the first subsequent increment.
-
 !!! warning "multiservizi-anip/renewal_not_signed_by_anip · base_salary · impact yes · open"
     SIGNATORIES: ANIP is not among the original signatories of the 13 June 2025 renewal and the 6 August 2025 tables (CNEL 234754, 234752); a later ANIP accession or a separate ANIP agreement was not found but is not excluded. From July 2025 the file applies the ANIP-signed fifth tranche of the 8 June 2021 renewal (CNEL 139292 p. 34); with an accession the 2025 renewal minima (level 2 819.21 from July 2025) would apply instead.
 
@@ -200,6 +194,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `pension_fund_contribution` applies.
 
     **Remediation:** Verify the employer association and accumulated calendar-year fixed-term work before accepting the caller-selected fund and enrolment. No eligibility is inferred from the level or the fund code.
+
+!!! warning "multiservizi-anip/multiservizi_duty_allowances_and_edar · base_salary · impact yes · open"
+    VARIABLE ALLOWANCES (CNEL 105782 arts. 22 and 24): the 3% tabellare cash-handling allowance is modeled for a caller-stated role normally handling money with liability for errors. Hardship requires qualifying daily cleaning events and the correct daily tabellare base; collection requires qualifying collections above EUR 4.65 and a 5% retribuzione base; the hourly cleaning allowances require actual duty hours and non-cumulation where applicable. Personal EDAR retained under art. 22 requires an individual amount and absorption at the next qualifying seniority increment. No unsupported amounts or event counts are inferred.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Route qualifying hardship days, collection events and hourly duty hours to their distinct bases; track individual EDAR and its absorption at the next qualifying increment. The cash-handling role supplement is modeled.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

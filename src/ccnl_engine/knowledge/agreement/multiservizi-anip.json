@@ -139,19 +139,6 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "VARIABLE ALLOWANCES (CNEL 105782 art. 24): hardship, cash-handling and collection duties require separate daily, hourly or percentage bases and qualifying work events. The retained personal EDAR is absorbed at the next qualifying seniority increment (art. 22 pp. 41-42). No amounts for work not evidenced by the source are inferred.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "multiservizi_duty_allowances_and_edar",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model each evidenced allowance on its own qualifying duty and base; track the individual EDAR and absorption at the first subsequent increment."
-        }
-      },
-      {
         "kind": "info",
         "capability": "leave",
         "text": "LEAVE (artt. 19, 41, 42 of the 2011 text): 22 days of ferie on five days, 26 on six (Employment.full_time_week_days), in twelfths with the month over 15 days; 40 hours a year of reduced time (art. 42). At termination a day of ferie is the monthly pay over 22 (26 on six days), an hour of permits over 173. The ex festività are compensatory permits for the abolished holidays worked (art. 41): not a bank, not accrued. The 2025 renewal (72 hours of permits according to the union summary) is not read in a primary text."
@@ -246,6 +233,19 @@
             "trigger": "run"
           },
           "remediation": "Verify the employer association and accumulated calendar-year fixed-term work before accepting the caller-selected fund and enrolment. No eligibility is inferred from the level or the fund code."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "VARIABLE ALLOWANCES (CNEL 105782 arts. 22 and 24): the 3% tabellare cash-handling allowance is modeled for a caller-stated role normally handling money with liability for errors. Hardship requires qualifying daily cleaning events and the correct daily tabellare base; collection requires qualifying collections above EUR 4.65 and a 5% retribuzione base; the hourly cleaning allowances require actual duty hours and non-cumulation where applicable. Personal EDAR retained under art. 22 requires an individual amount and absorption at the next qualifying seniority increment. No unsupported amounts or event counts are inferred.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "multiservizi_duty_allowances_and_edar",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Route qualifying hardship days, collection events and hourly duty hours to their distinct bases; track individual EDAR and its absorption at the next qualifying increment. The cash-handling role supplement is modeled."
         }
       }
     ]
@@ -2340,6 +2340,48 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
         }
       ],
       "category": "operaio",
@@ -2612,6 +2654,48 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
         }
       ],
       "category": "operaio",
@@ -2875,6 +2959,48 @@
               "verified_at": "2026-10-13T09:25:49Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
             }
           }
         }
@@ -3149,6 +3275,48 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
         }
       ],
       "category": "operaio",
@@ -3412,6 +3580,48 @@
               "verified_at": "2026-10-13T09:25:49Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
             }
           }
         }
@@ -3686,6 +3896,48 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
         }
       ],
       "category": "operaio",
@@ -3954,6 +4206,48 @@
               "verified_at": "2026-10-13T09:25:49Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
             }
           }
         }
@@ -4226,6 +4520,48 @@
               "review_id": "2026-10-13-ai-production"
             }
           }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
         }
       ],
       "category": "impiegato",
@@ -4494,6 +4830,48 @@
               "verified_at": "2026-10-13T09:25:49Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
             }
           }
         }
@@ -4805,6 +5183,48 @@
               "verified_at": "2026-10-13T09:25:49Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          }
+        },
+        {
+          "code": "CASH_HANDLING",
+          "description": "Cash-handling allowance for workers normally handling money with liability for errors",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2021-07-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "maneggio_denaro",
+          "percentage_rate": "0.03",
+          "percentage_include_individual": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-k511-105782",
+                "title": "CCNL imprese esercenti servizi di pulizia e servizi integrati/multiservizi, CNEL 105782",
+                "kind": "cnel",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+                "published_on": "2011-05-31",
+                "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+              },
+              "page": "43",
+              "section": "Art. 24, cash-handling allowance",
+              "quote": "Al lavoratore che ha normalmente maneggio di denaro con oneri per errori verrà corrisposta un’indennità nella misura del 3% sulla retribuzione tabellare della sua categoria di appartenenza."
+            },
+            "transformation": "Apply 3% to the worker’s current monthly tabellare only when the caller states the qualifying cash-handling role; the zero nominal monthly amount is replaced by the percentage calculation.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:57:15Z",
+              "verified_at": "2026-11-10T00:57:15Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-multiservizi-cash",
+              "verified_by": "claude-opus-5-5"
             }
           }
         }
@@ -5148,7 +5568,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "c6910e8e1ca2d9363d6dc47a4c8c65e28ed49c1e6842149a4cc165a3aace9f89",
+    "source_hash": "8ad05425b7f5136ae91df8f8eb60198834e59a788560c929c29c3e04fb7e2220",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -6369,6 +6789,28 @@
           "Verified all ten configured level bases against the page 90 table and the 1% shares and twelve payments against pp. 69-70.",
           "The printed Q and 7 illustrative 1% amounts (12.28) differ from 1% of the printed 1222.75 base (12.23); applied the stated percentage and base, not the inconsistent illustrative amount.",
           "Association-dependent fund choice and six-month calendar-year fixed-term eligibility remain open."
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-multiservizi-cash",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "CNEL 105782 art. 24, page 43, cash handling on the tabellare; art. 22 EDAR and remaining art. 24 event-dependent duties remain limited.",
+        "outcome": "corrected",
+        "independence": "same_process",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+            "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+          }
+        ],
+        "findings": [
+          "The cash-handling duty is normally assigned and carries error liability, so caller-stated role gates its 3% tabellare supplement. Collection thresholds and hardship and hourly duty events cannot be inferred from a monthly role."
+        ],
+        "checked": [
+          "levels.fixed_allowances",
+          "coverage.notes"
         ]
       }
     ]

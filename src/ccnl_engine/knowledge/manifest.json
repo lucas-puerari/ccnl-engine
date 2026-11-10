@@ -1547,7 +1547,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/multiservizi-anip",
       "ruleset_version": "2026.2",
-      "source_hash": "c6910e8e1ca2d9363d6dc47a4c8c65e28ed49c1e6842149a4cc165a3aace9f89",
+      "source_hash": "8ad05425b7f5136ae91df8f8eb60198834e59a788560c929c29c3e04fb7e2220",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/multiservizi-anip.json.gz"
@@ -4201,7 +4201,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "62fa29bd13ed7f46f4b68f7fc1391182eaa7b887c5d8b7679bbd8aa0c1f58772",
+      "source_hash": "f3b6b6a81165f13008e149dcc228837d18b1d537c7dc05dfaf95f9cedf54e826",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/multiservizi-anip.json.gz",
