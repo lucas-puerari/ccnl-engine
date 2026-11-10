@@ -103,9 +103,9 @@ class TestLoadLegnoLapideiArtigianatoConfartigianato:
     def test_legno_lapidei_artigianato_confartigianato_apprenticeship_tracks(
         self,
     ) -> None:
-        """Three percentage tracks per CCNL: gruppi 1, 2, 3."""
+        """Three groups each have an operai and an impiegati percentage track."""
         ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato")
-        assert len(ccnl.apprenticeship) == 3
+        assert len(ccnl.apprenticeship) == 6
         by_name = {t.name: t for t in ccnl.apprenticeship}
         g1 = by_name["gruppo_1_legno"]
         assert set(g1.destination_levels) == {"AS", "A", "B"}
@@ -116,6 +116,16 @@ class TestLoadLegnoLapideiArtigianatoConfartigianato:
         assert set(g2.destination_levels) == {"CS", "C", "D"}
         g3 = by_name["gruppo_3_legno"]
         assert set(g3.destination_levels) == {"E"}
+        for group, levels, final_pct in (
+            (1, {"AS", "A", "B"}, Decimal("0.80")),
+            (2, {"CS", "C", "D"}, Decimal("0.88")),
+            (3, {"E"}, Decimal("0.95")),
+        ):
+            clerical = by_name[f"gruppo_{group}_legno_impiegati"]
+            assert set(clerical.destination_levels) == levels
+            assert clerical.periods[-1].months_from == (30 if group == 3 else 24)
+            assert clerical.periods[-1].months_until is None
+            assert clerical.periods[-1].percentage == final_pct  # type: ignore[union-attr]
 
 
 # ---------------------------------------------------------------------------
