@@ -940,14 +940,12 @@
       "lavoro-domestico-convivente-orario-ridotto/annual_minimi_not_updated",
       "lavoro-domestico-convivente-orario-ridotto/art34_role_conditions",
       "lavoro-domestico-convivente-orario-ridotto/extra_month_hours",
-      "lavoro-domestico-convivente-orario-ridotto/hourly_inps_bracket_unvalidated",
       "lavoro-domestico-convivente-orario-ridotto/students_other_levels"
     ],
     "agreement/lavoro-domestico-convivente.json": [
       "lavoro-domestico-convivente/annual_minimi_not_updated",
       "lavoro-domestico-convivente/art34_role_conditions",
       "lavoro-domestico-convivente/extra_month_hours",
-      "lavoro-domestico-convivente/hourly_inps_bracket_unvalidated",
       "lavoro-domestico-convivente/part_time_scaling",
       "lavoro-domestico-convivente/seniority_frozen_at_2026",
       "lavoro-domestico-convivente/tranches_from_2027"
