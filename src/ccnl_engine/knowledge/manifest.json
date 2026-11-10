@@ -2193,7 +2193,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi-alberghi-minori",
       "ruleset_version": "2026.2",
-      "source_hash": "aea75eba0377b9304f066ab7f3340d64f01c7e8b778ffaad7bcdd389780e13d8",
+      "source_hash": "0bb256b9c2b12b016a9590976f1f538bb41afeb13395a726c6f70b47a3ceab37",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/turismo-federalberghi-alberghi-minori.json.gz"
