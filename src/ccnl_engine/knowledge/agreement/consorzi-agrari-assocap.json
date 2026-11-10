@@ -119,7 +119,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 43 (2024–2027 CCNL, PDF p. 40): employees already in service on 22 December 1997 retain a one-off, three-month award at 25 years with the same consorzio (including apprenticeship), excluded from TFR. Non-disciplinary termination after starting year 21 or 25 instead attracts two or three months; a qualifying short employer-initiated break may preserve prior service. Annual loyalty_premium would repeatedly overpay and cannot enforce the grandfathering.",
+        "text": "Art. 43 (2024–2027 CCNL, PDF p. 40): the one-off three-month award for workers continuously employed since no later than 22 December 1997 is encoded; their 25-year milestone was reached by December 2022, before the agreement's 2025 run start. Art. 43(2) still awards two or three months on qualifying non-disciplinary termination before 25 years. Art. 43(3)–(4) preserves qualifying prior service across employer-initiated breaks of at most two months or specified interprovincial transfers. Repeated breaks can defer the milestone to 2026 or later; current employment inputs cannot reconstruct these histories or prove presence on the grandfathering date for a rehire.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -127,7 +127,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Implement a one-off cohort-gated three-month award with the Art. 43 termination and service rules."
+          "remediation": "Represent qualifying earlier employment periods, actual cumulative service, historical cohort membership for rehires, and qualifying non-disciplinary termination; then calculate the postponed milestone or early-departure award."
         }
       }
     ]
@@ -240,10 +240,69 @@
         "checked": [
           "levels"
         ]
+      },
+      {
+        "id": "2026-11-10-ai-consorzi-seniority-award",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 43 grandfathered seniority award, PDF p. 40; Art. 33 pay components, PDF p. 33.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+            "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+          }
+        ],
+        "findings": [
+          "Three monthly wages once after 25 years for employees already in service on 22 December 1997, including apprenticeship; excluded from TFR. Qualifying short breaks and specified interprovincial transfers can delay accrual; early termination may trigger a separate payment."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.loyalty_premium",
+          "coverage.notes"
+        ]
       }
     ]
   },
   "parameters": {
+    "loyalty_premium": {
+      "service_years": 25,
+      "months": "3",
+      "recurrence": "once",
+      "in_service_on": "1997-12-22",
+      "categories": [
+        "operaio",
+        "impiegato",
+        "quadro"
+      ],
+      "manual_monthly_pay": true,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-consorzi-agrari-2024-2027",
+            "title": "CCNL per i dipendenti dei consorzi agrari 2024–2027",
+            "kind": "associazione",
+            "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+            "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+          },
+          "page": "40",
+          "section": "Art. 43 - Premio di anzianità, paragraphs 1–4",
+          "quote": "Al lavoratore già in servizio alla data del 22 dicembre 1997, verrà conservato ad personam al compimento del venticinquesimo anno di anzianità di servizio presso lo stesso Consorzio, ivi compreso l’eventuale periodo di apprendistato, un premio “una tantum” pari a tre mensilità della retribuzione, non rientrante nel computo del trattamento di fine rapporto."
+        },
+        "transformation": "Pay three monthly wages once on the 25th service anniversary only for workers whose current continuous employment started by 22 December 1997. Treat the award as ordinary taxable and contributory income, excluded from TFR (bonus_earning policy). The monthly run chain approximates Art. 33 remuneration. Earlier qualifying service, qualifying breaks, interprovincial transfers, and pre-milestone termination awards remain limitations; continuous-service milestones predate supported runs.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T00:40:05Z",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T00:40:05Z",
+          "review_id": "2026-11-10-ai-consorzi-seniority-award"
+        }
+      }
+    },
     "hourly_divisor": {
       "periods": [
         {
@@ -2314,7 +2373,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "7547e8105881c85ddf61a3fa4790a44b9db986c1dc784e51d183c6ca190b5579",
+    "source_hash": "fe8c2ddb4db86fa2de907c81ad4cc6ab1a83f522a0a30680a961e206ec94dc0d",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

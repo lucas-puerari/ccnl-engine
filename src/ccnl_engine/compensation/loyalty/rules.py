@@ -103,8 +103,10 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
     """Pay a full monthly award on each qualifying hire anniversary month.
 
     A once-only milestone pays solely on its qualifying anniversary; eligible
-    manual workers receive normal hourly pay times the configured hours.
-    Without a known employment period, or on a non-regular run, pay nothing.
+    manual workers receive normal hourly pay times the configured hours unless
+    the clause specifies monthly pay. A historical in-service gate requires
+    the current employment period to have begun by that date. Without a known
+    employment period, or on a non-regular run, pay nothing.
     February 29 hires celebrate on February 28 in non-leap years.
 
     Returns:
@@ -119,7 +121,10 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
         or ctx.worker_category not in clause.categories
     ):
         return LoyaltySettlement()
-    if clause.subsectors and ctx.request.employer.subsector not in clause.subsectors:
+    in_service_on = getattr(clause, "in_service_on", None)
+    if (
+        clause.subsectors and ctx.request.employer.subsector not in clause.subsectors
+    ) or (in_service_on is not None and period.started_on > in_service_on):
         return LoyaltySettlement()
     month = ctx.request.period_id.month
     year = ctx.request.period_id.year

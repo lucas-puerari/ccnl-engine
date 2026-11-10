@@ -1,5 +1,6 @@
 """Annual construction loyalty premium and one-time milestone parameters."""
 
+from datetime import date
 from decimal import Decimal
 from typing import Literal
 
@@ -19,6 +20,8 @@ class LoyaltyPremium(BaseModel):
     represented by the employment start date alone. A once-only milestone
     can additionally restrict the eligible categories and employer subsectors;
     manual workers may use a specified number of normal hourly wages.
+    Other agreements may specify monthly pay for manual workers and restrict
+    eligibility to employees already in service on a historical date.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -32,6 +35,8 @@ class LoyaltyPremium(BaseModel):
     )
     subsectors: tuple[str, ...] = ()
     manual_hours: Decimal | None = Field(default=None, gt=0)
+    manual_monthly_pay: bool = False
+    in_service_on: date | None = None
     provenance: RuleProvenance
 
     @model_validator(mode="after")
@@ -44,7 +49,17 @@ class LoyaltyPremium(BaseModel):
         Raises:
             ValueError: If a manual worker would otherwise receive monthly pay.
         """
-        if WorkerCategory.OPERAIO in self.categories and self.manual_hours is None:
-            msg = "manual_hours is required for manual workers"
+        if self.manual_monthly_pay and self.manual_hours is not None:
+            msg = "manual_monthly_pay cannot be combined with manual_hours"
+            raise ValueError(msg)
+        if (
+            WorkerCategory.OPERAIO in self.categories
+            and self.manual_hours is None
+            and not self.manual_monthly_pay
+        ):
+            msg = (
+                "manual_hours is required for manual workers "
+                "unless manual_monthly_pay is true"
+            )
             raise ValueError(msg)
         return self
