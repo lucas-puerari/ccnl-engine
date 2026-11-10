@@ -27,6 +27,7 @@ def _allowance_active(
     seniority_months: int | None,
     as_of: date,
     career_months: int | None = None,
+    level_started_on: date | None = None,
 ) -> bool:
     """Return whether an allowance is active for the given roles and service time.
 
@@ -42,7 +43,17 @@ def _allowance_active(
     until = allowance.service_months_until
     if threshold is None and until is None:
         return True
-    if allowance.career_service and career_months is not None:
+    if allowance.level_service:
+        if level_started_on is None:
+            return False
+        seniority_months = max(
+            0,
+            (as_of.year - level_started_on.year) * 12
+            + as_of.month
+            - level_started_on.month
+            - (as_of.day < level_started_on.day),
+        )
+    elif allowance.career_service and career_months is not None:
         seniority_months = career_months
     if seniority_months is None:
         return False
@@ -145,6 +156,7 @@ def _level_chain(
     seniority_months: int | None = None,
     increment_months: int | None = None,
     career_months: int | None = None,
+    level_started_on: date | None = None,
 ) -> MonthlyPayChain:
     with rule_scope(feature="seniority"):
         seniority = _seniority_amount(
@@ -178,7 +190,9 @@ def _level_chain(
         allowances = tuple(
             (allowance_in_month(a, as_of), a.monthly.value_at(as_of))
             for a in level.fixed_allowances
-            if _allowance_active(a, roles, seniority_months, as_of, career_months)
+            if _allowance_active(
+                a, roles, seniority_months, as_of, career_months, level_started_on
+            )
         )
         base = level.base_salary.value_at(as_of)
         # Keep the ordinary-pay integration separate from contractual base pay
