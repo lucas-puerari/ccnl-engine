@@ -64,6 +64,8 @@ class OvertimeBand(BaseModel):
     PA table of hourly amounts by area); empty, it applies to every level.
     ``subsectors`` (``EmployerProfile.subsector``) and ``categories`` restrict
     it alike (Alimentari art. 31: tables by industry and category).
+    ``premium_base`` selects the monthly elements for the percentage premium
+    when they differ from those used to pay the ordinary hour.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -73,12 +75,13 @@ class OvertimeBand(BaseModel):
     kind: TimeSupplementKind
     rate: TimeSeries
     hour_threshold_per_day: int | None = None
-    hour_threshold_per_week: int | None = None
+    hour_threshold_per_week: Decimal | None = None
     applies_to_kinds: tuple[WorkKind, ...]
     required_context_kinds: tuple[WorkKind, ...] = ()
     levels: tuple[str, ...] = ()
     subsectors: tuple[str, ...] = ()
     categories: tuple[WorkerCategory, ...] = ()
+    premium_base: HourlyBaseMethod | None = None
     provenance: RuleProvenance | None = None
 
 

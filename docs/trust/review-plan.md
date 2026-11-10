@@ -9,7 +9,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 231 | 188 | 0 | `funzioni-centrali-aran` |
-| terziario | 46 | 5 257 055 | 53 | 971 | 1730 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| terziario | 46 | 5 257 055 | 53 | 971 | 1737 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 49 | 4 969 900 | 155 | 1172 | 2294 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 61 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 151 | 309 | 2 | `metalmeccanico-artigianato` |
@@ -41,14 +41,14 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | CCNL | Workers | Readiness | Weak | Derived | Verified | Source | Owner | Next review |
 |---|---:|---|---:|---:|---:|---|---|---|
 | [`commercio-confcommercio`](../contracts/commercio-confcommercio.md) (anchor) | 800 000 | production | 0 | 2 | 86 | party or official | maintainer | 2027-03-31 |
-| [`multiservizi-anip`](../contracts/multiservizi-anip.md) | 580 000 | exploratory | 0 | 15 | 68 | party or official | none | none |
+| [`multiservizi-anip`](../contracts/multiservizi-anip.md) | 580 000 | exploratory | 0 | 15 | 73 | party or official | none | none |
 | [`dmo-federdistribuzione`](../contracts/dmo-federdistribuzione.md) | 460 000 | reviewed | 0 | 3 | 93 | party or official | maintainer | 2027-04-01 |
 | [`cooperative-sociali`](../contracts/cooperative-sociali.md) | 380 000 | reviewed | 0 | 47 | 62 | party or official | maintainer | 2027-01-31 |
 | [`pubblici-esercizi-fipe-angem`](../contracts/pubblici-esercizi-fipe-angem.md) | 350 000 | production | 0 | 4 | 68 | party or official | maintainer | 2027-06-01 |
 | [`pubblici-esercizi-fipe-angem-ristorazione-collettiva`](../contracts/pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | 350 000 | production | 0 | 6 | 62 | party or official | maintainer | 2027-06-01 |
 | [`studi-professionali-confprofessioni`](../contracts/studi-professionali-confprofessioni.md) | 350 000 | reviewed | 0 | 2 | 53 | party or official | maintainer | 2027-04-30 |
 | [`terziario-confesercenti`](../contracts/terziario-confesercenti.md) | 230 000 | reviewed | 0 | 2 | 92 | party or official | maintainer | 2027-03-31 |
-| [`turismo-federalberghi`](../contracts/turismo-federalberghi.md) | 220 000 | production | 0 | 1 | 78 | party or official | maintainer | 2027-04-30 |
+| [`turismo-federalberghi`](../contracts/turismo-federalberghi.md) | 220 000 | production | 0 | 1 | 79 | party or official | maintainer | 2027-04-30 |
 | [`turismo-federalberghi-alberghi-minori`](../contracts/turismo-federalberghi-alberghi-minori.md) | 220 000 | exploratory | 0 | 1 | 69 | party or official | none | none |
 | [`sanita-privata-aiop-aris`](../contracts/sanita-privata-aiop-aris.md) (anchor) | 150 000 | exploratory | 0 | 2 | 38 | party or official | maintainer | 2027-06-30 |
 | [`uneba-uneba`](../contracts/uneba-uneba.md) | 130 000 | exploratory | 1 | 8 | 34 | party or official | none | none |
@@ -85,7 +85,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`autoscuole-unasca`](../contracts/autoscuole-unasca.md) | none | exploratory | 1 | 32 | 1 | party or official | none | none |
 | [`aziende-termali-federterme`](../contracts/aziende-termali-federterme.md) | none | exploratory | 1 | 65 | 0 | party or official | none | none |
 | [`turismo-confesercenti`](../contracts/turismo-confesercenti.md) | none | exploratory | 1 | 7 | 50 | aggregator | none | none |
-| [`vigilanza-privata-federdat-sf`](../contracts/vigilanza-privata-federdat-sf.md) | none | exploratory | 1 | 0 | 26 | party or official | none | none |
+| [`vigilanza-privata-federdat-sf`](../contracts/vigilanza-privata-federdat-sf.md) | none | exploratory | 1 | 0 | 27 | party or official | none | none |
 
 ## industria
 

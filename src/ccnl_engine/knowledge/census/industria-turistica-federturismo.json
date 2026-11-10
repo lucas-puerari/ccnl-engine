@@ -71,10 +71,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 182 (PDF p. 160) abolished the seniority prize on 31 May 1986 except for rights of workers then in service. Annex 9 (PDF p. 316) specifies hotel-sector awards after 10, 15, 20 and 30 continuous years of respectively 1, 1.5, 2 and 3 monthly pays, with departure fractions after year 10. This archival entitlement requires confirmation in a current text; annual loyalty_premium would repeat distinct milestone awards and extend them to new hires.",
+      "rule": "The cached collective agreement, Art. 182 (PDF p. 160), abolishes the seniority prize from 31 May 1986 but preserves rights of workers then in service. Annex 9 (PDF p. 316) prints hotel-sector awards of 1, 1.5, 2 and 3 monthly pays after 10, 15, 20 and 30 continuous years, plus further accrued fractions on departure after year 10. A continuously employed 2026 worker in the grandfathered cohort has at least 40 years of service: the 30-year milestone has already passed, but settlement or accrued rights cannot be ruled out. Continued force in the current renewal, historical settlement, and the basis and treatment of departure fractions are not established here. An annual loyalty award would incorrectly recur and cover new hires.",
       "calculation": "ccnl/industria-turistica-federturismo:coverage.notes",
       "state": "absent",
-      "remediation": "Verify continued rights and implement grandfathered, non-recurring hotel milestones and departure fractions.",
+      "remediation": "Confirm continued force in the current renewal and determine whether a worker in service on 31 May 1986 has unpaid awards or departure fractions; source settlement history and the Art. 109 pay basis before modelling one-off entitlements. Do not pay new hires or recur milestones annually.",
       "origin": "seeded",
       "links": {
         "limitations": [

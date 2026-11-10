@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-10-16 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 61, cached PDF pp. 46-47, national weekday holidays and sickness paragraph. | confirmed | Art. 61 tops up sickness treatment to full daily pay on national weekday holidays; injury, maternity, Easter Sunday and the patron saint remain unmodelled. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay. | confirmed | Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Local patron saint day in sickness and work injury holiday clauses. | confirmed | Art. 61 - Festività, sickness paragraph (p. 47): In caso di assenza dovuta a malattia, infortunio, gravidanza e puerperio, nei giorni festivi innanzi elencati l'azienda integrerà il trattamento economico corrisposto dagli istituti assistenziali ed assicurativi fino a raggiungere l'intera retribuzione giornaliera prevista dal 2° comma del presente articolo. The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Art. 61 pregnancy and puerperium holiday daily-pay target against the cached agreement PDF. | confirmed | Art. 61, PDF p. 47: pregnancy and puerperium holiday pay is integrated to the full daily pay. The list includes Easter Sunday and the local patron saint, but the current absence holiday mechanisms skip Sundays. |
 
 ## Salary table
 
@@ -140,11 +141,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Leave the hospital stays, life-saving therapies and serious illnesses of Art. 64 out of the counts and pay half of the integration past day 180, then resolve this limitation.
 
 !!! warning "esercizi-cinematografici-anec/other_holiday_during_absence · sickness · impact yes · open"
-    Art. 61: pregnancy and puerperium holiday top-ups, Easter Sunday are not calculated; national weekday holidays during sickness and injury are covered.
+    Art. 61: national weekday holidays and the stated weekday patron saint day during sickness, injury and compulsory maternity have a full daily-pay target. Easter Sunday and other Sunday holidays are not calculated by the weekday-only absence holiday mechanisms; optional leave and other absence treatments are not modelled.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Provide employer-specific holidays and the remaining absence treatments.
+    **Remediation:** Support Sunday holidays including Easter Sunday during insured absences and the remaining absence treatments. A local patron saint date must be supplied by the employer.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
