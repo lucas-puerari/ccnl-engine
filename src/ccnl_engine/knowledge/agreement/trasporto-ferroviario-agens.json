@@ -133,17 +133,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "FONDO DI SOLIDARIETA FERROVIE. Contribution rate 0.20% confirmed: 2/3 a carico di Ferrovie (datore, ≈0.133%), 1/3 a carico dei lavoratori (≈0.067%). Source: INPS circolare (confirmed by inps.it/fondo-ferrovie-dello-stato and consulenza.it). Not modelled in the data (parameters.solidarity_fund is null although the engine supports it); adds approximately 0.067% to employee cost and 0.133% to employer cost above the standard INDUSTRIA INPS rates. (review of 2026-10-30)",
-        "capability": "inps_employer",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "fondo_solidarieta_ferrovie",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "remediation": "Set parameters.solidarity_fund (code fondo_ferrovie, employer_rate 0.00133, employee_rate 0.00067, sourced from the INPS circular), as studi-professionali-confprofessioni does."
-        }
+        "kind": "info",
+        "text": "The ordinary FS solidarity fund contribution is modelled only when EmployerProfile.solidarity_fund_covered is true. The 2017 decree limits coverage to FS-controlled rail transport employers and undertakings already covered by the predecessor fund under art. 59(6) L. 449/1997. An unknown employer fact withholds the contribution and blocks inps_employer; false owes none. Only permanent non-executive employees, including professional apprentices, contribute. The separate additional contribution on benefits and other funds potentially applicable to uncovered employers are not determined here (D.I. 99296/2017 art. 2 and art. 6; INPS circ. 107/2018 sections 4.1-4.2)."
       },
       {
         "kind": "simplification",
@@ -242,10 +233,81 @@
         "checked": [
           "work_rules.notice"
         ]
+      },
+      {
+        "id": "2026-11-10-ai-fs-fund",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "parameters.solidarity_fund"
+        ],
+        "scope": "FS fund ordinary contribution, covered employer and worker eligibility against the decrees and INPS circulars.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.lavoro.gov.it/documenti-e-norme/normative/Documents/2015/Decreto_interministeriale_9_gennaio_2015_n86984.pdf",
+            "sha256": "106e1d513b8c59797b38e91e8ad99202f717b681ec4d9a232275d98cba22437c"
+          },
+          {
+            "url": "https://www.lavoro.gov.it/documenti-e-norme/normative/Documents/2017/99296.pdf",
+            "sha256": "928b8af9c661248b4b5f2ba6737ee2ba4a7e1530b84c2dc3d8a5e2748e3c8a5b"
+          },
+          {
+            "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2015/12/Circolare_3797/Allegati/7081_Circolare-numero-208-del-29-12-2015.pdf",
+            "sha256": "61bf89fa9e0cb1d972563df4a7c6ea8a286150390d0a4e505844549260453f6a"
+          },
+          {
+            "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2018/11/Circolare_352/Allegati/5080_Circolare-numero-107-del-09-11-2018.pdf",
+            "sha256": "c1010e8fe6ea399915fcdc058ef0a5d8a0c8019b3355ceb040b6373b6187140f"
+          },
+          {
+            "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2020/06/Circolare_11326/Allegati/5675_Circolare-numero-70-del-03-06-2020.pdf",
+            "sha256": "b6128a4a8fece70559477bd27bbbaa9b9299184f3ccfeecffdf3bbd8e271c751"
+          }
+        ],
+        "findings": [
+          "Art. 2(2) of the 2017 decree requires covered employers, not merely the Agens agreement; art. 6(1)(a) gives 0.20% split two-thirds and one-third for permanent non-executives including professional apprentices. INPS 208/2015 confirms March 2015 start; INPS 107/2018 confirms changed employer coverage from August 2017; INPS 70/2020 discusses broader benefit eligibility, not the contribution base."
+        ]
       }
     ]
   },
   "parameters": {
+    "solidarity_fund": {
+      "code": "FONDO_SOLIDARIETA_FS",
+      "employer_rate": "0.001333333333333333333333333333",
+      "employee_rate": "0.000666666666666666666666666667",
+      "requires_employer_coverage": true,
+      "covers_executives": false,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "di-18-05-2017-99296-fs",
+            "title": "Interministerial decree 18 May 2017 no. 99296, FS solidarity fund",
+            "kind": "amministrazione",
+            "url": "https://www.lavoro.gov.it/documenti-e-norme/normative/Documents/2017/99296.pdf",
+            "sha256": "928b8af9c661248b4b5f2ba6737ee2ba4a7e1530b84c2dc3d8a5e2748e3c8a5b"
+          },
+          "page": "9",
+          "section": "Art. 6(1)(a), ordinary contribution; coverage art. 2(2), p. 4",
+          "quote": "un contributo ordinario mensile dello 0,20%, di cui due terzi a carico del datore di lavoro e un terzo a carico dei lavoratori, calcolato sulla retribuzione imponibile ai fini previdenziali dei lavoratori dipendenti assunti con contratto a tempo indeterminato, ivi incluso il personale assunto con contratto di apprendistato professionalizzante, esclusi i dirigenti."
+        },
+        "transformation": "Ordinary 0.20% split in thirds: employer 0.001333333333333333333333333333 and worker 0.000666666666666666666666666667 of the INPS taxable base, rounded to cents by component. Employer eligibility follows art. 2(2): FS direct or indirect controlling participation in a rail transport undertaking, or an undertaking already covered by the predecessor fund under art. 59(6) L. 449/1997; it is not inferred from the CCNL. D.I. 86984/2015 art. 6 and INPS circ. 208/2015 section 3 confirm the same rate from March 2015. INPS circ. 107/2018 sections 4.1-4.2 confirms the rate and August 2017 coverage change; INPS circ. 70/2020 section 2 includes fixed-term employees for benefits, not for this ordinary contribution.",
+        "note": "Employer scope, D.I. 99296/2017 art. 2(2), p. 4: 'tutte le Società che operano nel settore del trasporto ferroviario nelle quali Ferrovie dello Stato Italiane spa detiene una partecipazione azionaria di controllo, anche indiretta, nonché le aziende già destinatarie del Fondo di sostegno al reddito istituito ai sensi del previgente articolo 59, comma 6, della legge 27 dicembre 1997, n. 449.' Original D.I. 86984/2015 art. 6(1)(a), p. 10 also prints 'un contributo ordinario mensile dello 0,20%'. INPS circ. 208/2015 section 3, p. 12: 'il contributo ordinario, dovuto per le mensilità da marzo 2015 (periodo di paga in corso alla data di entrata in vigore del decreto) a gennaio 2016'. INPS circ. 107/2018 section 4.2, p. 11: 'è necessario che le aziende nella loro interezza (e non i singoli rami d’azienda) siano “già beneficiarie” del Fondo di solidarietà FS'; 'a decorrere dal mese di agosto 2017 (periodo di paga in corso alla data di entrata in vigore del citato decreto interministeriale)'. INPS circ. 70/2020 section 2, p. 4 on benefit recipients: 'compresi i lavoratori a tempo determinato'; this does not broaden the ordinary contribution base.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:04:13Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:04:13Z",
+          "verification_status": "verified",
+          "effective_from": "2015-03-01",
+          "review_id": "2026-11-10-ai-fs-fund"
+        }
+      }
+    },
     "hourly_divisor": {
       "periods": [
         {
@@ -2496,7 +2558,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "b0c9a7bb6eb3d17a9f44baa9c7cd61e14260292a6f3f2745f72de2da8d83da64",
+    "source_hash": "40240c632456ac04be1465fb4206d90b8a29e24245b3c15662bcda59f5579bff",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

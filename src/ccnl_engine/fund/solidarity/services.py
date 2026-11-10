@@ -15,6 +15,7 @@ from dataclasses import replace
 from typing import TYPE_CHECKING
 
 from ccnl_engine.contribution.results import ContributionComponent
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.inputs import FixedTerm
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.pay_item.services import _ZERO
@@ -58,11 +59,13 @@ def with_solidarity_fund(
         :func:`~ccnl_engine.fund.solidarity.models.with_solidarity_tiers`).
     """
     fund = inp.solidarity_fund
+    if fund is None or fund.employee_rate is None or fund.employer_rate is None:
+        return breakdown, _ZERO
+    if isinstance(inp.contract_type, FixedTerm) and not fund.covers_fixed_term:
+        return breakdown, _ZERO
     if (
-        fund is None
-        or fund.employee_rate is None
-        or fund.employer_rate is None
-        or (isinstance(inp.contract_type, FixedTerm) and not fund.covers_fixed_term)
+        getattr(inp, "category", None) == WorkerCategory.DIRIGENTE
+        and not fund.covers_executives
     ):
         return breakdown, _ZERO
     base = _base(breakdown)

@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-07 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-12 | claude-opus-5-5 (ai) | Restart 12 months after the end of the full pay and periodic checks (art. 60). | corrected | The last special cases of art. 60 are modelled: the restart 12 months after the full pay ended and the periodic checks out of the comporto; the limitation sickness_special_cases is closed. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 83 (preavviso); Art. 26 (classificazione), PDF p. 51, p. 88). | corrected | Notice bands by level, category and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-08 | gpt-6-sol (ai) | Data fixes proposed by one session from the signed text and confirmed by a second independent session. | corrected | Closed rol_not_accrued. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Art. 31 b) and Art. 35 weekly weekday overtime bands, CNEL B101 PDF physical pp. 56, 58. | corrected | The 25% band begins after 48 actual weekly hours and the 35% band after 49. The first eight overtime hours follow the 40-hour weekly standard; night daily tiers are not split by the weekly resolver. |
 
 ## Salary table
 
@@ -128,11 +129,11 @@ Destination levels: `E2`
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "concia-unic/higher_overtime_bands · overtime · impact yes · open"
-    OVERTIME: every band of art. 35 is modelled: 15% to the 48th weekly hour, 25% the 49th, 35% beyond; night 61% the first hour, 76% after (first hour read per day); holiday 71%. The percentages do not add up ('la maggiore assorbe la minore', p. 57). The engine pays the first tier of an overtime event and flags the bands past a threshold (overtime_tier_not_applied): the caller passes the multiplier for the hours past a threshold.
+    OVERTIME: Art. 35 weekday weekly bands (15% through the 48th hour, 25% for the 49th, 35% after) split automatically when weekly_hours_before is supplied. Without that position the first tier applies and later tiers are flagged. Night overtime is 61% for the first hour and 76% after; the first hour is interpreted per day, but the engine cannot split a night event by daily hours. Holiday overtime is 71%. Premiums do not accumulate ('la maggiore assorbe la minore', p. 57).
 
     **Applies when:** `overtime` applies.
 
-    **Remediation:** Pass the multiplier on the overtime event for the hours past a threshold; the engine does not split an event by weekly or daily hours.
+    **Remediation:** Supply weekly_hours_before to split weekday weekly tiers. For night overtime past the first daily hour, supply separately split events with explicit multipliers; daily tiers are not automatically split.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

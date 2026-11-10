@@ -7,7 +7,7 @@
     "effective_until": null,
     "published_at": "2026-09-11",
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-    "source_hash": "9ec36f108199ae6bd74105ef36e53408d205ee0bc67a0fbab218f56fdb6a68b2",
+    "source_hash": "67dbb780a0ae30e2189ca2730b6349a807e250f52a4823a394422570414ec503",
     "verification_status": "verified",
     "source_type": "contracting_party"
   },
@@ -3195,7 +3195,7 @@
           "applies_to_kinds": [
             "weekday"
           ],
-          "hour_threshold_per_week": 8,
+          "hour_threshold_per_week": 48,
           "provenance": {
             "status": "derived",
             "location": {
@@ -3214,11 +3214,13 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T09:48:19Z",
-              "verification_status": "unverified",
-              "effective_from": "2024-03-01"
+              "extraction_timestamp": "2026-11-10T00:55:55Z",
+              "verification_status": "verified",
+              "effective_from": "2024-03-01",
+              "verified_at": "2026-11-10T00:55:55Z",
+              "review_id": "2026-11-10-ai-weekly-overtime"
             },
-            "transformation": "Overtime starts beyond 40 weekly hours (art. 31 b): the first 8 overtime hours are the hours to the 48th, so the 49th is past a threshold of 8 overtime hours."
+            "transformation": "Art. 31 b) starts overtime beyond 40 actual weekly hours. The first eight reach the 48th hour; the 49th begins after 48 hours already worked. The weekly event position counts all hours already worked, not just overtime hours."
           }
         },
         {
@@ -3237,7 +3239,7 @@
           "applies_to_kinds": [
             "weekday"
           ],
-          "hour_threshold_per_week": 9,
+          "hour_threshold_per_week": 49,
           "provenance": {
             "status": "derived",
             "location": {
@@ -3256,11 +3258,13 @@
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T09:48:19Z",
-              "verification_status": "unverified",
-              "effective_from": "2024-03-01"
+              "extraction_timestamp": "2026-11-10T00:55:55Z",
+              "verification_status": "verified",
+              "effective_from": "2024-03-01",
+              "verified_at": "2026-11-10T00:55:55Z",
+              "review_id": "2026-11-10-ai-weekly-overtime"
             },
-            "transformation": "'ore successive' to the first hour past the 48th: past a threshold of 9 overtime hours."
+            "transformation": "After the first hour past the 48th (the 49th), subsequent hours start after 49 actual weekly hours already worked; the weekly event position includes ordinary hours."
           }
         },
         {
@@ -3790,12 +3794,12 @@
       },
       {
         "kind": "simplification",
-        "text": "OVERTIME: every band of art. 35 is modelled: 15% to the 48th weekly hour, 25% the 49th, 35% beyond; night 61% the first hour, 76% after (first hour read per day); holiday 71%. The percentages do not add up ('la maggiore assorbe la minore', p. 57). The engine pays the first tier of an overtime event and flags the bands past a threshold (overtime_tier_not_applied): the caller passes the multiplier for the hours past a threshold.",
+        "text": "OVERTIME: Art. 35 weekday weekly bands (15% through the 48th hour, 25% for the 49th, 35% after) split automatically when weekly_hours_before is supplied. Without that position the first tier applies and later tiers are flagged. Night overtime is 61% for the first hour and 76% after; the first hour is interpreted per day, but the engine cannot split a night event by daily hours. Holiday overtime is 71%. Premiums do not accumulate ('la maggiore assorbe la minore', p. 57).",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "higher_overtime_bands",
-          "remediation": "Pass the multiplier on the overtime event for the hours past a threshold; the engine does not split an event by weekly or daily hours."
+          "remediation": "Supply weekly_hours_before to split weekday weekly tiers. For night overtime past the first daily hour, supply separately split events with explicit multipliers; daily tiers are not automatically split."
         }
       },
       {
@@ -3975,6 +3979,27 @@
           "levels",
           "parameters",
           "work_rules"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-weekly-overtime",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 31 b) and Art. 35 weekly weekday overtime bands, CNEL B101 PDF physical pp. 56, 58.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+            "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
+          }
+        ],
+        "findings": [
+          "The 25% band begins after 48 actual weekly hours and the 35% band after 49. The first eight overtime hours follow the 40-hour weekly standard; night daily tiers are not split by the weekly resolver."
+        ],
+        "checked": [
+          "work_rules.time_supplements.overtime_bands"
         ]
       }
     ],

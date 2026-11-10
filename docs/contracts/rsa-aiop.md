@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 24 verified / 8 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 33 verified / 8 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2012-03-22 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2023-10-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 24 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
+| 2026-11-10 | claude-opus-5-5 (ai) | AIOP signed agreement: signing, validity, seniority premium, TFR, thirteen payments and ratification; renewal provision inspected. | confirmed | Premium verified on PDF page 11; ratification on page 12, start date on page 8, signing date on page 7. No later replacement verified. |
 
 ## Salary table
 
@@ -126,11 +127,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "rsa-aiop/seniority_premium_2023 · base_salary · impact yes · open"
-    Seniority: CCNL RSA-AIOP provides a flat EUR 40/month after 5 years of service (levels A-E3 only; F/G/H excluded). Modelled as cadence_months=60, maximum_count=1 — correct for new hires (single increment at month 60). The Oct 2023 'premio di anzianità' is EUR 40 gross on each of thirteen monthly payments, TFR-relevant, for levels A–E3 with ten years at the same employer or group already completed on 3 October 2023; ratification was a condition. It is not the five-year increment and is not modelled: an in_service_on allowance alone cannot establish ten years of service on the signing date.
+    Seniority: CCNL RSA-AIOP provides a flat EUR 40/month after 5 years of service (levels A-E3 only; F/G/H excluded). Modelled as cadence_months=60, maximum_count=1 — correct for new hires (single increment at month 60). The separate October 2023 seniority premium is modelled for employees with ten years at the same employer or group at signing (3 October 2023), using the caller-supplied employment start date as the start of group service. Earlier service at another group company must be reflected in that date; without a known start date the premium is not paid. Ratification is confirmed by the signed AIOP copy. The premium clause does not separately state a start date; 1 October 2023 is inferred from the agreement's effective date. No later replacement agreement has been verified; the 2023 agreement provides for continuation or annual renewal pending replacement, so the allowance remains open-ended pending evidence of a later change or absorption.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Verify ratification and add a monthly EUR 40 allowance for levels A–E3 gated by service of at least ten years on 3 October 2023 and employment on that date; include thirteen payments and TFR.
+    **Remediation:** Supply group-service start as the employment start date when earlier service with another group company qualifies. Verify any separately specified premium start date and any later replacement or absorption before changing the open-ended premium.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -138,6 +139,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation.
+
+!!! warning "apprenticeship_pct_undeclared_components · base_salary · impact unknown · open"
+    A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.
+
+    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -313,6 +321,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 |---|---|---|---|
 | Original CCNL signed 22/03/2012, effective 01/04/2012. Art. 49 salary table, Art. 51 hourly divisor, Art. 54 tredicesima. | altro | 2012-03-22 | [↗](https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf) |
 | Accordo ponte 03/10/2023, effective 01/10/2023, valid to 30/06/2024. Full salary table confirmed. | altro | 2023-10-03 | [↗](https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf) |
+| AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023 | associazione | 2023-10-03 | [↗](https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf) |
 
 ??? note "Coverage notes"
     CCNL T091 — AIOP RSA. Conglobated. 12 levels: A-B-C-D1-D2-D3-E1-E2-E3-F-G-H. Divisor 165, 13 months. Original 2012 contract, updated by accordo ponte Oct 2023.

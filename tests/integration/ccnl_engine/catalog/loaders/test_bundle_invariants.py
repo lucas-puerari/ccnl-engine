@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from collections.abc import Iterator
 
     from ccnl_engine.agreement.facade import CCNL
-    from ccnl_engine.agreement.validity.rules import TimeSeries
+    from ccnl_engine.agreement.validity.rules import TimeSeries, ValidityPeriod
 
 _ALL_CCNL: list[CCNL] = [load_ccnl(ci.ccnl_id) for ci in list_contracts()]
 
@@ -30,11 +30,6 @@ _DIVISOR_MAX = Decimal(250)
 # Additional months: Italian CCNL always adds 1-4 extra months (13th-16th).
 _MONTHS_MIN = Decimal(12)
 _MONTHS_MAX = Decimal(16)
-
-
-def _salary_series(ccnl: CCNL) -> Iterator[tuple[str, TimeSeries]]:
-    for level in ccnl.levels:
-        yield f"{ccnl.meta.ccnl_id}/{level.code}", level.base_salary
 
 
 def _parameter_series(name: str) -> Iterator[tuple[str, TimeSeries]]:
@@ -84,15 +79,33 @@ def test_every_ruleset_identity_names_its_ccnl() -> None:
     assert wrong == []
 
 
+def _valid_salary_periods() -> Iterator[tuple[str, ValidityPeriod]]:
+    """Salary periods that begin while their classification still exists.
+
+    Yields:
+        The agreement/level label and a period overlapping level validity.
+    """
+    for ccnl in _ALL_CCNL:
+        for level in ccnl.levels:
+            for period in level.base_salary.periods:
+                if level.valid_until is None or period.valid_from < level.valid_until:
+                    yield f"{ccnl.meta.ccnl_id}/{level.code}", period
+
+
 def test_no_base_salary_has_a_gap() -> None:
-    """No base salary period of any level is a gap period."""
-    assert _gaps(s for c in _ALL_CCNL for s in _salary_series(c)) == []
+    """No base salary period of any valid level is a gap period."""
+    assert [
+        f"{where}: gap {p.gap_kind}" for where, p in _valid_salary_periods() if p.is_gap
+    ] == []
 
 
 def test_every_base_salary_is_within_range() -> None:
-    """Every base salary is within 100-10000 EUR a month."""
-    series = (s for c in _ALL_CCNL for s in _salary_series(c))
-    assert _outside(series, _SALARY_MIN, _SALARY_MAX) == []
+    """Every valid base salary is within 100-10000 EUR a month."""
+    assert [
+        f"{where}: {p.value}"
+        for where, p in _valid_salary_periods()
+        if p.value is None or not _SALARY_MIN <= p.value <= _SALARY_MAX
+    ] == []
 
 
 def test_no_parameter_has_a_gap() -> None:
