@@ -2108,7 +2108,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tessile-pmi-uniontessile",
       "ruleset_version": "2026.2",
-      "source_hash": "0f6beeb36c9b7d8b6a4fe9219fba1e2bb3c4a553e6492e0fa7cb58015e5d8bfc",
+      "source_hash": "fef00cbc74379959716770cb47457ccc3792f165edb638ac06021757cf4129a2",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/tessile-pmi-uniontessile.json.gz"
@@ -4861,7 +4861,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "f85a28042541253f2052485fc81bd64e409d89a9ad18b743d9a5df2b64e4579e",
+      "source_hash": "4c7803702a7f42571239bf97254c76a2682e3a925accad93d04c1426d07359f6",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/tessile-pmi-uniontessile.json.gz",
