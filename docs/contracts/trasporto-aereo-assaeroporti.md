@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 45 verified / 50 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 46 verified / 49 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-06-04 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2027-07-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | Artt. G6 and G23 of the 2025-2027 text (PDF pp. 40-41, 71, 82) and G6 of the 2025 text (p. 20), text layer. | confirmed | Level 9 has no amount in G23 and no worker stays there two years: 6 months under the 2025 G6, no classification at level 9 from 1 March 2026. The 0.00 of the file is the text. |
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the Parte specifica Gestori aeroportuali of 4 June 2025 (text layer). | confirmed | 66 printed monthly values found verbatim in the text and marked verified; 55 allowance values computed from a clause (maneggio denaro, contributo DPI) are not printed and keep their provenance. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Artt. G24-G26 daily presence allowances, 2025 and 2026 PDF pp. 41-42, text layers and SHA256 checks. | confirmed | G24: 2.73 and 3.97 per actual day, both increased by 3.00 from 1 July 2025; excluded from TFR, included in holiday pay from that date.<br>G25: 0.26 per shift-presence day, absorbed by the existing company allowance at the two named employers. G26: 0.21 up to 20 km and 0.26 beyond 20 km per airport-presence day. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. G34 points 6, 9 and 10, 2025 cached PDF pages 45-46; hospital exclusion and qualifying illnesses. | confirmed | Point 6 excludes hospital days from both counts and certified continuous convalescence up to 120 days overall.<br>Point 9 triples the overall limit for documented oncological illness, multiple sclerosis or muscular dystrophy.<br>Point 10 requires previously attested disability for the 30% increase. Convalescence and disability remain limited. |
 
 ## Salary table
 
@@ -140,11 +141,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Retrieve the 23 March 2026 agreement and apply its effect on levels and salary tables.
 
 !!! warning "trasporto-aereo-assaeroporti/sickness_hospital_and_serious_illness · sickness · impact yes · open"
-    SICKNESS (point 6, 9-10): the hospital stays, and the certified convalescence after them up to 120 days, are left out of both the comporto and the pay count; the limits are tripled for oncological illness, multiple sclerosis and muscular dystrophy and raised by 30% for a disability. The engine counts every sick day and applies the ordinary limits.
+    SICKNESS (G34 points 6 and 9-10): hospital days are excluded from both counts and documented oncological illness, multiple sclerosis and muscular dystrophy have triple the overall limit. Certified continuous convalescence after admission (up to 120 days overall) is still counted because its certification and interval are not modelled. The 30% increase for absences attributable to a previously certified disability is not modelled.
 
     **Applies when:** `sickness` applies.
 
-    **Remediation:** Leave the hospital stays and the convalescence after them out of the counts, and apply the tripled and raised limits of points 9-10, then resolve this limitation.
+    **Remediation:** Add certified continuous post-admission convalescence dates with the 120-day overall cap and documented disability-attributable absence with prior certification for the 30% increase.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
