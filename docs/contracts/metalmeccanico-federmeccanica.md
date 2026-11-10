@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-11-22 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -81,6 +81,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Sez. IV Tit. III art. 9 (PDF pp. 164-165) against the holiday target in a work injury, by a separate model session. | flagged | Confirmed: the holidays of letter b in an injury compensated with reduced pay reach the whole daily pay; letter a (25 April, 1 May, 2 June) and 4 October excluded; the extra nets the INAIL share and the employer integration of the day; the waiting days and the injury day are not paid twice.<br>Flagged: 29 June (Rome) and the letter c holidays (patron saint, substitute) are outside the national calendar. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 5 sez. IV tit. III (PDF pp. 164-165), patron saint day of letter c against the sickness and injury holiday target, by a separate model session. | confirmed | Confirmed: letter c (patron of the place of work) is in the absence top-up of p. 165, letter a is not.<br>Confirmed: a stated patron_saint_day adds one weekday holiday; a day coinciding with a national holiday or a Sunday adds nothing.<br>Kept as limitation: the substitute holiday agreed in place of the patron is not modelled. |
 | 2026-11-09 | gpt-6-sol (ai) | Part-time supplementary work (Sez. IV Tit. I C, PDF pp. 57-58), by a separate model session. | confirmed | Confirmed: 10% up to 50% of the normal annual part-time hours and 20% beyond, only up to 40 weekly hours, on the overtime-premium pay elements.<br>Confirmed: the engine derives only the 10% band; the 20% excess is a caller-supplied multiplier, and the annual count is outside the engine.<br>Flagged and added to the limitation: the elastic clauses (10% and 15%) and the conditions of supplementary work. |
+| 2026-11-10 | gpt-6-sol (ai) | Tit. IV art. 3 hourly pay and the conto ore deadline: expired PAR paid at the monthly pay over 173 plus the stated hourly elements. | confirmed | CONFIRMED: the hourly pay of the clause includes the hourly elements (incentives, hourly allowances, piecework) and the expired PAR are paid at it; divisor 173.<br>CONFIRMED: quotes verbatim; December 2027 example 10 x (2271.01 / 173 + 2.50) = 156.27 and an independent case recomputed.<br>CONFIRMED: payout at termination before the deadline is not regulated by the cited passages and stays a limitation. |
 
 ## Salary table
 
@@ -169,11 +170,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add employment facts for the settore siderurgico, the shift pattern and the sottosettori.
 
 !!! warning "metalmeccanico-federmeccanica/par_conto_ore_hourly_elements · leave · impact yes · open"
-    LEAVE, CONTO ORE: the PAR paid at the end of the conto ore are valued at the monthly pay of the run over 173; the hourly pay of Tit. IV art. 3 also adds the hourly elements of the pay (incentivi, indennità orarie, cottimo), which the engine does not add. A worker leaving before the expiry is paid nothing for them (no basis for the leave at termination).
+    LEAVE, CONTO ORE: the hourly elements of Tit. IV art. 3 are included in the PAR payout at expiry when the caller states hourly_pay_elements (zero confirms none; missing blocks payment). PAR left when employment ends before expiry remain unpaid: Tit. III art. 5 specifies liquidation at expiry but no termination basis.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the hourly elements of Tit. IV art. 3 to the hourly pay of the PAR, and source the PAR left at the end of the employment.
+    **Remediation:** Source the payment basis and timing for PAR left when employment ends before the conto ore expires.
 
 !!! warning "metalmeccanico-federmeccanica/holiday_outside_calendar · sickness · impact yes · open"
     Art. 9 (Sez. IV Tit. III): the holidays of letters b and c in a sickness or a work injury reach 100% (sickness_rules.holiday and insured_absence.injury.holiday). Not calculated: the holiday top-up during pregnancy and puerperium, the patron saint substitute and 29 June, a letter b holiday in Rome only, outside the national calendar.

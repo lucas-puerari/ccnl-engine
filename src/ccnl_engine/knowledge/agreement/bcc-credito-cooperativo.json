@@ -128,7 +128,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 102 (2024 CCNL, PDF p. 117): a single loyalty award at 25 years of cumulative cooperative-banking movement service, only for managerial grades 3 and 4, at 90.66% of one month of the enumerated salary items. The annual hire-anniversary loyalty_premium cannot represent the one-off award, cross-employer service, or the restricted pay base.",
+        "text": "Art. 102 (2024 CCNL, PDF p. 117): the once-only loyalty award is paid in the month 25 cumulative years of cooperative-banking movement service are reached, only at QD3/QD4, at 90.66% of the enumerated monthly salary items. The caller must state movement service in Employment.seniority, including earlier employers and breaks. The monthly run-chain may include items outside the enumerated base (salary, seniority increment, restructuring amount per increment, increment/table difference allowances, deputy-director and branch-manager allowances); the engine cannot restrict the award base to those items.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -136,12 +136,50 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Implement a once-only award using cumulative movement service and the Art. 102 grade and pay-base restrictions."
+          "remediation": "Restrict the award base to the Art. 102 enumerated salary items; supply a movement-specific credited seniority fact rather than general increment seniority when these differ."
         }
       }
     ]
   },
   "parameters": {
+    "loyalty_premium": {
+      "service_years": 25,
+      "months": "0.9066",
+      "recurrence": "once",
+      "categories": [
+        "quadro"
+      ],
+      "levels": [
+        "QD3",
+        "QD4"
+      ],
+      "service_basis": "recognised",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "bcc-testo-coordinato-2024-12-19",
+            "title": "Cooperative credit banking collective agreement, consolidated text 2024",
+            "kind": "associazione",
+            "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+            "sha256": "985d1df945a8cf4c6f630a14ecff13ae18f7241d75f816f71706bddaf1317c49"
+          },
+          "page": "117",
+          "section": "Art. 102, Premio di fedeltà",
+          "quote": "Al compimento dei 25 anni di anzianità di servizio complessivamente maturati nel movimento, ai quadri direttivi di 3° e 4° livello va erogato un premio di fedeltà, nella misura del 90,66% di una mensilità delle seguenti competenze: stipendio,; scatto di anzianità,; importo ex ristrutturazione per ogni scatto di anzianità,; assegno ex differenza valore scatto,; assegno ex differenza tabelle,; speciale indennità per vice direttori di aAzienda ed indennità per personale preposto a succursale. Il pagamento va effettuato nel mese di maturazione dei 25 anni di anzianità di servizio."
+        },
+        "transformation": "Pay 0.9066 of the monthly run-chain pay once in the month the caller-stated cumulative movement seniority reaches 300 months, limited to QD3/QD4. Recognised seniority can include service across employers and gaps; the current run-chain cannot isolate the enumerated Art. 102 pay items. No amounts or movement service dates are inferred.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T00:18:15Z",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T00:18:15Z",
+          "review_id": "2026-11-10-ai-bcc-movement-award"
+        }
+      }
+    },
     "hourly_divisor": {
       "periods": [
         {
@@ -1788,7 +1826,7 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "6eb2ed74d70a99098a08c97329ab2e148914aa225798f1003865192db515f18c",
+    "source_hash": "68a5a0f3fa759f6a445755a555e0fd5f156d8977517b366e621dbcbf9e823891",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2207,6 +2245,27 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments.in_service_cohort"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-bcc-movement-award",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "parameters.loyalty_premium"
+        ],
+        "scope": "Art. 102, PDF p. 117: movement service, eligible levels, percentage and payment month.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+            "sha256": "985d1df945a8cf4c6f630a14ecff13ae18f7241d75f816f71706bddaf1317c49"
+          }
+        ],
+        "findings": [
+          "25 cumulative movement years; QD3/QD4 only; 90.66% of enumerated monthly items payable in the qualification month. The model uses caller-stated credited seniority and approximates the item base with run-chain monthly pay."
         ]
       }
     ],

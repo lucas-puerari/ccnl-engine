@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import calendar
 from dataclasses import dataclass, replace
-from datetime import date
+from datetime import date, timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -30,6 +30,7 @@ from ccnl_engine.pay_item.services import (
 from ccnl_engine.run.models import RunKind
 
 if TYPE_CHECKING:
+    from ccnl_engine.employment.period.inputs import EmploymentPeriod
     from ccnl_engine.event.total.handlers import _EventTotals
     from ccnl_engine.ledger.models import LedgerEntry
     from ccnl_engine.period.context.services import RunContext
@@ -99,11 +100,95 @@ def _qualified_before(anniversary: date, qualifying_date: date) -> bool:
     return previous >= qualifying_date
 
 
+def _recognised_milestone(
+    ctx: RunContext, clause: LoyaltyPremium, period: EmploymentPeriod
+) -> bool:
+    """Check whether credited service crosses the threshold during employment.
+
+    Returns:
+        ``True`` only in the month the milestone is reached.
+    """
+    seniority = ctx.request.seniority
+    if seniority is None or clause.recurrence != "once":
+        return False
+    month = ctx.request.period_id.month
+    year = ctx.request.period_id.year
+    last_day = date(year, month, calendar.monthrange(year, month)[1])
+    prior_day = date(year, month, 1) - timedelta(days=1)
+    if seniority.as_of > prior_day or (
+        period.ended_on is not None and period.ended_on <= prior_day
+    ):
+        return False
+    if period.ended_on is not None:
+        last_day = min(last_day, period.ended_on)
+    threshold = clause.service_years * 12
+    return seniority.months_at(prior_day) < threshold <= seniority.months_at(last_day)
+
+
+def _actual_anniversary(
+    clause: LoyaltyPremium, period: EmploymentPeriod, anniversary: date, month: int
+) -> bool:
+    """Check the qualifying anniversary of uninterrupted actual service.
+
+    Returns:
+        ``True`` if the hire anniversary has reached the service threshold.
+    """
+    service_start = period.uninterrupted_service_started_on or period.started_on
+    qualifying_year = service_start.year + clause.service_years
+    qualifying_date = service_start.replace(
+        year=qualifying_year,
+        day=min(
+            service_start.day,
+            calendar.monthrange(qualifying_year, service_start.month)[1],
+        ),
+    )
+    return (
+        month == period.started_on.month
+        and anniversary >= qualifying_date
+        and (
+            clause.recurrence != "once"
+            or not _qualified_before(anniversary, qualifying_date)
+        )
+    )
+
+
+def _award_anniversary(
+    ctx: RunContext, clause: LoyaltyPremium, period: EmploymentPeriod
+) -> date | None:
+    """Return the qualifying award date, or none outside the milestone month.
+
+    Returns:
+        The anniversary used to value the award, or ``None`` when ineligible.
+    """
+    month = ctx.request.period_id.month
+    year = ctx.request.period_id.year
+    recognised = clause.service_basis == "recognised"
+    anniversary = period.started_on.replace(
+        year=year,
+        day=min(period.started_on.day, calendar.monthrange(year, month)[1]),
+    )
+    qualifies = (
+        _recognised_milestone(ctx, clause, period)
+        if recognised
+        else _actual_anniversary(clause, period, anniversary, month)
+    )
+    end_boundary = date(year, month, 1) if recognised else anniversary
+    if not qualifies or (
+        period.ended_on is not None and period.ended_on < end_boundary
+    ):
+        return None
+    return anniversary
+
+
 def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
     """Pay a full monthly award on each qualifying hire anniversary month.
 
     A once-only milestone pays solely on its qualifying anniversary; eligible
-    manual workers receive normal hourly pay times the configured hours.
+    manual workers receive normal hourly pay times the configured hours unless
+    the clause specifies monthly pay. A historical in-service gate requires
+    the current employment period to have begun by that date.
+    Recognised-service milestones instead pay in the month the caller's
+    credited seniority crosses the threshold, including prior employers.
     Without a known employment period, or on a non-regular run, pay nothing.
     February 29 hires celebrate on February 28 in non-leap years.
 
@@ -119,34 +204,17 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
         or ctx.worker_category not in clause.categories
     ):
         return LoyaltySettlement()
-    if clause.subsectors and ctx.request.employer.subsector not in clause.subsectors:
-        return LoyaltySettlement()
-    month = ctx.request.period_id.month
-    year = ctx.request.period_id.year
-    if month != period.started_on.month:
-        return LoyaltySettlement()
-    anniversary = period.started_on.replace(
-        year=year,
-        day=min(period.started_on.day, calendar.monthrange(year, month)[1]),
-    )
-    service_start = period.uninterrupted_service_started_on or period.started_on
-    qualifying_year = service_start.year + clause.service_years
-    qualifying_date = service_start.replace(
-        year=qualifying_year,
-        day=min(
-            service_start.day,
-            calendar.monthrange(qualifying_year, service_start.month)[1],
-        ),
-    )
+    in_service_on = clause.in_service_on
     if (
-        anniversary < qualifying_date
-        or (
-            clause.recurrence == "once"
-            and _qualified_before(anniversary, qualifying_date)
-        )
-        or (period.ended_on is not None and period.ended_on < anniversary)
-    ):
+        clause.subsectors and ctx.request.employer.subsector not in clause.subsectors
+    ) or (in_service_on is not None and period.started_on > in_service_on):
         return LoyaltySettlement()
+    if clause.levels and ctx.request.level_code not in clause.levels:
+        return LoyaltySettlement()
+    anniversary = _award_anniversary(ctx, clause, period)
+    if anniversary is None:
+        return LoyaltySettlement()
+    year = ctx.request.period_id.year
     amount = _award_amount(ctx, clause, anniversary)
     if amount is None:
         return LoyaltySettlement()

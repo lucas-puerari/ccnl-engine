@@ -26,10 +26,14 @@ from tests.knowledge.ccnl_engine.support import regular_period
 pytestmark = pytest.mark.legal_scenario
 
 
-def test_five_hours_of_a_caller_selected_extra() -> None:
+@pytest.mark.parametrize(
+    "slug",
+    ["turismo-federalberghi-alberghi-minori", "turismo-federalberghi"],
+)
+def test_five_hours_of_a_caller_selected_extra(slug: str) -> None:
     """Level 5: 5 x 14.85 = 74.25, instead of monthly pay prorated by 172."""
     worker = Employment(
-        ccnl_id="turismo-federalberghi-alberghi-minori",
+        ccnl_id=slug,
         level_code="5",
         contract_type=FixedTerm(),
         seniority=new_hire(2026),

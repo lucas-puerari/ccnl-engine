@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-12-12 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | CCNL Consorzi agrari 2024-2027: Allegato A stipendi base (p. 47), art. 35 indennità di cassa (p. 34). Art. 37 FILCOOP SANITARIO (p. 37). | corrected | The 6th level of 2025 is 1,040.26, not 1,040.28; the 2027 column added; the cashier allowance of 55.00 EUR added.<br>FILCOOP SANITARIO added: 186 EUR a year, two thirds employer, one third worker, permanent workers. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | tranche_2027_01_missing: Allegato A gives the 2027-01-01 base salary for levels 1–6 (including 3S/4S); every value and effective date is already in levels[].base_salary.periods. Q also has the 1st-level value, but the table has no distinct Q row; this verdict does not independently validate Q equivalence |
 | 2026-11-08 | gpt-6-sol (ai) | Data fixes proposed by one session from the signed text and confirmed by a second independent session. | corrected | Closed cashier_allowance_missing. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Art. 43 grandfathered seniority award, PDF p. 40; Art. 33 pay components, PDF p. 33. | corrected | Three monthly wages once after 25 years for employees already in service on 22 December 1997, including apprenticeship; excluded from TFR. Qualifying short breaks and specified interprovincial transfers can delay accrual; early termination may trigger a separate payment. |
 
 ## Salary table
 
@@ -115,11 +116,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/agricoltura.json derived, then remove this note.
 
 !!! warning "consorzi-agrari-assocap/grandfathered_consorzio_award · base_salary · impact yes · open"
-    Art. 43 (2024–2027 CCNL, PDF p. 40): employees already in service on 22 December 1997 retain a one-off, three-month award at 25 years with the same consorzio (including apprenticeship), excluded from TFR. Non-disciplinary termination after starting year 21 or 25 instead attracts two or three months; a qualifying short employer-initiated break may preserve prior service. Annual loyalty_premium would repeatedly overpay and cannot enforce the grandfathering.
+    Art. 43 (2024–2027 CCNL, PDF p. 40): the one-off three-month award for workers continuously employed since no later than 22 December 1997 is encoded; their 25-year milestone was reached by December 2022, before the agreement's 2025 run start. Art. 43(2) still awards two or three months on qualifying non-disciplinary termination before 25 years. Art. 43(3)–(4) preserves qualifying prior service across employer-initiated breaks of at most two months or specified interprovincial transfers. Repeated breaks can defer the milestone to 2026 or later; current employment inputs cannot reconstruct these histories or prove presence on the grandfathering date for a rehire.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Implement a one-off cohort-gated three-month award with the Art. 43 termination and service rules.
+    **Remediation:** Represent qualifying earlier employment periods, actual cumulative service, historical cohort membership for rehires, and qualifying non-disciplinary termination; then calculate the postponed milestone or early-departure award.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
