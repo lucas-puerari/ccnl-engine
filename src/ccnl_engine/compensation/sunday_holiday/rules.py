@@ -10,7 +10,9 @@ rest day: case law reads it as exceptional and exhaustive, and the Ordine
 dei Consulenti del Lavoro di Milano (2026, "Una proposta", sha256
 e85d84f4...) asks the legislator to move it to the rest day.  A CCNL that
 pays a holiday on the rest day (``on_rest_day``) adds those days to the
-statutory holidays on a Sunday.
+statutory holidays on a Sunday. A clause may also pay listed national
+holidays on Saturday or on another holiday, except on a compensatory rest
+day when the clause excludes it.
 """
 
 from __future__ import annotations
@@ -21,6 +23,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.calendar.holiday.models import easter_sunday
+from ccnl_engine.compensation.sunday_holiday.coincidence import extra_day
 from ccnl_engine.pay_item.rounding.policies import money
 
 if TYPE_CHECKING:
@@ -109,19 +112,28 @@ def sundays(ctx: RunContext) -> list[tuple[str, dt.date, bool]]:
         November on the first Sunday of the month, or on the 4th when it is
         the rest day of such a clause (unless it keeps the Sunday); Easter
         Sunday (``easter``), no holiday with civil effects, only when the
-        CCNL clause names it.
+        CCNL clause names it. For clauses extending the trigger, also
+        listed national holidays on Saturday or on another national holiday,
+        unless the clause excludes the non-Sunday compensatory rest day.
     """
     year, month = ctx.request.period_id.year, ctx.request.period_id.month
     rules = ctx.contract.ccnl.work_rules
     clause = None if rules is None else rules.sunday_holidays
     rest = _rest_day(ctx, clause)
+    calendar = ctx.repo.load_national_holidays().holidays
+    dated = [(holiday, holiday.on(year)) for holiday in calendar]
     found = []
-    for holiday in ctx.repo.load_national_holidays().holidays:
-        day = holiday.on(year)
+    for holiday, day in dated:
         if day is None or day.month != month:
             continue
         on_sunday = day.weekday() == _SUNDAY and holiday.day in STATUTORY
-        if (day.weekday() == rest or on_sunday) and employed(ctx, day):
+        if (
+            day.weekday() == rest
+            or on_sunday
+            or extra_day(
+                clause, holiday, day, dated, ctx.request.weekly_rest_day.number
+            )
+        ) and employed(ctx, day):
             found.append((holiday.day, day, holiday.valid_from is not None))
     fourth = _fourth_november(year, clause)
     if month == _NOVEMBER and fourth.weekday() == rest and employed(ctx, fourth):

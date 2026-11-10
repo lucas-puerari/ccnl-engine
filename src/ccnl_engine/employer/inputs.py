@@ -156,6 +156,10 @@ class EmployerProfile:
             over the window its CCNL offers as an alternative (ABI Art. 66
             c. 2: the 48 months before the last day of absence) instead of
             each illness; raises on a CCNL that offers none.
+        solidarity_fund_covered: Whether this employer is within the scope
+            of the agreement's solidarity fund. ``None`` means unknown;
+            funds requiring employer-specific eligibility are withheld and
+            reported as a missing fact.
         contractual_funds: Codes of the health and bilateral funds of the
             CCNL the employer pays (``parameters.health_funds``, e.g.
             ``"fondo_est"``); a fund of the CCNL not named owes the worker its
@@ -184,7 +188,8 @@ class EmployerProfile:
             ``inps_sector`` not a :class:`TaxSector` value or
             ``public_life_insurance``, ``fis_reduction``,
             ``provincial_pay_element``, ``second_level_premium``,
-            ``permit_carryover``, ``legacy_section_applicable`` or
+            ``permit_carryover``, ``legacy_section_applicable``,
+            ``solidarity_fund_covered`` or
             ``sickness_window_counting`` is not a bool, or ``subsector`` is
             not a non-blank string.
     """
@@ -200,6 +205,7 @@ class EmployerProfile:
     agricultural_zone: AgriculturalZone | None = None
     inps_sector: TaxSector | None = None
     contractual_funds: frozenset[str] | None = None
+    solidarity_fund_covered: bool | None = None
     sickness_window_counting: bool = False
     permit_carryover: bool | None = None
     patron_saint_day: str | None = None
@@ -276,6 +282,7 @@ class EmployerProfile:
             "sickness_window_counting",
             "permit_carryover",
             "legacy_section_applicable",
+            "solidarity_fund_covered",
         ):
             value = getattr(self, name)
             if value is not None:

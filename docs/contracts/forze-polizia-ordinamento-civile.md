@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 70 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 0 verified / 112 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -59,12 +59,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-03-24 |
-| **Last review** | — |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2024-01-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-10 | claude-opus-5-5 (ai) | Functional seniority allowance annual tables, targeted amendment and stipend conversion convention. | corrected | The allowance is paid on the thirteenth; the source does not print the installment divisor. Disciplinary and special-rank eligibility remains limited. |
 
 ## Salary table
 
@@ -103,12 +105,12 @@ Latest effective values per level (monthly gross, EUR).
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "forze-polizia-ordinamento-civile/assegno_funzionale_missing · seniority · impact yes · open"
-    Progressione economica non per scatti automatici sulla paga base, bensì per avanzamento di qualifica e tramite assegno funzionale (Art. 54 D.Lgs. 195/1995) maturato a 17, 27 e 32 anni di servizio. seniority_increments.maximum_count = 0.
+!!! warning "forze-polizia-ordinamento-civile/assegno_funzionale_conditions_and_special_ranks · seniority · impact yes · open"
+    Functional seniority allowance at 17, 27 and 32 years: the tabular annual rate is divided by 12 and also affects the thirteenth monthly payment. The standard rank rows are modelled; commissioners require the promoted_from_lower_rank worker role. Entitlement depends on qualifying service without demerit.
 
     **Applies when:** `seniority` applies.
 
-    **Remediation:** Model the assegno funzionale at 17, 27 and 32 years of service as allowances gated by service_months_threshold.
+    **Remediation:** Validate disciplinary assessments over the two years preceding each threshold (D.P.R. 254/1999 art. 5(3)); distinguish eligible service from raw seniority, model special coordinator and intermediate ranks including D.P.R. 57/2022 art. 5 increments and four-year designation conditions, and determine commissioner origin. The sources do not state the allowance installment divisor; annual/12 plus a thirteenth is an explicitly stated convention inferred from the stipend table and D.L. 387/1987 art. 6(4)-(5).
 
 !!! note "forze-polizia-ordinamento-civile/ctps_rates_proxy · inps_employer · impact unknown · resolved"
     aliquote INPS/CTPS — dipendente 8,80%, datore 24,20% — proxy dal file 2026-pubblica-amministrazione.json già presente; verificare circolare INPS annuale per valori esatti (regime CTPS ex-INPDAP, identico a PA ordinaria).
@@ -307,7 +309,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     Modello parametrico. Stipendio mensile = param × punto_parametrale_annuo / 12. Punto parametrale: T1 183,6993 €/anno (1/4/2022), T2 184,0659 €/anno (1/7/2022–31/12/2023), T3 195,50 €/anno (1/1/2024–). Fonte: Art. 6 DPR 53/2025 e ipotesi di accordo 18/12/2024.
     
-    Conglobazione confermata — IIS conglobata dal 1/1/2005 (D.Lgs. 193/2003). fixed_allowances: [] per tutti i livelli.
+    Confirmed consolidated base salary: IIS was incorporated from 1 January 2005 (D.Lgs. 193/2003). The functional seniority allowance is separate from the consolidated base salary and is recorded in fixed_allowances for the sourced standard ranks.
     
     `order` assegnato per parametro crescente, non per gerarchia di carriera. Tre inversioni strutturali: Vice Sovrintendente (116,75) > Assistente Capo (116,50); Vice Ispettore (124,75) > Sovrintendente Capo (124,25); Vice Commissario (136,75) < Sostituto Commissario (143,50). Tre parità: SOVRINTENDENTE/ASSISTENTE_CAPO_COORD (121,50), ISPETTORE/SOV_CAPO_COORD (131,00), COMMISSARIO/SOST_COMM_COORD (148,00).
     

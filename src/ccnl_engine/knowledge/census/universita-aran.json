@@ -211,22 +211,6 @@
       }
     },
     {
-      "id": "perseo_sirio_notional_accrual",
-      "institute": "pension_fund_contribution",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "For public employees enrolled in Perseo Sirio before 2001 who opted into the TFR regime, the additional 1.5% of the TFS contribution base is accrued notionally by INPS, not paid as an employer fund contribution. Its accrual and the 28.94% notional TFR allocation are not calculated by this run.",
-      "calculation": "ccnl/universita-aran:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the notional INPS allocation for pre-2001 TFR optants separately from the 1% employer cash contribution.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "universita-aran/perseo_sirio_notional_accrual"
-        ]
-      }
-    },
-    {
       "id": "personal_withholding_same_kind",
       "institute": "personal_withholdings",
       "variant": "all",

@@ -66,6 +66,11 @@ class SundayHolidayPay(BaseModel):
             settimanale [...] dovrà essere corrisposta una giornata di
             retribuzione"), and ``11-04`` on 4 November itself (art. 128 c.
             4); the statutory holidays on a Sunday stay paid by the law.
+        on_saturday: The clause also pays listed holidays falling on Saturday.
+        on_coincident_holiday: The clause also pays a listed holiday falling
+            on another national holiday, regardless of weekday.
+        exclude_compensatory_rest_day: The clause with Saturday or coincident
+            holiday pay excludes a non-Sunday weekly compensatory rest day.
         fourth_november_on_sunday: With ``on_rest_day``, ``11-04`` stays on
             the first Sunday of November, paid when it is the rest day
             (Pulizia artigianato art. 23: "il lavoratore beneficerà del
@@ -88,6 +93,9 @@ class SundayHolidayPay(BaseModel):
     excluded: frozenset[str] = frozenset()
     ex_november_fourth: ExHolidayPay | None = None
     on_rest_day: bool = False
+    on_saturday: bool = False
+    on_coincident_holiday: bool = False
+    exclude_compensatory_rest_day: bool = False
     fourth_november_on_sunday: bool = False
     annual_share: Decimal | None = Field(default=None, gt=0, le=1)
     week_days_divisors: tuple[WeekDaysDivisor, ...] = ()

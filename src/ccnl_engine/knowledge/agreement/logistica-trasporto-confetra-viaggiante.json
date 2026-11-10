@@ -53,7 +53,7 @@
     "notes": [
       {
         "kind": "simplification",
-        "text": "Art. 71(5) tops up letter (b) and (c) holidays in reduced paid sickness for eligible legacy-section employers when EmployerProfile.legacy_section_applicable is true; an unknown fact blocks the target. Art. 77(8) pays full actual net pay during work injury and art. 71(5) tops a covered reduced-pay holiday up to full actual pay; the injury holiday target is conditional on the legacy-section employer fact. Separately, art. 60(2-3) pays an additional 1/22 of monthly global pay when a letter (b) holiday coincides with Saturday, Sunday or another holiday, including during sickness or injury; that payment is not calculated.",
+        "text": "Art. 71(5) tops up letter (b) and (c) holidays in reduced paid sickness for eligible legacy-section employers when EmployerProfile.legacy_section_applicable is true; an unknown fact blocks the target. Art. 77(8) pays full actual net pay during work injury and art. 71(5) tops a covered reduced-pay holiday up to full actual pay; the injury holiday target is conditional on the legacy-section employer fact. The separate art. 60 coincident-holiday quota is calculated for national letter (b) holidays; the local patron holiday and any locally substituted day are not calendared.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -61,13 +61,13 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Resolved: art. 77 injury treatment and the conditional art. 71(5) holiday target reach full actual daily pay; the separate coincident-holiday payment remains open below.",
+          "remediation": "Resolved: art. 77 injury treatment and the conditional art. 71(5) holiday target reach full actual daily pay; the national coincident-holiday quota is calculated separately; local patron holidays remain outside the calendar.",
           "status": "resolved"
         }
       },
       {
         "kind": "simplification",
-        "text": "Art. 60(2-3) pays an additional 1/22 of monthly global pay when a letter (b) holiday coincides with Saturday, Sunday or another holiday, including during sickness or injury; this distinct payment is not calculated.",
+        "text": "Art. 60(2-3) coincident-holiday pay is calculated for national letter (b) holidays, including during absence. The local patron holiday and any replacement agreed locally are not in the national calendar, so their coincidence is not calculated.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -75,7 +75,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Calculate the separate art. 60(2-3) coincident-holiday 1/22 payment."
+          "remediation": "Supply the local patron holiday or its locally agreed replacement in the holiday calendar to calculate its coincident-holiday quota."
         }
       },
       {
@@ -3496,7 +3496,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "92ea91428e85192238119386a75b5c0c7d5ea7bf226ef23df3faa6b8de4b5201",
+    "source_hash": "7c013e4cbba3263ab20ebee9f6d770e8c58998f08faf9730b93d3555d570774c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4011,6 +4011,55 @@
         "note": "Malattie particolarmente gravi (INPS circ. 95/2016): left out of the comporto count (c. 8: 'ad esclusione di quelli per malattie particolarmente gravi') and paid 'con la corresponsione dell'intera retribuzione globale mensile per 18 mesi' (c. 12): 540 days of 30-day months from the first day of the episode, stated by SicknessEpisode.serious_illness."
       }
     },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "10-04"
+      ],
+      "divisor": "22",
+      "excluded": [
+        "EDR_2021"
+      ],
+      "on_saturday": true,
+      "on_coincident_holiday": true,
+      "exclude_compensatory_rest_day": true,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-logistica-testo-unico-2025",
+            "title": "CCNL Logistica, Trasporto Merci e Spedizione 6 dicembre 2024, testo unico (Verbale di accordo 25 settembre 2025)",
+            "kind": "associazione",
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "published_on": "2025-09-25",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          },
+          "page": "84-85",
+          "section": "Art. 60(1)(b), (2-4) - Giorni festivi",
+          "quote": "Per le festività di cui al punto b), escluse invece le semi festività di cui al punto c), cadenti di sabato, di domenica o in altra festività è dovuta, in aggiunta alla retribuzione mensile, la retribuzione globale di una giornata, calcolata in base ad un ventiduesimo di quella mensile. [...] Uguale trattamento spetterà al lavoratore che in tale festività coincidente con il sabato, la domenica o con altra festività, sia in infortunio, malattia, gravidanza, puerperio e periodo di assenza facoltativa seguente al puerperio, congedo matrimoniale, ferie e permessi per giustificati motivi. [...] fermo restando che non è dovuto alcun compenso nel caso di coincidenza della festività col giorno di riposo compensativo."
+        },
+        "transformation": "National letter (b) holidays on Saturday, Sunday or another national holiday pay an extra 1/22 of monthly global pay, also during absence. Local patron and locally substituted holidays require a calendar input not available here. Art. 60(4) excludes a holiday on the worker's non-Sunday compensatory rest day. The EDR_2021 has no incidence on contractual institutes (p. 83) and is excluded from the quota. The statutory Sunday holidays remain covered; the same quota is not paid twice.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:14:49Z",
+          "verified_at": "2026-11-10T02:14:49Z",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "review_id": "2026-11-10-ai-coincident-holiday-travelling"
+        }
+      }
+    },
     "insured_absence": {
       "injury": {
         "advanced": true,
@@ -4492,6 +4541,28 @@
         ],
         "findings": [
           "Art. 77(8) integrates work injury to full actual net pay until clinical recovery; art. 71(5) tops up a reduced-pay holiday to full actual pay only for eligible section-two employers. The distinct coincident-holiday payment remains open."
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-coincident-holiday-travelling",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 60(1)(b), (2-4) coincident national holiday quota, cached consolidated text pp. 84-85.",
+        "checked": [
+          "work_rules.sunday_holidays",
+          "coverage.notes.coincident_holiday_payment"
+        ],
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "The national letter (b) holiday quota is 1/22 of monthly global pay on Saturday, Sunday or another holiday; local patron holidays are not calendared."
         ]
       }
     ],
