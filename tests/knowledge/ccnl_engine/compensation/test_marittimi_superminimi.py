@@ -4,7 +4,7 @@ Allegato 1 nn. 2-5 of the Sezione of 11 July 2024 (PDF p. 32): 7 EUR in
 level IV after 8 years; 7 EUR in level III after 4 years with a diploma, or
 after 8 years for the others ('altri impiegati'), never both; 11 EUR in
 level II after 10 years for a worker without a further promotion.  The
-years in the level are ``SeniorityFact.career_months``.
+years in the level are completed months since ``Employment.level_started_on``.
 """
 
 from __future__ import annotations
@@ -22,13 +22,13 @@ from tests.knowledge.ccnl_engine.support import regular_period
 def _superminimi(
     level: str, career: int, roles: frozenset[str] | None = None
 ) -> list[tuple[str, Decimal]]:
-    seniority = SeniorityFact(
-        150, date(2026, 1, 1), SenioritySource.EMPLOYER_RECORDS, career_months=career
-    )
+    seniority = SeniorityFact(150, date(2026, 1, 1), SenioritySource.EMPLOYER_RECORDS)
+    start_month = 2026 * 12 - career
     employment = Employment(
         ccnl_id="marittimi-industria-armatoriale",
         level_code=level,
         seniority=seniority,
+        level_started_on=date(start_month // 12, start_month % 12 + 1, 1),
         pension_fund=NoPensionFund(),
         contract_type=Permanent(),
         roles=roles,

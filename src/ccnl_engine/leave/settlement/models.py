@@ -49,6 +49,8 @@ class SettlementTerms:
         tag: Run identifier, the tag of the item ids.
         resolver: Policy resolver of the pay-item kinds.
         context: Context the policy is resolved in.
+        hourly_pay_elements: Caller-stated additional hourly remuneration,
+            ``None`` when unknown; read only for a deadline requiring it.
         deadline: The deadline the permits are paid at
             (``LeaveRules.permit_deadline``), ``None`` at the end of the
             employment.
@@ -64,6 +66,7 @@ class SettlementTerms:
     resolver: PolicyResolver
     context: PolicyContext
     deadline: PermitDeadline | None = None
+    hourly_pay_elements: Decimal | None = None
 
 
 @dataclass(frozen=True)
