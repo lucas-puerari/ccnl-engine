@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 73 verified / 15 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 79 verified / 15 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -73,6 +73,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Cached CNEL 139292 PDF page 34, July 2025 tabellare for all eight printed levels; two parametric positions derived; later unsigned salary periods excluded. | corrected | Verified all eight printed monthly minima against PDF page 34; derived two unprinted parametric positions from prior signed periods and signed tranche increments.<br>Excluded all unsigned salary periods from May 2026 onward; the signed July 2025 tranche remains in force until further ANIP evidence. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 19 daily pay and art. 30 ordinary working week, cached signed CNEL 105782; separate limitations for the remaining clauses in CNEL 105782 and 139292. | corrected | Art. 19 prints 22 for a five-day week and 26 for six days; art. 30 makes five days the normal distribution. The historical pension base and the missing signed 2012 apprenticeship accord prevent assuming current pay bases or durations. |
 | 2026-11-10 | claude-opus-5-5 (ai) | CNEL 139292 art. 33 pp. 16-17 and CNEL 105782 art. 18 p. 40, art. 38 p. 57; supplementary and ordinary holiday/night supplements and percentage bases. | corrected | The 2021 ANIP-signed part-time amendment governs supplementary hours in 2026; elastic hours remain a limitation.<br>The 2011 art. 38 continues to set ordinary holiday and night rates, on base pay, with non-cumulation not automatically enforced. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Art. 54 pension rates, frozen per-level bases and fund eligibility in CNEL 105782 pp. 69-70, 90; membership routing remains limited. | corrected | Verified all ten configured level bases against the page 90 table and the 1% shares and twelve payments against pp. 69-70.<br>The printed Q and 7 illustrative 1% amounts (12.28) differ from 1% of the printed 1222.75 base (12.23); applied the stated percentage and base, not the inconsistent illustrative amount.<br>Association-dependent fund choice and six-month calendar-year fixed-term eligibility remain open. |
 
 ## Salary table
 
@@ -163,12 +164,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model each evidenced allowance on its own qualifying duty and base; track the individual EDAR and absorption at the first subsequent increment.
 
-!!! warning "multiservizi-anip/multiservizi_pension_frozen_base · pension_fund_contribution · impact yes · open"
-    COMPLEMENTARY PENSION (CNEL 105782 art. 54, pp. 69-70, 90): enrolled members contribute with their employer at 1% each on the tabellare and contingenza frozen at 1 January 2001, for twelve monthly payments. This is not a percentage of current pay. The eligible funds depend on the employer association (Previambiente, Fondapi or Cooperlavoro), and fixed-term membership depends on six months of work in the calendar year. ASIM and ONBSI are addressed by the separate health_and_bilateral_funds limitation.
+!!! warning "multiservizi-anip/multiservizi_pension_membership_eligibility · pension_fund_contribution · impact yes · open"
+    COMPLEMENTARY PENSION (CNEL 105782 art. 54, pp. 69-70): The frozen 1 January 2001 tabellare and contingenza bases, 1% employer and member shares and twelve monthly payments are modelled for enrolled workers. Fund eligibility still depends on the employer association (Previambiente for FISE, Fondapi for CONFAPI, Cooperlavoro for cooperatives, with a choice for non-affiliated employers); fixed-term membership requires six months of work within the calendar year. These eligibility facts are not established by the enrolment alone. ASIM and ONBSI are addressed by the separate health_and_bilateral_funds limitation.
 
     **Applies when:** `pension_fund_contribution` applies.
 
-    **Remediation:** Apply the per-level historical base to enrolled members on twelve months, enforce the membership conditions and employee and employer shares.
+    **Remediation:** Verify the employer association and accumulated calendar-year fixed-term work before accepting the caller-selected fund and enrolment. No eligibility is inferred from the level or the fund code.
 
 !!! warning "multiservizi-anip/multiservizi_apprenticeship_destinations · base_salary · impact yes · open"
     APPRENTICESHIP (19 July 2012 accord): destination 5 is configured for 30 months rather than 36; destinations 2, 3, 6 and 7 are not configured. The cited duration schedule has not been verified on the cached signed 2011 or 2021 PDF and must not be inferred from a third-party copy.
