@@ -61,15 +61,15 @@
       },
       {
         "kind": "simplification",
-        "text": "A1-A9: monthly conglobated salary is available for full-time workers only. A1, A3, A5, A6, A8 work 45 hours/week (Art. 49; hourly divisor 195 under Art. 117(2)); A2, A4, A7, A9 with accommodation work 48 hours/week (Art. 43; hourly divisor 208 under Art. 117(1)). The engine still uses the agreement-wide divisor 173 for hourly calculations and cannot assign the 195/208 divisors by level. Free accommodation, electricity, water and heating under Art. 119 are not fully priced: Table A-bis prints only conventional TFR values (accommodation EUR 19.34, energy EUR 1.72, heating EUR 1.72), not a general monthly remuneration value; modelling these as an in-kind allowance would incorrectly include them in other bases. Substitute accommodation and heating depend on conditions not represented here. A-profile post-2004 seniority steps are EUR 10.00 per triennium (Art. 125); the pre-2004 frozen value and historical maturation rules require individual history. The PDF prints 2026-2028 amounts only; the open-ended 2028 period is not evidence of a new 2029 rate. C1 and C2 remain excluded (technical or administrative managers without a fixed hourly ceiling under Art. 62(2)).",
+        "text": "A1-A9: monthly conglobated salary and ordinary hourly base are available for full-time workers; other pay elements remain limited. A1, A3, A5, A6, A8 work 45 hours/week (Art. 49; hourly divisor 195 under Art. 117(2)); A2, A4, A7, A9 with accommodation work 48 hours/week (Art. 43; hourly divisor 208 under Art. 117(1)). The A-profile hourly coefficients are modelled per level. Free accommodation, electricity, water and heating under Art. 119 are not fully priced: Table A-bis prints only conventional TFR values (accommodation EUR 19.34, energy EUR 1.72, heating EUR 1.72), not a general monthly remuneration value; modelling these as an in-kind allowance would incorrectly include them in other bases. Substitute accommodation and heating depend on conditions not represented here. A-profile post-2004 seniority steps are EUR 10.00 per triennium (Art. 125); the pre-2004 frozen value and historical maturation rules require individual history. The PDF prints 2026-2028 amounts only; the open-ended 2028 period is not evidence of a new 2029 rate. C1 and C2 remain excluded (technical or administrative managers without a fixed hourly ceiling under Art. 62(2)).",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "excluded_profiles_divisor",
+          "variant": "unpriced_accommodation_and_excluded_profiles",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Use A salaries only for full-time monthly base pay; add level-specific hourly divisors and a TFR-only in-kind valuation before calculating hourly pay or accommodation-dependent bases. C1/C2 need separate schedule evidence."
+          "remediation": "A-profile hourly coefficients and ordinary hourly base are modelled; accommodation-dependent bases need TFR-only in-kind valuation. C1/C2 need separate schedule evidence."
         }
       },
       {
@@ -661,7 +661,7 @@
     {
       "code": "A1",
       "order": 1,
-      "description": "A1 — porter without service accommodation (45 hours/week); full-time monthly base only",
+      "description": "A1 — porter without service accommodation (45 hours/week); full-time monthly base and level-specific hourly divisor",
       "base_salary": {
         "periods": [
           {
@@ -785,12 +785,74 @@
           "verification_status": "verified",
           "review_id": "2026-11-10-ai-a-profile-monthly"
         }
-      }
+      },
+      "hourly_divisor": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "195",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "72",
+                "section": "Art. 117(2)",
+                "quote": "Per il portiere con profili professionali A1), A3), A5), A6), A8), dell’art. 18, ai fini della determinazione della normale paga oraria si prendono in considerazione tutti gli elementi di cui all’art. 120 con il coefficiente 195."
+              },
+              "transformation": "A1: printed coefficient 195 for the ordinary hourly wage; use as level-specific divisor from the first modelled salary period.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:33:46Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:33:46Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-hourly-divisor"
+              }
+            }
+          }
+        ]
+      },
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+            "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "74",
+          "section": "Art. 120(1)(a)-(d)",
+          "quote": "a) il salario mensile di cui all’art. 114; b) l’eventuale terzo elemento di cui all’art. 116; c) eventuali indennità a carattere continuativo; d) gli scatti di anzianità di cui all’art. 125."
+        },
+        "transformation": "A1: Art. 117 refers to Art. 119(a)-(d) or Art. 120 for the ordinary hourly wage: monthly salary, seniority and continuous cash allowances, excluding in-kind accommodation and utilities. Individual elements without a verified inclusion rule still require an explicit hourly rate.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:33:46Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:33:46Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-a-profile-hourly-divisor"
+        }
+      },
+      "hourly_base_method": "gross_incl_allowances"
     },
     {
       "code": "A2",
       "order": 2,
-      "description": "A2 — porter with service accommodation (48 hours/week); full-time monthly base only",
+      "description": "A2 — porter with service accommodation (48 hours/week); full-time monthly base and level-specific hourly divisor",
       "base_salary": {
         "periods": [
           {
@@ -914,12 +976,74 @@
           "verification_status": "verified",
           "review_id": "2026-11-10-ai-a-profile-monthly"
         }
-      }
+      },
+      "hourly_divisor": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "208",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "72",
+                "section": "Art. 117(1)",
+                "quote": "Per i portieri con profili professionali A2), A4), A7) ed A9), dell’art.18 e relativo sostituto, ai fini della determinazione della normale paga oraria, si prendono in considerazione soltanto gli elementi di cui alle lettere a), b), c), d) dell’art. 119, con il coefficiente 208."
+              },
+              "transformation": "A2: printed coefficient 208 for the ordinary hourly wage; use as level-specific divisor from the first modelled salary period.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:33:46Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:33:46Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-hourly-divisor"
+              }
+            }
+          }
+        ]
+      },
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+            "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "73",
+          "section": "Art. 119(1)(a)-(d)",
+          "quote": "a) il salario mensile di cui all’art. 114; b) l’eventuale terzo elemento di cui all’art. 116; c) eventuali indennità a carattere continuativo; d) gli scatti di anzianità di cui all’art. 125;"
+        },
+        "transformation": "A2: Art. 117 refers to Art. 119(a)-(d) or Art. 120 for the ordinary hourly wage: monthly salary, seniority and continuous cash allowances, excluding in-kind accommodation and utilities. Individual elements without a verified inclusion rule still require an explicit hourly rate.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:33:46Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:33:46Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-a-profile-hourly-divisor"
+        }
+      },
+      "hourly_base_method": "gross_incl_allowances"
     },
     {
       "code": "A3",
       "order": 9,
-      "description": "A3 — porter without service accommodation (45 hours/week); full-time monthly base only",
+      "description": "A3 — porter without service accommodation (45 hours/week); full-time monthly base and level-specific hourly divisor",
       "base_salary": {
         "periods": [
           {
@@ -1043,12 +1167,74 @@
           "verification_status": "verified",
           "review_id": "2026-11-10-ai-a-profile-monthly"
         }
-      }
+      },
+      "hourly_divisor": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "195",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "72",
+                "section": "Art. 117(2)",
+                "quote": "Per il portiere con profili professionali A1), A3), A5), A6), A8), dell’art. 18, ai fini della determinazione della normale paga oraria si prendono in considerazione tutti gli elementi di cui all’art. 120 con il coefficiente 195."
+              },
+              "transformation": "A3: printed coefficient 195 for the ordinary hourly wage; use as level-specific divisor from the first modelled salary period.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:33:46Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:33:46Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-hourly-divisor"
+              }
+            }
+          }
+        ]
+      },
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+            "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "74",
+          "section": "Art. 120(1)(a)-(d)",
+          "quote": "a) il salario mensile di cui all’art. 114; b) l’eventuale terzo elemento di cui all’art. 116; c) eventuali indennità a carattere continuativo; d) gli scatti di anzianità di cui all’art. 125."
+        },
+        "transformation": "A3: Art. 117 refers to Art. 119(a)-(d) or Art. 120 for the ordinary hourly wage: monthly salary, seniority and continuous cash allowances, excluding in-kind accommodation and utilities. Individual elements without a verified inclusion rule still require an explicit hourly rate.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:33:46Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:33:46Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-a-profile-hourly-divisor"
+        }
+      },
+      "hourly_base_method": "gross_incl_allowances"
     },
     {
       "code": "A4",
       "order": 10,
-      "description": "A4 — porter with service accommodation (48 hours/week); full-time monthly base only",
+      "description": "A4 — porter with service accommodation (48 hours/week); full-time monthly base and level-specific hourly divisor",
       "base_salary": {
         "periods": [
           {
@@ -1172,12 +1358,74 @@
           "verification_status": "verified",
           "review_id": "2026-11-10-ai-a-profile-monthly"
         }
-      }
+      },
+      "hourly_divisor": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "208",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "72",
+                "section": "Art. 117(1)",
+                "quote": "Per i portieri con profili professionali A2), A4), A7) ed A9), dell’art.18 e relativo sostituto, ai fini della determinazione della normale paga oraria, si prendono in considerazione soltanto gli elementi di cui alle lettere a), b), c), d) dell’art. 119, con il coefficiente 208."
+              },
+              "transformation": "A4: printed coefficient 208 for the ordinary hourly wage; use as level-specific divisor from the first modelled salary period.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:33:46Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:33:46Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-hourly-divisor"
+              }
+            }
+          }
+        ]
+      },
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+            "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "73",
+          "section": "Art. 119(1)(a)-(d)",
+          "quote": "a) il salario mensile di cui all’art. 114; b) l’eventuale terzo elemento di cui all’art. 116; c) eventuali indennità a carattere continuativo; d) gli scatti di anzianità di cui all’art. 125;"
+        },
+        "transformation": "A4: Art. 117 refers to Art. 119(a)-(d) or Art. 120 for the ordinary hourly wage: monthly salary, seniority and continuous cash allowances, excluding in-kind accommodation and utilities. Individual elements without a verified inclusion rule still require an explicit hourly rate.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:33:46Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:33:46Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-a-profile-hourly-divisor"
+        }
+      },
+      "hourly_base_method": "gross_incl_allowances"
     },
     {
       "code": "A5",
       "order": 3,
-      "description": "A5 — porter without service accommodation (45 hours/week); full-time monthly base only",
+      "description": "A5 — porter without service accommodation (45 hours/week); full-time monthly base and level-specific hourly divisor",
       "base_salary": {
         "periods": [
           {
@@ -1301,12 +1549,74 @@
           "verification_status": "verified",
           "review_id": "2026-11-10-ai-a-profile-monthly"
         }
-      }
+      },
+      "hourly_divisor": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "195",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "72",
+                "section": "Art. 117(2)",
+                "quote": "Per il portiere con profili professionali A1), A3), A5), A6), A8), dell’art. 18, ai fini della determinazione della normale paga oraria si prendono in considerazione tutti gli elementi di cui all’art. 120 con il coefficiente 195."
+              },
+              "transformation": "A5: printed coefficient 195 for the ordinary hourly wage; use as level-specific divisor from the first modelled salary period.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:33:46Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:33:46Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-hourly-divisor"
+              }
+            }
+          }
+        ]
+      },
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+            "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "74",
+          "section": "Art. 120(1)(a)-(d)",
+          "quote": "a) il salario mensile di cui all’art. 114; b) l’eventuale terzo elemento di cui all’art. 116; c) eventuali indennità a carattere continuativo; d) gli scatti di anzianità di cui all’art. 125."
+        },
+        "transformation": "A5: Art. 117 refers to Art. 119(a)-(d) or Art. 120 for the ordinary hourly wage: monthly salary, seniority and continuous cash allowances, excluding in-kind accommodation and utilities. Individual elements without a verified inclusion rule still require an explicit hourly rate.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:33:46Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:33:46Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-a-profile-hourly-divisor"
+        }
+      },
+      "hourly_base_method": "gross_incl_allowances"
     },
     {
       "code": "A6",
       "order": 6,
-      "description": "A6 — porter without service accommodation (45 hours/week); full-time monthly base only",
+      "description": "A6 — porter without service accommodation (45 hours/week); full-time monthly base and level-specific hourly divisor",
       "base_salary": {
         "periods": [
           {
@@ -1430,12 +1740,74 @@
           "verification_status": "verified",
           "review_id": "2026-11-10-ai-a-profile-monthly"
         }
-      }
+      },
+      "hourly_divisor": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "195",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "72",
+                "section": "Art. 117(2)",
+                "quote": "Per il portiere con profili professionali A1), A3), A5), A6), A8), dell’art. 18, ai fini della determinazione della normale paga oraria si prendono in considerazione tutti gli elementi di cui all’art. 120 con il coefficiente 195."
+              },
+              "transformation": "A6: printed coefficient 195 for the ordinary hourly wage; use as level-specific divisor from the first modelled salary period.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:33:46Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:33:46Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-hourly-divisor"
+              }
+            }
+          }
+        ]
+      },
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+            "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "74",
+          "section": "Art. 120(1)(a)-(d)",
+          "quote": "a) il salario mensile di cui all’art. 114; b) l’eventuale terzo elemento di cui all’art. 116; c) eventuali indennità a carattere continuativo; d) gli scatti di anzianità di cui all’art. 125."
+        },
+        "transformation": "A6: Art. 117 refers to Art. 119(a)-(d) or Art. 120 for the ordinary hourly wage: monthly salary, seniority and continuous cash allowances, excluding in-kind accommodation and utilities. Individual elements without a verified inclusion rule still require an explicit hourly rate.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:33:46Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:33:46Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-a-profile-hourly-divisor"
+        }
+      },
+      "hourly_base_method": "gross_incl_allowances"
     },
     {
       "code": "A7",
       "order": 7,
-      "description": "A7 — porter with service accommodation (48 hours/week); full-time monthly base only",
+      "description": "A7 — porter with service accommodation (48 hours/week); full-time monthly base and level-specific hourly divisor",
       "base_salary": {
         "periods": [
           {
@@ -1559,12 +1931,74 @@
           "verification_status": "verified",
           "review_id": "2026-11-10-ai-a-profile-monthly"
         }
-      }
+      },
+      "hourly_divisor": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "208",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "72",
+                "section": "Art. 117(1)",
+                "quote": "Per i portieri con profili professionali A2), A4), A7) ed A9), dell’art.18 e relativo sostituto, ai fini della determinazione della normale paga oraria, si prendono in considerazione soltanto gli elementi di cui alle lettere a), b), c), d) dell’art. 119, con il coefficiente 208."
+              },
+              "transformation": "A7: printed coefficient 208 for the ordinary hourly wage; use as level-specific divisor from the first modelled salary period.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:33:46Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:33:46Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-hourly-divisor"
+              }
+            }
+          }
+        ]
+      },
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+            "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "73",
+          "section": "Art. 119(1)(a)-(d)",
+          "quote": "a) il salario mensile di cui all’art. 114; b) l’eventuale terzo elemento di cui all’art. 116; c) eventuali indennità a carattere continuativo; d) gli scatti di anzianità di cui all’art. 125;"
+        },
+        "transformation": "A7: Art. 117 refers to Art. 119(a)-(d) or Art. 120 for the ordinary hourly wage: monthly salary, seniority and continuous cash allowances, excluding in-kind accommodation and utilities. Individual elements without a verified inclusion rule still require an explicit hourly rate.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:33:46Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:33:46Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-a-profile-hourly-divisor"
+        }
+      },
+      "hourly_base_method": "gross_incl_allowances"
     },
     {
       "code": "A8",
       "order": 11,
-      "description": "A8 — porter without service accommodation (45 hours/week); full-time monthly base only",
+      "description": "A8 — porter without service accommodation (45 hours/week); full-time monthly base and level-specific hourly divisor",
       "base_salary": {
         "periods": [
           {
@@ -1688,12 +2122,74 @@
           "verification_status": "verified",
           "review_id": "2026-11-10-ai-a-profile-monthly"
         }
-      }
+      },
+      "hourly_divisor": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "195",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "72",
+                "section": "Art. 117(2)",
+                "quote": "Per il portiere con profili professionali A1), A3), A5), A6), A8), dell’art. 18, ai fini della determinazione della normale paga oraria si prendono in considerazione tutti gli elementi di cui all’art. 120 con il coefficiente 195."
+              },
+              "transformation": "A8: printed coefficient 195 for the ordinary hourly wage; use as level-specific divisor from the first modelled salary period.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:33:46Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:33:46Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-hourly-divisor"
+              }
+            }
+          }
+        ]
+      },
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+            "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "74",
+          "section": "Art. 120(1)(a)-(d)",
+          "quote": "a) il salario mensile di cui all’art. 114; b) l’eventuale terzo elemento di cui all’art. 116; c) eventuali indennità a carattere continuativo; d) gli scatti di anzianità di cui all’art. 125."
+        },
+        "transformation": "A8: Art. 117 refers to Art. 119(a)-(d) or Art. 120 for the ordinary hourly wage: monthly salary, seniority and continuous cash allowances, excluding in-kind accommodation and utilities. Individual elements without a verified inclusion rule still require an explicit hourly rate.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:33:46Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:33:46Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-a-profile-hourly-divisor"
+        }
+      },
+      "hourly_base_method": "gross_incl_allowances"
     },
     {
       "code": "A9",
       "order": 12,
-      "description": "A9 — porter with service accommodation (48 hours/week); full-time monthly base only",
+      "description": "A9 — porter with service accommodation (48 hours/week); full-time monthly base and level-specific hourly divisor",
       "base_salary": {
         "periods": [
           {
@@ -1817,7 +2313,69 @@
           "verification_status": "verified",
           "review_id": "2026-11-10-ai-a-profile-monthly"
         }
-      }
+      },
+      "hourly_divisor": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": null,
+            "value": "208",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "72",
+                "section": "Art. 117(1)",
+                "quote": "Per i portieri con profili professionali A2), A4), A7) ed A9), dell’art.18 e relativo sostituto, ai fini della determinazione della normale paga oraria, si prendono in considerazione soltanto gli elementi di cui alle lettere a), b), c), d) dell’art. 119, con il coefficiente 208."
+              },
+              "transformation": "A9: printed coefficient 208 for the ordinary hourly wage; use as level-specific divisor from the first modelled salary period.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T02:33:46Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T02:33:46Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-a-profile-hourly-divisor"
+              }
+            }
+          }
+        ]
+      },
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+            "title": "portieri-fabbricati-confedilizia: accordo-2025.pdf",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "73",
+          "section": "Art. 119(1)(a)-(d)",
+          "quote": "a) il salario mensile di cui all’art. 114; b) l’eventuale terzo elemento di cui all’art. 116; c) eventuali indennità a carattere continuativo; d) gli scatti di anzianità di cui all’art. 125;"
+        },
+        "transformation": "A9: Art. 117 refers to Art. 119(a)-(d) or Art. 120 for the ordinary hourly wage: monthly salary, seniority and continuous cash allowances, excluding in-kind accommodation and utilities. Individual elements without a verified inclusion rule still require an explicit hourly rate.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T02:33:46Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T02:33:46Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-a-profile-hourly-divisor"
+        }
+      },
+      "hourly_base_method": "gross_incl_allowances"
     },
     {
       "code": "B5",
@@ -3424,7 +3982,7 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "b9249b5722cfdeea089ea1f58ee8b828bf5fdef6671579b724ec06059f50194d",
+    "source_hash": "c585e2e1a35d0d574fb993c975b77f789f4318dfa172e1178d8b7bde7825c488",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3731,6 +4289,30 @@
         "checked": [
           "levels.A1-A9.base_salary",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-a-profile-hourly-divisor",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 117(1)-(3) hourly coefficients and Arts. 119-120 ordinary pay elements, cached scanned PDF pp. 72-74.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          }
+        ],
+        "findings": [
+          "A2/A4/A7/A9 use 208; A1/A3/A5/A6/A8 use 195; B/C/D use 173."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.hourly_divisor",
+          "coverage.notes",
+          "levels.hourly_base_provenance",
+          "levels.hourly_base_method"
         ]
       }
     ]
