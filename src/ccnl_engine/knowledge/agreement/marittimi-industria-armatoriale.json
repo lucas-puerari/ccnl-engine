@@ -81,23 +81,24 @@
         "text": "EAR FOR VIIQ: Allegato 1bis lists EAR only for VII (not VIIQ separately). VIIQ workers receive the same EAR as VII; the distinguishing element is INDENNITA_FUNZIONE (additional allowance for quadri). Structural design: VIIQ base = VII base, VIIQ fixed_allowances includes INDENNITA_FUNZIONE."
       },
       {
+        "kind": "info",
+        "text": "Allegato 1 nn. 2-5 (p. 32; not art. 18): the superminimi by years in the level are fixed allowances gated on Employment.level_started_on: 7 EUR in level IV after 8 years; 7 EUR in level III after 4 years with the role 'diplomato', or after 8 years with the role 'non_diplomato'; 11 EUR in level II after 10 years with the role 'senza_passaggio'.",
+        "capability": "base_salary"
+      },
+      {
         "kind": "simplification",
-        "text": "UNA TANTUM: backpay EUR 200 paid Jul 2024 + EUR 180 paid Jan 2025, uniform all levels. Lump-sum, not recurring. Out_of_scope per engine design (una tantum payments are not included in periodic payroll computation).",
+        "text": "UNA TANTUM: backpay EUR 200 paid in July 2024 and EUR 180 in January 2025, uniform for all levels. Not encoded as a una tantum of the agreement: the runs of those months are outside the years the bundle computes (contribution tables from 2026), so the limitation applies to them only.",
         "capability": "una_tantum",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "una_tantum_2024_2025",
           "applies_when": {
             "trigger": "run",
-            "effective_from": "2024-07-01"
+            "effective_from": "2024-07-01",
+            "effective_until": "2025-02-01"
           },
-          "remediation": "Pay the una tantum (200 EUR in July 2024, 180 EUR in January 2025) outside the engine (ArrearsEvent) and record it as an open limitation."
+          "remediation": "Encode the una tantum (EUR 200 in July 2024, EUR 180 in January 2025) when the bundle computes those years."
         }
-      },
-      {
-        "kind": "info",
-        "text": "Allegato 1 nn. 2-5 (p. 32; not art. 18): the superminimi by years in the level are fixed allowances gated on Employment.level_started_on: 7 EUR in level IV after 8 years; 7 EUR in level III after 4 years with the role 'diplomato', or after 8 years with the role 'non_diplomato'; 11 EUR in level II after 10 years with the role 'senza_passaggio'.",
-        "capability": "base_salary"
       }
     ]
   },
@@ -2668,7 +2669,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "78181d34676d9d77479f0c0717bc72d1aaf2e8dd336f7ea2a1e997296c16eb6b",
+    "source_hash": "c61a67efefc47f27ce79beea053451beae74352022420523ea907a839b19224f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
