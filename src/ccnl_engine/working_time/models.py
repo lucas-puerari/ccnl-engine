@@ -73,7 +73,7 @@ class OvertimeBand(BaseModel):
     kind: TimeSupplementKind
     rate: TimeSeries
     hour_threshold_per_day: int | None = None
-    hour_threshold_per_week: int | None = None
+    hour_threshold_per_week: Decimal | None = None
     applies_to_kinds: tuple[WorkKind, ...]
     required_context_kinds: tuple[WorkKind, ...] = ()
     levels: tuple[str, ...] = ()

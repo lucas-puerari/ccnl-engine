@@ -456,7 +456,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/chimica-farmaceutica-federchimica",
       "ruleset_version": "2026.2",
-      "source_hash": "5580eeaa4f0602ef501751e6b9ccd1c1d6e92ead7f8e9f40711a9b48651434a9",
+      "source_hash": "2f30a429950b7685d65fc6b8ac8a8792dc3047adad5ed564b342da7c8db7d124",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/chimica-farmaceutica-federchimica.json.gz"
@@ -2921,7 +2921,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "9e2f92f110c734e702d333243c3d59b37c3bab5dbeaeb73e75aedabb299a5e67",
+      "source_hash": "89f363b2d51fb664fed0dc04705726c2c92370b225371d518deacb2cccc4de75",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/chimica-farmaceutica-federchimica.json.gz",
