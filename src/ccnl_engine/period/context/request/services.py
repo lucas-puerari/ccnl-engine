@@ -246,16 +246,9 @@ def build_context(
         _apply_extra_month_policy(chain, payment.run_id.kind, run_fraction(accrual))
     )
     if payment.run_id.kind in {"regular", "termination"} and proration.posts_pay:
-        paid_hours = (
-            request.contributable_hours
-            if request.contributable_hours is not None
-            else request.ordinary_hours_worked
-        )
-        chain = pay_hourly_allowances(
-            chain,
-            None if paid_hours is None else paid_hours.value,
-            competence,
-        )
+        paid = request.contributable_hours or request.ordinary_hours_worked
+        hours = None if paid is None else paid.value
+        chain = pay_hourly_allowances(chain, hours, competence)
     if payment.run_id.kind == "fourteenth":
         chain = offset_fourteenth(
             chain,

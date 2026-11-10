@@ -60,6 +60,8 @@ def _context(
                                 WorkerCategory.QUADRO,
                             ),
                             subsectors=(),
+                            levels=(),
+                            service_basis="actual",
                             manual_hours=None,
                             provenance=SimpleNamespace(
                                 location=SimpleNamespace(section="Art. 65")
@@ -234,6 +236,8 @@ def test_one_time_subsector_award(
         recurrence="once",
         categories=(WorkerCategory.IMPIEGATO, WorkerCategory.OPERAIO),
         subsectors=("saccarifero",),
+        levels=(),
+        service_basis="actual",
         manual_hours=Decimal(200),
         provenance=SimpleNamespace(location=SimpleNamespace(section="Rule 25")),
     )
@@ -272,6 +276,8 @@ def test_manual_milestone_without_hourly_divisor_pays_nothing(
         recurrence="once",
         categories=(WorkerCategory.OPERAIO,),
         subsectors=(),
+        levels=(),
+        service_basis="actual",
         manual_hours=Decimal(200),
     )
     ctx.contract.ccnl.parameters.hourly_divisor = SimpleNamespace(

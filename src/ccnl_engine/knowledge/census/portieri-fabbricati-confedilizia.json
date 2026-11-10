@@ -55,10 +55,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "EXCLUDED PROFILES: A1-A9 (porters with accommodation, 45 or 48 h/week; their divisor and in-kind accommodation are not modeled). C1 and C2 (technical or administrative managers without a fixed hourly ceiling under Art. 62(2)).",
+      "rule": "A1-A9: monthly conglobated salary is available for full-time workers only. A1, A3, A5, A6, A8 work 45 hours/week (Art. 49; hourly divisor 195 under Art. 117(2)); A2, A4, A7, A9 with accommodation work 48 hours/week (Art. 43; hourly divisor 208 under Art. 117(1)). The engine still uses the agreement-wide divisor 173 for hourly calculations and cannot assign the 195/208 divisors by level. Free accommodation, electricity, water and heating under Art. 119 are not fully priced: Table A-bis prints only conventional TFR values (accommodation EUR 19.34, energy EUR 1.72, heating EUR 1.72), not a general monthly remuneration value; modelling these as an in-kind allowance would incorrectly include them in other bases. Substitute accommodation and heating depend on conditions not represented here. A-profile post-2004 seniority steps are EUR 10.00 per triennium (Art. 125); the pre-2004 frozen value and historical maturation rules require individual history. The PDF prints 2026-2028 amounts only; the open-ended 2028 period is not evidence of a new 2029 rate. C1 and C2 remain excluded (technical or administrative managers without a fixed hourly ceiling under Art. 62(2)).",
       "calculation": "ccnl/portieri-fabbricati-confedilizia:coverage.notes",
       "state": "absent",
-      "remediation": "Model separate schedules and in-kind accommodation before including excluded profiles.",
+      "remediation": "Use A salaries only for full-time monthly base pay; add level-specific hourly divisors and a TFR-only in-kind valuation before calculating hourly pay or accommodation-dependent bases. C1/C2 need separate schedule evidence.",
       "origin": "seeded",
       "links": {
         "limitations": [

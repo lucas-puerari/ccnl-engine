@@ -93,6 +93,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 56 supplementary hours on either side of the annual limit. | corrected | Art. 56, PDF p. 71: 'non possono superare, annualmente, il 30% della prestazione già concordata' at 18%; 'oltre il limite massimo complessivo annuale ... maggiorazione ... del 40%'. The 18% band remains; the 40% requires caller-split hours with an explicit multiplier because annual cumulative hours are unavailable. Corrected the limitation status to open. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 71(5), section-two eligibility, physical PDF pp. 92-93; sickness and injury holiday targets. | corrected | Only employers covered before 29 January 2005 by the previous agreement qualify for the holiday top-up. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Cached Confetra consolidated text pp. 92-93, section-two eligibility and art. 71(5) injury holiday top-up. | confirmed | The existing conditional injury holiday target reaches full actual daily pay; the separate art. 60 coincident-holiday payment remains unmodelled. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Art. 60(1)(b), (2-4) coincident national holiday quota, cached consolidated text pp. 84-85. | confirmed | The national letter (b) holiday quota is 1/22 of monthly global pay on Saturday, Sunday or another holiday; local patron holidays are not calendared. |
 
 ## Salary table
 
@@ -144,18 +145,18 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! note "logistica-trasporto-confetra/holiday_during_injury · sickness · impact yes · resolved"
-    Art. 71(5) tops up letter (b) and (c) holidays in reduced paid sickness or injury for eligible legacy-section employers when EmployerProfile.legacy_section_applicable is true; an unknown fact blocks the target. Separately, art. 60(2-3) pays an additional 1/22 of monthly global pay when a letter (b) holiday coincides with Saturday, Sunday or another holiday, including during sickness or injury; this distinct payment is not calculated.
+    Art. 71(5) tops up letter (b) and (c) holidays in reduced paid sickness or injury for eligible legacy-section employers when EmployerProfile.legacy_section_applicable is true; an unknown fact blocks the target. The separate art. 60 coincident-holiday quota is calculated for national letter (b) holidays; the local patron holiday and any locally substituted day are not calendared.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Resolved: art. 71(5) injury holidays reach full actual daily pay for eligible legacy-section employers; the separate coincident-holiday payment remains open below.
+    **Remediation:** Resolved: art. 71(5) injury holidays reach full actual daily pay for eligible legacy-section employers; the national coincident-holiday quota is calculated separately; local patron holidays remain outside the calendar.
 
 !!! warning "logistica-trasporto-confetra/coincident_holiday_payment · sickness · impact yes · open"
-    Art. 60(2-3) pays an additional 1/22 of monthly global pay when a letter (b) holiday coincides with Saturday, Sunday or another holiday, including during sickness or injury; this distinct payment is not calculated.
+    Art. 60(2-3) coincident-holiday pay is calculated for national letter (b) holidays, including during absence. The local patron holiday and any replacement agreed locally are not in the national calendar, so their coincidence is not calculated.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Calculate the separate art. 60(2-3) coincident-holiday 1/22 payment.
+    **Remediation:** Supply the local patron holiday or its locally agreed replacement in the holiday calendar to calculate its coincident-holiday quota.
 
 !!! warning "logistica-trasporto-confetra/edr_2021_in_daily_base · absence · impact unknown · open"
     EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; the 2021 EDR may still enter the daily base of absences and sickness, which 'nessuna incidenza su alcun istituto contrattuale' excludes.
