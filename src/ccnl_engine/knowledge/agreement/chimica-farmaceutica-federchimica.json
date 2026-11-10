@@ -189,7 +189,9 @@
         "limitation": {
           "variant": "una_tantum_withholding_2025",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "outside_input",
+            "effective_from": "2025-07-01",
+            "effective_until": "2025-08-01"
           },
           "remediation": "Model the withholding of July 2025 for non-member workers."
         }
@@ -5027,7 +5029,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/chimico_farmaceutico/250415-_CHIMICO-FARMACEUTICO_RINNOVO%20CCNL_%201-7-2025__30-6-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "5580eeaa4f0602ef501751e6b9ccd1c1d6e92ead7f8e9f40711a9b48651434a9",
+    "source_hash": "3a0d9f55089256b1ce30971954559f0bad7262f2ac9606dbe23c1a214cb61439",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

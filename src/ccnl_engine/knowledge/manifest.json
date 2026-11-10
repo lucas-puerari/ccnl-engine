@@ -456,7 +456,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/chimica-farmaceutica-federchimica",
       "ruleset_version": "2026.2",
-      "source_hash": "5580eeaa4f0602ef501751e6b9ccd1c1d6e92ead7f8e9f40711a9b48651434a9",
+      "source_hash": "3a0d9f55089256b1ce30971954559f0bad7262f2ac9606dbe23c1a214cb61439",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/chimica-farmaceutica-federchimica.json.gz"
@@ -1428,7 +1428,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/marittimi-industria-armatoriale",
       "ruleset_version": "2026.2",
-      "source_hash": "6b71135870dd1765ccea368bebb751df37db575476c5bc853e3b3fc704cf3506",
+      "source_hash": "c9ecef9dea620e07889f8fc8ad4a003e40c4d135f1bd9b5bb2a561ab505882ec",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/marittimi-industria-armatoriale.json.gz"
@@ -4061,7 +4061,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "8f6dc9b8ab5b6f287c9cbd66af4528ddfda60e9c4fa992916585572f7e9c0a7d",
+      "source_hash": "be965728e09502fd25c6066c8774be889897d9a0568a022ccb5c8bbe88cb973d",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/marittimi-industria-armatoriale.json.gz",

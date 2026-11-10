@@ -106,11 +106,11 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "marittimi-industria-armatoriale/una_tantum_2024_2025 · una_tantum · impact yes · open"
-    UNA TANTUM: backpay EUR 200 paid Jul 2024 + EUR 180 paid Jan 2025, uniform all levels. Lump-sum, not recurring. Out_of_scope per engine design (una tantum payments are not included in periodic payroll computation).
+    UNA TANTUM: backpay EUR 200 paid in July 2024 and EUR 180 in January 2025, uniform for all levels. Not encoded as a una tantum of the agreement: the runs of those months are outside the years the bundle computes (contribution tables from 2026), so the limitation applies to them only.
 
-    **Applies when:** `una_tantum` applies; from 2024-07-01.
+    **Applies when:** `una_tantum` applies; from 2024-07-01; before 2025-02-01.
 
-    **Remediation:** Pay the una tantum (200 EUR in July 2024, 180 EUR in January 2025) outside the engine (ArrearsEvent) and record it as an open limitation.
+    **Remediation:** Encode the una tantum (EUR 200 in July 2024, EUR 180 in January 2025) when the bundle computes those years.
 
 !!! warning "marittimi-industria-armatoriale/level_years_from_service · base_salary · impact yes · open"
     Allegato 1 nn. 2-5: the superminimi count the years in the level ('permanenza nel livello', 'anzianità di livello'). The run reads SeniorityFact.career_months; without it, it reads the service months, which pay a worker promoted into the level less than the years required.
