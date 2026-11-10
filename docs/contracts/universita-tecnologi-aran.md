@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, pension_fund_contribution, sickness |
+| **Limits of this contract** | base_salary, sickness |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-07-01 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-12 | claude-opus-5-5 (ai) | Tecnologi a tempo indeterminato, Tabella B2 of the CCNL 2025-2027. | corrected | The tecnologi of the universities, introduced from 1.3.2026, are now a level with their six posizioni stipendiali. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Perseo Sirio employer and worker pension contributions for university technologists | corrected | University CCNL art. 94 p. 65 points to framework financing; the fund schedule p. 3 specifies 1% each on TFR pay; notional incentives remain outside the cash contribution. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Perseo Sirio public employee notional allocations versus run amounts | corrected | The pre-2001 optant's 28.94% TFR share and applicable 1.5% TFS-base increment are notional accounting outside payroll, not cash fund contributions or extra run costs; the ordinary TFR base remains posted. |
 
 ## Salary table
 
@@ -93,13 +94,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies.
 
     **Remediation:** Read the university sections of the CCNL 2019-2021 (18/1/2024) for leave, absence and sickness.
-
-!!! warning "universita-tecnologi-aran/perseo_sirio_notional_accrual · pension_fund_contribution · impact yes · open"
-    For public employees enrolled in Perseo Sirio before 2001 who opted into the TFR regime, the additional 1.5% of the TFS contribution base is accrued notionally by INPS, not paid as an employer fund contribution. Its accrual and the 28.94% notional TFR allocation are not calculated by this run.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the notional INPS allocation for pre-2001 TFR optants separately from the 1% employer cash contribution.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -263,6 +257,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 | CCNL 2022-2024 (FLC CGIL did not sign). Tabella A2 (pp. 50-51): tabellare from 1.1.2024. | altro | 2025-12-23 | [↗](https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf) |
 | CCNL 2019-2021. Tabelle C1 and E1.5 (pp. 246, 256): tabellare from 1.2.2023. | altro | 2024-01-18 | [↗](https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf) |
 | CCNL Scuola 2006-2009, still in force for ferie (art. 13), malattia (art. 17) and tredicesima (art. 80). | altro | 2007-11-29 | [↗](https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf) |
+
+??? note "Coverage notes"
+    For public employees hired before 2001 who opt into TFR and join Perseo Sirio, 28.94% of the TFR accrual is allocated notionally by INPS or the public employer (for staff not enrolled with INPS for end-of-service benefits). For those enrolled with INPS for TFS, the additional 1.5% of the TFS contribution base is also accrued notionally by INPS. Neither is a monthly cash fund contribution or extra employer payroll cost. The run posts the ordinary TFR base and accrual, not these outside-run notional allocations; transfer to the fund occurs on termination subject to the continuity condition. Fund information note, public employee schedule p. 3, note (1): 'Le quote di TFR dei dipendenti pubblici non sono versate al fondo ma sono accantonate figurativamente presso:'.
+    
 
 ## Raw data
 

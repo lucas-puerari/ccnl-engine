@@ -71,10 +71,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 98 of the cached 2000 CCNL (PDF p. 97) preserves an annual one-month loyalty award only for clerical employees who had already completed 20 years of actual uninterrupted service at the same company or group by 30 April 1982. It uses Art. 80 items 1–14 frozen at their 30 April 1982 values, and whole-month fractions on non-disciplinary departure. The present-day scope of this archival text is unverified. Annual loyalty_premium cannot enforce the historical eligibility and frozen valuation.",
+      "rule": "The 2000 text, Art. 98 (PDF p. 97), preserves an annual one-month award for clerical employees with 20 years of actual uninterrupted service at the same company or group by 30 April 1982 (hired no later than 30 April 1962). A worker still employed in 2026 could belong to this cohort; the rule cannot be dismissed solely for age. The award uses Art. 80 items 1–14 at their 30 April 1982 values and pays whole-month fractions on non-disciplinary departure. Continued force in the current agreement is not established by the cached 2000 text. The missing calculation is cohort eligibility, worker-specific frozen pay and annual/departure payment; current salary cannot replace the frozen base.",
       "calculation": "ccnl/edilizia-cooperative-ancpl:coverage.notes",
       "state": "absent",
-      "remediation": "Verify continued validity against a current text and implement historical cohort eligibility, frozen award base, and departure pro rata.",
+      "remediation": "Confirm continued force against the current agreement; for qualifying clerical workers supply the 30 April 1982 Art. 80 items 1–14 pay base and implement annual anniversary payment and whole-month pro rata on non-disciplinary departure.",
       "origin": "seeded",
       "links": {
         "limitations": [

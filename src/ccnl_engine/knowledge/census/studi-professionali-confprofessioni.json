@@ -307,22 +307,6 @@
       }
     },
     {
-      "id": "rolling_comporto_365_day_boundary",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "Artt. 120-121: the 365-day lookback is approximated by 12 calendar months. The documented listed serious illnesses receive 90 additional days (100% in months 7-8 and 70% in month 9); day hospital and life-saving therapy days are excluded from the comporto when stated.",
-      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
-      "state": "absent",
-      "remediation": "Replace the 12-calendar-month approximation with a day-exact 365-day lookback.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "studi-professionali-confprofessioni/rolling_comporto_365_day_boundary"
-        ]
-      }
-    },
-    {
       "id": "sunday_holiday_ccnl_clause",
       "institute": "sunday_holiday",
       "variant": "all",

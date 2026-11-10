@@ -14,10 +14,12 @@ from typing import TYPE_CHECKING, cast
 
 import pytest
 
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.contribution.results import (
     ContributionBreakdown,
     ContributionComponent,
 )
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm, Permanent
 from ccnl_engine.fund.solidarity.models import SolidarityFund, SolidarityTier
 from ccnl_engine.fund.solidarity.services import (
@@ -77,6 +79,28 @@ def test_permanent_worker_pays_the_ordinary_contribution(
     assert amounts[EMPLOYEE_COMPONENT] == Decimal("2.14")
     assert (result.employer, result.employee) == (Decimal("860.26"), Decimal("296.14"))
     assert rate == Decimal("0.00067")
+
+
+def test_rail_fund_includes_apprentices_but_not_executives() -> None:
+    """EUR 3200 INPS base: apprentice owes EUR 4.27 + EUR 2.13; executive zero."""
+    fund = load_ccnl("trasporto-ferroviario-agens").parameters.solidarity_fund
+    assert fund is not None
+    apprentice, _ = with_solidarity_fund(
+        _input(Apprentice(months_elapsed=0), fund), _breakdown()
+    )
+    parts = {c.name: c.amount for c in apprentice.components}
+    assert parts[EMPLOYER_COMPONENT] == Decimal("4.27")
+    assert parts[EMPLOYEE_COMPONENT] == Decimal("2.13")
+    executive = cast(
+        "_AmountsInput",
+        SimpleNamespace(
+            solidarity_fund=fund,
+            contract_type=Permanent(),
+            category=WorkerCategory.DIRIGENTE,
+        ),
+    )
+    breakdown = _breakdown()
+    assert with_solidarity_fund(executive, breakdown) == (breakdown, Decimal(0))
 
 
 def test_base_falls_back_to_the_ivs_component() -> None:
