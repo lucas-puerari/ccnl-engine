@@ -22,6 +22,8 @@ class LoyaltyPremium(BaseModel):
     manual workers may use a specified number of normal hourly wages.
     Other agreements may specify monthly pay for manual workers and restrict
     eligibility to employees already in service on a historical date.
+    A recognised-service milestone uses the caller's seniority fact, which
+    must describe the service credited for that award, not merely increments.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -34,6 +36,8 @@ class LoyaltyPremium(BaseModel):
         WorkerCategory.QUADRO,
     )
     subsectors: tuple[str, ...] = ()
+    levels: tuple[str, ...] = ()
+    service_basis: Literal["actual", "recognised"] = "actual"
     manual_hours: Decimal | None = Field(default=None, gt=0)
     manual_monthly_pay: bool = False
     in_service_on: date | None = None

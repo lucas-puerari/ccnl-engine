@@ -23,11 +23,11 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.decision.models import (
-    CalculationDecision,
     CalculationIssue,
     CalculationStatus,
 )
 from ccnl_engine.leave.models import LeaveTermination
+from ccnl_engine.leave.settlement.decision import settlement_decision as _decision
 from ccnl_engine.leave.settlement.models import (
     PERMIT_DEADLINE,
     TERMINATION_RESIDUAL_LEAVE,
@@ -66,6 +66,15 @@ LEAVE_HISTORY_UNKNOWN = CalculationIssue(
     status=CalculationStatus.INCOMPLETE,
     fact="leave_balances",
     capability=TERMINATION_RESIDUAL_LEAVE,
+)
+
+
+HOURLY_ELEMENTS_UNKNOWN = CalculationIssue(
+    code="missing_fact",
+    message="state hourly_pay_elements (zero if none) to value the expiring permits",
+    status=CalculationStatus.INCOMPLETE,
+    fact="hourly_pay_elements",
+    capability=PERMIT_DEADLINE,
 )
 
 
@@ -116,6 +125,13 @@ def _blocking_reason(
         return LEAVE_HISTORY_UNKNOWN.code
     if any(value < _ZERO for value in residuals.values()):
         return "leave_taken_beyond_accrual"
+    if (
+        terms.deadline is not None
+        and terms.deadline.hourly_elements
+        and terms.hourly_pay_elements is None
+        and any(value > _ZERO for value in residuals.values())
+    ):
+        return HOURLY_ELEMENTS_UNKNOWN.code
     return _unvalued(basis, rules, residuals, terms)
 
 
@@ -154,6 +170,8 @@ def _quota(
         ``(divisor, pay)``: the ferie divisor of the monthly pay; for a
         permit, of the full-time monthly pay, the ferie divisor times the
         hours of a day of a bucket paid by the day, else the hourly divisor.
+        At an expiry requiring hourly elements, the permit pay also includes
+        their hourly value multiplied by the divisor.
     """
     basis = _basis(rules, terms)
     divisor = None if basis is None else basis.ferie_divisor
@@ -164,38 +182,22 @@ def _quota(
     day = next((p.day_hours for p in rules.permits if p.bucket is bucket), None)
     if day is not None:
         return divisor * day, pay  # type: ignore[operator]
+    if terms.deadline is not None and terms.deadline.hourly_elements:
+        pay += (terms.hourly_pay_elements or _ZERO) * terms.hourly_divisor  # type: ignore[operator]
     return terms.hourly_divisor, pay  # type: ignore[return-value]
 
 
-def _decision(
-    terms: SettlementTerms,
-    status: CalculationStatus,
-    reason: str,
-    inputs: dict[str, Decimal | str],
-    amount: Decimal | None,
-) -> CalculationDecision:
-    leave = terms.leave
-    rules = leave.rules
-    basis = None if rules is None else rules.termination
-    deadline = terms.deadline
-    provenance = (
-        deadline.provenance
-        if deadline is not None
-        else None
-        if basis is None
-        else basis.provenance
-    )
-    field = "termination" if deadline is None else "permit_deadline"
-    return CalculationDecision(
-        capability=TERMINATION_RESIDUAL_LEAVE if deadline is None else PERMIT_DEADLINE,
-        status=status,
-        reason_code=reason,
-        rule=f"{leave.ruleset}:work_rules.leave_rules.{field}",
-        rule_version=leave.version,
-        inputs=inputs,
-        source=None if provenance is None else provenance.location,
-        amount=amount,
-    )
+def _issues(reason: str | None) -> tuple[CalculationIssue, ...]:
+    """Return the missing-fact issue, if one caused the blocked settlement.
+
+    Returns:
+        The known issue for the reason, or no issue for other reasons.
+    """
+    if reason == LEAVE_HISTORY_UNKNOWN.code:
+        return (LEAVE_HISTORY_UNKNOWN,)
+    if reason == HOURLY_ELEMENTS_UNKNOWN.code:
+        return (HOURLY_ELEMENTS_UNKNOWN,)
+    return ()
 
 
 def settle_leave(account: LeaveAccount, terms: SettlementTerms) -> LeaveSettlement:
@@ -212,15 +214,12 @@ def settle_leave(account: LeaveAccount, terms: SettlementTerms) -> LeaveSettleme
     }
     reason = _blocking_reason(rules, account, residuals, terms)
     if reason is not None or rules is None:
-        issues = (
-            (LEAVE_HISTORY_UNKNOWN,) if reason == LEAVE_HISTORY_UNKNOWN.code else ()
-        )
         return LeaveSettlement(
             account=account,
             decision=_decision(
                 terms, CalculationStatus.INCOMPLETE, str(reason), inputs, None
             ),
-            issues=issues,
+            issues=_issues(reason),
         )
     resolution = _require_resolution(terms.resolver, _KIND, terms.context)
     treatment = _treatment_from_resolution(resolution)
@@ -259,6 +258,8 @@ def settle_leave(account: LeaveAccount, terms: SettlementTerms) -> LeaveSettleme
         )
     total = sum((i.amount for i in items), _ZERO)
     inputs["monthly_pay"] = terms.monthly_pay
+    if terms.deadline is not None and terms.deadline.hourly_elements:
+        inputs["hourly_pay_elements"] = terms.hourly_pay_elements or _ZERO
     exact = all(b.exact for b in account.unsettled())
     return LeaveSettlement(
         account=account.settled(),

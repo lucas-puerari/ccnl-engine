@@ -233,11 +233,14 @@ class TestLoadRsaAiop:
         ccnl = load_ccnl("rsa-aiop")
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(165)
 
-    def test_t091_no_fixed_allowances(self) -> None:
-        """Level D2 has no fixed allowances (conglobated model)."""
+    def test_t091_no_fixed_allowances_before_bridge_agreement(self) -> None:
+        """Level D2 has no payable fixed allowances before October 2023."""
         ccnl = load_ccnl("rsa-aiop")
         lv = next(lv for lv in ccnl.levels if lv.code == "D2")
-        assert lv.fixed_allowances == ()
+        assert all(
+            not allowance.monthly.applies_on(date(2023, 9, 1))
+            for allowance in lv.fixed_allowances
+        )
 
     def test_t091_tax_sector(self) -> None:
         """Tax sector is terziario."""

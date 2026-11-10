@@ -62,6 +62,8 @@ def _context(
                             subsectors=(),
                             in_service_on=None,
                             manual_monthly_pay=False,
+                            levels=(),
+                            service_basis="actual",
                             manual_hours=None,
                             provenance=SimpleNamespace(
                                 location=SimpleNamespace(section="Art. 65")
@@ -115,6 +117,8 @@ def test_historical_in_service_gate_and_monthly_manual_award() -> None:
             manual_hours=None,
             manual_monthly_pay=True,
             in_service_on=date(1997, 12, 22),
+            levels=(),
+            service_basis="actual",
             provenance=SimpleNamespace(location=SimpleNamespace(section="Art. 43")),
         )
         return cast("RunContext", ctx)
@@ -269,6 +273,8 @@ def test_one_time_subsector_award(
         subsectors=("saccarifero",),
         in_service_on=None,
         manual_monthly_pay=False,
+        levels=(),
+        service_basis="actual",
         manual_hours=Decimal(200),
         provenance=SimpleNamespace(location=SimpleNamespace(section="Rule 25")),
     )
@@ -322,6 +328,8 @@ def test_manual_milestone_without_hourly_divisor_pays_nothing(
         subsectors=(),
         in_service_on=None,
         manual_monthly_pay=False,
+        levels=(),
+        service_basis="actual",
         manual_hours=Decimal(200),
     )
     ctx.contract.ccnl.parameters.hourly_divisor = SimpleNamespace(

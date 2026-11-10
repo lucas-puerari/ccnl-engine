@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2017-07-03 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -77,6 +77,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 32 pp. 104-105, letter b and c holidays during reduced sickness, maternity and injury pay. | confirmed | Letter a is excluded; 4 October is absent; letter c includes the stated local patron day. Maternity local patron and substitute days remain outside its holiday calendar. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 23 and Art. 29 paragraph 2 of the cached 2017 CCNL, physical PDF pages 94 and 102; immediate banked overtime premium only. | confirmed | The bank election covers every overtime hour worked in a month; banked hours pay 50% of the applicable premium immediately, with rest and any residual payout deferred. Flexible hours are not overtime and need a separate schedule model. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 10 p. 49 apprenticeship credit towards seniority increments. | corrected | Art. 10 counts the apprenticeship at 65% towards the increments of the worker kept on from 1 November 2018; added apprenticeship_credit_share 0.65 and resolved the limitation. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 38 hourly elements and Art. 22 expiry of PAR, cached PDF pp. 93-94 and 112; expiry valuation only. | corrected | Hourly remuneration is added to monthly pay / 173 at expiry when supplied by the caller; no termination payout basis appears in the cited clause. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Art. 32(b,c), physical PDF pp. 104-105, maternity holiday and local holiday selection. | confirmed | The maternity holiday target exists; letters b and c cover reduced-pay pregnancy and puerperium holidays. The employer-stated patron date can denote the locally agreed substitute or 29 June in Rome; neither is inferred without the local fact. |
 
 ## Salary table
 
@@ -203,26 +205,26 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** State whether the conto ore of the firm is active (the INPS check of art. 22) and, if not, pay the residual PAR at the end of their year.
 
-!!! warning "metalmeccanico-confapi/par_conto_ore_hourly_elements · leave · impact yes · open"
-    LEAVE, CONTO ORE: the PAR paid at the end of the conto ore are valued at the monthly pay of the run over 173; the hourly pay of art. 38 also adds the hourly elements of the pay (incentivi, indennità orarie, cottimo), which the engine does not add. A worker leaving before the expiry is paid nothing for them (no basis for the leave at termination).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Add the hourly elements of art. 38 to the hourly pay of the PAR, and source the PAR left at the end of the employment.
-
-!!! warning "metalmeccanico-confapi/holiday_outside_calendar · sickness · impact yes · open"
-    Art. 32(b,c) holiday top-ups are modelled for sickness, compulsory maternity and injury, excluding letter a) and 4 October. Stated local patron days are covered for sickness and injury. Not calculated: the maternity top-up on a local patron day, the locally agreed substitute for the patron day, and Rome-only 29 June, which are outside the national holiday calendar.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Calculate the maternity top-up on stated patron days, the agreed substitute patron holiday and Rome-only 29 June when the local facts are available.
-
 !!! warning "metalmeccanico-confapi/flexibility_and_hours_bank · overtime · impact yes · open"
     Art. 23 flexible hours above 40 per week (15% weekday, 20% Saturday) remain outside the model: they are not overtime. Art. 29 banked overtime pays half the applicable overtime premium now; the elected rest balance and eventual payout at current pay are not tracked. The election covers all overtime in the month and must be declared by the next month; callers must supply a consistent banked choice for each month's events.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model flexible schedule hours and compensation windows separately from overtime, and track elected overtime rest balances and their later liquidation.
+
+!!! warning "metalmeccanico-confapi/par_conto_ore_hourly_elements · leave · impact yes · open"
+    LEAVE, CONTO ORE: the hourly elements of art. 38 are included in the PAR payout at expiry when the caller states hourly_pay_elements (zero confirms none; missing blocks payment). The PAR left when employment ends before expiry remain unpaid: art. 22 specifies liquidation at expiry but no termination basis.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Source a basis and timing for paying PAR left when employment ends before the conto ore expires; art. 22 only specifies payment at expiry.
+
+!!! warning "metalmeccanico-confapi/holiday_outside_calendar · sickness · impact yes · open"
+    Art. 32(b,c) holiday top-ups are modelled for sickness, compulsory maternity and injury, excluding letter a) and 4 October. A stated patron_saint_day covers the local patron day, its locally agreed substitute, or Rome-only 29 June when applicable. Without the applicable local date from the employer, these holidays cannot be calculated.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** State the applicable local patron holiday date (including a locally agreed substitute or Rome-only 29 June) as employer.patron_saint_day.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

@@ -53,6 +53,7 @@ def period_field_specs(request: PeriodCalculationRequest) -> tuple[FieldSpec, ..
             True,
         ),
         ("paid_holiday_days", request.paid_holiday_days, PaidHolidayDays, True),
+        ("hourly_pay_elements", request.hourly_pay_elements, Decimal, True),
         ("full_time_weekly_hours", request.full_time_weekly_hours, WeeklyHours, True),
         ("work_pattern", request.work_pattern, WorkPattern, True),
         ("weekly_rest_day", request.weekly_rest_day, Weekday, False),

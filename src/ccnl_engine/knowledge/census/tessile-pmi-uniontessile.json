@@ -19,18 +19,18 @@
       }
     },
     {
-      "id": "art_12_ter_element",
+      "id": "art_12_ter_top_up",
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 12 ter: from 2020, in the firms that have not applied art. 12 letter C (a company premio di risultato), 110 EUR gross with the June pay to every worker in service in that month, in twelfths, a company agreement paying less topped up to 110. Not modelled: the bundle holds one yearly element per CCNL (the EGR of art. 12 bis).",
+      "rule": "Art. 12 ter: the EUR 110 June element from 2020 is modelled for workers in service in June, in twelfths of the payment year and proportional to part-time hours, when EmployerProfile.second_level_premium is false. Not modelled: a company agreement paying less than EUR 110 must be topped up; no amount of that company payment is available to calculate the difference. The second-level premium flag does not distinguish agreements implementing art. 12 C from other company agreements.",
       "calculation": "ccnl/tessile-pmi-uniontessile:coverage.notes",
       "state": "absent",
-      "remediation": "Model a second yearly element with eligibility in the month of payment and a top-up of a lower company amount.",
+      "remediation": "Record the amount paid under a company agreement below EUR 110 and distinguish art. 12 C implementation before calculating the difference.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "tessile-pmi-uniontessile/art_12_ter_element"
+          "tessile-pmi-uniontessile/art_12_ter_top_up"
         ]
       }
     },

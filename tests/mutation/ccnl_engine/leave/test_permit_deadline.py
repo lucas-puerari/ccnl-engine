@@ -162,7 +162,9 @@ def test_pulizia_carries_the_ex_festivita_to_september(
     assert "permit_carryover" not in {b.detail for b in result.blockers}
 
 
-def _metalmeccanico(slug: str, level: str, year: int) -> PeriodResult:
+def _metalmeccanico(
+    slug: str, level: str, year: int, hourly_elements: Decimal | None = Decimal(0)
+) -> PeriodResult:
     opening = PeriodState.zero()
     balance = LeaveBalance(LeaveBucket.ROL, 2025, Decimal(120), Decimal(0))
     opening = replace(
@@ -175,6 +177,7 @@ def _metalmeccanico(slug: str, level: str, year: int) -> PeriodResult:
             payment_date=date(year, 12, 27),
             ccnl_id=slug,
             level_code=level,
+            hourly_pay_elements=hourly_elements,
             opening_state=opening,
             roles=frozenset(),
             employment_period=EmploymentPeriod(date(2020, 1, 1)),
@@ -208,3 +211,45 @@ def test_the_par_conto_ore_is_paid_two_years_after(
     assert _paid(december) == {"rol": Decimal(10)}
     (item,) = (i for i in december.pay_items if i.item_id.startswith("leave_"))
     assert item.amount == amount
+
+
+def test_federmeccanica_par_hourly_elements_at_expiry() -> None:
+    """Art. 3: 10 * (2271.01 / 173 + 2.50) = 156.27 euros.
+
+    With zero hourly elements the same ten hours pay 131.27 euros;
+    an unstated hourly element blocks payment instead of assuming zero.
+    """
+    slug = "metalmeccanico-federmeccanica"
+    without = _metalmeccanico(slug, "C3", 2027)
+    with_elements = _metalmeccanico(slug, "C3", 2027, Decimal("2.50"))
+    missing = _metalmeccanico(slug, "C3", 2027, None)
+    assert next(
+        i.amount for i in without.pay_items if i.item_id.startswith("leave_")
+    ) == Decimal("131.27")
+    assert next(
+        i.amount for i in with_elements.pay_items if i.item_id.startswith("leave_")
+    ) == Decimal("156.27")
+    assert not _paid(missing)
+    assert "hourly_pay_elements" in {b.detail for b in missing.blockers}
+    assert not missing.closing_state.accrual.leave.balances[0].settled
+
+
+def test_hourly_elements_are_added_only_when_stated_at_expiry() -> None:
+    """Confapi art. 38: 10 * (2290.87 / 173 + 2.50) = 157.42 euros.
+
+    The same ten hours without hourly elements pay 132.42 euros; omitting
+    the fact instead blocks the payout and leaves the balance unsettled.
+    """
+    slug = "metalmeccanico-confapi"
+    without = _metalmeccanico(slug, "5", 2027)
+    with_elements = _metalmeccanico(slug, "5", 2027, Decimal("2.50"))
+    missing = _metalmeccanico(slug, "5", 2027, None)
+    assert next(
+        i.amount for i in without.pay_items if i.item_id.startswith("leave_")
+    ) == Decimal("132.42")
+    assert next(
+        i.amount for i in with_elements.pay_items if i.item_id.startswith("leave_")
+    ) == Decimal("157.42")
+    assert not _paid(missing)
+    assert "hourly_pay_elements" in {b.detail for b in missing.blockers}
+    assert not missing.closing_state.accrual.leave.balances[0].settled
