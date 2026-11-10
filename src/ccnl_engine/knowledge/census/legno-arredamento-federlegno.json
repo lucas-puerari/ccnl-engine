@@ -3,22 +3,6 @@
   "ccnl_id": "legno-arredamento-federlegno",
   "requirements": [
     {
-      "id": "apprenticeship_midpoint_components",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "APPRENTICESHIP MIDPOINT COMPONENTS: the 3rd period pays a 'retribuzione intermedia' between the current and the destination level (secondary source studiocerbone.com on the apprenticeship agreement); the CCNL text listed in the sources (direzionelavoro.it PDF) is no longer reachable, so whether the intermediate pay covers contingenza and EDR or the minimum table only is unverified. The engine averages the whole monthly pay, as the Federterme clause states; contingenza differs by about 1-2 EUR between adjacent levels.",
-      "calculation": "ccnl/legno-arredamento-federlegno:coverage.notes",
-      "state": "absent",
-      "remediation": "Read the CCNL Legno apprenticeship clause on the 3rd period and confirm which pay components the intermediate pay averages, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "legno-arredamento-federlegno/apprenticeship_midpoint_components"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",
