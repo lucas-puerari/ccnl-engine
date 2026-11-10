@@ -47,6 +47,7 @@ from ccnl_engine.inputs import (
     WorkerCategory,
 )
 from ccnl_engine.period.facts.holiday import PaidHolidayDays
+from ccnl_engine.run.models import RunKind
 from tests.integration.ccnl_engine.withholding.builders import paid_before
 from tests.knowledge.ccnl_engine.period.builders import CONCIA_D2
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
@@ -730,6 +731,32 @@ def _notice(cause: TerminationCause | None, just: bool | None) -> PeriodInput:
     return replace(run, employment=employment, facts=PeriodFacts(events=events))
 
 
+def _loyalty_dismissal(disciplinary: bool | None) -> PeriodInput:
+    """Return a vested clerical loyalty award in an October closing run.
+
+    Returns:
+        The termination run with or without its disciplinary-dismissal fact.
+    """
+    employment = replace(
+        _EMPLOYMENT,
+        ccnl_id="edilizia-artigianato-cna",
+        level_code="7",
+        category=WorkerCategory.IMPIEGATO,
+        employment_period=EmploymentPeriod(
+            date(2000, 4, 15),
+            date(2026, 10, 14),
+            TerminationCause.DISMISSAL,
+            disciplinary_dismissal=disciplinary,
+        ),
+    )
+    return replace(
+        _march(PeriodState.zero()),
+        run=PayrollRun(RunKind.TERMINATION, 10, 2026),
+        payment_date=date(2026, 10, 27),
+        employment=employment,
+    )
+
+
 def _extraordinary(last_pay: Decimal | None) -> PeriodInput:
     """Return two weeks of extraordinary leave in March of an impiegato.
 
@@ -903,6 +930,13 @@ def sickness_cases[C](
                 _notice(TerminationCause.DISMISSAL, False),
                 _notice(TerminationCause.DISMISSAL, None),
                 "just_cause",
+            ),
+        ),
+        "EmploymentPeriod.disciplinary_dismissal": (
+            case(
+                _loyalty_dismissal(False),
+                _loyalty_dismissal(None),
+                "disciplinary_dismissal",
             ),
         ),
         "ExtraordinaryLeaveEvent.last_fixed_pay": (

@@ -19,6 +19,8 @@ class LoyaltyPremium(BaseModel):
     represented by the employment start date alone. A once-only milestone
     can additionally restrict the eligible categories and employer subsectors;
     manual workers may use a specified number of normal hourly wages.
+    An annual clause can explicitly authorize whole-month twelfths on a
+    non-disciplinary dismissal after the preceding anniversary award.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -26,6 +28,7 @@ class LoyaltyPremium(BaseModel):
     service_years: int = Field(gt=0)
     months: Decimal = Field(default=Decimal(1), gt=0)
     recurrence: Literal["annual", "once"] = "annual"
+    dismissal_pro_rata: bool = False
     categories: tuple[WorkerCategory, ...] = (
         WorkerCategory.IMPIEGATO,
         WorkerCategory.QUADRO,

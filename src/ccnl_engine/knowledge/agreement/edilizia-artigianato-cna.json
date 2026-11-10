@@ -97,26 +97,6 @@
   "coverage": {
     "notes": [
       {
-        "kind": "simplification",
-        "text": "Art. 65 annual loyalty award is paid at the hire anniversary after twenty years, but whole-month twelfths on non-disciplinary dismissal are not calculated on a termination run.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "loyalty_dismissal_pro_rata",
-          "applies_when": {
-            "worker_categories": [
-              "impiegato",
-              "quadro"
-            ],
-            "run_kinds": [
-              "termination"
-            ],
-            "seniority_months_from": 240
-          },
-          "remediation": "Calculate the full-month twelfths owed on non-disciplinary dismissal after entitlement."
-        }
-      },
-      {
         "kind": "info",
         "text": "Split salary model: paga base (TimeSeries, 4 tranches May 2025/Jan 2026/Jan 2027/Jan 2028) + contingenza (frozen since July 1992 Protocol) + EDR (frozen EUR 10.33 since 1992)."
       },
@@ -232,6 +212,7 @@
     "loyalty_premium": {
       "service_years": 20,
       "months": "1",
+      "dismissal_pro_rata": true,
       "provenance": {
         "status": "verified",
         "location": {
@@ -244,17 +225,17 @@
           },
           "page": "93",
           "section": "Art. 65, Loyalty premium",
-          "quote": "All’impiegato in servizio, quando abbia presso la stessa azienda una anzianità ininterrotta ed effettiva di servizio di venti anni, va corrisposto annualmente un premio di fedeltà pari ad una mensilità degli elementi di cui ai numeri dall’1 al 12 dell’Art. 48. Non si computano nei venti anni di servizio ininterrotto ed effettivo le anzianità convenzionali di carattere militare. Il pagamento del premio deve essere effettuato nella ricorrenza della data di assunzione in servizio dell’impiegato."
+          "quote": "All’impiegato in servizio, quando abbia presso la stessa azienda una anzianità ininterrotta ed effettiva di servizio di venti anni, va corrisposto annualmente un premio di fedeltà pari ad una mensilità degli elementi di cui ai numeri dall’1 al 12 dell’Art. 48. Non si computano nei venti anni di servizio ininterrotto ed effettivo le anzianità convenzionali di carattere militare. Il pagamento del premio deve essere effettuato nella ricorrenza della data di assunzione in servizio dell’impiegato. L’impiegato che avendo già maturato il diritto al premio venga licenziato non per motivi disciplinari, ha diritto a tanti dodicesimi del premio stesso quanti sono in mesi interi di servizio prestato alla epoca della maturazione del precedente premio."
         },
-        "transformation": "Twenty uninterrupted actual years (excluding conventional military seniority) from the caller's uninterrupted actual service start, defaulting to the hire date; payment on the hire anniversary. The run-chain monthly pay approximates Art. 48 items 1–12; no termination pro rata. In the TFR base (art. 70: 'premio annuo e premio di fedeltà').",
+        "transformation": "Twenty uninterrupted actual years (excluding conventional military seniority) from the caller's uninterrupted actual service start, defaulting to the hire date; payment on the hire anniversary. On a dismissal explicitly stated as non-disciplinary, pay one twelfth per whole month since the last qualifying hire anniversary; a missing cause or disciplinary fact blocks the amount on that closing run. The run-chain monthly pay approximates Art. 48 items 1–12. In the TFR base (art. 70: 'premio annuo e premio di fedeltà').",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
-          "extraction_timestamp": "2026-11-09T21:30:44Z",
+          "extraction_timestamp": "2026-11-10T02:16:10Z",
           "verification_status": "verified",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-09T21:30:44Z",
-          "review_id": "2026-11-09-ai-loyalty-service-cna"
+          "verified_at": "2026-11-10T02:16:10Z",
+          "review_id": "2026-11-10-ai-loyalty-dismissal-cna"
         }
       }
     },
@@ -2609,7 +2590,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "7d35796104e64a71485f5aad51c23a51dbbaa7f7f88fdf4cdda7bdaed7d77f9d",
+    "source_hash": "8b65384cad0973013f7f5d7bc194326c806387d1dd070e9a35fa6713400565e1",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2978,6 +2959,27 @@
         "independence": "same_process",
         "checked": [
           "parameters.loyalty_premium"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-loyalty-dismissal-cna",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 65 whole-month loyalty twelfths on non-disciplinary dismissal, checked against the cached PDF text layer, page 93.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/01/20251222_CCNL_web.pdf",
+            "sha256": "df6317b0b0054363ea554d724fb49a291b8079128f83bd8ca5904434d1b3d664"
+          }
+        ],
+        "findings": [
+          "After the preceding earned award, the clause pays whole-month twelfths on dismissal not for disciplinary reasons."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.loyalty_premium.dismissal_pro_rata"
         ]
       }
     ]
