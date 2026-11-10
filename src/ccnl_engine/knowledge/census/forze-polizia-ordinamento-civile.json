@@ -19,18 +19,18 @@
       }
     },
     {
-      "id": "assegno_funzionale_missing",
+      "id": "assegno_funzionale_conditions_and_special_ranks",
       "institute": "seniority",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "Progressione economica non per scatti automatici sulla paga base, bensì per avanzamento di qualifica e tramite assegno funzionale (Art. 54 D.Lgs. 195/1995) maturato a 17, 27 e 32 anni di servizio. seniority_increments.maximum_count = 0.",
+      "rule": "Functional seniority allowance at 17, 27 and 32 years: the tabular annual rate is divided by 12 and also affects the thirteenth monthly payment. The standard rank rows are modelled; commissioners require the promoted_from_lower_rank worker role. Entitlement depends on qualifying service without demerit.",
       "calculation": "ccnl/forze-polizia-ordinamento-civile:coverage.notes",
       "state": "absent",
-      "remediation": "Model the assegno funzionale at 17, 27 and 32 years of service as allowances gated by service_months_threshold.",
+      "remediation": "Validate disciplinary assessments over the two years preceding each threshold (D.P.R. 254/1999 art. 5(3)); distinguish eligible service from raw seniority, model special coordinator and intermediate ranks including D.P.R. 57/2022 art. 5 increments and four-year designation conditions, and determine commissioner origin. The sources do not state the allowance installment divisor; annual/12 plus a thirteenth is an explicitly stated convention inferred from the stipend table and D.L. 387/1987 art. 6(4)-(5).",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "forze-polizia-ordinamento-civile/assegno_funzionale_missing"
+          "forze-polizia-ordinamento-civile/assegno_funzionale_conditions_and_special_ranks"
         ]
       }
     },

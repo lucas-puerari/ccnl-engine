@@ -23,7 +23,7 @@ from ccnl_engine.contribution.cigs.models import with_cigs_indotto
 from ccnl_engine.contribution.fis.models import with_fis_reduction
 from ccnl_engine.contribution.zone.models import with_zone_reduction
 from ccnl_engine.employment.context.models import EffectiveDateContext, TemporalContext
-from ccnl_engine.errors import UnknownLevelError
+from ccnl_engine.errors import InvalidInputError, UnknownLevelError
 from ccnl_engine.fund.solidarity.models import (
     with_solidarity_headcount,
     with_solidarity_tiers,
@@ -111,6 +111,7 @@ def load_contract(
 
     Raises:
         UnknownLevelError: When the CCNL has no level ``request.level_code``.
+        InvalidInputError: When the requested level has expired at competence.
     """
     period_id = request.period_id
     ccnl = with_rota(
@@ -142,6 +143,21 @@ def load_contract(
     tctx = TemporalContext.from_period(
         period_id.year, period_id.month, request.payment_date
     )
+    try:
+        selected_level = ccnl.level_by_code(request.level_code)
+    except ValueError:
+        raise UnknownLevelError(request.level_code, ccnl.meta.ccnl_id) from None
+    if (
+        selected_level.valid_until is not None
+        and tctx.competence >= selected_level.valid_until
+    ):
+        msg = (
+            f"level {selected_level.code!r} is no longer valid on {tctx.competence}; "
+            "the worker's level must be restated"
+        )
+        raise InvalidInputError(
+            msg, field="Employment.level_code", feature="base_salary"
+        )
     employer = request.employer
     ccnl, provincial_unknown = without_replaced_elements(
         ccnl,
@@ -167,10 +183,7 @@ def load_contract(
         tctx.competence,
     )
     ccnl = with_solidarity_headcount(ccnl, request.employer.headcount.value)
-    try:
-        level = ccnl.level_by_code(request.level_code)
-    except ValueError:
-        raise UnknownLevelError(request.level_code, ccnl.meta.ccnl_id) from None
+    level = ccnl.level_by_code(request.level_code)
     level = require_effective_salary(
         ccnl,
         level,

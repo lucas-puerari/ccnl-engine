@@ -87,6 +87,49 @@ def level_start_issue(ctx: RunContext) -> CalculationIssue | None:
     )
 
 
+def level_service_issue(ctx: RunContext) -> CalculationIssue | None:
+    """Block pay when an applicable level-tenure allowance lacks its start date.
+
+    A stated hire later than the allowance's minimum tenure rules it out
+    even if the level entry date is unknown: the level cannot predate hire.
+
+    Returns:
+        An incomplete base-salary issue, or ``None`` if no relevant gate
+        needs a missing level entry date.
+    """
+    if ctx.request.level_started_on is not None:
+        return None
+    competence = ctx.contract.tctx.competence
+    hire = (
+        None
+        if ctx.request.employment_period is None
+        else ctx.request.employment_period.started_on
+    )
+    if not any(
+        a.level_service
+        and a.monthly.applies_on(competence)
+        and (a.role is None or a.role in (ctx.request.roles or frozenset()))
+        and (
+            hire is None
+            or a.service_months_threshold is None
+            or (competence.year - hire.year) * 12
+            + competence.month
+            - hire.month
+            - (competence.day < hire.day)
+            >= a.service_months_threshold
+        )
+        for a in ctx.contract.level.fixed_allowances
+    ):
+        return None
+    return CalculationIssue(
+        code="level_service_unknown",
+        capability="base_salary",
+        message="years in the level are unknown; state Employment.level_started_on",
+        status=CalculationStatus.INCOMPLETE,
+        fact=LEVEL_START_FACT,
+    )
+
+
 def no_pay_issue(ctx: RunContext) -> CalculationIssue | None:
     """Return the missing-fact issue of an absence whose pay is not stated.
 
@@ -226,6 +269,7 @@ def fact_issues(ctx: RunContext) -> tuple[CalculationIssue | None, ...]:
     """
     return (
         level_start_issue(ctx),
+        level_service_issue(ctx),
         full_time_issue(ctx),
         no_pay_issue(ctx),
         roles_issue(ctx),
