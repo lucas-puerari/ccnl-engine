@@ -1343,7 +1343,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavoro-domestico-non-convivente",
       "ruleset_version": "2026.3",
-      "source_hash": "52cc149b6766ce12a8eeb1c01bd30d780157509a69b2993c3897a85a0d954ce9",
+      "source_hash": "9441917449eefee0940b0ada98f1f1effc8dcdcc969931ea176b360f4d094699",
       "source_type": "commercial_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/lavoro-domestico-non-convivente.json.gz"
@@ -3961,7 +3961,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "146e26c32f426760c43f77826badd4c7fdc6cea99834ef7b92b3a89f89b44094",
+      "source_hash": "e05786014d6fe5629aef4e6ee85cd697e3d1b43293a78d4e6f45c4a2dea53e9d",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/lavoro-domestico-non-convivente.json.gz",

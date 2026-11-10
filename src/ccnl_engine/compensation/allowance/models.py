@@ -59,6 +59,9 @@ class Allowance(BaseModel):
     ``part_time_proportionable=False`` marks allowances paid at their full
     contractual value whatever the part-time fraction (fixed welfare
     contributions, presence-based indennità the CCNL do not reduce).
+    ``hourly`` is a per-paid-hour rate for a role allowance; its monthly
+    component is zero and the rate is paid on stated hours in a pay-posting
+    run, rather than divided by a contractual monthly divisor.
 
     ``replaced_by`` names what replaces a national element paid only in its
     absence: ``provincial_element`` (Commercio Art. 215, terzo elemento),
@@ -79,6 +82,7 @@ class Allowance(BaseModel):
     code: str
     description: str
     monthly: TimeSeries
+    hourly: TimeSeries | None = None
     role: str | None = None
     percentage_rate: Decimal | None = Field(default=None, ge=0, le=1)
     percentage_base_allowances: tuple[str, ...] = ()
@@ -107,6 +111,14 @@ class Allowance(BaseModel):
             self.percentage_base_allowances or self.floor_level is not None
         ):
             msg = f"allowance {self.code}: percentage base needs a rate"
+            raise ValueError(msg)
+        if self.hourly is not None and any(
+            period.value != 0 for period in self.monthly.periods
+        ):
+            msg = (
+                f"allowance {self.code}: hourly rate requires "
+                "a zero monthly placeholder"
+            )
             raise ValueError(msg)
         if not self.contribution_relevant:
             msg = (

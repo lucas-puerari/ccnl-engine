@@ -9,6 +9,7 @@ from __future__ import annotations
 from dataclasses import replace
 from typing import TYPE_CHECKING
 
+from ccnl_engine.compensation.allowance.hourly import pay_hourly_allowances
 from ccnl_engine.compensation.change.rules import MonthChange, blended, month_change
 from ccnl_engine.compensation.element.services import _resolve_chain
 from ccnl_engine.compensation.equalisation.rules import equalisation_outcome
@@ -241,6 +242,17 @@ def build_context(
     chain = proration.apply(
         _apply_extra_month_policy(chain, payment.run_id.kind, run_fraction(accrual))
     )
+    if payment.run_id.kind in {"regular", "termination"} and proration.posts_pay:
+        paid_hours = (
+            request.contributable_hours
+            if request.contributable_hours is not None
+            else request.ordinary_hours_worked
+        )
+        chain = pay_hourly_allowances(
+            chain,
+            None if paid_hours is None else paid_hours.value,
+            competence,
+        )
     if payment.run_id.kind == "fourteenth":
         chain = offset_fourteenth(
             chain,
