@@ -51,6 +51,143 @@
     "workers_estimate": "~150k"
   },
   "parameters": {
+    "daily_presence_allowances": [
+      {
+        "code": "ROTATION_THREE_AUX_DAILY",
+        "description": "Three-shift daily allowance for specialized auxiliaries assigned exclusively to diagnosis, treatment or rehabilitation",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2020-07-01",
+              "valid_until": "2020-10-09",
+              "gap_kind": "not_applicable"
+            },
+            {
+              "valid_from": "2020-10-09",
+              "valid_until": null,
+              "value": "4.50"
+            }
+          ]
+        },
+        "role": "three_shift_diagnosis_care_rehab_specialized_auxiliary",
+        "exclusive_group": "daily_shift_rotation",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-sanita-privata-2020",
+              "title": "CCNL private healthcare, non-medical staff, 8 October 2020",
+              "kind": "associazione",
+              "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+              "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
+            },
+            "page": "91",
+            "section": "Art. 61(c)(1)",
+            "quote": "Agli ausiliari specializzati, nonché al personale dei ruoli sanitario e tecnico appartenente alle categorie B, C, D e DS, purché destinati esclusivamente ai servizi di diagnosi e cura e di riabilitazione, operante su tre turni, compete un'indennità, per le giornate di effettivo servizio prestato, di euro 4,50. Detta indennità è corrisposta purché vi sia una effettiva rotazione del personale nei tre turni, tale che nell'arco del mese si evidenzi una stabile alternanza dei turni di servizio (mattina, pomeriggio e notte)"
+          },
+          "transformation": "EUR 4.50 per counted actual service day for a caller-stated eligible specialized auxiliary stably rotating on three shifts; the PDF cover dates the agreement 8 October 2020 and Art. 4 makes effects start 9 October 2020. Night hours do not determine eligibility.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-10T00:32:50Z",
+            "verified_at": "2026-11-10T00:32:50Z",
+            "verified_by": "claude-opus-5-5",
+            "verification_status": "verified",
+            "review_id": "2026-11-10-ai-rotation-days"
+          }
+        }
+      },
+      {
+        "code": "ROTATION_THREE_HEALTH_TECH_DAILY",
+        "description": "Three-shift daily allowance for health or technical staff in categories B, C, D or DS assigned exclusively to diagnosis, treatment or rehabilitation",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2020-07-01",
+              "valid_until": "2020-10-09",
+              "gap_kind": "not_applicable"
+            },
+            {
+              "valid_from": "2020-10-09",
+              "valid_until": null,
+              "value": "4.50"
+            }
+          ]
+        },
+        "role": "three_shift_diagnosis_care_rehab_health_technical_b_c_d_ds",
+        "exclusive_group": "daily_shift_rotation",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-sanita-privata-2020",
+              "title": "CCNL private healthcare, non-medical staff, 8 October 2020",
+              "kind": "associazione",
+              "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+              "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
+            },
+            "page": "91",
+            "section": "Art. 61(c)(1)",
+            "quote": "Agli ausiliari specializzati, nonché al personale dei ruoli sanitario e tecnico appartenente alle categorie B, C, D e DS, purché destinati esclusivamente ai servizi di diagnosi e cura e di riabilitazione, operante su tre turni, compete un'indennità, per le giornate di effettivo servizio prestato, di euro 4,50. Detta indennità è corrisposta purché vi sia una effettiva rotazione del personale nei tre turni, tale che nell'arco del mese si evidenzi una stabile alternanza dei turni di servizio (mattina, pomeriggio e notte)"
+          },
+          "transformation": "EUR 4.50 per counted actual service day for caller-stated eligible health or technical staff stably rotating on three shifts; the PDF cover dates the agreement 8 October 2020 and Art. 4 makes effects start 9 October 2020. Night hours do not determine eligibility.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-10T00:32:50Z",
+            "verified_at": "2026-11-10T00:32:50Z",
+            "verified_by": "claude-opus-5-5",
+            "verification_status": "verified",
+            "review_id": "2026-11-10-ai-rotation-days"
+          }
+        }
+      },
+      {
+        "code": "ROTATION_TWO_DAILY",
+        "description": "Two-shift daily allowance for operators in categories A through DS on scheduled morning and afternoon shifts",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2020-07-01",
+              "valid_until": "2020-10-09",
+              "gap_kind": "not_applicable"
+            },
+            {
+              "valid_from": "2020-10-09",
+              "valid_until": null,
+              "value": "2.06"
+            }
+          ]
+        },
+        "role": "two_shift_scheduled_operator_a_ds",
+        "exclusive_group": "daily_shift_rotation",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-sanita-privata-2020",
+              "title": "CCNL private healthcare, non-medical staff, 8 October 2020",
+              "kind": "associazione",
+              "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+              "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
+            },
+            "page": "91",
+            "section": "Art. 61(c)(4)",
+            "quote": "Agli operatori di tutti i ruoli appartenenti alle categorie da A a DS, addetti a tutti i servizi attivati in base alla programmazione della Struttura ed operanti su almeno due turni (antimeridiano e pomeridiano) per l'ottimale utilizzazione degli impianti stessi, compete un'indennità giornaliera legata all'effettuazione dei turni di servizio programmati pari a euro 2,06. Tale indennità non è cumulabile con l'indennità prevista dalla presente lettera c) al precedente punto 1. Detta indennità è corrisposta purché vi sia una effettiva rotazione del personale sui due turni, tale che nell'arco del mese si evidenzi una stabile alternanza del turno di servizio, in relazione al modello adottato nella Struttura."
+          },
+          "transformation": "EUR 2.06 per counted actual service day for a caller-stated eligible operator stably alternating scheduled morning and afternoon shifts; mutually exclusive with the three-shift rate. The PDF cover dates the agreement 8 October 2020 and Art. 4 makes effects start 9 October 2020.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-10T00:32:50Z",
+            "verified_at": "2026-11-10T00:32:50Z",
+            "verified_by": "claude-opus-5-5",
+            "verification_status": "verified",
+            "review_id": "2026-11-10-ai-rotation-days"
+          }
+        }
+      }
+    ],
     "hourly_divisor": {
       "periods": [
         {
@@ -1983,7 +2120,7 @@
       },
       {
         "kind": "simplification",
-        "text": "DAILY ROTATING SHIFT ALLOWANCES (Art. 61(c), p. 91): EUR 4.50 per actual service day for eligible staff stably rotating across three shifts, or EUR 2.06 per day for eligible staff stably alternating at least two shifts; the two are not cumulative. The night-hour allowance does not replace them. Monthly rotation, qualifying profiles and actual days are not derived from night hours.",
+        "text": "DAILY ROTATING SHIFT ALLOWANCES (Art. 61(c), p. 91): EUR 4.50 per counted actual service day for eligible staff stably rotating across three shifts, or EUR 2.06 for eligible staff stably alternating scheduled morning and afternoon shifts; these rates are mutually exclusive. Caller-stated roles assert both the qualifying profile and stable monthly rotation; night-hour facts do not establish either. The PDF cover prints 8 October 2020 and Art. 4 makes effects start the following day, 9 October 2020.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -1991,7 +2128,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Supply qualifying profiles, stable monthly rotation and actual eligible service days; implement the distinct daily rates with mutual exclusion."
+          "remediation": "Caller must verify qualifying profile, scheduled service and stable monthly rotation before stating a rotation role; no automatic inference from night hours. The engine does not independently verify qualifying roles or stable rotation."
         }
       },
       {
@@ -2016,7 +2153,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "5c1d023fa1720068a83331946fd10849119a7cfc5efb5392d8a2c31e03aa9d9a",
+    "source_hash": "cf0ec206b06f0c29af72044de648bb2d48c9df5d4c57197f3b50ee1bb07cdea3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2671,6 +2808,27 @@
           "The signing date is 8 October 2020; Art. 4 makes the night and on-call event rates effective 9 October 2020.",
           "Art. 73 lists TFR elements but does not name pronta disponibilità; non-TFR treatment remains an unverified modelling choice.",
           "Art. 61(c) daily rotating shift allowances remain unmodelled; Art. 60 enterprise adoption and covered profiles are asserted by callers submitting events."
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-rotation-days",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 61(c)(1) and (4), cached PDF page 91, cover page 1 and Art. 4; daily shift rotation allowances.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+            "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
+          }
+        ],
+        "findings": [
+          "EUR 4.50 for specialized auxiliaries and eligible health/technical category B-DS staff on three shifts; EUR 2.06 for eligible A-DS operators alternating scheduled morning and afternoon shifts. Not cumulative. Actual service days are counted independently of night hours; Art. 4 makes effects start 9 October 2020."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.daily_presence_allowances"
         ]
       }
     ]

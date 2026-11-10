@@ -92,7 +92,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Artt. 120-121: the 365-day lookback is approximated by 12 calendar months. The documented listed serious illnesses receive 90 additional days (100% in months 7-8 and 70% in month 9); day hospital and life-saving therapy days are excluded from the comporto when stated.",
+        "text": "Artt. 120-121: the comporto counts the sick days of the 365 days back from the last sickness event ('per anno solare si intende un periodo di 365 giorni partendo a ritroso dell'ultimo evento morboso'), comporto_windows window_days 365. The documented listed serious illnesses receive 90 additional days (100% in months 7-8 and 70% in month 9); day hospital and life-saving therapy days are excluded from the comporto when stated.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -100,7 +100,8 @@
           "applies_when": {
             "trigger": "run"
           },
-          "remediation": "Replace the 12-calendar-month approximation with a day-exact 365-day lookback."
+          "remediation": "Resolved: day-exact 365-day lookback (window_days), read on 2026-11-10.",
+          "status": "resolved"
         }
       },
       {
@@ -2385,7 +2386,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "c1ff838d1f660f3c5874edcc834677e77c38a9daf17f9dd3053c1287e0ca8c04",
+    "source_hash": "fad5be1ac972b58c76d252dfdc7921ba5008c89c17359238aae625d907993b19",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3148,7 +3149,8 @@
           "seniority_months_from": 0,
           "window_months": 12,
           "comporto_days": 180,
-          "serious_comporto_days": 270
+          "serious_comporto_days": 270,
+          "window_days": 365
         }
       ],
       "holiday": {
@@ -4296,6 +4298,28 @@
           "work_rules.insured_absence.injury.holiday",
           "work_rules.insured_absence.maternity.holiday",
           "work_rules.insured_absence.maternity.paternity_holiday"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-studi-comporto-365-days",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 121 comporto lookback of 365 days back from the last sickness event.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "Art. 121: 'per anno solare si intende un periodo di 365 giorni partendo a ritroso dell'ultimo evento morboso'; the comporto window now counts 365 days, not 12 calendar months (one day apart across 29 February)."
+        ],
+        "checked": [
+          "work_rules.sickness_rules.comporto_windows",
+          "coverage.notes"
         ]
       }
     ],

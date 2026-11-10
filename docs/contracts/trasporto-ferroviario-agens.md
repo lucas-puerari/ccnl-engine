@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer, seniority |
+| **Limits of this contract** | base_salary, seniority |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 50 verified / 6 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 51 verified / 6 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-22 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2026-06-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The base salaries (minimi contrattuali mensili) of all 16 posizioni retributive for the tranches from 1.6.2025, 1.11.2025 and 1.6.2026 against the pay table of the CCNL text of 22 May 2025 published by ORSA Ferrovie, a signatory union. | confirmed | Art. 68 punto 3 (PDF p. 117, printed p. 116) prints the minimi contrattuali mensili of the 16 posizioni retributive Q1-F2 in three columns (dal 1°.6.2025, dal 1°.11.2025, dal 1°.6.2026); all 48 file values match the printed table.<br>Art. 68 punto 3.1: "Gli importi dei minimi contrattuali di cui sopra sono comprensivi dell'ex indennità di contingenza (...) nonché dell'E.D.R. di cui al Protocollo Interconfederale del 31 luglio 1992 e dell'E.D.R. di cui all'accordo nazionale del 24.1.2008." This confirms the conglobated base_salary model of the file.<br>The indennità di funzione Quadri (art. 71) is a separate element of pay (art. 68 punto 1.2 c), so the file's Q1/Q2 base_salary correctly excludes it. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 31 (pp. 81-82): comporto of 12 months summed over 36 consecutive months, the net pay integrated to 100% for 9 months (days 1-3 included) and 80% for 3. The file kept 100% for 540 days of one illness: corrected to a cumulation over three years (274 days at 100% of the net pay, 80% up to 365). |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 54, tabella Livelli professionali / Durata, p. 107). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
+| 2026-11-10 | claude-opus-5-5 (ai) | FS fund ordinary contribution, covered employer and worker eligibility against the decrees and INPS circulars. | corrected | Art. 2(2) of the 2017 decree requires covered employers, not merely the Agens agreement; art. 6(1)(a) gives 0.20% split two-thirds and one-third for permanent non-executives including professional apprentices. INPS 208/2015 confirms March 2015 start; INPS 107/2018 confirms changed employer coverage from August 2017; INPS 70/2020 discusses broader benefit eligibility, not the contribution base. |
 
 ## Salary table
 
@@ -129,13 +130,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; before 2025-06-01.
 
     **Remediation:** Model the January 2024 - May 2025 salary tables if an arrears or history computation needs them.
-
-!!! warning "trasporto-ferroviario-agens/fondo_solidarieta_ferrovie · inps_employer · impact yes · open"
-    FONDO DI SOLIDARIETA FERROVIE. Contribution rate 0.20% confirmed: 2/3 a carico di Ferrovie (datore, ≈0.133%), 1/3 a carico dei lavoratori (≈0.067%). Source: INPS circolare (confirmed by inps.it/fondo-ferrovie-dello-stato and consulenza.it). Not modelled in the data (parameters.solidarity_fund is null although the engine supports it); adds approximately 0.067% to employee cost and 0.133% to employer cost above the standard INDUSTRIA INPS rates. (review of 2026-10-30)
-
-    **Applies when:** `inps_employer` applies.
-
-    **Remediation:** Set parameters.solidarity_fund (code fondo_ferrovie, employer_rate 0.00133, employee_rate 0.00067, sourced from the INPS circular), as studi-professionali-confprofessioni does.
 
 !!! warning "trasporto-ferroviario-agens/seniority_amounts_before_june_2026 · seniority · impact unknown · open"
     SENIORITY AMOUNTS PRE-JUN 2025. Per-level scatto amounts are sourced from lavoro-economia.it/kitech.it representing the Jun 2026 table. Whether identical values applied in the Jun 2025 and Nov 2025 tranches is unconfirmed. Modelled as constant from 01/06/2025.
@@ -327,6 +321,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     FUNCTION ALLOWANCES (IND_FUN): Q1 receives +250.00/month, Q2 receives +130.00/month. Modelled as fixed_allowances with code IND_FUN effective from first salary tranche (01/06/2025). Two aggregator sources (ilccnl.it, kitech.it) agree the allowances are additive to the base tabellare.
     
     APPRENTICESHIP. I320 specifies apprendistato professionalizzante (max 36 months per Art. 29 Parte Generale). Per leggeinchiaro.it, retributive percentages are defined in the Piano Formativo Individuale (PFI) on a per-worker basis and are not published as a contract-level table. No fixed percentage or under-classification track exists in the CCNL text; the apprenticeship array is therefore empty by contract structure, not by modelling omission. Analogous to public-sector contracts where apprendistato is excluded from scope.
+    
+    The ordinary FS solidarity fund contribution is modelled only when EmployerProfile.solidarity_fund_covered is true. The 2017 decree limits coverage to FS-controlled rail transport employers and undertakings already covered by the predecessor fund under art. 59(6) L. 449/1997. An unknown employer fact withholds the contribution and blocks inps_employer; false owes none. Only permanent non-executive employees, including professional apprentices, contribute. The separate additional contribution on benefits and other funds potentially applicable to uncovered employers are not determined here (D.I. 99296/2017 art. 2 and art. 6; INPS circ. 107/2018 sections 4.1-4.2).
     
 
 ## Raw data
