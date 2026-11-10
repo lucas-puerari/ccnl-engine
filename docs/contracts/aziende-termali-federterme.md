@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-10-08 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-11-07 | claude-opus-5-5 (ai) | Values a primary-text verification found different from the printed tables (text layer). | corrected | 9 values corrected to the amounts printed on the cited pages. |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 9 values read identically by both readings and equal to the file. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Observatory levy and FONTUR thermal-sector health contribution against the signed agreement and official fund regulation. | confirmed | Monthly observatory shares and annual FONTUR shares verified; enrolment fee and payment timing remain unmodelled. |
 
 ## Salary table
 
@@ -126,11 +127,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Verify the terziario INPS rates for Federterme employers against the INPS circular.
 
 !!! warning "aziende-termali-federterme/ebiterme_fontur_funds · bilateral_funds · impact yes · open"
-    SIMPLIFICATION: Fondi bilaterali non modellati (EBITERME, FONTUR assistenza sanitaria). Contributi datoriali non quantificati. employer_cost_annual sottostimato.
+    SIMPLIFICATION: The Observatorio monthly levy and the annual FONTUR health contribution are accrued, but the EUR 15 one-time first-enrolment employer fee, annual upfront remittance and first-year proration are not automatically posted. Fixed-term written opt-in and non-worked-month recovery are not represented; no separate EBITERME payment amount is established by the cited clauses. Employer cost can be understated at first enrolment.
 
     **Applies when:** `bilateral_funds` applies.
 
-    **Remediation:** Pass the EBITERME and FONTUR contributions as a bilateral fund event, or source and model them.
+    **Remediation:** Supply the known first-enrolment fee as a bilateral fund event; establish any separate EBITERME contribution from an official source and model enrolment timing and fixed-term opt-in before removing this limitation.
 
 !!! warning "aziende-termali-federterme/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.

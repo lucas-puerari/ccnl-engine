@@ -286,7 +286,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/aziende-termali-federterme",
       "ruleset_version": "2024.1",
-      "source_hash": "e0cc043a309babc08a87294a25a9946717e65eef53e36e8ff3970110895a8dcd",
+      "source_hash": "6c461cff6feefb91962c782c1e12a9736d34b40c816260e80c6af76585de6fbd",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/aziende-termali-federterme.json.gz"
@@ -2721,7 +2721,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "a5ec8b725b07f39cfc1130313a9c7493714761afd4ab337ef8ba2235a13b3e50",
+      "source_hash": "228a98f42edda41e7b2a5467dfa8df2340c29980962bf64ad0b5aa2ed002e089",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/aziende-termali-federterme.json.gz",
