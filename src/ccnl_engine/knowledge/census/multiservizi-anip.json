@@ -167,10 +167,10 @@
       "institute": "seniority",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "SENIORITY (CNEL 105782 art. 22, pp. 41-42, 90): Levels 2-6 include both operai and impiegati. The single level-based schedule assigns the wrong form of seniority to some workers: impiegati receive eight biennial scatti at most, operai one sector amount after four years (including levels 5 and 6). Scatti must retain their value at maturation and after promotion, with a ceiling of 50% of tabellare plus EUR 279.60; the existing schedule reprices every matured scatto at the current rate. Sector seniority survives contract changes within the sector.",
+      "rule": "SENIORITY (CNEL 105782 art. 22, pp. 41-42, 90): Category-specific amounts now pay operai at levels 1-6 after four years (including levels 5 and 6), with at most one quota; levels 5-7 and Q pay impiegati up to eight biennial scatti. No current series for impiegati at levels 2-4 is verified. Without an EarnedIncrements worker fact, matured scatti are still repriced at the run date, including after promotion; the 50% ceiling of tabellare plus EUR 279.60 is not enforced. The worker must supply recognised sector service across contract changes and the correct category at mixed levels.",
       "calculation": "ccnl/multiservizi-anip:coverage.notes",
       "state": "absent",
-      "remediation": "Route scatti and forfettaria by worker category, preserve each matured amount across tranches and promotion, respect the ceiling and sector service history.",
+      "remediation": "Source the current impiegati scatto amounts for levels 2-4; supply earned amounts and recognised sector service from worker records, and implement automatic maturation-date pricing and the 50% ceiling.",
       "origin": "seeded",
       "links": {
         "limitations": [

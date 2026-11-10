@@ -37,6 +37,20 @@
         "url": "https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf",
         "pages": [],
         "published_on": "2023-10-03"
+      },
+      {
+        "document_id": "aiop-rsa-accordo-ponte-2023-ratified",
+        "title": "AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023",
+        "kind": "associazione",
+        "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+        "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214",
+        "published_on": "2023-10-03",
+        "pages": [
+          "7",
+          "8",
+          "11",
+          "12"
+        ]
       }
     ],
     "extraction": {
@@ -89,7 +103,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Seniority: CCNL RSA-AIOP provides a flat EUR 40/month after 5 years of service (levels A-E3 only; F/G/H excluded). Modelled as cadence_months=60, maximum_count=1 — correct for new hires (single increment at month 60). The Oct 2023 'premio di anzianità' is EUR 40 gross on each of thirteen monthly payments, TFR-relevant, for levels A–E3 with ten years at the same employer or group already completed on 3 October 2023; ratification was a condition. It is not the five-year increment and is not modelled: an in_service_on allowance alone cannot establish ten years of service on the signing date.",
+        "text": "Seniority: CCNL RSA-AIOP provides a flat EUR 40/month after 5 years of service (levels A-E3 only; F/G/H excluded). Modelled as cadence_months=60, maximum_count=1 — correct for new hires (single increment at month 60). The separate October 2023 seniority premium is modelled for employees with ten years at the same employer or group at signing (3 October 2023), using the caller-supplied employment start date as the start of group service. Earlier service at another group company must be reflected in that date; without a known start date the premium is not paid. Ratification is confirmed by the signed AIOP copy. The premium clause does not separately state a start date; 1 October 2023 is inferred from the agreement's effective date. No later replacement agreement has been verified; the 2023 agreement provides for continuation or annual renewal pending replacement, so the allowance remains open-ended pending evidence of a later change or absorption.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -98,7 +112,7 @@
             "trigger": "outside_input",
             "effective_from": "2023-10-01"
           },
-          "remediation": "Verify ratification and add a monthly EUR 40 allowance for levels A–E3 gated by service of at least ten years on 3 October 2023 and employment on that date; include thirteen payments and TFR."
+          "remediation": "Supply group-service start as the employment start date when earlier service with another group company qualifies. Verify any separately specified premium start date and any later replacement or absorption before changing the open-ended premium."
         }
       }
     ]
@@ -382,7 +396,83 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "PREMIO_ANZIANITA_2023",
+          "description": "Seniority premium for ten years of employer or group service at signing",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2012-04-01",
+                "valid_until": "2023-10-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2023-10-01",
+                "valid_until": null,
+                "value": "40.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aiop-rsa-accordo-ponte-2023-ratified",
+                      "title": "AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023",
+                      "kind": "associazione",
+                      "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+                      "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214",
+                      "published_on": "2023-10-03"
+                    },
+                    "page": "11",
+                    "section": "PREMIO DI ANZIANITÀ",
+                    "quote": "Si conviene che a tutti i dipendenti appartenenti ai livelli A, B, C, D1, D2, D3, E1, E2, E3, che, alla data di sottoscrizione del presente accordo, abbiano già maturato dieci anni di anzianità nella stessa Azienda o Gruppo compete un importo lordo pari a € 40,00 da erogarsi per tredici mensilità ed utile ai fini del TFR."
+                  },
+                  "transformation": "EUR 40 per monthly payment for the listed levels, including the thirteenth and TFR, from 1 October 2023. Signing was 3 October 2023 (PDF p. 7); ten years by signing means group service started by 3 October 2013. The caller supplies group-service start as employment start; unknown start does not qualify. The agreement is ratified (p. 12) and renews or continues pending replacement (p. 8); no later replacement is verified.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T01:39:10Z",
+                    "effective_from": "2023-10-01",
+                    "verified_at": "2026-11-10T01:39:10Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-rsa-seniority-premium",
+                    "verified_by": "claude-opus-5-5"
+                  }
+                }
+              }
+            ]
+          },
+          "in_service_on": "2013-10-03",
+          "months_per_year": 13,
+          "tfr_relevant": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aiop-rsa-accordo-ponte-2023-ratified",
+                "title": "AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023",
+                "kind": "associazione",
+                "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+                "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214",
+                "published_on": "2023-10-03"
+              },
+              "page": "11",
+              "section": "PREMIO DI ANZIANITÀ",
+              "quote": "Si conviene che a tutti i dipendenti appartenenti ai livelli A, B, C, D1, D2, D3, E1, E2, E3, che, alla data di sottoscrizione del presente accordo, abbiano già maturato dieci anni di anzianità nella stessa Azienda o Gruppo compete un importo lordo pari a € 40,00 da erogarsi per tredici mensilità ed utile ai fini del TFR."
+            },
+            "transformation": "EUR 40 per monthly payment for the listed levels, including the thirteenth and TFR, from 1 October 2023. Signing was 3 October 2023 (PDF p. 7); ten years by signing means group service started by 3 October 2013. The caller supplies group-service start as employment start; unknown start does not qualify. The agreement is ratified (p. 12) and renews or continues pending replacement (p. 8); no later replacement is verified.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:39:10Z",
+              "effective_from": "2023-10-01",
+              "verified_at": "2026-11-10T01:39:10Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-rsa-seniority-premium",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -470,7 +560,83 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "PREMIO_ANZIANITA_2023",
+          "description": "Seniority premium for ten years of employer or group service at signing",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2012-04-01",
+                "valid_until": "2023-10-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2023-10-01",
+                "valid_until": null,
+                "value": "40.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aiop-rsa-accordo-ponte-2023-ratified",
+                      "title": "AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023",
+                      "kind": "associazione",
+                      "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+                      "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214",
+                      "published_on": "2023-10-03"
+                    },
+                    "page": "11",
+                    "section": "PREMIO DI ANZIANITÀ",
+                    "quote": "Si conviene che a tutti i dipendenti appartenenti ai livelli A, B, C, D1, D2, D3, E1, E2, E3, che, alla data di sottoscrizione del presente accordo, abbiano già maturato dieci anni di anzianità nella stessa Azienda o Gruppo compete un importo lordo pari a € 40,00 da erogarsi per tredici mensilità ed utile ai fini del TFR."
+                  },
+                  "transformation": "EUR 40 per monthly payment for the listed levels, including the thirteenth and TFR, from 1 October 2023. Signing was 3 October 2023 (PDF p. 7); ten years by signing means group service started by 3 October 2013. The caller supplies group-service start as employment start; unknown start does not qualify. The agreement is ratified (p. 12) and renews or continues pending replacement (p. 8); no later replacement is verified.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T01:39:10Z",
+                    "effective_from": "2023-10-01",
+                    "verified_at": "2026-11-10T01:39:10Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-rsa-seniority-premium",
+                    "verified_by": "claude-opus-5-5"
+                  }
+                }
+              }
+            ]
+          },
+          "in_service_on": "2013-10-03",
+          "months_per_year": 13,
+          "tfr_relevant": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aiop-rsa-accordo-ponte-2023-ratified",
+                "title": "AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023",
+                "kind": "associazione",
+                "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+                "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214",
+                "published_on": "2023-10-03"
+              },
+              "page": "11",
+              "section": "PREMIO DI ANZIANITÀ",
+              "quote": "Si conviene che a tutti i dipendenti appartenenti ai livelli A, B, C, D1, D2, D3, E1, E2, E3, che, alla data di sottoscrizione del presente accordo, abbiano già maturato dieci anni di anzianità nella stessa Azienda o Gruppo compete un importo lordo pari a € 40,00 da erogarsi per tredici mensilità ed utile ai fini del TFR."
+            },
+            "transformation": "EUR 40 per monthly payment for the listed levels, including the thirteenth and TFR, from 1 October 2023. Signing was 3 October 2023 (PDF p. 7); ten years by signing means group service started by 3 October 2013. The caller supplies group-service start as employment start; unknown start does not qualify. The agreement is ratified (p. 12) and renews or continues pending replacement (p. 8); no later replacement is verified.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:39:10Z",
+              "effective_from": "2023-10-01",
+              "verified_at": "2026-11-10T01:39:10Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-rsa-seniority-premium",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -558,7 +724,83 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "PREMIO_ANZIANITA_2023",
+          "description": "Seniority premium for ten years of employer or group service at signing",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2012-04-01",
+                "valid_until": "2023-10-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2023-10-01",
+                "valid_until": null,
+                "value": "40.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aiop-rsa-accordo-ponte-2023-ratified",
+                      "title": "AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023",
+                      "kind": "associazione",
+                      "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+                      "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214",
+                      "published_on": "2023-10-03"
+                    },
+                    "page": "11",
+                    "section": "PREMIO DI ANZIANITÀ",
+                    "quote": "Si conviene che a tutti i dipendenti appartenenti ai livelli A, B, C, D1, D2, D3, E1, E2, E3, che, alla data di sottoscrizione del presente accordo, abbiano già maturato dieci anni di anzianità nella stessa Azienda o Gruppo compete un importo lordo pari a € 40,00 da erogarsi per tredici mensilità ed utile ai fini del TFR."
+                  },
+                  "transformation": "EUR 40 per monthly payment for the listed levels, including the thirteenth and TFR, from 1 October 2023. Signing was 3 October 2023 (PDF p. 7); ten years by signing means group service started by 3 October 2013. The caller supplies group-service start as employment start; unknown start does not qualify. The agreement is ratified (p. 12) and renews or continues pending replacement (p. 8); no later replacement is verified.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T01:39:10Z",
+                    "effective_from": "2023-10-01",
+                    "verified_at": "2026-11-10T01:39:10Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-rsa-seniority-premium",
+                    "verified_by": "claude-opus-5-5"
+                  }
+                }
+              }
+            ]
+          },
+          "in_service_on": "2013-10-03",
+          "months_per_year": 13,
+          "tfr_relevant": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aiop-rsa-accordo-ponte-2023-ratified",
+                "title": "AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023",
+                "kind": "associazione",
+                "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+                "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214",
+                "published_on": "2023-10-03"
+              },
+              "page": "11",
+              "section": "PREMIO DI ANZIANITÀ",
+              "quote": "Si conviene che a tutti i dipendenti appartenenti ai livelli A, B, C, D1, D2, D3, E1, E2, E3, che, alla data di sottoscrizione del presente accordo, abbiano già maturato dieci anni di anzianità nella stessa Azienda o Gruppo compete un importo lordo pari a € 40,00 da erogarsi per tredici mensilità ed utile ai fini del TFR."
+            },
+            "transformation": "EUR 40 per monthly payment for the listed levels, including the thirteenth and TFR, from 1 October 2023. Signing was 3 October 2023 (PDF p. 7); ten years by signing means group service started by 3 October 2013. The caller supplies group-service start as employment start; unknown start does not qualify. The agreement is ratified (p. 12) and renews or continues pending replacement (p. 8); no later replacement is verified.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:39:10Z",
+              "effective_from": "2023-10-01",
+              "verified_at": "2026-11-10T01:39:10Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-rsa-seniority-premium",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -646,7 +888,83 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "PREMIO_ANZIANITA_2023",
+          "description": "Seniority premium for ten years of employer or group service at signing",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2012-04-01",
+                "valid_until": "2023-10-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2023-10-01",
+                "valid_until": null,
+                "value": "40.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aiop-rsa-accordo-ponte-2023-ratified",
+                      "title": "AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023",
+                      "kind": "associazione",
+                      "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+                      "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214",
+                      "published_on": "2023-10-03"
+                    },
+                    "page": "11",
+                    "section": "PREMIO DI ANZIANITÀ",
+                    "quote": "Si conviene che a tutti i dipendenti appartenenti ai livelli A, B, C, D1, D2, D3, E1, E2, E3, che, alla data di sottoscrizione del presente accordo, abbiano già maturato dieci anni di anzianità nella stessa Azienda o Gruppo compete un importo lordo pari a € 40,00 da erogarsi per tredici mensilità ed utile ai fini del TFR."
+                  },
+                  "transformation": "EUR 40 per monthly payment for the listed levels, including the thirteenth and TFR, from 1 October 2023. Signing was 3 October 2023 (PDF p. 7); ten years by signing means group service started by 3 October 2013. The caller supplies group-service start as employment start; unknown start does not qualify. The agreement is ratified (p. 12) and renews or continues pending replacement (p. 8); no later replacement is verified.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T01:39:10Z",
+                    "effective_from": "2023-10-01",
+                    "verified_at": "2026-11-10T01:39:10Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-rsa-seniority-premium",
+                    "verified_by": "claude-opus-5-5"
+                  }
+                }
+              }
+            ]
+          },
+          "in_service_on": "2013-10-03",
+          "months_per_year": 13,
+          "tfr_relevant": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aiop-rsa-accordo-ponte-2023-ratified",
+                "title": "AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023",
+                "kind": "associazione",
+                "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+                "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214",
+                "published_on": "2023-10-03"
+              },
+              "page": "11",
+              "section": "PREMIO DI ANZIANITÀ",
+              "quote": "Si conviene che a tutti i dipendenti appartenenti ai livelli A, B, C, D1, D2, D3, E1, E2, E3, che, alla data di sottoscrizione del presente accordo, abbiano già maturato dieci anni di anzianità nella stessa Azienda o Gruppo compete un importo lordo pari a € 40,00 da erogarsi per tredici mensilità ed utile ai fini del TFR."
+            },
+            "transformation": "EUR 40 per monthly payment for the listed levels, including the thirteenth and TFR, from 1 October 2023. Signing was 3 October 2023 (PDF p. 7); ten years by signing means group service started by 3 October 2013. The caller supplies group-service start as employment start; unknown start does not qualify. The agreement is ratified (p. 12) and renews or continues pending replacement (p. 8); no later replacement is verified.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:39:10Z",
+              "effective_from": "2023-10-01",
+              "verified_at": "2026-11-10T01:39:10Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-rsa-seniority-premium",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -734,7 +1052,83 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "PREMIO_ANZIANITA_2023",
+          "description": "Seniority premium for ten years of employer or group service at signing",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2012-04-01",
+                "valid_until": "2023-10-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2023-10-01",
+                "valid_until": null,
+                "value": "40.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aiop-rsa-accordo-ponte-2023-ratified",
+                      "title": "AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023",
+                      "kind": "associazione",
+                      "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+                      "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214",
+                      "published_on": "2023-10-03"
+                    },
+                    "page": "11",
+                    "section": "PREMIO DI ANZIANITÀ",
+                    "quote": "Si conviene che a tutti i dipendenti appartenenti ai livelli A, B, C, D1, D2, D3, E1, E2, E3, che, alla data di sottoscrizione del presente accordo, abbiano già maturato dieci anni di anzianità nella stessa Azienda o Gruppo compete un importo lordo pari a € 40,00 da erogarsi per tredici mensilità ed utile ai fini del TFR."
+                  },
+                  "transformation": "EUR 40 per monthly payment for the listed levels, including the thirteenth and TFR, from 1 October 2023. Signing was 3 October 2023 (PDF p. 7); ten years by signing means group service started by 3 October 2013. The caller supplies group-service start as employment start; unknown start does not qualify. The agreement is ratified (p. 12) and renews or continues pending replacement (p. 8); no later replacement is verified.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T01:39:10Z",
+                    "effective_from": "2023-10-01",
+                    "verified_at": "2026-11-10T01:39:10Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-rsa-seniority-premium",
+                    "verified_by": "claude-opus-5-5"
+                  }
+                }
+              }
+            ]
+          },
+          "in_service_on": "2013-10-03",
+          "months_per_year": 13,
+          "tfr_relevant": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aiop-rsa-accordo-ponte-2023-ratified",
+                "title": "AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023",
+                "kind": "associazione",
+                "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+                "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214",
+                "published_on": "2023-10-03"
+              },
+              "page": "11",
+              "section": "PREMIO DI ANZIANITÀ",
+              "quote": "Si conviene che a tutti i dipendenti appartenenti ai livelli A, B, C, D1, D2, D3, E1, E2, E3, che, alla data di sottoscrizione del presente accordo, abbiano già maturato dieci anni di anzianità nella stessa Azienda o Gruppo compete un importo lordo pari a € 40,00 da erogarsi per tredici mensilità ed utile ai fini del TFR."
+            },
+            "transformation": "EUR 40 per monthly payment for the listed levels, including the thirteenth and TFR, from 1 October 2023. Signing was 3 October 2023 (PDF p. 7); ten years by signing means group service started by 3 October 2013. The caller supplies group-service start as employment start; unknown start does not qualify. The agreement is ratified (p. 12) and renews or continues pending replacement (p. 8); no later replacement is verified.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:39:10Z",
+              "effective_from": "2023-10-01",
+              "verified_at": "2026-11-10T01:39:10Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-rsa-seniority-premium",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -822,7 +1216,83 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "PREMIO_ANZIANITA_2023",
+          "description": "Seniority premium for ten years of employer or group service at signing",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2012-04-01",
+                "valid_until": "2023-10-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2023-10-01",
+                "valid_until": null,
+                "value": "40.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aiop-rsa-accordo-ponte-2023-ratified",
+                      "title": "AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023",
+                      "kind": "associazione",
+                      "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+                      "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214",
+                      "published_on": "2023-10-03"
+                    },
+                    "page": "11",
+                    "section": "PREMIO DI ANZIANITÀ",
+                    "quote": "Si conviene che a tutti i dipendenti appartenenti ai livelli A, B, C, D1, D2, D3, E1, E2, E3, che, alla data di sottoscrizione del presente accordo, abbiano già maturato dieci anni di anzianità nella stessa Azienda o Gruppo compete un importo lordo pari a € 40,00 da erogarsi per tredici mensilità ed utile ai fini del TFR."
+                  },
+                  "transformation": "EUR 40 per monthly payment for the listed levels, including the thirteenth and TFR, from 1 October 2023. Signing was 3 October 2023 (PDF p. 7); ten years by signing means group service started by 3 October 2013. The caller supplies group-service start as employment start; unknown start does not qualify. The agreement is ratified (p. 12) and renews or continues pending replacement (p. 8); no later replacement is verified.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T01:39:10Z",
+                    "effective_from": "2023-10-01",
+                    "verified_at": "2026-11-10T01:39:10Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-rsa-seniority-premium",
+                    "verified_by": "claude-opus-5-5"
+                  }
+                }
+              }
+            ]
+          },
+          "in_service_on": "2013-10-03",
+          "months_per_year": 13,
+          "tfr_relevant": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aiop-rsa-accordo-ponte-2023-ratified",
+                "title": "AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023",
+                "kind": "associazione",
+                "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+                "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214",
+                "published_on": "2023-10-03"
+              },
+              "page": "11",
+              "section": "PREMIO DI ANZIANITÀ",
+              "quote": "Si conviene che a tutti i dipendenti appartenenti ai livelli A, B, C, D1, D2, D3, E1, E2, E3, che, alla data di sottoscrizione del presente accordo, abbiano già maturato dieci anni di anzianità nella stessa Azienda o Gruppo compete un importo lordo pari a € 40,00 da erogarsi per tredici mensilità ed utile ai fini del TFR."
+            },
+            "transformation": "EUR 40 per monthly payment for the listed levels, including the thirteenth and TFR, from 1 October 2023. Signing was 3 October 2023 (PDF p. 7); ten years by signing means group service started by 3 October 2013. The caller supplies group-service start as employment start; unknown start does not qualify. The agreement is ratified (p. 12) and renews or continues pending replacement (p. 8); no later replacement is verified.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:39:10Z",
+              "effective_from": "2023-10-01",
+              "verified_at": "2026-11-10T01:39:10Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-rsa-seniority-premium",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -910,7 +1380,83 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "PREMIO_ANZIANITA_2023",
+          "description": "Seniority premium for ten years of employer or group service at signing",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2012-04-01",
+                "valid_until": "2023-10-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2023-10-01",
+                "valid_until": null,
+                "value": "40.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aiop-rsa-accordo-ponte-2023-ratified",
+                      "title": "AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023",
+                      "kind": "associazione",
+                      "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+                      "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214",
+                      "published_on": "2023-10-03"
+                    },
+                    "page": "11",
+                    "section": "PREMIO DI ANZIANITÀ",
+                    "quote": "Si conviene che a tutti i dipendenti appartenenti ai livelli A, B, C, D1, D2, D3, E1, E2, E3, che, alla data di sottoscrizione del presente accordo, abbiano già maturato dieci anni di anzianità nella stessa Azienda o Gruppo compete un importo lordo pari a € 40,00 da erogarsi per tredici mensilità ed utile ai fini del TFR."
+                  },
+                  "transformation": "EUR 40 per monthly payment for the listed levels, including the thirteenth and TFR, from 1 October 2023. Signing was 3 October 2023 (PDF p. 7); ten years by signing means group service started by 3 October 2013. The caller supplies group-service start as employment start; unknown start does not qualify. The agreement is ratified (p. 12) and renews or continues pending replacement (p. 8); no later replacement is verified.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T01:39:10Z",
+                    "effective_from": "2023-10-01",
+                    "verified_at": "2026-11-10T01:39:10Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-rsa-seniority-premium",
+                    "verified_by": "claude-opus-5-5"
+                  }
+                }
+              }
+            ]
+          },
+          "in_service_on": "2013-10-03",
+          "months_per_year": 13,
+          "tfr_relevant": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aiop-rsa-accordo-ponte-2023-ratified",
+                "title": "AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023",
+                "kind": "associazione",
+                "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+                "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214",
+                "published_on": "2023-10-03"
+              },
+              "page": "11",
+              "section": "PREMIO DI ANZIANITÀ",
+              "quote": "Si conviene che a tutti i dipendenti appartenenti ai livelli A, B, C, D1, D2, D3, E1, E2, E3, che, alla data di sottoscrizione del presente accordo, abbiano già maturato dieci anni di anzianità nella stessa Azienda o Gruppo compete un importo lordo pari a € 40,00 da erogarsi per tredici mensilità ed utile ai fini del TFR."
+            },
+            "transformation": "EUR 40 per monthly payment for the listed levels, including the thirteenth and TFR, from 1 October 2023. Signing was 3 October 2023 (PDF p. 7); ten years by signing means group service started by 3 October 2013. The caller supplies group-service start as employment start; unknown start does not qualify. The agreement is ratified (p. 12) and renews or continues pending replacement (p. 8); no later replacement is verified.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:39:10Z",
+              "effective_from": "2023-10-01",
+              "verified_at": "2026-11-10T01:39:10Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-rsa-seniority-premium",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -998,7 +1544,83 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "PREMIO_ANZIANITA_2023",
+          "description": "Seniority premium for ten years of employer or group service at signing",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2012-04-01",
+                "valid_until": "2023-10-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2023-10-01",
+                "valid_until": null,
+                "value": "40.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aiop-rsa-accordo-ponte-2023-ratified",
+                      "title": "AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023",
+                      "kind": "associazione",
+                      "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+                      "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214",
+                      "published_on": "2023-10-03"
+                    },
+                    "page": "11",
+                    "section": "PREMIO DI ANZIANITÀ",
+                    "quote": "Si conviene che a tutti i dipendenti appartenenti ai livelli A, B, C, D1, D2, D3, E1, E2, E3, che, alla data di sottoscrizione del presente accordo, abbiano già maturato dieci anni di anzianità nella stessa Azienda o Gruppo compete un importo lordo pari a € 40,00 da erogarsi per tredici mensilità ed utile ai fini del TFR."
+                  },
+                  "transformation": "EUR 40 per monthly payment for the listed levels, including the thirteenth and TFR, from 1 October 2023. Signing was 3 October 2023 (PDF p. 7); ten years by signing means group service started by 3 October 2013. The caller supplies group-service start as employment start; unknown start does not qualify. The agreement is ratified (p. 12) and renews or continues pending replacement (p. 8); no later replacement is verified.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T01:39:10Z",
+                    "effective_from": "2023-10-01",
+                    "verified_at": "2026-11-10T01:39:10Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-rsa-seniority-premium",
+                    "verified_by": "claude-opus-5-5"
+                  }
+                }
+              }
+            ]
+          },
+          "in_service_on": "2013-10-03",
+          "months_per_year": 13,
+          "tfr_relevant": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aiop-rsa-accordo-ponte-2023-ratified",
+                "title": "AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023",
+                "kind": "associazione",
+                "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+                "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214",
+                "published_on": "2023-10-03"
+              },
+              "page": "11",
+              "section": "PREMIO DI ANZIANITÀ",
+              "quote": "Si conviene che a tutti i dipendenti appartenenti ai livelli A, B, C, D1, D2, D3, E1, E2, E3, che, alla data di sottoscrizione del presente accordo, abbiano già maturato dieci anni di anzianità nella stessa Azienda o Gruppo compete un importo lordo pari a € 40,00 da erogarsi per tredici mensilità ed utile ai fini del TFR."
+            },
+            "transformation": "EUR 40 per monthly payment for the listed levels, including the thirteenth and TFR, from 1 October 2023. Signing was 3 October 2023 (PDF p. 7); ten years by signing means group service started by 3 October 2013. The caller supplies group-service start as employment start; unknown start does not qualify. The agreement is ratified (p. 12) and renews or continues pending replacement (p. 8); no later replacement is verified.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:39:10Z",
+              "effective_from": "2023-10-01",
+              "verified_at": "2026-11-10T01:39:10Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-rsa-seniority-premium",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1086,7 +1708,83 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "PREMIO_ANZIANITA_2023",
+          "description": "Seniority premium for ten years of employer or group service at signing",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2012-04-01",
+                "valid_until": "2023-10-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2023-10-01",
+                "valid_until": null,
+                "value": "40.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aiop-rsa-accordo-ponte-2023-ratified",
+                      "title": "AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023",
+                      "kind": "associazione",
+                      "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+                      "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214",
+                      "published_on": "2023-10-03"
+                    },
+                    "page": "11",
+                    "section": "PREMIO DI ANZIANITÀ",
+                    "quote": "Si conviene che a tutti i dipendenti appartenenti ai livelli A, B, C, D1, D2, D3, E1, E2, E3, che, alla data di sottoscrizione del presente accordo, abbiano già maturato dieci anni di anzianità nella stessa Azienda o Gruppo compete un importo lordo pari a € 40,00 da erogarsi per tredici mensilità ed utile ai fini del TFR."
+                  },
+                  "transformation": "EUR 40 per monthly payment for the listed levels, including the thirteenth and TFR, from 1 October 2023. Signing was 3 October 2023 (PDF p. 7); ten years by signing means group service started by 3 October 2013. The caller supplies group-service start as employment start; unknown start does not qualify. The agreement is ratified (p. 12) and renews or continues pending replacement (p. 8); no later replacement is verified.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-10T01:39:10Z",
+                    "effective_from": "2023-10-01",
+                    "verified_at": "2026-11-10T01:39:10Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-rsa-seniority-premium",
+                    "verified_by": "claude-opus-5-5"
+                  }
+                }
+              }
+            ]
+          },
+          "in_service_on": "2013-10-03",
+          "months_per_year": 13,
+          "tfr_relevant": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aiop-rsa-accordo-ponte-2023-ratified",
+                "title": "AIOP RSA bridge agreement signed 3 October 2023, ratified 24 October 2023",
+                "kind": "associazione",
+                "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+                "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214",
+                "published_on": "2023-10-03"
+              },
+              "page": "11",
+              "section": "PREMIO DI ANZIANITÀ",
+              "quote": "Si conviene che a tutti i dipendenti appartenenti ai livelli A, B, C, D1, D2, D3, E1, E2, E3, che, alla data di sottoscrizione del presente accordo, abbiano già maturato dieci anni di anzianità nella stessa Azienda o Gruppo compete un importo lordo pari a € 40,00 da erogarsi per tredici mensilità ed utile ai fini del TFR."
+            },
+            "transformation": "EUR 40 per monthly payment for the listed levels, including the thirteenth and TFR, from 1 October 2023. Signing was 3 October 2023 (PDF p. 7); ten years by signing means group service started by 3 October 2013. The caller supplies group-service start as employment start; unknown start does not qualify. The agreement is ratified (p. 12) and renews or continues pending replacement (p. 8); no later replacement is verified.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:39:10Z",
+              "effective_from": "2023-10-01",
+              "verified_at": "2026-11-10T01:39:10Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-rsa-seniority-premium",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1378,7 +2076,7 @@
     "effective_until": null,
     "source": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
     "verification_status": "unverified",
-    "source_hash": "380d9ccb8fc3e6b80d6df277861785a15ef24fefc2f9d66ba4eee4064a57576f",
+    "source_hash": "0fea36e80ea5e7545080a7cd811b481d0dc2aa8a45ee0042aa5edad60ab91c79",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1630,6 +2328,27 @@
         "independence": "same_process",
         "checked": [
           "levels.base_salary",
+          "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-rsa-seniority-premium",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "AIOP signed agreement: signing, validity, seniority premium, TFR, thirteen payments and ratification; renewal provision inspected.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf",
+            "sha256": "8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214"
+          }
+        ],
+        "findings": [
+          "Premium verified on PDF page 11; ratification on page 12, start date on page 8, signing date on page 7. No later replacement verified."
+        ],
+        "independence": "same_process",
+        "checked": [
           "levels.fixed_allowances"
         ]
       }

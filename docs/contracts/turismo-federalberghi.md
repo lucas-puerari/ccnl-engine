@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 78 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 79 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-05 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2027-11-01 |
 
 ## Review history
@@ -69,6 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched in the signed text of 2010 (Artt. 111, 129, 130, 150, 151), the 2014 version and the OCR of the 2024 ipotesi. | corrected | Art. 150 - Determinazione della retribuzione giornaliera (p. 134): the daily pay is the monthly pay divided by 26 for every contractual purpose: the residual ferie are paid at it, and the ROL at the hourly pay of Art. 151: work_rules.leave_rules.termination. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The hourly divisors of the 44 and 45 hour weeks, Art. 151 c.1 (p. 135), checked by a separate session on the rendered page. | confirmed | Art. 151 c.1 (PDF p. 135, sha256 47f71f5f... matched; the page rendered and read, the OCR 't 92' and 'L 90' are 192 and 190): 192 for a normal week of 45 hours, 190 for 44, 172 for 40: work_rules.time_supplements.week_divisors 44/190, 45/192.<br>No later source of the file states another divisor; the notes of the file hold Art. 151 unchanged by the renewals of 2014 and 2024, whose PDFs were not opened. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 13 commi 5-14 of the ipotesi of 5 July 2024 (scanned pp. 10-12), the encoding checked against the page images by a separate model session. | flagged | Confirmed the amounts by level, the November 2027 payment, the eligibility of comma 5 and the part-time of comma 6.<br>Flagged as approximations, kept under the limitation: the trigger of comma 10, the days worked of comma 5, the absorption of comma 8. |
+| 2026-11-10 | gpt-6-sol (ai) | Art. 155 c. 3 p. 44: all-inclusive hourly table of the extra workers by level and validity, selected by the stated role. | corrected | CONFIRMED: every hourly amount, level and validity date agrees with the scanned table on p. 44, and the role selection and the test arithmetic are right.<br>The row quotes joined the column header and the row; corrected to the printed row, the header now in the transformation.<br>Holiday and leave settlement of extra workers stays out of scope, with the four-hour minimum and territorial rates, as the limitation says. |
 
 ## Salary table
 
@@ -130,11 +131,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** State the comma 10 condition and the days worked in 2026 as facts, take every treatment granted after 1 July 2024 into the absorption, and model commi 11, 13 and 14.
 
 !!! warning "turismo-federalberghi/extras_hourly_table · base_salary · impact yes · open"
-    Art. 155 c. 3, p. 44: the hourly table of the extra workers.
+    The caller-selected extra hourly table is encoded for the five levels and dated tranches printed on p. 44 of the 2024 renewal. Art. 155(1),(3) of the 2010 agreement gives priority to territorial bargaining and better conditions and requires a minimum four-hour service; the table is all-inclusive of extra months and TFR. Those precedence, minimum-service, and all-inclusive accrual treatments are not yet implemented.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the extras hourly table.
+    **Remediation:** Model territorial precedence, the four-hour service minimum and avoid separate extra-month and TFR accrual for all-inclusive rates.
 
 !!! warning "turismo-federalberghi/quadri_absorption · base_salary · impact yes · open"
     Art. 145: the absorption of the Quadri allowance into individual treatments.

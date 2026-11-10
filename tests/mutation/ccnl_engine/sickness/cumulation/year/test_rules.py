@@ -314,3 +314,33 @@ def test_the_comporto_of_one_illness_follows_the_seniority(
     assert year.day(offset + last_kept + 1, after).beyond_comporto
     assert year.seniority_reach is reach
     assert not year.history_reach
+
+
+@pytest.mark.parametrize(
+    ("window_days", "first", "counted"),
+    [(None, date(2027, 3, 11), 2), (365, date(2027, 3, 12), 1)],
+    ids=["twelve-months", "365-days"],
+)
+def test_a_window_may_count_days_back(
+    window_days: int | None, first: date, counted: int
+) -> None:
+    """Studi art. 121: 365 days back from the last sickness event.
+
+    Across 29 February 2028, twelve months ending on 10 March 2028 start on
+    11 March 2027 (366 days); 365 days start on 12 March 2027, so a sick day
+    on 11 March 2027 drops out.
+    """
+    window = ComportoWindow(
+        seniority_months_from=0,
+        window_months=12,
+        comporto_days=180,
+        window_days=window_days,
+    )
+    rules = _ANCE.model_copy(update={"comporto_windows": (window,)})
+    day = date(2028, 3, 10)
+    year = _year(
+        _episode("now", day, 1), _episode("before", date(2027, 3, 11), 1), rules=rules
+    )
+
+    assert window.first_day(day) == first
+    assert year.window_days(window, day) == counted

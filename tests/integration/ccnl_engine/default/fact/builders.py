@@ -163,6 +163,27 @@ def _public_employer(
     return replace(request, employer=employer)
 
 
+def _rail_fund_employer(
+    january: Callable[[Employment], PeriodInput], covered: bool | None
+) -> PeriodInput:
+    """Build a rail month with a stated or unknown fund coverage fact.
+
+    Returns:
+        A permanent rail worker's request for the given employer coverage.
+    """
+    rail = replace(
+        CONCIA_D2,
+        category=None,
+        ccnl_id="trasporto-ferroviario-agens",
+        level_code="D1",
+    )
+    request = january(rail)
+    return replace(
+        request,
+        employer=replace(request.employer, solidarity_fund_covered=covered),
+    )
+
+
 def _small_terziario(
     january: Callable[[Employment], PeriodInput], reduced: bool | None
 ) -> PeriodInput:
@@ -383,6 +404,18 @@ def pension_cases[C](
             ),
             case(
                 _craft_firm(january, False), _craft_firm(january, None), "cigs_indotto"
+            ),
+        ),
+        "EmployerProfile.solidarity_fund_covered": (
+            case(
+                _rail_fund_employer(january, True),
+                _rail_fund_employer(january, None),
+                "solidarity_fund_covered",
+            ),
+            case(
+                _rail_fund_employer(january, False),
+                _rail_fund_employer(january, None),
+                "solidarity_fund_covered",
             ),
         ),
         "EmployerProfile.fis_reduction": (
