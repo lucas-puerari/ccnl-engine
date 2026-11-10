@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | assistance_contribution, base_salary, inps_employer |
+| **Limits of this contract** | assistance_contribution, base_salary |
 
 9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -68,6 +68,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Verified the existing 2026 Table H and L allowances and narrowed the obsolete limitation to missing student levels and caller-attested eligibility. | confirmed | The cached signed PDF page 59 gives 97.06 monthly for BS in Table H and 30.27 monthly for B and BS in Table L; the existing level-local allowances already implement these values.<br>Child age and certification evidence are caller-attested roles; offsets against individual pay remain outside the fixed allowance model. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 34 cc. 3, 4, 7 and the Tabelle H, I, L (PDF pp. 44-45, 59) against the role allowances, by a separate model session. | corrected | Confirmed the amounts, levels and roles of the Tabelle H, I and L.<br>Corrected: the quotes now hold the article text alone (the table amounts are in the transformation); the certification needs a copy handed over; the allowance of c. 7 is absorbed by any better treatment received overall, not only a superminimo. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 14 c. 2, PDF pp. 24-25, Art. 14 c. 6 and Art. 15 c. 3, PDF pp. 26-27: extra hours within and outside the adopted arrangement and night hours. | corrected | Within-arrangement additional hours receive the hourly global actual remuneration without a supplement; outside hours receive Art. 15 supplements. The caller classifies and splits events at the arrangement boundary; ordinary night work remains a separate 20% supplement. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 34 cc. 3, 4, 7 (PDF pp. 44-45) against caller-gated role allowances and offsets. | corrected | Role-gated monthly allowances work for B and BS; independent eligibility checks and automatic offsets remain outside the model. C super and D super are outside this file. |
+| 2026-11-09 | claude-opus-5-5 (ai) | INPS circolare 9/2026 table A (PDF p. 3) and published DOMINA quarters against the existing domestic rate test. | confirmed | The example-validation gap was already closed by four published DOMINA quarters in the bundled mutation test. |
 
 ## Salary table
 
@@ -101,12 +103,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the Tabella B values for the other student levels. For modeled levels, supply eligible roles only after checking child age, certification conditions and any offset against individual pay.
 
-!!! warning "lavoro-domestico-convivente-orario-ridotto/hourly_inps_bracket_unvalidated · inps_employer · impact unknown · open"
-    INPS BAND: the engine chooses the band of up to 24 weekly hours on the paga oraria effettiva of INPS (circ. 9/2026; INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore domestico): the monthly pay with board and lodging over the hours of the employment (weekly hours x 52 / 12), raised by the tredicesima (x 13 / 12). That reading of the circular is not yet checked against a worked example of the INPS domestic table (review of 2026-10-30).
+!!! note "lavoro-domestico-convivente-orario-ridotto/hourly_inps_bracket_unvalidated · inps_employer · impact unknown · resolved"
+    INPS BAND: the engine chooses the band of up to 24 weekly hours on the paga oraria effettiva of INPS (circ. 9/2026; INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore domestico): the monthly pay with board and lodging over the hours of the employment (weekly hours x 52 / 12), raised by the tredicesima (x 13 / 12). The 2026 bands match the published quarterly worked examples of CCNL signatory DOMINA (review of 2026-10-16); the caller must still state the actual monthly pay and contributable hours.
 
     **Applies when:** `inps_employer` applies.
 
-    **Remediation:** Validate the hourly INPS bracket lookup for weekly hours up to 24 against the INPS domestic table.
+    **Remediation:** Resolved: the effective hourly pay and rate selection match the published 2026 worked quarters of CCNL signatory DOMINA.
 
 !!! note "lavoro-domestico-convivente-orario-ridotto/board_lodging_substitute · base_salary · impact unknown · resolved"
     The cash indennita sostitutiva of board and lodging is not paid for the days the convivente does not take them: ferie (Art. 17 c. 7), sospensioni extraferiali (Art. 18 c. 1), congedo matrimoniale (Art. 24 c. 2), malattia and infortunio outside hospital (Art. 27 c. 9, Art. 29 c. 7). The request states those days with BoardLodgingEvent, and the engine pays the value in kind over 30 for each of them.
@@ -151,11 +153,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note.
 
 !!! warning "lavoro-domestico-convivente-orario-ridotto/art34_role_conditions · base_salary · impact yes · open"
-    Art. 34 cc. 3, 4, 7: the role allowances hold while their condition does, which the caller states: 'baby_sitter_under_6' until each child assisted turns six, 'assistenza_piu_non_autosufficienti' while more than one non self-sufficient person is assisted, 'certificazione_uni_11766' while the UNI 11766:2019 certification is valid, communicated in writing and a copy handed over. The allowances of cc. 3 and 4 are absorbable by an individual superminimo, that of c. 7 by any better treatment received overall.
+    Art. 34 cc. 3 and 7: the engine pays the level-specific allowances only while the caller states the qualifying roles. It cannot independently verify a child's age or certification validity, written notice and delivery of its copy. Nor does it automatically offset the allowance of c. 3 against an individual superminimo or that of c. 7 against better treatment received overall; the caller must state individual pay net of any offset. The c. 4 allowance is restricted to C super and D super, outside this reduced-hours file.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** State the age of the children, the persons assisted and the certification as worker facts.
+    **Remediation:** Verify role eligibility externally and state individual pay net of any offset; to automate this, model child age, certification validity and notice, and the applicable offsets.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
