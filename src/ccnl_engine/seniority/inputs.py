@@ -5,15 +5,14 @@ from __future__ import annotations
 import calendar
 from dataclasses import dataclass
 from datetime import date
-from decimal import Decimal
 from enum import StrEnum
 
 from ccnl_engine.employment.fact.inputs import FEATURE
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.seniority.earned import EarnedIncrements
 from ccnl_engine.validators import (
     parse_enum,
     require_date,
-    require_decimal,
     require_instance,
     require_int,
     require_str,
@@ -42,39 +41,6 @@ class SenioritySource(StrEnum):
     EMPLOYER_RECORDS = "employer_records"
     PAYSLIP = "payslip"
     EMPLOYMENT_CONTRACT = "employment_contract"
-
-
-@dataclass(frozen=True, slots=True)
-class EarnedIncrements:
-    """Seniority increments whose amount stays as matured, not repriced.
-
-    The CCNL table prices the increments of a run (Federmeccanica art. 6:
-    after a promotion the increments "ragguagliati agli importi previsti per
-    la categoria di arrivo").  Some keep the amount they matured at: the
-    increments the norme transitorie of the same article fix, or those
-    matured under another CCNL and kept on a transfer.  State them here, as
-    the payslip prints them.
-
-    Attributes:
-        count: Increments matured, ``>= 0``.
-        monthly: Their full-time monthly amount in EUR, ``>= 0``.
-
-    Raises:
-        InvalidInputError: When ``count`` is not a non-negative int or
-            ``monthly`` not a non-negative Decimal.
-    """
-
-    count: int
-    monthly: Decimal
-
-    def __post_init__(self) -> None:  # noqa: D105
-        require_int(self.count, "EarnedIncrements.count", feature=FEATURE, minimum=0)
-        require_decimal(
-            self.monthly,
-            "EarnedIncrements.monthly",
-            feature=FEATURE,
-            minimum=Decimal(0),
-        )
 
 
 @dataclass(frozen=True, slots=True)
@@ -151,13 +117,18 @@ class SeniorityFact:
             counts apart from the service, aged like ``months``, read by
             the allowances gated on it (Farmacie Tabella C: the years in
             level 1 and Area Q); ``None`` reads the service months instead.
+        apprenticeship_months: Completed months in a past apprenticeship
+            followed by continued employment, separate from ``months``.
+            Zero confirms no preceding apprenticeship; ``None`` leaves the
+            duration unknown when a CCNL requires a fractional credit.
 
     Raises:
         InvalidInputError: When ``months`` is not a non-negative int,
             ``as_of`` is not a date, ``source`` names no source,
             ``earned`` is not :class:`EarnedIncrements`, ``promotion``
             is not :class:`SeniorityPromotion`, ``birth_date`` is not a
-            date or ``career_months`` is not a non-negative int.
+            date, ``career_months`` or ``apprenticeship_months`` is not a
+            non-negative int.
     """
 
     months: int
@@ -167,6 +138,7 @@ class SeniorityFact:
     promotion: SeniorityPromotion | None = None
     birth_date: date | None = None
     career_months: int | None = None
+    apprenticeship_months: int | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_int(self.months, "SeniorityFact.months", feature=FEATURE, minimum=0)
@@ -188,6 +160,13 @@ class SeniorityFact:
         require_int(
             self.career_months,
             "SeniorityFact.career_months",
+            feature=FEATURE,
+            minimum=0,
+            optional=True,
+        )
+        require_int(
+            self.apprenticeship_months,
+            "SeniorityFact.apprenticeship_months",
             feature=FEATURE,
             minimum=0,
             optional=True,

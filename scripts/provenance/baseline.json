@@ -940,14 +940,12 @@
       "lavoro-domestico-convivente-orario-ridotto/annual_minimi_not_updated",
       "lavoro-domestico-convivente-orario-ridotto/art34_role_conditions",
       "lavoro-domestico-convivente-orario-ridotto/extra_month_hours",
-      "lavoro-domestico-convivente-orario-ridotto/hourly_inps_bracket_unvalidated",
       "lavoro-domestico-convivente-orario-ridotto/students_other_levels"
     ],
     "agreement/lavoro-domestico-convivente.json": [
       "lavoro-domestico-convivente/annual_minimi_not_updated",
       "lavoro-domestico-convivente/art34_role_conditions",
       "lavoro-domestico-convivente/extra_month_hours",
-      "lavoro-domestico-convivente/hourly_inps_bracket_unvalidated",
       "lavoro-domestico-convivente/part_time_scaling",
       "lavoro-domestico-convivente/seniority_frozen_at_2026",
       "lavoro-domestico-convivente/tranches_from_2027"
@@ -967,7 +965,6 @@
     ],
     "agreement/legno-lapidei-artigianato-confartigianato.json": [
       "legno-lapidei-artigianato-confartigianato/apprentice_inps_rates_unsourced",
-      "legno-lapidei-artigianato-confartigianato/impiegati_apprenticeship_duration",
       "legno-lapidei-artigianato-confartigianato/inps_sector_rates_unsourced",
       "legno-lapidei-artigianato-confartigianato/lapidei_tables_not_modelled"
     ],
@@ -1002,7 +999,6 @@
       "metalmeccanico-artigianato/inps_sector_rates_unsourced"
     ],
     "agreement/metalmeccanico-confapi.json": [
-      "metalmeccanico-confapi/apprentice_seniority_credit",
       "metalmeccanico-confapi/child_sickness_and_oncological_permits",
       "metalmeccanico-confapi/elemento_perequativo",
       "metalmeccanico-confapi/flexibility_and_hours_bank",
@@ -1067,8 +1063,7 @@
       "operai-agricoli-florovivaisti/regular_night_shift_and_local_tariffs"
     ],
     "agreement/organizzazioni-allevatori-aia.json": [
-      "organizzazioni-allevatori-aia/apprentice_inps_rates_unsourced",
-      "organizzazioni-allevatori-aia/quadri_function_allowance"
+      "organizzazioni-allevatori-aia/apprentice_inps_rates_unsourced"
     ],
     "agreement/ortofrutticoli-agrumari.json": [
       "ortofrutticoli-agrumari/assumed_sickness_integration_rates",
@@ -1087,7 +1082,8 @@
       "pelli-cuoio-industria-assopellettieri/level_1_apprentice_reference"
     ],
     "agreement/portieri-fabbricati-confedilizia.json": [
-      "portieri-fabbricati-confedilizia/c4_first_employment_rate"
+      "portieri-fabbricati-confedilizia/c4_first_employment_eligibility",
+      "portieri-fabbricati-confedilizia/excluded_profiles_divisor"
     ],
     "agreement/poste-italiane-k700.json": [
       "poste-italiane-k700/edr_pre_privatization",
