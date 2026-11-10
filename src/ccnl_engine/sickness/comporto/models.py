@@ -2,8 +2,11 @@
 
 import itertools
 from collections.abc import Sequence
+from datetime import date, timedelta
 
 from pydantic import BaseModel, ConfigDict, Field
+
+from ccnl_engine.sickness.window.rules import window_start
 
 __all__ = [
     "ComportoBand",
@@ -78,10 +81,26 @@ class ComportoWindow(ComportoBand):
             "Ai soli fini del presente comma vanno esclusi i periodi di
             degenza ospedaliera"); the comporto of one illness still counts
             them.
+        window_days: Days counted back from the day, that day included, in
+            place of ``window_months`` when the CCNL counts days (Studi art.
+            121: "un periodo di 365 giorni partendo a ritroso dell'ultimo
+            evento morboso"); ``None`` uses the months.
     """
 
     window_months: int = Field(ge=1)
     hospital_excluded: bool = False
+    window_days: int | None = Field(default=None, ge=1)
+
+    def first_day(self, day: date) -> date:
+        """Return the first day of the window that ends on ``day``.
+
+        Returns:
+            ``window_days - 1`` days before ``day`` when the window counts
+            days, else the start of the ``window_months`` ending on it.
+        """
+        if self.window_days is not None:
+            return day - timedelta(days=self.window_days - 1)
+        return window_start(day, 0, self.window_months)
 
 
 def check_windows(windows: Sequence[ComportoBand]) -> None:

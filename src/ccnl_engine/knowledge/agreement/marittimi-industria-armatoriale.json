@@ -96,26 +96,8 @@
       },
       {
         "kind": "info",
-        "text": "Allegato 1 nn. 2-5 (p. 32; not art. 18): the superminimi by years in the level are fixed allowances gated on SeniorityFact.career_months: 7 EUR in level IV after 8 years; 7 EUR in level III after 4 years with the role 'diplomato', or after 8 years with the role 'non_diplomato'; 11 EUR in level II after 10 years with the role 'senza_passaggio'.",
+        "text": "Allegato 1 nn. 2-5 (p. 32; not art. 18): the superminimi by years in the level are fixed allowances gated on Employment.level_started_on: 7 EUR in level IV after 8 years; 7 EUR in level III after 4 years with the role 'diplomato', or after 8 years with the role 'non_diplomato'; 11 EUR in level II after 10 years with the role 'senza_passaggio'.",
         "capability": "base_salary"
-      },
-      {
-        "kind": "simplification",
-        "text": "Allegato 1 nn. 2-5: the superminimi count the years in the level ('permanenza nel livello', 'anzianità di livello'). The run reads SeniorityFact.career_months; without it, it reads the service months, which pay a worker promoted into the level less than the years required.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "level_years_from_service",
-          "applies_when": {
-            "trigger": "outside_input",
-            "levels": [
-              "II",
-              "III",
-              "IV"
-            ]
-          },
-          "remediation": "State SeniorityFact.career_months as the months in the current level for the workers of levels II-IV."
-        }
       }
     ]
   },
@@ -250,6 +232,27 @@
         "independence": "separate_model",
         "checked": [
           "levels[2].fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-level-tenure-gate",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "checked": [
+          "levels.II-IV.fixed_allowances.level_service"
+        ],
+        "scope": "Allegato 1 nn. 2-5 level-tenure gate and missing level entry fact.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+            "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+          }
+        ],
+        "findings": [
+          "PDF p. 32, Allegato 1 nn. 2-5: \"dopo otto anni di permanenza nel livello\", \"dopo quattro anni di permanenza nel 3° livello\", \"dopo otto anni di permanenza nello stesso\", \"anzianità di livello pari o superiore a 10 anni\". Completed months since Employment.level_started_on measure time in the level."
         ]
       }
     ]
@@ -884,23 +887,22 @@
                     "section": "Allegato 1, n. 5 - Superminimi",
                     "quote": "5 - Ai lavoratori inquadrati nel 2° livello e per i quali non è previsto il passaggio al livello superiore verrà riconosciuto un superminimo individuale di € 11,00 qualora abbiano una anzianità di livello pari o superiore a 10 anni."
                   },
-                  "transformation": "EUR 11 a month with the role 'senza_passaggio' (a worker 'per i quali non è previsto il passaggio al livello superiore') from 120 months in level II. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+                  "transformation": "EUR 11 a month with the role 'senza_passaggio' (a worker 'per i quali non è previsto il passaggio al livello superiore') from 120 months in level II. The years in the level are completed months since Employment.level_started_on (level_service); without the date the allowance is omitted and the run reports a missing_fact blocker. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-08T09:00:00Z",
+                    "extraction_timestamp": "2026-11-10T00:09:45Z",
                     "effective_from": "2024-07-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-08T09:00:00Z",
+                    "verified_at": "2026-11-10T00:09:45Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-08-ai-marittimi-level-superminimi"
+                    "review_id": "2026-11-10-ai-level-tenure-gate"
                   }
                 }
               }
             ]
           },
           "service_months_threshold": 120,
-          "career_service": true,
           "provenance": {
             "status": "derived",
             "location": {
@@ -915,19 +917,20 @@
               "section": "Allegato 1, n. 5 - Superminimi",
               "quote": "5 - Ai lavoratori inquadrati nel 2° livello e per i quali non è previsto il passaggio al livello superiore verrà riconosciuto un superminimo individuale di € 11,00 qualora abbiano una anzianità di livello pari o superiore a 10 anni."
             },
-            "transformation": "EUR 11 a month with the role 'senza_passaggio' (a worker 'per i quali non è previsto il passaggio al livello superiore') from 120 months in level II. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+            "transformation": "EUR 11 a month with the role 'senza_passaggio' (a worker 'per i quali non è previsto il passaggio al livello superiore') from 120 months in level II. The years in the level are completed months since Employment.level_started_on (level_service); without the date the allowance is omitted and the run reports a missing_fact blocker. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T09:00:00Z",
+              "extraction_timestamp": "2026-11-10T00:09:45Z",
               "effective_from": "2024-07-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T09:00:00Z",
+              "verified_at": "2026-11-10T00:09:45Z",
               "verification_status": "verified",
-              "review_id": "2026-11-08-ai-marittimi-level-superminimi"
+              "review_id": "2026-11-10-ai-level-tenure-gate"
             }
           },
-          "role": "senza_passaggio"
+          "role": "senza_passaggio",
+          "level_service": true
         }
       ],
       "provenance": {
@@ -1189,23 +1192,22 @@
                     "section": "Allegato 1, n. 3 - Superminimi",
                     "quote": "3 - Agli impiegati con diploma di scuola media superiore, dopo quattro anni di permanenza nel 3° livello, sarà corrisposto un superminimo di € 7,00 mensili."
                   },
-                  "transformation": "EUR 7 a month with the role 'diplomato' from 48 months in level III, without an end: n. 4 is for the 'altri impiegati' (role 'non_diplomato'), never added to it. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+                  "transformation": "EUR 7 a month with the role 'diplomato' from 48 months in level III, without an end: n. 4 is for the 'altri impiegati' (role 'non_diplomato'), never added to it. The years in the level are completed months since Employment.level_started_on (level_service); without the date the allowance is omitted and the run reports a missing_fact blocker. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-08T09:00:00Z",
+                    "extraction_timestamp": "2026-11-10T00:09:45Z",
                     "effective_from": "2024-07-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-08T09:00:00Z",
+                    "verified_at": "2026-11-10T00:09:45Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-08-ai-marittimi-level-superminimi"
+                    "review_id": "2026-11-10-ai-level-tenure-gate"
                   }
                 }
               }
             ]
           },
           "service_months_threshold": 48,
-          "career_service": true,
           "provenance": {
             "status": "derived",
             "location": {
@@ -1220,19 +1222,20 @@
               "section": "Allegato 1, n. 3 - Superminimi",
               "quote": "3 - Agli impiegati con diploma di scuola media superiore, dopo quattro anni di permanenza nel 3° livello, sarà corrisposto un superminimo di € 7,00 mensili."
             },
-            "transformation": "EUR 7 a month with the role 'diplomato' from 48 months in level III, without an end: n. 4 is for the 'altri impiegati' (role 'non_diplomato'), never added to it. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+            "transformation": "EUR 7 a month with the role 'diplomato' from 48 months in level III, without an end: n. 4 is for the 'altri impiegati' (role 'non_diplomato'), never added to it. The years in the level are completed months since Employment.level_started_on (level_service); without the date the allowance is omitted and the run reports a missing_fact blocker. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T09:00:00Z",
+              "extraction_timestamp": "2026-11-10T00:09:45Z",
               "effective_from": "2024-07-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T09:00:00Z",
+              "verified_at": "2026-11-10T00:09:45Z",
               "verification_status": "verified",
-              "review_id": "2026-11-08-ai-marittimi-level-superminimi"
+              "review_id": "2026-11-10-ai-level-tenure-gate"
             }
           },
-          "role": "diplomato"
+          "role": "diplomato",
+          "level_service": true
         },
         {
           "code": "SUPERMINIMO_LIVELLO",
@@ -1258,23 +1261,22 @@
                     "section": "Allegato 1, n. 4 - Superminimi",
                     "quote": "4 - Agli altri impiegati di 3° livello, dopo otto anni di permanenza nello stesso, sarà corrisposto un superminimo di € 7,00 mensili."
                   },
-                  "transformation": "EUR 7 a month with the role 'non_diplomato' from 96 months in level III: 'Agli altri impiegati', the impiegati without the diploma of n. 3. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+                  "transformation": "EUR 7 a month with the role 'non_diplomato' from 96 months in level III: 'Agli altri impiegati', the impiegati without the diploma of n. 3. The years in the level are completed months since Employment.level_started_on (level_service); without the date the allowance is omitted and the run reports a missing_fact blocker. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-08T09:00:00Z",
+                    "extraction_timestamp": "2026-11-10T00:09:45Z",
                     "effective_from": "2024-07-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-08T09:00:00Z",
+                    "verified_at": "2026-11-10T00:09:45Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-08-ai-marittimi-level-superminimi"
+                    "review_id": "2026-11-10-ai-level-tenure-gate"
                   }
                 }
               }
             ]
           },
           "service_months_threshold": 96,
-          "career_service": true,
           "provenance": {
             "status": "derived",
             "location": {
@@ -1289,19 +1291,20 @@
               "section": "Allegato 1, n. 4 - Superminimi",
               "quote": "4 - Agli altri impiegati di 3° livello, dopo otto anni di permanenza nello stesso, sarà corrisposto un superminimo di € 7,00 mensili."
             },
-            "transformation": "EUR 7 a month with the role 'non_diplomato' from 96 months in level III: 'Agli altri impiegati', the impiegati without the diploma of n. 3. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+            "transformation": "EUR 7 a month with the role 'non_diplomato' from 96 months in level III: 'Agli altri impiegati', the impiegati without the diploma of n. 3. The years in the level are completed months since Employment.level_started_on (level_service); without the date the allowance is omitted and the run reports a missing_fact blocker. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T09:00:00Z",
+              "extraction_timestamp": "2026-11-10T00:09:45Z",
               "effective_from": "2024-07-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T09:00:00Z",
+              "verified_at": "2026-11-10T00:09:45Z",
               "verification_status": "verified",
-              "review_id": "2026-11-08-ai-marittimi-level-superminimi"
+              "review_id": "2026-11-10-ai-level-tenure-gate"
             }
           },
-          "role": "non_diplomato"
+          "role": "non_diplomato",
+          "level_service": true
         }
       ],
       "provenance": {
@@ -1563,23 +1566,22 @@
                     "section": "Allegato 1, n. 2 - Superminimi",
                     "quote": "2 - Agli impiegati di 4° livello, dopo otto anni di permanenza nel livello, sarà corrisposto un superminimo di € 7,00 mensili."
                   },
-                  "transformation": "EUR 7 a month from 96 months in level IV. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+                  "transformation": "EUR 7 a month from 96 months in level IV. The years in the level are completed months since Employment.level_started_on (level_service); without the date the allowance is omitted and the run reports a missing_fact blocker. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
                   "extraction": {
                     "method": "ai",
                     "model": "claude-opus-5-5",
-                    "extraction_timestamp": "2026-11-08T09:00:00Z",
+                    "extraction_timestamp": "2026-11-10T00:09:45Z",
                     "effective_from": "2024-07-01",
                     "verified_by": "claude-opus-5-5",
-                    "verified_at": "2026-11-08T09:00:00Z",
+                    "verified_at": "2026-11-10T00:09:45Z",
                     "verification_status": "verified",
-                    "review_id": "2026-11-08-ai-marittimi-level-superminimi"
+                    "review_id": "2026-11-10-ai-level-tenure-gate"
                   }
                 }
               }
             ]
           },
           "service_months_threshold": 96,
-          "career_service": true,
           "provenance": {
             "status": "derived",
             "location": {
@@ -1594,18 +1596,19 @@
               "section": "Allegato 1, n. 2 - Superminimi",
               "quote": "2 - Agli impiegati di 4° livello, dopo otto anni di permanenza nel livello, sarà corrisposto un superminimo di € 7,00 mensili."
             },
-            "transformation": "EUR 7 a month from 96 months in level IV. The years in the level are SeniorityFact.career_months (career_service); without it the run reads the service months. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
+            "transformation": "EUR 7 a month from 96 months in level IV. The years in the level are completed months since Employment.level_started_on (level_service); without the date the allowance is omitted and the run reports a missing_fact blocker. 14 payments and in the TFR base, as every superminimo (art. 17, art. 33). The series starts with the section of 1 July 2024.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-08T09:00:00Z",
+              "extraction_timestamp": "2026-11-10T00:09:45Z",
               "effective_from": "2024-07-01",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-08T09:00:00Z",
+              "verified_at": "2026-11-10T00:09:45Z",
               "verification_status": "verified",
-              "review_id": "2026-11-08-ai-marittimi-level-superminimi"
+              "review_id": "2026-11-10-ai-level-tenure-gate"
             }
-          }
+          },
+          "level_service": true
         }
       ],
       "provenance": {
@@ -2665,7 +2668,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "6b71135870dd1765ccea368bebb751df37db575476c5bc853e3b3fc704cf3506",
+    "source_hash": "78181d34676d9d77479f0c0717bc72d1aaf2e8dd336f7ea2a1e997296c16eb6b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

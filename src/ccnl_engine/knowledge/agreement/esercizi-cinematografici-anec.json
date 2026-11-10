@@ -121,7 +121,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 61: pregnancy and puerperium holiday top-ups, Easter Sunday are not calculated; national weekday holidays during sickness and injury are covered.",
+        "text": "Art. 61: national weekday holidays and the stated weekday patron saint day during sickness, injury and compulsory maternity have a full daily-pay target. Easter Sunday and other Sunday holidays are not calculated by the weekday-only absence holiday mechanisms; optional leave and other absence treatments are not modelled.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -129,7 +129,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Provide employer-specific holidays and the remaining absence treatments."
+          "remediation": "Support Sunday holidays including Easter Sunday during insured absences and the remaining absence treatments. A local patron saint date must be supplied by the employer."
         }
       }
     ]
@@ -265,6 +265,27 @@
         "checked": [
           "work_rules.sickness_rules.holiday",
           "work_rules.insured_absence.injury.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-anec-maternity-holiday",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 61 pregnancy and puerperium holiday daily-pay target against the cached agreement PDF.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+            "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
+          }
+        ],
+        "findings": [
+          "Art. 61, PDF p. 47: pregnancy and puerperium holiday pay is integrated to the full daily pay. The list includes Easter Sunday and the local patron saint, but the current absence holiday mechanisms skip Sundays."
+        ],
+        "checked": [
+          "work_rules.insured_absence.maternity.holiday"
         ]
       }
     ]
@@ -2851,7 +2872,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "4ec21f59876717683b928e1dadaaa205f8757a36b69c107f9e77c707423fc5c1",
+    "source_hash": "39f480a2f48f0d224d74ce5f781be8eb2175d27d2224529c8a33676e472163d5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3373,6 +3394,65 @@
       }
     },
     "insured_absence": {
+      "maternity": {
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "anec-holiday-2025",
+              "title": "CCNL Esercizi Cinematografici 2023-2026",
+              "kind": "associazione",
+              "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+              "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
+            },
+            "page": "47",
+            "section": "Art. 61 - Festività, absence paragraph",
+            "quote": "In caso di assenza dovuta a malattia, infortunio, gravidanza e puerperio, nei giorni festivi innanzi elencati l'azienda integrerà il trattamento economico corrisposto dagli istituti assistenziali ed assicurativi fino a raggiungere l'intera retribuzione giornaliera prevista dal 2° comma del presente articolo."
+          },
+          "transformation": "The maternity rule has only a holiday target, not an ordinary maternity integration. Pregnancy and puerperium holidays reach full daily pay after the INPS share; weekday national holidays and the stated local patron saint day are covered. Exclude 4 October, absent from the contract's holiday list. Sunday holidays including Easter Sunday cannot be calculated by this weekday-only mechanism.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-10T00:32:20Z",
+            "verified_at": "2026-11-10T00:32:20Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-10-ai-anec-maternity-holiday",
+            "verified_by": "claude-opus-5-5"
+          }
+        },
+        "holiday": {
+          "rate": "1",
+          "excluded_days": [
+            "10-04"
+          ],
+          "includes_patron_saint": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "anec-holiday-2025",
+                "title": "CCNL Esercizi Cinematografici 2023-2026",
+                "kind": "associazione",
+                "url": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
+                "sha256": "3bf774ddda3db69a37228fb7fb02ae6f451fe89a26ce64de78c771400185c382"
+              },
+              "page": "47",
+              "section": "Art. 61 - Festività, absence paragraph",
+              "quote": "In caso di assenza dovuta a malattia, infortunio, gravidanza e puerperio, nei giorni festivi innanzi elencati l'azienda integrerà il trattamento economico corrisposto dagli istituti assistenziali ed assicurativi fino a raggiungere l'intera retribuzione giornaliera prevista dal 2° comma del presente articolo."
+            },
+            "transformation": "Top up national weekday holidays and the stated weekday patron saint day during compulsory maternity to 100% of daily pay net of INPS and ordinary integration. Exclude 4 October, not listed in this contract. Easter Sunday and other Sunday holidays cannot be expressed by the weekday-only mechanism.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T00:32:20Z",
+              "verified_at": "2026-11-10T00:32:20Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-anec-maternity-holiday",
+              "verified_by": "claude-opus-5-5"
+            }
+          }
+        }
+      },
       "injury": {
         "provenance": {
           "status": "verified",

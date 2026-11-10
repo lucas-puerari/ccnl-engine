@@ -218,7 +218,10 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "employment.level_started_on",
         _REPORTED,
         "an entry-level transition needs the level entry date; missing in "
-        "Confetra 6J before 2026, the pay is provisional and blocked",
+        "Confetra 6J before 2026, the pay is provisional and blocked; "
+        "an allowance gated on months in the level also needs this date: "
+        "without it the allowance is omitted and the run has a missing_fact "
+        "level_started_on blocker",
     ),
     "Employment.seniority": requires_fact(
         "seniority",
