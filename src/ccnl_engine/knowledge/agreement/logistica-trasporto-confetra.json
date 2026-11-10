@@ -65,6 +65,20 @@
           "applies_when": {
             "trigger": "outside_input"
           },
+          "remediation": "Resolved: art. 71(5) injury holidays reach full actual daily pay for eligible legacy-section employers; the separate coincident-holiday payment remains open below.",
+          "status": "resolved"
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 60(2-3) pays an additional 1/22 of monthly global pay when a letter (b) holiday coincides with Saturday, Sunday or another holiday, including during sickness or injury; this distinct payment is not calculated.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "coincident_holiday_payment",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
           "remediation": "Calculate the separate art. 60(2-3) coincident-holiday 1/22 payment."
         }
       },
@@ -2990,7 +3004,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "53a68dd35d14b17b46fe49b6eabacf0c5d0525df69bd65efff2d83e601f42134",
+    "source_hash": "c8ff60b23ee2d62ba2d03ccacb234dd6779de1fbc84a1b79e11dc7d9964d5d63",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4398,6 +4412,28 @@
         ],
         "findings": [
           "Only employers covered before 29 January 2005 by the previous agreement qualify for the holiday top-up."
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-legacy-injury-holiday-check",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Cached Confetra consolidated text pp. 92-93, section-two eligibility and art. 71(5) injury holiday top-up.",
+        "checked": [
+          "work_rules.insured_absence.injury.holiday",
+          "coverage.notes.holiday_during_injury"
+        ],
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "The existing conditional injury holiday target reaches full actual daily pay; the separate art. 60 coincident-holiday payment remains unmodelled."
         ]
       }
     ],
