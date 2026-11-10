@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Holiday pay during work injury, including the applicable holiday calendar and the offset against statutory and contractual daily pay. | confirmed | Covered weekday holiday target reaches full daily pay after INAIL and ordinary CCNL integration; employer-specific holidays remain outside the national calendar. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Local patron saint day in sickness and work injury holiday clauses. | confirmed | Art. 61 - Festività, sickness paragraph (p. 47): In caso di assenza dovuta a malattia, infortunio, gravidanza e puerperio, nei giorni festivi innanzi elencati l'azienda integrerà il trattamento economico corrisposto dagli istituti assistenziali ed assicurativi fino a raggiungere l'intera retribuzione giornaliera prevista dal 2° comma del presente articolo. The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 61 pregnancy and puerperium holiday daily-pay target against the cached agreement PDF. | confirmed | Art. 61, PDF p. 47: pregnancy and puerperium holiday pay is integrated to the full daily pay. The list includes Easter Sunday and the local patron saint, but the current absence holiday mechanisms skip Sundays. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Art. 64 hospital exclusions, printed p. 50 of the cached primary contract. | confirmed | Art. 64 excludes hospital stays including day hospital from both the job-protection and pay counts; therapies and qualifying serious-illness absences are additional exclusions not represented by hospital stays. |
 
 ## Salary table
 
@@ -133,19 +134,19 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 64, align the computation, then resolve this limitation.
 
-!!! warning "esercizi-cinematografici-anec/sickness_hospital_exclusions · sickness · impact yes · open"
-    SICKNESS (Art. 64): the hospital stays (day hospital included), the life-saving therapies and the continuous absences over a month for serious illnesses (at most 90 days) are left out of the comporto and of the pay count; and from day 181 the CCNL pays 50% of its own integration, which the engine reads as 50% of the pay: a day INPS still indemnifies in a new year is paid only the INPS share.
-
-    **Applies when:** `sickness` applies.
-
-    **Remediation:** Leave the hospital stays, life-saving therapies and serious illnesses of Art. 64 out of the counts and pay half of the integration past day 180, then resolve this limitation.
-
 !!! warning "esercizi-cinematografici-anec/other_holiday_during_absence · sickness · impact yes · open"
     Art. 61: national weekday holidays and the stated weekday patron saint day during sickness, injury and compulsory maternity have a full daily-pay target. Easter Sunday and other Sunday holidays are not calculated by the weekday-only absence holiday mechanisms; optional leave and other absence treatments are not modelled.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Support Sunday holidays including Easter Sunday during insured absences and the remaining absence treatments. A local patron saint date must be supplied by the employer.
+
+!!! warning "esercizi-cinematografici-anec/sickness_hospital_exclusions · sickness · impact yes · open"
+    SICKNESS (Art. 64): stated hospital stays, including day hospital, are excluded from the comporto and pay counts. Life-saving therapies, recurring certified treatments and continuous absences exceeding a month due to serious illness (up to 90 days) are not excluded. From day 181 the CCNL pays 50% of its own integration, but the engine reads this as 50% of pay: a day INPS still indemnifies in a new year is paid only the INPS share.
+
+    **Applies when:** `sickness` applies.
+
+    **Remediation:** Exclude documented life-saving therapies, certified recurring treatments and qualifying continuous serious-illness absences from both counts; obtain hospital-stay facts when unstated, and pay half of the employer integration after day 180.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

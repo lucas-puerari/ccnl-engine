@@ -207,6 +207,12 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
                     public_life_insurance=False if _public_regime(ccnl) else None,
                     inps_sector=ccnl.meta.tax_sector,
                     contractual_funds=frozenset(),
+                    solidarity_fund_covered=(
+                        True
+                        if ccnl.parameters.solidarity_fund is not None
+                        and ccnl.parameters.solidarity_fund.requires_employer_coverage
+                        else None
+                    ),
                     subsector=level.subsectors[0] if level.subsectors else None,
                 ),
                 facts=_facts(slug, ccnl),

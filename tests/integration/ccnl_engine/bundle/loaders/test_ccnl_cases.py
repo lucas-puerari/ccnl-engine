@@ -27,6 +27,7 @@ from ccnl_engine.apprenticeship.models import (
     ApprenticeshipUnderClassification,
 )
 from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.employment.category.models import WorkerCategory
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
@@ -56,9 +57,12 @@ def _check_seniority(ccnl: CCNL, fname: str, sc: dict[str, Any]) -> None:
         "parameters.seniority_increments is None"
     )
     table = si.tiers[0].amount_by_level if si.tiers else si.amount_by_level
+    if "worker_category" in sc:
+        category = WorkerCategory(sc["worker_category"])
+        table = si.amount_by_level_by_category[category]
     ts = table.get(sc["level_code"])
     assert ts is not None, (
-        f"{fname}: seniority level {sc['level_code']!r} not found in amount_by_level"
+        f"{fname}: seniority level {sc['level_code']!r} not in schedule"
     )
     actual = ts.value_at(as_of)
     assert actual == Decimal(sc["expected_amount"]), (
