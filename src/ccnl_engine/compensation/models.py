@@ -147,9 +147,13 @@ class CCNLParameters(BaseModel):
     ``enam_levels``: ex ENAM; ``renewals``: raising the minimo (L. 199/2025);
     ``health_funds``, with their elemento distinto; ``hourly_pay``,
     ``fixed_term_pay`` (operai edilizia, OTD); ``loyalty_premium`` (fedeltà).
+    Loyalty awards may recur annually or pay once at a service milestone,
+    with eligible worker categories and employer subsectors.
     ``daily_presence_allowances``: rates paid per counted qualifying day,
     rather than a fraction of monthly pay; ``meal_benefit_daily``: the
     non-remunerative meal voucher value per eligible day.
+    ``equalisation_element`` retains the legacy single yearly element;
+    ``equalisation_elements`` adds other yearly elements without replacing it.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -180,6 +184,7 @@ class CCNLParameters(BaseModel):
     health_funds: tuple[ContractualFund, ...] = ()
     una_tantum: tuple[UnaTantum, ...] = ()
     equalisation_element: EqualisationElement | None = None
+    equalisation_elements: tuple[EqualisationElement, ...] = ()
     loyalty_premium: LoyaltyPremium | None = None
     daily_presence_allowances: tuple[DailyPresenceAllowance, ...] = ()
     meal_benefit_daily: TimeSeries | None = None
@@ -221,6 +226,8 @@ class Level(BaseModel):
     Attributes:
         code, order, description: Code (``"D3"``), rank (1 = lowest), name.
         base_salary: Time-series of monthly base salaries for this level.
+        valid_until: First date the level no longer exists, exclusive; for example,
+            a level absent from the July 2026 table may end on 2026-07-01.
         base_salary_by_subsector, subsectors: Sub-sector pay and eligibility.
         base_salary_by_cohort, class_tables: Hired-worker or seniority-class tables.
         transition_to, transition_after_months, transition_hire_bands,
@@ -234,6 +241,7 @@ class Level(BaseModel):
     order: int
     description: str
     base_salary: TimeSeries
+    valid_until: date | None = None
     base_salary_by_subsector: dict[str, TimeSeries] = Field(default_factory=dict)
     base_salary_by_cohort: tuple[CohortSalary, ...] = ()
     class_tables: tuple[ClassTable, ...] = ()

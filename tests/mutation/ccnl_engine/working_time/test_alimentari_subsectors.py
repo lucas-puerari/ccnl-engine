@@ -111,7 +111,9 @@ def _with_bands(*bands: OvertimeBand) -> CCNL:
         update={"overtime_bands": bands, "supplement_bands": ()}
     )
     work = rules.model_copy(update={"time_supplements": supplements})
-    return _CCNL.model_copy(update={"work_rules": work})
+    # Isolate the synthetic overtime bands from unrelated award-only subsectors.
+    parameters = _CCNL.parameters.model_copy(update={"loyalty_premium": None})
+    return _CCNL.model_copy(update={"work_rules": work, "parameters": parameters})
 
 
 def _band(code: str, **update: object) -> OvertimeBand:

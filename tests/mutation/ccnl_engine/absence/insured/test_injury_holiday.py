@@ -132,6 +132,26 @@ def test_metal_only_letter_b_and_reduced_days() -> None:
     assert date(2026, 4, 25) not in days
 
 
+def test_confcommercio_march_injury_patron_requires_employer_date() -> None:
+    """March 19: INAIL pays 60 of daily 100, ordinary CCNL pays 23.93.
+
+    With the stated patron day art. 191 raises total to gross 100,
+    adding 16.07 to employer integration; without it total is 83.93.
+    """
+    first, last = date(2026, 3, 19), date(2026, 3, 19)
+    injury_on = date(2026, 3, 15)
+    absent = _paid("commercio-confcommercio", first, last, injury_on)
+    stated = _paid(
+        "commercio-confcommercio",
+        first,
+        last,
+        injury_on,
+        EmployerProfile(headcount=Headcount(50), patron_saint_day="03-19"),
+    )
+    assert (absent.indemnity, absent.integration) == (Decimal(60), Decimal("23.93"))
+    assert (stated.indemnity, stated.integration) == (Decimal(60), Decimal(40))
+
+
 def test_confapi_january_injury_month_tops_up_epiphany() -> None:
     """Jan 1-7: Jan 1 waiting pays 60 and Jan 2-7 INAIL pays 6*60=360.
 

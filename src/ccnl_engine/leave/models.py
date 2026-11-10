@@ -181,6 +181,8 @@ class PermitDeadline(BaseModel):
             termination (Federmeccanica: "liquidate con la retribuzione in
             atto", the hourly pay of Tit. IV art. 3 "ai fini dei vari
             istituti contrattuali").
+        hourly_elements: Whether the hourly quota also includes caller-stated
+            hourly remuneration elements at the deadline.
         carry_years: Years after the year of the permits whose
             ``carry_until_month`` ends the carry (Federmeccanica Sez. IV Tit.
             III art. 5: "un ulteriore periodo di 24 mesi", 2).
@@ -192,6 +194,7 @@ class PermitDeadline(BaseModel):
     carry_until_month: int = Field(ge=1, le=12)
     carry_years: int = Field(default=1, ge=1, le=3)
     permits_hourly: bool = False
+    hourly_elements: bool = False
     buckets: tuple[LeaveBucket, ...] = Field(min_length=1)
     carry_fixed: bool = False
     provenance: RuleProvenance | None = None

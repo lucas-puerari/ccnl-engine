@@ -30,10 +30,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, una_tantum |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | una_tantum |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-11 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2026-07-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 49 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Allegato 1 nn. 2-5 (PDF p. 32), art. 17 and art. 33 of the Sezione personale di terra of 11 July 2024. | corrected | The superminimi by years in the level are in Allegato 1 nn. 2-5, not art. 18 as the note said: 7 EUR (IV, 8 years; III, 4 years with a diploma or 8 years), 11 EUR (II, 10 years, no further promotion).<br>Art. 17 puts the superminimo in the tredicesima and quattordicesima, art. 33 in the TFR base. |
 | 2026-11-08 | gpt-6-sol (ai) | Allegato 1 nn. 2-5 (PDF p. 32) against the encoding of the superminimi by years in the level, by a separate model session. | corrected | Confirmed the amounts, levels and thresholds of nn. 2, 3 and 5.<br>Corrected: n. 4 is for the 'altri impiegati', not every impiegato; n. 3 does not end at eight years (role 'non_diplomato' for n. 4).<br>Flagged: without career_months the service months stand for the years in the level (limitation level_years_from_service). |
+| 2026-11-10 | claude-opus-5-5 (ai) | Allegato 1 nn. 2-5 level-tenure gate and missing level entry fact. | corrected | PDF p. 32, Allegato 1 nn. 2-5: "dopo otto anni di permanenza nel livello", "dopo quattro anni di permanenza nel 3° livello", "dopo otto anni di permanenza nello stesso", "anzianità di livello pari o superiore a 10 anni". Completed months since Employment.level_started_on measure time in the level. |
 
 ## Salary table
 
@@ -111,13 +112,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `una_tantum` applies; from 2024-07-01.
 
     **Remediation:** Pay the una tantum (200 EUR in July 2024, 180 EUR in January 2025) outside the engine (ArrearsEvent) and record it as an open limitation.
-
-!!! warning "marittimi-industria-armatoriale/level_years_from_service · base_salary · impact yes · open"
-    Allegato 1 nn. 2-5: the superminimi count the years in the level ('permanenza nel livello', 'anzianità di livello'). The run reads SeniorityFact.career_months; without it, it reads the service months, which pay a worker promoted into the level less than the years required.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** State SeniorityFact.career_months as the months in the current level for the workers of levels II-IV.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -324,7 +318,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     EAR FOR VIIQ: Allegato 1bis lists EAR only for VII (not VIIQ separately). VIIQ workers receive the same EAR as VII; the distinguishing element is INDENNITA_FUNZIONE (additional allowance for quadri). Structural design: VIIQ base = VII base, VIIQ fixed_allowances includes INDENNITA_FUNZIONE.
     
-    Allegato 1 nn. 2-5 (p. 32; not art. 18): the superminimi by years in the level are fixed allowances gated on SeniorityFact.career_months: 7 EUR in level IV after 8 years; 7 EUR in level III after 4 years with the role 'diplomato', or after 8 years with the role 'non_diplomato'; 11 EUR in level II after 10 years with the role 'senza_passaggio'.
+    Allegato 1 nn. 2-5 (p. 32; not art. 18): the superminimi by years in the level are fixed allowances gated on Employment.level_started_on: 7 EUR in level IV after 8 years; 7 EUR in level III after 4 years with the role 'diplomato', or after 8 years with the role 'non_diplomato'; 11 EUR in level II after 10 years with the role 'senza_passaggio'.
     
 
 ## Raw data
