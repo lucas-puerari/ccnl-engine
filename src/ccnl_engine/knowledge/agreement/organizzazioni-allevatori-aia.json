@@ -78,10 +78,6 @@
       },
       {
         "kind": "info",
-        "text": "Indennita di funzione for Quadri (area 1): at least 13% of monthly salary per Art. 19 CCNL. Not modeled: percentage-based floor, not a fixed amount."
-      },
-      {
-        "kind": "info",
         "text": "Apprenticeship: Annex 4 (profili formativi) referenced but not publicly parsed. layer_2 = out_of_scope."
       },
       {
@@ -93,24 +89,6 @@
         "text": "SIMPLIFICATION: First tranche (Jan 2025) from Dec 2024 renewal not modeled; no per-level table confirmed for that date. Engine returns no result for as_of before 2025-09-01.",
         "capability": "base_salary",
         "monetary_impact": "no"
-      },
-      {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: Indennita di funzione for area 1 Quadri (min 13% monthly) not modeled — variable floor amount, not expressible as fixed allowance.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "quadri_function_allowance",
-          "applies_when": {
-            "levels": [
-              "1/2",
-              "1/3",
-              "1/4",
-              "1/5"
-            ]
-          },
-          "remediation": "Model the area 1 Quadri function allowance (minimum 13%)."
-        }
       },
       {
         "kind": "simplification",
@@ -191,6 +169,28 @@
         ],
         "independence": "separate_model",
         "checked": [
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-quadri-function-allowance",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Area 1 Quadri minimum function allowance and its monthly, extra-month and TFR bases against the cached signed agreement.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aia.it/download/ccnl/?wpdmdl=1787",
+            "sha256": "0d98962630c8e46ecb1c07a8e7f727c2d145e653d9430c1e78960cf914fdc528"
+          }
+        ],
+        "findings": [
+          "Article 19 (p. 25) sets a 13% minimum of monthly remuneration for 14 monthly payments, with employer discretion above the floor; Article 16 (p. 22) includes seniority and function allowance in monthly remuneration; Article 17 (p. 24) includes it in extra months; Article 39 (p. 41) refers TFR to statute."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.fixed_allowances",
           "coverage.notes"
         ]
       }
@@ -496,7 +496,50 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "QUADRI_FUNCTION",
+          "description": "National minimum function allowance for area 1 Quadri",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "quadro",
+          "percentage_rate": "0.13",
+          "percentage_include_seniority": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aia-ccnl-2023-accordo-2024",
+                "title": "Collective agreement for livestock breeders’ organisations, 2023-2026",
+                "kind": "associazione",
+                "url": "https://www.aia.it/download/ccnl/?wpdmdl=1787",
+                "sha256": "0d98962630c8e46ecb1c07a8e7f727c2d145e653d9430c1e78960cf914fdc528"
+              },
+              "page": "25",
+              "section": "Article 19 - Special allowances",
+              "quote": "Ai Quadri è riconosciuta una indennità di funzione a partire da un minimo nazionale del 13% della retribuzione mensile per 14 mensilità, che si intende compensativa dell’eventuale maggiore gravosità di orario connessa alla funzione espletata."
+            },
+            "transformation": "Minimum 13% of monthly remuneration for each area 1 Quadro, including accrued seniority under Article 16 (p. 22); paid for 14 months under Articles 17 and 19 (pp. 24-25), and included in TFR remuneration under Article 39 (p. 41). Individual amounts above the national minimum are supplied as individual elements. The zero monthly value is a calculation placeholder, not a contractual amount.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T23:05:12Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T23:05:12Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-quadri-function-allowance"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -617,7 +660,50 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "QUADRI_FUNCTION",
+          "description": "National minimum function allowance for area 1 Quadri",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "quadro",
+          "percentage_rate": "0.13",
+          "percentage_include_seniority": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aia-ccnl-2023-accordo-2024",
+                "title": "Collective agreement for livestock breeders’ organisations, 2023-2026",
+                "kind": "associazione",
+                "url": "https://www.aia.it/download/ccnl/?wpdmdl=1787",
+                "sha256": "0d98962630c8e46ecb1c07a8e7f727c2d145e653d9430c1e78960cf914fdc528"
+              },
+              "page": "25",
+              "section": "Article 19 - Special allowances",
+              "quote": "Ai Quadri è riconosciuta una indennità di funzione a partire da un minimo nazionale del 13% della retribuzione mensile per 14 mensilità, che si intende compensativa dell’eventuale maggiore gravosità di orario connessa alla funzione espletata."
+            },
+            "transformation": "Minimum 13% of monthly remuneration for each area 1 Quadro, including accrued seniority under Article 16 (p. 22); paid for 14 months under Articles 17 and 19 (pp. 24-25), and included in TFR remuneration under Article 39 (p. 41). Individual amounts above the national minimum are supplied as individual elements. The zero monthly value is a calculation placeholder, not a contractual amount.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T23:05:12Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T23:05:12Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-quadri-function-allowance"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -738,7 +824,50 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "QUADRI_FUNCTION",
+          "description": "National minimum function allowance for area 1 Quadri",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "quadro",
+          "percentage_rate": "0.13",
+          "percentage_include_seniority": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aia-ccnl-2023-accordo-2024",
+                "title": "Collective agreement for livestock breeders’ organisations, 2023-2026",
+                "kind": "associazione",
+                "url": "https://www.aia.it/download/ccnl/?wpdmdl=1787",
+                "sha256": "0d98962630c8e46ecb1c07a8e7f727c2d145e653d9430c1e78960cf914fdc528"
+              },
+              "page": "25",
+              "section": "Article 19 - Special allowances",
+              "quote": "Ai Quadri è riconosciuta una indennità di funzione a partire da un minimo nazionale del 13% della retribuzione mensile per 14 mensilità, che si intende compensativa dell’eventuale maggiore gravosità di orario connessa alla funzione espletata."
+            },
+            "transformation": "Minimum 13% of monthly remuneration for each area 1 Quadro, including accrued seniority under Article 16 (p. 22); paid for 14 months under Articles 17 and 19 (pp. 24-25), and included in TFR remuneration under Article 39 (p. 41). Individual amounts above the national minimum are supplied as individual elements. The zero monthly value is a calculation placeholder, not a contractual amount.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T23:05:12Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T23:05:12Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-quadri-function-allowance"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -859,7 +988,50 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "QUADRI_FUNCTION",
+          "description": "National minimum function allowance for area 1 Quadri",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "role": "quadro",
+          "percentage_rate": "0.13",
+          "percentage_include_seniority": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aia-ccnl-2023-accordo-2024",
+                "title": "Collective agreement for livestock breeders’ organisations, 2023-2026",
+                "kind": "associazione",
+                "url": "https://www.aia.it/download/ccnl/?wpdmdl=1787",
+                "sha256": "0d98962630c8e46ecb1c07a8e7f727c2d145e653d9430c1e78960cf914fdc528"
+              },
+              "page": "25",
+              "section": "Article 19 - Special allowances",
+              "quote": "Ai Quadri è riconosciuta una indennità di funzione a partire da un minimo nazionale del 13% della retribuzione mensile per 14 mensilità, che si intende compensativa dell’eventuale maggiore gravosità di orario connessa alla funzione espletata."
+            },
+            "transformation": "Minimum 13% of monthly remuneration for each area 1 Quadro, including accrued seniority under Article 16 (p. 22); paid for 14 months under Articles 17 and 19 (pp. 24-25), and included in TFR remuneration under Article 39 (p. 41). Individual amounts above the national minimum are supplied as individual elements. The zero monthly value is a calculation placeholder, not a contractual amount.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-09T23:05:12Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-09T23:05:12Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-quadri-function-allowance"
+            }
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1976,7 +2148,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "c87ba6fae4f0c11e8b8e20bc27078736b44b7105510dfaaeedac0344a43adcf3",
+    "source_hash": "698127ecf2c7a79cab525d695fd52c6855cb29348f23d3eec0f3ba6c0d585efe",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

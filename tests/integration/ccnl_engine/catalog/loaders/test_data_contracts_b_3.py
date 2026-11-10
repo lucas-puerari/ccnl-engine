@@ -171,10 +171,13 @@ class TestLoadPortieriFabbricatiConfedilizia:
         assert ccnl.meta.ccnl_id == "portieri-fabbricati-confedilizia"
         assert ccnl.meta.cnel_code == "H401"
 
-    def test_portieri_fabbricati_confedilizia_has_11_levels(self) -> None:
-        """11 levels: B1-B5, C3, C4, D1-D4 (A and C1/C2 excluded)."""
+    def test_portieri_fabbricati_confedilizia_has_12_levels(self) -> None:
+        """12 levels: B1-B5, C3, C4 and its first-employment entry rate.
+
+        D1-D4 are included; A and C1/C2 remain excluded.
+        """
         ccnl = load_ccnl("portieri-fabbricati-confedilizia")
-        assert len(ccnl.levels) == 11
+        assert len(ccnl.levels) == 12
         codes = {lv.code for lv in ccnl.levels}
         assert codes == {
             "B1",
@@ -184,6 +187,7 @@ class TestLoadPortieriFabbricatiConfedilizia:
             "B5",
             "C3",
             "C4",
+            "C4_PRIMO_IMPIEGO",
             "D1",
             "D2",
             "D3",
@@ -207,10 +211,11 @@ class TestLoadPortieriFabbricatiConfedilizia:
         assert lv.base_salary.value_at(date(2028, 1, 1)) == Decimal("1868.50")
 
     def test_portieri_fabbricati_confedilizia_level_ordering(self) -> None:
-        """C3 is highest (order=11); B5 is lowest (order=1)."""
+        """C3 is highest (order=12); B5 is lowest (order=1); entry C4 follows B5."""
         ccnl = load_ccnl("portieri-fabbricati-confedilizia")
         ordered = sorted(ccnl.levels, key=lambda lv: lv.order)
         assert ordered[0].code == "B5"
+        assert ordered[1].code == "C4_PRIMO_IMPIEGO"
         assert ordered[-1].code == "C3"
 
     def test_portieri_fabbricati_confedilizia_additional_months(self) -> None:

@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "impiegati_apprenticeship_duration",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "Apprenticeship tables use operai duration tracks (5 years for gruppi 1-2, 2.5 years for gruppo 3). Impiegati and impiegati amministrativi have shorter 3-year apprenticeship durations with the same percentages — not separately modelled. For impiegato apprenticeships the operai duration overstates the period.",
-      "calculation": "ccnl/legno-lapidei-artigianato-confartigianato:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the 3-year impiegati apprenticeship tracks.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "legno-lapidei-artigianato-confartigianato/impiegati_apprenticeship_duration"
-        ]
-      }
-    },
-    {
       "id": "inps_sector_rates_unsourced",
       "institute": "inps_employer",
       "variant": "all",
