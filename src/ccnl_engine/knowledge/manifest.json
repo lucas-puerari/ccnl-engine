@@ -2023,7 +2023,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/studi-professionali-confprofessioni",
       "ruleset_version": "2026.2",
-      "source_hash": "c1ff838d1f660f3c5874edcc834677e77c38a9daf17f9dd3053c1287e0ca8c04",
+      "source_hash": "fad5be1ac972b58c76d252dfdc7921ba5008c89c17359238aae625d907993b19",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/studi-professionali-confprofessioni.json.gz"
@@ -4761,7 +4761,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "c08f6bb8f7f0d4fa462d98660fe7ffc64ac6c5e4e80554d9fa91b86711e07421",
+      "source_hash": "5480601dc0155ab27a41e4af558ae3b1bd4717cc7af58200072b50dbe04de7d2",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/studi-professionali-confprofessioni.json.gz",
