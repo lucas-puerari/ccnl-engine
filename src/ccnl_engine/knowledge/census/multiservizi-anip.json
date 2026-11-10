@@ -119,10 +119,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "VARIABLE ALLOWANCES (CNEL 105782 art. 24): hardship, cash-handling and collection duties require separate daily, hourly or percentage bases and qualifying work events. The retained personal EDAR is absorbed at the next qualifying seniority increment (art. 22 pp. 41-42). No amounts for work not evidenced by the source are inferred.",
+      "rule": "VARIABLE ALLOWANCES (CNEL 105782 arts. 22 and 24): the 3% tabellare cash-handling allowance is modeled for a caller-stated role normally handling money with liability for errors. Hardship requires qualifying daily cleaning events and the correct daily tabellare base; collection requires qualifying collections above EUR 4.65 and a 5% retribuzione base; the hourly cleaning allowances require actual duty hours and non-cumulation where applicable. Personal EDAR retained under art. 22 requires an individual amount and absorption at the next qualifying seniority increment. No unsupported amounts or event counts are inferred.",
       "calculation": "ccnl/multiservizi-anip:coverage.notes",
       "state": "absent",
-      "remediation": "Model each evidenced allowance on its own qualifying duty and base; track the individual EDAR and absorption at the first subsequent increment.",
+      "remediation": "Route qualifying hardship days, collection events and hourly duty hours to their distinct bases; track individual EDAR and its absorption at the next qualifying increment. The cash-handling role supplement is modeled.",
       "origin": "seeded",
       "links": {
         "limitations": [
