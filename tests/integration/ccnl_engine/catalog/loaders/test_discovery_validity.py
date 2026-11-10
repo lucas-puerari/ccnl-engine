@@ -118,7 +118,12 @@ def _runs(ccnl: CCNL) -> Iterator[tuple[str, int]]:
     """
     codes = [level.code for level in ccnl.levels]
     for month in range(1, 13):
-        yield codes[(month - 1) % len(codes)], month
+        valid_codes = [
+            level.code
+            for level in ccnl.levels
+            if level.valid_until is None or date(_YEAR, month, 1) < level.valid_until
+        ]
+        yield valid_codes[(month - 1) % len(valid_codes)], month
     for index, code in enumerate(codes[12:], start=12):
         yield code, index % 12 + 1
 

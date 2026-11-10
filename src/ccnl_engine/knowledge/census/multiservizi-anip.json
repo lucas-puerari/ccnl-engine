@@ -167,10 +167,10 @@
       "institute": "seniority",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "SENIORITY (CNEL 105782 art. 22, pp. 41-42, 90): Levels 2-6 include both operai and impiegati. The single level-based schedule assigns the wrong form of seniority to some workers: impiegati receive eight biennial scatti at most, operai one sector amount after four years (including levels 5 and 6). Scatti must retain their value at maturation and after promotion, with a ceiling of 50% of tabellare plus EUR 279.60; the existing schedule reprices every matured scatto at the current rate. Sector seniority survives contract changes within the sector.",
+      "rule": "SENIORITY (CNEL 105782 art. 22, pp. 41-42, 90): Category-specific amounts now pay operai at levels 1-6 after four years (including levels 5 and 6), with at most one quota; levels 5-7 and Q pay impiegati up to eight biennial scatti. No current series for impiegati at levels 2-4 is verified. Without an EarnedIncrements worker fact, matured scatti are still repriced at the run date, including after promotion; the 50% ceiling of tabellare plus EUR 279.60 is not enforced. The worker must supply recognised sector service across contract changes and the correct category at mixed levels.",
       "calculation": "ccnl/multiservizi-anip:coverage.notes",
       "state": "absent",
-      "remediation": "Route scatti and forfettaria by worker category, preserve each matured amount across tranches and promotion, respect the ceiling and sector service history.",
+      "remediation": "Source the current impiegati scatto amounts for levels 2-4; supply earned amounts and recognised sector service from worker records, and implement automatic maturation-date pricing and the 50% ceiling.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -183,10 +183,10 @@
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "SICKNESS (CNEL 139292 art. 51, pp. 22-24): operai receive a top-up to 100% of net global pay on days 1-180, then 50% of gross global pay on days 181-270. Impiegati receive 100% of stipendio plus contingenza for five months and 50% for seven; both are subject to a twelve-month comporto in a rolling 36-month window. The existing rule ends pay at day 180, uses gross throughout and does not route by category; the rolling comporto alone is represented.",
+      "rule": "SICKNESS (CNEL 139292 art. 51, pp. 22-24): category routing, the 100% net-global-pay operai band through day 180, the 50% band through day 270, the impiegati 100% first five months and 50% next seven months, and the rolling 36-month comporto are represented. Remaining: the operai 50% band is of gross global pay, while the model applies net_basis to the whole rule; impiegati pay is stipendio plus contingenza, while the engine uses global pay. The operai first working day and the impiegati non-probation and serious-fault conditions are not represented. The clause does not state a daily gross/net conversion or an amount for the excluded pay components.",
       "calculation": "ccnl/multiservizi-anip:coverage.notes",
       "state": "absent",
-      "remediation": "Apply separate category rules and day-dependent net/gross bases to operai; apply the separate stipendio-plus-contingenza impiegati bands.",
+      "remediation": "Apply gross rather than net basis to operai days 181-270, restrict impiegati pay to stipendio plus contingenza, and respect the first-working-day and eligibility conditions; use the worker's actual category at mixed-category levels.",
       "origin": "seeded",
       "links": {
         "limitations": [

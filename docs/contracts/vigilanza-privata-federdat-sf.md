@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 26 verified / 0 derived / 0 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 27 verified / 0 derived / 0 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-07-09 |
-| **Last review** | 2026-11-06 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-11-06 | claude-opus-5-5 (ai) | FEDERDAT CCNL of 4 May 2023 (CNEL 167336) and of 9 July 2026 (CNEL 245848), servizi fiduciari: artt. 139-141/156-158 pay, seniority, 13th (pp. 76-77, page images), 126/143 overtime (p. 72), 134/151 ferie (p. 74), 86/103 sickness (p. 51), 32 apprenticeship. | corrected | New file: the servizi fiduciari of the FEDERDAT CCNL had no ruleset (the old federdat-sf file held the HV17 tables, now vigilanza-privata-assiv-sf). |
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 32, 123-124 and 157 of the CCNL of 9 July 2026 (pp. 23, 64, 76, OCR). | corrected | Apprentices accrue the level increments in full: art. 32 c. 1 (p. 23 of the CCNL of 9 July 2026) sets their pay 'in applicazione del principio di parità di trattamento' (no percentage), art. 123 (p. 64) counts seniority 'dal giorno in cui il lavoratore inizia di fatto la prestazione lavorativa nell'Istituto, quali che siano le mansioni', and the six triennial increments are fixed per level (art. 124; art. 157 for the servizi fiduciari). |
+| 2026-11-10 | claude-opus-5-5 (ai) | 2023 level F classification and pay (pp. 69-70, 76); 2026 renewal table (p. 76). | corrected | The 2023 table pays F 865.68; the 2026 renewal omits F without printing a transition. |
 
 ## Salary table
 
@@ -72,6 +73,7 @@ Latest effective values per level (monthly gross, EUR).
 | `C` | Livello C (servizi fiduciari) | € 1,556.29 | 2026-12-01 |
 | `D` | Livello D (servizi fiduciari) | € 1,300.00 | 2026-12-01 |
 | `E` | Livello E (servizi fiduciari) | € 1,207.14 | 2026-12-01 |
+| `F` | Entry level F (fiduciary services, first 12 months on D duties) | — | 2026-07-01 |
 
 ## Seniority increments
 
@@ -96,12 +98,12 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "vigilanza-privata-federdat-sf/level_f_2023 · base_salary · impact yes · open"
-    LEVEL F: the 2023 table pays a level F (865.68 EUR, art. 139); the 2026 table has none. The file models the levels A-E.
+!!! warning "vigilanza-privata-federdat-sf/level_f_transition_2026 · base_salary · impact yes · open"
+    LEVEL F: the 2023 table pays level F until July 2026; the 2026 renewal prints no transition for F workers. The caller must restate the worker's level from July 2026. The caller must state F for the first 12 months of effective D duties, E for months 13-24 and D thereafter; progression is not automatic.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the level F of the 2023 table until the renewal of July 2026.
+    **Remediation:** Obtain a source for the classification of existing F workers at renewal; the published table gives no transition.
 
 !!! warning "vigilanza-privata-federdat-sf/ordinary_hours_premiums · overtime · impact yes · open"
     ORDINARY HOURS (Art. 143): the premiums of 40% on ordinary Sunday and holiday work by day and 50% on holiday work by night are modelled (supplement_bands SF_*); not modelled: the 50% of ordinary Sunday work by night of a worker whose rest day is another day, and the indennità sesto giorno of 10%.

@@ -3755,16 +3755,32 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "For public employees enrolled in Perseo Sirio before 2001 who opted into the TFR regime, the additional 1.5% of the TFS contribution base is accrued notionally by INPS, not paid as an employer fund contribution. Its accrual and the 28.94% notional TFR allocation are not calculated by this run.",
-        "capability": "pension_fund_contribution",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "perseo_sirio_notional_accrual",
-          "applies_when": {
-            "trigger": "outside_input"
+        "kind": "info",
+        "text": "For public employees hired before 2001 who opt into TFR and join Perseo Sirio, 28.94% of the TFR accrual is allocated notionally by INPS or the public employer (for staff not enrolled with INPS for end-of-service benefits). For those enrolled with INPS for TFS, the additional 1.5% of the TFS contribution base is also accrued notionally by INPS. Neither is a monthly cash fund contribution or extra employer payroll cost. The run posts the ordinary TFR base and accrual, not these outside-run notional allocations; transfer to the fund occurs on termination subject to the continuity condition. Fund information note, public employee schedule p. 3, note (1): 'Le quote di TFR dei dipendenti pubblici non sono versate al fondo ma sono accantonate figurativamente presso:'.",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "perseo-sirio-nota-informativa-2026",
+              "title": "Perseo Sirio information note, public employee contribution schedule",
+              "kind": "altro",
+              "url": "https://www.fondoperseosirio.it/wp-content/uploads/2026/07/Nota-Info-completa_18.12.25.pdf",
+              "sha256": "6f20d3b8cb79694edd8fe406a8172ea14fd1f7f8794175f2f7f31745cb2a33ef"
+            },
+            "page": "14 (schedule p. 3 of 5)",
+            "section": "I destinatari e i contributi, Dipendenti pubblici, notes 1, 3 and 4",
+            "quote": "(1) Le quote di TFR dei dipendenti pubblici non sono versate al fondo ma sono accantonate figurativamente presso:"
           },
-          "remediation": "Model the notional INPS allocation for pre-2001 TFR optants separately from the 1% employer cash contribution."
+          "transformation": "Notes 1, 3 and 4 distinguish notional TFR allocations (28.94% of the total accrual for pre-2001 optants) and the 1.5% TFS-base notional increment from employer and worker cash contributions. Note 4 assigns the latter to INPS for workers enrolled for TFS; note 1 assigns TFR accounting to INPS or the employer according to end-of-service enrolment. No extra cash contribution or change to the run's ordinary TFR base is implied.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-10T02:34:04Z",
+            "verification_status": "verified",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-10T02:34:04Z",
+            "review_id": "2026-11-10-perseo-notional-research"
+          }
         }
       }
     ]
@@ -3776,7 +3792,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "0c791bd1102ee5a2484c52c5d2e18adaa674d83cc20b8c946f29b602c224404f",
+    "source_hash": "b92a3f82562e7ccb011bfde116b15604476f279abe126b715b29a0f7b311d5a9",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -4040,6 +4056,27 @@
         "independence": "same_process",
         "checked": [
           "parameters.employer_funds[PERSEO_SIRIO]"
+        ]
+      },
+      {
+        "id": "2026-11-10-perseo-notional-research",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Perseo Sirio public employee notional allocations versus run amounts",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fondoperseosirio.it/wp-content/uploads/2026/07/Nota-Info-completa_18.12.25.pdf",
+            "sha256": "6f20d3b8cb79694edd8fe406a8172ea14fd1f7f8794175f2f7f31745cb2a33ef"
+          }
+        ],
+        "findings": [
+          "The pre-2001 optant's 28.94% TFR share and applicable 1.5% TFS-base increment are notional accounting outside payroll, not cash fund contributions or extra run costs; the ordinary TFR base remains posted."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ]

@@ -171,15 +171,25 @@ class TestLoadPortieriFabbricatiConfedilizia:
         assert ccnl.meta.ccnl_id == "portieri-fabbricati-confedilizia"
         assert ccnl.meta.cnel_code == "H401"
 
-    def test_portieri_fabbricati_confedilizia_has_12_levels(self) -> None:
-        """12 levels: B1-B5, C3, C4 and its first-employment entry rate.
+    def test_portieri_fabbricati_confedilizia_has_21_levels(self) -> None:
+        """21 levels: A1-A9, B1-B5, C3, C4 and its first-employment entry rate.
 
-        D1-D4 are included; A and C1/C2 remain excluded.
+        D1-D4 are included; A profiles have monthly bases but not their
+        per-level hourly divisors or in-kind accommodation. C1/C2 remain excluded.
         """
         ccnl = load_ccnl("portieri-fabbricati-confedilizia")
-        assert len(ccnl.levels) == 12
+        assert len(ccnl.levels) == 21
         codes = {lv.code for lv in ccnl.levels}
         assert codes == {
+            "A1",
+            "A2",
+            "A3",
+            "A4",
+            "A5",
+            "A6",
+            "A7",
+            "A8",
+            "A9",
             "B1",
             "B2",
             "B3",
@@ -211,12 +221,25 @@ class TestLoadPortieriFabbricatiConfedilizia:
         assert lv.base_salary.value_at(date(2028, 1, 1)) == Decimal("1868.50")
 
     def test_portieri_fabbricati_confedilizia_level_ordering(self) -> None:
-        """C3 is highest (order=12); B5 is lowest (order=1); entry C4 follows B5."""
+        """C3 is highest (order=21); A1 is lowest; entry C4 follows B5.
+
+        Every level's 2026 minimum follows nondecreasing salary order, including
+        the newly added A profiles with identical amounts within each table row.
+        """
         ccnl = load_ccnl("portieri-fabbricati-confedilizia")
         ordered = sorted(ccnl.levels, key=lambda lv: lv.order)
-        assert ordered[0].code == "B5"
-        assert ordered[1].code == "C4_PRIMO_IMPIEGO"
+        assert [lv.order for lv in ordered] == list(range(1, 22))
+        assert [lv.code for lv in ordered[:5]] == [
+            "A1",
+            "A2",
+            "A5",
+            "B5",
+            "C4_PRIMO_IMPIEGO",
+        ]
         assert ordered[-1].code == "C3"
+        assert [lv.base_salary.value_at(date(2026, 1, 1)) for lv in ordered] == sorted(
+            lv.base_salary.value_at(date(2026, 1, 1)) for lv in ordered
+        )
 
     def test_portieri_fabbricati_confedilizia_additional_months(self) -> None:
         """13 mensilita: tredicesima only (Art. 130 Gratifica natalizia)."""
