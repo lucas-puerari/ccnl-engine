@@ -311,10 +311,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Sugar-industry supplementary rule 25 (PDF p. 230): at 25 uninterrupted years with the same company or group, a one-off minimum award of one normal monthly pay for clerical staff or 200 normal hourly wages for manual workers. This does not apply to the other food-industry branches. Death or permanent incapacity before the threshold and direct transfers have separate rules. An annual clerical-only loyalty_premium would wrongly repeat and extend this award.",
+      "rule": "Sugar-industry supplementary rule 25 (PDF p. 230): the once-only award at 25 uninterrupted years is modelled for clerical and manual workers in the sugar branch. Still missing: settlement before the threshold on death or permanent incapacity, qualifying direct transfers between sugar companies, and proof of uninterrupted service within the same company or group from the employment facts.",
       "calculation": "ccnl/alimentari-federalimentare:coverage.notes",
       "state": "absent",
-      "remediation": "Gate the sugar subsector and pay the once-only clerical or hourly award, including early departure and transfer rules.",
+      "remediation": "Represent early death or permanent-incapacity settlement, qualifying direct transfers, and uninterrupted company or group service as worker facts.",
       "origin": "seeded",
       "links": {
         "limitations": [

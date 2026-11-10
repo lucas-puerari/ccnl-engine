@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | assistance_contribution, base_salary, inps_employer, seniority |
+| **Limits of this contract** | assistance_contribution, base_salary, seniority |
 
 10 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-01-01 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -66,6 +66,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The accrual of the ferie and their indemnity at the end of the employment, Art. 17 and Chiarimenti a verbale (PDF pp. 29-30, 56). | corrected | Art. 17 c. 9 and Chiarimenti point 4: twelfths for each month of service, a month of 15 days or more whole: work_rules.leave_rules.ferie_accrual. Art. 17 c. 6: a day of ferie is paid 1/26 of the monthly pay, read as the indemnity of a day left: work_rules.leave_rules.termination. Found by a delegated search, read again in the PDF text layer. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 34 cc. 3, 4, 7 (PDF pp. 44-45) and the Tabelle H, I, L of the minimi from 1 January 2026 (PDF p. 59), text layer. | corrected | Tabella H: B super baby sitter 138.54 a month (live-in), 97.06 (Tabella B workers), 0.84 an hour; Tabella I: C super and D super assisting more than one non self-sufficient person 119.66 a month, 0.70 an hour; Tabella L: B, B super and C super with the UNI 11766:2019 certification 30.27 a month: role allowances of the levels of this ruleset. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 34 cc. 3, 4, 7 and the Tabelle H, I, L (PDF pp. 44-45, 59) against the role allowances, by a separate model session. | corrected | Confirmed the amounts, levels and roles of the Tabelle H, I and L.<br>Corrected: the quotes now hold the article text alone (the table amounts are in the transformation); the certification needs a copy handed over; the allowance of c. 7 is absorbed by any better treatment received overall, not only a superminimo. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 34 cc. 3, 4, 7 (PDF pp. 44-45) against caller-gated role allowances and offsets. | corrected | Role-gated monthly allowances work; independent eligibility checks and automatic offsets remain outside the model. |
+| 2026-11-09 | claude-opus-5-5 (ai) | INPS circolare 9/2026 table A (PDF p. 3) and published DOMINA quarters against the existing domestic rate test. | confirmed | The example-validation gap was already closed by four published DOMINA quarters in the bundled mutation test. |
 
 ## Salary table
 
@@ -123,12 +125,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source how the Tabella A minimum of a convivente with fewer than 54 agreed weekly hours is computed and model it, then remove this note.
 
-!!! warning "lavoro-domestico-convivente/hourly_inps_bracket_unvalidated · inps_employer · impact unknown · open"
-    INPS BAND: the engine chooses the band of up to 24 weekly hours on the paga oraria effettiva of INPS (circ. 9/2026; INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore domestico): the monthly pay with board and lodging over the hours of the employment (weekly hours x 52 / 12), raised by the tredicesima (x 13 / 12). That reading of the circular is not yet checked against a worked example of the INPS domestic table (review of 2026-10-30).
+!!! note "lavoro-domestico-convivente/hourly_inps_bracket_unvalidated · inps_employer · impact unknown · resolved"
+    INPS BAND: the engine chooses the band of up to 24 weekly hours on the paga oraria effettiva of INPS (circ. 9/2026; INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore domestico): the monthly pay with board and lodging over the hours of the employment (weekly hours x 52 / 12), raised by the tredicesima (x 13 / 12). The 2026 bands match the published quarterly worked examples of CCNL signatory DOMINA (review of 2026-10-16); the caller must still state the actual monthly pay and contributable hours.
 
     **Applies when:** `inps_employer` applies.
 
-    **Remediation:** Validate the hourly INPS bracket lookup for weekly hours up to 24 against the INPS domestic table.
+    **Remediation:** Resolved: the effective hourly pay and rate selection match the published 2026 worked quarters of CCNL signatory DOMINA.
 
 !!! note "lavoro-domestico-convivente/board_lodging_substitute · base_salary · impact unknown · resolved"
     The cash indennita sostitutiva of board and lodging is not paid for the days the convivente does not take them: ferie (Art. 17 c. 7), sospensioni extraferiali (Art. 18 c. 1), congedo matrimoniale (Art. 24 c. 2), malattia and infortunio outside hospital (Art. 27 c. 9, Art. 29 c. 7). The request states those days with BoardLodgingEvent, and the engine pays the value in kind over 30 for each of them.
@@ -166,11 +168,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note.
 
 !!! warning "lavoro-domestico-convivente/art34_role_conditions · base_salary · impact yes · open"
-    Art. 34 cc. 3, 4, 7: the role allowances hold while their condition does, which the caller states: 'baby_sitter_under_6' until each child assisted turns six, 'assistenza_piu_non_autosufficienti' while more than one non self-sufficient person is assisted, 'certificazione_uni_11766' while the UNI 11766:2019 certification is valid, communicated in writing and a copy handed over. The allowances of cc. 3 and 4 are absorbable by an individual superminimo, that of c. 7 by any better treatment received overall.
+    Art. 34 cc. 3, 4, 7: the engine pays the level-specific allowances only while the caller states the qualifying roles. It cannot independently verify a child's age, the number of persons assisted, or certification validity, written notice and delivery of its copy. Nor does it automatically offset the allowances of cc. 3 and 4 against an individual superminimo or that of c. 7 against better treatment received overall; the caller must state individual pay net of any offset.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** State the age of the children, the persons assisted and the certification as worker facts.
+    **Remediation:** Verify role eligibility externally and state individual pay net of any offset; to automate this, model child age, assisted persons, certification validity and notice, and the applicable offsets.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
