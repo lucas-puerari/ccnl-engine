@@ -56,33 +56,51 @@
   "seniority_checks": [
     {
       "level_code": "1",
+      "worker_category": "operaio",
       "as_of": "2021-07-01",
       "expected_amount": "51.02"
     },
     {
       "level_code": "2",
+      "worker_category": "operaio",
       "as_of": "2021-07-01",
       "expected_amount": "54.39"
     },
     {
       "level_code": "2par115",
+      "worker_category": "operaio",
       "as_of": "2021-07-01",
       "expected_amount": "55.50"
     },
     {
       "level_code": "3",
+      "worker_category": "operaio",
       "as_of": "2021-07-01",
       "expected_amount": "58.18"
     },
     {
       "level_code": "4par125",
+      "worker_category": "operaio",
       "as_of": "2021-07-01",
       "expected_amount": "62.59"
     },
     {
       "level_code": "4",
+      "worker_category": "operaio",
       "as_of": "2021-07-01",
       "expected_amount": "63.15"
+    },
+    {
+      "level_code": "5",
+      "worker_category": "operaio",
+      "as_of": "2025-08-01",
+      "expected_amount": "66.77"
+    },
+    {
+      "level_code": "6",
+      "worker_category": "operaio",
+      "as_of": "2025-08-01",
+      "expected_amount": "82.99"
     },
     {
       "level_code": "5",
