@@ -15,7 +15,7 @@ amounts says the minimum is undetermined.
 from __future__ import annotations
 
 from dataclasses import replace
-from datetime import date
+from datetime import date, timedelta
 from decimal import Decimal
 
 import pytest
@@ -176,10 +176,15 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
     ccnl = load_ccnl(slug)
     increments = ccnl.parameters.seniority_increments
     for level in ccnl.levels:
+        run_day = _HIRED.started_on
+        if level.valid_until is not None and run_day >= level.valid_until:
+            last_valid = level.valid_until - timedelta(days=1)
+            run_day = date(last_valid.year, last_valid.month, 1)
+        hired = _HIRED if run_day == _HIRED.started_on else EmploymentPeriod(run_day)
         result = _ENGINE.calculate_period(
             PeriodInput(
-                run=PayrollRun.regular(year=2026, month=9),
-                payment_date=date(2026, 9, 27),
+                run=PayrollRun.regular(year=run_day.year, month=run_day.month),
+                payment_date=date(run_day.year, run_day.month, 27),
                 employment=Employment(
                     ccnl_id=slug,
                     level_code=level.code,
@@ -187,7 +192,7 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
                     full_time_weekly_hours=_DOMESTIC.get(slug),
                     seniority=new_hire(),
                     category=pricing_category(increments, level.code),
-                    employment_period=_HIRED,
+                    employment_period=hired,
                     roles=frozenset(),
                     pension_fund=NoPensionFund(),
                     contract_type=Permanent(),
@@ -202,10 +207,20 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
                     public_life_insurance=False if _public_regime(ccnl) else None,
                     inps_sector=ccnl.meta.tax_sector,
                     contractual_funds=frozenset(),
+                    solidarity_fund_covered=(
+                        True
+                        if ccnl.parameters.solidarity_fund is not None
+                        and ccnl.parameters.solidarity_fund.requires_employer_coverage
+                        else None
+                    ),
                     subsector=level.subsectors[0] if level.subsectors else None,
                 ),
                 facts=_facts(slug, ccnl),
-                current_year=_ONLY_EMPLOYMENT,
+                current_year=(
+                    _ONLY_EMPLOYMENT
+                    if hired is _HIRED
+                    else CurrentYearTaxFacts.employment_only(run_day.year, run_day)
+                ),
             )
         )
         gross = result.period_gross

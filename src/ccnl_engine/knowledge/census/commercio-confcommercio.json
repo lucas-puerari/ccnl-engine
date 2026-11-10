@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "local_patron_holiday",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 191 also covers the local patron saint holiday of art. 154, which cannot be determined from the national calendar without the workplace location.",
-      "calculation": "ccnl/commercio-confcommercio:coverage.notes",
-      "state": "absent",
-      "remediation": "Provide a location-aware holiday calendar for the local patron saint.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "commercio-confcommercio/local_patron_holiday"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",

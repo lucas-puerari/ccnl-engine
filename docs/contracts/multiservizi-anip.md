@@ -73,6 +73,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Cached CNEL 139292 PDF page 34, July 2025 tabellare for all eight printed levels; two parametric positions derived; later unsigned salary periods excluded. | corrected | Verified all eight printed monthly minima against PDF page 34; derived two unprinted parametric positions from prior signed periods and signed tranche increments.<br>Excluded all unsigned salary periods from May 2026 onward; the signed July 2025 tranche remains in force until further ANIP evidence. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 19 daily pay and art. 30 ordinary working week, cached signed CNEL 105782; separate limitations for the remaining clauses in CNEL 105782 and 139292. | corrected | Art. 19 prints 22 for a five-day week and 26 for six days; art. 30 makes five days the normal distribution. The historical pension base and the missing signed 2012 apprenticeship accord prevent assuming current pay bases or durations. |
 | 2026-11-10 | claude-opus-5-5 (ai) | CNEL 139292 art. 33 pp. 16-17 and CNEL 105782 art. 18 p. 40, art. 38 p. 57; supplementary and ordinary holiday/night supplements and percentage bases. | corrected | The 2021 ANIP-signed part-time amendment governs supplementary hours in 2026; elastic hours remain a limitation.<br>The 2011 art. 38 continues to set ordinary holiday and night rates, on base pay, with non-cumulation not automatically enforced. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Category-specific seniority amounts and remaining limitations, CNEL 105782 art. 22 pp. 41-42, 90. | corrected | The printed sector amounts include levels 5 and 6. Impiegati scatti are priced at maturation and kept after promotion; the automatic freeze and ceiling remain unsupported. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Allegato 8 pp. 119-123 of the 2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement: maximum terms and pay grades effective 20 July 2012. | corrected | The annex prints II 24, III-IV 30, V-VII 36 months; the first half pays two ordinary levels below, the second half one below, except destination II at I throughout. The CNEL renewal has no amendment to these clauses. Individual reductions and extensions remain outside the maximum-term tracks. |
 
 ## Salary table
@@ -99,12 +100,6 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Increment (monthly) |
 |---|---:|
-| `1` | € 51.02 |
-| `2` | € 54.39 |
-| `2par115` | € 55.50 |
-| `3` | € 58.18 |
-| `4par125` | € 62.59 |
-| `4` | € 63.15 |
 | `5` | € 80.03 |
 | `6` | € 95.22 |
 | `7` | € 107.28 |
@@ -141,13 +136,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source an ANIP-signed later minimum or verified IPCA adjustment before adding subsequent tranches.
 
-!!! warning "multiservizi-anip/multiservizi_seniority_maturation · seniority · impact yes · open"
-    SENIORITY (CNEL 105782 art. 22, pp. 41-42, 90): Levels 2-6 include both operai and impiegati. The single level-based schedule assigns the wrong form of seniority to some workers: impiegati receive eight biennial scatti at most, operai one sector amount after four years (including levels 5 and 6). Scatti must retain their value at maturation and after promotion, with a ceiling of 50% of tabellare plus EUR 279.60; the existing schedule reprices every matured scatto at the current rate. Sector seniority survives contract changes within the sector.
-
-    **Applies when:** `seniority` applies.
-
-    **Remediation:** Route scatti and forfettaria by worker category, preserve each matured amount across tranches and promotion, respect the ceiling and sector service history.
-
 !!! warning "multiservizi-anip/multiservizi_sickness_by_category_and_basis · sickness · impact yes · open"
     SICKNESS (CNEL 139292 art. 51, pp. 22-24): operai receive a top-up to 100% of net global pay on days 1-180, then 50% of gross global pay on days 181-270. Impiegati receive 100% of stipendio plus contingenza for five months and 50% for seven; both are subject to a twelve-month comporto in a rolling 36-month window. The existing rule ends pay at day 180, uses gross throughout and does not route by category; the rolling comporto alone is represented.
 
@@ -183,13 +171,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Apply the per-level historical base to enrolled members on twelve months, enforce the membership conditions and employee and employer shares.
 
-!!! warning "multiservizi-anip/multiservizi_apprenticeship_destinations · base_salary · impact yes · open"
-    APPRENTICESHIP (Allegato 8 of the 2021 compiled CCNL, reproducing the 19 July 2012 agreement): the tracks use the printed maximum duration. For destinations V-VII a relevant diploma shortens the term by 6 months and a relevant degree by 12 months; absence over 30 days extends the term by the absence duration. Individual term adjustments are not represented by the maximum-term tracks.
-
-    **Applies when:** `base_salary` applies.
-
-    **Remediation:** Supply the individually agreed term and qualification or absence details before applying a shortened or extended progression; the tracks encode only the printed maximum terms.
-
 !!! warning "multiservizi-anip/renewal_not_signed_by_anip · base_salary · impact yes · open"
     SIGNATORIES: ANIP is not among the original signatories of the 13 June 2025 renewal and the 6 August 2025 tables (CNEL 234754, 234752); a later ANIP accession or a separate ANIP agreement was not found but is not excluded. From July 2025 the file applies the ANIP-signed fifth tranche of the 8 June 2021 renewal (CNEL 139292 p. 34); with an accession the 2025 renewal minima (level 2 819.21 from July 2025) would apply instead.
 
@@ -203,6 +184,20 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; from 2025-07-01.
 
     **Remediation:** Source the IPCA consuntivo of June 2025 and any later IPCA adjustment for ANIP and adjust the July 2025 minima.
+
+!!! warning "multiservizi-anip/multiservizi_seniority_maturation · seniority · impact yes · open"
+    SENIORITY (CNEL 105782 art. 22, pp. 41-42, 90): Category-specific amounts now pay operai at levels 1-6 after four years (including levels 5 and 6), with at most one quota; levels 5-7 and Q pay impiegati up to eight biennial scatti. No current series for impiegati at levels 2-4 is verified. Without an EarnedIncrements worker fact, matured scatti are still repriced at the run date, including after promotion; the 50% ceiling of tabellare plus EUR 279.60 is not enforced. The worker must supply recognised sector service across contract changes and the correct category at mixed levels.
+
+    **Applies when:** `seniority` applies.
+
+    **Remediation:** Source the current impiegati scatto amounts for levels 2-4; supply earned amounts and recognised sector service from worker records, and implement automatic maturation-date pricing and the 50% ceiling.
+
+!!! warning "multiservizi-anip/multiservizi_apprenticeship_destinations · base_salary · impact yes · open"
+    APPRENTICESHIP (Allegato 8 of the 2021 compiled CCNL, reproducing the 19 July 2012 agreement): the tracks use the printed maximum duration. For destinations V-VII a relevant diploma shortens the term by 6 months and a relevant degree by 12 months; absence over 30 days extends the term by the absence duration. Individual term adjustments are not represented by the maximum-term tracks.
+
+    **Applies when:** `base_salary` applies.
+
+    **Remediation:** Supply the individually agreed term and qualification or absence details before applying a shortened or extended progression; the tracks encode only the printed maximum terms.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -388,13 +383,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     additional_months 14: tredicesima by 20 December (art. 20) and quattordicesima by 15 July (art. 21), each one retribuzione globale mensile (CNEL 105782 p. 41). The quattordicesima accrues from 1 July to 30 June.
     
-    Seniority, impiegati: biennial scatti of 6.25% of the tabellare in force when each scatto matures plus the contingenza at 1/8/1983 (EUR 279.60), at most 8 and up to 50% of tabellare + 279.60 (art. 22, CNEL 105782 p. 41). A matured scatto keeps its amount: it is not recomputed at later tranches. The file holds one series per level (2021-2024 computed on the CNEL 139292 tables) and the engine prices every matured scatto at the run date; it pays scatti to levels 5, 6, 7 and Q, while the CCNL pays them to the impiegati of levels 2-7 and Q. Declared in multiservizi_seniority_maturation.
-    
-    Seniority, operai: anzianità forfettaria di settore, one fixed monthly amount not paid for the first four years of sector seniority (art. 22, CNEL 105782 pp. 41-42; amounts in the table of p. 90). Modelled with first_cadence_months_by_level 48 and maximum_count_by_level 1 for levels 1 to 4; the CCNL also pays it to the operai of levels 5 and 6 (66.77, 82.99). Declared in multiservizi_seniority_maturation.
-    
     Contingenza of 2par115 and 4par125: no text prints one. The notes a verbale of art. 10 (CNEL 105782 p. 30) classify these workers at level 2 with parameter 115 and at level IV with parameter 125, so the file applies the contingenza of levels 2 and 4.
-    
-    Apprenticeship: the 19 July 2012 agreement reproduced in the FILCAMS 2021 compiled CCNL, Allegato 8 pp. 119-123, applies from 20 July 2012. Its maximum terms are II 24, III-IV 30 and V-VII 36 months; the first half is paid two ordinary levels below the destination, the second half one below, except destination II at level I throughout. Parametric positions are skipped. The track models the maximum term; shorter individual terms, qualification-based reductions and extensions after prolonged absence require individual inputs and are not configured.
     
     July 2025 values: the renewal of 8 June 2021 (CNEL 139292, signed by ANIP) sets a fifth tranche from 1 July 2025 (level 2 +10.00, tabellare 779.21, p. 34), provisional under the art. 73 consuntivo. The renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025 (CNEL 234752) raise level 2 to 819.21 from the same date, but ANIP signed neither. The file applies the ANIP-signed 2021 fifth tranche from July 2025 and excludes the later unsigned tranches (see anip_unsigned_renewal). No ANIP amount for the art. 73 consuntivo or the IPCA increments of art. 73-bis and 73-ter was found.
     
@@ -405,6 +394,12 @@ Each simplification below is a model limitation of the registry. An open limitat
     Workers covered: no sourced figure. The earlier note (~403,000, INPS-UNIEMENS 2025) and meta.workers_estimate (~580k) disagree and neither cites a document.
     
     LEAVE (artt. 19, 41, 42 of the 2011 text): 22 days of ferie on five days, 26 on six (Employment.full_time_week_days), in twelfths with the month over 15 days; 40 hours a year of reduced time (art. 42). At termination a day of ferie is the monthly pay over 22 (26 on six days), an hour of permits over 173. The ex festività are compensatory permits for the abolished holidays worked (art. 41): not a bank, not accrued. The 2025 renewal (72 hours of permits according to the union summary) is not read in a primary text.
+    
+    Seniority, impiegati: biennial scatti of 6.25% of the tabellare in force when each scatto matures plus the contingenza at 1/8/1983 (EUR 279.60), at most 8 and up to 50% of tabellare + 279.60 (art. 22, CNEL 105782 p. 41). A matured scatto keeps its amount: it is not recomputed at later tranches. Levels 5, 6, 7 and Q have derived 2021-2025 amounts; levels 2-4 have no current scatto series. For an identified impiegato, declare EarnedIncrements for amounts matured before the run, including before a promotion. Otherwise the engine reprices matured scatti at the run date. Declared in multiservizi_seniority_maturation.
+    
+    Seniority, operai: one fixed sector amount after four years (art. 22, CNEL 105782 pp. 41-42; table p. 90), now routed by declared worker category at levels 1-6, including level 5 EUR 66.77 and level 6 EUR 82.99. Sector seniority continuity across employers must be stated as recognised service. Declared in multiservizi_seniority_maturation.
+    
+    Apprenticeship: the 19 July 2012 agreement reproduced in the FILCAMS 2021 compiled CCNL, Allegato 8 pp. 119-123, applies from 20 July 2012. Its maximum terms are II 24, III-IV 30 and V-VII 36 months; the first half is paid two ordinary levels below the destination, the second half one below, except destination II at level I throughout. Parametric positions are skipped. The track models the maximum term; shorter individual terms, qualification-based reductions and extensions after prolonged absence require individual inputs and are not configured.
     
 
 ## Raw data

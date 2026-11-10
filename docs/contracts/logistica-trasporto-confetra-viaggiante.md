@@ -79,6 +79,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 71(1)(b,c), (5), cached PDF p. 93; Art. 60(2-3), p. 85. | confirmed | National weekday holidays are within art. 71(b,c); reduced sickness pay reaches full daily actual pay. Injury, patron saint and art. 60 coincident-holiday payment remain outside this rule.<br>A separate review found art. 71 c. 5 restricted to the Sezione seconda (ex Magazzini Generali): the holiday target is removed and kept as a limitation. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 71(5), section-two eligibility, PDF pp. 92-93; sickness holiday target. | corrected | Only legacy-section employers qualify; injury treatment is still absent for travelling staff. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Cached Confetra consolidated text pp. 92-95, arts. 71(5) and 77(8,11): travelling injury and holiday top-up. | confirmed | Art. 77(8) integrates work injury to full actual net pay until clinical recovery; art. 71(5) tops up a reduced-pay holiday to full actual pay only for eligible section-two employers. The distinct coincident-holiday payment remains open. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Art. 60(1)(b), (2-4) coincident national holiday quota, cached consolidated text pp. 84-85. | confirmed | The national letter (b) holiday quota is 1/22 of monthly global pay on Saturday, Sunday or another holiday; local patron holidays are not calendared. |
 
 ## Salary table
 
@@ -140,18 +141,18 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! note "logistica-trasporto-confetra-viaggiante/holiday_during_injury · sickness · impact yes · resolved"
-    Art. 71(5) tops up letter (b) and (c) holidays in reduced paid sickness for eligible legacy-section employers when EmployerProfile.legacy_section_applicable is true; an unknown fact blocks the target. Art. 77(8) pays full actual net pay during work injury and art. 71(5) tops a covered reduced-pay holiday up to full actual pay; the injury holiday target is conditional on the legacy-section employer fact. Separately, art. 60(2-3) pays an additional 1/22 of monthly global pay when a letter (b) holiday coincides with Saturday, Sunday or another holiday, including during sickness or injury; that payment is not calculated.
+    Art. 71(5) tops up letter (b) and (c) holidays in reduced paid sickness for eligible legacy-section employers when EmployerProfile.legacy_section_applicable is true; an unknown fact blocks the target. Art. 77(8) pays full actual net pay during work injury and art. 71(5) tops a covered reduced-pay holiday up to full actual pay; the injury holiday target is conditional on the legacy-section employer fact. The separate art. 60 coincident-holiday quota is calculated for national letter (b) holidays; the local patron holiday and any locally substituted day are not calendared.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Resolved: art. 77 injury treatment and the conditional art. 71(5) holiday target reach full actual daily pay; the separate coincident-holiday payment remains open below.
+    **Remediation:** Resolved: art. 77 injury treatment and the conditional art. 71(5) holiday target reach full actual daily pay; the national coincident-holiday quota is calculated separately; local patron holidays remain outside the calendar.
 
 !!! warning "logistica-trasporto-confetra-viaggiante/coincident_holiday_payment · sickness · impact yes · open"
-    Art. 60(2-3) pays an additional 1/22 of monthly global pay when a letter (b) holiday coincides with Saturday, Sunday or another holiday, including during sickness or injury; this distinct payment is not calculated.
+    Art. 60(2-3) coincident-holiday pay is calculated for national letter (b) holidays, including during absence. The local patron holiday and any replacement agreed locally are not in the national calendar, so their coincidence is not calculated.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Calculate the separate art. 60(2-3) coincident-holiday 1/22 payment.
+    **Remediation:** Supply the local patron holiday or its locally agreed replacement in the holiday calendar to calculate its coincident-holiday quota.
 
 !!! warning "logistica-trasporto-confetra-viaggiante/travelling_allowances · base_salary · impact yes · open"
     NOT MODELLED: the night allowance of art. 16 for a trasferta under 18 hours overlapping the night hours (paid only from 18 hours) and the 4.5 days of paid leave of art. 11 c. 11. The trasferta of art. 62 and the night allowance of a trasferta of 18-24 hours are paid by TravelAllowanceEvent; the 50% on Sunday and holiday work of art. 12 c. 4 by the supplement bands VIAG_DOMENICA and VIAG_FESTIVO.

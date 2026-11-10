@@ -144,6 +144,16 @@ class TestApprenticeChain:
             _allowance(levels["4"], "A", "20.00"),
             _allowance(levels["4"], "C", "3.01"),
         ]
+        raw["coverage"]["notes"].append({
+            "kind": "simplification",
+            "text": "The midpoint components are unsourced.",
+            "capability": "base_salary",
+            "monetary_impact": "yes",
+            "limitation": {
+                "variant": "apprenticeship_midpoint_components",
+                "remediation": "Verify the midpoint components against the contract.",
+            },
+        })
         ccnl = CCNL.model_validate(raw)
         chain, _pct, _code = _apprentice_chain(
             ccnl,

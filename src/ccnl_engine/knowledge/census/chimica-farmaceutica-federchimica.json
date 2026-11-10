@@ -103,10 +103,10 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 9 punto 1: the lavoro eccedente from 37h45 to 40 weekly hours at 5%.",
+      "rule": "Art. 9 point 1: the 5% premium from 37h45 to 40 weekly hours is resolved when OvertimeEvent.weekly_hours_before is supplied. The hourly event base includes the Art. 15(1) elements; the underlying hours may instead receive compensatory rest under Art. 8 E(2). Pluriperiodal calendar hours offset elsewhere are excluded under Art. 8 E(4); noncollective additional hours in that schedule have a separate 10% premium under Art. 9 clarification 3. Without the worker's schedule and compensatory-rest arrangement, those cases are not determined.",
       "calculation": "ccnl/chimica-farmaceutica-federchimica:coverage.notes",
       "state": "absent",
-      "remediation": "Add a band for the lavoro eccedente at 5%.",
+      "remediation": "Supply the weekly position and separately account for pluriperiodal scheduling and the underlying pay/rest arrangement.",
       "origin": "seeded",
       "links": {
         "limitations": [
