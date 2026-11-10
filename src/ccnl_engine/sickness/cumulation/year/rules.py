@@ -33,7 +33,6 @@ from typing import TYPE_CHECKING
 from ccnl_engine.sickness.comporto.models import window_of
 from ccnl_engine.sickness.cumulation.rules import CcnlDay
 from ccnl_engine.sickness.diagnosis import SeriousIllnessKind
-from ccnl_engine.sickness.window.rules import window_start
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -118,7 +117,7 @@ class YearTreatment:
             The days from the start of the window, less the days of the
             hospital stays when the window leaves them out.
         """
-        first = window_start(day, 0, window.window_months)
+        first = window.first_day(day)
         days = self.days_from(first, day)
         if window.hospital_excluded:
             episodes = (*self.earlier, self.episode)
@@ -228,7 +227,7 @@ class YearTreatment:
         if rules.comporto_calendar_year or rules.carenza_by_event is not None:
             firsts.append(date(start.year, 1, 1))
         if self.window is not None:
-            firsts.append(window_start(start, 0, self.window.window_months))
+            firsts.append(self.window.first_day(start))
         return known is not None and bool(firsts) and known > min(firsts)
 
     def day(self, index: int, day: date) -> CcnlDay:

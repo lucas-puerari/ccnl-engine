@@ -968,19 +968,18 @@
       "legno-lapidei-artigianato-confartigianato/lapidei_tables_not_modelled"
     ],
     "agreement/logistica-trasporto-confetra-viaggiante.json": [
+      "logistica-trasporto-confetra-viaggiante/coincident_holiday_payment",
       "logistica-trasporto-confetra-viaggiante/edr_2021_in_daily_base",
-      "logistica-trasporto-confetra-viaggiante/holiday_during_injury",
       "logistica-trasporto-confetra-viaggiante/travelling_allowances"
     ],
     "agreement/logistica-trasporto-confetra.json": [
+      "logistica-trasporto-confetra/coincident_holiday_payment",
       "logistica-trasporto-confetra/edr_2021_in_daily_base",
-      "logistica-trasporto-confetra/holiday_during_injury",
       "logistica-trasporto-confetra/level_6j_apprenticeship",
       "logistica-trasporto-confetra/part_time_supplementary_rate",
       "logistica-trasporto-confetra/sixth_day_overtime"
     ],
     "agreement/marittimi-industria-armatoriale.json": [
-      "marittimi-industria-armatoriale/level_years_from_service",
       "marittimi-industria-armatoriale/una_tantum_2024_2025"
     ],
     "agreement/materiali-costruzione-lapidei-confapi.json": [
@@ -1081,7 +1080,8 @@
       "pelli-cuoio-industria-assopellettieri/level_1_apprentice_reference"
     ],
     "agreement/portieri-fabbricati-confedilizia.json": [
-      "portieri-fabbricati-confedilizia/c4_first_employment_rate"
+      "portieri-fabbricati-confedilizia/c4_first_employment_eligibility",
+      "portieri-fabbricati-confedilizia/excluded_profiles_divisor"
     ],
     "agreement/poste-italiane-k700.json": [
       "poste-italiane-k700/edr_pre_privatization",
@@ -1161,7 +1161,6 @@
     "agreement/studi-professionali-confprofessioni.json": [
       "studi-professionali-confprofessioni/intermittent_availability",
       "studi-professionali-confprofessioni/maternity_holiday_scope",
-      "studi-professionali-confprofessioni/rolling_comporto_365_day_boundary",
       "studi-professionali-confprofessioni/unused_leave_hours"
     ],
     "agreement/tabacco-apti.json": [
@@ -1187,7 +1186,7 @@
       "tessile-moda-artigianato-confartigianato/level_category_unconfirmed"
     ],
     "agreement/tessile-pmi-uniontessile.json": [
-      "tessile-pmi-uniontessile/art_12_ter_element",
+      "tessile-pmi-uniontessile/art_12_ter_top_up",
       "tessile-pmi-uniontessile/egr_termination_before_june",
       "tessile-pmi-uniontessile/fondapi_base_elements",
       "tessile-pmi-uniontessile/level_4s_seniority",
