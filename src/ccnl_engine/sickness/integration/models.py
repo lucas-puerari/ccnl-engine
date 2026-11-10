@@ -168,6 +168,8 @@ class SicknessCumulation(BaseModel):
             the CCNL has one.
         hospital_comporto: Hospital stays left out of the comporto, if the
             CCNL says so.
+        hospital_excluded_from_counts: Whether hospital days are excluded
+            from both the rolling sick-pay count and the comporto count.
         fixed_term_comporto_days: Comporto of a fixed-term worker, when the
             CCNL caps it below the band's (Alimentari art. 47: 4 months).
         hospital_restart_day: Day of a hospital stay from which the
@@ -196,6 +198,7 @@ class SicknessCumulation(BaseModel):
     hospital_stay: HospitalStayRule | None = None
     serious_illness: SeriousIllnessRule | None = None
     hospital_comporto: HospitalComportoRule | None = None
+    hospital_excluded_from_counts: bool = False
     hospital_restart_day: int | None = Field(default=None, ge=1)
     fixed_term_comporto_days: int | None = Field(default=None, ge=1)
     restart_after_full_pay_months: int | None = Field(default=None, ge=1)
