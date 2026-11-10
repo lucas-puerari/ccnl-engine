@@ -60,6 +60,8 @@ def _context(
                                 WorkerCategory.QUADRO,
                             ),
                             subsectors=(),
+                            in_service_on=None,
+                            manual_monthly_pay=False,
                             levels=(),
                             service_basis="actual",
                             manual_hours=None,
@@ -94,6 +96,39 @@ def _context(
             cp=CompetencePeriod(year=year, month=month),
         ),
     )
+
+
+def test_historical_in_service_gate_and_monthly_manual_award() -> None:
+    """EUR 2,000 monthly pay times 3 = EUR 6,000 once, with no TFR base.
+
+    A 1997 hire vests in 2022, not again in 2026; a 2001 hire cannot
+    qualify for a 1997 in-service cohort even when 25 years pass in 2026.
+    """
+
+    def eligible(start: date, year: int) -> RunContext:
+        ctx = cast("SimpleNamespace", _context(month=4, start=start, year=year))
+        ctx.worker_category = WorkerCategory.OPERAIO
+        ctx.contract.ccnl.parameters.loyalty_premium = SimpleNamespace(
+            service_years=25,
+            months=Decimal(3),
+            recurrence="once",
+            categories=(WorkerCategory.OPERAIO,),
+            subsectors=(),
+            manual_hours=None,
+            manual_monthly_pay=True,
+            in_service_on=date(1997, 12, 22),
+            levels=(),
+            service_basis="actual",
+            provenance=SimpleNamespace(location=SimpleNamespace(section="Art. 43")),
+        )
+        return cast("RunContext", ctx)
+
+    paid = loyalty_premium(eligible(date(1997, 4, 15), 2022))
+    assert paid.amount == Decimal(6000)
+    assert paid.items[0].kind == "bonus_earning"
+    assert paid.taxed == (True, False, True)
+    assert loyalty_premium(eligible(date(1997, 4, 15), 2026)).amount == 0
+    assert loyalty_premium(eligible(date(2001, 4, 15), 2026)).amount == 0
 
 
 def test_twentieth_anniversary_posts_earning_and_all_three_bases() -> None:
@@ -236,6 +271,8 @@ def test_one_time_subsector_award(
         recurrence="once",
         categories=(WorkerCategory.IMPIEGATO, WorkerCategory.OPERAIO),
         subsectors=("saccarifero",),
+        in_service_on=None,
+        manual_monthly_pay=False,
         levels=(),
         service_basis="actual",
         manual_hours=Decimal(200),
@@ -264,6 +301,19 @@ def test_manual_milestone_requires_hourly_wages() -> None:
         })
 
 
+def test_manual_monthly_wages_cannot_also_specify_hourly_wages() -> None:
+    """EUR 2,000 monthly cannot also mean 200 times EUR 2,000 / 173."""
+    with pytest.raises(ValueError, match="cannot be combined"):
+        LoyaltyPremium.model_validate({
+            "service_years": 25,
+            "recurrence": "once",
+            "categories": ["operaio"],
+            "manual_hours": "200",
+            "manual_monthly_pay": True,
+            "provenance": {"status": "missing"},
+        })
+
+
 @pytest.mark.parametrize("divisor", [None, SimpleNamespace(value=None)])
 def test_manual_milestone_without_hourly_divisor_pays_nothing(
     divisor: SimpleNamespace | None,
@@ -276,6 +326,8 @@ def test_manual_milestone_without_hourly_divisor_pays_nothing(
         recurrence="once",
         categories=(WorkerCategory.OPERAIO,),
         subsectors=(),
+        in_service_on=None,
+        manual_monthly_pay=False,
         levels=(),
         service_basis="actual",
         manual_hours=Decimal(200),
