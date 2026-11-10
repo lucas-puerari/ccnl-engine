@@ -138,7 +138,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 98 of the cached 2000 CCNL (PDF p. 97) preserves an annual one-month loyalty award only for clerical employees who had already completed 20 years of actual uninterrupted service at the same company or group by 30 April 1982. It uses Art. 80 items 1–14 frozen at their 30 April 1982 values, and whole-month fractions on non-disciplinary departure. The present-day scope of this archival text is unverified. Annual loyalty_premium cannot enforce the historical eligibility and frozen valuation.",
+        "text": "The 2000 text, Art. 98 (PDF p. 97), preserves an annual one-month award for clerical employees with 20 years of actual uninterrupted service at the same company or group by 30 April 1982 (hired no later than 30 April 1962). A worker still employed in 2026 could belong to this cohort; the rule cannot be dismissed solely for age. The award uses Art. 80 items 1–14 at their 30 April 1982 values and pays whole-month fractions on non-disciplinary departure. Continued force in the current agreement is not established by the cached 2000 text. The missing calculation is cohort eligibility, worker-specific frozen pay and annual/departure payment; current salary cannot replace the frozen base.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -146,7 +146,33 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Verify continued validity against a current text and implement historical cohort eligibility, frozen award base, and departure pro rata."
+          "remediation": "Confirm continued force against the current agreement; for qualifying clerical workers supply the 30 April 1982 Art. 80 items 1–14 pay base and implement annual anniversary payment and whole-month pro rata on non-disciplinary departure."
+        },
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "edilizia-cooperative-ancpl-ccnl-testo",
+              "title": "Construction cooperatives collective agreement (2000)",
+              "kind": "associazione",
+              "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2009/04/c_edilicoop2000.pdf",
+              "published_on": "2000-02-09",
+              "sha256": "99e9fedbcad5b4a77ca54ba60394f092afbe677bc6837d0187d1e323109e8c4a"
+            },
+            "page": "97",
+            "section": "Art. 98 - Premio fedeltà",
+            "quote": "resta confermato il diritto al \"premio fedeltà\" per gli impiegati che al 30.4.82 avevano conseguito la prescritta anzianità ininterrotta ed effettiva di servizio di 20 anni presso la stessa azienda o gruppo aziendale"
+          },
+          "transformation": "A worker eligible in 1982 could still be employed in 2026; no present-day validity or worker-specific 1982 pay is established by this historical text.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "verified_by": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-10T00:18:39Z",
+            "verified_at": "2026-11-10T00:18:39Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-10-ai-legacy-loyalty"
+          }
         }
       }
     ]
@@ -237,6 +263,27 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-legacy-loyalty",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Historical cohort and frozen valuation in Art. 98 of the 2000 text; no inference about continued force in the current agreement.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2009/04/c_edilicoop2000.pdf",
+            "sha256": "99e9fedbcad5b4a77ca54ba60394f092afbe677bc6837d0187d1e323109e8c4a"
+          }
+        ],
+        "findings": [
+          "Art. 98 (PDF p. 97) limits the annual award to clerical employees already at 20 years' uninterrupted actual service on 30 April 1982. The frozen Art. 80 items 1–14 pay and whole-month fractions on non-disciplinary departure cannot be inferred from current pay; the cohort may still be employed in 2026."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ]
@@ -2355,7 +2402,7 @@
     "effective_until": null,
     "source": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/",
     "verification_status": "unverified",
-    "source_hash": "6dd712c9ff4fbbe72c1ab34a8a05d72357f331c032496cf23fb9615e350b71cc",
+    "source_hash": "e9e3831253af7d276332bfb9d1cce14a45f45527b6f2d2d9b59a31362605a2cc",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

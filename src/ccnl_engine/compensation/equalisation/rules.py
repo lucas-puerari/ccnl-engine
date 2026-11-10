@@ -53,10 +53,12 @@ class EqualisationOutcome:
         events: The bonus the run pays, empty when it pays none.
         unknown: The code of the element the run leaves out because the
             employer does not state whether it has second-level bargaining.
+        unknown_codes: All such codes when more than one element is due.
     """
 
     events: tuple[BonusEvent, ...] = ()
     unknown: str | None = None
+    unknown_codes: tuple[str, ...] = ()
 
 
 def _pays(
@@ -69,7 +71,9 @@ def _pays(
         an earlier month of the year.
     """
     month, year = request.period_id.month, request.period_id.year
-    if element.paid_in_year not in {None, year}:
+    if element.paid_in_year not in {None, year} or (
+        element.paid_from_year is not None and year < element.paid_from_year
+    ):
         return False
     if kind is RunKind.REGULAR:
         return month == element.paid_in_month
@@ -78,6 +82,7 @@ def _pays(
         and month < element.paid_in_month
         and element.settled_on_termination
         and not element.in_service_month_before
+        and not element.in_service_payment_month
     )
 
 
@@ -87,7 +92,8 @@ def _served(element: EqualisationElement, request: PeriodCalculationRequest) -> 
     Returns:
         The months with more than 15 days of service in the year before,
         ``0`` when the worker was not in service on 1 January of the year
-        or the employment period is not stated.
+        or the employment period is not stated. Elements referring to the
+        payment year count that year's months instead of the preceding year's.
     """
     period, year = request.employment_period, request.period_id.year
     january = date(year, 1, 1)
@@ -95,8 +101,14 @@ def _served(element: EqualisationElement, request: PeriodCalculationRequest) -> 
         return 0
     if period.ended_on is not None and period.ended_on < january:
         return 0
-    first = max(period.started_on, date(year - 1, 1, 1))
-    return len(_months(first, date(year - 1, 12, 31), element.month_min_days))
+    reference = year - element.reference_year_before
+    first = max(period.started_on, date(reference, 1, 1))
+    last = date(reference, 12, 31)
+    if not element.reference_year_before and period.ended_on is not None:
+        last = min(last, period.ended_on)
+    if last < first:
+        return 0
+    return len(_months(first, last, element.month_min_days))
 
 
 def _eligible(
@@ -110,8 +122,16 @@ def _eligible(
     Returns:
         In service on 1 January; or, for ``in_service_month_before``, in
         service with six months of service by the first day of the month
-        before the month that pays it.
+        before the month that pays it. An element requiring service in the
+        month of payment instead checks that the period overlaps that month.
     """
+    if element.in_service_payment_month:
+        year, month = request.period_id.year, request.period_id.month
+        first = date(year, month, 1)
+        next_month = date(year + (month == 12), month % 12 + 1, 1)
+        return period.started_on < next_month and (
+            period.ended_on is None or period.ended_on >= first
+        )
     if not element.in_service_month_before:
         return period.started_on <= january
     year, month = request.period_id.year, request.period_id.month
@@ -162,7 +182,7 @@ def _amount(
     owed = yearly * months / _MONTHS
     if element.part_time_proportional:
         owed *= _ratio(request)
-    if not request.individual_elements:
+    if not request.individual_elements or not element.deduct_individual:
         return money(owed)
     if element.individual_excludes:
         return Decimal(0)
@@ -182,19 +202,31 @@ def equalisation_outcome(
     Returns:
         The outcome: the bonus when owed and the firm states no second-level
         bargaining, the code of the element when the firm does not say and
-        an amount would be owed.
+        an amount would be owed. Both the legacy element and any additional
+        elements are evaluated independently.
     """
-    element = ccnl.parameters.equalisation_element
-    if element is None or not _pays(element, request, kind):
-        return EqualisationOutcome()
+    legacy = ccnl.parameters.equalisation_element
+    elements = (
+        *((legacy,) if legacy is not None else ()),
+        *ccnl.parameters.equalisation_elements,
+    )
+    events: list[BonusEvent] = []
+    unknowns: list[str] = []
     premium = request.employer.second_level_premium
-    if premium or _company(request, before=element.bargaining_year_before):
-        return EqualisationOutcome()
-    months = _served(element, request)
-    amount = _amount(element, request, ccnl, months) if months else Decimal(0)
-    if not amount:
-        return EqualisationOutcome()
-    if premium is None:
-        return EqualisationOutcome(unknown=element.code)
-    paid = date(request.period_id.year, request.period_id.month, 1)
-    return EqualisationOutcome(events=(BonusEvent(paid, amount),))
+    for element in elements:
+        if not _pays(element, request, kind):
+            continue
+        if premium or _company(request, before=element.bargaining_year_before):
+            continue
+        months = _served(element, request)
+        amount = _amount(element, request, ccnl, months) if months else Decimal(0)
+        if not amount:
+            continue
+        if premium is None:
+            unknowns.append(element.code)
+            continue
+        paid = date(request.period_id.year, request.period_id.month, 1)
+        events.append(BonusEvent(paid, amount))
+    return EqualisationOutcome(
+        tuple(events), unknowns[0] if unknowns else None, tuple(unknowns)
+    )
