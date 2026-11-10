@@ -55,10 +55,10 @@
       "institute": "bilateral_funds",
       "variant": "all",
       "discriminant": "applies_when.trigger = owed",
-      "rule": "SIMPLIFICATION: Fondi bilaterali non modellati (EBITERME, FONTUR assistenza sanitaria). Contributi datoriali non quantificati. employer_cost_annual sottostimato.",
+      "rule": "SIMPLIFICATION: The Observatorio monthly levy and the annual FONTUR health contribution are accrued, but the EUR 15 one-time first-enrolment employer fee, annual upfront remittance and first-year proration are not automatically posted. Fixed-term written opt-in and non-worked-month recovery are not represented; no separate EBITERME payment amount is established by the cited clauses. Employer cost can be understated at first enrolment.",
       "calculation": "ccnl/aziende-termali-federterme:coverage.notes",
       "state": "absent",
-      "remediation": "Pass the EBITERME and FONTUR contributions as a bilateral fund event, or source and model them.",
+      "remediation": "Supply the known first-enrolment fee as a bilateral fund event; establish any separate EBITERME contribution from an official source and model enrolment timing and fixed-term opt-in before removing this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
