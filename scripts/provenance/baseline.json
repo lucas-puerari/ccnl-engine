@@ -841,7 +841,6 @@
       "edilizia-pmi-confapi-aniem/territorial_sector_allowance"
     ],
     "agreement/enti-ricerca-aran.json": [
-      "enti-ricerca-aran/perseo_sirio_notional_accrual",
       "enti-ricerca-aran/research_allowances_missing",
       "enti-ricerca-aran/shared_rules_unchecked"
     ],
@@ -1237,11 +1236,9 @@
       "uneba-uneba/ermt_territorial"
     ],
     "agreement/universita-aran.json": [
-      "universita-aran/perseo_sirio_notional_accrual",
       "universita-aran/shared_rules_unchecked"
     ],
     "agreement/universita-tecnologi-aran.json": [
-      "universita-tecnologi-aran/perseo_sirio_notional_accrual",
       "universita-tecnologi-aran/shared_rules_unchecked",
       "universita-tecnologi-aran/tecnologi_allowances"
     ],
