@@ -1904,7 +1904,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/sanita-privata-aiop-aris",
       "ruleset_version": "2026.2",
-      "source_hash": "5c1d023fa1720068a83331946fd10849119a7cfc5efb5392d8a2c31e03aa9d9a",
+      "source_hash": "cf0ec206b06f0c29af72044de648bb2d48c9df5d4c57197f3b50ee1bb07cdea3",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/sanita-privata-aiop-aris.json.gz"
@@ -4621,7 +4621,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "c86a30e8df35dea3d6eda0821b9b26dd68450a73762edc0dca5aee99332a2f4b",
+      "source_hash": "199448984ae7d782c9523e292adb902e5cd9d8b9a83fb922f9600817f87a4861",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/sanita-privata-aiop-aris.json.gz",
