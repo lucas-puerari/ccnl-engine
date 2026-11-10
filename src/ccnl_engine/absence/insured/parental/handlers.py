@@ -24,6 +24,12 @@ from ccnl_engine.absence.insured.handlers import (
     _not_modelled,
     _span,
 )
+from ccnl_engine.absence.insured.parental.holiday import (
+    covered_parental_holidays,
+    parental_holiday_extra,
+    parental_holiday_units,
+    parental_target,
+)
 from ccnl_engine.absence.insured.parental.rules import allocate, indemnity
 from ccnl_engine.absence.insured.parental.top_up import (
     sixth_month_days,
@@ -162,6 +168,25 @@ def _handle_parental_leave(
         else Decimal(0)
     )
     integration += sixth_month_integration(sixth_days, days.rates, daily, sixth)
+    holiday = parental_target(maternity)
+    has_rule = rules is not None or sixth is not None or holiday is not None
+    holiday_days = covered_parental_holidays(
+        holiday,
+        *span,
+        None if terms.employer is None else terms.employer.patron_saint_day,
+    )
+    integration += parental_holiday_extra(
+        holiday,
+        *span,
+        terms.pay,
+        daily,
+        days.rates,
+        eligible,
+        rules,
+        sixth_days,
+        sixth,
+        holiday_days,
+    )
     pay = InsuredPay(
         units, deduction, indemnity(days, *span, daily), len(in_span), integration
     )
@@ -173,7 +198,11 @@ def _handle_parental_leave(
                 "intg",
                 pay.integration,
                 "absence_integration_item",
-                Decimal(len(eligible) + len(sixth_days)),
+                Decimal(
+                    len(eligible)
+                    + len(sixth_days)
+                    + parental_holiday_units(holiday_days, in_span, days.rates)
+                ),
             ),
         ),
         ctx,
@@ -184,14 +213,12 @@ def _handle_parental_leave(
             terms,
             span,
             pay,
-            modelled=(rules is not None or sixth is not None)
-            and not missing_counter
-            and not missing_sixth_end,
+            modelled=has_rule and not missing_counter and not missing_sixth_end,
             advanced=True,
         )
     ]
     effect.issues = [
-        *([] if rules is not None or sixth is not None else [_not_modelled(PARENTAL)]),
+        *([] if has_rule else [_not_modelled(PARENTAL)]),
         *base.issues,
     ]
     effect.issues.extend(

@@ -121,10 +121,13 @@ def test_each_doubt_of_a_year_count_is_a_missing_fact(
     assert issue.message.startswith("sickness episode 'a': ")
 
 
-def _ccnl_terms(*, serious: bool, hospital: bool) -> SicknessTerms:
+def _ccnl_terms(
+    *, serious: bool, hospital: bool, exclude: bool = False
+) -> SicknessTerms:
     cumulation = SimpleNamespace(
         serious_illness=object() if serious else None,
         hospital_stay=object() if hospital else None,
+        hospital_excluded_from_counts=exclude,
     )
     rules = SimpleNamespace(ccnl=SimpleNamespace(cumulation=cumulation))
     return SicknessTerms(rules=rules)  # type: ignore[arg-type]
@@ -169,3 +172,12 @@ def test_reduced_days_of_a_ccnl_without_those_rules_ask_nothing() -> None:
     )
 
     assert [i.code for i in issues] == [HOSPITAL_STAY_UNKNOWN]
+
+
+def test_excluded_hospital_days_require_stays_even_at_full_pay() -> None:
+    """Unknown stays block a EUR 100 day count even without reduced days."""
+    terms = _ccnl_terms(serious=False, hospital=False, exclude=True)
+    (issue,) = cumulation_issues(_EPISODE, _QUIET, terms)
+    assert (issue.code, issue.fact) == (HOSPITAL_STAY_UNKNOWN, "hospital_stays")
+    stated = replace(_EPISODE, hospital_stays=())
+    assert cumulation_issues(stated, _QUIET, terms) == ()

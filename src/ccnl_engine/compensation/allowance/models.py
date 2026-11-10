@@ -31,6 +31,8 @@ class Allowance(BaseModel):
     base pay plus ``percentage_base_allowances``. By default individual
     elements are included; ``percentage_include_individual=False`` excludes
     them when the clause enumerates only the contractual elements.
+    ``percentage_include_seniority=True`` includes accrued seniority increases
+    when the clause uses the worker's monthly remuneration as its base.
     ``floor_level`` identifies
     the comparison level for a separate ordinary-remuneration integration,
     without changing contractual base salary or the supplement percentage.
@@ -83,6 +85,7 @@ class Allowance(BaseModel):
     percentage_rate: Decimal | None = Field(default=None, ge=0, le=1)
     percentage_base_allowances: tuple[str, ...] = ()
     percentage_include_individual: bool = True
+    percentage_include_seniority: bool = False
     floor_level: str | None = None
     months_per_year: int | None = Field(default=None, ge=1)
     tfr_relevant: bool = True
