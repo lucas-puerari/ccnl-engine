@@ -1078,7 +1078,7 @@
     ],
     "agreement/portieri-fabbricati-confedilizia.json": [
       "portieri-fabbricati-confedilizia/c4_first_employment_eligibility",
-      "portieri-fabbricati-confedilizia/excluded_profiles_divisor"
+      "portieri-fabbricati-confedilizia/unpriced_accommodation_and_excluded_profiles"
     ],
     "agreement/poste-italiane-k700.json": [
       "poste-italiane-k700/edr_pre_privatization",
