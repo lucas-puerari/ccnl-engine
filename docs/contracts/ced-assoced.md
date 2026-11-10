@@ -67,7 +67,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 147 - Injury pay, ordinary injury integration and waiting days against the cached PDF. | corrected | The explicit numerical 75% is used rather than the contradictory parenthetical words (100%). The three days after the injury are paid at 60%; from offset 4 the INAIL benefit is topped up to 75% of net daily pay. The conflicting wording requires a clarification before a 100% target can be asserted. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 147 against the injury integration bands, by a separate model session. | flagged | Confirmed the waiting days at 60%, the bands from the INAIL indemnity and the day mapping from the injury day.<br>Flagged, kept as limitations: the 75% of the numeral against the '(cento per cento)' in words. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Local patron saint day in sickness and work injury holiday clauses. | confirmed | Art. 149 - Festività nel periodo di malattia o infortunio (p. 97): Ai sensi della L. 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad un'indennità integrativa di quella a carico rispettivamente dell'INPS e dell'INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all'art. 168. The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged. |
-| 2026-11-09 | claude-opus-5-5 (ai) | Arts. 149 and 157 and the patron saint holiday list, cached 2022 PDF pp. 97 and 102. | corrected | Sickness and injury already include the stated patron saint day; maternity now includes it too. Optional parental leave remains outside the maternity target. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Arts. 149 and 157 and the patron saint holiday list, cached 2022 PDF pp. 97 and 102. | corrected | Sickness and injury already include the stated patron saint day; maternity now includes it too. Optional parental leave was outside the maternity target at the time of this review. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 157, cached 2022 PDF p. 102: holidays during compulsory and optional leave. | corrected | The optional absence has the same daily holiday target as compulsory absence; the stated local patron is already a covered holiday. |
 
 ## Salary table
 
@@ -131,11 +132,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Verify the H601 sub-sector INPS rate against the annual INPS circular.
 
 !!! warning "ced-assoced/maternity_holiday_scope · maternity_leave · impact yes · open"
-    Art. 157 (p. 102) covers compulsory and optional absence: the top-up of holidays during optional (parental) leave is not paid. A holiday on a Sunday (paid by its own quota) and 4 October (a holiday from 2026, which the text, signed before, does not list) are not topped up.
+    Art. 157 (p. 102) covers holidays during compulsory and optional absence. A Sunday holiday is paid by its own quota rather than topped up; 4 October, introduced after this text, remains excluded. Optional leave without an INPS indemnity is not topped up.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Top up holidays on optional (parental) leave and resolve the Sunday and 4 October scope against the applicable law.
+    **Remediation:** Resolve the Sunday holiday's separate quota and whether 4 October and unindemnified optional leave qualify.
 
 !!! warning "ced-assoced/injury_rate_text_conflict · workplace_injury · impact yes · open"
     Art. 147 prints 75% (cento per cento) for ordinary injury integration after the waiting period. The numerical 75% is encoded; the contradictory words could indicate a 100% intended rate. Confirm with the signatories before using this target as definitive.
