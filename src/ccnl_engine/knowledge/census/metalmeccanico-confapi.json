@@ -87,10 +87,10 @@
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 32(b,c) holiday top-ups are modelled for sickness, compulsory maternity and injury, excluding letter a) and 4 October. Stated local patron days are covered for sickness and injury. Not calculated: the maternity top-up on a local patron day, the locally agreed substitute for the patron day, and Rome-only 29 June, which are outside the national holiday calendar.",
+      "rule": "Art. 32(b,c) holiday top-ups are modelled for sickness, compulsory maternity and injury, excluding letter a) and 4 October. A stated patron_saint_day covers the local patron day, its locally agreed substitute, or Rome-only 29 June when applicable. Without the applicable local date from the employer, these holidays cannot be calculated.",
       "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
       "state": "absent",
-      "remediation": "Calculate the maternity top-up on stated patron days, the agreed substitute patron holiday and Rome-only 29 June when the local facts are available.",
+      "remediation": "State the applicable local patron holiday date (including a locally agreed substitute or Rome-only 29 June) as employer.patron_saint_day.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -215,10 +215,10 @@
       "institute": "leave",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "LEAVE, CONTO ORE: the PAR paid at the end of the conto ore are valued at the monthly pay of the run over 173; the hourly pay of art. 38 also adds the hourly elements of the pay (incentivi, indennità orarie, cottimo), which the engine does not add. A worker leaving before the expiry is paid nothing for them (no basis for the leave at termination).",
+      "rule": "LEAVE, CONTO ORE: the hourly elements of art. 38 are included in the PAR payout at expiry when the caller states hourly_pay_elements (zero confirms none; missing blocks payment). The PAR left when employment ends before expiry remain unpaid: art. 22 specifies liquidation at expiry but no termination basis.",
       "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
       "state": "absent",
-      "remediation": "Add the hourly elements of art. 38 to the hourly pay of the PAR, and source the PAR left at the end of the employment.",
+      "remediation": "Source a basis and timing for paying PAR left when employment ends before the conto ore expires; art. 22 only specifies payment at expiry.",
       "origin": "seeded",
       "links": {
         "limitations": [
