@@ -21,14 +21,8 @@ def _absence_terms(*, days: int | None = None) -> HourlyTerms:
     work = ccnl.work_rules
     assert work.absence_rules is not None
     assert work.time_supplements is not None
-    # Isolate the verified daily divisor: the hourly base remains a separate
-    # unresolved clause of this agreement, so supply its evidence for this case.
-    supplement = work.time_supplements.model_copy(
-        update={"hourly_base_provenance": work.absence_rules.provenance}
-    )
-    ccnl = ccnl.model_copy(
-        update={"work_rules": work.model_copy(update={"time_supplements": supplement})}
-    )
+    # The signed hourly-base rule and the daily divisor are independently
+    # verified. Use the bundled rule without substituting absence provenance.
     return HourlyTerms(
         ccnl=with_week_days(ccnl, days),
         chain=MonthlyPayChain(
@@ -38,10 +32,19 @@ def _absence_terms(*, days: int | None = None) -> HourlyTerms:
 
 
 def test_unverified_hourly_base_is_not_assumed() -> None:
-    """The divisor alone does not derive EUR 1,716/22 without an hourly base."""
+    """Without the independently verified base, 1716/22 must not be derived."""
     ccnl = load_ccnl("multiservizi-anip")
+    assert ccnl.work_rules is not None
+    assert ccnl.work_rules.time_supplements is not None
+    work = ccnl.work_rules
+    original = work.time_supplements
+    assert original is not None
+    supplements = original.model_copy(update={"hourly_base_provenance": None})
+    missing_base = ccnl.model_copy(
+        update={"work_rules": work.model_copy(update={"time_supplements": supplements})}
+    )
     terms = HourlyTerms(
-        ccnl=ccnl,
+        ccnl=missing_base,
         chain=MonthlyPayChain(
             base=Decimal("1716.00"), seniority=Decimal(0), allowances=()
         ),

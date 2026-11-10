@@ -168,6 +168,7 @@ class PeriodInput:
             contributable_hours=facts.contributable_hours,
             ordinary_hours_worked=facts.ordinary_hours_worked,
             paid_holiday_days=facts.paid_holiday_days,
+            hourly_pay_elements=facts.hourly_pay_elements,
             full_time_weekly_hours=employment.full_time_weekly_hours,
             full_time_week_days=employment.full_time_week_days,
             rota=employment.rota,

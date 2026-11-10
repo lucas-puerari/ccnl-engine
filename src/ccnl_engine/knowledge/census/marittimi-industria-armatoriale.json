@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "level_years_from_service",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Allegato 1 nn. 2-5: the superminimi count the years in the level ('permanenza nel livello', 'anzianità di livello'). The run reads SeniorityFact.career_months; without it, it reads the service months, which pay a worker promoted into the level less than the years required.",
-      "calculation": "ccnl/marittimi-industria-armatoriale:coverage.notes",
-      "state": "absent",
-      "remediation": "State SeniorityFact.career_months as the months in the current level for the workers of levels II-IV.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "marittimi-industria-armatoriale/level_years_from_service"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",
