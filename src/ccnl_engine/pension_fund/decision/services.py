@@ -86,6 +86,7 @@ def pension_terms(ctx: RunContext) -> PensionFundTerms | None:
         apprentice=isinstance(ctx.request.contract_type, Apprentice),
         minimum_base=ctx.chain.base,
         erc_amount=erc_of(ctx),
+        level_code=ctx.request.level_code,
     )
     named = terms.fund.minimum_allowances
     if named:

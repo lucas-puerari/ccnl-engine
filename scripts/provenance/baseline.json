@@ -1026,7 +1026,7 @@
       "multiservizi-anip/multiservizi_apprenticeship_destinations",
       "multiservizi-anip/multiservizi_duty_allowances_and_edar",
       "multiservizi-anip/multiservizi_part_time_supplements",
-      "multiservizi-anip/multiservizi_pension_frozen_base",
+      "multiservizi-anip/multiservizi_pension_membership_eligibility",
       "multiservizi-anip/multiservizi_seniority_maturation",
       "multiservizi-anip/multiservizi_sickness_by_category_and_basis",
       "multiservizi-anip/multiservizi_variable_time_premiums",
@@ -1078,7 +1078,7 @@
     ],
     "agreement/portieri-fabbricati-confedilizia.json": [
       "portieri-fabbricati-confedilizia/c4_first_employment_eligibility",
-      "portieri-fabbricati-confedilizia/excluded_profiles_divisor"
+      "portieri-fabbricati-confedilizia/unpriced_accommodation_and_excluded_profiles"
     ],
     "agreement/poste-italiane-k700.json": [
       "poste-italiane-k700/edr_pre_privatization",
