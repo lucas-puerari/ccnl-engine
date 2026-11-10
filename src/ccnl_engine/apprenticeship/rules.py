@@ -216,8 +216,8 @@ def _midpoint_chain(
     cent; the base takes the rest of the rounded mean of the totals, so
     the chain adds up to the CCNL amount.  The seniority stays the
     apprentice amount.  The run records the CCNL limitation of
-    :data:`MIDPOINT_VARIANT`, which a CCNL whose text leaves the
-    components open declares.
+    :data:`MIDPOINT_VARIANT` only when the CCNL declares it because its
+    text leaves the components open; verified components need no limitation.
 
     Returns:
         The chain with every pay component averaged.
@@ -239,11 +239,16 @@ def _midpoint_chain(
     )
     dest_total = dest_base + sum((v for _, v in dest.values()), _ZERO)
     total = money((chain.base + chain.allowances_total + dest_total) / _TWO)
+    midpoint_limitations = tuple(
+        f"{ccnl.meta.ccnl_id}/{MIDPOINT_VARIANT}"
+        for note in ccnl.coverage.notes
+        if note.limitation and note.limitation.variant == MIDPOINT_VARIANT
+    )
     return replace(
         chain,
         base=total - sum((v for _, v in averaged), _ZERO),
         allowances=averaged,
-        limitations=(*chain.limitations, f"{ccnl.meta.ccnl_id}/{MIDPOINT_VARIANT}"),
+        limitations=(*chain.limitations, *midpoint_limitations),
     )
 
 

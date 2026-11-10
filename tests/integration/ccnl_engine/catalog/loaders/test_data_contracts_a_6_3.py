@@ -85,11 +85,21 @@ class TestLoadForzePoliziaOrdinamentoCivile:
         ccnl = load_ccnl("forze-polizia-ordinamento-civile")
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(156)
 
-    def test_forze_polizia_ordinamento_civile_no_fixed_allowances(self) -> None:
-        """All 21 levels have no fixed allowances (conglobated model)."""
+    def test_forze_polizia_ordinamento_civile_fixed_allowances(self) -> None:
+        """All 21 levels retain a conglobated base.
+
+        Sourced ranks add three distinct seniority bands.
+        """
         ccnl = load_ccnl("forze-polizia-ordinamento-civile")
+        assert len(ccnl.levels) == 21
         for lv in ccnl.levels:
-            assert lv.fixed_allowances == (), lv.code
+            if lv.code == "AGENTE":
+                assert len(lv.fixed_allowances) == 3
+                assert all(a.months_per_year == 13 for a in lv.fixed_allowances)
+            if lv.code == "SOST_COMM_COORD":
+                assert (
+                    lv.fixed_allowances == ()
+                )  # Specific coordinator increment needs eligibility.
 
     def test_forze_polizia_ordinamento_civile_tax_sector(self) -> None:
         """Contract declares PUBBLICA_AMMINISTRAZIONE tax sector."""

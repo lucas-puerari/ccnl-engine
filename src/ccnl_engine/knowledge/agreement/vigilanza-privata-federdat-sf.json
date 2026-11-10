@@ -57,15 +57,15 @@
       },
       {
         "kind": "simplification",
-        "text": "LEVEL F: the 2023 table pays a level F (865.68 EUR, art. 139); the 2026 table has none. The file models the levels A-E.",
+        "text": "LEVEL F: the 2023 table pays level F until July 2026; the 2026 renewal prints no transition for F workers. The caller must restate the worker's level from July 2026. The caller must state F for the first 12 months of effective D duties, E for months 13-24 and D thereafter; progression is not automatic.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "level_f_2023",
+          "variant": "level_f_transition_2026",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add the level F of the 2023 table until the renewal of July 2026."
+          "remediation": "Obtain a source for the classification of existing F workers at renewal; the published table gives no transition."
         }
       },
       {
@@ -101,6 +101,109 @@
     ]
   },
   "levels": [
+    {
+      "code": "F",
+      "order": 0,
+      "description": "Entry level F (fiduciary services, first 12 months on D duties)",
+      "valid_until": "2026-07-01",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2023-06-01",
+            "valid_until": "2026-07-01",
+            "value": "865.68",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-hv51-167336-ccnl-2023",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 4 maggio 2023 (archivio CNEL HV51, accordo 167336)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+                  "published_on": "2023-05-04",
+                  "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
+                },
+                "page": "76",
+                "section": "Art. 139 - Paga tabellare conglobata",
+                "quote": "LIVELLO paga A 1.586,72 B 1.442,84 C 1.212,37 D 1.010,00 E 952,26 F 865,68"
+              },
+              "transformation": "Monthly consolidated base pay for level F in the 2023 table.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T01:21:44Z",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T01:21:44Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-federdat-level-validity"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-07-01",
+            "valid_until": null,
+            "value": null,
+            "gap_kind": "missing",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-hv51-245848-ccnl-2026",
+                  "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                  "published_on": "2026-07-09",
+                  "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+                },
+                "page": "76",
+                "section": "Art. 156 - Paga tabellare conglobata",
+                "quote": "LIVELLO In vigore Dicembre 2026 A 2.003,05 2.032,24 B 1.822,65 1.849,18 C 1.534,00 1.556,29 D 1.281,43 1.300,00 E 1.188,57 1.207,14"
+              },
+              "transformation": "The 2026 table omits F; no salary is extrapolated after the level ceases to be valid.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-10T01:21:44Z",
+                "effective_from": "2023-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-10T01:21:44Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-federdat-level-validity"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-hv51-167336-ccnl-2023",
+            "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 4 maggio 2023 (archivio CNEL HV51, accordo 167336)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+            "published_on": "2023-05-04",
+            "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
+          },
+          "page": "76",
+          "section": "Art. 139 - Paga tabellare conglobata",
+          "quote": "LIVELLO paga A 1.586,72 B 1.442,84 C 1.212,37 D 1.010,00 E 952,26 F 865,68"
+        },
+        "transformation": "The 2023 table lists level F and its monthly wage; the 2026 table omits F without stating a transition.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-10T01:21:44Z",
+          "effective_from": "2023-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-10T01:21:44Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-federdat-level-validity"
+        }
+      }
+    },
     {
       "code": "E",
       "order": 1,
@@ -948,7 +1051,7 @@
     "effective_until": null,
     "source": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
     "verification_status": "unverified",
-    "source_hash": "26ef70e3d5f559ab4c72557bc42db652757b21d5230315d0f1ca7c9f57d49867",
+    "source_hash": "68cad02104e36735c0688c504237e21a70574c04833a947ff922a26803d40704",
     "published_at": "2026-11-06",
     "source_type": "contracting_party"
   },
@@ -1531,6 +1634,32 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-federdat-level-validity",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "2023 level F classification and pay (pp. 69-70, 76); 2026 renewal table (p. 76).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+            "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
+          },
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          }
+        ],
+        "findings": [
+          "The 2023 table pays F 865.68; the 2026 renewal omits F without printing a transition."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.F",
+          "coverage.notes"
         ]
       }
     ]
