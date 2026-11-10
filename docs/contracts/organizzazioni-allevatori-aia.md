@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer |
+| **Limits of this contract** | inps_employer |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 40 verified / 7 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 44 verified / 7 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-12 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2026-09-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Articolo 17 - Tredicesima e quattordicesima mensilità (p. html (no PDF; text inline on the web page)): "il dipendente ha diritto a tanti dodicesimi dell'ammontare della tredicesima e della quattordicesima mensilità quanti sono i mesi di servizio prestati nel periodo di riferimento. Le frazioni di mese superiori a 15 giorni si calcoleranno come mese intero; quelle uguali o inferiori a 15 giorni non saranno conteggiate.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-11-06 | claude-opus-5-5 (ai) | Accordo economico of 12 December 2024, table of p. 23 (stipendi 1/1/2025, 1/7/2025, 1/9/2026). | corrected | The file held the 1 July 2025 stipendi dated from 1 September 2025; the January 2025 and September 2026 columns were missing. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | third_tranche_sep_2026: All 13 levels in the agreement JSON have the exact 1/9/2026 stipendio from the signed renewal, effective 2026-09-01 with no end date; the previous period ends exclusively on that day. The engine reads base_salary.value_at(as_of), so this third tranche is paid on and after that da |
+| 2026-11-10 | claude-opus-5-5 (ai) | Area 1 Quadri minimum function allowance and its monthly, extra-month and TFR bases against the cached signed agreement. | corrected | Article 19 (p. 25) sets a 13% minimum of monthly remuneration for 14 monthly payments, with employer discretion above the floor; Article 16 (p. 22) includes seniority and function allowance in monthly remuneration; Article 17 (p. 24) includes it in extra months; Article 39 (p. 41) refers TFR to statute. |
 
 ## Salary table
 
@@ -106,13 +107,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "organizzazioni-allevatori-aia/quadri_function_allowance · base_salary · impact yes · open"
-    SIMPLIFICATION: Indennita di funzione for area 1 Quadri (min 13% monthly) not modeled — variable floor amount, not expressible as fixed allowance.
-
-    **Applies when:** `base_salary` applies; level in 1/2, 1/3, 1/4, 1/5.
-
-    **Remediation:** Model the area 1 Quadri function allowance (minimum 13%).
 
 !!! warning "organizzazioni-allevatori-aia/apprentice_inps_rates_unsourced · inps_employer · impact unknown · open"
     APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.
@@ -309,8 +303,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     Hourly divisor 164.67 = 38h/week x 52 / 12, confirmed from Art. 11 CCNL (FLAI PDF). Tredicesima + quattordicesima = 14 additional months (Art. 17 CCNL).
     
     Seniority: 10 biennial scatti per Art. 18 CCNL (FLAI PDF + Confederdia confirmed). Cadence biennale (24 months). Amounts effective 2025-01-01 per Dec 2024 economic renewal.
-    
-    Indennita di funzione for Quadri (area 1): at least 13% of monthly salary per Art. 19 CCNL. Not modeled: percentage-based floor, not a fixed amount.
     
     Apprenticeship: Annex 4 (profili formativi) referenced but not publicly parsed. layer_2 = out_of_scope.
     

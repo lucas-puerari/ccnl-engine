@@ -1,6 +1,6 @@
 <!-- auto-generated; run: uv run python scripts/documentation/capability_matrix/generate.py -->
 
-<!-- generated: 2026-11-09 -->
+<!-- generated: 2026-11-10 -->
 
 # Capability Matrix
 
@@ -61,7 +61,7 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 4506 / 2119 / 205 / 28 |
+| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 4514 / 2119 / 205 / 28 |
 | `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 31 / 92 / 13 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | core | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 33 / 24 / 45 / 0 |
@@ -102,14 +102,14 @@ formulas or caller-declared amounts.
 | `addizionale_comunale` | Addizionale comunale IRPEF | core | net | native | decided | decision | `facts.comune_belfiore` | — | simplified | 0 / 1 / 1 / 0 |
 | `family_deductions` | Detrazioni familiari a carico (Art. 12 TUIR) | core | net | native | decided | decision | `facts.family_composition`, `current_year` | children, other_dependants, sole_parent_first_child, spouse, spouse_increase_bands | simplified | 4 / 0 / 4 / 0 |
 | `art15_deductions` | Detrazioni Art. 15 TUIR (interessi mutuo e oneri) | outside_input | net | unsupported | outside_input | — | `facts.art15_expenses` | — | unavailable | none bundled |
-| `overtime` | Lavoro straordinario e supplementare | scenario | work_rules | caller_supplied | event | event | — | ccnl_band_multiplier, caller_multiplier | caller-supplied | 186 / 303 / 7 / 0 |
-| `night_work` | Lavoro notturno | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 56 / 0 / 0 / 0 |
-| `holiday_work` | Lavoro festivo | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 135 / 2 / 0 / 0 |
-| `shift_work` | Lavoro a turni | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 46 / 0 / 0 / 0 |
+| `overtime` | Lavoro straordinario e supplementare | scenario | work_rules | caller_supplied | event | event | — | ccnl_band_multiplier, caller_multiplier | caller-supplied | 188 / 303 / 7 / 0 |
+| `night_work` | Lavoro notturno | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 58 / 0 / 0 / 0 |
+| `holiday_work` | Lavoro festivo | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 137 / 2 / 0 / 0 |
+| `shift_work` | Lavoro a turni | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 48 / 0 / 0 / 0 |
 | `standby` | Reperibilità (importi del CCNL per livello) | scenario | work_rules | native | event | event | — | — | implemented | none bundled |
-| `absence` | Assenze ingiustificate | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 16 / 0 / 0 / 0 |
+| `absence` | Assenze ingiustificate | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 17 / 0 / 0 / 0 |
 | `leave` | Ferie, ROL ed ex festività godute: retribuite nella paga del mese, scalano il saldo maturato | scenario | work_rules | native | event | event | — | — | implemented | 34 / 19 / 0 / 0 |
-| `sickness` | Malattia: episodi su più periodi, carenza, fasce INPS e integrazione CCNL | scenario | work_rules | native | event | event | — | multi_period_episode, inps_bands_and_carenza, ccnl_tiers | simplified | 59 / 200 / 7 / 0 |
+| `sickness` | Malattia: episodi su più periodi, carenza, fasce INPS e integrazione CCNL | scenario | work_rules | native | event | event | — | multi_period_episode, inps_bands_and_carenza, ccnl_tiers | simplified | 60 / 199 / 7 / 0 |
 | `fringe_benefit` | Fringe benefit (informativo) | scenario | work_rules | native | event | event | — | — | simplified | 0 / 1 / 1 / 0 |
 | `travel_allowance` | Indennità di trasferta (importo giornaliero dal chiamante, quota esente art. 51 c. 5 TUIR) | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `welfare` | Welfare aziendale (informativo) | scenario | work_rules | native | event | event | — | — | implemented | none bundled |
@@ -180,7 +180,7 @@ never grow.
 | 39 | [CCNL Cooperative e Consorzi Agricoli](cooperative-consorzi-agricoli.md) | ⚠️ | base_salary | 34 / 8 / 0 / 0 |
 | 40 | [CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa](federcasa.md) | ⚠️ | base_salary, inps_employer | 1 / 23 / 1 / 0 |
 | 41 | [CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)](alimentari-pmi-unionalimentari.md) | ✅ | — | 38 / 34 / 1 / 0 |
-| 42 | [CCNL Dipendenti da Proprietari di Fabbricati (Confedilizia)](portieri-fabbricati-confedilizia.md) | ⚠️ | base_salary | 34 / 5 / 1 / 0 |
+| 42 | [CCNL Dipendenti da Proprietari di Fabbricati (Confedilizia)](portieri-fabbricati-confedilizia.md) | ⚠️ | base_salary | 37 / 5 / 1 / 0 |
 | 43 | [CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)](farmacie-municipalizzate-assofarm.md) | ⚠️ | base_salary, inps_employer | 73 / 17 / 1 / 0 |
 | 44 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | ⚠️ | seniority | 4 / 41 / 1 / 0 |
 | 45 | [CCNL Dipendenti delle Farmacie Private - Farmacie rurali sussidiate](farmacie-rurali-sussidiate-h121.md) | ⚠️ | seniority | 4 / 41 / 1 / 0 |
@@ -213,8 +213,8 @@ never grow.
 | 72 | [CCNL Laterizi e Manufatti Cementizi - Industria](laterizi-industria-f021.md) | ⚠️ | seniority | 33 / 66 / 1 / 0 |
 | 73 | [CCNL Lavanderie Industriali (Assosistema Confindustria)](lavanderie-industriali-assosistema.md) | ⚠️ | base_salary | 0 / 37 / 1 / 1 |
 | 74 | [CCNL Lavoratori Dipendenti Organizzazioni Sindacali (UNSIC/CONFSAL)](ooss-unsic-confsal.md) | ⚠️ | base_salary, seniority | 1 / 19 / 1 / 0 |
-| 75 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi a orario ridotto, art. 14 c. 2)](lavoro-domestico-convivente-orario-ridotto.md) | ⚠️ | assistance_contribution, base_salary, inps_employer | 16 / 5 / 0 / 0 |
-| 76 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi)](lavoro-domestico-convivente.md) | ⚠️ | assistance_contribution, base_salary, inps_employer, seniority | 28 / 7 / 0 / 0 |
+| 75 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi a orario ridotto, art. 14 c. 2)](lavoro-domestico-convivente-orario-ridotto.md) | ⚠️ | assistance_contribution, base_salary | 16 / 5 / 0 / 0 |
+| 76 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi)](lavoro-domestico-convivente.md) | ⚠️ | assistance_contribution, base_salary, seniority | 28 / 7 / 0 / 0 |
 | 77 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)](lavoro-domestico-non-convivente.md) | ⚠️ | assistance_contribution, base_salary, inps_employer, seniority | 17 / 0 / 0 / 0 |
 | 78 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra)](logistica-trasporto-confetra.md) | ⚠️ | absence, base_salary, overtime, sickness | 70 / 3 / 0 / 0 |
 | 79 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra) - Personale viaggiante](logistica-trasporto-confetra-viaggiante.md) | ⚠️ | absence, base_salary, sickness | 56 / 30 / 0 / 0 |
@@ -228,7 +228,7 @@ never grow.
 | 87 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | ⚠️ | base_salary, seniority, una_tantum | 34 / 33 / 4 / 0 |
 | 88 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | ✅ | — | 77 / 11 / 1 / 1 |
 | 89 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | ⚠️ | base_salary, bilateral_funds, inail, overtime, seniority, sickness, territorial_supplement | 22 / 6 / 1 / 0 |
-| 90 | [CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)](organizzazioni-allevatori-aia.md) | ⚠️ | base_salary, inps_employer | 40 / 7 / 1 / 0 |
+| 90 | [CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)](organizzazioni-allevatori-aia.md) | ⚠️ | inps_employer | 44 / 7 / 1 / 0 |
 | 91 | [CCNL Ortofrutticoli ed Agrumari (Import-Export)](ortofrutticoli-agrumari.md) | ⚠️ | base_salary, leave, seniority, sickness | 47 / 0 / 7 / 0 |
 | 92 | [CCNL Panificazione e Settori Affini — Industria (Assipan/Fiesa)](panificazione-assipan.md) | ✅ | — | 35 / 14 / 1 / 0 |
 | 93 | [CCNL Poste Italiane S.p.A. (personale non dirigente)](poste-italiane-k700.md) | ⚠️ | base_salary, inps_employer, seniority | 1 / 53 / 1 / 0 |
@@ -239,18 +239,18 @@ never grow.
 | 98 | [CCNL Scuole Materne — FISM](scuole-materne-fism.md) | ⚠️ | base_salary, seniority, sickness | 41 / 15 / 1 / 0 |
 | 99 | [CCNL Scuole Private Laiche (ANINSEI-Assoscuola)](scuole-private-laiche-aninsei.md) | ⚠️ | seniority | 36 / 71 / 1 / 0 |
 | 100 | [CCNL Servizi Postali in Appalto (FISE-ARE)](servizi-postali-appalto-fise.md) | ⚠️ | base_salary, seniority | 23 / 27 / 1 / 0 |
-| 101 | [CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi (ANIP-Confindustria)](multiservizi-anip.md) | ⚠️ | base_salary, overtime, pension_fund_contribution, seniority, sickness | 68 / 15 / 0 / 0 |
+| 101 | [CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi (ANIP-Confindustria)](multiservizi-anip.md) | ⚠️ | base_salary, overtime, pension_fund_contribution, seniority, sickness | 73 / 15 / 0 / 0 |
 | 102 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)](sistemazioni-idraulico-forestali-impiegati.md) | ⚠️ | base_salary, inps_employer | 22 / 6 / 2 / 0 |
 | 103 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | ⚠️ | base_salary, inps_employer, seniority | 16 / 5 / 2 / 0 |
 | 104 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | ⚠️ | inps_employer, seniority | 11 / 35 / 1 / 0 |
 | 105 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | ⚠️ | base_salary, overtime, sickness, territorial_supplement, una_tantum | 92 / 2 / 0 / 0 |
 | 106 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | ⚠️ | base_salary, sickness | 86 / 2 / 0 / 0 |
 | 107 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | ⚠️ | base_salary, pension_fund_contribution, seniority | 42 / 0 / 5 / 1 |
-| 108 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | ⚠️ | base_salary, sickness | 45 / 50 / 1 / 0 |
+| 108 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | ⚠️ | base_salary, sickness | 46 / 49 / 1 / 0 |
 | 109 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | ⚠️ | seniority | 34 / 15 / 1 / 1 |
 | 110 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | ⚠️ | base_salary | 50 / 7 / 1 / 0 |
 | 111 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | ⚠️ | base_salary, sickness | 78 / 1 / 0 / 0 |
-| 112 | [CCNL Turismo — Federalberghi/Faita - Alberghi a una e due stelle e campeggi minori](turismo-federalberghi-alberghi-minori.md) | ⚠️ | base_salary, sickness | 68 / 1 / 0 / 0 |
+| 112 | [CCNL Turismo — Federalberghi/Faita - Alberghi a una e due stelle e campeggi minori](turismo-federalberghi-alberghi-minori.md) | ⚠️ | base_salary, sickness | 69 / 1 / 0 / 0 |
 | 113 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | ⚠️ | base_salary, seniority | 0 / 0 / 35 / 1 |
 | 114 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | ✅ | — | 24 / 5 / 1 / 1 |
 | 115 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | ⚠️ | base_salary, contractual_funds, overtime | 26 / 0 / 0 / 1 |

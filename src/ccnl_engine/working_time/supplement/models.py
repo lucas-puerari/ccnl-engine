@@ -17,6 +17,8 @@ class HourlyBaseMethod(StrEnum):
 
     Attributes:
         MINIMO_TABELLARE: The base salary of the level only.
+        MINIMO_E_CONTINGENZA: The base salary and the fixed contingenza allowance,
+            without seniority or other allowances.
         MINIMO_E_ANZIANITA: The base salary and the seniority increments,
             no allowance (CCNL chimica art. 15 punto 1 leaves the EDR out).
         GROSS_INCL_ALLOWANCES: The base salary, the seniority increments
@@ -24,6 +26,7 @@ class HourlyBaseMethod(StrEnum):
     """
 
     MINIMO_TABELLARE = "minimo_tabellare"
+    MINIMO_E_CONTINGENZA = "minimo_e_contingenza"
     MINIMO_E_ANZIANITA = "minimo_e_anzianita"
     GROSS_INCL_ALLOWANCES = "gross_incl_allowances"
 
