@@ -74,6 +74,13 @@ def _components(
     found: list[tuple[str, Decimal]] = [("base_salary", chain.base)]
     if method is HourlyBaseMethod.MINIMO_TABELLARE:
         return tuple(found)
+    if method is HourlyBaseMethod.MINIMO_E_CONTINGENZA:
+        found.extend(
+            (a.code, v)
+            for a, v in chain.allowances
+            if a.code == "CONTINGENZA" and not a.in_kind and not a.individual
+        )
+        return tuple(found)
     found.append(("seniority", chain.seniority))
     if method is HourlyBaseMethod.GROSS_INCL_ALLOWANCES:
         found.extend(

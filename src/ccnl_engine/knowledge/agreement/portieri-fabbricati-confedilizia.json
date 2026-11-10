@@ -61,18 +61,31 @@
       },
       {
         "kind": "simplification",
-        "text": "EXCLUDED PROFILES: A1-A9 (portieri con alloggio, 45 h or 48 h/week — divisor would be 195 or 208, incompatible with single CCNLParameters.hourly_divisor; also alloggio in-kind not modelled). C1 and C2 (preposti alla direzione tecnica o amministrativa — Art. 62 comma 2 exempts them from the 40 h ceiling; no fixed hourly divisor applies). C4 primo impiego (entry-rate sub-classification at EUR 1290.52/2026, transitional not permanent level).",
+        "text": "EXCLUDED PROFILES: A1-A9 (porters with accommodation, 45 or 48 h/week; their divisor and in-kind accommodation are not modeled). C1 and C2 (technical or administrative managers without a fixed hourly ceiling under Art. 62(2)).",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "c4_first_employment_rate",
+          "variant": "excluded_profiles_divisor",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model separate schedules and in-kind accommodation before including excluded profiles."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "FIRST-EMPLOYMENT C4: select C4_PRIMO_IMPIEGO only for a first-employment office clerk during at most 12 months of effective service. The engine cannot measure effective service or verify first employment; the caller must switch to C4 when eligibility expires. Elapsed calendar months are not a substitute for effective service. The published entry-rate table ends on 31 December 2028; the data model requires an open-ended final period, so a mandatory cutoff redirects to regular C4 on 1 January 2029 rather than paying the entry rate after its published end. The source does not specify an entry rate for 2029.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "c4_first_employment_eligibility",
           "applies_when": {
             "trigger": "outside_input",
             "levels": [
-              "C4"
+              "C4_PRIMO_IMPIEGO"
             ]
           },
-          "remediation": "Model the C4 primo impiego entry rate (EUR 1290.52 in 2026) as a separate level or a role-gated variant, or record a limitation."
+          "remediation": "Caller verifies first employment and effective service and switches to C4 after at most 12 months; elapsed-month transition does not measure effective service."
         }
       },
       {
@@ -89,7 +102,7 @@
       },
       {
         "kind": "simplification",
-        "text": "B5 SHORT SCHEDULE (art. 122 c. 2, PDF p. 75): a B5 worker with stated weekly hours below 8 receives 15% of the salario conglobato as allowance B5_ORARIO_RIDOTTO, proportioned to the hours like the conglobato. The percentage base also counts the worker's individual elements, which art. 122 c. 2 does not name; a worker without stated weekly hours is treated as full time and receives nothing.",
+        "text": "B5 SHORT SCHEDULE (art. 122 c. 2, PDF p. 75): a B5 worker with stated weekly hours below 8 receives 15% of the salario conglobato as allowance B5_ORARIO_RIDOTTO, proportioned to the hours like the conglobato. The percentage base is the conglobato alone, without scatti or individual elements (art. 122 c. 1 lett. a); a worker without stated weekly hours is treated as full time and receives nothing.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -452,6 +465,7 @@
             ]
           },
           "percentage_rate": "0.15",
+          "percentage_include_individual": false,
           "below_weekly_hours": "8",
           "provenance": {
             "status": "verified",
@@ -501,8 +515,135 @@
       }
     },
     {
-      "code": "B4",
+      "code": "C4_PRIMO_IMPIEGO",
       "order": 2,
+      "transition_to": "C4",
+      "transition_by": "2029-01-01",
+      "description": "C4 first-employment office clerk; caller selects only during the first 12 months of effective service, then switches to C4",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "1290.52",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "Signed 2025 renewal",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "11",
+                "section": "Table C, 2026, and first-employment note",
+                "quote": "Salario conglobato (art. 123) 2236,10 2050,57 1795,94 1512,61 1290,52"
+              },
+              "transformation": "Last column is the first-employment C4 monthly conglobato; applicable to a first-employment office clerk for at most 12 months of effective service, as stated in the note.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-09T23:18:09Z",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-09T23:18:09Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-c4-entry"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1316.33",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "Signed 2025 renewal",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "11",
+                "section": "Table C, 2027, and first-employment note",
+                "quote": "Salario conglobato (art. 123) 2280,82 2091,58 1831,86 1542,86 1316,33"
+              },
+              "transformation": "Last column is the first-employment C4 monthly conglobato; applicable for at most 12 months of effective service.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-09T23:18:09Z",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-09T23:18:09Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-c4-entry"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1342.66",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+                  "title": "Signed 2025 renewal",
+                  "kind": "associazione",
+                  "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+                  "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+                },
+                "page": "11",
+                "section": "Table C, 2028, and first-employment note",
+                "quote": "Salario conglobato (art. 123) 2326,44 2133,41 1868,50 1573,72 1342,66"
+              },
+              "transformation": "Last column is the first-employment C4 monthly conglobato; the printed table ends 31 December 2028.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-09T23:18:09Z",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-09T23:18:09Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-10-ai-c4-entry"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "portieri-fabbricati-confedilizia-src-4d08a1dd",
+            "title": "Signed 2025 renewal",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "11",
+          "section": "Table C, first-employment note",
+          "quote": "Le retribuzioni indicate alla colonna C4) -1° impiego, sono dovute all’impiegato d'ordine di 1° impiego, per un periodo massimo di 12 mesi di effettivo servizio."
+        },
+        "transformation": "Caller selects this classification only while eligible. On 1 January 2029 the engine redirects to regular C4 to prevent paying the entry rate after the printed table ends; this is a modeling boundary, not a contractual eligibility date.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-09T23:18:09Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-09T23:18:09Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-c4-entry"
+        }
+      }
+    },
+    {
+      "code": "B4",
+      "order": 3,
       "description": "B4 — addetto pulizie aree comuni (common areas cleaner)",
       "base_salary": {
         "periods": [
@@ -620,7 +761,7 @@
     },
     {
       "code": "D4",
-      "order": 3,
+      "order": 4,
       "description": "D4 — addetto servizi generali (general services worker)",
       "base_salary": {
         "periods": [
@@ -738,7 +879,7 @@
     },
     {
       "code": "D3",
-      "order": 4,
+      "order": 5,
       "description": "D3 — addetto servizi generali (general services worker)",
       "base_salary": {
         "periods": [
@@ -856,7 +997,7 @@
     },
     {
       "code": "D2",
-      "order": 5,
+      "order": 6,
       "description": "D2 — addetto servizi generali (general services worker)",
       "base_salary": {
         "periods": [
@@ -974,7 +1115,7 @@
     },
     {
       "code": "D1",
-      "order": 6,
+      "order": 7,
       "description": "D1 — addetto servizi speciali (special services worker)",
       "base_salary": {
         "periods": [
@@ -1092,7 +1233,7 @@
     },
     {
       "code": "B3",
-      "order": 7,
+      "order": 8,
       "description": "B3 — portiere part-time (part-time doorman/caretaker)",
       "base_salary": {
         "periods": [
@@ -1210,7 +1351,7 @@
     },
     {
       "code": "B2",
-      "order": 8,
+      "order": 9,
       "description": "B2 — portiere (doorman/caretaker, standard profile)",
       "base_salary": {
         "periods": [
@@ -1328,7 +1469,7 @@
     },
     {
       "code": "C4",
-      "order": 9,
+      "order": 10,
       "description": "C4 — custode (custodian, 40 h/week without accommodation)",
       "base_salary": {
         "periods": [
@@ -1446,7 +1587,7 @@
     },
     {
       "code": "B1",
-      "order": 10,
+      "order": 11,
       "description": "B1 — portiere con mansioni di custodia (senior doorman with custody duties)",
       "base_salary": {
         "periods": [
@@ -1564,7 +1705,7 @@
     },
     {
       "code": "C3",
-      "order": 11,
+      "order": 12,
       "description": "C3 — custode qualificato (qualified custodian, senior grade)",
       "base_salary": {
         "periods": [
@@ -1807,7 +1948,7 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "af46c3d236f65d91df2a1612ac1888ac3a33d0858b98c5e30ea83a82759fd097",
+    "source_hash": "5d2d69b8b28e1f85feefd0475b9e0aab1c29798dc975e13dcc19dba4cfefb4b9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2069,6 +2210,28 @@
         ],
         "checked": [
           "levels[B5].fixed_allowances[B5_ORARIO_RIDOTTO]",
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-c4-entry",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Table C and first-employment note on signed renewal PDF p. 11 (OCR checked against cached PDF).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          }
+        ],
+        "findings": [
+          "First-employment C4 monthly rates are 1290.52, 1316.33 and 1342.66 in 2026, 2027 and 2028; maximum 12 months of effective service. Caller selects eligibility and changes to C4 when it ends."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.C4_PRIMO_IMPIEGO.base_salary",
           "coverage.notes"
         ]
       }

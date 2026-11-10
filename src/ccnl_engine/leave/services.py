@@ -185,6 +185,7 @@ def _settlement_terms(ctx: RunContext, terms: LeaveTerms) -> SettlementTerms:
         leave=terms,
         monthly_pay=ctx.regular_gross,
         hourly_divisor=None if divisor is None else divisor.value,
+        hourly_pay_elements=ctx.request.hourly_pay_elements,
         part_time_ratio=part_time_ratio(ctx),
         competence_period=ctx.cp,
         payment_date=ctx.contract.tctx.payment,

@@ -35,6 +35,22 @@
       }
     },
     {
+      "id": "coincident_holiday_payment",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 60(2-3) pays an additional 1/22 of monthly global pay when a letter (b) holiday coincides with Saturday, Sunday or another holiday, including during sickness or injury; this distinct payment is not calculated.",
+      "calculation": "ccnl/logistica-trasporto-confetra:coverage.notes",
+      "state": "absent",
+      "remediation": "Calculate the separate art. 60(2-3) coincident-holiday 1/22 payment.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "logistica-trasporto-confetra/coincident_holiday_payment"
+        ]
+      }
+    },
+    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",
@@ -63,22 +79,6 @@
       "links": {
         "limitations": [
           "logistica-trasporto-confetra/edr_2021_in_daily_base"
-        ]
-      }
-    },
-    {
-      "id": "holiday_during_injury",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 71(5) tops up letter (b) and (c) holidays in reduced paid sickness or injury for eligible legacy-section employers when EmployerProfile.legacy_section_applicable is true; an unknown fact blocks the target. Separately, art. 60(2-3) pays an additional 1/22 of monthly global pay when a letter (b) holiday coincides with Saturday, Sunday or another holiday, including during sickness or injury; this distinct payment is not calculated.",
-      "calculation": "ccnl/logistica-trasporto-confetra:coverage.notes",
-      "state": "absent",
-      "remediation": "Calculate the separate art. 60(2-3) coincident-holiday 1/22 payment.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "logistica-trasporto-confetra/holiday_during_injury"
         ]
       }
     },
