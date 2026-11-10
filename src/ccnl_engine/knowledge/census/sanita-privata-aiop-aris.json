@@ -23,10 +23,10 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "DAILY ROTATING SHIFT ALLOWANCES (Art. 61(c), p. 91): EUR 4.50 per actual service day for eligible staff stably rotating across three shifts, or EUR 2.06 per day for eligible staff stably alternating at least two shifts; the two are not cumulative. The night-hour allowance does not replace them. Monthly rotation, qualifying profiles and actual days are not derived from night hours.",
+      "rule": "DAILY ROTATING SHIFT ALLOWANCES (Art. 61(c), p. 91): EUR 4.50 per counted actual service day for eligible staff stably rotating across three shifts, or EUR 2.06 for eligible staff stably alternating scheduled morning and afternoon shifts; these rates are mutually exclusive. Caller-stated roles assert both the qualifying profile and stable monthly rotation; night-hour facts do not establish either. The PDF cover prints 8 October 2020 and Art. 4 makes effects start the following day, 9 October 2020.",
       "calculation": "ccnl/sanita-privata-aiop-aris:coverage.notes",
       "state": "absent",
-      "remediation": "Supply qualifying profiles, stable monthly rotation and actual eligible service days; implement the distinct daily rates with mutual exclusion.",
+      "remediation": "Caller must verify qualifying profile, scheduled service and stable monthly rotation before stating a rotation role; no automatic inference from night hours. The engine does not independently verify qualifying roles or stable rotation.",
       "origin": "seeded",
       "links": {
         "limitations": [

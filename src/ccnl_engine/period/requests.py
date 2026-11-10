@@ -119,6 +119,8 @@ class PeriodCalculationRequest:
         meal_benefit_days: Verified eligible days for electronic meal vouchers,
             excluding absences; ``None`` is unknown. Not for paper vouchers.
         individual_elements: Pay agreed above the CCNL minimum, fixed allowances.
+        hourly_pay_elements: Additional hourly remuneration elements, excluding
+            monthly elements already counted in monthly pay; ``None`` is unknown.
         category: Worker category declared on the employment.  ``None``
             takes the category fixed by the level, if any.  Must match the
             level's category when the level fixes one, and is required when
@@ -181,6 +183,7 @@ class PeriodCalculationRequest:
     contributable_hours: ContributableHours | None = None
     ordinary_hours_worked: ContributableHours | None = None
     paid_holiday_days: PaidHolidayDays | None = None
+    hourly_pay_elements: Decimal | None = None
     full_time_weekly_hours: WeeklyHours | None = None
     full_time_week_days: int | None = None
     rota: Rota | None = None
@@ -225,6 +228,13 @@ class PeriodCalculationRequest:
         """
         require_instances(
             "PeriodCalculationRequest", self._field_specs(), feature="period_request"
+        )
+        require_decimal(
+            self.hourly_pay_elements,
+            "PeriodCalculationRequest.hourly_pay_elements",
+            feature="period_request",
+            minimum=Decimal(0),
+            optional=True,
         )
         require_decimal(
             self.holiday_company_offset,

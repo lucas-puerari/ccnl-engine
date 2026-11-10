@@ -19,7 +19,7 @@ from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
-__all__ = ["HourlyPay", "HourlyPercentage", "PercentageSettlement"]
+__all__ = ["HourlyPay", "HourlyPercentage", "HourlyRate", "PercentageSettlement"]
 
 _ZERO = Decimal(0)
 _ONE = Decimal(1)
@@ -100,6 +100,20 @@ class HourlyPercentage(BaseModel):
         return self
 
 
+class HourlyRate(BaseModel):
+    """All-inclusive hourly rate for a caller-selected role and level.
+
+    The rate is used only when the caller states ``role`` in the worker's
+    roles. The rate series carries the validity and source of each amount.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    role: str
+    level: str
+    rate: TimeSeries
+
+
 class HourlyPay(BaseModel):
     """Worker categories the CCNL pays by the hour.
 
@@ -110,7 +124,9 @@ class HourlyPay(BaseModel):
     days of the month.
 
     Attributes:
-        categories: Worker categories paid by the hour.
+        categories: Worker categories paid by the hour without a stated role.
+        rates: Hourly rates selected by caller-stated role and level. These
+            take precedence over category-based monthly pay divided by hours.
         percentages: Percentages of the hourly elements on the same hours.
         holiday_hours: Hours paid per caller-stated eligible holiday, separately
             from hours actually worked.  ``None`` when no rule is encoded.
@@ -123,7 +139,8 @@ class HourlyPay(BaseModel):
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    categories: tuple[WorkerCategory, ...] = Field(min_length=1)
+    categories: tuple[WorkerCategory, ...] = ()
+    rates: tuple[HourlyRate, ...] = ()
     percentages: tuple[HourlyPercentage, ...] = ()
     holiday_hours: Decimal | None = Field(default=None, gt=0)
     holiday_provenance: RuleProvenance | None = None
@@ -133,6 +150,13 @@ class HourlyPay(BaseModel):
     def _check_codes(self) -> Self:
         if (self.holiday_hours is None) != (self.holiday_provenance is None):
             msg = "holiday hours require their own provenance"
+            raise ValueError(msg)
+        if not self.categories and not self.rates:
+            msg = "hourly_pay needs categories or rates"
+            raise ValueError(msg)
+        keys = [(r.role, r.level) for r in self.rates]
+        if len(set(keys)) != len(keys):
+            msg = f"hourly_pay rates repeat a role and level: {keys}"
             raise ValueError(msg)
         codes = [p.code for p in self.percentages]
         if len(set(codes)) != len(codes):

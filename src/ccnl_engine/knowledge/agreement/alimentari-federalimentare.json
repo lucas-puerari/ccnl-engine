@@ -111,7 +111,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Sugar-industry supplementary rule 25 (PDF p. 230): at 25 uninterrupted years with the same company or group, a one-off minimum award of one normal monthly pay for clerical staff or 200 normal hourly wages for manual workers. This does not apply to the other food-industry branches. Death or permanent incapacity before the threshold and direct transfers have separate rules. An annual clerical-only loyalty_premium would wrongly repeat and extend this award.",
+        "text": "Sugar-industry supplementary rule 25 (PDF p. 230): the once-only award at 25 uninterrupted years is modelled for clerical and manual workers in the sugar branch. Still missing: settlement before the threshold on death or permanent incapacity, qualifying direct transfers between sugar companies, and proof of uninterrupted service within the same company or group from the employment facts.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -119,12 +119,51 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Gate the sugar subsector and pay the once-only clerical or hourly award, including early departure and transfer rules."
+          "remediation": "Represent early death or permanent-incapacity settlement, qualifying direct transfers, and uninterrupted company or group service as worker facts."
         }
       }
     ]
   },
   "parameters": {
+    "loyalty_premium": {
+      "service_years": 25,
+      "months": "1",
+      "recurrence": "once",
+      "categories": [
+        "impiegato",
+        "operaio"
+      ],
+      "subsectors": [
+        "saccarifero"
+      ],
+      "manual_hours": "200",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-industria-alimentare-2024-03-01",
+            "title": "CCNL per i lavoratori dell'industria alimentare 2023-2027, Roma 1 marzo 2024 (testo integrale, FLAI-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "published_on": "2024-03-01",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          },
+          "page": "230",
+          "section": "Sugar-industry supplementary rules, Norme integrative, 25. Gratifica venticinquennale",
+          "quote": "Ricorrendo per qualsiasi lavoratore - operaio o impiegato - 25 anni di servizio prestato ininterrottamente presso la stessa azienda o gruppo aziendale (intendendosi per tale il complesso di fabbriche facenti capo alla stessa società) questa concederà all’interessato una gratifica venticinquennale nella misura non inferiore ad una mensilità della retribuzione normale per gli impiegati e a 200 ore della retribuzione normale per gli operai."
+        },
+        "transformation": "Pay once in the 25th service anniversary month in the sugar subsector: one normal monthly pay for clerical staff or 200 normal hourly wages for manual workers. The existing monthly run-chain approximates normal pay; hourly conversion uses the agreement's general divisor 173 (Art. 51 lett. A, PDF p. 117). Death or permanent incapacity before 25 years, direct transfers, and proof of uninterrupted company or group service remain limitations. The rule does not specify a distinct award effective date.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-09T22:16:13Z",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-09T22:16:13Z",
+          "review_id": "2026-11-09-ai-sugar-award"
+        }
+      }
+    },
     "hourly_divisor": {
       "periods": [
         {
@@ -4192,7 +4231,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "3b4a89e4a8038b81c259e0a843cbee4ef92622845411d07e25e72cd4297e7506",
+    "source_hash": "757789f2ef17b199b771fc9746ae8d6b232e401fd73017a068b449ad0426cc7e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -14256,6 +14295,27 @@
         "independence": "same_process",
         "checked": [
           "parameters.health_funds"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-sugar-award",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Sugar-industry supplementary rule 25 (physical PDF p. 230), once-only award and outstanding eligibility facts.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          }
+        ],
+        "findings": [
+          "The sugar rule pays one normal monthly salary to clerical employees or 200 normal hourly wages to manual workers after 25 uninterrupted years in the same company or group. Early death/incapacity, direct transfers and group continuity require facts not available in the run."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.loyalty_premium"
         ]
       }
     ],

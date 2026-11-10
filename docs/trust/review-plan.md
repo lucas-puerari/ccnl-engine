@@ -9,7 +9,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 231 | 188 | 0 | `funzioni-centrali-aran` |
-| terziario | 46 | 5 257 055 | 53 | 970 | 1718 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| terziario | 46 | 5 257 055 | 53 | 970 | 1727 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 49 | 4 969 900 | 155 | 1172 | 2294 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 61 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 151 | 309 | 2 | `metalmeccanico-artigianato` |
@@ -41,7 +41,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | CCNL | Workers | Readiness | Weak | Derived | Verified | Source | Owner | Next review |
 |---|---:|---|---:|---:|---:|---|---|---|
 | [`commercio-confcommercio`](../contracts/commercio-confcommercio.md) (anchor) | 800 000 | production | 0 | 2 | 86 | party or official | maintainer | 2027-03-31 |
-| [`multiservizi-anip`](../contracts/multiservizi-anip.md) | 580 000 | exploratory | 0 | 14 | 69 | party or official | none | none |
+| [`multiservizi-anip`](../contracts/multiservizi-anip.md) | 580 000 | exploratory | 0 | 14 | 74 | party or official | none | none |
 | [`dmo-federdistribuzione`](../contracts/dmo-federdistribuzione.md) | 460 000 | reviewed | 0 | 3 | 93 | party or official | maintainer | 2027-04-01 |
 | [`cooperative-sociali`](../contracts/cooperative-sociali.md) | 380 000 | reviewed | 0 | 47 | 62 | party or official | maintainer | 2027-01-31 |
 | [`pubblici-esercizi-fipe-angem`](../contracts/pubblici-esercizi-fipe-angem.md) | 350 000 | production | 0 | 4 | 68 | party or official | maintainer | 2027-06-01 |
@@ -49,7 +49,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`studi-professionali-confprofessioni`](../contracts/studi-professionali-confprofessioni.md) | 350 000 | reviewed | 0 | 2 | 53 | party or official | maintainer | 2027-04-30 |
 | [`terziario-confesercenti`](../contracts/terziario-confesercenti.md) | 230 000 | reviewed | 0 | 2 | 92 | party or official | maintainer | 2027-03-31 |
 | [`turismo-federalberghi`](../contracts/turismo-federalberghi.md) | 220 000 | production | 0 | 1 | 78 | party or official | maintainer | 2027-04-30 |
-| [`turismo-federalberghi-alberghi-minori`](../contracts/turismo-federalberghi-alberghi-minori.md) | 220 000 | exploratory | 0 | 1 | 68 | party or official | none | none |
+| [`turismo-federalberghi-alberghi-minori`](../contracts/turismo-federalberghi-alberghi-minori.md) | 220 000 | exploratory | 0 | 1 | 69 | party or official | none | none |
 | [`sanita-privata-aiop-aris`](../contracts/sanita-privata-aiop-aris.md) (anchor) | 150 000 | exploratory | 0 | 2 | 38 | party or official | maintainer | 2027-06-30 |
 | [`uneba-uneba`](../contracts/uneba-uneba.md) | 130 000 | exploratory | 1 | 8 | 34 | party or official | none | none |
 | [`autoferrotranvieri-internavigatori`](../contracts/autoferrotranvieri-internavigatori.md) | 120 000 | exploratory | 1 | 139 | 0 | party or official | none | none |
@@ -64,7 +64,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`autorimesse-ic35`](../contracts/autorimesse-ic35.md) | 41 000 | exploratory | 2 | 40 | 55 | party or official | none | none |
 | [`vigilanza-privata-assiv-sf`](../contracts/vigilanza-privata-assiv-sf.md) | 40 000 | exploratory | 3 | 5 | 46 | party or official | none | none |
 | [`industria-turistica-federturismo`](../contracts/industria-turistica-federturismo.md) | 40 000 | exploratory | 1 | 10 | 36 | aggregator | none | none |
-| [`portieri-fabbricati-confedilizia`](../contracts/portieri-fabbricati-confedilizia.md) | 40 000 | exploratory | 1 | 5 | 34 | party or official | none | none |
+| [`portieri-fabbricati-confedilizia`](../contracts/portieri-fabbricati-confedilizia.md) | 40 000 | exploratory | 1 | 5 | 37 | party or official | none | none |
 | [`impianti-sportivi-sport`](../contracts/impianti-sportivi-sport.md) | 35 533 | exploratory | 2 | 4 | 28 | party or official | none | none |
 | [`scuole-materne-fism`](../contracts/scuole-materne-fism.md) | 30 000 | exploratory | 1 | 15 | 41 | party or official | none | none |
 | [`agenzie-viaggio-fiavet`](../contracts/agenzie-viaggio-fiavet.md) | 25 000 | exploratory | 1 | 59 | 10 | party or official | none | none |
