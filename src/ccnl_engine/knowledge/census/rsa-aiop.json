@@ -19,6 +19,22 @@
       }
     },
     {
+      "id": "apprenticeship_pct_undeclared_components",
+      "institute": "base_salary",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.",
+      "calculation": "ccnl_engine.apprenticeship.rules (percentage track chain)",
+      "state": "unverified",
+      "remediation": "Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "apprenticeship_pct_undeclared_components"
+        ]
+      }
+    },
+    {
       "id": "apprenticeship_under_classification",
       "institute": "base_salary",
       "variant": "all",
@@ -310,10 +326,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Seniority: CCNL RSA-AIOP provides a flat EUR 40/month after 5 years of service (levels A-E3 only; F/G/H excluded). Modelled as cadence_months=60, maximum_count=1 — correct for new hires (single increment at month 60). The Oct 2023 'premio di anzianità' is EUR 40 gross on each of thirteen monthly payments, TFR-relevant, for levels A–E3 with ten years at the same employer or group already completed on 3 October 2023; ratification was a condition. It is not the five-year increment and is not modelled: an in_service_on allowance alone cannot establish ten years of service on the signing date.",
+      "rule": "Seniority: CCNL RSA-AIOP provides a flat EUR 40/month after 5 years of service (levels A-E3 only; F/G/H excluded). Modelled as cadence_months=60, maximum_count=1 — correct for new hires (single increment at month 60). The separate October 2023 seniority premium is modelled for employees with ten years at the same employer or group at signing (3 October 2023), using the caller-supplied employment start date as the start of group service. Earlier service at another group company must be reflected in that date; without a known start date the premium is not paid. Ratification is confirmed by the signed AIOP copy. The premium clause does not separately state a start date; 1 October 2023 is inferred from the agreement's effective date. No later replacement agreement has been verified; the 2023 agreement provides for continuation or annual renewal pending replacement, so the allowance remains open-ended pending evidence of a later change or absorption.",
       "calculation": "ccnl/rsa-aiop:coverage.notes",
       "state": "absent",
-      "remediation": "Verify ratification and add a monthly EUR 40 allowance for levels A–E3 gated by service of at least ten years on 3 October 2023 and employment on that date; include thirteen payments and TFR.",
+      "remediation": "Supply group-service start as the employment start date when earlier service with another group company qualifies. Verify any separately specified premium start date and any later replacement or absorption before changing the open-ended premium.",
       "origin": "seeded",
       "links": {
         "limitations": [

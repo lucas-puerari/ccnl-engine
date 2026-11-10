@@ -19,6 +19,8 @@ class LoyaltyPremium(BaseModel):
     represented by the employment start date alone. A once-only milestone
     can additionally restrict the eligible categories and employer subsectors;
     manual workers may use a specified number of normal hourly wages.
+    A recognised-service milestone uses the caller's seniority fact, which
+    must describe the service credited for that award, not merely increments.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -31,6 +33,8 @@ class LoyaltyPremium(BaseModel):
         WorkerCategory.QUADRO,
     )
     subsectors: tuple[str, ...] = ()
+    levels: tuple[str, ...] = ()
+    service_basis: Literal["actual", "recognised"] = "actual"
     manual_hours: Decimal | None = Field(default=None, gt=0)
     provenance: RuleProvenance
 

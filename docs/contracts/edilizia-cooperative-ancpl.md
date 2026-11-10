@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-02-21 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 2 values found verbatim on the cited pages and marked verified; 30 left as they were (derived or not on a text page). |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 2 values found verbatim on the cited pages and marked verified; 30 left as they were (derived or not on a text page). |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 24 values read identically by both readings and equal to the file. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Historical cohort and frozen valuation in Art. 98 of the 2000 text; no inference about continued force in the current agreement. | corrected | Art. 98 (PDF p. 97) limits the annual award to clerical employees already at 20 years' uninterrupted actual service on 30 April 1982. The frozen Art. 80 items 1–14 pay and whole-month fractions on non-disciplinary departure cannot be inferred from current pay; the cohort may still be employed in 2026. |
 
 ## Salary table
 
@@ -131,11 +132,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! warning "edilizia-cooperative-ancpl/cooperative_legacy_loyalty · base_salary · impact yes · open"
-    Art. 98 of the cached 2000 CCNL (PDF p. 97) preserves an annual one-month loyalty award only for clerical employees who had already completed 20 years of actual uninterrupted service at the same company or group by 30 April 1982. It uses Art. 80 items 1–14 frozen at their 30 April 1982 values, and whole-month fractions on non-disciplinary departure. The present-day scope of this archival text is unverified. Annual loyalty_premium cannot enforce the historical eligibility and frozen valuation.
+    The 2000 text, Art. 98 (PDF p. 97), preserves an annual one-month award for clerical employees with 20 years of actual uninterrupted service at the same company or group by 30 April 1982 (hired no later than 30 April 1962). A worker still employed in 2026 could belong to this cohort; the rule cannot be dismissed solely for age. The award uses Art. 80 items 1–14 at their 30 April 1982 values and pays whole-month fractions on non-disciplinary departure. Continued force in the current agreement is not established by the cached 2000 text. The missing calculation is cohort eligibility, worker-specific frozen pay and annual/departure payment; current salary cannot replace the frozen base.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Verify continued validity against a current text and implement historical cohort eligibility, frozen award base, and departure pro rata.
+    **Remediation:** Confirm continued force against the current agreement; for qualifying clerical workers supply the 30 April 1982 Art. 80 items 1–14 pay base and implement annual anniversary payment and whole-month pro rata on non-disciplinary departure.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

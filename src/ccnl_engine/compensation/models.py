@@ -232,6 +232,8 @@ class Level(BaseModel):
         hourly_base_method: Optional level-specific hourly pay elements.
         hourly_base_provenance: Verified source for the level's ordinary hourly
             pay elements when they differ from the contract-wide policy.
+        valid_until: First date the level no longer exists, exclusive; for example,
+            a level absent from the July 2026 table may end on 2026-07-01.
         base_salary_by_subsector, subsectors: Sub-sector pay and eligibility.
         base_salary_by_cohort, class_tables: Hired-worker or seniority-class tables.
         transition_to, transition_after_months, transition_hire_bands,
@@ -248,6 +250,7 @@ class Level(BaseModel):
     hourly_divisor: TimeSeries | None = None
     hourly_base_method: HourlyBaseMethod | None = None
     hourly_base_provenance: RuleProvenance | None = None
+    valid_until: date | None = None
     base_salary_by_subsector: dict[str, TimeSeries] = Field(default_factory=dict)
     base_salary_by_cohort: tuple[CohortSalary, ...] = ()
     class_tables: tuple[ClassTable, ...] = ()

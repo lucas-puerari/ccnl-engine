@@ -135,10 +135,10 @@
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 61: pregnancy and puerperium holiday top-ups, Easter Sunday are not calculated; national weekday holidays during sickness and injury are covered.",
+      "rule": "Art. 61: national weekday holidays and the stated weekday patron saint day during sickness, injury and compulsory maternity have a full daily-pay target. Easter Sunday and other Sunday holidays are not calculated by the weekday-only absence holiday mechanisms; optional leave and other absence treatments are not modelled.",
       "calculation": "ccnl/esercizi-cinematografici-anec:coverage.notes",
       "state": "absent",
-      "remediation": "Provide employer-specific holidays and the remaining absence treatments.",
+      "remediation": "Support Sunday holidays including Easter Sunday during insured absences and the remaining absence treatments. A local patron saint date must be supplied by the employer.",
       "origin": "seeded",
       "links": {
         "limitations": [

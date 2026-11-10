@@ -187,7 +187,127 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "ASSEGNO_FUNZIONALE_17",
+          "description": "Functional seniority allowance at 17 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "121.53"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 204,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Agente, 17 years",
+              "quote": "1.448,40"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 1448.40 plus EUR 10.00 from D.P.R. 39/2018 art. 15 for agents and assistants at 17 years = EUR 1458.40; divide by 12 and round to cents = EUR 121.53 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table. D.P.R. 39/2018 art. 15: https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.versione=1&art.idGruppo=1&art.flagTipoArticolo=0&art.codiceRedazionale=18G00063&art.idArticolo=15&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=2018-05-02&art.progressivo=0 (sha256 86e51e7a093ef20cdc2879d5815efdb34bb1477a69f5d263b4569ebd04a3f878)."
+          },
+          "service_months_until": 324
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_27",
+          "description": "Functional seniority allowance at 27 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "245.82"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 324,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Agente, 27 years",
+              "quote": "2.949,83"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 2949.83 = EUR 2949.83; divide by 12 and round to cents = EUR 245.82 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          },
+          "service_months_until": 384
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_32",
+          "description": "Functional seniority allowance at 32 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "282.69"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 384,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Agente, 32 years",
+              "quote": "3.392,30"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3392.30 = EUR 3392.30; divide by 12 and round to cents = EUR 282.69 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -285,7 +405,127 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "ASSEGNO_FUNZIONALE_17",
+          "description": "Functional seniority allowance at 17 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "121.53"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 204,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Agente scelto, 17 years",
+              "quote": "1.448,40"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 1448.40 plus EUR 10.00 from D.P.R. 39/2018 art. 15 for agents and assistants at 17 years = EUR 1458.40; divide by 12 and round to cents = EUR 121.53 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table. D.P.R. 39/2018 art. 15: https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.versione=1&art.idGruppo=1&art.flagTipoArticolo=0&art.codiceRedazionale=18G00063&art.idArticolo=15&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=2018-05-02&art.progressivo=0 (sha256 86e51e7a093ef20cdc2879d5815efdb34bb1477a69f5d263b4569ebd04a3f878)."
+          },
+          "service_months_until": 324
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_27",
+          "description": "Functional seniority allowance at 27 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "245.82"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 324,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Agente scelto, 27 years",
+              "quote": "2.949,83"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 2949.83 = EUR 2949.83; divide by 12 and round to cents = EUR 245.82 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          },
+          "service_months_until": 384
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_32",
+          "description": "Functional seniority allowance at 32 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "282.69"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 384,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Agente scelto, 32 years",
+              "quote": "3.392,30"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3392.30 = EUR 3392.30; divide by 12 and round to cents = EUR 282.69 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -383,7 +623,127 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "ASSEGNO_FUNZIONALE_17",
+          "description": "Functional seniority allowance at 17 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "121.53"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 204,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Assistente, 17 years",
+              "quote": "1.448,40"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 1448.40 plus EUR 10.00 from D.P.R. 39/2018 art. 15 for agents and assistants at 17 years = EUR 1458.40; divide by 12 and round to cents = EUR 121.53 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table. D.P.R. 39/2018 art. 15: https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.versione=1&art.idGruppo=1&art.flagTipoArticolo=0&art.codiceRedazionale=18G00063&art.idArticolo=15&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=2018-05-02&art.progressivo=0 (sha256 86e51e7a093ef20cdc2879d5815efdb34bb1477a69f5d263b4569ebd04a3f878)."
+          },
+          "service_months_until": 324
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_27",
+          "description": "Functional seniority allowance at 27 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "245.82"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 324,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Assistente, 27 years",
+              "quote": "2.949,83"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 2949.83 = EUR 2949.83; divide by 12 and round to cents = EUR 245.82 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          },
+          "service_months_until": 384
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_32",
+          "description": "Functional seniority allowance at 32 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "282.69"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 384,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Assistente, 32 years",
+              "quote": "3.392,30"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3392.30 = EUR 3392.30; divide by 12 and round to cents = EUR 282.69 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -481,7 +841,127 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "ASSEGNO_FUNZIONALE_17",
+          "description": "Functional seniority allowance at 17 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "121.53"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 204,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Assistente Capo, 17 years",
+              "quote": "1.448,40"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 1448.40 plus EUR 10.00 from D.P.R. 39/2018 art. 15 for agents and assistants at 17 years = EUR 1458.40; divide by 12 and round to cents = EUR 121.53 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table. D.P.R. 39/2018 art. 15: https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.versione=1&art.idGruppo=1&art.flagTipoArticolo=0&art.codiceRedazionale=18G00063&art.idArticolo=15&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=2018-05-02&art.progressivo=0 (sha256 86e51e7a093ef20cdc2879d5815efdb34bb1477a69f5d263b4569ebd04a3f878)."
+          },
+          "service_months_until": 324
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_27",
+          "description": "Functional seniority allowance at 27 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "245.82"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 324,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Assistente Capo, 27 years",
+              "quote": "2.949,83"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 2949.83 = EUR 2949.83; divide by 12 and round to cents = EUR 245.82 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          },
+          "service_months_until": 384
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_32",
+          "description": "Functional seniority allowance at 32 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "282.69"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 384,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Assistente Capo, 32 years",
+              "quote": "3.392,30"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3392.30 = EUR 3392.30; divide by 12 and round to cents = EUR 282.69 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -579,7 +1059,127 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "ASSEGNO_FUNZIONALE_17",
+          "description": "Functional seniority allowance at 17 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "150.02"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 204,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Vice Sovrintendente, 17 years",
+              "quote": "1.800,20"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 1800.20 = EUR 1800.20; divide by 12 and round to cents = EUR 150.02 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          },
+          "service_months_until": 324
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_27",
+          "description": "Functional seniority allowance at 27 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "251.52"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 324,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Vice Sovrintendente, 27 years",
+              "quote": "3.018,20"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3018.20 = EUR 3018.20; divide by 12 and round to cents = EUR 251.52 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          },
+          "service_months_until": 384
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_32",
+          "description": "Functional seniority allowance at 32 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "289.25"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 384,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Vice Sovrintendente, 32 years",
+              "quote": "3.470,98"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3470.98 = EUR 3470.98; divide by 12 and round to cents = EUR 289.25 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -775,7 +1375,127 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "ASSEGNO_FUNZIONALE_17",
+          "description": "Functional seniority allowance at 17 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "150.02"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 204,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Sovrintendente, 17 years",
+              "quote": "1.800,20"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 1800.20 = EUR 1800.20; divide by 12 and round to cents = EUR 150.02 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          },
+          "service_months_until": 324
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_27",
+          "description": "Functional seniority allowance at 27 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "251.52"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 324,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Sovrintendente, 27 years",
+              "quote": "3.018,20"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3018.20 = EUR 3018.20; divide by 12 and round to cents = EUR 251.52 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          },
+          "service_months_until": 384
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_32",
+          "description": "Functional seniority allowance at 32 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "289.25"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 384,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Sovrintendente, 32 years",
+              "quote": "3.470,98"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3470.98 = EUR 3470.98; divide by 12 and round to cents = EUR 289.25 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -971,7 +1691,127 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "ASSEGNO_FUNZIONALE_17",
+          "description": "Functional seniority allowance at 17 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "150.02"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 204,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Sovrintendente Capo, 17 years",
+              "quote": "1.800,20"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 1800.20 = EUR 1800.20; divide by 12 and round to cents = EUR 150.02 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          },
+          "service_months_until": 324
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_27",
+          "description": "Functional seniority allowance at 27 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "251.52"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 324,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Sovrintendente Capo, 27 years",
+              "quote": "3.018,20"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3018.20 = EUR 3018.20; divide by 12 and round to cents = EUR 251.52 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          },
+          "service_months_until": 384
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_32",
+          "description": "Functional seniority allowance at 32 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "289.25"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 384,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Sovrintendente Capo, 32 years",
+              "quote": "3.470,98"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3470.98 = EUR 3470.98; divide by 12 and round to cents = EUR 289.25 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1069,7 +1909,127 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "ASSEGNO_FUNZIONALE_17",
+          "description": "Functional seniority allowance at 17 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "152.45"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 204,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Vice Ispettore, 17 years",
+              "quote": "1.829,40"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 1829.40 = EUR 1829.40; divide by 12 and round to cents = EUR 152.45 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          },
+          "service_months_until": 324
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_27",
+          "description": "Functional seniority allowance at 27 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "255.88"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 324,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Vice Ispettore, 27 years",
+              "quote": "3.070,50"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3070.50 = EUR 3070.50; divide by 12 and round to cents = EUR 255.88 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          },
+          "service_months_until": 384
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_32",
+          "description": "Functional seniority allowance at 32 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "294.25"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 384,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Vice Ispettore, 32 years",
+              "quote": "3.531,03"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3531.03 = EUR 3531.03; divide by 12 and round to cents = EUR 294.25 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1265,7 +2225,127 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "ASSEGNO_FUNZIONALE_17",
+          "description": "Functional seniority allowance at 17 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "152.45"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 204,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Ispettore, 17 years",
+              "quote": "1.829,40"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 1829.40 = EUR 1829.40; divide by 12 and round to cents = EUR 152.45 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          },
+          "service_months_until": 324
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_27",
+          "description": "Functional seniority allowance at 27 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "255.88"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 324,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Ispettore, 27 years",
+              "quote": "3.070,50"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3070.50 = EUR 3070.50; divide by 12 and round to cents = EUR 255.88 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          },
+          "service_months_until": 384
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_32",
+          "description": "Functional seniority allowance at 32 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "294.25"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 384,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Ispettore, 32 years",
+              "quote": "3.531,03"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3531.03 = EUR 3531.03; divide by 12 and round to cents = EUR 294.25 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1461,7 +2541,127 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "ASSEGNO_FUNZIONALE_17",
+          "description": "Functional seniority allowance at 17 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "152.45"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 204,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Ispettore Capo, 17 years",
+              "quote": "1.829,40"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 1829.40 = EUR 1829.40; divide by 12 and round to cents = EUR 152.45 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          },
+          "service_months_until": 324
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_27",
+          "description": "Functional seniority allowance at 27 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "255.88"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 324,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Ispettore Capo, 27 years",
+              "quote": "3.070,50"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3070.50 = EUR 3070.50; divide by 12 and round to cents = EUR 255.88 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          },
+          "service_months_until": 384
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_32",
+          "description": "Functional seniority allowance at 32 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "294.25"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 384,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Ispettore Capo, 32 years",
+              "quote": "3.531,03"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3531.03 = EUR 3531.03; divide by 12 and round to cents = EUR 294.25 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1559,7 +2759,130 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "ASSEGNO_FUNZIONALE_17",
+          "description": "Functional seniority allowance at 17 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "179.46"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 204,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-3",
+                "title": "D.P.R. 51/2009 art. 8(3), table, GU supplement p. 10",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110002&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "ccd1b5f35e50accc4a6d49f48aeb5a772ac8b9fa0206d441e66f0d7b386abf0f"
+              },
+              "page": "10",
+              "section": "Art. 8(3), Vice Commissario, 17 years",
+              "quote": "2.153,50"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 2153.50 = EUR 2153.50; divide by 12 and round to cents = EUR 179.46 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table. Article 8(3) restricts entitlement to commissioners promoted from lower ranks; require the promoted_from_lower_rank worker role."
+          },
+          "service_months_until": 324,
+          "role": "promoted_from_lower_rank"
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_27",
+          "description": "Functional seniority allowance at 27 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "269.31"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 324,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-3",
+                "title": "D.P.R. 51/2009 art. 8(3), table, GU supplement p. 10",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110002&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "ccd1b5f35e50accc4a6d49f48aeb5a772ac8b9fa0206d441e66f0d7b386abf0f"
+              },
+              "page": "10",
+              "section": "Art. 8(3), Vice Commissario, 27 years",
+              "quote": "3.231,70"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3231.70 = EUR 3231.70; divide by 12 and round to cents = EUR 269.31 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table. Article 8(3) restricts entitlement to commissioners promoted from lower ranks; require the promoted_from_lower_rank worker role."
+          },
+          "service_months_until": 384,
+          "role": "promoted_from_lower_rank"
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_32",
+          "description": "Functional seniority allowance at 32 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "309.71"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 384,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-3",
+                "title": "D.P.R. 51/2009 art. 8(3), table, GU supplement p. 10",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110002&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "ccd1b5f35e50accc4a6d49f48aeb5a772ac8b9fa0206d441e66f0d7b386abf0f"
+              },
+              "page": "10",
+              "section": "Art. 8(3), Vice Commissario, 32 years",
+              "quote": "3.716,51"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3716.51 = EUR 3716.51; divide by 12 and round to cents = EUR 309.71 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table. Article 8(3) restricts entitlement to commissioners promoted from lower ranks; require the promoted_from_lower_rank worker role."
+          },
+          "role": "promoted_from_lower_rank"
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1657,7 +2980,127 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "ASSEGNO_FUNZIONALE_17",
+          "description": "Functional seniority allowance at 17 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "152.45"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 204,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Ispettore superiore s.UPS, 17 years",
+              "quote": "1.829,40"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 1829.40 = EUR 1829.40; divide by 12 and round to cents = EUR 152.45 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          },
+          "service_months_until": 324
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_27",
+          "description": "Functional seniority allowance at 27 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "255.88"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 324,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Ispettore superiore s.UPS, 27 years",
+              "quote": "3.070,50"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3070.50 = EUR 3070.50; divide by 12 and round to cents = EUR 255.88 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          },
+          "service_months_until": 384
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_32",
+          "description": "Functional seniority allowance at 32 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "294.25"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 384,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-2",
+                "title": "D.P.R. 51/2009 art. 8(2), table, GU supplement p. 9",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+              },
+              "page": "9",
+              "section": "Art. 8(2), Ispettore superiore s.UPS, 32 years",
+              "quote": "3.531,03"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3531.03 = EUR 3531.03; divide by 12 and round to cents = EUR 294.25 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -1951,7 +3394,130 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "ASSEGNO_FUNZIONALE_17",
+          "description": "Functional seniority allowance at 17 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "179.46"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 204,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-3",
+                "title": "D.P.R. 51/2009 art. 8(3), table, GU supplement p. 10",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110002&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "ccd1b5f35e50accc4a6d49f48aeb5a772ac8b9fa0206d441e66f0d7b386abf0f"
+              },
+              "page": "10",
+              "section": "Art. 8(3), Commissario, 17 years",
+              "quote": "2.153,50"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 2153.50 = EUR 2153.50; divide by 12 and round to cents = EUR 179.46 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table. Article 8(3) restricts entitlement to commissioners promoted from lower ranks; require the promoted_from_lower_rank worker role."
+          },
+          "service_months_until": 324,
+          "role": "promoted_from_lower_rank"
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_27",
+          "description": "Functional seniority allowance at 27 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "269.31"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 324,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-3",
+                "title": "D.P.R. 51/2009 art. 8(3), table, GU supplement p. 10",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110002&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "ccd1b5f35e50accc4a6d49f48aeb5a772ac8b9fa0206d441e66f0d7b386abf0f"
+              },
+              "page": "10",
+              "section": "Art. 8(3), Commissario, 27 years",
+              "quote": "3.231,70"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3231.70 = EUR 3231.70; divide by 12 and round to cents = EUR 269.31 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table. Article 8(3) restricts entitlement to commissioners promoted from lower ranks; require the promoted_from_lower_rank worker role."
+          },
+          "service_months_until": 384,
+          "role": "promoted_from_lower_rank"
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_32",
+          "description": "Functional seniority allowance at 32 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "309.71"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 384,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-3",
+                "title": "D.P.R. 51/2009 art. 8(3), table, GU supplement p. 10",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110002&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "ccd1b5f35e50accc4a6d49f48aeb5a772ac8b9fa0206d441e66f0d7b386abf0f"
+              },
+              "page": "10",
+              "section": "Art. 8(3), Commissario, 32 years",
+              "quote": "3.716,51"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 3716.51 = EUR 3716.51; divide by 12 and round to cents = EUR 309.71 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table. Article 8(3) restricts entitlement to commissioners promoted from lower ranks; require the promoted_from_lower_rank worker role."
+          },
+          "role": "promoted_from_lower_rank"
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -2147,7 +3713,130 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "ASSEGNO_FUNZIONALE_17",
+          "description": "Functional seniority allowance at 17 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "230.91"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 204,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-3",
+                "title": "D.P.R. 51/2009 art. 8(3), table, GU supplement p. 10",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110002&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "ccd1b5f35e50accc4a6d49f48aeb5a772ac8b9fa0206d441e66f0d7b386abf0f"
+              },
+              "page": "10",
+              "section": "Art. 8(3), Commissario Capo, 17 years",
+              "quote": "2.770,90"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 2770.90 = EUR 2770.90; divide by 12 and round to cents = EUR 230.91 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table. Article 8(3) restricts entitlement to commissioners promoted from lower ranks; require the promoted_from_lower_rank worker role."
+          },
+          "service_months_until": 324,
+          "role": "promoted_from_lower_rank"
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_27",
+          "description": "Functional seniority allowance at 27 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "428.68"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 324,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-3",
+                "title": "D.P.R. 51/2009 art. 8(3), table, GU supplement p. 10",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110002&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "ccd1b5f35e50accc4a6d49f48aeb5a772ac8b9fa0206d441e66f0d7b386abf0f"
+              },
+              "page": "10",
+              "section": "Art. 8(3), Commissario Capo, 27 years",
+              "quote": "5.144,10"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 5144.10 = EUR 5144.10; divide by 12 and round to cents = EUR 428.68 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table. Article 8(3) restricts entitlement to commissioners promoted from lower ranks; require the promoted_from_lower_rank worker role."
+          },
+          "service_months_until": 384,
+          "role": "promoted_from_lower_rank"
+        },
+        {
+          "code": "ASSEGNO_FUNZIONALE_32",
+          "description": "Functional seniority allowance at 32 years",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "492.97"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "service_months_threshold": 384,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "dpr-51-2009-art-8-table-3",
+                "title": "D.P.R. 51/2009 art. 8(3), table, GU supplement p. 10",
+                "kind": "legge",
+                "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110002&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+                "sha256": "ccd1b5f35e50accc4a6d49f48aeb5a772ac8b9fa0206d441e66f0d7b386abf0f"
+              },
+              "page": "10",
+              "section": "Art. 8(3), Commissario Capo, 32 years",
+              "quote": "5.915,67"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-10T01:52:31Z",
+              "verified_at": "2026-11-10T01:52:31Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-10-ai-police-functional-allowance"
+            },
+            "transformation": "Annual EUR 5915.67 = EUR 5915.67; divide by 12 and round to cents = EUR 492.97 per ordinary month, also paid in the thirteenth (months_per_year=13). This is the same annual/12 convention as D.P.R. 53/2025 art. 2 stipend (Agente EUR 20,576.38 / 12 = EUR 1,714.70 in the bundle); D.L. 387/1987 art. 6(4)-(5) adds the benefit to individual seniority pay and gives it effect on the thirteenth. Neither statute prints an installment divisor. D.P.R. 57/2022 art. 5 changes only specified coordinator entitlements; D.P.R. 53/2025 does not change this table. Article 8(3) restricts entitlement to commissioners promoted from lower ranks; require the promoted_from_lower_rank worker role."
+          },
+          "role": "promoted_from_lower_rank"
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -2185,7 +3874,7 @@
       },
       {
         "kind": "info",
-        "text": "Conglobazione confermata — IIS conglobata dal 1/1/2005 (D.Lgs. 193/2003). fixed_allowances: [] per tutti i livelli."
+        "text": "Confirmed consolidated base salary: IIS was incorporated from 1 January 2005 (D.Lgs. 193/2003). The functional seniority allowance is separate from the consolidated base salary and is recorded in fixed_allowances for the sourced standard ranks."
       },
       {
         "kind": "info",
@@ -2201,15 +3890,15 @@
       },
       {
         "kind": "simplification",
-        "text": "Progressione economica non per scatti automatici sulla paga base, bensì per avanzamento di qualifica e tramite assegno funzionale (Art. 54 D.Lgs. 195/1995) maturato a 17, 27 e 32 anni di servizio. seniority_increments.maximum_count = 0.",
+        "text": "Functional seniority allowance at 17, 27 and 32 years: the tabular annual rate is divided by 12 and also affects the thirteenth monthly payment. The standard rank rows are modelled; commissioners require the promoted_from_lower_rank worker role. Entitlement depends on qualifying service without demerit.",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "assegno_funzionale_missing",
+          "variant": "assegno_funzionale_conditions_and_special_ranks",
           "applies_when": {
             "trigger": "run"
           },
-          "remediation": "Model the assegno funzionale at 17, 27 and 32 years of service as allowances gated by service_months_threshold."
+          "remediation": "Validate disciplinary assessments over the two years preceding each threshold (D.P.R. 254/1999 art. 5(3)); distinguish eligible service from raw seniority, model special coordinator and intermediate ranks including D.P.R. 57/2022 art. 5 increments and four-year designation conditions, and determine commissioner origin. The sources do not state the allowance installment divisor; annual/12 plus a thirteenth is an explicitly stated convention inferred from the stipend table and D.L. 387/1987 art. 6(4)-(5)."
         }
       },
       {
@@ -2273,7 +3962,7 @@
     "effective_until": null,
     "source": "https://www.normattiva.it/atto/caricaDettaglioAtto?atto.dataPubblicazioneGazzetta=2025-04-18&atto.codiceRedazionale=25G00046&atto.articolo.numero=0&atto.articolo.sottoArticolo=1&atto.articolo.sottoArticolo1=0&qId=1ede7c71-4666-4c74-b496-2391fce88e7f",
     "verification_status": "unverified",
-    "source_hash": "0dbcf499e37e3b3e1ab5c1bba9352262bbfa874b102e6d41718e98296b2af86f",
+    "source_hash": "016d06328fd6a6828d55de4681fc8b0c153c13f3fda0f86c4d2158dc3adc7f22",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -2499,5 +4188,58 @@
         }
       }
     }
+  },
+  "verification": {
+    "confidence": "unverified",
+    "readiness": "exploratory",
+    "verified_cases": 0,
+    "reviews": [
+      {
+        "id": "2026-11-10-ai-police-functional-allowance",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Functional seniority allowance annual tables, targeted amendment and stipend conversion convention.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+            "sha256": "f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606"
+          },
+          {
+            "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110002&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG",
+            "sha256": "ccd1b5f35e50accc4a6d49f48aeb5a772ac8b9fa0206d441e66f0d7b386abf0f"
+          },
+          {
+            "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.versione=1&art.idGruppo=1&art.flagTipoArticolo=0&art.codiceRedazionale=18G00063&art.idArticolo=15&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=2018-05-02&art.progressivo=0",
+            "sha256": "86e51e7a093ef20cdc2879d5815efdb34bb1477a69f5d263b4569ebd04a3f878"
+          },
+          {
+            "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.versione=1&art.idGruppo=0&art.flagTipoArticolo=0&art.codiceRedazionale=087U0387&art.idArticolo=6&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1987-09-21&art.progressivo=0",
+            "sha256": "121e6f7972d1dca243eab6f5d2f1c064849795ddaf48083377aee80074c104bb"
+          },
+          {
+            "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.versione=1&art.idGruppo=1&art.flagTipoArticolo=0&art.codiceRedazionale=099G0322&art.idArticolo=5&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1999-08-03&art.progressivo=0",
+            "sha256": "d708a870814a5a88b08e2179597be19e4179c2476553a2d0387464460170bf70"
+          },
+          {
+            "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.versione=1&art.idGruppo=1&art.flagTipoArticolo=0&art.codiceRedazionale=22G00066&art.idArticolo=5&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=2022-05-31&art.progressivo=0",
+            "sha256": "2f80b08d0335f085c1b8ba6d90cb30e7659031a45de50fbd5628a2df5e492529"
+          },
+          {
+            "url": "https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=25G0004600000020110003&dgu=2025-04-18&art.dataPubblicazioneGazzetta=2025-04-18&art.codiceRedazionale=25G00046&art.num=2&art.tiposerie=SG",
+            "sha256": "ffd0b0702618f1f14fc504fd24cf2a3830f7836c04622715f7b0b9b703a66689"
+          }
+        ],
+        "findings": [
+          "The allowance is paid on the thirteenth; the source does not print the installment divisor. Disciplinary and special-rank eligibility remains limited."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.fixed_allowances",
+          "coverage.notes"
+        ]
+      }
+    ]
   }
 }

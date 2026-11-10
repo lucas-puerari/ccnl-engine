@@ -194,7 +194,7 @@
       },
       {
         "kind": "simplification",
-        "text": "LEAVE, CONTO ORE: the PAR paid at the end of the conto ore are valued at the monthly pay of the run over 173; the hourly pay of Tit. IV art. 3 also adds the hourly elements of the pay (incentivi, indennità orarie, cottimo), which the engine does not add. A worker leaving before the expiry is paid nothing for them (no basis for the leave at termination).",
+        "text": "LEAVE, CONTO ORE: the hourly elements of Tit. IV art. 3 are included in the PAR payout at expiry when the caller states hourly_pay_elements (zero confirms none; missing blocks payment). PAR left when employment ends before expiry remain unpaid: Tit. III art. 5 specifies liquidation at expiry but no termination basis.",
         "capability": "leave",
         "monetary_impact": "yes",
         "limitation": {
@@ -202,7 +202,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add the hourly elements of Tit. IV art. 3 to the hourly pay of the PAR, and source the PAR left at the end of the employment."
+          "remediation": "Source the payment basis and timing for PAR left when employment ends before the conto ore expires."
         }
       },
       {
@@ -3381,7 +3381,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "7261b7d252956ab580248a9fa708379e7fde6fb1b328306e8cc5503c3cc7081e",
+    "source_hash": "975f3f37fc17e687e8a81560565b559e1d509d8d9d6ed3ae3cfbffad766a93b2",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -3960,23 +3960,24 @@
               "published_on": "2021-02-05",
               "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
             },
-            "page": "156",
-            "section": "Sez. Quarta, Titolo III, Art. 5 - Permessi annui retribuiti",
-            "quote": "I permessi eventualmente non fruiti entro l’anno di maturazione confluiscono in un apposito Conto ore individuale per un ulteriore periodo di 24 mesi, per consentirne la fruizione da parte del lavoratore secondo le modalità di preavviso ed alle condizioni precedentemente indicate. Al termine di tale periodo, le eventuali ore che risultassero ancora accantonate, saranno liquidate con la retribuzione in atto al momento della scadenza."
+            "page": "173",
+            "section": "Sez. Quarta, Titolo IV, Art. 3 - Mensilizzazione",
+            "quote": "La retribuzione oraria dei lavoratori ai fini dei vari istituti contrattuali, si determina dividendo per 173 i minimi tabellari della classificazione unica, gli aumenti periodici di anzianità, gli aumenti di merito nonché gli altri compensi eventualmente fissati a mese. A tale importo si aggiungeranno gli eventuali elementi orari della retribuzione quali, ad esempio, incentivi, indennità varie, ecc.. Inoltre, per gli addetti lavoranti a cottimo e per i concottimisti si aggiungerà rispettivamente il rendimento di cottimo e di concottimo."
           },
-          "transformation": "The PAR of a year not taken by its end go to the conto ore for 24 more months: the residual of year Y is paid with the December pay of Y+2 (carry_years 2, carry_until_month 12), at the pay of that run, the 'retribuzione in atto al momento della scadenza'; the hours valued at the hourly pay, the monthly pay over 173 (Tit. IV art. 3, p. 173: 'La retribuzione oraria [...] ai fini dei vari istituti contrattuali'), whatever the basis of the termination, which the text does not give (the PAR left at the end of the employment stay unpaid). The run is the engine's: the text names the expiry, not a payslip.",
+          "transformation": "The PAR of year Y left after 24 further months is valued at the pay of the expiry run: monthly remuneration divided by 173 plus caller-stated additional hourly remuneration elements (incentives, hourly allowances, piecework). An absent hourly-elements fact blocks the expiry payout; zero confirms none. Tit. III art. 5 does not specify payment at termination before expiry, so it remains unpaid. The run is the engine's: the text names the expiry, not a payslip.",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-08T09:00:00Z",
+            "extraction_timestamp": "2026-11-10T00:04:34Z",
             "effective_from": "2021-06-01",
             "verified_by": "claude-opus-5-5",
-            "verified_at": "2026-11-08T09:00:00Z",
+            "verified_at": "2026-11-10T00:04:34Z",
             "verification_status": "verified",
-            "review_id": "2026-11-08-gpt-metalmeccanico-federmeccanica-par-conto-ore"
+            "review_id": "2026-11-10-gpt-federmeccanica-par-hourly-elements"
           }
         },
-        "permits_hourly": true
+        "permits_hourly": true,
+        "hourly_elements": true
       }
     },
     "sickness_rules": {
@@ -6165,6 +6166,29 @@
           "Confirmed: 10% up to 50% of the normal annual part-time hours and 20% beyond, only up to 40 weekly hours, on the overtime-premium pay elements.",
           "Confirmed: the engine derives only the 10% band; the 20% excess is a caller-supplied multiplier, and the annual count is outside the engine.",
           "Flagged and added to the limitation: the elastic clauses (10% and 15%) and the conditions of supplementary work."
+        ]
+      },
+      {
+        "id": "2026-11-10-gpt-federmeccanica-par-hourly-elements",
+        "date": "2026-11-10",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Tit. IV art. 3 hourly pay and the conto ore deadline: expired PAR paid at the monthly pay over 173 plus the stated hourly elements.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          }
+        ],
+        "findings": [
+          "CONFIRMED: the hourly pay of the clause includes the hourly elements (incentives, hourly allowances, piecework) and the expired PAR are paid at it; divisor 173.",
+          "CONFIRMED: quotes verbatim; December 2027 example 10 x (2271.01 / 173 + 2.50) = 156.27 and an independent case recomputed.",
+          "CONFIRMED: payout at termination before the deadline is not regulated by the cited passages and stays a limitation."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.leave_rules.permit_deadline"
         ]
       }
     ],

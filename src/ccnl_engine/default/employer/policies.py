@@ -119,6 +119,14 @@ EMPLOYER_DEFAULTS: Mapping[str, FieldDefault] = {
     "SecondLevelElement.levels": absence_is_fact("every level"),
     "SecondLevelElement.extra_months": absence_is_fact("paid on the extra months"),
     "SecondLevelElement.tfr_relevant": absence_is_fact("in the TFR base"),
+    "EmployerProfile.solidarity_fund_covered": requires_fact(
+        "inps_employer",
+        "employer.solidarity_fund_covered",
+        _REPORTED,
+        "unknown coverage: the ordinary contribution of a fund requiring "
+        "employer-specific eligibility is withheld, with a missing_fact "
+        "solidarity_fund_covered blocker; false means no contribution",
+    ),
     "EmployerProfile.contractual_funds": requires_fact(
         "contractual_funds",
         "employer.contractual_funds",
