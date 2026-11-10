@@ -881,7 +881,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/esercizi-cinematografici-anec",
       "ruleset_version": "2026.2",
-      "source_hash": "4ec21f59876717683b928e1dadaaa205f8757a36b69c107f9e77c707423fc5c1",
+      "source_hash": "39f480a2f48f0d224d74ce5f781be8eb2175d27d2224529c8a33676e472163d5",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/esercizi-cinematografici-anec.json.gz"
@@ -3441,7 +3441,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "dfcbd981739f2750f700b1d74af3c69c366ec699d9af6f5fc05ca19c4bb1ff36",
+      "source_hash": "565e2a0326e693c7e82ca0082e5ae531aa6cf93665a4f3b0c2bba20d5cf27f17",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/esercizi-cinematografici-anec.json.gz",
