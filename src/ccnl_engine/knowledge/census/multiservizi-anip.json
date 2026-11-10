@@ -103,10 +103,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "APPRENTICESHIP (19 July 2012 accord): destination 5 is configured for 30 months rather than 36; destinations 2, 3, 6 and 7 are not configured. The cited duration schedule has not been verified on the cached signed 2011 or 2021 PDF and must not be inferred from a third-party copy.",
+      "rule": "APPRENTICESHIP (Allegato 8 of the 2021 compiled CCNL, reproducing the 19 July 2012 agreement): the tracks use the printed maximum duration. For destinations V-VII a relevant diploma shortens the term by 6 months and a relevant degree by 12 months; absence over 30 days extends the term by the absence duration. Individual term adjustments are not represented by the maximum-term tracks.",
       "calculation": "ccnl/multiservizi-anip:coverage.notes",
       "state": "absent",
-      "remediation": "Obtain and verify the signed 2012 apprenticeship accord before changing durations or adding destinations.",
+      "remediation": "Supply the individually agreed term and qualification or absence details before applying a shortened or extended progression; the tracks encode only the printed maximum terms.",
       "origin": "seeded",
       "links": {
         "limitations": [

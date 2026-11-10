@@ -133,13 +133,19 @@
     {
       "level_code": "5",
       "track_name": "destinazione_5",
-      "months_elapsed": 16,
+      "months_elapsed": 18,
       "expected_levels_below": 1
     },
     {
       "level_code": "5",
       "track_name": "destinazione_5",
       "months_elapsed": 31,
+      "expected_levels_below": 1
+    },
+    {
+      "level_code": "5",
+      "track_name": "destinazione_5",
+      "months_elapsed": 36,
       "expected_levels_below": 0
     },
     {
