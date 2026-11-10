@@ -3,14 +3,16 @@
 The rate an overtime hour, a supplement or an absence is paid with is, when
 the caller does not state it, the hourly base of the CCNL: the monthly pay
 elements its ``work_rules.time_supplements.hourly_base_method`` names,
-divided by ``parameters.hourly_divisor`` in force on the day of the event.
+divided by the worker's level-specific ``hourly_divisor`` when present, or
+``parameters.hourly_divisor`` otherwise, in force on the day of the event.
+A sourced level ``hourly_base_method`` can also select different pay elements.
 The elements are those of the worker's level, seniority and allowances on
 a full-time month (the CCNL divisor is a full-time divisor), reduced by the
 apprenticeship percentage of an apprentice.
 
 The engine derives it only from a sourced rule, never from a default:
 
-- the CCNL ``hourly_base_provenance`` is ``verified``;
+- the CCNL or level ``hourly_base_provenance`` is ``verified``;
 - a divisor is in force on the day;
 - the full-time week of the employment, when stated, is the one the divisor
   belongs to (``hourly_divisor_weekly_hours``), after ``week_divisors`` swapped
@@ -42,6 +44,12 @@ from typing import TYPE_CHECKING, NoReturn
 from ccnl_engine.errors import InvalidInputError, MissingRuleError
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 from ccnl_engine.working_time.hourly.base import HourlyBase
+from ccnl_engine.working_time.hourly.components import (
+    components,
+    individual,
+    level_method,
+    week_mismatch,
+)
 from ccnl_engine.working_time.hourly.direct import direct_hourly_base
 from ccnl_engine.working_time.supplement.models import (
     HourlyBaseMethod,
@@ -53,6 +61,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.compensation.element.types import MonthlyPayChain
+    from ccnl_engine.compensation.models import Level
     from ccnl_engine.provenance.source.models import SourceLocation
     from ccnl_engine.working_time.models import TimeSupplements
 
@@ -60,44 +69,6 @@ __all__ = ["BASE_PATH", "HourlyBase", "HourlyTerms", "Unstated", "reject_underiv
 
 #: Path of the hourly base method in a CCNL file.
 BASE_PATH = "work_rules.time_supplements.hourly_base_method"
-
-
-def _components(
-    chain: MonthlyPayChain, method: HourlyBaseMethod, excluded: tuple[str, ...]
-) -> tuple[tuple[str, Decimal], ...]:
-    """Return the monthly pay elements ``method`` names, from ``chain``.
-
-    Returns:
-        The base salary, then the seniority, then each cash allowance not
-        ``excluded``, as far as the method reaches.
-    """
-    found: list[tuple[str, Decimal]] = [("base_salary", chain.base)]
-    if method is HourlyBaseMethod.MINIMO_TABELLARE:
-        return tuple(found)
-    if method is HourlyBaseMethod.MINIMO_E_CONTINGENZA:
-        found.extend(
-            (a.code, v)
-            for a, v in chain.allowances
-            if a.code == "CONTINGENZA" and not a.in_kind and not a.individual
-        )
-        return tuple(found)
-    found.append(("seniority", chain.seniority))
-    if method is HourlyBaseMethod.GROSS_INCL_ALLOWANCES:
-        found.extend(
-            (a.code, v)
-            for a, v in chain.allowances
-            if not a.in_kind and not a.individual and a.code not in excluded
-        )
-    return tuple(found)
-
-
-def _individual(chain: MonthlyPayChain) -> tuple[tuple[str, Decimal], ...]:
-    """Return the individual elements of the worker in ``chain``.
-
-    Returns:
-        Each element and its full-time monthly amount.
-    """
-    return tuple((a.code, v) for a, v in chain.allowances if a.individual)
 
 
 @dataclass(frozen=True)
@@ -134,10 +105,24 @@ class HourlyTerms:
         return None if rules is None else rules.time_supplements
 
     @property
+    def level(self) -> Level | None:
+        """The worker's level, if the contract and code are known.
+
+        Returns:
+            The matching level, or ``None`` without it.
+        """
+        if self.ccnl is None:
+            return None
+        return next((lv for lv in self.ccnl.levels if lv.code == self.level_code), None)
+
+    @property
     def base_source(self) -> SourceLocation | None:
         """Location of the hourly base rule, when recorded."""
         supplements = self.supplements
         record = None if supplements is None else supplements.hourly_base_provenance
+        level = self.level
+        if level is not None and level.hourly_base_provenance is not None:
+            record = level.hourly_base_provenance
         return None if record is None else record.location
 
     def rule_of(self, path: str) -> str:
@@ -159,6 +144,9 @@ class HourlyTerms:
         """
         supplements = self.supplements
         record = None if supplements is None else supplements.hourly_base_provenance
+        level = self.level
+        if level is not None and level.hourly_base_provenance is not None:
+            record = level.hourly_base_provenance
         if (
             self.ccnl is None
             or self.chain is None
@@ -169,13 +157,18 @@ class HourlyTerms:
             return f"the CCNL ({self.ruleset}) has no verified hourly base"
         week = supplements.hourly_divisor_weekly_hours
         stated = self.full_time_weekly_hours
-        if week is not None and stated is not None and stated != week:
+        if week_mismatch(level, week, stated):
             return (
                 f"the CCNL ({self.ruleset}) hourly divisor is the one of a "
                 f"{week}-hour week and the employment states a full-time week "
                 f"of {stated} hours, whose divisor is not modelled"
             )
-        period = self.ccnl.parameters.hourly_divisor.period_at(day)
+        series = (
+            level.hourly_divisor
+            if level is not None and level.hourly_divisor is not None
+            else self.ccnl.parameters.hourly_divisor
+        )
+        period = series.period_at(day)
         if period is None or period.value is None:
             return f"the CCNL ({self.ruleset}) has no hourly divisor on {day}"
         return self.ccnl, self.chain, supplements, period.value
@@ -224,11 +217,11 @@ class HourlyTerms:
         if isinstance(parts, str):
             reject_underived(field, feature, day, parts)
         _, chain, supplements, divisor = parts
-        named = method or supplements.hourly_base_method
-        components = _components(chain, named, supplements.hourly_base_excluded)
-        individual = _individual(chain)
+        named = method or level_method(self.level, supplements.hourly_base_method)
+        parts_of_base = components(chain, named, supplements.hourly_base_excluded)
+        personal = individual(chain)
         state = "none"
-        if individual:
+        if personal:
             rule = supplements.individual_elements
             if rule is None or rule.provenance.status is not ProvenanceStatus.VERIFIED:
                 reject_underived(
@@ -243,9 +236,11 @@ class HourlyTerms:
                 where is IndividualInBase.HOUR_ONLY and not supplement
             )
             state = "included" if included else "not_included"
-            components += individual if included else ()
-        monthly = sum((v for _, v in components), Decimal(0))
-        return HourlyBase(monthly / divisor, monthly, divisor, named, components, state)
+            parts_of_base += personal if included else ()
+        monthly = sum((v for _, v in parts_of_base), Decimal(0))
+        return HourlyBase(
+            monthly / divisor, monthly, divisor, named, parts_of_base, state
+        )
 
     @property
     def hour_only(self) -> bool:

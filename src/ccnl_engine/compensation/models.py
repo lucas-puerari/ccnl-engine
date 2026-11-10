@@ -31,6 +31,7 @@ from ccnl_engine.fund.models import (
 from ccnl_engine.fund.solidarity.models import SolidarityFund
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus, RuleProvenance
 from ccnl_engine.seniority.models import SeniorityIncrements
+from ccnl_engine.working_time.supplement.models import HourlyBaseMethod
 
 _SHORTEST_MONTH_DAYS = 28
 
@@ -226,6 +227,11 @@ class Level(BaseModel):
     Attributes:
         code, order, description: Code (``"D3"``), rank (1 = lowest), name.
         base_salary: Time-series of monthly base salaries for this level.
+        hourly_divisor: Optional level-specific monthly hourly divisor; without
+            it the contract-wide divisor applies.
+        hourly_base_method: Optional level-specific hourly pay elements.
+        hourly_base_provenance: Verified source for the level's ordinary hourly
+            pay elements when they differ from the contract-wide policy.
         base_salary_by_subsector, subsectors: Sub-sector pay and eligibility.
         base_salary_by_cohort, class_tables: Hired-worker or seniority-class tables.
         transition_to, transition_after_months, transition_hire_bands,
@@ -239,6 +245,9 @@ class Level(BaseModel):
     order: int
     description: str
     base_salary: TimeSeries
+    hourly_divisor: TimeSeries | None = None
+    hourly_base_method: HourlyBaseMethod | None = None
+    hourly_base_provenance: RuleProvenance | None = None
     base_salary_by_subsector: dict[str, TimeSeries] = Field(default_factory=dict)
     base_salary_by_cohort: tuple[CohortSalary, ...] = ()
     class_tables: tuple[ClassTable, ...] = ()
