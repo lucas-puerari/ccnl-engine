@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-01 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -75,6 +75,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-08 | gpt-6-sol (ai) | Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image. | corrected | The injury rule had no top-up of the INAIL indemnity; added: {"integration_rate": "1", "net_basis": true} |
 | 2026-11-08 | claude-opus-5-5 (ai) | FASA coverage of art. 74 quater (PDF p. 157), text layer. | corrected | FASA was permanent-only; the text covers fixed terms of at least nine months in the calendar year: permanent_only false, minimum_fixed_term_months 9, fixed_term_months_in_year. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Sugar-industry supplementary rule 25 (physical PDF p. 230), once-only award and outstanding eligibility facts. | corrected | The sugar rule pays one normal monthly salary to clerical employees or 200 normal hourly wages to manual workers after 25 uninterrupted years in the same company or group. Early death/incapacity, direct transfers and group continuity require facts not available in the run. |
 
 ## Salary table
 
@@ -140,11 +141,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the family members enrolled in FASA as a worker fact.
 
 !!! warning "alimentari-federalimentare/sugar_twenty_five_year_award · base_salary · impact yes · open"
-    Sugar-industry supplementary rule 25 (PDF p. 230): at 25 uninterrupted years with the same company or group, a one-off minimum award of one normal monthly pay for clerical staff or 200 normal hourly wages for manual workers. This does not apply to the other food-industry branches. Death or permanent incapacity before the threshold and direct transfers have separate rules. An annual clerical-only loyalty_premium would wrongly repeat and extend this award.
+    Sugar-industry supplementary rule 25 (PDF p. 230): the once-only award at 25 uninterrupted years is modelled for clerical and manual workers in the sugar branch. Still missing: settlement before the threshold on death or permanent incapacity, qualifying direct transfers between sugar companies, and proof of uninterrupted service within the same company or group from the employment facts.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Gate the sugar subsector and pay the once-only clerical or hourly award, including early departure and transfer rules.
+    **Remediation:** Represent early death or permanent-incapacity settlement, qualifying direct transfers, and uninterrupted company or group service as worker facts.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
