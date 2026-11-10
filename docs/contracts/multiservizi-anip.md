@@ -75,6 +75,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-10 | claude-opus-5-5 (ai) | CNEL 139292 art. 33 pp. 16-17 and CNEL 105782 art. 18 p. 40, art. 38 p. 57; supplementary and ordinary holiday/night supplements and percentage bases. | corrected | The 2021 ANIP-signed part-time amendment governs supplementary hours in 2026; elastic hours remain a limitation.<br>The 2011 art. 38 continues to set ordinary holiday and night rates, on base pay, with non-cumulation not automatically enforced. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Category-specific seniority amounts and remaining limitations, CNEL 105782 art. 22 pp. 41-42, 90. | corrected | The printed sector amounts include levels 5 and 6. Impiegati scatti are priced at maturation and kept after promotion; the automatic freeze and ceiling remain unsupported. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Sickness art. 51 in cached CNEL 105782 pp. 67-68 and its replacement in CNEL 139292 pp. 22-24; category bands and remaining basis differences. | corrected | Operai receive 100% net global pay to day 180 and 50% global pay to day 270; the latter is not stated as net. Impiegati receive stipendio and contingenza in full for five months and half for seven; both share the rolling 36-month comporto.<br>Rule-wide net_basis cannot switch at day 181; global pay cannot restrict the impiegati base to stipendio and contingenza. Those differences remain open. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Allegato 8 pp. 119-123 of the 2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement: maximum terms and pay grades effective 20 July 2012. | corrected | The annex prints II 24, III-IV 30, V-VII 36 months; the first half pays two ordinary levels below, the second half one below, except destination II at I throughout. The CNEL renewal has no amendment to these clauses. Individual reductions and extensions remain outside the maximum-term tracks. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 54 pension rates, frozen per-level bases and fund eligibility in CNEL 105782 pp. 69-70, 90; membership routing remains limited. | corrected | Verified all ten configured level bases against the page 90 table and the 1% shares and twelve payments against pp. 69-70.<br>The printed Q and 7 illustrative 1% amounts (12.28) differ from 1% of the printed 1222.75 base (12.23); applied the stated percentage and base, not the inconsistent illustrative amount.<br>Association-dependent fund choice and six-month calendar-year fixed-term eligibility remain open. |
 
 ## Salary table
@@ -108,11 +109,23 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Apprenticeship
 
-**destinazione_5** (type: `under_classification`)  
-Destination levels: `5`
+**destinazione_2** (type: `under_classification`)  
+Destination levels: `2`
+
+**destinazione_3** (type: `under_classification`)  
+Destination levels: `3`
 
 **destinazione_4** (type: `under_classification`)  
 Destination levels: `4`
+
+**destinazione_5** (type: `under_classification`)  
+Destination levels: `5`
+
+**destinazione_6** (type: `under_classification`)  
+Destination levels: `6`
+
+**destinazione_7** (type: `under_classification`)  
+Destination levels: `7`
 
 ## Known simplifications
 
@@ -146,13 +159,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model each evidenced allowance on its own qualifying duty and base; track the individual EDAR and absorption at the first subsequent increment.
 
-!!! warning "multiservizi-anip/multiservizi_apprenticeship_destinations · base_salary · impact yes · open"
-    APPRENTICESHIP (19 July 2012 accord): destination 5 is configured for 30 months rather than 36; destinations 2, 3, 6 and 7 are not configured. The cited duration schedule has not been verified on the cached signed 2011 or 2021 PDF and must not be inferred from a third-party copy.
-
-    **Applies when:** `base_salary` applies.
-
-    **Remediation:** Obtain and verify the signed 2012 apprenticeship accord before changing durations or adding destinations.
-
 !!! warning "multiservizi-anip/renewal_not_signed_by_anip · base_salary · impact yes · open"
     SIGNATORIES: ANIP is not among the original signatories of the 13 June 2025 renewal and the 6 August 2025 tables (CNEL 234754, 234752); a later ANIP accession or a separate ANIP agreement was not found but is not excluded. From July 2025 the file applies the ANIP-signed fifth tranche of the 8 June 2021 renewal (CNEL 139292 p. 34); with an accession the 2025 renewal minima (level 2 819.21 from July 2025) would apply instead.
 
@@ -180,6 +186,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies.
 
     **Remediation:** Apply gross rather than net basis to operai days 181-270, restrict impiegati pay to stipendio plus contingenza, and respect the first-working-day and eligibility conditions; use the worker's actual category at mixed-category levels.
+
+!!! warning "multiservizi-anip/multiservizi_apprenticeship_destinations · base_salary · impact yes · open"
+    APPRENTICESHIP (Allegato 8 of the 2021 compiled CCNL, reproducing the 19 July 2012 agreement): the tracks use the printed maximum duration. For destinations V-VII a relevant diploma shortens the term by 6 months and a relevant degree by 12 months; absence over 30 days extends the term by the absence duration. Individual term adjustments are not represented by the maximum-term tracks.
+
+    **Applies when:** `base_salary` applies.
+
+    **Remediation:** Supply the individually agreed term and qualification or absence details before applying a shortened or extended progression; the tracks encode only the printed maximum terms.
 
 !!! warning "multiservizi-anip/multiservizi_pension_membership_eligibility · pension_fund_contribution · impact yes · open"
     COMPLEMENTARY PENSION (CNEL 105782 art. 54, pp. 69-70): The frozen 1 January 2001 tabellare and contingenza bases, 1% employer and member shares and twelve monthly payments are modelled for enrolled workers. Fund eligibility still depends on the employer association (Previambiente for FISE, Fondapi for CONFAPI, Cooperlavoro for cooperatives, with a choice for non-affiliated employers); fixed-term membership requires six months of work within the calendar year. These eligibility facts are not established by the enrolment alone. ASIM and ONBSI are addressed by the separate health_and_bilateral_funds limitation.
@@ -374,8 +387,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     Contingenza of 2par115 and 4par125: no text prints one. The notes a verbale of art. 10 (CNEL 105782 p. 30) classify these workers at level 2 with parameter 115 and at level IV with parameter 125, so the file applies the contingenza of levels 2 and 4.
     
-    Apprenticeship: two levels below the destination for the first half and one below for the second, destination II at level I throughout (art. 12, CNEL 105782 p. 37; the parametric positions are skipped). Durations come from the accord of 19 July 2012, read only in a third-party copy of the 2021 text: II 24, III 30, IV 30, V 36, VI 36, VII 36 months. The file models destinations 4 and 5 with 30 months each: destination 5 should last 36 and the other destinations are missing. The 2012 duration schedule has not been verified on the signed cached PDFs; declared in multiservizi_apprenticeship_destinations.
-    
     July 2025 values: the renewal of 8 June 2021 (CNEL 139292, signed by ANIP) sets a fifth tranche from 1 July 2025 (level 2 +10.00, tabellare 779.21, p. 34), provisional under the art. 73 consuntivo. The renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025 (CNEL 234752) raise level 2 to 819.21 from the same date, but ANIP signed neither. The file applies the ANIP-signed 2021 fifth tranche from July 2025 and excludes the later unsigned tranches (see anip_unsigned_renewal). No ANIP amount for the art. 73 consuntivo or the IPCA increments of art. 73-bis and 73-ter was found.
     
     ANIP CONTRACT STATUS (2025): the renewal of 13 June 2025 (CNEL 234754) and its tables of 6 August 2025 (CNEL 234752) are signed by AGCI Servizi, Confcooperative Lavoro e Servizi, Legacoop Produzione e Servizi and Unionservizi Confapi with Filcams-CGIL, Fisascat-CISL and Uiltrasporti-UIL; ANIP-Confindustria signed neither. ANIP companies keep the renewal of 8 June 2021 (this file). A separate file would cover the 2025-2028 renewal (levels 1-7 and Q, retribuzione base 1,296.39 to 2,256.14 EUR from May 2026, 14 mensilità).
@@ -389,6 +400,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Seniority, impiegati: biennial scatti of 6.25% of the tabellare in force when each scatto matures plus the contingenza at 1/8/1983 (EUR 279.60), at most 8 and up to 50% of tabellare + 279.60 (art. 22, CNEL 105782 p. 41). A matured scatto keeps its amount: it is not recomputed at later tranches. Levels 5, 6, 7 and Q have derived 2021-2025 amounts; levels 2-4 have no current scatto series. For an identified impiegato, declare EarnedIncrements for amounts matured before the run, including before a promotion. Otherwise the engine reprices matured scatti at the run date. Declared in multiservizi_seniority_maturation.
     
     Seniority, operai: one fixed sector amount after four years (art. 22, CNEL 105782 pp. 41-42; table p. 90), now routed by declared worker category at levels 1-6, including level 5 EUR 66.77 and level 6 EUR 82.99. Sector seniority continuity across employers must be stated as recognised service. Declared in multiservizi_seniority_maturation.
+    
+    Apprenticeship: the 19 July 2012 agreement reproduced in the FILCAMS 2021 compiled CCNL, Allegato 8 pp. 119-123, applies from 20 July 2012. Its maximum terms are II 24, III-IV 30 and V-VII 36 months; the first half is paid two ordinary levels below the destination, the second half one below, except destination II at level I throughout. Parametric positions are skipped. The track models the maximum term; shorter individual terms, qualification-based reductions and extensions after prolonged absence require individual inputs and are not configured.
     
 
 ## Raw data
