@@ -54,6 +54,7 @@ def subsectors_of(ccnl: CCNL) -> frozenset[str]:
     tiers = {code for p in permits for h in p.annual_hours for code in h.subsectors}
     named = {code for band in bands for code in band.subsectors}
     named |= set(() if rules is None else rules.subsector_rules)
+    named.update(getattr(ccnl.parameters.loyalty_premium, "subsectors", ()))
     tables = {
         code
         for level in ccnl.levels

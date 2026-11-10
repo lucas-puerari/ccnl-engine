@@ -42,10 +42,16 @@ from typing import TYPE_CHECKING
 from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.compensation.proration.hourly import HourlyBasis
+from ccnl_engine.compensation.proration.hourly_rules import (
+    hourly_ratio,
+    reject_hourly_absences,
+    selected_hourly_rate,
+)
+from ccnl_engine.compensation.proration.hourly_rules import (
+    hourly_rule as _hourly_rule,
+)
 from ccnl_engine.compensation.proration.rules import MonthProration
 from ccnl_engine.decision.models import CalculationIssue, CalculationStatus, IssueCause
-from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.event.facade import AbsenceEvent
 from ccnl_engine.run.models import PayrollRun, RunKind
 
 if TYPE_CHECKING:
@@ -318,39 +324,6 @@ def _partial_span(
     return period.span_in_month(month.year, month.month)
 
 
-def _hourly_rule(ccnl: CCNL, name: str, day: date) -> tuple[Decimal | None, Rule]:
-    """Return the hourly divisor in force on ``day`` and its rule.
-
-    Returns:
-        The divisor, ``None`` when the series has no value on ``day``.
-    """
-    period = ccnl.parameters.hourly_divisor.period_at(day)
-    if period is None:
-        return None, (f"{name}:hourly_divisor", None)
-    rule: Rule = (f"{name}:hourly_divisor[{period.valid_from}]", period.provenance)
-    return period.value, rule
-
-
-def _reject_absences(request: PeriodCalculationRequest) -> None:
-    """Reject an absence event of a worker paid by the hour.
-
-    Raises:
-        InvalidInputError: When the request carries an ``AbsenceEvent``: its
-            hours are not among the hours worked, so it would deduct them
-            twice.
-    """
-    for i, event in enumerate(request.events):
-        if isinstance(event, AbsenceEvent):
-            msg = (
-                "the CCNL pays the worker by the hour: the absent hours are "
-                "already excluded from PeriodFacts.ordinary_hours_worked, an "
-                "AbsenceEvent would deduct them a second time"
-            )
-            raise InvalidInputError(
-                msg, field=f"PeriodFacts.events[{i}]", feature="base_salary"
-            )
-
-
 def _hourly_basis(
     request: PeriodCalculationRequest,
     ccnl: CCNL,
@@ -364,23 +337,38 @@ def _hourly_basis(
         ``None`` for a worker paid by the month.
     """
     spec = ccnl.parameters.hourly_pay
-    if spec is None or worker_category not in spec.categories:
+    if spec is None:
         return None
-    _reject_absences(request)
+    selected = (
+        selected_hourly_rate(spec, request.roles, request.level_code)
+        if spec.rates
+        else None
+    )
+    if selected is None and worker_category not in spec.categories:
+        return None
+    reject_hourly_absences(request)
     name = f"ccnl/{ccnl.meta.ccnl_id}" if ccnl.ruleset is None else ccnl.ruleset.id
     month = request.period_id
     day = date(month.year, month.month, 1)
     with rule_scope(ruleset=ccnl.meta.ccnl_id, feature="base_salary"):
         divisor = ccnl.parameters.hourly_divisor.value_at(day)
-    weekly, full = request.weekly_hours, request.full_time_weekly_hours
-    ratio = (
-        weekly.value / full.value
-        if weekly is not None and full is not None and weekly.value < full.value
-        else Decimal(1)
-    )
+        rate = None if selected is None else selected.rate.value_at(day)
+    ratio = hourly_ratio(request.weekly_hours, request.full_time_weekly_hours)
     divisor *= ratio
     stated = request.ordinary_hours_worked
-    pay: Rule = (f"{name}:hourly_pay", spec.provenance)
+    period = None if selected is None else selected.rate.period_at(day)
+    assert selected is None or period is not None
+    provenance = (
+        spec.provenance
+        if period is None or period.provenance is None
+        else period.provenance
+    )
+    pay: Rule = (
+        f"{name}:hourly_pay"
+        if selected is None
+        else f"{name}:hourly_pay.rates[{selected.role},{selected.level}]",
+        provenance,
+    )
     holidays = getattr(request, "paid_holiday_days", None)
     holiday_hours = (
         None
@@ -395,9 +383,9 @@ def _hourly_basis(
     return RunProration(
         span=span,
         rules=(pay, _hourly_rule(ccnl, name, day)[1], *holiday_rule),
-        source=spec.provenance.location,
+        source=provenance.location,
         hourly=HourlyBasis(
-            None if stated is None else stated.value, divisor, holiday_hours
+            None if stated is None else stated.value, divisor, holiday_hours, rate
         ),
     )
 
