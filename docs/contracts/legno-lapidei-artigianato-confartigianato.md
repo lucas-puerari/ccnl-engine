@@ -38,7 +38,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included. |
 | 2026-11-09 | claude-opus-5-5 (ai) | INPS circular 76/2022 p. 7 CIGO activity rates and apprentices. | corrected | Only artisan stone extraction and quarry-linked working incur CIGO; separate-workshop artisan stone working and wood activities retain sector rates. Industrial stone firms remain covered. The supplied headcount is not validated as the previous calendar year's average; 2027 rates are provisional. |
 | 2026-11-09 | claude-opus-5-5 (ai) | INPS circular 76/2022 page 7 rates, with D.Lgs. 148/2015 art. 10(o) workshop exclusion. | corrected | Art. 10(o): con esclusione di quelle che svolgono tale attività di lavorazione in laboratori con strutture e organizzazione distinte dalla attività di escavazione. The circular's art. 13 rates apply only to employers covered by art. 10. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Wood-sector impiegati apprenticeship durations and percentages in art. 55 sections 6 and 8 of the signed 2014 agreement, checked on cached PDF pages 55–56. | confirmed | Art. 55 section 6 fixes impiegati apprenticeship at three years for wood and stone; section 8 prints separate wood impiegati percentage tables for groups 1–3. Group 3 has a sixth semester at 95%, unlike the five-semester operai table. |
 
 ## Salary table
 
@@ -113,6 +114,18 @@ percentage: 1.00
 Destination levels: `E`  
 percentage: 1.00
 
+**gruppo_1_legno_impiegati** (type: `percentage`)  
+Destination levels: `AS`, `A`, `B`  
+percentage: 0.80
+
+**gruppo_2_legno_impiegati** (type: `percentage`)  
+Destination levels: `CS`, `C`, `D`  
+percentage: 0.88
+
+**gruppo_3_legno_impiegati** (type: `percentage`)  
+Destination levels: `E`  
+percentage: 0.95
+
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
@@ -123,13 +136,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the Lapidei sub-sector salary tables as a separate file.
-
-!!! warning "legno-lapidei-artigianato-confartigianato/impiegati_apprenticeship_duration · base_salary · impact yes · open"
-    Apprenticeship tables use operai duration tracks (5 years for gruppi 1-2, 2.5 years for gruppo 3). Impiegati and impiegati amministrativi have shorter 3-year apprenticeship durations with the same percentages — not separately modelled. For impiegato apprenticeships the operai duration overstates the period.
-
-    **Applies when:** `base_salary` applies; contract type in apprentice; category in impiegato.
-
-    **Remediation:** Model the 3-year impiegati apprenticeship tracks.
 
 !!! note "legno-lapidei-artigianato-confartigianato/null_category_operaio_rate · inps_employer · impact unknown · resolved"
     LEVEL CATEGORY: all levels left null. Primary source text shows multiple levels map to both operai and impiegati (e.g. level B = 'Impiegati di concetto - Operai specializzati provetti') — this is a genuine one-to-many mapping that the schema cannot represent as a single category value, not a data gap. 2026-artigianato.json applies rate 0.2693 (default/operaio) for null category; impiegato rate 0.2471 not applied to impiegato-eligible levels.
@@ -353,6 +359,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEVEL F: transitional insertion level, maximum duration 12 months. No seniority and no apprenticeship track apply. Workers in F are re-levelled to E or higher after the transitional period.
     
     APPRENTICESHIP: 3 gruppi from base CCNL 2022 (unchanged in 2024 rinnovo). Gruppo 1 (dest AS, A, B — operai 5 years = 60m), Gruppo 2 (dest CS, C, D — operai 5 years = 60m), Gruppo 3 (dest E — operai 2.5 years = 30m). Level F has no apprenticeship track.
+    
+    APPRENTICESHIP: Art. 55 sections 6 and 8 of the signed 2014 CCNL (PDF pp. 55–56) distinguish operai and impiegati in the wood sector. Impiegati use three-year tracks: group 1 pays 70%, 73%, 80% by year; group 2 pays 70%, 75%, 88% by year; group 3 pays 70%, 75%, 80%, 90%, 95%, 95% by semester. For overlapping destination levels set Apprentice.track to gruppo_1_legno_impiegati, gruppo_2_legno_impiegati or gruppo_3_legno_impiegati for clerical apprentices; use the existing gruppo_*_legno tracks for operai. The caller ends the apprentice contract at its agreed end; the last rate remains available for qualifying extensions. The six-month reduction for relevant post-compulsory qualifications and the SME reduction of durations above three years are not derived from these tracks. Lapidei pay tables remain unmodelled.
     
     INPS: reuses 2026-artigianato.json (ARTIGIANATO sector).
     

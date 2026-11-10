@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-07-23 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-09 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 70 c. 2 (p. 55), the declaratorie of levels 6 and 7 (p. 31), artt. 68, 74, 75 and 99 of the CCNL ANASTE 2023-2025. | confirmed | Art. 70 c. 2: 155 EUR a month for 12 months to the staff 'con qualifica e mansioni di infermiere', absorbable by an individual pay above the CCNL; no starting date of its own.<br>The infermiere is named in the declaratorie of levels 6 and 7; art. 99 does not exclude the allowance from the TFR. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 45(23), PDF p. 43: holiday top-up during compulsory maternity. | confirmed | Verified the quoted clause against the cached PDF; encoded only the compulsory maternity holiday target. |
 | 2026-11-08 | gpt-6-sol (ai) | The maternity holiday clause against the encoding, by a separate model session. | corrected | Confirmed the 100% target net of the INPS share on the holidays of the compulsory leave.<br>Recorded as limitation maternity_holiday_scope: the Sunday holidays, the patron saint and 4 October, the 20% of the 13th in the compulsory absence; the publication date of the consolidated text corrected to 3 November 2025. |
+| 2026-11-09 | claude-opus-5-5 (ai) | Art. 45(23), cached consolidated PDF p. 43; local holiday listing in the same agreement. | corrected | Compulsory maternity holiday integration reaches 100% daily pay; the patron saint is a contractual holiday. The 20% thirteenth-month share is still unmodelled. |
 
 ## Salary table
 
@@ -119,11 +120,11 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "istituzioni-servizi-socio-assistenziali-anaste/maternity_holiday_scope · maternity_leave · impact yes · open"
-    Art. 45 c. 23 (p. 43) also owes, for the compulsory absence for pregnancy and puerperium, 'la 13° mensilità limitatamente all'aliquota corrispondente al 20% della retribuzione': not paid by the engine. The holiday target applies on the weekday national holidays: a holiday on a Sunday (paid by its own quota), the patron saint and 4 October (a holiday from 2026, which the text, signed before, does not list) are not topped up; 'festività cadenti' covers them in the text.
+    Art. 45 c. 23 (p. 43) also owes, for the compulsory absence for pregnancy and puerperium, 'la 13° mensilità limitatamente all'aliquota corrispondente al 20% della retribuzione': not paid by the engine. The holiday target includes a stated weekday patron day. A Sunday holiday is paid by its own quota rather than this top-up; 4 October, introduced after the text was signed, remains excluded.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Top up the holidays the clause covers beyond the weekday national calendar, and the items above.
+    **Remediation:** Resolve the Sunday holiday's separate quota, 4 October and the 20% thirteenth-month share.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

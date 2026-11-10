@@ -326,10 +326,10 @@
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "SICKNESS (point 6, 9-10): the hospital stays, and the certified convalescence after them up to 120 days, are left out of both the comporto and the pay count; the limits are tripled for oncological illness, multiple sclerosis and muscular dystrophy and raised by 30% for a disability. The engine counts every sick day and applies the ordinary limits.",
+      "rule": "SICKNESS (G34 points 6 and 9-10): hospital days are excluded from both counts and documented oncological illness, multiple sclerosis and muscular dystrophy have triple the overall limit. Certified continuous convalescence after admission (up to 120 days overall) is still counted because its certification and interval are not modelled. The 30% increase for absences attributable to a previously certified disability is not modelled.",
       "calculation": "ccnl/trasporto-aereo-assaeroporti:coverage.notes",
       "state": "absent",
-      "remediation": "Leave the hospital stays and the convalescence after them out of the counts, and apply the tripled and raised limits of points 9-10, then resolve this limitation.",
+      "remediation": "Add certified continuous post-admission convalescence dates with the 120-day overall cap and documented disability-attributable absence with prior certification for the 30% increase.",
       "origin": "seeded",
       "links": {
         "limitations": [
