@@ -2346,7 +2346,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/vigilanza-privata-federdat-sf",
       "ruleset_version": "2026.1",
-      "source_hash": "26ef70e3d5f559ab4c72557bc42db652757b21d5230315d0f1ca7c9f57d49867",
+      "source_hash": "68cad02104e36735c0688c504237e21a70574c04833a947ff922a26803d40704",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/vigilanza-privata-federdat-sf.json.gz"
@@ -5141,7 +5141,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "f832aa47ecc20bc654b737ea0770573d24e4f40a95ae6bd28a3597932ba478c5",
+      "source_hash": "dabd74e97011779591c3281d35908a3082c08ff3d412396eb6f5230688ad91ac",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/vigilanza-privata-federdat-sf.json.gz",

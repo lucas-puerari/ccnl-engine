@@ -9,7 +9,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 231 | 188 | 0 | `funzioni-centrali-aran` |
-| terziario | 46 | 5 257 055 | 53 | 971 | 1721 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| terziario | 46 | 5 257 055 | 53 | 971 | 1722 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 49 | 4 969 900 | 155 | 1172 | 2294 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 61 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 151 | 309 | 2 | `metalmeccanico-artigianato` |
@@ -85,7 +85,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`autoscuole-unasca`](../contracts/autoscuole-unasca.md) | none | exploratory | 1 | 32 | 1 | party or official | none | none |
 | [`aziende-termali-federterme`](../contracts/aziende-termali-federterme.md) | none | exploratory | 1 | 65 | 0 | party or official | none | none |
 | [`turismo-confesercenti`](../contracts/turismo-confesercenti.md) | none | exploratory | 1 | 7 | 50 | aggregator | none | none |
-| [`vigilanza-privata-federdat-sf`](../contracts/vigilanza-privata-federdat-sf.md) | none | exploratory | 1 | 0 | 26 | party or official | none | none |
+| [`vigilanza-privata-federdat-sf`](../contracts/vigilanza-privata-federdat-sf.md) | none | exploratory | 1 | 0 | 27 | party or official | none | none |
 
 ## industria
 
