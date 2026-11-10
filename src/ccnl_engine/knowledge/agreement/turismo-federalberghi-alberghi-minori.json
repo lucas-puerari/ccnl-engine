@@ -665,6 +665,876 @@
           "review_id": "2026-11-08-gpt-turismo-federalberghi-alberghi-minori-guarantee-element-2027"
         }
       }
+    },
+    "hourly_pay": {
+      "rates": [
+        {
+          "role": "extra",
+          "level": "4",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": "2025-06-01",
+                "value": "14.89",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "4  14,89  15,26  15,58  15,90  16,09"
+                  },
+                  "note": "Column lug 2024; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": "2026-05-01",
+                "value": "15.26",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "4  14,89  15,26  15,58  15,90  16,09"
+                  },
+                  "note": "Column giu 2025; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": "2027-04-01",
+                "value": "15.58",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "4  14,89  15,26  15,58  15,90  16,09"
+                  },
+                  "note": "Column mag 2026; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2027-04-01",
+                "valid_until": "2027-11-01",
+                "value": "15.90",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "4  14,89  15,26  15,58  15,90  16,09"
+                  },
+                  "note": "Column apr 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2027-11-01",
+                "valid_until": null,
+                "value": "16.09",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "4  14,89  15,26  15,58  15,90  16,09"
+                  },
+                  "note": "Column nov 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              }
+            ]
+          }
+        },
+        {
+          "role": "extra",
+          "level": "5",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": "2025-06-01",
+                "value": "14.19",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "5  14,19  14,54  14,85  15,16  15,33"
+                  },
+                  "note": "Column lug 2024; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": "2026-05-01",
+                "value": "14.54",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "5  14,19  14,54  14,85  15,16  15,33"
+                  },
+                  "note": "Column giu 2025; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": "2027-04-01",
+                "value": "14.85",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "5  14,19  14,54  14,85  15,16  15,33"
+                  },
+                  "note": "Column mag 2026; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2027-04-01",
+                "valid_until": "2027-11-01",
+                "value": "15.16",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "5  14,19  14,54  14,85  15,16  15,33"
+                  },
+                  "note": "Column apr 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2027-11-01",
+                "valid_until": null,
+                "value": "15.33",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "5  14,19  14,54  14,85  15,16  15,33"
+                  },
+                  "note": "Column nov 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              }
+            ]
+          }
+        },
+        {
+          "role": "extra",
+          "level": "6s",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": "2025-06-01",
+                "value": "13.58",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "6s  13,58  13,91  14,20  14,50  14,67"
+                  },
+                  "note": "Column lug 2024; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": "2026-05-01",
+                "value": "13.91",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "6s  13,58  13,91  14,20  14,50  14,67"
+                  },
+                  "note": "Column giu 2025; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": "2027-04-01",
+                "value": "14.20",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "6s  13,58  13,91  14,20  14,50  14,67"
+                  },
+                  "note": "Column mag 2026; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2027-04-01",
+                "valid_until": "2027-11-01",
+                "value": "14.50",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "6s  13,58  13,91  14,20  14,50  14,67"
+                  },
+                  "note": "Column apr 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2027-11-01",
+                "valid_until": null,
+                "value": "14.67",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "6s  13,58  13,91  14,20  14,50  14,67"
+                  },
+                  "note": "Column nov 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              }
+            ]
+          }
+        },
+        {
+          "role": "extra",
+          "level": "6",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": "2025-06-01",
+                "value": "13.41",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "6  13,41  13,74  14,03  14,32  14,48"
+                  },
+                  "note": "Column lug 2024; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": "2026-05-01",
+                "value": "13.74",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "6  13,41  13,74  14,03  14,32  14,48"
+                  },
+                  "note": "Column giu 2025; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": "2027-04-01",
+                "value": "14.03",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "6  13,41  13,74  14,03  14,32  14,48"
+                  },
+                  "note": "Column mag 2026; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2027-04-01",
+                "valid_until": "2027-11-01",
+                "value": "14.32",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "6  13,41  13,74  14,03  14,32  14,48"
+                  },
+                  "note": "Column apr 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2027-11-01",
+                "valid_until": null,
+                "value": "14.48",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "6  13,41  13,74  14,03  14,32  14,48"
+                  },
+                  "note": "Column nov 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              }
+            ]
+          }
+        },
+        {
+          "role": "extra",
+          "level": "7",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": "2025-06-01",
+                "value": "12.55",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "7  12,55  12,86  13,13  13,40  13,56"
+                  },
+                  "note": "Column lug 2024; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": "2026-05-01",
+                "value": "12.86",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "7  12,55  12,86  13,13  13,40  13,56"
+                  },
+                  "note": "Column giu 2025; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2026-05-01",
+                "valid_until": "2027-04-01",
+                "value": "13.13",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "7  12,55  12,86  13,13  13,40  13,56"
+                  },
+                  "note": "Column mag 2026; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2027-04-01",
+                "valid_until": "2027-11-01",
+                "value": "13.40",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "7  12,55  12,86  13,13  13,40  13,56"
+                  },
+                  "note": "Column apr 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              },
+              {
+                "valid_from": "2027-11-01",
+                "valid_until": null,
+                "value": "13.56",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federalberghi-2024-extras",
+                      "title": "Tourism renewal of 5 July 2024, extras table",
+                      "kind": "altro",
+                      "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+                      "published_on": "2024-07-05",
+                      "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+                    },
+                    "page": "44",
+                    "section": "EXTRA — replacement of Art. 155(3) table",
+                    "quote": "7  12,55  12,86  13,13  13,40  13,56"
+                  },
+                  "note": "Column nov 2027; all-inclusive gross hourly compensation, subject to the four-hour minimum service and territorial bargaining in Art. 155(1),(3) of the 2010 text. The 2024 page does not specify a separate expiry.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-09T23:06:47Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-09T23:06:47Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+                  },
+                  "transformation": " Row of the scanned table under the column header 'livelli lug 2024 giu 2025 mag 2026 apr 2027 nov 2027' (OCR, no text layer)."
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "federalberghi-2024-extras",
+            "title": "Tourism renewal of 5 July 2024, extras table",
+            "kind": "altro",
+            "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+            "published_on": "2024-07-05",
+            "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+          },
+          "page": "44",
+          "section": "EXTRA — replacement of Art. 155(3) table",
+          "quote": "La tabella contenuta al comma 3 dell’articolo 155 del CCNL Turismo 20 febbraio 2010 è sostituita dalla seguente:"
+        },
+        "note": "Caller selects the extra role and level. Rates are all-inclusive; the 2010 clause applies absent territorial bargaining or better conditions. Other settlement and accrual effects require separate modelling.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-09T23:06:47Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-09T23:06:47Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly"
+        }
+      }
     }
   },
   "levels": [
@@ -699,7 +1569,7 @@
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2024-07-01",
-                "verified_by": "gpt-6-sol",
+                "verified_by": "claude-opus-5-5",
                 "verified_at": "2026-11-07T23:00:00Z",
                 "verification_status": "verified",
                 "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
@@ -730,7 +1600,7 @@
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2025-06-01",
-                "verified_by": "gpt-6-sol",
+                "verified_by": "claude-opus-5-5",
                 "verified_at": "2026-11-07T23:00:00Z",
                 "verification_status": "verified",
                 "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
@@ -761,7 +1631,7 @@
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2026-05-01",
-                "verified_by": "gpt-6-sol",
+                "verified_by": "claude-opus-5-5",
                 "verified_at": "2026-11-07T23:00:00Z",
                 "verification_status": "verified",
                 "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
@@ -792,7 +1662,7 @@
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2027-04-01",
-                "verified_by": "gpt-6-sol",
+                "verified_by": "claude-opus-5-5",
                 "verified_at": "2026-11-07T23:00:00Z",
                 "verification_status": "verified",
                 "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
@@ -823,7 +1693,7 @@
                 "model": "claude-opus-5-5",
                 "extraction_timestamp": "2026-11-07T23:00:00Z",
                 "effective_from": "2027-11-01",
-                "verified_by": "gpt-6-sol",
+                "verified_by": "claude-opus-5-5",
                 "verified_at": "2026-11-07T23:00:00Z",
                 "verification_status": "verified",
                 "review_id": "2026-11-07-gpt-turismo-federalberghi-alberghi-minori-double-read"
@@ -2833,7 +3703,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 155 c. 3, p. 44: the hourly table of the extra workers.",
+        "text": "The caller-selected extra hourly table is encoded for the five levels and dated tranches printed on p. 44 of the 2024 renewal. Art. 155(1),(3) of the 2010 agreement gives priority to territorial bargaining and better conditions and requires a minimum four-hour service; the table is all-inclusive of extra months and TFR. Those precedence, minimum-service, and all-inclusive accrual treatments are not yet implemented.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -2841,7 +3711,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add the extras hourly table."
+          "remediation": "Model territorial precedence, the four-hour service minimum and avoid separate extra-month and TFR accrual for all-inclusive rates."
         }
       },
       {
@@ -2973,7 +3843,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "f991bf8f322dee558227c107745bcdc184bf1d8558186f5ded68ff68465ea040",
+    "source_hash": "0bb256b9c2b12b016a9590976f1f538bb41afeb13395a726c6f70b47a3ceab37",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },
@@ -4250,6 +5120,27 @@
         "independence": "separate_model",
         "checked": [
           "parameters.equalisation_element"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-turismo-federalberghi-alberghi-minori-extra-hourly",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 155(3) replacement table on PDF p. 44; each row and date read from the cached page image.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+            "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+          }
+        ],
+        "findings": [
+          "Verified five levels and five effective monthly columns; territorial precedence, minimum service, and all-inclusive settlement remain limitations."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.hourly_pay.rates"
         ]
       }
     ]
