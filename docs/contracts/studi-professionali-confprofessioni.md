@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, maternity_leave, sickness |
+| **Limits of this contract** | base_salary, maternity_leave |
 
 5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-02-16 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
@@ -81,6 +81,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Verified Art. 115 point 4 against the cached CCNL PDF page 64, including the duration thresholds and the single 10% reduction for habitual or over-month missions. | confirmed | — |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 143 fourteenth exclusion and difference for extra remuneration already received at contract entry, against the cached 2024 text, page 74. | corrected | Only extra remuneration months already received at contract entry offset the fourteenth; merit bonuses remain outside the credit. A missing worker amount can affect only workers employed by the entry date or with an unknown start. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Arts. 110(8), 124 and the patron saint holiday list, cached 2024 PDF pp. 56 and 67. | corrected | Sickness and injury already cover the stated patron saint day; compulsory maternity and paternity holiday targets now cover it too. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Art. 121 comporto lookback of 365 days back from the last sickness event. | corrected | Art. 121: 'per anno solare si intende un periodo di 365 giorni partendo a ritroso dell'ultimo evento morboso'; the comporto window now counts 365 days, not 12 calendar months (one day apart across 29 February). |
 
 ## Salary table
 
@@ -135,12 +136,12 @@ percentage: 0.60
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "studi-professionali-confprofessioni/rolling_comporto_365_day_boundary · sickness · impact yes · open"
-    Artt. 120-121: the 365-day lookback is approximated by 12 calendar months. The documented listed serious illnesses receive 90 additional days (100% in months 7-8 and 70% in month 9); day hospital and life-saving therapy days are excluded from the comporto when stated.
+!!! note "studi-professionali-confprofessioni/rolling_comporto_365_day_boundary · sickness · impact yes · resolved"
+    Artt. 120-121: the comporto counts the sick days of the 365 days back from the last sickness event ('per anno solare si intende un periodo di 365 giorni partendo a ritroso dell'ultimo evento morboso'), comporto_windows window_days 365. The documented listed serious illnesses receive 90 additional days (100% in months 7-8 and 70% in month 9); day hospital and life-saving therapy days are excluded from the comporto when stated.
 
     **Applies when:** `sickness` applies.
 
-    **Remediation:** Replace the 12-calendar-month approximation with a day-exact 365-day lookback.
+    **Remediation:** Resolved: day-exact 365-day lookback (window_days), read on 2026-11-10.
 
 !!! warning "studi-professionali-confprofessioni/unused_leave_hours · base_salary · impact yes · open"
     Artt. 91, 92, 97 C, 98: the ROL (40 or 66 hours) and the 32 hours of ex festività paid when not taken, the festività falling on Sunday and the flexibility hours not recovered.

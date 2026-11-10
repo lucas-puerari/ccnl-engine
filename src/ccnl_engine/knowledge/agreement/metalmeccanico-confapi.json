@@ -286,19 +286,6 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 32(b,c) holiday top-ups are modelled for sickness, compulsory maternity and injury, excluding letter a) and 4 October. Stated local patron days are covered for sickness and injury. Not calculated: the maternity top-up on a local patron day, the locally agreed substitute for the patron day, and Rome-only 29 June, which are outside the national holiday calendar.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "holiday_outside_calendar",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Calculate the maternity top-up on stated patron days, the agreed substitute patron holiday and Rome-only 29 June when the local facts are available."
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "Art. 23 flexible hours above 40 per week (15% weekday, 20% Saturday) remain outside the model: they are not overtime. Art. 29 banked overtime pays half the applicable overtime premium now; the elected rest balance and eventual payout at current pay are not tracked. The election covers all overtime in the month and must be declared by the next month; callers must supply a consistent banked choice for each month's events.",
         "capability": "overtime",
         "monetary_impact": "yes",
@@ -321,6 +308,19 @@
             "trigger": "outside_input"
           },
           "remediation": "Source a basis and timing for paying PAR left when employment ends before the conto ore expires; art. 22 only specifies payment at expiry."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 32(b,c) holiday top-ups are modelled for sickness, compulsory maternity and injury, excluding letter a) and 4 October. A stated patron_saint_day covers the local patron day, its locally agreed substitute, or Rome-only 29 June when applicable. Without the applicable local date from the employer, these holidays cannot be calculated.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "holiday_outside_calendar",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "State the applicable local patron holiday date (including a locally agreed substitute or Rome-only 29 June) as employer.patron_saint_day."
         }
       }
     ]
@@ -3300,7 +3300,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "970f8d791170c60451b75156afdc7e9a4b6517dae2662a72c49f46d6631ab26c",
+    "source_hash": "4c67b928774dd1e81f239675c6c41fdfc831122f83c2d01e7c7a75d14eb58a2f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4605,17 +4605,18 @@
               "section": "Art. 32 - Festività, letters b) and c)",
               "quote": "Qualora le festività di cui ai punti b) e c) ricorrano nel periodo di assenza dovuta a malattia, gravidanza e puerperio o ad infortunio, compensati con retribuzione ridotta, l’azienda integrerà tale trattamento fino a raggiungere per la giornata festiva l’intera retribuzione globale."
             },
-            "transformation": "Top up reduced pregnancy and puerperium pay to full global daily pay on the national weekday holidays of letter b). Exclude letter a) 25 April, 1 May and 2 June, and 4 October, absent from the list. The local patron day of letter c) is not covered by the maternity holiday calendar.",
+            "transformation": "Top up reduced pregnancy and puerperium pay to full global daily pay on the national weekday holidays of letter b) and the employer-stated local patron day of letter c), its agreed substitute when applicable, or Rome-only 29 June of letter b). Exclude letter a) 25 April, 1 May and 2 June, and 4 October, absent from the list. Without a stated local date no local holiday is inferred.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-11-09T19:05:27Z",
+              "extraction_timestamp": "2026-11-09T23:37:08Z",
               "verified_by": "claude-opus-5-5",
-              "verified_at": "2026-11-09T19:05:27Z",
+              "verified_at": "2026-11-09T23:37:08Z",
               "verification_status": "verified",
-              "review_id": "2026-11-09-ai-confapi-absence-holidays"
+              "review_id": "2026-11-10-confapi-maternity-local-holiday"
             }
-          }
+          },
+          "includes_patron_saint": true
         },
         "provenance": {
           "status": "verified",
@@ -5197,6 +5198,28 @@
         "independence": "same_process",
         "checked": [
           "work_rules.leave_rules.permit_deadline"
+        ]
+      },
+      {
+        "id": "2026-11-10-confapi-maternity-local-holiday",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Art. 32(b,c), physical PDF pp. 104-105, maternity holiday and local holiday selection.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          }
+        ],
+        "findings": [
+          "The maternity holiday target exists; letters b and c cover reduced-pay pregnancy and puerperium holidays. The employer-stated patron date can denote the locally agreed substitute or 29 June in Rome; neither is inferred without the local fact."
+        ],
+        "checked": [
+          "work_rules.insured_absence.maternity.holiday",
+          "coverage.notes.holiday_outside_calendar"
         ]
       }
     ],

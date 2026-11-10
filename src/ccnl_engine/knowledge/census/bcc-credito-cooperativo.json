@@ -103,10 +103,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 102 (2024 CCNL, PDF p. 117): a single loyalty award at 25 years of cumulative cooperative-banking movement service, only for managerial grades 3 and 4, at 90.66% of one month of the enumerated salary items. The annual hire-anniversary loyalty_premium cannot represent the one-off award, cross-employer service, or the restricted pay base.",
+      "rule": "Art. 102 (2024 CCNL, PDF p. 117): the once-only loyalty award is paid in the month 25 cumulative years of cooperative-banking movement service are reached, only at QD3/QD4, at 90.66% of the enumerated monthly salary items. The caller must state movement service in Employment.seniority, including earlier employers and breaks. The monthly run-chain may include items outside the enumerated base (salary, seniority increment, restructuring amount per increment, increment/table difference allowances, deputy-director and branch-manager allowances); the engine cannot restrict the award base to those items.",
       "calculation": "ccnl/bcc-credito-cooperativo:coverage.notes",
       "state": "absent",
-      "remediation": "Implement a once-only award using cumulative movement service and the Art. 102 grade and pay-base restrictions.",
+      "remediation": "Restrict the award base to the Art. 102 enumerated salary items; supply a movement-specific credited seniority fact rather than general increment seniority when these differ.",
       "origin": "seeded",
       "links": {
         "limitations": [
