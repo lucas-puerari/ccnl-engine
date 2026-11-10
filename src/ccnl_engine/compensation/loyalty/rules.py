@@ -121,7 +121,7 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:
         or ctx.worker_category not in clause.categories
     ):
         return LoyaltySettlement()
-    in_service_on = getattr(clause, "in_service_on", None)
+    in_service_on = clause.in_service_on
     if (
         clause.subsectors and ctx.request.employer.subsector not in clause.subsectors
     ) or (in_service_on is not None and period.started_on > in_service_on):

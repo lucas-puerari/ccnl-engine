@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 68 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 69 verified / 1 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-05 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-10 |
 | **Latest salary tranche** | 2027-11-01 |
 
 ## Review history
@@ -72,6 +72,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 2 values found verbatim on the cited pages and marked verified; 50 left as they were (derived or not on a text page). |
 | 2026-11-07 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 50 values read identically by both readings and equal to the file. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 13 commi 5-14 of the ipotesi of 5 July 2024 (scanned pp. 10-12), the encoding checked against the page images by a separate model session. | flagged | Confirmed the amounts by level, the November 2027 payment, the eligibility of comma 5 and the part-time of comma 6.<br>Flagged as approximations, kept under the limitation: the trigger of comma 10, the days worked of comma 5, the absorption of comma 8. |
+| 2026-11-10 | claude-opus-5-5 (ai) | Art. 155(3) replacement table on PDF p. 44; each row and date read from the cached page image. | confirmed | Verified five levels and five effective monthly columns; territorial precedence, minimum service, and all-inclusive settlement remain limitations. |
 
 ## Salary table
 
@@ -133,11 +134,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** State the comma 10 condition and the days worked in 2026 as facts, take every treatment granted after 1 July 2024 into the absorption, and model commi 11, 13 and 14.
 
 !!! warning "turismo-federalberghi-alberghi-minori/extras_hourly_table · base_salary · impact yes · open"
-    Art. 155 c. 3, p. 44: the hourly table of the extra workers.
+    The caller-selected extra hourly table is encoded for the five levels and dated tranches printed on p. 44 of the 2024 renewal. Art. 155(1),(3) of the 2010 agreement gives priority to territorial bargaining and better conditions and requires a minimum four-hour service; the table is all-inclusive of extra months and TFR. Those precedence, minimum-service, and all-inclusive accrual treatments are not yet implemented.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the extras hourly table.
+    **Remediation:** Model territorial precedence, the four-hour service minimum and avoid separate extra-month and TFR accrual for all-inclusive rates.
 
 !!! warning "turismo-federalberghi-alberghi-minori/quadri_absorption · base_salary · impact yes · open"
     Art. 145: the absorption of the Quadri allowance into individual treatments.

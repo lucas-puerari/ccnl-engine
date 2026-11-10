@@ -140,22 +140,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "Apprenticeship tables use operai duration tracks (5 years for gruppi 1-2, 2.5 years for gruppo 3). Impiegati and impiegati amministrativi have shorter 3-year apprenticeship durations with the same percentages — not separately modelled. For impiegato apprenticeships the operai duration overstates the period.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "impiegati_apprenticeship_duration",
-          "applies_when": {
-            "contract_types": [
-              "apprentice"
-            ],
-            "worker_categories": [
-              "impiegato"
-            ]
-          },
-          "remediation": "Model the 3-year impiegati apprenticeship tracks."
-        }
+        "kind": "info",
+        "text": "APPRENTICESHIP: Art. 55 sections 6 and 8 of the signed 2014 CCNL (PDF pp. 55–56) distinguish operai and impiegati in the wood sector. Impiegati use three-year tracks: group 1 pays 70%, 73%, 80% by year; group 2 pays 70%, 75%, 88% by year; group 3 pays 70%, 75%, 80%, 90%, 95%, 95% by semester. For overlapping destination levels set Apprentice.track to gruppo_1_legno_impiegati, gruppo_2_legno_impiegati or gruppo_3_legno_impiegati for clerical apprentices; use the existing gruppo_*_legno tracks for operai. The caller ends the apprentice contract at its agreed end; the last rate remains available for qualifying extensions. The six-month reduction for relevant post-compulsory qualifications and the SME reduction of durations above three years are not derived from these tracks. Lapidei pay tables remain unmodelled."
       },
       {
         "kind": "simplification",
@@ -317,6 +303,28 @@
         "checked": [
           "meta.cigo_activities",
           "meta.cigo_provenance"
+        ]
+      },
+      {
+        "id": "2026-11-09-ai-legno-impiegati-apprenticeship",
+        "date": "2026-11-09",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "independence": "same_process",
+        "scope": "Wood-sector impiegati apprenticeship durations and percentages in art. 55 sections 6 and 8 of the signed 2014 agreement, checked on cached PDF pages 55–56.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fenealuil.it/wp-content/uploads/2014/10/CCNL-Legno-Lapidei-Artigiani-25.03.14.pdf",
+            "sha256": "6e40ca166cb3acb734bc103bf1692e60c4ca97344138d20dba07d66d59b3de30"
+          }
+        ],
+        "findings": [
+          "Art. 55 section 6 fixes impiegati apprenticeship at three years for wood and stone; section 8 prints separate wood impiegati percentage tables for groups 1–3. Group 3 has a sixth semester at 95%, unlike the five-semester operai table."
+        ],
+        "checked": [
+          "apprenticeship",
+          "meta.notes"
         ]
       }
     ]
@@ -1944,6 +1952,172 @@
           "percentage": "1.00"
         }
       ]
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_1_legno_impiegati",
+      "destination_levels": [
+        "AS",
+        "A",
+        "B"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.73"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.80"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-legno-lapidei-artigiani-2014",
+            "title": "CCNL Area Legno-Lapidei, 25 March 2014",
+            "kind": "associazione",
+            "url": "https://www.fenealuil.it/wp-content/uploads/2014/10/CCNL-Legno-Lapidei-Artigiani-25.03.14.pdf",
+            "sha256": "6e40ca166cb3acb734bc103bf1692e60c4ca97344138d20dba07d66d59b3de30"
+          },
+          "page": "55–56",
+          "section": "Art. 55, sections 6 (duration) and 8 (pay), wood sector impiegati, group 1",
+          "quote": "Per gli impiegati la durata del periodo di apprendistato è fissata in 3 anni. Settore Legno, Arredamento, Mobili - IMPIEGATI: 1° 70% 70% 73% 73% 80% 80%"
+        },
+        "transformation": "Six semesters of six months at 70%, 70%, 73%, 73%, 80%, 80% of destination-level table pay. Explicit Apprentice.track distinguishes the impiegati table from operai at the same levels; the last rate holds during qualifying extensions, with contract completion supplied by the caller.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-09T22:48:16Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-09T22:48:16Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-09-ai-legno-impiegati-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_2_legno_impiegati",
+      "destination_levels": [
+        "CS",
+        "C",
+        "D"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.88"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-legno-lapidei-artigiani-2014",
+            "title": "CCNL Area Legno-Lapidei, 25 March 2014",
+            "kind": "associazione",
+            "url": "https://www.fenealuil.it/wp-content/uploads/2014/10/CCNL-Legno-Lapidei-Artigiani-25.03.14.pdf",
+            "sha256": "6e40ca166cb3acb734bc103bf1692e60c4ca97344138d20dba07d66d59b3de30"
+          },
+          "page": "55–56",
+          "section": "Art. 55, sections 6 (duration) and 8 (pay), wood sector impiegati, group 2",
+          "quote": "Per gli impiegati la durata del periodo di apprendistato è fissata in 3 anni. Settore Legno, Arredamento, Mobili - IMPIEGATI: 2° 70% 70% 75% 75% 88% 88%"
+        },
+        "transformation": "Six semesters of six months at 70%, 70%, 75%, 75%, 88%, 88% of destination-level table pay. Explicit Apprentice.track distinguishes the impiegati table from operai at the same levels; the last rate holds during qualifying extensions, with contract completion supplied by the caller.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-09T22:48:16Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-09T22:48:16Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-09-ai-legno-impiegati-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_3_legno_impiegati",
+      "destination_levels": [
+        "E"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 30,
+          "months_until": null,
+          "percentage": "0.95"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-legno-lapidei-artigiani-2014",
+            "title": "CCNL Area Legno-Lapidei, 25 March 2014",
+            "kind": "associazione",
+            "url": "https://www.fenealuil.it/wp-content/uploads/2014/10/CCNL-Legno-Lapidei-Artigiani-25.03.14.pdf",
+            "sha256": "6e40ca166cb3acb734bc103bf1692e60c4ca97344138d20dba07d66d59b3de30"
+          },
+          "page": "55–56",
+          "section": "Art. 55, sections 6 (duration) and 8 (pay), wood sector impiegati, group 3",
+          "quote": "Per gli impiegati la durata del periodo di apprendistato è fissata in 3 anni. Settore Legno, Arredamento, Mobili - IMPIEGATI: 3° 70% 75% 80% 90% 95% 95%"
+        },
+        "transformation": "Six semesters of six months at 70%, 75%, 80%, 90%, 95%, 95% of destination-level table pay. Explicit Apprentice.track distinguishes the impiegati table from operai at the same levels; the last rate holds during qualifying extensions, with contract completion supplied by the caller.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-09T22:48:16Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-09T22:48:16Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-09-ai-legno-impiegati-apprenticeship"
+        }
+      }
     }
   ],
   "ruleset": {
@@ -1953,7 +2127,7 @@
     "effective_until": null,
     "source": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
     "verification_status": "unverified",
-    "source_hash": "9897263d45e5e4f48e528ec13199858a37beb1e37890ad0ed77658449de7b00f",
+    "source_hash": "2eccf44cdbf0e52b7e447707ca074101d8c596bf4ead39e93701d6231e3c53ed",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
