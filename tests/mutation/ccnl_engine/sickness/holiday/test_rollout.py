@@ -170,6 +170,32 @@ def test_federmeccanica_easter_monday_receives_holiday_top_up() -> None:
     }
 
 
+def test_confcommercio_stated_patron_day_gross_holiday_pay() -> None:
+    """March 15-19: four payable days deduct 274.11 from the month.
+
+    Waiting pay is 137.05; INPS pays 68.53 for days four and five.
+    Ordinary integration is 26.86; the patron day increases its share
+    from 13.43 to the 34.26 gross-basis target: +20.82 employer
+    and +0.01 INPS from rounding, for a total increase of 20.83.
+    """
+    first = date(2026, 3, 15)
+    last = date(2026, 3, 19)
+    without = _holiday_case("commercio-confcommercio", "4", first, last)
+    with_patron = _holiday_case("commercio-confcommercio", "4", first, last, "03-19")
+    assert without == {
+        "abs": Decimal("274.11"),
+        "crnz": Decimal("137.05"),
+        "inps": Decimal("68.53"),
+        "intg": Decimal("26.86"),
+    }
+    assert with_patron == {
+        "abs": Decimal("274.11"),
+        "crnz": Decimal("137.05"),
+        "inps": Decimal("68.54"),
+        "intg": Decimal("47.68"),
+    }
+
+
 def test_confcommercio_may_first_gross_holiday_pay() -> None:
     """May 1: gross quota 68.52, INPS 34.26, employer 34.26 = 68.52.
 

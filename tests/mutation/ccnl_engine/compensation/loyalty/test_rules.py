@@ -12,6 +12,7 @@ from typing import cast
 import pytest
 
 from ccnl_engine.balance.models import PeriodState
+from ccnl_engine.compensation.loyalty.models import LoyaltyPremium
 from ccnl_engine.compensation.loyalty.rules import loyalty_premium
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
@@ -53,6 +54,13 @@ def _context(
                         loyalty_premium=SimpleNamespace(
                             service_years=20,
                             months=Decimal(1),
+                            recurrence="annual",
+                            categories=(
+                                WorkerCategory.IMPIEGATO,
+                                WorkerCategory.QUADRO,
+                            ),
+                            subsectors=(),
+                            manual_hours=None,
                             provenance=SimpleNamespace(
                                 location=SimpleNamespace(section="Art. 65")
                             ),
@@ -62,6 +70,7 @@ def _context(
                 tctx=SimpleNamespace(payment=date(year, month, 27)),
             ),
             request=SimpleNamespace(
+                employer=SimpleNamespace(subsector=None),
                 employment_period=(
                     None
                     if start is None
@@ -192,6 +201,84 @@ def test_actual_service_cannot_start_after_employment_ends() -> None:
 def test_later_anniversary_still_pays() -> None:
     """At 21 completed years, the EUR 2,000 award recurs."""
     assert loyalty_premium(_context(start=date(2005, 4, 15))).amount == 2000
+
+
+@pytest.mark.parametrize(
+    ("category", "subsector", "start", "expected"),
+    [
+        (WorkerCategory.IMPIEGATO, "saccarifero", date(2001, 4, 15), Decimal(2000)),
+        (
+            WorkerCategory.OPERAIO,
+            "saccarifero",
+            date(2001, 4, 15),
+            Decimal("2312.14"),
+        ),
+        (WorkerCategory.IMPIEGATO, "carni", date(2001, 4, 15), Decimal(0)),
+        (WorkerCategory.IMPIEGATO, "saccarifero", date(2002, 4, 15), Decimal(0)),
+        (WorkerCategory.IMPIEGATO, "saccarifero", date(2000, 4, 15), Decimal(0)),
+    ],
+)
+def test_one_time_subsector_award(
+    category: WorkerCategory, subsector: str, start: date, expected: Decimal
+) -> None:
+    """EUR 2,000 monthly pays EUR 2,000 or 200 times (2,000 / 173) = 2,312.14.
+
+    Non-sugar branches, year 24 and year 26 pay zero. The policy includes
+    the award in contribution and income-tax bases, but Art. 73 excludes
+    it from the enumerated TFR pay elements.
+    """
+    ctx = cast("SimpleNamespace", _context(start=start))
+    ctx.contract.ccnl.parameters.loyalty_premium = SimpleNamespace(
+        service_years=25,
+        months=Decimal(1),
+        recurrence="once",
+        categories=(WorkerCategory.IMPIEGATO, WorkerCategory.OPERAIO),
+        subsectors=("saccarifero",),
+        manual_hours=Decimal(200),
+        provenance=SimpleNamespace(location=SimpleNamespace(section="Rule 25")),
+    )
+    ctx.contract.ccnl.parameters.hourly_divisor = SimpleNamespace(
+        period_at=lambda _day: SimpleNamespace(value=Decimal(173))
+    )
+    ctx.request.employer = SimpleNamespace(subsector=subsector)
+    ctx.worker_category = category
+    paid = loyalty_premium(cast("RunContext", ctx))
+    assert paid.amount == expected
+    assert paid.taxed == ((True, False, True) if expected else (False, False, False))
+    if expected:
+        assert paid.items[0].kind == "bonus_earning"
+
+
+def test_manual_milestone_requires_hourly_wages() -> None:
+    """A manual award cannot silently pay EUR 2,000 instead of 200 hourly wages."""
+    with pytest.raises(ValueError, match="manual_hours is required"):
+        LoyaltyPremium.model_validate({
+            "service_years": 25,
+            "recurrence": "once",
+            "categories": ["operaio"],
+            "provenance": {"status": "missing"},
+        })
+
+
+@pytest.mark.parametrize("divisor", [None, SimpleNamespace(value=None)])
+def test_manual_milestone_without_hourly_divisor_pays_nothing(
+    divisor: SimpleNamespace | None,
+) -> None:
+    """Without a known hourly wage EUR 2,000 cannot imply an award amount."""
+    ctx = cast("SimpleNamespace", _context(start=date(2001, 4, 15)))
+    ctx.contract.ccnl.parameters.loyalty_premium = SimpleNamespace(
+        service_years=25,
+        months=Decimal(1),
+        recurrence="once",
+        categories=(WorkerCategory.OPERAIO,),
+        subsectors=(),
+        manual_hours=Decimal(200),
+    )
+    ctx.contract.ccnl.parameters.hourly_divisor = SimpleNamespace(
+        period_at=lambda _day: divisor
+    )
+    ctx.worker_category = WorkerCategory.OPERAIO
+    assert loyalty_premium(cast("RunContext", ctx)).amount == 0
 
 
 def test_cna_agreement_anniversary_is_posted_only_for_clerical_worker() -> None:

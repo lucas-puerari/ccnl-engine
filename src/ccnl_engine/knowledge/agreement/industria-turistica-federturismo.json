@@ -85,7 +85,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 182 (PDF p. 160) abolished the seniority prize on 31 May 1986 except for rights of workers then in service. Annex 9 (PDF p. 316) specifies hotel-sector awards after 10, 15, 20 and 30 continuous years of respectively 1, 1.5, 2 and 3 monthly pays, with departure fractions after year 10. This archival entitlement requires confirmation in a current text; annual loyalty_premium would repeat distinct milestone awards and extend them to new hires.",
+        "text": "The cached collective agreement, Art. 182 (PDF p. 160), abolishes the seniority prize from 31 May 1986 but preserves rights of workers then in service. Annex 9 (PDF p. 316) prints hotel-sector awards of 1, 1.5, 2 and 3 monthly pays after 10, 15, 20 and 30 continuous years, plus further accrued fractions on departure after year 10. A continuously employed 2026 worker in the grandfathered cohort has at least 40 years of service: the 30-year milestone has already passed, but settlement or accrued rights cannot be ruled out. Continued force in the current renewal, historical settlement, and the basis and treatment of departure fractions are not established here. An annual loyalty award would incorrectly recur and cover new hires.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -93,7 +93,32 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Verify continued rights and implement grandfathered, non-recurring hotel milestones and departure fractions."
+          "remediation": "Confirm continued force in the current renewal and determine whether a worker in service on 31 May 1986 has unpaid awards or departure fractions; source settlement history and the Art. 109 pay basis before modelling one-off entitlements. Do not pay new hires or recur milestones annually."
+        },
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "industria-turistica-2016-definitive-text",
+              "title": "Tourism industry collective agreement (CNEL archive)",
+              "kind": "associazione",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/154401",
+              "sha256": "2c01fa555644de38b31a327c517edd8f2888545a41a9b28f20eeccdecf0758fc"
+            },
+            "page": "160, 316",
+            "section": "Art. 182 - Premio di anzianità; Allegato 9 - Premio di anzianità aziende alberghiere",
+            "quote": "Vengono fatti salvi i diritti acquisiti da lavoratori in servizio al 31 maggio 1986 per i quali l’istituto continua a produrre i suoi effetti (vedi Allegato 9)."
+          },
+          "transformation": "In 2026 the protected continuously employed cohort exceeds 30 years; past awards and departure fractions may still require individual settlement, but this text does not establish continued force in the current renewal.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "verified_by": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-10T00:20:26Z",
+            "verified_at": "2026-11-10T00:20:26Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-10-ai-legacy-awards"
+          }
         }
       }
     ]
@@ -142,6 +167,27 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-10-ai-legacy-awards",
+        "date": "2026-11-10",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Grandfathered seniority prize in Art. 182 and hotel awards in Annex 9 of the cached agreement; current-renewal status remains unconfirmed.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/154401",
+            "sha256": "2c01fa555644de38b31a327c517edd8f2888545a41a9b28f20eeccdecf0758fc"
+          }
+        ],
+        "findings": [
+          "Art. 182 (PDF p. 160) preserves rights of workers in service on 31 May 1986. Annex 9 (PDF p. 316) lists one-off hotel milestones and departure fractions after year 10. A continuously employed 2026 worker has passed year 30; accrued rights and settlement require worker-specific facts."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ]
@@ -1842,7 +1888,7 @@
     "effective_until": null,
     "source": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
     "verification_status": "unverified",
-    "source_hash": "83f6e83285735fd0912bd533a4d0ffbc249f7a1d73d999db73c96cab98f460e1",
+    "source_hash": "acf4da212af10c5be58b3eb39095809c4fab1bdf6b72df1d1fa452ae94e85962",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
