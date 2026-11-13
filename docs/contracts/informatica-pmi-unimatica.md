@@ -31,10 +31,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-04-14 |
-| **Last review** | 2026-10-31 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 80 - Tredicesima mensilità (impiegati) (p. 123): "Nel caso di inizio o di cessazione del rapporto durante il corso dell'anno, l'impiegato non in prova avrà diritto a tanti dodicesimi dell'ammontare della 13ª mensilità per quanti sono i mesi di servizio prestato. La frazione di mese non superiore ai 15 giorni non sarà considerata, mentre sarà considerata come mese intero la frazione di mese superiore a 15 giorni.". Match: more_than 15. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 70 (pp. 113-114): comporto 12 months within 36 months (1095 days), 180 days of 100% of the net pay and 6 months of 50%, counted over the 36 months before each day of absence, from day 1. The file kept 180 days of one illness: corrected to a cumulation over three years. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 30 of the renewal of 9 July 2018 (CNEL 90438, scanned pp. 35, 39, 40) and the renewals of 2021 (CNEL 133946) and 2025 (CNEL 216350). | corrected | Added the 30 and 24 month tracks; the apprentice accrues no seniority increment (art. 30 p. 40); limitations apprenticeship_duration_by_agreement and apprentice_seniority removed. |
 
 ## Salary table
 
@@ -103,26 +104,18 @@ Latest effective values per level (monthly gross, EUR).
 **professionalizzante_36** (type: `under_classification`)  
 Destination levels: `1`, `2`, `3`, `4`, `5`, `6`, `7`
 
+**professionalizzante_30** (type: `under_classification`)  
+Destination levels: `1`, `2`, `3`, `4`, `5`, `6`, `7`
+
+**professionalizzante_24** (type: `under_classification`)  
+Destination levels: `1`, `2`, `3`, `4`, `5`, `6`, `7`
+
 **automatico_it** (type: `under_classification`)  
 Destination levels: `8`, `9`
 
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "informatica-pmi-unimatica/apprenticeship_duration_by_agreement · base_salary · impact unknown · open"
-    APPRENTICESHIP GENERAL TRACK DURATION: the CCNL offers three duration options (36/30/24 months) by agreement between the parties; no per-destination-level assignment was found in the available text. The 36-month track (12+12+12) is used as representative for destination levels 1, 2, 3, 4, 5, 6, 7. Real durations may be shorter by agreement.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the 30 and 24-month durations as separate tracks selectable by name.
-
-!!! warning "informatica-pmi-unimatica/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
-
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -304,6 +297,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/ | tabella_retributiva | 2025-04-14 | [↗](https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/) |
 | https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=302 | tabella_retributiva | 2025-04-14 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=302) |
 | https://slc.cgil.it/ccnl/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf | altro | 2021-03-09 | [↗](https://slc.cgil.it/ccnl/20210309-CCNL_CONFAPI_UNIGEC_UNIMATICA.pdf) |
+| CCNL informatica PMI (Unimatica-Confapi), accordo di rinnovo 9 luglio 2018 (deposito CNEL, accordo 90438, scansione firmata) | cnel | 2018-07-09 | [↗](https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/90438) |
 
 ??? note "Coverage notes"
     SCOPE: models the SETTORE INFORMATICO E SERVIZI INNOVATIVI sub-sector of G029 only (levels Q, 1–10). The SETTORE GRAFICO-EDITORIALE and SETTORE CARTARIO-CARTOTECNICO sub-sectors of G029 are NOT modelled here. Applicable to ICT companies covered by Art. 1 of the CCNL.
@@ -325,6 +319,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     INPS: reuses 2026-industria.json (Confapi/industria sector). Unimatica-Confapi belongs to industria. CIGO applies (D.Lgs. 148/2015). No Cassa Edile or bilateral fund substituting INPS contributions.
     
     APPRENTICESHIP GENERAL TRACK (Art. 52 CCNL, para. C Apprendistato professionalizzante): first period 2 levels below destination; second period 1 level below; third period classification stays 1 below but retribuzione is at destination level (levels_below=0 in engine, which models pay, not classification). Duration options: 36, 30 or 24 months by agreement. The 36-month (12+12+12) track is modelled as representative.
+    
+    APPRENTICESHIP DURATION (art. 30, renewal of 9 July 2018, scanned p. 35): 36, 30 or 24 months in three equal periods (two levels below, then one below, then the pay of the destination level), the duration agreed by the parties: tracks professionalizzante_36, _30 and _24, stated by Apprentice.track. The renewals of 2021 and 2025 do not change the durations.
     
     APPRENTICESHIP AUTOMATICO TRACK (Art. 52 CCNL, settore informatico-servizi innovativi Area Tecnica): destination level 8 → entry at level 9 (1 below), 18 months; destination level 9 → entry at level 10 (1 below), 18 months. After permanent hire, destination-level 8 apprentices spend 6 months at level 9 before final assignment (this post-apprenticeship transition is not modelled; it occurs outside the apprendistato period).
     

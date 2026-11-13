@@ -426,3 +426,16 @@ def test_acconciatura_group_1_reduced_track() -> None:
         for p in tracks["gruppo_1"].periods
     ]
     assert (48, Decimal("0.95")) in ordinary
+
+
+def test_informatica_apprenticeship_durations_and_seniority() -> None:
+    """Art. 30 (2018): 36, 30 or 24 months in thirds; no increment accrues."""
+    ccnl = load_ccnl("informatica-pmi-unimatica")
+    tracks = {t.name: t for t in ccnl.apprenticeship}
+    for months in (36, 30, 24):
+        third = months // 3
+        periods = tracks[f"professionalizzante_{months}"].periods
+        assert [p.months_from for p in periods] == [0, third, 2 * third]
+    amount = ccnl.parameters.seniority_increments.apprentice_amount
+    assert amount is not None
+    assert amount.value_at(date(2026, 6, 1)) == Decimal("0.00")
