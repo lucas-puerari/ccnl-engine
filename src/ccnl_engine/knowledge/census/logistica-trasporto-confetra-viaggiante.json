@@ -35,22 +35,6 @@
       }
     },
     {
-      "id": "coincident_holiday_payment",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 60(2-3) coincident-holiday pay is calculated for national letter (b) holidays, including during absence. The local patron holiday and any replacement agreed locally are not in the national calendar, so their coincidence is not calculated.",
-      "calculation": "ccnl/logistica-trasporto-confetra-viaggiante:coverage.notes",
-      "state": "absent",
-      "remediation": "Supply the local patron holiday or its locally agreed replacement in the holiday calendar to calculate its coincident-holiday quota.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "logistica-trasporto-confetra-viaggiante/coincident_holiday_payment"
-        ]
-      }
-    },
-    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",
@@ -255,6 +239,22 @@
       "links": {
         "limitations": [
           "paternity_daily_base"
+        ]
+      }
+    },
+    {
+      "id": "patron_permit_option",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 60 c. 7: the employer may replace the patron saint holiday of the travelling staff with 10 hours of paid permits a year, accrued on the day of the holiday; the run pays the patron as a holiday (its coincidence quota included) and does not model the option.",
+      "calculation": "ccnl/logistica-trasporto-confetra-viaggiante:coverage.notes",
+      "state": "absent",
+      "remediation": "Add the employer's election of the 10 hours of art. 60 c. 7 and accrue them in place of the patron holiday.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "logistica-trasporto-confetra-viaggiante/patron_permit_option"
         ]
       }
     },

@@ -39,9 +39,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | absence, base_salary, overtime, sickness |
+| **Limits of this contract** | absence, base_salary, overtime |
 
-8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -150,13 +150,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Resolved: art. 71(5) injury holidays reach full actual daily pay for eligible legacy-section employers; the national coincident-holiday quota is calculated separately; local patron holidays remain outside the calendar.
-
-!!! warning "logistica-trasporto-confetra/coincident_holiday_payment · sickness · impact yes · open"
-    Art. 60(2-3) coincident-holiday pay is calculated for national letter (b) holidays, including during absence. The local patron holiday and any replacement agreed locally are not in the national calendar, so their coincidence is not calculated.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Supply the local patron holiday or its locally agreed replacement in the holiday calendar to calculate its coincident-holiday quota.
 
 !!! warning "logistica-trasporto-confetra/edr_2021_in_daily_base · absence · impact unknown · open"
     EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; the 2021 EDR may still enter the daily base of absences and sickness, which 'nessuna incidenza su alcun istituto contrattuale' excludes.
@@ -382,6 +375,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 | https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf | altro | 2024-12-06 | [↗](https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf) |
 
 ??? note "Coverage notes"
+    Art. 60 c. 2-3: the letter (b) holidays falling on a Saturday, a Sunday or another holiday are paid a further 1/22 of the monthly pay, also in sickness, injury, maternity, leave and permits; the patron saint of the place of work (EmployerProfile.patron_saint_day, or its locally agreed replacement stated there) is one of them.
+    
     STAFF: tables for non-travelling staff (clerical employees and sedentary workers). The travelling staff (personale viaggiante, drivers and riders: letters C3 to L of pp. 25-26, tables pp. 81-82) is modelled in logistica-trasporto-confetra-viaggiante.
     
     CONGLOBATED MINIMUMS: base_salary values are the conglobated monthly minimum pay (minimum pay table + contingenza per Art. 61 note + EPA). Primary check: Art. 61 of the consolidated text September 2025 — 'From 1.1.2001 the indennità di contingenza has been conglobated into the minimum pay tables together with the EDR of EUR 10.33 per month'. fixed_allowances is empty for all levels.
