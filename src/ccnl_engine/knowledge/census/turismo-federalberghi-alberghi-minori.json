@@ -119,10 +119,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Verbale of 30 November 2016: the lower ramp of the hires of 14 November 2016. The caller pays these amounts as variable items.",
+      "rule": "Verbale of 30 November 2016 (CNEL 1537, scanned pp. 1-2): the relations established from 14 November 2016 reach the small-hotel paga base 'entro il 31 gennaio 2018', with lower tranches in November 2016 and August 2017 (and a lower extra/surroga table); the January 2018 column equals the April 2016 table of the 2014 renewal (A 2.196,97, 4 1.542,89), so from February 2018 the two cohorts are paid the same and the 2024 renewal sets one table for all. The ramp is not modelled: it concerns November 2016 to January 2018 only.",
       "calculation": "ccnl/turismo-federalberghi-alberghi-minori:coverage.notes",
       "state": "absent",
-      "remediation": "Model the 2016 ramp.",
+      "remediation": "Model the cohort tables of November 2016 and August 2017 for a run of those months; nothing is owed from February 2018.",
       "origin": "seeded",
       "links": {
         "limitations": [

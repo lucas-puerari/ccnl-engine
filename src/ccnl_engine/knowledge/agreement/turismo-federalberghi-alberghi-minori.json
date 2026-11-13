@@ -3749,15 +3749,17 @@
       },
       {
         "kind": "simplification",
-        "text": "Verbale of 30 November 2016: the lower ramp of the hires of 14 November 2016. The caller pays these amounts as variable items.",
+        "text": "Verbale of 30 November 2016 (CNEL 1537, scanned pp. 1-2): the relations established from 14 November 2016 reach the small-hotel paga base 'entro il 31 gennaio 2018', with lower tranches in November 2016 and August 2017 (and a lower extra/surroga table); the January 2018 column equals the April 2016 table of the 2014 renewal (A 2.196,97, 4 1.542,89), so from February 2018 the two cohorts are paid the same and the 2024 renewal sets one table for all. The ramp is not modelled: it concerns November 2016 to January 2018 only.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "hires_2016_ramp",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "outside_input",
+            "effective_from": "2016-11-14",
+            "effective_until": "2018-02-01"
           },
-          "remediation": "Model the 2016 ramp."
+          "remediation": "Model the cohort tables of November 2016 and August 2017 for a run of those months; nothing is owed from February 2018."
         }
       },
       {
@@ -3853,7 +3855,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "7ba1ad743f67725acd8eca7ee50c3ab0181c3897ffe85433834cae0364aeaee9",
+    "source_hash": "bcb80b75b284835cd760b18ecff4f89e4aa8293f13721300708381e7c045364b",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },
@@ -5196,6 +5198,27 @@
         "checked": [
           "levels.A.fixed_allowances.IND_FUNZIONE_QUADRI",
           "levels.B.fixed_allowances.IND_FUNZIONE_QUADRI"
+        ]
+      },
+      {
+        "id": "2026-11-13-ai-turismo-federalberghi-alberghi-minori-2016-ramp",
+        "date": "2026-11-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Verbale of 30 November 2016 (CNEL 1537, PDF pp. 1-2) against the art. 152 small-hotel table of the 2014 renewal (PDF p. 18).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/1537",
+            "sha256": "fe2a96ee1051a9c6c927efcff2c4e41b742a9a726164f49c540ccd5393081981"
+          }
+        ],
+        "findings": [
+          "The 2016 ramp ends in January 2018 at the incumbent table: limitation hires_2016_ramp scoped to 2016-11-14 .. 2018-01-31, outside the declared window."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "coverage.notes.hires_2016_ramp"
         ]
       }
     ]

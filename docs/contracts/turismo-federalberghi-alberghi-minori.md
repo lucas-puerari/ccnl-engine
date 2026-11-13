@@ -75,6 +75,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 155(3) replacement table on PDF p. 44; each row and date read from the cached page image. | confirmed | Verified five levels and five effective monthly columns; territorial precedence, minimum service, and all-inclusive settlement remain limitations. |
 | 2026-11-13 | gpt-6-sol (ai) | Art. 145 of the CCNL Turismo 2010 (PDF p. 133, scanned) and the renewals of 2014 and 5 July 2024, against the absorption of the Quadri allowance, by a separate model session. | flagged | Confirmed: the allowance (A 75, B 70 from January 2009) is absorbable up to its whole amount by company-recognized individual treatments; neither renewal changes art. 145; it applies to the quadri of the alberghi minori too.<br>Flagged and kept as limitation quadri_absorption_extra_months: an individual element paid on 12 months still offsets the allowance in the 13th and 14th; the clause does not settle it. |
 | 2026-11-13 | claude-opus-5-5 (ai) | Art. 145 of the CCNL Turismo 2010, PDF p. 133, read on the page image. | corrected | IND_FUNZIONE_QUADRI marked absorbed_by_individual_excess; limitation quadri_absorption replaced by the narrower quadri_absorption_extra_months. |
+| 2026-11-13 | claude-opus-5-5 (ai) | Verbale of 30 November 2016 (CNEL 1537, PDF pp. 1-2) against the art. 152 small-hotel table of the 2014 renewal (PDF p. 18). | corrected | The 2016 ramp ends in January 2018 at the incumbent table: limitation hires_2016_ramp scoped to 2016-11-14 .. 2018-01-31, outside the declared window. |
 
 ## Salary table
 
@@ -157,11 +158,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Read whether the parental leave reduces the quattordicesima before 1 December 2027 and, if it does, take its days out of the accrual.
 
 !!! warning "turismo-federalberghi-alberghi-minori/hires_2016_ramp · base_salary · impact yes · open"
-    Verbale of 30 November 2016: the lower ramp of the hires of 14 November 2016. The caller pays these amounts as variable items.
+    Verbale of 30 November 2016 (CNEL 1537, scanned pp. 1-2): the relations established from 14 November 2016 reach the small-hotel paga base 'entro il 31 gennaio 2018', with lower tranches in November 2016 and August 2017 (and a lower extra/surroga table); the January 2018 column equals the April 2016 table of the 2014 renewal (A 2.196,97, 4 1.542,89), so from February 2018 the two cohorts are paid the same and the 2024 renewal sets one table for all. The ramp is not modelled: it concerns November 2016 to January 2018 only.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the 2016 ramp.
+    **Remediation:** Model the cohort tables of November 2016 and August 2017 for a run of those months; nothing is owed from February 2018.
 
 !!! warning "turismo-federalberghi-alberghi-minori/apprenticeship_durations_unsourced · base_salary · impact yes · open"
     APPRENTICESHIP DURATIONS: the durations of the professionalizzante come from the accord of 17 April 2012 as amended in 2014, of which no signed or CNEL copy was found (only aggregator copies); the percentages of art. 58 are verified. Every apprentice run carries this limitation.
