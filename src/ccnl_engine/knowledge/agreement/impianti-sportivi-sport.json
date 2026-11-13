@@ -42,6 +42,20 @@
         "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13",
         "pages": [],
         "published_on": "2024-01-12"
+      },
+      {
+        "document_id": "cusi-ccnl-sport-2024-2026",
+        "title": "CCNL per i lavoratori dello sport, 12 gennaio 2024 (Confederazione italiana dello sport-Confcommercio, SLC-CGIL, FISASCAT-CISL, UILCOM-UIL), copia CUSI",
+        "kind": "associazione",
+        "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+        "published_on": "2024-01-12",
+        "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca",
+        "pages": [
+          "88",
+          "89",
+          "106"
+        ],
+        "jurisdiction": "it"
       }
     ],
     "extraction": {
@@ -58,44 +72,6 @@
       {
         "kind": "info",
         "text": "CCNL H077 Impianti Sportivi e Palestre, rinnovo 12/01/2024 (vigenza 01/01/2024-31/12/2026). 7 livelli: Q (quadro) + livelli I-VI. Art. 121 CCNL dice 'sei livelli' perche Q e categoria quadro sopra la scala ordinaria. Conglobato confermato da ilccnl.it (contingenza=0.00, terzo elemento=0.00 su 4 livelli). Divisore orario 173 da Art. 120 (40h settimanali)."
-      },
-      {
-        "kind": "simplification",
-        "text": "Art. 116(b) preserves a non-absorbable superminimo for pre-22 December 2015 hires, separate from the declining 14th-derived element in the transitory rule. With the worker's actual monthly balance, pass IndividualElement(code='legacy_superminimo', monthly=<worker balance>, absorbable=False, as_of=None, extra_months=False, tfr_relevant=True). Art. 117 excludes Art. 116(b) from the pay-of-fact base used for the thirteenth; Art. 131 does not exclude recurring pay from TFR. The amount is not printed and cannot be inferred from a scatti schedule. maximum_count=0 stops new accruals only.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "pre_2015_superminimo_missing",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Supply the worker's non-absorbable Art. 116(b) monthly balance as an individual element; absent that worker fact, no agreement-wide amount is available."
-        },
-        "provenance": {
-          "status": "verified",
-          "location": {
-            "source_document": {
-              "document_id": "sport-personal-ccnl",
-              "title": "Sport 2024-2026",
-              "kind": "associazione",
-              "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
-              "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
-            },
-            "page": "88-89, 91, 94",
-            "section": "Arts. 116(b), 117, 125, 131",
-            "quote": "b) superminimo non assorbibile per i dipendenti assunti ante 22/12/2015;"
-          },
-          "transformation": "A worker-supplied non-absorbable monthly superminimo is excluded from the thirteenth by Art. 117 and included in ordinary TFR pay under Art. 131.",
-          "extraction": {
-            "method": "ai",
-            "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-09T11:25:22Z",
-            "verified_at": "2026-11-09T11:25:22Z",
-            "verified_by": "claude-opus-5-5",
-            "verification_status": "verified",
-            "review_id": "2026-11-09-ai-personal-sport"
-          }
-        }
       },
       {
         "kind": "simplification",
@@ -160,45 +136,6 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 116 transitory rule folds the former fourteenth into a separate absorbable monthly superminimo for pre-22 December 2015 hires, decreasing through 31 October 2029; there is no residual separate fourteenth. The agreement has 13 months. The worker's original fourteenth and the dated decreasing/absorption schedule are not printed. IndividualElement(absorbable=True, as_of=<balance date>, extra_months=True, tfr_relevant=True) only reduces on minimum increases and cannot implement an independently declining schedule or determine the worker's balance; even a supplied balance alone is insufficient for future periods.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "pre_2015_fourteenth_missing",
-          "applies_when": {
-            "trigger": "outside_input",
-            "effective_until": "2029-11-01"
-          },
-          "remediation": "Obtain the worker's dated 14th-derived balances and the actual decrease/absorption schedule; model the monthly transition, not a separate fourteenth. No schedule is stated on the cited page."
-        },
-        "provenance": {
-          "status": "verified",
-          "location": {
-            "source_document": {
-              "document_id": "sport-personal-ccnl",
-              "title": "Sport 2024-2026",
-              "kind": "associazione",
-              "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
-              "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
-            },
-            "page": "89",
-            "section": "Art. 116, transitory rule",
-            "quote": "Il superminimo assorbibile, per i dipendenti assunti ante 22/12/2015, è derivante dalla suddivisione dell’importo della 14^ mensilità nelle 13 attualmente previste, ed è erogato mensilmente in forma decrescente fino al 31/10/2029;"
-          },
-          "transformation": "The former fourteenth is a monthly declining element, not another extra month; the source gives neither the worker balance nor the dated decline steps.",
-          "extraction": {
-            "method": "ai",
-            "model": "claude-opus-5-5",
-            "extraction_timestamp": "2026-11-09T11:25:22Z",
-            "verified_at": "2026-11-09T11:25:22Z",
-            "verified_by": "claude-opus-5-5",
-            "verification_status": "verified",
-            "review_id": "2026-11-09-ai-personal-sport"
-          }
-        }
-      },
-      {
-        "kind": "simplification",
         "text": "SICKNESS (Art. 103): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.",
         "capability": "sickness",
         "monetary_impact": "unknown",
@@ -244,6 +181,27 @@
             "review_id": "2026-11-09-ai-weekly-overtime"
           }
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "Tabella C prints 109,45 as the ex-14th of level II from 1 January 2024 to 31 October 2026, while its own una tantum (836,70 = 6 x 139,45) and the next tranche (92,97 = 2/3 of 139,45) follow 139,45: the printed 109,45 is encoded, which pays a level II worker hired before 22/12/2015 30,00 a month less than the other columns imply until 31 October 2026.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "level_ii_ex_fourteenth_print",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "II"
+            ],
+            "effective_until": "2026-11-01"
+          },
+          "remediation": "Obtain the parties' reading of the level II cell of Tabella C (109,45 against the 139,45 its other columns imply) and correct it if it is a misprint."
+        }
+      },
+      {
+        "kind": "info",
+        "text": "Hires before 22/12/2015 (art. 116 and norma transitoria, Tabella C p. 106): SUPERMINIMO_ANTE_2015 (non-absorbable, out of the retribuzione di fatto, 12 payments) and EX_QUATTORDICESIMA_ANTE_2015 (the former 14th, decreasing on 1 November 2026 and 1 January 2028, nothing from 2029), paid to the workers whose employment started by 21 December 2015. A worker whose individual balances differ from the table (more favourable individual rights preserved by the nota a verbale) states them as individual elements. Art. 116 says the transitory element is paid until 31 October 2029, the table prints nothing from 1 January 2029: outside the declared window."
       }
     ]
   },
@@ -394,7 +352,106 @@
           }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [
+        {
+          "code": "SUPERMINIMO_ANTE_2015",
+          "description": "Superminimo non assorbibile dei dipendenti assunti ante 22/12/2015 (art. 116 lett. b, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "47.28"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "in_service_on": "2015-12-21",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cusi-ccnl-sport-2024-2026",
+                "title": "CCNL per i lavoratori dello sport, 12 gennaio 2024 (Confederazione italiana dello sport-Confcommercio, SLC-CGIL, FISASCAT-CISL, UILCOM-UIL), copia CUSI",
+                "kind": "associazione",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "published_on": "2024-01-12",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "106",
+              "section": "Tabella C, 'Tabella maggiorazioni contrattualizzati ante 22-12-2015 e assorbimento in paga base della quattordicesima', row VI (image read on the page)",
+              "quote": "VI [...] Super Minimo non assorbibile per tutta la durata del [contratto] € 47,28"
+            },
+            "transformation": "Monthly for the workers hired before 22 December 2015 (in service on 21 December 2015). Art. 117 leaves the art. 116 b) element out of the retribuzione di fatto, which the 13th is paid on (art. 125): 12 payments. TFR keeps it as a continuous element (art. 2120 c.c.); the CCNL does not exclude it from the TFR base.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-13T22:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-13T22:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-13-ai-impianti-sportivi-sport-table-c"
+            }
+          }
+        },
+        {
+          "code": "EX_QUATTORDICESIMA_ANTE_2015",
+          "description": "Superminimo assorbibile (ex 14ª) dei dipendenti assunti ante 22/12/2015, decrescente (norma transitoria art. 116, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2026-11-01",
+                "value": "102.43"
+              },
+              {
+                "valid_from": "2026-11-01",
+                "valid_until": "2028-01-01",
+                "value": "68.29"
+              },
+              {
+                "valid_from": "2028-01-01",
+                "valid_until": "2029-01-01",
+                "value": "34.14"
+              },
+              {
+                "valid_from": "2029-01-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
+            ]
+          },
+          "in_service_on": "2015-12-21",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cusi-ccnl-sport-2024-2026",
+                "title": "CCNL per i lavoratori dello sport, 12 gennaio 2024 (Confederazione italiana dello sport-Confcommercio, SLC-CGIL, FISASCAT-CISL, UILCOM-UIL), copia CUSI",
+                "kind": "associazione",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "published_on": "2024-01-12",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "106",
+              "section": "Tabella C, 'Tabella maggiorazioni contrattualizzati ante 22-12-2015 e assorbimento in paga base della quattordicesima', row VI (image read on the page)",
+              "quote": "VI [...] Super Minimo assorbibile (ex 14^) 01/01/2024-31/10/2026 € 102,43 [...] 01/11/2026-31/12/2027 € 68,29 [...] 01/01/2028-31/12/2028 € 34,14 [...] 01/01/2029 in poi -"
+            },
+            "transformation": "The 14th of the workers hired before 22 December 2015 split into the 13 payments (norma transitoria art. 116: 'erogato mensilmente in forma decrescente'), on the schedule of Tabella C; a continuous element, so in the retribuzione di fatto, the 13th and the TFR. The dash from 1 January 2029 is encoded as zero.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-13T22:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-13T22:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-13-ai-impianti-sportivi-sport-table-c"
+            }
+          }
+        }
+      ]
     },
     {
       "code": "V",
@@ -542,7 +599,106 @@
           }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [
+        {
+          "code": "SUPERMINIMO_ANTE_2015",
+          "description": "Superminimo non assorbibile dei dipendenti assunti ante 22/12/2015 (art. 116 lett. b, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "50.13"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "in_service_on": "2015-12-21",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cusi-ccnl-sport-2024-2026",
+                "title": "CCNL per i lavoratori dello sport, 12 gennaio 2024 (Confederazione italiana dello sport-Confcommercio, SLC-CGIL, FISASCAT-CISL, UILCOM-UIL), copia CUSI",
+                "kind": "associazione",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "published_on": "2024-01-12",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "106",
+              "section": "Tabella C, 'Tabella maggiorazioni contrattualizzati ante 22-12-2015 e assorbimento in paga base della quattordicesima', row V (image read on the page)",
+              "quote": "V [...] Super Minimo non assorbibile per tutta la durata del [contratto] € 50,13"
+            },
+            "transformation": "Monthly for the workers hired before 22 December 2015 (in service on 21 December 2015). Art. 117 leaves the art. 116 b) element out of the retribuzione di fatto, which the 13th is paid on (art. 125): 12 payments. TFR keeps it as a continuous element (art. 2120 c.c.); the CCNL does not exclude it from the TFR base.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-13T22:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-13T22:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-13-ai-impianti-sportivi-sport-table-c"
+            }
+          }
+        },
+        {
+          "code": "EX_QUATTORDICESIMA_ANTE_2015",
+          "description": "Superminimo assorbibile (ex 14ª) dei dipendenti assunti ante 22/12/2015, decrescente (norma transitoria art. 116, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2026-11-01",
+                "value": "108.61"
+              },
+              {
+                "valid_from": "2026-11-01",
+                "valid_until": "2028-01-01",
+                "value": "72.41"
+              },
+              {
+                "valid_from": "2028-01-01",
+                "valid_until": "2029-01-01",
+                "value": "36.20"
+              },
+              {
+                "valid_from": "2029-01-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
+            ]
+          },
+          "in_service_on": "2015-12-21",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cusi-ccnl-sport-2024-2026",
+                "title": "CCNL per i lavoratori dello sport, 12 gennaio 2024 (Confederazione italiana dello sport-Confcommercio, SLC-CGIL, FISASCAT-CISL, UILCOM-UIL), copia CUSI",
+                "kind": "associazione",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "published_on": "2024-01-12",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "106",
+              "section": "Tabella C, 'Tabella maggiorazioni contrattualizzati ante 22-12-2015 e assorbimento in paga base della quattordicesima', row V (image read on the page)",
+              "quote": "V [...] Super Minimo assorbibile (ex 14^) 01/01/2024-31/10/2026 € 108,61 [...] 01/11/2026-31/12/2027 € 72,41 [...] 01/01/2028-31/12/2028 € 36,20 [...] 01/01/2029 in poi -"
+            },
+            "transformation": "The 14th of the workers hired before 22 December 2015 split into the 13 payments (norma transitoria art. 116: 'erogato mensilmente in forma decrescente'), on the schedule of Tabella C; a continuous element, so in the retribuzione di fatto, the 13th and the TFR. The dash from 1 January 2029 is encoded as zero.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-13T22:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-13T22:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-13-ai-impianti-sportivi-sport-table-c"
+            }
+          }
+        }
+      ]
     },
     {
       "code": "IV",
@@ -690,7 +846,106 @@
           }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [
+        {
+          "code": "SUPERMINIMO_ANTE_2015",
+          "description": "Superminimo non assorbibile dei dipendenti assunti ante 22/12/2015 (art. 116 lett. b, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "53.19"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "in_service_on": "2015-12-21",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cusi-ccnl-sport-2024-2026",
+                "title": "CCNL per i lavoratori dello sport, 12 gennaio 2024 (Confederazione italiana dello sport-Confcommercio, SLC-CGIL, FISASCAT-CISL, UILCOM-UIL), copia CUSI",
+                "kind": "associazione",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "published_on": "2024-01-12",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "106",
+              "section": "Tabella C, 'Tabella maggiorazioni contrattualizzati ante 22-12-2015 e assorbimento in paga base della quattordicesima', row IV (image read on the page)",
+              "quote": "IV [...] Super Minimo non assorbibile per tutta la durata del [contratto] € 53,19"
+            },
+            "transformation": "Monthly for the workers hired before 22 December 2015 (in service on 21 December 2015). Art. 117 leaves the art. 116 b) element out of the retribuzione di fatto, which the 13th is paid on (art. 125): 12 payments. TFR keeps it as a continuous element (art. 2120 c.c.); the CCNL does not exclude it from the TFR base.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-13T22:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-13T22:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-13-ai-impianti-sportivi-sport-table-c"
+            }
+          }
+        },
+        {
+          "code": "EX_QUATTORDICESIMA_ANTE_2015",
+          "description": "Superminimo assorbibile (ex 14ª) dei dipendenti assunti ante 22/12/2015, decrescente (norma transitoria art. 116, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2026-11-01",
+                "value": "115.25"
+              },
+              {
+                "valid_from": "2026-11-01",
+                "valid_until": "2028-01-01",
+                "value": "76.83"
+              },
+              {
+                "valid_from": "2028-01-01",
+                "valid_until": "2029-01-01",
+                "value": "38.42"
+              },
+              {
+                "valid_from": "2029-01-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
+            ]
+          },
+          "in_service_on": "2015-12-21",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cusi-ccnl-sport-2024-2026",
+                "title": "CCNL per i lavoratori dello sport, 12 gennaio 2024 (Confederazione italiana dello sport-Confcommercio, SLC-CGIL, FISASCAT-CISL, UILCOM-UIL), copia CUSI",
+                "kind": "associazione",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "published_on": "2024-01-12",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "106",
+              "section": "Tabella C, 'Tabella maggiorazioni contrattualizzati ante 22-12-2015 e assorbimento in paga base della quattordicesima', row IV (image read on the page)",
+              "quote": "IV [...] Super Minimo assorbibile (ex 14^) 01/01/2024-31/10/2026 € 115,25 [...] 01/11/2026-31/12/2027 € 76,83 [...] 01/01/2028-31/12/2028 € 38,42 [...] 01/01/2029 in poi -"
+            },
+            "transformation": "The 14th of the workers hired before 22 December 2015 split into the 13 payments (norma transitoria art. 116: 'erogato mensilmente in forma decrescente'), on the schedule of Tabella C; a continuous element, so in the retribuzione di fatto, the 13th and the TFR. The dash from 1 January 2029 is encoded as zero.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-13T22:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-13T22:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-13-ai-impianti-sportivi-sport-table-c"
+            }
+          }
+        }
+      ]
     },
     {
       "code": "III",
@@ -838,7 +1093,106 @@
           }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [
+        {
+          "code": "SUPERMINIMO_ANTE_2015",
+          "description": "Superminimo non assorbibile dei dipendenti assunti ante 22/12/2015 (art. 116 lett. b, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "58.01"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "in_service_on": "2015-12-21",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cusi-ccnl-sport-2024-2026",
+                "title": "CCNL per i lavoratori dello sport, 12 gennaio 2024 (Confederazione italiana dello sport-Confcommercio, SLC-CGIL, FISASCAT-CISL, UILCOM-UIL), copia CUSI",
+                "kind": "associazione",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "published_on": "2024-01-12",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "106",
+              "section": "Tabella C, 'Tabella maggiorazioni contrattualizzati ante 22-12-2015 e assorbimento in paga base della quattordicesima', row III (image read on the page)",
+              "quote": "III [...] Super Minimo non assorbibile per tutta la durata del [contratto] € 58,01"
+            },
+            "transformation": "Monthly for the workers hired before 22 December 2015 (in service on 21 December 2015). Art. 117 leaves the art. 116 b) element out of the retribuzione di fatto, which the 13th is paid on (art. 125): 12 payments. TFR keeps it as a continuous element (art. 2120 c.c.); the CCNL does not exclude it from the TFR base.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-13T22:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-13T22:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-13-ai-impianti-sportivi-sport-table-c"
+            }
+          }
+        },
+        {
+          "code": "EX_QUATTORDICESIMA_ANTE_2015",
+          "description": "Superminimo assorbibile (ex 14ª) dei dipendenti assunti ante 22/12/2015, decrescente (norma transitoria art. 116, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2026-11-01",
+                "value": "125.70"
+              },
+              {
+                "valid_from": "2026-11-01",
+                "valid_until": "2028-01-01",
+                "value": "83.80"
+              },
+              {
+                "valid_from": "2028-01-01",
+                "valid_until": "2029-01-01",
+                "value": "41.90"
+              },
+              {
+                "valid_from": "2029-01-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
+            ]
+          },
+          "in_service_on": "2015-12-21",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cusi-ccnl-sport-2024-2026",
+                "title": "CCNL per i lavoratori dello sport, 12 gennaio 2024 (Confederazione italiana dello sport-Confcommercio, SLC-CGIL, FISASCAT-CISL, UILCOM-UIL), copia CUSI",
+                "kind": "associazione",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "published_on": "2024-01-12",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "106",
+              "section": "Tabella C, 'Tabella maggiorazioni contrattualizzati ante 22-12-2015 e assorbimento in paga base della quattordicesima', row III (image read on the page)",
+              "quote": "III [...] Super Minimo assorbibile (ex 14^) 01/01/2024-31/10/2026 € 125,70 [...] 01/11/2026-31/12/2027 € 83,80 [...] 01/01/2028-31/12/2028 € 41,90 [...] 01/01/2029 in poi -"
+            },
+            "transformation": "The 14th of the workers hired before 22 December 2015 split into the 13 payments (norma transitoria art. 116: 'erogato mensilmente in forma decrescente'), on the schedule of Tabella C; a continuous element, so in the retribuzione di fatto, the 13th and the TFR. The dash from 1 January 2029 is encoded as zero.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-13T22:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-13T22:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-13-ai-impianti-sportivi-sport-table-c"
+            }
+          }
+        }
+      ]
     },
     {
       "code": "II",
@@ -986,7 +1340,106 @@
           }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [
+        {
+          "code": "SUPERMINIMO_ANTE_2015",
+          "description": "Superminimo non assorbibile dei dipendenti assunti ante 22/12/2015 (art. 116 lett. b, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "63.36"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "in_service_on": "2015-12-21",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cusi-ccnl-sport-2024-2026",
+                "title": "CCNL per i lavoratori dello sport, 12 gennaio 2024 (Confederazione italiana dello sport-Confcommercio, SLC-CGIL, FISASCAT-CISL, UILCOM-UIL), copia CUSI",
+                "kind": "associazione",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "published_on": "2024-01-12",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "106",
+              "section": "Tabella C, 'Tabella maggiorazioni contrattualizzati ante 22-12-2015 e assorbimento in paga base della quattordicesima', row II (image read on the page)",
+              "quote": "II [...] Super Minimo non assorbibile per tutta la durata del [contratto] € 63,36"
+            },
+            "transformation": "Monthly for the workers hired before 22 December 2015 (in service on 21 December 2015). Art. 117 leaves the art. 116 b) element out of the retribuzione di fatto, which the 13th is paid on (art. 125): 12 payments. TFR keeps it as a continuous element (art. 2120 c.c.); the CCNL does not exclude it from the TFR base.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-13T22:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-13T22:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-13-ai-impianti-sportivi-sport-table-c"
+            }
+          }
+        },
+        {
+          "code": "EX_QUATTORDICESIMA_ANTE_2015",
+          "description": "Superminimo assorbibile (ex 14ª) dei dipendenti assunti ante 22/12/2015, decrescente (norma transitoria art. 116, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2026-11-01",
+                "value": "109.45"
+              },
+              {
+                "valid_from": "2026-11-01",
+                "valid_until": "2028-01-01",
+                "value": "92.97"
+              },
+              {
+                "valid_from": "2028-01-01",
+                "valid_until": "2029-01-01",
+                "value": "46.48"
+              },
+              {
+                "valid_from": "2029-01-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
+            ]
+          },
+          "in_service_on": "2015-12-21",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cusi-ccnl-sport-2024-2026",
+                "title": "CCNL per i lavoratori dello sport, 12 gennaio 2024 (Confederazione italiana dello sport-Confcommercio, SLC-CGIL, FISASCAT-CISL, UILCOM-UIL), copia CUSI",
+                "kind": "associazione",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "published_on": "2024-01-12",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "106",
+              "section": "Tabella C, 'Tabella maggiorazioni contrattualizzati ante 22-12-2015 e assorbimento in paga base della quattordicesima', row II (image read on the page)",
+              "quote": "II [...] Super Minimo assorbibile (ex 14^) 01/01/2024-31/10/2026 € 109,45 [...] 01/11/2026-31/12/2027 € 92,97 [...] 01/01/2028-31/12/2028 € 46,48 [...] 01/01/2029 in poi -"
+            },
+            "transformation": "The 14th of the workers hired before 22 December 2015 split into the 13 payments (norma transitoria art. 116: 'erogato mensilmente in forma decrescente'), on the schedule of Tabella C; a continuous element, so in the retribuzione di fatto, the 13th and the TFR. The dash from 1 January 2029 is encoded as zero.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-13T22:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-13T22:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-13-ai-impianti-sportivi-sport-table-c"
+            }
+          }
+        }
+      ]
     },
     {
       "code": "I",
@@ -1134,7 +1587,106 @@
           }
         ]
       },
-      "fixed_allowances": []
+      "fixed_allowances": [
+        {
+          "code": "SUPERMINIMO_ANTE_2015",
+          "description": "Superminimo non assorbibile dei dipendenti assunti ante 22/12/2015 (art. 116 lett. b, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "70.72"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "in_service_on": "2015-12-21",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cusi-ccnl-sport-2024-2026",
+                "title": "CCNL per i lavoratori dello sport, 12 gennaio 2024 (Confederazione italiana dello sport-Confcommercio, SLC-CGIL, FISASCAT-CISL, UILCOM-UIL), copia CUSI",
+                "kind": "associazione",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "published_on": "2024-01-12",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "106",
+              "section": "Tabella C, 'Tabella maggiorazioni contrattualizzati ante 22-12-2015 e assorbimento in paga base della quattordicesima', row I (image read on the page)",
+              "quote": "I [...] Super Minimo non assorbibile per tutta la durata del [contratto] € 70,72"
+            },
+            "transformation": "Monthly for the workers hired before 22 December 2015 (in service on 21 December 2015). Art. 117 leaves the art. 116 b) element out of the retribuzione di fatto, which the 13th is paid on (art. 125): 12 payments. TFR keeps it as a continuous element (art. 2120 c.c.); the CCNL does not exclude it from the TFR base.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-13T22:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-13T22:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-13-ai-impianti-sportivi-sport-table-c"
+            }
+          }
+        },
+        {
+          "code": "EX_QUATTORDICESIMA_ANTE_2015",
+          "description": "Superminimo assorbibile (ex 14ª) dei dipendenti assunti ante 22/12/2015, decrescente (norma transitoria art. 116, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2026-11-01",
+                "value": "153.23"
+              },
+              {
+                "valid_from": "2026-11-01",
+                "valid_until": "2028-01-01",
+                "value": "102.16"
+              },
+              {
+                "valid_from": "2028-01-01",
+                "valid_until": "2029-01-01",
+                "value": "51.08"
+              },
+              {
+                "valid_from": "2029-01-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
+            ]
+          },
+          "in_service_on": "2015-12-21",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cusi-ccnl-sport-2024-2026",
+                "title": "CCNL per i lavoratori dello sport, 12 gennaio 2024 (Confederazione italiana dello sport-Confcommercio, SLC-CGIL, FISASCAT-CISL, UILCOM-UIL), copia CUSI",
+                "kind": "associazione",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "published_on": "2024-01-12",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "106",
+              "section": "Tabella C, 'Tabella maggiorazioni contrattualizzati ante 22-12-2015 e assorbimento in paga base della quattordicesima', row I (image read on the page)",
+              "quote": "I [...] Super Minimo assorbibile (ex 14^) 01/01/2024-31/10/2026 € 153,23 [...] 01/11/2026-31/12/2027 € 102,16 [...] 01/01/2028-31/12/2028 € 51,08 [...] 01/01/2029 in poi -"
+            },
+            "transformation": "The 14th of the workers hired before 22 December 2015 split into the 13 payments (norma transitoria art. 116: 'erogato mensilmente in forma decrescente'), on the schedule of Tabella C; a continuous element, so in the retribuzione di fatto, the 13th and the TFR. The dash from 1 January 2029 is encoded as zero.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-13T22:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-13T22:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-13-ai-impianti-sportivi-sport-table-c"
+            }
+          }
+        }
+      ]
     },
     {
       "code": "Q",
@@ -1339,6 +1891,104 @@
               "effective_from": "2024-01-01"
             }
           }
+        },
+        {
+          "code": "SUPERMINIMO_ANTE_2015",
+          "description": "Superminimo non assorbibile dei dipendenti assunti ante 22/12/2015 (art. 116 lett. b, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "74.24"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "in_service_on": "2015-12-21",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cusi-ccnl-sport-2024-2026",
+                "title": "CCNL per i lavoratori dello sport, 12 gennaio 2024 (Confederazione italiana dello sport-Confcommercio, SLC-CGIL, FISASCAT-CISL, UILCOM-UIL), copia CUSI",
+                "kind": "associazione",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "published_on": "2024-01-12",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "106",
+              "section": "Tabella C, 'Tabella maggiorazioni contrattualizzati ante 22-12-2015 e assorbimento in paga base della quattordicesima', row QUADRI (image read on the page)",
+              "quote": "QUADRI [...] Super Minimo non assorbibile per tutta la durata del [contratto] € 74,24"
+            },
+            "transformation": "Monthly for the workers hired before 22 December 2015 (in service on 21 December 2015). Art. 117 leaves the art. 116 b) element out of the retribuzione di fatto, which the 13th is paid on (art. 125): 12 payments. TFR keeps it as a continuous element (art. 2120 c.c.); the CCNL does not exclude it from the TFR base.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-13T22:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-13T22:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-13-ai-impianti-sportivi-sport-table-c"
+            }
+          }
+        },
+        {
+          "code": "EX_QUATTORDICESIMA_ANTE_2015",
+          "description": "Superminimo assorbibile (ex 14ª) dei dipendenti assunti ante 22/12/2015, decrescente (norma transitoria art. 116, Tabella C)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2026-11-01",
+                "value": "160.85"
+              },
+              {
+                "valid_from": "2026-11-01",
+                "valid_until": "2028-01-01",
+                "value": "107.23"
+              },
+              {
+                "valid_from": "2028-01-01",
+                "valid_until": "2029-01-01",
+                "value": "53.62"
+              },
+              {
+                "valid_from": "2029-01-01",
+                "valid_until": null,
+                "value": "0.00"
+              }
+            ]
+          },
+          "in_service_on": "2015-12-21",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "cusi-ccnl-sport-2024-2026",
+                "title": "CCNL per i lavoratori dello sport, 12 gennaio 2024 (Confederazione italiana dello sport-Confcommercio, SLC-CGIL, FISASCAT-CISL, UILCOM-UIL), copia CUSI",
+                "kind": "associazione",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "published_on": "2024-01-12",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "106",
+              "section": "Tabella C, 'Tabella maggiorazioni contrattualizzati ante 22-12-2015 e assorbimento in paga base della quattordicesima', row QUADRI (image read on the page)",
+              "quote": "QUADRI [...] Super Minimo assorbibile (ex 14^) 01/01/2024-31/10/2026 € 160,85 [...] 01/11/2026-31/12/2027 € 107,23 [...] 01/01/2028-31/12/2028 € 53,62 [...] 01/01/2029 in poi -"
+            },
+            "transformation": "The 14th of the workers hired before 22 December 2015 split into the 13 payments (norma transitoria art. 116: 'erogato mensilmente in forma decrescente'), on the schedule of Tabella C; a continuous element, so in the retribuzione di fatto, the 13th and the TFR. The dash from 1 January 2029 is encoded as zero.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-13T22:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-13T22:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-13-ai-impianti-sportivi-sport-table-c"
+            }
+          }
         }
       ]
     }
@@ -1504,7 +2154,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "e76291e824610931a08eb4c9eda4f95c525e5bf7306f4c72914a8ef3016fa87b",
+    "source_hash": "6746fb7746fed547fde2d2cddacc2ebd674819cb14db45786dc16ebad241f26c",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -2408,6 +3058,28 @@
         "checked": [
           "coverage.notes",
           "work_rules.time_supplements.overtime_bands"
+        ]
+      },
+      {
+        "id": "2026-11-13-ai-impianti-sportivi-sport-table-c",
+        "date": "2026-11-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 116-117 (pp. 88-89, text layer) and Tabella C (p. 106, image) of the signed text of 12 January 2024.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+            "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+          }
+        ],
+        "findings": [
+          "Added the two pre-2015 elements by level from Tabella C; the limitations that said no schedule was printed are removed; the level II cell of 2024-2026 (109,45) conflicts with the other columns and is kept as a limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.*.fixed_allowances.SUPERMINIMO_ANTE_2015",
+          "levels.*.fixed_allowances.EX_QUATTORDICESIMA_ANTE_2015"
         ]
       }
     ]

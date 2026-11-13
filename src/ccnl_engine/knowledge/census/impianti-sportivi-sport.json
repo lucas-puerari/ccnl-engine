@@ -35,6 +35,22 @@
       }
     },
     {
+      "id": "level_ii_ex_fourteenth_print",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Tabella C prints 109,45 as the ex-14th of level II from 1 January 2024 to 31 October 2026, while its own una tantum (836,70 = 6 x 139,45) and the next tranche (92,97 = 2/3 of 139,45) follow 139,45: the printed 109,45 is encoded, which pays a level II worker hired before 22/12/2015 30,00 a month less than the other columns imply until 31 October 2026.",
+      "calculation": "ccnl/impianti-sportivi-sport:coverage.notes",
+      "state": "absent",
+      "remediation": "Obtain the parties' reading of the level II cell of Tabella C (109,45 against the 139,45 its other columns imply) and correct it if it is a misprint.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "impianti-sportivi-sport/level_ii_ex_fourteenth_print"
+        ]
+      }
+    },
+    {
       "id": "level_v_first_semester_overpaid",
       "institute": "base_salary",
       "variant": "apprentice",
@@ -271,38 +287,6 @@
       "links": {
         "limitations": [
           "personal_withholding_same_kind"
-        ]
-      }
-    },
-    {
-      "id": "pre_2015_fourteenth_missing",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 116 transitory rule folds the former fourteenth into a separate absorbable monthly superminimo for pre-22 December 2015 hires, decreasing through 31 October 2029; there is no residual separate fourteenth. The agreement has 13 months. The worker's original fourteenth and the dated decreasing/absorption schedule are not printed. IndividualElement(absorbable=True, as_of=<balance date>, extra_months=True, tfr_relevant=True) only reduces on minimum increases and cannot implement an independently declining schedule or determine the worker's balance; even a supplied balance alone is insufficient for future periods.",
-      "calculation": "ccnl/impianti-sportivi-sport:coverage.notes",
-      "state": "absent",
-      "remediation": "Obtain the worker's dated 14th-derived balances and the actual decrease/absorption schedule; model the monthly transition, not a separate fourteenth. No schedule is stated on the cited page.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "impianti-sportivi-sport/pre_2015_fourteenth_missing"
-        ]
-      }
-    },
-    {
-      "id": "pre_2015_superminimo_missing",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 116(b) preserves a non-absorbable superminimo for pre-22 December 2015 hires, separate from the declining 14th-derived element in the transitory rule. With the worker's actual monthly balance, pass IndividualElement(code='legacy_superminimo', monthly=<worker balance>, absorbable=False, as_of=None, extra_months=False, tfr_relevant=True). Art. 117 excludes Art. 116(b) from the pay-of-fact base used for the thirteenth; Art. 131 does not exclude recurring pay from TFR. The amount is not printed and cannot be inferred from a scatti schedule. maximum_count=0 stops new accruals only.",
-      "calculation": "ccnl/impianti-sportivi-sport:coverage.notes",
-      "state": "absent",
-      "remediation": "Supply the worker's non-absorbable Art. 116(b) monthly balance as an individual element; absent that worker fact, no agreement-wide amount is available.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "impianti-sportivi-sport/pre_2015_superminimo_missing"
         ]
       }
     },

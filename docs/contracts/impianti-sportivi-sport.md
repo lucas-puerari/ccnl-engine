@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, overtime, sickness |
 
-8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 28 verified / 4 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 42 verified / 4 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-01-12 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-13 |
 | **Latest salary tranche** | 2026-07-01 |
 
 ## Review history
@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 116(b) balance versus 14th-derived declining amount, pp. 88-89, 91, 94. | confirmed | — |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 107 and the patron saint holiday list, cached 2024 PDF p. 85. | confirmed | Sickness and injury holiday targets already include the stated patron saint day; the local holiday limitation is stale. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 83 weekly overtime thresholds against the cached PDF page 76. | corrected | Both bands were already present; weekly hours preceding an event were not available to the resolver. |
+| 2026-11-13 | claude-opus-5-5 (ai) | Artt. 116-117 (pp. 88-89, text layer) and Tabella C (p. 106, image) of the signed text of 12 January 2024. | corrected | Added the two pre-2015 elements by level from Tabella C; the limitations that said no schedule was printed are removed; the level II cell of 2024-2026 (109,45) conflicts with the other columns and is kept as a limitation. |
 
 ## Salary table
 
@@ -107,13 +108,6 @@ Destination levels: `VI`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "impianti-sportivi-sport/pre_2015_superminimo_missing · base_salary · impact yes · open"
-    Art. 116(b) preserves a non-absorbable superminimo for pre-22 December 2015 hires, separate from the declining 14th-derived element in the transitory rule. With the worker's actual monthly balance, pass IndividualElement(code='legacy_superminimo', monthly=<worker balance>, absorbable=False, as_of=None, extra_months=False, tfr_relevant=True). Art. 117 excludes Art. 116(b) from the pay-of-fact base used for the thirteenth; Art. 131 does not exclude recurring pay from TFR. The amount is not printed and cannot be inferred from a scatti schedule. maximum_count=0 stops new accruals only.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Supply the worker's non-absorbable Art. 116(b) monthly balance as an individual element; absent that worker fact, no agreement-wide amount is available.
-
 !!! warning "impianti-sportivi-sport/level_v_first_semester_overpaid · base_salary · impact yes · open"
     SIMPLIFICATION: Apprendistato livello V (Art. 30). Il livello V ha ordine 2 e il livello a ordine 0 non esiste; il primo semestre a 2 livelli sotto non e applicabile. SEMPLIFICAZIONE: primo semestre a 1 livello sotto (VI). L'apprendista percepisce piu del previsto contrattualmente nella prima meta. L'intera durata (36 mesi) e al livello VI.
 
@@ -142,13 +136,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: art. 84 covers ordinary night work only; LAVORO_NOTTURNO is not an overtime band, read on 2026-11-05.
 
-!!! warning "impianti-sportivi-sport/pre_2015_fourteenth_missing · base_salary · impact yes · open"
-    Art. 116 transitory rule folds the former fourteenth into a separate absorbable monthly superminimo for pre-22 December 2015 hires, decreasing through 31 October 2029; there is no residual separate fourteenth. The agreement has 13 months. The worker's original fourteenth and the dated decreasing/absorption schedule are not printed. IndividualElement(absorbable=True, as_of=<balance date>, extra_months=True, tfr_relevant=True) only reduces on minimum increases and cannot implement an independently declining schedule or determine the worker's balance; even a supplied balance alone is insufficient for future periods.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Obtain the worker's dated 14th-derived balances and the actual decrease/absorption schedule; model the monthly transition, not a separate fourteenth. No schedule is stated on the cited page.
-
 !!! warning "impianti-sportivi-sport/sickness_net_basis · sickness · impact unknown · open"
     SICKNESS (Art. 103): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.
 
@@ -162,6 +149,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Supply OvertimeEvent.weekly_hours_before, or separate the hours and supply each tier's multiplier.
+
+!!! warning "impianti-sportivi-sport/level_ii_ex_fourteenth_print · base_salary · impact yes · open"
+    Tabella C prints 109,45 as the ex-14th of level II from 1 January 2024 to 31 October 2026, while its own una tantum (836,70 = 6 x 139,45) and the next tranche (92,97 = 2/3 of 139,45) follow 139,45: the printed 109,45 is encoded, which pays a level II worker hired before 22/12/2015 30,00 a month less than the other columns imply until 31 October 2026.
+
+    **Applies when:** `base_salary` applies; level in II; before 2026-11-01.
+
+    **Remediation:** Obtain the parties' reading of the level II cell of Tabella C (109,45 against the 139,45 its other columns imply) and correct it if it is a misprint.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -331,9 +325,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 | Tabella retributiva completa 4 tranche (01/01/2024, 01/07/2024, 01/07/2025, 01/07/2026). Livelli Q–VI. Retribuzione conglobata (contingenza=0, terzo elemento=0). 13 mensilità (tredicesima). Modello confermato da ilccnl.it e kitech.it. | tabella_retributiva | 2024-01-12 | [↗](https://www.sindacato.it/il-ccnl-impianti-sportivi-o-lavoratori-dello-sport/) |
 | CUSI PDF 2024-2026. Art. 116: retribuzione normale conglobata (componente a). Art. 119: divisore giornaliero 26. Art. 120: divisore orario 173 (40h settimanali) o 195 (45h settimanali) — solo 173 modellato. Art. 121: tabella livelli I–VI più quadro Q. Art. 125: tredicesima mensilità. Art. 30: apprendistato sotto-inquadramento (2 livelli primo semestre, 1 livello secondo semestre). Art. 37: durate apprendistato II–VI. Art. 83: straordinario 15%/20%/30%/50%. Art. 84: notturno ordinario 10%. Art. 85: ferie 26 giorni lavorativi. Art. 102: comporto 180 giorni. Art. 103: integrazione malattia 100%/75%/100%. | altro | 2024-01-12 | [↗](https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf) |
 | Kitech tabella 01/07/2026: conferma IND_FUN Q = EUR 60.00 (13 mensilità). Scatto anzianità da EUR 21.69 (VI) a EUR 28.92 (Q) — transitional amounts ante-22/12/2015; no new scatti under 2024 CCNL. | tabella_retributiva | 2024-01-12 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=13) |
+| CCNL per i lavoratori dello sport, 12 gennaio 2024 (Confederazione italiana dello sport-Confcommercio, SLC-CGIL, FISASCAT-CISL, UILCOM-UIL), copia CUSI | associazione | 2024-01-12 | [↗](https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf) |
 
 ??? note "Coverage notes"
     CCNL H077 Impianti Sportivi e Palestre, rinnovo 12/01/2024 (vigenza 01/01/2024-31/12/2026). 7 livelli: Q (quadro) + livelli I-VI. Art. 121 CCNL dice 'sei livelli' perche Q e categoria quadro sopra la scala ordinaria. Conglobato confermato da ilccnl.it (contingenza=0.00, terzo elemento=0.00 su 4 livelli). Divisore orario 173 da Art. 120 (40h settimanali).
+    
+    Hires before 22/12/2015 (art. 116 and norma transitoria, Tabella C p. 106): SUPERMINIMO_ANTE_2015 (non-absorbable, out of the retribuzione di fatto, 12 payments) and EX_QUATTORDICESIMA_ANTE_2015 (the former 14th, decreasing on 1 November 2026 and 1 January 2028, nothing from 2029), paid to the workers whose employment started by 21 December 2015. A worker whose individual balances differ from the table (more favourable individual rights preserved by the nota a verbale) states them as individual elements. Art. 116 says the transitory element is paid until 31 October 2029, the table prints nothing from 1 January 2029: outside the declared window.
     
 
 ## Raw data
