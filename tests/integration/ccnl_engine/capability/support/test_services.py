@@ -80,12 +80,7 @@ def test_bundled_missing_notes_and_limitations() -> None:
             "maternity_leave",
             "workplace_injury",
         ],
-        "ortofrutticoli-agrumari": [
-            "base_salary",
-            "leave",
-            "seniority",
-            "sickness",
-        ],
+        "ortofrutticoli-agrumari": ["leave"],
     }
 
 
@@ -94,7 +89,6 @@ def test_bundled_missing_notes_and_limitations() -> None:
     [
         ("impianti-sportivi-sport", ("sickness",)),
         ("concia-unic", ("overtime",)),
-        ("ortofrutticoli-agrumari", ("sickness",)),
         (
             "pulizia-artigianato-confartigianato",
             ("holiday_work", "night_work"),

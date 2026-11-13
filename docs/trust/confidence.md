@@ -84,7 +84,7 @@ does not report its gap as well.
 
 A `derived` rule (taken from a cited document location, with no recorded
 human check) lowers the evidence axis but does not block on its own. Only
-<!-- trust:rules-verified -->5251<!-- /trust:rules-verified --> payable rules of
+<!-- trust:rules-verified -->5254<!-- /trust:rules-verified --> payable rules of
 the bundle are `verified`, so requiring `verified` would block almost every
 result; the evidence axis keeps the difference visible instead.
 
@@ -108,7 +108,7 @@ residence and empty family are stated, is not payable:
   destination of a company under the Tesoreria rule;
 - a rule the run executes is `assumed`: the municipal surtax of a comune with
   no delibera for the year and, for most CCNLs, the base salary, since
-  <!-- trust:extra-months-assumed -->94 of 136<!-- /trust:extra-months-assumed -->
+  <!-- trust:extra-months-assumed -->93 of 136<!-- /trust:extra-months-assumed -->
   CCNLs cite no clause for their number of monthly payments;
 - for some CCNLs, an `open_limitation` that concerns every ordinary month (an
   INPS rate reused from another sector, a salary table read from a proxy
@@ -203,7 +203,7 @@ is `False` on its closing state). See
 ## Model limitations
 
 A known simplification of the model is data, not a comment. The registry has
-<!-- trust:limitations-total -->464<!-- /trust:limitations-total --> `ModelLimitation`
+<!-- trust:limitations-total -->460<!-- /trust:limitations-total --> `ModelLimitation`
 entries: one per `simplification` note of a CCNL file that can move an
 amount, and <!-- trust:limitations-engine -->30<!-- /trust:limitations-engine -->
 engine limitations of code paths several CCNLs share
@@ -220,11 +220,11 @@ limits, the `rulesets` and dates it affects, a `monetary_impact` (`yes`,
 `no`, `unknown`), a `status` (`open`, `resolved`), its `source` and a
 `remediation`.
 
-The <!-- trust:simplification-notes -->488<!-- /trust:simplification-notes -->
+The <!-- trust:simplification-notes -->484<!-- /trust:simplification-notes -->
 simplification notes of the bundle each state their impact on what the engine
 computes from the bundle:
 <!-- trust:simplification-yes -->247<!-- /trust:simplification-yes --> `yes`,
-<!-- trust:simplification-unknown -->187<!-- /trust:simplification-unknown --> `unknown`
+<!-- trust:simplification-unknown -->183<!-- /trust:simplification-unknown --> `unknown`
 and <!-- trust:simplification-no -->54<!-- /trust:simplification-no --> `no` (the
 engine refuses the case, or takes the value from the caller). A file whose
 note can move an amount without declaring a limitation does not load, so the

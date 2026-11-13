@@ -334,13 +334,13 @@ class TestLoadOrtofrutticoliAgrumari:
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(173)
 
     def test_ortofrutticoli_agrumari_level_q_ind_fun(self) -> None:
-        """Level Q has IND_FUN allowance of 154.94 EUR/month."""
+        """Level Q has IND_FUN of 154.93 EUR/month (art. 30, CNEL text p. 31)."""
         ccnl = load_ccnl("ortofrutticoli-agrumari")
         lv = ccnl.level_by_code("Q")
         codes = {fa.code for fa in lv.fixed_allowances}
         assert "IND_FUN" in codes
         ind = next(fa for fa in lv.fixed_allowances if fa.code == "IND_FUN")
-        assert ind.monthly.value_at(date(2026, 6, 1)) == Decimal("154.94")
+        assert ind.monthly.value_at(date(2026, 6, 1)) == Decimal("154.93")
 
     def test_ortofrutticoli_agrumari_tax_sector(self) -> None:
         """Tax sector is terziario."""

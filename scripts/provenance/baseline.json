@@ -251,12 +251,9 @@
       "additional_months[2025-01-01]": "assumed"
     },
     "agreement/ortofrutticoli-agrumari.json": {
-      "additional_months[2024-01-01]": "assumed",
-      "levels[Q].fixed_allowances[IND_FUN]": "assumed",
       "overtime_bands[OT_FESTIVO]": "assumed",
       "overtime_bands[OT_FESTIVO_NOTTURNO]": "assumed",
       "overtime_bands[OT_NOTTURNO]": "assumed",
-      "seniority_increments": "assumed",
       "work_rules.absence_rules": "assumed"
     },
     "agreement/panificazione-assipan.json": {
@@ -1059,12 +1056,6 @@
     ],
     "agreement/organizzazioni-allevatori-aia.json": [
       "organizzazioni-allevatori-aia/apprentice_inps_rates_unsourced"
-    ],
-    "agreement/ortofrutticoli-agrumari.json": [
-      "ortofrutticoli-agrumari/assumed_sickness_integration_rates",
-      "ortofrutticoli-agrumari/ind_fun_assumed_constant",
-      "ortofrutticoli-agrumari/ind_fun_fourteen_months",
-      "ortofrutticoli-agrumari/seniority_assumed_constant"
     ],
     "agreement/panificazione-artigianato-confartigianato.json": [
       "panificazione-artigianato-confartigianato/apprentice_inps_rates_unsourced",
