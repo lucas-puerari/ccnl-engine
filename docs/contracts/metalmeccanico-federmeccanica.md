@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-11-22 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-13 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -82,6 +82,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Art. 5 sez. IV tit. III (PDF pp. 164-165), patron saint day of letter c against the sickness and injury holiday target, by a separate model session. | confirmed | Confirmed: letter c (patron of the place of work) is in the absence top-up of p. 165, letter a is not.<br>Confirmed: a stated patron_saint_day adds one weekday holiday; a day coinciding with a national holiday or a Sunday adds nothing.<br>Kept as limitation: the substitute holiday agreed in place of the patron is not modelled. |
 | 2026-11-09 | gpt-6-sol (ai) | Part-time supplementary work (Sez. IV Tit. I C, PDF pp. 57-58), by a separate model session. | confirmed | Confirmed: 10% up to 50% of the normal annual part-time hours and 20% beyond, only up to 40 weekly hours, on the overtime-premium pay elements.<br>Confirmed: the engine derives only the 10% band; the 20% excess is a caller-supplied multiplier, and the annual count is outside the engine.<br>Flagged and added to the limitation: the elastic clauses (10% and 15%) and the conditions of supplementary work. |
 | 2026-11-10 | gpt-6-sol (ai) | Tit. IV art. 3 hourly pay and the conto ore deadline: expired PAR paid at the monthly pay over 173 plus the stated hourly elements. | confirmed | CONFIRMED: the hourly pay of the clause includes the hourly elements (incentives, hourly allowances, piecework) and the expired PAR are paid at it; divisor 173.<br>CONFIRMED: quotes verbatim; December 2027 example 10 x (2271.01 / 173 + 2.50) = 156.27 and an independent case recomputed.<br>CONFIRMED: payout at termination before the deadline is not regulated by the cited passages and stays a limitation. |
+| 2026-11-13 | gpt-6-sol (ai) | PAR of the Federmeccanica renewal of 22 November 2025 (scanned pp. 8-9, 33) against the settore siderurgico tier, by a separate model session. | flagged | Confirmed: 124 hours in place of the 104 for the settore siderurgico ('sono invece previsti [...] 124 ore'), with the same 32 hours of ex festività; the sector is that of the plants of Disciplina generale pp. 8-9.<br>Confirmed: the 8 hours of the turnisti on 15 or more weekly shifts including the night shift, the weekend wording struck out by the renewal; the 2027 and 2028 shift extras do not change the base tiers.<br>Flagged and corrected: the siderurgico turnisti have the 8 hours paid with the 13th, not accrued; the historical sottosettore hour needs service at 31 December 2012. |
 
 ## Salary table
 
@@ -163,11 +164,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** State the pay above the CCNL of the year before as a fact of the run, or pass the element as a bonus and leave the employer flag true.
 
 !!! warning "metalmeccanico-federmeccanica/par_sector_and_shift_hours · leave · impact yes · open"
-    LEAVE, PAR (Sez. Quarta, Titolo III, Art. 5): 124 hours in the settore siderurgico, 8 more hours for the turnisti on 15 or more shifts a week with night or weekend work and for the workers of the sottosettori of the accordo 1 September 1983 in force at 31 December 2012. The engine accrues the 104 hours of the generalità.
+    LEAVE, PAR (Sez. Quarta, Titolo III, Art. 5, renewal of 22 November 2025 p. 33): the settore siderurgico (EmployerProfile.subsector steel) accrues 124 hours in place of 104, and the turnisti on 15 or more weekly shifts including the night shift (Employment.qualifying_shifts) 8 hours more. Not modelled: the 8 hours of the siderurgico turnisti, paid with the 13th; the further 4 hours from 2027 at 18 or more weekly shifts and 4 more from 2028 at 21 for the non siderurgico workers; and the hour of the sottosettori of the accordo of 16 July 1979 for the workers in service at 31 December 2012.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add employment facts for the settore siderurgico, the shift pattern and the sottosettori.
+    **Remediation:** Add employment facts for 18 and 21 weekly shifts with night work and for the historical sottosettore, accrue their hours, and pay the siderurgico shift hours with the 13th.
 
 !!! warning "metalmeccanico-federmeccanica/par_conto_ore_hourly_elements · leave · impact yes · open"
     LEAVE, CONTO ORE: the hourly elements of Tit. IV art. 3 are included in the PAR payout at expiry when the caller states hourly_pay_elements (zero confirms none; missing blocks payment). PAR left when employment ends before expiry remain unpaid: Tit. III art. 5 specifies liquidation at expiry but no termination basis.
@@ -358,6 +359,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf | altro | 2025-11-22 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf) |
 | https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf | altro | 2026-06-16 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf) |
 | https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf | altro | 2021-02-05 | [↗](https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf) |
+| Ipotesi di accordo di rinnovo del CCNL Federmeccanica-Assistal, 22 novembre 2025 (scansione firmata, UILM) | associazione | 2025-11-22 | [↗](https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf) |
 
 ??? note "Coverage notes"
     CONSOLIDATED MINIMUMS: the values in base_salary are the 'consolidated table minimums' of the CCNL Federmeccanica-Assistal, which incorporate base pay, contingenza, and EDR into a single figure (Federmeccanica practice since 2001). For this reason fixed_allowances is empty for all levels.

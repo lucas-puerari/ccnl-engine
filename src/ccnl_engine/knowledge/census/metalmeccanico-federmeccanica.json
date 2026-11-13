@@ -183,10 +183,10 @@
       "institute": "leave",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "LEAVE, PAR (Sez. Quarta, Titolo III, Art. 5): 124 hours in the settore siderurgico, 8 more hours for the turnisti on 15 or more shifts a week with night or weekend work and for the workers of the sottosettori of the accordo 1 September 1983 in force at 31 December 2012. The engine accrues the 104 hours of the generalità.",
+      "rule": "LEAVE, PAR (Sez. Quarta, Titolo III, Art. 5, renewal of 22 November 2025 p. 33): the settore siderurgico (EmployerProfile.subsector steel) accrues 124 hours in place of 104, and the turnisti on 15 or more weekly shifts including the night shift (Employment.qualifying_shifts) 8 hours more. Not modelled: the 8 hours of the siderurgico turnisti, paid with the 13th; the further 4 hours from 2027 at 18 or more weekly shifts and 4 more from 2028 at 21 for the non siderurgico workers; and the hour of the sottosettori of the accordo of 16 July 1979 for the workers in service at 31 December 2012.",
       "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
       "state": "absent",
-      "remediation": "Add employment facts for the settore siderurgico, the shift pattern and the sottosettori.",
+      "remediation": "Add employment facts for 18 and 21 weekly shifts with night work and for the historical sottosettore, accrue their hours, and pay the siderurgico shift hours with the 13th.",
       "origin": "seeded",
       "links": {
         "limitations": [
