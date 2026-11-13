@@ -31,7 +31,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/acconciatura-estetica-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "c914ecb5492faa75cab04f7fc600fa022390bdd2b22a64dba14b997b5afe43dc",
+      "source_hash": "52f43e4d787af39faf195f4a83adafce0d72b9186fa79895cc01b004e8c65493",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/acconciatura-estetica-confartigianato.json.gz"
@@ -2421,7 +2421,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "6953ef1f992f231511660a85d7b32f25ade8a97a0eb7188663e1b4278b094c4c",
+      "source_hash": "c302109b28ce63fa51dcde1ff54c52dc91b6e3e743725d65ad1825ae6018a17e",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/acconciatura-estetica-confartigianato.json.gz",

@@ -139,7 +139,7 @@ never grow.
 
 | # | CCNL | Core | Limits | Rules (v / d / a / m) |
 |---|---|:---:|---|---|
-| 1 | [CCNL Acconciatura ed Estetica — Confartigianato/CNA](acconciatura-estetica-confartigianato.md) | ⚠️ | base_salary, inps_employer | 21 / 9 / 1 / 0 |
+| 1 | [CCNL Acconciatura ed Estetica — Confartigianato/CNA](acconciatura-estetica-confartigianato.md) | ⚠️ | inps_employer | 21 / 9 / 1 / 0 |
 | 2 | [CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi](agenzie-marittime-i481.md) | ⚠️ | base_salary | 1 / 36 / 1 / 0 |
 | 3 | [CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio](agenzie-viaggio-fiavet.md) | ✅ | — | 10 / 59 / 1 / 0 |
 | 4 | [CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)](alimentaristi-cooperative-e016.md) | ✅ | — | 42 / 29 / 1 / 0 |

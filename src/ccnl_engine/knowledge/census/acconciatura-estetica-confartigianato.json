@@ -67,38 +67,6 @@
       }
     },
     {
-      "id": "gruppo_1_reduced_duration",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "APPRENTICESHIP DURATION (TAB.3): the gruppo_1 track of the file reaches 100% at month 54 (95% from month 48), the duration of the 6-month reduction for post-secondary qualification holders, while the note first said the standard 60-month table applies. Which table the data hold, and the other one, are to be read again in TAB.3 (review of 2026-10-30).",
-      "calculation": "ccnl/acconciatura-estetica-confartigianato:coverage.notes",
-      "state": "absent",
-      "remediation": "Read TAB.3, keep the standard table on gruppo_1 and add the 54-month table for post-secondary qualification holders with a request field to select it.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "acconciatura-estetica-confartigianato/gruppo_1_reduced_duration"
-        ]
-      }
-    },
-    {
-      "id": "gruppo_2_semester_mapping",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "APPRENTICESHIP Gruppo 2 (manicure/pedicure → level 3, max 18 months, 70%/80%/100%), track 'gruppo_2': the three percentages are mapped to 6-month periods (0-6, 6-12, 12-18). Select with Apprentice(track='gruppo_2'); without a track name level 3 is ambiguous.",
-      "calculation": "ccnl/acconciatura-estetica-confartigianato:coverage.notes",
-      "state": "unverified",
-      "remediation": "Confirm from the accordo tables that the 70/80/100% steps of Gruppo 2 run on 6-month periods.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "acconciatura-estetica-confartigianato/gruppo_2_semester_mapping"
-        ]
-      }
-    },
-    {
       "id": "inps_sector_rates_unsourced",
       "institute": "inps_employer",
       "variant": "all",

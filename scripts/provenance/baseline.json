@@ -633,8 +633,6 @@
   "open_limitations": {
     "agreement/acconciatura-estetica-confartigianato.json": [
       "acconciatura-estetica-confartigianato/apprentice_inps_rates_unsourced",
-      "acconciatura-estetica-confartigianato/gruppo_1_reduced_duration",
-      "acconciatura-estetica-confartigianato/gruppo_2_semester_mapping",
       "acconciatura-estetica-confartigianato/inps_sector_rates_unsourced"
     ],
     "agreement/afam-aran.json": [
