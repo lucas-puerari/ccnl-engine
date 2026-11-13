@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, seniority, una_tantum |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -130,13 +130,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Provide the covered months of effective work for this payment and count only those months when prorating each installment.
-
-!!! warning "noleggio-autobus-conducente-anav/salary_tables_from_proxy · base_salary · impact unknown · open"
-    SIMPLIFICATION: salary tables sourced from kitech.it (dati proxy, verificare con testo ufficiale ANAV). No official CNEL PDF or ANAV archive source was found during research.
-
-    **Applies when:** `base_salary` applies.
-
-    **Remediation:** Verify the salary tables against the official ANAV CCNL text.
 
 !!! warning "noleggio-autobus-conducente-anav/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
@@ -335,6 +328,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     HOURLY DIVISOR: 173, consistent with 40h/week x 52/12 = 173.33 convention; ADDITIONAL MONTHS: 14 (tredicesima + quattordicesima).
     
     TAX SECTOR: terziario (same classification as IC35 autorimesse; bus rental companies fall under ATECO division 49 which uses terziario INPS rates).
+    
+    SALARY TABLES: the minimums of October 2023 are those of the signed CCNL of 6 October 2022 (allegato 5, PDF p. 83; the same column of ANAV's Allegato n. 2 of 7 October 2022); the renewal of 23 May 2025 (ANAV, signed, pp. 1-2) adds 60 EUR at C2 from July 2025 and 100 EUR from August 2026, re-proportioned by the parameters (100/134 for C4 and so on). The agreement does not state the rounding of the re-proportioned amounts: the file rounds the whole increase once, as the 2022 Allegato n. 2 adds the aumento a regime to the old tabellare (a cent may differ from rounding each tranche, e.g. C4 915,65 against 915,66).
     
 
 ## Raw data

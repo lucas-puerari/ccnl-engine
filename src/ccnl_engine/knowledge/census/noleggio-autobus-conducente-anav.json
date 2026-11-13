@@ -351,22 +351,6 @@
       }
     },
     {
-      "id": "salary_tables_from_proxy",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: salary tables sourced from kitech.it (dati proxy, verificare con testo ufficiale ANAV). No official CNEL PDF or ANAV archive source was found during research.",
-      "calculation": "ccnl/noleggio-autobus-conducente-anav:coverage.notes",
-      "state": "unverified",
-      "remediation": "Verify the salary tables against the official ANAV CCNL text.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "noleggio-autobus-conducente-anav/salary_tables_from_proxy"
-        ]
-      }
-    },
-    {
       "id": "seniority_from_ic35",
       "institute": "seniority",
       "variant": "all",

@@ -64,17 +64,8 @@
         "text": "TRANCHE DATES: 01.03.2024, 01.09.2024, 01.05.2025, 01.10.2025, 01.07.2026. Values from rinnovo 20.12.2024 (retroactive application). Fonte: lexplain.it (5 tranches, all 12 Grafici levels) and kitech.it (componenti breakdown July 2026)."
       },
       {
-        "kind": "simplification",
-        "text": "SENIORITY: 5 scatti biennali (24 months), amounts from kitech.it July 2026. The scatto amounts of the previous rinnovo were not recovered: each amount series declares a 'missing' gap from 2024-03-01 to 2026-07-01. A run before July 2026 with increments due raises MissingRuleError; a run with no increment due does not read the amount.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "pre_july_2026_amounts_missing",
-          "applies_when": {
-            "effective_until": "2026-07-01"
-          },
-          "remediation": "Recover the scatto amounts of the previous rinnovo for periods before July 2026."
-        }
+        "kind": "info",
+        "text": "SENIORITY: 5 biennial increments of the amount of the level (Art. 9, CCNL of 19 January 2021: 'L'importo degli aumenti - rapportato a mese - è il seguente: Grafici Gruppo A= € 16,01; B/1S= € 14,46 [...] E= € 10,33'), which the renewal of 19 December 2023 does not amend (its TEM changes the minimums only): the same amounts hold from March 2024, before and after July 2026."
       },
       {
         "kind": "info",
@@ -3092,7 +3083,7 @@
     "effective_until": null,
     "source": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
     "verification_status": "unverified",
-    "source_hash": "5f1da8b73ba3b2e8c8d360ffc7a3eafabf9ea1ce9d5dd9642c99f2e356f84358",
+    "source_hash": "8f0e594f0469fa1d069ec1d1abc9adc2edf0de503508033cf09208b10ac862a0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

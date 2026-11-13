@@ -122,14 +122,8 @@
         "monetary_impact": "no"
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: salary tables sourced from kitech.it (dati proxy, verificare con testo ufficiale ANAV). No official CNEL PDF or ANAV archive source was found during research.",
-        "capability": "base_salary",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "salary_tables_from_proxy",
-          "remediation": "Verify the salary tables against the official ANAV CCNL text."
-        }
+        "kind": "info",
+        "text": "SALARY TABLES: the minimums of October 2023 are those of the signed CCNL of 6 October 2022 (allegato 5, PDF p. 83; the same column of ANAV's Allegato n. 2 of 7 October 2022); the renewal of 23 May 2025 (ANAV, signed, pp. 1-2) adds 60 EUR at C2 from July 2025 and 100 EUR from August 2026, re-proportioned by the parameters (100/134 for C4 and so on). The agreement does not state the rounding of the re-proportioned amounts: the file rounds the whole increase once, as the 2022 Allegato n. 2 adds the aumento a regime to the old tabellare (a cent may differ from rounding each tranche, e.g. C4 915,65 against 915,66)."
       },
       {
         "kind": "simplification",
@@ -3980,7 +3974,7 @@
     "effective_until": "2026-12-31",
     "source": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "016b5a5c9b02e5777756df1d78abe1cd549ff19960d8aa369eaabf08afe148ca",
+    "source_hash": "002448ac8ca6c89da914b2a7492993aaf81236d301c512526eadc4535a37df94",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

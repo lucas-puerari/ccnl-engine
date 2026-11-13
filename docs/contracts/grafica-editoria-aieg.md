@@ -31,10 +31,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -115,13 +115,6 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "grafica-editoria-aieg/pre_july_2026_amounts_missing · seniority · impact unknown · open"
-    SENIORITY: 5 scatti biennali (24 months), amounts from kitech.it July 2026. The scatto amounts of the previous rinnovo were not recovered: each amount series declares a 'missing' gap from 2024-03-01 to 2026-07-01. A run before July 2026 with increments due raises MissingRuleError; a run with no increment due does not read the amount.
-
-    **Applies when:** `seniority` applies; before 2026-07-01.
-
-    **Remediation:** Recover the scatto amounts of the previous rinnovo for periods before July 2026.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -306,6 +299,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     HOURLY DIVISOR: 173. G011 CCNL states orario normale 40 ore medie settimanali (confirmed conflavoro.it CCNL text and ilccnl.it). Formula 40×52/12=173.33→173. Daily divisore convenzionale 26 confirmed by lavoro-economia.it. The exact contractual divisore clause was not retrieved directly from primary text, but the 40h/week is unambiguous; divisor 173 is the correct derived value.
     
     TRANCHE DATES: 01.03.2024, 01.09.2024, 01.05.2025, 01.10.2025, 01.07.2026. Values from rinnovo 20.12.2024 (retroactive application). Fonte: lexplain.it (5 tranches, all 12 Grafici levels) and kitech.it (componenti breakdown July 2026).
+    
+    SENIORITY: 5 biennial increments of the amount of the level (Art. 9, CCNL of 19 January 2021: 'L'importo degli aumenti - rapportato a mese - è il seguente: Grafici Gruppo A= € 16,01; B/1S= € 14,46 [...] E= € 10,33'), which the renewal of 19 December 2023 does not amend (its TEM changes the minimums only): the same amounts hold from March 2024, before and after July 2026.
     
     SECTOR SCOPE: models the GRAFICI (graphics workers) sector only (12 levels: E, D2, D1, C2, C1, B3, B2, B1, B1S, A, AS, Q). The EDITORI (publishers) sector (9 levels: 8°-0°/Q) with slightly different pay tables is NOT modelled. Coverage marked as layer_1=implemented for Grafici only.
     
