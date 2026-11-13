@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-05 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-13 |
 | **Latest salary tranche** | 2027-11-01 |
 
 ## Review history
@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The hourly divisors of the 44 and 45 hour weeks, Art. 151 c.1 (p. 135), checked by a separate session on the rendered page. | confirmed | Art. 151 c.1 (PDF p. 135, sha256 47f71f5f... matched; the page rendered and read, the OCR 't 92' and 'L 90' are 192 and 190): 192 for a normal week of 45 hours, 190 for 44, 172 for 40: work_rules.time_supplements.week_divisors 44/190, 45/192.<br>No later source of the file states another divisor; the notes of the file hold Art. 151 unchanged by the renewals of 2014 and 2024, whose PDFs were not opened. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 13 commi 5-14 of the ipotesi of 5 July 2024 (scanned pp. 10-12), the encoding checked against the page images by a separate model session. | flagged | Confirmed the amounts by level, the November 2027 payment, the eligibility of comma 5 and the part-time of comma 6.<br>Flagged as approximations, kept under the limitation: the trigger of comma 10, the days worked of comma 5, the absorption of comma 8. |
 | 2026-11-10 | gpt-6-sol (ai) | Art. 155 c. 3 p. 44: all-inclusive hourly table of the extra workers by level and validity, selected by the stated role. | corrected | CONFIRMED: every hourly amount, level and validity date agrees with the scanned table on p. 44, and the role selection and the test arithmetic are right.<br>The row quotes joined the column header and the row; corrected to the printed row, the header now in the transformation.<br>Holiday and leave settlement of extra workers stays out of scope, with the four-hour minimum and territorial rates, as the limitation says. |
+| 2026-11-13 | gpt-6-sol (ai) | Art. 145 of the CCNL Turismo 2010 (PDF p. 133, scanned) and the renewals of 2014 and 5 July 2024, against the absorption of the Quadri allowance, by a separate model session. | flagged | Confirmed: the allowance (A 75, B 70 from January 2009) is absorbable up to its whole amount by company-recognized individual treatments; neither renewal changes art. 145; it applies to the quadri of the alberghi minori too.<br>Flagged and kept as limitation quadri_absorption_extra_months: an individual element paid on 12 months still offsets the allowance in the 13th and 14th; the clause does not settle it. |
 
 ## Salary table
 
@@ -137,13 +138,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model territorial precedence, the four-hour service minimum and avoid separate extra-month and TFR accrual for all-inclusive rates.
 
-!!! warning "turismo-federalberghi/quadri_absorption · base_salary · impact yes · open"
-    Art. 145: the absorption of the Quadri allowance into individual treatments.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the absorption of Art. 145.
-
 !!! warning "turismo-federalberghi/apprentice_net_cap · base_salary · impact yes · open"
     Art. 58 c. 3: the net cap of the apprentice pay.
 
@@ -178,6 +172,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Obtain Annex G and verify current applicability and cohort amounts before modelling.
+
+!!! warning "turismo-federalberghi/quadri_absorption_extra_months · base_salary · impact yes · open"
+    Art. 145: the Quadri allowance is reduced by the worker's individual elements (absorbed_by_individual_excess), which the caller states as the treatments 'riconosciuti aziendalmente'. In the 13th and 14th the engine offsets it by the same monthly elements, also those paid only 12 times (IndividualElement.extra_months false); art. 145 does not say whether such an element absorbs the allowance in the extra months, so the 13th and 14th of a quadro with one may be understated.
+
+    **Applies when:** `base_salary` applies; level in A, B; run kind in fourteenth, thirteenth.
+
+    **Remediation:** Source whether an individual treatment paid on 12 months absorbs the art. 145 allowance in the 13th and 14th, and offset the extra months accordingly.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
