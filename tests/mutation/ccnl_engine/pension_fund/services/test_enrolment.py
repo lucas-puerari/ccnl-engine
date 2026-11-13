@@ -239,11 +239,14 @@ class TestVetroFonchim:
     """FONCHIM on vetro level C: 1.75% in 2026, 2.25% only from 2027."""
 
     def test_employer_cost_rises_at_the_2026_rate(self) -> None:
-        """13 x (41.38 + 4.14 - 4.73 - 6.62) = 444.21 a year.
+        """9 x 34.17 + 4 x 34.42 = 445.21 a year.
 
-        Fund and solidarity add 591.76; the TFR paid to the fund takes back,
-        on the 2364 INPS base, Fondo di garanzia 0.20% (4.73) and the 0.28
-        points of D.L. 203/2005 art. 8 (6.62) in each of the 13 runs.
+        Each run adds the fund and its solidarity and takes back, on the TFR
+        paid to the fund, Fondo di garanzia 0.20% and the 0.28 points of D.L.
+        203/2005 art. 8: on the 2364.38 base, 41.38 + 4.14 - 4.73 - 6.62 =
+        34.17 (January to September); on the 2381.95 of the October 2026
+        tranche, 41.68 + 4.17 - 4.76 - 6.67 = 34.42 (October to December and
+        the 13th).
         """
         employment = Employment(
             ccnl_id=_VETRO, level_code="C", contract_type=Permanent()
@@ -257,7 +260,7 @@ class TestVetroFonchim:
             )
         )
         delta = enrolled.annual_employer_cost - _year(employment).annual_employer_cost
-        assert delta == Decimal("444.21")
+        assert delta == Decimal("445.21")
         first = enrolled.period_results[0]
         assert _entry(first, "pension_fund_employer") == Decimal("41.38")
         assert _entry(first, "pension_fund_employee") == Decimal("35.47")

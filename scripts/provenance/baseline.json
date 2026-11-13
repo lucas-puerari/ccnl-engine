@@ -1221,9 +1221,9 @@
       "universita-tecnologi-aran/tecnologi_allowances"
     ],
     "agreement/vetro-meccanizzato-assovetro.json": [
+      "vetro-meccanizzato-assovetro/organizational_positions",
       "vetro-meccanizzato-assovetro/other_subsectors_tables",
-      "vetro-meccanizzato-assovetro/seniority_assumed_constant",
-      "vetro-meccanizzato-assovetro/tranches_from_october_2026"
+      "vetro-meccanizzato-assovetro/seniority_assumed_constant"
     ],
     "agreement/vigilanza-privata-assiv-sf.json": [
       "vigilanza-privata-assiv-sf/apprentice_seniority",

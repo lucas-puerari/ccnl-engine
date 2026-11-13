@@ -115,6 +115,22 @@
       }
     },
     {
+      "id": "organizational_positions",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Tabella 'A' (signed tables of 9 April 2026, p. 3) pays the positions 2 and 3 of categories E and D and the position 2 of C, B and A an 'Ipo' on top of the Min. of the category (e.g. D position 2: 154,21 from January 2026, 155,67 from October 2026); the file holds the categories at position 1 only.",
+      "calculation": "ccnl/vetro-meccanizzato-assovetro:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the positions 2 and 3 as levels of their own (Min. + Ipo), from the signed tables of 9 April 2026.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "vetro-meccanizzato-assovetro/organizational_positions"
+        ]
+      }
+    },
+    {
       "id": "other_subsectors_tables",
       "institute": "base_salary",
       "variant": "all",
@@ -859,22 +875,6 @@
       "links": {
         "limitations": [
           "tfr_compensation_apprentice_guarantee_fund"
-        ]
-      }
-    },
-    {
-      "id": "tranches_from_october_2026",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "TRANCHE 2026-2028: Only the Jan 2026 tranche is modelled (retroactive from renewal 2026-04-09). Remaining tranches at D1: +15 EUR Oct 2026, +30 EUR Jan 2027, +25 EUR Jun 2027, +75 EUR Jul 2028. Per-level amounts confirmed proportional (A:D=1.5, F:D=0.7462) but official per-level tables not publicly available at extraction date 2026-09-17.",
-      "calculation": "ccnl/vetro-meccanizzato-assovetro:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the October 2026 to July 2028 tranches once the per-level tables are published.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "vetro-meccanizzato-assovetro/tranches_from_october_2026"
         ]
       }
     },

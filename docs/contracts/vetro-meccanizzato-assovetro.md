@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🧑 Manual | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 0 derived / 35 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 24 verified / 0 derived / 35 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟡 Needs review | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,8 +50,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-04-09 |
-| **Last review** | 2026-10-12 |
-| **Latest salary tranche** | 2026-01-01 |
+| **Last review** | 2026-11-13 |
+| **Latest salary tranche** | 2028-07-01 |
 
 ## Review history
 
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-09-17 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-12 | claude-opus-5-5 (ai) | File-level confidence against the provenance of its payable rules; no value re-read. | flagged | confidence was 'verified' while no payable rule is verified, 35 are assumed and the accrual rule is missing; the review of 2026-09-17 recorded neither the documents it read nor the values it checked. Confidence set to needs_review until the values are read in the signed text. |
+| 2026-11-13 | claude-opus-5-5 (ai) | Signed tables of the renewal of 9 April 2026 (FILCTEM, PDF p. 3, scanned, read on the image) and art. TEM of the renewal (p. 16). | corrected | Added the minimums of October 2026, January 2027, June 2027 and July 2028; the January 2026 column matches the file; the Ipo of positions 2 and 3, never modelled, is now a limitation. |
 
 ## Salary table
 
@@ -66,12 +67,12 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `A` | Livello A — base | € 2,874.69 | 2026-01-01 |
-| `B` | Livello B — base | € 2,616.86 | 2026-01-01 |
-| `C` | Livello C — base | € 2,354.05 | 2026-01-01 |
-| `D` | Livello D — base | € 2,080.92 | 2026-01-01 |
-| `E` | Livello E — base | € 1,822.13 | 2026-01-01 |
-| `F` | Livello F — base | € 1,683.88 | 2026-01-01 |
+| `A` | Livello A — base | € 3,092.19 | 2028-07-01 |
+| `B` | Livello B — base | € 2,810.56 | 2028-07-01 |
+| `C` | Livello C — base | € 2,523.93 | 2028-07-01 |
+| `D` | Livello D — base | € 2,225.92 | 2028-07-01 |
+| `E` | Livello E — base | € 1,943.33 | 2028-07-01 |
+| `F` | Livello F — base | € 1,792.09 | 2028-07-01 |
 
 ## Seniority increments
 
@@ -105,12 +106,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the scatto amounts of the 2023-2025 periods (or confirm unchanged) and record the limitation for runs before 2026-01-01.
 
-!!! warning "vetro-meccanizzato-assovetro/tranches_from_october_2026 · base_salary · impact yes · open"
-    TRANCHE 2026-2028: Only the Jan 2026 tranche is modelled (retroactive from renewal 2026-04-09). Remaining tranches at D1: +15 EUR Oct 2026, +30 EUR Jan 2027, +25 EUR Jun 2027, +75 EUR Jul 2028. Per-level amounts confirmed proportional (A:D=1.5, F:D=0.7462) but official per-level tables not publicly available at extraction date 2026-09-17.
+!!! warning "vetro-meccanizzato-assovetro/organizational_positions · base_salary · impact yes · open"
+    Tabella 'A' (signed tables of 9 April 2026, p. 3) pays the positions 2 and 3 of categories E and D and the position 2 of C, B and A an 'Ipo' on top of the Min. of the category (e.g. D position 2: 154,21 from January 2026, 155,67 from October 2026); the file holds the categories at position 1 only.
 
-    **Applies when:** `base_salary` applies; from 2026-10-01.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the October 2026 to July 2028 tranches once the per-level tables are published.
+    **Remediation:** Model the positions 2 and 3 as levels of their own (Min. + Ipo), from the signed tables of 9 April 2026.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -279,6 +280,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | Industrie del Vetro, Lampade e Display — Tabelle retributive 2023-2025 | tabella_retributiva | — | [↗](https://esterinocafasso.it/rubrica-mensile/industrie-del-vetro-lampade-e-display-nuovo-ccnl-diffuse-le-tabelle-dei-minimi-retributivi/) |
 | CCNL Vetro Meccanizzato Industria — ilCCNL.it tabelle retributive | tabella_retributiva | — | [↗](https://ilccnl.it/ccnl/vetro---industria/vetro-meccanizzato---industria/tabelleretributive) |
 | Accordo di rinnovo CCNL Vetro Industrie 2026-2028 — Assovetro | altro | — | [↗](https://confindustriatoscanacentroecosta.it/ccnl-vetro-industria-ipotesi-di-accordo-e-nuovi-minimi-tabellari/) |
+| CCNL vetro e lampade, rinnovo 9 aprile 2026 (Assovetro, Filctem, Femca, Uiltec), tabelle retributive firmate | associazione | 2026-04-09 | [↗](https://www.filctemcgil.it/images/download/CONTRATTI/vetro_lampade/260409_VETRO_RINNOVO_ACCORDO_2026-2028_TABELLE.pdf) |
 
 ??? note "Coverage notes"
     SALARY MODEL: split — base_salary = minimo tabellare (paga base); fixed_allowance TER = Terzo Elemento della Retribuzione (EDR, 10.33 EUR, frozen). Sources: esterinocafasso.it for 2023-03-01 / 2024-01-01 / 2025-04-01 periods; kitech.it + ilccnl.it for 2026-01-01.
