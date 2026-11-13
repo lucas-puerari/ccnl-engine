@@ -77,21 +77,11 @@
       },
       {
         "kind": "info",
-        "text": "EDR: 10.33 EUR/month (all levels). PDF Art. 83 states 10.32; operational value confirmed at 10.33 per kitech CodiceCateg=91 and statutory euro-conversion of ITL 20,000. 0.01 EUR/month discrepancy documented as SIMPLIFICATION."
+        "text": "EDR: 10,32 EUR al mese per 13 mensilità, tutti i livelli (art. 83.II, testo firmato 8/10/2024 p. 69: 'euro 10,32 mensili per 13 mensilità'); non entra nella quattordicesima. Le tabelle commerciali con 10,33 non prevalgono sul testo firmato."
       },
       {
         "kind": "info",
         "text": "Apprenticeship: apprendistato professionalizzante (Art. 13), under-classification model. Three tracks: L5 (18 months, first half at L6, second half at midpoint L6-L5); L4+L4S (24 months, first half 2 below, second half 1 below); L3 (36 months, first half 2 below, second half 1 below). Higher levels (1SA, 1SB, 1, 2) have no duration specified in Art. 13 and are not modelled. Art. 13 lett. g (CCNL 2024-2027 PDF, p. 22): for the second half the pay of level 6 is 'maggiorato di un importo pari al 50% del differenziale previsto tra il 5° e il 6° livello': the engine pays the mean of the whole monthly pay (minimo, contingenza, EDR) of the two levels."
-      },
-      {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: EDR 10.32 (PDF Art. 83) vs 10.33 (kitech, statutory). Used 10.33. Impact: EUR 0.01/mese.",
-        "capability": "base_salary",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "edr_rounding_discrepancy",
-          "remediation": "Confirm whether the EDR is 10.32 (PDF Art. 83) or 10.33 (kitech) and align the data."
-        }
       },
       {
         "kind": "simplification",
@@ -643,7 +633,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (confederale, Art. 83 CCNL)",
+          "description": "Elemento Distinto della Retribuzione (confederale, Art. 83.II CCNL): 10,32 per 13 mensilità",
           "monthly": {
             "periods": [
               {
@@ -695,7 +685,8 @@
               "verification_status": "unverified",
               "effective_from": "2024-10-01"
             }
-          }
+          },
+          "months_per_year": 13
         }
       ],
       "category": "operaio",
@@ -900,7 +891,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (confederale, Art. 83 CCNL)",
+          "description": "Elemento Distinto della Retribuzione (confederale, Art. 83.II CCNL): 10,32 per 13 mensilità",
           "monthly": {
             "periods": [
               {
@@ -952,7 +943,8 @@
               "verification_status": "unverified",
               "effective_from": "2024-10-01"
             }
-          }
+          },
+          "months_per_year": 13
         }
       ],
       "category": "operaio",
@@ -1157,7 +1149,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (confederale, Art. 83 CCNL)",
+          "description": "Elemento Distinto della Retribuzione (confederale, Art. 83.II CCNL): 10,32 per 13 mensilità",
           "monthly": {
             "periods": [
               {
@@ -1209,7 +1201,8 @@
               "verification_status": "unverified",
               "effective_from": "2024-10-01"
             }
-          }
+          },
+          "months_per_year": 13
         }
       ],
       "category": "operaio",
@@ -1414,7 +1407,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (confederale, Art. 83 CCNL)",
+          "description": "Elemento Distinto della Retribuzione (confederale, Art. 83.II CCNL): 10,32 per 13 mensilità",
           "monthly": {
             "periods": [
               {
@@ -1466,7 +1459,8 @@
               "verification_status": "unverified",
               "effective_from": "2024-10-01"
             }
-          }
+          },
+          "months_per_year": 13
         }
       ],
       "category": "operaio",
@@ -1671,7 +1665,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (confederale, Art. 83 CCNL)",
+          "description": "Elemento Distinto della Retribuzione (confederale, Art. 83.II CCNL): 10,32 per 13 mensilità",
           "monthly": {
             "periods": [
               {
@@ -1723,7 +1717,8 @@
               "verification_status": "unverified",
               "effective_from": "2024-10-01"
             }
-          }
+          },
+          "months_per_year": 13
         }
       ],
       "category": "operaio",
@@ -1928,7 +1923,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (confederale, Art. 83 CCNL)",
+          "description": "Elemento Distinto della Retribuzione (confederale, Art. 83.II CCNL): 10,32 per 13 mensilità",
           "monthly": {
             "periods": [
               {
@@ -1980,7 +1975,8 @@
               "verification_status": "unverified",
               "effective_from": "2024-10-01"
             }
-          }
+          },
+          "months_per_year": 13
         }
       ],
       "category": "impiegato",
@@ -2185,7 +2181,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (confederale, Art. 83 CCNL)",
+          "description": "Elemento Distinto della Retribuzione (confederale, Art. 83.II CCNL): 10,32 per 13 mensilità",
           "monthly": {
             "periods": [
               {
@@ -2237,7 +2233,8 @@
               "verification_status": "unverified",
               "effective_from": "2024-10-01"
             }
-          }
+          },
+          "months_per_year": 13
         }
       ],
       "category": "impiegato",
@@ -2442,7 +2439,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (confederale, Art. 83 CCNL)",
+          "description": "Elemento Distinto della Retribuzione (confederale, Art. 83.II CCNL): 10,32 per 13 mensilità",
           "monthly": {
             "periods": [
               {
@@ -2494,7 +2491,8 @@
               "verification_status": "unverified",
               "effective_from": "2024-10-01"
             }
-          }
+          },
+          "months_per_year": 13
         }
       ],
       "category": "impiegato",
@@ -2699,7 +2697,7 @@
         },
         {
           "code": "EDR",
-          "description": "Elemento Distinto della Retribuzione (confederale, Art. 83 CCNL)",
+          "description": "Elemento Distinto della Retribuzione (confederale, Art. 83.II CCNL): 10,32 per 13 mensilità",
           "monthly": {
             "periods": [
               {
@@ -2751,7 +2749,8 @@
               "verification_status": "unverified",
               "effective_from": "2024-10-01"
             }
-          }
+          },
+          "months_per_year": 13
         }
       ],
       "category": "impiegato",
@@ -2865,7 +2864,7 @@
     "effective_until": null,
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
     "verification_status": "unverified",
-    "source_hash": "6c461cff6feefb91962c782c1e12a9736d34b40c816260e80c6af76585de6fbd",
+    "source_hash": "a7a2a9fae37b69b0fcbad4f4b90cb08186637c9210a12ff211b44f678ad969bc",
     "published_at": "2026-09-12",
     "source_type": "commercial_secondary"
   },
@@ -2940,6 +2939,27 @@
         "checked": [
           "parameters.health_funds",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-13-ai-aziende-termali-federterme-edr",
+        "date": "2026-11-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 83.II of the signed text of 8 October 2024 (PDF p. 69, read on the page image by OCR).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+            "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+          }
+        ],
+        "findings": [
+          "The EDR is 10,32 'per 13 mensilità': months_per_year 13, so it is not paid in the 14th; the 10.33 limitation and note were stale (the amount was already 10.32)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.*.fixed_allowances.EDR"
         ]
       }
     ]
