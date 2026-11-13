@@ -1,4 +1,4 @@
-"""Vigilanza FEDERDAT SF arts. 21 and 64: EBILAV and its health fund."""
+"""Vigilanza FEDERDAT (HV51) arts. 21 and 64: EBILAV and its health fund."""
 
 from __future__ import annotations
 
@@ -17,13 +17,12 @@ from ccnl_engine.period.services import (
 from tests.mutation.ccnl_engine.sickness.test_handlers import _req
 
 
-def _items(funds: frozenset[str]) -> dict[str, Decimal]:
-    request = _req(
-        11,
-        slug="vigilanza-privata-federdat-sf",
-        level="D",
-        category=WorkerCategory.IMPIEGATO,
-    )
+def _items(
+    funds: frozenset[str],
+    slug: str = "vigilanza-privata-federdat-sf",
+    level: str = "D",
+) -> dict[str, Decimal]:
+    request = _req(11, slug=slug, level=level, category=WorkerCategory.IMPIEGATO)
     request = replace(
         request,
         employer=EmployerProfile(headcount=Headcount(50), contractual_funds=funds),
@@ -53,4 +52,13 @@ def test_unpaid_funds_owe_the_elements(funds: frozenset[str]) -> None:
     assert _items(funds) == {
         "ebilav_element": Decimal("25.00"),
         "ebilav_sanitario_element": Decimal("15.00"),
+    }
+
+
+def test_the_guards_file_charges_the_same_funds() -> None:
+    """GPG level IV, Nov 2026: EBILAV 2.94 + 1.47, health 12 + 1.20 solidarity."""
+    funds = frozenset({"ebilav", "ebilav_sanitario"})
+    assert _items(funds, "vigilanza-privata-federdat-gpg", "IV") == {
+        "ebilav": Decimal("4.41"),
+        "ebilav_sanitario": Decimal("13.20"),
     }
