@@ -426,33 +426,26 @@
       "levels[A].base_salary[2024-01-01]": "assumed",
       "levels[A].base_salary[2025-04-01]": "assumed",
       "levels[A].base_salary[2026-01-01]": "assumed",
-      "levels[A].fixed_allowances[TER]": "assumed",
       "levels[B].base_salary[2023-03-01]": "assumed",
       "levels[B].base_salary[2024-01-01]": "assumed",
       "levels[B].base_salary[2025-04-01]": "assumed",
       "levels[B].base_salary[2026-01-01]": "assumed",
-      "levels[B].fixed_allowances[TER]": "assumed",
       "levels[C].base_salary[2023-03-01]": "assumed",
       "levels[C].base_salary[2024-01-01]": "assumed",
       "levels[C].base_salary[2025-04-01]": "assumed",
       "levels[C].base_salary[2026-01-01]": "assumed",
-      "levels[C].fixed_allowances[TER]": "assumed",
       "levels[D].base_salary[2023-03-01]": "assumed",
       "levels[D].base_salary[2024-01-01]": "assumed",
       "levels[D].base_salary[2025-04-01]": "assumed",
       "levels[D].base_salary[2026-01-01]": "assumed",
-      "levels[D].fixed_allowances[TER]": "assumed",
       "levels[E].base_salary[2023-03-01]": "assumed",
       "levels[E].base_salary[2024-01-01]": "assumed",
       "levels[E].base_salary[2025-04-01]": "assumed",
       "levels[E].base_salary[2026-01-01]": "assumed",
-      "levels[E].fixed_allowances[TER]": "assumed",
       "levels[F].base_salary[2023-03-01]": "assumed",
       "levels[F].base_salary[2024-01-01]": "assumed",
       "levels[F].base_salary[2025-04-01]": "assumed",
-      "levels[F].base_salary[2026-01-01]": "assumed",
-      "levels[F].fixed_allowances[TER]": "assumed",
-      "seniority_increments": "assumed"
+      "levels[F].base_salary[2026-01-01]": "assumed"
     },
     "agreement/vigilanza-privata-assiv-sf.json": {
       "accrual_rule": "missing",
@@ -1219,9 +1212,7 @@
       "universita-tecnologi-aran/tecnologi_allowances"
     ],
     "agreement/vetro-meccanizzato-assovetro.json": [
-      "vetro-meccanizzato-assovetro/organizational_positions",
-      "vetro-meccanizzato-assovetro/other_subsectors_tables",
-      "vetro-meccanizzato-assovetro/seniority_assumed_constant"
+      "vetro-meccanizzato-assovetro/other_subsectors_tables"
     ],
     "agreement/vigilanza-privata-assiv-sf.json": [
       "vigilanza-privata-assiv-sf/apprentice_seniority",

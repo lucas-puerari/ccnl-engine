@@ -115,22 +115,6 @@
       }
     },
     {
-      "id": "organizational_positions",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Tabella 'A' (signed tables of 9 April 2026, p. 3) pays the positions 2 and 3 of categories E and D and the position 2 of C, B and A an 'Ipo' on top of the Min. of the category (e.g. D position 2: 154,21 from January 2026, 155,67 from October 2026); the file holds the categories at position 1 only.",
-      "calculation": "ccnl/vetro-meccanizzato-assovetro:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the positions 2 and 3 as levels of their own (Min. + Ipo), from the signed tables of 9 April 2026.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "vetro-meccanizzato-assovetro/organizational_positions"
-        ]
-      }
-    },
-    {
       "id": "other_subsectors_tables",
       "institute": "base_salary",
       "variant": "all",
@@ -426,21 +410,6 @@
       }
     },
     {
-      "id": "rule_levels_a_fixed_allowances_ter",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/vetro-meccanizzato-assovetro.json#levels[A].fixed_allowances[TER]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/vetro-meccanizzato-assovetro.json#levels[A].fixed_allowances[TER]"
-        ]
-      }
-    },
-    {
       "id": "rule_levels_b_base_salary_2023_03_01",
       "institute": "base_salary",
       "variant": "all",
@@ -497,21 +466,6 @@
       "links": {
         "rules": [
           "agreement/vetro-meccanizzato-assovetro.json#levels[B].base_salary[2026-01-01]"
-        ]
-      }
-    },
-    {
-      "id": "rule_levels_b_fixed_allowances_ter",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/vetro-meccanizzato-assovetro.json#levels[B].fixed_allowances[TER]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/vetro-meccanizzato-assovetro.json#levels[B].fixed_allowances[TER]"
         ]
       }
     },
@@ -576,21 +530,6 @@
       }
     },
     {
-      "id": "rule_levels_c_fixed_allowances_ter",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/vetro-meccanizzato-assovetro.json#levels[C].fixed_allowances[TER]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/vetro-meccanizzato-assovetro.json#levels[C].fixed_allowances[TER]"
-        ]
-      }
-    },
-    {
       "id": "rule_levels_d_base_salary_2023_03_01",
       "institute": "base_salary",
       "variant": "all",
@@ -647,21 +586,6 @@
       "links": {
         "rules": [
           "agreement/vetro-meccanizzato-assovetro.json#levels[D].base_salary[2026-01-01]"
-        ]
-      }
-    },
-    {
-      "id": "rule_levels_d_fixed_allowances_ter",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/vetro-meccanizzato-assovetro.json#levels[D].fixed_allowances[TER]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/vetro-meccanizzato-assovetro.json#levels[D].fixed_allowances[TER]"
         ]
       }
     },
@@ -726,21 +650,6 @@
       }
     },
     {
-      "id": "rule_levels_e_fixed_allowances_ter",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/vetro-meccanizzato-assovetro.json#levels[E].fixed_allowances[TER]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/vetro-meccanizzato-assovetro.json#levels[E].fixed_allowances[TER]"
-        ]
-      }
-    },
-    {
       "id": "rule_levels_f_base_salary_2023_03_01",
       "institute": "base_salary",
       "variant": "all",
@@ -797,52 +706,6 @@
       "links": {
         "rules": [
           "agreement/vetro-meccanizzato-assovetro.json#levels[F].base_salary[2026-01-01]"
-        ]
-      }
-    },
-    {
-      "id": "rule_levels_f_fixed_allowances_ter",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/vetro-meccanizzato-assovetro.json#levels[F].fixed_allowances[TER]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/vetro-meccanizzato-assovetro.json#levels[F].fixed_allowances[TER]"
-        ]
-      }
-    },
-    {
-      "id": "rule_seniority_increments",
-      "institute": "seniority",
-      "variant": "all",
-      "rule": "agreement/vetro-meccanizzato-assovetro.json#seniority_increments",
-      "calculation": "seniority",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/vetro-meccanizzato-assovetro.json#seniority_increments"
-        ]
-      }
-    },
-    {
-      "id": "seniority_assumed_constant",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SENIORITY: 5 biennial scatti (cadence 24 months, max 5). Per-level amounts sourced from kitech.it Jan 2026: A=17.56, B=16.53, C=14.98, D=12.91, E=10.33, F=8.26 EUR. Historical amounts assumed stable (not verified for 2023-2025 periods).",
-      "calculation": "ccnl/vetro-meccanizzato-assovetro:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the scatto amounts of the 2023-2025 periods (or confirm unchanged) and record the limitation for runs before 2026-01-01.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "vetro-meccanizzato-assovetro/seniority_assumed_constant"
         ]
       }
     },
