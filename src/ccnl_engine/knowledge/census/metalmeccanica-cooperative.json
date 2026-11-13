@@ -3,22 +3,6 @@
   "ccnl_id": "metalmeccanica-cooperative",
   "requirements": [
     {
-      "id": "apprenticeship_from_federmeccanica",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "APPRENTICESHIP: percentages (85/90/95% over 36 months) modelled as C011 Federmeccanica (accordo 20/04/2021). No independent C016-specific source found in 2025 renewal documentation. Checked: ecnews.it (renewal article), dottrinalavoro.it, ilccnl.it (two URL paths), kitech.it CodiceCateg=48. Destination levels D2-B3 mirror C011; D1 and A1 excluded as in C011.",
-      "calculation": "ccnl/metalmeccanica-cooperative:coverage.notes",
-      "state": "unverified",
-      "remediation": "Confirm the apprenticeship percentages against a C016-specific source.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "metalmeccanica-cooperative/apprenticeship_from_federmeccanica"
-        ]
-      }
-    },
-    {
       "id": "apprenticeship_pct_undeclared_components",
       "institute": "base_salary",
       "variant": "apprentice",

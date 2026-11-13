@@ -43,6 +43,19 @@
         "url": "https://www.fiom-cgil.it/net/cooperative/trattativa-coop/11211-ccnl-cooperative-incrementi-salariali-e-nuovi-minimi-retributivi",
         "pages": [],
         "published_on": "2025-07-22"
+      },
+      {
+        "document_id": "cnel-c016-211353",
+        "title": "CCNL addetti alle aziende cooperative metalmeccaniche e impiantiste, testo coordinato sottoscritto 16 gennaio 2025 (deposito CNEL, accordo 211353)",
+        "kind": "cnel",
+        "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/211353",
+        "published_on": "2025-01-16",
+        "sha256": "70006b8e470df859f33161b44b031c83af878027094de34a0fcf7a9226c6e2ae",
+        "pages": [
+          "189",
+          "192"
+        ],
+        "jurisdiction": "it"
       }
     ],
     "extraction": {
@@ -77,19 +90,8 @@
         "text": "ADDITIONAL MONTHS: 13 (tredicesima only). No quattordicesima in any source. Consistent with C011 federmeccanica structure."
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICESHIP: percentages (85/90/95% over 36 months) modelled as C011 Federmeccanica (accordo 20/04/2021). No independent C016-specific source found in 2025 renewal documentation. Checked: ecnews.it (renewal article), dottrinalavoro.it, ilccnl.it (two URL paths), kitech.it CodiceCateg=48. Destination levels D2-B3 mirror C011; D1 and A1 excluded as in C011.",
-        "capability": "base_salary",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprenticeship_from_federmeccanica",
-          "applies_when": {
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Confirm the apprenticeship percentages against a C016-specific source."
-        }
+        "kind": "info",
+        "text": "APPRENTICESHIP (C016 Allegato 10, CNEL 211353, scanned pp. 189 and 192 read on the images): art. 8 'La retribuzione sarà quella minima contrattuale del livello di inquadramento corrispondente alla qualifica professionale da conseguire ragguagliata [...] alle percentuali' of the table '36 12 85% 12 90% 12 95% / 30 10 85% 10 90% 10 95% / 24 8 85% 8 90% 8 95%'. Tracks professionalizzante_36 (default), professionalizzante_30 (art. 2: 36 months reduced by 6 for a diploma EQF 4, ITS or degree relevant to the qualification) and professionalizzante_24 (D2 serial production, or any shorter contract the parties set), stated by Apprentice.track. Destinations D2 to B3 (D1 and A1 excluded, art. 1). The 2025 renewal (CNEL 242518) changes art. 5 only with an information duty. Apprentices hired before 2022 keep the classification of their contract (art. 1): not modelled, the caller states their level."
       },
       {
         "kind": "info",
@@ -156,6 +158,27 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-13-ai-metalmeccanica-cooperative-apprenticeship",
+        "date": "2026-11-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Allegato 10 artt. 1, 2 and 8 of the C016 coordinated text of 16 January 2025 (CNEL 211353, PDF pp. 189 and 192, scanned pages read on the images) and art. 5 of the 2025 renewal (CNEL 242518).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/211353",
+            "sha256": "70006b8e470df859f33161b44b031c83af878027094de34a0fcf7a9226c6e2ae"
+          }
+        ],
+        "findings": [
+          "The 85/90/95% table is C016's own (not only Federmeccanica's): limitation apprenticeship_from_federmeccanica removed; added the 30 and 24 month tracks of the same table."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "apprenticeship"
         ]
       }
     ]
@@ -1788,6 +1811,76 @@
           "percentage": "1.00"
         }
       ]
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_30",
+      "destination_levels": [
+        "D2",
+        "C1",
+        "C2",
+        "C3",
+        "B1",
+        "B2",
+        "B3"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 10,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 10,
+          "months_until": 20,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 20,
+          "months_until": 30,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 30,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "professionalizzante_24",
+      "destination_levels": [
+        "D2",
+        "C1",
+        "C2",
+        "C3",
+        "B1",
+        "B2",
+        "B3"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 8,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 8,
+          "months_until": 16,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 16,
+          "months_until": 24,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
     }
   ],
   "ruleset": {
@@ -1797,7 +1890,7 @@
     "effective_until": null,
     "source": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/",
     "verification_status": "unverified",
-    "source_hash": "4dcf82057f169c42df38b4237cfe55fe03605d50b3395059b9b5d3050fb44f4d",
+    "source_hash": "8d6dd63839d217167580f2efc8b8328654c3a4d39aafb1ec5c9349aa0c90e45d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
