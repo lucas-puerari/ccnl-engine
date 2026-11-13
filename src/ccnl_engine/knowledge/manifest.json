@@ -1462,7 +1462,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanica-cooperative",
       "ruleset_version": "2026.2",
-      "source_hash": "4dcf82057f169c42df38b4237cfe55fe03605d50b3395059b9b5d3050fb44f4d",
+      "source_hash": "8d6dd63839d217167580f2efc8b8328654c3a4d39aafb1ec5c9349aa0c90e45d",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/metalmeccanica-cooperative.json.gz"
@@ -4101,7 +4101,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "f48fa4d68c365f6432562c9c7a1c636f27d02473cc610d5019669fe24c53f8ea",
+      "source_hash": "74ec4e9728f0da4792873d43e3dd96358250768e720ff4f83238548d5e9631cf",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/metalmeccanica-cooperative.json.gz",

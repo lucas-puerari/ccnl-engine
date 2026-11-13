@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer |
+| **Limits of this contract** | inps_employer |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-07-22 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-13 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Titolo IV - Retribuzione ed altri istituti economici, Art. 7 - Tredicesima mensilità (p. 123): "il lavoratore ha diritto a tanti dodicesimi dell'ammontare della 13° mensilità quanti sono i mesi di anzianità di servizio presso l'azienda. La frazione di mese superiore a 15 giorni va considerata a questi effetti come mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 36 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
+| 2026-11-13 | claude-opus-5-5 (ai) | Allegato 10 artt. 1, 2 and 8 of the C016 coordinated text of 16 January 2025 (CNEL 211353, PDF pp. 189 and 192, scanned pages read on the images) and art. 5 of the 2025 renewal (CNEL 242518). | corrected | The 85/90/95% table is C016's own (not only Federmeccanica's): limitation apprenticeship_from_federmeccanica removed; added the 30 and 24 month tracks of the same table. |
 
 ## Salary table
 
@@ -101,16 +102,17 @@ Latest effective values per level (monthly gross, EUR).
 Destination levels: `D2`, `C1`, `C2`, `C3`, `B1`, `B2`, `B3`  
 percentage: 1.00
 
+**professionalizzante_30** (type: `percentage`)  
+Destination levels: `D2`, `C1`, `C2`, `C3`, `B1`, `B2`, `B3`  
+percentage: 1.00
+
+**professionalizzante_24** (type: `percentage`)  
+Destination levels: `D2`, `C1`, `C2`, `C3`, `B1`, `B2`, `B3`  
+percentage: 1.00
+
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "metalmeccanica-cooperative/apprenticeship_from_federmeccanica · base_salary · impact unknown · open"
-    APPRENTICESHIP: percentages (85/90/95% over 36 months) modelled as C011 Federmeccanica (accordo 20/04/2021). No independent C016-specific source found in 2025 renewal documentation. Checked: ecnews.it (renewal article), dottrinalavoro.it, ilccnl.it (two URL paths), kitech.it CodiceCateg=48. Destination levels D2-B3 mirror C011; D1 and A1 excluded as in C011.
-
-    **Applies when:** `base_salary` applies; contract type in apprentice.
-
-    **Remediation:** Confirm the apprenticeship percentages against a C016-specific source.
 
 !!! warning "metalmeccanica-cooperative/cooperative_inps_rates_unverified · inps_employer · impact unknown · open"
     INPS: employer rates from 2026-industria.json (same tax sector as C011). Cooperative employers may have different INPS addizionale rates; this is a SIMPLIFICATION — verify against INPS circular for cooperative sector if precise employer cost is critical.
@@ -301,6 +303,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/ | tabella_retributiva | 2025-07-22 | [↗](https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/) |
 | https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=48 | tabella_retributiva | — | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=48) |
 | https://www.fiom-cgil.it/net/cooperative/trattativa-coop/11211-ccnl-cooperative-incrementi-salariali-e-nuovi-minimi-retributivi | tabella_retributiva | 2025-07-22 | [↗](https://www.fiom-cgil.it/net/cooperative/trattativa-coop/11211-ccnl-cooperative-incrementi-salariali-e-nuovi-minimi-retributivi) |
+| CCNL addetti alle aziende cooperative metalmeccaniche e impiantiste, testo coordinato sottoscritto 16 gennaio 2025 (deposito CNEL, accordo 211353) | cnel | 2025-01-16 | [↗](https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/211353) |
 
 ??? note "Coverage notes"
     RENEWAL: CCNL signed 2025-07-22 by Legacoop Produzione e Servizi, Confcooperative Lavoro e Servizi, AGI Produzione e Lavoro with FIM-CISL, FIOM-CGIL and UILM-UIL. Validity 17/06/2025-30/06/2028. First tranche retroactive to 2025-06-01.
@@ -312,6 +315,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SENIORITY: biennali scatti (cadence 24 months), maximum 5 per level. Amounts per level confirmed on kitech.it CodiceCateg=48.
     
     ADDITIONAL MONTHS: 13 (tredicesima only). No quattordicesima in any source. Consistent with C011 federmeccanica structure.
+    
+    APPRENTICESHIP (C016 Allegato 10, CNEL 211353, scanned pp. 189 and 192 read on the images): art. 8 'La retribuzione sarà quella minima contrattuale del livello di inquadramento corrispondente alla qualifica professionale da conseguire ragguagliata [...] alle percentuali' of the table '36 12 85% 12 90% 12 95% / 30 10 85% 10 90% 10 95% / 24 8 85% 8 90% 8 95%'. Tracks professionalizzante_36 (default), professionalizzante_30 (art. 2: 36 months reduced by 6 for a diploma EQF 4, ITS or degree relevant to the qualification) and professionalizzante_24 (D2 serial production, or any shorter contract the parties set), stated by Apprentice.track. Destinations D2 to B3 (D1 and A1 excluded, art. 1). The 2025 renewal (CNEL 242518) changes art. 5 only with an information duty. Apprentices hired before 2022 keep the classification of their contract (art. 1): not modelled, the caller states their level.
     
     HOURLY DIVISOR: 173 h/month (40 h/week standard, same as C011). Confirmed on kitech.it.
     

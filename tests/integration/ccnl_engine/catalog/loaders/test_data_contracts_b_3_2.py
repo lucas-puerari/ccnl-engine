@@ -378,3 +378,17 @@ class TestLoadOcchialiOcchialeriaIndustria:
         for lv in ccnl.levels:
             if lv.code != "Q":
                 assert lv.fixed_allowances == ()
+
+
+def test_metalmeccanica_cooperative_apprenticeship_durations() -> None:
+    """Allegato 10 art. 8: 85/90/95% in thirds of 36, 30 or 24 months."""
+    tracks = {t.name: t for t in load_ccnl("metalmeccanica-cooperative").apprenticeship}
+    for months in (36, 30, 24):
+        third = months // 3
+        periods = tracks[f"professionalizzante_{months}"].periods
+        assert [(p.months_from, getattr(p, "percentage", None)) for p in periods] == [
+            (0, Decimal("0.85")),
+            (third, Decimal("0.90")),
+            (2 * third, Decimal("0.95")),
+            (months, Decimal("1.00")),
+        ]
