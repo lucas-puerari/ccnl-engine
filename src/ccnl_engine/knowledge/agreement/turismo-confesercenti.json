@@ -65,17 +65,8 @@
         "text": "CCNL H058 — Assoturismo-Confesercenti. Conglobated. 10 levels: 7-6-6S-5-4-3-2-1-QB-QA. Divisor 172, 14 months. Seniority 36-month cadence, max 6. 5 tranches: Jul-2024 to Nov-2027."
       },
       {
-        "kind": "simplification",
-        "text": "SUB-SECTORS: the file's own table is that of the alberghi and campeggi; the pubblici esercizi, stabilimenti balneari and alberghi diurni (EmployerProfile.subsector pubblici_esercizi) and their aziende minori (aziende_minori, arts. 291 and 345) are paid the tables of the ipotesi of 22 July 2024 (printed pp. 39-41), the same as the FIPE ones. Not modelled: the ristorazione collettiva table of the same text.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "other_subsectors_tables",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model the ristorazione collettiva table of the 2024 ipotesi, then remove this note."
-        }
+        "kind": "info",
+        "text": "SUB-SECTORS: the file's own table is that of the alberghi and campeggi; the pubblici esercizi, stabilimenti balneari and alberghi diurni (EmployerProfile.subsector pubblici_esercizi), their aziende minori (aziende_minori, arts. 291 and 345) and the ristorazione collettiva (ristorazione_collettiva, pp. 42-45: the same amounts as the pubblici esercizi, with the 2025 and 2026 tranches in September) are paid the tables of the ipotesi of 22 July 2024."
       },
       {
         "kind": "info",
@@ -769,6 +760,170 @@
               }
             }
           ]
+        },
+        "ristorazione_collettiva": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-09-01",
+              "value": "1330.48",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-24', row 7 (scanned page read on the image)",
+                  "quote": "7 | [contingenza] | [paga base giu-24] | 1330,48 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-09-01",
+              "valid_until": "2026-09-01",
+              "value": "1360.34",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-25', row 7 (scanned page read on the image)",
+                  "quote": "7 | [contingenza] | [paga base set-25] | 1360,34 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2025-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-09-01",
+              "valid_until": "2027-06-01",
+              "value": "1390.20",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-26', row 7 (scanned page read on the image)",
+                  "quote": "7 | [contingenza] | [paga base set-26] | 1390,20 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2026-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "1412.59",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-27', row 7 (scanned page read on the image)",
+                  "quote": "7 | [contingenza] | [paga base giu-27] | 1412,59 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "1442.45",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "45",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale dic-27', row 7 (scanned page read on the image)",
+                  "quote": "7 | [contingenza] | [paga base dic-27] | 1442,45 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            }
+          ]
         }
       }
     },
@@ -1243,6 +1398,170 @@
                   "extraction_timestamp": "2026-11-07T11:00:00Z",
                   "effective_from": "2027-12-01",
                   "verification_status": "unverified"
+                }
+              }
+            }
+          ]
+        },
+        "ristorazione_collettiva": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-09-01",
+              "value": "1425.05",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-24', row 6 (scanned page read on the image)",
+                  "quote": "6 | [contingenza] | [paga base giu-24] | 1425,05 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-09-01",
+              "valid_until": "2026-09-01",
+              "value": "1458.31",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-25', row 6 (scanned page read on the image)",
+                  "quote": "6 | [contingenza] | [paga base set-25] | 1458,31 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2025-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-09-01",
+              "valid_until": "2027-06-01",
+              "value": "1491.57",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-26', row 6 (scanned page read on the image)",
+                  "quote": "6 | [contingenza] | [paga base set-26] | 1491,57 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2026-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "1516.52",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-27', row 6 (scanned page read on the image)",
+                  "quote": "6 | [contingenza] | [paga base giu-27] | 1516,52 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "1549.78",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "45",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale dic-27', row 6 (scanned page read on the image)",
+                  "quote": "6 | [contingenza] | [paga base dic-27] | 1549,78 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
                 }
               }
             }
@@ -1725,6 +2044,170 @@
               }
             }
           ]
+        },
+        "ristorazione_collettiva": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-09-01",
+              "value": "1446.72",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-24', row 6s (scanned page read on the image)",
+                  "quote": "6s | [contingenza] | [paga base giu-24] | 1446,72 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-09-01",
+              "valid_until": "2026-09-01",
+              "value": "1480.77",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-25', row 6s (scanned page read on the image)",
+                  "quote": "6s | [contingenza] | [paga base set-25] | 1480,77 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2025-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-09-01",
+              "valid_until": "2027-06-01",
+              "value": "1514.83",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-26', row 6s (scanned page read on the image)",
+                  "quote": "6s | [contingenza] | [paga base set-26] | 1514,83 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2026-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "1540.37",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-27', row 6s (scanned page read on the image)",
+                  "quote": "6s | [contingenza] | [paga base giu-27] | 1540,37 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "1574.42",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "45",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale dic-27', row 6s (scanned page read on the image)",
+                  "quote": "6s | [contingenza] | [paga base dic-27] | 1574,42 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            }
+          ]
         }
       }
     },
@@ -2199,6 +2682,170 @@
                   "extraction_timestamp": "2026-11-07T11:00:00Z",
                   "effective_from": "2027-12-01",
                   "verification_status": "unverified"
+                }
+              }
+            }
+          ]
+        },
+        "ristorazione_collettiva": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-09-01",
+              "value": "1507.63",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-24', row 5 (scanned page read on the image)",
+                  "quote": "5 | [contingenza] | [paga base giu-24] | 1507,63 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-09-01",
+              "valid_until": "2026-09-01",
+              "value": "1543.86",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-25', row 5 (scanned page read on the image)",
+                  "quote": "5 | [contingenza] | [paga base set-25] | 1543,86 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2025-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-09-01",
+              "valid_until": "2027-06-01",
+              "value": "1580.09",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-26', row 5 (scanned page read on the image)",
+                  "quote": "5 | [contingenza] | [paga base set-26] | 1580,09 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2026-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "1607.26",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-27', row 5 (scanned page read on the image)",
+                  "quote": "5 | [contingenza] | [paga base giu-27] | 1607,26 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "1643.50",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "45",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale dic-27', row 5 (scanned page read on the image)",
+                  "quote": "5 | [contingenza] | [paga base dic-27] | 1643,50 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
                 }
               }
             }
@@ -2681,6 +3328,170 @@
               }
             }
           ]
+        },
+        "ristorazione_collettiva": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-09-01",
+              "value": "1612.69",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-24', row 4 (scanned page read on the image)",
+                  "quote": "4 | [contingenza] | [paga base giu-24] | 1612,69 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-09-01",
+              "valid_until": "2026-09-01",
+              "value": "1652.69",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-25', row 4 (scanned page read on the image)",
+                  "quote": "4 | [contingenza] | [paga base set-25] | 1652,69 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2025-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-09-01",
+              "valid_until": "2027-06-01",
+              "value": "1692.69",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-26', row 4 (scanned page read on the image)",
+                  "quote": "4 | [contingenza] | [paga base set-26] | 1692,69 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2026-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "1722.69",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-27', row 4 (scanned page read on the image)",
+                  "quote": "4 | [contingenza] | [paga base giu-27] | 1722,69 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "1762.69",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "45",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale dic-27', row 4 (scanned page read on the image)",
+                  "quote": "4 | [contingenza] | [paga base dic-27] | 1762,69 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            }
+          ]
         }
       }
     },
@@ -3155,6 +3966,170 @@
                   "extraction_timestamp": "2026-11-07T11:00:00Z",
                   "effective_from": "2027-12-01",
                   "verification_status": "unverified"
+                }
+              }
+            }
+          ]
+        },
+        "ristorazione_collettiva": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-09-01",
+              "value": "1713.55",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-24', row 3 (scanned page read on the image)",
+                  "quote": "3 | [contingenza] | [paga base giu-24] | 1713,55 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-09-01",
+              "valid_until": "2026-09-01",
+              "value": "1757.14",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-25', row 3 (scanned page read on the image)",
+                  "quote": "3 | [contingenza] | [paga base set-25] | 1757,14 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2025-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-09-01",
+              "valid_until": "2027-06-01",
+              "value": "1800.73",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-26', row 3 (scanned page read on the image)",
+                  "quote": "3 | [contingenza] | [paga base set-26] | 1800,73 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2026-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "1833.42",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-27', row 3 (scanned page read on the image)",
+                  "quote": "3 | [contingenza] | [paga base giu-27] | 1833,42 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "1877.00",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "45",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale dic-27', row 3 (scanned page read on the image)",
+                  "quote": "3 | [contingenza] | [paga base dic-27] | 1877,00 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
                 }
               }
             }
@@ -3637,6 +4612,170 @@
               }
             }
           ]
+        },
+        "ristorazione_collettiva": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-09-01",
+              "value": "1821.48",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-24', row 2 (scanned page read on the image)",
+                  "quote": "2 | [contingenza] | [paga base giu-24] | 1821,48 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-09-01",
+              "valid_until": "2026-09-01",
+              "value": "1868.92",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-25', row 2 (scanned page read on the image)",
+                  "quote": "2 | [contingenza] | [paga base set-25] | 1868,92 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2025-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-09-01",
+              "valid_until": "2027-06-01",
+              "value": "1916.35",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-26', row 2 (scanned page read on the image)",
+                  "quote": "2 | [contingenza] | [paga base set-26] | 1916,35 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2026-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "1951.92",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-27', row 2 (scanned page read on the image)",
+                  "quote": "2 | [contingenza] | [paga base giu-27] | 1951,92 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "1999.36",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "45",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale dic-27', row 2 (scanned page read on the image)",
+                  "quote": "2 | [contingenza] | [paga base dic-27] | 1999,36 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            }
+          ]
         }
       }
     },
@@ -4111,6 +5250,170 @@
                   "extraction_timestamp": "2026-11-07T11:00:00Z",
                   "effective_from": "2027-12-01",
                   "verification_status": "unverified"
+                }
+              }
+            }
+          ]
+        },
+        "ristorazione_collettiva": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-09-01",
+              "value": "2000.05",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-24', row 1 (scanned page read on the image)",
+                  "quote": "1 | [contingenza] | [paga base giu-24] | 2000,05 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-09-01",
+              "valid_until": "2026-09-01",
+              "value": "2053.87",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-25', row 1 (scanned page read on the image)",
+                  "quote": "1 | [contingenza] | [paga base set-25] | 2053,87 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2025-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-09-01",
+              "valid_until": "2027-06-01",
+              "value": "2107.68",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-26', row 1 (scanned page read on the image)",
+                  "quote": "1 | [contingenza] | [paga base set-26] | 2107,68 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2026-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "2148.04",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-27', row 1 (scanned page read on the image)",
+                  "quote": "1 | [contingenza] | [paga base giu-27] | 2148,04 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "2201.85",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "45",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale dic-27', row 1 (scanned page read on the image)",
+                  "quote": "1 | [contingenza] | [paga base dic-27] | 2201,85 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
                 }
               }
             }
@@ -4593,6 +5896,170 @@
               }
             }
           ]
+        },
+        "ristorazione_collettiva": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-09-01",
+              "value": "2152.82",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-24', row Qb (scanned page read on the image)",
+                  "quote": "Qb | [contingenza] | [paga base giu-24] | 2152,82 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-09-01",
+              "valid_until": "2026-09-01",
+              "value": "2212.22",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-25', row Qb (scanned page read on the image)",
+                  "quote": "Qb | [contingenza] | [paga base set-25] | 2212,22 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2025-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-09-01",
+              "valid_until": "2027-06-01",
+              "value": "2271.61",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-26', row Qb (scanned page read on the image)",
+                  "quote": "Qb | [contingenza] | [paga base set-26] | 2271,61 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2026-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "2316.16",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-27', row Qb (scanned page read on the image)",
+                  "quote": "Qb | [contingenza] | [paga base giu-27] | 2316,16 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "2375.56",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "45",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale dic-27', row Qb (scanned page read on the image)",
+                  "quote": "Qb | [contingenza] | [paga base dic-27] | 2375,56 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            }
+          ]
         }
       }
     },
@@ -5071,6 +6538,170 @@
               }
             }
           ]
+        },
+        "ristorazione_collettiva": {
+          "periods": [
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-09-01",
+              "value": "2331.41",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-24', row Qa (scanned page read on the image)",
+                  "quote": "Qa | [contingenza] | [paga base giu-24] | 2331,41 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2024-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-09-01",
+              "valid_until": "2026-09-01",
+              "value": "2397.19",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "43",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-25', row Qa (scanned page read on the image)",
+                  "quote": "Qa | [contingenza] | [paga base set-25] | 2397,19 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2025-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-09-01",
+              "valid_until": "2027-06-01",
+              "value": "2462.96",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale set-26', row Qa (scanned page read on the image)",
+                  "quote": "Qa | [contingenza] | [paga base set-26] | 2462,96 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2026-09-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-06-01",
+              "valid_until": "2027-12-01",
+              "value": "2512.30",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "44",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale giu-27', row Qa (scanned page read on the image)",
+                  "quote": "Qa | [contingenza] | [paga base giu-27] | 2512,30 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-06-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            },
+            {
+              "valid_from": "2027-12-01",
+              "valid_until": null,
+              "value": "2578.07",
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-h058-194334-ipotesi-2024",
+                    "title": "CCNL Turismo Confesercenti, ipotesi di rinnovo 22 luglio 2024 (archivio CNEL H058, accordo 194334)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+                    "published_on": "2024-07-22",
+                    "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+                  },
+                  "page": "45",
+                  "section": "Ristorazione collettiva (p. 42: 'Per le aziende della ristorazione collettiva le Parti stabiliscono incrementi dei valori di paga base nazionale mensile'), table 'Totale dic-27', row Qa (scanned page read on the image)",
+                  "quote": "Qa | [contingenza] | [paga base dic-27] | 2578,07 €"
+                },
+                "transformation": "Totale (contingenza + paga base) of the ristorazione collettiva table, as the pubblici esercizi table of this file; the 2025 and 2026 tranches start in September, not in June.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-13T23:00:00Z",
+                  "effective_from": "2027-12-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-13T23:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva"
+                }
+              }
+            }
+          ]
         }
       }
     }
@@ -5082,7 +6713,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
     "verification_status": "unverified",
-    "source_hash": "885808f85bec14ce81c6d89de42e8f1ceda68bb19d5a5e95d2873be4ee5e98d2",
+    "source_hash": "75008bece514384d040a1326a3a8aa9caf2bdbddf5197461f4b675cf1d8f5d4e",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -5491,6 +7122,27 @@
         "checked": [
           "work_rules.insured_absence.injury",
           "work_rules.insured_absence.maternity"
+        ]
+      },
+      {
+        "id": "2026-11-13-ai-turismo-confesercenti-ristorazione-collettiva",
+        "date": "2026-11-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Ristorazione collettiva tables of the ipotesi of 22 July 2024 (CNEL 194334, pp. 42-45, scanned pages read on the images).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+            "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+          }
+        ],
+        "findings": [
+          "Added base_salary_by_subsector.ristorazione_collettiva, five tranches per level (June 2024, September 2025, September 2026, June 2027, December 2027); limitation other_subsectors_tables removed."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.*.base_salary_by_subsector.ristorazione_collettiva"
         ]
       }
     ]

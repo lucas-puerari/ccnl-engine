@@ -38,7 +38,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -55,7 +55,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-22 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-13 |
 | **Latest salary tranche** | 2027-11-01 |
 
 ## Review history
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: art. 58 c. 1 of the accordo of 18 July 2018 (CNEL 90033, p. 116, OCR); the definition of the retribuzione read in the unified CCNL Turismo of 22 July 2003 (art. 140 c. 1 d) and its Federalberghi successor of 20 February 2010 (art. 148 c. 1 d). | corrected | The apprentice is paid a percentage of 'la normale retribuzione dei lavoratori qualificati di pari livello' (art. 58); the retribuzione 'è distinta nelle seguenti voci [...] eventuali scatti di anzianità' in the 2003 parent text, a clause the Federalberghi successor keeps; 'A tutto il personale verranno riconosciuti sei scatti' for uninterrupted service: the level increments, scaled by the percentage. The Confesercenti 2010 text itself was not read. |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 50 values read identically by both readings and equal to the file. |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.injury.<br>Added work_rules.insured_absence.maternity (checked on the page image, no text layer). |
+| 2026-11-13 | claude-opus-5-5 (ai) | Ristorazione collettiva tables of the ipotesi of 22 July 2024 (CNEL 194334, pp. 42-45, scanned pages read on the images). | corrected | Added base_salary_by_subsector.ristorazione_collettiva, five tranches per level (June 2024, September 2025, September 2026, June 2027, December 2027); limitation other_subsectors_tables removed. |
 
 ## Salary table
 
@@ -110,13 +111,6 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "turismo-confesercenti/other_subsectors_tables · base_salary · impact yes · open"
-    SUB-SECTORS: the file's own table is that of the alberghi and campeggi; the pubblici esercizi, stabilimenti balneari and alberghi diurni (EmployerProfile.subsector pubblici_esercizi) and their aziende minori (aziende_minori, arts. 291 and 345) are paid the tables of the ipotesi of 22 July 2024 (printed pp. 39-41), the same as the FIPE ones. Not modelled: the ristorazione collettiva table of the same text.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the ristorazione collettiva table of the 2024 ipotesi, then remove this note.
 
 !!! warning "turismo-confesercenti/apprenticeship_under_classification · base_salary · impact yes · open"
     Apprenticeship model confirmed: CCNL Turismo Confesercenti provides sotto-inquadramento 2 levels below destination (consistent with Testo Unico apprendistato Art. 11, secondary sources). Modeled as 100% passthrough pending contract text; the engine supports under_classification tracks with levels_below. (review of 2026-10-30)
@@ -310,6 +304,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 ??? note "Coverage notes"
     CCNL H058 — Assoturismo-Confesercenti. Conglobated. 10 levels: 7-6-6S-5-4-3-2-1-QB-QA. Divisor 172, 14 months. Seniority 36-month cadence, max 6. 5 tranches: Jul-2024 to Nov-2027.
+    
+    SUB-SECTORS: the file's own table is that of the alberghi and campeggi; the pubblici esercizi, stabilimenti balneari and alberghi diurni (EmployerProfile.subsector pubblici_esercizi), their aziende minori (aziende_minori, arts. 291 and 345) and the ristorazione collettiva (ristorazione_collettiva, pp. 42-45: the same amounts as the pubblici esercizi, with the 2025 and 2026 tranches in September) are paid the tables of the ipotesi of 22 July 2024.
     
     Indennita di funzione for QA (EUR 75/month) and QB (EUR 70/month) conglobated into base_salary. Consistent with turismo-federalberghi.json modeling for the same allowances. The CCNL H058 does not publish them as separate line items in the tabella retributiva; absorption into base_salary matches the conglobated model.
     
