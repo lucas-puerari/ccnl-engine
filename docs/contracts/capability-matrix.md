@@ -236,7 +236,7 @@ never grow.
 | 95 | [CCNL Radiotelevisivo — Settore Radiofonico](radiotelevisive-radiofonico.md) | ⚠️ | inps_employer, seniority | 13 / 0 / 8 / 0 |
 | 96 | [CCNL Radiotelevisivo — Settore Televisivo Multimediale](radiotelevisive-televisivo.md) | ⚠️ | inps_employer, seniority | 28 / 0 / 11 / 0 |
 | 97 | [CCNL Recapito Corrispondenza (FISE-ARE)](recapito-corrispondenza-fise.md) | ✅ | — | 32 / 15 / 1 / 1 |
-| 98 | [CCNL Scuole Materne — FISM](scuole-materne-fism.md) | ⚠️ | base_salary, seniority, sickness | 41 / 15 / 1 / 0 |
+| 98 | [CCNL Scuole Materne — FISM](scuole-materne-fism.md) | ⚠️ | seniority, sickness | 41 / 15 / 1 / 0 |
 | 99 | [CCNL Scuole Private Laiche (ANINSEI-Assoscuola)](scuole-private-laiche-aninsei.md) | ⚠️ | seniority | 36 / 71 / 1 / 0 |
 | 100 | [CCNL Servizi Postali in Appalto (FISE-ARE)](servizi-postali-appalto-fise.md) | ⚠️ | base_salary, seniority | 23 / 27 / 1 / 0 |
 | 101 | [CCNL Servizi di Pulizia e Servizi Integrati/Multiservizi (ANIP-Confindustria)](multiservizi-anip.md) | ⚠️ | base_salary, overtime, pension_fund_contribution, seniority, sickness | 90 / 14 / 0 / 0 |

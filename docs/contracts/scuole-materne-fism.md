@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority, sickness |
+| **Limits of this contract** | seniority, sickness |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-28 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-13 |
 | **Latest salary tranche** | 2027-09-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 40, 44, 46 of the CCNL FISM of 28 May 2025 (PDF pp. 32-36, page images) and the economic agreement 2026-2027 (p. 2) for amendments. | confirmed | Art. 46: from 1 September 2025, 15 EUR (levels I-IV) or 20 EUR (V-VIII) a month for 13 payments to the staff with two years of uninterrupted service with the Ente on that day, added to the salario di anzianità of earlier renewals.<br>The agreement of 7 July 2026 does not amend art. 46. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 46 (PDF pp. 35-36) against the encoding of the salario di anzianità, by a separate model session. | corrected | Confirmed the amounts, the date, the 13 payments and the two years of service.<br>Corrected: 'a tutto il personale' does not say whether the apprentice percentage applies: the declaration is removed and the ruleset joins the engine limitation of undeclared apprenticeship components.<br>Flagged: the level held on 1 September 2025 and the continuity with the same Ente are approximations, in the limitation. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Frozen balances and fixed pay against Arts. 40, 44, 46 and 49 on scanned PDF pages 32-37. | confirmed | — |
+| 2026-11-13 | claude-opus-5-5 (ai) | Artt. 26-27 of the signed FISM CCNL 2024-2027 (PDF pp. 22-23, scanned pages read on the images). | corrected | Replaced the 100% identity track with the art. 27.8 percentages: 90/95/100 by semester for levels I-III, 90 the first year then 100 for levels IV-VIII. |
 
 ## Salary table
 
@@ -97,8 +98,12 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Apprenticeship
 
-**professionalizzante** (type: `percentage`)  
-Destination levels: `I`, `II`, `III`, `IV`, `V`, `VI`, `VII`, `VIII`  
+**livelli_1_3** (type: `percentage`)  
+Destination levels: `I`, `II`, `III`  
+percentage: 1.00
+
+**livelli_4_8** (type: `percentage`)  
+Destination levels: `IV`, `V`, `VI`, `VII`, `VIII`  
 percentage: 1.00
 
 ## Known simplifications
@@ -111,13 +116,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Supply any actual preserved monthly balances as individual elements and, for the new allowance, the level held and whether service with the same employer was uninterrupted on 1 September 2025; absent those facts, the run cannot reconstruct the worker's historical pay or correct the milestone approximation.
-
-!!! warning "scuole-materne-fism/apprenticeship_identity_track · base_salary · impact unknown · open"
-    APPRENTICESHIP: no apprenticeship clause found in main CCNL text. Sector primarily employs teachers on permanent contracts. Modelled as single percentage period at 100% (identity transform) for all levels; correct for permanent staff.
-
-    **Applies when:** `base_salary` applies; contract type in apprentice.
-
-    **Remediation:** Source the apprenticeship clause and replace the 100% identity track.
 
 !!! warning "scuole-materne-fism/sickness_net_basis · sickness · impact unknown · open"
     SICKNESS (Art. 69): the CCNL integrates up to 100% of the net monthly pay ('retribuzione mensile netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.
@@ -307,6 +305,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 |---|---|---|---|
 | https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf | altro | 2025-05-28 | [↗](https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf) |
 | https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf | altro | 2026-07-07 | [↗](https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf) |
+| CCNL FISM 2024-2027, testo definitivo sottoscritto il 28 maggio 2025 | associazione | 2025-05-28 | [↗](https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf) |
 
 ??? note "Coverage notes"
     CCNL FISM signed 28/05/2025 (sede ASI). Validity 01/09/2023-31/08/2027. Economic accord for 2026-2027 signed 07/07/2026.
@@ -318,6 +317,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     HOURLY DIVISOR (Art. 51): 160 h/month for 37h/week. Divisors for 35h=152, 32h=139 also stated.
     
     ADDITIONAL MONTHS (Art. 49): tredicesima only, paid by 20 December.
+    
+    APPRENTICESHIP (art. 27.8, signed text of 28 May 2025, scanned p. 23 read on the image): 'Durata 24 mesi: primo semestre: 90% della retribuzione globale in atto; secondo semestre: 95% [...]; dal terzo semestre: 100% [...]; Durata 36 mesi: Primo anno: 90% [...]; dal secondo anno: 100%'. Art. 27.4: 24 months for levels I-III, 36 beyond level III (18 and 30 with a relevant diploma or degree, the same percentages up to the shorter end): tracks livelli_1_3 and livelli_4_8. The percentage reads the pay of the destination level with the allowances it applies to (retribuzione globale in atto).
     
     APPRENTICE SENIORITY: the aumenti periodici are abolished for every worker since the CCNL 2016-2018 (Art. 44, p. 34 of the CCNL 2024-2027), so an apprentice matures none (seniority_increments.apprentice_amount 0.00).
     
