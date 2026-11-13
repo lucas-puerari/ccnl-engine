@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | seniority |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-29 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-13 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | gpt-6-sol (ai) | Terzo elemento against art. 186 of the signed text and the later renewals. | corrected | The file paid 3.07 from a secondary table; art. 186 c. 4 prints 3,10 and no later renewal amends it (research .private/research/work/r-distr-coop). Corrected on all levels. |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 19 values found verbatim on the cited pages and marked verified; 36 left as they were (derived or not on a text page). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 187 c. 2 of the 2011 official text (PDF p. 201, text layer). | corrected | The divisors of the half-hour weeks (167 for 38.5, 184 from 42.5) are now expressible: added 38.5, 42.5 and 43.5 to time_supplements.week_divisors. |
+| 2026-11-13 | claude-opus-5-5 (ai) | Art. 75 of the signed ipotesi di accordo of 29 March 2024 deposited at the CNEL (accordo 183889, PDF p. 43, OCR of the page image). | confirmed | The 2024 renewal keeps two levels below for the first 24 months and one below after for destinations 4 to 1, one below throughout for level 5: the encoded tracks hold; limitation apprenticeship_2024_text_unread removed. |
 
 ## Salary table
 
@@ -113,13 +114,6 @@ under-level: `1`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "distribuzione-cooperativa-ancc/apprenticeship_2024_text_unread · base_salary · impact unknown · open"
-    APPRENTICESHIP (2024 RENEWAL): Modelled from the 2020 CCNL text (CCNL-Utilia2020 PDF, 'Apprendistato accordo 13 giugno 2012'): levels 1-4 start 2 levels below for first 24 months then 1 level below; level 5 stays 1 level below throughout. The 2024 renewal (signed 2024-03-29) amended Arts. 75 and 80-82 but the updated text is not publicly accessible. Rules assumed unchanged from 2020 source.
-
-    **Applies when:** `base_salary` applies; contract type in apprentice.
-
-    **Remediation:** Read the apprenticeship articles of the 2024 renewal (Arts. 75, 80-82) and update the tracks, then remove this limitation.
 
 !!! warning "distribuzione-cooperativa-ancc/seniority_amounts_proxy_source · seniority · impact unknown · open"
     SENIORITY AMOUNTS: from kitech.it only (proxy source). No independent primary-source confirmation. Cadence (36 months) and maximum (10) confirmed from CCNL text via olympus.uniurb.it.
@@ -317,6 +311,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016 | tabella_retributiva | 2024-03-29 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=H016) |
 | https://olympus.uniurb.it/index.php?option=com_content&view=article&id=31717:coop29324&catid=262&Itemid=139 | altro | 2024-03-29 | [↗](https://olympus.uniurb.it/index.php?option=com_content&view=article&id=31717:coop29324&catid=262&Itemid=139) |
 | https://ilccnl.it/contratto/ccnl/cooperative-di-consumo | tabella_retributiva | 2024-03-29 | [↗](https://ilccnl.it/contratto/ccnl/cooperative-di-consumo) |
+| Ipotesi di accordo di rinnovo del CCNL per i dipendenti da imprese della distribuzione cooperativa, Roma 29 marzo 2024 (deposito CNEL, accordo 183889, scansione firmata) | cnel | 2024-03-29 | [↗](https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889) |
 
 ??? note "Coverage notes"
     SALARY MODEL: split. base_salary = minimo tabellare only. fixed_allowances per level: (1) CONTINGENZA frozen since January 1993, level-specific constant; (2) TERZO_ELEMENTO 3.07 EUR all levels, constant; (3) INDENNITA_FUNZIONE 250.76 EUR, Q only, constant since 2008. Total monthly = base_salary + CONTINGENZA + TERZO_ELEMENTO (+ INDENNITA_FUNZIONE for Q). Verified against kitech.it Dec 2025 table: Q=2985.20 (expected 2985.23), L1=2533.93 (expected 2533.96), L4=1763.99 (expected 1764.02). 3-cent gap = TERZO_ELEMENTO rounding (3.07 filcams vs 3.10 kitech); filcams used.
@@ -328,6 +323,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SENIORITY: triennial (cadence_months=36), maximum 10 scatti. Per-level amounts from kitech.it Dec 2025 (proxy, label SIMPLIFICATION). Q=27.82, L1=26.64, L2=24.52, L3S=21.79, L3=21.79, L4S=19.93, L4=19.93, L5=18.84, L6=16.51 EUR/scatto. L3S=L3 and L4S=L4 duplication confirmed plausible in Terziario family.
     
     INPS: uses 2026-terziario.json (terziario sector). No bilateral fund substituting INPS contributions. CNEL code: H016.
+    
+    APPRENTICESHIP (2024 RENEWAL): art. 75 of the signed ipotesi of 29 March 2024 (CNEL 183889, p. 43, scanned page read by OCR) keeps the under-classification of the 2020 text: 'di due livelli inferiori [...] per i primi 24 mesi dal 4° livello al 1° livello e di un livello inferiore [...] per la restante durata dello stesso'; 'di un livello inferiore [...] per l'intera durata del percorso di apprendistato per il 5° livello'. Tracks livelli_1_a_4 (1, 2, 3S, 3, 4S, 4) and livello_5 unchanged.
     
     HOURLY DIVISOR: Art. 187 c. 2 (2011 official text, p. 201): 165 for the normal week of 38 hours (art. 113 c. 1), 167 for 38.5, 168 for 39 and 40, 182 for 42, 184 from 42.5 to 44. The engine keeps 165 and reads the others from Employment.full_time_weekly_hours (38.5, 39, 40, 42, 42.5, 43, 43.5, 44); for the life of that contract, the staff hired after its signature work 40 hours (art. 113 c. 5) and state it. The cooperative minori of title XV keep their own 40-hour week and divisor (art. 187 c. 3, art. 147): not told apart.
     
