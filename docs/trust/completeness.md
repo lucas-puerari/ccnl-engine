@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 272 weak rules, 411 open limitations (411 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 269 weak rules, 407 open limitations (407 with a monetary impact).
 
 ## Declared window
 
@@ -144,7 +144,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [operai-agricoli-florovivaisti](../contracts/operai-agricoli-florovivaisti.md) | `agricoltura` | exploratory | — | 32 rows | tables from 2026-06-01; 32 open requirements; 1 weak rule; 22 monetary limitations; 7 outside_input limitations; 21 non-native capabilities |
 | [orafi-argentieri-industria-federorafi](../contracts/orafi-argentieri-industria-federorafi.md) | `metalmeccanica` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 18 non-native capabilities |
 | [organizzazioni-allevatori-aia](../contracts/organizzazioni-allevatori-aia.md) | `agricoltura` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 19 non-native capabilities |
-| [ortofrutticoli-agrumari](../contracts/ortofrutticoli-agrumari.md) | `commercio` | exploratory | — | 30 rows | 30 open requirements; 7 weak rules; 21 monetary limitations; 22 non-native capabilities |
+| [ortofrutticoli-agrumari](../contracts/ortofrutticoli-agrumari.md) | `commercio` | exploratory | — | 23 rows | 23 open requirements; 4 weak rules; 17 monetary limitations; 19 non-native capabilities |
 | [panificazione-artigianato-confartigianato](../contracts/panificazione-artigianato-confartigianato.md) | `alimentare` | exploratory | — | 25 rows | 25 open requirements; 22 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [panificazione-assipan](../contracts/panificazione-assipan.md) | `alimentare` | exploratory | 2026-12-31 | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 18 non-native capabilities |
 | [pelli-cuoio-industria-assopellettieri](../contracts/pelli-cuoio-industria-assopellettieri.md) | `pelli-calzature` | exploratory | — | 22 rows | 22 open requirements; 2 weak rules; 18 monetary limitations; 19 non-native capabilities |

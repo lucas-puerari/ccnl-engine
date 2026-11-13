@@ -19,22 +19,6 @@
       }
     },
     {
-      "id": "assumed_sickness_integration_rates",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: Tassi integrazione malattia assunti 100% (carenza_integration_rate e full_pay_integration_rate). Fonti accessibili non riportano percentuali per H341. Comporto 180 giorni da snippet ricerca H341. Il motore può sovrastimare il supplemento datoriale durante la malattia.",
-      "calculation": "ccnl/ortofrutticoli-agrumari:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the carenza and integration rates of the CCNL and replace the assumed 100%.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "ortofrutticoli-agrumari/assumed_sickness_integration_rates"
-        ]
-      }
-    },
-    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",
@@ -47,38 +31,6 @@
       "links": {
         "limitations": [
           "disability_permit_tfr"
-        ]
-      }
-    },
-    {
-      "id": "ind_fun_assumed_constant",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: IND_FUN 154.94 EUR assunta costante dal 2024-01-01 senza adeguamenti. Allowance pre-euro congelata (300.000 lire). Nessuna fonte indica variazioni nel rinnovo 2024.",
-      "calculation": "ccnl/ortofrutticoli-agrumari:coverage.notes",
-      "state": "unverified",
-      "remediation": "Confirm the IND_FUN amount against the 2024 renewal text.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "ortofrutticoli-agrumari/ind_fun_assumed_constant"
-        ]
-      }
-    },
-    {
-      "id": "ind_fun_fourteen_months",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: IND_FUN assunta corrisposta su 14 mensilità (ereditato da additional_months contratto); months_per_year non specificato. Nessuna fonte accessibile indica il numero di mensilità dell'indennità. Impatto: ±154.94 EUR/anno livello Q se la vera risposta è 12 mensilità.",
-      "calculation": "ccnl/ortofrutticoli-agrumari:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the number of monthly payments of IND_FUN.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "ortofrutticoli-agrumari/ind_fun_fourteen_months"
         ]
       }
     },
@@ -307,36 +259,6 @@
       }
     },
     {
-      "id": "rule_additional_months_2024_01_01",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/ortofrutticoli-agrumari.json#additional_months[2024-01-01]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/ortofrutticoli-agrumari.json#additional_months[2024-01-01]"
-        ]
-      }
-    },
-    {
-      "id": "rule_levels_q_fixed_allowances_ind_fun",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/ortofrutticoli-agrumari.json#levels[Q].fixed_allowances[IND_FUN]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/ortofrutticoli-agrumari.json#levels[Q].fixed_allowances[IND_FUN]"
-        ]
-      }
-    },
-    {
       "id": "rule_overtime_bands_ot_festivo",
       "institute": "overtime",
       "variant": "all",
@@ -382,21 +304,6 @@
       }
     },
     {
-      "id": "rule_seniority_increments",
-      "institute": "seniority",
-      "variant": "all",
-      "rule": "agreement/ortofrutticoli-agrumari.json#seniority_increments",
-      "calculation": "seniority",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/ortofrutticoli-agrumari.json#seniority_increments"
-        ]
-      }
-    },
-    {
       "id": "rule_work_rules_absence_rules",
       "institute": "base_salary",
       "variant": "all",
@@ -408,22 +315,6 @@
       "links": {
         "rules": [
           "agreement/ortofrutticoli-agrumari.json#work_rules.absence_rules"
-        ]
-      }
-    },
-    {
-      "id": "seniority_assumed_constant",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: Importi scatti anzianità assunti costanti per tutto il periodo 2024-2027. La fonte primaria (kitech.it giugno 2026) non indica data decorrenza; il rinnovo 2024 non menziona modifiche agli scatti.",
-      "calculation": "ccnl/ortofrutticoli-agrumari:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the effective dates of the seniority amounts.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "ortofrutticoli-agrumari/seniority_assumed_constant"
         ]
       }
     },
