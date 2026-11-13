@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-07-09 |
-| **Last review** | 2026-11-06 |
+| **Last review** | 2026-11-13 |
 | **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-11-06 | claude-opus-5-5 (ai) | FEDERDAT CCNL of 4 May 2023 (CNEL 167336) and of 9 July 2026 (CNEL 245848): artt. 102/119 pay (p. 63, page images), 124 seniority (p. 64), 86/103 sickness (pp. 51), 32-33 apprenticeship, 4 validity. | corrected | The file held the HV17 tables (six tranches 2023-2026): FEDERDAT pays one table from May 2023 and the renewal's two from July and December 2026.<br>Six increments, not ten; sickness 100% days 1-3, 75% days 4-20, 100% from day 21 (the file had 75% throughout). |
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 32, 123-124 and 157 of the CCNL of 9 July 2026 (pp. 23, 64, 76, OCR). | corrected | Apprentices accrue the level increments in full: art. 32 c. 1 (p. 23 of the CCNL of 9 July 2026) sets their pay 'in applicazione del principio di parità di trattamento' (no percentage), art. 123 (p. 64) counts seniority 'dal giorno in cui il lavoratore inizia di fatto la prestazione lavorativa nell'Istituto, quali che siano le mansioni', and the six triennial increments are fixed per level (art. 124; art. 157 for the servizi fiduciari). |
+| 2026-11-13 | claude-opus-5-5 (ai) | Arts. 21 and 64 of the renewal of 9 July 2026 (CNEL 245848, PDF pp. 16, 34-35) and arts. 21 and 48 of the text of 4 May 2023 (CNEL 167336, PDF pp. 17, 34), scanned pages read on the images. | corrected | Added health_funds ebilav (0,20% + 0,10%, alternative 25 EUR) and ebilav_sanitario (12 EUR, alternative 15 EUR), the same HV51 clauses as the FEDERDAT SF file; the substitutes are paid on the 14 monthly payments of this file. |
 
 ## Salary table
 

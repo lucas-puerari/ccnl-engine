@@ -1062,7 +1062,128 @@
         }
       },
       "apprentice_level_amount": true
-    }
+    },
+    "health_funds": [
+      {
+        "code": "ebilav",
+        "description": "EBILAV, ente bilaterale (cod. LAV1), art. 21",
+        "employer": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-06-01",
+                "valid_until": null,
+                "value": "0.002"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-06-01",
+                "valid_until": null,
+                "value": "0.001"
+              }
+            ]
+          }
+        },
+        "rate_base": "minimum",
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-06-01",
+                "valid_until": null,
+                "value": "25.00"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-hv51-245848-ccnl-2026",
+              "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+              "kind": "cnel",
+              "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848"
+            },
+            "page": "16 (printed 15)",
+            "section": "Art. 21 - Ente bilaterale EBILAV (scanned page read on the image)",
+            "quote": "Il contributo da destinare in favore dell'Ente Bilaterale EBILAV (cod. LAV1) è stabilito nella misura dello 0,30 % (0,20 % a carico del datore e 0,10 % a carico del lavoratore) calcolato su busta paga e contingenza. [...] corrispondere al lavoratore un elemento distinto della retribuzione pari a 25 euro/mese, corrisposto per 14 mensilità e rientrante nella retribuzione di fatto"
+          },
+          "transformation": "0.20% employer and 0.10% worker on the monthly pay of the table, which conglobates the contingenza; not charged on the 13th (the clause names the 'busta paga' and is silent on the extra months). An employer that does not pay owes 25 EUR a month in the retribuzione di fatto, on the 14 monthly payments of this CCNL. The same clause stands in the text of 4 May 2023 (art. 21, PDF p. 17).",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2023-06-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-13-ai-vigilanza-privata-federdat-gpg-funds"
+          }
+        }
+      },
+      {
+        "code": "ebilav_sanitario",
+        "description": "Fondo Sanitario Integrativo EBILAV, mutua Cesare Pozzo, art. 64",
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-06-01",
+                "valid_until": null,
+                "value": "12.00"
+              }
+            ]
+          }
+        },
+        "solidarity_rate": "0.10",
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-06-01",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-hv51-245848-ccnl-2026",
+              "title": "CCNL Vigilanza privata e servizi fiduciari FEDERDAT, 9 luglio 2026 (archivio CNEL HV51, accordo 245848)",
+              "kind": "cnel",
+              "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848"
+            },
+            "page": "34-35 (printed 33-34)",
+            "section": "Art. 64 - Assistenza sanitaria integrativa (scanned pages read on the images)",
+            "quote": "un contributo obbligatorio a carico dell'azienda, pari ad euro 144,00 (centoquarantaquattro/00) annuali per ogni lavoratore beneficiario da corrispondere alla mutua Cesare Pozzo anticipatamente in quote mensili uguali, pari a € 12,00 (euro dodici/00) per ogni lavoratore [...] ad erogare al lavoratore un elemento distinto della retribuzione non assorbibile di importo pari ad euro 15,00 lordi, da corrispondere per 14 mensilità e che rientra nella retribuzione di fatto"
+          },
+          "transformation": "12 EUR a month at the employer's charge, with the 10% INPS solidarity contribution of a health fund (L. 166/1991 art. 9-bis). An employer that does not pay owes 15 EUR a month in the retribuzione di fatto, or the same benefits; the 2023 text (art. 48, PDF p. 34) already set both from the month after its signature (June 2023).",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2023-06-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-13-ai-vigilanza-privata-federdat-gpg-funds"
+          }
+        }
+      }
+    ]
   },
   "apprenticeship": [
     {
@@ -1093,7 +1214,7 @@
     "effective_until": null,
     "source": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
     "verification_status": "unverified",
-    "source_hash": "ffe734656774d99c76b51599675ef886abe0767ac363e677cf52be8213e96ba9",
+    "source_hash": "ea0233caa7aeddaa20f6f1cd343296cd4f96634aaed49d8d0ed4161608c6dc68",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1514,6 +1635,31 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-13-ai-vigilanza-privata-federdat-gpg-funds",
+        "date": "2026-11-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Arts. 21 and 64 of the renewal of 9 July 2026 (CNEL 245848, PDF pp. 16, 34-35) and arts. 21 and 48 of the text of 4 May 2023 (CNEL 167336, PDF pp. 17, 34), scanned pages read on the images.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          },
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+            "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
+          }
+        ],
+        "findings": [
+          "Added health_funds ebilav (0,20% + 0,10%, alternative 25 EUR) and ebilav_sanitario (12 EUR, alternative 15 EUR), the same HV51 clauses as the FEDERDAT SF file; the substitutes are paid on the 14 monthly payments of this file."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "health_funds"
         ]
       }
     ]
