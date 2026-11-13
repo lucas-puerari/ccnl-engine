@@ -408,3 +408,21 @@ def test_scuole_materne_fism_apprenticeship_by_duration() -> None:
         (0, Decimal("0.90")),
         (12, Decimal("1.00")),
     ]
+
+
+def test_acconciatura_group_1_reduced_track() -> None:
+    """Tabella 3 (renewal of 20 May 2024 p. 6): 100% from the ninth semester."""
+    tracks = {
+        t.name: t
+        for t in load_ccnl("acconciatura-estetica-confartigianato").apprenticeship
+    }
+    reduced = [
+        (p.months_from, getattr(p, "percentage", None))
+        for p in tracks["gruppo_1_ridotto"].periods
+    ]
+    assert reduced[-1] == (48, Decimal("1.00"))
+    ordinary = [
+        (p.months_from, getattr(p, "percentage", None))
+        for p in tracks["gruppo_1"].periods
+    ]
+    assert (48, Decimal("0.95")) in ordinary
