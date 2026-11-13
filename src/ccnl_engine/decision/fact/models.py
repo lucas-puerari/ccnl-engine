@@ -32,6 +32,7 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "subsector": "EmployerProfile.subsector",
     "inps_sector": "EmployerProfile.inps_sector",
     "just_cause": "EmploymentPeriod.just_cause",
+    "probation_until": "EmploymentPeriod.probation_until",
     "level_started_on": "Employment.level_started_on",
     "legacy_section_applicable": "EmployerProfile.legacy_section_applicable",
     "solidarity_fund_covered": "EmployerProfile.solidarity_fund_covered",

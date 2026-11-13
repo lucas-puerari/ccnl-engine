@@ -156,6 +156,22 @@
       {
         "kind": "info",
         "text": "ORDINARY HOUR PREMIUMS (Testo Unico 29 September 2025, pp. 43-44): ordinary night 15% (art. 134), Sunday 30% (art. 136 c. 7, without a better second-level treatment), weekly rest day 30% (art. 139), holidays as straordinario festivo 30% with the hour paid apart (art. 138): work_rules.time_supplements.supplement_bands DMO_*."
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 47 b): the employer pays 60% of the gross pay on the days of a hospital stay, read as added to the INPS indemnity ('oltre a quanto previsto dalla legislazione vigente'); the text does not say whether the 60% is instead the whole treatment the employer tops the INPS share up to, which would pay 50 points of the gross daily pay less on days 4-20 (60% in all against 50% + 60%). The INPS indemnity during the stay is not reduced to 2/5 for a worker without family dependants.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "apprentice_hospital_share",
+          "applies_when": {
+            "trigger": "run",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the reading of the hospital indemnity of the apprentice (a joint interpretation of the parties or a ruling) and apply it; then resolve this limitation."
+        }
       }
     ]
   },
@@ -3915,7 +3931,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "87ed9ed3e4a5aea9ca47557ad32d4d9878307f3eee520ddc496fb2480a203687",
+    "source_hash": "ee32389ca782fd0c934ec0c590bad5c8940debfbab68f9322fd3b5e6852acd40",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4887,6 +4903,48 @@
         ]
       }
     },
+    "apprentice_sickness_rules": {
+      "carenza_integration_rate": "0.6",
+      "full_pay_integration_rate": "0",
+      "max_duration_days": 180,
+      "net_basis": false,
+      "comporto_calendar_year": true,
+      "carenza_by_event": {
+        "from_event": 7,
+        "rates": [
+          "0"
+        ],
+        "exemptions": false
+      },
+      "hospital_employer_share": "0.6",
+      "after_probation": true,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+            "kind": "associazione",
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "published_on": "2025-09-29",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          },
+          "page": "45",
+          "section": "Art. 47 - Malattia",
+          "quote": "1. Durante il periodo di malattia l’apprendista avrà diritto, oltre a quanto previsto dalla legislazione vigente: a) Per i primi tre giorni di malattia, limitatamente a sei eventi morbosi in ragione d’anno, ad una indennità pari al 60% della retribuzione lorda cui avrebbe avuto diritto in caso di normale svolgimento del rapporto; b) In caso di ricovero ospedaliero e per tutta la durata dello stesso, entro i limiti di cui all’art. 169 del presente CCNL, ad una indennità a carico del datore di lavoro, pari al 60% della retribuzione lorda cui avrebbe avuto diritto in caso di normale svolgimento del rapporto. c) Le disposizioni di cui alle lettere a) e b) si applicano a decorrere dal superamento del periodo di prova."
+        },
+        "transformation": "The apprentice sickness rules replace the general ones for an apprentice. a) The three days of carenza paid at 60% of the gross daily pay for the first six events of the calendar year ('in ragione d'anno' read as the calendar year, the year of the comporto), none from the seventh: carenza_integration_rate 0.6 with carenza_by_event from the 7th event at 0, every event counted (the exemptions of the general sickness article do not apply to this clause). b) On each day of a hospital stay within the comporto the employer pays 60% of the gross daily pay: on top of the INPS share of an indemnified day ('oltre a quanto previsto dalla legislazione vigente'), and 60% on a waiting day whatever the event (hospital_employer_share 0.6). No other integration (full_pay_integration_rate 0), gross basis, comporto of 180 days in the calendar year of art. 169. Both from the end of the probation (after_probation). Holidays in the sickness are not topped up for an apprentice: the general holiday clause is read as part of the treatment apprentices are excluded from.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-13T10:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-13T10:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-13-ai-dmo-federdistribuzione-apprentice-sickness"
+        }
+      }
+    },
     "notice": {
       "bands": [
         {
@@ -5608,6 +5666,51 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.insured_absence.injury"
+        ]
+      },
+      {
+        "id": "2026-11-13-ai-dmo-federdistribuzione-apprentice-sickness",
+        "date": "2026-11-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 47 of the testo unico 2025 (printed p. 45, PDF p. 24), text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "Added work_rules.apprentice_sickness_rules: carenza at 60% for six events a year, 60% of the gross pay on the days of a hospital stay, after the probation; the apprentices were paid no employer treatment before."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.apprentice_sickness_rules"
+        ]
+      },
+      {
+        "id": "2026-11-13-gpt-dmo-federdistribuzione-apprentice-sickness",
+        "date": "2026-11-13",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice sickness clause, its encoding and the engine change, against the signed text, by a separate model session.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "Confirmed: source, page and sha256; the 2024 renewal does not list the article among those changed.",
+          "Confirmed: 60% carenza for six events a year, 60% of the gross pay on hospital-stay days, nothing in the probation, gross basis, 180 days in the calendar year; hand amounts of the Commercio test case recomputed.",
+          "Flagged and corrected in the same change: quotes made verbatim; a relapse takes the rank of its event; no carenza past the comporto; missing-fact issues raised only when the fact can change the pay; the limitation states the 50-point difference of the alternative reading.",
+          "Flagged, kept as limitation apprentice_hospital_share: the text does not settle whether the hospital 60% adds to the INPS indemnity or is the total."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.apprentice_sickness_rules"
         ]
       }
     ],

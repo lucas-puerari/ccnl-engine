@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-22 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-13 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -75,6 +75,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 189 - Injury pay, PDF pp. 144-145: the integration targets of apprentices. | confirmed | The clause sets the targets of points 2) and 3) at 80% and 90% for apprentices; point 1) (60% for the waiting days) is unchanged.<br>Encoded as apprentice_bands at offsets 4 and 20, selected when the contract is an apprenticeship. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Local patron saint day in sickness and work injury holiday clauses. | confirmed | Art. 191 - Festività nel periodo di malattia o infortunio (p. 145): Ai sensi della Legge 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad un’indennità integrativa di quella a carico rispettivamente dell’INPS e dell’INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all’art. 208. The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 191 and the patron saint holiday list, cached 2019 PDF p. 145. | confirmed | Sickness and injury holiday targets already include the stated patron saint day; the local holiday limitation is stale. |
+| 2026-11-13 | claude-opus-5-5 (ai) | Art. 54 of the testo unico 2019 (printed and PDF p. 64), text layer; the renewal of 2024 (OCR of the signed scan) does not change it. | corrected | Added work_rules.apprentice_sickness_rules: carenza at 60% for six events a year, 60% of the gross pay on the days of a hospital stay, after the probation; the apprentices were paid no employer treatment before. |
+| 2026-11-13 | gpt-6-sol (ai) | Apprentice sickness clause, its encoding and the engine change, against the signed text, by a separate model session. | flagged | Confirmed: source, page and sha256; the 2024 renewal does not list the article among those changed.<br>Confirmed: 60% carenza for six events a year, 60% of the gross pay on hospital-stay days, nothing in the probation, gross basis, 180 days in the calendar year; hand amounts of the Commercio test case recomputed.<br>Flagged and corrected in the same change: quotes made verbatim; a relapse takes the rank of its event; no carenza past the comporto; missing-fact issues raised only when the fact can change the pay; the limitation states the 50-point difference of the alternative reading.<br>Flagged, kept as limitation apprentice_hospital_share: the text does not settle whether the hospital 60% adds to the INPS indemnity or is the total. |
 
 ## Salary table
 
@@ -174,19 +176,19 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Read Art. 149 on Sunday overtime of a worker whose weekly rest is not Sunday; if it pays 30%, add a Sunday band, else resolve this limitation.
 
-!!! warning "terziario-confesercenti/apprentice_sickness · sickness · impact yes · open"
-    Art. 54: the apprentice sickness, 60% of the gross pay for the three days of carenza of six events a year and for hospital stays, while the file pays apprentices no integration.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the apprentice sickness of Art. 54.
-
 !!! note "terziario-confesercenti/permit_deadline_payout · leave · impact yes · resolved"
     LEAVE, DEADLINE (Art. 158): the permits not taken within the year of accrual are paid with the December pay, or carried and paid with the June pay of the next year for what is left, as the employer states in EmployerProfile.permit_carryover.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Resolved: leave_rules.permit_deadline with the employer fact permit_carryover, read on 2026-11-06.
+
+!!! warning "terziario-confesercenti/apprentice_hospital_share · sickness · impact yes · open"
+    Art. 54 b): the employer pays 60% of the gross pay on the days of a hospital stay, read as added to the INPS indemnity ('oltre a quanto previsto dalla legislazione vigente'); the text does not say whether the 60% is instead the whole treatment the employer tops the INPS share up to, which would pay 50 points of the gross daily pay less on days 4-20 (60% in all against 50% + 60%). The INPS indemnity during the stay is not reduced to 2/5 for a worker without family dependants.
+
+    **Applies when:** `sickness` applies; contract type in apprentice.
+
+    **Remediation:** Source the reading of the hospital indemnity of the apprentice (a joint interpretation of the parties or a ruling) and apply it; then resolve this limitation.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

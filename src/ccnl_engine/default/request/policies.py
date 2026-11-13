@@ -195,8 +195,9 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
     "EmploymentPeriod.probation_until": requires_fact(
         "contractual_funds",
         "employment_period.probation_until",
-        _PENDING,
-        "no probation: a fund that leaves it out is charged from the hire",
+        _REPORTED,
+        "no probation: a fund that leaves it out is charged from the hire, a "
+        "sickness treatment paid after it is paid (sickness_probation_unknown)",
     ),
     "SeniorityFact.career_months": requires_fact(
         "base_salary",

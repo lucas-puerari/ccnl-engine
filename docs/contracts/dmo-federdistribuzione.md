@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, sickness, territorial_supplement |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-09-29 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-13 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -72,6 +72,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | cashier_allowance: All eight levels have IND_CASSA gated by role cassiere; all 48 dated amounts equal 5% of the corresponding stored base_salary rounded to cents. compensation/element/rules.py activates the allowance for that role. The employer must supply cassiere only when continuous cash assignm |
 | 2026-11-08 | gpt-6-sol (ai) | Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image. | corrected | The injury rule had no top-up of the INAIL indemnity; added: {"integration_bands": [{"day_from": 4, "rate": "0.90"}, {"day_from": 20, "rate": "1"}], "net_basis": true} |
+| 2026-11-13 | claude-opus-5-5 (ai) | Art. 47 of the testo unico 2025 (printed p. 45, PDF p. 24), text layer. | corrected | Added work_rules.apprentice_sickness_rules: carenza at 60% for six events a year, 60% of the gross pay on the days of a hospital stay, after the probation; the apprentices were paid no employer treatment before. |
+| 2026-11-13 | gpt-6-sol (ai) | Apprentice sickness clause, its encoding and the engine change, against the signed text, by a separate model session. | flagged | Confirmed: source, page and sha256; the 2024 renewal does not list the article among those changed.<br>Confirmed: 60% carenza for six events a year, 60% of the gross pay on hospital-stay days, nothing in the probation, gross basis, 180 days in the calendar year; hand amounts of the Commercio test case recomputed.<br>Flagged and corrected in the same change: quotes made verbatim; a relapse takes the rank of its event; no carenza past the comporto; missing-fact issues raised only when the fact can change the pay; the limitation states the 50-point difference of the alternative reading.<br>Flagged, kept as limitation apprentice_hospital_share: the text does not settle whether the hospital 60% adds to the INPS indemnity or is the total. |
 
 ## Salary table
 
@@ -163,6 +165,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `bilateral_funds` applies.
 
     **Remediation:** Resolved: parameters.health_funds ebidim, fondo_est and quas, read on 2026-11-05.
+
+!!! warning "dmo-federdistribuzione/apprentice_hospital_share · sickness · impact yes · open"
+    Art. 47 b): the employer pays 60% of the gross pay on the days of a hospital stay, read as added to the INPS indemnity ('oltre a quanto previsto dalla legislazione vigente'); the text does not say whether the 60% is instead the whole treatment the employer tops the INPS share up to, which would pay 50 points of the gross daily pay less on days 4-20 (60% in all against 50% + 60%). The INPS indemnity during the stay is not reduced to 2/5 for a worker without family dependants.
+
+    **Applies when:** `sickness` applies; contract type in apprentice.
+
+    **Remediation:** Source the reading of the hospital indemnity of the apprentice (a joint interpretation of the parties or a ruling) and apply it; then resolve this limitation.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

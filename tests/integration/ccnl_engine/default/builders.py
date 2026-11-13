@@ -39,6 +39,7 @@ from ccnl_engine.events import (
     TerminationTFREvent,
 )
 from ccnl_engine.inputs import (
+    Apprentice,
     CurrentYearTaxFacts,
     Dependent,
     DependentRelationship,
@@ -475,6 +476,35 @@ def _on_probation(until: date | None) -> PeriodInput:
     )
 
 
+def _apprentice_on_probation(until: date | None) -> PeriodInput:
+    """Return March of a Commercio apprentice sick from 2 to 13 March 2026.
+
+    Art. 54 pays the 60% carenza from the end of the probation.
+
+    Returns:
+        The request with the end of the probation stated or not.
+    """
+    period = EmploymentPeriod(date(2026, 1, 1), probation_until=until)
+    employment = replace(
+        CONCIA_D2,
+        ccnl_id="commercio-confcommercio",
+        level_code="4",
+        category=WorkerCategory.IMPIEGATO,
+        contract_type=Apprentice(months_elapsed=2, track="livelli_2_5"),
+        employment_period=period,
+    )
+    episode = SicknessEpisode(
+        "APP", date(2026, 3, 2), date(2026, 3, 13), hospital_stays=()
+    )
+    return regular_run(
+        3,
+        employment=employment,
+        facts=FACTS,
+        events=(episode,),
+        opening_state=PeriodState.zero(),
+    )
+
+
 #: The cases of each ``requires_fact`` field, keyed ``Type.field``.
 class _FractionalCreditRepository(BundledKnowledgeRepository):
     """Serve the verified share in memory without editing production knowledge."""
@@ -890,9 +920,16 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
             ),
         ),
     ),
-    "EmploymentPeriod.probation_until": tuple(
-        DefaultCase(_on_probation(until), _on_probation(None))
-        for until in (date(2026, 2, 28), date(2026, 3, 31))
+    "EmploymentPeriod.probation_until": (
+        *(
+            DefaultCase(_on_probation(until), _on_probation(None))
+            for until in (date(2026, 2, 28), date(2026, 3, 31))
+        ),
+        DefaultCase(
+            _apprentice_on_probation(date(2026, 2, 28)),
+            _apprentice_on_probation(None),
+            "probation_until",
+        ),
     ),
     "SeniorityFact.career_months": tuple(
         DefaultCase(_pharmacist(career), _pharmacist(None)) for career in (0, 200)

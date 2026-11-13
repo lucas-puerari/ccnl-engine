@@ -13,6 +13,7 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.absence.models import DailyDivisorMethod
+from ccnl_engine.sickness.cumulation.worker import SicknessWorker
 from ccnl_engine.sickness.day.models import SickPayRules
 from ccnl_engine.sickness.day.rules import (
     SickDayKind,
@@ -320,3 +321,97 @@ def test_an_employer_share_adds_to_the_inps_rate() -> None:
     assert {s.worker_rate for s in uncovered if s.kind is SickDayKind.INDEMNIFIED} == {
         _ZERO
     }
+
+
+_APPRENTICE = SicknessRules(
+    carenza_integration_rate=Decimal("0.6"),
+    full_pay_integration_rate=_ZERO,
+    comporto_calendar_year=True,
+    hospital_employer_share=Decimal("0.6"),
+    after_probation=True,
+)
+_SIXTY = Decimal("0.6")
+
+
+def _apprentice(probation_until: date | None = None) -> SickPayRules:
+    worker = SicknessWorker(probation_until=probation_until)
+    return SickPayRules(inps=_INPS, inps_cover=True, ccnl=_APPRENTICE, worker=worker)
+
+
+def test_a_hospital_stay_adds_its_share_to_the_inps_rate() -> None:
+    """Commercio Art. 54: 60% on top of INPS in the stay, carenza at 60%.
+
+    Sick 2-9 March, in hospital 5-7 March: carenza 2-4, then 50% + 60% on
+    5-7 and the INPS 50% alone on 8-9.
+    """
+    episode = SicknessEpisode(
+        "a",
+        date(2026, 3, 2),
+        date(2026, 3, 9),
+        hospital_stays=((date(2026, 3, 5), date(2026, 3, 7)),),
+    )
+    segments = classify_days(
+        episode, (date(2026, 3, 2), date(2026, 3, 9)), SicknessHistory(), _apprentice()
+    )
+    assert _shape(segments) == [
+        (date(2026, 3, 2), date(2026, 3, 4), SickDayKind.CARENZA, _ZERO, _SIXTY),
+        (
+            date(2026, 3, 5),
+            date(2026, 3, 7),
+            SickDayKind.INDEMNIFIED,
+            _HALF,
+            _HALF + _SIXTY,
+        ),
+        (date(2026, 3, 8), date(2026, 3, 9), SickDayKind.INDEMNIFIED, _HALF, _HALF),
+    ]
+
+
+def test_the_probation_leaves_the_inps_share_alone() -> None:
+    """Probation to 5 March: no carenza and no hospital share before 6 March."""
+    episode = SicknessEpisode(
+        "a",
+        date(2026, 3, 2),
+        date(2026, 3, 7),
+        hospital_stays=((date(2026, 3, 2), date(2026, 3, 7)),),
+    )
+    segments = classify_days(
+        episode,
+        (date(2026, 3, 2), date(2026, 3, 7)),
+        SicknessHistory(),
+        _apprentice(date(2026, 3, 5)),
+    )
+    assert _shape(segments) == [
+        (date(2026, 3, 2), date(2026, 3, 4), SickDayKind.CARENZA, _ZERO, _ZERO),
+        (date(2026, 3, 5), date(2026, 3, 5), SickDayKind.INDEMNIFIED, _HALF, _HALF),
+        (
+            date(2026, 3, 6),
+            date(2026, 3, 7),
+            SickDayKind.INDEMNIFIED,
+            _HALF,
+            _HALF + _SIXTY,
+        ),
+    ]
+
+
+def test_no_carenza_and_no_stay_share_past_the_comporto() -> None:
+    """180 sick days of the year: a new hospital stay is past the comporto.
+
+    The carenza of 10-12 July is unpaid; INPS pays its three days left on
+    13-14 July, with no share of the stay.
+    """
+    history = SicknessHistory((
+        SicknessEpisode("a", date(2026, 1, 1), date(2026, 6, 29)),
+    ))
+    episode = SicknessEpisode(
+        "b",
+        date(2026, 7, 10),
+        date(2026, 7, 14),
+        hospital_stays=((date(2026, 7, 10), date(2026, 7, 14)),),
+    )
+    segments = classify_days(
+        episode, (date(2026, 7, 10), date(2026, 7, 14)), history, _apprentice()
+    )
+    assert [(s.kind, s.worker_rate) for s in segments] == [
+        (SickDayKind.CARENZA, _ZERO),
+        (SickDayKind.BEYOND_COMPORTO, _HALF),
+    ]

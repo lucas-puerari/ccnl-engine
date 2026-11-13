@@ -10,6 +10,8 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+import pytest
+
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.employment.apprentice.inputs import Apprentice
 from ccnl_engine.employment.category.models import WorkerCategory
@@ -126,5 +128,33 @@ def test_a_tabacco_apprentice_takes_half_pay_six_months_a_year() -> None:
         == rules.full_pay_integration_rate
         == Decimal("0.5")
     )
+    assert rules.comporto_calendar_year
+    assert rules.max_duration_days == 180
+
+
+@pytest.mark.parametrize(
+    "slug",
+    ["commercio-confcommercio", "terziario-confesercenti", "dmo-federdistribuzione"],
+)
+def test_a_terziario_apprentice_takes_the_sixty_percent(slug: str) -> None:
+    """Art. 54 (DMO art. 47): 60% gross carenza for six events, 60% in hospital."""
+    rules = _rules(
+        with_sickness_variant(
+            load_ccnl(slug), WorkerCategory.IMPIEGATO, Apprentice(months_elapsed=6)
+        )
+    )
+    events = rules.carenza_by_event
+    assert events is not None
+    assert (events.from_event, events.rates, events.exemptions) == (
+        7,
+        (Decimal(0),),
+        False,
+    )
+    assert rules.carenza_integration_rate == rules.hospital_employer_share
+    assert rules.carenza_integration_rate == Decimal("0.6")
+    assert rules.full_pay_integration_rate == 0
+    assert rules.after_probation
+    assert not rules.net_basis
+    assert not rules.apprentices_excluded
     assert rules.comporto_calendar_year
     assert rules.max_duration_days == 180

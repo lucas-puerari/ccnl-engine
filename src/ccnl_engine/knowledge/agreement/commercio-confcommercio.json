@@ -139,6 +139,22 @@
       {
         "kind": "info",
         "text": "FIRST- AND THIRD-LEVEL APPRENTICES (Art. 69): modelled in dual_apprenticeship (first level 50/50/65/70% of the qualified worker's pay by year of the contract, third level two then one level below the destination by half of the programme; training at the employer 10%, school hours unpaid). The contributions of these apprentices are the engine limitation dual_apprenticeship_contributions."
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 54 b): the employer pays 60% of the gross pay on the days of a hospital stay, read as added to the INPS indemnity ('oltre a quanto previsto dalla legislazione vigente'); the text does not say whether the 60% is instead the whole treatment the employer tops the INPS share up to, which would pay 50 points of the gross daily pay less on days 4-20 (60% in all against 50% + 60%). The INPS indemnity during the stay is not reduced to 2/5 for a worker without family dependants.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "apprentice_hospital_share",
+          "applies_when": {
+            "trigger": "run",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "Source the reading of the hospital indemnity of the apprentice (a joint interpretation of the parties or a ruling) and apply it; then resolve this limitation."
+        }
       }
     ]
   },
@@ -3709,7 +3725,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "c44694c42b4b7bea7b7bbab977c82d6cbca7b1705c7a48896c4c84602fa76f18",
+    "source_hash": "656a002484b6a7bcf9d97d891bd871a0744d6922c0bd07be9bb3a7c474771b50",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4757,6 +4773,48 @@
         ]
       }
     },
+    "apprentice_sickness_rules": {
+      "carenza_integration_rate": "0.6",
+      "full_pay_integration_rate": "0",
+      "max_duration_days": 180,
+      "net_basis": false,
+      "comporto_calendar_year": true,
+      "carenza_by_event": {
+        "from_event": 7,
+        "rates": [
+          "0"
+        ],
+        "exemptions": false
+      },
+      "hospital_employer_share": "0.6",
+      "after_probation": true,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "uiltucs-tu2019",
+            "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "published_on": "2019-07-30",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          },
+          "page": "74",
+          "section": "Art. 54 - Malattia",
+          "quote": "Durante il periodo di malattia l’apprendista avrà diritto, oltre a quanto previsto dalla legislazione vigente: a) per i primi tre giorni di malattia, limitatamente a sei eventi morbosi in ragione d’anno, ad un’indennità pari al 60% della retribuzione lorda cui avrebbe avuto diritto in caso di normale svolgimento del rapporto; b) in caso di ricovero ospedaliero e per tutta la durata dello stesso, entro i limiti di cui all’art. 186 della disciplina contrattuale nazionale del Terziario, ad un’indennità a carico del datore di lavoro, pari al 60% della retribuzione lorda cui avrebbe avuto diritto in caso di normale svolgimento del rapporto. Le disposizioni di cui alle lettere a) e b) si applicano a decorrere dal superamento del periodo di prova."
+        },
+        "transformation": "The apprentice sickness rules replace the general ones for an apprentice. a) The three days of carenza paid at 60% of the gross daily pay for the first six events of the calendar year ('in ragione d'anno' read as the calendar year, the year of the comporto), none from the seventh: carenza_integration_rate 0.6 with carenza_by_event from the 7th event at 0, every event counted (the exemptions of the general sickness article do not apply to this clause). b) On each day of a hospital stay within the comporto the employer pays 60% of the gross daily pay: on top of the INPS share of an indemnified day ('oltre a quanto previsto dalla legislazione vigente'), and 60% on a waiting day whatever the event (hospital_employer_share 0.6). No other integration (full_pay_integration_rate 0), gross basis, comporto of 180 days in the calendar year of art. 186. Both from the end of the probation (after_probation). Holidays in the sickness are not topped up for an apprentice: the general holiday clause is read as part of the treatment apprentices are excluded from.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-13T10:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-13T10:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-13-gpt-commercio-confcommercio-apprentice-sickness"
+        }
+      }
+    },
     "notice": {
       "bands": [
         {
@@ -5685,6 +5743,30 @@
         "checked": [
           "work_rules.sickness_rules.holiday",
           "work_rules.insured_absence.injury.holiday"
+        ]
+      },
+      {
+        "id": "2026-11-13-gpt-commercio-confcommercio-apprentice-sickness",
+        "date": "2026-11-13",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice sickness clause, its encoding and the engine change, against the signed text, by a separate model session.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          }
+        ],
+        "findings": [
+          "Confirmed: source, page and sha256; the 2024 renewal does not list the article among those changed.",
+          "Confirmed: 60% carenza for six events a year, 60% of the gross pay on hospital-stay days, nothing in the probation, gross basis, 180 days in the calendar year; hand amounts of the Commercio test case recomputed.",
+          "Flagged and corrected in the same change: quotes made verbatim; a relapse takes the rank of its event; no carenza past the comporto; missing-fact issues raised only when the fact can change the pay; the limitation states the 50-point difference of the alternative reading.",
+          "Flagged, kept as limitation apprentice_hospital_share: the text does not settle whether the hospital 60% adds to the INPS indemnity or is the total."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.apprentice_sickness_rules"
         ]
       }
     ],

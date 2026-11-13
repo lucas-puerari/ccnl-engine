@@ -31,6 +31,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.compensation.proration.rules import payable_days
 from ccnl_engine.sickness.agricultural import rules as agricultural
 from ccnl_engine.sickness.day.annual import InpsDays, daily_share, take
+from ccnl_engine.sickness.day.condition import day_conditions
 from ccnl_engine.sickness.day.previous import used_before
 from ccnl_engine.sickness.holiday.rules import gross_holiday_boundary
 from ccnl_engine.sickness.window.rules import window_start
@@ -170,8 +171,13 @@ def _classify(
     inps: InpsDays,
     days: tuple[CcnlDay, _FixedTermLimit | agricultural.AgriculturalLimit | None],
     daily_share: Decimal = _ZERO,
+    *,
+    hospital: bool = False,
 ) -> _Day:
     """Return the kind, INPS rate and worker rate of sick day ``index``.
+
+    A day of the probation of a CCNL that pays after it has the INPS share
+    alone; a day of a hospital stay adds the hospital share of the CCNL.
 
     Returns:
         The treatment; an ``employer_share`` adds to the INPS rate it pays.
@@ -179,10 +185,11 @@ def _classify(
     ccnl, limit = days
     if limit is not None and not limit.allows(index, day, inps):
         return _Day(SickDayKind.FIXED_TERM_LIMIT, _ZERO, _ZERO)
+    on_probation, stay = day_conditions(rules, ccnl, day, hospital=hospital)
     if index <= rules.inps.carenza_days:
-        return _Day(
-            SickDayKind.CARENZA, _ZERO, ccnl.carenza_rate, daily_share=daily_share
-        )
+        unpaid = on_probation or ccnl.beyond_comporto
+        carenza = _ZERO if unpaid else max(ccnl.carenza_rate, stay)
+        return _Day(SickDayKind.CARENZA, _ZERO, carenza, daily_share=daily_share)
     band = rules.inps.band_rate(index) if rules.inps_cover else _ZERO
     paid = band > _ZERO and inps.take(day, rules.inps.annual_max_days)
     rate = band if paid else _ZERO
@@ -194,8 +201,11 @@ def _classify(
     )
     if ccnl.beyond_comporto:
         return _Day(SickDayKind.BEYOND_COMPORTO, rate, rate, direct)
+    if on_probation:
+        return _Day(SickDayKind.INDEMNIFIED, rate, rate, direct, daily_share)
     share = rules.ccnl.employer_share
     worker = max(ccnl.rate, rate) if share is None else rate + share * paid
+    worker = max(worker, rate + stay)
     return _Day(SickDayKind.INDEMNIFIED, rate, worker, direct, daily_share)
 
 
@@ -222,6 +232,7 @@ def _walk(
     stated = episode.daily_contributions
     if required is not None and stated is not None and stated < required:
         rules = replace(rules, inps_cover=False)
+    stays = episode.hospital_stays or ()
     first, last = span
     for step in range((last - first).days + 1):
         day = first + timedelta(days=step)
@@ -239,11 +250,10 @@ def _walk(
             if rules.worker.hired_on is None or day >= rules.worker.hired_on
             else _ZERO
         )
-        yield (
-            day,
-            index,
-            _classify(index, day, rules, inps, (treatment, limit), extra),
-        )
+        stay = any(start <= day <= end for start, end in stays)
+        treated = (treatment, limit)
+        kind = _classify(index, day, rules, inps, treated, extra, hospital=stay)
+        yield day, index, kind
 
 
 def classify_days(
