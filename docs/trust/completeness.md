@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 269 weak rules, 398 open limitations (398 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 262 weak rules, 396 open limitations (396 with a monetary impact).
 
 ## Declared window
 
@@ -180,7 +180,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [uneba-uneba](../contracts/uneba-uneba.md) | `socio-sanitario` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 18 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [universita-aran](../contracts/universita-aran.md) | `pubblico-impiego` | exploratory | — | 24 rows | 24 open requirements; 5 weak rules; 17 monetary limitations; 19 non-native capabilities |
 | [universita-tecnologi-aran](../contracts/universita-tecnologi-aran.md) | `pubblico-impiego` | exploratory | — | 21 rows | tables from 2026-03-01; 21 open requirements; 1 weak rule; 18 monetary limitations; 20 non-native capabilities |
-| [vetro-meccanizzato-assovetro](../contracts/vetro-meccanizzato-assovetro.md) | `chimica` | exploratory | — | 58 rows | 58 open requirements; 36 weak rules; 18 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
+| [vetro-meccanizzato-assovetro](../contracts/vetro-meccanizzato-assovetro.md) | `chimica` | exploratory | — | 49 rows | 49 open requirements; 29 weak rules; 17 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [vigilanza-privata-assiv](../contracts/vigilanza-privata-assiv.md) | `vigilanza` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 20 monetary limitations; 20 non-native capabilities |
 | [vigilanza-privata-assiv-sf](../contracts/vigilanza-privata-assiv-sf.md) | `vigilanza` | exploratory | — | 25 rows | 25 open requirements; 3 weak rules; 20 monetary limitations; 20 non-native capabilities |
 | [vigilanza-privata-federdat-gpg](../contracts/vigilanza-privata-federdat-gpg.md) | `vigilanza` | exploratory | — | 22 rows | 22 open requirements; 2 weak rules; 18 monetary limitations; 18 non-native capabilities |

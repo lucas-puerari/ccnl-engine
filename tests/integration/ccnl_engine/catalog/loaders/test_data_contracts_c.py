@@ -159,10 +159,23 @@ class TestLoadVetroMeccanizzatoAssovetro:
         assert ccnl.meta.cnel_code == "B132"
 
     def test_vetro_meccanizzato_assovetro_has_6_levels(self) -> None:
-        """Has exactly 6 base levels: A, B, C, D, E, F."""
+        """Six categories and their organisational positions (Tabella 'A')."""
         ccnl = load_ccnl("vetro-meccanizzato-assovetro")
-        assert len(ccnl.levels) == 6
-        assert {lv.code for lv in ccnl.levels} == {"A", "B", "C", "D", "E", "F"}
+        assert {lv.code for lv in ccnl.levels} == {
+            "A",
+            "A2",
+            "B",
+            "B2",
+            "C",
+            "C2",
+            "D",
+            "D2",
+            "D3",
+            "E",
+            "E2",
+            "E3",
+            "F",
+        }
 
     def test_vetro_meccanizzato_assovetro_level_d_salary_tranche1(self) -> None:
         """Level D minimo at 2024-01-01 is 1983.92 EUR (CCNL 2023-2025)."""
@@ -176,12 +189,21 @@ class TestLoadVetroMeccanizzatoAssovetro:
         lv = ccnl.level_by_code("D")
         assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("2080.92")
 
+    def test_vetro_meccanizzato_assovetro_position_levels(self) -> None:
+        """D position 2, Nov 2026: 2095.92 + Ipo 155.67; art. 35 increment 13.94."""
+        ccnl = load_ccnl("vetro-meccanizzato-assovetro")
+        day = date(2026, 11, 1)
+        assert ccnl.level_by_code("D2").base_salary.value_at(day) == Decimal("2251.59")
+        amounts = ccnl.parameters.seniority_increments.amount_by_level
+        assert amounts["D2"].value_at(day) == Decimal("13.94")
+        assert amounts["D"].value_at(day) == Decimal("12.91")
+
     def test_vetro_meccanizzato_assovetro_level_ordering(self) -> None:
-        """Level F is lowest (order 1), level A is highest (order 6)."""
+        """Level F is lowest, position 2 of category A is highest."""
         ccnl = load_ccnl("vetro-meccanizzato-assovetro")
         by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
         assert by_order[0].code == "F"
-        assert by_order[-1].code == "A"
+        assert by_order[-1].code == "A2"
 
     def test_vetro_meccanizzato_assovetro_additional_months(self) -> None:
         """Additional months is 13 (tredicesima only)."""

@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🧑 Manual | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 24 verified / 0 derived / 35 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 73 verified / 0 derived / 28 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟡 Needs review | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-09-17 | maintainer (human) | Whole file. The values checked were not recorded. | confirmed | The review recorded no list of the documents it read. |
 | 2026-10-12 | claude-opus-5-5 (ai) | File-level confidence against the provenance of its payable rules; no value re-read. | flagged | confidence was 'verified' while no payable rule is verified, 35 are assumed and the accrual rule is missing; the review of 2026-09-17 recorded neither the documents it read nor the values it checked. Confidence set to needs_review until the values are read in the signed text. |
 | 2026-11-13 | claude-opus-5-5 (ai) | Signed tables of the renewal of 9 April 2026 (FILCTEM, PDF p. 3, scanned, read on the image) and art. TEM of the renewal (p. 16). | corrected | Added the minimums of October 2026, January 2027, June 2027 and July 2028; the January 2026 column matches the file; the Ipo of positions 2 and 3, never modelled, is now a limitation. |
+| 2026-11-13 | claude-opus-5-5 (ai) | Tabella 'A' of the signed tables of 9 April 2026 (FILCTEM, p. 3) and art. 35 of the coordinated text (CNEL 135749, PDF p. 109), scanned pages read on the images. | corrected | Added the levels of positions 2 and 3 (Min. + Ipo); sourced the seniority increments from art. 35, which the renewals do not amend; limitations organizational_positions and seniority_assumed_constant removed. |
 
 ## Salary table
 
@@ -67,10 +68,17 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
+| `A2` | Livello A, posizione organizzativa 2 | € 3,168.65 | 2028-07-01 |
 | `A` | Livello A — base | € 3,092.19 | 2028-07-01 |
+| `B2` | Livello B, posizione organizzativa 2 | € 2,882.39 | 2028-07-01 |
 | `B` | Livello B — base | € 2,810.56 | 2028-07-01 |
+| `C2` | Livello C, posizione organizzativa 2 | € 2,574.94 | 2028-07-01 |
 | `C` | Livello C — base | € 2,523.93 | 2028-07-01 |
+| `D3` | Livello D, posizione organizzativa 3 | € 2,458.76 | 2028-07-01 |
+| `D2` | Livello D, posizione organizzativa 2 | € 2,394.21 | 2028-07-01 |
 | `D` | Livello D — base | € 2,225.92 | 2028-07-01 |
+| `E3` | Livello E, posizione organizzativa 3 | € 2,154.87 | 2028-07-01 |
+| `E2` | Livello E, posizione organizzativa 2 | € 2,109.83 | 2028-07-01 |
 | `E` | Livello E — base | € 1,943.33 | 2028-07-01 |
 | `F` | Livello F — base | € 1,792.09 | 2028-07-01 |
 
@@ -87,6 +95,13 @@ Latest effective values per level (monthly gross, EUR).
 | `D` | € 12.91 |
 | `E` | € 10.33 |
 | `F` | € 8.26 |
+| `E2` | € 12.39 |
+| `E3` | € 12.39 |
+| `D2` | € 13.94 |
+| `D3` | € 13.94 |
+| `C2` | € 14.98 |
+| `B2` | € 16.53 |
+| `A2` | € 17.56 |
 
 ## Known simplifications
 
@@ -98,20 +113,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the trasformazione, soffio and lampade e display tables with a sub-sector input, or record the limitation.
-
-!!! warning "vetro-meccanizzato-assovetro/seniority_assumed_constant · seniority · impact unknown · open"
-    SENIORITY: 5 biennial scatti (cadence 24 months, max 5). Per-level amounts sourced from kitech.it Jan 2026: A=17.56, B=16.53, C=14.98, D=12.91, E=10.33, F=8.26 EUR. Historical amounts assumed stable (not verified for 2023-2025 periods).
-
-    **Applies when:** `seniority` applies.
-
-    **Remediation:** Source the scatto amounts of the 2023-2025 periods (or confirm unchanged) and record the limitation for runs before 2026-01-01.
-
-!!! warning "vetro-meccanizzato-assovetro/organizational_positions · base_salary · impact yes · open"
-    Tabella 'A' (signed tables of 9 April 2026, p. 3) pays the positions 2 and 3 of categories E and D and the position 2 of C, B and A an 'Ipo' on top of the Min. of the category (e.g. D position 2: 154,21 from January 2026, 155,67 from October 2026); the file holds the categories at position 1 only.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the positions 2 and 3 as levels of their own (Min. + Ipo), from the signed tables of 9 April 2026.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -281,6 +282,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | CCNL Vetro Meccanizzato Industria — ilCCNL.it tabelle retributive | tabella_retributiva | — | [↗](https://ilccnl.it/ccnl/vetro---industria/vetro-meccanizzato---industria/tabelleretributive) |
 | Accordo di rinnovo CCNL Vetro Industrie 2026-2028 — Assovetro | altro | — | [↗](https://confindustriatoscanacentroecosta.it/ccnl-vetro-industria-ipotesi-di-accordo-e-nuovi-minimi-tabellari/) |
 | CCNL vetro e lampade, rinnovo 9 aprile 2026 (Assovetro, Filctem, Femca, Uiltec), tabelle retributive firmate | associazione | 2026-04-09 | [↗](https://www.filctemcgil.it/images/download/CONTRATTI/vetro_lampade/260409_VETRO_RINNOVO_ACCORDO_2026-2028_TABELLE.pdf) |
+| CCNL vetro, lampade e display, testo coordinato sottoscritto (deposito CNEL, accordo 135749) | cnel | — | [↗](https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/135749) |
 
 ??? note "Coverage notes"
     SALARY MODEL: split — base_salary = minimo tabellare (paga base); fixed_allowance TER = Terzo Elemento della Retribuzione (EDR, 10.33 EUR, frozen). Sources: esterinocafasso.it for 2023-03-01 / 2024-01-01 / 2025-04-01 periods; kitech.it + ilccnl.it for 2026-01-01.
@@ -288,6 +290,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     HOURLY_DIVISOR: 173 — confirmed by ilccnl.it tabelle retributive (divisore orario column, 2026-01-01). Back-check D1: (2080.92+10.33)/173 = 12.09 EUR/h.
     
     FONCHIM: employer contribution 1.5%, raised by 0.5% to 2.0% from 1 January 2027 by the renewal of 9 April 2026 (source: Confindustria Toscana Centro e Costa summary of the ipotesi di accordo). No employee minimum is bundled.
+    
+    POSITIONS (Tabella 'A', signed tables of 9 April 2026, p. 3): levels E2, E3, D2, D3, C2, B2 and A2 are the organisational positions above the first, paid the Min. of the category plus the Ipo of the position, from January 2026; their increments follow art. 35 (D2-D3 13,94, E2-E3 12,39). A change of position keeps the increments accrued (art. 35 c. 4-5): not modelled, state the seniority amounts as individual elements.
     
 
 ## Raw data

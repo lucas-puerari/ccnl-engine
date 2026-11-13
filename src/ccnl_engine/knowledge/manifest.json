@@ -2278,7 +2278,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/vetro-meccanizzato-assovetro",
       "ruleset_version": "2026.2",
-      "source_hash": "af697a1a0f50673350e54d4a36baeb91ea4101f1b66094e609dfa9e6b303068a",
+      "source_hash": "8187f4e96ee9f6d1aeb471e0f5a5fae6712df7019b0f447cf35d117625f4409a",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/vetro-meccanizzato-assovetro.json.gz"
@@ -5061,7 +5061,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "cfabdeb6827131fc25d6cea174800d3b4fde474ee5ce51af7227ab9e9a47c97b",
+      "source_hash": "a6028c501c794bbfa86bf2cae861df0843e6d39ae4f55f5a2c14e9662711ac6b",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/vetro-meccanizzato-assovetro.json.gz",
