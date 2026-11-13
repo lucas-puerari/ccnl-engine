@@ -147,12 +147,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: art. 77 injury treatment and the conditional art. 71(5) holiday target reach full actual daily pay; the national coincident-holiday quota is calculated separately; local patron holidays remain outside the calendar.
 
-!!! warning "logistica-trasporto-confetra-viaggiante/coincident_holiday_payment · sickness · impact yes · open"
-    Art. 60(2-3) coincident-holiday pay is calculated for national letter (b) holidays, including during absence. The local patron holiday and any replacement agreed locally are not in the national calendar, so their coincidence is not calculated.
+!!! warning "logistica-trasporto-confetra-viaggiante/patron_permit_option · sickness · impact yes · open"
+    Art. 60 c. 7: the employer may replace the patron saint holiday of the travelling staff with 10 hours of paid permits a year, accrued on the day of the holiday; the run pays the patron as a holiday (its coincidence quota included) and does not model the option.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Supply the local patron holiday or its locally agreed replacement in the holiday calendar to calculate its coincident-holiday quota.
+    **Remediation:** Add the employer's election of the 10 hours of art. 60 c. 7 and accrue them in place of the patron holiday.
 
 !!! warning "logistica-trasporto-confetra-viaggiante/travelling_allowances · base_salary · impact yes · open"
     NOT MODELLED: the night allowance of art. 16 for a trasferta under 18 hours overlapping the night hours (paid only from 18 hours) and the 4.5 days of paid leave of art. 11 c. 11. The trasferta of art. 62 and the night allowance of a trasferta of 18-24 hours are paid by TravelAllowanceEvent; the 50% on Sunday and holiday work of art. 12 c. 4 by the supplement bands VIAG_DOMENICA and VIAG_FESTIVO.

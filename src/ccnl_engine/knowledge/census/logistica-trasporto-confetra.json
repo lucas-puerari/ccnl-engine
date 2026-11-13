@@ -35,22 +35,6 @@
       }
     },
     {
-      "id": "coincident_holiday_payment",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 60(2-3) coincident-holiday pay is calculated for national letter (b) holidays, including during absence. The local patron holiday and any replacement agreed locally are not in the national calendar, so their coincidence is not calculated.",
-      "calculation": "ccnl/logistica-trasporto-confetra:coverage.notes",
-      "state": "absent",
-      "remediation": "Supply the local patron holiday or its locally agreed replacement in the holiday calendar to calculate its coincident-holiday quota.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "logistica-trasporto-confetra/coincident_holiday_payment"
-        ]
-      }
-    },
-    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",

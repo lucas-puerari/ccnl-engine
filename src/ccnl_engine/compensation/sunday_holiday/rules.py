@@ -23,11 +23,16 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.models import DailyDivisorMethod
 from ccnl_engine.calendar.holiday.models import easter_sunday
-from ccnl_engine.compensation.sunday_holiday.coincidence import extra_day
+from ccnl_engine.compensation.sunday_holiday.coincidence import (
+    PATRON,
+    extra_day,
+    patron_day,
+)
 from ccnl_engine.pay_item.rounding.policies import money
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.coverage.models import CCNLWorkRules
+    from ccnl_engine.calendar.holiday.models import NationalHoliday
     from ccnl_engine.compensation.element.types import MonthlyPayChain
     from ccnl_engine.compensation.sunday_holiday.models import SundayHolidayPay
     from ccnl_engine.period.context.services import RunContext
@@ -101,6 +106,27 @@ def _fourth_november(year: int, clause: SundayHolidayPay | None) -> dt.date:
     return _first_sunday_of_november(year)
 
 
+def _patron(
+    ctx: RunContext,
+    clause: SundayHolidayPay | None,
+    dated: list[tuple[NationalHoliday, dt.date | None]],
+    rest: int,
+) -> list[tuple[str, dt.date, bool]]:
+    """Return the patron saint holiday of the month the clause pays, if any.
+
+    Returns:
+        ``(PATRON, date, False)`` when it falls in the month of the run,
+        within the employment; else nothing.
+    """
+    year, month = ctx.request.period_id.year, ctx.request.period_id.month
+    employer = ctx.request.employer
+    stated = None if employer is None else employer.patron_saint_day
+    day = patron_day(clause, stated, year, dated, rest)
+    if day is None or day.month != month or not employed(ctx, day):
+        return []
+    return [(PATRON, day, False)]
+
+
 def sundays(ctx: RunContext) -> list[tuple[str, dt.date, bool]]:
     """Return the national holidays of the month on a Sunday or the rest day.
 
@@ -114,7 +140,8 @@ def sundays(ctx: RunContext) -> list[tuple[str, dt.date, bool]]:
         Sunday (``easter``), no holiday with civil effects, only when the
         CCNL clause names it. For clauses extending the trigger, also
         listed national holidays on Saturday or on another national holiday,
-        unless the clause excludes the non-Sunday compensatory rest day.
+        unless the clause excludes the non-Sunday compensatory rest day; and
+        the employer's patron saint holiday when the clause lists ``patron``.
     """
     year, month = ctx.request.period_id.year, ctx.request.period_id.month
     rules = ctx.contract.ccnl.work_rules
@@ -135,6 +162,7 @@ def sundays(ctx: RunContext) -> list[tuple[str, dt.date, bool]]:
             )
         ) and employed(ctx, day):
             found.append((holiday.day, day, holiday.valid_from is not None))
+    found.extend(_patron(ctx, clause, dated, rest))
     fourth = _fourth_november(year, clause)
     if month == _NOVEMBER and fourth.weekday() == rest and employed(ctx, fourth):
         found.append((FOURTH_NOVEMBER, fourth, False))

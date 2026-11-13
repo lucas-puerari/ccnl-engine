@@ -67,15 +67,15 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 60(2-3) coincident-holiday pay is calculated for national letter (b) holidays, including during absence. The local patron holiday and any replacement agreed locally are not in the national calendar, so their coincidence is not calculated.",
+        "text": "Art. 60 c. 7: the employer may replace the patron saint holiday of the travelling staff with 10 hours of paid permits a year, accrued on the day of the holiday; the run pays the patron as a holiday (its coincidence quota included) and does not model the option.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "coincident_holiday_payment",
+          "variant": "patron_permit_option",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Supply the local patron holiday or its locally agreed replacement in the holiday calendar to calculate its coincident-holiday quota."
+          "remediation": "Add the employer's election of the 10 hours of art. 60 c. 7 and accrue them in place of the patron holiday."
         }
       },
       {
@@ -3496,7 +3496,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "7c013e4cbba3263ab20ebee9f6d770e8c58998f08faf9730b93d3555d570774c",
+    "source_hash": "e2933f95b9b7f781c306c9cdf4f7c3eab688b77613c2c3af873e7e0ef41cd036",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4024,7 +4024,8 @@
         "12-08",
         "12-25",
         "12-26",
-        "10-04"
+        "10-04",
+        "patron"
       ],
       "divisor": "22",
       "excluded": [
@@ -4048,7 +4049,7 @@
           "section": "Art. 60(1)(b), (2-4) - Giorni festivi",
           "quote": "Per le festività di cui al punto b), escluse invece le semi festività di cui al punto c), cadenti di sabato, di domenica o in altra festività è dovuta, in aggiunta alla retribuzione mensile, la retribuzione globale di una giornata, calcolata in base ad un ventiduesimo di quella mensile. [...] Uguale trattamento spetterà al lavoratore che in tale festività coincidente con il sabato, la domenica o con altra festività, sia in infortunio, malattia, gravidanza, puerperio e periodo di assenza facoltativa seguente al puerperio, congedo matrimoniale, ferie e permessi per giustificati motivi. [...] fermo restando che non è dovuto alcun compenso nel caso di coincidenza della festività col giorno di riposo compensativo."
         },
-        "transformation": "National letter (b) holidays on Saturday, Sunday or another national holiday pay an extra 1/22 of monthly global pay, also during absence. Local patron and locally substituted holidays require a calendar input not available here. Art. 60(4) excludes a holiday on the worker's non-Sunday compensatory rest day. The EDR_2021 has no incidence on contractual institutes (p. 83) and is excluded from the quota. The statutory Sunday holidays remain covered; the same quota is not paid twice.",
+        "transformation": "National letter (b) holidays on Saturday, Sunday or another national holiday pay an extra 1/22 of monthly global pay, also during absence. Local patron and locally substituted holidays require a calendar input not available here. Art. 60(4) excludes a holiday on the worker's non-Sunday compensatory rest day. The EDR_2021 has no incidence on contractual institutes (p. 83) and is excluded from the quota. The statutory Sunday holidays remain covered; the same quota is not paid twice. The patron saint of the place of work (art. 60 c. 1 b) 12), EmployerProfile.patron_saint_day, or the replacement agreed locally stated in its place) is listed as 'patron' and paid on the same triggers.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
