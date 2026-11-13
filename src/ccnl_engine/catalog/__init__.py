@@ -13,11 +13,11 @@ from ccnl_engine.capability.registry.models import (
     CapabilityImplementation,
 )
 from ccnl_engine.catalog.family.services import list_families
+from ccnl_engine.catalog.level.models import LevelSummary
 from ccnl_engine.catalog.loaders import (
     CcnlId,
     ContractSummary,
     Jurisdiction,
-    LevelSummary,
     get_ccnl,
     municipalities,
     regions,

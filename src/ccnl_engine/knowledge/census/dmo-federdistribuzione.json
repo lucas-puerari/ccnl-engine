@@ -323,22 +323,6 @@
       }
     },
     {
-      "id": "sales_operators",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "The pay rows of the operatori di vendita.",
-      "calculation": "ccnl/dmo-federdistribuzione:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the operatori di vendita levels.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "dmo-federdistribuzione/sales_operators"
-        ]
-      }
-    },
-    {
       "id": "sickness_net_basis",
       "institute": "sickness",
       "variant": "all",

@@ -7,6 +7,8 @@ Allevatori Aia, Ortofrutticoli Agrumari, Alimentari Pmi Unionalimentari.
 from datetime import date
 from decimal import Decimal
 
+import pytest
+
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.element.rules import _level_chain
@@ -418,3 +420,37 @@ class TestLoadAlimentariPmiUnionalimentari:
         si = ccnl.parameters.seniority_increments
         assert si.cadence_months == 24
         assert si.maximum_count == 5
+
+
+@pytest.mark.parametrize(
+    ("slug", "base", "contingenza"),
+    [
+        ("terziario-confesercenti", ("1750.08", "1548.81"), None),
+        ("dmo-federdistribuzione", ("1220.04", "1022.70"), ("530.04", "526.11")),
+    ],
+)
+def test_the_operatori_di_vendita_have_their_own_rows(
+    slug: str, base: tuple[str, str], contingenza: tuple[str, str] | None
+) -> None:
+    """November 2026 rows of the I and II categoria, on a ladder of their own.
+
+    Confesercenti holds the 'Totale mensile' (CNEL 20279 p. 3), DMO the paga
+    base and the Contingenza + EDR (allegato 11): 1750,08 and 1548,81 in all.
+    """
+    ccnl = load_ccnl(slug)
+    day = date(2026, 11, 1)
+    for code, amount in zip(("OV1", "OV2"), base, strict=True):
+        level = ccnl.level_by_code(code)
+        assert level.ladder == "operatori_vendita"
+        assert level.base_salary.value_at(day) == Decimal(amount)
+    if contingenza is not None:
+        for code, amount in zip(("OV1", "OV2"), contingenza, strict=True):
+            (cont,) = (
+                a
+                for a in ccnl.level_by_code(code).fixed_allowances
+                if a.code == "CONTINGENZA"
+            )
+            assert cont.monthly.value_at(day) == Decimal(amount)
+    amounts = ccnl.parameters.seniority_increments.amount_by_level
+    assert amounts["OV1"].value_at(day) == Decimal("15.50")
+    assert amounts["OV2"].value_at(day) == Decimal("14.46")

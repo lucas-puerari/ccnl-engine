@@ -40,10 +40,8 @@ if TYPE_CHECKING:
     from ccnl_engine.assurance.policies import EngineMode
     from ccnl_engine.balance.models import PeriodState
     from ccnl_engine.balance.opening.provider.services import OpeningBalances
-    from ccnl_engine.catalog.loaders import (
-        ContractSummary,
-        LevelSummary,
-    )
+    from ccnl_engine.catalog.level.models import LevelSummary
+    from ccnl_engine.catalog.loaders import ContractSummary
     from ccnl_engine.pay_item.policies import PolicyResolver
     from ccnl_engine.period.inputs import PeriodInput
     from ccnl_engine.period.ports import KnowledgeRepository

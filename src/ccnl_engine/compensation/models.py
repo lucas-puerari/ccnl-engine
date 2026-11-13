@@ -239,6 +239,8 @@ class Level(BaseModel):
         transition_to, transition_after_months, transition_hire_bands,
             transition_by: Entry promotion.
         fixed_allowances, category: Fixed allowances and optional worker category.
+        ladder: Career ladder of its own the level sits on, apart from the
+            ordinary levels (``operatori_vendita``); ``None`` on the ordinary one.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -257,6 +259,7 @@ class Level(BaseModel):
     subsectors: tuple[str, ...] = ()
     fixed_allowances: tuple[Allowance, ...] = Field(default=())
     category: WorkerCategory | None = None
+    ladder: str | None = None
     transition_to: str | None = None
     transition_after_months: int | None = Field(default=None, gt=0)
     transition_hire_bands: tuple[TransitionHireBand, ...] = ()
