@@ -155,6 +155,27 @@
           },
           "remediation": "Source the reading of the hospital indemnity of the apprentice (a joint interpretation of the parties or a ruling) and apply it; then resolve this limitation."
         }
+      },
+      {
+        "kind": "info",
+        "text": "OPERATORI DI VENDITA (protocollo aggiuntivo, TU 2019 printed p. 460): 'il personale con qualifica di Operatore di Vendita ha diritto a dieci scatti triennali', 15,50 (I categoria) and 14,46 (II categoria) from 1 October 1986, the cadence and count of the other levels; levels OV1 and OV2, ladder operatori_vendita, from the tables of the accordo integrativo of 28 March 2024 (scan pp. 64-65)."
+      },
+      {
+        "kind": "simplification",
+        "text": "Operatori di vendita paid also by commission: the levels OV1 and OV2 hold the fixed table only. Not modelled: the monthly guarantee of the commission-paid staff (art. 217: a monthly average at least 5% above the paga base nazionale conglobata over at most a year), the 13th and 14th on the average of the fixed and variable elements of the twelve months before (artt. 220-221, protocol art. 15), and the company premium of 10% of the guaranteed minimums for firms with more than seven operatori (protocol art. 27).",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sales_operators_commissions",
+          "applies_when": {
+            "trigger": "outside_input",
+            "levels": [
+              "OV1",
+              "OV2"
+            ]
+          },
+          "remediation": "Model the commission earnings of the operatori di vendita as an input, then the art. 217 guarantee, the commission average of the extra months and the art. 27 premium."
+        }
       }
     ]
   },
@@ -302,6 +323,24 @@
               "valid_from": "2024-04-01",
               "valid_until": null,
               "value": "19.47"
+            }
+          ]
+        },
+        "OV1": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": null,
+              "value": "15.50"
+            }
+          ]
+        },
+        "OV2": {
+          "periods": [
+            {
+              "valid_from": "2024-04-01",
+              "valid_until": null,
+              "value": "14.46"
             }
           ]
         }
@@ -3567,6 +3606,554 @@
           "review_id": "2026-10-11-ai"
         }
       }
+    },
+    {
+      "code": "OV1",
+      "order": 10,
+      "description": "Operatore di vendita di I categoria",
+      "ladder": "operatori_vendita",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-03-01",
+            "value": "1125.64",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+                  "published_on": "2024-03-28",
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+                },
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal 1/4/2024', section 'Operatori di vendita', row I categoria (scanned page read on the image)",
+                "quote": "I categoria 1125,64 530,04 1655,68"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-13T23:30:00Z",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-13T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-13-gpt-commercio-confcommercio-sales-operators"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2025-11-01",
+            "value": "1153.96",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+                  "published_on": "2024-03-28",
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+                },
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal 1/3/2025', section 'Operatori di vendita', row I categoria (scanned page read on the image)",
+                "quote": "I categoria 1153,96 530,04 1684,00"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-13T23:30:00Z",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-13T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-13-gpt-commercio-confcommercio-sales-operators"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-11-01",
+            "value": "1187.00",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+                  "published_on": "2024-03-28",
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+                },
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal 1/11/2025', section 'Operatori di vendita', row I categoria (scanned page read on the image)",
+                "quote": "I categoria 1187,00 530,04 1717,04"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-13T23:30:00Z",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-13T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-13-gpt-commercio-confcommercio-sales-operators"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-02-01",
+            "value": "1220.04",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+                  "published_on": "2024-03-28",
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+                },
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal 1/11/2026', section 'Operatori di vendita', row I categoria (scanned page read on the image)",
+                "quote": "I categoria 1220,04 530,04 1750,08"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-13T23:30:00Z",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-13T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-13-gpt-commercio-confcommercio-sales-operators"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "1257.80",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+                  "published_on": "2024-03-28",
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+                },
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal 1/2/2027', section 'Operatori di vendita', row I categoria (scanned page read on the image)",
+                "quote": "I categoria 1257,80 530,04 1787,84"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-13T23:30:00Z",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-13T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-13-gpt-commercio-confcommercio-sales-operators"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA_EDR",
+          "description": "Contingenza + EDR, operatori di vendita",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-04-01",
+                "valid_until": null,
+                "value": "530.04"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-tds",
+                "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+                "published_on": "2024-03-28",
+                "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+              },
+              "page": "64-65",
+              "section": "column 'Contingenza + EDR', row I categoria, same in every table",
+              "quote": "I categoria 1125,64 530,04"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-13T23:30:00Z",
+              "effective_from": "2024-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-13T23:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-13-gpt-commercio-confcommercio-sales-operators"
+            }
+          }
+        },
+        {
+          "code": "TERZO_ELEMENTO_NAZIONALE",
+          "description": "Third national element (Art. 215), EUR 2.07 for all levels",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "2.07"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+              },
+              "page": "199",
+              "section": "Art. 215 - Terzo elemento nazionale",
+              "quote": "per i dipendenti di aziende operanti in provincie nelle quali non sono in atto terzi elementi retributivi provinciali comunque denominati, siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-14T12:38:58Z",
+              "review_id": "2026-10-14-ai-p1"
+            },
+            "note": "Verified on 2026-10-14: valid from 2023-04-01, the earliest date a bundled source states the amount: Art. 215 of the Testo Unico of 30 July 2019 is in force on that date and the renewal of 22 March 2024 does not amend it (its text, read by OCR on 14 October 2026, does not cite Art. 215). The 1993 start of the frozen contingenza is not stated by any bundled source, and no salary of the bundle starts before 2024."
+          },
+          "replaced_by": "provincial_element"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "uiltucs-tds",
+            "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+            "published_on": "2024-03-28",
+            "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+          },
+          "page": "64",
+          "section": "Accordo integrativo 28/03/2024, table 'Paga base dal 1/4/2024', section 'Operatori di vendita', row I categoria (scanned page read on the image)",
+          "quote": "I categoria 1125,64 530,04 1655,68"
+        },
+        "transformation": "The operatori di vendita of I and II categoria are paid by their own rows of the tables of the accordo integrativo of 28 March 2024, on a career ladder of their own (ladder operatori_vendita): base_salary is the paga base column, CONTINGENZA_EDR the 'Contingenza + EDR' one, 'Altri el.' is empty. Commission pay and the travel reimbursements of the protocollo aggiuntivo are not modelled.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-13T23:30:00Z",
+          "effective_from": "2024-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-13T23:30:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-13-gpt-commercio-confcommercio-sales-operators"
+        }
+      }
+    },
+    {
+      "code": "OV2",
+      "order": 9,
+      "description": "Operatore di vendita di II categoria",
+      "ladder": "operatori_vendita",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-04-01",
+            "valid_until": "2025-03-01",
+            "value": "943.44",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+                  "published_on": "2024-03-28",
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+                },
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal 1/4/2024', section 'Operatori di vendita', row II categoria (scanned page read on the image)",
+                "quote": "II categoria 943,44 526,11 1469,55"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-13T23:30:00Z",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-13T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-13-gpt-commercio-confcommercio-sales-operators"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-03-01",
+            "valid_until": "2025-11-01",
+            "value": "967.22",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+                  "published_on": "2024-03-28",
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+                },
+                "page": "64",
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal 1/3/2025', section 'Operatori di vendita', row II categoria (scanned page read on the image)",
+                "quote": "II categoria 967,22 526,11 1493,33"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-13T23:30:00Z",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-13T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-13-gpt-commercio-confcommercio-sales-operators"
+              }
+            }
+          },
+          {
+            "valid_from": "2025-11-01",
+            "valid_until": "2026-11-01",
+            "value": "994.96",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+                  "published_on": "2024-03-28",
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+                },
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal 1/11/2025', section 'Operatori di vendita', row II categoria (scanned page read on the image)",
+                "quote": "II categoria 994,96 526,11 1521,07"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-13T23:30:00Z",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-13T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-13-gpt-commercio-confcommercio-sales-operators"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-11-01",
+            "valid_until": "2027-02-01",
+            "value": "1022.70",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+                  "published_on": "2024-03-28",
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+                },
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal 1/11/2026', section 'Operatori di vendita', row II categoria (scanned page read on the image)",
+                "quote": "II categoria 1022,70 526,11 1548,81"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-13T23:30:00Z",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-13T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-13-gpt-commercio-confcommercio-sales-operators"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-02-01",
+            "valid_until": null,
+            "value": "1054.40",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "uiltucs-tds",
+                  "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+                  "published_on": "2024-03-28",
+                  "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+                },
+                "page": "65",
+                "section": "Accordo integrativo 28/03/2024, table 'Paga base dal 1/2/2027', section 'Operatori di vendita', row II categoria (scanned page read on the image)",
+                "quote": "II categoria 1054,40 526,11 1580,51"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-13T23:30:00Z",
+                "effective_from": "2024-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-13T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-13-gpt-commercio-confcommercio-sales-operators"
+              }
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA_EDR",
+          "description": "Contingenza + EDR, operatori di vendita",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-04-01",
+                "valid_until": null,
+                "value": "526.11"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-tds",
+                "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+                "published_on": "2024-03-28",
+                "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+              },
+              "page": "64-65",
+              "section": "column 'Contingenza + EDR', row II categoria, same in every table",
+              "quote": "II categoria 943,44 526,11"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-13T23:30:00Z",
+              "effective_from": "2024-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-13T23:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-13-gpt-commercio-confcommercio-sales-operators"
+            }
+          }
+        },
+        {
+          "code": "TERZO_ELEMENTO_NAZIONALE",
+          "description": "Third national element (Art. 215), EUR 2.07 for all levels",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-04-01",
+                "valid_until": null,
+                "value": "2.07"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-tu2019",
+                "title": "CCNL per i dipendenti da aziende del Terziario della Distribuzione e dei Servizi, Testo Unico 30 luglio 2019",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+                "published_on": "2019-07-30",
+                "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+              },
+              "page": "199",
+              "section": "Art. 215 - Terzo elemento nazionale",
+              "quote": "per i dipendenti di aziende operanti in provincie nelle quali non sono in atto terzi elementi retributivi provinciali comunque denominati, siano corrisposte a titolo di terzo elemento Euro 2,07 mensili."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-10-10T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2023-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-10-14T12:38:58Z",
+              "review_id": "2026-10-14-ai-p1"
+            },
+            "note": "Verified on 2026-10-14: valid from 2023-04-01, the earliest date a bundled source states the amount: Art. 215 of the Testo Unico of 30 July 2019 is in force on that date and the renewal of 22 March 2024 does not amend it (its text, read by OCR on 14 October 2026, does not cite Art. 215). The 1993 start of the frozen contingenza is not stated by any bundled source, and no salary of the bundle starts before 2024."
+          },
+          "replaced_by": "provincial_element"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "uiltucs-tds",
+            "title": "CCNL Terziario Distribuzione e Servizi, Ipotesi di accordo 22 marzo 2024 e Accordo integrativo 28 marzo 2024 (scansione firmata)",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+            "published_on": "2024-03-28",
+            "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+          },
+          "page": "64",
+          "section": "Accordo integrativo 28/03/2024, table 'Paga base dal 1/4/2024', section 'Operatori di vendita', row II categoria (scanned page read on the image)",
+          "quote": "II categoria 943,44 526,11 1469,55"
+        },
+        "transformation": "The operatori di vendita of I and II categoria are paid by their own rows of the tables of the accordo integrativo of 28 March 2024, on a career ladder of their own (ladder operatori_vendita): base_salary is the paga base column, CONTINGENZA_EDR the 'Contingenza + EDR' one, 'Altri el.' is empty. Commission pay and the travel reimbursements of the protocollo aggiuntivo are not modelled.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-13T23:30:00Z",
+          "effective_from": "2024-04-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-13T23:30:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-13-gpt-commercio-confcommercio-sales-operators"
+        }
+      }
     }
   ],
   "apprenticeship": [
@@ -3725,7 +4312,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "2842a026a4177e06b2916056521da1554098650b8c90a27b5f261fc35404f518",
+    "source_hash": "48a83593d03fe50c6c69d50117e4188dd6729fdd8367ad4c21781c5b6a49a19a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5792,6 +6379,30 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.time_supplements.overtime_bands"
+        ]
+      },
+      {
+        "id": "2026-11-13-gpt-commercio-confcommercio-sales-operators",
+        "date": "2026-11-13",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Operatori di vendita rows of the accordo integrativo of 28 March 2024 (scan pp. 64-65, page images) and the protocollo aggiuntivo of the TU 2019 (printed pp. 449-469), by a separate model session.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+            "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001"
+          }
+        ],
+        "findings": [
+          "Confirmed: every paga base and contingenza + EDR of OV1 and OV2 from April 2024 to February 2027; ten three-year increments of 15,50 and 14,46; the terzo elemento nazionale applies as for the other levels (replaced by a provincial one).",
+          "Flagged and kept as limitation sales_operators_commissions: the commission guarantee of art. 217, the commission average of the 13th and 14th and the art. 27 premium are not modelled."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.OV1",
+          "levels.OV2",
+          "parameters.seniority_increments.amount_by_level"
         ]
       }
     ],

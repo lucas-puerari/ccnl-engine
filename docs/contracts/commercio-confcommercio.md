@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, sickness |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 86 verified / 2 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 100 verified / 2 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -82,6 +82,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-10 | gpt-6-sol (ai) | Art. 154 patron saint holiday and art. 191 holiday top-ups in sickness and injury, stated patron day. | corrected | CONFIRMED: art. 154 lists the local patron saint among the holidays and art. 191 tops up holidays falling in sickness and injury; quotes verbatim.<br>CONFIRMED: test arithmetic and an independent case recomputed.<br>The narrowed note still described the fact as one the request cannot express; with EmployerProfile.patron_saint_day it can, so the limitation is resolved. |
 | 2026-11-13 | gpt-6-sol (ai) | Apprentice sickness clause, its encoding and the engine change, against the signed text, by a separate model session. | flagged | Confirmed: source, page and sha256; the 2024 renewal does not list the article among those changed.<br>Confirmed: 60% carenza for six events a year, 60% of the gross pay on hospital-stay days, nothing in the probation, gross basis, 180 days in the calendar year; hand amounts of the Commercio test case recomputed.<br>Flagged and corrected in the same change: quotes made verbatim; a relapse takes the rank of its event; no carenza past the comporto; missing-fact issues raised only when the fact can change the pay; the limitation states the 50-point difference of the alternative reading.<br>Flagged, kept as limitation apprentice_hospital_share: the text does not settle whether the hospital 60% adds to the INPS indemnity or is the total. |
 | 2026-11-13 | gpt-6-sol (ai) | Sunday overtime outside the weekly rest day against the overtime, Sunday-work and rest-day articles, by a separate model session. | confirmed | Confirmed: overtime 'nei giorni festivi o la domenica' is paid 30% also when the weekly rest falls on another day; the 'salvo' clause reserves rest-day work, at the same 30% with a compensatory rest.<br>Confirmed: the Sunday-work article sends Sunday overtime to this article, so the two 30% do not add up; night overtime stays at 50%, the premiums are not cumulative.<br>Flagged and corrected: a typo in the transformation and the paragraph label of the unnumbered texts. |
+| 2026-11-13 | gpt-6-sol (ai) | Operatori di vendita rows of the accordo integrativo of 28 March 2024 (scan pp. 64-65, page images) and the protocollo aggiuntivo of the TU 2019 (printed pp. 449-469), by a separate model session. | flagged | Confirmed: every paga base and contingenza + EDR of OV1 and OV2 from April 2024 to February 2027; ten three-year increments of 15,50 and 14,46; the terzo elemento nazionale applies as for the other levels (replaced by a provincial one).<br>Flagged and kept as limitation sales_operators_commissions: the commission guarantee of art. 217, the commission average of the 13th and 14th and the art. 27 premium are not modelled. |
 
 ## Salary table
 
@@ -89,6 +90,8 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
+| `OV1` | Operatore di vendita di I categoria | € 1,257.80 | 2027-02-01 |
+| `OV2` | Operatore di vendita di II categoria | € 1,054.40 | 2027-02-01 |
 | `Q` | Quadro | € 2,313.29 | 2027-02-01 |
 | `1` | 1st level | € 2,083.84 | 2027-02-01 |
 | `2` | 2nd level | € 1,802.50 | 2027-02-01 |
@@ -113,6 +116,8 @@ Latest effective values per level (monthly gross, EUR).
 | `5` | € 20.30 |
 | `6` | € 19.73 |
 | `7` | € 19.47 |
+| `OV1` | € 15.50 |
+| `OV2` | € 14.46 |
 
 ## Apprenticeship
 
@@ -159,6 +164,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; contract type in apprentice.
 
     **Remediation:** Source the reading of the hospital indemnity of the apprentice (a joint interpretation of the parties or a ruling) and apply it; then resolve this limitation.
+
+!!! warning "commercio-confcommercio/sales_operators_commissions · base_salary · impact yes · open"
+    Operatori di vendita paid also by commission: the levels OV1 and OV2 hold the fixed table only. Not modelled: the monthly guarantee of the commission-paid staff (art. 217: a monthly average at least 5% above the paga base nazionale conglobata over at most a year), the 13th and 14th on the average of the fixed and variable elements of the twelve months before (artt. 220-221, protocol art. 15), and the company premium of 10% of the guaranteed minimums for firms with more than seven operatori (protocol art. 27).
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the commission earnings of the operatori di vendita as an input, then the art. 217 guarantee, the commission average of the extra months and the art. 27 premium.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -358,6 +370,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEAVE, WEEKLY SCHEDULE: a 39-hour full-time week absorbs 36 hours of ROL and a 38-hour week 16 hours of ex festività and 56 of ROL, read from Employment.full_time_weekly_hours. The grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry and ipermercati (Art. 134, EmployerProfile.subsector 'grande_distribuzione') on a 38-hour average absorb instead the 56 hours of Art. 158 c. 3 and the 16 of c. 4 and keep the ex festività.
     
     FIRST- AND THIRD-LEVEL APPRENTICES (Art. 69): modelled in dual_apprenticeship (first level 50/50/65/70% of the qualified worker's pay by year of the contract, third level two then one level below the destination by half of the programme; training at the employer 10%, school hours unpaid). The contributions of these apprentices are the engine limitation dual_apprenticeship_contributions.
+    
+    OPERATORI DI VENDITA (protocollo aggiuntivo, TU 2019 printed p. 460): 'il personale con qualifica di Operatore di Vendita ha diritto a dieci scatti triennali', 15,50 (I categoria) and 14,46 (II categoria) from 1 October 1986, the cadence and count of the other levels; levels OV1 and OV2, ladder operatori_vendita, from the tables of the accordo integrativo of 28 March 2024 (scan pp. 64-65).
     
     Salary tables: five tranches of the rinnovo 22/03/2024 (paga base dal 1/4/2024, 1/3/2025, 1/11/2025, 1/11/2026, 1/2/2027) taken from the official tabelle retributive as perfected by the Accordo integrativo 28/03/2024 (rounding fixes on Q, I, II, VI vs the 22/03 ipotesi), read in the signed text published by Uiltucs (pp. 63-65 of the 2024 PDF).
     
