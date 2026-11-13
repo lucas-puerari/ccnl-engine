@@ -117,7 +117,7 @@ on unverified sources, or be well sourced and not cleared for production.
 
 | # | CNEL | CCNL | Sector | Workers (~)[^3] | Renewal | Core | Limits | Sources (v / d / a / m) | Readiness | Ext[^4] |
 |---|---|---|---|---:|:---:|:---:|---|---|:---:|:---:|
-| 1 | H515 | [CCNL Acconciatura ed Estetica — Confartigianato/CNA](acconciatura-estetica-confartigianato.md) | acconciatura ed estetica | ~95k | — | ⚠️ | base_salary, inps_employer | 21 / 9 / 1 / 0 | 🧪 | 🤖 |
+| 1 | H515 | [CCNL Acconciatura ed Estetica — Confartigianato/CNA](acconciatura-estetica-confartigianato.md) | acconciatura ed estetica | ~95k | — | ⚠️ | inps_employer | 21 / 9 / 1 / 0 | 🧪 | 🤖 |
 | 2 | I481 | [CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi](agenzie-marittime-i481.md) | Agenzie marittime e aeree | ~5k | 2024 | ⚠️ | base_salary | 1 / 36 / 1 / 0 | 🧪 | 🤖 |
 | 3 | H052 | [CCNL Agenzie di Viaggio e Turismo — Fiavet/Confcommercio](agenzie-viaggio-fiavet.md) | Turismo (agenzie di viaggio) | ~25k | 2024 | ✅ | — | 10 / 59 / 1 / 0 | 🧪 | 🤖 |
 | 4 | E016 | [CCNL Alimentaristi Cooperative (Fedagripesca/Legacoop Agroalimentare/AGCI-Agrital)](alimentaristi-cooperative-e016.md) | industria alimentare — cooperative di produzione e lavoro | ~15k | 2024 | ✅ | — | 42 / 29 / 1 / 0 | 🧪 | 🤖 |

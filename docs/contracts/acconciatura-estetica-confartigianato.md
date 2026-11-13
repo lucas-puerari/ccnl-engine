@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer |
+| **Limits of this contract** | inps_employer |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -92,6 +92,10 @@ Latest effective values per level (monthly gross, EUR).
 Destination levels: `3`  
 percentage: 1.00
 
+**gruppo_1_ridotto** (type: `percentage`)  
+Destination levels: `3`  
+percentage: 1.00
+
 **gruppo_2** (type: `percentage`)  
 Destination levels: `3`  
 percentage: 1.00
@@ -103,20 +107,6 @@ percentage: 0.85
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "acconciatura-estetica-confartigianato/gruppo_2_semester_mapping · base_salary · impact unknown · open"
-    APPRENTICESHIP Gruppo 2 (manicure/pedicure → level 3, max 18 months, 70%/80%/100%), track 'gruppo_2': the three percentages are mapped to 6-month periods (0-6, 6-12, 12-18). Select with Apprentice(track='gruppo_2'); without a track name level 3 is ambiguous.
-
-    **Applies when:** `base_salary` applies; contract type in apprentice; level in 3.
-
-    **Remediation:** Confirm from the accordo tables that the 70/80/100% steps of Gruppo 2 run on 6-month periods.
-
-!!! warning "acconciatura-estetica-confartigianato/gruppo_1_reduced_duration · base_salary · impact yes · open"
-    APPRENTICESHIP DURATION (TAB.3): the gruppo_1 track of the file reaches 100% at month 54 (95% from month 48), the duration of the 6-month reduction for post-secondary qualification holders, while the note first said the standard 60-month table applies. Which table the data hold, and the other one, are to be read again in TAB.3 (review of 2026-10-30).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Read TAB.3, keep the standard table on gruppo_1 and add the 54-month table for post-secondary qualification holders with a request field to select it.
 
 !!! warning "acconciatura-estetica-confartigianato/inps_sector_rates_unsourced · inps_employer · impact unknown · open"
     INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.
@@ -314,6 +304,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf | altro | 2024-05-20 | [↗](https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf) |
 | https://www.studiomion.it/tabelle-retributive/tabelle-retributive-acconciatura-estetica/ | tabella_retributiva | 2024-05-20 | [↗](https://www.studiomion.it/tabelle-retributive/tabelle-retributive-acconciatura-estetica/) |
 | https://www.ilccnl.it/contratto/acconciatura-estetica/ | tabella_retributiva | — | [↗](https://www.ilccnl.it/contratto/acconciatura-estetica/) |
+| CCNL Area Benessere (acconciatura, estetica, tricologia, tatuaggio, piercing, centri benessere), rinnovo 20 maggio 2024, scansione firmata | associazione | 2024-05-20 | [↗](https://confartigianatomarcatrevigiana.it/wp-content/uploads/2024/05/CCNL-AREA-BENESSERE-22.5.2024-NR.9-H515.pdf) |
 
 ??? note "Coverage notes"
     SALARY MODEL: conglobated (minimi tabellari conglobati — contingenza and EDR fully absorbed). Back-calculation: May 2024 L3=1379.00/173=7.97 EUR/h; L2=1454.58/173=8.41 EUR/h; L1=1592.29/173=9.20 EUR/h — consistent divisor confirms conglobated model (lexplain.it + ilccnl.it).
@@ -337,6 +328,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     INPS: reuses 2026-artigianato.json (ARTIGIANATO sector).
     
     APPRENTICESHIP Gruppo 3 (impiegati amministrativi, destination level 2, 3 anni / 6 semestri): 70/70/70/78/85/85 per semester. Source: consulenza.it circolare acconciatura 2024; lexplain.it tabella apprendistato acconciatori (medium-high confidence: two concordant secondary sources; primary accordo tables not online).
+    
+    APPRENTICESHIP from 1 October 2024 (renewal of 20 May 2024, scanned p. 6 read on the image), percentages by semester of the pay of the final level: Tabella 1, gruppo 1 (5 years) 70 70 70 78 85 85 90 90 95 100: track gruppo_1; Tabella 3, gruppo 1 with a post-compulsory school title or qualification (4 years and 6 months, p. 4) 70 70 70 78 85 85 90 90 100: track gruppo_1_ridotto; Tabella 2, gruppo 2 (18 months) 70 80 100: track gruppo_2; Tabella 4, gruppo 3 (3 years) 70 70 70 78 85 85: track gruppo_3. Level 3 is the destination of several tracks: state Apprentice.track. Not modelled: the 3-year cap of the apprentices of non-artisan small and medium firms and the extension of the duration by a suspension of 60 days or more (p. 4).
     
 
 ## Raw data
