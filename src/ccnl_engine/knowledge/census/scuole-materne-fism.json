@@ -3,22 +3,6 @@
   "ccnl_id": "scuole-materne-fism",
   "requirements": [
     {
-      "id": "apprenticeship_identity_track",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "APPRENTICESHIP: no apprenticeship clause found in main CCNL text. Sector primarily employs teachers on permanent contracts. Modelled as single percentage period at 100% (identity transform) for all levels; correct for permanent staff.",
-      "calculation": "ccnl/scuole-materne-fism:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the apprenticeship clause and replace the 100% identity track.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "scuole-materne-fism/apprenticeship_identity_track"
-        ]
-      }
-    },
-    {
       "id": "apprenticeship_pct_undeclared_components",
       "institute": "base_salary",
       "variant": "apprentice",

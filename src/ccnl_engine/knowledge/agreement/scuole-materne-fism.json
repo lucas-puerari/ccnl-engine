@@ -34,6 +34,19 @@
         "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
         "pages": [],
         "published_on": "2026-07-07"
+      },
+      {
+        "document_id": "fism-ccnl-2024-2027-firmato",
+        "title": "CCNL FISM 2024-2027, testo definitivo sottoscritto il 28 maggio 2025",
+        "kind": "associazione",
+        "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+        "published_on": "2025-05-28",
+        "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36",
+        "pages": [
+          "22",
+          "23"
+        ],
+        "jurisdiction": "it"
       }
     ],
     "extraction": {
@@ -106,19 +119,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICESHIP: no apprenticeship clause found in main CCNL text. Sector primarily employs teachers on permanent contracts. Modelled as single percentage period at 100% (identity transform) for all levels; correct for permanent staff.",
-        "capability": "base_salary",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprenticeship_identity_track",
-          "applies_when": {
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the apprenticeship clause and replace the 100% identity track."
-        }
+        "kind": "info",
+        "text": "APPRENTICESHIP (art. 27.8, signed text of 28 May 2025, scanned p. 23 read on the image): 'Durata 24 mesi: primo semestre: 90% della retribuzione globale in atto; secondo semestre: 95% [...]; dal terzo semestre: 100% [...]; Durata 36 mesi: Primo anno: 90% [...]; dal secondo anno: 100%'. Art. 27.4: 24 months for levels I-III, 36 beyond level III (18 and 30 with a relevant diploma or degree, the same percentages up to the shorter end): tracks livelli_1_3 and livelli_4_8. The percentage reads the pay of the destination level with the allowances it applies to (retribuzione globale in atto)."
       },
       {
         "kind": "simplification",
@@ -242,6 +244,27 @@
             "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
             "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
           }
+        ]
+      },
+      {
+        "id": "2026-11-13-ai-scuole-materne-fism-apprenticeship",
+        "date": "2026-11-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 26-27 of the signed FISM CCNL 2024-2027 (PDF pp. 22-23, scanned pages read on the images).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+            "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
+          }
+        ],
+        "findings": [
+          "Replaced the 100% identity track with the art. 27.8 percentages: 90/95/100 by semester for levels I-III, 90 the first year then 100 for levels IV-VIII."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "apprenticeship"
         ]
       }
     ]
@@ -2452,11 +2475,34 @@
   "apprenticeship": [
     {
       "type": "percentage",
-      "name": "professionalizzante",
+      "name": "livelli_1_3",
       "destination_levels": [
         "I",
         "II",
-        "III",
+        "III"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 12,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
+    },
+    {
+      "type": "percentage",
+      "name": "livelli_4_8",
+      "destination_levels": [
         "IV",
         "V",
         "VI",
@@ -2466,6 +2512,11 @@
       "periods": [
         {
           "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 12,
           "months_until": null,
           "percentage": "1.00"
         }
@@ -2479,7 +2530,7 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "21ebdfaef77025b4099ca264b1002ada83fa2ab2f9c667cfa45339c08e2034db",
+    "source_hash": "0a6901f052c531232f5c96ef9d086b1b1412f8cc88271899225c275c5619c656",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

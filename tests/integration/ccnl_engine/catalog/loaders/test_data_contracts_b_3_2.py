@@ -392,3 +392,19 @@ def test_metalmeccanica_cooperative_apprenticeship_durations() -> None:
             (2 * third, Decimal("0.95")),
             (months, Decimal("1.00")),
         ]
+
+
+def test_scuole_materne_fism_apprenticeship_by_duration() -> None:
+    """Art. 27.8: 90/95/100% by semester (I-III), 90% then 100% (IV-VIII)."""
+    tracks = {t.name: t for t in load_ccnl("scuole-materne-fism").apprenticeship}
+    short, long_ = tracks["livelli_1_3"], tracks["livelli_4_8"]
+    assert short.destination_levels == ("I", "II", "III")
+    assert [getattr(p, "percentage", None) for p in short.periods] == [
+        Decimal("0.90"),
+        Decimal("0.95"),
+        Decimal("1.00"),
+    ]
+    assert [(p.months_from, getattr(p, "percentage", None)) for p in long_.periods] == [
+        (0, Decimal("0.90")),
+        (12, Decimal("1.00")),
+    ]
