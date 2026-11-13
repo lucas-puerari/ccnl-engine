@@ -227,7 +227,7 @@ def test_cometa_unknown_young_membership_is_a_missing_fact() -> None:
 def test_fondapi_on_the_minimum(
     slug: str, level: str, rate: str, employer: str, employee: str
 ) -> None:
-    """Fondapi on the minimum; the tessile EDR missing is a limitation."""
+    """Fondapi on the minimum, which in tessile is the ERN with the EDR in it."""
     result = regular_period(
         employment=Employment(
             ccnl_id=slug,
@@ -242,8 +242,7 @@ def test_fondapi_on_the_minimum(
     assert _entry(result, "pension_fund_employer") == Decimal(employer)
     assert _entry(result, "pension_fund_employee") == Decimal(employee)
     limitations = {limitation.id for limitation in result.assurance.limitations}
-    blocked = f"{slug}/fondapi_base_elements" in limitations
-    assert blocked is (slug == "tessile-pmi-uniontessile")
+    assert f"{slug}/fondapi_base_elements" not in limitations
 
 
 @pytest.mark.parametrize(
