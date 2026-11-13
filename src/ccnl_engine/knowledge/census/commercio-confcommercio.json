@@ -307,6 +307,22 @@
       }
     },
     {
+      "id": "sales_operators_commissions",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Operatori di vendita paid also by commission: the levels OV1 and OV2 hold the fixed table only. Not modelled: the monthly guarantee of the commission-paid staff (art. 217: a monthly average at least 5% above the paga base nazionale conglobata over at most a year), the 13th and 14th on the average of the fixed and variable elements of the twelve months before (artt. 220-221, protocol art. 15), and the company premium of 10% of the guaranteed minimums for firms with more than seven operatori (protocol art. 27).",
+      "calculation": "ccnl/commercio-confcommercio:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the commission earnings of the operatori di vendita as an input, then the art. 217 guarantee, the commission average of the extra months and the art. 27 premium.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "commercio-confcommercio/sales_operators_commissions"
+        ]
+      }
+    },
+    {
       "id": "sickness_net_basis",
       "institute": "sickness",
       "variant": "all",

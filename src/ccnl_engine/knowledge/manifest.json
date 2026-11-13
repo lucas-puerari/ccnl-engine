@@ -490,7 +490,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/commercio-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "2842a026a4177e06b2916056521da1554098650b8c90a27b5f261fc35404f518",
+      "source_hash": "48a83593d03fe50c6c69d50117e4188dd6729fdd8367ad4c21781c5b6a49a19a",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/commercio-confcommercio.json.gz"
@@ -2961,7 +2961,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "c85ddc99e5fe496f6968f4bb193493ed9790680a4730990deca3867067a294d1",
+      "source_hash": "55e68f8b876e6ca6091d82f14816211cfbb89a132ea47a8b5ecd7d5718ba69ec",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/commercio-confcommercio.json.gz",

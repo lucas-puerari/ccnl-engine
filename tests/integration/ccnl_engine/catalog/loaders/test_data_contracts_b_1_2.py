@@ -427,6 +427,7 @@ class TestLoadAlimentariPmiUnionalimentari:
     [
         ("terziario-confesercenti", ("1750.08", "1548.81"), None),
         ("dmo-federdistribuzione", ("1220.04", "1022.70"), ("530.04", "526.11")),
+        ("commercio-confcommercio", ("1220.04", "1022.70"), ("530.04", "526.11")),
     ],
 )
 def test_the_operatori_di_vendita_have_their_own_rows(
@@ -448,7 +449,7 @@ def test_the_operatori_di_vendita_have_their_own_rows(
             (cont,) = (
                 a
                 for a in ccnl.level_by_code(code).fixed_allowances
-                if a.code == "CONTINGENZA"
+                if a.code.startswith("CONTINGENZA")
             )
             assert cont.monthly.value_at(day) == Decimal(amount)
     amounts = ccnl.parameters.seniority_increments.amount_by_level

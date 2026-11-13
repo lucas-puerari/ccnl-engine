@@ -29,9 +29,11 @@ class TestLoadCcnl:
         assert ccnl.meta.cnel_code == "H011"
 
     def test_commercio_has_eight_levels(self) -> None:
-        """Commercio CCNL must contain exactly 8 classification levels."""
+        """Eight ordinary levels; the operatori di vendita on a ladder of their own."""
         ccnl = load_ccnl("commercio-confcommercio")
-        assert len(ccnl.levels) == 8
+        assert len([lv for lv in ccnl.levels if lv.ladder is None]) == 8
+        sales = {lv.code for lv in ccnl.levels if lv.ladder == "operatori_vendita"}
+        assert sales == {"OV1", "OV2"}
 
     def test_commercio_level4_november_2025_salary(self) -> None:
         """Level 4 paga base on 2025-11-01 must be EUR 1,257.46."""

@@ -722,6 +722,7 @@
     "agreement/commercio-confcommercio.json": [
       "commercio-confcommercio/apprentice_hospital_share",
       "commercio-confcommercio/profile_specific_apprenticeship",
+      "commercio-confcommercio/sales_operators_commissions",
       "commercio-confcommercio/sickness_net_basis"
     ],
     "agreement/comunicazione-artigianato-confartigianato.json": [
