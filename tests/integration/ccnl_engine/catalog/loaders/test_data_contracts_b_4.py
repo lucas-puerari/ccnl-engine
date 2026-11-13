@@ -359,3 +359,12 @@ class TestLoadAutostradeTrafori:
         lv = next(lv for lv in ccnl.levels if lv.code == "B")
         edr = next(fa for fa in lv.fixed_allowances if fa.code == "EDR_1991")
         assert edr.months_per_year == 13
+
+
+def test_turismo_confesercenti_ristorazione_collettiva_moves_in_september() -> None:
+    """Ipotesi 22/7/2024 pp. 42-45: same totals, 2025 and 2026 tranches in September."""
+    level = load_ccnl("turismo-confesercenti").level_by_code("4")
+    table = level.base_salary_by_subsector["ristorazione_collettiva"]
+    assert table.value_at(date(2026, 8, 1)) == Decimal("1652.69")
+    assert table.value_at(date(2026, 9, 1)) == Decimal("1692.69")
+    assert table.value_at(date(2027, 12, 1)) == Decimal("1762.69")

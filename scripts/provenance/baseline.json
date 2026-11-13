@@ -1187,8 +1187,7 @@
       "trasporto-ferroviario-agens/seniority_amounts_before_june_2026"
     ],
     "agreement/turismo-confesercenti.json": [
-      "turismo-confesercenti/apprenticeship_under_classification",
-      "turismo-confesercenti/other_subsectors_tables"
+      "turismo-confesercenti/apprenticeship_under_classification"
     ],
     "agreement/turismo-federalberghi-alberghi-minori.json": [
       "turismo-federalberghi-alberghi-minori/apprentice_net_cap",
