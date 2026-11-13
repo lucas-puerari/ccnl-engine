@@ -1197,7 +1197,7 @@
       "turismo-federalberghi-alberghi-minori/extras_hourly_table",
       "turismo-federalberghi-alberghi-minori/guarantee_element_2027",
       "turismo-federalberghi-alberghi-minori/hires_2016_ramp",
-      "turismo-federalberghi-alberghi-minori/quadri_absorption",
+      "turismo-federalberghi-alberghi-minori/quadri_absorption_extra_months",
       "turismo-federalberghi-alberghi-minori/sickness_net_basis",
       "turismo-federalberghi-alberghi-minori/small_hotel_legacy_award"
     ],
@@ -1208,7 +1208,7 @@
       "turismo-federalberghi/extras_hourly_table",
       "turismo-federalberghi/guarantee_element_2027",
       "turismo-federalberghi/hotel_legacy_award",
-      "turismo-federalberghi/quadri_absorption",
+      "turismo-federalberghi/quadri_absorption_extra_months",
       "turismo-federalberghi/sickness_net_basis"
     ],
     "agreement/uneba-uneba.json": [

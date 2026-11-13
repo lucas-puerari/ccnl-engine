@@ -1755,7 +1755,7 @@
               "section": "Art. 145 c.1 - Indennità di funzione",
               "quote": "(1) Ai Quadri è riconosciuta UIla indelmità di funzione mensile~ assorbi bile [...] 60,00 75,00"
             },
-            "transformation": "Column 'da gennaio 2009' of the art. 145 table, categoria A; not changed by the 2014 and 2024 renewals.",
+            "transformation": "Column 'da gennaio 2009' of the art. 145 table, categoria A; not changed by the 2014 and 2024 renewals. Art. 145 c. 1: 'assorbibile fino a concorrenza dai trattamenti economici individuali comunque denominati riconosciuti aziendalmente': absorbed_by_individual_excess reduces it by the worker's individual elements, down to zero, leaving them whole.",
             "note": "The text layer of the 2010 PDF is a poor OCR; quote as pdftotext prints it, amounts read on the page image. Absorbable against individual company treatments (not modelled).",
             "extraction": {
               "method": "ai",
@@ -1767,7 +1767,8 @@
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
             }
-          }
+          },
+          "absorbed_by_individual_excess": true
         }
       ],
       "provenance": {
@@ -2015,7 +2016,7 @@
               "section": "Art. 145 c.1 - Indennità di funzione",
               "quote": "(1) Ai Quadri è riconosciuta UIla indelmità di funzione mensile~ assorbi bile [...] 55,00 70,00"
             },
-            "transformation": "Column 'da gennaio 2009' of the art. 145 table, categoria B; not changed by the 2014 and 2024 renewals.",
+            "transformation": "Column 'da gennaio 2009' of the art. 145 table, categoria B; not changed by the 2014 and 2024 renewals. Art. 145 c. 1: 'assorbibile fino a concorrenza dai trattamenti economici individuali comunque denominati riconosciuti aziendalmente': absorbed_by_individual_excess reduces it by the worker's individual elements, down to zero, leaving them whole.",
             "note": "The text layer of the 2010 PDF is a poor OCR; quote as pdftotext prints it, amounts read on the page image. Absorbable against individual company treatments (not modelled).",
             "extraction": {
               "method": "ai",
@@ -2027,7 +2028,8 @@
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
             }
-          }
+          },
+          "absorbed_by_individual_excess": true
         }
       ],
       "provenance": {
@@ -3715,19 +3717,6 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "Art. 145: the absorption of the Quadri allowance into individual treatments.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "quadri_absorption",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model the absorption of Art. 145."
-        }
-      },
-      {
         "kind": "info",
         "text": "SENIORITY FROM AGE 18 (Art. 158 c. 2, p. 140): a worker hired from 1 June 1986 accrues the scatti only from the eighteenth birthday (SeniorityFact.birth_date; without it the service counts from the start). The rules of the workers in service on 1 June 1986 are not modelled."
       },
@@ -3833,6 +3822,27 @@
           },
           "remediation": "Obtain Annex G and verify current applicability and cohort amounts for smaller hotels before modelling."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "Art. 145: the Quadri allowance is reduced by the worker's individual elements (absorbed_by_individual_excess), which the caller states as the treatments 'riconosciuti aziendalmente'. In the 13th and 14th the engine offsets it by the same monthly elements, also those paid only 12 times (IndividualElement.extra_months false); art. 145 does not say whether such an element absorbs the allowance in the extra months, so the 13th and 14th of a quadro with one may be understated.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "quadri_absorption_extra_months",
+          "applies_when": {
+            "trigger": "run",
+            "levels": [
+              "A",
+              "B"
+            ],
+            "run_kinds": [
+              "thirteenth",
+              "fourteenth"
+            ]
+          },
+          "remediation": "Source whether an individual treatment paid on 12 months absorbs the art. 145 allowance in the 13th and 14th, and offset the extra months accordingly."
+        }
       }
     ]
   },
@@ -3843,7 +3853,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "0bb256b9c2b12b016a9590976f1f538bb41afeb13395a726c6f70b47a3ceab37",
+    "source_hash": "7ba1ad743f67725acd8eca7ee50c3ab0181c3897ffe85433834cae0364aeaee9",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },
@@ -5141,6 +5151,51 @@
         "independence": "same_process",
         "checked": [
           "parameters.hourly_pay.rates"
+        ]
+      },
+      {
+        "id": "2026-11-13-gpt-turismo-federalberghi-alberghi-minori-quadri-absorption",
+        "date": "2026-11-13",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Art. 145 of the CCNL Turismo 2010 (PDF p. 133, scanned) and the renewals of 2014 and 5 July 2024, against the absorption of the Quadri allowance, by a separate model session.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+            "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+          }
+        ],
+        "findings": [
+          "Confirmed: the allowance (A 75, B 70 from January 2009) is absorbable up to its whole amount by company-recognized individual treatments; neither renewal changes art. 145; it applies to the quadri of the alberghi minori too.",
+          "Flagged and kept as limitation quadri_absorption_extra_months: an individual element paid on 12 months still offsets the allowance in the 13th and 14th; the clause does not settle it."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.A.fixed_allowances.IND_FUNZIONE_QUADRI",
+          "levels.B.fixed_allowances.IND_FUNZIONE_QUADRI"
+        ]
+      },
+      {
+        "id": "2026-11-13-ai-turismo-federalberghi-alberghi-minori-quadri-absorption",
+        "date": "2026-11-13",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 145 of the CCNL Turismo 2010, PDF p. 133, read on the page image.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+            "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+          }
+        ],
+        "findings": [
+          "IND_FUNZIONE_QUADRI marked absorbed_by_individual_excess; limitation quadri_absorption replaced by the narrower quadri_absorption_extra_months."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.A.fixed_allowances.IND_FUNZIONE_QUADRI",
+          "levels.B.fixed_allowances.IND_FUNZIONE_QUADRI"
         ]
       }
     ]

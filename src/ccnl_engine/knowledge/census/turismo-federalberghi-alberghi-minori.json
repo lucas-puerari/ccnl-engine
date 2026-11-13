@@ -355,18 +355,18 @@
       }
     },
     {
-      "id": "quadri_absorption",
+      "id": "quadri_absorption_extra_months",
       "institute": "base_salary",
       "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 145: the absorption of the Quadri allowance into individual treatments.",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Art. 145: the Quadri allowance is reduced by the worker's individual elements (absorbed_by_individual_excess), which the caller states as the treatments 'riconosciuti aziendalmente'. In the 13th and 14th the engine offsets it by the same monthly elements, also those paid only 12 times (IndividualElement.extra_months false); art. 145 does not say whether such an element absorbs the allowance in the extra months, so the 13th and 14th of a quadro with one may be understated.",
       "calculation": "ccnl/turismo-federalberghi-alberghi-minori:coverage.notes",
       "state": "absent",
-      "remediation": "Model the absorption of Art. 145.",
+      "remediation": "Source whether an individual treatment paid on 12 months absorbs the art. 145 allowance in the 13th and 14th, and offset the extra months accordingly.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "turismo-federalberghi-alberghi-minori/quadri_absorption"
+          "turismo-federalberghi-alberghi-minori/quadri_absorption_extra_months"
         ]
       }
     },
