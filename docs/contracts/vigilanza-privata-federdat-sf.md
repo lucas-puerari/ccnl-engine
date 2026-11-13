@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-07-09 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-13 |
 | **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | FEDERDAT CCNL of 4 May 2023 (CNEL 167336) and of 9 July 2026 (CNEL 245848), servizi fiduciari: artt. 139-141/156-158 pay, seniority, 13th (pp. 76-77, page images), 126/143 overtime (p. 72), 134/151 ferie (p. 74), 86/103 sickness (p. 51), 32 apprenticeship. | corrected | New file: the servizi fiduciari of the FEDERDAT CCNL had no ruleset (the old federdat-sf file held the HV17 tables, now vigilanza-privata-assiv-sf). |
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 32, 123-124 and 157 of the CCNL of 9 July 2026 (pp. 23, 64, 76, OCR). | corrected | Apprentices accrue the level increments in full: art. 32 c. 1 (p. 23 of the CCNL of 9 July 2026) sets their pay 'in applicazione del principio di parità di trattamento' (no percentage), art. 123 (p. 64) counts seniority 'dal giorno in cui il lavoratore inizia di fatto la prestazione lavorativa nell'Istituto, quali che siano le mansioni', and the six triennial increments are fixed per level (art. 124; art. 157 for the servizi fiduciari). |
 | 2026-11-10 | claude-opus-5-5 (ai) | 2023 level F classification and pay (pp. 69-70, 76); 2026 renewal table (p. 76). | corrected | The 2023 table pays F 865.68; the 2026 renewal omits F without printing a transition. |
+| 2026-11-13 | claude-opus-5-5 (ai) | Arts. 21 and 64 of the renewal of 9 July 2026 (CNEL 245848, PDF pp. 16, 34-35) and arts. 21 and 48 of the text of 4 May 2023 (CNEL 167336, PDF pp. 17, 34), scanned pages read on the images. | corrected | Added health_funds ebilav (0,20% + 0,10%, alternative 25 EUR) and ebilav_sanitario (12 EUR, alternative 15 EUR); limitation health_and_bilateral_funds replaced by the narrower federdat_sf_fund_substitutes_fourteen. |
 
 ## Salary table
 
@@ -112,12 +113,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the Sunday night premium and the sixth-day allowance of art. 143.
 
-!!! warning "vigilanza-privata-federdat-sf/health_and_bilateral_funds · contractual_funds · impact yes · open"
-    HEALTH AND BILATERAL FUNDS: the ente bilaterale EBILAV and the health fund of the CCNL are not modelled; their amounts were not read on the text.
+!!! warning "vigilanza-privata-federdat-sf/federdat_sf_fund_substitutes_fourteen · contractual_funds · impact yes · open"
+    Arts. 21 and 64: the elements an employer owes when it does not pay EBILAV (25 EUR) or the health fund (15 EUR) are paid 'per 14 mensilità', while this CCNL has 13 monthly payments: the engine pays them on the 13 the contract has, one month less a year.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Read the fund articles of the 2026 text and model them as health_funds.
+    **Remediation:** Pay the two fund substitutes on a fourteenth payment, or source that they follow the 13 monthly payments of the CCNL.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
