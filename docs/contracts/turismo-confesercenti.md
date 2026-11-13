@@ -55,7 +55,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-22 |
-| **Last review** | 2026-11-13 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2027-11-01 |
 
 ## Review history
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 50 values read identically by both readings and equal to the file. |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.injury.<br>Added work_rules.insured_absence.maternity (checked on the page image, no text layer). |
 | 2026-11-13 | claude-opus-5-5 (ai) | Ristorazione collettiva tables of the ipotesi of 22 July 2024 (CNEL 194334, pp. 42-45, scanned pages read on the images). | corrected | Added base_salary_by_subsector.ristorazione_collettiva, five tranches per level (June 2024, September 2025, September 2026, June 2027, December 2027); limitation other_subsectors_tables removed. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Artt. 54 and 58 of the signed renewal 2018 (three sections) and the apprentice reference of the 2024 renewal. | confirmed | Read Art. 58 and Art. 54 on the page images (pp. 74, 76): 80/85/90% of the same level, 95% only beyond 36 months; destinations 2-6. Replaced the 100% passthrough over all levels, which overpaid every apprentice, and closed apprenticeship_under_classification; recorded the Art. 58 c. 3 net cap as a limitation. |
 
 ## Salary table
 
@@ -105,19 +106,19 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **professionalizzante** (type: `percentage`)  
-Destination levels: `7`, `6`, `6S`, `5`, `4`, `3`, `2`, `1`, `QB`, `QA`  
-percentage: 1.00
+Destination levels: `2`, `3`, `4`, `5`, `6S`, `6`  
+percentage: 0.95
 
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "turismo-confesercenti/apprenticeship_under_classification · base_salary · impact yes · open"
-    Apprenticeship model confirmed: CCNL Turismo Confesercenti provides sotto-inquadramento 2 levels below destination (consistent with Testo Unico apprendistato Art. 11, secondary sources). Modeled as 100% passthrough pending contract text; the engine supports under_classification tracks with levels_below. (review of 2026-10-30)
+!!! warning "turismo-confesercenti/apprentice_net_cap · base_salary · impact yes · open"
+    Art. 58 c. 3: the net cap of the apprentice pay ('La retribuzione netta dell'apprendista non potrà superare [...] la retribuzione netta del lavoratore non apprendista di analogo livello').
 
-    **Applies when:** `base_salary` applies.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Source the contract text and model under_classification tracks (2 levels below destination) instead of the 100% passthrough.
+    **Remediation:** Cap the apprentice net pay.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -308,6 +309,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SUB-SECTORS: the file's own table is that of the alberghi and campeggi; the pubblici esercizi, stabilimenti balneari and alberghi diurni (EmployerProfile.subsector pubblici_esercizi), their aziende minori (aziende_minori, arts. 291 and 345) and the ristorazione collettiva (ristorazione_collettiva, pp. 42-45: the same amounts as the pubblici esercizi, with the 2025 and 2026 tranches in September) are paid the tables of the ipotesi of 22 July 2024.
     
     Indennita di funzione for QA (EUR 75/month) and QB (EUR 70/month) conglobated into base_salary. Consistent with turismo-federalberghi.json modeling for the same allowances. The CCNL H058 does not publish them as separate line items in the tabella retributiva; absorption into base_salary matches the conglobated model.
+    
+    APPRENTICESHIP (Art. 58 c. 1 of the signed renewal 2018, CNEL archive 90033, PDF p. 76 for Assohotel/Assocamping, same clause p. 16 Fiepet/Fiba and p. 116 Assoviaggi; the 2024 renewal, CNEL 194334 p. 81, refers back to Art. 58): the apprentice is paid on 'la normale retribuzione dei lavoratori qualificati di pari livello': 80% the first year, 85% the second, 90% the third, 95% 'nei casi in cui la durata massima [...] è superiore a 36 mesi e per la quarta annualità dei percorsi di apprendistato in cicli stagionali'. Destinations of Art. 54 (p. 74): levels 2, 3, 4, 5, 6S (36 months) and 6 (24 months); the longer profiles (48 months, Addetto alle prenotazioni 42) are the caller's. The text has no under-classification: the earlier two-levels-below reading came from secondary sources. Months elapsed are the caller's, also for the seasonal cycles.
     
     TRATTAMENTO INTEGRATIVO SPECIALE (L. 199/2025 art. 1 cc. 18-21): for the work of 1 January - 30 September 2026 of a worker who asked for it (PriorYearTaxFacts.special_supplement_requested) with 2025 employment income up to 40,000 EUR, in an employer of food service, tourism or thermal establishments (EmployerProfile.activity), the engine pays 15% of the gross pay of the night hours and of the holiday overtime (AdE circ. 26/E/2023 par. 2: 'calcolata sulla retribuzione lorda'), outside income, as a credit the employer recovers in F24 (capability special_supplement).
     
