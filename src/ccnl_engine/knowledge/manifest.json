@@ -2193,7 +2193,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi-alberghi-minori",
       "ruleset_version": "2026.2",
-      "source_hash": "7ba1ad743f67725acd8eca7ee50c3ab0181c3897ffe85433834cae0364aeaee9",
+      "source_hash": "bcb80b75b284835cd760b18ecff4f89e4aa8293f13721300708381e7c045364b",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/turismo-federalberghi-alberghi-minori.json.gz"
@@ -4961,7 +4961,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "b394d96ec0a5f5c70907cb8e497e14f5147aab3ac72762796cae67743b16624a",
+      "source_hash": "46b835d7feb1ff8759f0a184c3c68d96f1cc91650679c70fe42246379ae56f9e",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/turismo-federalberghi-alberghi-minori.json.gz",
