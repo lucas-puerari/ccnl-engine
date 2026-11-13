@@ -227,22 +227,6 @@
       }
     },
     {
-      "id": "pre_july_2026_amounts_missing",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SENIORITY: 5 scatti biennali (24 months), amounts from kitech.it July 2026. The scatto amounts of the previous rinnovo were not recovered: each amount series declares a 'missing' gap from 2024-03-01 to 2026-07-01. A run before July 2026 with increments due raises MissingRuleError; a run with no increment due does not read the amount.",
-      "calculation": "ccnl/grafica-editoria-aieg:coverage.notes",
-      "state": "unverified",
-      "remediation": "Recover the scatto amounts of the previous rinnovo for periods before July 2026.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "grafica-editoria-aieg/pre_july_2026_amounts_missing"
-        ]
-      }
-    },
-    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

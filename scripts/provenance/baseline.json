@@ -872,9 +872,6 @@
     "agreement/gomma-plastica-federazione-gomma-plastica.json": [
       "gomma-plastica-federazione-gomma-plastica/apprenticeship_period_boundaries"
     ],
-    "agreement/grafica-editoria-aieg.json": [
-      "grafica-editoria-aieg/pre_july_2026_amounts_missing"
-    ],
     "agreement/igiene-ambientale-utilitalia.json": [
       "igiene-ambientale-utilitalia/apprentice_seniority",
       "igiene-ambientale-utilitalia/contractual_fund_partial",
@@ -1019,7 +1016,6 @@
     ],
     "agreement/noleggio-autobus-conducente-anav.json": [
       "noleggio-autobus-conducente-anav/apprentice_seniority",
-      "noleggio-autobus-conducente-anav/salary_tables_from_proxy",
       "noleggio-autobus-conducente-anav/seniority_from_ic35",
       "noleggio-autobus-conducente-anav/t0_table_back_calculated",
       "noleggio-autobus-conducente-anav/una_tantum_effective_work_months"
