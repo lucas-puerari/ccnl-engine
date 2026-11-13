@@ -35,18 +35,18 @@
       }
     },
     {
-      "id": "health_and_bilateral_funds",
+      "id": "federdat_sf_fund_substitutes_fourteen",
       "institute": "contractual_funds",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "HEALTH AND BILATERAL FUNDS: the ente bilaterale EBILAV and the health fund of the CCNL are not modelled; their amounts were not read on the text.",
+      "rule": "Arts. 21 and 64: the elements an employer owes when it does not pay EBILAV (25 EUR) or the health fund (15 EUR) are paid 'per 14 mensilità', while this CCNL has 13 monthly payments: the engine pays them on the 13 the contract has, one month less a year.",
       "calculation": "ccnl/vigilanza-privata-federdat-sf:coverage.notes",
       "state": "absent",
-      "remediation": "Read the fund articles of the 2026 text and model them as health_funds.",
+      "remediation": "Pay the two fund substitutes on a fourteenth payment, or source that they follow the 13 monthly payments of the CCNL.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "vigilanza-privata-federdat-sf/health_and_bilateral_funds"
+          "vigilanza-privata-federdat-sf/federdat_sf_fund_substitutes_fourteen"
         ]
       }
     },
