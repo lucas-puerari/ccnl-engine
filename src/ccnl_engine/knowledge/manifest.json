@@ -1292,7 +1292,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavanderie-industriali-assosistema",
       "ruleset_version": "2026.2",
-      "source_hash": "4425f4ccbcd462583022f22c2aee755f88effa45fd23a1877601133c50fdcbe5",
+      "source_hash": "1b46620e6c6754b9a58017d73e2b8ba61e2b5ad80600d5503da044954018d4f8",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/lavanderie-industriali-assosistema.json.gz"
@@ -3901,7 +3901,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "579e24076c6d032eaacd5ee3531ffae747f34c80102ed3bd49568aa1f24c396e",
+      "source_hash": "9012a49510d80bc537e4783218342ac91e9282016c42e3de49cb45b517b1d64b",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/lavanderie-industriali-assosistema.json.gz",

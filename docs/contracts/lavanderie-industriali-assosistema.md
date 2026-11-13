@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 37 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 0 verified / 57 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|
 | **Last renewal** | 2026-05-19 |
 | **Last review** | — |
-| **Latest salary tranche** | 2026-12-01 |
+| **Latest salary tranche** | 2028-10-01 |
 
 ## Review history
 
@@ -63,16 +63,16 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `D2` | Livello D2 — quadri, executive management (L. 190/1985) | € 3,015.43 | 2026-12-01 |
-| `C3` | Livello C3 — senior managers, strategic operational responsibility | € 3,015.43 | 2026-12-01 |
-| `C2` | Livello C2 — area managers, planning and operational leadership | € 2,566.77 | 2026-12-01 |
-| `C1` | Livello C1 — senior specialists, supervisory and quality-control functions | € 2,275.64 | 2026-12-01 |
-| `B3` | Livello B3 — highly qualified workers, team coordination and process oversight | € 2,202.14 | 2026-12-01 |
-| `B2` | Livello B2 — specialist workers, multi-task roles with technical responsibility | € 2,012.94 | 2026-12-01 |
-| `B1` | Livello B1 — skilled workers, complex laundry and sterilisation operations | € 1,917.54 | 2026-12-01 |
-| `A3` | Livello A3 — qualified workers, autonomous standard operations | € 1,882.49 | 2026-12-01 |
-| `A2` | Livello A2 — semi-skilled workers, assisted operations | € 1,786.94 | 2026-12-01 |
-| `A1` | Livello A1 — entry-level workers, basic laundry operations | € 1,579.32 | 2026-12-01 |
+| `D2` | Livello D2 — quadri, executive management (L. 190/1985) | € 3,232.81 | 2028-10-01 |
+| `C3` | Livello C3 — senior managers, strategic operational responsibility | € 3,232.81 | 2028-10-01 |
+| `C2` | Livello C2 — area managers, planning and operational leadership | € 2,736.13 | 2028-10-01 |
+| `C1` | Livello C1 — senior specialists, supervisory and quality-control functions | € 2,416.20 | 2028-10-01 |
+| `B3` | Livello B3 — highly qualified workers, team coordination and process oversight | € 2,340.08 | 2028-10-01 |
+| `B2` | Livello B2 — specialist workers, multi-task roles with technical responsibility | € 2,131.67 | 2028-10-01 |
+| `B1` | Livello B1 — skilled workers, complex laundry and sterilisation operations | € 2,027.54 | 2028-10-01 |
+| `A3` | Livello A3 — qualified workers, autonomous standard operations | € 1,989.87 | 2028-10-01 |
+| `A2` | Livello A2 — semi-skilled workers, assisted operations | € 1,887.33 | 2028-10-01 |
+| `A1` | Livello A1 — entry-level workers, basic laundry operations | € 1,666.62 | 2028-10-01 |
 
 ## Seniority increments
 
@@ -104,12 +104,12 @@ Destination levels: `A2`, `C3`, `D2`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "lavanderie-industriali-assosistema/tranches_from_october_2027 · base_salary · impact yes · open"
-    MODELLED TRANCHES: 2026-05-01 (source-confirmed from ilccnl.it, iqnotizie.it, previdenza-professionisti.it, all concordant); 2026-12-01 (derived: +20 EUR on B1, other levels proportional using coefficient vector verified across 4 historical tranches 2023-2025). Oct 2027 (+50 EUR B1) and Oct 2028 (+60 EUR B1) announced but table not published — not modelled.
+!!! warning "lavanderie-industriali-assosistema/tranches_2027_2028_rounding · base_salary · impact unknown · open"
+    TRANCHES OF OCTOBER 2027 AND 2028: from the table of increases of the employer signatory's circular 113/26 (p. 11), which says it may change slightly in the rounding once shared with the unions; a later notice (125/26) says the unions accepted the tables, whose attachments are not public. The signed renewal of 19 May 2026 was not found.
 
     **Applies when:** `base_salary` applies; from 2027-10-01.
 
-    **Remediation:** Model the October 2027 (+50 at B1) and October 2028 (+60 at B1) tranches once the tables are published, or derive them with the level coefficients of note 8.
+    **Remediation:** Check the October 2027 and 2028 amounts against the signed renewal or the accepted tables of notice 125/26 and correct any cent.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -294,6 +294,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | https://ilccnl.it/contratto/ccnl/lavanderie---industria | tabella_retributiva | 2026-05-19 | [↗](https://ilccnl.it/contratto/ccnl/lavanderie---industria) |
 | https://www.iqnotizie.it/notizia/IQ47433/ | tabella_retributiva | 2026-05-19 | [↗](https://www.iqnotizie.it/notizia/IQ47433/) |
 | https://previdenza-professionisti.it/ | tabella_retributiva | 2026-05-19 | [↗](https://previdenza-professionisti.it/) |
+| Assosistema Confindustria, circolare prot. 113/26-FI, rinnovo CCNL Lavanderie industriali e centrali di sterilizzazione 2026-2028 (accordo 19 maggio 2026) | associazione | 2026-05-20 | [↗](https://www.assosistema.it/wp-content/uploads/2026/05/Rinnovo-CCNL-lavanderie-industriali-centrali-di-sterilizzazione-e-servizi-medici-affini.Circ_.n.prot_.113_26.pdf) |
 
 ??? note "Coverage notes"
     SECTOR SCOPE: both turismo and sanitario comparti. Pre-2026 the two sectors had distinct tranche dates (sanitario ~9 months behind turismo), but converged to identical minimi by Apr 2025 (sanitario) / Oct 2025 (turismo). The 2026-2028 rinnovo (19 May 2026) applies a single undifferentiated table labelled SANITARIO_TURISMO by Assosistema — confirmed by Assosistema circular title 'Costo medio orario CCNL Lavanderie industriali SANITARIO_TURISMO Aree ABCD tranche 2026'. This contract covers workers in both comparti from 2026-05-01.
