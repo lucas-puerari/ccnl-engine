@@ -10,7 +10,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 273 | 188 | 0 | `funzioni-centrali-aran` |
 | terziario | 46 | 5 257 055 | 50 | 970 | 1842 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 49 | 4 969 900 | 155 | 1172 | 2295 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| industria | 49 | 4 969 900 | 155 | 1192 | 2295 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 67 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 151 | 309 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 12 | 95 | 254 | 5 | `operai-agricoli-florovivaisti` |
@@ -126,7 +126,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`panificazione-assipan`](../contracts/panificazione-assipan.md) | 20 000 | exploratory | 1 | 14 | 35 | party or official | none | none |
 | [`lapidei-industria`](../contracts/lapidei-industria.md) | 18 000 | exploratory | 2 | 30 | 49 | aggregator | none | none |
 | [`orafi-argentieri-industria-federorafi`](../contracts/orafi-argentieri-industria-federorafi.md) | 18 000 | exploratory | 1 | 33 | 32 | party or official | none | none |
-| [`lavanderie-industriali-assosistema`](../contracts/lavanderie-industriali-assosistema.md) | 17 000 | exploratory | 2 | 37 | 0 | party or official | none | none |
+| [`lavanderie-industriali-assosistema`](../contracts/lavanderie-industriali-assosistema.md) | 17 000 | exploratory | 2 | 57 | 0 | party or official | none | none |
 | [`pelli-cuoio-industria-assopellettieri`](../contracts/pelli-cuoio-industria-assopellettieri.md) | 17 000 | exploratory | 2 | 7 | 28 | party or official | none | none |
 | [`laterizi-industria-f021`](../contracts/laterizi-industria-f021.md) | 17 000 | exploratory | 1 | 66 | 33 | party or official | none | none |
 | [`autostrade-trafori`](../contracts/autostrade-trafori.md) | 15 000 | exploratory | 2 | 96 | 55 | party or official | none | none |
