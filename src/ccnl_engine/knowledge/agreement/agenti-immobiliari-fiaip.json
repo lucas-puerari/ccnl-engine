@@ -80,20 +80,9 @@
         "monetary_impact": "no"
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: Apprendistato specialistico (Art. 55) not modelled. Two-year fast-track for workers holding the mediazione immobiliare exam: 24 months starting at 5° and ending at 3°. Intermediate classification not specified in the article. Modelled only under the four standard Art. 40/48 tracks.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "specialist_apprenticeship_track",
-          "applies_when": {
-            "trigger": "outside_input",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Model the Art. 55 two-year specialist track once its intermediate classification is sourced."
-        }
+        "kind": "info",
+        "text": "SPECIALIST APPRENTICESHIP (Art. 55, PDF p. 46): the apprendistato professionalizzante 'specialistico' for the mediazione immobiliare duties 'ha durata pari a 2 (due) anni con assunzione al 5° livello iniziale e conclusione al 3° livello'. Art. 40 (p. 41) sets the pay of every apprentice at '2 livelli inferiori [...] per la prima metà' and '1 livello inferiore [...] per la seconda metà': track III-mediazione-specialistico-24m pays V for months 0-11 and IV for months 12-23. Art. 55 states no middle level of its own; Art. 40 does not exempt it and its first half matches the hiring level V. The caller selects the track (Apprentice.track): a level III apprentice now needs it, between the 36-month Art. 48 track and this one. Eligibility (duties that require the CCIAA exam) is the caller's.",
+        "capability": "base_salary"
       },
       {
         "kind": "info",
@@ -307,6 +296,27 @@
         "independence": "same_process",
         "checked": [
           "parameters.una_tantum"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-specialist-apprenticeship",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 40 and 55, apprentice pay steps and the specialist track, PDF pp. 41 and 46.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.ebnaip.it/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+            "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+          }
+        ],
+        "findings": [
+          "Read both pages on the page image: Art. 55 gives 24 months from level V to level III; Art. 40 gives two levels below for the first half and one below for the second to the apprentices of the CCNL, with no exception for Art. 55. Added the 24-month track and closed the specialist_apprenticeship_track limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "apprenticeship"
         ]
       }
     ]
@@ -1856,6 +1866,30 @@
     },
     {
       "type": "under_classification",
+      "name": "III-mediazione-specialistico-24m",
+      "destination_levels": [
+        "III"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "levels_below": 1
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
       "name": "IV-agenti-immobiliari-36m",
       "destination_levels": [
         "IV"
@@ -1907,7 +1941,7 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "e335dc8a16557808df6d15dcece1fa2b423f7704fd9eca567464e1ef5d9d96c8"
+    "source_hash": "2eaeda8e846f2da2fd878f377d9d9950fcfc2b0aae4b9a9817eddd9bfef8167f"
   },
   "work_rules": {
     "notice": {

@@ -9,6 +9,7 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine.agreement.facade import TaxSector
+from ccnl_engine.apprenticeship.models import UnderClassificationPeriod
 from ccnl_engine.catalog.loaders import load_ccnl
 
 
@@ -439,3 +440,17 @@ def test_informatica_apprenticeship_durations_and_seniority() -> None:
     amount = ccnl.parameters.seniority_increments.apprentice_amount
     assert amount is not None
     assert amount.value_at(date(2026, 6, 1)) == Decimal("0.00")
+
+
+def test_fiaip_specialist_apprenticeship_track() -> None:
+    """Art. 55: 24 months from V to III; Art. 40: two levels below, then one."""
+    ccnl = load_ccnl("agenti-immobiliari-fiaip")
+    track = ccnl.apprenticeship_track_named("III-mediazione-specialistico-24m")
+    assert list(track.destination_levels) == ["III"]
+    steps = [
+        (p.months_from, p.levels_below)
+        for p in track.periods
+        if isinstance(p, UnderClassificationPeriod)
+    ]
+    assert steps == [(0, 2), (12, 1), (24, 0)]
+    assert len(ccnl.apprenticeship_tracks_for("III")) == 2

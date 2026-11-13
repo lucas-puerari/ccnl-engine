@@ -289,22 +289,6 @@
       }
     },
     {
-      "id": "specialist_apprenticeship_track",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SIMPLIFICATION: Apprendistato specialistico (Art. 55) not modelled. Two-year fast-track for workers holding the mediazione immobiliare exam: 24 months starting at 5° and ending at 3°. Intermediate classification not specified in the article. Modelled only under the four standard Art. 40/48 tracks.",
-      "calculation": "ccnl/agenti-immobiliari-fiaip:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the Art. 55 two-year specialist track once its intermediate classification is sourced.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "agenti-immobiliari-fiaip/specialist_apprenticeship_track"
-        ]
-      }
-    },
-    {
       "id": "sunday_holiday_ccnl_clause",
       "institute": "sunday_holiday",
       "variant": "all",

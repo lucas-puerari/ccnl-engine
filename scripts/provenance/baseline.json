@@ -632,9 +632,6 @@
       "afam-aran/pension_fund_not_modelled",
       "afam-aran/shared_rules_unchecked"
     ],
-    "agreement/agenti-immobiliari-fiaip.json": [
-      "agenti-immobiliari-fiaip/specialist_apprenticeship_track"
-    ],
     "agreement/agenzie-marittime-i481.json": [
       "agenzie-marittime-i481/function_allowance_on_fourteenth"
     ],

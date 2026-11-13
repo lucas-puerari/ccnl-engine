@@ -30,10 +30,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-19 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2027-05-01 |
 
 ## Review history
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | EBNAIP contributions of art. 11 of the 2025 text, read on the text layer (analysis by a separate model session). | corrected | Added the QSC (1.60% employer, 0.30% worker of the monthly pay on 14 months; 2.40% E.A.R. to the worker when the employer does not pay, on 14 months, in the TFR) and the employer's flat quota of 12 EUR on twelve months. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 15 of the CCNL FIAIP 2025 (PDF p. 26, text layer). | corrected | Fon.Te.: employer 1.55% and worker 0.55% of the TFR base, the 0.05 quota associativa included (the old note added it on top); TFR 50% or 100% at the worker's choice; una tantum 15.50 EUR at enrolment. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 163, una tantum table and hire-date clause, PDF pp. 97-98. | confirmed | Verified both installments for all seven levels against the final PDF, including the 1 January 2024 full-payment cutoff and proportional payment for later hires through 1 May 2025. Removed an obsolete exclusion note. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Artt. 40 and 55, apprentice pay steps and the specialist track, PDF pp. 41 and 46. | confirmed | Read both pages on the page image: Art. 55 gives 24 months from level V to level III; Art. 40 gives two levels below for the first half and one below for the second to the apprentices of the CCNL, with no exception for Art. 55. Added the 24-month track and closed the specialist_apprenticeship_track limitation. |
 
 ## Salary table
 
@@ -104,6 +105,9 @@ Destination levels: `II`
 **III-agenti-immobiliari-36m** (type: `under_classification`)  
 Destination levels: `III`
 
+**III-mediazione-specialistico-24m** (type: `under_classification`)  
+Destination levels: `III`
+
 **IV-agenti-immobiliari-36m** (type: `under_classification`)  
 Destination levels: `IV`
 
@@ -113,13 +117,6 @@ Destination levels: `V`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "agenti-immobiliari-fiaip/specialist_apprenticeship_track · base_salary · impact yes · open"
-    SIMPLIFICATION: Apprendistato specialistico (Art. 55) not modelled. Two-year fast-track for workers holding the mediazione immobiliare exam: 24 months starting at 5° and ending at 3°. Intermediate classification not specified in the article. Modelled only under the four standard Art. 40/48 tracks.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the Art. 55 two-year specialist track once its intermediate classification is sourced.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -311,6 +308,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     tax_sector: terziario. Signatories include FILCAMS-CGIL, FISASCAT-CISL and UILTUCS-UIL — the three national federations that represent the commerce/services sector and sign terziario contracts. 2026-terziario.json exists; no new TaxSector needed.
     
     first valid_from is 2025-05-01 (decorrenza del rinnovo per le tabelle retributive). agreement_date 2025-05-19 is the signature date; these differ per precedent (IC91: agreement_date 2023-02-28, first tranche 2021-01-01). April 2025 table from Art. 162 is the previgente table — not modelled as a period.
+    
+    SPECIALIST APPRENTICESHIP (Art. 55, PDF p. 46): the apprendistato professionalizzante 'specialistico' for the mediazione immobiliare duties 'ha durata pari a 2 (due) anni con assunzione al 5° livello iniziale e conclusione al 3° livello'. Art. 40 (p. 41) sets the pay of every apprentice at '2 livelli inferiori [...] per la prima metà' and '1 livello inferiore [...] per la seconda metà': track III-mediazione-specialistico-24m pays V for months 0-11 and IV for months 12-23. Art. 55 states no middle level of its own; Art. 40 does not exempt it and its first half matches the hiring level V. The caller selects the track (Apprentice.track): a level III apprentice now needs it, between the 36-month Art. 48 track and this one. Eligibility (duties that require the CCIAA exam) is the caller's.
     
     Source provenance: values extracted from signed CCNL 19/05/2025 PDF distributed by FIAIP/EBNAIP. The direct PDF download URL was not recorded; the homepage https://www.ebnaip.it/ was used as the source anchor. All values verified page-by-page against the original document.
     
