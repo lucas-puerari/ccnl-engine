@@ -667,7 +667,6 @@
     "agreement/aziende-termali-federterme.json": [
       "aziende-termali-federterme/apprentice_seniority",
       "aziende-termali-federterme/ebiterme_fontur_funds",
-      "aziende-termali-federterme/edr_rounding_discrepancy",
       "aziende-termali-federterme/terziario_inps_rates_unverified"
     ],
     "agreement/bancari-abi.json": [

@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, inps_employer, seniority |
+| **Limits of this contract** | bilateral_funds, inps_employer, seniority |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-10-08 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-13 |
 | **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | Values a primary-text verification found different from the printed tables (text layer). | corrected | 9 values corrected to the amounts printed on the cited pages. |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 9 values read identically by both readings and equal to the file. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Observatory levy and FONTUR thermal-sector health contribution against the signed agreement and official fund regulation. | confirmed | Monthly observatory shares and annual FONTUR shares verified; enrolment fee and payment timing remain unmodelled. |
+| 2026-11-13 | claude-opus-5-5 (ai) | Art. 83.II of the signed text of 8 October 2024 (PDF p. 69, read on the page image by OCR). | corrected | The EDR is 10,32 'per 13 mensilità': months_per_year 13, so it is not paid in the 14th; the 10.33 limitation and note were stale (the amount was already 10.32). |
 
 ## Salary table
 
@@ -111,13 +112,6 @@ under-level: `1`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "aziende-termali-federterme/edr_rounding_discrepancy · base_salary · impact unknown · open"
-    SIMPLIFICATION: EDR 10.32 (PDF Art. 83) vs 10.33 (kitech, statutory). Used 10.33. Impact: EUR 0.01/mese.
-
-    **Applies when:** `base_salary` applies.
-
-    **Remediation:** Confirm whether the EDR is 10.32 (PDF Art. 83) or 10.33 (kitech) and align the data.
 
 !!! warning "aziende-termali-federterme/terziario_inps_rates_unverified · inps_employer · impact unknown · open"
     SIMPLIFICATION: tax_sector='terziario'. Following H05B (Federturismo Confindustria) precedent. Federterme is Confindustria-affiliated; sector uses terziario INPS rates. Not verified against INPS circular. Impact on employer_cost_annual.
@@ -335,7 +329,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     Contingenza values from Art. 83 CCNL PDF page 69 (frozen since November 1991 per Protocol 31/07/1992): 1SA=531.96, 1SB=531.38, 1=528.99, 2=521.47, 3=516.42, 4S=515.01, 4=514.86, 5=513.32, 6=510.89.
     
-    EDR: 10.33 EUR/month (all levels). PDF Art. 83 states 10.32; operational value confirmed at 10.33 per kitech CodiceCateg=91 and statutory euro-conversion of ITL 20,000. 0.01 EUR/month discrepancy documented as SIMPLIFICATION.
+    EDR: 10,32 EUR al mese per 13 mensilità, tutti i livelli (art. 83.II, testo firmato 8/10/2024 p. 69: 'euro 10,32 mensili per 13 mensilità'); non entra nella quattordicesima. Le tabelle commerciali con 10,33 non prevalgono sul testo firmato.
     
     Apprenticeship: apprendistato professionalizzante (Art. 13), under-classification model. Three tracks: L5 (18 months, first half at L6, second half at midpoint L6-L5); L4+L4S (24 months, first half 2 below, second half 1 below); L3 (36 months, first half 2 below, second half 1 below). Higher levels (1SA, 1SB, 1, 2) have no duration specified in Art. 13 and are not modelled. Art. 13 lett. g (CCNL 2024-2027 PDF, p. 22): for the second half the pay of level 6 is 'maggiorato di un importo pari al 50% del differenziale previsto tra il 5° e il 6° livello': the engine pays the mean of the whole monthly pay (minimo, contingenza, EDR) of the two levels.
     

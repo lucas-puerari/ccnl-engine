@@ -122,6 +122,14 @@ class TestLoadAziendeTermaliFederterme:
         lv = next(lv for lv in ccnl.levels if lv.code == "3")
         assert lv.base_salary.value_at(date(2026, 6, 1)) == Decimal("1193.48")
 
+    def test_aziende_termali_federterme_edr_on_thirteen_months(self) -> None:
+        """Art. 83.II: EDR 10,32 'per 13 mensilità' on every level, not in the 14th."""
+        ccnl = load_ccnl("aziende-termali-federterme")
+        for lv in ccnl.levels:
+            (edr,) = (a for a in lv.fixed_allowances if a.code == "EDR")
+            assert edr.monthly.value_at(date(2026, 7, 1)) == Decimal("10.32")
+            assert edr.months_per_year == 13
+
     def test_aziende_termali_federterme_level_ordering(self) -> None:
         """Level 6 is lowest (order 1), level 1SA is highest (order 9)."""
         ccnl = load_ccnl("aziende-termali-federterme")
