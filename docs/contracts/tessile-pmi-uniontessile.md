@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, pension_fund_contribution, seniority |
+| **Limits of this contract** | base_salary, seniority |
 
-8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -117,13 +117,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; level in 8.
 
     **Remediation:** Gate IND_FUN by a role (function holders) and source the pre-Jan 2026 amount, or record the limitation.
-
-!!! warning "tessile-pmi-uniontessile/fondapi_base_elements · pension_fund_contribution · impact yes · open"
-    The Fondapi base ('retribuzione Fondapi' or 'elemento retributivo nazionale') counts the EDR besides the minimum; the bundle pay of this CCNL does not hold them, so the fund contributions of an enrolled worker are computed on the minimum alone and understated.
-
-    **Applies when:** `pension_fund_contribution` applies.
-
-    **Remediation:** Model the EDR in the pay of the CCNL and add them to the Fondapi base, then remove this note.
 
 !!! warning "tessile-pmi-uniontessile/level_4s_seniority · seniority · impact yes · open"
     LEVEL 4s (pelli e cuoio, occhiali, giocattoli): the seniority table of the file has no 4s row and the art. 46 tables read do not set one, so a 4s worker accrues no seniority increments. No fixed allowance is modelled for it (the tables read set none), and its category is left to Employment.category.
@@ -323,6 +316,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEVEL 1: jumps to 1558.00 EUR/month at Jan 2025 (9.006 EUR/h, exceeds 9 EUR/h floor per CCNL art. 33bis). Frozen in Jan 2026 and Jan 2027 — excluded from standard tranche mechanism.
     
     FONDAPI: the contributions are computed on the contractual minimum of the level; the Fondapi base also counts the EDR, not in the bundle pay.
+    
+    FONDAPI BASE: Fondapi reads its rate on the 'elemento retributivo nazionale' (minimo tabellare + EDR, scheda 'I destinatari e i contributi' 2026, p. 2). The CCNL conglobated minimum, contingenza and EDR confederale into the ERN from 1 January 1996 (CNEL archive, agreement 610: 'il conglobamento sotto la voce "elemento retributivo nazionale" [...] minimo contrattuale, indennità di contingenza, EDR confederale (L.20.000), che pertanto non saranno più presenti in busta paga'), and the renewal of 2025 (art. 46, scanned p. 20) defines the ERN by its tables, which are the base salaries of this file (level 4: 1.962,56 from January 2026, p. 21): the fund base is the base salary, with no EDR to add.
     
 
 ## Raw data

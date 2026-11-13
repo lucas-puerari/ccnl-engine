@@ -67,22 +67,6 @@
       }
     },
     {
-      "id": "fondapi_base_elements",
-      "institute": "pension_fund_contribution",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "The Fondapi base ('retribuzione Fondapi' or 'elemento retributivo nazionale') counts the EDR besides the minimum; the bundle pay of this CCNL does not hold them, so the fund contributions of an enrolled worker are computed on the minimum alone and understated.",
-      "calculation": "ccnl/tessile-pmi-uniontessile:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the EDR in the pay of the CCNL and add them to the Fondapi base, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "tessile-pmi-uniontessile/fondapi_base_elements"
-        ]
-      }
-    },
-    {
       "id": "level_4s_seniority",
       "institute": "seniority",
       "variant": "all",

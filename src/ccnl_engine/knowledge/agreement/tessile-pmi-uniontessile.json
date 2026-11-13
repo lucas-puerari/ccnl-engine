@@ -113,17 +113,8 @@
         "text": "FONDAPI: the contributions are computed on the contractual minimum of the level; the Fondapi base also counts the EDR, not in the bundle pay."
       },
       {
-        "kind": "simplification",
-        "text": "The Fondapi base ('retribuzione Fondapi' or 'elemento retributivo nazionale') counts the EDR besides the minimum; the bundle pay of this CCNL does not hold them, so the fund contributions of an enrolled worker are computed on the minimum alone and understated.",
-        "capability": "pension_fund_contribution",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "fondapi_base_elements",
-          "applies_when": {
-            "trigger": "run"
-          },
-          "remediation": "Model the EDR in the pay of the CCNL and add them to the Fondapi base, then remove this note."
-        }
+        "kind": "info",
+        "text": "FONDAPI BASE: Fondapi reads its rate on the 'elemento retributivo nazionale' (minimo tabellare + EDR, scheda 'I destinatari e i contributi' 2026, p. 2). The CCNL conglobated minimum, contingenza and EDR confederale into the ERN from 1 January 1996 (CNEL archive, agreement 610: 'il conglobamento sotto la voce \"elemento retributivo nazionale\" [...] minimo contrattuale, indennità di contingenza, EDR confederale (L.20.000), che pertanto non saranno più presenti in busta paga'), and the renewal of 2025 (art. 46, scanned p. 20) defines the ERN by its tables, which are the base salaries of this file (level 4: 1.962,56 from January 2026, p. 21): the fund base is the base salary, with no EDR to add."
       },
       {
         "kind": "simplification",
@@ -6146,6 +6137,6 @@
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "fef00cbc74379959716770cb47457ccc3792f165edb638ac06021757cf4129a2"
+    "source_hash": "4b6f8e6350d3915cbdcd03e8e97ac757519d4fe681a2ac8b7dbf60e82d8052ea"
   }
 }
