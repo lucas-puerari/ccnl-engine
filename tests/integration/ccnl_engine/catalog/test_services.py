@@ -106,3 +106,11 @@ def test_a_ccnl_without_identity_is_a_data_integrity_error() -> None:
     """A ruleset nothing identifies cannot be inspected."""
     with pytest.raises(DataIntegrityError, match="no ruleset identity"):
         inspect_ruleset(AnonymousCcnlRepository(), _METALMECCANICO)
+
+
+def test_a_ladder_of_its_own_follows_the_ordinary_one() -> None:
+    """Confesercenti: VII to Q, then the operatori di vendita OV2 and OV1."""
+    levels = list_levels(BundledKnowledgeRepository(), "terziario-confesercenti")
+    assert [lv.code for lv in levels][-3:] == ["Q", "OV2", "OV1"]
+    assert {lv.ladder for lv in levels[-2:]} == {"operatori_vendita"}
+    assert levels[0].ladder is None

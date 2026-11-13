@@ -187,7 +187,7 @@ def engine() -> PayrollEngine:
 def _base_case(
     engine: PayrollEngine, ccnl_id: str, income: Decimal, comune: str
 ) -> CompetenceYearResult:
-    levels = engine.list_levels(ccnl_id)
+    levels = [lv for lv in engine.list_levels(ccnl_id) if lv.ladder is None]
     return engine.calculate_competence_year(
         CompetenceYearPlan(
             year=2026,

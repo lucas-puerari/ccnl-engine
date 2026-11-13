@@ -80,3 +80,24 @@ def test_the_pay_ladders_hold_the_levels_on_the_table_of_each_subsector() -> Non
     ]
     assert [lv.code for lv in ladders["occhiali"]] == ["4s"]
     assert [lv.code for lv in ladders["giocattoli"]] == ["X"]
+
+
+#: Operatori di vendita beside the ordinary levels: paid between 4 and 5.
+_OV2 = _make("OV2", 5, "102.00", ladder="operatori_vendita")
+_OV1 = _make("OV1", 6, "105.00", ladder="operatori_vendita")
+_SALES = (_FOUR, _FIVE, _OV2, _OV1)
+
+
+def test_a_career_ladder_of_its_own_is_paid_apart() -> None:
+    """OV1 and OV2 rise among themselves, off the ordinary ladder."""
+    ladders = pay_ladders(_SALES)
+    assert [lv.code for lv in ladders[None]] == ["4", "5"]
+    assert [lv.code for lv in ladders["ladder:operatori_vendita"]] == ["OV2", "OV1"]
+
+
+def test_the_levels_below_stay_on_the_ladder_of_the_level() -> None:
+    """One below OV1 is OV2, not 5; one below 5 is 4, not OV1."""
+    assert level_below(_SALES, _OV1, 1).code == "OV2"
+    assert level_below(_SALES, _FIVE, 1).code == "4"
+    with pytest.raises(ValueError, match="no level 1 below 'OV2'"):
+        level_below(_SALES, _OV2, 1)

@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 269 weak rules, 407 open limitations (407 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 269 weak rules, 405 open limitations (405 with a monetary impact).
 
 ## Declared window
 
@@ -90,7 +90,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [dirigenza-sanitaria-area-sanita-aran](../contracts/dirigenza-sanitaria-area-sanita-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 21 rows | tables from 2026-03-01; 21 open requirements; 18 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [dirigenza-sanitaria-medico-veterinaria-aran](../contracts/dirigenza-sanitaria-medico-veterinaria-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 24 rows | tables from 2026-03-01; 24 open requirements; 2 weak rules; 19 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [distribuzione-cooperativa-ancc](../contracts/distribuzione-cooperativa-ancc.md) | `commercio` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 21 monetary limitations; 20 non-native capabilities |
-| [dmo-federdistribuzione](../contracts/dmo-federdistribuzione.md) | `commercio` | reviewed | — | 25 rows | 25 open requirements; 19 monetary limitations; 4 outside_input limitations; 20 non-native capabilities |
+| [dmo-federdistribuzione](../contracts/dmo-federdistribuzione.md) | `commercio` | reviewed | — | 24 rows | 24 open requirements; 19 monetary limitations; 3 outside_input limitations; 20 non-native capabilities |
 | [edilizia-ance](../contracts/edilizia-ance.md) | `edilizia` | reviewed | — | 32 rows | 32 open requirements; 21 monetary limitations; 9 outside_input limitations; 20 non-native capabilities |
 | [edilizia-ance-impiegati](../contracts/edilizia-ance-impiegati.md) | `edilizia` | production | — | 31 rows | 31 open requirements; 23 monetary limitations; 6 outside_input limitations; 21 non-native capabilities |
 | [edilizia-artigianato-cna](../contracts/edilizia-artigianato-cna.md) | `edilizia` | exploratory | — | 27 rows | 27 open requirements; 1 weak rule; 24 monetary limitations; 21 non-native capabilities |
@@ -168,7 +168,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [studi-professionali-confprofessioni](../contracts/studi-professionali-confprofessioni.md) | `servizi-professionali` | reviewed | — | 23 rows | 23 open requirements; 18 monetary limitations; 3 outside_input limitations; 20 non-native capabilities |
 | [tabacco-apti](../contracts/tabacco-apti.md) | `alimentare` | exploratory | — | 45 rows | 45 open requirements; 24 weak rules; 18 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [telecomunicazioni-asstel](../contracts/telecomunicazioni-asstel.md) | `ict-telecomunicazioni` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 20 non-native capabilities |
-| [terziario-confesercenti](../contracts/terziario-confesercenti.md) | `commercio` | reviewed | 2027-03-31 | 25 rows | 25 open requirements; 20 monetary limitations; 3 outside_input limitations; 20 non-native capabilities |
+| [terziario-confesercenti](../contracts/terziario-confesercenti.md) | `commercio` | reviewed | 2027-03-31 | 24 rows | 24 open requirements; 20 monetary limitations; 2 outside_input limitations; 19 non-native capabilities |
 | [tessile-moda-artigianato-confartigianato](../contracts/tessile-moda-artigianato-confartigianato.md) | `tessile-moda` | exploratory | — | 26 rows | 26 open requirements; 1 weak rule; 22 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [tessile-pmi-uniontessile](../contracts/tessile-pmi-uniontessile.md) | `tessile-moda` | exploratory | 2027-03-31 | 31 rows | 31 open requirements; 6 weak rules; 21 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
 | [tessile-smi](../contracts/tessile-smi.md) | `tessile-moda` | exploratory | — | 22 rows | 22 open requirements; 2 weak rules; 18 monetary limitations; 18 non-native capabilities |

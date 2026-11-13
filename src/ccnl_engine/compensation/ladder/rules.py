@@ -6,6 +6,11 @@ giocattoli tables).  A run keeps the levels of every sub-sector and those
 of the stated one (:func:`levels_for`), and counts the levels below one on
 that ladder by rank (:func:`level_below`): an under-classification never
 reaches a level of another sub-sector.
+
+A level with ``Level.ladder`` sits on a career ladder of its own (the
+operatori di vendita of the Terziario contracts, I and II categoria, beside
+the ordinary levels): it is ranked, and its pay must rise, only among the
+levels of the same ladder.
 """
 
 from __future__ import annotations
@@ -38,7 +43,8 @@ def level_below(
     Args:
         levels: The ladder, the levels of the run (:func:`levels_for`).
         level: The level to count from, one of ``levels``.
-        count: The ranks below, by ``Level.order``.
+        count: The ranks below, by ``Level.order``, among the levels of the
+            ladder of ``level`` (``Level.ladder``).
         clamp: Return the lowest level instead of raising past it.
 
     Returns:
@@ -48,7 +54,9 @@ def level_below(
         ValueError: When ``level`` is not on the ladder, or ``count`` reaches
             below its lowest level and ``clamp`` is false.
     """
-    ladder = sorted(levels, key=lambda lv: lv.order)
+    ladder = sorted(
+        (lv for lv in levels if lv.ladder == level.ladder), key=lambda lv: lv.order
+    )
     codes = [lv.code for lv in ladder]
     if level.code not in codes:
         msg = f"level {level.code!r} is not on the ladder {codes}"
@@ -66,24 +74,40 @@ def pay_ladders(levels: Iterable[Level]) -> dict[str | None, list[Level]]:
     The ordinary ladder (``None``) holds the levels of every sub-sector on
     their own table; the ladder of a sub-sector the levels that carry it,
     in ``Level.subsectors`` or ``Level.base_salary_by_subsector``, on its
-    table.
+    table; a career ladder of its own (``Level.ladder``, keyed
+    ``ladder:<name>``) its levels, apart from all the others.
 
     Returns:
         Each ladder sorted by ``Level.order``.
     """
     every = list(levels)
+    ordinary = [lv for lv in every if lv.ladder is None]
     ladders: dict[str | None, list[Level]] = {
-        None: [lv for lv in every if not lv.subsectors]
+        None: [lv for lv in ordinary if not lv.subsectors],
+        **_subsector_ladders(ordinary),
     }
+    for lv in every:
+        if lv.ladder is not None:
+            ladders.setdefault(f"ladder:{lv.ladder}", []).append(lv)
+    return {code: sorted(ls, key=lambda lv: lv.order) for code, ls in ladders.items()}
+
+
+def _subsector_ladders(levels: list[Level]) -> dict[str | None, list[Level]]:
+    """Return the ladder of each sub-sector, on its table.
+
+    Returns:
+        The levels of each sub-sector named by a level, keyed by its code.
+    """
     named = {
-        code for lv in every for code in (*lv.subsectors, *lv.base_salary_by_subsector)
+        code for lv in levels for code in (*lv.subsectors, *lv.base_salary_by_subsector)
     }
-    for code in sorted(named):
-        ladders[code] = [
+    return {
+        code: [
             lv.model_copy(update={"base_salary": lv.base_salary_by_subsector[code]})
             if code in lv.base_salary_by_subsector
             else lv
-            for lv in every
+            for lv in levels
             if code in lv.subsectors or code in lv.base_salary_by_subsector
         ]
-    return {code: sorted(ls, key=lambda lv: lv.order) for code, ls in ladders.items()}
+        for code in sorted(named)
+    }

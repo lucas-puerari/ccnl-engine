@@ -13,7 +13,8 @@ from contextlib import suppress
 from typing import TYPE_CHECKING
 
 from ccnl_engine.catalog.family.services import of_family
-from ccnl_engine.catalog.loaders import SLUG, LevelSummary, resolve_contract
+from ccnl_engine.catalog.level.models import LevelSummary
+from ccnl_engine.catalog.loaders import SLUG, resolve_contract
 from ccnl_engine.catalog.models import ccnl_ruleset_assurance
 from ccnl_engine.errors import DataIntegrityError, UnknownCcnlError
 from ccnl_engine.validators import require_str
@@ -95,7 +96,7 @@ def inspect_ruleset(repo: KnowledgeRepository, ccnl_id: str) -> RulesetAssurance
 
 
 def list_levels(repo: KnowledgeRepository, ccnl_id: str) -> tuple[LevelSummary, ...]:
-    """Return the levels of one CCNL, in the order of its data.
+    """Return the levels of one CCNL: the ordinary ladder, then any other, by rank.
 
     Args:
         repo: Repository the CCNL is loaded from, integrity checked.
@@ -106,7 +107,7 @@ def list_levels(repo: KnowledgeRepository, ccnl_id: str) -> tuple[LevelSummary, 
         it.
     """
     ccnl = resolve_ccnl(repo, ccnl_id)
-    levels = sorted(ccnl.levels, key=lambda level: level.order)
+    levels = sorted(ccnl.levels, key=lambda level: (level.ladder or "", level.order))
     tracks = ccnl.apprenticeship
     return tuple(
         LevelSummary(
@@ -114,6 +115,7 @@ def list_levels(repo: KnowledgeRepository, ccnl_id: str) -> tuple[LevelSummary, 
             level.description,
             level.category,
             tuple(t.name for t in tracks if level.code in t.destination_levels),
+            level.ladder,
         )
         for level in levels
     )

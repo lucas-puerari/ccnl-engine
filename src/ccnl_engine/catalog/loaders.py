@@ -27,7 +27,6 @@ from ccnl_engine.validators import require_str
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
-    from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.provenance.ruleset.models import RulesetReadiness
     from ccnl_engine.provenance.source.models import SourceDocument
 
@@ -121,25 +120,6 @@ class ContractSummary:
     validity: ValidityWindow | None
     withholding_agent: bool = True
     sources: tuple[SourceDocument, ...] = ()
-
-
-@dataclass(frozen=True, slots=True)
-class LevelSummary:
-    """One level of a bundled CCNL, as ``Employment.level_code`` names it.
-
-    Attributes:
-        code: The level code (e.g. ``"C3"``).
-        description: Label of the level in the CCNL data.
-        category: Worker category the level is restricted to, ``None``
-            when the level admits any.
-        apprenticeship_tracks: Names of the apprenticeship tracks that lead
-            to the level, the ``Apprentice.track`` a run may state.
-    """
-
-    code: str
-    description: str
-    category: WorkerCategory | None
-    apprenticeship_tracks: tuple[str, ...] = ()
 
 
 def contract_summary(ccnl: CCNL) -> ContractSummary:

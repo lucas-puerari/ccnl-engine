@@ -30,10 +30,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, sickness, territorial_supplement, una_tantum |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | sickness, territorial_supplement, una_tantum |
 
-10 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 92 verified / 2 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 106 verified / 2 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -78,6 +78,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-13 | claude-opus-5-5 (ai) | Art. 54 of the testo unico 2019 (printed and PDF p. 64), text layer; the renewal of 2024 (OCR of the signed scan) does not change it. | corrected | Added work_rules.apprentice_sickness_rules: carenza at 60% for six events a year, 60% of the gross pay on the days of a hospital stay, after the probation; the apprentices were paid no employer treatment before. |
 | 2026-11-13 | gpt-6-sol (ai) | Apprentice sickness clause, its encoding and the engine change, against the signed text, by a separate model session. | flagged | Confirmed: source, page and sha256; the 2024 renewal does not list the article among those changed.<br>Confirmed: 60% carenza for six events a year, 60% of the gross pay on hospital-stay days, nothing in the probation, gross basis, 180 days in the calendar year; hand amounts of the Commercio test case recomputed.<br>Flagged and corrected in the same change: quotes made verbatim; a relapse takes the rank of its event; no carenza past the comporto; missing-fact issues raised only when the fact can change the pay; the limitation states the 50-point difference of the alternative reading.<br>Flagged, kept as limitation apprentice_hospital_share: the text does not settle whether the hospital 60% adds to the INPS indemnity or is the total. |
 | 2026-11-13 | gpt-6-sol (ai) | Sunday overtime outside the weekly rest day against the overtime, Sunday-work and rest-day articles, by a separate model session. | confirmed | Confirmed: overtime 'nei giorni festivi o la domenica' is paid 30% also when the weekly rest falls on another day; the 'salvo' clause reserves rest-day work, at the same 30% with a compensatory rest.<br>Confirmed: the Sunday-work article sends Sunday overtime to this article, so the two 30% do not add up; night overtime stays at 50%, the premiums are not cumulative.<br>Flagged and corrected: a typo in the transformation and the paragraph label of the unnumbered texts. |
+| 2026-11-13 | claude-opus-5-5 (ai) | Tables of the accordo integrativo 28/03/2024 (CNEL 20279, pp. 2-3) and protocollo aggiuntivo artt. 1, 14 of the TU 2019 (pp. 351-352, 358) | corrected | Added levels OV1 and OV2 of the operatori di vendita on their own ladder, six tables 2023-2027, and their seniority increments. |
 
 ## Salary table
 
@@ -85,6 +86,8 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
+| `OV1` | Operatore di vendita di I categoria | € 1,787.84 | 2027-02-01 |
+| `OV2` | Operatore di vendita di II categoria | € 1,580.51 | 2027-02-01 |
 | `Q` | Senior Manager (Quadro) | € 3,114.42 | 2027-02-01 |
 | `I` | First Level | € 2,621.36 | 2027-02-01 |
 | `II` | Second Level | € 2,335.04 | 2027-02-01 |
@@ -109,6 +112,8 @@ Latest effective values per level (monthly gross, EUR).
 | `V` | € 20.30 |
 | `VI` | € 19.73 |
 | `VII` | € 19.47 |
+| `OV1` | € 15.50 |
+| `OV2` | € 14.46 |
 
 ## Apprenticeship
 
@@ -155,13 +160,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Resolved: every level carries IND_CASSA, 5% of its paga base nazionale conglobata, for the role cassiere of Employment.roles.
-
-!!! warning "terziario-confesercenti/sales_operators · base_salary · impact yes · open"
-    The minimi of the operatori di vendita I and II categoria (CNEL 20279 tables).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Add the operatori di vendita levels.
 
 !!! note "terziario-confesercenti/long_week_divisors · base_salary · impact yes · resolved"
     Art. 211: the hourly divisors 182 and 195 of the 42 and 45 hour weeks.
@@ -392,6 +390,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEAVE, WEEKLY SCHEDULE: a 39-hour full-time week absorbs 36 hours of ROL and a 38-hour week 16 hours of ex festività and 56 of ROL, read from Employment.full_time_weekly_hours. The grandi magazzini, magazzini a prezzo unico, supermercati alimentari, cash&carry and ipermercati (Art. 134, EmployerProfile.subsector 'grande_distribuzione') on a 38-hour average absorb instead the 56 hours of Art. 158 c. 3 and the 16 of c. 4 and keep the ex festività.
     
     FIRST- AND THIRD-LEVEL APPRENTICES (Art. 69): modelled in dual_apprenticeship (first level 50/50/65/70% of the qualified worker's pay by year of the contract, third level two then one level below the destination by half of the programme; training at the employer 10%, school hours unpaid). The contributions of these apprentices are the engine limitation dual_apprenticeship_contributions.
+    
+    OPERATORI DI VENDITA (protocollo aggiuntivo art. 14, TU 2019 p. 358): ten three-year increments of 15,50 (I categoria) and 14,46 (II categoria) from 1 October 1986, the cadence and count of the other levels; levels OV1 and OV2, ladder operatori_vendita.
     
     Base salary table effective from 01.01.2020 (Table I, CCNL 12.12.2019, confesercenti.it PDF).
     

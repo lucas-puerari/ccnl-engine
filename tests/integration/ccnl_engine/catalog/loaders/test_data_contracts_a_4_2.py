@@ -258,11 +258,12 @@ class TestLoadTerziarioConfesercenti:
         assert ccnl.meta.cnel_code == "H012"
 
     def test_terziario_confesercenti_has_8_levels(self) -> None:
-        """Contract has exactly 8 levels: Q, I, II, III, IV, V, VI, VII."""
+        """Q, I-VII on the ordinary ladder; OV1, OV2 the operatori di vendita."""
         ccnl = load_ccnl("terziario-confesercenti")
-        codes = {lv.code for lv in ccnl.levels}
-        assert len(ccnl.levels) == 8
+        codes = {lv.code for lv in ccnl.levels if lv.ladder is None}
         assert codes == {"Q", "I", "II", "III", "IV", "V", "VI", "VII"}
+        sales = {lv.code for lv in ccnl.levels if lv.ladder == "operatori_vendita"}
+        assert sales == {"OV1", "OV2"}
 
     def test_terziario_confesercenti_level4_salary_tranche1(self) -> None:
         """Level IV first tranche (Apr 2023): 1646.68 EUR/month."""
@@ -277,9 +278,9 @@ class TestLoadTerziarioConfesercenti:
         assert lv.base_salary.value_at(date(2026, 11, 1)) == Decimal("1816.68")
 
     def test_terziario_confesercenti_level_ordering(self) -> None:
-        """Q is highest-order level; VII is lowest-order level."""
+        """On the ordinary ladder Q has the highest order and VII the lowest."""
         ccnl = load_ccnl("terziario-confesercenti")
-        orders = {lv.code: lv.order for lv in ccnl.levels}
+        orders = {lv.code: lv.order for lv in ccnl.levels if lv.ladder is None}
         assert orders["Q"] == max(orders.values())
         assert orders["VII"] == min(orders.values())
 
@@ -298,7 +299,7 @@ class TestLoadTerziarioConfesercenti:
     def test_terziario_confesercenti_terzo_elemento_only(self) -> None:
         """Conglobated model: the terzo elemento (Art. 215) and the cassa (Art. 218)."""
         ccnl = load_ccnl("terziario-confesercenti")
-        for lv in ccnl.levels:
+        for lv in (lv for lv in ccnl.levels if lv.ladder is None):
             terzo, cassa = lv.fixed_allowances
             assert terzo.code == "TERZO_ELEMENTO_NAZIONALE"
             assert terzo.replaced_by == "provincial_element"
