@@ -30,10 +30,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, leave, seniority, sickness |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | leave |
 
-5 documented simplification(s) and 1 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 1 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 47 verified / 0 derived / 7 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 50 verified / 0 derived / 4 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-19 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-13 |
 | **Latest salary tranche** | 2027-08-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 79 - Anzianità di servizio (general clause), applied to Art. 77 - 13ª mensilità (p. 43) (p. 44): "le frazioni di anno saranno computate, a tutti gli effetti contrattuali, per dodicesimi computandosi come mese intero le frazioni di mese superiori o uguali a 15 giorni.". Added: at_least 15 (the file applied the engine default, at least 15 days). |
 | 2026-10-31 | claude-opus-5-5 (ai) | The sick pay and the comporto of the CCNL (work_rules.sickness_rules), read on the signed text. | corrected | Art. 22 (pp. 27-28): the integration reaches 100% for the three days of carenza, 75% for days 4-20 and 100% for days 21-180 of the normale retribuzione; Art. 25: 180 days of comporto. The file had assumed 100% for every day: corrected to day bands of 75% and 100%. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Artt. 94–95, p. 49-50). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
+| 2026-11-13 | claude-opus-5-5 (ai) | Artt. 22, 25, 30, 77, 78 and 81 of the 2024-2027 text deposited at the CNEL (H341, allegato 210360), text layer. | corrected | IND_FUN corrected from 154.94 (aggregator) to 154.93 for 14 months (art. 30).<br>Seniority amounts confirmed against the art. 81 table of 1 July 2017.<br>14 monthly payments sourced (artt. 77-78).<br>Sickness rates already verified on the FLAI text match art. 22 of the CNEL text: the assumed-rates limitation was stale. |
 
 ## Salary table
 
@@ -98,34 +99,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "ortofrutticoli-agrumari/seniority_assumed_constant · seniority · impact unknown · open"
-    SIMPLIFICATION: Importi scatti anzianità assunti costanti per tutto il periodo 2024-2027. La fonte primaria (kitech.it giugno 2026) non indica data decorrenza; il rinnovo 2024 non menziona modifiche agli scatti.
-
-    **Applies when:** `seniority` applies.
-
-    **Remediation:** Source the effective dates of the seniority amounts.
-
-!!! warning "ortofrutticoli-agrumari/ind_fun_assumed_constant · base_salary · impact unknown · open"
-    SIMPLIFICATION: IND_FUN 154.94 EUR assunta costante dal 2024-01-01 senza adeguamenti. Allowance pre-euro congelata (300.000 lire). Nessuna fonte indica variazioni nel rinnovo 2024.
-
-    **Applies when:** `base_salary` applies; level in Q.
-
-    **Remediation:** Confirm the IND_FUN amount against the 2024 renewal text.
-
-!!! warning "ortofrutticoli-agrumari/ind_fun_fourteen_months · base_salary · impact unknown · open"
-    SIMPLIFICATION: IND_FUN assunta corrisposta su 14 mensilità (ereditato da additional_months contratto); months_per_year non specificato. Nessuna fonte accessibile indica il numero di mensilità dell'indennità. Impatto: ±154.94 EUR/anno livello Q se la vera risposta è 12 mensilità.
-
-    **Applies when:** `base_salary` applies; level in Q; run kind in fourteenth.
-
-    **Remediation:** Source the number of monthly payments of IND_FUN.
-
-!!! warning "ortofrutticoli-agrumari/assumed_sickness_integration_rates · sickness · impact unknown · open"
-    SIMPLIFICATION: Tassi integrazione malattia assunti 100% (carenza_integration_rate e full_pay_integration_rate). Fonti accessibili non riportano percentuali per H341. Comporto 180 giorni da snippet ricerca H341. Il motore può sovrastimare il supplemento datoriale durante la malattia.
-
-    **Applies when:** `sickness` applies.
-
-    **Remediation:** Source the carenza and integration rates of the CCNL and replace the assumed 100%.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -302,9 +275,10 @@ Each simplification below is a model limitation of the registry. An open limitat
 | Kitech tabella retributiva CCNL Ortofrutta ed Agrumari — giugno 2026 | tabella_retributiva | 2026-06-01 | [↗](https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=72) |
 | CCNL Ortofrutticolo — accordo di rinnovo 2024-2027 (Fisascat-CISL comunicato) | associazione | 2024-07-19 | [↗](https://www.fisascat.it/news/ccnl-ortofrutticolo) |
 | Aziende ortofrutticole e agrumarie — siglato il rinnovo del CCNL (edotto.com) | associazione | 2024-07-19 | [↗](https://www.edotto.com/articolo/ortofrutticoli-agrumari-rinnovo-ccnl) |
+| CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, 1 gennaio 2024 - 31 dicembre 2027 (testo depositato al CNEL, codice H341, allegato 210360) | cnel | 2024-07-19 | [↗](https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/210360) |
 
 ??? note "Coverage notes"
-    IND_FUN livello Q: 154.94 EUR/mese. Lavoro-economia.it c=72 mostra livello Q totale = 2551.53 = 2396.59 (base giugno 2026) + 154.94. Equivale a 300.000 lire (300.000/1936.27 = 154.94): allowance pre-euro congelata.
+    IND_FUN livello Q: 154,93 EUR per 14 mensilità (art. 30, testo CNEL H341 p. 31). La tabella dell'aggregatore (154,94, 300.000 lire) non coincide con il testo firmato.
     
     BASE SALARY: every base_salary period of the nine levels is verified against Allegato 1 of the FLAI text (p. 58, review 2026-10-17-ai-tables); no value is derived by the proportional rule any more (review of 2026-10-30).
     
