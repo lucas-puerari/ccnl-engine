@@ -14,6 +14,11 @@ class OvertimeKind(StrEnum):
             apart from the holidays; without a rest-day band, as ``HOLIDAY``.
         SATURDAY: Overtime on Saturday where the CCNL pays it apart
             (Metalmeccanico artigianato); without a band, as ``WEEKDAY``.
+        SUNDAY: Daytime overtime on a Sunday that is not the weekly rest day
+            nor a holiday, where the CCNL pays it apart (Commercio art. 149:
+            "le ore straordinarie di lavoro prestato nei giorni festivi o la
+            domenica", 30%); without a band, as ``WEEKDAY``.  Night, rest-day
+            and holiday overtime keep their own kinds.
         NIGHT_HOLIDAY: Night overtime on a public holiday (festivo notturno).
         SUPPLEMENTARY: Part-time hours beyond the agreed ones within the full
             week (D.Lgs. 81/2015 art. 6 c. 2), at the supplementare band.
@@ -25,6 +30,7 @@ class OvertimeKind(StrEnum):
     REST_DAY = "rest_day"
     NIGHT_HOLIDAY = "night_holiday"
     SATURDAY = "saturday"
+    SUNDAY = "sunday"
     SUPPLEMENTARY = "supplementare"
 
 

@@ -3931,7 +3931,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "ee32389ca782fd0c934ec0c590bad5c8940debfbab68f9322fd3b5e6852acd40",
+    "source_hash": "63178c67826d389673ca853df5fd255dccb66be7258feefc1d1f84a0d48ed65d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4207,7 +4207,8 @@
             ]
           },
           "applies_to_kinds": [
-            "holiday"
+            "holiday",
+            "sunday"
           ],
           "provenance": {
             "status": "verified",
@@ -4222,7 +4223,7 @@
               },
               "page": "42",
               "section": "Art. 132 c.2; Art. 138 (p44) festivity work paid as straordinario festivo",
-              "quote": "cui all’art. 191 e con la maggiorazione del 30% (trenta per cento) sulla quota oraria della normale"
+              "quote": "2. Salvo quanto disposto dal successivo art. 139, le ore straordinarie di lavoro prestato nei giorni festivi o la domenica verranno retribuite con la quota oraria della retribuzione di fatto di cui all’art. 191 e con la maggiorazione del 30% (trenta per cento) sulla quota oraria della normale retribuzione di cui all’art. 189."
             },
             "extraction": {
               "method": "ai",
@@ -4233,7 +4234,8 @@
               "verified_at": "2026-10-13T07:00:31Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
-            }
+            },
+            "transformation": "Art. 132 c. 2: the 30% is also the rate of overtime worked on a Sunday that is not the weekly rest day, by day (OvertimeKind.SUNDAY: 'le ore straordinarie di lavoro prestato nei giorni festivi o la domenica'); overtime on the weekly rest day stays with the article on rest-day work it is subject to ('salvo quanto disposto'). Night overtime on a Sunday is night overtime (50%), the premiums not being cumulative; a more favourable second-level agreement is not modelled."
           }
         },
         {
@@ -5711,6 +5713,29 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.apprentice_sickness_rules"
+        ]
+      },
+      {
+        "id": "2026-11-13-gpt-dmo-federdistribuzione-sunday-overtime",
+        "date": "2026-11-13",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Sunday overtime outside the weekly rest day against the overtime, Sunday-work and rest-day articles, by a separate model session.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "Confirmed: overtime 'nei giorni festivi o la domenica' is paid 30% also when the weekly rest falls on another day; the 'salvo' clause reserves rest-day work, at the same 30% with a compensatory rest.",
+          "Confirmed: the Sunday-work article sends Sunday overtime to this article, so the two 30% do not add up; night overtime stays at 50%, the premiums are not cumulative.",
+          "Flagged and corrected: a typo in the transformation and the paragraph label of the unnumbered texts."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements.overtime_bands"
         ]
       }
     ],
