@@ -124,17 +124,20 @@ class TestLoadImpiantiSportiviSport:
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 7, 1)) == Decimal(173)
 
     def test_impianti_sportivi_sport_q_has_ind_funzione(self) -> None:
-        """Q level has IND_FUNZIONE of 60.00 EUR/month (13 months); others empty."""
+        """Q alone has IND_FUNZIONE of 60.00 EUR/month (13 months).
+
+        Every level also has the two elements of the hires before 22/12/2015.
+        """
         ccnl = load_ccnl("impianti-sportivi-sport")
+        pre_2016 = {"SUPERMINIMO_ANTE_2015", "EX_QUATTORDICESIMA_ANTE_2015"}
         q = next(lv for lv in ccnl.levels if lv.code == "Q")
-        assert len(q.fixed_allowances) == 1
-        fa = q.fixed_allowances[0]
+        (fa,) = (a for a in q.fixed_allowances if a.code not in pre_2016)
         assert fa.code == "IND_FUNZIONE"
         assert fa.monthly.value_at(date(2026, 7, 1)) == Decimal("60.00")
         assert fa.months_per_year == 13
         for lv in ccnl.levels:
             if lv.code != "Q":
-                assert lv.fixed_allowances == ()
+                assert {a.code for a in lv.fixed_allowances} == pre_2016
 
     def test_impianti_sportivi_sport_tax_sector(self) -> None:
         """Tax sector is terziario."""
@@ -324,3 +327,27 @@ class TestLoadConciaUnic:
             assert any(fa.code == "EDR" for fa in lv.fixed_allowances), (
                 f"{lv.code} missing EDR"
             )
+
+
+def test_sport_hires_before_2016_keep_the_table_c_elements() -> None:
+    """Tabella C p. 106: level IV 53,19 non-absorbable, ex-14th 115,25 then 76,83.
+
+    Both go to the workers in service on 21 December 2015; the
+    non-absorbable one stays out of the 13th (art. 117).
+    """
+    level = load_ccnl("impianti-sportivi-sport").level_by_code("IV")
+    by_code = {a.code: a for a in level.fixed_allowances}
+    keep = by_code["SUPERMINIMO_ANTE_2015"]
+    ex14 = by_code["EX_QUATTORDICESIMA_ANTE_2015"]
+    assert keep.monthly.value_at(date(2026, 6, 1)) == Decimal("53.19")
+    assert keep.months_per_year == 12
+    assert [
+        ex14.monthly.value_at(date(y, m, 1))
+        for y, m in ((2026, 10), (2026, 11), (2028, 1), (2029, 1))
+    ] == [
+        Decimal("115.25"),
+        Decimal("76.83"),
+        Decimal("38.42"),
+        Decimal("0.00"),
+    ]
+    assert keep.in_service_on == ex14.in_service_on == date(2015, 12, 21)

@@ -890,11 +890,10 @@
       "igiene-ambientale-utilitalia/industria_rates_proxy"
     ],
     "agreement/impianti-sportivi-sport.json": [
+      "impianti-sportivi-sport/level_ii_ex_fourteenth_print",
       "impianti-sportivi-sport/level_v_first_semester_overpaid",
       "impianti-sportivi-sport/level_vi_whole_track_at_destination",
       "impianti-sportivi-sport/overtime_weekly_hours_not_stated",
-      "impianti-sportivi-sport/pre_2015_fourteenth_missing",
-      "impianti-sportivi-sport/pre_2015_superminimo_missing",
       "impianti-sportivi-sport/sickness_net_basis"
     ],
     "agreement/impiegati-tecnici-agricoli.json": [
