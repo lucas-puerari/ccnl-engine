@@ -724,6 +724,7 @@
       "cinema-audiovisivi-industria/fpls_rates_approximated"
     ],
     "agreement/commercio-confcommercio.json": [
+      "commercio-confcommercio/apprentice_hospital_share",
       "commercio-confcommercio/profile_specific_apprenticeship",
       "commercio-confcommercio/sickness_net_basis"
     ],
@@ -781,6 +782,7 @@
       "distribuzione-cooperativa-ancc/seniority_amounts_proxy_source"
     ],
     "agreement/dmo-federdistribuzione.json": [
+      "dmo-federdistribuzione/apprentice_hospital_share",
       "dmo-federdistribuzione/commission_guarantee",
       "dmo-federdistribuzione/employment_support_contract",
       "dmo-federdistribuzione/provincial_elements_missing",
@@ -1167,7 +1169,7 @@
       "telecomunicazioni-asstel/seniority_adjacent_level_amounts"
     ],
     "agreement/terziario-confesercenti.json": [
-      "terziario-confesercenti/apprentice_sickness",
+      "terziario-confesercenti/apprentice_hospital_share",
       "terziario-confesercenti/provincial_third_elements",
       "terziario-confesercenti/sales_operators",
       "terziario-confesercenti/sickness_net_basis",

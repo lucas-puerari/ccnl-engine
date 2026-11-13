@@ -21,12 +21,15 @@ class SicknessWorker:
         known_from: First day from which the recorded episodes list every
             sick day of the employment; ``None`` when they list all of them.
         fixed_term: Whether the contract is fixed-term.
+        probation_until: Last day of the periodo di prova, ``None`` when
+            not stated.
     """
 
     seniority: SeniorityFact | None = None
     hired_on: date | None = None
     known_from: date | None = None
     fixed_term: bool = False
+    probation_until: date | None = None
 
 
 @dataclass(frozen=True)

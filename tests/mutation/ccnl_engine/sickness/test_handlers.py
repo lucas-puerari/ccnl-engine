@@ -650,16 +650,16 @@ class TestCommercioNetBasis:
             "intg": Decimal("107.41"),
         }
 
-    def test_apprentice_takes_the_inps_share_only(self) -> None:
-        """No carenza and no integration: Art. 187 excludes apprentices.
+    def test_apprentice_takes_art_54_not_the_integration(self) -> None:
+        """Art. 187 excludes apprentices; Art. 54 pays them the carenza.
 
         "Le indennità a carico del datore di lavoro non sono dovute [...] né
-        agli apprendisti".
+        agli apprendisti": no integration, the 60% carenza of Art. 54 only.
         """
         result = self._run(
             contract_type=Apprentice(months_elapsed=6, track="livelli_2_5")
         )
-        assert set(_sick(result)) == {"abs", "inps"}
+        assert set(_sick(result)) == {"abs", "crnz", "inps"}
 
 
 def test_a_carenza_left_on_a_sunday_does_not_stop_the_month() -> None:
@@ -718,3 +718,94 @@ def test_first_carenza_day_paid_only_past_three_days() -> None:
     four_days = _turismo_carenza(date(2026, 3, 12))
     assert four_days > 0
     assert three_days == (four_days * 2 / 3).quantize(Decimal("0.01"))
+
+
+class TestCommercioApprentice:
+    """Commercio apprentice of level 4 (track livelli_2_5, month 6), March 2026.
+
+    Art. 54: 60% of the gross pay on the three days of carenza of the first
+    six events of the year and on each day of a hospital stay, from the end
+    of the probation; no other employer treatment.  The run pays 1539.69 a
+    month: the episode of Monday 2 to Friday 13 March has 11 payable days by
+    26, 651.41.  Carenza 2-4 March: 3 days, 177.66 * 60% = 106.60.  INPS
+    pays 50% of the 8 days left, 473.75 * 50% = 236.88.
+    """
+
+    _EPISODE = sickness_episode("c", date(2026, 3, 2), date(2026, 3, 13))
+    _HIRED = EmploymentPeriod(
+        started_on=date(2025, 9, 1), probation_until=date(2025, 10, 15)
+    )
+
+    def _run(self, episode: object, period: EmploymentPeriod | None) -> PeriodResult:
+        request = _req(
+            3,
+            episode,
+            slug="commercio-confcommercio",
+            level="4",
+            category=WorkerCategory.IMPIEGATO,
+        )
+        return calculate_period(
+            replace(
+                request,
+                contract_type=Apprentice(months_elapsed=6, track="livelli_2_5"),
+                employment_period=period,
+            ),
+            repo=bundled_repository(),
+            resolver=bundled_policies(),
+        )
+
+    @staticmethod
+    def _codes(result: PeriodResult) -> set[str]:
+        return {issue.code for issue in result.issues if issue.fact is not None}
+
+    def test_the_carenza_is_paid_at_sixty_percent(self) -> None:
+        """No stay: carenza 106.60 and the INPS share, no integration."""
+        episode = replace(self._EPISODE, hospital_stays=())
+        result = self._run(episode, self._HIRED)
+        assert _sick(result) == {
+            "abs": Decimal("651.41"),
+            "crnz": Decimal("106.60"),
+            "inps": Decimal("236.88"),
+        }
+        assert not self._codes(result) & {
+            "sickness_hospital_stays_unknown",
+            "sickness_probation_unknown",
+        }
+
+    def test_a_hospital_stay_adds_sixty_percent_to_the_inps_share(self) -> None:
+        """Stay 3-10 March: 5 payable INPS days (5-7, 9-10), 296.09 * 60%.
+
+        296.09 = 651.41 - 177.66 - the 3 payable days of 11-13 March
+        (177.66): integration 177.66.  The carenza days of the stay keep 60%.
+        """
+        stay = ((date(2026, 3, 3), date(2026, 3, 10)),)
+        result = self._run(replace(self._EPISODE, hospital_stays=stay), self._HIRED)
+        assert _sick(result) == {
+            "abs": Decimal("651.41"),
+            "crnz": Decimal("106.60"),
+            "inps": Decimal("236.88"),
+            "intg": Decimal("177.66"),
+        }
+
+    def test_the_days_of_the_probation_have_the_inps_share_alone(self) -> None:
+        """Probation to 5 March: the carenza of 2-4 March is not paid."""
+        period = EmploymentPeriod(
+            started_on=date(2026, 2, 1), probation_until=date(2026, 3, 5)
+        )
+        episode = replace(
+            self._EPISODE, hospital_stays=((date(2026, 3, 2), date(2026, 3, 5)),)
+        )
+        assert _sick(self._run(episode, period)) == {
+            "abs": Decimal("651.41"),
+            "inps": Decimal("236.88"),
+        }
+
+    def test_unstated_stays_and_probation_are_missing_facts(self) -> None:
+        """Paid meanwhile without a stay and as past the probation."""
+        result = self._run(self._EPISODE, None)
+        assert _sick(result)["crnz"] == Decimal("106.60")
+        assert "intg" not in _sick(result)
+        assert {
+            "sickness_hospital_stays_unknown",
+            "sickness_probation_unknown",
+        } <= self._codes(result)

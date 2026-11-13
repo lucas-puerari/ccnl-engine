@@ -86,13 +86,28 @@ def test_exempt_relapses_and_other_years_are_not_counted() -> None:
     assert year.carenza_rate == _ONE
 
 
-def test_an_exempt_or_relapse_episode_keeps_the_full_carenza() -> None:
-    """Its own exemption or relapse makes the episode's carenza unreduced."""
+def test_an_exempt_episode_keeps_the_full_carenza() -> None:
+    """Its own exemption makes the episode's carenza unreduced."""
     exempt = _year(_episode("now", date(2026, 6, 1), 3, exempt=True), *_earlier(4))
-    relapse = _year(_episode("now", date(2026, 6, 1), 3, relapse_of="e3"), *_earlier(4))
-    assert exempt.carenza_rate == relapse.carenza_rate == _ONE
+    assert exempt.carenza_rate == _ONE
     assert not exempt.exemption_reach
-    assert not relapse.exemption_reach
+
+
+@pytest.mark.parametrize(
+    ("relapse_of", "rate"),
+    [("e3", "0.50"), ("e1", "1"), ("gone", "1")],
+    ids=["fourth-event", "second-event", "event-not-recorded"],
+)
+def test_a_relapse_takes_the_rank_of_its_event(relapse_of: str, rate: str) -> None:
+    """A relapse continues its event (Art. 187): the event's rank, not its own.
+
+    Of four events, e3 is the fourth (50%) and e1 the second (100%); a
+    relapse of an event the history does not hold keeps the full rate.
+    """
+    relapse = _year(
+        _episode("now", date(2026, 6, 1), 3, relapse_of=relapse_of), *_earlier(4)
+    )
+    assert relapse.carenza_rate == Decimal(rate)
 
 
 @pytest.mark.parametrize(
@@ -110,6 +125,43 @@ def test_an_unstated_exemption_pays_the_higher_carenza(
     )
     assert year.exemption_reach
     assert year.carenza_rate == (_ONE if earlier_exempt is None else Decimal("0.66"))
+
+
+_APPRENTICE = SicknessRules(
+    carenza_integration_rate=Decimal("0.6"),
+    full_pay_integration_rate=Decimal(0),
+    max_duration_days=180,
+    comporto_calendar_year=True,
+    carenza_by_event=CarenzaByEvent(
+        from_event=7, rates=(Decimal(0),), exemptions=False
+    ),
+)
+
+
+@pytest.mark.parametrize(
+    ("before", "exempt", "rate"),
+    [
+        (5, False, "0.6"),
+        (6, False, "0"),
+        (6, None, "0"),
+        (6, True, "0"),
+    ],
+    ids=["sixth-event", "seventh-event", "unstated-flags", "exempt-flags"],
+)
+def test_a_count_without_exemptions_counts_every_event(
+    before: int, exempt: bool | None, rate: str
+) -> None:
+    """Commercio Art. 54 a): 60% for six events a year, no exempt event.
+
+    An exemption flag, stated or not, neither lifts the cap nor names a fact.
+    """
+    year = _year(
+        _episode("now", date(2026, 8, 3), 3, exempt=exempt),
+        *_earlier(before, exempt=exempt),
+        rules=_APPRENTICE,
+    )
+    assert year.carenza_rate == Decimal(rate)
+    assert not year.exemption_reach
 
 
 def test_the_comporto_sums_the_sick_days_of_the_year() -> None:

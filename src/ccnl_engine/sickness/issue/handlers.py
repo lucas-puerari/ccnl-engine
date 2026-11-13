@@ -17,6 +17,7 @@ from ccnl_engine.sickness.cumulation.handlers import (
     year_issues,
 )
 from ccnl_engine.sickness.day.rules import SickDayKind
+from ccnl_engine.sickness.issue.condition import condition_issues
 from ccnl_engine.sickness.issue.daily_share import daily_share_issues
 from ccnl_engine.sickness.issue.rules import fixed_term_fact
 
@@ -156,6 +157,7 @@ def episode_issues(
                 "daily_contributions",
             )
         )
+    issues.extend(condition_issues(episode, terms, pay.segments))
     if pay.inps > _ZERO and pay.inps_base is None:
         issues.append(
             _issue(

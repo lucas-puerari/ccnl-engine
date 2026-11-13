@@ -3,6 +3,22 @@
   "ccnl_id": "commercio-confcommercio",
   "requirements": [
     {
+      "id": "apprentice_hospital_share",
+      "institute": "sickness",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Art. 54 b): the employer pays 60% of the gross pay on the days of a hospital stay, read as added to the INPS indemnity ('oltre a quanto previsto dalla legislazione vigente'); the text does not say whether the 60% is instead the whole treatment the employer tops the INPS share up to, which would pay 50 points of the gross daily pay less on days 4-20 (60% in all against 50% + 60%). The INPS indemnity during the stay is not reduced to 2/5 for a worker without family dependants.",
+      "calculation": "ccnl/commercio-confcommercio:coverage.notes",
+      "state": "absent",
+      "remediation": "Source the reading of the hospital indemnity of the apprentice (a joint interpretation of the parties or a ruling) and apply it; then resolve this limitation.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "commercio-confcommercio/apprentice_hospital_share"
+        ]
+      }
+    },
+    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",

@@ -308,6 +308,17 @@ class SicknessRules(BaseModel):
             worker's INPS rate before the company tops it up.
         apprentices_excluded: The company owes apprentices no integration
             and no carenza (Commercio Art. 187: "né agli apprendisti").
+        hospital_employer_share: Share of the gross daily pay the employer
+            pays on each day of a hospital stay within the comporto
+            (``SicknessEpisode.hospital_stays``): on top of the INPS share of
+            an indemnified day, and at least this share on a waiting day
+            (Commercio Art. 54 b: "un'indennità a carico del datore di
+            lavoro, pari al 60% della retribuzione lorda", "oltre a quanto
+            previsto dalla legislazione vigente"); ``None`` without it.
+        after_probation: The CCNL treatment starts after the periodo di
+            prova (``EmploymentPeriod.probation_until``; Commercio Art. 54:
+            "a decorrere dal superamento del periodo di prova"): a day of the
+            probation has the INPS share alone.
         hourly_employer_integration: Direct employer coefficients on a
             separate hourly base and one sixth of contracted weekly hours,
             independent of the INPS daily quota and statutory indemnity.
@@ -354,6 +365,8 @@ class SicknessRules(BaseModel):
     cumulation: SicknessCumulation | None = None
     net_basis: bool = False
     apprentices_excluded: bool = False
+    hospital_employer_share: Decimal | None = Field(default=None, gt=0, le=1)
+    after_probation: bool = False
     permanent_only: bool = False
     employer_share: Decimal | None = Field(default=None, ge=0, le=1)
     hourly_employer_integration: HourlyEmployerIntegration | None = None

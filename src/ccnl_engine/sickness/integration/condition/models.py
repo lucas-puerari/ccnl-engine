@@ -59,12 +59,17 @@ class CarenzaByEvent(BaseModel):
         from_event: First event of the calendar year paid less.
         rates: Carenza rate of the ``from_event``-th event, then of each
             later one; the last rate applies to every event after it.
+        exemptions: Whether the CCNL exempts some events from the count
+            (Commercio Art. 187 c. 3); ``False`` counts every event of the
+            year (Commercio Art. 54 a: the apprentice carenza "limitatamente
+            a sei eventi morbosi in ragione d'anno").
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     from_event: int = Field(ge=2)
     rates: tuple[Decimal, ...] = Field(min_length=1)
+    exemptions: bool = True
 
     def rate_of(self, ordinal: int) -> Decimal:
         """Return the carenza rate of the ``ordinal``-th event of the year.

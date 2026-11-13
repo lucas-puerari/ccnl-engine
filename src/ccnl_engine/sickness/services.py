@@ -117,8 +117,9 @@ def _worker(ctx: RunContext) -> SicknessWorker:
     """Return the facts of the worker a cumulated treatment is counted with.
 
     Returns:
-        The seniority, the first day of the employment and the first day of
-        the known sickness history of the opening state.
+        The seniority, the first day of the employment, the first day of
+        the known sickness history of the opening state and the end of the
+        probation.
     """
     request = ctx.request
     period = request.employment_period
@@ -127,6 +128,7 @@ def _worker(ctx: RunContext) -> SicknessWorker:
         hired_on=None if period is None else period.started_on,
         known_from=ctx.opening.accrual.sickness_known_from,
         fixed_term=request.contract_type.type == "fixed_term",
+        probation_until=None if period is None else period.probation_until,
     )
 
 

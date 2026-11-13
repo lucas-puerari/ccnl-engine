@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, sickness |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-22 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-13 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -80,6 +80,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Art. 187 and art. 191 of the testo unico 2019 against the decision not to encode the holiday target, by a separate model session. | confirmed | Confirmed: a net-basis 100% target alone pays 64.82 where the gross holiday pay of art. 191 is 68.52; this finding preceded the separate gross-basis target. |
 | 2026-11-08 | gpt-6-sol (ai) | Holiday target of the sickness and injury absence on the gross daily quota, against the net-basis integration, by a separate model session. | flagged | Confirmed: the holiday target of the encoded days is computed on the gross daily quota, not the net basis of the ordinary integration.<br>Confirmed: holidays of a year-crossing absence are classified by their own year.<br>Flagged: the injury path is confirmed for the tested day only; general claims beyond the tested cases are unsupported. |
 | 2026-11-10 | gpt-6-sol (ai) | Art. 154 patron saint holiday and art. 191 holiday top-ups in sickness and injury, stated patron day. | corrected | CONFIRMED: art. 154 lists the local patron saint among the holidays and art. 191 tops up holidays falling in sickness and injury; quotes verbatim.<br>CONFIRMED: test arithmetic and an independent case recomputed.<br>The narrowed note still described the fact as one the request cannot express; with EmployerProfile.patron_saint_day it can, so the limitation is resolved. |
+| 2026-11-13 | gpt-6-sol (ai) | Apprentice sickness clause, its encoding and the engine change, against the signed text, by a separate model session. | flagged | Confirmed: source, page and sha256; the 2024 renewal does not list the article among those changed.<br>Confirmed: 60% carenza for six events a year, 60% of the gross pay on hospital-stay days, nothing in the probation, gross basis, 180 days in the calendar year; hand amounts of the Commercio test case recomputed.<br>Flagged and corrected in the same change: quotes made verbatim; a relapse takes the rank of its event; no carenza past the comporto; missing-fact issues raised only when the fact can change the pay; the limitation states the 50-point difference of the alternative reading.<br>Flagged, kept as limitation apprentice_hospital_share: the text does not settle whether the hospital 60% adds to the INPS indemnity or is the total. |
 
 ## Salary table
 
@@ -150,6 +151,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Resolved: the art. 191 holiday top-ups count the art. 154 local patron saint day the employer states (EmployerProfile.patron_saint_day), read on 2026-11-10.
+
+!!! warning "commercio-confcommercio/apprentice_hospital_share · sickness · impact yes · open"
+    Art. 54 b): the employer pays 60% of the gross pay on the days of a hospital stay, read as added to the INPS indemnity ('oltre a quanto previsto dalla legislazione vigente'); the text does not say whether the 60% is instead the whole treatment the employer tops the INPS share up to, which would pay 50 points of the gross daily pay less on days 4-20 (60% in all against 50% + 60%). The INPS indemnity during the stay is not reduced to 2/5 for a worker without family dependants.
+
+    **Applies when:** `sickness` applies; contract type in apprentice.
+
+    **Remediation:** Source the reading of the hospital indemnity of the apprentice (a joint interpretation of the parties or a ruling) and apply it; then resolve this limitation.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

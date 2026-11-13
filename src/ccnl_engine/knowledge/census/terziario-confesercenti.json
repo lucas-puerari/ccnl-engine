@@ -3,18 +3,18 @@
   "ccnl_id": "terziario-confesercenti",
   "requirements": [
     {
-      "id": "apprentice_sickness",
+      "id": "apprentice_hospital_share",
       "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 54: the apprentice sickness, 60% of the gross pay for the three days of carenza of six events a year and for hospital stays, while the file pays apprentices no integration.",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = run",
+      "rule": "Art. 54 b): the employer pays 60% of the gross pay on the days of a hospital stay, read as added to the INPS indemnity ('oltre a quanto previsto dalla legislazione vigente'); the text does not say whether the 60% is instead the whole treatment the employer tops the INPS share up to, which would pay 50 points of the gross daily pay less on days 4-20 (60% in all against 50% + 60%). The INPS indemnity during the stay is not reduced to 2/5 for a worker without family dependants.",
       "calculation": "ccnl/terziario-confesercenti:coverage.notes",
       "state": "absent",
-      "remediation": "Model the apprentice sickness of Art. 54.",
+      "remediation": "Source the reading of the hospital indemnity of the apprentice (a joint interpretation of the parties or a ruling) and apply it; then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "terziario-confesercenti/apprentice_sickness"
+          "terziario-confesercenti/apprentice_hospital_share"
         ]
       }
     },

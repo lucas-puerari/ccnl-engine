@@ -187,25 +187,27 @@ class YearTreatment:
         """Carenza rates of the lowest and of the highest rank of the episode.
 
         The lowest rank follows every earlier event not known exempt, the
-        highest only those known not exempt.
+        highest only those known not exempt; a relapse takes the rank of the
+        event it continues, the full rate when that event is not recorded.
         """
-        events = self.rules.carenza_by_event
-        if events is None or self.episode.relapse_of is not None:
+        events, first = self.rules.carenza_by_event, self._chain[-1]
+        if events is None or first.relapse_of is not None:
             return _ONE, _ONE
-        year = self.episode.started_on.year
+        end = first.started_on
+        start = date(end.year, 1, 1)
         same = [
-            e
-            for e in self.earlier
-            if e.started_on.year == year and e.relapse_of is None
+            e for e in self.earlier if not e.relapse_of and start <= e.started_on < end
         ]
-        stated = sum(e.short_absence_exempt is False for e in same)
-        possible = sum(e.short_absence_exempt is not True for e in same)
+        exempt = events.exemptions  # every event counts without exemptions
+        stated = sum(not exempt or e.short_absence_exempt is False for e in same)
+        possible = sum(not exempt or e.short_absence_exempt is not True for e in same)
         return events.rate_of(1 + possible), events.rate_of(1 + stated)
 
     @property
     def carenza_rate(self) -> Decimal:
         """Carenza rate of the episode: the higher one when the rank is unsure."""
-        if self.episode.short_absence_exempt is True:
+        events = self.rules.carenza_by_event
+        if self.episode.short_absence_exempt and (not events or events.exemptions):
             return self.rules.carenza_integration_rate
         return min(self.rules.carenza_integration_rate, self._events[1])
 
@@ -213,7 +215,9 @@ class YearTreatment:
     def exemption_reach(self) -> bool:
         """Whether an unstated exemption could lower the carenza paid."""
         low, high = self._events
-        if self.episode.short_absence_exempt is True or high == _ONE == low:
+        events = self.rules.carenza_by_event
+        exempt = self.episode.short_absence_exempt is True
+        if exempt or high == _ONE == low or not events or not events.exemptions:
             return False
         return low != high or self.episode.short_absence_exempt is None
 
@@ -264,20 +268,22 @@ class YearTreatment:
         count = self.year_days(day) if self.rules.comporto_calendar_year else index
         if not self.rules.excluded_treatment_days or self.rules.comporto_calendar_year:
             return count
-        chain = {self.episode.episode_id}
-        previous = self.episode.relapse_of
-        while previous is not None:
-            found = next((e for e in self.earlier if e.episode_id == previous), None)
-            if found is None or found.episode_id in chain:
-                break
-            chain.add(found.episode_id)
-            previous = found.relapse_of
         return count - sum(
             excluded <= day
-            for e in (*self.earlier, self.episode)
-            if e.episode_id in chain
+            for e in self._chain
             for excluded in e.excluded_comporto_days or ()
         )
+
+    @cached_property
+    def _chain(self) -> tuple[SicknessEpisode, ...]:
+        """The episode and the recorded episodes it continues, the first last."""
+        chain = [self.episode]
+        while (previous := chain[-1].relapse_of) is not None:
+            found = next((e for e in self.earlier if e.episode_id == previous), None)
+            if found is None or found in chain:
+                break
+            chain.append(found)
+        return tuple(chain)
 
     def _serious_rate(self, day: date, count: int) -> Decimal | None:
         """Rate of the additional days (Studi art. 121), carenza days included.

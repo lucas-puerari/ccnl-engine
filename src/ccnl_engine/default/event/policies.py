@@ -162,7 +162,8 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "stays in full are paid reduced, with a provisional "
         "sickness_hospital_stays_unknown issue; when a CCNL excludes stays "
         "from both rolling counts, unknown stays leave ordinary counts in "
-        "place with the same provisional missing-fact issue",
+        "place with the same provisional missing-fact issue; a CCNL that "
+        "pays a share on the days of a stay pays none, with the same issue",
     ),
     "SicknessEpisode.inps_base": requires_fact(
         "sickness",
