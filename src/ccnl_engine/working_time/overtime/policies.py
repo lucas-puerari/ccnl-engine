@@ -58,7 +58,11 @@ __all__ = [
 CALLER_MULTIPLIER_DIFFERS = "caller_multiplier_differs_from_ccnl"
 TIER_NOT_APPLIED = "overtime_tier_not_applied"
 _OVERTIME_PREFIX = "OT_"
-_FALLBACK = {WorkKind.REST_DAY: WorkKind.HOLIDAY, WorkKind.SATURDAY: WorkKind.WEEKDAY}
+_FALLBACK = {
+    WorkKind.REST_DAY: WorkKind.HOLIDAY,
+    WorkKind.SATURDAY: WorkKind.WEEKDAY,
+    WorkKind.SUNDAY: WorkKind.WEEKDAY,
+}
 
 
 @dataclass(frozen=True)
@@ -117,8 +121,8 @@ def _kind_bands(
 ) -> list[tuple[OvertimeBand, Decimal]]:
     """Return the unconditional percentage overtime bands of the event's kind.
 
-    Rest-day overtime takes the holiday bands, Saturday overtime the weekday
-    ones, when the CCNL has none of their own (``_FALLBACK``).
+    Rest-day overtime takes the holiday bands, Saturday and Sunday overtime
+    the weekday ones, when the CCNL has none of their own (``_FALLBACK``).
 
     Returns:
         ``(band, supplement)`` for each band in force on the event date.

@@ -490,7 +490,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/commercio-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "656a002484b6a7bcf9d97d891bd871a0744d6922c0bd07be9bb3a7c474771b50",
+      "source_hash": "2842a026a4177e06b2916056521da1554098650b8c90a27b5f261fc35404f518",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/commercio-confcommercio.json.gz"
@@ -728,7 +728,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/dmo-federdistribuzione",
       "ruleset_version": "2026.2",
-      "source_hash": "ee32389ca782fd0c934ec0c590bad5c8940debfbab68f9322fd3b5e6852acd40",
+      "source_hash": "63178c67826d389673ca853df5fd255dccb66be7258feefc1d1f84a0d48ed65d",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/dmo-federdistribuzione.json.gz"
@@ -2074,7 +2074,7 @@
       "valid_to": "2027-03-31",
       "ruleset_id": "ccnl/terziario-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "2647f2882b6fbe3a7f8112c37558bf58762b81784ed3e0a8bc68f3216a896c8e",
+      "source_hash": "42840c80167992cd54d7d119a69a1e622e9dcb31816b75e553fd6937144ce3de",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/terziario-confesercenti.json.gz"
@@ -4821,7 +4821,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "d01438f93993f694ebd7611922a7966e5b896d9c175fd6055c3f724128c70be9",
+      "source_hash": "44cd59b17b59fbfe21fa29d55bf57e9a3254b8eadfc8d6d19729949997af145b",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/terziario-confesercenti.json.gz",

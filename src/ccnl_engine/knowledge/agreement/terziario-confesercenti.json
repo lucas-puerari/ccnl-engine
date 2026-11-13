@@ -4090,19 +4090,6 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "Art. 149: the 30% on Sunday overtime. Overtime declared as OvertimeKind.REST_DAY takes OT_FESTIVO, 30% (working_time/overtime/policies.py, tests/mutation/ccnl_engine/working_time/overtime/test_rest_day.py::test_rest_day_band[terziario_sunday_30]); Sunday overtime of a worker whose weekly rest falls on another day is weekday overtime, 15%, and whether Art. 149 pays it 30% is not confirmed (review of 2026-10-30).",
-        "capability": "overtime",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "sunday_overtime",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Read Art. 149 on Sunday overtime of a worker whose weekly rest is not Sunday; if it pays 30%, add a Sunday band, else resolve this limitation."
-        }
-      },
-      {
         "kind": "info",
         "text": "APPRENTICESHIP PROFILES OF TABELLA B (Art. 68): 48 months for the listed profiles ending at levels II and III (track tabella_b_48_mesi), 42 months for those ending at level IV (tabella_b_42_mesi), two levels below for the first half and one below for the second. An apprentice of levels II, III and IV states Apprentice.track: standard for the 36 months of the other profiles."
       },
@@ -4161,7 +4148,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "2647f2882b6fbe3a7f8112c37558bf58762b81784ed3e0a8bc68f3216a896c8e",
+    "source_hash": "42840c80167992cd54d7d119a69a1e622e9dcb31816b75e553fd6937144ce3de",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4395,7 +4382,8 @@
             ]
           },
           "applies_to_kinds": [
-            "holiday"
+            "holiday",
+            "sunday"
           ],
           "provenance": {
             "status": "verified",
@@ -4410,9 +4398,9 @@
               },
               "page": "121",
               "section": "Art. 149 - Maggiorazione lavoro straordinario",
-              "quote": "fatto di cui all’art. 208 e con la maggiorazione del 30% (trenta per cento) sulla quota"
+              "quote": "Salvo quanto disposto dal successivo art. 156, le ore straordinarie di lavoro prestato nei giorni festivi o la domenica verranno retribuite con la quota oraria della retribuzione di fatto di cui all’art. 208 e con la maggiorazione del 30% (trenta per cento) sulla quota oraria della normale retribuzione di cui all’art. 206."
             },
-            "transformation": "Premium on the quota oraria of the normale retribuzione of Art. 206 (paga base, contingenza, terzi elementi, scatti), the hour itself at the retribuzione di fatto of Art. 208; the premiums do not cumulate.",
+            "transformation": "Premium on the quota oraria of the normale retribuzione of Art. 206 (paga base, contingenza, terzi elementi, scatti), the hour itself at the retribuzione di fatto of Art. 208; the premiums do not cumulate. Art. 149, second paragraph: the 30% is also the rate of overtime worked on a Sunday that is not the weekly rest day, by day (OvertimeKind.SUNDAY: 'le ore straordinarie di lavoro prestato nei giorni festivi o la domenica'); overtime on the weekly rest day stays with the article on rest-day work it is subject to ('salvo quanto disposto'). Night overtime on a Sunday is night overtime (50%), the premiums not being cumulative; a more favourable second-level agreement is not modelled.",
             "extraction": {
               "method": "ai",
               "model": "claude-opus-5-5",
@@ -6083,6 +6071,29 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.apprentice_sickness_rules"
+        ]
+      },
+      {
+        "id": "2026-11-13-gpt-terziario-confesercenti-sunday-overtime",
+        "date": "2026-11-13",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Sunday overtime outside the weekly rest day against the overtime, Sunday-work and rest-day articles, by a separate model session.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+            "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+          }
+        ],
+        "findings": [
+          "Confirmed: overtime 'nei giorni festivi o la domenica' is paid 30% also when the weekly rest falls on another day; the 'salvo' clause reserves rest-day work, at the same 30% with a compensatory rest.",
+          "Confirmed: the Sunday-work article sends Sunday overtime to this article, so the two 30% do not add up; night overtime stays at 50%, the premiums are not cumulative.",
+          "Flagged and corrected: a typo in the transformation and the paragraph label of the unnumbered texts."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements.overtime_bands"
         ]
       }
     ],

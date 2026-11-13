@@ -243,7 +243,7 @@ never grow.
 | 102 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)](sistemazioni-idraulico-forestali-impiegati.md) | ⚠️ | base_salary, inps_employer | 22 / 6 / 2 / 0 |
 | 103 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | ⚠️ | base_salary, inps_employer, seniority | 16 / 5 / 2 / 0 |
 | 104 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | ⚠️ | inps_employer, seniority | 11 / 35 / 1 / 0 |
-| 105 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | ⚠️ | base_salary, overtime, sickness, territorial_supplement, una_tantum | 92 / 2 / 0 / 0 |
+| 105 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | ⚠️ | base_salary, sickness, territorial_supplement, una_tantum | 92 / 2 / 0 / 0 |
 | 106 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | ⚠️ | base_salary, sickness | 86 / 2 / 0 / 0 |
 | 107 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | ⚠️ | base_salary, pension_fund_contribution, seniority | 42 / 0 / 5 / 1 |
 | 108 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | ⚠️ | base_salary, sickness | 46 / 49 / 1 / 0 |

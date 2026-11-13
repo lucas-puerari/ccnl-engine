@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, overtime, sickness, territorial_supplement, una_tantum |
+| **Limits of this contract** | base_salary, sickness, territorial_supplement, una_tantum |
 
-11 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+10 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -77,6 +77,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 191 and the patron saint holiday list, cached 2019 PDF p. 145. | confirmed | Sickness and injury holiday targets already include the stated patron saint day; the local holiday limitation is stale. |
 | 2026-11-13 | claude-opus-5-5 (ai) | Art. 54 of the testo unico 2019 (printed and PDF p. 64), text layer; the renewal of 2024 (OCR of the signed scan) does not change it. | corrected | Added work_rules.apprentice_sickness_rules: carenza at 60% for six events a year, 60% of the gross pay on the days of a hospital stay, after the probation; the apprentices were paid no employer treatment before. |
 | 2026-11-13 | gpt-6-sol (ai) | Apprentice sickness clause, its encoding and the engine change, against the signed text, by a separate model session. | flagged | Confirmed: source, page and sha256; the 2024 renewal does not list the article among those changed.<br>Confirmed: 60% carenza for six events a year, 60% of the gross pay on hospital-stay days, nothing in the probation, gross basis, 180 days in the calendar year; hand amounts of the Commercio test case recomputed.<br>Flagged and corrected in the same change: quotes made verbatim; a relapse takes the rank of its event; no carenza past the comporto; missing-fact issues raised only when the fact can change the pay; the limitation states the 50-point difference of the alternative reading.<br>Flagged, kept as limitation apprentice_hospital_share: the text does not settle whether the hospital 60% adds to the INPS indemnity or is the total. |
+| 2026-11-13 | gpt-6-sol (ai) | Sunday overtime outside the weekly rest day against the overtime, Sunday-work and rest-day articles, by a separate model session. | confirmed | Confirmed: overtime 'nei giorni festivi o la domenica' is paid 30% also when the weekly rest falls on another day; the 'salvo' clause reserves rest-day work, at the same 30% with a compensatory rest.<br>Confirmed: the Sunday-work article sends Sunday overtime to this article, so the two 30% do not add up; night overtime stays at 50%, the premiums are not cumulative.<br>Flagged and corrected: a typo in the transformation and the paragraph label of the unnumbered texts. |
 
 ## Salary table
 
@@ -168,13 +169,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Resolved: work_rules.time_supplements.week_divisors holds 182 and 195, read for an employment whose full_time_weekly_hours is 42 or 45.
-
-!!! warning "terziario-confesercenti/sunday_overtime · overtime · impact unknown · open"
-    Art. 149: the 30% on Sunday overtime. Overtime declared as OvertimeKind.REST_DAY takes OT_FESTIVO, 30% (working_time/overtime/policies.py, tests/mutation/ccnl_engine/working_time/overtime/test_rest_day.py::test_rest_day_band[terziario_sunday_30]); Sunday overtime of a worker whose weekly rest falls on another day is weekday overtime, 15%, and whether Art. 149 pays it 30% is not confirmed (review of 2026-10-30).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Read Art. 149 on Sunday overtime of a worker whose weekly rest is not Sunday; if it pays 30%, add a Sunday band, else resolve this limitation.
 
 !!! note "terziario-confesercenti/permit_deadline_payout · leave · impact yes · resolved"
     LEAVE, DEADLINE (Art. 158): the permits not taken within the year of accrual are paid with the December pay, or carried and paid with the June pay of the next year for what is left, as the employer states in EmployerProfile.permit_carryover.

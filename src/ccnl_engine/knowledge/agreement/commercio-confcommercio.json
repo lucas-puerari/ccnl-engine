@@ -3725,7 +3725,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "656a002484b6a7bcf9d97d891bd871a0744d6922c0bd07be9bb3a7c474771b50",
+    "source_hash": "2842a026a4177e06b2916056521da1554098650b8c90a27b5f261fc35404f518",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4001,7 +4001,8 @@
             ]
           },
           "applies_to_kinds": [
-            "holiday"
+            "holiday",
+            "sunday"
           ],
           "provenance": {
             "status": "verified",
@@ -4027,7 +4028,8 @@
               "verified_by": "claude-opus-5-5",
               "verified_at": "2026-10-11T18:00:00Z",
               "review_id": "2026-10-11-ai"
-            }
+            },
+            "transformation": "Art. 149, second paragraph: the 30% is also the rate of overtime worked on a Sunday that is not the weekly rest day, by day (OvertimeKind.SUNDAY: 'le ore straordinarie di lavoro prestato nei giorni festivi o la domenica'); overtime on the weekly rest day stays with the article on rest-day work it is subject to ('salvo quanto disposto'). Night overtime on a Sunday is night overtime (50%), the premiums not being cumulative; a more favourable second-level agreement is not modelled."
           }
         }
       ],
@@ -5767,6 +5769,29 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.apprentice_sickness_rules"
+        ]
+      },
+      {
+        "id": "2026-11-13-gpt-commercio-confcommercio-sunday-overtime",
+        "date": "2026-11-13",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Sunday overtime outside the weekly rest day against the overtime, Sunday-work and rest-day articles, by a separate model session.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          }
+        ],
+        "findings": [
+          "Confirmed: overtime 'nei giorni festivi o la domenica' is paid 30% also when the weekly rest falls on another day; the 'salvo' clause reserves rest-day work, at the same 30% with a compensatory rest.",
+          "Confirmed: the Sunday-work article sends Sunday overtime to this article, so the two 30% do not add up; night overtime stays at 50%, the premiums are not cumulative.",
+          "Flagged and corrected: a typo in the transformation and the paragraph label of the unnumbered texts."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements.overtime_bands"
         ]
       }
     ],

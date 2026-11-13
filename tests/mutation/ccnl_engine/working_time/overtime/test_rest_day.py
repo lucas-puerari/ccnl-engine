@@ -4,7 +4,7 @@
   staff's Sunday overtime is paid 30% (OT_RIPOSO), the festività 65%;
 - metalmeccanico-federmeccanica has no rest-day band: Sunday overtime is
   straordinario festivo, OT_FESTIVO 0.55;
-- terziario-confesercenti (art. 149) has no rest-day band either: Sunday
+- terziario-confesercenti (art. 149) has no rest-day band either: rest-day
   overtime takes OT_FESTIVO, the 30% the article pays.
 """
 
