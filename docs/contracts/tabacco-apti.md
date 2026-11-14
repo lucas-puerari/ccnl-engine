@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-07-02 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | Art. 34 operai of the 2 July 2025 renewal, read on the page image, against the research of a separate model session. | corrected | The file had no sickness rule; the operai rule is added (100% from day 1 to day 180, comporto 180 days).<br>The renewal strikes 'netta' from the main clause: the separate research quoted it as net, the image shows it struck; the gross basis is used. |
 | 2026-11-07 | claude-opus-5-5 (ai) | Art. 34 impiegati of the CCNL 2021-2024 (p. 45), kept by the 2025 renewal. | corrected | Added work_rules.sickness_rules_by_category for impiegati and quadri. |
 | 2026-11-07 | claude-opus-5-5 (ai) | Art. 6 (apprentices) and art. 34 (impiegati a tempo indeterminato) of the CCNL 2021-2024, kept by the 2025 renewal. | corrected | Added work_rules.apprentice_sickness_rules (50% for 180 days a year).<br>The impiegati and quadri rule covers only permanent contracts (permanent_only). |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 6 (apprentices) and Art. 34 (comporto extensions) of the 2 July 2025 renewal, read on the page images of p. 4 and p. 8-9. | corrected | The renewal raises the apprentice sickness treatment of Art. 6 from 50% to 100% of the normal pay; the file kept 50% and said the renewal left it unchanged.<br>The serious-illness and L. 68/99 comporto extensions are unpaid: the sickness_rules limitation is narrowed to the life-saving therapy days. |
 
 ## Salary table
 
@@ -110,11 +111,11 @@ Destination levels: `1`
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "tabacco-apti/sickness_rules · sickness · impact yes · open"
-    SICKNESS (Art. 34, renewal 2 July 2025 p. 8, CCNL 2021-2024 p. 44-45): modelled the operai rule (100% of the retribuzione normale from day 1 to day 180, comporto 180 days) the permanent impiegati and quadri rule (12 months, full and half stipendio 4+4, 5+5 or 6+6 months by seniority, interruptions summed unless one year apart) and the apprentices' 50% of the normal pay for at most 6 months a year (art. 6). Not modelled: serious illness extending the comporto to 12 months unpaid; +90 days unpaid for certified disability (L. 68/99); life-saving therapy days outside the comporto. The sentence 'per le malattie che superano i sei giorni ... 100% della retribuzione normale netta anche per i giorni di carenza' was left unchanged by the renewal, while the main clause dropped 'netta': the gross basis of the main clause is used.
+    SICKNESS (Art. 34, renewal 2 July 2025 p. 8-9, CCNL 2021-2024 p. 44-45): modelled the operai rule (100% of the retribuzione normale from day 1 to day 180, comporto 180 days), the permanent impiegati and quadri rule (12 months, full and half stipendio 4+4, 5+5 or 6+6 months by seniority, interruptions summed unless one year apart) and the apprentices' 100% of the normal pay for at most 6 months a year (art. 6 as amended by the renewal). The serious-illness extension of the fixed operai to 12 months and the +90 days for certified disability (L. 68/99) keep the job 'senza corresponsione della retribuzione': they change no amount of the payslip. Not modelled: the certified life-saving therapy days left out of the comporto ('non sono considerati ed inclusi ... ai fini del computo dei periodi di comporto'), which could move the 180th paid day of the operai and the full and half stipendio months of the impiegati; the text is silent on the pay of those days. The sentence 'per le malattie che superano i sei giorni ... 100% della retribuzione normale netta anche per i giorni di carenza' was left unchanged by the renewal, while the main clause dropped 'netta': the gross basis of the main clause is used.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model the impiegati regime and the comporto extensions of Art. 34.
+    **Remediation:** Leave the certified life-saving therapy days out of the comporto count of Art. 34 and decide their pay.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
