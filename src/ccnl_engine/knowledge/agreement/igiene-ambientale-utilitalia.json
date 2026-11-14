@@ -93,20 +93,8 @@
         "text": "APPRENTICESHIP PERCENTAGE BASE. Art. 14 punto 8 (CCNL K540 testo consolidato 09/12/2025, fonte: utroppitu.eu) dispone che le indennità ex Art. 32 lett. D (indennità integrativa EUR 50.00) siano corrisposte per intero dal 1° periodo di formazione — pagamento a valore pieno, non soggetto alla percentuale. L'EDR (EUR 10.33, Art. 27 c.4 lett. d, Accordo interconfederale 31/07/1992) non è citato in Art. 14; per sua natura di elemento fisso interconfederale è trattato come esente dalla percentuale. Entrambi modellati con apprenticeship_pct_relevant=false."
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_seniority",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
-        }
+        "kind": "info",
+        "text": "APPRENTICE SENIORITY (art. 14 cc. 1, 6 and art. 30 c. 1, CCNL 18 maggio 2022, PDF pp. 50-51, 97, https://www.fitcisl.org/wp-content/uploads/2022/05/2022.05.18_S.A._CCNL-SERVIZI-AMBIENTALI-2022_2024-1.pdf, sha256 f50a44aeda6969580ac4219f6f0325c56144655e6cf98475d5a529d3ac365e31): the apprenticeship is 'un contratto di lavoro a tempo indeterminato', the apprentice takes 'le norme del presente CCNL che disciplinano il rapporto di lavoro dei dipendenti con contratto a tempo indeterminato comparabili, intendendosi per tali quelli inquadrati nello stesso livello', and art. 30 gives 'Il lavoratore assunto a tempo indeterminato' an increment every three years by level: seniority_increments.apprentice_level_amount."
       },
       {
         "kind": "simplification",
@@ -352,7 +340,8 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
-      }
+      },
+      "apprentice_level_amount": true
     },
     "employer_funds": [
       {
@@ -5245,7 +5234,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "d80d535b941bc6b2f4257657d92e17f7757b076977d4bfbc748c248bb8c4b106",
+    "source_hash": "d72f94a3e4329cb3339a93b86dbf5380120ba31185becdfebc82dfa52fccd175",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -5735,6 +5724,27 @@
         "checked": [
           "work_rules.sickness_rules",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-igiene-ambientale-utilitalia-apprentice-seniority",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice seniority of artt. 14 and 30 against the research of a separate model session; quotes checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fitcisl.org/wp-content/uploads/2022/05/2022.05.18_S.A._CCNL-SERVIZI-AMBIENTALI-2022_2024-1.pdf",
+            "sha256": "f50a44aeda6969580ac4219f6f0325c56144655e6cf98475d5a529d3ac365e31"
+          }
+        ],
+        "findings": [
+          "The apprentice accrues the increments of the level (art. 14 c. 6 with art. 30 c. 1)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]

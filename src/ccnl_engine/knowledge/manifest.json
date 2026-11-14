@@ -1139,7 +1139,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/igiene-ambientale-utilitalia",
       "ruleset_version": "2026.2",
-      "source_hash": "d80d535b941bc6b2f4257657d92e17f7757b076977d4bfbc748c248bb8c4b106",
+      "source_hash": "d72f94a3e4329cb3339a93b86dbf5380120ba31185becdfebc82dfa52fccd175",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/igiene-ambientale-utilitalia.json.gz"
@@ -3721,7 +3721,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "8a5106c31d786b993db71402aa20c01f308995125c6ea0fa0b32d5759bbc08e5",
+      "source_hash": "0746e6780fb5e72506d3b293ae29d1afe6421d8b26cc75fbf40644ccd094c370",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/igiene-ambientale-utilitalia.json.gz",
