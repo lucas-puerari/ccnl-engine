@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer, seniority |
+| **Limits of this contract** | inps_employer |
 
 3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-11-11 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2028-12-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 11 values found verbatim on the cited pages and marked verified; 27 left as they were (derived or not on a text page). |
 | 2026-11-07 | gpt-6-sol (ai) | Monthly values of tabella b, Allegato 1, read from the page by an independent session of another model without being told the expected value. | confirmed | 27 values equal to the printed minimum plus the Elemento retributivo di settore of the same row (the reader returned the minimum column; the file stores the conglobated amount). |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Rows of the seniority table of art. 41 of the testo coordinato 2025, from the targeted research of a separate model session; text layer. | confirmed | C2 is in the 5° row (25.56) and D1 in the 7° (30.73); A1 passes to A2 after 18 months, before any biennio. |
 
 ## Salary table
 
@@ -106,12 +107,12 @@ Destination levels: `B1`, `B2`, `C1`, `C2`, `C3`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "telecomunicazioni-asstel/seniority_adjacent_level_amounts · seniority · impact unknown · open"
-    SENIORITY biennale (24 months), max 7 scatti, amounts from Art. 41 CCNL 12/11/2020: 6 of 9 levels confirmed (A2, B1, B2, C1, C3, C4); A1=A2 (21.54), C2=C1 (25.56) and D1=C4 (30.73) by adjacent-level approximation (1° livello, 5°S and Quadri absent from the Art. 41 table).
+!!! note "telecomunicazioni-asstel/seniority_adjacent_level_amounts · seniority · impact unknown · resolved"
+    SENIORITY biennale (24 months), max 7 scatti, Art. 41 of the testo coordinato of the accordo of 11 November 2025 (PDF p. 104, https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf, sha256 526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f): '7° (C4 e D1) 30,73; 6°(C3) 28,10; 5°(C1 e C2) 25,56; 4°(B2) 24,38; 3°(B1) 23,24; 2°(A2) 21,54'. C2 and D1 take the rows the table names. The 1° livello (A1) has no row: its workers pass to the 2° livello 'dopo 18 mesi di effettivo servizio' (capitolo D punto 1.a, PDF p. 54), before the first biennio, so the A1 amount (21.54, as A2) is not paid at that level.
 
     **Applies when:** `seniority` applies; level in A1, C2, D1.
 
-    **Remediation:** Source the Art. 41 amounts of 1° livello, 5°S and Quadri and replace the adjacent-level values.
+    **Remediation:** Resolved: art. 41 and capitolo D of the testo coordinato 2025 read on 2026-11-14.
 
 !!! warning "telecomunicazioni-asstel/industria_tax_sector_unverified · inps_employer · impact unknown · open"
     INPS: reuses the industria contribution table. SIMPLIFICATION: tax_sector='industria' is a modelling choice. Supporting facts: (a) Asstel is a Confindustria federation; (b) large TLC operators (Telecom Italia, etc.) have historically accessed CIGO/CIGS; (c) the CCNL itself (Art. 58 rinnovo 11/11/2025) describes the Fondo di Solidarietà Bilaterale TLC as 'in aggiunta' (supplementary), not as a CIG substitute. Counterargument: D.Lgs. 148/2015 Art. 26 bilateral funds are formally for sectors without CIG coverage; this was not verified against an INPS circular. The employer rate of the terziario table is about 1.2 points lower than the industria one in each headcount band of the bundle. The Fondo di Solidarietà Bilaterale (0.20% datore + 0.10% lavoratore) is NOT modelled in either case (review of 2026-10-30).

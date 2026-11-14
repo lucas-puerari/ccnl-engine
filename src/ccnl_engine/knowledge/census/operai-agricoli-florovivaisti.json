@@ -19,22 +19,6 @@
       }
     },
     {
-      "id": "apprentice_seniority",
-      "institute": "seniority",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "operai-agricoli-florovivaisti/apprentice_seniority"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",
@@ -238,6 +222,22 @@
       "links": {
         "rules": [
           "agreement/operai-agricoli-florovivaisti.json#additional_months[2022-06-01]"
+        ]
+      }
+    },
+    {
+      "id": "seasonal_apprentice_seniority",
+      "institute": "seniority",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "SEASONAL APPRENTICES: Allegato 10 (PDF p. 124, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c) lets employers working in seasonal cycles hire apprentices 'anche a tempo determinato', and art. 54 grants the increments only to 'gli operai a tempo indeterminato'. The apprentice input states no term, so the engine pays a fixed-term seasonal apprentice the increments of the level once the biennium with the same employer is complete.",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "unverified",
+      "remediation": "State on the apprentice input whether the apprenticeship is fixed-term and pay no increment to a fixed-term apprentice where the CCNL keeps them to permanent workers, then remove this note.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/seasonal_apprentice_seniority"
         ]
       }
     },

@@ -106,7 +106,30 @@
           "applies_when": {
             "trigger": "path"
           },
-          "remediation": "Source how the contributions are proportioned to the pay of a month paid in part, model it, then remove this note."
+          "remediation": "Source how the contributions are proportioned to the pay of a month paid in part, model it, then remove this note.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+              "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756",
+              "title": "PDF p. 160 (nessuna pagina stampata rilevabile), art. 65, lett. A, comma 6."
+            },
+            {
+              "url": "https://www.previambiente.it/wp-content/uploads/2026/04/Parte-I-Le-informazioni-chiave-per-laderente-Scheda-i-destinatari-e-i-contributi.pdf",
+              "sha256": "3e52850cf46864dc50f3a4d3e68583b92b3d446342c0af0bdf39729fb0cdcbc8",
+              "title": "scheda ufficiale del Fondo, elenca misure e basi contributive, senza regola per mese parzialmente retribuito."
+            },
+            {
+              "url": "https://www.previambiente.it/wp-content/uploads/2026/07/Statuto-PreviAmbiente.pdf",
+              "sha256": "b81d4df488899a0660bce8b0eb93e0a4e4cf2445501952083c83ac8b6b17b78f",
+              "title": "art. 8 rinvia alle fonti istitutive per le misure; nessuna formula per assenze parziali."
+            },
+            {
+              "url": "https://www.previambiente.it/wp-content/uploads/2026/04/Regolamento-adesioni.pdf",
+              "sha256": "57b3f8ae602eeb018eb05341829851c36404ec5858e1893113a4ca0204fb6bb2",
+              "title": "disciplina adesioni, non il riproporzionamento in mese misto."
+            }
+          ]
         }
       },
       {
@@ -5234,7 +5257,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "d72f94a3e4329cb3339a93b86dbf5380120ba31185becdfebc82dfa52fccd175",
+    "source_hash": "9958fedf6ca9c2db803bd0ffeb7816cf917ff4f54be2aec04a9901f2cc7d4a0d",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

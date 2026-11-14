@@ -142,7 +142,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Reproportion the una tantum of the apprentices and pay the operatori di vendita their row.
 
-!!! warning "terziario-confesercenti/sickness_net_basis · sickness · impact yes · open"
+!!! warning "terziario-confesercenti/sickness_net_basis · sickness · impact yes · unsourced"
     SICKNESS (Art. 187): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate and tops it up to the measure of the gross daily quota, as for the Commercio file. The events exempt from the carenza reduction are an input (SicknessEpisode.short_absence_exempt, read with carenza_by_event) (review of 2026-10-30).
 
     **Applies when:** `sickness` applies.
@@ -170,7 +170,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: leave_rules.permit_deadline with the employer fact permit_carryover, read on 2026-11-06.
 
-!!! warning "terziario-confesercenti/apprentice_hospital_share · sickness · impact yes · open"
+!!! warning "terziario-confesercenti/apprentice_hospital_share · sickness · impact yes · unsourced"
     Art. 54 b): the employer pays 60% of the gross pay on the days of a hospital stay, read as added to the INPS indemnity ('oltre a quanto previsto dalla legislazione vigente'); the text does not say whether the 60% is instead the whole treatment the employer tops the INPS share up to, which would pay 50 points of the gross daily pay less on days 4-20 (60% in all against 50% + 60%). The INPS indemnity during the stay is not reduced to 2/5 for a worker without family dependants.
 
     **Applies when:** `sickness` applies; contract type in apprentice.

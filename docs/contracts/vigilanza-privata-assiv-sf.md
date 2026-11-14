@@ -108,7 +108,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Read the apprenticeship clause of the HV17 text for the servizi fiduciari and model its track.
 
-!!! warning "vigilanza-privata-assiv-sf/apprentice_seniority · seniority · impact unknown · open"
+!!! warning "vigilanza-privata-assiv-sf/apprentice_seniority · seniority · impact unknown · unsourced"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
 
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.

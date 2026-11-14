@@ -156,7 +156,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the artigianato rates of 2026 on an INPS or association table, mark the inps block of contribution/2026/artigianato.json derived, then remove this note.
 
-!!! warning "panificazione-artigianato-confartigianato/sickness_net_basis · sickness · impact unknown · open"
+!!! warning "panificazione-artigianato-confartigianato/sickness_net_basis · sickness · impact unknown · unsourced"
     SICKNESS (Art. 46): the CCNL integrates up to 100% of the normal pay net of the worker's deductions without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.
 
     **Applies when:** `sickness` applies.

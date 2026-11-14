@@ -84,7 +84,30 @@
               "apprentice"
             ]
           },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/149",
+              "sha256": "81a955e90c3bc3d991eff2c2095dd60506475f5e9553dfe8e94a767fce7738cd",
+              "title": "PDF p. **117** (stampata p. **116**), sezione Servizi fiduciari, art. 25. Tabella verificata sull'immagine della pagina, non soltanto con OCR."
+            },
+            {
+              "url": "https://uiltucs.it/wp-content/uploads/2024/07/IPOTESI-CCNL-VIGILANZA-PRIVATA-16.02.2024.pdf",
+              "sha256": "96a2d7ffc954a3da46969d05eec9bd25e20f8743800b58e268d145daad271cee",
+              "title": "accordo firmato 16 febbraio 2024, 4 pagine scansionate, OCR delle 4 pagine: modifica tabelle e mensilità, non disciplina gli scatti degli apprendisti."
+            },
+            {
+              "url": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
+              "sha256": "8299597cccb79517c35a08a236ea5d773b42fea365dbebfdeeff9de12060eb76",
+              "title": "tabelle retributive, non disciplina specifica degli scatti degli apprendisti."
+            },
+            {
+              "url": "https://uiltucs.it/pdf/servizi/CCNL_Vigilanza_Privata.pdf",
+              "sha256": "6cb122ac494512ce3b3eaebaa22463a2fa9b786a395482464f39c90eb0c9c95d",
+              "title": "contratto precedente, disciplina di settori/livelli diversi e non prova l'importo per apprendisti dei servizi fiduciari."
+            }
+          ]
         }
       },
       {
@@ -1732,7 +1755,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "65c3833f01c17fc81adb49cfd60655ecd4d2ec1601dac83822cc4a57eed279ef",
+    "source_hash": "c75fa63ddcfee276342a13e4db6d48e05a6335488f03c7a56b47d18bd779ca50",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

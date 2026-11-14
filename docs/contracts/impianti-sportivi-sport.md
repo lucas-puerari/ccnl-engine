@@ -137,7 +137,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: art. 84 covers ordinary night work only; LAVORO_NOTTURNO is not an overtime band, read on 2026-11-05.
 
-!!! warning "impianti-sportivi-sport/sickness_net_basis · sickness · impact unknown · open"
+!!! warning "impianti-sportivi-sport/sickness_net_basis · sickness · impact unknown · unsourced"
     SICKNESS (Art. 103): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.
 
     **Applies when:** `sickness` applies.

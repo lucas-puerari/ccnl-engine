@@ -129,7 +129,15 @@
               "4s"
             ]
           },
-          "remediation": "Source the seniority increment of level 4s, add it to amount_by_level, then remove this note."
+          "remediation": "Source the seniority increment of level 4s, add it to amount_by_level, then remove this note.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
+              "sha256": "da80d84ce2fa95d35415eff5b7c612dd8f0382a15999c47621edd9c5f04c3b5e",
+              "title": "PDF 25 pp., scansione esaminata con OCR: le tabelle riguardano i minimi e le loro decorrenze, non fissano l'importo dello scatto 4S. Il verbale a PDF pp. 24–25 corregge refusi nelle tabelle retribut"
+            }
+          ]
         }
       },
       {
@@ -6137,6 +6145,6 @@
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/uniontessile_confapi/250331_UNIONTESSILE%20RINNOVO%20CCNL%202024-2027.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "4b6f8e6350d3915cbdcd03e8e97ac757519d4fe681a2ac8b7dbf60e82d8052ea"
+    "source_hash": "632d92568af2dfe619b89111dcf290de41840d7c455d9e590088380b60621f88"
   }
 }

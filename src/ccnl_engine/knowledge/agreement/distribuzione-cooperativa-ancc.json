@@ -118,7 +118,15 @@
               "4S"
             ]
           },
-          "remediation": "Source the seniority amount of levels 3S and 4S (signed table or interpretation of the parties)."
+          "remediation": "Source the seniority amount of levels 3S and 4S (signed table or interpretation of the parties).",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+              "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0",
+              "title": "PDF p. 195 (stampata p. 193), art. 182, comma 3."
+            }
+          ]
         }
       },
       {
@@ -142,7 +150,20 @@
               "apprentice"
             ]
           },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+              "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8",
+              "title": "PDF p. 43 (nessuna pagina stampata visibile), art. 75 «Trattamento economico», accordo firmato 29 marzo 2024. Trascrizione verificata con OCR a 200 dpi e confronto con il testo contrattuale preceden"
+            },
+            {
+              "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+              "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0",
+              "title": "PDF p. 194 (stampata p. 192), art. 180, comma 1 «Decorrenza»."
+            }
+          ]
         }
       },
       {
@@ -3392,7 +3413,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
     "verification_status": "unverified",
-    "source_hash": "313ae9f03c79e09051c756f4e8b291290377958548bb8a883ffa9cad0d296d10",
+    "source_hash": "873a81ad9d71f967ac164d4458c2693c5fc6b80a5f22f6875fcd87a8443c3132",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

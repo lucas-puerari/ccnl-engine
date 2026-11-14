@@ -83,22 +83,6 @@
       }
     },
     {
-      "id": "part_time_scaling",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "REDUCED HOURS UNDER ART. 14 C. 1: a convivente may agree fewer than 54 weekly hours (art. 14 c. 1: 'con un massimo di [...] 54 ore settimanali'). The CCNL gives Tabella A as monthly values and no rule to proportion them to the agreed hours; the engine scales the pay linearly on the full time the employment states. The art. 14 c. 2 regime (levels C, B, B super up to 30 hours, Tabella B) is the separate file lavoro-domestico-convivente-orario-ridotto.",
-      "calculation": "ccnl/lavoro-domestico-convivente:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source how the Tabella A minimum of a convivente with fewer than 54 agreed weekly hours is computed and model it, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "lavoro-domestico-convivente/part_time_scaling"
-        ]
-      }
-    },
-    {
       "id": "sunday_holiday_ccnl_clause",
       "institute": "sunday_holiday",
       "variant": "all",

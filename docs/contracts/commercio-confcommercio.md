@@ -145,7 +145,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the farmacista di parafarmacia apprenticeship of the Accordo 31/10/2024 once its text is found.
 
-!!! warning "commercio-confcommercio/sickness_net_basis · sickness · impact unknown · open"
+!!! warning "commercio-confcommercio/sickness_net_basis · sickness · impact unknown · unsourced"
     SICKNESS (Art. 187): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.
 
     **Applies when:** `sickness` applies.
@@ -159,7 +159,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the art. 191 holiday top-ups count the art. 154 local patron saint day the employer states (EmployerProfile.patron_saint_day), read on 2026-11-10.
 
-!!! warning "commercio-confcommercio/apprentice_hospital_share · sickness · impact yes · open"
+!!! warning "commercio-confcommercio/apprentice_hospital_share · sickness · impact yes · unsourced"
     Art. 54 b): the employer pays 60% of the gross pay on the days of a hospital stay, read as added to the INPS indemnity ('oltre a quanto previsto dalla legislazione vigente'); the text does not say whether the 60% is instead the whole treatment the employer tops the INPS share up to, which would pay 50 points of the gross daily pay less on days 4-20 (60% in all against 50% + 60%). The INPS indemnity during the stay is not reduced to 2/5 for a worker without family dependants.
 
     **Applies when:** `sickness` applies; contract type in apprentice.

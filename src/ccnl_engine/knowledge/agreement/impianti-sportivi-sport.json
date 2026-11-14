@@ -141,7 +141,35 @@
         "monetary_impact": "unknown",
         "limitation": {
           "variant": "sickness_net_basis",
-          "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 103, align the computation, then resolve this limitation."
+          "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 103, align the computation, then resolve this limitation.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+              "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca",
+              "title": "PDF p. 83 (stampata p. 83), art. 103. **Il rinvio all’art. 121 è riportato testualmente**, senza correggerlo: tale articolo disciplina invece la retribuzione nazionale conglobata."
+            },
+            {
+              "url": "https://www.inps.it/it/it/dettaglio-approfondimento.schede-informative.indennit--di-malattia-e-visite-mediche-di-controllo.html",
+              "sha256": "b9b060ee9c351b120951f036aae820b58ccf02d2e8a143cc4952e67d11be71ad",
+              "title": "HTML): indica «50% della retribuzione media giornaliera, dal quarto al ventesimo giorno; 66,66% dal ventunesimo al centottantesimo giorno», ma non definisce il netto richiesto dall’art. 103 né l’inte"
+            },
+            {
+              "url": "https://www.inps.it/it/it/lavoro/malattia.html",
+              "sha256": "6bcc9d84ab537530b5768c5bf052c4b51b050f341447f50f9d6e9dac03ce0e61",
+              "title": "HTML): pagina di accesso alle schede INPS, nessuna definizione del netto contrattuale."
+            },
+            {
+              "url": "https://www.filcams.cgil.it/search?search=malattia+sport",
+              "sha256": "125751d5bdc0125420174143f30787778ab56cbda9027242756467cdc5c60a61",
+              "title": "HTML): restituisce la navigazione generale del sito, non un chiarimento congiunto leggibile."
+            },
+            {
+              "url": "https://www.cusi.it/?s=malattia+netta",
+              "sha256": "59b6a772e6b4e143b889580c25fac3aa0f846ff199f59e34518f9b25d8adaf81",
+              "title": "HTML): ricerca bloccata da Cloudflare; non considerata fonte leggibile."
+            }
+          ]
         }
       },
       {
@@ -2195,7 +2223,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "c5a6e5eef9ec0a645ee820e9202064be86c48cf9da1fd52eeecc5bafe717f8f3",
+    "source_hash": "7fe62e85563f1eeafdcd9c44da1d6175dae82be9081706f01b2a1b499ffed7bc",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

@@ -133,7 +133,40 @@
               "thirteenth"
             ]
           },
-          "remediation": "Source from the Cas.Sa.Colf rules whether the tredicesima carries contributable hours and set them for extra-month runs."
+          "remediation": "Source from the Cas.Sa.Colf rules whether the tredicesima carries contributable hours and set them for extra-month runs.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+              "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf",
+              "title": "PDF p. 54 (stampata p. 56), art. 54, c. 2."
+            },
+            {
+              "url": "https://www.cassacolf.it/wp-content/uploads/2026/09/NUOVO-REGOLAMENTO-LAVORATORI-2025-01-01-2025.pdf",
+              "sha256": "b5b19a23dc502b1246cdb4360c4e5e5e6b53d58cdce5570eb435928e957c19b2",
+              "title": "PDF p. 2 (stampata p. 2), art. 5."
+            },
+            {
+              "url": "https://www.cassacolf.it/wp-content/uploads/2026/09/REGOLAMENTO-DATORI-15-05-2024.pdf",
+              "sha256": "2b4e95fd91e217536b724af00e79ef67a6705fc6e832b22036feca2be370df5d",
+              "title": "modalità di versamento, nessuna imputazione delle ore della tredicesima."
+            },
+            {
+              "url": "https://www.cassacolf.it/faq/",
+              "sha256": "16767b7520427ab2fd71d33db02de678c2bd6870141297248041e5927690b85c",
+              "title": "FAQ sui contributi: ore retribuite trimestrali, non mensilità aggiuntiva."
+            },
+            {
+              "url": "https://www.cassacolf.it/contribuzione/versamento-contributi/",
+              "sha256": "a18005c02d99e016cde9325dd72729aa79b5c128143b23d7882c385fb81d0dc0",
+              "title": "istruzioni ufficiali F2, nessuna disposizione sulle ore proprie della tredicesima."
+            },
+            {
+              "url": "https://lavorodomestico.assindatcolf.it/speciale/speciale-cassacolf/",
+              "sha256": "d114fa5e4ebb41f44b38bd22c24c7a93505104bca4116950c87663f7541ae9db",
+              "title": "guida dell'associazione datoriale: esempio di ore lavorate, non tredicesima."
+            }
+          ]
         }
       },
       {
@@ -1535,7 +1568,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "9c1c9dffdee475165f20ecd351196a16c3c499f76c281e76da49734c1123b6bb",
+    "source_hash": "3e2d5be7391eda9224bd6c585136f304c9c5b0b88c24f20944a91d980675c055",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },

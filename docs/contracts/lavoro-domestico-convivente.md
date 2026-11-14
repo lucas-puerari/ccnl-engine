@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-01-01 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -68,6 +68,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Art. 34 cc. 3, 4, 7 and the Tabelle H, I, L (PDF pp. 44-45, 59) against the role allowances, by a separate model session. | corrected | Confirmed the amounts, levels and roles of the Tabelle H, I and L.<br>Corrected: the quotes now hold the article text alone (the table amounts are in the transformation); the certification needs a copy handed over; the allowance of c. 7 is absorbed by any better treatment received overall, not only a superminimo. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 34 cc. 3, 4, 7 (PDF pp. 44-45) against caller-gated role allowances and offsets. | corrected | Role-gated monthly allowances work; independent eligibility checks and automatic offsets remain outside the model. |
 | 2026-11-09 | claude-opus-5-5 (ai) | INPS circolare 9/2026 table A (PDF p. 3) and published DOMINA quarters against the existing domestic rate test. | confirmed | The example-validation gap was already closed by four published DOMINA quarters in the bundled mutation test. |
+| 2026-11-14 | gpt-6-sol (ai) | Proposed proportional scaling of Tabella A for a convivente below 54 agreed hours, against art. 14 of the CCNL and art. 7 D.Lgs. 81/2015; text layer. | flagged | Art. 14 c. 1 makes the agreed hours the normal ones with 54 as a maximum; art. 7 c. 2 names no comparator, so linear scaling on 54 hours is not established: the note stays a declared residual. |
 
 ## Salary table
 
@@ -118,8 +119,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: art. 37 read on 2026-11-15; the 4% share is enforced by tests/knowledge/ccnl_engine/seniority/test_domestic_seniority_share.py.
 
-!!! warning "lavoro-domestico-convivente/part_time_scaling · base_salary · impact unknown · open"
-    REDUCED HOURS UNDER ART. 14 C. 1: a convivente may agree fewer than 54 weekly hours (art. 14 c. 1: 'con un massimo di [...] 54 ore settimanali'). The CCNL gives Tabella A as monthly values and no rule to proportion them to the agreed hours; the engine scales the pay linearly on the full time the employment states. The art. 14 c. 2 regime (levels C, B, B super up to 30 hours, Tabella B) is the separate file lavoro-domestico-convivente-orario-ridotto.
+!!! warning "lavoro-domestico-convivente/part_time_scaling · base_salary · impact unknown · unsourced"
+    REDUCED HOURS UNDER ART. 14 C. 1: a convivente may agree fewer than 54 weekly hours (art. 14 c. 1: 'La durata normale dell'orario di lavoro è quella concordata fra le parti e comunque [...] con un massimo di [...] 54 ore settimanali'). The CCNL gives Tabella A as monthly values and no rule to proportion them to the agreed hours, and since the agreed hours are the normal ones, art. 7 c. 2 D.Lgs. 81/2015 does not settle whether such a convivente is part time against a 54-hour comparator. The engine scales the pay linearly on the full time the employment states. The art. 14 c. 2 regime (levels C, B, B super up to 30 hours, Tabella B) is the separate file lavoro-domestico-convivente-orario-ridotto.
 
     **Applies when:** `base_salary` applies; the run takes the engine code path.
 

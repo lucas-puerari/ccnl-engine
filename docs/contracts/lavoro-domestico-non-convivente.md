@@ -121,7 +121,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: art. 37 read on 2026-11-15; the 4% share is enforced by tests/knowledge/ccnl_engine/seniority/test_domestic_seniority_share.py.
 
-!!! warning "lavoro-domestico-non-convivente/extra_month_hours · assistance_contribution · impact unknown · open"
+!!! warning "lavoro-domestico-non-convivente/extra_month_hours · assistance_contribution · impact unknown · unsourced"
     The INPS contributions of the tredicesima are paid on the hours of the year: INPS bands them on the paga oraria effettiva, which spreads the tredicesima over the hours, so the tredicesima run charges no INPS hours. The Cas.Sa.Colf contribution of Art. 54 c. 2 is charged on the contributable hours the run states, a tredicesima run too: no bundled source says whether the tredicesima carries hours of its own for it.
 
     **Applies when:** `assistance_contribution` applies; run kind in thirteenth.

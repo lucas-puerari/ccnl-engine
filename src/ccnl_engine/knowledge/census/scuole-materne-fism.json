@@ -82,22 +82,6 @@
       }
     },
     {
-      "id": "sickness_net_basis",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SICKNESS (Art. 69): the CCNL integrates up to 100% of the net monthly pay ('retribuzione mensile netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.",
-      "calculation": "ccnl/scuole-materne-fism:coverage.notes",
-      "state": "unverified",
-      "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 69, align the computation, then resolve this limitation.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "scuole-materne-fism/sickness_net_basis"
-        ]
-      }
-    },
-    {
       "id": "sunday_holiday_ccnl_clause",
       "institute": "sunday_holiday",
       "variant": "all",

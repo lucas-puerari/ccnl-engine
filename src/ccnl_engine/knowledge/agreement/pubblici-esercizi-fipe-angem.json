@@ -112,7 +112,30 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Confirm whether the 20% of art. 132 is added to the overtime rate on a festività; if so set the bands to 0.5 and 0.8, else close this note."
+          "remediation": "Confirm whether the 20% of art. 132 is added to the overtime rate on a festività; if so set the bands to 0.5 and 0.8, else close this note.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.versione=1&art.idGruppo=0&art.flagTipoArticolo=0&art.codiceRedazionale=049U0260&art.idArticolo=5&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1949-05-31&art.progressivo=0",
+              "sha256": "011d2f0c6c5681e58b8c355d4ce3ed9cb369d504cd1854ccef04eb541630d940",
+              "title": "HTML ufficiale (senza numerazione PDF), legge 27 maggio 1949 n. 260, art. 5, comma 3."
+            },
+            {
+              "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.versione=1&art.idGruppo=2&art.flagTipoArticolo=0&art.codiceRedazionale=003G0091&art.idArticolo=5&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=2003-04-14&art.progressivo=0",
+              "sha256": "ff6818ec8350b14418f30a570118252c10812dc8068acc640a4db17b1280ab01",
+              "title": "HTML ufficiale (senza numerazione PDF), d.lgs. 8 aprile 2003 n. 66, art. 5, comma 5."
+            },
+            {
+              "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+              "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85",
+              "title": "PDF p. 99 (stampata p. 97), art. 126, commi 1 e 3 (scansione verificata visivamente/OCR)."
+            },
+            {
+              "url": "https://www.fipe.it/wp-content/uploads/2024/06/Contratto-CCNL-05_06_24.pdf",
+              "sha256": "b133dcca1351c72309389e53eeea21cb9b0459c82736423749206d6f11235c43",
+              "title": "accordo firmato 5 giugno 2024, 23 pagine OCR: nessuna disposizione sul cumulo delle maggiorazioni straordinario/festività."
+            }
+          ]
         }
       },
       {
@@ -4380,7 +4403,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "f6b424bc324fff7ed044907c9b93a4d163da799d0ae66d8a2f4f1bac0b554b03",
+    "source_hash": "7b8682934a5099765350dce9d5fe533f3c8d05b8de55e5c01423168c4762d312",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -154,7 +154,25 @@
             "trigger": "run",
             "effective_from": "2025-07-01"
           },
-          "remediation": "Source an ANIP accession or an ANIP-signed later agreement before adding later minima."
+          "remediation": "Source an ANIP accession or an ANIP-signed later agreement before adding later minima.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+              "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167",
+              "title": "PDF p. 2 (stampata «Pag. 2 di 36»), preambolo, 8 giugno 2021."
+            },
+            {
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
+              "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61",
+              "title": "PDF p. 1 (stampata p. 1), preambolo dell'accordo integrativo; elenco delle sottoscrizioni a PDF p. 5."
+            },
+            {
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234754",
+              "sha256": "c48ac1d26759f53553270b626d7acddcb35621707554d8a7e7306f48bf29976d",
+              "title": "ipotesi del 13 giugno 2025, PDF pp. 1 e 14 (scansione, OCR): nella pagina iniziale non è nominata ANIP; nessuna adesione ANIP nelle pagine esaminate. Il testo è del 13 giugno, dunque anteriore all'i"
+            }
+          ]
         }
       },
       {
@@ -168,7 +186,15 @@
             "trigger": "run",
             "effective_from": "2025-07-01"
           },
-          "remediation": "Source the IPCA consuntivo of June 2025 and any later IPCA adjustment for ANIP and adjust the July 2025 minima."
+          "remediation": "Source the IPCA consuntivo of June 2025 and any later IPCA adjustment for ANIP and adjust the July 2025 minima.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+              "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167",
+              "title": "PDF p. 34 (stampata p. 34), «Consuntivo 2021-2024»."
+            }
+          ]
         }
       },
       {
@@ -5655,7 +5681,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "4fe0a7b44bfb7c4fd38e9313dd3434e7b956e21c3a5c0741de31720e324c2ee2",
+    "source_hash": "16e29d81ea29b42536bbd01b45a5f99a93121afeb987e23f1739b2a0fb5d5103",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

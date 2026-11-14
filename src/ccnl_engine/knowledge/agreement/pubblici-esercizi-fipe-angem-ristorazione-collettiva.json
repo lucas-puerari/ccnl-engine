@@ -103,7 +103,35 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Confirm whether the 20% of art. 132 is added to the overtime rate on a festività; if so set the bands to 0.5 and 0.8, else close this note."
+          "remediation": "Confirm whether the 20% of art. 132 is added to the overtime rate on a festività; if so set the bands to 0.5 and 0.8, else close this note.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:legge:1949-05-27",
+              "sha256": "d61719b84651b2dc9fc2736426dae4c1e9081f71317f3bd0758a12584cf069bc",
+              "title": "art. 5 (pagina web, senza pagina PDF)."
+            },
+            {
+              "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2003-04-08",
+              "sha256": "9a8a4f977e7d11c52401b18a488052ff3a95d3c1bee8275857ec2ee3694676e8",
+              "title": "art. 5, comma 5 (pagina web, senza pagina PDF)."
+            },
+            {
+              "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+              "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85",
+              "title": "PDF p. 99 (stampata p. 97), art. 126, commi 1 e 3; scansione verificata sull'immagine."
+            },
+            {
+              "url": "https://www.fipe.it/wp-content/uploads/2024/06/Contratto-CCNL-05_06_24.pdf",
+              "sha256": "b133dcca1351c72309389e53eeea21cb9b0459c82736423749206d6f11235c43",
+              "title": "accordo firmato 5 giugno 2024: 23 pagine OCR, nessuna disposizione sul cumulo ricercato."
+            },
+            {
+              "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ACCORDO-INTEGRATIVO_Tabelle-Retributive_CCNL_P_E_Risto_Collettiva_Commerciale_Turismo.pdf",
+              "sha256": "0e6cb39be926cbf8f461e01a2a841e7141c2d0350b5714feb96176821aedc922",
+              "title": "accordo 26 giugno 2024: testo estratto, nessuna disposizione sul cumulo."
+            }
+          ]
         }
       },
       {
@@ -2693,7 +2721,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "0c3e4594486351050f361739c0ad0ee6b8e6d619a1d2128a6ef2763790ad3543",
+    "source_hash": "42fd52a40a5a36aeefa3ffb060cacf9563eb988eeaa8e3180b1dc64d1e15066b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

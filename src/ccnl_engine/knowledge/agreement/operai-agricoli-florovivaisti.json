@@ -169,7 +169,7 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "text": "APPRENTICE SENIORITY: art. 54 (PDF p. 55, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c) grants a biennial increment to 'gli operai a tempo indeterminato', and the apprenticeship is a contract 'a tempo indeterminato' (art. 41 c. 1 D.Lgs. 81/2015, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-06-15;81~art41): the apprentice accrues the increments of the level of their classification (Allegato 10, p. 123), with no amount of their own.",
         "capability": "seniority",
         "monetary_impact": "unknown",
         "limitation": {
@@ -180,7 +180,24 @@
               "apprentice"
             ]
           },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+          "remediation": "Resolved: art. 54 and art. 41 D.Lgs. 81/2015 read on 2026-11-14.",
+          "status": "resolved"
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "SEASONAL APPRENTICES: Allegato 10 (PDF p. 124, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c) lets employers working in seasonal cycles hire apprentices 'anche a tempo determinato', and art. 54 grants the increments only to 'gli operai a tempo indeterminato'. The apprentice input states no term, so the engine pays a fixed-term seasonal apprentice the increments of the level once the biennium with the same employer is complete.",
+        "capability": "seniority",
+        "monetary_impact": "unknown",
+        "limitation": {
+          "variant": "seasonal_apprentice_seniority",
+          "applies_when": {
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "State on the apprentice input whether the apprenticeship is fixed-term and pay no increment to a fixed-term apprentice where the CCNL keeps them to permanent workers, then remove this note."
         }
       },
       {
@@ -384,7 +401,8 @@
           "review_id": "2026-11-09-ai-scatti-permanent"
         },
         "transformation": "Only permanent workers receive these increments (permanent_only); fixed-term workers receive none under Art. 54. Every 24 months, at most 5; post-2006 figures assigned by provincial contracts: Area3 common 9.89, Area2 qualified 11.36 or qualified_super 11.93, Area1 specialized 12.50 or specialized_super 12.78. The national rule does not identify a worker's provincial profile or any subsequent local adjustment; the 2026 renewal does not amend Art. 54."
-      }
+      },
+      "apprentice_level_amount": true
     },
     "accrual_rule": {
       "min_days": 15,
@@ -968,7 +986,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "17e991e5f08912092e27c1f62440a37d0ff40b5cbc9d9c639a97337d21f1ccd0",
+    "source_hash": "b13d39e07f434159896a540b5d9b7d22945e4d9e46623f287ff83fb888bdc5dc",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2313,6 +2331,51 @@
         ],
         "findings": [
           "Art. 54 explicitly grants biennial increments to permanent workers only; fixed-term workers have a separate, unmodelled element under the 2026 renewal."
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-operai-agricoli-florovivaisti-apprentice-seniority",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice seniority increments against art. 54 of the CCNL and art. 41 D.Lgs. 81/2015, from the targeted research of a separate model session; text layer.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+            "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+          }
+        ],
+        "findings": [
+          "Art. 54 covers the operai a tempo indeterminato; the apprenticeship is a contract a tempo indeterminato: the apprentice accrues the increments of the classification level."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments.apprentice_level_amount",
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-14-gpt-operai-agricoli-florovivaisti-apprentice-seniority",
+        "date": "2026-11-14",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice seniority increments against art. 54 and Allegato 10 of the CCNL and art. 41 D.Lgs. 81/2015; text layer.",
+        "outcome": "flagged",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+            "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+          }
+        ],
+        "findings": [
+          "Confirmed for the permanent apprentice: art. 54 covers the operai a tempo indeterminato and does not exclude apprentices.",
+          "Allegato 10 allows seasonal fixed-term apprentices, outside art. 54: declared as the open limitation seasonal_apprentice_seniority."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.seniority_increments.apprentice_level_amount",
+          "coverage.notes"
         ]
       }
     ],

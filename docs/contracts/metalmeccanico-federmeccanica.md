@@ -173,7 +173,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add employment facts for 18 and 21 weekly shifts with night work and for the historical sottosettore, accrue their hours, and pay the siderurgico shift hours with the 13th.
 
-!!! warning "metalmeccanico-federmeccanica/par_conto_ore_hourly_elements · leave · impact yes · open"
+!!! warning "metalmeccanico-federmeccanica/par_conto_ore_hourly_elements · leave · impact yes · unsourced"
     LEAVE, CONTO ORE: the hourly elements of Tit. IV art. 3 are included in the PAR payout at expiry when the caller states hourly_pay_elements (zero confirms none; missing blocks payment). PAR left when employment ends before expiry remain unpaid: Tit. III art. 5 specifies liquidation at expiry but no termination basis.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.

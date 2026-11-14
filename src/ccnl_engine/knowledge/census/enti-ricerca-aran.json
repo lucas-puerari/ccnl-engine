@@ -35,22 +35,6 @@
       }
     },
     {
-      "id": "research_allowances_missing",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = owed",
-      "rule": "ALLOWANCES: the indennità di Ente of levels IV-VIII (Tabella C5) and the indennità di valorizzazione professionale of levels I-III (Tabella C6) are stated by the CCNL only as increments from 1.1.2027, their earlier amounts set by older contracts not read: not modelled, the caller pays them.",
-      "calculation": "ccnl/enti-ricerca-aran:coverage.notes",
-      "state": "absent",
-      "remediation": "Read the indennità di Ente and di valorizzazione professionale of the earlier CCNL and add them with the 2027 increments.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "enti-ricerca-aran/research_allowances_missing"
-        ]
-      }
-    },
-    {
       "id": "rule_work_rules_absence_rules",
       "institute": "base_salary",
       "variant": "all",

@@ -214,7 +214,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model flexible schedule hours and compensation windows separately from overtime, and track elected overtime rest balances and their later liquidation.
 
-!!! warning "metalmeccanico-confapi/par_conto_ore_hourly_elements · leave · impact yes · open"
+!!! warning "metalmeccanico-confapi/par_conto_ore_hourly_elements · leave · impact yes · unsourced"
     LEAVE, CONTO ORE: the hourly elements of art. 38 are included in the PAR payout at expiry when the caller states hourly_pay_elements (zero confirms none; missing blocks payment). The PAR left when employment ends before expiry remain unpaid: art. 22 specifies liquidation at expiry but no termination basis.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.

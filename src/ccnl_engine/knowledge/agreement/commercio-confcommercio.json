@@ -111,7 +111,20 @@
         "monetary_impact": "unknown",
         "limitation": {
           "variant": "sickness_net_basis",
-          "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 187, align the computation, then resolve this limitation."
+          "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 187, align the computation, then resolve this limitation.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+              "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016",
+              "title": "PDF p. 179 (stampata p. 177), art. 187."
+            },
+            {
+              "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+              "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001",
+              "title": "accordi firmati del 22 e 28 marzo 2024, PDF scansionato, letto con OCR delle pagine; nessuna definizione del netto dell'art. 187 individuata."
+            }
+          ]
         }
       },
       {
@@ -153,7 +166,20 @@
               "apprentice"
             ]
           },
-          "remediation": "Source the reading of the hospital indemnity of the apprentice (a joint interpretation of the parties or a ruling) and apply it; then resolve this limitation."
+          "remediation": "Source the reading of the hospital indemnity of the apprentice (a joint interpretation of the parties or a ruling) and apply it; then resolve this limitation.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+              "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016",
+              "title": "PDF p. 76 (stampata p. 74), art. 54."
+            },
+            {
+              "url": "https://uiltucs.it/wp-content/uploads/2024/07/Ccnl_Tds_Confcommercio_2023-2027_e_accordo_integrativo.pdf",
+              "sha256": "980356a766c5fad7450dd234052a9f311a2b66d732cb72b6632b354ffaf18001",
+              "title": "accordi firmati 22 e 28 marzo 2024, successivi al testo unico: pagine scansionate esaminate tramite OCR e pagine testuali estratte; nessun chiarimento sul cumulo o sull'integrazione dell'indennità del"
+            }
+          ]
         }
       },
       {
@@ -4312,7 +4338,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "d31b012f39abb980f2ac40a8d7561268980d61e82e3c6f18c0725e3099a0810b",
+    "source_hash": "86c1c8b6e0b9f58f364bb107daef5a168a0acbcbf706d0fb04b26e397ba6734f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

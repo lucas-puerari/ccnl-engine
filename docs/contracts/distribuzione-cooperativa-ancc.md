@@ -123,14 +123,14 @@ under-level: `1`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "distribuzione-cooperativa-ancc/seniority_super_levels · seniority · impact unknown · open"
+!!! warning "distribuzione-cooperativa-ancc/seniority_super_levels · seniority · impact unknown · unsourced"
     SENIORITY OF LEVELS 3S AND 4S: the Art. 182 table has rows III and IV only, while the minimum table of the 2024 renewal (art. 185, p. 70) prints 3S and 4S apart; the file pays 3S the III amount (21,79) and 4S the IV amount (19,93), a reading the text does not state.
 
     **Applies when:** `seniority` applies; level in 3S, 4S.
 
     **Remediation:** Source the seniority amount of levels 3S and 4S (signed table or interpretation of the parties).
 
-!!! warning "distribuzione-cooperativa-ancc/apprentice_seniority · seniority · impact unknown · open"
+!!! warning "distribuzione-cooperativa-ancc/apprentice_seniority · seniority · impact unknown · unsourced"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
 
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.

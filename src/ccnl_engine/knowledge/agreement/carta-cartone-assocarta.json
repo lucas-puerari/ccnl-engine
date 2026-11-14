@@ -84,7 +84,25 @@
             "trigger": "run",
             "effective_from": "2026-04-01"
           },
-          "remediation": "Read the Assocarta nota illustrativa of 24/02/2026 (or a signed table) and settle whether the EMC is in the 2026-2028 minimi; correct base_salary if absorbed."
+          "remediation": "Read the Assocarta nota illustrativa of 24/02/2026 (or a signed table) and settle whether the EMC is in the 2026-2028 minimi; correct base_salary if absorbed.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
+              "sha256": "0f5fed9944514d7364253221b29fee9c45c621897309f8f4e748f30adb6690c7",
+              "title": "PDF p. 44, art. 49."
+            },
+            {
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246200",
+              "sha256": "6568c6dfcab1f25d26ad8659399fbc6db25068588ad0649674dbbed38a37b26c",
+              "title": "PDF p. 8, «PARTE ECONOMICA» (scansione controllata sull'immagine; righe e decorrenze separate nella tabella sopra)."
+            },
+            {
+              "url": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+              "sha256": "fb3e0cce00ffb6d13a42dd60ead6658f609ff475cb60ed43e8edc76695239a77",
+              "title": "riproduzione 2021; non chiarisce la composizione dei minimi 2026."
+            }
+          ]
         }
       },
       {
@@ -2844,7 +2862,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
     "verification_status": "unverified",
-    "source_hash": "387ccffe18f44d9a7083aa2aac5c9ecd7aa4e736179cc87ec6d01c3d4918c62b",
+    "source_hash": "8060e8e67c08bf02ef5280a0e5df170b8df8cc52022149ad5c8d2f8cbd1d25b8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

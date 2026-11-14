@@ -53,7 +53,7 @@ from ccnl_engine.contribution.minimum_base.services import (
     EXEMPT_CATEGORY_FLOOR,
 )
 from ccnl_engine.limitation.loaders import load_engine_limitations
-from ccnl_engine.limitation.models import LimitationStatus, MonetaryImpact
+from ccnl_engine.limitation.models import HOLDING, LimitationStatus, MonetaryImpact
 from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
@@ -232,8 +232,8 @@ def test_unsourced_apprentice_seniority_is_an_open_limitation(
 
     With an apprentice amount, or the amounts of the level the apprentice
     is classified at, the rule is modelled; without either the engine pays
-    none and the CCNL carries an open limitation, which the chain records
-    when the level pays matured increments.
+    none and the CCNL carries an open or declared residual limitation,
+    which the chain records when the level pays matured increments.
     """
     for ccnl in ccnls:
         increments = ccnl.parameters.seniority_increments
@@ -242,8 +242,8 @@ def test_unsourced_apprentice_seniority_is_an_open_limitation(
             and increments.apprentice_amount is None
             and not increments.apprentice_level_amount
         )
-        expected = [LimitationStatus.OPEN] if unsourced else []
-        assert _apprentice_seniority_notes(ccnl) == expected, ccnl.meta.ccnl_id
+        holding = [s for s in _apprentice_seniority_notes(ccnl) if s in HOLDING]
+        assert len(holding) == (1 if unsourced else 0), ccnl.meta.ccnl_id
 
 
 def test_unsourced_midpoint_components_are_an_open_limitation(
