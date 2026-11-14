@@ -1717,7 +1717,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pelli-cuoio-industria-assopellettieri",
       "ruleset_version": "2026.2",
-      "source_hash": "9a96f76ad9b0ab51cdc0ca7e9f7402a17d59b3d0503a7b3d7ea56f0eeec4f405",
+      "source_hash": "c0961aa6e0be34dabd7f9e390168499a9078673dc35485751c6f5d7bbb7b9cf4",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/pelli-cuoio-industria-assopellettieri.json.gz"
@@ -4401,7 +4401,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "af219a43f3843b059b09299570567501838235f1ce28091e3f21550d1bcef5bb",
+      "source_hash": "7b0869bc1e76a5e8f6fad2cf124aa40f8ba902e038bc65ab01053fc64846db1a",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/pelli-cuoio-industria-assopellettieri.json.gz",

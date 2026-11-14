@@ -257,7 +257,9 @@
     },
     "agreement/pelli-cuoio-industria-assopellettieri.json": {
       "accrual_rule": "missing",
-      "additional_months[2023-04-01]": "assumed"
+      "additional_months[2023-04-01]": "assumed",
+      "levels[1].base_salary[2024-12-01]": "assumed",
+      "levels[1].base_salary[2025-12-01]": "assumed"
     },
     "agreement/portieri-fabbricati-confedilizia.json": {
       "additional_months[2026-01-01]": "assumed"

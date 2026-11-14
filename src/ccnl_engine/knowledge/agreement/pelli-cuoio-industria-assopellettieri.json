@@ -45,7 +45,7 @@
       },
       {
         "kind": "simplification",
-        "text": "LEVEL 1: from the agreement of 22/12/2023, level 1 is no longer a classification level for permanent workers (automatic reclassification to level 2 by 31/12/2023). The pay value for level 1 remains defined in the contract for the entire duration up to 2025 (table Art. 32, CNEL PDF, confirmed primary source). It is assumed that Art. 55 (apprenticeship) was not modified by the 22/12/2023 agreement: that agreement was not accessible from the public sources consulted (CNEL archive, union websites), so the continuity of level 1 as a pay reference for apprentices destined for level 2 and level 3 is assumed but not verified against the supplementary agreement text.",
+        "text": "LEVEL 1 (testo definitivo 22/12/2023, CNEL 20201, https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20201.pdf, sha256 f81f9d1fb9118271af0d597ec48802c931af6f063e8ae16c89f90fe1cc4ca954): level 1 is no longer a classification level for permanent workers (art. 102), but art. 72 (PDF p. 106) keeps 'due livelli sotto quello di destinazione finale' in the first period, so an apprentice destined to the 3rd starts at level 1; apprentices destined to the 2nd 'dal 01 gennaio 2024 saranno inquadrati al livello di destinazione finale sin dal primo periodo' (modelled). The pelletteria table (art. 101, PDF p. 137) gives level 1 only up to 1,311.66 from 1/12/2023 and leaves the columns from 1/12/2024 and 1/12/2025 blank: the 1,345.76 and 1,379.86 of the file for those periods are not in the text, and pay the first period of an apprentice destined to the 3rd.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
@@ -55,11 +55,11 @@
               "apprentice"
             ],
             "levels": [
-              "2",
               "3"
-            ]
+            ],
+            "effective_from": "2024-12-01"
           },
-          "remediation": "Verify the 22/12/2023 agreement for the apprenticeship pay reference of level 1."
+          "remediation": "Source the level 1 minimo from 1 December 2024 for the first period of the apprentices destined to the 3rd level."
         }
       },
       {
@@ -277,29 +277,9 @@
             "valid_until": "2025-12-01",
             "value": "1345.76",
             "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
-                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
-                  "kind": "associazione",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
-                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
-                },
-                "page": "25",
-                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
-                "quote": "1           1.277,56 €          1.311,66 €           1.345,76 €                1.379,86 €"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-08T05:00:00Z",
-                "effective_from": "2024-12-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-08T05:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
-              }
+              "status": "assumed",
+              "location": null,
+              "note": "Not in the signed table: art. 101 of the testo definitivo of 22/12/2023 (CNEL 20201, PDF p. 137) leaves level 1 blank from 1/12/2024 and 1/12/2025; the value extends the previous one by the increment of the older table. Used only for the first period of an apprentice destined to the 3rd level (limitation level_1_apprentice_reference)."
             }
           },
           {
@@ -307,29 +287,9 @@
             "valid_until": null,
             "value": "1379.86",
             "provenance": {
-              "status": "verified",
-              "location": {
-                "source_document": {
-                  "document_id": "pelli-cuoio-industria-assopellettieri-tables-4e303eba",
-                  "title": "pelli-cuoio-industria-assopellettieri: tabelle retributive (20098.pdf)",
-                  "kind": "associazione",
-                  "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
-                  "sha256": "4e303eba48192399bcecd05e5e0cdc675b61c3daff40ef71b0c1e377f98203f8"
-                },
-                "page": "25",
-                "section": "Articolo 32 - Minimi contrattuali - Retribuzione tabellare; PELLETTERIA, Minimi",
-                "quote": "1           1.277,56 €          1.311,66 €           1.345,76 €                1.379,86 €"
-              },
-              "extraction": {
-                "method": "ai",
-                "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-08T05:00:00Z",
-                "effective_from": "2025-12-01",
-                "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-08T05:00:00Z",
-                "verification_status": "verified",
-                "review_id": "2026-11-08-ai-pelli-cuoio-industria-assopellettieri-tables"
-              }
+              "status": "assumed",
+              "location": null,
+              "note": "Not in the signed table: art. 101 of the testo definitivo of 22/12/2023 (CNEL 20201, PDF p. 137) leaves level 1 blank from 1/12/2024 and 1/12/2025; the value extends the previous one by the increment of the older table. Used only for the first period of an apprentice destined to the 3rd level (limitation level_1_apprentice_reference)."
             }
           }
         ]
@@ -1373,11 +1333,6 @@
       "periods": [
         {
           "months_from": 0,
-          "months_until": 10,
-          "levels_below": 1
-        },
-        {
-          "months_from": 10,
           "months_until": null,
           "levels_below": 0
         }
@@ -1391,7 +1346,7 @@
     "effective_until": null,
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
     "verification_status": "unverified",
-    "source_hash": "9a96f76ad9b0ab51cdc0ca7e9f7402a17d59b3d0503a7b3d7ea56f0eeec4f405",
+    "source_hash": "c0961aa6e0be34dabd7f9e390168499a9078673dc35485751c6f5d7bbb7b9cf4",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1665,6 +1620,29 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-pelli-apprentice-level-1",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 72 (PDF p. 106) and art. 101 (PDF p. 137) of the testo definitivo of 22/12/2023, read on the page images.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20201.pdf",
+            "sha256": "f81f9d1fb9118271af0d597ec48802c931af6f063e8ae16c89f90fe1cc4ca954"
+          }
+        ],
+        "findings": [
+          "Destination 2 takes the final level from the first period from 1 January 2024.",
+          "Level 1 has no minimo from 1/12/2024 in the signed table: the 1,345.76 and 1,379.86 of the file are unsourced and stay under the narrowed limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "apprenticeship",
+          "levels[1].base_salary"
         ]
       }
     ]

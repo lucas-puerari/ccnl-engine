@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 28 verified / 7 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 26 verified / 7 derived / 3 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-05-26 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2025-12-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 28 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 72 (PDF p. 106) and art. 101 (PDF p. 137) of the testo definitivo of 22/12/2023, read on the page images. | corrected | Destination 2 takes the final level from the first period from 1 January 2024.<br>Level 1 has no minimo from 1/12/2024 in the signed table: the 1,345.76 and 1,379.86 of the file are unsourced and stay under the narrowed limitation. |
 
 ## Salary table
 
@@ -114,11 +115,11 @@ Destination levels: `2`
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "pelli-cuoio-industria-assopellettieri/level_1_apprentice_reference · base_salary · impact unknown · open"
-    LEVEL 1: from the agreement of 22/12/2023, level 1 is no longer a classification level for permanent workers (automatic reclassification to level 2 by 31/12/2023). The pay value for level 1 remains defined in the contract for the entire duration up to 2025 (table Art. 32, CNEL PDF, confirmed primary source). It is assumed that Art. 55 (apprenticeship) was not modified by the 22/12/2023 agreement: that agreement was not accessible from the public sources consulted (CNEL archive, union websites), so the continuity of level 1 as a pay reference for apprentices destined for level 2 and level 3 is assumed but not verified against the supplementary agreement text.
+    LEVEL 1 (testo definitivo 22/12/2023, CNEL 20201, https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20201.pdf, sha256 f81f9d1fb9118271af0d597ec48802c931af6f063e8ae16c89f90fe1cc4ca954): level 1 is no longer a classification level for permanent workers (art. 102), but art. 72 (PDF p. 106) keeps 'due livelli sotto quello di destinazione finale' in the first period, so an apprentice destined to the 3rd starts at level 1; apprentices destined to the 2nd 'dal 01 gennaio 2024 saranno inquadrati al livello di destinazione finale sin dal primo periodo' (modelled). The pelletteria table (art. 101, PDF p. 137) gives level 1 only up to 1,311.66 from 1/12/2023 and leaves the columns from 1/12/2024 and 1/12/2025 blank: the 1,345.76 and 1,379.86 of the file for those periods are not in the text, and pay the first period of an apprentice destined to the 3rd.
 
-    **Applies when:** `base_salary` applies; contract type in apprentice; level in 2, 3.
+    **Applies when:** `base_salary` applies; contract type in apprentice; level in 3; from 2024-12-01.
 
-    **Remediation:** Verify the 22/12/2023 agreement for the apprenticeship pay reference of level 1.
+    **Remediation:** Source the level 1 minimo from 1 December 2024 for the first period of the apprentices destined to the 3rd level.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

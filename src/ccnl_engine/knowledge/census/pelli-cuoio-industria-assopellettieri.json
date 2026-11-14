@@ -39,10 +39,10 @@
       "institute": "base_salary",
       "variant": "apprentice",
       "discriminant": "applies_when.trigger = run",
-      "rule": "LEVEL 1: from the agreement of 22/12/2023, level 1 is no longer a classification level for permanent workers (automatic reclassification to level 2 by 31/12/2023). The pay value for level 1 remains defined in the contract for the entire duration up to 2025 (table Art. 32, CNEL PDF, confirmed primary source). It is assumed that Art. 55 (apprenticeship) was not modified by the 22/12/2023 agreement: that agreement was not accessible from the public sources consulted (CNEL archive, union websites), so the continuity of level 1 as a pay reference for apprentices destined for level 2 and level 3 is assumed but not verified against the supplementary agreement text.",
+      "rule": "LEVEL 1 (testo definitivo 22/12/2023, CNEL 20201, https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20201.pdf, sha256 f81f9d1fb9118271af0d597ec48802c931af6f063e8ae16c89f90fe1cc4ca954): level 1 is no longer a classification level for permanent workers (art. 102), but art. 72 (PDF p. 106) keeps 'due livelli sotto quello di destinazione finale' in the first period, so an apprentice destined to the 3rd starts at level 1; apprentices destined to the 2nd 'dal 01 gennaio 2024 saranno inquadrati al livello di destinazione finale sin dal primo periodo' (modelled). The pelletteria table (art. 101, PDF p. 137) gives level 1 only up to 1,311.66 from 1/12/2023 and leaves the columns from 1/12/2024 and 1/12/2025 blank: the 1,345.76 and 1,379.86 of the file for those periods are not in the text, and pay the first period of an apprentice destined to the 3rd.",
       "calculation": "ccnl/pelli-cuoio-industria-assopellettieri:coverage.notes",
       "state": "unverified",
-      "remediation": "Verify the 22/12/2023 agreement for the apprenticeship pay reference of level 1.",
+      "remediation": "Source the level 1 minimo from 1 December 2024 for the first period of the apprentices destined to the 3rd level.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -301,6 +301,36 @@
       "links": {
         "rules": [
           "agreement/pelli-cuoio-industria-assopellettieri.json#additional_months[2023-04-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_1_base_salary_2024_12_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pelli-cuoio-industria-assopellettieri.json#levels[1].base_salary[2024-12-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pelli-cuoio-industria-assopellettieri.json#levels[1].base_salary[2024-12-01]"
+        ]
+      }
+    },
+    {
+      "id": "rule_levels_1_base_salary_2025_12_01",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/pelli-cuoio-industria-assopellettieri.json#levels[1].base_salary[2025-12-01]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/pelli-cuoio-industria-assopellettieri.json#levels[1].base_salary[2025-12-01]"
         ]
       }
     },
