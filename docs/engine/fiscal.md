@@ -361,12 +361,15 @@ reddito complessivo counts it once. The gross tax and the deductions are
 measured on the total, the art. 13 days on the union of the spells (days
 in two spells once), the IRPEF of the other payers counts as withheld and
 joins the IRPEF withheld of the year, as the CU totals it, and the
-trattamento integrativo they paid counts as paid. The run records the
-final decision `additional_irpef_base` with the income as its amount. A
-later payment that settles the year again takes the withholdings in once.
-Not taken in yet: the regional and municipal surtax, the ulteriore
-detrazione and the somma esente of the earlier employments, computed on
-this employment alone (the capability is `partial`).
+trattamento integrativo they paid counts as paid. The regional and
+municipal surtax of the year are determined on the total income, and the
+regional surtax, municipal acconto and municipal saldo the other payers
+withheld (CU punti 546-548) count as withheld. The run records the final
+decision `additional_irpef_base` with the income as its amount. A later
+payment that settles the year again takes the withholdings in once. Not
+taken in yet: the ulteriore detrazione and the somma esente the earlier
+employments recognised, computed on this employment's account alone (the
+capability is `partial`).
 
 ### Foreign tax credit at the conguaglio
 

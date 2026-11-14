@@ -23,6 +23,7 @@ from dataclasses import dataclass, field
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.irpef.prior.rules import surtax_withheld
 from ccnl_engine.irpef.rules import surtax_from_brackets
 from ccnl_engine.surtax.conguaglio.rules import (
     ConguaglioSurtax,
@@ -241,7 +242,7 @@ def run_surtax(inp: _AmountsInput, taxable: Decimal, irpef_due: Decimal) -> RunS
     settled = conguaglio_surtax(
         annual,
         inp.rules.year,
-        inp.opening.tax,
+        surtax_withheld(inp.opening.tax, inp.prior),
         final=inp.installment_run.final,
         fraction=inp.surtax_rules.comunale_advance_fraction,
         advance_base=next_year_municipal(

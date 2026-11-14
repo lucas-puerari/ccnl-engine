@@ -353,6 +353,9 @@ def _current_year() -> CurrentYearTaxFacts:
                 Decimal(1000),
                 Decimal(150),
                 Decimal(0),
+                Decimal(20),
+                Decimal(5),
+                Decimal(8),
             ),
         ),
     )

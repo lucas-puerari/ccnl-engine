@@ -32,6 +32,12 @@ class PriorEmployerIncome:
         irpef_withheld: IRPEF the other payer withheld on it.
         trattamento_paid: Trattamento integrativo (D.L. 3/2020) the other
             payer paid.
+        regional_surtax_withheld: Regional surtax of the year the other
+            payer withheld (CU punto 546).
+        municipal_advance_withheld: Municipal surtax acconto of the year
+            the other payer withheld (CU punto 547).
+        municipal_surtax_withheld: Municipal surtax saldo of the year the
+            other payer withheld (CU punto 548).
 
     Raises:
         InvalidInputError: When a field is not of its type or an amount is
@@ -42,12 +48,22 @@ class PriorEmployerIncome:
     taxable: Decimal
     irpef_withheld: Decimal
     trattamento_paid: Decimal
+    regional_surtax_withheld: Decimal
+    municipal_advance_withheld: Decimal
+    municipal_surtax_withheld: Decimal
 
     def __post_init__(self) -> None:  # noqa: D105
         require_instance(
             self.spell, EmploymentSpell, f"{_OWNER}.spell", feature=_FEATURE
         )
-        for name in ("taxable", "irpef_withheld", "trattamento_paid"):
+        for name in (
+            "taxable",
+            "irpef_withheld",
+            "trattamento_paid",
+            "regional_surtax_withheld",
+            "municipal_advance_withheld",
+            "municipal_surtax_withheld",
+        ):
             require_decimal(
                 getattr(self, name), f"{_OWNER}.{name}", feature=_FEATURE, minimum=_ZERO
             )
