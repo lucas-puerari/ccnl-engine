@@ -617,6 +617,7 @@ def _arrears_of(reference: PeriodId | None) -> PeriodResult:
                 event_date=date(_YEAR, _MONTH, 28),
                 amount=Decimal("2000.00"),
                 separate_tax_rate=Decimal("0.23"),
+                unused_deductions=Decimal(0),
                 reference_period=reference,
             )
         ),
@@ -699,7 +700,11 @@ def test_arrears_trace_their_year_tax_and_policy(
             "reference_period": shown,
             "amount": Decimal("2000.00"),
             **(
-                {"separate_tax_rate": Decimal("0.23"), "rate_source": "caller"}
+                {
+                    "separate_tax_rate": Decimal("0.23"),
+                    "rate_source": "caller",
+                    "unused_deductions": Decimal(0),
+                }
                 if taxed
                 else {}
             ),

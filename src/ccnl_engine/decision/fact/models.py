@@ -40,6 +40,7 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "individual_income": "ParentalLeaveEvent.individual_income",
     "local_hourly_agreement": "HourlyParentalLeaveEvent.local_hourly_agreement",
     "installment": "PersonalWithholding.installment",
+    "unused_deductions": "ArrearsEvent.unused_deductions",
     "hourly_pay_elements": "PeriodFacts.hourly_pay_elements",
     "naspi_case": "EmploymentPeriod.naspi_case",
     "full_time_weekly_hours": "Employment.full_time_weekly_hours",

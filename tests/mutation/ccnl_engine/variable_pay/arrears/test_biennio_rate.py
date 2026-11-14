@@ -25,6 +25,7 @@ from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationStatus,
     DecisionOrigin,
+    IssueCause,
 )
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.errors import InvalidInputError
@@ -37,7 +38,7 @@ from ccnl_engine.period.services import (
     calculate_period,
 )
 from ccnl_engine.run.types import PeriodId
-from ccnl_engine.variable_pay.arrears.handlers import UNUSED_DEDUCTIONS
+from ccnl_engine.variable_pay.arrears.handlers import UNUSED_DEDUCTIONS_UNKNOWN
 from ccnl_engine.variable_pay.arrears.inputs import ArrearsEvent
 
 if TYPE_CHECKING:
@@ -105,12 +106,19 @@ def test_the_engine_rates_the_arrears_on_half_the_biennio(
     tax = (Decimal("2000.00") * rate).quantize(Decimal("0.01"), ROUND_HALF_UP)
 
     assert _separate(result) == tax
-    assert decision.status is CalculationStatus.FINAL
+    assert decision.status is CalculationStatus.PROVISIONAL
     assert (decision.inputs["separate_tax_rate"], decision.inputs["rate_source"]) == (
         rate,
         "biennio",
     )
-    assert UNUSED_DEDUCTIONS in {lim.id for lim in result.limitations}
+    (issue,) = (i for i in result.issues if i.code == UNUSED_DEDUCTIONS_UNKNOWN)
+    assert (issue.fact, issue.cause, issue.status) == (
+        "unused_deductions",
+        IssueCause.FACT,
+        CalculationStatus.INCOMPLETE,
+    )
+    assert issue.capability == "contract_renewal_arrears"
+    assert "arrears_unused_deductions" not in {lim.id for lim in result.limitations}
 
 
 def test_thirty_and_thirty_two_thousand_tax_479_35() -> None:
@@ -119,13 +127,13 @@ def test_thirty_and_thirty_two_thousand_tax_479_35() -> None:
 
 
 def test_a_caller_rate_prevails() -> None:
-    """The caller's 23% whatever the biennio, with no limitation."""
+    """The caller's 23% whatever the biennio; the deductions are still a fact."""
     stated = replace(_ARREARS, separate_tax_rate=Decimal("0.23"))
     result = _run((Decimal(30_000), Decimal(32_000)), stated)
 
     assert _separate(result) == Decimal("460.00")
     assert _decision(result).inputs["rate_source"] == "caller"
-    assert UNUSED_DEDUCTIONS not in {lim.id for lim in result.limitations}
+    assert UNUSED_DEDUCTIONS_UNKNOWN in {i.code for i in result.issues}
 
 
 @pytest.mark.parametrize(
@@ -149,7 +157,8 @@ def test_the_unused_deductions_reduce_the_separate_tax(
 
     assert _separate(result) == tax
     assert _decision(result).inputs["unused_deductions"] == unused
-    assert UNUSED_DEDUCTIONS not in {lim.id for lim in result.limitations}
+    assert _decision(result).status is CalculationStatus.FINAL
+    assert UNUSED_DEDUCTIONS_UNKNOWN not in {i.code for i in result.issues}
 
 
 def test_negative_unused_deductions_are_rejected() -> None:

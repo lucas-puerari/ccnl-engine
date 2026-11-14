@@ -77,6 +77,7 @@ def _arrears(reference: PeriodId | None) -> ArrearsEvent:
         amount=Decimal("2000.00"),
         separate_tax_rate=Decimal("0.23"),
         reference_period=reference,
+        unused_deductions=Decimal(0),
     )
 
 
