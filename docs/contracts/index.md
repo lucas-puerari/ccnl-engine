@@ -170,7 +170,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 51 | F012 | [CCNL Edilizia — Industria (ANCE), operai](edilizia-ance.md) | edilizia | ~550k | 2025 | ⚠️ | base_salary, bilateral_funds, overtime, sickness, territorial_supplement | 47 / 7 / 0 / 0 | 👁 | 🤖✓ |
 | 52 | B254 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | energia | ~38k | — | ✅ | — | 115 / 56 / 1 / 0 | 🧪 | 🤖 |
 | 53 | G211 | [CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)](esercizi-cinematografici-anec.md) | cinema | ~6k | — | ⚠️ | inps_employer, sickness | 61 / 9 / 1 / 0 | 🧪 | 🤖 |
-| 54 | H201 | [CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)](fiori-recisi-ancef.md) | Fiori recisi, verde e piante ornamentali (import-export) | ~1.3k | 2023 | ⚠️ | seniority | 41 / 5 / 1 / 0 | 🧪 | 🤖 |
+| 54 | H201 | [CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)](fiori-recisi-ancef.md) | Fiori recisi, verde e piante ornamentali (import-export) | ~1.3k | 2023 | ⚠️ | seniority | 42 / 5 / 1 / 0 | 🧪 | 🤖 |
 | 55 | T261 | [CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)](formazione-professionale.md) | formazione professionale | ~19.8k | — | ⚠️ | base_salary | 0 / 34 / 1 / 1 | 🧪 | 🤖 |
 | 56 | K321 | [CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas](gas-acqua-utilitalia.md) | gas e acqua | ~65k | 2025 | ⚠️ | inps_employer | 45 / 18 / 1 / 0 | 🧪 | 🤖 |
 | 57 | B371 | [CCNL Gomma e Plastica Industria (Federazione Gomma Plastica)](gomma-plastica-federazione-gomma-plastica.md) | gomma-plastica | ~90k | — | ⚠️ | base_salary | 70 / 7 / 1 / 1 | 🧪 | 🤖 |
