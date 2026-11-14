@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 360 open limitations (360 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 357 open limitations (357 with a monetary impact).
 
 ## Declared window
 
@@ -163,8 +163,8 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [scuole-private-agidae](../contracts/scuole-private-agidae.md) | `istruzione-formazione` | exploratory | — | 17 rows | 17 open requirements; 1 weak rule; 13 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [scuole-private-laiche-aninsei](../contracts/scuole-private-laiche-aninsei.md) | `istruzione-formazione` | exploratory | — | 18 rows | 18 open requirements; 1 weak rule; 14 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [servizi-postali-appalto-fise](../contracts/servizi-postali-appalto-fise.md) | `servizi-postali` | exploratory | — | 17 rows | 17 open requirements; 1 weak rule; 13 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
-| [sistemazioni-idraulico-forestali-impiegati](../contracts/sistemazioni-idraulico-forestali-impiegati.md) | `bonifica-forestazione` | exploratory | — | 21 rows | 21 open requirements; 2 weak rules; 17 monetary limitations; 20 non-native capabilities |
-| [sistemazioni-idraulico-forestali-operai](../contracts/sistemazioni-idraulico-forestali-operai.md) | `bonifica-forestazione` | exploratory | — | 22 rows | 22 open requirements; 2 weak rules; 18 monetary limitations; 21 non-native capabilities |
+| [sistemazioni-idraulico-forestali-impiegati](../contracts/sistemazioni-idraulico-forestali-impiegati.md) | `bonifica-forestazione` | exploratory | — | 19 rows | 19 open requirements; 2 weak rules; 15 monetary limitations; 19 non-native capabilities |
+| [sistemazioni-idraulico-forestali-operai](../contracts/sistemazioni-idraulico-forestali-operai.md) | `bonifica-forestazione` | exploratory | — | 21 rows | 21 open requirements; 2 weak rules; 17 monetary limitations; 21 non-native capabilities |
 | [studi-professionali-confprofessioni](../contracts/studi-professionali-confprofessioni.md) | `servizi-professionali` | reviewed | — | 18 rows | 18 open requirements; 14 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
 | [tabacco-apti](../contracts/tabacco-apti.md) | `alimentare` | exploratory | — | 41 rows | 41 open requirements; 24 weak rules; 14 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [telecomunicazioni-asstel](../contracts/telecomunicazioni-asstel.md) | `ict-telecomunicazioni` | exploratory | — | 18 rows | 18 open requirements; 1 weak rule; 15 monetary limitations; 20 non-native capabilities |

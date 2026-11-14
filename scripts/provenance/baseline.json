@@ -1100,15 +1100,12 @@
       "servizi-postali-appalto-fise/conditional_integrative_allowance"
     ],
     "agreement/sistemazioni-idraulico-forestali-impiegati.json": [
-      "sistemazioni-idraulico-forestali-impiegati/apprentice_inps_rates_unsourced",
-      "sistemazioni-idraulico-forestali-impiegati/ind_funzione_transition_date",
-      "sistemazioni-idraulico-forestali-impiegati/structural_rules_from_2021_text"
+      "sistemazioni-idraulico-forestali-impiegati/apprentice_inps_rates_unsourced"
     ],
     "agreement/sistemazioni-idraulico-forestali-operai.json": [
       "sistemazioni-idraulico-forestali-operai/apprentice_inps_rates_unsourced",
       "sistemazioni-idraulico-forestali-operai/apprentice_seniority",
-      "sistemazioni-idraulico-forestali-operai/apprenticeship_duration_mapping",
-      "sistemazioni-idraulico-forestali-operai/structural_rules_from_2021_text"
+      "sistemazioni-idraulico-forestali-operai/apprenticeship_duration_mapping"
     ],
     "agreement/studi-professionali-confprofessioni.json": [
       "studi-professionali-confprofessioni/intermittent_availability",

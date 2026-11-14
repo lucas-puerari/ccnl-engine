@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer |
+| **Limits of this contract** | inps_employer |
 
 5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 22 verified / 6 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 23 verified / 5 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | Minimum pay of the impiegati forestali from 1 January 2026, 2027 and 2028 against the tables of the signed 2025 renewal (Allegati B, C, C1, scanned pages read as images). AI review only. | corrected | The 2026-2028 minimums now cite the TOTALE NAZIONALE CONGLOBATO of the signed tables (pp. 29-31) instead of a secondary site and the Art. 35 parameters.<br>The signed tables disagree on level 4 in 2026: p. 29 prints 1.618,07, p. 30 carries 1.617,94 as the pay of 1 January 2027 before the 39,54 increase that reaches 1.657,48. The 2026 table of p. 29 is used for 2026; the 2027 and 2028 totals are those printed. |
 | 2026-11-05 | claude-opus-5-5 (ai) | The seniority increments of the apprentices, Art. 7 - Apprendistato, Inquadramento e retribuzione (PDF p. 33), found by a separate research session and checked again on the page. | corrected | The apprentice has the treatment of the permanent staff: seniority_increments.apprentice_level_amount. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source. | corrected | Added the comporto window of art. 44 (12 months within the last 24); the pay bands summed over 12 months stay outside the model. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Rules of the 2021 text against the OCR of the renewal signed on 4 December 2025, from the research of a separate model session. | corrected | IND_FUNZIONE is 103.00 until 31 July 2026 and 120.00 from 1 August 2026 (art. 36 point 2, PDF p. 17), not from 1 January 2026.<br>The renewal does not reproduce arts. 7, 35 and 41: their 2021 text stays in force. |
 
 ## Salary table
 
@@ -110,19 +111,19 @@ Destination levels: `I5`, `I6`, `I6Q`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "sistemazioni-idraulico-forestali-impiegati/ind_funzione_transition_date · base_salary · impact unknown · open"
-    IND_FUNZIONE quadri: modelled at 120.00 EUR/month from 2026-01-01 (current published value per lavoro-economia.it). The 2021 CCNL shows 103.00 from 01/08/2002; transition date to 120.00 not confirmed from 2025 rinnovo (PDF image-only).
+!!! note "sistemazioni-idraulico-forestali-impiegati/ind_funzione_transition_date · base_salary · impact unknown · resolved"
+    IND_FUNZIONE quadri (art. 36 point 2, renewal of 4 December 2025, PDF p. 17): 103.00 EUR/month, 120.00 from 1 August 2026.
 
     **Applies when:** `base_salary` applies; level in I6Q.
 
-    **Remediation:** Confirm the date IND_FUNZIONE moved from 103.00 to 120.00 EUR.
+    **Remediation:** Resolved: art. 36 of the 2025 renewal dates the 120.00 from 1 August 2026, read on 2026-11-15.
 
-!!! warning "sistemazioni-idraulico-forestali-impiegati/structural_rules_from_2021_text · base_salary · impact unknown · open"
-    Structural rules (Art. 7, 35, 41, 52) taken from 2021 previgente CCNL text. The 2025 rinnovo PDF is image-only and full text is unavailable for independent verification.
+!!! note "sistemazioni-idraulico-forestali-impiegati/structural_rules_from_2021_text · base_salary · impact unknown · resolved"
+    Structural rules (Art. 7, 35, 41) from the 2021-2024 CCNL text: the renewal of 4 December 2025 (OCR read, PDF pp. 17-18) reproduces art. 39 (divisors 26 and 169, minimum increases) and does not amend arts. 7, 35 and 41.
 
     **Applies when:** `base_salary` applies.
 
-    **Remediation:** Verify the structural rules against the 2025 renewal text.
+    **Remediation:** Resolved: renewal of 4 December 2025 read on 2026-11-15; arts. 7, 35 and 41 unchanged.
 
 !!! warning "sistemazioni-idraulico-forestali-impiegati/apprentice_inps_rates_unsourced · inps_employer · impact unknown · open"
     APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.

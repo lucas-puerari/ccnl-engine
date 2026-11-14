@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | Minimum pay of the operai forestali con rapporto di lavoro a tempo indeterminato from 1 January 2026, 2027 and 2028 against the tables of the signed 2025 renewal (Allegati B, C, C1, scanned pages read as images). AI review only. | corrected | The 2026-2028 minimums now cite the TOTALE NAZIONALE CONGLOBATO of the signed tables (pp. 29-31) instead of a secondary site and the Art. 35 parameters.<br>Level 3 in 2027 and 2028 was 1 cent below the table (1.507,53 and 1.528,09) and level 4 in 2026 1 cent above (1.537,90). |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | regional_seniority_cirl: For operai, the cited national agreement does not prescribe seniority increments: Art. 41 awards biennial increments to impiegati only; Art. 52 lists operai pay as national minimum plus regional supplementary salary, unchanged in the 2025 renewal. The agreement JSON has maximum_c |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source text. | corrected | Added the comporto window of the CCNL. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Rules of the 2021 text against the OCR of the renewal signed on 4 December 2025, from the research of a separate model session. | corrected | Arts. 49 (levels 1-5, parameters 100-123) and 52 (divisors 26 and 169) are reproduced in the renewal (PDF pp. 20-22); art. 7 is not amended. |
 
 ## Salary table
 
@@ -106,12 +107,12 @@ Destination levels: `O5`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "sistemazioni-idraulico-forestali-operai/structural_rules_from_2021_text · base_salary · impact unknown · open"
-    Structural rules (Art. 7, 49, 52) taken from 2021 previgente CCNL text. The 2025 rinnovo PDF is image-only and full text is unavailable for independent verification.
+!!! note "sistemazioni-idraulico-forestali-operai/structural_rules_from_2021_text · base_salary · impact unknown · resolved"
+    Structural rules: arts. 49 and 52 as reproduced by the renewal of 4 December 2025 (OCR read, PDF pp. 20-22: levels 1-5, divisors 26 and 169); art. 7 from the 2021-2024 text, which the renewal does not amend.
 
     **Applies when:** `base_salary` applies.
 
-    **Remediation:** Verify the structural rules against the 2025 renewal text.
+    **Remediation:** Resolved: renewal of 4 December 2025 read on 2026-11-15.
 
 !!! warning "sistemazioni-idraulico-forestali-operai/apprenticeship_duration_mapping · base_salary · impact unknown · open"
     Apprendistato durate: la tabella Art. 7 elenca livelli 2-6 (scala impiegati). Le durate sono mappate su O3/O4/O5 per corrispondenza di livello; la ripartizione per categoria non e confermata dal testo.

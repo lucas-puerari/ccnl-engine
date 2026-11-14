@@ -75,7 +75,7 @@
       },
       {
         "kind": "simplification",
-        "text": "IND_FUNZIONE quadri: modelled at 120.00 EUR/month from 2026-01-01 (current published value per lavoro-economia.it). The 2021 CCNL shows 103.00 from 01/08/2002; transition date to 120.00 not confirmed from 2025 rinnovo (PDF image-only).",
+        "text": "IND_FUNZIONE quadri (art. 36 point 2, renewal of 4 December 2025, PDF p. 17): 103.00 EUR/month, 120.00 from 1 August 2026.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
@@ -85,17 +85,19 @@
               "I6Q"
             ]
           },
-          "remediation": "Confirm the date IND_FUNZIONE moved from 103.00 to 120.00 EUR."
+          "remediation": "Resolved: art. 36 of the 2025 renewal dates the 120.00 from 1 August 2026, read on 2026-11-15.",
+          "status": "resolved"
         }
       },
       {
         "kind": "simplification",
-        "text": "Structural rules (Art. 7, 35, 41, 52) taken from 2021 previgente CCNL text. The 2025 rinnovo PDF is image-only and full text is unavailable for independent verification.",
+        "text": "Structural rules (Art. 7, 35, 41) from the 2021-2024 CCNL text: the renewal of 4 December 2025 (OCR read, PDF pp. 17-18) reproduces art. 39 (divisors 26 and 169, minimum increases) and does not amend arts. 7, 35 and 41.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
           "variant": "structural_rules_from_2021_text",
-          "remediation": "Verify the structural rules against the 2025 renewal text."
+          "remediation": "Resolved: renewal of 4 December 2025 read on 2026-11-15; arts. 7, 35 and 41 unchanged.",
+          "status": "resolved"
         }
       },
       {
@@ -213,6 +215,29 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules",
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-sistemazioni-idraulico-forestali-impiegati-renewal-2025",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Rules of the 2021 text against the OCR of the renewal signed on 4 December 2025, from the research of a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+            "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
+          }
+        ],
+        "findings": [
+          "IND_FUNZIONE is 103.00 until 31 July 2026 and 120.00 from 1 August 2026 (art. 36 point 2, PDF p. 17), not from 1 January 2026.",
+          "The renewal does not reproduce arts. 7, 35 and 41: their 2021 text stays in force."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.fixed_allowances.IND_FUNZIONE",
           "coverage.notes"
         ]
       }
@@ -1071,34 +1096,46 @@
       "fixed_allowances": [
         {
           "code": "IND_FUNZIONE",
-          "description": "Indennità di funzione quadri (Art. 36 CCNL) — 120 EUR/mese",
+          "description": "Indennità di funzione quadri (Art. 36 CCNL): 103 EUR/mese, 120 dal 1° agosto 2026",
           "months_per_year": 14,
           "monthly": {
             "periods": [
               {
                 "valid_from": "2026-01-01",
+                "valid_until": "2026-08-01",
+                "value": "103.00"
+              },
+              {
+                "valid_from": "2026-08-01",
                 "valid_until": null,
                 "value": "120.00"
               }
             ]
           },
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "lavoro-economia-it-a181",
-                "title": "lavoro-economia.it CCNL A181 — indennità funzione quadri",
-                "kind": "tabella_retributiva",
-                "url": "https://www.lavoro-economia.it/?c=9"
+                "document_id": "ccnl-idraulico-forestale-rinnovo-2025",
+                "title": "Accordo di rinnovo CCNL addetti ai lavori di sistemazione idraulico-forestale, 4 dicembre 2025 (FLAI-CGIL, scansione)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+                "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
               },
-              "section": "Art. 36 indennità di funzione quadri — 120 EUR/mese (valore corrente)"
+              "page": "17",
+              "section": "Art. 36 Quadri, punto 2 Indennità di funzione",
+              "quote": "A decorrere dal 1° agosto 2026, alla categoria dei quadri come individuata al precedente comma 1, spetta un’indennità mensile pari a € 120,00"
             },
             "extraction": {
               "method": "manual",
-              "extraction_timestamp": "2026-09-11T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2026-01-01"
-            }
+              "extraction_timestamp": "2026-11-15T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "review_id": "2026-11-15-ai-sistemazioni-idraulico-forestali-impiegati-renewal-2025"
+            },
+            "transformation": "103.00 from 1 August 2002 until 31 July 2026, 120.00 from 1 August 2026"
           }
         }
       ],
@@ -1351,7 +1388,7 @@
     "source": "https://www.lavoro-economia.it/?c=9",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "7383d93de5833cc850b9a46122954ed6183268e4c4190789be56382a2a3792af",
+    "source_hash": "5cd798d6fc5a9db73b40f7dec1bc10ae8ebd3c783007d4c4919687e7c1d337cd",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

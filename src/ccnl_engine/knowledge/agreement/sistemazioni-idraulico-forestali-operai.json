@@ -71,12 +71,13 @@
       },
       {
         "kind": "simplification",
-        "text": "Structural rules (Art. 7, 49, 52) taken from 2021 previgente CCNL text. The 2025 rinnovo PDF is image-only and full text is unavailable for independent verification.",
+        "text": "Structural rules: arts. 49 and 52 as reproduced by the renewal of 4 December 2025 (OCR read, PDF pp. 20-22: levels 1-5, divisors 26 and 169); art. 7 from the 2021-2024 text, which the renewal does not amend.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
           "variant": "structural_rules_from_2021_text",
-          "remediation": "Verify the structural rules against the 2025 renewal text."
+          "remediation": "Resolved: renewal of 4 December 2025 read on 2026-11-15.",
+          "status": "resolved"
         }
       },
       {
@@ -227,6 +228,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules.comporto_windows"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-sistemazioni-idraulico-forestali-operai-renewal-2025",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Rules of the 2021 text against the OCR of the renewal signed on 4 December 2025, from the research of a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+            "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
+          }
+        ],
+        "findings": [
+          "Arts. 49 (levels 1-5, parameters 100-123) and 52 (divisors 26 and 169) are reproduced in the renewal (PDF pp. 20-22); art. 7 is not amended."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ]
@@ -1061,7 +1083,7 @@
     "source": "https://redigo.info/",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "67db896893aae96dcbc9ea65b25503be5193707a14aa42c7ea67624d7bb4f311",
+    "source_hash": "03a3dda7e767285f8ebd0e590698e1fc89811cedcde0980d9672f80bfe3d3a03",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
