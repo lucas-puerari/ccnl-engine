@@ -122,6 +122,10 @@
           },
           "remediation": "Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/agricoltura.json derived, then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Art. 44, CCNL 2021-2024, PDF p. 75, https://www.flai.it/wp-content/uploads/2023/05/CCNL-Idraulico-Forestale-2023.pdf, sha256 fb09d06825c27a3abb8081bec9e1645f17e51920559a6406323225d26b549461; not changed by the 2025 renewal): 'Nei casi di infortunio o di malattia l'impiegato ha diritto alla conservazione del posto per un periodo massimo di 12 mesi, anche per più eventi, nell'arco degli ultimi 24 mesi.' Modelled as sickness_rules.comporto_windows (365 days within 24 months)."
       }
     ]
   },
@@ -188,6 +192,28 @@
         "independence": "separate_session",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-sistemazioni-idraulico-forestali-impiegati-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/05/CCNL-Idraulico-Forestale-2023.pdf",
+            "sha256": "fb09d06825c27a3abb8081bec9e1645f17e51920559a6406323225d26b549461"
+          }
+        ],
+        "findings": [
+          "Added the comporto window of art. 44 (12 months within the last 24); the pay bands summed over 12 months stay outside the model."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
+          "coverage.notes"
         ]
       }
     ]
@@ -1325,7 +1351,7 @@
     "source": "https://www.lavoro-economia.it/?c=9",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "a8bc24d67ef695e1c93520f905d183b9aae9259870bfb972ce9f9e0b23889197",
+    "source_hash": "7383d93de5833cc850b9a46122954ed6183268e4c4190789be56382a2a3792af",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -1512,7 +1538,14 @@
           "verification_status": "unverified",
           "effective_from": "2021-01-01"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 24,
+          "comporto_days": 365
+        }
+      ]
     }
   }
 }
