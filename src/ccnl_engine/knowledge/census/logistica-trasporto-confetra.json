@@ -227,22 +227,6 @@
       }
     },
     {
-      "id": "sixth_day_overtime",
-      "institute": "overtime",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SIXTH DAY: Art. 13 c. 6 (p. 39) pays 50% for the overtime of the sixth day of a non-travelling worker whose normal week is spread over five days; the overtime bands have no such kind, so that overtime takes the 30% of the weekday band.",
-      "calculation": "ccnl/logistica-trasporto-confetra:coverage.notes",
-      "state": "absent",
-      "remediation": "Add a sixth-day kind to the overtime event and a 50% band, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "logistica-trasporto-confetra/sixth_day_overtime"
-        ]
-      }
-    },
-    {
       "id": "sunday_holiday_ccnl_clause",
       "institute": "sunday_holiday",
       "variant": "all",
