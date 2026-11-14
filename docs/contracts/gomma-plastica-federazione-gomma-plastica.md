@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary |
+| **Limits of this contract** | base_salary, sickness |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | — |
-| **Last review** | 2026-11-06 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2028-12-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The TEM minimi of the ten levels against the minimi tables of the renewals of 26 January 2023 (2023-2025) and 10 December 2025 (2026-2028), both published by FILCTEM-CGIL. | corrected | Rinnovo 26 gennaio 2023 (signed scan with the integration of 2 February 2023, PDF p. 15, read on the page image): Art. 17 c. 3 prints the minimi of levels I-Q from 1/1/2023, 1/1/2024 and 1/4/2025. The 30 values of the file match.<br>Rinnovo 10 dicembre 2025: the signed ipotesi (45-page scan, PDF p. 31) states only the level F increment (60 from 1/01/2026, 60 from 1/04/2027, 60 from 1/04/2028, 15 from 1/12/2028); FILCTEM-CGIL publishes the per-level table of Art. 17 as a separate one-page file, which prints the minimi of the ten levels on the four dates and the per-level increments. The 40 values of the file were derived parametrically from level F; 11 differ by one or two cents from the printed table and are corrected.<br>The file's base_salary is the conglobated TEM (Art. 17 Paragrafo A), the same item the tables print. The ruleset names a source published by FILCTEM-CGIL, a signatory: source_type contracting_party.<br>Corrected to the printed table: I 2027-04-01: 1662.67 -> 1662.66; I 2028-04-01: 1710.60 -> 1710.59; I 2028-12-01: 1722.59 -> 1722.57; G 2028-04-01: 1995.28 -> 1995.27; E 2027-04-01: 2136.42 -> 2136.43; E 2028-04-01: 2198.02 -> 2198.03; E 2028-12-01: 2213.42 -> 2213.43; D 2028-04-01: 2290.45 -> 2290.44; D 2028-12-01: 2306.50 -> 2306.49; B 2028-04-01: 2350.47 -> 2350.48; B 2028-12-01: 2366.94 -> 2366.95. |
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: art. 2 par. A c. 9 and art. 19 c. 1 of the stesura of 12 April 2021 (pp. 13, 30). | corrected | Apprentices are paid the minimo contrattuale of their level alone; the scatti are a separate element of the pay: none during the apprenticeship. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the OCR of the source. | corrected | Added the comporto window; the pay bands of the CCNL are recorded as a limitation. |
 
 ## Salary table
 
@@ -118,6 +119,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the monthly apprenticeship table and correct the 12/12 period boundaries.
 
+!!! warning "gomma-plastica-federazione-gomma-plastica/sickness_pay_bands · sickness · impact yes · open"
+    SICKNESS PAY BANDS (art. 39): 100% net for the first 3, 4 or 5 months by seniority (up to 3, up to 6, over 6 years), then 2/3 for 3, 5 or 7 months while INPS pays, 50% otherwise within the comporto; the file pays 100% for 180 days of an episode.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the 100%, 2/3 and 50% bands of art. 39 by seniority.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -131,13 +139,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -313,6 +314,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     INPS: reuses 2026-industria.json (Confindustria/CIGO). Federazione Gomma Plastica is a member of Confindustria; CIGO applicable pursuant to D.Lgs. 148/2015.
     
     ADDITIONAL MONTHS: 13 (tredicesima). A quattordicesima is not provided for by the CCNL Gomma e Plastica Industria.
+    
+    COMPORTO OF SEVERAL ILLNESSES (Art. 39, chiarimento a verbale 2° (testo definitivo 2021, scanned), PDF p. 67, https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138012, sha256 2ec73cf8b46366b973eb3e1a6f5067071f6c070208969fd55a0c5183f61120d4): 'I periodi di conservazione del posto di cui al 8° comma, nel caso di più assenze, si intendono riferiti ad un arco temporale di 36 mesi' Modelled as sickness_rules.comporto_windows (6, 9 and 12 months as 183, 274 and 365 days; the 'arco temporale' read as the 36 months before the day).
     
     HOURLY DIVISOR 173 derived from the standard formula (40h/week x 52 / 12 = 173.33 rounded to 173); secondary sources (contratticcnl.it, fiscoetasse.com) confirm the 40h week but the contractual clause was not retrieved directly.
     

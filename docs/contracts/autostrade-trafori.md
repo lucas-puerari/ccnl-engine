@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | — |
+| **Limits of this contract** | sickness |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-01-01 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-11-06 | claude-opus-5-5 (ai) | Art. 10 apprenticeship of the stesura of 5 July 2024 (pp. 20-21, OCR). Art. 32 c. 1 elements of the retribuzione (p. 54, OCR). | corrected | Apprentices are paid 80/85/95% over 36 months, not 100% and not by under-classification as the note claimed.<br>Apprentices accrue the level seniority increments, scaled by the apprenticeship percentage (art. 32 c. 1 a) puts them in the stipendio). |
 | 2026-11-07 | claude-opus-5-5 (ai) | Minimi tabellari 2023-2025 (p. 168) and I.D.R. 2021 (p. 169) of the 5 July 2024 text, read on the page image. | corrected | The 2023-2024 minimums were shifted by one tranche (the 1/8/2023 amounts dated 1 January 2023, and so on) and the August tranches were missing: periods rebuilt on the printed dates 31/07/2023, 1/8/2023, 1/1/2024, 1/8/2024, 1/1/2025.<br>Cent errors on C plus, B1 plus and B plus corrected to the printed amounts.<br>I.D.R. 2021 is due from December 2021: before January 2024 it is the printed amount of the level, not zero (D 10,14, not 10,13). |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the OCR of the source. | corrected | Added the comporto window; the pay bands of the CCNL are recorded as a limitation. |
 
 ## Salary table
 
@@ -114,6 +115,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: percentages of art. 10, read on 2026-11-06.
 
+!!! warning "autostrade-trafori/sickness_pay_bands · sickness · impact yes · open"
+    SICKNESS PAY BANDS (art. 21 c. 5): 100% for 183 days and 75% for 182 more (213 + 213 above 10 years), over the same 547 days; the file pays 100% for 180 days of an episode, so the 75% band is not paid.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the 100%/75% bands of art. 21 by seniority over the 547 days before the last episode.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -134,13 +142,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -312,6 +313,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Levels B+, B1+, C+ are parametrically derived as D × param/100 for the 2023 contract tranches (params: B+=192, B1+=176, C+=155). Verified against D values to within rounding. 2026 contract values taken from research agent sources.
     
     IDR 2021: modeled as 0.00 for 01/01/2023–01/08/2023 (element not yet established in first 2023 tranches). Period 1 values from 01/08/2023; period 2 from 01/01/2024 onwards.
+    
+    COMPORTO OF SEVERAL ILLNESSES (Art. 21 cc. 5, 8 (accordo 26 giugno 2026, scanned), PDF p. 17-18, https://www.filtcgil.it/images/CCNL_Filiera_AT_Accordo_rinnovo_26062026.pdf, sha256 17fb36b98ed7359b9b46111225a4cc30936fb97e8e62e6cbffbad71341bdddd7): 'per anzianità di servizio fino a 10 anni: conservazione del posto per 365 giorni e corresponsione dell'intera retribuzione per 183 giorni e del 75% di essa per altri 182 giorni; per anzianità di servizio oltre 10 anni: conservazione del posto per 426 giorni e corresponsione dell'intera retribuzione per 213 giorni e del 75% di essa per altri 213 giorni. [...] si terrà conto delle assenze complessivamente verificatesi nei 547 giorni continuativi precedenti ogni ultimo episodio morboso.' Modelled as sickness_rules.comporto_windows (365 or 426 days within the 547 days before the day).
     
 
 ## Raw data

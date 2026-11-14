@@ -122,6 +122,23 @@
       {
         "kind": "info",
         "text": "ADDITIONAL MONTHS: 13 (tredicesima). A quattordicesima is not provided for by the CCNL Gomma e Plastica Industria."
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Art. 39, chiarimento a verbale 2° (testo definitivo 2021, scanned), PDF p. 67, https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138012, sha256 2ec73cf8b46366b973eb3e1a6f5067071f6c070208969fd55a0c5183f61120d4): 'I periodi di conservazione del posto di cui al 8° comma, nel caso di più assenze, si intendono riferiti ad un arco temporale di 36 mesi' Modelled as sickness_rules.comporto_windows (6, 9 and 12 months as 183, 274 and 365 days; the 'arco temporale' read as the 36 months before the day)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SICKNESS PAY BANDS (art. 39): 100% net for the first 3, 4 or 5 months by seniority (up to 3, up to 6, over 6 years), then 2/3 for 3, 5 or 7 months while INPS pays, 50% otherwise within the comporto; the file pays 100% for 180 days of an episode.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sickness_pay_bands",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the 100%, 2/3 and 50% bands of art. 39 by seniority."
+        }
       }
     ]
   },
@@ -177,6 +194,28 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-gomma-plastica-federazione-gomma-plastica-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the OCR of the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138012",
+            "sha256": "2ec73cf8b46366b973eb3e1a6f5067071f6c070208969fd55a0c5183f61120d4"
+          }
+        ],
+        "findings": [
+          "Added the comporto window; the pay bands of the CCNL are recorded as a limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.comporto_windows",
+          "coverage.notes"
         ]
       }
     ]
@@ -2950,7 +2989,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
     "verification_status": "unverified",
-    "source_hash": "5e4f571dfacf1ebda90f68770b9765d97d893812dda6239cd791690adb0b72d8",
+    "source_hash": "9ca813cd3b77f646ee556e444df6ec4e7caf99216c3dec6bf1faae7da0828aa7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3249,7 +3288,24 @@
           "verification_status": "unverified",
           "effective_from": "2022-01-01"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 36,
+          "comporto_days": 183
+        },
+        {
+          "seniority_months_from": 36,
+          "window_months": 36,
+          "comporto_days": 274
+        },
+        {
+          "seniority_months_from": 72,
+          "window_months": 36,
+          "comporto_days": 365
+        }
+      ]
     }
   }
 }

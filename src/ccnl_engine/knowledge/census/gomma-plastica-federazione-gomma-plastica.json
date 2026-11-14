@@ -257,18 +257,18 @@
       }
     },
     {
-      "id": "sickness_cumulation_window",
+      "id": "sickness_pay_bands",
       "institute": "sickness",
       "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.",
-      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
-      "state": "unverified",
-      "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SICKNESS PAY BANDS (art. 39): 100% net for the first 3, 4 or 5 months by seniority (up to 3, up to 6, over 6 years), then 2/3 for 3, 5 or 7 months while INPS pays, 50% otherwise within the comporto; the file pays 100% for 180 days of an episode.",
+      "calculation": "ccnl/gomma-plastica-federazione-gomma-plastica:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the 100%, 2/3 and 50% bands of art. 39 by seniority.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "sickness_cumulation_window"
+          "gomma-plastica-federazione-gomma-plastica/sickness_pay_bands"
         ]
       }
     },

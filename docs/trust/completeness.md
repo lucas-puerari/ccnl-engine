@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 357 open limitations (357 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 359 open limitations (359 with a monetary impact).
 
 ## Declared window
 
@@ -63,7 +63,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [autoferrotranvieri-internavigatori](../contracts/autoferrotranvieri-internavigatori.md) | `trasporti-logistica` | exploratory | — | 18 rows | 18 open requirements; 1 weak rule; 14 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [autorimesse-ic35](../contracts/autorimesse-ic35.md) | `servizi-automobilistici` | exploratory | — | 21 rows | 21 open requirements; 2 weak rules; 15 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
 | [autoscuole-unasca](../contracts/autoscuole-unasca.md) | `servizi-automobilistici` | exploratory | — | 16 rows | 16 open requirements; 1 weak rule; 13 monetary limitations; 18 non-native capabilities |
-| [autostrade-trafori](../contracts/autostrade-trafori.md) | `trasporti-logistica` | exploratory | — | 19 rows | 19 open requirements; 2 weak rules; 15 monetary limitations; 18 non-native capabilities |
+| [autostrade-trafori](../contracts/autostrade-trafori.md) | `trasporti-logistica` | exploratory | — | 19 rows | 19 open requirements; 2 weak rules; 14 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [aziende-termali-federterme](../contracts/aziende-termali-federterme.md) | `turismo` | exploratory | — | 19 rows | 19 open requirements; 1 weak rule; 16 monetary limitations; 20 non-native capabilities |
 | [bancari-abi](../contracts/bancari-abi.md) | `credito` | exploratory | 2026-03-31 | 21 rows | 21 open requirements; 16 monetary limitations; 3 outside_input limitations; 22 non-native capabilities |
 | [bcc-credito-cooperativo](../contracts/bcc-credito-cooperativo.md) | `credito` | exploratory | — | 18 rows | 18 open requirements; 14 monetary limitations; 2 outside_input limitations; 21 non-native capabilities |
@@ -111,7 +111,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [funzioni-centrali-aran](../contracts/funzioni-centrali-aran.md) | `pubblico-impiego` | reviewed | — | 15 rows | 15 open requirements; 13 monetary limitations; 18 non-native capabilities |
 | [funzioni-locali-aran](../contracts/funzioni-locali-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 15 rows | 15 open requirements; 13 monetary limitations; 18 non-native capabilities |
 | [gas-acqua-utilitalia](../contracts/gas-acqua-utilitalia.md) | `energia-utilities` | exploratory | — | 18 rows | 18 open requirements; 1 weak rule; 15 monetary limitations; 19 non-native capabilities |
-| [gomma-plastica-federazione-gomma-plastica](../contracts/gomma-plastica-federazione-gomma-plastica.md) | `chimica` | exploratory | — | 19 rows | 19 open requirements; 2 weak rules; 15 monetary limitations; 19 non-native capabilities |
+| [gomma-plastica-federazione-gomma-plastica](../contracts/gomma-plastica-federazione-gomma-plastica.md) | `chimica` | exploratory | — | 19 rows | 19 open requirements; 2 weak rules; 14 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [grafica-editoria-aieg](../contracts/grafica-editoria-aieg.md) | `carta-grafica` | exploratory | — | 16 rows | 16 open requirements; 1 weak rule; 13 monetary limitations; 18 non-native capabilities |
 | [igiene-ambientale-utilitalia](../contracts/igiene-ambientale-utilitalia.md) | `energia-utilities` | exploratory | — | 21 rows | tables from 2026-02-01; 21 open requirements; 1 weak rule; 18 monetary limitations; 20 non-native capabilities |
 | [impianti-sportivi-sport](../contracts/impianti-sportivi-sport.md) | `sport` | exploratory | — | 21 rows | 21 open requirements; 2 weak rules; 16 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |

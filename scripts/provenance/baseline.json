@@ -652,6 +652,9 @@
       "autorimesse-ic35/meal_voucher",
       "autorimesse-ic35/parental_top_up_scope"
     ],
+    "agreement/autostrade-trafori.json": [
+      "autostrade-trafori/sickness_pay_bands"
+    ],
     "agreement/aziende-termali-federterme.json": [
       "aziende-termali-federterme/apprentice_seniority",
       "aziende-termali-federterme/ebiterme_fontur_funds",
@@ -860,7 +863,8 @@
       "gas-acqua-utilitalia/industria_rates_proxy"
     ],
     "agreement/gomma-plastica-federazione-gomma-plastica.json": [
-      "gomma-plastica-federazione-gomma-plastica/apprenticeship_period_boundaries"
+      "gomma-plastica-federazione-gomma-plastica/apprenticeship_period_boundaries",
+      "gomma-plastica-federazione-gomma-plastica/sickness_pay_bands"
     ],
     "agreement/igiene-ambientale-utilitalia.json": [
       "igiene-ambientale-utilitalia/apprentice_seniority",
