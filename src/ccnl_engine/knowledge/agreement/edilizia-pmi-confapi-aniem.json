@@ -216,6 +216,23 @@
       {
         "kind": "info",
         "text": "COMPORTO OF SEVERAL ILLNESSES, OPERAI (Art. 26 (testo armonizzato 15 aprile 2025), PDF p. 60, https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf, sha256 25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba): 'Nel caso di più malattie o ricadute nella stessa malattia, l'operaio ha diritto alla conservazione del posto per un periodo massimo complessivo di nove mesi nell'arco di 20 mesi consecutivi. L'operaio con un'anzianità superiore a tre anni e mezzo ha diritto alla conservazione del posto per un periodo massimo complessivo di 12 mesi nell'arco di 24 mesi consecutivi.' Modelled for the operai (sickness_rules_by_category.operaio, the base rule with the windows): 274 days within 20 months, 365 within 24 above 42 months of seniority. The impiegati keep the base rule: their 9, 12 and 15 months within 30 months by seniority and their pay steps are not modelled (engine limitation sickness_cumulation_window)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SICK PAY OF THE IMPIEGATI (Art. 66, PDF pp. 96-97): full pay for 6 months, then 50% for the next 3 (2 to 6 years of seniority) or 75% for 3 and 50% for 3 (above 6 years), and for the 3 additional months of several illnesses the first in full and the others at 50%; the engine pays every day of the comporto in full.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sickness_pay_bands",
+          "applies_when": {
+            "trigger": "outside_input",
+            "worker_categories": [
+              "impiegato",
+              "quadro"
+            ]
+          },
+          "remediation": "Pay the 75% and 50% months of art. 66 by seniority after the first 6 months of sickness."
+        }
       }
     ]
   },
@@ -1899,7 +1916,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "f74ca9fbf290699c7da8698b5c0f55d24891e0f5ad03b5d713e29ac203fd77ed",
+    "source_hash": "a4e10b010e017686a65677237393cfd5357dccf4e75707b9e1aff0f8b1ebe953",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
@@ -2273,6 +2290,126 @@
             "comporto_days": 365
           }
         ]
+      },
+      "impiegato": {
+        "carenza_integration_rate": "1",
+        "full_pay_integration_rate": "1",
+        "comporto_bands": [
+          {
+            "seniority_months_from": 0,
+            "comporto_days": 183
+          },
+          {
+            "seniority_months_from": 24,
+            "comporto_days": 274
+          },
+          {
+            "seniority_months_from": 72,
+            "comporto_days": 365
+          }
+        ],
+        "comporto_windows": [
+          {
+            "seniority_months_from": 0,
+            "window_months": 30,
+            "comporto_days": 274
+          },
+          {
+            "seniority_months_from": 24,
+            "window_months": 30,
+            "comporto_days": 365
+          },
+          {
+            "seniority_months_from": 72,
+            "window_months": 30,
+            "comporto_days": 456
+          }
+        ],
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-edilizia-aniem-confapi-armonizzato-2025",
+              "title": "CCNL edilizia ANIEM-CONFAPI, testo armonizzato 15 aprile 2025 (FILLEA-CGIL)",
+              "kind": "associazione",
+              "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+              "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
+            },
+            "page": "96-97",
+            "section": "Art. 66 Malattia (impiegati)",
+            "quote": "Nel caso di più malattie o di ricadute nella stessa malattia non potranno essere superati i seguenti periodi massimi complessivi di conservazione del posto: a) mesi 9 in un periodo di 30 mesi per gli aventi anzianità di cui al punto 1); b) mesi 12 in un periodo di 30 mesi per gli aventi anzianità di cui al punto 2); c) mesi 15 in un periodo di 30 mesi per gli aventi anzianità di cui al punto 3)."
+          },
+          "extraction": {
+            "method": "manual",
+            "extraction_timestamp": "2026-11-15T00:00:00",
+            "verification_status": "verified",
+            "effective_from": "2025-04-15",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "review_id": "2026-11-15-ai-edilizia-pmi-confapi-aniem-impiegati-comporto"
+          },
+          "transformation": "One illness: 6, 9 or 12 months (183, 274, 365 days) up to 2 years of seniority, to 6, above 6; several illnesses: 9, 12 or 15 months (274, 365, 456 days) within 30 months; full pay from the first day."
+        }
+      },
+      "quadro": {
+        "carenza_integration_rate": "1",
+        "full_pay_integration_rate": "1",
+        "comporto_bands": [
+          {
+            "seniority_months_from": 0,
+            "comporto_days": 183
+          },
+          {
+            "seniority_months_from": 24,
+            "comporto_days": 274
+          },
+          {
+            "seniority_months_from": 72,
+            "comporto_days": 365
+          }
+        ],
+        "comporto_windows": [
+          {
+            "seniority_months_from": 0,
+            "window_months": 30,
+            "comporto_days": 274
+          },
+          {
+            "seniority_months_from": 24,
+            "window_months": 30,
+            "comporto_days": 365
+          },
+          {
+            "seniority_months_from": 72,
+            "window_months": 30,
+            "comporto_days": 456
+          }
+        ],
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-edilizia-aniem-confapi-armonizzato-2025",
+              "title": "CCNL edilizia ANIEM-CONFAPI, testo armonizzato 15 aprile 2025 (FILLEA-CGIL)",
+              "kind": "associazione",
+              "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+              "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
+            },
+            "page": "96-97",
+            "section": "Art. 66 Malattia (impiegati)",
+            "quote": "Nel caso di più malattie o di ricadute nella stessa malattia non potranno essere superati i seguenti periodi massimi complessivi di conservazione del posto: a) mesi 9 in un periodo di 30 mesi per gli aventi anzianità di cui al punto 1); b) mesi 12 in un periodo di 30 mesi per gli aventi anzianità di cui al punto 2); c) mesi 15 in un periodo di 30 mesi per gli aventi anzianità di cui al punto 3)."
+          },
+          "extraction": {
+            "method": "manual",
+            "extraction_timestamp": "2026-11-15T00:00:00",
+            "verification_status": "verified",
+            "effective_from": "2025-04-15",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "review_id": "2026-11-15-ai-edilizia-pmi-confapi-aniem-impiegati-comporto"
+          },
+          "transformation": "One illness: 6, 9 or 12 months (183, 274, 365 days) up to 2 years of seniority, to 6, above 6; several illnesses: 9, 12 or 15 months (274, 365, 456 days) within 30 months; full pay from the first day. Quadri: art. 76 (PDF p. 102) applies the rules of the impiegati of 7th level."
+        }
       }
     }
   },
@@ -2421,6 +2558,28 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules_by_category"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-edilizia-pmi-confapi-aniem-impiegati-comporto",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of the impiegati of art. 66 against the research of a separate model session; quote checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+            "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
+          }
+        ],
+        "findings": [
+          "Added the impiegato rule: comporto of one illness and of several within 30 months by seniority; the reduced pay months are recorded as a limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules_by_category.impiegato",
+          "coverage.notes"
         ]
       }
     ],

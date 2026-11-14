@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 354 open limitations (354 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 355 open limitations (355 with a monetary impact).
 
 ## Declared window
 
@@ -95,7 +95,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [edilizia-ance-impiegati](../contracts/edilizia-ance-impiegati.md) | `edilizia` | production | — | 27 rows | 27 open requirements; 19 monetary limitations; 6 outside_input limitations; 21 non-native capabilities |
 | [edilizia-artigianato-cna](../contracts/edilizia-artigianato-cna.md) | `edilizia` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 21 non-native capabilities |
 | [edilizia-cooperative-ancpl](../contracts/edilizia-cooperative-ancpl.md) | `edilizia` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 16 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
-| [edilizia-pmi-confapi-aniem](../contracts/edilizia-pmi-confapi-aniem.md) | `edilizia` | exploratory | — | 28 rows | 28 open requirements; 1 weak rule; 23 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
+| [edilizia-pmi-confapi-aniem](../contracts/edilizia-pmi-confapi-aniem.md) | `edilizia` | exploratory | — | 29 rows | 29 open requirements; 1 weak rule; 23 monetary limitations; 3 outside_input limitations; 21 non-native capabilities |
 | [elettrico-elettricita-futura](../contracts/elettrico-elettricita-futura.md) | `energia-utilities` | exploratory | — | 18 rows | 18 open requirements; 1 weak rule; 15 monetary limitations; 18 non-native capabilities |
 | [energia-petrolio-confindustria](../contracts/energia-petrolio-confindustria.md) | `energia-utilities` | exploratory | — | 17 rows | 17 open requirements; 1 weak rule; 14 monetary limitations; 18 non-native capabilities |
 | [enti-ricerca-aran](../contracts/enti-ricerca-aran.md) | `pubblico-impiego` | exploratory | — | 18 rows | 18 open requirements; 1 weak rule; 15 monetary limitations; 20 non-native capabilities |

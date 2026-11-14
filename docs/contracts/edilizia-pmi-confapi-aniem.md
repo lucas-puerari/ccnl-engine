@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, pension_fund_contribution, seniority, territorial_supplement |
+| **Limits of this contract** | base_salary, bilateral_funds, pension_fund_contribution, seniority, sickness, territorial_supplement |
 
-10 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+11 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Art. 65, the elements of the monthly pay and the TFR article, against the loyalty premium encoding, by a separate model session. | corrected | Confirmed the 20 years, the anniversary and the one monthly pay.<br>Corrected: the TFR article is art. 72; the excluded conventional seniority and the 29 February anniversary are recorded as limitation loyalty_service_count. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 65 uninterrupted actual service and hire anniversary against the cached PDF page 96. | corrected | A separate actual uninterrupted service start can exclude conventional military, combatant and similar seniority without moving the hire anniversary; the common-year leap-day anniversary remains unspecified. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses of the operai, against the research of a separate model session; quote checked on the source text. | corrected | Added the operai comporto windows (9 months in 20, 12 in 24 above three and a half years). |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of the impiegati of art. 66 against the research of a separate model session; quote checked on the source. | corrected | Added the impiegato rule: comporto of one illness and of several within 30 months by seniority; the reduced pay months are recorded as a limitation. |
 
 ## Salary table
 
@@ -185,6 +186,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; the run takes the engine code path.
 
     **Remediation:** Source the anniversary rule for a 29 February hire before changing the fallback.
+
+!!! warning "edilizia-pmi-confapi-aniem/sickness_pay_bands · sickness · impact yes · open"
+    SICK PAY OF THE IMPIEGATI (Art. 66, PDF pp. 96-97): full pay for 6 months, then 50% for the next 3 (2 to 6 years of seniority) or 75% for 3 and 50% for 3 (above 6 years), and for the 3 additional months of several illnesses the first in full and the others at 50%; the engine pays every day of the comporto in full.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Pay the 75% and 50% months of art. 66 by seniority after the first 6 months of sickness.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

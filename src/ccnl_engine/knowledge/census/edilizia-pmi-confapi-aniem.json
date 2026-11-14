@@ -402,6 +402,22 @@
       }
     },
     {
+      "id": "sickness_pay_bands",
+      "institute": "sickness",
+      "variant": "impiegato_quadro",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SICK PAY OF THE IMPIEGATI (Art. 66, PDF pp. 96-97): full pay for 6 months, then 50% for the next 3 (2 to 6 years of seniority) or 75% for 3 and 50% for 3 (above 6 years), and for the 3 additional months of several illnesses the first in full and the others at 50%; the engine pays every day of the comporto in full.",
+      "calculation": "ccnl/edilizia-pmi-confapi-aniem:coverage.notes",
+      "state": "absent",
+      "remediation": "Pay the 75% and 50% months of art. 66 by seniority after the first 6 months of sickness.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-pmi-confapi-aniem/sickness_pay_bands"
+        ]
+      }
+    },
+    {
       "id": "sunday_holiday_ccnl_clause",
       "institute": "sunday_holiday",
       "variant": "all",
