@@ -63,8 +63,16 @@
       },
       {
         "kind": "simplification",
-        "text": "Quadri (livello 1A Q) and V.P. variants not modeled. Only the 8 standard levels are implemented.",
-        "monetary_impact": "no"
+        "text": "VIAGGIATORI O PIAZZISTI (art. 21; protocollo aggiuntivo, TU 2019-2023 p. 63-64): V.P. of 1st and 2nd class are classified at level 2 and level 3 and take their minimi, contingenza, IAR, EDR and scatti (renewal 2024 p. 49: same parameters 165 and 130). Not modelled: the average of the commissions of the previous 12 months in the 13th month and the ferie, the 14th month computed on minimo, contingenza and scatti only, the 6.50% cash-handling allowance (12 months) and the diaria, 50% of which is pay.",
+        "monetary_impact": "yes",
+        "capability": "base_salary",
+        "limitation": {
+          "variant": "travelling_salesmen_protocol",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the commissions of a viaggiatore o piazzista and the protocol's 13th, 14th, cash-handling and diaria rules."
+        }
       },
       {
         "kind": "info",
@@ -73,6 +81,10 @@
       {
         "kind": "info",
         "text": "APPRENTICE SENIORITY (Art. 24 - Apprendistato professionalizzante, p. 34): no increment during the apprenticeship; a third of it counts for the increments when the employment continues, which the caller states in Employment.seniority."
+      },
+      {
+        "kind": "info",
+        "text": "QUADRI (art. 23, TU 2019-2023 p. 33): quadri are found within levels 1A and 1, not by the level alone; the indennità di funzione of at least EUR 120 (1A) and EUR 90 (1) is paid with the role 'quadro', on every monthly payment and in the TFR."
       }
     ]
   },
@@ -139,6 +151,29 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-alimentaristi-cooperative-e016-quadri",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 21 (V.P. classification), art. 23 (quadri) and the V.P. protocol of the TU 2019-2023, against the research of a separate model session and the 2024 renewal p. 49.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/07/CCNL-cooperazione-alimentare-2023.pdf",
+            "sha256": "a38eb5c832d99cddb4c6fe1b31c24b72291c8362b8633aa3c523c6a189fc043a"
+          }
+        ],
+        "findings": [
+          "Added the indennità di funzione of the quadri, EUR 120 at 1A and EUR 90 at level 1, role 'quadro'.",
+          "V.P. are level 2 and 3 workers; the open note becomes the travelling_salesmen_protocol limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels[*].fixed_allowances",
+          "coverage.notes"
         ]
       }
     ]
@@ -2783,6 +2818,47 @@
               "effective_from": "2020-01-01"
             }
           }
+        },
+        {
+          "code": "IND_FUNZIONE_QUADRO",
+          "description": "Indennità di funzione dei quadri di livello 1 (Art. 23), minimum, on every monthly payment and in the TFR",
+          "months_per_year": 14,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "90.00"
+              }
+            ]
+          },
+          "role": "quadro",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "flai-ccnl-cooperazione-alimentare-2019-2023",
+                "title": "CCNL cooperazione alimentare 2019-2023, testo unico (FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2023/07/CCNL-cooperazione-alimentare-2023.pdf",
+                "sha256": "a38eb5c832d99cddb4c6fe1b31c24b72291c8362b8633aa3c523c6a189fc043a"
+              },
+              "page": "33",
+              "section": "Art. 23 - Quadri",
+              "quote": "A decorrere dal 1.6.2007 la misura minima della indennità di funzione è di €. 120,00 (centoventi) per i quadri di livello 1A e di €. 90,00 (novanta) per i quadri di primo livello. Si concorda inoltre che dette indennità saranno corrisposte per tutte le mensilità contrattualmente previste e conteggiate ai fini del TFR."
+            },
+            "transformation": "EUR 90.00 a month for a worker of level 1 with the qualifica of quadro (role 'quadro': the level alone does not make a quadro), on the 14 monthly payments, in the TFR base. The minimum: a higher company amount is an individual element. The renewal of 14 May 2024 keeps it among the TFR elements (art. 57) and does not change the amounts.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T12:00:00Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T12:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentaristi-cooperative-e016-quadri"
+            }
+          }
         }
       ],
       "provenance": {
@@ -3161,6 +3237,47 @@
               "extraction_timestamp": "2026-09-07T15:03:36",
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
+            }
+          }
+        },
+        {
+          "code": "IND_FUNZIONE_QUADRO",
+          "description": "Indennità di funzione dei quadri di livello 1A (Art. 23), minimum, on every monthly payment and in the TFR",
+          "months_per_year": 14,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2023-12-01",
+                "valid_until": null,
+                "value": "120.00"
+              }
+            ]
+          },
+          "role": "quadro",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "flai-ccnl-cooperazione-alimentare-2019-2023",
+                "title": "CCNL cooperazione alimentare 2019-2023, testo unico (FLAI-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2023/07/CCNL-cooperazione-alimentare-2023.pdf",
+                "sha256": "a38eb5c832d99cddb4c6fe1b31c24b72291c8362b8633aa3c523c6a189fc043a"
+              },
+              "page": "33",
+              "section": "Art. 23 - Quadri",
+              "quote": "A decorrere dal 1.6.2007 la misura minima della indennità di funzione è di €. 120,00 (centoventi) per i quadri di livello 1A e di €. 90,00 (novanta) per i quadri di primo livello. Si concorda inoltre che dette indennità saranno corrisposte per tutte le mensilità contrattualmente previste e conteggiate ai fini del TFR."
+            },
+            "transformation": "EUR 120.00 a month for a worker of level 1A with the qualifica of quadro (role 'quadro': the level alone does not make a quadro), on the 14 monthly payments, in the TFR base. The minimum: a higher company amount is an individual element. The renewal of 14 May 2024 keeps it among the TFR elements (art. 57) and does not change the amounts.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T12:00:00Z",
+              "effective_from": "2023-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T12:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentaristi-cooperative-e016-quadri"
             }
           }
         }
@@ -3560,7 +3677,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
     "verification_status": "unverified",
-    "source_hash": "5851d0510fccc7ec99d58540ba23f94f71a1ee8f4197d96bba3e50d45e818287",
+    "source_hash": "6ea4b06a9cc004507dcd62a9f02e1b6f56640c0811104c065f5137439856a972",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

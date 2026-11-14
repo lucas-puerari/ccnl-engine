@@ -150,7 +150,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/alimentaristi-cooperative-e016",
       "ruleset_version": "2026.2",
-      "source_hash": "5851d0510fccc7ec99d58540ba23f94f71a1ee8f4197d96bba3e50d45e818287",
+      "source_hash": "6ea4b06a9cc004507dcd62a9f02e1b6f56640c0811104c065f5137439856a972",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/alimentaristi-cooperative-e016.json.gz"
@@ -2561,7 +2561,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "1159f2847ed73a203f5e99feb77ea9c883495d6c9fbd8768778697aa6a2dc84f",
+      "source_hash": "4617ff6dde6aeb54b3470478beaf9947283ed033ac2ce9b6913281706b262602",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/alimentaristi-cooperative-e016.json.gz",

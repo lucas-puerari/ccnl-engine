@@ -32,8 +32,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ✅ |
-| **Limits of this contract** | — |
+| **Core payroll path** | ⚠️ |
+| **Limits of this contract** | base_salary |
 
 1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 42 verified / 29 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 44 verified / 29 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-05-14 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 47 - Tredicesima e quattordicesima mensilità (p. 52): "Nel caso di inizio o cessazione del rapporto durante il corso dell’anno il lavoratore non in prova avrà diritto a tanti dodicesimi dell’ammontare della tredicesima e della quattordicesima mensilità per quanti sono i mesi interi di servizio prestato. Le frazioni di mese non superiori a quindici giorni non saranno calcolate, mentre saranno calcolate come mese intero le frazioni superiori ai quindici giorni.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 41 (pp. 45-47): comporto 6 months up to 5 years of seniority within the 17 months before, 12 months above within the 24 months before; 6 months of whole net pay and, above 5 years, 6 of half. The file kept 180 days of one illness: corrected to a cumulation with two seniority bands. |
 | 2026-11-07 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 72 values read identically by both readings and equal to the file. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 21 (V.P. classification), art. 23 (quadri) and the V.P. protocol of the TU 2019-2023, against the research of a separate model session and the 2024 renewal p. 49. | corrected | Added the indennità di funzione of the quadri, EUR 120 at 1A and EUR 90 at level 1, role 'quadro'.<br>V.P. are level 2 and 3 workers; the open note becomes the travelling_salesmen_protocol limitation. |
 
 ## Salary table
 
@@ -111,6 +112,13 @@ Destination levels: `1`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "alimentaristi-cooperative-e016/travelling_salesmen_protocol · base_salary · impact yes · open"
+    VIAGGIATORI O PIAZZISTI (art. 21; protocollo aggiuntivo, TU 2019-2023 p. 63-64): V.P. of 1st and 2nd class are classified at level 2 and level 3 and take their minimi, contingenza, IAR, EDR and scatti (renewal 2024 p. 49: same parameters 165 and 130). Not modelled: the average of the commissions of the previous 12 months in the 13th month and the ferie, the 14th month computed on minimo, contingenza and scatti only, the 6.50% cash-handling allowance (12 months) and the diaria, 50% of which is pay.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the commissions of a viaggiatore o piazzista and the protocol's 13th, 14th, cash-handling and diaria rules.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -280,11 +288,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the CCNL clause on the holidays falling on a Sunday and record it as work_rules.sunday_holidays.
 
-### Without monetary impact
-
-!!! note ""
-    Quadri (livello 1A Q) and V.P. variants not modeled. Only the 8 standard levels are implemented.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -305,6 +308,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP (Art. 24): only the 5°, 4°, 3°, 3°A, 2° and 1° livello are destinations of the apprendistato professionalizzante; the 6° and the 1°A are not.
     
     APPRENTICE SENIORITY (Art. 24 - Apprendistato professionalizzante, p. 34): no increment during the apprenticeship; a third of it counts for the increments when the employment continues, which the caller states in Employment.seniority.
+    
+    QUADRI (art. 23, TU 2019-2023 p. 33): quadri are found within levels 1A and 1, not by the level alone; the indennità di funzione of at least EUR 120 (1A) and EUR 90 (1) is paid with the role 'quadro', on every monthly payment and in the TFR.
     
 
 ## Raw data
