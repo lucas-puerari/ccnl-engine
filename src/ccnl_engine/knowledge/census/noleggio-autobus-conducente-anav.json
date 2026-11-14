@@ -352,22 +352,6 @@
       }
     },
     {
-      "id": "t0_table_back_calculated",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: T0 salary table (valid_from 2024-01-01, valid_until 2025-06-30) back-calculated from T1 minus riparametrated increment. Pre-2025-07-01 values are derived, not sourced from an official table. Results for dates before 2025-07-01 should not be relied upon.",
-      "calculation": "ccnl/noleggio-autobus-conducente-anav:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the pre-July 2025 salary table from an official ANAV table.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "noleggio-autobus-conducente-anav/t0_table_back_calculated"
-        ]
-      }
-    },
-    {
       "id": "tfr_compensation_apprentice_guarantee_fund",
       "institute": "inps_employer",
       "variant": "apprentice",
