@@ -55,8 +55,8 @@ formulas or caller-declared amounts.
 
 | Scope | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
-| core | 29 | 0 | 0 | 0 |
-| scenario | 18 | 10 | 2 | 0 |
+| core | 30 | 0 | 0 | 0 |
+| scenario | 18 | 10 | 1 | 0 |
 | outside_input | 0 | 0 | 0 | 1 |
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
@@ -98,7 +98,7 @@ formulas or caller-declared amounts.
 | `sunday_holiday` | Festività cadente di domenica (L. 260/1949 art. 5 per le festività civili; la clausola del CCNL per le altre): un'ulteriore quota giornaliera della retribuzione | core | gross | native | decided | decision | — | — | implemented | none bundled |
 | `withholding_shortfall` | Ritenute non capienti riportate ai cedolini successivi | core | net | native | decided | decision | — | — | implemented | none bundled |
 | `shortfall_deferral` | Differimento scritto dell'IRPEF incapiente del conguaglio con interessi 0,50% mensile (art. 23 c. 3 DPR 600/1973) | core | net | native | decided | decision | — | — | implemented | none bundled |
-| `foreign_tax_credit` | Credito imposte estere art. 165 TUIR al conguaglio | scenario | net | partial | decided | decision | — | declared_foreign_tax_at_conguaglio | simplified | none bundled |
+| `foreign_tax_credit` | Credito imposte estere art. 165 TUIR al conguaglio, anche per redditi esteri di anni precedenti (c. 7) | core | net | native | decided | decision | — | — | implemented | none bundled |
 | `addizionale_regionale` | Addizionale regionale IRPEF | core | net | native | decided | decision | `facts.regione` | — | simplified | 1 / 0 / 1 / 0 |
 | `addizionale_comunale` | Addizionale comunale IRPEF | core | net | native | decided | decision | `facts.comune_belfiore` | — | simplified | 0 / 1 / 1 / 0 |
 | `family_deductions` | Detrazioni familiari a carico (Art. 12 TUIR) | core | net | native | decided | decision | `facts.family_composition`, `current_year` | children, other_dependants, sole_parent_first_child, spouse, spouse_increase_bands | simplified | 4 / 0 / 4 / 0 |

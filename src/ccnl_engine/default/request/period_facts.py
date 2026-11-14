@@ -106,4 +106,7 @@ PERIOD_FACT_DEFAULTS: dict[str, FieldDefault] = {
         "no art. 15 charge withheld or paid by the employer: the conguaglio "
         "deducts none"
     ),
+    "ForeignTaxPaid.earlier": absence_is_fact(
+        "foreign income of the tax year of the conguaglio, not of an earlier year"
+    ),
 }
