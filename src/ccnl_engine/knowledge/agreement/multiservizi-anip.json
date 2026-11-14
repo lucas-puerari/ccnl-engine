@@ -181,7 +181,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY (CNEL 105782 art. 22, pp. 41-42, 90): Category-specific amounts now pay operai at levels 1-6 after four years (including levels 5 and 6), with at most one quota; levels 5-7 and Q pay impiegati up to eight biennial scatti. No current series for impiegati at levels 2-4 is verified. Without an EarnedIncrements worker fact, matured scatti are still repriced at the run date, including after promotion; the 50% ceiling of tabellare plus EUR 279.60 is not enforced. The worker must supply recognised sector service across contract changes and the correct category at mixed levels.",
+        "text": "SENIORITY (CNEL 105782 art. 22, pp. 41-42, 90): Category-specific amounts now pay operai at levels 1-6 after four years (including levels 5 and 6), with at most one quota; levels 5-7 and Q pay impiegati up to eight biennial scatti. The impiegati scatti of levels 2-4 come from the appendix of the text signed on 8 June 2021 (PDF p. 85, https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0, sha256 ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f); its 1 July 2025 column is marked 'PROVVISORIO AI SENSI DELL'ART.73'. Without an EarnedIncrements worker fact, matured scatti are still repriced at the run date, including after promotion; the 50% ceiling of tabellare plus EUR 279.60 is not enforced. The worker must supply recognised sector service across contract changes and the correct category at mixed levels.",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
@@ -189,7 +189,7 @@
           "applies_when": {
             "trigger": "run"
           },
-          "remediation": "Source the current impiegati scatto amounts for levels 2-4; supply earned amounts and recognised sector service from worker records, and implement automatic maturation-date pricing and the 50% ceiling."
+          "remediation": "Supply earned amounts and recognised sector service from worker records, and implement automatic maturation-date pricing and the 50% ceiling; confirm the provisional July 2025 column."
         }
       },
       {
@@ -326,6 +326,93 @@
       "cadence_months": 24,
       "maximum_count": 8,
       "amount_by_level": {
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2021-07-01",
+              "valid_until": "2022-07-01",
+              "value": "61.18"
+            },
+            {
+              "valid_from": "2022-07-01",
+              "valid_until": "2023-07-01",
+              "value": "62.43"
+            },
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": "2024-07-01",
+              "value": "64.30"
+            },
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": "2025-07-01",
+              "value": "65.55"
+            },
+            {
+              "valid_from": "2025-07-01",
+              "valid_until": null,
+              "value": "66.18"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2021-07-01",
+              "valid_until": "2022-07-01",
+              "value": "64.78"
+            },
+            {
+              "valid_from": "2022-07-01",
+              "valid_until": "2023-07-01",
+              "value": "66.14"
+            },
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": "2024-07-01",
+              "value": "68.17"
+            },
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": "2025-07-01",
+              "value": "69.52"
+            },
+            {
+              "valid_from": "2025-07-01",
+              "valid_until": null,
+              "value": "70.20"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2021-07-01",
+              "valid_until": "2022-07-01",
+              "value": "68.79"
+            },
+            {
+              "valid_from": "2022-07-01",
+              "valid_until": "2023-07-01",
+              "value": "70.26"
+            },
+            {
+              "valid_from": "2023-07-01",
+              "valid_until": "2024-07-01",
+              "value": "72.46"
+            },
+            {
+              "valid_from": "2024-07-01",
+              "valid_until": "2025-07-01",
+              "value": "73.93"
+            },
+            {
+              "valid_from": "2025-07-01",
+              "valid_until": null,
+              "value": "74.66"
+            }
+          ]
+        },
         "5": {
           "periods": [
             {
@@ -541,7 +628,7 @@
           "quote": "Gli impiegati per l’anzianità di servizio maturata presso una stessa impresa hanno diritto, per ogni biennio di anzianità di servizio, a una maggiorazione del 6,25% calcolata sulla retribuzione tabellare del livello di appartenenza in vigore al momento della maturazione dello scatto e sull’indennità di contingenza all’1.8.83 (€ 279,60).\nNel caso di passaggio di livello il dipendente mantiene l’importo in cifra degli aumenti maturati nel livello di provenienza.\nL’anzianità forfettaria di settore non sarà corrisposta per i primi quattro anni di anzianità nel settore.\n6°                € 82,99\n5°                € 66,77\n4°                € 63,15\n3°                € 58,18\n2°                € 54,39\n1°                € 51,02\n\nParametro 115 € 55,50\nParametro 125 € 62,59"
         },
         "transformation": "Route the printed fixed sector amounts to operai at levels 1-6 with one quota after four years. Retain the existing derived impiegati scatto series at levels 5-7 and Q: 6.25% x (tabellare of CNEL 139292 pp. 32-34 + EUR 279.60). At mixed levels with no current impiegato series, pay no unverified amount.",
-        "note": "The operaio amounts printed on CNEL 105782 p. 90 are EUR 51.02 (1), 54.39 (2), 55.50 (parameter 115), 58.18 (3), 62.59 (parameter 125), 63.15 (4), 66.77 (5), and 82.99 (6). The impiegato series for levels 5-7 and Q derive from the later renewal tables. EarnedIncrements can preserve a stated accrued balance, but automatic maturation-date pricing and the ceiling remain limited; current impiegato amounts for levels 2-4 are not loaded.",
+        "note": "The operaio amounts printed on CNEL 105782 p. 90 are EUR 51.02 (1), 54.39 (2), 55.50 (parameter 115), 58.18 (3), 62.59 (parameter 125), 63.15 (4), 66.77 (5), and 82.99 (6). The impiegato series for levels 5-7 and Q derive from the later renewal tables. EarnedIncrements can preserve a stated accrued balance, but automatic maturation-date pricing and the ceiling remain limited; the impiegato amounts of levels 2-4 are those of the 2021 appendix (PDF p. 85), the July 2025 column provisional.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
@@ -5568,7 +5655,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "8ad05425b7f5136ae91df8f8eb60198834e59a788560c929c29c3e04fb7e2220",
+    "source_hash": "4fe0a7b44bfb7c4fd38e9313dd3434e7b956e21c3a5c0741de31720e324c2ee2",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -6811,6 +6898,27 @@
         "checked": [
           "levels.fixed_allowances",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-multiservizi-anip-impiegati-scatti",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Impiegati scatti of levels 2-4 in the appendix of the 2021 text, against the research of a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0",
+            "sha256": "ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f"
+          }
+        ],
+        "findings": [
+          "Added the impiegati scatti of levels 2, 3 and 4 from July 2021 to July 2025 (the last provisional)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments.amount_by_level"
         ]
       }
     ]

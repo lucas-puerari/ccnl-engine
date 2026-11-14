@@ -62,7 +62,7 @@ def test_operaio_four_years_and_category_at_mixed_level() -> None:
         is_apprentice=False,
         seniority_months=48,
     ) == Decimal("82.99")
-    assert not increments_apply(rules, "3", WorkerCategory.IMPIEGATO, apprentice=False)
+    assert increments_apply(rules, "3", WorkerCategory.IMPIEGATO, apprentice=False)
 
 
 def test_promotion_preserves_stated_matured_amount() -> None:
