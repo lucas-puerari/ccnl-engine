@@ -19,6 +19,7 @@ from ccnl_engine.absence.insured.parental.inputs import ParentalLeaveEvent
 from ccnl_engine.absence.insured.permit.inputs import DisabilityPermitEvent
 from ccnl_engine.absence.insured.rest.inputs import NursingRestEvent
 from ccnl_engine.compensation.board.inputs import BoardLodgingEvent
+from ccnl_engine.compensation.meal.inputs import MealIndennityEvent
 from ccnl_engine.leave.flexibility.inputs import FlexibilityWeekEvent
 from ccnl_engine.leave.inputs import LeaveTakenEvent
 from ccnl_engine.sickness.models import SicknessEpisode
@@ -70,6 +71,7 @@ WorkEvent = (
     | LeaveTakenEvent
     | FlexibilityWeekEvent
     | BoardLodgingEvent
+    | MealIndennityEvent
 )
 
 #: The classes of :data:`WorkEvent`, for ``isinstance`` checks.
@@ -101,4 +103,5 @@ WORK_EVENT_TYPES: tuple[type[WorkEvent], ...] = (
     LeaveTakenEvent,
     FlexibilityWeekEvent,
     BoardLodgingEvent,
+    MealIndennityEvent,
 )

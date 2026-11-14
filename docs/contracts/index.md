@@ -57,7 +57,7 @@ on unverified sources, or be well sourced and not cleared for production.
 - ✅ `contractual_funds` (native)
 - ✅ `assistance_contribution` (native)
 
-**Scenario features: computed when the request declares the event, the fact or the termination** (29):
+**Scenario features: computed when the request declares the event, the fact or the termination** (30):
 
 - ✅ `maternity_leave` (native)
 - ✅ `paternity_leave` (native)
@@ -65,6 +65,7 @@ on unverified sources, or be well sourced and not cleared for production.
 - ✅ `disability_permits` (native)
 - ✅ `nursing_rests` (native)
 - ✅ `board_lodging` (native)
+- ✅ `meal_indennity` (native)
 - ✅ `termination_notice` (native)
 - ✅ `extraordinary_leave` (native)
 - ✅ `workplace_injury` (native)

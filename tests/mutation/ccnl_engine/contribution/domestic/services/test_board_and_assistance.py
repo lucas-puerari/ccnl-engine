@@ -125,8 +125,8 @@ def test_regular_month_reports_the_unpaid_board_substitute() -> None:
     assert not result.is_payable
 
 
-def test_non_convivente_reports_the_meal_indennity() -> None:
-    """Art. 14 c. 8: the meal owed to a non convivente is not computed."""
+def test_non_convivente_meal_indennity_is_stated_by_the_caller() -> None:
+    """Art. 14 c. 8: the meal owed is a MealIndennityEvent, not a limitation."""
     result = _run(
         PayrollRun.regular(year=2026, month=1),
         173,
@@ -134,7 +134,7 @@ def test_non_convivente_reports_the_meal_indennity() -> None:
     )
 
     ids = {limitation.id for limitation in result.assurance.limitations}
-    assert ids >= {"lavoro-domestico-non-convivente/meal_indennity"}
+    assert "lavoro-domestico-non-convivente/meal_indennity" not in ids
     # 173 x 0.02 = 3.46 withheld, 173 x 0.04 = 6.92 paid by the employer.
     assert _account(result, "bilateral_fund_employee") == Decimal("3.46")
     assert _account(result, "bilateral_fund_employer") == Decimal("6.92")
