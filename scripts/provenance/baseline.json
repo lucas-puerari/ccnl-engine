@@ -250,9 +250,6 @@
       "additional_months[2025-01-01]": "assumed"
     },
     "agreement/ortofrutticoli-agrumari.json": {
-      "overtime_bands[OT_FESTIVO]": "assumed",
-      "overtime_bands[OT_FESTIVO_NOTTURNO]": "assumed",
-      "overtime_bands[OT_NOTTURNO]": "assumed",
       "work_rules.absence_rules": "assumed"
     },
     "agreement/panificazione-assipan.json": {
@@ -676,6 +673,7 @@
       "ced-assoced/conditional_allowances_title_xxiii",
       "ced-assoced/injury_rate_text_conflict",
       "ced-assoced/maternity_holiday_scope",
+      "ced-assoced/shift_allowances",
       "ced-assoced/terziario_inps_rates_unverified"
     ],
     "agreement/cemento-calce-gesso-industria.json": [

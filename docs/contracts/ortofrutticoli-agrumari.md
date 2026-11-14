@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 53 verified / 0 derived / 4 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 62 verified / 0 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 56, 61 and 62 of the CCNL 2024-2027 (permits, suppressed holidays, ferie). | corrected | The file had no leave rules and a note saying the text was not accessible; the ruleset source is that text. Added ferie (26 days, six-day week, divisor 26), the 66 hours of permits with their whole-month accrual and the 30 June deadline. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 72 of the CCNL 2024-2027 (seasonal staff). | corrected | Seasonal workers were paid like permanent ones (monthly pay, leave, extra months). Added fixed_term_pay for the seasonal fixed terms: hours, 34,45% indemnity without overtime, twelve payments, TFR 7,40%. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 55 - Festivita; Art. 61 - Festivita soppresse (holiday on a Sunday). | corrected | The file had no clause for a holiday falling on a Sunday, so its further daily quota was not paid: added the clause with the holidays the text lists and 4 November. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Artt. 48, 50, 54 and 55 of the CCNL 2024-2027. | corrected | The overtime bands were labelled assumed: confirmed on Art. 50 and sourced; removed the 40-hour weekly threshold of the base band (every overtime hour is beyond the 40th); added the shift night, Sunday, rest-day and holiday premiums. |
 
 ## Salary table
 
@@ -289,7 +290,9 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     SEASONAL STAFF (Art. 72, p. 81): the 'personale assunto con contratto a tempo determinato stagionale' (FixedTerm.naspi_exclusion seasonal, Employment.category stated) is paid the paga conglobata of the hours worked and an indemnity of 34,45% on it, overtime excluded, for the ferie (8,33), tredicesima (8,33), quattordicesima (8,33), festività (5,44), preavviso (0,85) and permessi (3,17); no leave accrues and no extra month is paid; the TFR is 7,40% of all the sums paid. Other fixed-term workers keep the ordinary rules.
     
-    HOLIDAY ON A SUNDAY (Art. 55 - Festivita; Art. 61 - Festivita soppresse, p. 66 (PDF 35); 73): a listed holiday falling on a Sunday pays a further daily quota (the CCNL absence divisor: the clause names none); 4 November, celebrated on the first Sunday of November, takes the same treatment.
+    OVERTIME AND ORDINARY PREMIUMS (CCNL 2024-2027): overtime on the paga conglobata at 35% beyond the 40th weekly hour, 42% on holidays, 50% at night, 60% at night on holidays (Art. 50); night hours in normal shifts 15% (Art. 48); work on the Sunday rest day 30% premium alone (riposo settimanale); work on a holiday the hours with 30% (Art. 55, read for every worker: the sentence also names the seasonal treatment of Art. 72).
+    
+    HOLIDAY ON A SUNDAY (Art. 55 - Festivita; Art. 61): a listed holiday on a Sunday pays a further daily quota, 1/26 of the normal pay (paga conglobata and scatti, p. 81); 4 November, on the first Sunday of November, too.
     
     Salary model: conglobato. ilccnl.it Sept 2024 table shows Contingenza=0.00 e EDR=0.00 per tutti i livelli. Divisore orario 173 confermato da lavoro-economia.it c=72 (CNEL H341) quota diretta: 'L'importo della retribuzione oraria si ottiene dividendo l'importo della retribuzione mensile per il divisore convenzionale 173'. Verifica aritmetica su 4 livelli: 1 (2286.83/13.22=173), 2 (2020.70/11.68=173), 3 (1932.23/11.17=173), 6 (1599.53/9.25=173).
     

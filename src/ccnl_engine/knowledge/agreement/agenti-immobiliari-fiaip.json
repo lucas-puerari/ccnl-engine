@@ -107,6 +107,11 @@
         "kind": "info",
         "text": "OVERTIME (Art. 109, pp. 72-73): on the hourly quota of the normal pay (1/168, Art. 161), 15% over the weekly hours, 30% on holidays, 30% at night (22-6), 50% at night on holidays. FLEXIBILITY (Art. 106, pp. 71-72): a week over 40 hours in a programme earns 45 minutes of permit up to 44 hours and 70 up to 48 (FlexibilityWeekEvent, EmployerProfile.flexibility_programme_month); the hours not taken are paid with the 15% premium in the sixth month after the programme year.",
         "capability": "overtime"
+      },
+      {
+        "kind": "info",
+        "text": "ORDINARY PREMIUMS (Art. 113, p. 74): holiday work paid as holiday overtime (30%, Art. 109); rest-day work the premium alone, read as the 30% of holiday overtime. Ordinary night work is left to the single workplace (Art. 107): no CCNL premium.",
+        "capability": "overtime"
       }
     ]
   },
@@ -396,6 +401,27 @@
         "checked": [
           "work_rules.time_supplements",
           "work_rules.leave_rules.flexibility"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-ordinary-premiums",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 107 and 113 of the CCNL 2025.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+            "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+          }
+        ],
+        "findings": [
+          "Added the holiday and rest-day premiums of Art. 113."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements"
         ]
       }
     ]
@@ -2020,7 +2046,7 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "80adba40e0ce601a2f50753fa26147ec00ea57afd70845c623d7ddfa5f81a165"
+    "source_hash": "4e2dc1c67b63b16d2fa98fd4662d2d10863be0578d8f7527a6d942b2d7f68183"
   },
   "work_rules": {
     "notice": {
@@ -2664,6 +2690,90 @@
               "verified_at": "2026-11-14T00:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-14-ai-overtime"
+            }
+          }
+        }
+      ],
+      "supplement_bands": [
+        {
+          "code": "FIAIP_FESTIVO",
+          "description": "Lavoro nelle festivita, come straordinario festivo (art. 113)",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "agenti-immobiliari-fiaip-ccnl-testo",
+                "title": "Contratto Collettivo Nazionale di Lavoro per dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso - Codice CNEL H0B1 - 19 maggio 2025 - Testo ufficiale",
+                "kind": "altro",
+                "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+                "published_on": "2025-05-19",
+                "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+              },
+              "page": "74",
+              "section": "Art. 113 Ore di lavoro nei giorni festivi",
+              "quote": "Le ore di lavoro, a qualsiasi titolo richieste, prestate nei giorni festivi [...] dovranno essere compensate come lavoro straordinario festivo [...] Le ore di lavoro prestate nei giorni di riposo settimanale danno diritto ai lavoratori di godere del riposo compensativo [...] e quindi per tali ore sarà corrisposta solo la relativa maggiorazione."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2025-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "FIAIP_RIPOSO",
+          "description": "Lavoro nel giorno di riposo settimanale, la sola maggiorazione (art. 113)",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "agenti-immobiliari-fiaip-ccnl-testo",
+                "title": "Contratto Collettivo Nazionale di Lavoro per dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso - Codice CNEL H0B1 - 19 maggio 2025 - Testo ufficiale",
+                "kind": "altro",
+                "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+                "published_on": "2025-05-19",
+                "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+              },
+              "page": "74",
+              "section": "Art. 113 Ore di lavoro nei giorni festivi",
+              "quote": "Le ore di lavoro, a qualsiasi titolo richieste, prestate nei giorni festivi [...] dovranno essere compensate come lavoro straordinario festivo [...] Le ore di lavoro prestate nei giorni di riposo settimanale danno diritto ai lavoratori di godere del riposo compensativo [...] e quindi per tali ore sarà corrisposta solo la relativa maggiorazione."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2025-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-ordinary-premiums"
             }
           }
         }

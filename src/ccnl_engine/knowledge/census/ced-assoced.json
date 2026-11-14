@@ -337,6 +337,22 @@
       }
     },
     {
+      "id": "shift_allowances",
+      "institute": "shift_work",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SHIFT WORK (Title XI, Art. 111): in the CED with long, very long or h24 hours, 15% of the de facto hourly quota for the hours in shifts outside the normal schedule, and an allowance of 25% of the de facto pay for a fixed night or holiday shift. Not modelled.",
+      "calculation": "ccnl/ced-assoced:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the Art. 111 shift premiums (15% of the hourly quota, 25% allowance for fixed night or holiday shifts).",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "ced-assoced/shift_allowances"
+        ]
+      }
+    },
+    {
       "id": "sunday_holiday_ccnl_clause",
       "institute": "sunday_holiday",
       "variant": "all",

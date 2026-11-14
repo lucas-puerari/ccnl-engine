@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer, maternity_leave, workplace_injury |
+| **Limits of this contract** | base_salary, inps_employer, maternity_leave, shift_work, workplace_injury |
 
-4 documented simplification(s) and 1 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 1 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 42 verified / 7 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 49 verified / 4 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -72,6 +72,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 119 of the stesura of 9 March 2022 (permits, ROL ramp, deadline). | corrected | The file had the ferie but no permit: added the 32 hours of ex festivita, the 56/72 hours of ROL with the ramp of the hires after 9 March 2022, and the 30 June deadline of Art. 119. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 134, 170 and 171 of the stesura of 9 March 2022. | corrected | The file had no basis for the leave left at termination, so the ferie and permits left were not paid: added the 1/26 day and the 1/173 hour. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 116 (Festivita) (holiday on a Sunday). | corrected | The file had no clause for a holiday falling on a Sunday, so its further daily quota was not paid: added the clause with the holidays the text lists and 4 November. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Artt. 104, 106, 111, 117 and 118 of the stesura of 9 March 2022. | corrected | Corrected the weekday overtime band (15%, was 30%), added the tier beyond the 48th hour (20%), the night-holiday band, the holiday and rest-day premiums; recorded the Title XI shift premiums as a limitation. |
 
 ## Salary table
 
@@ -147,6 +148,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Obtain an authoritative clarification of the conflicting percentage in Art. 147.
+
+!!! warning "ced-assoced/shift_allowances · shift_work · impact yes · open"
+    SHIFT WORK (Title XI, Art. 111): in the CED with long, very long or h24 hours, 15% of the de facto hourly quota for the hours in shifts outside the normal schedule, and an allowance of 25% of the de facto pay for a fixed night or holiday shift. Not modelled.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the Art. 111 shift premiums (15% of the hourly quota, 25% allowance for fixed night or holiday shifts).
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -346,6 +354,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEAVE AT TERMINATION (Artt. 134, 170, 171): ferie in twelfths per month of service (the text gives no rule for a month in part), each day paid at the monthly pay over 26; the permit hours left at the hourly quota (1/173).
     
     HOLIDAY ON A SUNDAY (Art. 116 (Festivita), p. 85): a listed holiday falling on a Sunday pays a further daily quota (1/26 of the monthly pay); 4 November, celebrated on the first Sunday of November, takes the same treatment.
+    
+    OVERTIME AND ORDINARY PREMIUMS (stesura 9 March 2022): overtime 15% from the 41st to the 48th weekly hour, 20% beyond, 30% on holidays, 50% at night (24-6), not cumulative (Art. 104); holiday work as holiday overtime (Art. 117); rest-day work the premium of 30% alone (Art. 118); ordinary night work is forbidden outside the shift CED of Title XI (Art. 106). The bands previously had 30% for weekday overtime and no tier beyond the 48th hour.
     
 
 ## Raw data
