@@ -362,8 +362,10 @@ def test_the_provisional_limitations_are_not_gaps() -> None:
 
     assert not report.FUTURE_LIMITATIONS.intersection((*met, *outside))
     assert "disability_permit_tfr" not in met
-    assert "una_tantum_readings" in met
+    assert "una_tantum_readings" not in met
     assert "sickness_cumulation_window" not in {*met, *outside}
+    paying, _ = report.ccnl_limitations(load_ccnl("terziario-confesercenti"), engine)
+    assert "una_tantum_readings" in paying
 
 
 def test_a_window_gap_makes_a_ccnl_incomplete() -> None:

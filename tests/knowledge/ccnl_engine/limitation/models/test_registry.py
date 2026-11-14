@@ -190,6 +190,9 @@ def test_engine_limitation_rulesets_are_derived_from_data(
     assert rulesets[_APPRENTICE_SENIORITY] == {
         c.meta.ccnl_id for c in ccnls if _has_level_seniority_for_apprentices(c)
     }
+    assert rulesets[UNA_TANTUM] == {
+        c.meta.ccnl_id for c in ccnls if c.parameters.una_tantum
+    }
 
 
 def _has_undeclared_reduction_flag(ccnl: CCNL) -> bool:
