@@ -7,8 +7,9 @@ value may replace.  Two kinds are not a gap of the model:
   states no value (overtime, night, holiday and shift work, unjustified
   absences, travel allowance): accepted for a CCNL that holds the rule, a
   gap for one that does not;
-- a capability whose amount is a fact of a second-level agreement, which
-  only the employer knows: accepted by design.
+- a capability whose amount is a fact only the employer knows (a
+  second-level agreement, a territorial fund, the pay of earlier payslips):
+  accepted by design.
 """
 
 from __future__ import annotations
@@ -33,6 +34,15 @@ BY_DESIGN: Mapping[str, str] = {
     "territorial_supplement": (
         "the elements of a territorial agreement are a fact of the employer "
         "(EmployerProfile.second_level_elements)"
+    ),
+    "bilateral_funds": (
+        "the funds the CCNL sets are computed by contractual_funds; the event "
+        "carries a territorial or company fund the bundle does not hold"
+    ),
+    "contract_renewal_arrears": (
+        "the arrears are the difference from what earlier payslips paid, a "
+        "fact of the employer's payroll; the una tantum the CCNL sets is "
+        "computed by una_tantum"
     ),
 }
 

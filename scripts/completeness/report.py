@@ -649,7 +649,7 @@ def _window_lines(report: Report) -> list[str]:
             "Capabilities a caller value may replace are not counted as gaps "
             "when the engine computes them from a rule the CCNL holds ("
             f"{', '.join(f'`{f}`' for f in sorted(RULE_BACKED))}), nor when "
-            "their amount is a fact of a second-level agreement:"
+            "their amount is a fact only the employer knows:"
         ),
         "",
         *(f"- `{f}`: {reason}" for f, reason in sorted(BY_DESIGN.items())),
