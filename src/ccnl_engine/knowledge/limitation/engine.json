@@ -347,11 +347,7 @@
         "operai-agricoli-florovivaisti",
         "organizzazioni-allevatori-aia",
         "tabacco-apti",
-        "tessile-moda-artigianato-confartigianato",
-        "vigilanza-privata-assiv",
-        "vigilanza-privata-federdat-gpg",
-        "vigilanza-privata-federdat-sf",
-        "vigilanza-privata-assiv-sf"
+        "tessile-moda-artigianato-confartigianato"
       ],
       "applies_when": {
         "trigger": "path"

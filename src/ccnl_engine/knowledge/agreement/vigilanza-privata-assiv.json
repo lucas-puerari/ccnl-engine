@@ -129,6 +129,16 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO AND PAID DAYS (Artt. 124-125, CCNL 2013 (unchanged by the renewal of 30 May 2023), PDF p. 83-84, https://www.bollettinoadapt.it/wp-content/uploads/2019/10/ccnl2013.pdf, sha256 c6b3a6176dee20e6a727e4da153bd3511850275e991e0e344f92e1d1b4c0df79): 'ha diritto alla normale retribuzione netta mensile [...] per un periodo massimo di 180 giorni'; 'ha diritto alla conservazione del posto di lavoro per i seguenti periodi: - fino a 240 (duecentoquaranta) giorni di malattia riferibile a più episodi morbosi, nell'arco di un anno solare'. Modelled as sickness_rules.comporto_calendar_year with max_duration_days 240; a tier at 0 from the seventh month of 30 days ends the pay on day 180 of the relapse chain."
+      },
+      {
+        "kind": "simplification",
+        "text": "COMPORTO OF ONE ILLNESS: up to 300 days of the same illness in the calendar year when certified as such before the 240 days; the engine ends the comporto at 240 days. The days past 180 are unpaid either way.",
+        "capability": "sickness",
+        "monetary_impact": "no"
       }
     ]
   },
@@ -229,6 +239,28 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.insured_absence.injury"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-vigilanza-privata-assiv-comporto-year",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto over the calendar year and paid days, against the research of a separate model session; quotes checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.bollettinoadapt.it/wp-content/uploads/2019/10/ccnl2013.pdf",
+            "sha256": "c6b3a6176dee20e6a727e4da153bd3511850275e991e0e344f92e1d1b4c0df79"
+          }
+        ],
+        "findings": [
+          "Comporto of 240 days over the calendar year; pay ends after 180 days."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
+          "coverage.notes"
         ]
       }
     ]
@@ -1902,7 +1934,7 @@
     "effective_until": null,
     "source": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
     "verification_status": "unverified",
-    "source_hash": "985eb0ce80e8ac9e4b4001a4c90e24d049b753fd40b7520e18d7fddbb9c31ecc",
+    "source_hash": "0973e99f4c329f56c7c2b574d278ff63a02038b3e973f88d89751ef4d62265af",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -2072,7 +2104,7 @@
     "sickness_rules": {
       "carenza_integration_rate": "0.75",
       "full_pay_integration_rate": "0.75",
-      "max_duration_days": 180,
+      "max_duration_days": 240,
       "provenance": {
         "status": "derived",
         "location": {
@@ -2090,7 +2122,14 @@
           "verification_status": "unverified",
           "effective_from": "2023-05-04"
         }
-      }
+      },
+      "comporto_calendar_year": true,
+      "tiers": [
+        {
+          "month_from": 7,
+          "integration_rate": "0"
+        }
+      ]
     },
     "insured_absence": {
       "injury": {

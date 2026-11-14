@@ -69,6 +69,16 @@
           "remediation": "Resolved: leave_rules.rota_annual_days with Employment.rota, read on 2026-11-06.",
           "status": "resolved"
         }
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO AND PAID DAYS (Artt. 101 and 105 (CNEL archive, PDF in base64), PDF p. 51, https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848, sha256 6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29): 'ha diritto alla normale retribuzione netta mensile [...] per un periodo massimo di 180 giorni'; 'ha diritto alla conservazione del posto di lavoro per i seguenti periodi: - fino a 240 (duecentoquaranta) giorni di malattia riferibile a più episodi morbosi, nell'arco di un anno solare'. Modelled as sickness_rules.comporto_calendar_year with max_duration_days 240; day_bands end the pay on day 180 (day 181 on at 0) of the relapse chain."
+      },
+      {
+        "kind": "simplification",
+        "text": "COMPORTO OF ONE ILLNESS: up to 300 days of the same illness in the calendar year when certified as such before the 240 days; the engine ends the comporto at 240 days. The days past 180 are unpaid either way.",
+        "capability": "sickness",
+        "monetary_impact": "no"
       }
     ]
   },
@@ -1214,7 +1224,7 @@
     "effective_until": null,
     "source": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
     "verification_status": "unverified",
-    "source_hash": "ea0233caa7aeddaa20f6f1cd343296cd4f96634aaed49d8d0ed4161608c6dc68",
+    "source_hash": "97d82f037e7e1b23cdb24d51b1276ae39fd19e417103791ad6a3a318d4155547",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1543,7 +1553,7 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 180,
+      "max_duration_days": 240,
       "provenance": {
         "status": "verified",
         "location": {
@@ -1579,10 +1589,16 @@
         },
         {
           "day_from": 21,
-          "day_until": null,
+          "day_until": 181,
           "integration_rate": "1"
+        },
+        {
+          "day_from": 181,
+          "day_until": null,
+          "integration_rate": "0"
         }
-      ]
+      ],
+      "comporto_calendar_year": true
     }
   },
   "verification": {
@@ -1660,6 +1676,28 @@
         "independence": "same_process",
         "checked": [
           "health_funds"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-vigilanza-privata-federdat-gpg-comporto-year",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto over the calendar year and paid days, against the research of a separate model session; quotes checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          }
+        ],
+        "findings": [
+          "Comporto of 240 days over the calendar year; pay ends after 180 days."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
+          "coverage.notes"
         ]
       }
     ]
