@@ -2400,7 +2400,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "330c20bfefd851b3b1d92e302fb14fc9f78a95ed9fa64b0c6f49ac5f8fc760f7",
+    "source_hash": "f3879fc94350be6727ab22ac785c42f5511a6694ab93119ac89bc40d4d208d26",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2723,7 +2723,6 @@
         }
       ],
       "starts": "first_or_sixteenth",
-      "extra_months_included": false,
       "tfr_base": true,
       "provenance": {
         "status": "verified",

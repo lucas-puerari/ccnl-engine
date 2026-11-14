@@ -839,7 +839,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "332dea9e0e545f72caf9a9e4d07b67a5fa764c3407af89348cb544bfd5ae65a3",
+    "source_hash": "8624f1d563ca12b6be8cc744bb1f0540678273209f4ae769fc1f77b6fa07e105",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1160,7 +1160,6 @@
         }
       ],
       "starts": "first_or_sixteenth",
-      "extra_months_included": false,
       "tfr_base": true,
       "provenance": {
         "status": "verified",

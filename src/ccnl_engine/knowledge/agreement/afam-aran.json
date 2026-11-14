@@ -6090,7 +6090,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "af86f7444a438e2153b7ac0d5f3fa84e24f1987699cb719795ebc896791dbec0",
+    "source_hash": "cbfa033268303cca7b33062610cd6d791bfe7be623b22b622ef5a28eff9b35a5",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -6249,7 +6249,6 @@
         }
       ],
       "starts": "day_after",
-      "extra_months_included": false,
       "tfr_base": null,
       "provenance": {
         "status": "verified",

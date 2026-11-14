@@ -968,7 +968,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "6b95ddf2088fc1e3a064f1700b84726cf2ae0f744bd4d77376ac707548d01b03",
+    "source_hash": "17e991e5f08912092e27c1f62440a37d0ff40b5cbc9d9c639a97337d21f1ccd0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1878,7 +1878,6 @@
         }
       ],
       "starts": "same_day",
-      "extra_months_included": false,
       "tfr_base": null,
       "provenance": {
         "status": "verified",

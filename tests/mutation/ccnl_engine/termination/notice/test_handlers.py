@@ -6,16 +6,17 @@ January 2016): monthly pay of art. 2121 c.c. 2306.46.  On 10 March 2026,
 notice, 2.5 monthly pays (CCNL 2021 Sez. Quarta Tit. VIII Art. 1).
 
 - Dismissed on 10 March, last day 10 March: the notice runs 11 March to 25
-  May (76 days), all unworked: 2.5 * 2306.46 = 5766.15.
-- Its employee INPS, 9.19% IVS and 0.30% non-IVS: 5766.15 * 0.0949 =
-  547.21; separate taxable 5218.94, at the TFR rate the caller states,
-  23%: 1200.36 (art. 19 c. 2 TUIR).
+  May (76 days), all unworked: 2.5 * 2306.46 * 13 / 12 = 6246.66, the
+  rateo of the 13th in (art. 2121 c. 1 c.c.).
+- Its employee INPS, 9.19% IVS and 0.30% non-IVS: 6246.66 * 0.0949 =
+  592.81; separate taxable 5653.85, at the TFR rate the caller states,
+  23%: 1300.39 (art. 19 c. 2 TUIR).
 - Dismissed on 31 January, last day 31 January, the TFR computed by the
   engine (fund 20000.00): 120 months, the band up to ten years, 2 monthly
-  pays: 4612.92; the TFR rate the engine computes, 23%, on 4612.92 less
-  437.77 of INPS: 960.28.
+  pays with the 13th: 4997.33; the TFR rate the engine computes, 23%, on
+  4997.33 less 474.25 of INPS: 1040.31.
 - Dismissed on 1 March, last day 31 March: notice 2 March to 16 May (76
-  days), 46 unworked: 5766.15 * 46 / 76 = 3490.04.
+  days), 46 unworked: 6246.66 * 46 / 76 = 3780.87.
 """
 
 from __future__ import annotations
@@ -127,10 +128,10 @@ def test_a_notice_not_given_is_paid_and_taxed_at_the_tfr_rate() -> None:
     result = _run(_notice(date(2026, 3, 10)), _TFR)
     without = _run(_TFR)
 
-    assert _indemnity(result) == Decimal("5766.15")
+    assert _indemnity(result) == Decimal("6246.66")
     assert _notice_decisions(result) == [
-        ("final", "notice_indemnity_due", Decimal("5766.15")),
-        ("final", "taxed_at_tfr_rate", Decimal("1200.36")),
+        ("final", "notice_indemnity_due", Decimal("6246.66")),
+        ("final", "taxed_at_tfr_rate", Decimal("1300.39")),
     ]
     due, tax = (d for d in result.decisions if d.capability == "termination_notice")
     assert due.inputs == {
@@ -144,13 +145,13 @@ def test_a_notice_not_given_is_paid_and_taxed_at_the_tfr_rate() -> None:
         "notice_days": "76",
         "unworked_days": "76",
         "indemnity_months": Decimal("2.5"),
-        "monthly_pay": Decimal("2306.46"),
+        "monthly_pay": Decimal("2498.665"),
     }
     assert due.source is not None
     assert tax.inputs == {
-        "indemnity": Decimal("5766.15"),
-        "employee_inps": Decimal("547.21"),
-        "taxable": Decimal("5218.94"),
+        "indemnity": Decimal("6246.66"),
+        "employee_inps": Decimal("592.81"),
+        "taxable": Decimal("5653.85"),
         "rate": Decimal("0.23"),
     }
     assert (tax.rule, tax.rule_version) == ("tax/separate:art19c2", "2026")
@@ -161,16 +162,16 @@ def test_a_notice_not_given_is_paid_and_taxed_at_the_tfr_rate() -> None:
         for e in result.ledger_entries
         if e.account.value == "separate_tax"
     }
-    assert separate[item.item_id] == Decimal("1200.36")
-    assert sorted(separate.values()) == [Decimal("1200.36"), Decimal("4600.00")]
+    assert separate[item.item_id] == Decimal("1300.39")
+    assert sorted(separate.values()) == [Decimal("1300.39"), Decimal("4600.00")]
     # The TFR base leaves the indemnity out (Cass. 1581/2023): the quota
-    # loses only the 0.50% IVS of L. 297/1982 on its INPS base, 28.83 (one
+    # loses only the 0.50% IVS of L. 297/1982 on its INPS base, 31.23 (one
     # cent of rounding on the whole run).
     quota = [
         sum(i.amount for i in r.pay_items if i.item_id.startswith("tfr_2026"))
         for r in (result, without)
     ]
-    assert abs(quota[0] - quota[1] + Decimal("28.83")) <= Decimal("0.01")
+    assert abs(quota[0] - quota[1] + Decimal("31.23")) <= Decimal("0.01")
     # The ordinary taxable moves only by the cents of the whole-euro INPS base.
     ordinary = (
         result.closing_state.cash.earnings.taxable,
@@ -178,7 +179,7 @@ def test_a_notice_not_given_is_paid_and_taxed_at_the_tfr_rate() -> None:
     )
     assert abs(ordinary[0] - ordinary[1]) <= Decimal("0.05")
     limitations = {lim.id for lim in result.limitations}
-    assert "notice_indemnity_extra_months" in limitations
+    assert "notice_indemnity_extra_months" not in limitations
     assert "notice_indemnity_tfr" not in limitations
     assert "notice_indemnity_partial" not in {lim.id for lim in result.limitations}
 
@@ -195,16 +196,16 @@ def test_the_tfr_rate_the_engine_computes_taxes_the_indemnity() -> None:
     )
 
     assert _notice_decisions(result) == [
-        ("final", "notice_indemnity_due", Decimal("4612.92")),
-        ("final", "taxed_at_tfr_rate", Decimal("960.28")),
+        ("final", "notice_indemnity_due", Decimal("4997.33")),
+        ("final", "taxed_at_tfr_rate", Decimal("1040.31")),
     ]
 
 
 def test_a_notice_partly_worked_pays_its_days_left() -> None:
-    """46 of 76 days unworked: 3490.04, under the partial-notice limitation."""
+    """46 of 76 days unworked: 3780.87, under the partial-notice limitation."""
     result = _run(_notice(date(2026, 3, 1)), ended=date(2026, 3, 31))
 
-    assert _indemnity(result) == Decimal("3490.04")
+    assert _indemnity(result) == Decimal("3780.87")
     assert "notice_indemnity_partial" in {lim.id for lim in result.limitations}
     # No TFR settlement in the run: no rate, no tax, the run says so.
     assert ("incomplete", "notice_indemnity_tax_rate_unknown", None) in (
@@ -274,15 +275,16 @@ def test_fipe_pays_the_normale_retribuzione_of_its_days() -> None:
 
     Art. 208 (CCNL 8 February 2018, PDF p. 144): levels 4 and 5, over ten
     years, 45 days, from the day after: 11 March to 24 April.  Art. 209: the
-    normale retribuzione of those days, no extra months: (1652.69 + 2 scatti
-    of 33.05) * 45 / 30 = 2578.19.
+    normale retribuzione of those days, with the 13th and 14th ratei (art.
+    2121 c. 1 c.c.): (1652.69 + 2 scatti of 33.05) * 14 / 12 * 45 / 30 =
+    3007.88.
     """
     result = _run(
         _notice(date(2026, 3, 10)),
         ccnl="pubblici-esercizi-fipe-angem-ristorazione-collettiva",
     )
 
-    assert _indemnity(result) == Decimal("2578.19")
+    assert _indemnity(result) == Decimal("3007.88")
     (due,) = (d for d in result.decisions if d.reason_code == "notice_indemnity_due")
     assert (due.inputs["notice_first_day"], due.inputs["notice_last_day"]) == (
         "2026-03-11",
@@ -366,7 +368,8 @@ def test_alimentari_sets_the_notice_by_category(
     """Alimentari level 4, hired 2016, dismissed on 10 March (Art. 72, pp. 149-150).
 
     The retribuzione of the period: (1445.65 + 519.99 + 10.33 + 78.84 + 5
-    scatti of 26.83) / 30 per day, 3648.27 for 50 days, 1459.31 for 20.
+    scatti of 26.83) * 14 / 12 / 30 per day, the 13th and 14th ratei in
+    (art. 2121 c. 1 c.c.): 4256.31 for 50 days, 1702.52 for 20.
     """
     result = PayrollEngine.bundled().calculate_period(
         PeriodInput(
@@ -387,7 +390,7 @@ def test_alimentari_sets_the_notice_by_category(
         )
     )
 
-    expected = (_ALIMENTARI_MONTHLY * days / 30).quantize(Decimal("0.01"))
+    expected = (_ALIMENTARI_MONTHLY * 14 / 12 * days / 30).quantize(Decimal("0.01"))
     assert _indemnity(result) == expected
     (due,) = (d for d in result.decisions if d.reason_code == "notice_indemnity_due")
     assert (due.inputs["notice_first_day"], due.inputs["notice_last_day"]) == (

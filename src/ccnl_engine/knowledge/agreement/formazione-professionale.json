@@ -1122,7 +1122,7 @@
     "effective_until": null,
     "source": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/",
     "verification_status": "verified",
-    "source_hash": "0713a3271d59a243b4f4e4efe5325f53d84ed3336ed8595deaca0d51e91782c4",
+    "source_hash": "d86927f96a2603fbcdc713eb2a950723dda3ef89471a738c18e5db03b0848738",
     "published_at": "2026-09-11",
     "source_type": "contracting_party"
   },
@@ -1426,7 +1426,6 @@
         }
       ],
       "starts": "day_after",
-      "extra_months_included": false,
       "tfr_base": null,
       "provenance": {
         "status": "verified",

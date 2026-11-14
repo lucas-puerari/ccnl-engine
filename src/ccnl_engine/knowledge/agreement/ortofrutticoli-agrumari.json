@@ -2817,7 +2817,7 @@
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "6e844191ded91c270ba1f73f6b1d84c299891f7b0e9a552b2d1ea6b8b78d9edc",
+    "source_hash": "c7e88301661238164577a5b5035e0c54688638c2297328fcb0d9c4c244716a83",
     "source_type": "contracting_party"
   },
   "work_rules": {
@@ -3572,7 +3572,6 @@
         }
       ],
       "starts": "first_or_sixteenth",
-      "extra_months_included": true,
       "tfr_base": false,
       "provenance": {
         "status": "verified",

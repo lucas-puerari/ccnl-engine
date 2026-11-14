@@ -4312,7 +4312,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "0a75094661e7df1f0200b9179beb37dbe2e12d4145d6419eb5c022180109da67",
+    "source_hash": "d31b012f39abb980f2ac40a8d7561268980d61e82e3c6f18c0725e3099a0810b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5664,7 +5664,6 @@
         }
       ],
       "starts": "first_or_sixteenth",
-      "extra_months_included": true,
       "tfr_base": false,
       "provenance": {
         "status": "verified",

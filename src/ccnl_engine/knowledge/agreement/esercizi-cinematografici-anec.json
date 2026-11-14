@@ -2893,7 +2893,7 @@
     "effective_until": null,
     "source": "https://www.fistelcisl.it/wp-content/uploads/2025/10/CCNL-Esercizi-cinematografici-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "a4ed8d880f3065584f6db1ef44368938458743e5c13ee9ddcb9c574ac7db2d79",
+    "source_hash": "9778bb948d2dcdf8d9fe8e5e107fe7f8dd9bd5970367d1d7c6c3c2e2f93cc647",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3393,7 +3393,6 @@
         }
       ],
       "starts": "first_or_sixteenth",
-      "extra_months_included": false,
       "tfr_base": null,
       "provenance": {
         "status": "derived",

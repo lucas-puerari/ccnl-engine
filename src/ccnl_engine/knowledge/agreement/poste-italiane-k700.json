@@ -2114,7 +2114,7 @@
     "effective_until": null,
     "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "3654ec555cef220a81fc48dfc81944b2f65bcdeb7db36bb511722111680b3d25",
+    "source_hash": "720eb95bf9bb8213ba85be17cfd3a071deb32c792a410dac2546a6a7a7abe4a3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2430,7 +2430,6 @@
         }
       ],
       "starts": "first_or_sixteenth",
-      "extra_months_included": false,
       "tfr_base": null,
       "provenance": {
         "status": "verified",
