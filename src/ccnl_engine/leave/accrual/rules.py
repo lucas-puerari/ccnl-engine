@@ -208,7 +208,7 @@ def _permit(permit: PermitRules, facts: AccrualFacts) -> tuple[Decimal, bool]:
     if facts.entry_pay and permit.entry_ramp:
         hours *= _step_share(permit.entry_ramp, months)
         exact = exact and months is not None
-    elif ramp is not None and ramp.covers(facts.headcount):
+    elif ramp is not None and ramp.covers(facts.headcount, facts.subsector):
         if facts.hired_on is None or months is None:
             hours *= ramp.steps[0].share
             exact = False

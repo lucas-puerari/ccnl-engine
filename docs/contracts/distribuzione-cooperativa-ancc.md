@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | leave, seniority |
+| **Limits of this contract** | seniority |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 182 of the testo ufficiale 2011 (seniority), against the renewals 2019 and 2024. | confirmed | Read Art. 182 in the text PDF (pp. 195-196): the seven amounts of the file match the table; the service counts from the 21st year of age, which the file did not apply. Upgraded the provenance from the aggregator to the signed text, added counted_from_age 21, and narrowed the proxy limitation to the 3S and 4S amounts, which the table does not print. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 61 C, 113, 115 and Allegato 13 of the testo ufficiale 2011; Art. 147 of the renewal of 29 March 2024. | corrected | The file had the ferie but no permit. Added the 104-hour pool with the 38-hour absorption that leaves 24 hours, the ramp of the hires after 22 December 2011 and the fixed 30 June deadline; recorded the imprese minori hours of Art. 147 (2024) as a limitation, the file having no input for them. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 147 of the renewal of 29 March 2024 (imprese minori). | corrected | Added the hours of the small imprese minori (60, +6 from April 2025, +6 from April 2026) under the sub-sector piccola_impresa_minore and closed imprese_minori_permits; the other imprese minori work 40 hours and keep the 104. Recorded that the Art. 61 C ramp still applies to their new hires. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 147 of the renewal of 29 March 2024 against the ramp of Art. 61 C. | corrected | The 60 hours of the small imprese minori are 'per tutti i lavoratori dipendenti': the ramp now excludes the sub-sector piccola_impresa_minore; closed small_cooperative_new_hire_ramp. |
 
 ## Salary table
 
@@ -131,13 +132,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
-
-!!! warning "distribuzione-cooperativa-ancc/small_cooperative_new_hire_ramp · leave · impact yes · open"
-    Art. 147 (2024) grants the 60 hours of the small imprese minori 'per tutti i lavoratori dipendenti'; the engine applies to their new hires the ROL ramp of Art. 61 C (50% after two years, 100% after four), which has no sub-sector exception.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Exempt the small imprese minori from the ROL ramp of Art. 61 C.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -350,7 +344,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     PERMITS, LARGE COOPERATIVES (Allegato 13, Art. 113, Art. 115, Art. 61 C of the testo ufficiale 2011, signed 22 December 2011): a pool of 104 hours a year, 32 for the abolished holidays and 72 of reduction; the 38-hour week of Art. 113 c. 1 absorbs 96 of them and leaves 24 (8 plus 16 not absorbable, Art. 115 c. 1), the 40-hour week of the hires after the signing (Art. 113 c. 5) absorbs none (EmployerProfile/Employment full_time_weekly_hours); the hires after 22 December 2011 take the 72 hours at 50% after two years and 100% after four (Art. 61 C); a twelfth per whole month of service; not taken by 30 June of the next year, paid with the pay of that date, with no choice of the employer (Art. 115 c. 4). The 2019 and 2024 renewals do not amend these articles.
     
-    PERMITS, IMPRESE MINORI (Title XV, Art. 147 as renewed on 29 March 2024, CNEL 183889 pp. 59-60): a 40-hour week for every worker (Employment full_time_weekly_hours 40: the 104 hours, not absorbed); in the small firms of one unit or up to 20 full-time staff a unit (EmployerProfile.subsector 'piccola_impresa_minore') 60 hours a year, read as the 32 of ex festività and 28 of reduction, plus 6 from 1 April 2025 and 6 from 1 April 2026 (72, aim 88).
+    PERMITS, IMPRESE MINORI (Title XV, Art. 147 as renewed on 29 March 2024, CNEL 183889 pp. 59-60): a 40-hour week for every worker (Employment full_time_weekly_hours 40: the 104 hours, not absorbed); in the small firms of one unit or up to 20 full-time staff a unit (EmployerProfile.subsector 'piccola_impresa_minore') 60 hours a year, read as the 32 of ex festività and 28 of reduction, plus 6 from 1 April 2025 and 6 from 1 April 2026 (72, aim 88). Their new hires take the hours in full: the ROL ramp of Art. 61 C does not reach this sub-sector.
     
 
 ## Raw data

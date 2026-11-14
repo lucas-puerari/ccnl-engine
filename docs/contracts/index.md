@@ -162,7 +162,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 43 | H124 | [CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)](farmacie-municipalizzate-assofarm.md) | Farmacie municipalizzate e partecipate da enti locali | ~6k | 2022 | ⚠️ | base_salary, inps_employer | 73 / 17 / 1 / 0 | 🧪 | 🤖 |
 | 44 | H121 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | Farmacie private | ~60k | 2021 | ⚠️ | seniority | 4 / 41 / 1 / 0 | 🧪 | 🤖 |
 | 45 | H121 | [CCNL Dipendenti delle Farmacie Private - Farmacie rurali sussidiate](farmacie-rurali-sussidiate-h121.md) | Farmacie private | ~60k | 2021 | ⚠️ | seniority | 4 / 41 / 1 / 0 | 🧪 | 🤖 |
-| 46 | H016 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | distribuzione-cooperativa | ~63k | — | ⚠️ | leave, seniority | 14 / 52 / 1 / 0 | 🧪 | 🤖 |
+| 46 | H016 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | distribuzione-cooperativa | ~63k | — | ⚠️ | seniority | 14 / 52 / 1 / 0 | 🧪 | 🤖 |
 | 47 | F018 | [CCNL Edilizia PMI CONFAPI ANIEM](edilizia-pmi-confapi-aniem.md) | Edilizia | ~70000 | 2025 | ⚠️ | base_salary, bilateral_funds, pension_fund_contribution, seniority, territorial_supplement | 15 / 30 / 1 / 0 | 🧪 | 🤖 |
 | 48 | F015 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | edilizia | ~350k | — | ⚠️ | base_salary, bilateral_funds, inps_employer, seniority | 29 / 45 / 1 / 0 | 🧪 | 🤖 |
 | 49 | F016 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | Edilizia | ~90000 | 2025 | ⚠️ | base_salary, bilateral_funds, seniority | 25 / 33 / 1 / 0 | 🧪 | 🤖 |

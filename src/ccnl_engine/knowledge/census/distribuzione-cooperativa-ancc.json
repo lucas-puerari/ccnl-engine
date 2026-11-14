@@ -322,22 +322,6 @@
       }
     },
     {
-      "id": "small_cooperative_new_hire_ramp",
-      "institute": "leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 147 (2024) grants the 60 hours of the small imprese minori 'per tutti i lavoratori dipendenti'; the engine applies to their new hires the ROL ramp of Art. 61 C (50% after two years, 100% after four), which has no sub-sector exception.",
-      "calculation": "ccnl/distribuzione-cooperativa-ancc:coverage.notes",
-      "state": "absent",
-      "remediation": "Exempt the small imprese minori from the ROL ramp of Art. 61 C.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "distribuzione-cooperativa-ancc/small_cooperative_new_hire_ramp"
-        ]
-      }
-    },
-    {
       "id": "sunday_holiday_ccnl_clause",
       "institute": "sunday_holiday",
       "variant": "all",

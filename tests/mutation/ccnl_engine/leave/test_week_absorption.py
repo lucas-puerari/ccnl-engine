@@ -129,3 +129,31 @@ def test_the_small_cooperative_has_66_hours_in_march_2026() -> None:
     assert _permits(
         "distribuzione-cooperativa-ancc", 40, subsector="piccola_impresa_minore"
     ) == {LeaveBucket.ROL: Decimal(34), LeaveBucket.EX_FESTIVITA: Decimal(32)}
+
+
+def test_a_new_hire_of_a_small_cooperative_takes_the_hours_in_full() -> None:
+    """No ramp in the small imprese minori: a hire of 2026 accrues 28 + 6 hours."""
+    result = calculate_period(
+        PeriodCalculationRequest(
+            employer=EmployerProfile(
+                headcount=Headcount(10), subsector="piccola_impresa_minore"
+            ),
+            period_id=PeriodId(year=2026, month=3),
+            payment_date=date(2026, 3, 27),
+            ccnl_id="distribuzione-cooperativa-ancc",
+            level_code="4",
+            opening_state=PeriodState.zero(),
+            roles=frozenset(),
+            employment_period=EmploymentPeriod(date(2026, 1, 1)),
+            full_time_weekly_hours=WeeklyHours(Decimal(40)),
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
+    assert isinstance(result, PeriodResult)
+    rol = [
+        b.accrued_twelfths
+        for b in result.closing_state.accrual.leave.balances
+        if b.bucket is LeaveBucket.ROL
+    ]
+    assert rol == [Decimal(34)]
