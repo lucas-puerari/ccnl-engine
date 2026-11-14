@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-21 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 45 values found verbatim on the cited pages and marked verified; 4 left as they were (derived or not on a text page). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Allegato A (PDF pp. 157, 159) and Allegato Q (p. 230) of the text of 21 May 2025, text layer. | corrected | Added the table of the staff in service on 15 July 2000 as base_salary_by_cohort.<br>Corrected the post-2000 base salaries that differed by a cent from the printed table: D115 2026-01-01 1764.29->1764.28; D116 2026-01-01 1779.62->1779.63; C127 2026-01-01 1948.38->1948.39; A157 2026-01-01 2408.65->2408.64; AQ164 2026-01-01 2516.04->2516.03 |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 72 scatti table of the CCNL 2023-2026 (PDF p. 72), against the research of a separate model session. | corrected | The sub-level mapping was inverted: ex 4ª f.f. has the lower scatto (44.44, 47.73), ex 5ª f.f. the higher (47.92, 50.05). |
+| 2026-11-15 | claude-opus-5-5 (ai) | Sick pay and comporto against the research of a separate model session; quotes checked on the source. | corrected | Replaced the per-episode tiers with the chain of art. 98 reset after three months, 10 months in full and 5 at half pay. |
 
 ## Salary table
 
@@ -131,13 +132,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -317,6 +311,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     B128 and B132 each hold two ex-classification sub-levels with the same base salary and different scatti (art. 72, CCNL 2023-2026 PDF p. 72: '4^ f.f. 1° liv. Euro 47,73 2° liv. Euro 44,44 ... 5^ f.f. 1° liv. Euro 50,05 2° liv. Euro 47,92'): B128 (ex 4ª f.f. 2° liv.) 44.44, B128_ex52 (ex 5ª f.f. 2° liv.) 47.92, B132 (ex 4ª f.f. 1° liv.) 47.73, B132_ex51 (ex 5ª f.f. 1° liv.) 50.05; the caller picks the code of the worker's former class. Source https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf sha256 558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097.
     
     layer_2 out_of_scope: no apprenticeship data found in available public sources. Full CCNL PDF required.
+    
+    SICKNESS (Art. 98, CCNL 2023-2026, PDF pp. 93-94): 'l'intera retribuzione per i primi dieci mesi di assenza e la metà di essa per i successivi cinque mesi'; 'Qualora entro tre mesi dalla fine di un periodo di malattia se ne verifichi un'altra, l'assenza relativa a quest'ultima malattia viene considerata come prosieguo della prima a tutti gli effetti.' Modelled as sickness_rules.cumulation over the chain; the 12 further unpaid months on request and the 70 days of the apprenticeship form are not modelled. Source: https://www.faicisl.it/attachments/article/2356/FAI%20CISL%20-%20CCNL%20BONIFICA%202023%20-%202026.pdf, sha256 8f09770620642bc2d3179029ddacf84f7f5530831c5d5d5d6f854f2fb955c83a.
     
 
 ## Raw data

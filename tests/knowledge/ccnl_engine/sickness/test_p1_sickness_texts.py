@@ -51,7 +51,6 @@ def test_abi_bands_by_seniority() -> None:
     ("slug", "carenza", "rates", "comporto"),
     [
         ("ortofrutticoli-agrumari", "1", [(4, 21, "0.75"), (21, None, "1")], 180),
-        ("consorzi-di-bonifica-snebi", "1", [(301, None, "0.5")], 450),
         (
             "tessile-moda-artigianato-confartigianato",
             "0.8",
@@ -80,6 +79,22 @@ def test_sick_pay_bands_from_the_texts(
     assert stored == [(a, b, Decimal(r)) for a, b, r in rates]
     assert sickness.carenza_integration_rate == Decimal(carenza)
     assert sickness.max_duration_days == comporto
+
+
+def test_bonifica_sickness_chain() -> None:
+    """Art. 98: 10 months in full, 5 at half pay, a relapse within 3 months."""
+    rules = load_ccnl("consorzi-di-bonifica-snebi").work_rules
+    assert rules is not None
+    sickness = rules.sickness_rules
+    assert sickness is not None
+    cumulation = sickness.cumulation
+    assert cumulation is not None
+
+    assert cumulation.reset_after_days == 92
+    assert cumulation.comporto_over_chain is True
+    assert cumulation.reduced_integration_rate == Decimal("0.5")
+    (band,) = cumulation.bands
+    assert (band.full_pay_days, band.comporto_days) == (300, 450)
 
 
 def test_artisan_operai_sickness() -> None:

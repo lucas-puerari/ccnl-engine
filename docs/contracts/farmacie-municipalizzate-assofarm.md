@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 73 verified / 17 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 74 verified / 16 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2022-07-07 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2029-07-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: art. 23 (p. 21, OCR) and Allegato F of the CCNL of 7 July 2022, with art. 41 c. 1 D.Lgs. 81/2015. | corrected | Art. 23 c. 1: 'Il lavoratore a tempo indeterminato ha diritto a 15 scatti biennali di anzianità'; apprenticeship 'è un contratto di lavoro a tempo indeterminato' (D.Lgs. 81/2015 art. 41 c. 1) and the CCNL excludes no apprentice: the increments of the level the apprentice is paid at. |
 | 2026-11-07 | claude-opus-5-5 (ai) | Ipotesi Farmacie comunali 2027-2029 of 15 September 2026: art. 10 and Allegati B-E (pp. 10, 20-22, page images). | corrected | Four tranches of the retribuzione base mensile from October 2026 to July 2029; level 6 abolished into level 5; quadri allowances and seniority amounts unchanged; the base of level 1C at 31 December 2024 is printed 2,266.38 (the file has 2,266.37). |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 37 values read identically by both readings and equal to the file. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Sick pay and comporto against the research of a separate model session; quotes checked on the source. | corrected | Replaced 180 days of one episode with the chain of art. 32 reset after 60 days, comporto 16 or 24 months, 6 months in full and 6 at half pay. |
 
 ## Salary table
 
@@ -139,13 +140,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -330,6 +324,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Levels 1_12 and 1_2 (Farmacista Collaboratore with 12+ or 2+ years continuous service) are automatic time-in-grade progressions under Art. 19bis. Engine cannot model auto-advancement; implemented as static level codes distinguishable by IS allowance amount (1_12=130, 1_2=100 EUR/month). Structural engine limitation — correct payroll calculation requires knowing the worker's actual time-in-grade.
     
     Function and Tech-Prof allowances shown in kitech for L2/L3/quadri sub-levels are EXCLUDED. They appear in no allegato of the signed CCNL; Art. 17 defines retribuzione di base as Tabelle A+B only. Verification: 1Q base+IQ=2456.91+160=2616.91 vs kitech 2758.68; delta 141.77 = sum of the two extra kitech lines — confirming they are historical/personal elements outside the contractual minimum. Exclusion is correct.
+    
+    SICKNESS (Art. 32, CCNL 7 luglio 2022, PDF pp. 24-25; the renewal of 2026 leaves it unchanged): comporto 'mesi 16' up to three years of service and 'mesi 24' above; 'Si considera prosecuzione del periodo di malattia e/o infortunio quella che intervenga non oltre i 60 giorni dalla ripresa del servizio'; integration 'a partire dal primo giorno di malattia e per un massimo di 12 mesi', 100% for the first 6 and 50% for the next 6. Modelled as sickness_rules.cumulation over the chain; the 365 days in full of an oncological illness (c. 17) and the TBC rules (c. 4) are not modelled. Source: https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf, sha256 31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365.
     
 
 ## Raw data
