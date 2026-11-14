@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-06-06 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2026-04-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | gpt-6-sol (ai) | Composition of base_salary against arts. 32-33 of the 2024 text, and search of the signed texts for an ERR of 0,44 EUR. | corrected | Every base_salary was printed tabellare + art. 33 indennità speciale + 0.44 EUR.<br>No signed text establishes an ERR of 0,44 (art. 32 conglobates paga base, ex contingenza and EDR); the 0.44 was dropped from all 40 values. |
 | 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included. |
 | 2026-11-14 | claude-opus-5-5 (ai) | INPS circ. 140/2012 par. 3.3 on the apprentice contribution, against the research of a separate model session. | confirmed | The cuneo reductions (0.91) do not apply to apprentices: the artigianato apprentice rates of the bundle are confirmed. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the OCR of the source. | corrected | Added the comporto window of the CCNL. |
 
 ## Salary table
 
@@ -175,13 +176,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -369,6 +363,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP gruppi A2, A3, B1, B2, B3S, B4 added from formazione-apprendistato.com panificazione table (medium-high confidence: secondary aggregator + IPSOA 2024 news confirm 2024 rinnovo structure). Semiannual progressions as per Art. 58 + Allegato apprendistato. Gruppo 1° (dest=A1, primary source UILA PDF) unchanged.
     
     APPRENTICE INPS RATES (artigianato): 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI and integrativo, 11.61% for the employer (3.11% and 4.61% in the first two years of a firm up to 9 employees) and 5.84% for the worker. The 0.91 reduction of the artisan employers does not apply to apprentices: 'sul contributo per gli apprendisti non trovano applicazione le riduzioni del cuneo contributivo di cui alle leggi n. 388/2000 e n. 266/2005' (INPS circ. 140/2012 par. 3.3, https://servizi2.inps.it/servizi/Bussola/VisualizzaDoc.aspx?sVirtualURL=/Circolari/Circolare%20numero%20140%20del%2014-12-2012.htm, sha256 67d04317e66825fdb2cf6aa0b3106e644d76461e3e6ec17cd456b307948701a7). The wage-integration contribution of the sector is the FSBA, paid outside INPS (F24, code EBNA), not part of the INPS employer rate.
+    
+    COMPORTO OF SEVERAL ILLNESSES (Parte I, art. 46, PDF p. 59, https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf, sha256 8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e): 'il lavoratore non in prova ha diritto alla conservazione del posto per un periodo pari a 12 mesi. In caso di più assenze i periodi di conservazione del posto su indicati si intendono riferiti ad un arco temporale pari a 24 mesi.' Modelled as sickness_rules.comporto_windows; 12 months as 365 days; the 'arco temporale' read as the 24 months before the day.
     
 
 ## Raw data

@@ -144,6 +144,10 @@
           "variant": "sickness_net_basis",
           "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 46, align the computation, then resolve this limitation."
         }
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Parte I, art. 46, PDF p. 59, https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf, sha256 8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e): 'il lavoratore non in prova ha diritto alla conservazione del posto per un periodo pari a 12 mesi. In caso di più assenze i periodi di conservazione del posto su indicati si intendono riferiti ad un arco temporale pari a 24 mesi.' Modelled as sickness_rules.comporto_windows; 12 months as 365 days; the 'arco temporale' read as the 24 months before the day."
       }
     ]
   },
@@ -2170,7 +2174,7 @@
     "effective_until": null,
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "1059f2e6ced0c3e468cc481583998fe751fa75c0857636b67671a3c3f5e3d185",
+    "source_hash": "242a4c707afb3dae1e90720193c41c0d5ac01f228d83c0d6a67860b811de5ff0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2363,7 +2367,14 @@
           "effective_from": "2023-01-01"
         },
         "transformation": "Art. 46: the top-up reaches 100% of the normal pay net of the worker's deductions ('calcolata sulla normale retribuzione di fatto al netto delle ritenute a carico del lavoratore') up to the 180th day; the three days of carenza are paid only when the illness lasts more than 6 days (carenza_min_days 6). The comporto of 12 months, over 24 months for several absences, is not counted across episodes. The text is a scan: the quote is from an OCR of the PDF, read on 2026-10-30."
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 24,
+          "comporto_days": 365
+        }
+      ]
     }
   },
   "verification": {
@@ -2454,6 +2465,27 @@
         "independence": "same_process",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-panificazione-artigianato-confartigianato-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the OCR of the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+            "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
+          }
+        ],
+        "findings": [
+          "Added the comporto window of the CCNL."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.comporto_windows"
         ]
       }
     ],

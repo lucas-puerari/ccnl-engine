@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-22 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-06-01 |
 
 ## Review history
@@ -58,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 100 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the OCR of the source. | corrected | Added the comporto window of the CCNL. |
 
 ## Salary table
 
@@ -144,13 +145,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -324,6 +318,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SUB-SECTOR: CERAMICA SANITARIA E STOVIGLIERIA of CCNL B122 (table on p. 3 of the 2024 renewal tables): a lower minimum and a higher IPO than Piastrelle and Refrattari, which the sibling ceramica-industria-confindustria models, and a level E3 they do not have. The other rules are copied from that sibling.
     
     LEVEL E3: the seniority increment of E3 is the one of the other E levels (8.78), the increments being set by category letter; the level description and the apprenticeship track are those of E2.
+    
+    COMPORTO OF SEVERAL ILLNESSES (Art. 37 (CNEL 2014, scanned), PDF p. 60, https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/68, sha256 6a62203105c06f3b9d53b1278bce2271beb9a1dcd9a6538b336b461b0a19c154): '1) 8 mesi per anzianità di servizio fino a 3 anni compiuti; 2) 10 mesi per anzianità di servizio oltre i 3 e fino a 6 anni compiuti; 3) 12 mesi per anzianità di servizio oltre i 6 anni compiuti. [...] In caso di più assenze i periodi di conservazione del posto suindicati si intendono riferiti ad un arco temporale pari a 36 mesi.' Modelled as sickness_rules.comporto_windows; 8, 10 and 12 months as 243, 304 and 365 days (x 365/12); the 'arco temporale' read as the 36 months before the day; the hospital stays (up to 60 days) and the life-saving therapy days (up to half the comporto) left out of the count are not modelled.
     
 
 ## Raw data
