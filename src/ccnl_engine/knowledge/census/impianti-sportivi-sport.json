@@ -35,22 +35,6 @@
       }
     },
     {
-      "id": "level_ii_ex_fourteenth_print",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "Tabella C prints 109,45 as the ex-14th of level II from 1 January 2024 to 31 October 2026, while its own una tantum (836,70 = 6 x 139,45) and the next tranche (92,97 = 2/3 of 139,45) follow 139,45: the printed 109,45 is encoded, which pays a level II worker hired before 22/12/2015 30,00 a month less than the other columns imply until 31 October 2026.",
-      "calculation": "ccnl/impianti-sportivi-sport:coverage.notes",
-      "state": "absent",
-      "remediation": "Obtain the parties' reading of the level II cell of Tabella C (109,45 against the 139,45 its other columns imply) and correct it if it is a misprint.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "impianti-sportivi-sport/level_ii_ex_fourteenth_print"
-        ]
-      }
-    },
-    {
       "id": "level_v_first_semester_overpaid",
       "institute": "base_salary",
       "variant": "apprentice",

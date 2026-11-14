@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, overtime, sickness |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-01-12 |
-| **Last review** | 2026-11-13 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2026-07-01 |
 
 ## Review history
@@ -71,6 +71,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 107 and the patron saint holiday list, cached 2024 PDF p. 85. | confirmed | Sickness and injury holiday targets already include the stated patron saint day; the local holiday limitation is stale. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 83 weekly overtime thresholds against the cached PDF page 76. | corrected | Both bands were already present; weekly hours preceding an event were not available to the resolver. |
 | 2026-11-13 | claude-opus-5-5 (ai) | Artt. 116-117 (pp. 88-89, text layer) and Tabella C (p. 106, image) of the signed text of 12 January 2024. | corrected | Added the two pre-2015 elements by level from Tabella C; the limitations that said no schedule was printed are removed; the level II cell of 2024-2026 (109,45) conflicts with the other columns and is kept as a limitation. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Tabella C level II of the text deposited at the CNEL (PDF p. 106), read on the page image, against the research of a separate model session. | corrected | Level II ante-2015 superminimo 63.36 -> 64.36 and ex-14th 109.45 -> 139.45, misprints of the CUSI copy. |
 
 ## Salary table
 
@@ -149,13 +150,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Supply OvertimeEvent.weekly_hours_before, or separate the hours and supply each tier's multiplier.
-
-!!! warning "impianti-sportivi-sport/level_ii_ex_fourteenth_print · base_salary · impact yes · open"
-    Tabella C prints 109,45 as the ex-14th of level II from 1 January 2024 to 31 October 2026, while its own una tantum (836,70 = 6 x 139,45) and the next tranche (92,97 = 2/3 of 139,45) follow 139,45: the printed 109,45 is encoded, which pays a level II worker hired before 22/12/2015 30,00 a month less than the other columns imply until 31 October 2026.
-
-    **Applies when:** `base_salary` applies; level in II; before 2026-11-01.
-
-    **Remediation:** Obtain the parties' reading of the level II cell of Tabella C (109,45 against the 139,45 its other columns imply) and correct it if it is a misprint.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -331,6 +325,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     CCNL H077 Impianti Sportivi e Palestre, rinnovo 12/01/2024 (vigenza 01/01/2024-31/12/2026). 7 livelli: Q (quadro) + livelli I-VI. Art. 121 CCNL dice 'sei livelli' perche Q e categoria quadro sopra la scala ordinaria. Conglobato confermato da ilccnl.it (contingenza=0.00, terzo elemento=0.00 su 4 livelli). Divisore orario 173 da Art. 120 (40h settimanali).
     
     Hires before 22/12/2015 (art. 116 and norma transitoria, Tabella C p. 106): SUPERMINIMO_ANTE_2015 (non-absorbable, out of the retribuzione di fatto, 12 payments) and EX_QUATTORDICESIMA_ANTE_2015 (the former 14th, decreasing on 1 November 2026 and 1 January 2028, nothing from 2029), paid to the workers whose employment started by 21 December 2015. A worker whose individual balances differ from the table (more favourable individual rights preserved by the nota a verbale) states them as individual elements. Art. 116 says the transitory element is paid until 31 October 2029, the table prints nothing from 1 January 2029: outside the declared window.
+    
+    TABELLA C, level II: the text deposited at the CNEL (H077, PDF p. 106) prints 64,36 and 139,45 where the CUSI copy prints 63,36 and 109,45; the deposited values are used, consistent with the parameter and with the una tantum.
     
 
 ## Raw data
