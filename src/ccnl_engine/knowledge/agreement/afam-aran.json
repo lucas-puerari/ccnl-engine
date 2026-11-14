@@ -4496,7 +4496,57 @@
         "transformation": "The seven bands as six steps after 3, 9, 15, 21, 28 and 35 years (36, 72, 72, 72, 84, 84 months); each the monthly tabellare of the band less that of the band before. The seniority is the anzianità di servizio the caller states."
       }
     },
-    "employer_funds": [],
+    "employer_funds": [
+      {
+        "code": "ESPERO",
+        "description": "Fondo Scuola Espero - fondo pensione complementare dei lavoratori della scuola e dell'AFAM",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2026-01-01",
+              "valid_until": null,
+              "value": "0.0100"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "fondo-espero-scheda-destinatari-2026",
+              "title": "Fondo Scuola Espero, Nota informativa Parte I, scheda 'I destinatari e i contributi' (in vigore dal 28/10/2026)",
+              "kind": "altro",
+              "url": "https://www.fondoespero.it/cms/resource/open/1803/scheda-i-destinatari-e-i-contributi(1).pdf",
+              "sha256": "bff68355f97c46723f3993ad4b1d1fb301ca29d82c5a1244c3806141863a8afa"
+            },
+            "page": "1, 3",
+            "section": "Destinatari; tabella DIPENDENTI PUBBLICI (D.Lgs. 124/1993)",
+            "quote": "a) i dipendenti statali della scuola (compresi i dipendenti dell'AFAM) [...] DIPENDENTI PUBBLICI D.Lgs. 124/1993) [...] Assunti dopo il 31-dic-2000 ovvero a tempo determinato 100% 1% 1%"
+          },
+          "transformation": "1% from the employer and at least 1% from the worker of an enrolled AFAM employee, as for the scuola (istruzione-ricerca-aran ESPERO); the TFR share of a public employee is figurative (INPS ex INPDAP) and not paid by the employer in the month.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T23:50:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T23:50:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-afam-espero"
+          }
+        }
+      }
+    ],
     "accrual_rule": {
       "min_days": 15,
       "comparison": "more_than",
@@ -6024,17 +6074,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "PENSION FUND: the AFAM staff join the Fondo Espero, not modelled in this file.",
-        "capability": "pension_fund_contribution",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "pension_fund_not_modelled",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Add the Fondo Espero rates of the AFAM staff."
-        }
+        "kind": "info",
+        "text": "PENSION FUND: the AFAM staff join the Fondo Scuola Espero ('compresi i dipendenti dell'AFAM'), 1% + 1% for public employees (employer_funds ESPERO), per the fund's scheda of 28/10/2026."
       },
       {
         "kind": "info",
@@ -6049,7 +6090,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "f1cdf011b8d2f0a4b190b254f37b1df6c20dfc9bf63297bbb80b6ca28065cdb7",
+    "source_hash": "af86f7444a438e2153b7ac0d5f3fa84e24f1987699cb719795ebc896791dbec0",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -6303,6 +6344,27 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.notice"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-afam-espero",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Fondo Espero scheda 'I destinatari e i contributi' (PDF p. 1 and 3), read on the page image.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fondoespero.it/cms/resource/open/1803/scheda-i-destinatari-e-i-contributi(1).pdf",
+            "sha256": "bff68355f97c46723f3993ad4b1d1fb301ca29d82c5a1244c3806141863a8afa"
+          }
+        ],
+        "findings": [
+          "Added Fondo Espero for the AFAM staff, 1% + 1%."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.employer_funds"
         ]
       }
     ]

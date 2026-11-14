@@ -211,22 +211,6 @@
       }
     },
     {
-      "id": "pension_fund_not_modelled",
-      "institute": "pension_fund_contribution",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "PENSION FUND: the AFAM staff join the Fondo Espero, not modelled in this file.",
-      "calculation": "ccnl/afam-aran:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the Fondo Espero rates of the AFAM staff.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "afam-aran/pension_fund_not_modelled"
-        ]
-      }
-    },
-    {
       "id": "personal_withholding_same_kind",
       "institute": "personal_withholdings",
       "variant": "all",

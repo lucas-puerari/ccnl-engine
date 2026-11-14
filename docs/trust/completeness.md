@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 365 open limitations (365 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 364 open limitations (364 with a monetary impact).
 
 ## Declared window
 
@@ -50,7 +50,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | CCNL | Family | Readiness | Renewal due | Census | Gaps |
 |---|---|---|---|---|---|
 | [acconciatura-estetica-confartigianato](../contracts/acconciatura-estetica-confartigianato.md) | `servizi-persona` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 19 non-native capabilities |
-| [afam-aran](../contracts/afam-aran.md) | `pubblico-impiego` | exploratory | — | 22 rows | 22 open requirements; 2 weak rules; 17 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
+| [afam-aran](../contracts/afam-aran.md) | `pubblico-impiego` | exploratory | — | 21 rows | 21 open requirements; 2 weak rules; 17 monetary limitations; 19 non-native capabilities |
 | [agenti-immobiliari-fiaip](../contracts/agenti-immobiliari-fiaip.md) | `servizi-immobiliari` | exploratory | — | 20 rows | 20 open requirements; 2 weak rules; 16 monetary limitations; 18 non-native capabilities |
 | [agenzie-marittime-i481](../contracts/agenzie-marittime-i481.md) | `trasporti-logistica` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 19 non-native capabilities |
 | [agenzie-viaggio-fiavet](../contracts/agenzie-viaggio-fiavet.md) | `turismo` | exploratory | — | 19 rows | 19 open requirements; 1 weak rule; 16 monetary limitations; 18 non-native capabilities |

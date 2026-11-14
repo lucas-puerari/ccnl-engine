@@ -48,7 +48,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/afam-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "f1cdf011b8d2f0a4b190b254f37b1df6c20dfc9bf63297bbb80b6ca28065cdb7",
+      "source_hash": "af86f7444a438e2153b7ac0d5f3fa84e24f1987699cb719795ebc896791dbec0",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/afam-aran.json.gz"
@@ -2441,7 +2441,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "87815d9ae68dd1b74aeb91f76648031e9401801f99c4a2a5fc134492281a2e73",
+      "source_hash": "fcb97af4c628e2ef059f17445cfb7d12b1c96b46833522798f56e905c39f585a",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/afam-aran.json.gz",
