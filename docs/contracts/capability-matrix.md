@@ -55,9 +55,9 @@ formulas or caller-declared amounts.
 
 | Scope | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
-| core | 27 | 0 | 0 | 0 |
+| core | 28 | 0 | 0 | 0 |
 | scenario | 18 | 10 | 2 | 0 |
-| outside_input | 0 | 0 | 0 | 3 |
+| outside_input | 0 | 0 | 0 | 2 |
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -102,7 +102,7 @@ formulas or caller-declared amounts.
 | `addizionale_regionale` | Addizionale regionale IRPEF | core | net | native | decided | decision | `facts.regione` | — | simplified | 1 / 0 / 1 / 0 |
 | `addizionale_comunale` | Addizionale comunale IRPEF | core | net | native | decided | decision | `facts.comune_belfiore` | — | simplified | 0 / 1 / 1 / 0 |
 | `family_deductions` | Detrazioni familiari a carico (Art. 12 TUIR) | core | net | native | decided | decision | `facts.family_composition`, `current_year` | children, other_dependants, sole_parent_first_child, spouse, spouse_increase_bands | simplified | 4 / 0 / 4 / 0 |
-| `art15_deductions` | Detrazioni Art. 15 TUIR (interessi mutuo e oneri) | outside_input | net | unsupported | outside_input | — | `facts.art15_expenses` | — | unavailable | none bundled |
+| `art15_deductions` | Detrazioni art. 15 TUIR al conguaglio per gli oneri trattenuti o erogati dal datore (art. 23 c. 3 DPR 600/1973): spese sanitarie e premi assicurativi | core | net | native | decided | decision | `current_year.art15_expenses` | — | implemented | none bundled |
 | `overtime` | Lavoro straordinario e supplementare | scenario | work_rules | caller_supplied | event | event | — | ccnl_band_multiplier, caller_multiplier | caller-supplied | 283 / 290 / 4 / 0 |
 | `night_work` | Lavoro notturno | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 89 / 0 / 0 / 0 |
 | `holiday_work` | Lavoro festivo | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 235 / 2 / 0 / 0 |

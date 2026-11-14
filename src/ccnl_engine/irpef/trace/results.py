@@ -10,6 +10,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.decision.models import CalculationDecision, CalculationStatus
 from ccnl_engine.irpef.results import TaxLineItem
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.tax_credit.foreign.rules import foreign_credit_rule
@@ -23,7 +24,6 @@ from ccnl_engine.withholding.rules import (
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.decision.models import CalculationDecision
     from ccnl_engine.irpef.net.rules import NetIrpef
     from ccnl_engine.sector.models import YearRules
 
@@ -43,9 +43,10 @@ def annual_items(
 
     Returns:
         The components gross IRPEF, work deduction, family deductions,
-        ulteriore detrazione, sterilizzazione and foreign tax credit, each
-        only when it applies,
-        and the decision on the ulteriore detrazione when it is in force.
+        ulteriore detrazione, sterilizzazione, art. 15 deductions and
+        foreign tax credit, each only when it applies, and the decisions on
+        the ulteriore detrazione when it is in force and on the art. 15
+        deductions when taken.
     """
     components = [
         TaxLineItem(
@@ -78,6 +79,26 @@ def annual_items(
         )
         decisions.append(decision)
         components.extend(component)
+    if annual.art15 > _ZERO:
+        components.append(
+            TaxLineItem(
+                name="art15_deductions",
+                amount=annual.art15,
+                rule_id="art15-tuir",
+                fonte="Art. 15 TUIR; art. 23 c. 3 DPR 600/1973",
+            )
+        )
+        decisions.append(
+            CalculationDecision(
+                capability="art15_deductions",
+                status=CalculationStatus.FINAL,
+                reason_code="charges_via_employer_deducted",
+                rule="art15-tuir",
+                rule_version=str(rules.year),
+                inputs={"deduction": str(annual.art15)},
+                amount=annual.art15,
+            )
+        )
     if annual.foreign_credit > _ZERO:
         law = withholding_rule(WithholdingTopic.CONGUAGLIO, rules.year)
         rule_id, citation = foreign_credit_rule(rules.year)

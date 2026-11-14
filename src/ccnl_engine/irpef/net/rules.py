@@ -53,6 +53,7 @@ class NetIrpef:
             when the net is floored at zero.
         foreign_credit: Credit for foreign taxes (art. 165 TUIR) deducted
             from the imposta netta, at most :attr:`net_before_credit`.
+        art15: Art. 15 TUIR deduction the conguaglio takes into account.
     """
 
     gross: Decimal
@@ -61,12 +62,13 @@ class NetIrpef:
     ulteriore: CreditOutcome | None
     ulteriore_effect: Decimal = _ZERO
     foreign_credit: Decimal = _ZERO
+    art15: Decimal = _ZERO
 
     @property
     def total_deductions(self) -> Decimal:
-        """Sum of the art. 13, art. 12 and ulteriore deductions."""
+        """Sum of the art. 13, art. 12, ulteriore and art. 15 deductions."""
         ulteriore = _ZERO if self.ulteriore is None else self.ulteriore.amount
-        return self.work_deduction + self.family_deductions + ulteriore
+        return self.work_deduction + self.family_deductions + ulteriore + self.art15
 
     @property
     def net_before_credit(self) -> Decimal:

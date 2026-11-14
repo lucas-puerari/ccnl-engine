@@ -17,6 +17,7 @@ from ccnl_engine.irpef.computation.services import (
     compute_tax,
 )
 from ccnl_engine.pay_item.services import _ZERO
+from ccnl_engine.tax_credit.art15.rules import art15_deduction
 from ccnl_engine.tax_credit.trattamento_integrativo.rules import (
     increment_reading_open,
 )
@@ -123,6 +124,18 @@ def _external_income(inp: _AmountsInput) -> Decimal:
     return facts.somma_esente_income
 
 
+def _art15(inp: _AmountsInput, projected: Decimal) -> Decimal:
+    """Return the art. 15 TUIR deduction the conguaglio takes into account.
+
+    Returns:
+        Zero outside the conguaglio or without the charges of the year.
+    """
+    facts = inp.current_year
+    if not inp.conguaglio or facts is None or facts.tax_year != inp.rules.year:
+        return _ZERO
+    return art15_deduction(facts.art15_expenses, projected + facts.external_income)
+
+
 def _pay_period(
     inp: _AmountsInput, taxable: _Taxable, family: RunFamily | None
 ) -> PayPeriod:
@@ -199,5 +212,6 @@ def withhold_irpef(inp: _AmountsInput, taxable: _Taxable) -> _Irpef:
         foreign_taxes=inp.foreign_taxes if inp.conguaglio else (),
         fixed_term=inp.fixed_term_in_year,
         external_income=_external_income(inp),
+        art15=_art15(inp, projected),
     )
     return _Irpef(tax=tax, family=family)

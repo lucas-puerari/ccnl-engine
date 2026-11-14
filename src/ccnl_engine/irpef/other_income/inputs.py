@@ -17,6 +17,7 @@ from enum import StrEnum
 from ccnl_engine.collection.validators import items_of_type, tuple_of
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.irpef.prior.inputs import PriorEmployerIncome
+from ccnl_engine.tax_credit.art15.inputs import Art15Expense
 from ccnl_engine.validators import (
     parse_enum,
     require_date,
@@ -99,6 +100,9 @@ class CurrentYearTaxFacts:
             600/1973), from their CU; their taxable income is part of
             ``other_employment_income`` and the conguaglio moves it into
             the tax of this employment (:mod:`~ccnl_engine.irpef.prior.rules`).
+        art15_expenses: The art. 15 TUIR charges of the year the employer
+            withheld or paid under an agreement, which the conguaglio
+            deducts (art. 23 c. 3 DPR 600/1973).
 
     Raises:
         InvalidInputError: When a field is not of its type or in its range.
@@ -113,6 +117,7 @@ class CurrentYearTaxFacts:
     estimated_on: date
     quality: IncomeEstimateQuality
     prior_employers: tuple[PriorEmployerIncome, ...] = ()
+    art15_expenses: tuple[Art15Expense, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
         require_int(
@@ -147,6 +152,13 @@ class CurrentYearTaxFacts:
             feature=_FEATURE,
         )
         object.__setattr__(self, "prior_employers", prior)
+        expenses = tuple_of(
+            self.art15_expenses,
+            f"{_OWNER}.art15_expenses",
+            items_of_type(Art15Expense, feature=_FEATURE),
+            feature=_FEATURE,
+        )
+        object.__setattr__(self, "art15_expenses", expenses)
         moved = sum((p.taxable for p in prior), _ZERO)
         if moved > self.other_employment_income:
             msg = (

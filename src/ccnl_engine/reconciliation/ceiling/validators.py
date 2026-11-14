@@ -49,6 +49,7 @@ _DEDUCTIONS = frozenset({
     "work_deduction",
     "family_deductions",
     "ulteriore_detrazione",
+    "art15_deductions",
 })
 #: Component of the art. 165 TUIR credit, deducted from the net IRPEF.
 _FOREIGN_CREDIT = "foreign_tax_credit"

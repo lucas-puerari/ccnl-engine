@@ -102,4 +102,8 @@ PERIOD_FACT_DEFAULTS: dict[str, FieldDefault] = {
         "no request under art. 23 c. 4 DPR 600/1973: the conguaglio takes in "
         "this employment alone"
     ),
+    "CurrentYearTaxFacts.art15_expenses": absence_is_fact(
+        "no art. 15 charge withheld or paid by the employer: the conguaglio "
+        "deducts none"
+    ),
 }
