@@ -344,3 +344,16 @@ def test_fiori_pays_the_permits_with_the_march_pay(
 
     assert _paid(result) == paid
     assert "permit_carryover" not in {b.detail for b in result.blockers}
+
+
+def test_fiaip_pays_the_permits_with_the_december_pay() -> None:
+    """FIAIP art. 105: paid in December; the ROL hold December's twelfth."""
+    result = _run(
+        False,
+        PeriodId(2026, 12),
+        _NOVEMBER,
+        slug="agenti-immobiliari-fiaip",
+        level="IV",
+    )
+
+    assert _paid(result) == {"ex": Decimal(32), "rol": Decimal(56) / 12}

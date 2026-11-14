@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 31 verified / 1 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 35 verified / 1 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 15 of the CCNL FIAIP 2025 (PDF p. 26, text layer). | corrected | Fon.Te.: employer 1.55% and worker 0.55% of the TFR base, the 0.05 quota associativa included (the old note added it on top); TFR 50% or 100% at the worker's choice; una tantum 15.50 EUR at enrolment. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 163, una tantum table and hire-date clause, PDF pp. 97-98. | confirmed | Verified both installments for all seven levels against the final PDF, including the 1 January 2024 full-payment cutoff and proportional payment for later hires through 1 May 2025. Removed an obsolete exclusion note. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 40 and 55, apprentice pay steps and the specialist track, PDF pp. 41 and 46. | confirmed | Read both pages on the page image: Art. 55 gives 24 months from level V to level III; Art. 40 gives two levels below for the first half and one below for the second to the apprentices of the CCNL, with no exception for Art. 55. Added the 24-month track and closed the specialist_apprenticeship_track limitation. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Artt. 105, 122, 125, 160 and 161 of the CCNL 2025 (ferie, permits, deadline, quotas). | corrected | The file had no leave rules: added the ferie, the 32 + 56 hours of permits with their whole-month accrual, the December/June deadline and the termination quotas. |
 
 ## Salary table
 
@@ -314,6 +315,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Source provenance: values extracted from signed CCNL 19/05/2025 PDF distributed by FIAIP/EBNAIP. The direct PDF download URL was not recorded; the homepage https://www.ebnaip.it/ was used as the source anchor. All values verified page-by-page against the original document.
     
     Art. 15 (p. 26): Fon.Te., employer 1.55% and worker minimum 0.55% of the TFR base, the 0.05 quota associativa included in each (parameters.employer_funds FONTE); the TFR share, 50% or 100%, is the worker's choice. The una tantum of 15.50 EUR at enrolment is not paid by the engine.
+    
+    LEAVE (CCNL 2025, EBNAIP): ferie 26 working days on a week counted as six (Art. 122, p. 79), twelfths per month of service at termination (Art. 125); 56 hours of reduction and 32 of ex festività a year on both the 5- and 6-day week, a twelfth per whole month of service (Art. 105, pp. 70-71); not taken within the year paid with the December pay or, by agreement, taken by 30 June and the rest paid with the June pay (EmployerProfile.permit_carryover); daily quota 1/26 and hourly 1/168 (Artt. 160-161, p. 96), used for the leave left at termination.
     
 
 ## Raw data
