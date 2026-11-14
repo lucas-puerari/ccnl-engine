@@ -117,16 +117,14 @@ def test_a_permanent_impiegato_takes_the_twelve_months() -> None:
     assert rules.cumulation is not None
 
 
-def test_a_tabacco_apprentice_takes_half_pay_six_months_a_year() -> None:
-    """Art. 6: 50% of the normal pay for at most 6 months a year."""
+def test_a_tabacco_apprentice_takes_full_pay_six_months_a_year() -> None:
+    """Art. 6 as renewed in 2025: 100% of the normal pay, 6 months a year."""
     apprentice = Apprentice(months_elapsed=3)
     rules = _rules(
         with_sickness_variant(_TABACCO, WorkerCategory.IMPIEGATO, apprentice)
     )
     assert (
-        rules.carenza_integration_rate
-        == rules.full_pay_integration_rate
-        == Decimal("0.5")
+        rules.carenza_integration_rate == rules.full_pay_integration_rate == Decimal(1)
     )
     assert rules.comporto_calendar_year
     assert rules.max_duration_days == 180
