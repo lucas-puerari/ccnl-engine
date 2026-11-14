@@ -36,9 +36,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer |
+| **Limits of this contract** | inps_employer |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -55,7 +55,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-05 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2026-10-01 |
 
 ## Review history
@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Wood-sector impiegati apprenticeship durations and percentages in art. 55 sections 6 and 8 of the signed 2014 agreement, checked on cached PDF pages 55–56. | confirmed | Art. 55 section 6 fixes impiegati apprenticeship at three years for wood and stone; section 8 prints separate wood impiegati percentage tables for groups 1–3. Group 3 has a sixth semester at 95%, unlike the five-semester operai table. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Lapidei tables of the integrative agreement of 15 March 2024 (pp. 5-7) and Art. 45 bis of the integrative agreement of 17 February 2025 (pp. 3-4). | confirmed | Read the 28 Lapidei amounts and the seniority table of Art. 45 bis on the page images; the Lapidei levels were absent, so a stone worker could only be classified on the Legno levels. Added levels 1-7 on the lapidei ladder with their seniority and closed lapidei_tables_not_modelled; recorded the Lapidei apprenticeship tracks as an open limitation. |
 | 2026-11-14 | claude-opus-5-5 (ai) | INPS circ. 140/2012 par. 3.3 on the apprentice contribution, against the research of a separate model session. | confirmed | The cuneo reductions (0.91) do not apply to apprentices: the artigianato apprentice rates of the bundle are confirmed. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Nuovo art. 56 of the accordo of 13 March 2018 (PDF p. 6-7), read on the page images. | corrected | Added the lapidei apprenticeship tracks (groups 1-3, operai and impiegati). |
 
 ## Salary table
 
@@ -142,16 +143,33 @@ percentage: 0.88
 Destination levels: `E`  
 percentage: 0.95
 
+**gruppo_1_lapidei** (type: `percentage`)  
+Destination levels: `1`, `2`, `3`  
+percentage: 1.00
+
+**gruppo_2_lapidei** (type: `percentage`)  
+Destination levels: `4`, `5`  
+percentage: 1.00
+
+**gruppo_3_lapidei** (type: `percentage`)  
+Destination levels: `6`  
+percentage: 1.00
+
+**gruppo_1_lapidei_impiegati** (type: `percentage`)  
+Destination levels: `1`, `2`, `3`  
+percentage: 0.80
+
+**gruppo_2_lapidei_impiegati** (type: `percentage`)  
+Destination levels: `4`, `5`  
+percentage: 0.88
+
+**gruppo_3_lapidei_impiegati** (type: `percentage`)  
+Destination levels: `6`  
+percentage: 0.95
+
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "legno-lapidei-artigianato-confartigianato/lapidei_apprenticeship · base_salary · impact yes · open"
-    LAPIDEI APPRENTICES: the apprenticeship tracks of the file are the Legno ones (Art. 55, wood sector); the groups and percentages of the Lapidei apprentices are not modelled, and a Lapidei apprentice has no track.
-
-    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice; level in 1, 2, 3, 4, 5, 6, 7.
-
-    **Remediation:** Source the Lapidei apprenticeship groups and percentages of Art. 55 and add their tracks on the lapidei ladder.
 
 !!! note "legno-lapidei-artigianato-confartigianato/null_category_operaio_rate · inps_employer · impact unknown · resolved"
     LEVEL CATEGORY: all levels left null. Primary source text shows multiple levels map to both operai and impiegati (e.g. level B = 'Impiegati di concetto - Operai specializzati provetti') — this is a genuine one-to-many mapping that the schema cannot represent as a single category value, not a data gap. 2026-artigianato.json applies rate 0.2693 (default/operaio) for null category; impiegato rate 0.2471 not applied to impiegato-eligible levels.
@@ -370,6 +388,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP: 3 gruppi from base CCNL 2022 (unchanged in 2024 rinnovo). Gruppo 1 (dest AS, A, B — operai 5 years = 60m), Gruppo 2 (dest CS, C, D — operai 5 years = 60m), Gruppo 3 (dest E — operai 2.5 years = 30m). Level F has no apprenticeship track.
     
     LAPIDEI (Settore Lapidei, Escavazione, Marmo, imprese artigiane): seven levels 1-7 on a ladder of their own ('lapidei'), retribuzione tabellare of the signed integrative agreement of 15 March 2024 (CNA, pp. 5-7): from 1 March 2024, 1 January 2025, 1 January 2026 and 1 October 2026, e.g. level 5 1628,71, 1678,71, 1718,71, 1762,71. The October 2026 table runs on until the next renewal ('continuerà a produrre i suoi effetti', renewal of 5 March 2024 p. 2). Seniority (Art. 45 bis, integrative agreement of 17 February 2025, pp. 3-4): every two years up to five, 12,39 (level 1) to 6,20 (level 7), from 1 January 2025 17,39 to 11,20, read on the same switch date as the Legno amounts. The Piccole e Medie Imprese tables (pp. 7-12) are not this ruleset's.
+    
+    LAPIDEI APPRENTICES: nuovo art. 56 of the accordo of 13 March 2018 (CNEL, PDF p. 4-7): groups 1st (levels 1-3) and 2nd (4-5) of 5 years, 3rd (level 6) of 2 years 6 months, impiegati 3 years; the semester percentages equal the Legno ones (tracks gruppo_*_lapidei on the lapidei ladder). Apply to contracts signed from 13 March 2018.
     
     APPRENTICESHIP: Art. 55 sections 6 and 8 of the signed 2014 CCNL (PDF pp. 55–56) distinguish operai and impiegati in the wood sector. Impiegati use three-year tracks: group 1 pays 70%, 73%, 80% by year; group 2 pays 70%, 75%, 88% by year; group 3 pays 70%, 75%, 80%, 90%, 95%, 95% by semester. For overlapping destination levels set Apprentice.track to gruppo_1_legno_impiegati, gruppo_2_legno_impiegati or gruppo_3_legno_impiegati for clerical apprentices; use the existing gruppo_*_legno tracks for operai. The caller ends the apprentice contract at its agreed end; the last rate remains available for qualifying extensions. The six-month reduction for relevant post-compulsory qualifications and the SME reduction of durations above three years are not derived from these tracks. Lapidei pay tables remain unmodelled.
     

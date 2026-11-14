@@ -109,9 +109,12 @@ class TestLoadLegnoLapideiArtigianatoConfartigianato:
     def test_legno_lapidei_artigianato_confartigianato_apprenticeship_tracks(
         self,
     ) -> None:
-        """Three groups each have an operai and an impiegati percentage track."""
+        """Three groups, operai and impiegati tracks, for legno and lapidei."""
         ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato")
-        assert len(ccnl.apprenticeship) == 6
+        assert len(ccnl.apprenticeship) == 12
+        lapidei = {t.name: t for t in ccnl.apprenticeship if "_lapidei" in t.name}
+        assert set(lapidei["gruppo_1_lapidei"].destination_levels) == {"1", "2", "3"}
+        assert set(lapidei["gruppo_3_lapidei_impiegati"].destination_levels) == {"6"}
         by_name = {t.name: t for t in ccnl.apprenticeship}
         g1 = by_name["gruppo_1_legno"]
         assert set(g1.destination_levels) == {"AS", "A", "B"}

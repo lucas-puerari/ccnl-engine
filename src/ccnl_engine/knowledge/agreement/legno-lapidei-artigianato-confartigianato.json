@@ -132,29 +132,8 @@
         "capability": "base_salary"
       },
       {
-        "kind": "simplification",
-        "text": "LAPIDEI APPRENTICES: the apprenticeship tracks of the file are the Legno ones (Art. 55, wood sector); the groups and percentages of the Lapidei apprentices are not modelled, and a Lapidei apprentice has no track.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "lapidei_apprenticeship",
-          "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ],
-            "levels": [
-              "1",
-              "2",
-              "3",
-              "4",
-              "5",
-              "6",
-              "7"
-            ]
-          },
-          "remediation": "Source the Lapidei apprenticeship groups and percentages of Art. 55 and add their tracks on the lapidei ladder."
-        }
+        "kind": "info",
+        "text": "LAPIDEI APPRENTICES: nuovo art. 56 of the accordo of 13 March 2018 (CNEL, PDF p. 4-7): groups 1st (levels 1-3) and 2nd (4-5) of 5 years, 3rd (level 6) of 2 years 6 months, impiegati 3 years; the semester percentages equal the Legno ones (tracks gruppo_*_lapidei on the lapidei ladder). Apply to contracts signed from 13 March 2018."
       },
       {
         "kind": "info",
@@ -377,6 +356,27 @@
         "independence": "same_process",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-lapidei-apprenticeship",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Nuovo art. 56 of the accordo of 13 March 2018 (PDF p. 6-7), read on the page images.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/182848",
+            "sha256": "693e4155984b90854998da34d5315cdc34981eccef4822aa3633d2aadd510e47"
+          }
+        ],
+        "findings": [
+          "Added the lapidei apprenticeship tracks (groups 1-3, operai and impiegati)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "apprenticeship"
         ]
       }
     ]
@@ -3437,6 +3437,366 @@
           "review_id": "2026-11-09-ai-legno-impiegati-apprenticeship"
         }
       }
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_1_lapidei",
+      "destination_levels": [
+        "1",
+        "2",
+        "3"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.73"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 36,
+          "months_until": 48,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 48,
+          "months_until": 60,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 60,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-legno-lapidei-artigianato-2018-03-13",
+            "title": "CCNL Area Legno-Lapidei artigianato, accordo 13 marzo 2018 (CNEL)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/182848",
+            "sha256": "693e4155984b90854998da34d5315cdc34981eccef4822aa3633d2aadd510e47"
+          },
+          "page": "6",
+          "section": "Nuovo art. 56 punto 8, Settore Escavazione e Lavorazione dei materiali Lapidei - OPERAI",
+          "quote": "1° 70% 70% 73% 73% 80% 80% 85% 85% 90% 90% / 2° 70% 70% 75% 75% 88% 88% 90% 90% 95% 95% / 3° 70% 75% 80% 90% 95%"
+        },
+        "transformation": "Percentages of the retribuzione tabellare of the destination level by semester, the same as the Legno table; lapidei groups: 1st levels 1-3, 2nd levels 4-5 (5 years), 3rd level 6 (2 years 6 months); impiegati 3 years. For contracts signed from 13 March 2018.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-15T00:10:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:10:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-lapidei-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_2_lapidei",
+      "destination_levels": [
+        "4",
+        "5"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.88"
+        },
+        {
+          "months_from": 36,
+          "months_until": 48,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 48,
+          "months_until": 60,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 60,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-legno-lapidei-artigianato-2018-03-13",
+            "title": "CCNL Area Legno-Lapidei artigianato, accordo 13 marzo 2018 (CNEL)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/182848",
+            "sha256": "693e4155984b90854998da34d5315cdc34981eccef4822aa3633d2aadd510e47"
+          },
+          "page": "6",
+          "section": "Nuovo art. 56 punto 8, Settore Escavazione e Lavorazione dei materiali Lapidei - OPERAI",
+          "quote": "1° 70% 70% 73% 73% 80% 80% 85% 85% 90% 90% / 2° 70% 70% 75% 75% 88% 88% 90% 90% 95% 95% / 3° 70% 75% 80% 90% 95%"
+        },
+        "transformation": "Percentages of the retribuzione tabellare of the destination level by semester, the same as the Legno table; lapidei groups: 1st levels 1-3, 2nd levels 4-5 (5 years), 3rd level 6 (2 years 6 months); impiegati 3 years. For contracts signed from 13 March 2018.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-15T00:10:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:10:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-lapidei-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_3_lapidei",
+      "destination_levels": [
+        "6"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 30,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-legno-lapidei-artigianato-2018-03-13",
+            "title": "CCNL Area Legno-Lapidei artigianato, accordo 13 marzo 2018 (CNEL)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/182848",
+            "sha256": "693e4155984b90854998da34d5315cdc34981eccef4822aa3633d2aadd510e47"
+          },
+          "page": "6",
+          "section": "Nuovo art. 56 punto 8, Settore Escavazione e Lavorazione dei materiali Lapidei - OPERAI",
+          "quote": "1° 70% 70% 73% 73% 80% 80% 85% 85% 90% 90% / 2° 70% 70% 75% 75% 88% 88% 90% 90% 95% 95% / 3° 70% 75% 80% 90% 95%"
+        },
+        "transformation": "Percentages of the retribuzione tabellare of the destination level by semester, the same as the Legno table; lapidei groups: 1st levels 1-3, 2nd levels 4-5 (5 years), 3rd level 6 (2 years 6 months); impiegati 3 years. For contracts signed from 13 March 2018.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-15T00:10:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:10:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-lapidei-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_1_lapidei_impiegati",
+      "destination_levels": [
+        "1",
+        "2",
+        "3"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.73"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.80"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-legno-lapidei-artigianato-2018-03-13",
+            "title": "CCNL Area Legno-Lapidei artigianato, accordo 13 marzo 2018 (CNEL)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/182848",
+            "sha256": "693e4155984b90854998da34d5315cdc34981eccef4822aa3633d2aadd510e47"
+          },
+          "page": "7",
+          "section": "Nuovo art. 56 punto 8, Settore Escavazione e Lavorazione dei materiali Lapidei - IMPIEGATI",
+          "quote": "1° 70% 70% 73% 73% 80% 80% / 2° 70% 70% 75% 75% 88% 88% / 3° 70% 75% 80% 90% 95% 95%"
+        },
+        "transformation": "Percentages of the retribuzione tabellare of the destination level by semester, the same as the Legno table; lapidei groups: 1st levels 1-3, 2nd levels 4-5 (5 years), 3rd level 6 (2 years 6 months); impiegati 3 years. For contracts signed from 13 March 2018.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-15T00:10:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:10:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-lapidei-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_2_lapidei_impiegati",
+      "destination_levels": [
+        "4",
+        "5"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.88"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-legno-lapidei-artigianato-2018-03-13",
+            "title": "CCNL Area Legno-Lapidei artigianato, accordo 13 marzo 2018 (CNEL)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/182848",
+            "sha256": "693e4155984b90854998da34d5315cdc34981eccef4822aa3633d2aadd510e47"
+          },
+          "page": "7",
+          "section": "Nuovo art. 56 punto 8, Settore Escavazione e Lavorazione dei materiali Lapidei - IMPIEGATI",
+          "quote": "1° 70% 70% 73% 73% 80% 80% / 2° 70% 70% 75% 75% 88% 88% / 3° 70% 75% 80% 90% 95% 95%"
+        },
+        "transformation": "Percentages of the retribuzione tabellare of the destination level by semester, the same as the Legno table; lapidei groups: 1st levels 1-3, 2nd levels 4-5 (5 years), 3rd level 6 (2 years 6 months); impiegati 3 years. For contracts signed from 13 March 2018.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-15T00:10:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:10:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-lapidei-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "gruppo_3_lapidei_impiegati",
+      "destination_levels": [
+        "6"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 24,
+          "months_until": 30,
+          "percentage": "0.95"
+        },
+        {
+          "months_from": 30,
+          "months_until": null,
+          "percentage": "0.95"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-legno-lapidei-artigianato-2018-03-13",
+            "title": "CCNL Area Legno-Lapidei artigianato, accordo 13 marzo 2018 (CNEL)",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/182848",
+            "sha256": "693e4155984b90854998da34d5315cdc34981eccef4822aa3633d2aadd510e47"
+          },
+          "page": "7",
+          "section": "Nuovo art. 56 punto 8, Settore Escavazione e Lavorazione dei materiali Lapidei - IMPIEGATI",
+          "quote": "1° 70% 70% 73% 73% 80% 80% / 2° 70% 70% 75% 75% 88% 88% / 3° 70% 75% 80% 90% 95% 95%"
+        },
+        "transformation": "Percentages of the retribuzione tabellare of the destination level by semester, the same as the Legno table; lapidei groups: 1st levels 1-3, 2nd levels 4-5 (5 years), 3rd level 6 (2 years 6 months); impiegati 3 years. For contracts signed from 13 March 2018.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-15T00:10:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:10:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-lapidei-apprenticeship"
+        }
+      }
     }
   ],
   "ruleset": {
@@ -3446,7 +3806,7 @@
     "effective_until": null,
     "source": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
     "verification_status": "unverified",
-    "source_hash": "4b1097400f36f09f6618dbe6aa2a95f0d3d61e5109fa10c444282e52ee3fb4f9",
+    "source_hash": "1cc3f38fb15a2223cf3e6e6e0b2634bcb1b08c09d644b13a0b2439dfb95a8318",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

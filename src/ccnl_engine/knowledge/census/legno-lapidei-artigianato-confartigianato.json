@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "lapidei_apprenticeship",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "LAPIDEI APPRENTICES: the apprenticeship tracks of the file are the Legno ones (Art. 55, wood sector); the groups and percentages of the Lapidei apprentices are not modelled, and a Lapidei apprentice has no track.",
-      "calculation": "ccnl/legno-lapidei-artigianato-confartigianato:coverage.notes",
-      "state": "absent",
-      "remediation": "Source the Lapidei apprenticeship groups and percentages of Art. 55 and add their tracks on the lapidei ladder.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "legno-lapidei-artigianato-confartigianato/lapidei_apprenticeship"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",
