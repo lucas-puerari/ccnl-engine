@@ -48,6 +48,15 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "cannot be selected without this timesheet fact or a caller multiplier; "
         "the event is rejected when no unthresholded band applies"
     ),
+    "OvertimeEvent.exempt_quota_hours_before": absence_is_fact(
+        "overtime outside the regime of the quote esenti, or its earlier hours "
+        "unknown: the premium past the yearly exempt quota is not added and a "
+        "CCNL with that premium records its limitation"
+    ),
+    "OvertimeEvent.in_periodic_shift": absence_is_fact(
+        "unknown turnista status: in a firm up to the CCNL headcount the yearly "
+        "exempt quota is not chosen and the premium past it is not added"
+    ),
     "NightShiftEvent.supplement_amount": absence_is_fact(_FROM_CCNL),
     "NightShiftEvent.hours": absence_is_fact(_SUPPLEMENT_HOURS),
     "NightShiftEvent.before_22": absence_is_fact(

@@ -22,6 +22,7 @@ applied as given and reported by
 from __future__ import annotations
 
 from dataclasses import dataclass, field, replace
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.policies import absence_decision, resolve_absence
@@ -41,6 +42,7 @@ from ccnl_engine.working_time.overtime.policies import (
     overtime_issues,
     resolve_overtime_rate,
 )
+from ccnl_engine.working_time.overtime.quota import EXEMPT_QUOTA_VARIANT, quota_premium
 from ccnl_engine.working_time.supplement.policies import (
     resolve_supplement,
     supplement_decision,
@@ -67,11 +69,13 @@ class WorkResolution:
         event: The event as paid: its rate, multiplier or amount filled in.
         decisions: Engine decisions of the derived values.
         issues: Issues the derived values raise.
+        limitations: Limitations of the CCNL the event's pay carries.
     """
 
     event: TimeWorkEvent
     decisions: tuple[CalculationDecision, ...] = ()
     issues: tuple[CalculationIssue, ...] = field(default=())
+    limitations: tuple[str, ...] = ()
 
 
 def _overtime(
@@ -118,7 +122,58 @@ def _overtime(
     else:
         band = band_decision(paid, rate, bands, _standard_event_gross(paid))
         decisions.extend(() if band is None else (band,))
+        paid, quota, limitation = _with_quota_premium(event, paid, bands)
+        decisions.extend(() if quota is None else (quota,))
+        if limitation is not None:
+            return WorkResolution(
+                paid, tuple(decisions), overtime_issues(event, rate), (limitation,)
+            )
     return WorkResolution(paid, tuple(decisions), overtime_issues(event, rate))
+
+
+def _with_quota_premium(
+    event: OvertimeEvent, paid: OvertimeEvent, bands: CCNLOvertimeBands
+) -> tuple[OvertimeEvent, CalculationDecision | None, str | None]:
+    """Add the premium past the yearly exempt quota to ``paid``.
+
+    A multiplier the caller states is applied as given.
+
+    Returns:
+        The event with the premium, its decision and no limitation; the
+        event unchanged with the limitation of the CCNL when a fact the
+        premium needs is missing; the event unchanged alone when the CCNL
+        sets no such premium for it.
+    """
+    premium = quota_premium(event, bands.exempt_quota, bands.headcount)
+    if premium is None or event.multiplier is not None or paid.multiplier is None:
+        return paid, None, None
+    if premium.unknown:
+        return paid, None, f"{bands.ccnl_id}/{EXEMPT_QUOTA_VARIANT}"
+    before, quota = event.exempt_quota_hours_before, premium.quota
+    assert bands.exempt_quota is not None
+    assert before is not None
+    assert quota is not None
+    paid = replace(paid, multiplier=paid.multiplier + premium.multiplier)
+    return (
+        paid,
+        CalculationDecision(
+            capability="overtime",
+            status=CalculationStatus.FINAL,
+            reason_code="overtime_exempt_quota_premium",
+            rule=f"{bands.ruleset}:work_rules.time_supplements.overtime_exempt_quota",
+            rule_version=bands.version,
+            inputs={
+                "hours_before": before,
+                "hours": event.hours,
+                "quota_hours": Decimal(quota),
+                "hours_past_quota": premium.hours,
+                "rate": premium.rate,
+            },
+            source=bands.exempt_quota.provenance.location,
+            amount=_standard_event_gross(paid),
+        ),
+        None,
+    )
 
 
 def resolve_work_event(

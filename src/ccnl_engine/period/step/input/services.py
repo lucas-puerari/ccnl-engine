@@ -91,11 +91,7 @@ def variable_events(
         worker_facts=worker_facts_of(
             request, ctx.withholding_agent, ctx.contract.year_rules.irpef_brackets
         ),
-        overtime_bands=CCNLOvertimeBands.of(
-            ctx.contract.ccnl,
-            ctx.contract.tctx.competence.year,
-            ctx.request.level_code,
-        ),
+        overtime_bands=CCNLOvertimeBands.of_run(ctx),
         hourly=hourly_terms(ctx),
         sickness=sickness_terms(ctx),
         insured=insured_terms(ctx),

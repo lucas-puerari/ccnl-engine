@@ -62,6 +62,12 @@ class OvertimeEvent:
         weekly_hours_before: Total hours already worked in the week before
             this event; when supplied, weekly overtime tiers can be split
             across the event. Does not include the hours of this event.
+        exempt_quota_hours_before: Overtime hours worked earlier in the
+            calendar year under the CCNL regime of the 'quote esenti'
+            (Federmeccanica art. 7); stating it places the event in that
+            regime, ``None`` when it is not or not known.
+        in_periodic_shift: Whether the worker is a turnista, which chooses
+            the yearly exempt quota; ``None`` when not stated.
     """
 
     event_date: date
@@ -72,6 +78,8 @@ class OvertimeEvent:
     non_occasional: bool = False
     banked: bool = False
     weekly_hours_before: Decimal | None = None
+    exempt_quota_hours_before: Decimal | None = None
+    in_periodic_shift: bool | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         feature = "overtime"
@@ -91,13 +99,20 @@ class OvertimeEvent:
                 positive=True,
                 optional=True,
             )
-        require_decimal(
-            self.weekly_hours_before,
-            "OvertimeEvent.weekly_hours_before",
-            feature=feature,
-            minimum=_ZERO,
-            optional=True,
-        )
+        for name in ("weekly_hours_before", "exempt_quota_hours_before"):
+            require_decimal(
+                getattr(self, name),
+                f"OvertimeEvent.{name}",
+                feature=feature,
+                minimum=_ZERO,
+                optional=True,
+            )
+        if self.in_periodic_shift is not None:
+            require_bool(
+                self.in_periodic_shift,
+                "OvertimeEvent.in_periodic_shift",
+                feature=feature,
+            )
         require_bool(
             self.non_occasional, "OvertimeEvent.non_occasional", feature=feature
         )
