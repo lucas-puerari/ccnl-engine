@@ -106,7 +106,7 @@
       },
       {
         "kind": "simplification",
-        "text": "REDUCED HOURS UNDER ART. 14 C. 1: a convivente may agree fewer than 54 weekly hours (art. 14 c. 1: 'con un massimo di [...] 54 ore settimanali'), and the CCNL gives no rule to proportion the Tabella A monthly values. The statutory default applies: the pay of a part-time worker 'è riproporzionato in ragione della ridotta entità della prestazione lavorativa' (art. 7 c. 2 D.Lgs. 81/2015, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-06-15;81~art7, sha256 799c73922cabdd3710f565337b1e6cbd7f3492d5ee8419bbcee1e55a42197d88), so the engine scales the pay linearly on the full time the employment states. The art. 14 c. 2 regime (levels C, B, B super up to 30 hours, Tabella B) is the separate file lavoro-domestico-convivente-orario-ridotto.",
+        "text": "REDUCED HOURS UNDER ART. 14 C. 1: a convivente may agree fewer than 54 weekly hours (art. 14 c. 1: 'La durata normale dell'orario di lavoro è quella concordata fra le parti e comunque [...] con un massimo di [...] 54 ore settimanali'). The CCNL gives Tabella A as monthly values and no rule to proportion them to the agreed hours, and since the agreed hours are the normal ones, art. 7 c. 2 D.Lgs. 81/2015 does not settle whether such a convivente is part time against a 54-hour comparator. The engine scales the pay linearly on the full time the employment states. The art. 14 c. 2 regime (levels C, B, B super up to 30 hours, Tabella B) is the separate file lavoro-domestico-convivente-orario-ridotto.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
@@ -114,8 +114,25 @@
           "applies_when": {
             "trigger": "path"
           },
-          "remediation": "Resolved: art. 7 c. 2 D.Lgs. 81/2015 read on 2026-11-14.",
-          "status": "resolved"
+          "remediation": "Source how the Tabella A minimum of a convivente with fewer than 54 agreed weekly hours is computed and model it, then remove this note.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+              "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf",
+              "title": "CCNL lavoro domestico 2025, art. 14 cc. 1-2, PDF pp. 24-25, and Tabella A"
+            },
+            {
+              "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-06-15;81~art7",
+              "sha256": "799c73922cabdd3710f565337b1e6cbd7f3492d5ee8419bbcee1e55a42197d88",
+              "title": "D.Lgs. 81/2015 art. 7 c. 2: proportional treatment of the part-time worker, no comparator for the convivente"
+            },
+            {
+              "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2026/02/Circolare_15154/Allegati/16551_Circolare-numero-9-del-03-02-2026.pdf",
+              "sha256": "69025160fd599ca2c5ebde1c6c5643923157102a0c83c045ebf9d00ed5ccbfb3",
+              "title": "INPS circ. 9/2026: domestic contributions 2026, no rule on the reduced-hours minimum"
+            }
+          ]
         }
       },
       {
@@ -2380,22 +2397,26 @@
         ]
       },
       {
-        "id": "2026-11-14-ai-lavoro-domestico-convivente-part-time-scaling",
+        "id": "2026-11-14-gpt-lavoro-domestico-convivente-part-time-scaling",
         "date": "2026-11-14",
-        "reviewer": "claude-opus-5-5",
+        "reviewer": "gpt-6-sol",
         "reviewer_kind": "ai",
-        "scope": "Pay of a convivente with fewer than 54 agreed weekly hours against art. 14 of the CCNL and art. 7 D.Lgs. 81/2015, from the targeted research of a separate model session; text layer.",
-        "outcome": "confirmed",
+        "scope": "Proposed proportional scaling of Tabella A for a convivente below 54 agreed hours, against art. 14 of the CCNL and art. 7 D.Lgs. 81/2015; text layer.",
+        "outcome": "flagged",
         "sources": [
+          {
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+          },
           {
             "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-06-15;81~art7",
             "sha256": "799c73922cabdd3710f565337b1e6cbd7f3492d5ee8419bbcee1e55a42197d88"
           }
         ],
         "findings": [
-          "The CCNL is silent; art. 7 c. 2 D.Lgs. 81/2015 proportions the pay to the reduced hours, as the engine does."
+          "Art. 14 c. 1 makes the agreed hours the normal ones with 54 as a maximum; art. 7 c. 2 names no comparator, so linear scaling on 54 hours is not established: the note stays a declared residual."
         ],
-        "independence": "same_process",
+        "independence": "separate_model",
         "checked": [
           "coverage.notes"
         ]
