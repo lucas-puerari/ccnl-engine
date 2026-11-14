@@ -22,15 +22,20 @@ and the credits of all States together at most the imposta netta.  The
 withholding agent knows only the employment income it pays, so the
 reddito complessivo is the annual taxable income of the conguaglio.
 
-Not modelled, left to the tax return: foreign income taxed in Italy in an
-earlier year (art. 165 c. 7, allowed at the conguaglio by the second
-sentence of the art. 23 rule), the carry-over of the excess foreign tax
-(art. 165 c. 6) and the refund of a credit above the imposta netta (art. 11
-c. 4 TUIR).  The regional and municipal surtax are due only when the IRPEF
-net of this credit is due (D.Lgs. 446/1997 art. 50 c. 2, "crediti di cui
-agli articoli 14 e 15" of the TUIR in its former numbering; D.Lgs. 360/1998
-art. 1 c. 4, "credito di cui all'articolo 165").  From 1 January 2027 the
-testo unico of D.Lgs. 117/2026 carries art. 165 TUIR as its art. 185
+Foreign income taxed in Italy in an earlier year (art. 165 c. 7, which the
+art. 23 rule allows at the conguaglio "anche in precedenti periodi
+d'imposta") is measured on the tax of that year, as its CU certifies it:
+its quota of that year's imposta lorda, within that year's imposta netta
+less the credit already used; the credit is deducted from the tax of the
+conguaglio (circ. AdE 9/E/2015 par. 3.3).  Left to the tax return: the
+carry-over of the excess foreign tax (art. 165 c. 6) and the refund of a
+credit above the imposta netta (art. 11 c. 4 TUIR), which the norms give
+to the return, not to the withholding agent.  The regional and municipal
+surtax are due only when the IRPEF net of this credit is due (D.Lgs.
+446/1997 art. 50 c. 2, "crediti di cui agli articoli 14 e 15" of the TUIR
+in its former numbering; D.Lgs. 360/1998 art. 1 c. 4, "credito di cui
+all'articolo 165").  From 1 January 2027 the testo unico of D.Lgs. 117/2026
+carries art. 165 TUIR as its art. 185
 ("Credito d'imposta per i redditi prodotti all'estero"), c. 1 unchanged.
 """
 
@@ -95,6 +100,27 @@ def _quota(gross: Decimal, income: Decimal, taxable: Decimal) -> Decimal:
     return money(gross * min(_ONE, income / taxable))
 
 
+def _credit(
+    paid: ForeignTaxPaid, annual: NetIrpef, taxable: Decimal
+) -> tuple[Decimal, Decimal]:
+    """Return the quota and the credit of one State's foreign tax.
+
+    Income of an earlier year (art. 165 c. 7) is measured on the tax of
+    that year: its quota of the imposta lorda, within its imposta netta
+    less the credit already used against it.
+
+    Returns:
+        The quota of Italian tax and the credit, at most the foreign tax.
+    """
+    earlier = paid.earlier
+    if earlier is None:
+        quota = _quota(annual.gross, paid.income, taxable)
+        return quota, min(paid.tax, quota)
+    quota = _quota(earlier.gross_tax, paid.income, earlier.taxable_income)
+    room = max(_ZERO, earlier.net_tax - earlier.credit_used)
+    return quota, min(paid.tax, quota, room)
+
+
 def foreign_tax_credit(
     taxes: tuple[ForeignTaxPaid, ...],
     taxable: Decimal,
@@ -123,10 +149,11 @@ def foreign_tax_credit(
     }
     total = _ZERO
     for paid in taxes:
-        quota = _quota(annual.gross, paid.income, taxable)
-        credit = min(paid.tax, quota)
+        quota, credit = _credit(paid, annual, taxable)
         total += credit
         key = paid.country.lower()
+        if paid.earlier is not None:
+            key = f"{key}_{paid.earlier.year}"
         inputs[f"{key}_income"] = paid.income
         inputs[f"{key}_tax"] = paid.tax
         inputs[f"{key}_quota"] = quota

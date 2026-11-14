@@ -452,15 +452,13 @@
     {
       "feature": "foreign_tax_credit",
       "layer": "net",
-      "implementation": "partial",
+      "implementation": "native",
       "applies_when": "decided",
       "handler": "decision",
       "evidence": "derived",
-      "variants": [
-        "declared_foreign_tax_at_conguaglio"
-      ],
+      "variants": [],
       "required_facts": [],
-      "description": "Credito imposte estere art. 165 TUIR al conguaglio"
+      "description": "Credito imposte estere art. 165 TUIR al conguaglio, anche per redditi esteri di anni precedenti (c. 7)"
     },
     {
       "feature": "addizionale_regionale",

@@ -11,6 +11,7 @@ from ccnl_engine.irpef.declaration.inputs import (
     ForeignTaxPaid,
     PriorYearTaxFacts,
 )
+from ccnl_engine.tax_credit.foreign.inputs import EarlierYearTax
 
 
 def _paid(
@@ -69,3 +70,36 @@ def test_facts_reject_a_value_that_is_not_a_sequence() -> None:
     """The entries come as a tuple or a list."""
     with pytest.raises(InvalidInputError, match="foreign_taxes"):
         PriorYearTaxFacts(foreign_taxes=_paid())  # type: ignore[arg-type]
+
+
+def test_one_state_twice_for_two_years() -> None:
+    """A State of this year and of an earlier year are two entries."""
+    earlier = EarlierYearTax(2025, Decimal(1), Decimal(1), Decimal(1))
+    facts = PriorYearTaxFacts(
+        foreign_taxes=(
+            ForeignTaxPaid("FR", Decimal(1), Decimal(0)),
+            ForeignTaxPaid("FR", Decimal(1), Decimal(0), earlier=earlier),
+        )
+    )
+    assert len(facts.foreign_taxes) == 2
+
+
+@pytest.mark.parametrize(
+    "field", ["gross_tax", "net_tax", "taxable_income", "credit_used"]
+)
+def test_earlier_year_amounts_are_not_negative(field: str) -> None:
+    """The CU amounts of the earlier year are non-negative."""
+    values = {
+        "gross_tax": Decimal(1),
+        "net_tax": Decimal(1),
+        "taxable_income": Decimal(1),
+    }
+    values[field] = Decimal(-1)
+    with pytest.raises(InvalidInputError):
+        EarlierYearTax(2025, **values)
+
+
+def test_earlier_is_an_earlier_year_tax() -> None:
+    """Another type for earlier is rejected."""
+    with pytest.raises(InvalidInputError):
+        ForeignTaxPaid("FR", Decimal(1), Decimal(0), earlier=2025)  # type: ignore[arg-type]
