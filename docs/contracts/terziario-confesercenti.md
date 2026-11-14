@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | sickness, territorial_supplement, una_tantum |
+| **Limits of this contract** | sickness, una_tantum |
 
-9 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-22 |
-| **Last review** | 2026-11-13 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -79,6 +79,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-13 | gpt-6-sol (ai) | Apprentice sickness clause, its encoding and the engine change, against the signed text, by a separate model session. | flagged | Confirmed: source, page and sha256; the 2024 renewal does not list the article among those changed.<br>Confirmed: 60% carenza for six events a year, 60% of the gross pay on hospital-stay days, nothing in the probation, gross basis, 180 days in the calendar year; hand amounts of the Commercio test case recomputed.<br>Flagged and corrected in the same change: quotes made verbatim; a relapse takes the rank of its event; no carenza past the comporto; missing-fact issues raised only when the fact can change the pay; the limitation states the 50-point difference of the alternative reading.<br>Flagged, kept as limitation apprentice_hospital_share: the text does not settle whether the hospital 60% adds to the INPS indemnity or is the total. |
 | 2026-11-13 | gpt-6-sol (ai) | Sunday overtime outside the weekly rest day against the overtime, Sunday-work and rest-day articles, by a separate model session. | confirmed | Confirmed: overtime 'nei giorni festivi o la domenica' is paid 30% also when the weekly rest falls on another day; the 'salvo' clause reserves rest-day work, at the same 30% with a compensatory rest.<br>Confirmed: the Sunday-work article sends Sunday overtime to this article, so the two 30% do not add up; night overtime stays at 50%, the premiums are not cumulative.<br>Flagged and corrected: a typo in the transformation and the paragraph label of the unnumbered texts. |
 | 2026-11-13 | claude-opus-5-5 (ai) | Tables of the accordo integrativo 28/03/2024 (CNEL 20279, pp. 2-3) and protocollo aggiuntivo artt. 1, 14 of the TU 2019 (pp. 351-352, 358) | corrected | Added levels OV1 and OV2 of the operatori di vendita on their own ladder, six tables 2023-2027, and their seniority increments. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Artt. 206, 208, 214 and 215 of the Testo Unico 2019, PDF pp. 154-157. | confirmed | The provincial terzi elementi are frozen local amounts the national text does not print; the existing territorial second-level input carries them with the incidences of the normal pay, and provincial_pay_element removes the 2,07 national element. Closed the limitation, which asked for an input that exists. |
 
 ## Salary table
 
@@ -146,13 +147,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies.
 
     **Remediation:** Model the net daily pay of Art. 187.
-
-!!! warning "terziario-confesercenti/provincial_third_elements · territorial_supplement · impact yes · open"
-    Art. 214: the provincial terzi elementi, amounts set by provincial agreements.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Add the provincial terzi elementi as inputs.
 
 !!! note "terziario-confesercenti/cashier_allowance · base_salary · impact yes · resolved"
     Art. 218: the indennità di cassa e maneggio denaro of 5%.
@@ -380,6 +374,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Apprenticeship type b (professionalizzante). Durations (Art. 64): II-V 36 months, VI 24 months; half-period 18 and 12 months. The 42 and 48 month profiles of Art. 68 Tabella B are in the unmodelled note.
     
     TERZO ELEMENTO NAZIONALE (Art. 215, TU p. 157): EUR 2.07 a month due only in the provinces where no provincial third element is in force (Art. 214); paid when EmployerProfile.provincial_pay_element is false, left out with a missing_fact blocker when it is not stated.
+    
+    PROVINCIAL TERZI ELEMENTI (Art. 214 (TU 12 December 2019, PDF p. 157)): the provincial elements 'in atto alla data del 30 giugno 1973 [...] rimangono ancora congelati' and are paid 'in aggiunta ai nuovi livelli retributivi', also to the workers hired after 31 January 1983. The national text prints no province and no amount: they are the frozen figures of each provincial agreement. The caller states them as a territorial second-level element (EmployerProfile.second_level_elements, agreement 'territorial', monthly amount, levels, dates), which enters the extra months and the TFR by default, as the normal and de facto pay of Artt. 206 and 208 (pp. 154-155) include the 'terzi elementi nazionali o provinciali ove esistenti'; with EmployerProfile.provincial_pay_element true the 2,07 national element of Art. 215 is left out.
     
     APPRENTICESHIP PROFILES OF TABELLA B (Art. 68): 48 months for the listed profiles ending at levels II and III (track tabella_b_48_mesi), 42 months for those ending at level IV (tabella_b_42_mesi), two levels below for the first half and one below for the second. An apprentice of levels II, III and IV states Apprentice.track: standard for the 36 months of the other profiles.
     

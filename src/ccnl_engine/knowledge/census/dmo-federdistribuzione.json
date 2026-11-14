@@ -275,22 +275,6 @@
       }
     },
     {
-      "id": "provincial_elements_missing",
-      "institute": "territorial_supplement",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Terzo elemento nazionale (Art. 199, PDF p. 59): EUR 2.07 a month only for the workers of firms in provinces with no provincial terzo elemento in force (Art. 198, frozen since 1973): gated by EmployerProfile.provincial_pay_element. The provincial amounts themselves are set by provincial agreements outside the Testo Unico and are not modelled.",
-      "calculation": "ccnl/dmo-federdistribuzione:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the provincial terzi elementi of Art. 198 as a territorial supplement.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "dmo-federdistribuzione/provincial_elements_missing"
-        ]
-      }
-    },
-    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

@@ -4588,17 +4588,9 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "Art. 214: the provincial terzi elementi, amounts set by provincial agreements.",
-        "capability": "territorial_supplement",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "provincial_third_elements",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Add the provincial terzi elementi as inputs."
-        }
+        "kind": "info",
+        "text": "PROVINCIAL TERZI ELEMENTI (Art. 214 (TU 12 December 2019, PDF p. 157)): the provincial elements 'in atto alla data del 30 giugno 1973 [...] rimangono ancora congelati' and are paid 'in aggiunta ai nuovi livelli retributivi', also to the workers hired after 31 January 1983. The national text prints no province and no amount: they are the frozen figures of each provincial agreement. The caller states them as a territorial second-level element (EmployerProfile.second_level_elements, agreement 'territorial', monthly amount, levels, dates), which enters the extra months and the TFR by default, as the normal and de facto pay of Artt. 206 and 208 (pp. 154-155) include the 'terzi elementi nazionali o provinciali ove esistenti'; with EmployerProfile.provincial_pay_element true the 2,07 national element of Art. 215 is left out.",
+        "capability": "territorial_supplement"
       },
       {
         "kind": "simplification",
@@ -4691,7 +4683,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "71ec87e8771a470a1b53d9c09ec05184449be666113672ddf6987e2a0f306236",
+    "source_hash": "76217487d6c82ca174947be62d554f6b0759152d7f32370a27ceaa0b3eb5d4e9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -6660,6 +6652,27 @@
           "levels.OV1",
           "levels.OV2",
           "parameters.seniority_increments.amount_by_level"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-provincial-elements",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 206, 208, 214 and 215 of the Testo Unico 2019, PDF pp. 154-157.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+            "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+          }
+        ],
+        "findings": [
+          "The provincial terzi elementi are frozen local amounts the national text does not print; the existing territorial second-level input carries them with the incidences of the normal pay, and provincial_pay_element removes the 2,07 national element. Closed the limitation, which asked for an input that exists."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ],
