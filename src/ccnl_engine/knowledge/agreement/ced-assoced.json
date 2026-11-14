@@ -147,6 +147,11 @@
         "kind": "info",
         "text": "PERMITS (Art. 119, stesura 9 March 2022, p. 86): 32 hours for the abolished holidays and 56 of ROL, 72 in the firms with more than 15 employees (authentic interpretation: 88 and 104 hours in all); for the workers hired after 9 March 2022 the ROL are 50% after two years and 100% after four (the norma transitoria keeps 104 hours for the staff in service before); a twelfth per whole month of service; not taken within the year paid with the retribuzione di fatto at the deadline or taken by 30 June of the next year, as the employer states (EmployerProfile.permit_carryover).",
         "capability": "leave"
+      },
+      {
+        "kind": "info",
+        "text": "LEAVE AT TERMINATION (Artt. 134, 170, 171): ferie in twelfths per month of service (the text gives no rule for a month in part), each day paid at the monthly pay over 26; the permit hours left at the hourly quota (1/173).",
+        "capability": "leave"
       }
     ]
   },
@@ -1978,7 +1983,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "6e8df61c7e865bddbe3f5359635ee5f5272dce51f994df127ad3575cfd101cbe",
+    "source_hash": "07d98c3abbf0b290fb490f4d698ea1acf994f8637061e00687165430bfc01ada",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2294,6 +2299,65 @@
             "verified_at": "2026-11-14T00:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-14-ai-permits"
+          }
+        }
+      },
+      "ferie_accrual": {
+        "month_credit": null,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
+              "title": "CCNL CED, ICT, Professioni Digitali e STP, 9 March 2022",
+              "kind": "associazione",
+              "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+              "published_on": "2022-03-09",
+              "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+            },
+            "page": "92",
+            "section": "Art. 134 (Normativa per cessazione rapporto)",
+            "quote": "In caso di licenziamento o di dimissioni, spetteranno al lavoratore tanti dodicesimi del periodo di ferie al quale ha diritto, quanti sono i mesi di effettivo servizio prestato per l'anno di competenza."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2022-03-09",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-leave-termination"
+          }
+        }
+      },
+      "termination": {
+        "ferie_divisor": "26",
+        "permits_hourly": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
+              "title": "CCNL CED, ICT, Professioni Digitali e STP, 9 March 2022",
+              "kind": "associazione",
+              "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+              "published_on": "2022-03-09",
+              "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+            },
+            "page": "107",
+            "section": "Art. 170 (Quota giornaliera); Art. 171 (Quota oraria)",
+            "quote": "La quota giornaliera della retribuzione, sia normale che di fatto, si ottiene, in tutti i casi, dividendo l'importo mensile per il divisore convenzionale 26 [...] La quota oraria della retribuzione, sia normale che di fatto, si ottiene dividendo l'importo mensile per il divisore convenzionale 173."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2022-03-09",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-leave-termination"
           }
         }
       }
@@ -2809,6 +2873,27 @@
         "checked": [
           "work_rules.leave_rules.permits",
           "work_rules.leave_rules.permit_deadline"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-leave-termination",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 134, 170 and 171 of the stesura of 9 March 2022.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+            "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+          }
+        ],
+        "findings": [
+          "The file had no basis for the leave left at termination, so the ferie and permits left were not paid: added the 1/26 day and the 1/173 hour."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules.termination"
         ]
       }
     ]

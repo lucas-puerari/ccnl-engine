@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 14 verified / 52 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 16 verified / 52 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -71,6 +71,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 61 C, 113, 115 and Allegato 13 of the testo ufficiale 2011; Art. 147 of the renewal of 29 March 2024. | corrected | The file had the ferie but no permit. Added the 104-hour pool with the 38-hour absorption that leaves 24 hours, the ramp of the hires after 22 December 2011 and the fixed 30 June deadline; recorded the imprese minori hours of Art. 147 (2024) as a limitation, the file having no input for them. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 147 of the renewal of 29 March 2024 (imprese minori). | corrected | Added the hours of the small imprese minori (60, +6 from April 2025, +6 from April 2026) under the sub-sector piccola_impresa_minore and closed imprese_minori_permits; the other imprese minori work 40 hours and keep the 104. Recorded that the Art. 61 C ramp still applies to their new hires. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 147 of the renewal of 29 March 2024 against the ramp of Art. 61 C. | corrected | The 60 hours of the small imprese minori are 'per tutti i lavoratori dipendenti': the ramp now excludes the sub-sector piccola_impresa_minore; closed small_cooperative_new_hire_ramp. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Ferie at termination and Art. 187 of the testo ufficiale 2011. | corrected | The file had no basis for the leave left at termination: added the twelfths (more than 15 days a month), the 1/26 indemnity and the hourly quota of the permits. |
 
 ## Salary table
 
@@ -345,6 +346,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     PERMITS, LARGE COOPERATIVES (Allegato 13, Art. 113, Art. 115, Art. 61 C of the testo ufficiale 2011, signed 22 December 2011): a pool of 104 hours a year, 32 for the abolished holidays and 72 of reduction; the 38-hour week of Art. 113 c. 1 absorbs 96 of them and leaves 24 (8 plus 16 not absorbable, Art. 115 c. 1), the 40-hour week of the hires after the signing (Art. 113 c. 5) absorbs none (EmployerProfile/Employment full_time_weekly_hours); the hires after 22 December 2011 take the 72 hours at 50% after two years and 100% after four (Art. 61 C); a twelfth per whole month of service; not taken by 30 June of the next year, paid with the pay of that date, with no choice of the employer (Art. 115 c. 4). The 2019 and 2024 renewals do not amend these articles.
     
     PERMITS, IMPRESE MINORI (Title XV, Art. 147 as renewed on 29 March 2024, CNEL 183889 pp. 59-60): a 40-hour week for every worker (Employment full_time_weekly_hours 40: the 104 hours, not absorbed); in the small firms of one unit or up to 20 full-time staff a unit (EmployerProfile.subsector 'piccola_impresa_minore') 60 hours a year, read as the 32 of ex festività and 28 of reduction, plus 6 from 1 April 2025 and 6 from 1 April 2026 (72, aim 88). Their new hires take the hours in full: the ROL ramp of Art. 61 C does not reach this sub-sector.
+    
+    LEAVE AT TERMINATION (testo ufficiale 2011, p. 166 and Art. 187): ferie in twelfths, a fraction above fifteen days counting as a month, the indemnity 'dividendo per ventisei la retribuzione mensile di fatto'; the permit hours left at the hourly quota of Art. 187 (168 at 40 hours, 165 at 38).
     
 
 ## Raw data
