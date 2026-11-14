@@ -1171,7 +1171,6 @@
     "limitation/engine.json": [
       "apprenticeship_pct_undeclared_components",
       "arrears_unused_deductions",
-      "disability_permit_tfr",
       "dual_apprenticeship_contributions",
       "inps_minimum_base_exempt_category",
       "mid_month_level_change",

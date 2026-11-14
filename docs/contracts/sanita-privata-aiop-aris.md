@@ -240,7 +240,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the collective rules on the leave by the hour of the CCNL (hours of a day of leave, cumulation) and apply them, then resolve this limitation.
 
-!!! warning "disability_permit_tfr · disability_permits · impact unknown · open"
+!!! warning "disability_permit_tfr · disability_permits · impact unknown · unsourced"
     The days of permit under L. 104/1992 art. 33 c. 3 keep the TFR base, as payroll practice holds; art. 2120 c. 3 c.c. keeps in the TFR base only the absences of art. 2110 c.c. and the wage integration, and no primary source read says the permits are among them, so the TFR quota of a month with permits may be overstated.
 
     **Applies when:** `disability_permits` applies; the run takes the engine code path.

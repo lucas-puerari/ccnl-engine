@@ -134,7 +134,6 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         PARENTAL_INCOME_LIMITATION,
         PARENTAL_SPLIT_LIMITATION,
         PARENTAL_EXTRA_MONTH_LIMITATION,
-        PERMIT_TFR_LIMITATION,
         NOTICE_PARTIAL,
         NOTICE_EXTRA_MONTHS,
         NOTICE_DAY_MEASURE,
@@ -158,6 +157,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         PATERNITY_BASE_LIMITATION,
         PARENTAL_BASE_LIMITATION,
     }
+    assert by_status[LimitationStatus.UNSOURCED] == {PERMIT_TFR_LIMITATION}
 
 
 def _has_midpoint(ccnl: CCNL) -> bool:
