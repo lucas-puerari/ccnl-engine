@@ -95,6 +95,10 @@
       {
         "kind": "info",
         "text": "APPRENTICE SENIORITY: the aumenti di anzianità are abolished from 31.12.2015 for every worker (§ 5.5), so an apprentice matures none (seniority_increments.apprentice_amount 0.00)."
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Art. 32 c. 3 (text from 8 May 2025), https://www.smatorino.it/wp-content/uploads/2026/08/CCNL-GAS-ACQUA-2025.pdf, sha256 a9bfe082f2d84f22b016c2423c6c041179ca9494b8f5d8dd57449d04b01c3292): 'Cesseranno per l'azienda gli obblighi di cui sopra qualora il lavoratore raggiunga, in complesso, anche in caso di una pluralità di eventi morbosi ed indipendentemente dalla durata dei singoli intervalli, il limite massimo di 18 mesi di assenza, durante l'arco temporale massimo dei 36 mesi consecutivi precedenti l'ultimo evento morboso. I periodi di assenza dovuti a ricovero ospedaliero debitamente certificato non vengono computati nel calcolo del periodo massimo di conservazione del posto.' Modelled as sickness_rules.comporto_windows; 18 months as 548 days, hospital stays left out; the 12 continuous months and the extensions for disability are not modelled."
       }
     ]
   },
@@ -2338,7 +2342,7 @@
     "effective_until": null,
     "source": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
     "verification_status": "unverified",
-    "source_hash": "d905ab9953cd57d501f03937184e12baf503afd617361b73507a94e63a704878",
+    "source_hash": "823cbf9c6fc7c69a015ea0461332a94e7291ec5f91701b761cf95e48d98376cb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2562,7 +2566,15 @@
           "verification_status": "unverified",
           "effective_from": "2022-01-01"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 36,
+          "comporto_days": 548,
+          "hospital_excluded": true
+        }
+      ]
     }
   },
   "verification": {
@@ -2631,6 +2643,27 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-gas-acqua-utilitalia-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the source text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.smatorino.it/wp-content/uploads/2026/08/CCNL-GAS-ACQUA-2025.pdf",
+            "sha256": "a9bfe082f2d84f22b016c2423c6c041179ca9494b8f5d8dd57449d04b01c3292"
+          }
+        ],
+        "findings": [
+          "Added the comporto window of the CCNL."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.comporto_windows"
         ]
       }
     ]

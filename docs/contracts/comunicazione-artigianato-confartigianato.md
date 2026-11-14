@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-11-18 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2026-11-01 |
 
 ## Review history
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 36 c. 6-7 and the dichiarazione a verbale on the percentages, signed renewal of 18 November 2024, PDF pp. 7-9 and 12. | confirmed | Read the percentage tables on the page images: every artisan track of the file matches the signed table, so the note claiming percentages assumed from the CCNA framework was stale; closed apprenticeship_percentages_assumed. The new percentages apply to hires from 16 May 2022, not from 18 November 2024: corrected the cohort limitation. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 71 function allowance of the quadri and the nota a verbale of 15 July 2026. | confirmed | Read the nota a verbale on the page image: the allowance is separate from the 1A minimum from 1 August 2026 and nothing is due before. The file added it to the 1A minimum from December 2024; set it to zero until 31 July 2026, closed function_allowance_constant and recorded the 50% superminimo absorption of art. 71, which the engine cannot express. |
 | 2026-11-14 | claude-opus-5-5 (ai) | INPS circ. 140/2012 par. 3.3 on the apprentice contribution, against the research of a separate model session. | confirmed | The cuneo reductions (0.91) do not apply to apprentices: the artigianato apprentice rates of the bundle are confirmed. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source text. | corrected | Added the comporto window of the CCNL. |
 
 ## Salary table
 
@@ -191,13 +192,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -395,6 +389,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     FUNCTION ALLOWANCE (art. 71: 'al personale con qualifica di quadro sarà riconosciuta una indennità di funzione di euro 51,65'): the nota a verbale of 15 July 2026 (CNA, p. 2) reads it as 'distinto dai minimi contrattuali [...] non è pertanto ricompresa nell'importo indicato nelle tabelle retributive per il livello 1A', to be shown 'con voce autonoma e distinta' from 1 August 2026, and 'nulla è dovuto a titolo di arretrati o conguagli' for the earlier periods. The file pays it on level 1A from 1 August 2026, nothing before.
     
     APPRENTICE INPS RATES (artigianato): 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI and integrativo, 11.61% for the employer (3.11% and 4.61% in the first two years of a firm up to 9 employees) and 5.84% for the worker. The 0.91 reduction of the artisan employers does not apply to apprentices: 'sul contributo per gli apprendisti non trovano applicazione le riduzioni del cuneo contributivo di cui alle leggi n. 388/2000 e n. 266/2005' (INPS circ. 140/2012 par. 3.3, https://servizi2.inps.it/servizi/Bussola/VisualizzaDoc.aspx?sVirtualURL=/Circolari/Circolare%20numero%20140%20del%2014-12-2012.htm, sha256 67d04317e66825fdb2cf6aa0b3106e644d76461e3e6ec17cd456b307948701a7). The wage-integration contribution of the sector is the FSBA, paid outside INPS (F24, code EBNA), not part of the INPS employer rate.
+    
+    COMPORTO OF SEVERAL ILLNESSES (Art. 43 (parte I, text of 27 February 2018, not changed by the renewal of 18 November 2024), PDF p. 43, https://www.fistelcisl.it/wp-content/uploads/2020/09/CCNL-Area-Comunicazione.pdf, sha256 0dd7c5250635b270cc064115d5288679d3cb1af6619f76c26a42ce9d91a13513): 'L'obbligo di conservazione del posto cesserà per l'azienda ove nell'arco di 21 mesi si raggiungerà il limite predetto anche con più malattie.' Modelled as sickness_rules.comporto_windows; 12 months as 365 days, within the 21 months before the day.
     
 
 ## Raw data
