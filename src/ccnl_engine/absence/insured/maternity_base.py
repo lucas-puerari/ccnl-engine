@@ -16,21 +16,23 @@ def maternity_daily_base(
 ) -> tuple[Decimal | None, bool]:
     """Return the maternity daily base and whether the engine can compute one.
 
-    Art. 23 c. 4 D.Lgs. 151/2001: the pay of the month before the leave
-    over 30, with the daily rateo of the 13th and of the other payments
-    (c. 2), as the sickness base of an impiegato.  The base of an operaia
-    (c. 5) and of a month not worked in full is not computed.
+    Art. 23 D.Lgs. 151/2001 pays the leave on the pay of the month before,
+    and INPS computes it as the sickness base: "la retribuzione media
+    globale giornaliera da prendere a base per il calcolo dell'indennità
+    giornaliera di maternità ... è identica a quella da prendere a base per
+    il calcolo dell'indennità giornaliera di malattia" (INPS circ. 10/1980
+    par. 2.4).  An impiegata's pay over 30 (or over the days worked or paid
+    of a month not worked in full), an operaia's over the days worked or
+    paid, the monthly share of the extra months over 30 or 25
+    (:func:`~ccnl_engine.sickness.base.rules.daily_base`).
 
     Returns:
-        ``(rmgg, computable)``: the base, ``None`` without one; whether a
-        stated base would give one.
+        ``(rmgg, computable)``: the base, ``None`` when the stated pay does
+        not give one (an operaia without her days, a month not worked in
+        full without the pay of a whole month) or no pay is stated; whether
+        the engine can compute a base once the pay is stated.
     """
-    computable = (
-        category is not None
-        and category is not WorkerCategory.OPERAIO
-        and monthly_payments is not None
-        and (base is None or base.paid_days is None)
-    )
+    computable = category is not None and monthly_payments is not None
     if not computable or base is None or monthly_payments is None:
         return None, computable
     return daily_base(base, category, monthly_payments), True

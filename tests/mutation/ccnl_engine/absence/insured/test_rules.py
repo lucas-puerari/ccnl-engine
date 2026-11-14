@@ -27,24 +27,51 @@ def test_without_the_pay_before_the_base_is_computable_but_missing() -> None:
     assert maternity_daily_base(None, WorkerCategory.QUADRO, _THIRTEEN) == (None, True)
 
 
+def test_an_operaia_divides_by_her_days() -> None:
+    """INPS circ. 10/1980 par. 2.4, the sickness base: 1800 / 24 + 150 / 25 = 81."""
+    base = InpsSicknessBase(Decimal(1800), Decimal(0), paid_days=24)
+    assert maternity_daily_base(base, WorkerCategory.OPERAIO, _THIRTEEN) == (
+        Decimal(81),
+        True,
+    )
+
+
+def test_a_partial_month_divides_by_the_days_worked() -> None:
+    """900 / 15 + (1800 / 12) / 30 = 65, with the pay of a whole month."""
+    base = InpsSicknessBase(
+        Decimal(900), Decimal(0), paid_days=15, full_month_pay=Decimal(1800)
+    )
+    assert maternity_daily_base(base, WorkerCategory.IMPIEGATO, _THIRTEEN) == (
+        Decimal(65),
+        True,
+    )
+
+
 @pytest.mark.parametrize(
-    ("base", "category", "payments"),
+    "base",
     [
-        (_BASE, WorkerCategory.OPERAIO, _THIRTEEN),
-        (_BASE, None, _THIRTEEN),
-        (
-            InpsSicknessBase(Decimal(900), Decimal(0), paid_days=15),
-            WorkerCategory.IMPIEGATO,
-            _THIRTEEN,
-        ),
-        (_BASE, WorkerCategory.IMPIEGATO, None),
+        _BASE,
+        InpsSicknessBase(Decimal(900), Decimal(0), paid_days=15),
     ],
-    ids=["operaia", "unknown_category", "partial_month", "no_payments"],
+    ids=["operaia_without_days", "partial_month_without_whole_pay"],
 )
-def test_the_engine_does_not_compute_every_base(
+def test_a_base_missing_its_facts_is_computable_but_unknown(
     base: InpsSicknessBase,
-    category: WorkerCategory | None,
-    payments: Decimal | None,
 ) -> None:
-    """Art. 23 c. 5 and a month not worked in full stay on the run's pay."""
-    assert maternity_daily_base(base, category, payments) == (None, False)
+    """The rule exists: the missing days or whole pay are a missing fact."""
+    category = (
+        WorkerCategory.OPERAIO if base.paid_days is None else WorkerCategory.IMPIEGATO
+    )
+    assert maternity_daily_base(base, category, _THIRTEEN) == (None, True)
+
+
+@pytest.mark.parametrize(
+    ("category", "payments"),
+    [(None, _THIRTEEN), (WorkerCategory.IMPIEGATO, None)],
+    ids=["unknown_category", "no_payments"],
+)
+def test_without_category_or_payments_the_engine_cannot_compute(
+    category: WorkerCategory | None, payments: Decimal | None
+) -> None:
+    """No category or no monthly payments: the run keeps its own pay."""
+    assert maternity_daily_base(_BASE, category, payments) == (None, False)

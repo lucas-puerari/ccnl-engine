@@ -327,8 +327,9 @@ def test_an_impiegata_without_the_pay_before_lacks_a_fact() -> None:
     )
 
 
-def test_an_operaia_keeps_the_pay_of_the_run_under_a_limitation() -> None:
-    """Art. 23 c. 5 is not computed: the engine says so."""
+def test_an_operaia_without_her_days_has_a_missing_fact() -> None:
+    """Her base divides by the days of the month before: not stated, missing."""
     result = _maternity(WorkerCategory.OPERAIO, _FEBRUARY)
 
-    assert "maternity_daily_base" in {lim.id for lim in result.limitations}
+    assert "maternity_daily_base" not in {lim.id for lim in result.limitations}
+    assert "maternity_base_pay_unknown" in {i.code for i in result.issues}

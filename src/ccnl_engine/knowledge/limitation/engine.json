@@ -844,9 +844,9 @@
       "id": "maternity_daily_base",
       "capability": "maternity_leave",
       "variant": "maternity_daily_base",
-      "summary": "The INPS maternity indemnity of an operaia, or of a leave whose month before was not worked in full, is computed on the pay of the run over 30 with the rateo of the extra months, not on the pay of the month before the leave: art. 23 c. 5 D.Lgs. 151/2001 divides the pay of an operaia by the days worked or paid (or by the hours, when fewer than the contract), and the divisor of her daily rateo of the 13th is not settled by a primary source. The base of another worker over a whole month is computed from MaternityLeaveEvent.maternity_base_pay.",
+      "summary": "The INPS indemnity of the leave is computed on the pay of the month before, as the sickness base (art. 23 D.Lgs. 151/2001): an operaio's pay over the days worked or paid with the monthly share of the extra months over 25, a month not worked in full over its days worked or paid; the pay of the month before, its days and the pay of a whole month are facts of the leave, missing when not stated. The run keeps its own pay only when the category or the monthly payments of the CCNL are unknown.",
       "monetary_impact": "unknown",
-      "status": "open",
+      "status": "resolved",
       "rulesets": [
         "acconciatura-estetica-confartigianato",
         "afam-aran",
@@ -988,16 +988,16 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.absence.insured.base.rules.leave_base; D.Lgs. 151/2001 art. 23 (Normattiva, text in force on 2026-10-30, page sha256 f5d5e1ff3028f8249597c78f9371063f0de7790676054b5f0207c974bc50bc04)",
-      "remediation": "Source the daily rateo of an operaia (an INPS circular on art. 23 c. 5) and compute her base and that of a month not worked in full, then resolve this limitation."
+      "source": "ccnl_engine.absence.insured.maternity_base; ccnl_engine.sickness.base.rules.daily_base; INPS circ. 10/1980 par. 2.4 (https://www.inps.it/it/it/inps-comunica/atti/circolari-messaggi-e-normativa/dettaglio.content-fragment-detail.circolari-e-messaggi.1980.01.circolare-numero-10-del-22-1-1980_70.json, sha256 696f273d3aae5b882e2cbf5e97909541d5ed8354fc10f30d001e58508255993d): the maternity base 'è identica a quella da prendere a base per il calcolo dell'indennità giornaliera di malattia'.",
+      "remediation": "Resolved: the base of an operaio and of a partial month is the sickness base of the month before."
     },
     {
       "id": "paternity_daily_base",
       "capability": "paternity_leave",
       "variant": "paternity_daily_base",
-      "summary": "The INPS indemnity of the compulsory paternity leave of an operaio, or of a leave whose month before was not worked in full, is computed on the pay of the run over 30 with the rateo of the extra months, not on the pay of the month before the leave: art. 29 D.Lgs. 151/2001 applies art. 23, whose c. 5 divides the pay of a manual worker by the days worked or paid (or by the hours) with a daily rateo no primary source settles. The base of another worker over a whole month is computed from PaternityLeaveEvent.paternity_base_pay.",
+      "summary": "The INPS indemnity of the leave is computed on the pay of the month before, as the sickness base (art. 23 D.Lgs. 151/2001): an operaio's pay over the days worked or paid with the monthly share of the extra months over 25, a month not worked in full over its days worked or paid; the pay of the month before, its days and the pay of a whole month are facts of the leave, missing when not stated. The run keeps its own pay only when the category or the monthly payments of the CCNL are unknown.",
       "monetary_impact": "unknown",
-      "status": "open",
+      "status": "resolved",
       "rulesets": [
         "acconciatura-estetica-confartigianato",
         "afam-aran",
@@ -1139,16 +1139,16 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.absence.insured.base.rules.leave_base; D.Lgs. 151/2001 artt. 23 and 29 (Normattiva, text in force on 2026-10-30, page sha256 f5d5e1ff3028f8249597c78f9371063f0de7790676054b5f0207c974bc50bc04 and 3bfcc58c0e6f305f8971925b355d864c9bdf203e187fe40503c0df2aeca8a94a)",
-      "remediation": "Source the daily rateo of a manual worker under art. 23 c. 5 and compute his base and that of a month not worked in full, then resolve this limitation."
+      "source": "ccnl_engine.absence.insured.maternity_base; ccnl_engine.sickness.base.rules.daily_base; INPS circ. 10/1980 par. 2.4 (https://www.inps.it/it/it/inps-comunica/atti/circolari-messaggi-e-normativa/dettaglio.content-fragment-detail.circolari-e-messaggi.1980.01.circolare-numero-10-del-22-1-1980_70.json, sha256 696f273d3aae5b882e2cbf5e97909541d5ed8354fc10f30d001e58508255993d): the maternity base 'è identica a quella da prendere a base per il calcolo dell'indennità giornaliera di malattia'.",
+      "remediation": "Resolved: the base of an operaio and of a partial month is the sickness base of the month before."
     },
     {
       "id": "parental_daily_base",
       "capability": "parental_leave",
       "variant": "parental_daily_base",
-      "summary": "The INPS indemnity of the parental leave of an operaio or operaia, or of a leave whose month before was not worked in full, is computed on the pay of the run over 30 with the rateo of the extra months, not on the pay of the month before the leave: art. 34 c. 1 D.Lgs. 151/2001 applies art. 23, whose c. 5 divides the pay of a manual worker by the days worked or paid (or by the hours) with a daily rateo no primary source settles. The base of another worker over a whole month is computed from ParentalLeaveEvent.parental_base_pay.",
+      "summary": "The INPS indemnity of the leave is computed on the pay of the month before, as the sickness base (art. 23 D.Lgs. 151/2001): an operaio's pay over the days worked or paid with the monthly share of the extra months over 25, a month not worked in full over its days worked or paid; the pay of the month before, its days and the pay of a whole month are facts of the leave, missing when not stated. The run keeps its own pay only when the category or the monthly payments of the CCNL are unknown.",
       "monetary_impact": "unknown",
-      "status": "open",
+      "status": "resolved",
       "rulesets": [
         "acconciatura-estetica-confartigianato",
         "afam-aran",
@@ -1290,8 +1290,8 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.absence.insured.base.rules.leave_base; D.Lgs. 151/2001 art. 34 (Normattiva, text in force on 2026-10-30, page sha256 aaf521a98f84e5d33cad1deee74452d789e5c58ec3d1ede4567453d7b7bd3967) and art. 23",
-      "remediation": "Source the daily rateo of a manual worker under art. 23 c. 5 and compute his base and that of a month not worked in full, then resolve this limitation."
+      "source": "ccnl_engine.absence.insured.maternity_base; ccnl_engine.sickness.base.rules.daily_base; INPS circ. 10/1980 par. 2.4 (https://www.inps.it/it/it/inps-comunica/atti/circolari-messaggi-e-normativa/dettaglio.content-fragment-detail.circolari-e-messaggi.1980.01.circolare-numero-10-del-22-1-1980_70.json, sha256 696f273d3aae5b882e2cbf5e97909541d5ed8354fc10f30d001e58508255993d): the maternity base 'è identica a quella da prendere a base per il calcolo dell'indennità giornaliera di malattia'.",
+      "remediation": "Resolved: the base of an operaio and of a partial month is the sickness base of the month before."
     },
     {
       "id": "parental_income_condition",
