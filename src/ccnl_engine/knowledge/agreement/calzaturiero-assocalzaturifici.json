@@ -108,6 +108,10 @@
           },
           "remediation": "State whether the workplace is in an Objective 1 region and pay the apprentice 70/80/90% there."
         }
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Art. 58 B - Malattia, conservazione del posto e chiarimento a verbale, PDF p. 16, https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194333, sha256 b9fd63ceec2324fdcf4b96702f89ab5ce1b31df489027e81b81caca4c4132866): 'L'obbligo di conservazione del posto per l'azienda cesserà comunque ove nell'arco di 30 mesi si raggiungano i limiti predetti anche con più malattie con esclusione, per entrambi i limiti, dei periodi di ricovero ospedaliero. [...] il periodo di conservazione del posto si considera nell'ambito di un periodo mobile da determinare con riferimento ai 909 giorni di calendario immediatamente precedenti. Il periodo di conservazione del posto di 13 mesi è pari a 394 giorni di calendario' Modelled as sickness_rules.comporto_windows: 394 days within 909 days before the day, hospital stays left out. The pay bands of the operai count by day of each illness; those of the impiegati and quadri (6 months in full, then half to the end of the comporto) say nothing on several episodes and are counted per illness."
       }
     ]
   },
@@ -1782,7 +1786,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
     "verification_status": "unverified",
-    "source_hash": "9f7eb0f6bd7b540b6c686c7de551bbb5a64a7f1ba95a13a0cb1d856168098589",
+    "source_hash": "de5dee01919a7dd32096a3502155d96c0fc285878929029751af48513cf3b695",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1970,7 +1974,16 @@
           "verification_status": "unverified",
           "effective_from": "2024-01-01"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 30,
+          "window_days": 909,
+          "comporto_days": 394,
+          "hospital_excluded": true
+        }
+      ]
     }
   },
   "verification": {
@@ -2039,6 +2052,27 @@
         "checked": [
           "levels[*].fixed_allowances",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-calzaturiero-assocalzaturifici-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194333",
+            "sha256": "b9fd63ceec2324fdcf4b96702f89ab5ce1b31df489027e81b81caca4c4132866"
+          }
+        ],
+        "findings": [
+          "Added the comporto window of the CCNL; the pay bands across episodes stay under the engine limitation sickness_cumulation_window."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.comporto_windows"
         ]
       }
     ]

@@ -51,38 +51,6 @@
       }
     },
     {
-      "id": "ex_sublevel_scatto_mapping",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "B128 and B132 each contain two ex-classification sub-levels (B128: ex-4/2 and ex-5/2; B132: ex-4/1 and ex-5/1) sharing the same base salary but with different scatto amounts. Modeled as B128/B128_ex52 and B132/B132_ex51. Plain codes carry the ex-4 (higher) scatto as best-guess; _ex52/_ex51 codes carry the ex-5 (lower) scatto. Mapping is unverifiable from public sources (B128: 47.92 vs 44.44; B132: 50.05 vs 47.73).",
-      "calculation": "ccnl/consorzi-di-bonifica-snebi:coverage.notes",
-      "state": "unverified",
-      "remediation": "Verify which ex-classification sub-level carries each scatto amount against the CCNL text.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "consorzi-di-bonifica-snebi/ex_sublevel_scatto_mapping"
-        ]
-      }
-    },
-    {
-      "id": "higher_tier_scatto_amounts",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "Seniority: 10 scatti total — tier 1: 6 biennali (cadence 24 months), tier 2: 1 dodicennale (cadence 144 months after tier 1 exhausted), tier 3: 3 quadriennali (cadence 48 months). All tiers modeled. Per-scatto amounts for tiers 2-3 assumed equal to tier 1 amounts (no independent source found for higher-tier amounts; best-guess from standard CCNL practice).",
-      "calculation": "ccnl/consorzi-di-bonifica-snebi:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the amounts of the dodicennale and quadriennali scatti and correct tiers 2-3.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "consorzi-di-bonifica-snebi/higher_tier_scatto_amounts"
-        ]
-      }
-    },
-    {
       "id": "inps_minimum_base_exempt_category",
       "institute": "inps_employer",
       "variant": "all",
@@ -301,22 +269,6 @@
       "links": {
         "rules": [
           "agreement/consorzi-di-bonifica-snebi.json#additional_months[2025-07-01]"
-        ]
-      }
-    },
-    {
-      "id": "sickness_cumulation_window",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.",
-      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
-      "state": "unverified",
-      "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "sickness_cumulation_window"
         ]
       }
     },

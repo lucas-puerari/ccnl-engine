@@ -121,6 +121,10 @@
           },
           "remediation": "Confirm from Art. 5 whether the indennita di funzione is paid in the quattordicesima."
         }
+      },
+      {
+        "kind": "info",
+        "text": "SICKNESS (Art. 32 A), CCNL 2021-2023, PDF p. 32, https://www.fitcisl.org/wp-content/uploads/2023/07/2021_2023_CCNL-Agenzie-marittime.pdf, sha256 19003c8b34277a77700ae77879ef4a3a4540021d78fec6aba568243d722ac32d): 'conservazione del posto di lavoro per mesi nove e corresponsione dell'intera retribuzione globale mensile per quattro mesi e della metà di essa per altri cinque mesi' (twelve, four and eight above seven years); 'L'arco temporale da assumere per il calcolo coincide con i 18 mesi consecutivi immediatamente precedenti qualsiasi momento considerato'. Modelled as sickness_rules.cumulation with an 18-month window; the illnesses the article leaves out of the count (Tbc, tumori, sclerosi multipla, Parkinson, Alzheimer) are counted."
       }
     ]
   },
@@ -187,6 +191,28 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-agenzie-marittime-i481-comporto-r2",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto and sick pay against a second research of a separate model session; quotes checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fitcisl.org/wp-content/uploads/2023/07/2021_2023_CCNL-Agenzie-marittime.pdf",
+            "sha256": "19003c8b34277a77700ae77879ef4a3a4540021d78fec6aba568243d722ac32d"
+          }
+        ],
+        "findings": [
+          "Replaced 270 days of one episode with art. 32: 4 months in full and 5 or 8 at half pay, comporto 9 or 12 months, summed over 18 months."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
+          "coverage.notes"
         ]
       }
     ]
@@ -1301,7 +1327,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
     "verification_status": "unverified",
-    "source_hash": "d524823a5297f60269677cc49e82417810f51315874c8aac0112f80d05a7c6ef",
+    "source_hash": "bb2a3e2a28aa88ac04d4a57d749e297adea9899293817e793988d6dea40148f9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1505,26 +1531,64 @@
       }
     },
     "sickness_rules": {
-      "carenza_integration_rate": "0",
+      "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 270,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "agenzie-marittime-i481",
-            "title": "CCNL Agenzie Marittime Raccomandatarie, Agenzie Aeree e Mediatori Marittimi",
-            "kind": "tabella_retributiva",
-            "url": "https://ilccnl.it/contratto/ccnl/agenzie-marittime-ed-aeree"
+            "document_id": "ccnl-agenzie-marittime-2021-2023",
+            "title": "CCNL agenzie marittime 2021-2023 (FIT-CISL)",
+            "kind": "associazione",
+            "url": "https://www.fitcisl.org/wp-content/uploads/2023/07/2021_2023_CCNL-Agenzie-marittime.pdf",
+            "sha256": "19003c8b34277a77700ae77879ef4a3a4540021d78fec6aba568243d722ac32d"
           },
-          "section": "Malattia — retribuzione intera 4 mesi + meta' 5 mesi (anzianita' < 7 anni); 270 gg totali"
+          "page": "32",
+          "section": "Art. 32 A)",
+          "quote": "Il trattamento di cui ai due precedenti commi cesserà qualora il dipendente con più periodi di malattia raggiunga in complesso, durante 18 mesi consecutivi, i limiti massimi rispettivamente previsti nei diversi casi contemplati."
         },
         "extraction": {
           "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2021-01-01"
-        }
+          "extraction_timestamp": "2026-11-15T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2021-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "review_id": "2026-11-15-ai-agenzie-marittime-i481-comporto-r2"
+        },
+        "transformation": "Up to 7 years of seniority: comporto 9 months, full pay 4 and half pay 5; above: 12 months, 4 in full and 8 at half pay (months of 30 days); the sickness of the 18 months before the day is summed. The renewal signed on 13 September 2024 does not amend art. 32."
+      },
+      "cumulation": {
+        "window_years": 1,
+        "reduced_integration_rate": "0",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 120,
+            "comporto_days": 270,
+            "window_months": 18,
+            "steps": [
+              {
+                "day_from": 121,
+                "day_until": 271,
+                "integration_rate": "0.5"
+              }
+            ]
+          },
+          {
+            "seniority_months_from": 84,
+            "full_pay_days": 120,
+            "comporto_days": 360,
+            "window_months": 18,
+            "steps": [
+              {
+                "day_from": 121,
+                "day_until": 361,
+                "integration_rate": "0.5"
+              }
+            ]
+          }
+        ]
       }
     }
   }

@@ -237,9 +237,9 @@ class TestLoadDirigenzaSanitariaMedicoVeterinariaAran:
     def test_dirigenza_sanitaria_medico_veterinaria_aran_hourly_divisor(
         self,
     ) -> None:
-        """Hourly divisor: 165 (38h/week approximation, SIMPLIFICATION)."""
+        """Hourly divisor: 156 (Art. 59 c. 4 CCNL Area Sanità 23.01.2024)."""
         ccnl = load_ccnl("dirigenza-sanitaria-medico-veterinaria-aran")
-        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(165)
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(156)
 
     def test_dirigenza_sanitaria_medico_veterinaria_aran_specificita_allowance(
         self,
@@ -318,9 +318,9 @@ class TestLoadDirigenzaSanitariaAreaSanitaAran:
         )
 
     def test_dirigenza_sanitaria_area_sanita_aran_hourly_divisor(self) -> None:
-        """Hourly divisor: 165 (38h/week, SIMPLIFICATION)."""
+        """Hourly divisor: 156 (Art. 59 c. 4 CCNL Area Sanità 23.01.2024)."""
         ccnl = load_ccnl("dirigenza-sanitaria-area-sanita-aran")
-        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(165)
+        assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(156)
 
     def test_dirigenza_sanitaria_area_sanita_aran_specificita_allowance(
         self,

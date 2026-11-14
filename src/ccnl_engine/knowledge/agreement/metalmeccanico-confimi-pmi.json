@@ -115,6 +115,23 @@
       {
         "kind": "info",
         "text": "INPS: uses 2026-industria.json. Standard industry rates."
+      },
+      {
+        "kind": "info",
+        "text": "SICKNESS (Art. 48, CCNL 2021, PDF pp. 174-175, https://www.confimimeccanica.it/files/circolari_doc_sindacali/CCNL%202021%201.pdf, sha256 53af5610412d7b423c2083a6f09f866a471e73fb6272b7dd00e3f3d14ec2fc1d; comporto as renewed by the ipotesi 6 agosto 2026, PDF pp. 17-18, https://www.confimimeccanica.it/images/CCNL%202026/Ipotesi_di_rinnovo_CIM_FIM_060826-.pdf, sha256 535d20c7d4793628a536f87664e3f5805e6b7c0ad31ae23bfe3242a87d4c8ab6): 'comporto breve, di: a) 183 giorni di calendario per anzianità di servizio fino a 3 anni compiuti; b) 274 giorni [...] oltre i 3 anni e fino ai 6 anni compiuti; c) 365 giorni [...] oltre i 6 anni. [...] riferiti alle assenze complessivamente verificatesi nei tre anni precedenti ogni ultimo episodio morboso'; 'alla intera retribuzione globale per i primi 122 giorni di calendario e all'80% della retribuzione globale per i giorni residui' (153 from three to six years, 214 over six); 'Il suddetto trattamento economico ricomincia ex novo in caso di malattia [...] intervenuto dopo un periodo di 61 giorni di calendario dalla ripresa del servizio'; hospital stays over 10 days paid in full up to 61 days; the first three days of the fourth short absence (at most 5 days) of the calendar year at 66%, of the fifth and later at 50%. Modelled as sickness_rules.cumulation, the same model as Federmeccanica."
+      },
+      {
+        "kind": "simplification",
+        "text": "COMPORTO PROLUNGATO (art. 48): 274/411/548 days by seniority after one long continuous illness, two illnesses of 91 days or more, or an illness of 91 days or more running at the end of the comporto breve; the engine ends the comporto at the breve limit.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "comporto_prolungato",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the comporto prolungato of art. 48 and its three triggers."
+        }
       }
     ]
   },
@@ -186,6 +203,28 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-metalmeccanico-confimi-pmi-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confimimeccanica.it/files/circolari_doc_sindacali/CCNL%202021%201.pdf",
+            "sha256": "53af5610412d7b423c2083a6f09f866a471e73fb6272b7dd00e3f3d14ec2fc1d"
+          }
+        ],
+        "findings": [
+          "Replaced the flat 60%/75% rates with the treatment chain of art. 48: 100% then 80% by seniority, comporto breve over three years, 61-day restart, short-absence cuts and the hospital top-up."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
+          "coverage.notes"
         ]
       }
     ]
@@ -1879,7 +1918,7 @@
     "effective_until": null,
     "source": "https://www.fim-cisl.it/2025/10/29/metalmeccanica-piccola-industria-firmato-il-rinnovo-del-ccnl-confimi/",
     "verification_status": "unverified",
-    "source_hash": "030e0000fddb44aee2bbc76de9dfbacae987c164caab756eabcd4ec32c8f458a",
+    "source_hash": "7bf404f39230dd2637d9b492c99f7d5f1dc3f60282af3af1b51ac54eed1eb505",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
@@ -2195,9 +2234,8 @@
       }
     },
     "sickness_rules": {
-      "carenza_integration_rate": "0.6",
-      "full_pay_integration_rate": "0.75",
-      "max_duration_days": 180,
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
       "provenance": {
         "status": "derived",
         "location": {
@@ -2214,6 +2252,41 @@
           "extraction_timestamp": "2026-09-18T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2025-10-28"
+        }
+      },
+      "cumulation": {
+        "window_years": 3,
+        "reset_after_days": 61,
+        "reduced_integration_rate": "0.80",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 122,
+            "comporto_days": 183
+          },
+          {
+            "seniority_months_from": 36,
+            "full_pay_days": 153,
+            "comporto_days": 274
+          },
+          {
+            "seniority_months_from": 72,
+            "full_pay_days": 214,
+            "comporto_days": 365
+          }
+        ],
+        "short_absences": {
+          "max_days": 5,
+          "from_event": 4,
+          "first_days": 3,
+          "rates": [
+            "0.66",
+            "0.50"
+          ]
+        },
+        "hospital_stay": {
+          "more_than_days": 10,
+          "max_full_days": 61
         }
       }
     }

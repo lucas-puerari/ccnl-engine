@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, pension_fund_contribution, seniority, territorial_supplement |
+| **Limits of this contract** | base_salary, bilateral_funds, pension_fund_contribution, seniority, sickness, territorial_supplement |
 
-10 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+11 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-04-15 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -63,6 +63,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 65 loyalty premium on cached harmonised text PDF page 96. | corrected | Annual anniversary award for clerical employees after twenty years; termination pro rata remains unmodelled. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 65, the elements of the monthly pay and the TFR article, against the loyalty premium encoding, by a separate model session. | corrected | Confirmed the 20 years, the anniversary and the one monthly pay.<br>Corrected: the TFR article is art. 72; the excluded conventional seniority and the 29 February anniversary are recorded as limitation loyalty_service_count. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 65 uninterrupted actual service and hire anniversary against the cached PDF page 96. | corrected | A separate actual uninterrupted service start can exclude conventional military, combatant and similar seniority without moving the hire anniversary; the common-year leap-day anniversary remains unspecified. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses of the operai, against the research of a separate model session; quote checked on the source text. | corrected | Added the operai comporto windows (9 months in 20, 12 in 24 above three and a half years). |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of the impiegati of art. 66 against the research of a separate model session; quote checked on the source. | corrected | Added the impiegato rule: comporto of one illness and of several within 30 months by seniority; the reduced pay months are recorded as a limitation. |
 
 ## Salary table
 
@@ -137,11 +139,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Calculate the full-month twelfths due on non-disciplinary dismissal after entitlement.
 
 !!! warning "edilizia-pmi-confapi-aniem/operai_seniority_ape · seniority · impact yes · open"
-    SENIORITY: Art. 49 (testo armonizzato 15/04/2025, p. 87) gives the scatti to 'L'impiegato' only, by category; the operai accrue the Anzianità professionale edile of Art. 29 (p. 64) through the Fondo Unico APE, out of an employer contribution 'nella misura stabilita per ciascuna circoscrizione territoriale'. The engine pays no scatti to a worker stated as operaio (seniority excluded_categories); the territorial APE contribution is not modelled, a run of levels 1-4 that does not state the category still pays the Art. 49 amounts, and level 1 has no Art. 49 amount (8.22 of the Impiegati 4a is used).
+    SENIORITY: Art. 49 (testo armonizzato 15/04/2025, p. 87) gives the scatti to 'L'impiegato' only, by category; the operai accrue the Anzianità professionale edile of Art. 29 (p. 64) through the Fondo Unico APE, out of an employer contribution 'nella misura stabilita per ciascuna circoscrizione territoriale'. The engine pays no scatti to a worker stated as operaio (seniority excluded_categories); the territorial APE contribution is not modelled, a run of levels 1-4 that does not state the category still pays the Art. 49 amounts, and level 1 has no Art. 49 amount (8.22 of the Impiegati 4a is used). Level 1 holds the impiegati di 4ª categoria di primo impiego: art. 49 (p. 87) gives 'Impiegati 4ª 8,22', the amount modelled for level 1 (filleacgil copy sha256 25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the territorial APE contribution (Fondo Unico APE) as an employer cost and source the level 1 amount of Art. 49.
+    **Remediation:** Add the territorial APE contribution (Fondo Unico APE) of the worker's circoscrizione as an employer cost.
 
 !!! warning "edilizia-pmi-confapi-aniem/provincial_evr · territorial_supplement · impact unknown · open"
     EVR (Elemento Variabile della Retribuzione): conditional, company/territory-specific bonus. Not modelled.
@@ -185,6 +187,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the anniversary rule for a 29 February hire before changing the fallback.
 
+!!! warning "edilizia-pmi-confapi-aniem/sickness_pay_bands · sickness · impact yes · open"
+    SICK PAY OF THE IMPIEGATI (Art. 66, PDF pp. 96-97): full pay for 6 months, then 50% for the next 3 (2 to 6 years of seniority) or 75% for 3 and 50% for 3 (above 6 years), and for the 3 additional months of several illnesses the first in full and the others at 50%; the engine pays every day of the comporto in full.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Pay the 75% and 50% months of art. 66 by seniority after the first 6 months of sickness.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -227,12 +236,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.
 
-!!! warning "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · open"
-    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.
+!!! note "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · resolved"
+    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8 and no Fondo di garanzia exemption: the 10% apprentice rate of L. 296/2006 art. 1 c. 773 is split by the D.M. 28 marzo 2007 among FPLD 9.01, CUAF 0.11, malattia 0.53, maternità 0.05 and INAIL 0.30, with no Fondo di garanzia share to exempt.
 
     **Applies when:** `inps_employer` applies; the run takes the engine code path; contract type in apprentice.
 
-    **Remediation:** Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.
+    **Remediation:** Resolved: the apprentice rate holds no Fondo di garanzia share, so none is exempted.
 
 !!! note "maternity_daily_base · maternity_leave · impact unknown · resolved"
     The INPS indemnity of the leave is computed on the pay of the month before, as the sickness base (art. 23 D.Lgs. 151/2001): an operaio's pay over the days worked or paid with the monthly share of the extra months over 25, a month not worked in full over its days worked or paid; the pay of the month before, its days and the pay of a whole month are facts of the leave, missing when not stated. The run keeps its own pay only when the category or the monthly payments of the CCNL are unknown.
@@ -381,6 +390,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     HOURLY DIVISOR: 173, from Art. 25 CCNL: 'dividendo per 173 i valori minimi mensili'. Confirmed by official hourly rate column in FILLEA CGIL salary table.
     
     INPS: reuses 2026-edilizia.json (the edilizia rates by employer size and worker category). Cassa Edile ~18.5% contribution is separate and not included in INPS rates (review of 2026-10-30)
+    
+    COMPORTO OF SEVERAL ILLNESSES, OPERAI (Art. 26 (testo armonizzato 15 aprile 2025), PDF p. 60, https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf, sha256 25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba): 'Nel caso di più malattie o ricadute nella stessa malattia, l'operaio ha diritto alla conservazione del posto per un periodo massimo complessivo di nove mesi nell'arco di 20 mesi consecutivi. L'operaio con un'anzianità superiore a tre anni e mezzo ha diritto alla conservazione del posto per un periodo massimo complessivo di 12 mesi nell'arco di 24 mesi consecutivi.' Modelled for the operai (sickness_rules_by_category.operaio, the base rule with the windows): 274 days within 20 months, 365 within 24 above 42 months of seniority. The impiegati keep the base rule: their 9, 12 and 15 months within 30 months by seniority and their pay steps are not modelled (engine limitation sickness_cumulation_window).
     
 
 ## Raw data

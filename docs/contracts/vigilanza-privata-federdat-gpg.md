@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ✅ |
 | **Limits of this contract** | — |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-07-09 |
-| **Last review** | 2026-11-13 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | FEDERDAT CCNL of 4 May 2023 (CNEL 167336) and of 9 July 2026 (CNEL 245848): artt. 102/119 pay (p. 63, page images), 124 seniority (p. 64), 86/103 sickness (pp. 51), 32-33 apprenticeship, 4 validity. | corrected | The file held the HV17 tables (six tranches 2023-2026): FEDERDAT pays one table from May 2023 and the renewal's two from July and December 2026.<br>Six increments, not ten; sickness 100% days 1-3, 75% days 4-20, 100% from day 21 (the file had 75% throughout). |
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 32, 123-124 and 157 of the CCNL of 9 July 2026 (pp. 23, 64, 76, OCR). | corrected | Apprentices accrue the level increments in full: art. 32 c. 1 (p. 23 of the CCNL of 9 July 2026) sets their pay 'in applicazione del principio di parità di trattamento' (no percentage), art. 123 (p. 64) counts seniority 'dal giorno in cui il lavoratore inizia di fatto la prestazione lavorativa nell'Istituto, quali che siano le mansioni', and the six triennial increments are fixed per level (art. 124; art. 157 for the servizi fiduciari). |
 | 2026-11-13 | claude-opus-5-5 (ai) | Arts. 21 and 64 of the renewal of 9 July 2026 (CNEL 245848, PDF pp. 16, 34-35) and arts. 21 and 48 of the text of 4 May 2023 (CNEL 167336, PDF pp. 17, 34), scanned pages read on the images. | corrected | Added health_funds ebilav (0,20% + 0,10%, alternative 25 EUR) and ebilav_sanitario (12 EUR, alternative 15 EUR), the same HV51 clauses as the FEDERDAT SF file; the substitutes are paid on the 14 monthly payments of this file. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto over the calendar year and paid days, against the research of a separate model session; quotes checked on the source. | corrected | Comporto of 240 days over the calendar year; pay ends after 180 days. |
 
 ## Salary table
 
@@ -122,13 +123,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
-
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
 
@@ -143,12 +137,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.
 
-!!! warning "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · open"
-    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.
+!!! note "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · resolved"
+    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8 and no Fondo di garanzia exemption: the 10% apprentice rate of L. 296/2006 art. 1 c. 773 is split by the D.M. 28 marzo 2007 among FPLD 9.01, CUAF 0.11, malattia 0.53, maternità 0.05 and INAIL 0.30, with no Fondo di garanzia share to exempt.
 
     **Applies when:** `inps_employer` applies; the run takes the engine code path; contract type in apprentice.
 
-    **Remediation:** Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.
+    **Remediation:** Resolved: the apprentice rate holds no Fondo di garanzia share, so none is exempted.
 
 !!! note "maternity_daily_base · maternity_leave · impact unknown · resolved"
     The INPS indemnity of the leave is computed on the pay of the month before, as the sickness base (art. 23 D.Lgs. 151/2001): an operaio's pay over the days worked or paid with the monthly share of the extra months over 25, a month not worked in full over its days worked or paid; the pay of the month before, its days and the pay of a whole month are facts of the leave, missing when not stated. The run keeps its own pay only when the category or the monthly payments of the CCNL are unknown.
@@ -283,6 +277,11 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the CCNL clause on the holidays falling on a Sunday and record it as work_rules.sunday_holidays.
 
+### Without monetary impact
+
+!!! note ""
+    COMPORTO OF ONE ILLNESS: up to 300 days of the same illness in the calendar year when certified as such before the 240 days; the engine ends the comporto at 240 days. The days past 180 are unpaid either way.
+
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -294,6 +293,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     CCNL FEDERDAT (CNEL HV51), guardie particolari giurate. Conglobated pay, 14 months, hourly divisor 173, daily 26. The CCNL of 4 May 2023 pays one table (art. 102) until the renewal of 9 July 2026, in force 'da luglio 2026' (art. 4: read as 1 July), whose art. 119 gives the amounts in force and those of December 2026. The pay tables of the main CCNL (HV17) the file held before are those of vigilanza-privata-assiv.
     
     APPRENTICESHIP (Art. 32, 2026 text): 'La retribuzione, l'inquadramento e l'orario di lavoro dell'apprendista sono disciplinati [...] in applicazione del principio di parità di trattamento': modelled as 100% of the level; three years at most (art. 33).
+    
+    COMPORTO AND PAID DAYS (Artt. 101 and 105 (CNEL archive, PDF in base64), PDF p. 51, https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848, sha256 6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29): 'ha diritto alla normale retribuzione netta mensile [...] per un periodo massimo di 180 giorni'; 'ha diritto alla conservazione del posto di lavoro per i seguenti periodi: - fino a 240 (duecentoquaranta) giorni di malattia riferibile a più episodi morbosi, nell'arco di un anno solare'. Modelled as sickness_rules.comporto_calendar_year with max_duration_days 240; day_bands end the pay on day 180 (day 181 on at 0) of the relapse chain.
     
 
 ## Raw data

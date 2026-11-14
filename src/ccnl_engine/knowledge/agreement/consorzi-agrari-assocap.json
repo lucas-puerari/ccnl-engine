@@ -129,6 +129,10 @@
           },
           "remediation": "Represent qualifying earlier employment periods, actual cumulative service, historical cohort membership for rehires, and qualifying non-disciplinary termination; then calculate the postponed milestone or early-departure award."
         }
+      },
+      {
+        "kind": "info",
+        "text": "SICKNESS (Art. 36 cc. 4-6, CCNL 2024-2027, PDF pp. 35-36, https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf, sha256 592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea): the table of c. 4 sets the comporto (6 to 15 months) and the months at full and half pay by years of service; 'I periodi massimi di trattamento [...] si riferiscono alle assenze per una o più malattie verificatesi in un periodo di tempo pari al triplo di quello fissato per la conservazione del posto'. Modelled as sickness_rules.cumulation with a window of three times the comporto for each band. The text does not say how the comporto itself sums distinct illnesses: the engine counts it over the same window, which reaches the comporto only after three comporti of sickness in it. The apprentices' 6 months of the apprenticeship agreement and the TBC and oncological rules are not modelled."
       }
     ]
   },
@@ -260,6 +264,29 @@
         "independence": "same_process",
         "checked": [
           "parameters.loyalty_premium",
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-consorzi-agrari-assocap-sickness-cumulation",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Table and cumulation of art. 36 against the research of a separate model session; table read on the text layer of the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+            "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+          }
+        ],
+        "findings": [
+          "Replaced one per-episode rule with the nine seniority bands of art. 36, each summed over three times its comporto.",
+          "The integration rates were 0: art. 36 c. 7 tops up to 100% or 50% of the net pay."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
           "coverage.notes"
         ]
       }
@@ -2373,7 +2400,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "fe8c2ddb4db86fa2de907c81ad4cc6ab1a83f522a0a30680a961e206ec94dc0d",
+    "source_hash": "330c20bfefd851b3b1d92e302fb14fc9f78a95ed9fa64b0c6f49ac5f8fc760f7",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2545,27 +2572,115 @@
       }
     },
     "sickness_rules": {
-      "carenza_integration_rate": "0",
-      "full_pay_integration_rate": "0",
-      "max_duration_days": 180,
+      "carenza_integration_rate": "1",
+      "full_pay_integration_rate": "1",
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "consorzi-agrari-assocap",
-            "title": "CCNL Consorzi Agrari (ASSOCAP)",
-            "kind": "tabella_retributiva",
-            "url": "https://ilccnl.it/contratto/ccnl/consorzi-agrari"
+            "document_id": "ccnl-consorzi-agrari-2024-2027",
+            "title": "CCNL consorzi agrari 2024-2027 (FAI-CISL)",
+            "kind": "associazione",
+            "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+            "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
           },
-          "section": "Malattia — norme di legge (solo INPS; nessuna integrazione datoriale esplicita nel CCNL)"
+          "page": "35-36",
+          "section": "Art. 36 cc. 4-6",
+          "quote": "I periodi massimi di trattamento, previsti nella tabella di cui sopra, si riferiscono alle assenze per una o più malattie verificatesi in un periodo di tempo pari al triplo di quello fissato per la conservazione del posto nella tabella stessa."
         },
         "extraction": {
           "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-01-01"
-        }
-      }
+          "extraction_timestamp": "2026-11-15T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "review_id": "2026-11-15-ai-consorzi-agrari-assocap-sickness-cumulation"
+        },
+        "transformation": "Table of c. 4 by completed years of service at the start of the absence: comporto 6 to 15 months, full pay 3 to 12 months and half pay 3, 2, 1 or none (months of 30 days), summed over three times the comporto (window_months of each band). C. 7: the Consorzio tops up to 100% or 50% 'della normale retribuzione netta', so the rates are on the net pay."
+      },
+      "cumulation": {
+        "window_years": 1,
+        "reduced_integration_rate": "0",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 90,
+            "comporto_days": 180,
+            "window_months": 18,
+            "steps": [
+              {
+                "day_from": 91,
+                "day_until": 181,
+                "integration_rate": "0.5"
+              }
+            ]
+          },
+          {
+            "seniority_months_from": 48,
+            "full_pay_days": 120,
+            "comporto_days": 240,
+            "window_months": 24,
+            "steps": [
+              {
+                "day_from": 121,
+                "day_until": 181,
+                "integration_rate": "0.5"
+              }
+            ]
+          },
+          {
+            "seniority_months_from": 60,
+            "full_pay_days": 150,
+            "comporto_days": 270,
+            "window_months": 27,
+            "steps": [
+              {
+                "day_from": 151,
+                "day_until": 181,
+                "integration_rate": "0.5"
+              }
+            ]
+          },
+          {
+            "seniority_months_from": 72,
+            "full_pay_days": 180,
+            "comporto_days": 300,
+            "window_months": 30
+          },
+          {
+            "seniority_months_from": 84,
+            "full_pay_days": 210,
+            "comporto_days": 330,
+            "window_months": 33
+          },
+          {
+            "seniority_months_from": 96,
+            "full_pay_days": 240,
+            "comporto_days": 360,
+            "window_months": 36
+          },
+          {
+            "seniority_months_from": 108,
+            "full_pay_days": 270,
+            "comporto_days": 360,
+            "window_months": 36
+          },
+          {
+            "seniority_months_from": 180,
+            "full_pay_days": 300,
+            "comporto_days": 390,
+            "window_months": 39
+          },
+          {
+            "seniority_months_from": 240,
+            "full_pay_days": 360,
+            "comporto_days": 450,
+            "window_months": 45
+          }
+        ]
+      },
+      "net_basis": true
     },
     "notice": {
       "bands": [

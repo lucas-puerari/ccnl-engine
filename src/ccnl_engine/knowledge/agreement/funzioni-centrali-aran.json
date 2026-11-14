@@ -997,6 +997,787 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    {
+      "code": "PII4S",
+      "order": 15,
+      "description": "PII 4 super - ENAC, ANSFISA, ANSV",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "3690.59",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+                },
+                "page": "67",
+                "section": "Tabella 4 - Nuova retribuzione tabellare dei professionisti di II qualifica e degli Ispettori specialisti ENAC, ANSFISA, ANSV",
+                "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità [...] PII 4 super 44.287,08 45.454,08 46.421,16"
+              },
+              "transformation": "Annual tabellare 44.287,08 for 12 monthly payments over 12, from 2025-01-01; the 13th is added by the extra months.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-15T00:30:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-15T00:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "3787.84",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+                },
+                "page": "67",
+                "section": "Tabella 4 - Nuova retribuzione tabellare dei professionisti di II qualifica e degli Ispettori specialisti ENAC, ANSFISA, ANSV",
+                "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità [...] PII 4 super 44.287,08 45.454,08 46.421,16"
+              },
+              "transformation": "Annual tabellare 45.454,08 for 12 monthly payments over 12, from 2026-01-01; the 13th is added by the extra months.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-15T00:30:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-15T00:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "3868.43",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+                },
+                "page": "67",
+                "section": "Tabella 4 - Nuova retribuzione tabellare dei professionisti di II qualifica e degli Ispettori specialisti ENAC, ANSFISA, ANSV",
+                "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità [...] PII 4 super 44.287,08 45.454,08 46.421,16"
+              },
+              "transformation": "Annual tabellare 46.421,16 for 12 monthly payments over 12, from 2027-01-01; the 13th is added by the extra months.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-15T00:30:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-15T00:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+              }
+            }
+          }
+        ]
+      },
+      "subsectors": [
+        "enac_ansfisa_ansv"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+            "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+            "kind": "associazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+            "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+          },
+          "page": "67",
+          "section": "Tabella 4",
+          "quote": "PII 4 super 44.287,08 45.454,08 46.421,16"
+        },
+        "transformation": "Position of the professionisti di II qualifica or ispettori specialisti of ENAC, ANSFISA and ANSV, only for an employer of the sub-sector enac_ansfisa_ansv; their other positions are transposed into the areas.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-15T00:30:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:30:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+        }
+      }
+    },
+    {
+      "code": "PII4",
+      "order": 14,
+      "description": "PII 4 - ENAC, ANSFISA, ANSV",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "3439.61",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+                },
+                "page": "67",
+                "section": "Tabella 4 - Nuova retribuzione tabellare dei professionisti di II qualifica e degli Ispettori specialisti ENAC, ANSFISA, ANSV",
+                "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità [...] PII 4 41.275,37 42.362,93 43.264,25"
+              },
+              "transformation": "Annual tabellare 41.275,37 for 12 monthly payments over 12, from 2025-01-01; the 13th is added by the extra months.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-15T00:30:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-15T00:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "3530.24",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+                },
+                "page": "67",
+                "section": "Tabella 4 - Nuova retribuzione tabellare dei professionisti di II qualifica e degli Ispettori specialisti ENAC, ANSFISA, ANSV",
+                "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità [...] PII 4 41.275,37 42.362,93 43.264,25"
+              },
+              "transformation": "Annual tabellare 42.362,93 for 12 monthly payments over 12, from 2026-01-01; the 13th is added by the extra months.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-15T00:30:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-15T00:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "3605.35",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+                },
+                "page": "67",
+                "section": "Tabella 4 - Nuova retribuzione tabellare dei professionisti di II qualifica e degli Ispettori specialisti ENAC, ANSFISA, ANSV",
+                "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità [...] PII 4 41.275,37 42.362,93 43.264,25"
+              },
+              "transformation": "Annual tabellare 43.264,25 for 12 monthly payments over 12, from 2027-01-01; the 13th is added by the extra months.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-15T00:30:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-15T00:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+              }
+            }
+          }
+        ]
+      },
+      "subsectors": [
+        "enac_ansfisa_ansv"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+            "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+            "kind": "associazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+            "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+          },
+          "page": "67",
+          "section": "Tabella 4",
+          "quote": "PII 4 41.275,37 42.362,93 43.264,25"
+        },
+        "transformation": "Position of the professionisti di II qualifica or ispettori specialisti of ENAC, ANSFISA and ANSV, only for an employer of the sub-sector enac_ansfisa_ansv; their other positions are transposed into the areas.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-15T00:30:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:30:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+        }
+      }
+    },
+    {
+      "code": "PII3",
+      "order": 13,
+      "description": "PII 3 - ENAC, ANSFISA, ANSV",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "3064.37",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+                },
+                "page": "67",
+                "section": "Tabella 4 - Nuova retribuzione tabellare dei professionisti di II qualifica e degli Ispettori specialisti ENAC, ANSFISA, ANSV",
+                "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità [...] PII 3 36.772,48 37.741,48 38.544,40"
+              },
+              "transformation": "Annual tabellare 36.772,48 for 12 monthly payments over 12, from 2025-01-01; the 13th is added by the extra months.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-15T00:30:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-15T00:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "3145.12",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+                },
+                "page": "67",
+                "section": "Tabella 4 - Nuova retribuzione tabellare dei professionisti di II qualifica e degli Ispettori specialisti ENAC, ANSFISA, ANSV",
+                "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità [...] PII 3 36.772,48 37.741,48 38.544,40"
+              },
+              "transformation": "Annual tabellare 37.741,48 for 12 monthly payments over 12, from 2026-01-01; the 13th is added by the extra months.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-15T00:30:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-15T00:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "3212.03",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+                },
+                "page": "67",
+                "section": "Tabella 4 - Nuova retribuzione tabellare dei professionisti di II qualifica e degli Ispettori specialisti ENAC, ANSFISA, ANSV",
+                "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità [...] PII 3 36.772,48 37.741,48 38.544,40"
+              },
+              "transformation": "Annual tabellare 38.544,40 for 12 monthly payments over 12, from 2027-01-01; the 13th is added by the extra months.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-15T00:30:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-15T00:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+              }
+            }
+          }
+        ]
+      },
+      "subsectors": [
+        "enac_ansfisa_ansv"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+            "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+            "kind": "associazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+            "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+          },
+          "page": "67",
+          "section": "Tabella 4",
+          "quote": "PII 3 36.772,48 37.741,48 38.544,40"
+        },
+        "transformation": "Position of the professionisti di II qualifica or ispettori specialisti of ENAC, ANSFISA and ANSV, only for an employer of the sub-sector enac_ansfisa_ansv; their other positions are transposed into the areas.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-15T00:30:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:30:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+        }
+      }
+    },
+    {
+      "code": "PII2",
+      "order": 12,
+      "description": "PII 2 - ENAC, ANSFISA, ANSV",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2691.13",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+                },
+                "page": "67",
+                "section": "Tabella 4 - Nuova retribuzione tabellare dei professionisti di II qualifica e degli Ispettori specialisti ENAC, ANSFISA, ANSV",
+                "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità [...] PII 2 32.293,61 33.144,53 33.849,65"
+              },
+              "transformation": "Annual tabellare 32.293,61 for 12 monthly payments over 12, from 2025-01-01; the 13th is added by the extra months.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-15T00:30:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-15T00:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2762.04",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+                },
+                "page": "67",
+                "section": "Tabella 4 - Nuova retribuzione tabellare dei professionisti di II qualifica e degli Ispettori specialisti ENAC, ANSFISA, ANSV",
+                "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità [...] PII 2 32.293,61 33.144,53 33.849,65"
+              },
+              "transformation": "Annual tabellare 33.144,53 for 12 monthly payments over 12, from 2026-01-01; the 13th is added by the extra months.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-15T00:30:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-15T00:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2820.80",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+                },
+                "page": "67",
+                "section": "Tabella 4 - Nuova retribuzione tabellare dei professionisti di II qualifica e degli Ispettori specialisti ENAC, ANSFISA, ANSV",
+                "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità [...] PII 2 32.293,61 33.144,53 33.849,65"
+              },
+              "transformation": "Annual tabellare 33.849,65 for 12 monthly payments over 12, from 2027-01-01; the 13th is added by the extra months.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-15T00:30:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-15T00:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+              }
+            }
+          }
+        ]
+      },
+      "subsectors": [
+        "enac_ansfisa_ansv"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+            "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+            "kind": "associazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+            "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+          },
+          "page": "67",
+          "section": "Tabella 4",
+          "quote": "PII 2 32.293,61 33.144,53 33.849,65"
+        },
+        "transformation": "Position of the professionisti di II qualifica or ispettori specialisti of ENAC, ANSFISA and ANSV, only for an employer of the sub-sector enac_ansfisa_ansv; their other positions are transposed into the areas.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-15T00:30:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:30:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+        }
+      }
+    },
+    {
+      "code": "PII1",
+      "order": 11,
+      "description": "PII 1 - ENAC, ANSFISA, ANSV",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2357.98",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+                },
+                "page": "67",
+                "section": "Tabella 4 - Nuova retribuzione tabellare dei professionisti di II qualifica e degli Ispettori specialisti ENAC, ANSFISA, ANSV",
+                "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità [...] PII 1 28.295,76 29.041,32 29.659,20"
+              },
+              "transformation": "Annual tabellare 28.295,76 for 12 monthly payments over 12, from 2025-01-01; the 13th is added by the extra months.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-15T00:30:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-15T00:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2420.11",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+                },
+                "page": "67",
+                "section": "Tabella 4 - Nuova retribuzione tabellare dei professionisti di II qualifica e degli Ispettori specialisti ENAC, ANSFISA, ANSV",
+                "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità [...] PII 1 28.295,76 29.041,32 29.659,20"
+              },
+              "transformation": "Annual tabellare 29.041,32 for 12 monthly payments over 12, from 2026-01-01; the 13th is added by the extra months.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-15T00:30:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-15T00:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2471.60",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+                },
+                "page": "67",
+                "section": "Tabella 4 - Nuova retribuzione tabellare dei professionisti di II qualifica e degli Ispettori specialisti ENAC, ANSFISA, ANSV",
+                "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità [...] PII 1 28.295,76 29.041,32 29.659,20"
+              },
+              "transformation": "Annual tabellare 29.659,20 for 12 monthly payments over 12, from 2027-01-01; the 13th is added by the extra months.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-15T00:30:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-15T00:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+              }
+            }
+          }
+        ]
+      },
+      "subsectors": [
+        "enac_ansfisa_ansv"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+            "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+            "kind": "associazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+            "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+          },
+          "page": "67",
+          "section": "Tabella 4",
+          "quote": "PII 1 28.295,76 29.041,32 29.659,20"
+        },
+        "transformation": "Position of the professionisti di II qualifica or ispettori specialisti of ENAC, ANSFISA and ANSV, only for an employer of the sub-sector enac_ansfisa_ansv; their other positions are transposed into the areas.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-15T00:30:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:30:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+        }
+      }
+    },
+    {
+      "code": "ISPETTORE_SPECIALISTA",
+      "order": 16,
+      "description": "Ispettore specialista - ENAC, ANSFISA, ANSV",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2715.19",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+                },
+                "page": "67",
+                "section": "Tabella 4 - Nuova retribuzione tabellare dei professionisti di II qualifica e degli Ispettori specialisti ENAC, ANSFISA, ANSV",
+                "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità [...] Ispettore specialista 32.582,24 33.268,64 33.837,44"
+              },
+              "transformation": "Annual tabellare 32.582,24 for 12 monthly payments over 12, from 2025-01-01; the 13th is added by the extra months.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-15T00:30:00Z",
+                "effective_from": "2025-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-15T00:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-01-01",
+            "value": "2772.39",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+                },
+                "page": "67",
+                "section": "Tabella 4 - Nuova retribuzione tabellare dei professionisti di II qualifica e degli Ispettori specialisti ENAC, ANSFISA, ANSV",
+                "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità [...] Ispettore specialista 32.582,24 33.268,64 33.837,44"
+              },
+              "transformation": "Annual tabellare 33.268,64 for 12 monthly payments over 12, from 2026-01-01; the 13th is added by the extra months.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-15T00:30:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-15T00:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": null,
+            "value": "2819.79",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+                  "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+                  "kind": "associazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                  "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+                },
+                "page": "67",
+                "section": "Tabella 4 - Nuova retribuzione tabellare dei professionisti di II qualifica e degli Ispettori specialisti ENAC, ANSFISA, ANSV",
+                "quote": "Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità [...] Ispettore specialista 32.582,24 33.268,64 33.837,44"
+              },
+              "transformation": "Annual tabellare 33.837,44 for 12 monthly payments over 12, from 2027-01-01; the 13th is added by the extra months.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-15T00:30:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-15T00:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+              }
+            }
+          }
+        ]
+      },
+      "subsectors": [
+        "enac_ansfisa_ansv"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "aran-ccnl-funzioni-centrali-2025-2027",
+            "title": "CCNL comparto Funzioni Centrali 2025-2027, 6 agosto 2026 (ARAN)",
+            "kind": "associazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+            "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+          },
+          "page": "67",
+          "section": "Tabella 4",
+          "quote": "Ispettore specialista 32.582,24 33.268,64 33.837,44"
+        },
+        "transformation": "Position of the professionisti di II qualifica or ispettori specialisti of ENAC, ANSFISA and ANSV, only for an employer of the sub-sector enac_ansfisa_ansv; their other positions are transposed into the areas.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-15T00:30:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:30:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-funzioni-centrali-agencies"
+        }
+      },
+      "ladder": "ispettori"
     }
   ],
   "apprenticeship": [],
@@ -1038,17 +1819,8 @@
         "text": "progressione economica non automatica — differenziali stipendiali assegnati per graduatoria (Art. 16 CCNL 2022-2024); seniority_increments.maximum_count=0."
       },
       {
-        "kind": "simplification",
-        "text": "sub-settori ENAC, ANSFISA, ANSV e AGID hanno tabelle retributive proprie (Tabelle 3-6 CCNL) non modellate — out_of_scope per implementazione standard.",
-        "capability": "base_salary",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "agency_salary_tables",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Add the ENAC, ANSFISA, ANSV and AGID tables with a fact selecting them, or refuse those employers."
-        }
+        "kind": "info",
+        "text": "AGENCIES (CCNL 6 August 2026, tabelle 2 and 4, PDF p. 65-67): for ENAC, ANSFISA and ANSV the professionisti di II qualifica (PII 1-4 super) and the ispettori specialisti have their own tabellare, modelled as levels of the sub-sector enac_ansfisa_ansv; their other positions are transposed into the areas. AGID moved to the ordinary tables from 1 November 2024 (CCNL 27 January 2025 art. 30 c. 3), before the window of this ruleset."
       },
       {
         "kind": "info",
@@ -1063,7 +1835,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "392056d2a16b80de8377d34fb4802fc4e88a8dfa87a6183bdb21502d3c2f6e32",
+    "source_hash": "6531579d5b1ee6e488552ac9ae9e80a5285ebdb09430a97edcd4e8180f118621",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1555,6 +2327,27 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.notice"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-funzioni-centrali-agencies",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Tabella 4 of the CCNL Funzioni Centrali of 6 August 2026 (PDF p. 67), text layer, against the research of a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+            "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+          }
+        ],
+        "findings": [
+          "Added the six agency positions of ENAC, ANSFISA and ANSV for 2025-2027 as sub-sector levels."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels"
         ]
       }
     ],

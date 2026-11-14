@@ -114,6 +114,10 @@
           },
           "remediation": "Check the definitive text of 23 October 2026, model the una tantum of Allegato D as una tantum items, then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "SICKNESS (Art. 32, CCNL 7 luglio 2022, PDF pp. 24-25; the renewal of 2026 leaves it unchanged): comporto 'mesi 16' up to three years of service and 'mesi 24' above; 'Si considera prosecuzione del periodo di malattia e/o infortunio quella che intervenga non oltre i 60 giorni dalla ripresa del servizio'; integration 'a partire dal primo giorno di malattia e per un massimo di 12 mesi', 100% for the first 6 and 50% for the next 6. Modelled as sickness_rules.cumulation over the chain; the 365 days in full of an oncological illness (c. 17) and the TBC rules (c. 4) are not modelled. Source: https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf, sha256 31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365."
       }
     ]
   },
@@ -201,6 +205,28 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-farmacie-municipalizzate-assofarm-sickness-chain",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Sick pay and comporto against the research of a separate model session; quotes checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+            "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
+          }
+        ],
+        "findings": [
+          "Replaced 180 days of one episode with the chain of art. 32 reset after 60 days, comporto 16 or 24 months, 6 months in full and 6 at half pay."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
+          "coverage.notes"
         ]
       }
     ]
@@ -3374,7 +3400,7 @@
     "effective_until": null,
     "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
     "verification_status": "unverified",
-    "source_hash": "21e02b5fe70d82f36ab7870520937bbe7e2feb56620d299698582c3e33108e26",
+    "source_hash": "8ed12a32a7312d1202960c780feb3f316fa166a4d07cf9080a6a045b4847bde6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3580,24 +3606,62 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 180,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-farmacie-municipalizzate-2022",
-            "title": "CCNL Farmacie Municipalizzate (Assofarm) 2022-2024",
-            "kind": "tabella_retributiva",
-            "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf"
+            "document_id": "farmacie-municipalizzate-assofarm-sickness-source",
+            "title": "CCNL farmacie municipalizzate 7 luglio 2022 (Assofarm, firmato)",
+            "kind": "associazione",
+            "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+            "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
           },
-          "section": "Art. malattia — integrazione al 100% per 180 giorni"
+          "page": "24-25",
+          "section": "Art. 32 cc. 1, 2, 7",
+          "quote": "Si considera prosecuzione del periodo di malattia e/o infortunio quella che intervenga non oltre i 60 giorni dalla ripresa del servizio dopo la cessazione della malattia e/o infortunio precedente."
         },
         "extraction": {
           "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2022-07-01"
-        }
+          "extraction_timestamp": "2026-11-15T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2022-07-07",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "review_id": "2026-11-15-ai-farmacie-municipalizzate-assofarm-sickness-chain"
+        },
+        "transformation": "Comporto of 16 months up to three years of service and 24 above (months of 30 days: 480 and 720 days); 100% for 6 months and 50% for the next 6, at most 12 months; an illness within 60 days of the return continues the previous one."
+      },
+      "cumulation": {
+        "window_years": 1,
+        "reset_after_days": 61,
+        "comporto_over_chain": true,
+        "reduced_integration_rate": "0",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 180,
+            "comporto_days": 480,
+            "steps": [
+              {
+                "day_from": 181,
+                "day_until": 361,
+                "integration_rate": "0.5"
+              }
+            ]
+          },
+          {
+            "seniority_months_from": 36,
+            "full_pay_days": 180,
+            "comporto_days": 720,
+            "steps": [
+              {
+                "day_from": 181,
+                "day_until": 361,
+                "integration_rate": "0.5"
+              }
+            ]
+          }
+        ]
       }
     }
   }

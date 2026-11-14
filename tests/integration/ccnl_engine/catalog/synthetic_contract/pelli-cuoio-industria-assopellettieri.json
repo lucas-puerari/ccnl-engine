@@ -170,7 +170,7 @@
       "level_code": "2",
       "track_name": "dest_2",
       "months_elapsed": 1,
-      "expected_levels_below": 1
+      "expected_levels_below": 0
     },
     {
       "level_code": "2",

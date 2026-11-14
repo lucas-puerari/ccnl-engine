@@ -183,25 +183,12 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "Tabella C prints 109,45 as the ex-14th of level II from 1 January 2024 to 31 October 2026, while its own una tantum (836,70 = 6 x 139,45) and the next tranche (92,97 = 2/3 of 139,45) follow 139,45: the printed 109,45 is encoded, which pays a level II worker hired before 22/12/2015 30,00 a month less than the other columns imply until 31 October 2026.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "level_ii_ex_fourteenth_print",
-          "applies_when": {
-            "trigger": "run",
-            "levels": [
-              "II"
-            ],
-            "effective_until": "2026-11-01"
-          },
-          "remediation": "Obtain the parties' reading of the level II cell of Tabella C (109,45 against the 139,45 its other columns imply) and correct it if it is a misprint."
-        }
+        "kind": "info",
+        "text": "Hires before 22/12/2015 (art. 116 and norma transitoria, Tabella C p. 106): SUPERMINIMO_ANTE_2015 (non-absorbable, out of the retribuzione di fatto, 12 payments) and EX_QUATTORDICESIMA_ANTE_2015 (the former 14th, decreasing on 1 November 2026 and 1 January 2028, nothing from 2029), paid to the workers whose employment started by 21 December 2015. A worker whose individual balances differ from the table (more favourable individual rights preserved by the nota a verbale) states them as individual elements. Art. 116 says the transitory element is paid until 31 October 2029, the table prints nothing from 1 January 2029: outside the declared window."
       },
       {
         "kind": "info",
-        "text": "Hires before 22/12/2015 (art. 116 and norma transitoria, Tabella C p. 106): SUPERMINIMO_ANTE_2015 (non-absorbable, out of the retribuzione di fatto, 12 payments) and EX_QUATTORDICESIMA_ANTE_2015 (the former 14th, decreasing on 1 November 2026 and 1 January 2028, nothing from 2029), paid to the workers whose employment started by 21 December 2015. A worker whose individual balances differ from the table (more favourable individual rights preserved by the nota a verbale) states them as individual elements. Art. 116 says the transitory element is paid until 31 October 2029, the table prints nothing from 1 January 2029: outside the declared window."
+        "text": "TABELLA C, level II: the text deposited at the CNEL (H077, PDF p. 106) prints 64,36 and 139,45 where the CUSI copy prints 63,36 and 109,45; the deposited values are used, consistent with the parameter and with the una tantum."
       }
     ]
   },
@@ -1349,7 +1336,34 @@
               {
                 "valid_from": "2024-01-01",
                 "valid_until": null,
-                "value": "63.36"
+                "value": "64.36",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-h077-2024-01-12",
+                      "title": "CCNL lavoratori dello sport 2024-2026, accordo 12 gennaio 2024, testo depositato all'archivio CNEL (H077)",
+                      "kind": "cnel",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/179003",
+                      "sha256": "a8e5ef705707cd9c6716ab7af876241967a464d01b80bcb895e4ac81b7424809"
+                    },
+                    "page": "106",
+                    "section": "Tabella C - Maggiorazioni contrattualizzati ante 22-12-2015, livello II",
+                    "quote": "II 120,996569 € 1.686,04 € 64,36 € 139,45 € 1.807,04 € 836,70 € 92,97 € 1.853,52 € 46,48 € 1.900,00 € - € 1.946,49"
+                  },
+                  "transformation": "Superminimo non assorbibile of level II as deposited at the CNEL; the CUSI copy prints 63,36, inconsistent with the parameter 120.996569 (53.19 x 1.20996569 = 64.36).",
+                  "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-14T22:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-14T22:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-14-ai-impianti-sportivi-tabella-c"
+                  }
+                }
               }
             ]
           },
@@ -1391,7 +1405,34 @@
               {
                 "valid_from": "2024-01-01",
                 "valid_until": "2026-11-01",
-                "value": "109.45"
+                "value": "139.45",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cnel-h077-2024-01-12",
+                      "title": "CCNL lavoratori dello sport 2024-2026, accordo 12 gennaio 2024, testo depositato all'archivio CNEL (H077)",
+                      "kind": "cnel",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/179003",
+                      "sha256": "a8e5ef705707cd9c6716ab7af876241967a464d01b80bcb895e4ac81b7424809"
+                    },
+                    "page": "106",
+                    "section": "Tabella C - Maggiorazioni contrattualizzati ante 22-12-2015, livello II",
+                    "quote": "II 120,996569 € 1.686,04 € 64,36 € 139,45 € 1.807,04 € 836,70 € 92,97 € 1.853,52 € 46,48 € 1.900,00 € - € 1.946,49"
+                  },
+                  "transformation": "Superminimo assorbibile (ex 14^) of level II from 1 January 2024 to 31 October 2026 as deposited at the CNEL; the CUSI copy prints 109,45, while the una tantum 836,70 = 6 x 139,45 and the next tranche 92,97 = 2/3 of 139,45 follow 139,45.",
+                  "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-14T22:00:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-14T22:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-14-ai-impianti-sportivi-tabella-c"
+                  }
+                }
               },
               {
                 "valid_from": "2026-11-01",
@@ -2154,7 +2195,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "6746fb7746fed547fde2d2cddacc2ebd674819cb14db45786dc16ebad241f26c",
+    "source_hash": "a8d4d39313c8bd141ec247bfd29583830198da16a02701a3293c8f128aee2cb6",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -3080,6 +3121,27 @@
         "checked": [
           "levels.*.fixed_allowances.SUPERMINIMO_ANTE_2015",
           "levels.*.fixed_allowances.EX_QUATTORDICESIMA_ANTE_2015"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-impianti-sportivi-tabella-c",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Tabella C level II of the text deposited at the CNEL (PDF p. 106), read on the page image, against the research of a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/179003",
+            "sha256": "a8e5ef705707cd9c6716ab7af876241967a464d01b80bcb895e4ac81b7424809"
+          }
+        ],
+        "findings": [
+          "Level II ante-2015 superminimo 63.36 -> 64.36 and ex-14th 109.45 -> 139.45, misprints of the CUSI copy."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels[II].fixed_allowances"
         ]
       }
     ]

@@ -95,6 +95,10 @@
       {
         "kind": "info",
         "text": "LEVEL E3: the seniority increment of E3 is the one of the other E levels (8.78), the increments being set by category letter; the level description and the apprenticeship track are those of E2."
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Art. 37 (CNEL 2014, scanned), PDF p. 60, https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/68, sha256 6a62203105c06f3b9d53b1278bce2271beb9a1dcd9a6538b336b461b0a19c154): '1) 8 mesi per anzianità di servizio fino a 3 anni compiuti; 2) 10 mesi per anzianità di servizio oltre i 3 e fino a 6 anni compiuti; 3) 12 mesi per anzianità di servizio oltre i 6 anni compiuti. [...] In caso di più assenze i periodi di conservazione del posto suindicati si intendono riferiti ad un arco temporale pari a 36 mesi.' Modelled as sickness_rules.comporto_windows; 8, 10 and 12 months as 243, 304 and 365 days (x 365/12); the 'arco temporale' read as the 36 months before the day; the hospital stays (up to 60 days) and the life-saving therapy days (up to half the comporto) left out of the count are not modelled."
       }
     ]
   },
@@ -4114,7 +4118,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
     "verification_status": "unverified",
-    "source_hash": "e5885d4f4bf1ce0197d413a67b68c3ba7ef1b3d75f01a438e5b59b3d98f2e69c",
+    "source_hash": "8a58ca17209cdc025b2658164e59c27256d30b0ab9f00472871a1d66f20538e1",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },
@@ -4302,7 +4306,24 @@
           "verification_status": "unverified",
           "effective_from": "2024-07-22"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 36,
+          "comporto_days": 243
+        },
+        {
+          "seniority_months_from": 36,
+          "window_months": 36,
+          "comporto_days": 304
+        },
+        {
+          "seniority_months_from": 72,
+          "window_months": 36,
+          "comporto_days": 365
+        }
+      ]
     }
   },
   "verification": {
@@ -4327,6 +4348,27 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-ceramica-sanitaria-stoviglieria-confindustria-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the OCR of the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/68",
+            "sha256": "6a62203105c06f3b9d53b1278bce2271beb9a1dcd9a6538b336b461b0a19c154"
+          }
+        ],
+        "findings": [
+          "Added the comporto window of the CCNL."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.comporto_windows"
         ]
       }
     ]

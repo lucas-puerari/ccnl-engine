@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 7 verified / 8 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 8 verified / 7 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-06-18 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2024-07-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 51 - Preavviso di risoluzione del rapporto, p. 47-48). | corrected | Notice bands by level, category and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | tranche_2025_01_missing: Art. 31 applies 5% (01/04/2024) and 1.9% (01/01/2025) to territorial contractual salaries, not a second national table. Tab. 1 has a single national minimum table dated 01/07/2024; all seven amounts match levels[*].base_salary, whose periods remain in force in 2025. The engine re |
 | 2026-11-08 | gpt-6-sol (ai) | Allegato F (accordo 19 giugno 2018) of the CCNL 18 June 2024, pp. 85-88. Final encoding (dual_apprenticeship JSON) checked against the PDFs by a separate model session (.private flv2). | flagged | The third level (70% above 12 months, 80% up to 12) matches.<br>The first level follows 'l'anno scolastico/formativo di effettiva frequenza' (All. F p. 86) through the correspondence table of pp. 86-87, not the year of the contract the data keys it by: recorded as dual_apprenticeship_school_year.<br>Ambiguous in the text, kept as read: the base of the 10% training share ('di quella che gli sarebbe dovuta'). |
+| 2026-11-15 | claude-opus-5-5 (ai) | Sick pay of art. 39 against the research of a separate model session; quote checked on the source. | corrected | Replaced 100% for 180 days of one episode with the 3+3, 5+5, 6+6 months of art. 39 summed over 12 months. |
 
 ## Salary table
 
@@ -118,13 +119,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -320,6 +314,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICE INPS RATES (contribution/2026/agricoltura.json): employer 10% plus NASpI 1.61% (INPS circ. 108/2018 par. 3.2, applied to the agricultural contribution by circ. 116/2013 par. 1) plus CISOA 1.50% (circ. 1/2023; 'CIS operai agricoli 1,5000' of circ. 43/2026 allegato 1) = 13.11% (4.61% and 6.11% in the first two years up to nine employees); worker 5.84%.
     
     FIRST- AND THIRD-LEVEL APPRENTICES (Allegato F): modelled in dual_apprenticeship (first level 45/55/60/70% by year at the conventional level, third level 70% or 80% by length; training at the employer 10% of the work pay, school hours unpaid). The contributions of these apprentices are the engine limitation dual_apprenticeship_contributions.
+    
+    SICKNESS (Art. 39 A, CCNL 18 giugno 2024, PDF pp. 39-40, https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf, sha256 94fba8a7cda3856266ed91ab8eec45264803a5396179772d67fbc995b7f7f076): comporto of 12 months; full pay for 3/5/6 months and half pay for 3/5/6 months by seniority (under 5 years, 5 to 10, over 10), the sick periods summed over 12 months. Modelled as sickness_rules.cumulation over a 1-year window, months of 30 days; how the comporto itself sums the episodes is not stated, and 365 days within one year end it only after a whole year of sickness.
     
 
 ## Raw data

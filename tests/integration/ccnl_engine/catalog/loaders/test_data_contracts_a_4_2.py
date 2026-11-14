@@ -395,10 +395,11 @@ class TestLoadFunzioniCentraliAran:
         assert ccnl.meta.cnel_code == "S005"
 
     def test_funzioni_centrali_aran_has_4_levels(self) -> None:
-        """Contract has exactly 4 levels: OPERATORI, ASSISTENTI, FUNZIONARI, ELEVATE."""
+        """4 areas for every employer; the ENAC, ANSFISA, ANSV positions apart."""
         ccnl = load_ccnl("funzioni-centrali-aran")
-        codes = {lv.code for lv in ccnl.levels}
-        assert len(ccnl.levels) == 4
+        codes = {lv.code for lv in ccnl.levels if not lv.subsectors}
+        agencies = {lv.code for lv in ccnl.levels if lv.subsectors}
+        assert len(agencies) == 6
         assert codes == {
             "OPERATORI",
             "ASSISTENTI",
@@ -421,7 +422,7 @@ class TestLoadFunzioniCentraliAran:
     def test_funzioni_centrali_aran_level_ordering(self) -> None:
         """ELEVATE_PROFESSIONALITA is highest-order; OPERATORI is lowest-order."""
         ccnl = load_ccnl("funzioni-centrali-aran")
-        orders = {lv.code: lv.order for lv in ccnl.levels}
+        orders = {lv.code: lv.order for lv in ccnl.levels if not lv.subsectors}
         assert orders["ELEVATE_PROFESSIONALITA"] == max(orders.values())
         assert orders["OPERATORI"] == min(orders.values())
 

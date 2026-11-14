@@ -178,20 +178,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE INPS RATES: the apprentice rates of the sector (artigianato) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles whether the 0.91 NASpI reduction of the artisan employers also applies to apprentices, nor the wage-integration contribution they owe (the FSBA is paid outside INPS). The contributions of an apprentice may differ.",
-        "capability": "inps_employer",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_inps_rates_unsourced",
-          "applies_when": {
-            "trigger": "run",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note."
-        }
+        "kind": "info",
+        "text": "APPRENTICE INPS RATES (artigianato): 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI and integrativo, 11.61% for the employer (3.11% and 4.61% in the first two years of a firm up to 9 employees) and 5.84% for the worker. The 0.91 reduction of the artisan employers does not apply to apprentices: 'sul contributo per gli apprendisti non trovano applicazione le riduzioni del cuneo contributivo di cui alle leggi n. 388/2000 e n. 266/2005' (INPS circ. 140/2012 par. 3.3, https://servizi2.inps.it/servizi/Bussola/VisualizzaDoc.aspx?sVirtualURL=/Circolari/Circolare%20numero%20140%20del%2014-12-2012.htm, sha256 67d04317e66825fdb2cf6aa0b3106e644d76461e3e6ec17cd456b307948701a7). The wage-integration contribution of the sector is the FSBA, paid outside INPS (F24, code EBNA), not part of the INPS employer rate."
       },
       {
         "kind": "simplification",
@@ -204,6 +192,27 @@
             "trigger": "path"
           },
           "remediation": "Source the anniversary rule for a 29 February hire before changing the fallback."
+        }
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES, OPERAI (Operai, malattia (CNEL 224212, scanned), PDF p. 44, https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212, sha256 2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95): 'Nel caso di più malattie o ricadute nella stessa malattia, l'operaio ha diritto alla conservazione del posto per un periodo massimo complessivo di nove mesi nell'arco di 20 mesi consecutivi. L'operaio con un'anzianità superiore a tre anni e mezzo ha diritto alla conservazione del posto per un periodo massimo complessivo di 12 mesi nell'arco di 24 mesi consecutivi.' Modelled for the operai (sickness_rules_by_category.operaio, the base rule with the windows): 274 days within 20 months, 365 within 24 above 42 months of seniority. The impiegati keep the base rule: their 9, 12 and 15 months within 30 months by seniority and their pay steps are not modelled (engine limitation sickness_cumulation_window)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SICKNESS OF THE IMPIEGATI (Art. 66, scanned PDF p. 76): the comporto of one illness is 6 months up to 2 years of seniority and 12 above 6 years, while point 2) (2 to 6 years) states no number of months; pay is in full for 6 months, then 50% (2 to 6 years) or 75% for 3 months and 50% (above 6 years), and the relapse sums with the episode it continues. The engine keeps 180 days for one illness, applies the windows of several illnesses and pays every day of the comporto in full.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sickness_pay_bands",
+          "applies_when": {
+            "trigger": "outside_input",
+            "worker_categories": [
+              "impiegato",
+              "quadro"
+            ]
+          },
+          "remediation": "Model the comporto of one illness and the 75%/50% months of art. 66 by seniority; point 2) needs the months it does not state."
         }
       }
     ]
@@ -2590,7 +2599,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "8b65384cad0973013f7f5d7bc194326c806387d1dd070e9a35fa6713400565e1",
+    "source_hash": "1f250b4800d7b3cc7a1f8e7e792349ea9d88d6b2e66012134cecb16f05c0547e",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2781,6 +2790,137 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2024-01-01"
+        }
+      }
+    },
+    "sickness_rules_by_category": {
+      "operaio": {
+        "carenza_integration_rate": "1",
+        "full_pay_integration_rate": "1",
+        "max_duration_days": 180,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-edilizia-artigianato",
+              "title": "CCNL Edilizia - Artigianato (CNA / Confartigianato)",
+              "kind": "tabella_retributiva",
+              "url": "https://www.ilccnl.it/ccnl-edilizia-artigianato/"
+            },
+            "section": "Art. malattia — integrazione datoriale al 100% per 180 giorni"
+          },
+          "extraction": {
+            "method": "manual",
+            "extraction_timestamp": "2026-09-08T00:00:00",
+            "verification_status": "unverified",
+            "effective_from": "2024-01-01"
+          }
+        },
+        "comporto_windows": [
+          {
+            "seniority_months_from": 0,
+            "window_months": 20,
+            "comporto_days": 274
+          },
+          {
+            "seniority_months_from": 42,
+            "window_months": 24,
+            "comporto_days": 365
+          }
+        ]
+      },
+      "impiegato": {
+        "carenza_integration_rate": "1",
+        "full_pay_integration_rate": "1",
+        "max_duration_days": 180,
+        "comporto_windows": [
+          {
+            "seniority_months_from": 0,
+            "window_months": 12,
+            "comporto_days": 274
+          },
+          {
+            "seniority_months_from": 24,
+            "window_months": 18,
+            "comporto_days": 365
+          },
+          {
+            "seniority_months_from": 72,
+            "window_months": 24,
+            "comporto_days": 456
+          }
+        ],
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-edilizia-artigianato-2025-10-15",
+              "title": "CCNL edilizia artigianato e PMI, stesura definitiva 15 ottobre 2025 (CNEL F015, PDF in base64)",
+              "kind": "associazione",
+              "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212",
+              "sha256": "2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95"
+            },
+            "page": "76",
+            "section": "Art. 66 Trattamento in caso di malattia (impiegati)",
+            "quote": "Nel caso di più malattie o di ricadute nella stessa malattia non potranno essere superati i seguenti periodi massimi complessivi di conservazione del posto: a) mesi nove in un periodo di 12 mesi per gli aventi anzianità di cui al punto 1); b) mesi dodici in un periodo di 18 mesi per gli aventi anzianità di cui al punto 2); c) mesi quindici in un periodo di 24 mesi per gli aventi anzianità di cui al punto 3)."
+          },
+          "extraction": {
+            "method": "manual",
+            "extraction_timestamp": "2026-11-15T00:00:00",
+            "verification_status": "verified",
+            "effective_from": "2025-05-20",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "review_id": "2026-11-15-ai-edilizia-artigianato-cna-impiegati-comporto"
+          },
+          "transformation": "Several illnesses: 9, 12 or 15 months (274, 365, 456 days) within 12, 18 or 24 months, up to 2 years of seniority, to 6, above 6; full pay from the first day. Quadri: art. 78 applies the rules of the impiegati."
+        }
+      },
+      "quadro": {
+        "carenza_integration_rate": "1",
+        "full_pay_integration_rate": "1",
+        "max_duration_days": 180,
+        "comporto_windows": [
+          {
+            "seniority_months_from": 0,
+            "window_months": 12,
+            "comporto_days": 274
+          },
+          {
+            "seniority_months_from": 24,
+            "window_months": 18,
+            "comporto_days": 365
+          },
+          {
+            "seniority_months_from": 72,
+            "window_months": 24,
+            "comporto_days": 456
+          }
+        ],
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-edilizia-artigianato-2025-10-15",
+              "title": "CCNL edilizia artigianato e PMI, stesura definitiva 15 ottobre 2025 (CNEL F015, PDF in base64)",
+              "kind": "associazione",
+              "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212",
+              "sha256": "2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95"
+            },
+            "page": "76",
+            "section": "Art. 66 Trattamento in caso di malattia (impiegati)",
+            "quote": "Nel caso di più malattie o di ricadute nella stessa malattia non potranno essere superati i seguenti periodi massimi complessivi di conservazione del posto: a) mesi nove in un periodo di 12 mesi per gli aventi anzianità di cui al punto 1); b) mesi dodici in un periodo di 18 mesi per gli aventi anzianità di cui al punto 2); c) mesi quindici in un periodo di 24 mesi per gli aventi anzianità di cui al punto 3)."
+          },
+          "extraction": {
+            "method": "manual",
+            "extraction_timestamp": "2026-11-15T00:00:00",
+            "verification_status": "verified",
+            "effective_from": "2025-05-20",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "review_id": "2026-11-15-ai-edilizia-artigianato-cna-impiegati-comporto"
+          },
+          "transformation": "Several illnesses: 9, 12 or 15 months (274, 365, 456 days) within 12, 18 or 24 months, up to 2 years of seniority, to 6, above 6; full pay from the first day. Quadri: art. 78 applies the rules of the impiegati."
         }
       }
     }
@@ -2980,6 +3120,70 @@
         "independence": "same_process",
         "checked": [
           "parameters.loyalty_premium.dismissal_pro_rata"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-artigianato-apprentice-inps",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "INPS circ. 140/2012 par. 3.3 on the apprentice contribution, against the research of a separate model session.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://servizi2.inps.it/servizi/Bussola/VisualizzaDoc.aspx?sVirtualURL=/Circolari/Circolare%20numero%20140%20del%2014-12-2012.htm",
+            "sha256": "67d04317e66825fdb2cf6aa0b3106e644d76461e3e6ec17cd456b307948701a7"
+          }
+        ],
+        "findings": [
+          "The cuneo reductions (0.91) do not apply to apprentices: the artigianato apprentice rates of the bundle are confirmed."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-edilizia-artigianato-cna-operai-comporto",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses of the operai, against the research of a separate model session; quote checked on the source text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212",
+            "sha256": "2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95"
+          }
+        ],
+        "findings": [
+          "Added the operai comporto windows (9 months in 20, 12 in 24 above three and a half years)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules_by_category"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-edilizia-artigianato-cna-impiegati-comporto",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses of the impiegati of art. 66, OCR of the scanned source, against the research of a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212",
+            "sha256": "2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95"
+          }
+        ],
+        "findings": [
+          "Added the impiegato and quadro windows of several illnesses; the comporto of one illness and the reduced pay months stay a limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules_by_category",
+          "coverage.notes"
         ]
       }
     ]

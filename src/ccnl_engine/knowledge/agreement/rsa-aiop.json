@@ -114,6 +114,10 @@
           },
           "remediation": "Supply group-service start as the employment start date when earlier service with another group company qualifies. Verify any separately specified premium start date and any later replacement or absorption before changing the open-ended premium."
         }
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Malattia - conservazione del posto, PDF p. 39, https://www.aiop.it/Portals/0/documenti/CCNL/ccnl_AiopRSA_v1_0.pdf, sha256 278e7c71b2b22f866dedd0aa4b89357df908966b3ce80d7c39fa58dc39744e4e): 'Il datore di lavoro può recedere dal rapporto allorquando il lavoratore si assenti oltre il limite dei dodici mesi complessivi (sommando tutti gli eventi) nell'arco di un quadriennio mobile.' Modelled as sickness_rules.comporto_windows: 365 days within the 48 months before the day; 12 months as 365 days; the 2 more months of a relapse with a long hospital stay are not modelled."
       }
     ]
   },
@@ -2076,7 +2080,7 @@
     "effective_until": null,
     "source": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
     "verification_status": "unverified",
-    "source_hash": "0fea36e80ea5e7545080a7cd811b481d0dc2aa8a45ee0042aa5edad60ab91c79",
+    "source_hash": "99565de70e072bbb80e210a843360fcdce0dfa8463be7a72dbb6e34b8143664c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2300,7 +2304,14 @@
           "verification_status": "unverified",
           "effective_from": "2012-01-01"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 48,
+          "comporto_days": 365
+        }
+      ]
     }
   },
   "verification": {
@@ -2350,6 +2361,27 @@
         "independence": "same_process",
         "checked": [
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-rsa-aiop-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the source text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aiop.it/Portals/0/documenti/CCNL/ccnl_AiopRSA_v1_0.pdf",
+            "sha256": "278e7c71b2b22f866dedd0aa4b89357df908966b3ce80d7c39fa58dc39744e4e"
+          }
+        ],
+        "findings": [
+          "Added the comporto window of the CCNL."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.comporto_windows"
         ]
       }
     ]

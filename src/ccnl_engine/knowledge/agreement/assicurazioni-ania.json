@@ -140,6 +140,23 @@
       {
         "kind": "info",
         "text": "CLASS TABLES (art. 113; Allegati 2/A and 2/B of the renewal 2026, signed annex pp. 3, 5, 7, 9): the salary of the personale amministrativo is the cell of its level and seniority class, in Allegato 2/A for the staff in service on 18 December 1999 and 2/B for the later hires (Level.class_tables, by the hire date and the months of service); the increments of parameters.seniority_increments are then not paid. Classes of 2/A: two years each up to cl 6, three after, cl 13 'oltre'; of 2/B: four years, then three, cl 12 'oltre'. The art. 113 rule that counts the service from the first of the month of hire (hired by the 15th) or of the next month is read off SeniorityFact.months."
+      },
+      {
+        "kind": "info",
+        "text": "SICKNESS (Artt. 44 and 46, ipotesi di intesa 13 maggio 2026, PDF pp. 7-8 (scanned), https://www.fisac-cgil.it/wp-content/uploads/CCNL-ANIA_compressed.pdf, sha256 b93a0549d28901da9a9c4d5d50b5a76e659cdead9e8d89313fa240b194f202ae): comporto of 12 months up to 10 years of seniority and 18 above, 'Per l'intera durata dei periodi suindicati sarà corrisposto un importo pari all'intera retribuzione'; the absences 'si sommano a meno che, tra una assenza ed un'altra, non intercorra un intervallo di almeno quattro mesi', over the 40 months before each day. Modelled as sickness_rules.cumulation: a chain reset after 120 days of work with the comporto over the chain, 360/540 days in full, 450/720 for a serious illness, hospital stays over 15 days left out up to 120."
+      },
+      {
+        "kind": "simplification",
+        "text": "SICKNESS LIMITS NOT MODELLED (art. 44): a chain longer than the 40 months of art. 46 counts all its days; the two more months of the life-saving therapies and the 150-day exclusion of stays over 7 days for the serious illnesses are not applied; the apprentices' 2, 4 or 6 months of the apprenticeship agreement are not applied.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sickness_serious_extensions",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the life-saving therapy extension, the 150-day stay exclusion of art. 44 c. 2 and the apprentice comporto of the apprenticeship agreement."
+        }
       }
     ]
   },
@@ -17602,7 +17619,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "1ed7e6fb0ca76f49b229ddc65d695e4dcae936ac9f821e2ef458986fe1736734",
+    "source_hash": "0b8054cee7d13617cbf6022f7556f22619294f67cf31675cfe9266d9cb1a6818",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -17772,23 +17789,55 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 360,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "assicurazioni-ania",
-            "title": "CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)",
-            "kind": "tabella_retributiva",
-            "url": "https://ilccnl.it/contratto/ccnl/assicurazioni---personale-amministrativo"
+            "document_id": "ania-ipotesi-intesa-2026-05-13",
+            "title": "CCNL imprese assicuratrici ANIA, ipotesi di intesa 13 maggio 2026 (FISAC-CGIL, scansione)",
+            "kind": "associazione",
+            "url": "https://www.fisac-cgil.it/wp-content/uploads/CCNL-ANIA_compressed.pdf",
+            "sha256": "b93a0549d28901da9a9c4d5d50b5a76e659cdead9e8d89313fa240b194f202ae"
           },
-          "section": "Malattia — piena retribuzione; conservazione posto 12 mesi (<10 anni anzianita')"
+          "page": "7-8",
+          "section": "Artt. 44 e 46",
+          "quote": "Ai fini della conservazione del posto prevista dagli articoli 44 (commi 1 e 2) e 45, i periodi di assenza per malattia e infortunio si sommano a meno che, tra una assenza ed un'altra, non intercorra un intervallo di almeno quattro mesi. Agli effetti della somma dei periodi di assenza di cui sopra, sono presi in considerazione i 40 mesi precedenti ciascun giorno di assenza."
         },
         "extraction": {
           "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2023-01-01"
+          "extraction_timestamp": "2026-11-15T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2026-05-13",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "review_id": "2026-11-15-ai-assicurazioni-ania-sickness-cumulation"
+        },
+        "transformation": "Comporto of 12 months (360 days, months of 30 days) up to 10 years of seniority, 18 (540) above, all paid in full; 15 and 24 months (450, 720) for the serious illnesses of art. 44 c. 2; absences summed unless 4 months (120 days) pass between them; hospital stays over 15 days left out up to 120 days."
+      },
+      "cumulation": {
+        "window_years": 4,
+        "reset_after_days": 120,
+        "comporto_over_chain": true,
+        "reduced_integration_rate": "0",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 360,
+            "comporto_days": 360,
+            "serious_comporto_days": 450,
+            "serious_full_pay_days": 450
+          },
+          {
+            "seniority_months_from": 120,
+            "full_pay_days": 540,
+            "comporto_days": 540,
+            "serious_comporto_days": 720,
+            "serious_full_pay_days": 720
+          }
+        ],
+        "hospital_comporto": {
+          "more_than_days": 15,
+          "max_days": 120
         }
       }
     }
@@ -17859,6 +17908,28 @@
         "checked": [
           "levels.class_tables",
           "levels.base_salary"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-assicurazioni-ania-sickness-cumulation",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Sickness of artt. 44 and 46 against the research of a separate model session; quotes checked on the OCR of the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fisac-cgil.it/wp-content/uploads/CCNL-ANIA_compressed.pdf",
+            "sha256": "b93a0549d28901da9a9c4d5d50b5a76e659cdead9e8d89313fa240b194f202ae"
+          }
+        ],
+        "findings": [
+          "Replaced 360 days of one episode with the chain of art. 46 reset after four months, by seniority, with the serious-illness and hospital rules of art. 44."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
+          "coverage.notes"
         ]
       }
     ]

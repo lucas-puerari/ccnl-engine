@@ -69,20 +69,8 @@
         "text": "Seniority (Art. 113): first scatto after 4 years (48 months), then every 36 months; maximum 8 scatti for the Aree Professionali and the 1st and 2nd level of the Quadri Direttivi, 7 for the 3rd and 4th level (Art. 101), via maximum_count_by_level; 12 (9) only for the staff in service on 31 December 1997 (review of 2026-10-30)."
       },
       {
-        "kind": "simplification",
-        "text": "Apprenticeship (Art. 30) modelled for destination levels 3AP1-3AP4: months 0-18 one level below the destination, then the destination level. The Art. 3 comma 3 derogation (higher destination level) is assumed to follow the same 18-month rule.",
-        "capability": "base_salary",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "art3_derogation_apprenticeship",
-          "applies_when": {
-            "trigger": "outside_input",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Confirm that the Art. 3 comma 3 derogation follows the 18-month rule."
-        }
+        "kind": "info",
+        "text": "Apprenticeship (Art. 30) modelled for destination levels 3AP1-3AP4: months 0-18 one level below the destination, then the destination level. The Art. 3 comma 3 derogation keeps the same 18-month steps: 'le lavoratrici e/o i lavoratori di cui all'art. 3, comma 3, primo alinea del presente contratto sono inquadrati, per i primi diciotto mesi di apprendistato, nel primo livello retributivo della 2a area professionale e, per gli ulteriori diciotto mesi, al secondo livello retributivo della 2a area professionale' (CCNL 9 luglio 2024, art. 30 c. 1, PDF p. 38, https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download, sha256 of the copy read 7e8c9343708f1005d92eb72a72e0af2f84a8a4e0b40378be80001bf9ff675f4d; the server returns copies with different hashes)."
       },
       {
         "kind": "info",
@@ -1826,7 +1814,7 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "68a5a0f3fa759f6a445755a555e0fd5f156d8977517b366e621dbcbf9e823891",
+    "source_hash": "8ab6b4446a475365fd10cd427ba734cee7d983e7d5520eceaee024f89140cffe",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2266,6 +2254,27 @@
         ],
         "findings": [
           "25 cumulative movement years; QD3/QD4 only; 90.66% of enumerated monthly items payable in the qualification month. The model uses caller-stated credited seniority and approximates the item base with run-chain monthly pay."
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-bcc-art3-derogation",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 30 c. 1 derogation of art. 3 c. 3 (PDF p. 38), against the research of a separate model session.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download",
+            "sha256": "7e8c9343708f1005d92eb72a72e0af2f84a8a4e0b40378be80001bf9ff675f4d"
+          }
+        ],
+        "findings": [
+          "The derogation follows the 18-month rule: the assumption is confirmed and the limitation closed."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ],

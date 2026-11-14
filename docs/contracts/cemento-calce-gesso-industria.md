@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-08 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-10-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 49 - Tredicesima mensilita' o gratifica natalizia (p. 141): "Agli effetti di cui sopra la frazione di mese non superiore a 15 giorni non va considerata, mentre va considerata come mese intero la frazione di mese superiore ai 15 giorni.". Match: more_than 15. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 76, Preavviso di licenziamento e di dimissioni, p. 184-185). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 69 values found verbatim on the cited pages and marked verified; 4 left as they were (derived or not on a text page). |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source text. | corrected | Added the comporto window of the CCNL. |
 
 ## Salary table
 
@@ -134,13 +135,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
-
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
 
@@ -155,12 +149,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.
 
-!!! warning "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · open"
-    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.
+!!! note "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · resolved"
+    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8 and no Fondo di garanzia exemption: the 10% apprentice rate of L. 296/2006 art. 1 c. 773 is split by the D.M. 28 marzo 2007 among FPLD 9.01, CUAF 0.11, malattia 0.53, maternità 0.05 and INAIL 0.30, with no Fondo di garanzia share to exempt.
 
     **Applies when:** `inps_employer` applies; the run takes the engine code path; contract type in apprentice.
 
-    **Remediation:** Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.
+    **Remediation:** Resolved: the apprentice rate holds no Fondo di garanzia share, so none is exempted.
 
 !!! note "maternity_daily_base · maternity_leave · impact unknown · resolved"
     The INPS indemnity of the leave is computed on the pay of the month before, as the sickness base (art. 23 D.Lgs. 151/2001): an operaio's pay over the days worked or paid with the monthly share of the extra months over 25, a month not worked in full over its days worked or paid; the pay of the month before, its days and the pay of a whole month are facts of the leave, missing when not stated. The run keeps its own pay only when the category or the monthly payments of the CCNL are unknown.
@@ -319,6 +313,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     ADDITIONAL MONTHS: 13 (tredicesima only).
     
     HOURLY DIVISOR: 175.
+    
+    COMPORTO OF SEVERAL ILLNESSES (art. 55, PDF p. 148-149, https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf, sha256 0577ad1f914031470abf63b59ffc33b0eff779311bbe10fe670a28b3b0823f97): 'il lavoratore non in prova ha diritto alla conservazione del posto per un periodo complessivo di 14 mesi di calendario, raggiunti anche con più periodi di assenza, nell'ambito dei 30 mesi di calendario immediatamente precedenti.' Modelled as sickness_rules.comporto_windows: 426 days within the 30 months before the day; 14 months as 426 days (x 365/12).
     
 
 ## Raw data

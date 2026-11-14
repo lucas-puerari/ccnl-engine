@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, holiday_work, inps_employer, night_work, overtime, seniority |
+| **Limits of this contract** | base_salary, holiday_work, inps_employer, night_work, overtime |
 
-7 documented simplification(s) and 2 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 2 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-17 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2029-12-01 |
 
 ## Review history
@@ -68,6 +68,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Art. 23 (p. 13) of the CCNL of 18 September 2014, OCR of the signed scan. | corrected | The ex festività not used by 30 September of the next year lapse and are paid: the engine carried them to the end of the employment. |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 8 values read identically by both readings and equal to the file. |
 | 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included.<br>Closed health_and_bilateral_funds (FSBA was its only remediation). |
+| 2026-11-14 | claude-opus-5-5 (ai) | INPS circ. 140/2012 par. 3.3 on the apprentice contribution, against the research of a separate model session. | confirmed | The cuneo reductions (0.91) do not apply to apprentices: the artigianato apprentice rates of the bundle are confirmed. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 39 table, PDF p. 22, read on the page image. | confirmed | Level 2 scatto 26.85 confirmed on the signed table. |
+| 2026-11-15 | claude-opus-5-5 (ai) | IND_FUN instalments and apprenticeship percentages against the 2014 text and the 2025 renewal, from the research of a separate model session. | corrected | IND_FUN enters every contractual institute: 13 instalments.<br>The 2025 renewal leaves art. 58 point 7 unchanged. |
 
 ## Salary table
 
@@ -127,26 +130,19 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model l'indennità speciale per livello as an allowance gated by a role (addetti alla riscossione) or record a limitation.
 
-!!! warning "pulizia-artigianato-confartigianato/ind_fun_months_per_year · base_salary · impact unknown · open"
-    SIMPLIFICATION: IND_FUN (EUR 25.82/mese) — il PDF non specifica il numero di mensilità. months_per_year=null (eredita 13). Impatto: ±25.82 EUR/anno se la risposta vera è 12 mensilità.
+!!! note "pulizia-artigianato-confartigianato/ind_fun_months_per_year · base_salary · impact unknown · resolved"
+    IND_FUN (EUR 25.82 a month, normativa quadri point 6, CCNL 18 settembre 2014, PDF p. 10, https://www.informaimpresa.it/wp-content/uploads/2014/09/CCNL-Pulizie-18-sette-2014_Firmato-84b.pdf, sha256 3b9549505ed29bae42278201160fadfb7427d07ec4113228eeb09aefb33b212e): 'da computarsi su tutti gli istituti contrattuali', so it enters the tredicesima (art. 38: 'pari alla retribuzione mensile globale'); months_per_year 13.
 
     **Applies when:** `base_salary` applies; level in 1; run kind in thirteenth.
 
-    **Remediation:** Source the number of yearly instalments of IND_FUN and set months_per_year.
+    **Remediation:** Resolved: normativa quadri point 6 read on 2026-11-15, 13 instalments.
 
-!!! warning "pulizia-artigianato-confartigianato/apprenticeship_percentages_2022 · base_salary · impact unknown · open"
-    SIMPLIFICATION: Percentuali apprendistato da PDF 2022. Il rinnovo dic 2025 estende scatti anzianità agli apprendisti ma non menziona variazioni alle aliquote. Rischio: basso.
+!!! note "pulizia-artigianato-confartigianato/apprenticeship_percentages_2022 · base_salary · impact unknown · resolved"
+    Apprenticeship percentages of art. 58 point 7 (accordo 27 ottobre 2022): the renewal of 17 December 2025 (PDF p. 5, https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf, sha256 4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416) reads 'Art. 58 — Apprendistato Professionalizzante omissis' and adds only point 7-bis (seniority increments of the apprentices), so the percentages stay.
 
     **Applies when:** `base_salary` applies; contract type in apprentice.
 
-    **Remediation:** Verify the apprenticeship percentages against the December 2025 renewal.
-
-!!! warning "pulizia-artigianato-confartigianato/level_2_seniority_amount · seniority · impact unknown · open"
-    SIMPLIFICATION: L2 scatto anzianità = 26.85 EUR (PDF 2022). Kitech lug 2026 riporta 26.86 EUR. Usato PDF come fonte primaria. Impatto: EUR 0.01/mese.
-
-    **Applies when:** `seniority` applies; level in 2.
-
-    **Remediation:** Confirm the level 2 seniority amount (26.85 or 26.86 EUR) against the signed table.
+    **Remediation:** Resolved: renewal of 17 December 2025 read on 2026-11-15, art. 58 point 7 unchanged.
 
 !!! warning "pulizia-artigianato-confartigianato/inps_sector_rates_unsourced · inps_employer · impact unknown · open"
     INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.
@@ -154,13 +150,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies.
 
     **Remediation:** Source the artigianato rates of 2026 on an INPS or association table, mark the inps block of contribution/2026/artigianato.json derived, then remove this note.
-
-!!! warning "pulizia-artigianato-confartigianato/apprentice_inps_rates_unsourced · inps_employer · impact unknown · open"
-    APPRENTICE INPS RATES: the apprentice rates of the sector (artigianato) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles whether the 0.91 NASpI reduction of the artisan employers also applies to apprentices, nor the wage-integration contribution they owe (the FSBA is paid outside INPS). The contributions of an apprentice may differ.
-
-    **Applies when:** `inps_employer` applies; contract type in apprentice.
-
-    **Remediation:** Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note.
 
 !!! warning "pulizia-artigianato-confartigianato/overtime_weekly_threshold · overtime · impact unknown · open"
     SIMPLIFICATION: Soglia settimanale ore straordinarie (OT_DIURNO) non modellata (hour_threshold_per_week=null). Il contratto prevede scatto dopo 40h/settimana e limite annuale 200h. Coverage work_rules gia' marcata partial.
@@ -197,12 +186,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.
 
-!!! warning "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · open"
-    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.
+!!! note "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · resolved"
+    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8 and no Fondo di garanzia exemption: the 10% apprentice rate of L. 296/2006 art. 1 c. 773 is split by the D.M. 28 marzo 2007 among FPLD 9.01, CUAF 0.11, malattia 0.53, maternità 0.05 and INAIL 0.30, with no Fondo di garanzia share to exempt.
 
     **Applies when:** `inps_employer` applies; the run takes the engine code path; contract type in apprentice.
 
-    **Remediation:** Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.
+    **Remediation:** Resolved: the apprentice rate holds no Fondo di garanzia share, so none is exempted.
 
 !!! note "maternity_daily_base · maternity_leave · impact unknown · resolved"
     The INPS indemnity of the leave is computed on the pay of the month before, as the sickness base (art. 23 D.Lgs. 151/2001): an operaio's pay over the days worked or paid with the monthly share of the extra months over 25, a month not worked in full over its days worked or paid; the pay of the month before, its days and the pay of a whole month are facts of the leave, missing when not stated. The run keeps its own pay only when the category or the monthly payments of the CCNL are unknown.
@@ -358,6 +347,10 @@ Each simplification below is a model limitation of the registry. An open limitat
     Reproportioning: tranche_Li = round(tranche_L5 * round(Dec2024_Li/Dec2024_L5, 4), 2). Nessuna tabella parametri ufficiali per livello nel contratto. Ratios: 1=1.2736, 2=1.1675, 3S=1.1316, 3=1.0928, 4=1.0331, 5=1.0000, 6=0.9633.
     
     Gap 2025: il vecchio CCNL scadeva 31.12.2024; il nuovo decorre economicamente dal 1.1.2026. La serie salariale ha un periodo senza aggiornamento 1.12.2024–31.12.2025 (valore costante). Dec 2029 incluso: accordo rinnovo indica esplicitamente il 7° scatto.
+    
+    LEVEL 2 SCATTO: 26.85 EUR, read on the signed table of art. 39 (CCNL 18 settembre 2014, FILCAMS copy, PDF p. 22, scanned: '2° 26,85 EURO', https://www.filcams.cgil.it/media/ccnl_-imprese_artigiane_pulizia_18sett_2014_pdf, sha256 38fcc6d742327034b074737d8293908057611a19bffea503a63a8efebc727691); the 26.86 of a payroll site is wrong.
+    
+    APPRENTICE INPS RATES (artigianato): 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI and integrativo, 11.61% for the employer (3.11% and 4.61% in the first two years of a firm up to 9 employees) and 5.84% for the worker. The 0.91 reduction of the artisan employers does not apply to apprentices: 'sul contributo per gli apprendisti non trovano applicazione le riduzioni del cuneo contributivo di cui alle leggi n. 388/2000 e n. 266/2005' (INPS circ. 140/2012 par. 3.3, https://servizi2.inps.it/servizi/Bussola/VisualizzaDoc.aspx?sVirtualURL=/Circolari/Circolare%20numero%20140%20del%2014-12-2012.htm, sha256 67d04317e66825fdb2cf6aa0b3106e644d76461e3e6ec17cd456b307948701a7). The wage-integration contribution of the sector is the FSBA, paid outside INPS (F24, code EBNA), not part of the INPS employer rate.
     
     Fonte 2022 PDF: ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf — verificata e scaricata il 2026-09-12. Tranches Nov 2022 — Dec 2024 da questo documento.
     

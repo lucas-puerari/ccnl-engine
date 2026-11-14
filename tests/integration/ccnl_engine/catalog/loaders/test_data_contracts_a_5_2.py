@@ -142,10 +142,12 @@ class TestLoadIstruzioneRicercaAran:
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(156)
 
     def test_istruzione_ricerca_aran_only_the_elemento_perequativo(self) -> None:
-        """The only allowance is the elemento perequativo, paid until 1.2.2023."""
+        """Besides the RPD, the elemento perequativo, paid until 1.2.2023."""
         ccnl = load_ccnl("istruzione-ricerca-aran")
         for lv in ccnl.levels:
             for allowance in lv.fixed_allowances:
+                if allowance.code.startswith("RPD_"):
+                    continue
                 assert allowance.code.startswith("EP_")
                 assert not allowance.monthly.applies_on(date(2023, 2, 1))
                 assert allowance.monthly.applies_on(date(2023, 1, 31))

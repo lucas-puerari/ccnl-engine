@@ -125,6 +125,10 @@
         "kind": "info",
         "capability": "seniority",
         "text": "APPRENTICE SENIORITY (Artt. 126, 127, 128 c. 3 - Scatti di anzianità (profili B, C, D), p. 76-78): no increment during the apprenticeship: 'L'eventuale periodo di apprendistato non sarà considerato utile agli effetti degli scatti di anzianità.' seniority_increments.apprentice_amount 0. OCR of the scan; art. 36 c. 5 admits apprentices only to profiles B, C and D, whose three articles carry the same comma."
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Art. 105 c. 7, CCNL (CNEL archive, PDF in base64), PDF p. 55, https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/238224, sha256 8e06dc0540dce0b2e2d06329ea732f7ae5e0eabc1df519ba1eac6e1d6d16d2b6): 'Durante la malattia il lavoratore ha diritto alla conservazione del posto fino a 180 giorni di calendario per ogni evento, con il massimo di 180 giorni nell'arco di un anno civile, per tale intendendosi il periodo dal 1° gennaio al 31 dicembre di ogni anno.' Modelled as sickness_rules.comporto_calendar_year with max_duration_days 180."
       }
     ]
   },
@@ -3982,7 +3986,7 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "c585e2e1a35d0d574fb993c975b77f789f4318dfa172e1178d8b7bde7825c488",
+    "source_hash": "eab317a192e2187c6b4be89aa071e4b32669cb10fe947d9047f2e2ac33d08038",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4135,7 +4139,8 @@
           "verification_status": "unverified",
           "effective_from": "2025-10-01"
         }
-      }
+      },
+      "comporto_calendar_year": true
     }
   },
   "verification": {
@@ -4313,6 +4318,28 @@
           "coverage.notes",
           "levels.hourly_base_provenance",
           "levels.hourly_base_method"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-portieri-fabbricati-confedilizia-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/238224",
+            "sha256": "8e06dc0540dce0b2e2d06329ea732f7ae5e0eabc1df519ba1eac6e1d6d16d2b6"
+          }
+        ],
+        "findings": [
+          "The 180 days of art. 105 c. 7 count over the calendar year."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
+          "coverage.notes"
         ]
       }
     ]

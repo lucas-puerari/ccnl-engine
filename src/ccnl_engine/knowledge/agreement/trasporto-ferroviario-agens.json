@@ -95,21 +95,8 @@
         "text": "ADDITIONAL MONTHS: 14 — tredicesima + quattordicesima, confirmed from lavoro-economia.it and redigo.info (rinnovo May 2025)."
       },
       {
-        "kind": "simplification",
-        "text": "SENIORITY: biennial (cadence 24 months), maximum 7 scatti. Per-level EUR amounts from lavoro-economia.it and kitech.it (both aggregators). NOTE: E2 and E3 show identical scatto amounts (22.66) in both aggregator sources; unconfirmed against the primary CCNL text and should be verified before relying on E2/E3 seniority amounts.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "e2_e3_seniority_amounts",
-          "applies_when": {
-            "trigger": "run",
-            "levels": [
-              "E2",
-              "E3"
-            ]
-          },
-          "remediation": "Verify the E2 and E3 scatto amounts against the primary CCNL text."
-        }
+        "kind": "info",
+        "text": "SENIORITY: biennial (cadence 24 months), maximum 7 scatti. Amounts of art. 69 of the CCNL of 22 May 2025 (FIT-CISL copy, PDF p. 118, https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Mobilita-Attivita-Ferroviarie.pdf, sha256 270d82eb62f1e00c4bb8521e6ca06ae7fb4221fca2d985b6237426216e1e571f): every level as in the file, E2 22.66 and E3 22.26 ('E2 22,66 ... E3 22,26'); the aggregators' 22.66 for E3 was wrong."
       },
       {
         "kind": "info",
@@ -138,7 +125,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY AMOUNTS PRE-JUN 2025. Per-level scatto amounts are sourced from lavoro-economia.it/kitech.it representing the Jun 2026 table. Whether identical values applied in the Jun 2025 and Nov 2025 tranches is unconfirmed. Modelled as constant from 01/06/2025.",
+        "text": "SENIORITY AMOUNTS: art. 69 of the CCNL signed on 22 May 2025 (PDF p. 118) has one table of biennial increments, with no date of its own; the same amounts apply from 1 June 2025, 1 November 2025 and 1 June 2026.",
         "capability": "seniority",
         "monetary_impact": "unknown",
         "limitation": {
@@ -146,7 +133,8 @@
           "applies_when": {
             "effective_until": "2026-06-01"
           },
-          "remediation": "Confirm the seniority amounts of the June 2025 and November 2025 tranches."
+          "remediation": "Resolved: art. 69 read on 2026-11-15, one table for every tranche.",
+          "status": "resolved"
         }
       }
     ]
@@ -269,6 +257,48 @@
         ],
         "findings": [
           "Art. 2(2) of the 2017 decree requires covered employers, not merely the Agens agreement; art. 6(1)(a) gives 0.20% split two-thirds and one-third for permanent non-executives including professional apprentices. INPS 208/2015 confirms March 2015 start; INPS 107/2018 confirms changed employer coverage from August 2017; INPS 70/2020 discusses broader benefit eligibility, not the contribution base."
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-agens-e3-scatto",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 69 scatti table of the CCNL of 22 May 2025 (PDF p. 118), every level checked.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Mobilita-Attivita-Ferroviarie.pdf",
+            "sha256": "270d82eb62f1e00c4bb8521e6ca06ae7fb4221fca2d985b6237426216e1e571f"
+          }
+        ],
+        "findings": [
+          "E3 scatto 22.66 -> 22.26; the other levels match the table."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-trasporto-ferroviario-agens-seniority-table",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Seniority table of art. 69 against the research of a separate model session; values checked on the source.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+            "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
+          }
+        ],
+        "findings": [
+          "The 16 amounts of art. 69 match the data; the article has one table for every tranche."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]
@@ -457,7 +487,7 @@
             {
               "valid_from": "2025-06-01",
               "valid_until": null,
-              "value": "22.66"
+              "value": "22.26"
             }
           ]
         },
@@ -481,22 +511,29 @@
         }
       },
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "tabelleretributive",
-            "title": "tabelleretributive",
-            "kind": "rivista",
-            "url": "https://ilccnl.it/ccnl/ferrovie/ferrovie-attivita-ferroviarie/tabelleretributive"
+            "document_id": "ccnl-mobilita-area-af-2025-05-22",
+            "title": "CCNL della Mobilità / Area Attività Ferroviarie, 22 maggio 2025 (testo ORSA)",
+            "kind": "associazione",
+            "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+            "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
           },
-          "section": "Scatti di anzianità"
+          "page": "118",
+          "section": "Art. 69 Aumenti periodici di anzianità, punti 1-3",
+          "quote": "Il lavoratore ha diritto, per ogni biennio di anzianità di servizio retribuito a decorrere dalla data di assunzione, alla corresponsione, a titolo di aumenti periodici di anzianità, di un aumento retributivo mensile in cifra fissa pari a:"
         },
         "extraction": {
           "method": "manual",
-          "extraction_timestamp": "2026-09-07T15:03:36",
-          "verification_status": "unverified",
-          "effective_from": "2020-01-01"
-        }
+          "extraction_timestamp": "2026-11-15T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2025-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "review_id": "2026-11-15-ai-trasporto-ferroviario-agens-seniority-table"
+        },
+        "transformation": "One table for every tranche of the CCNL signed on 22 May 2025: Q1 47.19 ... F2 18.22, at most 7 biennial increments."
       }
     },
     "accrual_rule": {
@@ -2558,7 +2595,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "40240c632456ac04be1465fb4206d90b8a29e24245b3c15662bcda59f5579bff",
+    "source_hash": "9856d8f25c00f93b31293ad88031807d686bdb3450a5b7b86a0137ea899a1015",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -385,13 +385,14 @@ class TestLoadSistemazioniIdraulicoForestaliImpiegati:
         assert ccnl.parameters.hourly_divisor.value_at(date(2026, 1, 1)) == Decimal(169)
 
     def test_a181_impiegati_i6q_has_ind_funzione(self) -> None:
-        """I6Q (quadro) has IND_FUNZIONE fixed allowance of 120 EUR."""
+        """I6Q (quadro): IND_FUNZIONE 103 EUR, 120 from 1 August 2026 (art. 36)."""
         ccnl = load_ccnl("sistemazioni-idraulico-forestali-impiegati")
         lv = next(lv for lv in ccnl.levels if lv.code == "I6Q")
         codes = [a.code for a in lv.fixed_allowances]
         assert "IND_FUNZIONE" in codes
         fa = next(a for a in lv.fixed_allowances if a.code == "IND_FUNZIONE")
-        assert fa.monthly.value_at(date(2026, 1, 1)) == Decimal("120.00")
+        assert fa.monthly.value_at(date(2026, 7, 31)) == Decimal("103.00")
+        assert fa.monthly.value_at(date(2026, 8, 1)) == Decimal("120.00")
 
     def test_a181_impiegati_tax_sector(self) -> None:
         """Tax sector is agricoltura."""

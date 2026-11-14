@@ -50,12 +50,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-05-19 |
-| **Last review** | — |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2028-10-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source. | corrected | Added the comporto window of art. 84; the 455-day oncological limit stays outside the model. |
 
 ## Salary table
 
@@ -125,13 +127,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
-
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
 
@@ -146,12 +141,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.
 
-!!! warning "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · open"
-    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.
+!!! note "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · resolved"
+    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8 and no Fondo di garanzia exemption: the 10% apprentice rate of L. 296/2006 art. 1 c. 773 is split by the D.M. 28 marzo 2007 among FPLD 9.01, CUAF 0.11, malattia 0.53, maternità 0.05 and INAIL 0.30, with no Fondo di garanzia share to exempt.
 
     **Applies when:** `inps_employer` applies; the run takes the engine code path; contract type in apprentice.
 
-    **Remediation:** Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.
+    **Remediation:** Resolved: the apprentice rate holds no Fondo di garanzia share, so none is exempted.
 
 !!! note "maternity_daily_base · maternity_leave · impact unknown · resolved"
     The INPS indemnity of the leave is computed on the pay of the month before, as the sickness base (art. 23 D.Lgs. 151/2001): an operaio's pay over the days worked or paid with the monthly share of the extra months over 25, a month not worked in full over its days worked or paid; the pay of the month before, its days and the pay of a whole month are facts of the leave, missing when not stated. The run keeps its own pay only when the category or the monthly payments of the CCNL are unknown.
@@ -322,6 +317,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SOURCE CAVEAT: previdenza-professionisti.it entry uses a domain-level URL; the exact deep-link page was not captured. Data cross-confirmed by lavoro-economia.it for seniority amounts.
     
     APPRENTICE SENIORITY (Art. 45, p. 63 of the CCNL testo definitivo 28 March 2023, CNEL deposit 245795, https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2026%2F1785247097907%2FCCNL%20Lavanderie%20industriali%2028%20marzo%202023.pdf, sha256 cdfa2207cd7010a97b45d65123fccd7822632475cc14e7b4eef5b5e6cf705aa7): 'L’intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell’anzianità aziendale, anche ai fini degli aumenti periodici di anzianità; tali aumenti saranno corrisposti nelle misure previste dal Modulo/Area professionale di appartenenza': seniority_increments.apprentice_level_amount.
+    
+    COMPORTO OF SEVERAL ILLNESSES (Art. 84, CCNL 28 marzo 2023, PDF pp. 115-116, https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2026%2F1785247097907%2FCCNL%20Lavanderie%20industriali%2028%20marzo%202023.pdf, sha256 cdfa2207cd7010a97b45d65123fccd7822632475cc14e7b4eef5b5e6cf705aa7): 'L'obbligo di conservazione del posto per l'azienda cesserà comunque ove nell'arco di 30 mesi si superi il predetto limite di 395 gg. anche con più malattie, con esclusione, per entrambi i limiti, dei periodi di ricovero ospedaliero.' Chiarimento a verbale: 'il periodo di conservazione del posto si considera nell'ambito di un periodo mobile da determinare con riferimento ai 912 giorni di calendario immediatamente precedenti.' Modelled as sickness_rules.comporto_windows (395 days within 912, hospital stays left out); the 455 days of a serious oncological illness are not modelled.
     
 
 ## Raw data

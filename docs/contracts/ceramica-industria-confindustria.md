@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-22 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-06-01 |
 
 ## Review history
@@ -58,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 72 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source text. | corrected | Added the comporto window of the CCNL. |
 
 ## Salary table
 
@@ -143,13 +144,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
-
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
 
@@ -164,12 +158,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.
 
-!!! warning "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · open"
-    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.
+!!! note "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · resolved"
+    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8 and no Fondo di garanzia exemption: the 10% apprentice rate of L. 296/2006 art. 1 c. 773 is split by the D.M. 28 marzo 2007 among FPLD 9.01, CUAF 0.11, malattia 0.53, maternità 0.05 and INAIL 0.30, with no Fondo di garanzia share to exempt.
 
     **Applies when:** `inps_employer` applies; the run takes the engine code path; contract type in apprentice.
 
-    **Remediation:** Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.
+    **Remediation:** Resolved: the apprentice rate holds no Fondo di garanzia share, so none is exempted.
 
 !!! note "maternity_daily_base · maternity_leave · impact unknown · resolved"
     The INPS indemnity of the leave is computed on the pay of the month before, as the sickness base (art. 23 D.Lgs. 151/2001): an operaio's pay over the days worked or paid with the monthly share of the extra months over 25, a month not worked in full over its days worked or paid; the pay of the month before, its days and the pay of a whole month are facts of the leave, missing when not stated. The run keeps its own pay only when the category or the monthly payments of the CCNL are unknown.
@@ -320,6 +314,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP: 95% of destination level (base + IPO) for full contract duration. Confirmed by ISFOL official monitoring report (old.isfol.it, citing the ceramica apprendistato agreement of 17/07/2012): 'La retribuzione dell’apprendista per tutta la durata del contratto formativo di qualificazione è fissata nella misura del 95% del livello salariale (minimo di categoria più indennità di posizione)'. The 22/07/2024 renewal modifies Arts. 75 and 80-82 but independent sources confirm no change to apprenticeship structure. Maximum legal duration per D.Lgs 81/2015 Art. 44.
     
     SUB-SECTORS: CCNL B122 covers Tiles (porcelain and stoneware), Refractory Materials, Sanitary Ceramics and Tableware. This file models PIASTRELLE (and REFRATTARI, which has identical tables); CERAMICA SANITARIA E STOVIGLIERIA is the sibling ceramica-sanitaria-stoviglieria-confindustria.
+    
+    COMPORTO OF SEVERAL ILLNESSES (Art. 37 (CNEL 2014, scanned), PDF p. 60, https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/68, sha256 6a62203105c06f3b9d53b1278bce2271beb9a1dcd9a6538b336b461b0a19c154): '8 mesi per anzianità di servizio fino a 3 anni compiuti; 10 mesi [...] oltre i 3 e fino a 6 anni compiuti; 12 mesi [...] oltre i 6 anni compiuti. [...] In caso di più assenze i periodi di conservazione del posto suindicati si intendono riferiti ad un arco temporale pari a 36 mesi.' Modelled as sickness_rules.comporto_windows; 8, 10 and 12 months as 243, 304 and 365 days; the 'arco temporale' read as the 36 months before the day; the hospital stays (up to 60 days) and the life-saving therapy days left out of the count are not modelled.
     
 
 ## Raw data

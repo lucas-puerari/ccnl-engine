@@ -86,6 +86,16 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO AND PAID DAYS (Artt. 124-125, CCNL 2013 (unchanged by the renewal of 30 May 2023), PDF p. 83-84, https://www.bollettinoadapt.it/wp-content/uploads/2019/10/ccnl2013.pdf, sha256 c6b3a6176dee20e6a727e4da153bd3511850275e991e0e344f92e1d1b4c0df79): 'ha diritto alla normale retribuzione netta mensile [...] per un periodo massimo di 180 giorni'; 'ha diritto alla conservazione del posto di lavoro per i seguenti periodi: - fino a 240 (duecentoquaranta) giorni di malattia riferibile a più episodi morbosi, nell'arco di un anno solare'. Modelled as sickness_rules.comporto_calendar_year with max_duration_days 240; a tier at 0 from the seventh month of 30 days ends the pay on day 180 of the relapse chain."
+      },
+      {
+        "kind": "simplification",
+        "text": "COMPORTO OF ONE ILLNESS: up to 300 days of the same illness in the calendar year when certified as such before the 240 days; the engine ends the comporto at 240 days. The days past 180 are unpaid either way.",
+        "capability": "sickness",
+        "monetary_impact": "no"
       }
     ]
   },
@@ -1722,7 +1732,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2024/07/Tabelle-CCNL-16.2.2024_firmato-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "f33197013f700fbf59ac3b54cf9718ec7af3b283e4e442b899f08c5b3f66ee38",
+    "source_hash": "65c3833f01c17fc81adb49cfd60655ecd4d2ec1601dac83822cc4a57eed279ef",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1892,7 +1902,7 @@
     "sickness_rules": {
       "carenza_integration_rate": "0.75",
       "full_pay_integration_rate": "0.75",
-      "max_duration_days": 180,
+      "max_duration_days": 240,
       "provenance": {
         "status": "derived",
         "location": {
@@ -1910,7 +1920,14 @@
           "verification_status": "unverified",
           "effective_from": "2024-02-16"
         }
-      }
+      },
+      "comporto_calendar_year": true,
+      "tiers": [
+        {
+          "month_from": 7,
+          "integration_rate": "0"
+        }
+      ]
     }
   },
   "verification": {
@@ -1962,6 +1979,28 @@
         "independence": "separate_model",
         "checked": [
           "levels.base_salary"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-vigilanza-privata-assiv-sf-comporto-year",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto over the calendar year and paid days, against the research of a separate model session; quotes checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.bollettinoadapt.it/wp-content/uploads/2019/10/ccnl2013.pdf",
+            "sha256": "c6b3a6176dee20e6a727e4da153bd3511850275e991e0e344f92e1d1b4c0df79"
+          }
+        ],
+        "findings": [
+          "Comporto of 240 days over the calendar year; pay ends after 180 days."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
+          "coverage.notes"
         ]
       }
     ]

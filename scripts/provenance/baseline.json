@@ -96,7 +96,8 @@
     },
     "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json": {
       "accrual_rule": "missing",
-      "additional_months[2019-12-19]": "assumed"
+      "additional_months[2019-12-19]": "assumed",
+      "levels[DIRIGENTE].fixed_allowances[SPECIFICITA_MEDICO_VETERINARIA]": "assumed"
     },
     "agreement/distribuzione-cooperativa-ancc.json": {
       "additional_months[2025-05-01]": "assumed"
@@ -257,7 +258,9 @@
     },
     "agreement/pelli-cuoio-industria-assopellettieri.json": {
       "accrual_rule": "missing",
-      "additional_months[2023-04-01]": "assumed"
+      "additional_months[2023-04-01]": "assumed",
+      "levels[1].base_salary[2024-12-01]": "assumed",
+      "levels[1].base_salary[2025-12-01]": "assumed"
     },
     "agreement/portieri-fabbricati-confedilizia.json": {
       "additional_months[2026-01-01]": "assumed"
@@ -621,11 +624,9 @@
   },
   "open_limitations": {
     "agreement/acconciatura-estetica-confartigianato.json": [
-      "acconciatura-estetica-confartigianato/apprentice_inps_rates_unsourced",
       "acconciatura-estetica-confartigianato/inps_sector_rates_unsourced"
     ],
     "agreement/afam-aran.json": [
-      "afam-aran/pension_fund_not_modelled",
       "afam-aran/shared_rules_unchecked"
     ],
     "agreement/agenzie-marittime-i481.json": [
@@ -643,15 +644,18 @@
     ],
     "agreement/assicurazioni-ania.json": [
       "assicurazioni-ania/funzionari_economic_allowance",
-      "assicurazioni-ania/inps_sector_rates_unsourced"
+      "assicurazioni-ania/inps_sector_rates_unsourced",
+      "assicurazioni-ania/sickness_serious_extensions"
     ],
     "agreement/autoferrotranvieri-internavigatori.json": [
-      "autoferrotranvieri-internavigatori/priamo_pension_fund",
       "autoferrotranvieri-internavigatori/public_operator_inps_scheme"
     ],
     "agreement/autorimesse-ic35.json": [
       "autorimesse-ic35/meal_voucher",
       "autorimesse-ic35/parental_top_up_scope"
+    ],
+    "agreement/autostrade-trafori.json": [
+      "autostrade-trafori/sickness_pay_bands"
     ],
     "agreement/aziende-termali-federterme.json": [
       "aziende-termali-federterme/apprentice_seniority",
@@ -666,7 +670,6 @@
       "bancari-abi/scatti_freeze_2013_2014"
     ],
     "agreement/bcc-credito-cooperativo.json": [
-      "bcc-credito-cooperativo/art3_derogation_apprenticeship",
       "bcc-credito-cooperativo/inps_sector_rates_unsourced",
       "bcc-credito-cooperativo/movement_loyalty_award",
       "bcc-credito-cooperativo/pre_1998_cohort_scatti"
@@ -718,7 +721,6 @@
       "commercio-confcommercio/sickness_net_basis"
     ],
     "agreement/comunicazione-artigianato-confartigianato.json": [
-      "comunicazione-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "comunicazione-artigianato-confartigianato/function_allowance_half_absorption",
       "comunicazione-artigianato-confartigianato/inps_sector_rates_unsourced",
       "comunicazione-artigianato-confartigianato/level_category_not_declared",
@@ -733,9 +735,7 @@
       "consorzi-agrari-assocap/grandfathered_consorzio_award"
     ],
     "agreement/consorzi-di-bonifica-snebi.json": [
-      "consorzi-di-bonifica-snebi/apprentice_inps_rates_unsourced",
-      "consorzi-di-bonifica-snebi/ex_sublevel_scatto_mapping",
-      "consorzi-di-bonifica-snebi/higher_tier_scatto_amounts"
+      "consorzi-di-bonifica-snebi/apprentice_inps_rates_unsourced"
     ],
     "agreement/cooperative-consorzi-agricoli.json": [
       "cooperative-consorzi-agricoli/apprenticeship_passthrough",
@@ -754,12 +754,9 @@
       "dirigenza-istruzione-ricerca-aran/approximate_hourly_divisor"
     ],
     "agreement/dirigenza-sanitaria-area-sanita-aran.json": [
-      "dirigenza-sanitaria-area-sanita-aran/approximate_hourly_divisor",
-      "dirigenza-sanitaria-area-sanita-aran/position_pay_missing",
-      "dirigenza-sanitaria-area-sanita-aran/specificita_pre_2025_estimated"
+      "dirigenza-sanitaria-area-sanita-aran/position_pay_missing"
     ],
     "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json": [
-      "dirigenza-sanitaria-medico-veterinaria-aran/approximate_hourly_divisor",
       "dirigenza-sanitaria-medico-veterinaria-aran/position_pay_missing",
       "dirigenza-sanitaria-medico-veterinaria-aran/specificita_pre_2025_estimated",
       "dirigenza-sanitaria-medico-veterinaria-aran/tabellare_pre_2024_estimated"
@@ -801,11 +798,11 @@
       "edilizia-ance/territorial_sector_allowance"
     ],
     "agreement/edilizia-artigianato-cna.json": [
-      "edilizia-artigianato-cna/apprentice_inps_rates_unsourced",
       "edilizia-artigianato-cna/apprentice_seniority",
       "edilizia-artigianato-cna/cassa_edile_accruals_missing",
       "edilizia-artigianato-cna/inps_sector_rates_unsourced",
-      "edilizia-artigianato-cna/loyalty_service_count"
+      "edilizia-artigianato-cna/loyalty_service_count",
+      "edilizia-artigianato-cna/sickness_pay_bands"
     ],
     "agreement/edilizia-cooperative-ancpl.json": [
       "edilizia-cooperative-ancpl/apprentice_seniority",
@@ -823,6 +820,7 @@
       "edilizia-pmi-confapi-aniem/operai_gruppo_3_track_merged",
       "edilizia-pmi-confapi-aniem/operai_seniority_ape",
       "edilizia-pmi-confapi-aniem/provincial_evr",
+      "edilizia-pmi-confapi-aniem/sickness_pay_bands",
       "edilizia-pmi-confapi-aniem/territorial_sector_allowance"
     ],
     "agreement/enti-ricerca-aran.json": [
@@ -862,23 +860,20 @@
     "agreement/funivie-anef.json": [
       "funivie-anef/pre_2016_seniority_cohort"
     ],
-    "agreement/funzioni-centrali-aran.json": [
-      "funzioni-centrali-aran/agency_salary_tables"
-    ],
     "agreement/gas-acqua-utilitalia.json": [
       "gas-acqua-utilitalia/industria_rates_proxy"
     ],
     "agreement/gomma-plastica-federazione-gomma-plastica.json": [
-      "gomma-plastica-federazione-gomma-plastica/apprenticeship_period_boundaries"
+      "gomma-plastica-federazione-gomma-plastica/apprenticeship_period_boundaries",
+      "gomma-plastica-federazione-gomma-plastica/sickness_pay_bands"
     ],
     "agreement/igiene-ambientale-utilitalia.json": [
-      "igiene-ambientale-utilitalia/apprentice_seniority",
+      "igiene-ambientale-utilitalia/comporto_exclusion_caps",
       "igiene-ambientale-utilitalia/contractual_fund_partial",
       "igiene-ambientale-utilitalia/fund_paid_month",
       "igiene-ambientale-utilitalia/industria_rates_proxy"
     ],
     "agreement/impianti-sportivi-sport.json": [
-      "impianti-sportivi-sport/level_ii_ex_fourteenth_print",
       "impianti-sportivi-sport/level_v_first_semester_overpaid",
       "impianti-sportivi-sport/level_vi_whole_track_at_destination",
       "impianti-sportivi-sport/overtime_weekly_hours_not_stated",
@@ -895,13 +890,13 @@
       "istituzioni-servizi-socio-assistenziali-anaste/maternity_holiday_scope"
     ],
     "agreement/istruzione-ricerca-aran.json": [
-      "istruzione-ricerca-aran/docenti_function_allowance",
       "istruzione-ricerca-aran/fixed_hourly_overtime",
       "istruzione-ricerca-aran/teacher_hourly_divisor"
     ],
     "agreement/lapidei-industria.json": [
       "lapidei-industria/apprenticeship_passthrough",
-      "lapidei-industria/daily_divisor_25"
+      "lapidei-industria/daily_divisor_25",
+      "lapidei-industria/sickness_pay_cap_across_episodes"
     ],
     "agreement/laterizi-industria-f021.json": [
       "laterizi-industria-f021/apprentice_seniority",
@@ -927,7 +922,6 @@
     "agreement/lavoro-domestico-non-convivente.json": [
       "lavoro-domestico-non-convivente/annual_minimi_not_updated",
       "lavoro-domestico-non-convivente/extra_month_hours",
-      "lavoro-domestico-non-convivente/hourly_inps_bracket_unvalidated",
       "lavoro-domestico-non-convivente/seniority_frozen_at_2026",
       "lavoro-domestico-non-convivente/tranches_from_2027"
     ],
@@ -935,9 +929,7 @@
       "legno-arredamento-federlegno/renewal_2026_ipotesi"
     ],
     "agreement/legno-lapidei-artigianato-confartigianato.json": [
-      "legno-lapidei-artigianato-confartigianato/apprentice_inps_rates_unsourced",
-      "legno-lapidei-artigianato-confartigianato/inps_sector_rates_unsourced",
-      "legno-lapidei-artigianato-confartigianato/lapidei_apprenticeship"
+      "legno-lapidei-artigianato-confartigianato/inps_sector_rates_unsourced"
     ],
     "agreement/logistica-trasporto-confetra-viaggiante.json": [
       "logistica-trasporto-confetra-viaggiante/edr_2021_in_daily_base",
@@ -961,7 +953,6 @@
       "metalmeccanica-cooperative/cooperative_inps_rates_unverified"
     ],
     "agreement/metalmeccanico-artigianato.json": [
-      "metalmeccanico-artigianato/apprentice_inps_rates_unsourced",
       "metalmeccanico-artigianato/dual_apprenticeship_prorogation",
       "metalmeccanico-artigianato/inps_sector_rates_unsourced"
     ],
@@ -981,6 +972,7 @@
       "metalmeccanico-confapi/sunday_holiday_and_ex_operai"
     ],
     "agreement/metalmeccanico-confimi-pmi.json": [
+      "metalmeccanico-confimi-pmi/comporto_prolungato",
       "metalmeccanico-confimi-pmi/overtime_shift_column"
     ],
     "agreement/metalmeccanico-federmeccanica.json": [
@@ -1010,8 +1002,7 @@
     ],
     "agreement/ooss-unsic-confsal.json": [
       "ooss-unsic-confsal/apprentice_seniority",
-      "ooss-unsic-confsal/level_5_apprentice_one_level_below",
-      "ooss-unsic-confsal/salary_2026_from_proxy"
+      "ooss-unsic-confsal/level_5_apprentice_one_level_below"
     ],
     "agreement/operai-agricoli-florovivaisti.json": [
       "operai-agricoli-florovivaisti/agricoli_apprentice_provincial_levels",
@@ -1030,11 +1021,9 @@
       "organizzazioni-allevatori-aia/apprentice_inps_rates_unsourced"
     ],
     "agreement/ortofrutticoli-agrumari.json": [
-      "ortofrutticoli-agrumari/apprenticeship_other_durations",
-      "ortofrutticoli-agrumari/quas_contribution"
+      "ortofrutticoli-agrumari/apprenticeship_other_durations"
     ],
     "agreement/panificazione-artigianato-confartigianato.json": [
-      "panificazione-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "panificazione-artigianato-confartigianato/ert_veneto",
       "panificazione-artigianato-confartigianato/inps_sector_rates_unsourced",
       "panificazione-artigianato-confartigianato/sickness_net_basis",
@@ -1064,11 +1053,7 @@
       "pubblici-esercizi-fipe-angem/small_company_pay_reduction"
     ],
     "agreement/pulizia-artigianato-confartigianato.json": [
-      "pulizia-artigianato-confartigianato/apprentice_inps_rates_unsourced",
-      "pulizia-artigianato-confartigianato/apprenticeship_percentages_2022",
-      "pulizia-artigianato-confartigianato/ind_fun_months_per_year",
       "pulizia-artigianato-confartigianato/inps_sector_rates_unsourced",
-      "pulizia-artigianato-confartigianato/level_2_seniority_amount",
       "pulizia-artigianato-confartigianato/overtime_weekly_threshold",
       "pulizia-artigianato-confartigianato/special_collection_allowance"
     ],
@@ -1107,19 +1092,15 @@
       "scuole-private-laiche-aninsei/salario_di_anzianita"
     ],
     "agreement/servizi-postali-appalto-fise.json": [
-      "servizi-postali-appalto-fise/conditional_integrative_allowance",
-      "servizi-postali-appalto-fise/level_4s_seniority_amount"
+      "servizi-postali-appalto-fise/conditional_integrative_allowance"
     ],
     "agreement/sistemazioni-idraulico-forestali-impiegati.json": [
-      "sistemazioni-idraulico-forestali-impiegati/apprentice_inps_rates_unsourced",
-      "sistemazioni-idraulico-forestali-impiegati/ind_funzione_transition_date",
-      "sistemazioni-idraulico-forestali-impiegati/structural_rules_from_2021_text"
+      "sistemazioni-idraulico-forestali-impiegati/apprentice_inps_rates_unsourced"
     ],
     "agreement/sistemazioni-idraulico-forestali-operai.json": [
       "sistemazioni-idraulico-forestali-operai/apprentice_inps_rates_unsourced",
       "sistemazioni-idraulico-forestali-operai/apprentice_seniority",
-      "sistemazioni-idraulico-forestali-operai/apprenticeship_duration_mapping",
-      "sistemazioni-idraulico-forestali-operai/structural_rules_from_2021_text"
+      "sistemazioni-idraulico-forestali-operai/apprenticeship_duration_mapping"
     ],
     "agreement/studi-professionali-confprofessioni.json": [
       "studi-professionali-confprofessioni/intermittent_availability",
@@ -1138,7 +1119,6 @@
       "terziario-confesercenti/una_tantum_apprentices_sales"
     ],
     "agreement/tessile-moda-artigianato-confartigianato.json": [
-      "tessile-moda-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "tessile-moda-artigianato-confartigianato/chimica_ceramica_level_rules",
       "tessile-moda-artigianato-confartigianato/chimica_ceramica_subsectors",
       "tessile-moda-artigianato-confartigianato/inps_sector_rates_unsourced",
@@ -1157,9 +1137,7 @@
       "trasporto-aereo-assaeroporti/sickness_hospital_and_serious_illness"
     ],
     "agreement/trasporto-ferroviario-agens.json": [
-      "trasporto-ferroviario-agens/e2_e3_seniority_amounts",
-      "trasporto-ferroviario-agens/pre_june_2025_tables",
-      "trasporto-ferroviario-agens/seniority_amounts_before_june_2026"
+      "trasporto-ferroviario-agens/pre_june_2025_tables"
     ],
     "agreement/turismo-confesercenti.json": [
       "turismo-confesercenti/apprentice_net_cap"
@@ -1186,15 +1164,7 @@
       "turismo-federalberghi/sickness_net_basis"
     ],
     "agreement/uneba-uneba.json": [
-      "uneba-uneba/equal_apprenticeship_bands",
       "uneba-uneba/ermt_territorial"
-    ],
-    "agreement/universita-aran.json": [
-      "universita-aran/shared_rules_unchecked"
-    ],
-    "agreement/universita-tecnologi-aran.json": [
-      "universita-tecnologi-aran/shared_rules_unchecked",
-      "universita-tecnologi-aran/tecnologi_allowances"
     ],
     "agreement/vetro-meccanizzato-assovetro.json": [
       "vetro-meccanizzato-assovetro/other_subsectors_tables"
@@ -1231,7 +1201,6 @@
       "provisional_ruleset",
       "sickness_cumulation_window",
       "sunday_holiday_ccnl_clause",
-      "tfr_compensation_apprentice_guarantee_fund",
       "una_tantum_readings"
     ]
   }

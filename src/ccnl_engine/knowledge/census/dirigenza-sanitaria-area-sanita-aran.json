@@ -3,22 +3,6 @@
   "ccnl_id": "dirigenza-sanitaria-area-sanita-aran",
   "requirements": [
     {
-      "id": "approximate_hourly_divisor",
-      "institute": "workplace_injury",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "Hourly divisor 165 = 38h/settimana × 52/12 = 164.67 ≈ 165 (CCNL Area Sanità 23.01.2024 Art. 27 conferma orario settimanale 38h per la dirigenza sanitaria SSN). Il valore 165 è il divisore contrattuale standard.",
-      "calculation": "ccnl/dirigenza-sanitaria-area-sanita-aran:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the divisor of Art. 27 (or the INAIL base of the SSN dirigenti) and replace 165, or mark it not applicable.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "dirigenza-sanitaria-area-sanita-aran/approximate_hourly_divisor"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",
@@ -239,22 +223,6 @@
       "links": {
         "limitations": [
           "provisional_ruleset"
-        ]
-      }
-    },
-    {
-      "id": "specificita_pre_2025_estimated",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "Pre-31/12/2024 specificità sanitaria (104,34€/mese) calcolata per differenza: 124,19 - 17,90 (incremento stimato dalla fonte secondaria openssn, GOAL-plan) = approssimazione; il valore esatto del CCNL 23.1.2024 Art. 66 non è verificato.",
-      "calculation": "ccnl/dirigenza-sanitaria-area-sanita-aran:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the exact Art. 66 amount of the CCNL 23.1.2024 for periods before 31/12/2024.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "dirigenza-sanitaria-area-sanita-aran/specificita_pre_2025_estimated"
         ]
       }
     },

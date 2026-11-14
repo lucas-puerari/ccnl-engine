@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, contractual_funds |
+| **Limits of this contract** | base_salary |
 
 2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-19 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-08-01 |
 
 ## Review history
@@ -68,6 +68,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 48, 50, 54 and 55 of the CCNL 2024-2027. | corrected | The overtime bands were labelled assumed: confirmed on Art. 50 and sourced; removed the 40-hour weekly threshold of the base band (every overtime hour is beyond the 40th); added the shift night, Sunday, rest-day and holiday premiums. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 6, 16, 23 and 31 of the CCNL 2024-2027. | corrected | The file had no fund: added Fondo EST and Fon.Te.; the EBO contribution is suspended; the QuAS amount of the quadri is not in the CCNL (limitation). |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 39-42 and Allegato 8 of the CCNL 2024-2027. | corrected | The file modelled no apprenticeship, saying the text was not accessible; the ruleset source is that text. Added the under-classification tracks of Art. 42 and the apprentice seniority at the level's amounts; durations other than 24 and 36 months recorded as a limitation. |
+| 2026-11-15 | claude-opus-5-5 (ai) | QuAS contribution of the H341 quadri in the QuAS rules 2025 and 2026, against the research of a separate model session. | corrected | Added the QuAS fund of the quadri: 370 + 56 in 2025, 390 + 56 from 2026; 2024 derived from the H011 amount. |
 
 ## Salary table
 
@@ -125,12 +126,12 @@ Destination levels: `5`, `4`, `3`, `2`, `1`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "ortofrutticoli-agrumari/quas_contribution · contractual_funds · impact yes · open"
-    QUADRI (art. 31): the quadri join QuAS 'come previsto dall'art. 2 del Regolamento della Cassa'; the CCNL prints no amount, which the QuAS rules set.
+!!! note "ortofrutticoli-agrumari/quas_contribution · contractual_funds · impact yes · resolved"
+    QUADRI (art. 30): the quadri join QuAS 'come previsto dall'art. 2 del Regolamento della Cassa'; the contribution of the QuAS rules (370 + 56 in 2025, 390 + 56 from 2026) is parameters.health_funds quas.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Source the QuAS contribution of the quadri from the rules of the Cassa and add the fund.
+    **Remediation:** Resolved: QuAS rules 2025 and 2026 read on 2026-11-15.
 
 !!! warning "ortofrutticoli-agrumari/apprenticeship_other_durations · base_salary · impact yes · open"
     APPRENTICESHIP DURATION: the halves of Art. 42 for levels 5 and 4 are encoded for apprenticeships of 36 and 24 months; another duration (6 months to 3 years) has its half elsewhere.
@@ -167,12 +168,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.
 
-!!! warning "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · open"
-    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.
+!!! note "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · resolved"
+    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8 and no Fondo di garanzia exemption: the 10% apprentice rate of L. 296/2006 art. 1 c. 773 is split by the D.M. 28 marzo 2007 among FPLD 9.01, CUAF 0.11, malattia 0.53, maternità 0.05 and INAIL 0.30, with no Fondo di garanzia share to exempt.
 
     **Applies when:** `inps_employer` applies; the run takes the engine code path; contract type in apprentice.
 
-    **Remediation:** Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.
+    **Remediation:** Resolved: the apprentice rate holds no Fondo di garanzia share, so none is exempted.
 
 !!! note "maternity_daily_base · maternity_leave · impact unknown · resolved"
     The INPS indemnity of the leave is computed on the pay of the month before, as the sickness base (art. 23 D.Lgs. 151/2001): an operaio's pay over the days worked or paid with the monthly share of the extra months over 25, a month not worked in full over its days worked or paid; the pay of the month before, its days and the pay of a whole month are facts of the leave, missing when not stated. The run keeps its own pay only when the category or the monthly payments of the CCNL are unknown.

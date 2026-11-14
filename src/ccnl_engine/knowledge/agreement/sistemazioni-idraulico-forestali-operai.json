@@ -71,12 +71,13 @@
       },
       {
         "kind": "simplification",
-        "text": "Structural rules (Art. 7, 49, 52) taken from 2021 previgente CCNL text. The 2025 rinnovo PDF is image-only and full text is unavailable for independent verification.",
+        "text": "Structural rules: arts. 49 and 52 as reproduced by the renewal of 4 December 2025 (OCR read, PDF pp. 20-22: levels 1-5, divisors 26 and 169); art. 7 from the 2021-2024 text, which the renewal does not amend.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
           "variant": "structural_rules_from_2021_text",
-          "remediation": "Verify the structural rules against the 2025 renewal text."
+          "remediation": "Resolved: renewal of 4 December 2025 read on 2026-11-15.",
+          "status": "resolved"
         }
       },
       {
@@ -132,6 +133,10 @@
           },
           "remediation": "Source the apprentice rates of agricoltura (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/agricoltura.json derived, then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Art. 62 - Conservazione del posto, PDF p. 75, https://www.flai.it/wp-content/uploads/2023/05/CCNL-Idraulico-Forestale-2023.pdf, sha256 fb09d06825c27a3abb8081bec9e1645f17e51920559a6406323225d26b549461): 'L'operaio a tempo indeterminato, nel caso di malattia o di infortunio, ha diritto alla conservazione del posto per un periodo di 180 giorni, anche per più eventi, nell'arco degli ultimi 12 mesi.' Modelled as sickness_rules.comporto_windows: 180 days within the 12 months before the day; the fixed-term workers' 12 months in 24 are not modelled."
       }
     ]
   },
@@ -200,6 +205,48 @@
           "regional_seniority_cirl: For operai, the cited national agreement does not prescribe seniority increments: Art. 41 awards biennial increments to impiegati only; Art. 52 lists operai pay as national minimum plus regional supplementary salary, unchanged in the 2025 renewal. The agreement JSON has maximum_c"
         ],
         "independence": "separate_model",
+        "checked": [
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-sistemazioni-idraulico-forestali-operai-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the source text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/05/CCNL-Idraulico-Forestale-2023.pdf",
+            "sha256": "fb09d06825c27a3abb8081bec9e1645f17e51920559a6406323225d26b549461"
+          }
+        ],
+        "findings": [
+          "Added the comporto window of the CCNL."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.comporto_windows"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-sistemazioni-idraulico-forestali-operai-renewal-2025",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Rules of the 2021 text against the OCR of the renewal signed on 4 December 2025, from the research of a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf",
+            "sha256": "d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4"
+          }
+        ],
+        "findings": [
+          "Arts. 49 (levels 1-5, parameters 100-123) and 52 (divisors 26 and 169) are reproduced in the renewal (PDF pp. 20-22); art. 7 is not amended."
+        ],
+        "independence": "same_process",
         "checked": [
           "coverage.notes"
         ]
@@ -1036,7 +1083,7 @@
     "source": "https://redigo.info/",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "9d22e699716aa296682847c0f5eb13f88e1f56f4abb8724b7cb918e1c0da566b",
+    "source_hash": "03a3dda7e767285f8ebd0e590698e1fc89811cedcde0980d9672f80bfe3d3a03",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -1223,7 +1270,14 @@
           "verification_status": "unverified",
           "effective_from": "2021-01-01"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 12,
+          "comporto_days": 180
+        }
+      ]
     }
   }
 }

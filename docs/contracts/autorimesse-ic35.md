@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-09 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-11-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Parental indemnity supplement, Art. 68, PDF p. 113. | confirmed | Added work_rules.insured_absence.parental: 0.8 up to 30 eligible days. |
 | 2026-11-08 | gpt-6-sol (ai) | The parental leave clause against the CCNL top-up encoding, by a separate model session. | corrected | Confirmed the rate and the cap of the clause.<br>Corrected: the counter of the days already topped up holds only the earlier leave events (documented and tested); the hourly leave, the pay base and adoption and foster care are recorded as limitation parental_top_up_scope. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Parental hourly supplement, Art. 68 and Art. 79, PDF pp. 113–114, 124–125. | confirmed | Art. 79(b): gli importi orari del trattamento economico si determinano dividendo la retribuzione giornaliera per la durata dell’orario giornaliero come determinato dalla lettera a);<br>Art. 68 grants 80% for the first 30 days and equates adoption and foster care; the current hourly event models half-days only. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto and sick pay against a second research of a separate model session; quotes checked on the source. | corrected | Added the comporto window of art. 60 (12 months within 36); the sick pay of the operai stays as it was, its two clauses being contradictory. |
 
 ## Salary table
 
@@ -154,13 +155,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
-
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
 
@@ -175,12 +169,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.
 
-!!! warning "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · open"
-    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.
+!!! note "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · resolved"
+    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8 and no Fondo di garanzia exemption: the 10% apprentice rate of L. 296/2006 art. 1 c. 773 is split by the D.M. 28 marzo 2007 among FPLD 9.01, CUAF 0.11, malattia 0.53, maternità 0.05 and INAIL 0.30, with no Fondo di garanzia share to exempt.
 
     **Applies when:** `inps_employer` applies; the run takes the engine code path; contract type in apprentice.
 
-    **Remediation:** Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.
+    **Remediation:** Resolved: the apprentice rate holds no Fondo di garanzia share, so none is exempted.
 
 !!! note "maternity_daily_base · maternity_leave · impact unknown · resolved"
     The INPS indemnity of the leave is computed on the pay of the month before, as the sickness base (art. 23 D.Lgs. 151/2001): an operaio's pay over the days worked or paid with the monthly share of the extra months over 25, a month not worked in full over its days worked or paid; the pay of the month before, its days and the pay of a whole month are facts of the leave, missing when not stated. The run keeps its own pay only when the category or the monthly payments of the CCNL are unknown.
@@ -345,6 +339,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Headcount: 41,438 workers (contratticcnl.it, CNEL/INPS archive, IC35, 2025).
     
     APPRENTICE SENIORITY (Art. 32, p. 65 of the CCNL Autonoleggio-Autorimesse 2022-2024, https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL-AUTONOLEGGIO-ANIASA_2022-2024.pdf, sha256 fafa013d5843ab750bb1f6e0ccad3b3c60e560ada3a07e576793f68e4d40196e): 'L'intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell'anzianità di servizio, nonché ai fini degli aumenti periodici di anzianità.' Reading: the apprentice matures the art. 42 increments, paid at the amounts of the level (seniority_increments.apprentice_level_amount).
+    
+    COMPORTO OF SEVERAL ILLNESSES (Art. 60, CCNL 2025-2027, PDF p. 108, https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf, sha256 af0c6b2555f502ab52fcedb82b5d138093ef49499cac97ac19ec241e696f686d): 'Il diritto alla conservazione del posto in caso di malattia viene a cessare qualora il lavoratore con più periodi di malattia raggiunga in complesso dodici mesi di assenza nell'arco di 36 mesi consecutivi.' Modelled as sickness_rules.comporto_windows (365 days within 36 months). The sick pay is unchanged: for the operai art. 60 has both 100% to the 180th day of the calendar year and 100% for 6 months then 50% for 6, without saying which prevails.
     
 
 ## Raw data

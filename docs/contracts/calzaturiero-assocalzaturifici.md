@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-17 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2026-08-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | CCNL Calzaturiero, text of 17 July 2024: art. 46 seniority (p. 97). | corrected | Four biennial increments and a fifth after four years, not five triennial; the amounts per level match. |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 32 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 23 apprenticeship pay of the text of 17 July 2024 (p. 52). | corrected | The percentage applies to the minimo contrattuale only: the quadri function allowance is not reduced.<br>The lower rates of the Objective 1 areas were not recorded: now a limitation. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source. | corrected | Added the comporto window of the CCNL; the pay bands across episodes stay under the engine limitation sickness_cumulation_window. |
 
 ## Salary table
 
@@ -129,13 +130,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
-
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
 
@@ -150,12 +144,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.
 
-!!! warning "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · open"
-    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.
+!!! note "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · resolved"
+    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8 and no Fondo di garanzia exemption: the 10% apprentice rate of L. 296/2006 art. 1 c. 773 is split by the D.M. 28 marzo 2007 among FPLD 9.01, CUAF 0.11, malattia 0.53, maternità 0.05 and INAIL 0.30, with no Fondo di garanzia share to exempt.
 
     **Applies when:** `inps_employer` applies; the run takes the engine code path; contract type in apprentice.
 
-    **Remediation:** Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.
+    **Remediation:** Resolved: the apprentice rate holds no Fondo di garanzia share, so none is exempted.
 
 !!! note "maternity_daily_base · maternity_leave · impact unknown · resolved"
     The INPS indemnity of the leave is computed on the pay of the month before, as the sickness base (art. 23 D.Lgs. 151/2001): an operaio's pay over the days worked or paid with the monthly share of the extra months over 25, a month not worked in full over its days worked or paid; the pay of the month before, its days and the pay of a whole month are facts of the leave, missing when not stated. The run keeps its own pay only when the category or the monthly payments of the CCNL are unknown.
@@ -312,6 +306,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICE SENIORITY (Art. 23 Apprendistato, p. 52 of the CCNL industria delle calzature 17 July 2024, https://www.falc.biz/wp-content/uploads/2025/03/CCNL-contratto-collettivo-nazionale-di-lavoro-calzaturiero-2024.pdf, sha256 fd48de9dd4aa81fd5ca97c3dd94099d085ac61666831e6da37fe2fbab19558cf): 'L’anzianità durante il rapporto di apprendistato è utile per la maturazione e per la corresponsione degli aumenti periodici di anzianità. Gli aumenti saranno commisurati alle stesse percentuali del minimo contrattuale': the level increments, reduced by the apprenticeship percentage (seniority_increments.apprentice_level_amount and apprentice_pct_scaled).
     
     APPRENTICESHIP PERCENTAGE (art. 23, p. 52 of the text of 17 July 2024): '80% [90%, 100%] del minimo contrattuale del livello assegnato', the increments 'commisurati alle stesse percentuali del minimo contrattuale': the percentage reduces the minimo only, so the quadri function allowance is not reduced (apprenticeship_pct_relevant false).
+    
+    COMPORTO OF SEVERAL ILLNESSES (Art. 58 B - Malattia, conservazione del posto e chiarimento a verbale, PDF p. 16, https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194333, sha256 b9fd63ceec2324fdcf4b96702f89ab5ce1b31df489027e81b81caca4c4132866): 'L'obbligo di conservazione del posto per l'azienda cesserà comunque ove nell'arco di 30 mesi si raggiungano i limiti predetti anche con più malattie con esclusione, per entrambi i limiti, dei periodi di ricovero ospedaliero. [...] il periodo di conservazione del posto si considera nell'ambito di un periodo mobile da determinare con riferimento ai 909 giorni di calendario immediatamente precedenti. Il periodo di conservazione del posto di 13 mesi è pari a 394 giorni di calendario' Modelled as sickness_rules.comporto_windows: 394 days within 909 days before the day, hospital stays left out. The pay bands of the operai count by day of each illness; those of the impiegati and quadri (6 months in full, then half to the end of the comporto) say nothing on several episodes and are counted per illness.
     
 
 ## Raw data

@@ -72,6 +72,23 @@
           "remediation": "Resolved: percentages of art. 10, read on 2026-11-06.",
           "status": "resolved"
         }
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Art. 21 cc. 5, 8 (accordo 26 giugno 2026, scanned), PDF p. 17-18, https://www.filtcgil.it/images/CCNL_Filiera_AT_Accordo_rinnovo_26062026.pdf, sha256 17fb36b98ed7359b9b46111225a4cc30936fb97e8e62e6cbffbad71341bdddd7): 'per anzianità di servizio fino a 10 anni: conservazione del posto per 365 giorni e corresponsione dell'intera retribuzione per 183 giorni e del 75% di essa per altri 182 giorni; per anzianità di servizio oltre 10 anni: conservazione del posto per 426 giorni e corresponsione dell'intera retribuzione per 213 giorni e del 75% di essa per altri 213 giorni. [...] si terrà conto delle assenze complessivamente verificatesi nei 547 giorni continuativi precedenti ogni ultimo episodio morboso.' Modelled as sickness_rules.comporto_windows (365 or 426 days within the 547 days before the day)."
+      },
+      {
+        "kind": "simplification",
+        "text": "SICKNESS PAY BANDS (art. 21 c. 5): 100% for 183 days and 75% for 182 more (213 + 213 above 10 years), over the same 547 days; the file pays 100% for 180 days of an episode, so the 75% band is not paid.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sickness_pay_bands",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the 100%/75% bands of art. 21 by seniority over the 547 days before the last episode."
+        }
       }
     ]
   },
@@ -5383,7 +5400,7 @@
     "effective_until": null,
     "source": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori",
     "verification_status": "unverified",
-    "source_hash": "59f3757058b9471c2bedb8396658ba80ecc746f34de621febb384aa3838b5068",
+    "source_hash": "fec0ec656f7cfe331e0a2372d0e26d2d6eeea791788b1d2ff825f538f7522429",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5607,7 +5624,21 @@
           "verification_status": "unverified",
           "effective_from": "2023-07-18"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 18,
+          "window_days": 547,
+          "comporto_days": 365
+        },
+        {
+          "seniority_months_from": 120,
+          "window_months": 18,
+          "window_days": 547,
+          "comporto_days": 426
+        }
+      ]
     }
   },
   "verification": {
@@ -5657,6 +5688,28 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances.IDR_2021"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-autostrade-trafori-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the OCR of the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/CCNL_Filiera_AT_Accordo_rinnovo_26062026.pdf",
+            "sha256": "17fb36b98ed7359b9b46111225a4cc30936fb97e8e62e6cbffbad71341bdddd7"
+          }
+        ],
+        "findings": [
+          "Added the comporto window; the pay bands of the CCNL are recorded as a limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.comporto_windows",
+          "coverage.notes"
         ]
       }
     ]

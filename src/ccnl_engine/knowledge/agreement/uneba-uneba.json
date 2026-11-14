@@ -75,19 +75,8 @@
         "text": "APPRENTICESHIP OSS/4S rule (Art. 22 CCNL 2020, unchanged by the 2025 renewal; primary source olympus.uniurb.it): destination 4S (OSS), 18 months, 85% months 1-9 and 90% months 10-18, track 'oss_4S'. Select it with Apprentice(track='oss_4S'): level 4S is also covered by the generic 24-month track."
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICESHIP generic rule (Art. 22): 90/95/100% in three bands over the destination-level duration: 36 months for 2, 3S, 3 (track 'standard_36'), 24 months for 4S and 4 (track 'standard_24'), 18 months for 5S, 5, 6 (track 'standard_18'). The three bands are assumed of equal length. 6S is not listed in Art. 22 and is not a destination; professionals excluded from apprenticeship (nurses, physiotherapists, psychologists, social workers) and levels 1/Q are not modelled.",
-        "capability": "base_salary",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "equal_apprenticeship_bands",
-          "applies_when": {
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Confirm the length of the three Art. 22 apprenticeship bands."
-        }
+        "kind": "info",
+        "text": "APPRENTICESHIP (art. 22, text 2023-2025, PDF p. 32): two bands, 85% and 90% of the minimo conglobato of the destination level, split at half of the duration: 36 months for 2, 3S, 3 (18 + 18), 24 months for 4S and 4 (12 + 12), 18 months for 5S, 5, 6 and the OSS 4S (9 + 9). The earlier 90/95/100% in three bands was wrong."
       },
       {
         "kind": "info",
@@ -158,6 +147,27 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-uneba-apprenticeship-bands",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 22 apprenticeship pay of the CCNL UNEBA 2023-2025 (PDF p. 32), text layer; the 2025 accordo (OCR, 30 pages) does not touch it.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fpcgil.it/wp-content/uploads/2017/12/CCNL-UNEBA-2023-2025.pdf",
+            "sha256": "d17e610b45222238c83c4e9201262e111c3371c4afd3dcb515c256703e15bcaa"
+          }
+        ],
+        "findings": [
+          "The apprentice bands are 85% and 90% split at half of the duration, not 90/95/100% in three thirds: apprentices were overpaid."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "apprenticeship"
         ]
       }
     ]
@@ -1767,20 +1777,45 @@
       "periods": [
         {
           "months_from": 0,
-          "months_until": 12,
+          "months_until": 18,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 18,
+          "months_until": 36,
           "percentage": "0.90"
         },
         {
-          "months_from": 12,
-          "months_until": 24,
-          "percentage": "0.95"
-        },
-        {
-          "months_from": 24,
+          "months_from": 36,
           "months_until": null,
           "percentage": "1.00"
         }
-      ]
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fpcgil-ccnl-uneba-2023-2025",
+            "title": "CCNL UNEBA 2023-2025 (FP-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.fpcgil.it/wp-content/uploads/2017/12/CCNL-UNEBA-2023-2025.pdf",
+            "sha256": "d17e610b45222238c83c4e9201262e111c3371c4afd3dcb515c256703e15bcaa"
+          },
+          "page": "32",
+          "section": "Art. 22 - Apprendistato, trattamento economico",
+          "quote": "Per contratti di durata fino a 18 mesi: - dal 1° al 9° mese: 85% [...]; - dal 10° al 18° mese: 90% [...] Per contratti di durata fino a 24 mesi: - dal 1° al 12° mese: 85% [...]; - dal 13° al 24° mese: 90% [...] Per contratti di durata fino a 36 mesi: dal 1° al 18° mese 85%, dal 19° al 36° mese 90%"
+        },
+        "transformation": "85% of the minimo conglobato of the destination level for the first 18 months, 90% to month 36, then the destination level. The renewal of 2025 does not change art. 22.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-15T01:40:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T01:40:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-uneba-apprenticeship-bands"
+        }
+      }
     },
     {
       "type": "percentage",
@@ -1792,20 +1827,45 @@
       "periods": [
         {
           "months_from": 0,
-          "months_until": 8,
+          "months_until": 12,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
           "percentage": "0.90"
         },
         {
-          "months_from": 8,
-          "months_until": 16,
-          "percentage": "0.95"
-        },
-        {
-          "months_from": 16,
+          "months_from": 24,
           "months_until": null,
           "percentage": "1.00"
         }
-      ]
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fpcgil-ccnl-uneba-2023-2025",
+            "title": "CCNL UNEBA 2023-2025 (FP-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.fpcgil.it/wp-content/uploads/2017/12/CCNL-UNEBA-2023-2025.pdf",
+            "sha256": "d17e610b45222238c83c4e9201262e111c3371c4afd3dcb515c256703e15bcaa"
+          },
+          "page": "32",
+          "section": "Art. 22 - Apprendistato, trattamento economico",
+          "quote": "Per contratti di durata fino a 18 mesi: - dal 1° al 9° mese: 85% [...]; - dal 10° al 18° mese: 90% [...] Per contratti di durata fino a 24 mesi: - dal 1° al 12° mese: 85% [...]; - dal 13° al 24° mese: 90% [...] Per contratti di durata fino a 36 mesi: dal 1° al 18° mese 85%, dal 19° al 36° mese 90%"
+        },
+        "transformation": "85% of the minimo conglobato of the destination level for the first 12 months, 90% to month 24, then the destination level. The renewal of 2025 does not change art. 22.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-15T01:40:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T01:40:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-uneba-apprenticeship-bands"
+        }
+      }
     },
     {
       "type": "percentage",
@@ -1818,20 +1878,45 @@
       "periods": [
         {
           "months_from": 0,
-          "months_until": 6,
+          "months_until": 9,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 9,
+          "months_until": 18,
           "percentage": "0.90"
         },
         {
-          "months_from": 6,
-          "months_until": 12,
-          "percentage": "0.95"
-        },
-        {
-          "months_from": 12,
+          "months_from": 18,
           "months_until": null,
           "percentage": "1.00"
         }
-      ]
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fpcgil-ccnl-uneba-2023-2025",
+            "title": "CCNL UNEBA 2023-2025 (FP-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.fpcgil.it/wp-content/uploads/2017/12/CCNL-UNEBA-2023-2025.pdf",
+            "sha256": "d17e610b45222238c83c4e9201262e111c3371c4afd3dcb515c256703e15bcaa"
+          },
+          "page": "32",
+          "section": "Art. 22 - Apprendistato, trattamento economico",
+          "quote": "Per contratti di durata fino a 18 mesi: - dal 1° al 9° mese: 85% [...]; - dal 10° al 18° mese: 90% [...] Per contratti di durata fino a 24 mesi: - dal 1° al 12° mese: 85% [...]; - dal 13° al 24° mese: 90% [...] Per contratti di durata fino a 36 mesi: dal 1° al 18° mese 85%, dal 19° al 36° mese 90%"
+        },
+        "transformation": "85% of the minimo conglobato of the destination level for the first 9 months, 90% to month 18, then the destination level. The renewal of 2025 does not change art. 22.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-15T01:40:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T01:40:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-uneba-apprenticeship-bands"
+        }
+      }
     }
   ],
   "ruleset": {
@@ -1841,7 +1926,7 @@
     "effective_until": null,
     "source": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "ece7cbc117a025ea495e20678b2ca172ef975a464716a7eb77b8eff693966249",
+    "source_hash": "81213c207e97b1a36af5cb71772bc77ebc6b0f31701220d5d14b5f96f61e189a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

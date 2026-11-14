@@ -23,9 +23,6 @@ from ccnl_engine.limitation.models import LimitationFacts
 from ccnl_engine.pension_fund.decision.services import paid_month_paths
 from ccnl_engine.personal_withholding.services import same_kind_paths
 from ccnl_engine.seniority.services import seniority_months_at
-from ccnl_engine.severance.relief.services import (
-    tfr_compensation_paths,
-)
 
 if TYPE_CHECKING:
     from ccnl_engine.capability.results import CapabilityReport
@@ -87,7 +84,6 @@ def run_limitations(
         events.limitations
         | paid_month_paths(ctx, events.inps_base)
         | provisional_paths(ctx)
-        | tfr_compensation_paths(ctx)
         | minimum_base_paths(ctx)
         | same_kind_paths(ctx)
     )

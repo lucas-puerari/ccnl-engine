@@ -85,6 +85,10 @@
       {
         "kind": "info",
         "text": "APPRENTICE SENIORITY (Art. 31 B, p. 47 of the CCNL testo definitivo 2022, CNEL deposit 187819, https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2022%2Ff3495dfe-2d54-44fa-8603-be436ddfe900%2F20308.pdf, sha256 77c269b3fa0d3d87efeb86e44ecd7b344f55cb3d125205d283e6ac58b97fb2b1): 'L’intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell’anzianità aziendale, anche ai fini degli aumenti periodici di anzianità; tali aumenti saranno corrisposti nelle misure previste dal livello di appartenenza': seniority_increments.apprentice_level_amount."
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Malattia - conservazione del posto, PDF p. 18, https://www.filctemcgil.it/images/download/CONTRATTI/tessile_abbigliamento/241111-TESSILE_RINNOVO%20CCNL2024-2027.pdf, sha256 58c099d2ebc5e86dfc136be93593d792a104c94458a96b5b2c66c93b9d78e8e3): 'il periodo di conservazione del posto si considera nell'ambito di un periodo mobile da determinare con riferimento ai 909 giorni di calendario immediatamente precedenti. Il periodo di conservazione del posto di 13 mesi è pari a 394 giorni di calendario.' Modelled as sickness_rules.comporto_windows: 394 days within 909 days before the day. The pay bands count by illness ('per i primi quattro mesi di ogni malattia'); those of the quadri are not stated."
       }
     ]
   },
@@ -1946,7 +1950,7 @@
     "effective_until": null,
     "source": "https://www.sistemamodaitalia.com/",
     "verification_status": "unverified",
-    "source_hash": "c4d03fb980235fda0b18ce1d05be680be48fde2d241059ab8660ae1db181fb63",
+    "source_hash": "df5bae7e130472eba0f9494355ec19a8f1466a79d15c0c71c5ee1f467ebac5d6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2134,7 +2138,15 @@
           "verification_status": "unverified",
           "effective_from": "2022-01-01"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 30,
+          "window_days": 909,
+          "comporto_days": 394
+        }
+      ]
     },
     "insured_absence": {
       "maternity": {
@@ -2293,6 +2305,27 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.insured_absence.injury"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-tessile-smi-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/tessile_abbigliamento/241111-TESSILE_RINNOVO%20CCNL2024-2027.pdf",
+            "sha256": "58c099d2ebc5e86dfc136be93593d792a104c94458a96b5b2c66c93b9d78e8e3"
+          }
+        ],
+        "findings": [
+          "Added the comporto window of the CCNL; the pay bands across episodes stay under the engine limitation sickness_cumulation_window."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.comporto_windows"
         ]
       }
     ]

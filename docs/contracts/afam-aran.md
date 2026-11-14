@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | pension_fund_contribution, sickness |
+| **Limits of this contract** | sickness |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 24 verified / 13 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 26 verified / 13 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-07-01 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-12 | claude-opus-5-5 (ai) | Tabellare and seniority bands of the AFAM staff, 2024-2027. | corrected | New file for the AFAM staff of the comparto Istruzione e Ricerca: Tabella D2 of the CCNL 2022-2024 and 2025-2027, read on the ARAN texts. |
 | 2026-10-12 | claude-opus-5-5 (ai) | AFAM allowances, Tabelle D3-D6 of the CCNL 2022-2024 and 2025-2027. | corrected | The AFAM allowances were a limitation (afam_allowances_missing): RPD, RPR, CIA and the retribuzione di posizione are now paid, the 2024 amounts derived from the increments of the CCNL 2022-2024. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 16 CCNL 16 febbraio 2005, Termini di preavviso (raccolta ARAN 2017), p. 27). | corrected | Notice bands by level, category and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Fondo Espero scheda 'I destinatari e i contributi' (PDF p. 1 and 3), read on the page image. | corrected | Added Fondo Espero for the AFAM staff, 1% + 1%. |
 
 ## Salary table
 
@@ -92,13 +93,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies.
 
     **Remediation:** Read the AFAM sections of the CCNL 2019-2021 (18/1/2024) for leave, absence, sickness and overtime.
-
-!!! warning "afam-aran/pension_fund_not_modelled · pension_fund_contribution · impact yes · open"
-    PENSION FUND: the AFAM staff join the Fondo Espero, not modelled in this file.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Add the Fondo Espero rates of the AFAM staff.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -265,6 +259,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 ??? note "Coverage notes"
     SCOPE: staff of the AFAM institutions (accademie, conservatori, ISIA): Aree Operatori, Assistenti, Funzionari, Elevate Qualificazioni (new classification of art. 165 CCNL 18/1/2024 from 1.5.2024, allegato J), docenti di prima fascia and ricercatori, with seven bands of anzianità di servizio (Tabella D2 of the CCNL 2022-2024 and 2025-2027) as seniority steps, from 1.1.2024.
+    
+    PENSION FUND: the AFAM staff join the Fondo Scuola Espero ('compresi i dipendenti dell'AFAM'), 1% + 1% for public employees (employer_funds ESPERO), per the fund's scheda of 28/10/2026.
     
     ALLOWANCES: RPD of the docenti (Tabella D3) and RPR of the ricercatori (D4) by band of anzianità di servizio (0-14, 15-27, 28 years and more), the CIA of operatori, assistenti and funzionari (D6), 12 instalments; the retribuzione di posizione parte fissa of the Elevate Qualificazioni (D5), annual over 12 (assumed). The banded allowances need the seniority of the worker.
     

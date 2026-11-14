@@ -59,13 +59,5 @@
       "as_of": "2024-04-01",
       "expected_amount": "33.05"
     }
-  ],
-  "apprenticeship_pct_checks": [
-    {
-      "level_code": "np",
-      "track_name": "professionalizzante",
-      "months_elapsed": 1,
-      "expected_pct": "1.00"
-    }
   ]
 }

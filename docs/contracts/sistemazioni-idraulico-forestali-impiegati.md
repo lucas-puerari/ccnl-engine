@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer |
+| **Limits of this contract** | inps_employer |
 
 5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 22 verified / 6 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 23 verified / 5 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-04 |
-| **Last review** | 2026-11-05 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -64,6 +64,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 14 - Mensilità aggiuntive (13ª e 14ª) (p. 43): "dette mensilità aggiuntive sono frazionabili in dodicesimi nell’ipotesi di inizio o di cessazione del rapporto nel corso dell’anno. [...] La frazione di mese superiore a 15 giorni viene considerata come un mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-11-01 | claude-opus-5-5 (ai) | Minimum pay of the impiegati forestali from 1 January 2026, 2027 and 2028 against the tables of the signed 2025 renewal (Allegati B, C, C1, scanned pages read as images). AI review only. | corrected | The 2026-2028 minimums now cite the TOTALE NAZIONALE CONGLOBATO of the signed tables (pp. 29-31) instead of a secondary site and the Art. 35 parameters.<br>The signed tables disagree on level 4 in 2026: p. 29 prints 1.618,07, p. 30 carries 1.617,94 as the pay of 1 January 2027 before the 39,54 increase that reaches 1.657,48. The 2026 table of p. 29 is used for 2026; the 2027 and 2028 totals are those printed. |
 | 2026-11-05 | claude-opus-5-5 (ai) | The seniority increments of the apprentices, Art. 7 - Apprendistato, Inquadramento e retribuzione (PDF p. 33), found by a separate research session and checked again on the page. | corrected | The apprentice has the treatment of the permanent staff: seniority_increments.apprentice_level_amount. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source. | corrected | Added the comporto window of art. 44 (12 months within the last 24); the pay bands summed over 12 months stay outside the model. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Rules of the 2021 text against the OCR of the renewal signed on 4 December 2025, from the research of a separate model session. | corrected | IND_FUNZIONE is 103.00 until 31 July 2026 and 120.00 from 1 August 2026 (art. 36 point 2, PDF p. 17), not from 1 January 2026.<br>The renewal does not reproduce arts. 7, 35 and 41: their 2021 text stays in force. |
 
 ## Salary table
 
@@ -109,19 +111,19 @@ Destination levels: `I5`, `I6`, `I6Q`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "sistemazioni-idraulico-forestali-impiegati/ind_funzione_transition_date · base_salary · impact unknown · open"
-    IND_FUNZIONE quadri: modelled at 120.00 EUR/month from 2026-01-01 (current published value per lavoro-economia.it). The 2021 CCNL shows 103.00 from 01/08/2002; transition date to 120.00 not confirmed from 2025 rinnovo (PDF image-only).
+!!! note "sistemazioni-idraulico-forestali-impiegati/ind_funzione_transition_date · base_salary · impact unknown · resolved"
+    IND_FUNZIONE quadri (art. 36 point 2, renewal of 4 December 2025, PDF p. 17): 103.00 EUR/month, 120.00 from 1 August 2026.
 
     **Applies when:** `base_salary` applies; level in I6Q.
 
-    **Remediation:** Confirm the date IND_FUNZIONE moved from 103.00 to 120.00 EUR.
+    **Remediation:** Resolved: art. 36 of the 2025 renewal dates the 120.00 from 1 August 2026, read on 2026-11-15.
 
-!!! warning "sistemazioni-idraulico-forestali-impiegati/structural_rules_from_2021_text · base_salary · impact unknown · open"
-    Structural rules (Art. 7, 35, 41, 52) taken from 2021 previgente CCNL text. The 2025 rinnovo PDF is image-only and full text is unavailable for independent verification.
+!!! note "sistemazioni-idraulico-forestali-impiegati/structural_rules_from_2021_text · base_salary · impact unknown · resolved"
+    Structural rules (Art. 7, 35, 41) from the 2021-2024 CCNL text: the renewal of 4 December 2025 (OCR read, PDF pp. 17-18) reproduces art. 39 (divisors 26 and 169, minimum increases) and does not amend arts. 7, 35 and 41.
 
     **Applies when:** `base_salary` applies.
 
-    **Remediation:** Verify the structural rules against the 2025 renewal text.
+    **Remediation:** Resolved: renewal of 4 December 2025 read on 2026-11-15; arts. 7, 35 and 41 unchanged.
 
 !!! warning "sistemazioni-idraulico-forestali-impiegati/apprentice_inps_rates_unsourced · inps_employer · impact unknown · open"
     APPRENTICE INPS RATES: the apprentice rates of the sector (agricoltura) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles the disoccupazione and CISOA contributions of agricultural apprentices (INPS circ. 43/2026 gives no apprentice rates). The contributions of an apprentice may differ.
@@ -143,13 +145,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -328,6 +323,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     OVERTIME/LEAVE/ABSENCE (L3): Art. 37 CCNL 2023 — straordinario 30%, notturno 50%, festivo 50%. Ferie 22 giorni (orario su 5 giorni, Art. 12). Malattia: integrazione datoriale al 100% per max 6 mesi (Art. 44). Assenza: divisore 26. Rates from 2023 CCNL PDF; 2025 rinnovo structural rules assumed unchanged (text image-only).
     
     APPRENTICE SENIORITY (Art. 7 - Apprendistato, Inquadramento e retribuzione, p. 33 of https://www.flai.it/wp-content/uploads/2023/05/CCNL-Idraulico-Forestale-2023.pdf, sha256 fb09d06825c27a3abb8081bec9e1645f17e51920559a6406323225d26b549461): 'Agli apprendisti impiegati spetta lo stesso trattamento previsto per gli impiegati a tempo indeterminato.' Reading: the apprentice matures the increments of the level, at its amounts (seniority_increments.apprentice_level_amount). Art. 41 gives the clerks a fixed increment per biennium; the renewal of 4 December 2025 does not amend arts. 7 or 41.
+    
+    COMPORTO OF SEVERAL ILLNESSES (Art. 44, CCNL 2021-2024, PDF p. 75, https://www.flai.it/wp-content/uploads/2023/05/CCNL-Idraulico-Forestale-2023.pdf, sha256 fb09d06825c27a3abb8081bec9e1645f17e51920559a6406323225d26b549461; not changed by the 2025 renewal): 'Nei casi di infortunio o di malattia l'impiegato ha diritto alla conservazione del posto per un periodo massimo di 12 mesi, anche per più eventi, nell'arco degli ultimi 24 mesi.' Modelled as sickness_rules.comporto_windows (365 days within 24 months).
     
 
 ## Raw data
