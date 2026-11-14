@@ -86,8 +86,8 @@
         "text": "Salary tranches: 01/09/2025 (source-confirmed, redigo.info and kitech.it), 01/06/2026 (source-confirmed, both sources agree), 01/03/2027 (redigo.info only, single-source), 01/01/2028 (redigo.info only, single-source)."
       },
       {
-        "kind": "missing",
-        "text": "layer_2 partial: apprenticeship tracks cover destinations 2, 3S, 3, 4, 5 only (Art. 22). Levels 1, Q, QDIR are excluded from apprenticeship by the contract text. Level 6 is used as the pay level for L5-destination apprentices but is not itself a destination.",
+        "kind": "info",
+        "text": "APPRENTICESHIP SCOPE (Art. 22, stesura 9 March 2022, p. 40): 'L'apprendistato professionalizzante è ammesso [...] per tutte le qualifiche e mansioni comprese nei livelli 2°, 3°S, 3°, 4° e 5°': the tracks cover exactly these destinations; levels 1, Q and QDIR take no apprentice. Level 6 is a pay level of the level 5 apprentices, not a destination.",
         "capability": "base_salary"
       },
       {
@@ -2201,7 +2201,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "81a2f584efec7b295ed70e0f492a3641ff4f28f832a169c61e3add1119f25350",
+    "source_hash": "419a0f4cea93566a2020ead0f7a691b60bebf85fab2f51ec5adccb62d4b7e0ef",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

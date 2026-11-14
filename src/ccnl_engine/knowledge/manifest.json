@@ -371,7 +371,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/ced-assoced",
       "ruleset_version": "2026.2",
-      "source_hash": "81a2f584efec7b295ed70e0f492a3641ff4f28f832a169c61e3add1119f25350",
+      "source_hash": "419a0f4cea93566a2020ead0f7a691b60bebf85fab2f51ec5adccb62d4b7e0ef",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/ced-assoced.json.gz"
