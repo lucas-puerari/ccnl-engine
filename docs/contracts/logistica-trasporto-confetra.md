@@ -39,7 +39,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | absence, base_salary, overtime |
+| **Limits of this contract** | base_salary, overtime |
 
 7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -58,7 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-06 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-06-01 |
 
 ## Review history
@@ -95,6 +95,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-10 | claude-opus-5-5 (ai) | Cached Confetra consolidated text pp. 92-93, section-two eligibility and art. 71(5) injury holiday top-up. | confirmed | The existing conditional injury holiday target reaches full actual daily pay; the separate art. 60 coincident-holiday payment remains unmodelled. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 60(1)(b), (2-4) coincident national holiday quota, cached consolidated text pp. 84-85. | confirmed | The national letter (b) holiday quota is 1/22 of monthly global pay on Saturday, Sunday or another holiday; local patron holidays are not calendared. |
 | 2026-11-14 | gpt-6-sol (ai) | Part-time supplementary work clause, read by a separate model session. | confirmed | Confirmed: 18% of the hourly quota of the retribuzione globale up to 30% of the agreed annual hours, 40% past it (art. 56 cc. 16-17, PDF p. 70-71). |
+| 2026-11-15 | claude-opus-5-5 (ai) | Relevance of the EDR of 18 May 2021, OCR of the scanned renewal, against the research of a separate model session. | corrected | EDR_2021 left out of the daily quota of absences and sickness. |
 
 ## Salary table
 
@@ -152,12 +153,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: art. 71(5) injury holidays reach full actual daily pay for eligible legacy-section employers; the national coincident-holiday quota is calculated separately; local patron holidays remain outside the calendar.
 
-!!! warning "logistica-trasporto-confetra/edr_2021_in_daily_base · absence · impact unknown · open"
-    EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; the 2021 EDR may still enter the daily base of absences and sickness, which 'nessuna incidenza su alcun istituto contrattuale' excludes.
+!!! note "logistica-trasporto-confetra/edr_2021_in_daily_base · absence · impact unknown · resolved"
+    EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; The 2021 EDR 'non avrà incidenza su alcun istituto contrattuale' (renewal of 18 May 2021, CNEL deposit, PDF p. 3, scanned, https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/136045, sha256 0462ec99c68e13a4444203cfafba20142016ba20175c443fae43ccdeeb9feb39): absence_relevant false keeps it out of the daily quota of absences and sickness.
 
     **Applies when:** `absence` applies.
 
-    **Remediation:** Exclude EDR_2021 from the daily base of absences and sickness (a relevance flag on the allowance), or source that it enters it.
+    **Remediation:** Resolved: EDR_2021 has absence_relevant false (renewal of 18 May 2021 read on 2026-11-15).
 
 !!! warning "logistica-trasporto-confetra/sixth_day_overtime · overtime · impact yes · open"
     SIXTH DAY: Art. 13 c. 6 (p. 39) pays 50% for the overtime of the sixth day of a non-travelling worker whose normal week is spread over five days; the overtime bands have no such kind, so that overtime takes the 30% of the weekday band.

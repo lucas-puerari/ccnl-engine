@@ -34,16 +34,16 @@ from tests.knowledge.ccnl_engine.seniority.builders import new_hire
         (
             "logistica-trasporto-confetra",
             "4",
-            Decimal("507.13"),
-            Decimal("338.05"),
-            Decimal("28.18"),
+            Decimal("504.61"),
+            Decimal("336.37"),
+            Decimal("28.04"),
         ),
         (
             "logistica-trasporto-confetra-viaggiante",
             "B3",
-            Decimal("551.01"),
-            Decimal("367.30"),
-            Decimal("30.62"),
+            Decimal("548.28"),
+            Decimal("365.48"),
+            Decimal("30.47"),
         ),
     ],
 )
@@ -52,10 +52,11 @@ def test_legacy_section_holiday_in_sickness(
 ) -> None:
     """May 1 is one of six paid days May 1-8, at two-thirds INPS.
 
-    Non-travelling daily pay is 507.13 / 6 = 84.52; its INPS daily
-    share is 338.05 / 6 = 56.34, so 84.52 - 56.34 = 28.18.
-    Travelling: 551.01 / 6 = 91.84, 367.30 / 6 = 61.22,
-    and 91.84 - 61.22 = 30.62. Without eligibility no top-up is due.
+    Non-travelling daily pay is 504.61 / 6 = 84.10 (the EDR 2021 is out of
+    the quota); its INPS daily
+    share is 336.37 / 6 = 56.06, so 84.10 - 56.06 = 28.04.
+    Travelling: 548.28 / 6 = 91.38, 365.48 / 6 = 60.91,
+    and 91.38 - 60.91 = 30.47. Without eligibility no top-up is due.
     """
     for fact in (False, True, None):
         result = calculate_period(

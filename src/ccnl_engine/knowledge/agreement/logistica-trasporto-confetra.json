@@ -107,7 +107,7 @@
       },
       {
         "kind": "simplification",
-        "text": "EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; the 2021 EDR may still enter the daily base of absences and sickness, which 'nessuna incidenza su alcun istituto contrattuale' excludes.",
+        "text": "EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; The 2021 EDR 'non avrà incidenza su alcun istituto contrattuale' (renewal of 18 May 2021, CNEL deposit, PDF p. 3, scanned, https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/136045, sha256 0462ec99c68e13a4444203cfafba20142016ba20175c443fae43ccdeeb9feb39): absence_relevant false keeps it out of the daily quota of absences and sickness.",
         "capability": "absence",
         "monetary_impact": "unknown",
         "limitation": {
@@ -115,7 +115,8 @@
           "applies_when": {
             "trigger": "run"
           },
-          "remediation": "Exclude EDR_2021 from the daily base of absences and sickness (a relevance flag on the allowance), or source that it enters it."
+          "remediation": "Resolved: EDR_2021 has absence_relevant false (renewal of 18 May 2021 read on 2026-11-15).",
+          "status": "resolved"
         }
       },
       {
@@ -768,7 +769,8 @@
               "verified_by": "claude-opus-5-5",
               "review_id": "2026-11-08-ai-level-6j"
             }
-          }
+          },
+          "absence_relevant": false
         }
       ],
       "provenance": {
@@ -983,7 +985,8 @@
               "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
-          }
+          },
+          "absence_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -1218,7 +1221,8 @@
               "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
-          }
+          },
+          "absence_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -1453,7 +1457,8 @@
               "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
-          }
+          },
+          "absence_relevant": false
         }
       ],
       "provenance": {
@@ -1647,7 +1652,8 @@
               "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
-          }
+          },
+          "absence_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -1882,7 +1888,8 @@
               "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
-          }
+          },
+          "absence_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -2117,7 +2124,8 @@
               "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
-          }
+          },
+          "absence_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -2352,7 +2360,8 @@
               "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
-          }
+          },
+          "absence_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -2587,7 +2596,8 @@
               "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
-          }
+          },
+          "absence_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -2860,7 +2870,8 @@
               "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
-          }
+          },
+          "absence_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -2995,7 +3006,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "c6e5ba6dd6a9c85c0ab64e87b5950e7b937b9845f6c511d26811a64ce22a23aa",
+    "source_hash": "fe3b2b3d6c076b0278c7aec8eb1acd45abda8ecc41452216e00eabf6f994f706",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4556,6 +4567,28 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.time_supplements.supplementary_excess"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-logistica-trasporto-confetra-edr-2021",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Relevance of the EDR of 18 May 2021, OCR of the scanned renewal, against the research of a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/136045",
+            "sha256": "0462ec99c68e13a4444203cfafba20142016ba20175c443fae43ccdeeb9feb39"
+          }
+        ],
+        "findings": [
+          "EDR_2021 left out of the daily quota of absences and sickness."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.fixed_allowances.EDR_2021",
+          "coverage.notes"
         ]
       }
     ],
