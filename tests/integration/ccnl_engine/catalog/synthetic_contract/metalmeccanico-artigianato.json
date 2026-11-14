@@ -169,6 +169,36 @@
       "track_name": "impiegati",
       "months_elapsed": 37,
       "expected_pct": "1.00"
+    },
+    {
+      "level_code": "4",
+      "track_name": "impiegati",
+      "months_elapsed": 26,
+      "expected_pct": "0.85"
+    },
+    {
+      "level_code": "4",
+      "track_name": "operai",
+      "months_elapsed": 26,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "5",
+      "track_name": "impiegati_centralinisti",
+      "months_elapsed": 20,
+      "expected_pct": "0.80"
+    },
+    {
+      "level_code": "5",
+      "track_name": "impiegati_centralinisti",
+      "months_elapsed": 24,
+      "expected_pct": "1.00"
+    },
+    {
+      "level_code": "2",
+      "track_name": "operai",
+      "months_elapsed": 50,
+      "expected_pct": "1.00"
     }
   ]
 }

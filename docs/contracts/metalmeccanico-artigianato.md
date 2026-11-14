@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-11-19 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2026-11-01 |
 
 ## Review history
@@ -78,6 +78,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Saturday overtime of the consolidated 2021 text (unchanged by the 2024 renewal), read on the text layer. | corrected | Added OT_SABATO (25%, first 3 hours) and OT_SABATO_OLTRE_3_ORE (50% beyond 3 hours a day) on the new OvertimeKind.SATURDAY; closed artisan_saturday_overtime. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 26 of the CCNL 17 December 2021 and the interconfederal agreement of 1 February 2018 it reproduces (pp. 89-93), not changed by the 2024 renewal. Final encoding (dual_apprenticeship JSON) checked against the PDFs by a separate model session (.private flv2). | flagged | The first-level percentages and the third-level halves on the tabellare match.<br>Point 9 (p. 95): when the school objectives are not met, the next year keeps the previous year's percentage; not expressible, recorded as dual_apprenticeship_prorogation.<br>Ambiguous in the text, kept as read: the base of the 10% training share ('di quella che gli sarebbe dovuta'). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 73 of the CCNL 17 December 2021 (PDF p. 147), text layer. | corrected | Added work_rules.sickness_rules_by_category for impiegati and quadri. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 27 c. 7 (durations by group and employee kind) of the 2021 signed text and c. 9 (pay table) of the 2024 renewal; Art. 17 classification of the Meccanica sector. | confirmed | Read the 2024 table on the page image: groups 1 and 2, impiegati amministrativi and centralinisti have their own scale. The 2021 text keys the tracks by worker kind: groups 1 (cat. 1, 2, 2bis, 3) and 2 (cat. 4, 5) for operai and technical employees, administrative employees of every level, centralinisti. The file split them by level (operai 5-2bis, impiegati 2-1), so an administrative apprentice of levels 3-5 was paid on the operai scale and an operaio of levels 1-2 on the employee one. Extended both tracks to their levels, added the centralinisti track and closed centralinisti_apprenticeship. |
 
 ## Salary table
 
@@ -113,11 +114,15 @@ Latest effective values per level (monthly gross, EUR).
 ## Apprenticeship
 
 **operai** (type: `percentage`)  
-Destination levels: `5`, `4`, `3`, `2bis`  
+Destination levels: `5`, `4`, `3`, `2bis`, `2`, `1`  
 percentage: 1.00
 
 **impiegati** (type: `percentage`)  
-Destination levels: `2`, `1`  
+Destination levels: `5`, `4`, `3`, `2`, `1`  
+percentage: 1.00
+
+**impiegati_centralinisti** (type: `percentage`)  
+Destination levels: `5`  
 percentage: 1.00
 
 ## Known simplifications
@@ -137,13 +142,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies; contract type in apprentice.
 
     **Remediation:** Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note.
-
-!!! warning "metalmeccanico-artigianato/centralinisti_apprenticeship · base_salary · impact yes · open"
-    APPRENTICESHIP (Art. 27 as renewed on 19 November 2024, signed scan p. 6, by semester on the retribuzione tabellare of the destination level): operai of the 1st and 2nd group 70, 70, 75, 78, 80, 85, 88, 92, 100, 100%; impiegati amministrativi 70, 70, 75, 80, 85, 90%; impiegati centralinisti 70, 70, 75, 80%, not modelled apart (their destination level is not distinguished).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Add an 'impiegati_centralinisti' track (70, 70, 75, 80% by semester, then 100%) selectable by Apprentice.track.
 
 !!! warning "metalmeccanico-artigianato/dual_apprenticeship_prorogation · base_salary · impact yes · open"
     SCHOOL OBJECTIVES NOT MET (accordo interconfederale 1 febbraio 2018, point 9, PDF p. 95): 'nel caso di mancato raggiungimento degli obiettivi formativi scolastici, all'apprendista non spetta, per il successivo anno di apprendistato, l'avanzamento delle percentuali retributive'. The engine pays the year of Apprentice.months_elapsed.
@@ -349,13 +347,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     SENIORITY INCREMENTS: biennial, at most 5, fixed amounts of Art. 60 and 71 for the workers without a scatto on 27 November 1997 (EBNA text pp. 135-136, 143-145). Workers with earlier scatti keep the 5% mechanism and the maxima at 30 June 2000 (181,79 for the Primo livello to 101,22 for the Sesto), not modelled.
     
-    APPRENTICESHIP percentage, 10 semesters (60 months max), operai progression (source EBLART, apprenticeship professionalizzante article): 70% (sem. I-II), 75% (III), 78% (IV), 80% (V), 85% (VI), 88% (VII), 92% (VIII), 100% (IX-X); track 'operai' for destinations 5, 4, 3, 2bis. Since the 2015 reform level 6° cannot be used as a destination.
+    APPRENTICESHIP, OPERAI AND TECHNICAL EMPLOYEES (Art. 27 c. 7 and 9, signed text of 17 December 2021, CNEL 162281 p. 76, and the renewal of 19 November 2024, CNEL 197521 p. 6): 1st group (cat. 1, 2, 2bis, 3) and 2nd group (cat. 4, 5) of the Metalmeccanica e installazione di impianti sector, 5 years, by semester 70, 70, 75, 78, 80, 85, 88, 92, 100, 100% of the retribuzione tabellare of the destination level ('Per gli impiegati tecnici la durata massima è quella prevista dai rispettivi gruppi'). Track 'operai', destinations 5, 4, 3, 2bis, 2, 1. Since the 2015 reform level 6 cannot be a destination.
     
     INPS OPERAI/IMPIEGATI: 2026-artigianato.json models both categories via employer_rate_by_category (operai default 26.93%; impiegati/quadri 24.71%). Pass Employee(category='impiegato') or Employee(category='quadro') to receive the lower rate; omitting category routes to operaio rate. Components: IVS 23.81% + NASpI 1.61% + CUAF 0.68% + malattia operai ~0.83% = 26.93%; malattia for impiegati is lower (hence ~24.71%). No CIGO/CIGS (D.Lgs. 148/2015 Art. 3, artigianato excluded). FSBA (0.45% employer + 0.15% employee) is bilateral, excluded from the tax file.
     
     ADDITIONAL MONTHS: 13 (tredicesima). A quattordicesima is not provided for by the CCNL Artigianato Metalmeccanico.
     
-    APPRENTICESHIP administrative impiegati (destination levels 2, 1): 3 years, by semester 70, 70, 75, 80, 85 and 90% (Art. 27 as renewed on 19 November 2024), 100% thereafter. Track 'impiegati'. Level 1Q (quadro) excluded. Source: CCNL metalmeccanico artigianato renewal 17.12.2021 (EBLART summary); formazione-apprendistato.com; conflavoro.it 2021 summary; renewal of 19 November 2024 (review of 2026-10-30)
+    APPRENTICESHIP, ADMINISTRATIVE EMPLOYEES: 'Per gli impiegati amministrativi di tutti i livelli di inquadramento la durata massima dell'apprendistato è di 3 anni' (Art. 27 c. 7, 2021 text p. 76), by semester 70, 70, 75, 80, 85, 90% (renewal 2024 p. 6), 100% thereafter; track 'impiegati', destinations 5, 4, 3, 2, 1 (Art. 17 places administrative work in categories 1 to 5, pp. 33-40; 2bis is for operai only, p. 34). Centralinisti: 'Per gli impiegati addetti al centralino la durata massima è di 2 anni', 70, 70, 75, 80% by semester; track 'impiegati_centralinisti', destination 5 (the 5th category of Art. 17, p. 40: 'attività di servizio con compiti esecutivi', the declaratoria whose example in the Orafi classification of the same CCNL, p. 49, is the 'Centralinista telefonico'). A level is shared by the tracks: the caller states the track (Apprentice.track) from the duties. Level 1Q (quadro) excluded.
     
     APPRENTICE SENIORITY: apprentices accrue no scatti before 1 January 2025; from that date they accrue scatti of 10 euro each, not scaled by the apprentice percentage, on the cadence of the other workers, and those in service on that date accrue from it ('la maturazione dell'anzianità di servizio ai fini del riconoscimento degli scatti decorre da pari data', Art. 27 as renewed on 19 November 2024, signed scan p. 6). At the end of the apprenticeship the matured scatti are revalued to the amount of the final level.
     
