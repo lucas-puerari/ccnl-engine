@@ -128,8 +128,8 @@
         "monetary_impact": "no"
       },
       {
-        "kind": "missing",
-        "text": "MISSING: Giorni di ferie (leave_rules). Nessuna fonte accessibile per H341 riporta i giorni di ferie annuali. Testo CCNL non accessibile.",
+        "kind": "info",
+        "text": "LEAVE (CCNL 2024-2027): ferie 26 working days on a week counted as six days (Art. 62, p. 74), twelfths per month of service at termination and an indemnity of a twenty-sixth of the monthly pay per day (Chiarimento a verbale, p. 75); 66 hours of permessi retribuiti a year, a twelfth per whole month of service (Art. 56, p. 68), not taken within the year paid 'con la retribuzione in atto al momento della scadenza' or taken by 30 June of the next year, as the employer states (EmployerProfile.permit_carryover); the hours left at termination are paid at the hourly quota on the same clause. The suppressed holidays of Art. 61 are not a bucket of hours: the day is paid if worked or falls on the weekly rest. Seasonal staff (Art. 72) take their leave and permits as a percentage of the pay, not modelled here.",
         "capability": "leave"
       }
     ]
@@ -242,6 +242,27 @@
           "parameters.seniority_increments",
           "parameters.additional_months",
           "work_rules.sickness_rules"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-leave",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 56, 61 and 62 of the CCNL 2024-2027 (permits, suppressed holidays, ferie).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+            "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+          }
+        ],
+        "findings": [
+          "The file had no leave rules and a note saying the text was not accessible; the ruleset source is that text. Added ferie (26 days, six-day week, divisor 26), the 66 hours of permits with their whole-month accrual and the 30 June deadline."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules"
         ]
       }
     ]
@@ -2197,7 +2218,7 @@
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "95ee7f5a275a02919bf1129927ac77340575f8cac7072af307ff6a1917dd1163",
+    "source_hash": "0debdfb4882b3244c3fdaf59e7c7fee895bc90bceee6010b66265ed91bfcbf1a",
     "source_type": "contracting_party"
   },
   "work_rules": {
@@ -2435,7 +2456,169 @@
       },
       "comporto_calendar_year": true
     },
-    "leave_rules": null,
+    "leave_rules": {
+      "default_annual_days": "26",
+      "entitlement_tiers": [
+        {
+          "service_months_min": 0,
+          "annual_days": "26"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "flai-ccnl-ortofrutticolo-agrumario-2024-2027",
+            "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, 1 gennaio 2024 - 31 dicembre 2027 (testo pubblicato da FLAI-CGIL, firmatario)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+            "published_on": "2025-01-01",
+            "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+          },
+          "page": "74 (PDF 39)",
+          "section": "Art. 62 - Ferie",
+          "quote": "Il personale con rapporto di lavoro a tempo indeterminato ha diritto ad un periodo di ferie di ventisei giorni lavorativi, fermo restando che la settimana lavorativa [...] è in ogni caso considerata di sei giorni lavorativi"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-14-ai-leave"
+        }
+      },
+      "ferie_accrual": {
+        "month_credit": null,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "flai-ccnl-ortofrutticolo-agrumario-2024-2027",
+              "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, 1 gennaio 2024 - 31 dicembre 2027 (testo pubblicato da FLAI-CGIL, firmatario)",
+              "kind": "associazione",
+              "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+              "published_on": "2025-01-01",
+              "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+            },
+            "page": "75 (PDF 40)",
+            "section": "Art. 62 - Ferie",
+            "quote": "In caso di licenziamento o di dimissioni, spetteranno al lavoratore tanti dodicesimi del periodo di ferie al quale ha diritto, quanti sono i mesi di effettivo servizio prestato per l'anno di competenza."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2024-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-leave"
+          }
+        }
+      },
+      "permits": [
+        {
+          "bucket": "rol",
+          "annual_hours": [
+            {
+              "hours": "66"
+            }
+          ],
+          "month_credit": "whole_month",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "flai-ccnl-ortofrutticolo-agrumario-2024-2027",
+                "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, 1 gennaio 2024 - 31 dicembre 2027 (testo pubblicato da FLAI-CGIL, firmatario)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                "published_on": "2025-01-01",
+                "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+              },
+              "page": "68 (PDF 36)",
+              "section": "Art. 56 - Permessi retribuiti",
+              "quote": "Tutti i lavoratori hanno diritto a 66 ore annuali di permesso individuale retribuito. [...] al lavoratore sarà corrisposto un dodicesimo dei permessi di cui al presente articolo per ogni mese intero di servizio prestato"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-leave"
+            }
+          }
+        }
+      ],
+      "termination": {
+        "ferie_divisor": "26",
+        "permits_hourly": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "flai-ccnl-ortofrutticolo-agrumario-2024-2027",
+              "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, 1 gennaio 2024 - 31 dicembre 2027 (testo pubblicato da FLAI-CGIL, firmatario)",
+              "kind": "associazione",
+              "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+              "published_on": "2025-01-01",
+              "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+            },
+            "page": "75 (PDF 40)",
+            "section": "Art. 62 - Ferie, Chiarimento a verbale; Art. 56",
+            "quote": "Nella ipotesi di risoluzione del rapporto di lavoro, l'indennità sostitutiva delle ferie si calcola dividendo per ventisei la retribuzione mensile."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2024-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-leave"
+          }
+        }
+      },
+      "permit_deadline": {
+        "carry_until_month": 6,
+        "buckets": [
+          "rol"
+        ],
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "flai-ccnl-ortofrutticolo-agrumario-2024-2027",
+              "title": "CCNL per i dipendenti da aziende ortofrutticole ed agrumarie, 1 gennaio 2024 - 31 dicembre 2027 (testo pubblicato da FLAI-CGIL, firmatario)",
+              "kind": "associazione",
+              "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+              "published_on": "2025-01-01",
+              "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+            },
+            "page": "68 (PDF 36)",
+            "section": "Art. 56 - Permessi retribuiti",
+            "quote": "I permessi non fruiti entro l'anno di maturazione decadranno e saranno pagati con la retribuzione in atto al momento della scadenza, oppure potranno essere fruiti in epoca successiva e in ogni caso non oltre il 30 giugno dell'anno successivo."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2024-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-leave"
+          }
+        }
+      }
+    },
     "notice": {
       "bands": [
         {

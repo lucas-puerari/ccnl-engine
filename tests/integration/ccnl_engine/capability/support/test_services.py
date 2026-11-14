@@ -69,7 +69,7 @@ def test_bundled_missing_notes_and_limitations() -> None:
         for ccnl_id in (
             "assicurazioni-ania",
             "ced-assoced",
-            "ortofrutticoli-agrumari",
+            "pulizia-artigianato-confartigianato",
         )
     }
     assert limited == {
@@ -80,7 +80,14 @@ def test_bundled_missing_notes_and_limitations() -> None:
             "maternity_leave",
             "workplace_injury",
         ],
-        "ortofrutticoli-agrumari": ["leave"],
+        "pulizia-artigianato-confartigianato": [
+            "base_salary",
+            "holiday_work",
+            "inps_employer",
+            "night_work",
+            "overtime",
+            "seniority",
+        ],
     }
 
 
@@ -105,7 +112,7 @@ def test_work_rules_partials_are_derived(
 
 def test_a_missing_note_on_leave_lowers_it_to_partial() -> None:
     """A missing note on leave lowers the native capability to partial."""
-    rows = _by_feature(load_ccnl("ortofrutticoli-agrumari"))
+    rows = _by_feature(_with_missing(load_ccnl("ortofrutticoli-agrumari"), "leave"))
     assert rows["leave"] == (_IMPL.PARTIAL, True)
 
 
