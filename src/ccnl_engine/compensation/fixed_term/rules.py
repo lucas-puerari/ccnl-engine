@@ -5,6 +5,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.employment.fixed_term.inputs import NaspiExclusion
 from ccnl_engine.employment.inputs import FixedTerm
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.working_time.inputs import OvertimeEvent
@@ -32,13 +33,18 @@ def covers(ccnl: CCNL, category: WorkerCategory | None, contract_type: object) -
 
     Returns:
         ``True`` for a fixed-term worker of a category of
-        ``parameters.fixed_term_pay``.
+        ``parameters.fixed_term_pay``, seasonal when the rule is
+        ``seasonal_only``.
     """
     rule = ccnl.parameters.fixed_term_pay
     return (
         rule is not None
         and isinstance(contract_type, FixedTerm)
         and category in rule.categories
+        and (
+            not rule.seasonal_only
+            or contract_type.naspi_exclusion is NaspiExclusion.SEASONAL
+        )
     )
 
 
@@ -116,7 +122,11 @@ def overtime_hours(ccnl: CCNL, events: Iterable[object]) -> Decimal:
         by its fixed-term pay (``with_fixed_term_pay`` applied), else 0.
     """
     rule = ccnl.parameters.fixed_term_pay
-    if rule is None or ccnl.parameters.hourly_pay != rule.hourly_pay:
+    if (
+        rule is None
+        or not rule.percentages_on_overtime
+        or ccnl.parameters.hourly_pay != rule.hourly_pay
+    ):
         return Decimal(0)
     return sum((e.hours for e in events if isinstance(e, OvertimeEvent)), Decimal(0))
 
