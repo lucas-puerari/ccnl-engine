@@ -139,7 +139,12 @@
       },
       {
         "kind": "info",
-        "text": "HOLIDAY ON A SUNDAY (Art. 55 - Festivita; Art. 61 - Festivita soppresse, p. 66 (PDF 35); 73): a listed holiday falling on a Sunday pays a further daily quota (the CCNL absence divisor: the clause names none); 4 November, celebrated on the first Sunday of November, takes the same treatment.",
+        "text": "OVERTIME AND ORDINARY PREMIUMS (CCNL 2024-2027): overtime on the paga conglobata at 35% beyond the 40th weekly hour, 42% on holidays, 50% at night, 60% at night on holidays (Art. 50); night hours in normal shifts 15% (Art. 48); work on the Sunday rest day 30% premium alone (riposo settimanale); work on a holiday the hours with 30% (Art. 55, read for every worker: the sentence also names the seasonal treatment of Art. 72).",
+        "capability": "overtime"
+      },
+      {
+        "kind": "info",
+        "text": "HOLIDAY ON A SUNDAY (Art. 55 - Festivita; Art. 61): a listed holiday on a Sunday pays a further daily quota, 1/26 of the normal pay (paga conglobata and scatti, p. 81); 4 November, on the first Sunday of November, too.",
         "capability": "sunday_holiday"
       }
     ]
@@ -315,6 +320,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sunday_holidays"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-ordinary-premiums",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 48, 50, 54 and 55 of the CCNL 2024-2027.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+            "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+          }
+        ],
+        "findings": [
+          "The overtime bands were labelled assumed: confirmed on Art. 50 and sourced; removed the 40-hour weekly threshold of the base band (every overtime hour is beyond the 40th); added the shift night, Sunday, rest-day and holiday premiums."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements"
         ]
       }
     ]
@@ -2397,7 +2423,7 @@
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "4550f94ea15199401a5a4eff88e71c8ef210d524bbd9b4691566544276d9dbee",
+    "source_hash": "e5b542665c3879f785bffe7064fd7b527061b6e726603aab551e9190beabc838",
     "source_type": "contracting_party"
   },
   "work_rules": {
@@ -2421,28 +2447,31 @@
             "weekday"
           ],
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "lavoro-economia-h341",
-                "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                "pages": [],
+                "document_id": "ortofrutticoli-agrumari-ccnl-testo",
+                "title": "Contratto collettivo nazionale di lavoro per i dipendenti da aziende ortofrutticole ed agrumarie 1 gennaio 2024 - 31 dicembre 2027",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
                 "published_on": "2024-07-19",
-                "jurisdiction": "it"
+                "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
               },
-              "section": "Lavoro-economia.it c=72 — maggiorazione straordinario: OT_ORDINARIO=0.35."
+              "page": "59-60 (PDF 31-32)",
+              "section": "Art. 50 - Lavoro straordinario",
+              "quote": "maggiorata del 35% (trentacinque per cento) per le prestazioni di lavoro eccedenti la 40a ora settimanale [...] nei giorni festivi [...] maggiorata del 42% [...] la notte [...] maggiorata del 50% [...] Le ore straordinarie festive prestate in orario notturno saranno retribuite con la paga oraria normale conglobata maggiorata del 60%"
             },
             "extraction": {
               "method": "ai",
-              "extraction_timestamp": "2026-09-11T00:00:00",
-              "verification_status": "unverified",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
               "effective_from": "2024-01-01",
-              "model": "claude-sonnet-4-6"
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-ordinary-premiums"
             }
-          },
-          "hour_threshold_per_week": 40
+          }
         },
         {
           "code": "OT_FESTIVO",
@@ -2461,25 +2490,29 @@
             "holiday"
           ],
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "lavoro-economia-h341",
-                "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                "pages": [],
+                "document_id": "ortofrutticoli-agrumari-ccnl-testo",
+                "title": "Contratto collettivo nazionale di lavoro per i dipendenti da aziende ortofrutticole ed agrumarie 1 gennaio 2024 - 31 dicembre 2027",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
                 "published_on": "2024-07-19",
-                "jurisdiction": "it"
+                "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
               },
-              "section": "Lavoro-economia.it c=72 — maggiorazione straordinario: OT_FESTIVO=0.42."
+              "page": "59-60 (PDF 31-32)",
+              "section": "Art. 50 - Lavoro straordinario",
+              "quote": "maggiorata del 35% (trentacinque per cento) per le prestazioni di lavoro eccedenti la 40a ora settimanale [...] nei giorni festivi [...] maggiorata del 42% [...] la notte [...] maggiorata del 50% [...] Le ore straordinarie festive prestate in orario notturno saranno retribuite con la paga oraria normale conglobata maggiorata del 60%"
             },
             "extraction": {
               "method": "ai",
-              "extraction_timestamp": "2026-09-11T00:00:00",
-              "verification_status": "unverified",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
               "effective_from": "2024-01-01",
-              "model": "claude-sonnet-4-6"
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-ordinary-premiums"
             }
           }
         },
@@ -2500,25 +2533,29 @@
             "night"
           ],
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "lavoro-economia-h341",
-                "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                "pages": [],
+                "document_id": "ortofrutticoli-agrumari-ccnl-testo",
+                "title": "Contratto collettivo nazionale di lavoro per i dipendenti da aziende ortofrutticole ed agrumarie 1 gennaio 2024 - 31 dicembre 2027",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
                 "published_on": "2024-07-19",
-                "jurisdiction": "it"
+                "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
               },
-              "section": "Lavoro-economia.it c=72 — maggiorazione straordinario: OT_NOTTURNO=0.50."
+              "page": "59-60 (PDF 31-32)",
+              "section": "Art. 50 - Lavoro straordinario",
+              "quote": "maggiorata del 35% (trentacinque per cento) per le prestazioni di lavoro eccedenti la 40a ora settimanale [...] nei giorni festivi [...] maggiorata del 42% [...] la notte [...] maggiorata del 50% [...] Le ore straordinarie festive prestate in orario notturno saranno retribuite con la paga oraria normale conglobata maggiorata del 60%"
             },
             "extraction": {
               "method": "ai",
-              "extraction_timestamp": "2026-09-11T00:00:00",
-              "verification_status": "unverified",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
               "effective_from": "2024-01-01",
-              "model": "claude-sonnet-4-6"
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-ordinary-premiums"
             }
           }
         },
@@ -2539,29 +2576,225 @@
             "night_holiday"
           ],
           "provenance": {
-            "status": "assumed",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "lavoro-economia-h341",
-                "title": "CCNL Ortofrutta e Agrumi (Import-Export) — tabella retributiva CNEL H341 (lavoro-economia.it)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=72",
-                "pages": [],
+                "document_id": "ortofrutticoli-agrumari-ccnl-testo",
+                "title": "Contratto collettivo nazionale di lavoro per i dipendenti da aziende ortofrutticole ed agrumarie 1 gennaio 2024 - 31 dicembre 2027",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
                 "published_on": "2024-07-19",
-                "jurisdiction": "it"
+                "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
               },
-              "section": "Lavoro-economia.it c=72 — maggiorazione straordinario: OT_FESTIVO_NOTTURNO=0.60."
+              "page": "59-60 (PDF 31-32)",
+              "section": "Art. 50 - Lavoro straordinario",
+              "quote": "maggiorata del 35% (trentacinque per cento) per le prestazioni di lavoro eccedenti la 40a ora settimanale [...] nei giorni festivi [...] maggiorata del 42% [...] la notte [...] maggiorata del 50% [...] Le ore straordinarie festive prestate in orario notturno saranno retribuite con la paga oraria normale conglobata maggiorata del 60%"
             },
             "extraction": {
               "method": "ai",
-              "extraction_timestamp": "2026-09-11T00:00:00",
-              "verification_status": "unverified",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
               "effective_from": "2024-01-01",
-              "model": "claude-sonnet-4-6"
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-ordinary-premiums"
             }
           }
         }
-      ]
+      ],
+      "supplement_bands": [
+        {
+          "code": "ORTO_NOTTURNO_TURNI",
+          "description": "Ore notturne in normali turni di lavoro 22-6 (art. 48)",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "0.15"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ortofrutticoli-agrumari-ccnl-testo",
+                "title": "Contratto collettivo nazionale di lavoro per i dipendenti da aziende ortofrutticole ed agrumarie 1 gennaio 2024 - 31 dicembre 2027",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                "published_on": "2024-07-19",
+                "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+              },
+              "page": "58 (PDF 30)",
+              "section": "Art. 48 - Orario di lavoro, turni",
+              "quote": "Le ore di lavoro notturne prestate in normali turni di lavoro saranno compensate con una maggiorazione del 15% (quindici per cento)."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "ORTO_DOMENICA",
+          "description": "Lavoro nel riposo coincidente con la domenica (art. 54)",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ortofrutticoli-agrumari-ccnl-testo",
+                "title": "Contratto collettivo nazionale di lavoro per i dipendenti da aziende ortofrutticole ed agrumarie 1 gennaio 2024 - 31 dicembre 2027",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                "published_on": "2024-07-19",
+                "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+              },
+              "page": "66",
+              "section": "Riposo settimanale",
+              "quote": "Tutto il personale ha diritto ogni settimana ad un riposo di 24 ore consecutive in coincidenza con la domenica; qualora per esigenze aziendali fosse chiamato a prestare la sua opera in tale giornata, il lavoratore avrà diritto al riposo compensativo oltre alla sola maggiorazione del 30%"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "ORTO_RIPOSO",
+          "description": "Lavoro nel giorno di riposo settimanale (art. 54)",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ortofrutticoli-agrumari-ccnl-testo",
+                "title": "Contratto collettivo nazionale di lavoro per i dipendenti da aziende ortofrutticole ed agrumarie 1 gennaio 2024 - 31 dicembre 2027",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                "published_on": "2024-07-19",
+                "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+              },
+              "page": "66",
+              "section": "Riposo settimanale",
+              "quote": "il lavoratore avrà diritto al riposo compensativo oltre alla sola maggiorazione del 30% (trenta per cento)."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "ORTO_FESTIVO",
+          "description": "Lavoro nelle festivita, ore pagate con la maggiorazione del 30% (art. 55)",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ortofrutticoli-agrumari-ccnl-testo",
+                "title": "Contratto collettivo nazionale di lavoro per i dipendenti da aziende ortofrutticole ed agrumarie 1 gennaio 2024 - 31 dicembre 2027",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+                "published_on": "2024-07-19",
+                "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+              },
+              "page": "67",
+              "section": "Art. 55 - Festivita",
+              "quote": "In caso di prestazione di lavoro nelle festività nazionali e infrasettimanali, spetta ai lavoratori [...] la retribuzione per le ore di effettivo lavoro con la maggiorazione del 30% (trenta per cento) calcolata sulla paga conglobata."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-ordinary-premiums"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ortofrutticoli-agrumari-ccnl-testo",
+            "title": "Contratto collettivo nazionale di lavoro per i dipendenti da aziende ortofrutticole ed agrumarie 1 gennaio 2024 - 31 dicembre 2027",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+            "published_on": "2024-07-19",
+            "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+          },
+          "page": "81 (PDF 42)",
+          "section": "Normale retribuzione e quote",
+          "quote": "a) paga base nazionale conglobata (allegato 1) b) scatti di anzianità (art. 81) L'importo giornaliero della retribuzione si ottiene dividendo per 26 l'importo mensile; l'importo orario si ottiene dividendo per 173 l'importo mensile."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-14-ai-ordinary-premiums"
+        }
+      }
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -3013,7 +3246,8 @@
           "verification_status": "verified",
           "review_id": "2026-11-14-ai-sunday-holidays"
         }
-      }
+      },
+      "divisor": "26"
     }
   }
 }

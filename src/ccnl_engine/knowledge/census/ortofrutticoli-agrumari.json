@@ -259,51 +259,6 @@
       }
     },
     {
-      "id": "rule_overtime_bands_ot_festivo",
-      "institute": "overtime",
-      "variant": "all",
-      "rule": "agreement/ortofrutticoli-agrumari.json#overtime_bands[OT_FESTIVO]",
-      "calculation": "overtime",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/ortofrutticoli-agrumari.json#overtime_bands[OT_FESTIVO]"
-        ]
-      }
-    },
-    {
-      "id": "rule_overtime_bands_ot_festivo_notturno",
-      "institute": "overtime",
-      "variant": "all",
-      "rule": "agreement/ortofrutticoli-agrumari.json#overtime_bands[OT_FESTIVO_NOTTURNO]",
-      "calculation": "overtime",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/ortofrutticoli-agrumari.json#overtime_bands[OT_FESTIVO_NOTTURNO]"
-        ]
-      }
-    },
-    {
-      "id": "rule_overtime_bands_ot_notturno",
-      "institute": "overtime",
-      "variant": "all",
-      "rule": "agreement/ortofrutticoli-agrumari.json#overtime_bands[OT_NOTTURNO]",
-      "calculation": "overtime",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/ortofrutticoli-agrumari.json#overtime_bands[OT_NOTTURNO]"
-        ]
-      }
-    },
-    {
       "id": "rule_work_rules_absence_rules",
       "institute": "base_salary",
       "variant": "all",

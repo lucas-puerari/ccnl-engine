@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 40 verified / 1 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 42 verified / 1 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 105, 122, 125, 160 and 161 of the CCNL 2025 (ferie, permits, deadline, quotas). | corrected | The file had no leave rules: added the ferie, the 32 + 56 hours of permits with their whole-month accrual, the December/June deadline and the termination quotas. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 110 Riposo settimanale - Festivita; Art. 112 Festivita civile soppressa cadente di domenica (holiday on a Sunday). | corrected | The file had no clause for a holiday falling on a Sunday, so its further daily quota was not paid: added the clause with the holidays the text lists and 4 November. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 106, 109 and 161 of the CCNL 2025. | corrected | The file had no overtime band, so overtime events had no CCNL premium: added the four bands of Art. 109 and the flexibility permits of Art. 106. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Artt. 107 and 113 of the CCNL 2025. | corrected | Added the holiday and rest-day premiums of Art. 113. |
 
 ## Salary table
 
@@ -323,6 +324,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     HOLIDAY ON A SUNDAY (Art. 110 Riposo settimanale - Festivita; Art. 112 Festivita civile soppressa cadente di domenica, p. 73-74): a listed holiday falling on a Sunday pays a further daily quota (1/26 of the monthly pay); 4 November, celebrated on the first Sunday of November, takes the same treatment.
     
     OVERTIME (Art. 109, pp. 72-73): on the hourly quota of the normal pay (1/168, Art. 161), 15% over the weekly hours, 30% on holidays, 30% at night (22-6), 50% at night on holidays. FLEXIBILITY (Art. 106, pp. 71-72): a week over 40 hours in a programme earns 45 minutes of permit up to 44 hours and 70 up to 48 (FlexibilityWeekEvent, EmployerProfile.flexibility_programme_month); the hours not taken are paid with the 15% premium in the sixth month after the programme year.
+    
+    ORDINARY PREMIUMS (Art. 113, p. 74): holiday work paid as holiday overtime (30%, Art. 109); rest-day work the premium alone, read as the 30% of holiday overtime. Ordinary night work is left to the single workplace (Art. 107): no CCNL premium.
     
 
 ## Raw data

@@ -157,6 +157,24 @@
         "kind": "info",
         "text": "HOLIDAY ON A SUNDAY (Art. 116 (Festivita), p. 85): a listed holiday falling on a Sunday pays a further daily quota (1/26 of the monthly pay); 4 November, celebrated on the first Sunday of November, takes the same treatment.",
         "capability": "sunday_holiday"
+      },
+      {
+        "kind": "info",
+        "text": "OVERTIME AND ORDINARY PREMIUMS (stesura 9 March 2022): overtime 15% from the 41st to the 48th weekly hour, 20% beyond, 30% on holidays, 50% at night (24-6), not cumulative (Art. 104); holiday work as holiday overtime (Art. 117); rest-day work the premium of 30% alone (Art. 118); ordinary night work is forbidden outside the shift CED of Title XI (Art. 106). The bands previously had 30% for weekday overtime and no tier beyond the 48th hour.",
+        "capability": "overtime"
+      },
+      {
+        "kind": "simplification",
+        "text": "SHIFT WORK (Title XI, Art. 111): in the CED with long, very long or h24 hours, 15% of the de facto hourly quota for the hours in shifts outside the normal schedule, and an allowance of 25% of the de facto pay for a fixed night or holiday shift. Not modelled.",
+        "capability": "shift_work",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "shift_allowances",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Model the Art. 111 shift premiums (15% of the hourly quota, 25% allowance for fixed night or holiday shifts)."
+        }
       }
     ]
   },
@@ -1988,25 +2006,24 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "020450c74ba3c04dc21f99eb5fde4a76ed39258d33120ec4634d1f2b0a0e7c69",
+    "source_hash": "278cd46759241430e6b02e69354d329fc2eb82047a0601861c3ab06c0adbd55c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
-          "description": "Straordinario diurno feriale",
+          "description": "Straordinario dalla 41a alla 48a ora (art. 104)",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
                 "valid_from": "2022-03-09",
-                "value": "0.30",
-                "provenance": null,
-                "valid_until": null
+                "valid_until": null,
+                "value": "0.15"
               }
             ]
           },
@@ -2014,71 +2031,86 @@
             "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ced-assoced",
-                "title": "CCNL CED, ICT, Professioni Digitali e STP (ASSOCED)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/"
+                "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                "title": "CCNL CED, ICT, Professioni Digitali e STP, 9 March 2022",
+                "kind": "associazione",
+                "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+                "published_on": "2022-03-09",
+                "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
               },
-              "section": "Straordinario festivo — 30% (anche feriale)"
+              "page": "81",
+              "section": "Art. 104 (Maggiorazioni lavoro straordinario)",
+              "quote": "15% per le prestazioni di lavoro dalla 41a alla 48a ora settimanale; 20% per le prestazioni di lavoro eccedenti la 48a ora settimanale. [...] nei giorni festivi [...] maggiorazione del 30% [...] dalle ore 24.00 alle 6.00 [...] maggiorazione del 50% [...] Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro."
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2022-03-09"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2022-03-09",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-ordinary-premiums"
             }
           }
         },
         {
-          "code": "OT_NOTTURNO",
-          "description": "Straordinario notturno",
+          "code": "OT_DIURNO_EXTRA",
+          "description": "Straordinario oltre la 48a ora (art. 104)",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
                 "valid_from": "2022-03-09",
-                "value": "0.50",
-                "provenance": null,
-                "valid_until": null
+                "valid_until": null,
+                "value": "0.20"
               }
             ]
           },
           "applies_to_kinds": [
-            "night"
+            "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ced-assoced",
-                "title": "CCNL CED, ICT, Professioni Digitali e STP (ASSOCED)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/"
+                "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                "title": "CCNL CED, ICT, Professioni Digitali e STP, 9 March 2022",
+                "kind": "associazione",
+                "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+                "published_on": "2022-03-09",
+                "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
               },
-              "section": "Straordinario notturno — 50%"
+              "page": "81",
+              "section": "Art. 104 (Maggiorazioni lavoro straordinario)",
+              "quote": "15% per le prestazioni di lavoro dalla 41a alla 48a ora settimanale; 20% per le prestazioni di lavoro eccedenti la 48a ora settimanale. [...] nei giorni festivi [...] maggiorazione del 30% [...] dalle ore 24.00 alle 6.00 [...] maggiorazione del 50% [...] Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro."
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2022-03-09"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2022-03-09",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-ordinary-premiums"
             }
-          }
+          },
+          "hour_threshold_per_week": 48
         },
         {
           "code": "OT_FESTIVO",
-          "description": "Straordinario festivo",
+          "description": "Straordinario festivo (art. 104)",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
                 "valid_from": "2022-03-09",
-                "value": "0.30",
-                "provenance": null,
-                "valid_until": null
+                "valid_until": null,
+                "value": "0.30"
               }
             ]
           },
@@ -2086,21 +2118,225 @@
             "holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "ced-assoced",
-                "title": "CCNL CED, ICT, Professioni Digitali e STP (ASSOCED)",
-                "kind": "tabella_retributiva",
-                "url": "https://www.ccnlced.it/ccnl-ced-ict-professioni-digitali-stp/"
+                "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                "title": "CCNL CED, ICT, Professioni Digitali e STP, 9 March 2022",
+                "kind": "associazione",
+                "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+                "published_on": "2022-03-09",
+                "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
               },
-              "section": "Straordinario festivo — 30%"
+              "page": "81",
+              "section": "Art. 104 (Maggiorazioni lavoro straordinario)",
+              "quote": "15% per le prestazioni di lavoro dalla 41a alla 48a ora settimanale; 20% per le prestazioni di lavoro eccedenti la 48a ora settimanale. [...] nei giorni festivi [...] maggiorazione del 30% [...] dalle ore 24.00 alle 6.00 [...] maggiorazione del 50% [...] Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro."
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2022-03-09"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2022-03-09",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno 24-6 (art. 104)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-03-09",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                "title": "CCNL CED, ICT, Professioni Digitali e STP, 9 March 2022",
+                "kind": "associazione",
+                "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+                "published_on": "2022-03-09",
+                "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+              },
+              "page": "81",
+              "section": "Art. 104 (Maggiorazioni lavoro straordinario)",
+              "quote": "15% per le prestazioni di lavoro dalla 41a alla 48a ora settimanale; 20% per le prestazioni di lavoro eccedenti la 48a ora settimanale. [...] nei giorni festivi [...] maggiorazione del 30% [...] dalle ore 24.00 alle 6.00 [...] maggiorazione del 50% [...] Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2022-03-09",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo: non cumulabile, la maggiorazione piu alta (art. 104)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-03-09",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                "title": "CCNL CED, ICT, Professioni Digitali e STP, 9 March 2022",
+                "kind": "associazione",
+                "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+                "published_on": "2022-03-09",
+                "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+              },
+              "page": "81",
+              "section": "Art. 104 (Maggiorazioni lavoro straordinario)",
+              "quote": "15% per le prestazioni di lavoro dalla 41a alla 48a ora settimanale; 20% per le prestazioni di lavoro eccedenti la 48a ora settimanale. [...] nei giorni festivi [...] maggiorazione del 30% [...] dalle ore 24.00 alle 6.00 [...] maggiorazione del 50% [...] Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2022-03-09",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-ordinary-premiums"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
+            "title": "CCNL CED, ICT, Professioni Digitali e STP, 9 March 2022",
+            "kind": "associazione",
+            "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+            "published_on": "2022-03-09",
+            "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+          },
+          "page": "81",
+          "section": "Art. 104 (Maggiorazioni lavoro straordinario)",
+          "quote": "15% per le prestazioni di lavoro dalla 41a alla 48a ora settimanale; 20% per le prestazioni di lavoro eccedenti la 48a ora settimanale. [...] nei giorni festivi [...] maggiorazione del 30% [...] dalle ore 24.00 alle 6.00 [...] maggiorazione del 50% [...] Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2022-03-09",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-14-ai-ordinary-premiums"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "CED_FESTIVO",
+          "description": "Lavoro nelle festivita dell'art. 116, come straordinario festivo (art. 117)",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-03-09",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                "title": "CCNL CED, ICT, Professioni Digitali e STP, 9 March 2022",
+                "kind": "associazione",
+                "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+                "published_on": "2022-03-09",
+                "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+              },
+              "page": "85",
+              "section": "Art. 117 (Retribuzione prestazioni festive)",
+              "quote": "Le ore di lavoro, a qualsiasi titolo richieste, prestate nei giorni festivi indicati nel precedente art. 116 dovranno essere compensate come lavoro straordinario festivo"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2022-03-09",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-ordinary-premiums"
+            }
+          }
+        },
+        {
+          "code": "CED_RIPOSO",
+          "description": "Lavoro nel giorno di riposo settimanale (art. 118)",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-03-09",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                "title": "CCNL CED, ICT, Professioni Digitali e STP, 9 March 2022",
+                "kind": "associazione",
+                "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+                "published_on": "2022-03-09",
+                "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+              },
+              "page": "85",
+              "section": "Art. 118 (Retribuzione prestazioni nel giorno di riposo settimanale di legge)",
+              "quote": "dovranno essere retribuite con la sola maggiorazione del 30% sulla quota oraria della normale retribuzione"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2022-03-09",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-ordinary-premiums"
             }
           }
         }
@@ -2964,6 +3200,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sunday_holidays"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-ordinary-premiums",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 104, 106, 111, 117 and 118 of the stesura of 9 March 2022.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+            "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+          }
+        ],
+        "findings": [
+          "Corrected the weekday overtime band (15%, was 30%), added the tier beyond the 48th hour (20%), the night-holiday band, the holiday and rest-day premiums; recorded the Title XI shift premiums as a limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements"
         ]
       }
     ]

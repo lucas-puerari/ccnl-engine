@@ -101,3 +101,30 @@ def test_fiori_rates_of_articles_31_and_33() -> None:
         "OT_NOTTURNO_FESTIVO": ("0.75", None),
         "FIORI_FESTIVO": ("0.50", None),
     }
+
+
+def test_ced_rates_of_articles_104_to_118() -> None:
+    """15/20/30/50% overtime, holiday work as holiday overtime, rest day 30%."""
+    assert _rates("ced-assoced") == {
+        "OT_DIURNO": ("0.15", None),
+        "OT_DIURNO_EXTRA": ("0.20", Decimal(48)),
+        "OT_FESTIVO": ("0.30", None),
+        "OT_NOTTURNO": ("0.50", None),
+        "OT_NOTTURNO_FESTIVO": ("0.50", None),
+        "CED_FESTIVO": ("0.30", None),
+        "CED_RIPOSO": ("0.30", None),
+    }
+
+
+def test_ortofrutticoli_rates_of_articles_48_to_55() -> None:
+    """35/42/50/60% overtime; shift night 15%, Sunday and rest day 30%."""
+    assert _rates("ortofrutticoli-agrumari") == {
+        "OT_ORDINARIO": ("0.35", None),
+        "OT_FESTIVO": ("0.42", None),
+        "OT_NOTTURNO": ("0.50", None),
+        "OT_FESTIVO_NOTTURNO": ("0.60", None),
+        "ORTO_NOTTURNO_TURNI": ("0.15", None),
+        "ORTO_DOMENICA": ("0.30", None),
+        "ORTO_RIPOSO": ("0.30", None),
+        "ORTO_FESTIVO": ("0.30", None),
+    }
