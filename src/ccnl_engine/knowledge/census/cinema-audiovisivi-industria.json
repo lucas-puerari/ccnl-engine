@@ -19,22 +19,6 @@
       }
     },
     {
-      "id": "bilateral_funds_not_modelled",
-      "institute": "bilateral_funds",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SIMPLIFICATION: No employer bilateral funds modeled. No public data found for a cinema-specific bilateral fund for impiegati/tecnici in production companies.",
-      "calculation": "ccnl/cinema-audiovisivi-industria:coverage.notes",
-      "state": "unverified",
-      "remediation": "Confirm whether a sector bilateral fund applies and pass it as a bilateral fund event.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "cinema-audiovisivi-industria/bilateral_funds_not_modelled"
-        ]
-      }
-    },
-    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",
