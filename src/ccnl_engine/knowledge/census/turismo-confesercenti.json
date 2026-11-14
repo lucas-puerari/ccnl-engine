@@ -3,18 +3,18 @@
   "ccnl_id": "turismo-confesercenti",
   "requirements": [
     {
-      "id": "apprenticeship_under_classification",
+      "id": "apprentice_net_cap",
       "institute": "base_salary",
       "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "Apprenticeship model confirmed: CCNL Turismo Confesercenti provides sotto-inquadramento 2 levels below destination (consistent with Testo Unico apprendistato Art. 11, secondary sources). Modeled as 100% passthrough pending contract text; the engine supports under_classification tracks with levels_below. (review of 2026-10-30)",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 58 c. 3: the net cap of the apprentice pay ('La retribuzione netta dell'apprendista non potrà superare [...] la retribuzione netta del lavoratore non apprendista di analogo livello').",
       "calculation": "ccnl/turismo-confesercenti:coverage.notes",
       "state": "absent",
-      "remediation": "Source the contract text and model under_classification tracks (2 levels below destination) instead of the 100% passthrough.",
+      "remediation": "Cap the apprentice net pay.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "turismo-confesercenti/apprenticeship_under_classification"
+          "turismo-confesercenti/apprentice_net_cap"
         ]
       }
     },

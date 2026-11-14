@@ -73,16 +73,21 @@
         "text": "Indennita di funzione for QA (EUR 75/month) and QB (EUR 70/month) conglobated into base_salary. Consistent with turismo-federalberghi.json modeling for the same allowances. The CCNL H058 does not publish them as separate line items in the tabella retributiva; absorption into base_salary matches the conglobated model."
       },
       {
+        "kind": "info",
+        "text": "APPRENTICESHIP (Art. 58 c. 1 of the signed renewal 2018, CNEL archive 90033, PDF p. 76 for Assohotel/Assocamping, same clause p. 16 Fiepet/Fiba and p. 116 Assoviaggi; the 2024 renewal, CNEL 194334 p. 81, refers back to Art. 58): the apprentice is paid on 'la normale retribuzione dei lavoratori qualificati di pari livello': 80% the first year, 85% the second, 90% the third, 95% 'nei casi in cui la durata massima [...] è superiore a 36 mesi e per la quarta annualità dei percorsi di apprendistato in cicli stagionali'. Destinations of Art. 54 (p. 74): levels 2, 3, 4, 5, 6S (36 months) and 6 (24 months); the longer profiles (48 months, Addetto alle prenotazioni 42) are the caller's. The text has no under-classification: the earlier two-levels-below reading came from secondary sources. Months elapsed are the caller's, also for the seasonal cycles.",
+        "capability": "base_salary"
+      },
+      {
         "kind": "simplification",
-        "text": "Apprenticeship model confirmed: CCNL Turismo Confesercenti provides sotto-inquadramento 2 levels below destination (consistent with Testo Unico apprendistato Art. 11, secondary sources). Modeled as 100% passthrough pending contract text; the engine supports under_classification tracks with levels_below. (review of 2026-10-30)",
+        "text": "Art. 58 c. 3: the net cap of the apprentice pay ('La retribuzione netta dell'apprendista non potrà superare [...] la retribuzione netta del lavoratore non apprendista di analogo livello').",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "apprenticeship_under_classification",
+          "variant": "apprentice_net_cap",
           "applies_when": {
-            "trigger": "run"
+            "trigger": "outside_input"
           },
-          "remediation": "Source the contract text and model under_classification tracks (2 levels below destination) instead of the 100% passthrough."
+          "remediation": "Cap the apprentice net pay."
         }
       },
       {
@@ -264,22 +269,33 @@
       "type": "percentage",
       "name": "professionalizzante",
       "destination_levels": [
-        "7",
-        "6",
-        "6S",
-        "5",
-        "4",
-        "3",
         "2",
-        "1",
-        "QB",
-        "QA"
+        "3",
+        "4",
+        "5",
+        "6S",
+        "6"
       ],
       "periods": [
         {
           "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 36,
           "months_until": null,
-          "percentage": "1.00"
+          "percentage": "0.95"
         }
       ]
     }
@@ -6713,7 +6729,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
     "verification_status": "unverified",
-    "source_hash": "75008bece514384d040a1326a3a8aa9caf2bdbddf5197461f4b675cf1d8f5d4e",
+    "source_hash": "d7fac2236d0af4172c1a334fd38aa84451b5e5f2b2ce3fc4ccb3b9e7651c5355",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -7143,6 +7159,31 @@
         "independence": "same_process",
         "checked": [
           "levels.*.base_salary_by_subsector.ristorazione_collettiva"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-apprentice-percentages",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 54 and 58 of the signed renewal 2018 (three sections) and the apprentice reference of the 2024 renewal.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/90033",
+            "sha256": "58c26b5cf30bd09349b5b53e10e7fe8eeffea2310f52ed782aa1632d5f5c5f3c"
+          },
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/194334",
+            "sha256": "55c6a8267264aac3ef147cf6e4f5ee77eaa1a0e2e24263d8391166180f846b08"
+          }
+        ],
+        "findings": [
+          "Read Art. 58 and Art. 54 on the page images (pp. 74, 76): 80/85/90% of the same level, 95% only beyond 36 months; destinations 2-6. Replaced the 100% passthrough over all levels, which overpaid every apprentice, and closed apprenticeship_under_classification; recorded the Art. 58 c. 3 net cap as a limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "apprenticeship"
         ]
       }
     ]

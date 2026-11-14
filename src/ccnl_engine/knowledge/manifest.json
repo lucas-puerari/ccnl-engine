@@ -2176,7 +2176,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "75008bece514384d040a1326a3a8aa9caf2bdbddf5197461f4b675cf1d8f5d4e",
+      "source_hash": "d7fac2236d0af4172c1a334fd38aa84451b5e5f2b2ce3fc4ccb3b9e7651c5355",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/turismo-confesercenti.json.gz"
@@ -4941,7 +4941,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "5fe8bff8661ced1705672672b9c0a53ac1fe302786a02d5336dfda3f34466bb2",
+      "source_hash": "f5380cb1963fd37b1581fa6334be4dab0a99cbd8605f1431c4ac9796e0454489",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/turismo-confesercenti.json.gz",
