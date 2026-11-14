@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 35 verified / 8 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 41 verified / 5 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 29 of the CCNL 2023-2026 (permits, 39-hour week, March payout). | corrected | The file had the ferie but no permit: added the 32 hours of ex festivita and 40 of reduction, their absorption by the 39-hour week and the payout with the March pay of the next year. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Ferie at termination and the day and hour quotas of the CCNL 2023-2026. | corrected | The file had no basis for the leave left at termination: added the twelfths (15 days or more a month), the 1/26 day and the 1/170 hour. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Articolo 31 - Giorni festivi (holiday on a Sunday). | corrected | The file had no clause for a holiday falling on a Sunday, so its further daily quota was not paid: added the clause with the holidays the text lists and 4 November. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Artt. 31 and 33 of the CCNL 2023-2026. | corrected | Corrected the holiday (55%) and night (70%) overtime bands, added the night-holiday band (75%), the 48th-hour threshold and the 50% ordinary holiday premium; the premiums are on the retribuzione globale. |
 
 ## Salary table
 
@@ -322,6 +323,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEAVE AT TERMINATION (CCNL 2023-2026 pp. 22 and 27): ferie in twelfths, a fraction of fifteen days or more counting as a month, each day paid at the monthly pay over 26; the permit hours left at the hourly quota (1/170).
     
     HOLIDAY ON A SUNDAY (Articolo 31 - Giorni festivi, p. 21-22): a listed holiday falling on a Sunday pays a further daily quota (1/26 of the monthly pay); 4 November, celebrated on the first Sunday of November, takes the same treatment.
+    
+    OVERTIME (Art. 33): on the retribuzione globale, 30% from the 41st to the 48th weekly hour, 55% beyond, 55% on holidays, 70% at night (22-6), 75% at night on holidays; work on a holiday paid with 50% (Art. 31). The bands previously had 50% for holiday and night overtime and no night-holiday band.
     
 
 ## Raw data

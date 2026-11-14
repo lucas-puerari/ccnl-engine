@@ -4312,7 +4312,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "48a83593d03fe50c6c69d50117e4188dd6729fdd8367ad4c21781c5b6a49a19a",
+    "source_hash": "0a75094661e7df1f0200b9179beb37dbe2e12d4145d6419eb5c022180109da67",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4527,7 +4527,7 @@
               "review_id": "2026-10-11-ai"
             }
           },
-          "hour_threshold_per_week": 8
+          "hour_threshold_per_week": 48
         },
         {
           "code": "OT_NOTTURNO",
@@ -6403,6 +6403,27 @@
           "levels.OV1",
           "levels.OV2",
           "parameters.seniority_increments.amount_by_level"
+        ]
+      },
+      {
+        "id": "2026-11-14-gpt-48th-hour",
+        "date": "2026-11-14",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Art. 149 (printed p. 147, PDF p. 149) of the Testo Unico 2019: the weekly threshold of the 20% overtime band, by a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          }
+        ],
+        "findings": [
+          "Confirmed: '15% [...] dalla 41a alla 48a ora settimanale; 20% [...] eccedenti la 48a ora settimanale'. OvertimeEvent.weekly_hours_before counts all the hours worked in the week, so the 20% band starts at 48, not at 8, which paid hours 41-48 at 20% when the caller stated the hours already worked."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements.overtime_bands"
         ]
       }
     ],

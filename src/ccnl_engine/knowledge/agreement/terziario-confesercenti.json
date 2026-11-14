@@ -4683,7 +4683,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "76217487d6c82ca174947be62d554f6b0759152d7f32370a27ceaa0b3eb5d4e9",
+    "source_hash": "bf582ce77c18365f3ccb1fb7337cc87b2dc8440e6eb2fcca3695a03e28f0968c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4900,7 +4900,7 @@
               "review_id": "2026-10-13-ai-production"
             }
           },
-          "hour_threshold_per_week": 8
+          "hour_threshold_per_week": 48
         },
         {
           "code": "OT_FESTIVO",
@@ -6673,6 +6673,27 @@
         "independence": "same_process",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-48th-hour",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Weekly threshold of the overtime band beyond the 48th hour.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+            "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+          }
+        ],
+        "findings": [
+          "OvertimeEvent.weekly_hours_before counts all the hours worked in the week: the 20% band 'eccedenti la 48a ora settimanale' starts at 48, not at 8 (which paid the 41st-48th hours at 20% instead of 15% when the caller stated the hours before)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements.overtime_bands"
         ]
       }
     ],

@@ -4549,7 +4549,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "9ec169c4218f2fd78e7b32f88f52f82b5c048e8ebbca8f729f37697af093acce",
+    "source_hash": "823f4a11157faa8010580f6f04ae3fc33fcc8fdbc73853b4a217bc333b012101",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4737,7 +4737,7 @@
           "applies_to_kinds": [
             "weekday"
           ],
-          "hour_threshold_per_week": 8,
+          "hour_threshold_per_week": 48,
           "provenance": {
             "status": "verified",
             "location": {
@@ -6452,6 +6452,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.leave_rules.permit_deadline"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-48th-hour",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Weekly threshold of the overtime band beyond the 48th hour.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "OvertimeEvent.weekly_hours_before counts all the hours worked in the week: the 20% band 'eccedenti la 48a ora settimanale' starts at 48, not at 8 (which paid the 41st-48th hours at 20% instead of 15% when the caller stated the hours before)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements.overtime_bands"
         ]
       }
     ],
