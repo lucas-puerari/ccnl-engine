@@ -221,6 +221,10 @@ def test_beyond_the_indemnified_months_the_days_are_unpaid() -> None:
     assert "parental_income_condition" not in ids
     (issue,) = (i for i in result.issues if i.code == "parental_income_unknown")
     assert issue.fact == "individual_income"
+    assert issue.capability == "parental_leave"
+    assert issue.status.value == "incomplete"
+    assert issue.cause is not None
+    assert issue.cause.value == "fact"
 
 
 def test_a_stated_income_in_a_year_without_its_minimum() -> None:

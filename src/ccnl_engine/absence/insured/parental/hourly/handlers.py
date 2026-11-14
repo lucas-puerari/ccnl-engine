@@ -139,7 +139,6 @@ def _handle_hourly_parental(
         )
     if unknown:
         issues.append(_cohort_issue())
-    effect.issues = issues
     limitations = [*base.limitations, PARENTAL_EXTRA_MONTH_LIMITATION]
     issue, unpublished = income_check(days, in_span, event.individual_income, PARENTAL)
     effect.issues = [*issues, *([] if issue is None else [issue])]
