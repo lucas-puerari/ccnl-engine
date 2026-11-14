@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, sickness, territorial_supplement |
+| **Limits of this contract** | base_salary, sickness |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-09-29 |
-| **Last review** | 2026-11-13 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -76,6 +76,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-13 | gpt-6-sol (ai) | Apprentice sickness clause, its encoding and the engine change, against the signed text, by a separate model session. | flagged | Confirmed: source, page and sha256; the 2024 renewal does not list the article among those changed.<br>Confirmed: 60% carenza for six events a year, 60% of the gross pay on hospital-stay days, nothing in the probation, gross basis, 180 days in the calendar year; hand amounts of the Commercio test case recomputed.<br>Flagged and corrected in the same change: quotes made verbatim; a relapse takes the rank of its event; no carenza past the comporto; missing-fact issues raised only when the fact can change the pay; the limitation states the 50-point difference of the alternative reading.<br>Flagged, kept as limitation apprentice_hospital_share: the text does not settle whether the hospital 60% adds to the INPS indemnity or is the total. |
 | 2026-11-13 | gpt-6-sol (ai) | Sunday overtime outside the weekly rest day against the overtime, Sunday-work and rest-day articles, by a separate model session. | confirmed | Confirmed: overtime 'nei giorni festivi o la domenica' is paid 30% also when the weekly rest falls on another day; the 'salvo' clause reserves rest-day work, at the same 30% with a compensatory rest.<br>Confirmed: the Sunday-work article sends Sunday overtime to this article, so the two 30% do not add up; night overtime stays at 50%, the premiums are not cumulative.<br>Flagged and corrected: a typo in the transformation and the paragraph label of the unnumbered texts. |
 | 2026-11-13 | claude-opus-5-5 (ai) | Allegato 11 (PDF p. 98) and allegato 3 artt. 1, 14 (PDF pp. 71, 74) of the TU 2025 | corrected | Added levels OV1 and OV2 of the operatori di vendita on their own ladder, six tables 2023-2027, and their seniority increments. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Artt. 189, 191, 198 and 199 of the Testo Unico 2025, PDF pp. 57-59. | confirmed | The provincial terzi elementi are frozen local amounts the national text does not print; the existing territorial second-level input carries them with the incidences of the normal pay, and provincial_pay_element removes the 2,07 national element. Closed the limitation, which asked for an input that exists. |
 
 ## Salary table
 
@@ -129,13 +130,6 @@ Destination levels: `IV`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "dmo-federdistribuzione/provincial_elements_missing · territorial_supplement · impact yes · open"
-    Terzo elemento nazionale (Art. 199, PDF p. 59): EUR 2.07 a month only for the workers of firms in provinces with no provincial terzo elemento in force (Art. 198, frozen since 1973): gated by EmployerProfile.provincial_pay_element. The provincial amounts themselves are set by provincial agreements outside the Testo Unico and are not modelled.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the provincial terzi elementi of Art. 198 as a territorial supplement.
 
 !!! warning "dmo-federdistribuzione/sickness_net_basis · sickness · impact yes · open"
     SICKNESS (Art. 170): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate and tops it up to the measure of the gross daily quota, as for the Commercio file. The exempt events of c. 3 are an input (SicknessEpisode.short_absence_exempt, read with carenza_by_event) (review of 2026-10-30).
@@ -352,6 +346,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Split model confirmed: total / 168 at L1 = 14.905, L4 = 10.605, L7 = 8.309 — all non-integer. Source: Art. 194 (divisore 168 for 40h/week), Allegato 11.
     
     Contingenza: frozen values from Allegato 11 column. EDR (lire 20,000 = 10.33 EUR) conglobated into contingenza on 01/01/1995 per Art. 190 — no separate EDR allowance modelled.
+    
+    PROVINCIAL TERZI ELEMENTI (Art. 198 (Testo Unico 29 September 2025, PDF p. 59)): the provincial elements 'in atto alla data del 30 giugno 1973 [...] rimangono ancora congelati' and are paid 'in aggiunta ai nuovi livelli retributivi', also to the workers hired after 31 January 1983. The national text prints no province and no amount: they are the frozen figures of each provincial agreement. The caller states them as a territorial second-level element (EmployerProfile.second_level_elements, agreement 'territorial', monthly amount, levels, dates), which enters the extra months and the TFR by default, as the normal and de facto pay of Artt. 189 and 191 (p. 57) include the 'terzi elementi nazionali o provinciali ove esistenti'; with EmployerProfile.provincial_pay_element true the 2,07 national element of Art. 199 is left out.
     
     Indennità di funzione Quadri (Art. 113): EUR 260.76/month for 14 months (cumulative increments: 51.65+77.47+51.65+70.00+10.00=260.77; 0.01 rounding from lire). Allegato 11 shows 260.76.
     

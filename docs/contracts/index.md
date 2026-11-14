@@ -221,7 +221,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 102 | A181 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)](sistemazioni-idraulico-forestali-impiegati.md) | sistemazioni idraulico-forestali e idraulico-agrarie — impiegati | ~430 (impiegati subset) | 2025 | ⚠️ | base_salary, inps_employer | 22 / 6 / 2 / 0 | 🧪 | 🤖 |
 | 103 | A181 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | sistemazioni idraulico-forestali e idraulico-agrarie — operai a tempo indeterminato | ~430 (operai OTI subset) | 2025 | ⚠️ | base_salary, inps_employer, seniority | 16 / 5 / 2 / 0 | 🧪 | 🤖 |
 | 104 | K411 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | telecomunicazioni | ~110k | 2025 | ⚠️ | inps_employer, seniority | 11 / 35 / 1 / 0 | 🧪 | 🤖 |
-| 105 | H012 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | Terziario distribuzione e servizi | ~230k | 2024 | ✅ | sickness, territorial_supplement, una_tantum | 106 / 2 / 0 / 0 | 👁 | 🤖✓ |
+| 105 | H012 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | Terziario distribuzione e servizi | ~230k | 2024 | ✅ | sickness, una_tantum | 106 / 2 / 0 / 0 | 👁 | 🤖✓ |
 | 106 | H011 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | terziario | ~800k | 2024 | ⚠️ | base_salary, sickness | 100 / 2 / 0 / 0 | 🏭 | 🤖✓ |
 | 107 | D018 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | tessile abbigliamento moda PMI | ~48k | 2025 | ⚠️ | base_salary, seniority | 42 / 0 / 5 / 1 | 🧪 | 🔍 |
 | 108 | I810 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | trasporto aereo | ~40k | 2025 | ⚠️ | base_salary, sickness | 46 / 49 / 1 / 0 | 🧪 | 🤖 |
@@ -252,7 +252,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 133 | K461 | [CCNL per i lavoratori dipendenti delle aziende termali](aziende-termali-federterme.md) | turismo termale | — | — | ⚠️ | bilateral_funds, inps_employer, seniority | 0 / 65 / 1 / 0 | 🧪 | 🤖 |
 | 134 | J121 | [CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)](assicurazioni-ania.md) | assicurazioni | ~45k | 2026 | ⚠️ | base_salary, inps_employer | 20 / 10 / 1 / 1 | 🧪 | 🤖 |
 | 135 | N/A | [DPR 24 marzo 2025, n. 53 — Forze di Polizia ad ordinamento civile (Triennio 2022-2024)](forze-polizia-ordinamento-civile.md) | Pubblica Sicurezza — Forze di Polizia ad ordinamento civile | ~130k | 2025 | ⚠️ | base_salary, seniority | 0 / 112 / 1 / 1 | 🧪 | 🤖 |
-| 136 | H008 | [Distribuzione Moderna Organizzata — Federdistribuzione](dmo-federdistribuzione.md) | terziario | ~460k | — | ⚠️ | base_salary, sickness, territorial_supplement | 109 / 3 / 0 / 0 | 👁 | 🤖✓ |
+| 136 | H008 | [Distribuzione Moderna Organizzata — Federdistribuzione](dmo-federdistribuzione.md) | terziario | ~460k | — | ⚠️ | base_salary, sickness | 109 / 3 / 0 / 0 | 👁 | 🤖✓ |
 
 [^2]: DPR 53/2025 -- Compensation for Forze di Polizia ad ordinamento civile is set by Presidential Decree, not a CNEL-registered agreement. D.P.R. 24 marzo 2025, n. 53 (GU n. 91, 18 April 2025, SO).
 [^3]: Approximate estimates of the represented population. Contracts can cover overlapping populations, so the figures do not add up. Sources: CNEL, INPS, Ministero del Lavoro, CCNL renewal communications.

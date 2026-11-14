@@ -259,22 +259,6 @@
       }
     },
     {
-      "id": "provincial_third_elements",
-      "institute": "territorial_supplement",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 214: the provincial terzi elementi, amounts set by provincial agreements.",
-      "calculation": "ccnl/terziario-confesercenti:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the provincial terzi elementi as inputs.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "terziario-confesercenti/provincial_third_elements"
-        ]
-      }
-    },
-    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

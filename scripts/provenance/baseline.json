@@ -769,7 +769,6 @@
       "dmo-federdistribuzione/apprentice_hospital_share",
       "dmo-federdistribuzione/commission_guarantee",
       "dmo-federdistribuzione/employment_support_contract",
-      "dmo-federdistribuzione/provincial_elements_missing",
       "dmo-federdistribuzione/sickness_net_basis"
     ],
     "agreement/edilizia-ance-impiegati.json": [
@@ -1134,7 +1133,6 @@
     ],
     "agreement/terziario-confesercenti.json": [
       "terziario-confesercenti/apprentice_hospital_share",
-      "terziario-confesercenti/provincial_third_elements",
       "terziario-confesercenti/sickness_net_basis",
       "terziario-confesercenti/una_tantum_apprentices_sales"
     ],
