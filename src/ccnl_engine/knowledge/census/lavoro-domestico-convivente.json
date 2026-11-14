@@ -275,22 +275,6 @@
       }
     },
     {
-      "id": "seniority_frozen_at_2026",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "Seniority amounts frozen at 2026 base. Future ISTAT adjustments will raise base_salary but amounts_by_level will need manual update.",
-      "calculation": "ccnl/lavoro-domestico-convivente:coverage.notes",
-      "state": "unverified",
-      "remediation": "Update the seniority amounts with each ISTAT adjustment of the minimum tables.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "lavoro-domestico-convivente/seniority_frozen_at_2026"
-        ]
-      }
-    },
-    {
       "id": "sunday_holiday_ccnl_clause",
       "institute": "sunday_holiday",
       "variant": "all",
