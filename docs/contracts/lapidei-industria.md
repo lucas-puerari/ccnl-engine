@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | absence, base_salary |
+| **Limits of this contract** | absence, base_salary, sickness |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2022-11-24 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-07-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 43 values found verbatim on the cited pages and marked verified; 28 left as they were (derived or not on a text page). |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 19 values read identically by both readings and equal to the file. |
 | 2026-11-09 | claude-opus-5-5 (ai) | INPS circular 76/2022 p. 7 CIGO activity rates and apprentices. | corrected | Stone-working operai owe 3.30% CIGO rather than the general industry share. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source. | corrected | Added the comporto window of the CCNL; the pay bands across episodes stay under the engine limitation sickness_cumulation_window. |
 
 ## Salary table
 
@@ -120,6 +121,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Extract the post-2022 percentage table and model the percentage track.
 
+!!! warning "lapidei-industria/sickness_pay_cap_across_episodes · sickness · impact yes · open"
+    SICKNESS PAY ACROSS EPISODES (artt. 72, 84, 95): 100% for 180 days and 50% for 180 more of each episode, within a total of 180 + 180 days over 18 months for several episodes, the count starting again after five months of effective work; the engine counts the bands per episode, so several episodes may be overpaid.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Cap the pay bands of several episodes at 180 + 180 days in 18 months and reset them after five months of work.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -140,13 +148,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -169,26 +170,26 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the apprentice rate holds no Fondo di garanzia share, so none is exempted.
 
-!!! warning "maternity_daily_base · maternity_leave · impact unknown · open"
-    The INPS maternity indemnity of an operaia, or of a leave whose month before was not worked in full, is computed on the pay of the run over 30 with the rateo of the extra months, not on the pay of the month before the leave: art. 23 c. 5 D.Lgs. 151/2001 divides the pay of an operaia by the days worked or paid (or by the hours, when fewer than the contract), and the divisor of her daily rateo of the 13th is not settled by a primary source. The base of another worker over a whole month is computed from MaternityLeaveEvent.maternity_base_pay.
+!!! note "maternity_daily_base · maternity_leave · impact unknown · resolved"
+    The INPS indemnity of the leave is computed on the pay of the month before, as the sickness base (art. 23 D.Lgs. 151/2001): an operaio's pay over the days worked or paid with the monthly share of the extra months over 25, a month not worked in full over its days worked or paid; the pay of the month before, its days and the pay of a whole month are facts of the leave, missing when not stated. The run keeps its own pay only when the category or the monthly payments of the CCNL are unknown.
 
     **Applies when:** `maternity_leave` applies; the run takes the engine code path.
 
-    **Remediation:** Source the daily rateo of an operaia (an INPS circular on art. 23 c. 5) and compute her base and that of a month not worked in full, then resolve this limitation.
+    **Remediation:** Resolved: the base of an operaio and of a partial month is the sickness base of the month before.
 
-!!! warning "paternity_daily_base · paternity_leave · impact unknown · open"
-    The INPS indemnity of the compulsory paternity leave of an operaio, or of a leave whose month before was not worked in full, is computed on the pay of the run over 30 with the rateo of the extra months, not on the pay of the month before the leave: art. 29 D.Lgs. 151/2001 applies art. 23, whose c. 5 divides the pay of a manual worker by the days worked or paid (or by the hours) with a daily rateo no primary source settles. The base of another worker over a whole month is computed from PaternityLeaveEvent.paternity_base_pay.
+!!! note "paternity_daily_base · paternity_leave · impact unknown · resolved"
+    The INPS indemnity of the leave is computed on the pay of the month before, as the sickness base (art. 23 D.Lgs. 151/2001): an operaio's pay over the days worked or paid with the monthly share of the extra months over 25, a month not worked in full over its days worked or paid; the pay of the month before, its days and the pay of a whole month are facts of the leave, missing when not stated. The run keeps its own pay only when the category or the monthly payments of the CCNL are unknown.
 
     **Applies when:** `paternity_leave` applies; the run takes the engine code path.
 
-    **Remediation:** Source the daily rateo of a manual worker under art. 23 c. 5 and compute his base and that of a month not worked in full, then resolve this limitation.
+    **Remediation:** Resolved: the base of an operaio and of a partial month is the sickness base of the month before.
 
-!!! warning "parental_daily_base · parental_leave · impact unknown · open"
-    The INPS indemnity of the parental leave of an operaio or operaia, or of a leave whose month before was not worked in full, is computed on the pay of the run over 30 with the rateo of the extra months, not on the pay of the month before the leave: art. 34 c. 1 D.Lgs. 151/2001 applies art. 23, whose c. 5 divides the pay of a manual worker by the days worked or paid (or by the hours) with a daily rateo no primary source settles. The base of another worker over a whole month is computed from ParentalLeaveEvent.parental_base_pay.
+!!! note "parental_daily_base · parental_leave · impact unknown · resolved"
+    The INPS indemnity of the leave is computed on the pay of the month before, as the sickness base (art. 23 D.Lgs. 151/2001): an operaio's pay over the days worked or paid with the monthly share of the extra months over 25, a month not worked in full over its days worked or paid; the pay of the month before, its days and the pay of a whole month are facts of the leave, missing when not stated. The run keeps its own pay only when the category or the monthly payments of the CCNL are unknown.
 
     **Applies when:** `parental_leave` applies; the run takes the engine code path.
 
-    **Remediation:** Source the daily rateo of a manual worker under art. 23 c. 5 and compute his base and that of a month not worked in full, then resolve this limitation.
+    **Remediation:** Resolved: the base of an operaio and of a partial month is the sickness base of the month before.
 
 !!! warning "parental_income_condition · parental_leave · impact unknown · open"
     The days of parental leave beyond the indemnified months (three of each parent and three of the couple, nine of a sole parent) are paid nothing: art. 34 c. 3 D.Lgs. 151/2001 pays them 30% when the parent's income is below 2.5 times the trattamento minimo di pensione, an income test and a yearly amount the engine does not model.
@@ -330,6 +331,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SENIORITY: 5 biennali (24-month) scatti. Per-level EUR amounts: F=6.65, E=7.69, D=8.31, C=8.82, CS=9.45, B=9.80, A=11.97, AS=13.01. Confirmed from ilccnl.it.
     
     APPRENTICE SENIORITY (Apprendistato professionalizzante (accordo 15 marzo 2006), inquadramento e retribuzione, p. 61): no increment during the apprenticeship: 'La retribuzione sarà corrispondente a quella prevista dal vigente c.c.n.l., esclusi gli scatti di anzianità, per il livello iniziale di inquadramento per metà del periodo di apprendistato.' seniority_increments.apprentice_amount 0. The 2025 renewal (OCR) does not mention apprenticeship or increments; the 2022 renewal was not read in full.
+    
+    COMPORTO OF SEVERAL ILLNESSES (Artt. 72, 84, 95 - Malattia, PDF p. 10-12, https://www.filleacgil.net/images/cannata/LAPIDEI/CcnlLapideiIndustria_novembre2022.pdf, sha256 424d40daa56eb0a83a2fccac72d31a82afa3bf5bc2285d8edc57ccf3e0b9716f): 'In caso di più eventi morbosi, il periodo massimo di conservazione del posto viene fissato in complessivi 14 mesi e si intende riferito a un arco temporale pari a 30 mesi immediatamente precedenti l'evento.' Modelled as sickness_rules.comporto_windows: 426 days within 30 months before the day. The pay bands count by episode within a cap across episodes (180 + 180 days in 18 months, reset after five months of work), not modelled: limitation sickness_pay_cap_across_episodes.
     
 
 ## Raw data

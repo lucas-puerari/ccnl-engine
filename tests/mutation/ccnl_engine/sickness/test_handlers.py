@@ -506,7 +506,7 @@ def _after_january_and_february() -> PeriodState:
 @pytest.mark.parametrize(
     ("slug", "level", "limited"),
     [
-        ("tessile-smi", "3", True),
+        ("gomma-plastica-federazione-gomma-plastica", "E", True),
         ("commercio-confcommercio", "4", False),
         ("farmacie-private-h121", "2", False),
         ("edilizia-ance", "1", False),

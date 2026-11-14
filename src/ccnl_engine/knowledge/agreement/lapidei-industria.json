@@ -141,6 +141,23 @@
         "kind": "info",
         "capability": "seniority",
         "text": "APPRENTICE SENIORITY (Apprendistato professionalizzante (accordo 15 marzo 2006), inquadramento e retribuzione, p. 61): no increment during the apprenticeship: 'La retribuzione sarà corrispondente a quella prevista dal vigente c.c.n.l., esclusi gli scatti di anzianità, per il livello iniziale di inquadramento per metà del periodo di apprendistato.' seniority_increments.apprentice_amount 0. The 2025 renewal (OCR) does not mention apprenticeship or increments; the 2022 renewal was not read in full."
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Artt. 72, 84, 95 - Malattia, PDF p. 10-12, https://www.filleacgil.net/images/cannata/LAPIDEI/CcnlLapideiIndustria_novembre2022.pdf, sha256 424d40daa56eb0a83a2fccac72d31a82afa3bf5bc2285d8edc57ccf3e0b9716f): 'In caso di più eventi morbosi, il periodo massimo di conservazione del posto viene fissato in complessivi 14 mesi e si intende riferito a un arco temporale pari a 30 mesi immediatamente precedenti l'evento.' Modelled as sickness_rules.comporto_windows: 426 days within 30 months before the day. The pay bands count by episode within a cap across episodes (180 + 180 days in 18 months, reset after five months of work), not modelled: limitation sickness_pay_cap_across_episodes."
+      },
+      {
+        "kind": "simplification",
+        "text": "SICKNESS PAY ACROSS EPISODES (artt. 72, 84, 95): 100% for 180 days and 50% for 180 more of each episode, within a total of 180 + 180 days over 18 months for several episodes, the count starting again after five months of effective work; the engine counts the bands per episode, so several episodes may be overpaid.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "sickness_pay_cap_across_episodes",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Cap the pay bands of several episodes at 180 + 180 days in 18 months and reset them after five months of work."
+        }
       }
     ]
   },
@@ -3109,7 +3126,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/Scadenziario/Scadenza/19851/lapidei-industria",
     "verification_status": "verified",
-    "source_hash": "e38ef696279dd2b18cbcb4f0dddc1708ff0bcda08bb5216f5ac8b62be9fe8aab",
+    "source_hash": "9098492f6de7b2e7eef211ca668edf02b1100e30f661817336432ca657dc3365",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -3333,7 +3350,14 @@
           "verification_status": "unverified",
           "effective_from": "2022-11-01"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 30,
+          "comporto_days": 426
+        }
+      ]
     },
     "sunday_holidays": {
       "holidays": [
@@ -3520,6 +3544,27 @@
         "checked": [
           "meta.cigo_activities",
           "meta.cigo_provenance"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-lapidei-industria-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/cannata/LAPIDEI/CcnlLapideiIndustria_novembre2022.pdf",
+            "sha256": "424d40daa56eb0a83a2fccac72d31a82afa3bf5bc2285d8edc57ccf3e0b9716f"
+          }
+        ],
+        "findings": [
+          "Added the comporto window of the CCNL; the pay bands across episodes stay under the engine limitation sickness_cumulation_window."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.comporto_windows"
         ]
       }
     ]

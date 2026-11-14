@@ -892,7 +892,8 @@
     ],
     "agreement/lapidei-industria.json": [
       "lapidei-industria/apprenticeship_passthrough",
-      "lapidei-industria/daily_divisor_25"
+      "lapidei-industria/daily_divisor_25",
+      "lapidei-industria/sickness_pay_cap_across_episodes"
     ],
     "agreement/laterizi-industria-f021.json": [
       "laterizi-industria-f021/apprentice_seniority",
@@ -1198,17 +1199,14 @@
       "disability_permit_tfr",
       "dual_apprenticeship_contributions",
       "inps_minimum_base_exempt_category",
-      "maternity_daily_base",
       "mid_month_level_change",
       "notice_indemnity_day_measure",
       "notice_indemnity_extra_months",
       "notice_indemnity_partial",
-      "parental_daily_base",
       "parental_extra_month_share",
       "parental_hourly_ccnl_rule",
       "parental_income_condition",
       "parental_month_split",
-      "paternity_daily_base",
       "personal_withholding_same_kind",
       "provisional_inps_ruleset",
       "provisional_ruleset",

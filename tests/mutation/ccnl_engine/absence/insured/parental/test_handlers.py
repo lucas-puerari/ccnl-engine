@@ -343,11 +343,12 @@ def test_without_the_pay_before_a_fact_is_missing() -> None:
     assert _amounts(result)["maternity_item"] == ("inps", Decimal("1932.84"))
 
 
-def test_an_operaio_keeps_the_pay_of_the_run_under_a_limitation() -> None:
-    """Art. 23 c. 5 is not computed: the engine says so."""
+def test_an_operaio_without_the_pay_before_has_a_missing_fact() -> None:
+    """His base is the sickness base of the month before: not stated, missing."""
     result = _run(_march(), category=WorkerCategory.OPERAIO)
 
-    assert _limitations(result) == {"parental_daily_base"}
+    assert "parental_daily_base" not in _limitations(result)
+    assert any(i.code.endswith("_base_pay_unknown") for i in result.issues)
 
 
 def test_the_leave_keeps_the_13th_and_the_leave_accrual_not_the_tfr() -> None:

@@ -310,7 +310,7 @@ def test_the_provisional_limitations_are_not_gaps() -> None:
     met, outside = report.ccnl_limitations(commercio, engine)
 
     assert not report.FUTURE_LIMITATIONS.intersection((*met, *outside))
-    assert "maternity_daily_base" in met
+    assert "parental_income_condition" in met
     assert "sickness_cumulation_window" not in {*met, *outside}
 
 

@@ -83,22 +83,6 @@
       }
     },
     {
-      "id": "maternity_daily_base",
-      "institute": "maternity_leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The INPS maternity indemnity of an operaia, or of a leave whose month before was not worked in full, is computed on the pay of the run over 30 with the rateo of the extra months, not on the pay of the month before the leave: art. 23 c. 5 D.Lgs. 151/2001 divides the pay of an operaia by the days worked or paid (or by the hours, when fewer than the contract), and the divisor of her daily rateo of the 13th is not settled by a primary source. The base of another worker over a whole month is computed from MaternityLeaveEvent.maternity_base_pay.",
-      "calculation": "ccnl_engine.absence.insured.base.rules.leave_base; D.Lgs. 151/2001 art. 23 (Normattiva, text in force on 2026-10-30, page sha256 f5d5e1ff3028f8249597c78f9371063f0de7790676054b5f0207c974bc50bc04)",
-      "state": "unverified",
-      "remediation": "Source the daily rateo of an operaia (an INPS circular on art. 23 c. 5) and compute her base and that of a month not worked in full, then resolve this limitation.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "maternity_daily_base"
-        ]
-      }
-    },
-    {
       "id": "mid_month_level_change",
       "institute": "base_salary",
       "variant": "all",
@@ -163,22 +147,6 @@
       }
     },
     {
-      "id": "parental_daily_base",
-      "institute": "parental_leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The INPS indemnity of the parental leave of an operaio or operaia, or of a leave whose month before was not worked in full, is computed on the pay of the run over 30 with the rateo of the extra months, not on the pay of the month before the leave: art. 34 c. 1 D.Lgs. 151/2001 applies art. 23, whose c. 5 divides the pay of a manual worker by the days worked or paid (or by the hours) with a daily rateo no primary source settles. The base of another worker over a whole month is computed from ParentalLeaveEvent.parental_base_pay.",
-      "calculation": "ccnl_engine.absence.insured.base.rules.leave_base; D.Lgs. 151/2001 art. 34 (Normattiva, text in force on 2026-10-30, page sha256 aaf521a98f84e5d33cad1deee74452d789e5c58ec3d1ede4567453d7b7bd3967) and art. 23",
-      "state": "unverified",
-      "remediation": "Source the daily rateo of a manual worker under art. 23 c. 5 and compute his base and that of a month not worked in full, then resolve this limitation.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "parental_daily_base"
-        ]
-      }
-    },
-    {
       "id": "parental_extra_month_share",
       "institute": "parental_leave",
       "variant": "all",
@@ -239,22 +207,6 @@
       "links": {
         "limitations": [
           "parental_month_split"
-        ]
-      }
-    },
-    {
-      "id": "paternity_daily_base",
-      "institute": "paternity_leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The INPS indemnity of the compulsory paternity leave of an operaio, or of a leave whose month before was not worked in full, is computed on the pay of the run over 30 with the rateo of the extra months, not on the pay of the month before the leave: art. 29 D.Lgs. 151/2001 applies art. 23, whose c. 5 divides the pay of a manual worker by the days worked or paid (or by the hours) with a daily rateo no primary source settles. The base of another worker over a whole month is computed from PaternityLeaveEvent.paternity_base_pay.",
-      "calculation": "ccnl_engine.absence.insured.base.rules.leave_base; D.Lgs. 151/2001 artt. 23 and 29 (Normattiva, text in force on 2026-10-30, page sha256 f5d5e1ff3028f8249597c78f9371063f0de7790676054b5f0207c974bc50bc04 and 3bfcc58c0e6f305f8971925b355d864c9bdf203e187fe40503c0df2aeca8a94a)",
-      "state": "unverified",
-      "remediation": "Source the daily rateo of a manual worker under art. 23 c. 5 and compute his base and that of a month not worked in full, then resolve this limitation.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "paternity_daily_base"
         ]
       }
     },
@@ -337,18 +289,18 @@
       }
     },
     {
-      "id": "sickness_cumulation_window",
+      "id": "sickness_pay_cap_across_episodes",
       "institute": "sickness",
       "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.",
-      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
-      "state": "unverified",
-      "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SICKNESS PAY ACROSS EPISODES (artt. 72, 84, 95): 100% for 180 days and 50% for 180 more of each episode, within a total of 180 + 180 days over 18 months for several episodes, the count starting again after five months of effective work; the engine counts the bands per episode, so several episodes may be overpaid.",
+      "calculation": "ccnl/lapidei-industria:coverage.notes",
+      "state": "absent",
+      "remediation": "Cap the pay bands of several episodes at 180 + 180 days in 18 months and reset them after five months of work.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "sickness_cumulation_window"
+          "lapidei-industria/sickness_pay_cap_across_episodes"
         ]
       }
     },

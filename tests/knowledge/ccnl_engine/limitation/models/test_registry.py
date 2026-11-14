@@ -131,9 +131,6 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         PROVISIONAL_RULESET,
         PROVISIONAL_INPS_RULESET,
         EXEMPT_CATEGORY_FLOOR,
-        MATERNITY_BASE_LIMITATION,
-        PATERNITY_BASE_LIMITATION,
-        PARENTAL_BASE_LIMITATION,
         PARENTAL_INCOME_LIMITATION,
         PARENTAL_SPLIT_LIMITATION,
         PARENTAL_EXTRA_MONTH_LIMITATION,
@@ -157,6 +154,9 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         "naspi_dismissal_exceptions",
         "sickness_agricultural_fixed_term_days",
         "tfr_compensation_apprentice_guarantee_fund",
+        MATERNITY_BASE_LIMITATION,
+        PATERNITY_BASE_LIMITATION,
+        PARENTAL_BASE_LIMITATION,
     }
 
 
