@@ -629,6 +629,20 @@ maternity protection, the conciliation, the collective dismissal of c. 35,
 the exclusions of c. 34) are the limitation `naspi_dismissal_exceptions`,
 on the employer cost only.
 
+### INAIL premium
+
+A run whose employer states `EmployerProfile.inail_rate`, the rate INAIL
+applies to its position per mille (art. 29 DPR 1124/1965, the INAIL basi di
+calcolo of the year), accrues the premium on the INPS contribution base of
+the run, the same base for both (art. 12 L. 153/1969 as D.Lgs. 314/1997
+art. 6 rewrote it): `base × rate / 1000`, to the cent, an employer
+contribution (`inail`). The yearly self-assessment settles the premium on
+the pay of the year, the sum of the months. Without the rate no premium is
+accrued and the employer cost leaves it out, without a blocker (a pending
+fact). The INAIL minimum daily pay, the special premiums and the employer's
+own reductions (OT23) are not modelled: they are in the applied rate or
+outside the ordinary position.
+
 ### Absences are bounded by the pay of the run
 
 Unpaid absences that deduct more than the monthly pay of the run raise

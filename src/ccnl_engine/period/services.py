@@ -25,6 +25,7 @@ from ccnl_engine.period.context.request.services import build_context
 from ccnl_engine.period.posting.services import post_run, run_credits
 from ccnl_engine.period.repositories import BundledKnowledgeRepository
 from ccnl_engine.period.result.services import assemble_result
+from ccnl_engine.period.step.employer import run_employer_charges
 from ccnl_engine.period.step.services import (
     run_amounts,
     run_decisions,
@@ -82,6 +83,7 @@ def calculate_period(
     events = run_events(ctx)
     amounts = run_amounts(ctx, events.totals)
     events = run_tfr_settlement(ctx, events, amounts)
+    events = run_employer_charges(ctx, events, amounts)
     decisions = run_decisions(ctx, events.totals, amounts)
     recoveries = run_credits(ctx, amounts.tax_computation)
     posted = post_run(

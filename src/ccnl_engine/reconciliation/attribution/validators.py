@@ -118,6 +118,7 @@ ACCOUNT_CAPABILITIES: dict[AccountKind, frozenset[str]] = {
         "pension_fund_contribution",
         "contractual_funds",
         "naspi_dismissal",
+        "inail",
     }),
     AccountKind.BILATERAL_FUND_EMPLOYEE: _WORKER_FUNDS,
     AccountKind.BILATERAL_FUND_EMPLOYER: _FUNDS,

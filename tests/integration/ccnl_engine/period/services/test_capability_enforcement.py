@@ -111,7 +111,8 @@ class TestOrdinaryMonth:
             ("overtime", CapabilityScope.NOT_APPLICABLE),
             ("family_deductions", CapabilityScope.NOT_APPLICABLE),
             (_RESIDUAL_LEAVE, CapabilityScope.NOT_APPLICABLE),
-            ("inail", CapabilityScope.OUTSIDE_INPUT),
+            ("inail", CapabilityScope.NOT_APPLICABLE),
+            ("art15_deductions", CapabilityScope.OUTSIDE_INPUT),
             ("maternity_leave", CapabilityScope.NOT_APPLICABLE),
         ],
     )

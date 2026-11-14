@@ -50,13 +50,13 @@ def test_missing_note_lowers_its_capability() -> None:
         "base_salary",
         "overtime",
         "sickness",
-        "inail",
+        "art15_deductions",
     )
     rows = _by_feature(ccnl)
     assert rows["base_salary"] == (_IMPL.PARTIAL, True)
     assert rows["overtime"] == (_IMPL.PARTIAL, True)
     assert rows["sickness"] == (_IMPL.PARTIAL, True)
-    assert rows["inail"] == (_IMPL.UNSUPPORTED, True)
+    assert rows["art15_deductions"] == (_IMPL.UNSUPPORTED, True)
     assert rows["irpef"] == (_IMPL.NATIVE, False)
 
 

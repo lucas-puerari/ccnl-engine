@@ -58,6 +58,11 @@ _NOT_EXERCISED: dict[str, str] = {
         "pair pays; tests/mutation/ccnl_engine/compensation/una_tantum/"
         "test_rules.py carries it into the arrears event"
     ),
+    "EmployerProfile.inail_rate": (
+        "pending: without the rate no premium is accrued and no blocker "
+        "raised; tests/mutation/ccnl_engine/contribution/test_inail.py "
+        "exercises both sides"
+    ),
     "PersonalWithholding.installment": (
         "only two garnishments of one kind read it as a fact, which no "
         "registry pair states; tests/mutation/ccnl_engine/personal_withholding/"
