@@ -59,7 +59,7 @@ on unverified sources, or be well sourced and not cleared for production.
 - ✅ `contractual_funds` (native)
 - ✅ `assistance_contribution` (native)
 
-**Scenario features: computed when the request declares the event, the fact or the termination** (30):
+**Scenario features: computed when the request declares the event, the fact or the termination** (31):
 
 - ✅ `maternity_leave` (native)
 - ✅ `paternity_leave` (native)
@@ -75,6 +75,7 @@ on unverified sources, or be well sourced and not cleared for production.
 - ✅ `naspi_dismissal` (native)
 - ✅ `termination_tfr` (native)
 - 📝 `contract_renewal_arrears` (caller_supplied)
+- ⚠️ `additional_irpef_base` (partial)
 - 📝 `territorial_supplement` (caller_supplied)
 - 📝 `company_supplement` (caller_supplied)
 - ⚠️ `foreign_tax_credit` (partial)
@@ -92,11 +93,10 @@ on unverified sources, or be well sourced and not cleared for production.
 - 📝 `bilateral_funds` (caller_supplied)
 - ⚠️ `pension_fund_contribution` (partial)
 
-**Outside the input: the request has no field for the fact, so the engine does not compute them** (4):
+**Outside the input: the request has no field for the fact, so the engine does not compute them** (3):
 
 - 🔲 `contribution_exemption` (unsupported)
 - 🔲 `fiscal_adjustment` (unsupported)
-- 🔲 `additional_irpef_base` (unsupported)
 - 🔲 `art15_deductions` (unsupported)
 
 | | Core payroll path of a contract |

@@ -19,6 +19,7 @@ from ccnl_engine.end_of_service.services import (
     life_insurance_issue,
 )
 from ccnl_engine.fund.assistance.rules import run_assistance
+from ccnl_engine.irpef.prior.rules import prior_decision
 from ccnl_engine.irpef.services import (
     trattamento_issues,
     ulteriore_issues,
@@ -75,6 +76,7 @@ def _decisions(
                 inp.rules.year,
             ),
             *irpef.tax.decisions,
+            prior_decision(inp.prior, inp.rules.year),
             *surtax.all_decisions,
         )
         if d is not None
@@ -159,5 +161,6 @@ def _compute_amounts(
         pension=pension,
         issues=_issues(inp, irpef) + tfr.issues(),
         assistance=assistance,
+        prior_irpef_withheld=inp.prior.irpef_withheld,
     )
     return amounts, breakdown, tax_comp, irpef.tax.recovery_plan

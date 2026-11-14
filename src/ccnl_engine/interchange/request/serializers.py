@@ -72,6 +72,7 @@ from ccnl_engine.irpef.other_income.inputs import (
     CurrentYearTaxFacts,
     IncomeEstimateQuality,
 )
+from ccnl_engine.irpef.prior.inputs import PriorEmployerIncome
 from ccnl_engine.pension_fund.inputs import NoPensionFund, PensionFundEnrolment
 from ccnl_engine.period.facts.holiday import PaidHolidayDays
 from ccnl_engine.period.inputs import PeriodFacts, PeriodInput
@@ -171,6 +172,7 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             FixedTerm,
             ForeignTaxPaid,
             Headcount,
+            PriorEmployerIncome,
             HolidayWorkKind,
             IncomeEstimateQuality,
             IndividualElement,

@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.contribution.additional_ivs.rules import AdditionalIvsPosition
 from ccnl_engine.fund.contractual.rules import ContractualRun
+from ccnl_engine.irpef.prior.rules import PriorTotals
 from ccnl_engine.irpef.rules import DAYS_IN_YEAR
 from ccnl_engine.run.models import RunKind
 from ccnl_engine.surtax.rules import RunSurtax
@@ -154,6 +155,7 @@ class _AmountsInput:
     run_kind: RunKind = RunKind.REGULAR
     foreign_taxes: tuple[ForeignTaxPaid, ...] = ()
     deferred_irpef: Decimal = Decimal(0)
+    prior: PriorTotals = field(default_factory=PriorTotals)
     additional_ivs: AdditionalIvsPosition = field(default_factory=AdditionalIvsPosition)
     tfr_treasury_fund: bool | None = None
     assistance: AssistanceTerms | None = None
@@ -223,3 +225,4 @@ class _PeriodAmounts:
     issues: tuple[CalculationIssue, ...] = ()
     assistance: AssistanceContribution | None = None
     apart_inps: Decimal = Decimal(0)
+    prior_irpef_withheld: Decimal = Decimal(0)

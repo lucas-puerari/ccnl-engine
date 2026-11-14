@@ -192,7 +192,9 @@ def _closing_tax(op: TaxCashState, outcome: RunOutcome) -> TaxYtd:
     """Return the tax withheld YTD after the run.
 
     The surtax refunded by the conguaglio lowers the surtax withheld, and
-    the acconto or saldo it was taken from.
+    the acconto or saldo it was taken from.  The IRPEF the conguaglio takes
+    in from earlier employments of the year joins the IRPEF withheld, as
+    the CU of the year totals it.
 
     Returns:
         The IRPEF, surtax and municipal acconto withheld after the run.
@@ -202,7 +204,7 @@ def _closing_tax(op: TaxCashState, outcome: RunOutcome) -> TaxYtd:
     settled = surtax.conguaglio
     advance = surtax.advance_withheld(amounts.period_surtax, outcome.tax_year)
     return TaxYtd(
-        irpef=op.tax.irpef + amounts.period_irpef,
+        irpef=op.tax.irpef + amounts.period_irpef + amounts.prior_irpef_withheld,
         surtax=op.tax.surtax + amounts.period_surtax - surtax.refund,
         municipal_advance=op.tax.municipal_advance + advance - settled.advance_refunded,
         regional_settled=op.tax.regional_settled + settled.regional_settled,
