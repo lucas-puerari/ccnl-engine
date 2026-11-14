@@ -39,8 +39,9 @@ def meal_benefit(ctx: RunContext) -> tuple[WelfareEvent, ...]:
     days = ctx.request.meal_benefit_days
     if not days:
         return ()
-    if ctx.request.employer.headcount.value <= 10:
-        msg = "meal benefit requires an employer with more than 10 employees"
+    if _below_threshold(ctx):
+        minimum = ctx.contract.ccnl.parameters.meal_benefit_min_headcount
+        msg = f"meal benefit requires an employer with at least {minimum} employees"
         raise InvalidInputError(msg, feature="meal_benefit")
     run = ctx.request.run
     if run is not None and run.run_kind not in {RunKind.REGULAR, RunKind.TERMINATION}:
@@ -61,6 +62,16 @@ def meal_benefit(ctx: RunContext) -> tuple[WelfareEvent, ...]:
     return (WelfareEvent(date(competence.year, competence.month, 1), rate * days),)
 
 
+def _below_threshold(ctx: RunContext) -> bool:
+    """Whether the employer is below the CCNL's minimum headcount, if any.
+
+    Returns:
+        True when ``meal_benefit_min_headcount`` is set and not reached.
+    """
+    minimum = ctx.contract.ccnl.parameters.meal_benefit_min_headcount
+    return minimum is not None and ctx.request.employer.headcount.value < minimum
+
+
 def meal_benefit_issue(ctx: RunContext) -> CalculationIssue | None:
     """Report an unknown eligible day count only when the daily benefit can apply.
 
@@ -72,7 +83,7 @@ def meal_benefit_issue(ctx: RunContext) -> CalculationIssue | None:
     series = ctx.contract.ccnl.parameters.meal_benefit_daily
     if (
         request.meal_benefit_days is not None
-        or request.employer.headcount.value <= 10
+        or _below_threshold(ctx)
         or (
             request.run is not None
             and request.run.run_kind not in {RunKind.REGULAR, RunKind.TERMINATION}

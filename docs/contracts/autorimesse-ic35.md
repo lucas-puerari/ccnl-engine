@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | parental_leave, welfare |
+| **Limits of this contract** | parental_leave |
 
 4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | The parental leave clause against the CCNL top-up encoding, by a separate model session. | corrected | Confirmed the rate and the cap of the clause.<br>Corrected: the counter of the days already topped up holds only the earlier leave events (documented and tested); the hourly leave, the pay base and adoption and foster care are recorded as limitation parental_top_up_scope. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Parental hourly supplement, Art. 68 and Art. 79, PDF pp. 113–114, 124–125. | confirmed | Art. 79(b): gli importi orari del trattamento economico si determinano dividendo la retribuzione giornaliera per la durata dell’orario giornaliero come determinato dalla lettera a);<br>Art. 68 grants 80% for the first 30 days and equates adoption and foster care; the current hourly event models half-days only. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto and sick pay against a second research of a separate model session; quotes checked on the source. | corrected | Added the comporto window of art. 60 (12 months within 36); the sick pay of the operai stays as it was, its two clauses being contradictory. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Ticket restaurant of art. 45 against the research of a separate model session; quotes checked on the text layer. | corrected | Added the daily meal benefit of 8.00 from 2023 and 10.00 from April 2027. |
 
 ## Salary table
 
@@ -113,12 +114,12 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "autorimesse-ic35/meal_voucher · welfare · impact yes · open"
-    SIMPLIFICATION: Ticket restaurant excluded. Art. 44/84 provides 8.00 EUR/day (from 01/01/2023), rising to 10.00 EUR/day from 01/04/2027, conditional on >= 5 hours worked. Per-day and conditional: not representable as a monthly fixed allowance.
+!!! note "autorimesse-ic35/meal_voucher · welfare · impact yes · resolved"
+    TICKET RESTAURANT (Art. 45, PDF pp. 93-94, https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf, sha256 af0c6b2555f502ab52fcedb82b5d138093ef49499cac97ac19ec241e696f686d): 8.00 a day from 1 January 2023, 10.00 from 1 April 2027, 'per ogni giornata di effettivo lavoro', a day of at least 5 hours, paid hourly leave up to four hours counting as work. The caller states the qualifying days (meal_benefit_days); the engine posts them at parameters.meal_benefit_daily. The Sezione appalti (art. 85) leaves the buono pasto to company agreements and is outside this rate.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Post the ticket restaurant as a welfare item per day worked of at least 5 hours: 8.00 EUR a day from 2023-01-01, 10.00 EUR from 2027-04-01 (Art. 44/84).
+    **Remediation:** Resolved: art. 45 read on 2026-11-15; the qualifying days are a caller fact (meal_benefit_days).
 
 !!! note "autorimesse-ic35/apprenticeship_percentages_2019 · base_salary · impact unknown · resolved"
     APPRENTICESHIP (Art. 32, p. 65 of the text of 15 December 2022): at most 24 months; pay 'nel primo anno: 85% della retribuzione globale; nel secondo anno: 90%'. The renewal of 9 December 2025 does not amend art. 32; after 24 months the full pay of the level.

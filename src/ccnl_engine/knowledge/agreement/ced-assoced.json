@@ -273,6 +273,7 @@
         }
       ]
     },
+    "meal_benefit_min_headcount": 11,
     "seniority_increments": {
       "cadence_months": 24,
       "maximum_count": 5,
@@ -2201,7 +2202,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "419a0f4cea93566a2020ead0f7a691b60bebf85fab2f51ec5adccb62d4b7e0ef",
+    "source_hash": "571aafb3dcf4dfd8e42cb5a6fef89553cf0d784151f4270ffc60d2011d37788c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

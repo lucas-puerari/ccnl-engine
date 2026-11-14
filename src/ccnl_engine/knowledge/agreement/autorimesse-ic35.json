@@ -88,7 +88,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Ticket restaurant excluded. Art. 44/84 provides 8.00 EUR/day (from 01/01/2023), rising to 10.00 EUR/day from 01/04/2027, conditional on >= 5 hours worked. Per-day and conditional: not representable as a monthly fixed allowance.",
+        "text": "TICKET RESTAURANT (Art. 45, PDF pp. 93-94, https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf, sha256 af0c6b2555f502ab52fcedb82b5d138093ef49499cac97ac19ec241e696f686d): 8.00 a day from 1 January 2023, 10.00 from 1 April 2027, 'per ogni giornata di effettivo lavoro', a day of at least 5 hours, paid hourly leave up to four hours counting as work. The caller states the qualifying days (meal_benefit_days); the engine posts them at parameters.meal_benefit_daily. The Sezione appalti (art. 85) leaves the buono pasto to company agreements and is outside this rate.",
         "monetary_impact": "yes",
         "capability": "welfare",
         "limitation": {
@@ -97,7 +97,8 @@
             "trigger": "outside_input",
             "effective_from": "2023-01-01"
           },
-          "remediation": "Post the ticket restaurant as a welfare item per day worked of at least 5 hours: 8.00 EUR a day from 2023-01-01, 10.00 EUR from 2027-04-01 (Art. 44/84)."
+          "remediation": "Resolved: art. 45 read on 2026-11-15; the qualifying days are a caller fact (meal_benefit_days).",
+          "status": "resolved"
         }
       },
       {
@@ -286,6 +287,68 @@
         }
       },
       "apprentice_level_amount": true
+    },
+    "meal_benefit_daily": {
+      "periods": [
+        {
+          "valid_from": "2023-01-01",
+          "valid_until": "2027-04-01",
+          "value": "8.00",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniasa-2025-2027",
+                "title": "CCNL autonoleggio, autorimesse e servizi (ANIASA), testo 2025-2027 (FILT-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf",
+                "sha256": "af0c6b2555f502ab52fcedb82b5d138093ef49499cac97ac19ec241e696f686d"
+              },
+              "page": "93",
+              "section": "Art. 45 Istituzione ticket restaurant",
+              "quote": "Dal 01/01/2023 il valore del ticket restaurant sarà incrementato da € 7,00 a € 8,00 per ogni giornata di effettivo lavoro."
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-11-15T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2023-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "review_id": "2026-11-15-ai-autorimesse-ic35-meal-voucher"
+            }
+          }
+        },
+        {
+          "valid_from": "2027-04-01",
+          "valid_until": null,
+          "value": "10.00",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-aniasa-2025-2027",
+                "title": "CCNL autonoleggio, autorimesse e servizi (ANIASA), testo 2025-2027 (FILT-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf",
+                "sha256": "af0c6b2555f502ab52fcedb82b5d138093ef49499cac97ac19ec241e696f686d"
+              },
+              "page": "94",
+              "section": "Art. 45 Istituzione ticket restaurant",
+              "quote": "Dal 01/04/2027 il valore del ticket restaurant sarà incrementato da € 8,00 a € 10,00 per ogni giornata di effettivo lavoro."
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-11-15T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2027-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "review_id": "2026-11-15-ai-autorimesse-ic35-meal-voucher"
+            }
+          }
+        }
+      ]
     }
   },
   "apprenticeship": [
@@ -4150,7 +4213,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "061620e24aba96a42622b995bf6d146334b0b47151b7e8afecd73d71075a21f6",
+    "source_hash": "9ebdda073f7c4971424d460927d6c1652e699e917c04fff09e378a23d8fec31c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4654,6 +4717,28 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules",
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-autorimesse-ic35-meal-voucher",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Ticket restaurant of art. 45 against the research of a separate model session; quotes checked on the text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf",
+            "sha256": "af0c6b2555f502ab52fcedb82b5d138093ef49499cac97ac19ec241e696f686d"
+          }
+        ],
+        "findings": [
+          "Added the daily meal benefit of 8.00 from 2023 and 10.00 from April 2027."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.meal_benefit_daily",
           "coverage.notes"
         ]
       }

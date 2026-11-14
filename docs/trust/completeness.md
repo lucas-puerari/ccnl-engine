@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 261 weak rules, 342 open limitations (342 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 261 weak rules, 341 open limitations (341 with a monetary impact).
 
 ## Declared window
 
@@ -61,7 +61,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [assicurazioni-ania](../contracts/assicurazioni-ania.md) | `assicurazioni` | exploratory | — | 20 rows | 20 open requirements; 2 weak rules; 14 monetary limitations; 2 outside_input limitations; 21 non-native capabilities |
 | [attivita-minerarie-assorisorse](../contracts/attivita-minerarie-assorisorse.md) | `materiali-estrattive` | exploratory | — | 18 rows | 18 open requirements; 3 weak rules; 13 monetary limitations; 18 non-native capabilities |
 | [autoferrotranvieri-internavigatori](../contracts/autoferrotranvieri-internavigatori.md) | `trasporti-logistica` | exploratory | — | 18 rows | 18 open requirements; 1 weak rule; 14 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
-| [autorimesse-ic35](../contracts/autorimesse-ic35.md) | `servizi-automobilistici` | exploratory | — | 20 rows | 20 open requirements; 2 weak rules; 14 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
+| [autorimesse-ic35](../contracts/autorimesse-ic35.md) | `servizi-automobilistici` | exploratory | — | 19 rows | 19 open requirements; 2 weak rules; 14 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [autoscuole-unasca](../contracts/autoscuole-unasca.md) | `servizi-automobilistici` | exploratory | — | 16 rows | 16 open requirements; 1 weak rule; 13 monetary limitations; 18 non-native capabilities |
 | [autostrade-trafori](../contracts/autostrade-trafori.md) | `trasporti-logistica` | exploratory | — | 19 rows | 19 open requirements; 2 weak rules; 14 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [aziende-termali-federterme](../contracts/aziende-termali-federterme.md) | `turismo` | exploratory | — | 19 rows | 19 open requirements; 1 weak rule; 16 monetary limitations; 20 non-native capabilities |

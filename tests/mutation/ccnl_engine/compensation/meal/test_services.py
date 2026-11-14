@@ -284,8 +284,27 @@ def test_no_contract_rate_does_not_guess_a_voucher_value() -> None:
 
 def test_headcount_is_a_strict_threshold() -> None:
     """Ten employees cannot qualify for EUR 8 * 1 = EUR 8 of meal benefits."""
-    with pytest.raises(InvalidInputError, match="more than 10"):
+    with pytest.raises(InvalidInputError, match=r"at least 11 employees$"):
         _run(year=2026, month=10, days=1, headcount=10)
+
+
+@pytest.mark.parametrize(
+    ("year", "month", "amount"), [(2026, 10, "16.00"), (2027, 4, "20.00")]
+)
+def test_autorimesse_has_no_headcount_threshold(
+    year: int, month: int, amount: str
+) -> None:
+    """Art. 45 ANIASA: 8.00 a day, 10.00 from April 2027, at any headcount."""
+    result = _run(
+        year=year,
+        month=month,
+        days=2,
+        headcount=3,
+        level="C1",
+        ccnl_id="autorimesse-ic35",
+    )
+    welfare = [i.amount for i in result.pay_items if i.kind == "welfare_item"]
+    assert welfare == [Decimal(amount)]
 
 
 @pytest.mark.parametrize("days", [-1, 32, True, 2.5])
