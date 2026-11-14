@@ -1,5 +1,6 @@
 """Working-time and leave rule models for CCNL contracts."""
 
+import itertools
 from decimal import Decimal
 from enum import StrEnum
 from typing import Self
@@ -69,6 +70,9 @@ class OvertimeBand(BaseModel):
     it alike (Alimentari art. 31: tables by industry and category).
     ``premium_base`` selects the monthly elements for the percentage premium
     when they differ from those used to pay the ordinary hour.
+    ``shift_workers`` keeps an overtime band to the turnisti
+    (``OvertimeEvent.in_periodic_shift``) when ``True``, to the others when
+    ``False`` (Federmeccanica art. 7: a column for each); ``None``, to all.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -85,7 +89,29 @@ class OvertimeBand(BaseModel):
     subsectors: tuple[str, ...] = ()
     categories: tuple[WorkerCategory, ...] = ()
     premium_base: HourlyBaseMethod | None = None
+    shift_workers: bool | None = None
     provenance: RuleProvenance | None = None
+
+
+def _unconditional_keys(band: OvertimeBand) -> list[str]:
+    """Return the work kind and shift column keys an unpredicated band takes.
+
+    Returns:
+        ``kind/column`` for each kind and column (both columns without a
+        ``shift_workers``); none for a band with a threshold or a context.
+    """
+    if band.required_context_kinds or _has_threshold(band):
+        return []
+    shift = band.shift_workers
+    columns = (True, False) if shift is None else (shift,)
+    return [f"{k}/{c}" for k, c in itertools.product(band.applies_to_kinds, columns)]
+
+
+def _has_threshold(band: OvertimeBand) -> bool:
+    return (
+        band.hour_threshold_per_week is not None
+        or band.hour_threshold_per_day is not None
+    )
 
 
 class WeekDivisor(BaseModel):
@@ -187,7 +213,8 @@ class TimeSupplements(BaseModel):
 
         Two or more bands for the same WorkKind are only allowed when they are
         disambiguated by ``hour_threshold_per_week``, ``hour_threshold_per_day``,
-        or ``required_context_kinds``. Bands that overlap without any such
+        or ``required_context_kinds``, or by the shift column
+        (``shift_workers``). Bands that overlap without any such
         predicate are ambiguous and cannot be applied deterministically.
 
         Returns:
@@ -199,16 +226,10 @@ class TimeSupplements(BaseModel):
         """
         unconditional: dict[str, list[OvertimeBand]] = {}
         for band in bands:
-            is_conditional = bool(band.required_context_kinds)
-            has_threshold = (
-                band.hour_threshold_per_week is not None
-                or band.hour_threshold_per_day is not None
-            )
-            if not is_conditional and not has_threshold:
-                for k in band.applies_to_kinds:
-                    unconditional.setdefault(k, []).append(band)
+            for key in _unconditional_keys(band):
+                unconditional.setdefault(key, []).append(band)
         collisions = {
-            k: [b.code for b in found]
+            k.split("/")[0]: [b.code for b in found]
             for k, found in unconditional.items()
             if bands_overlap(found)
         }
