@@ -30,6 +30,7 @@ from ccnl_engine.absence.insured.permit.inputs import DisabilityPermitEvent
 from ccnl_engine.absence.insured.rest.inputs import NursingRestEvent
 from ccnl_engine.compensation.board.inputs import BoardLodgingEvent
 from ccnl_engine.event.types import WORK_EVENT_TYPES, WorkEvent
+from ccnl_engine.leave.flexibility.inputs import FlexibilityWeekEvent
 from ccnl_engine.leave.inputs import LeaveTakenEvent
 from ccnl_engine.leave.types import LeaveBucket
 from ccnl_engine.sickness.models import SicknessEpisode
@@ -63,6 +64,7 @@ __all__ = [
     "BonusEvent",
     "DisabilityPermitEvent",
     "ExtraordinaryLeaveEvent",
+    "FlexibilityWeekEvent",
     "FringeEvent",
     "HolidayWorkEvent",
     "HolidayWorkKind",

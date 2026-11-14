@@ -26,6 +26,7 @@ gross, net and employer cost according to its treatment; see
 ::: ccnl_engine.events.LeaveBucket
 
 ::: ccnl_engine.events.LeaveTakenEvent
+::: ccnl_engine.events.FlexibilityWeekEvent
 ::: ccnl_engine.events.MaternityLeaveEvent
 
 ::: ccnl_engine.events.NoticeIndemnityEvent

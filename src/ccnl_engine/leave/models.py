@@ -17,6 +17,7 @@ from typing import Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.employment.rota.inputs import Rota  # noqa: TC001
+from ccnl_engine.leave.flexibility.models import FlexibilityPermits  # noqa: TC001
 from ccnl_engine.leave.permit.models import PermitRules  # noqa: TC001
 from ccnl_engine.leave.types import LeaveBucket, MonthCredit
 from ccnl_engine.provenance.source.rule.models import RuleProvenance  # noqa: TC001
@@ -215,6 +216,7 @@ class LeaveRules(BaseModel):
     without them accrues no leave.  ``permit_deadline`` pays the permits
     of a year not taken by its deadline.  ``rota_annual_days`` replace
     ``default_annual_days`` for the rota of a guard (``Employment.rota``).
+    ``flexibility`` sets the permits a flexible week earns.
 
     ``provenance`` links this rule to its CCNL article.
     """
@@ -230,6 +232,7 @@ class LeaveRules(BaseModel):
     termination: LeaveTermination | None = None
     permit_deadline: PermitDeadline | None = None
     rota_annual_days: tuple[RotaLeave, ...] = ()
+    flexibility: FlexibilityPermits | None = None
 
     @model_validator(mode="after")
     def _distinct_buckets(self) -> Self:
@@ -261,7 +264,8 @@ class LeaveRules(BaseModel):
     def buckets(self) -> frozenset[LeaveBucket]:
         """Buckets the CCNL accrues: ferie with an accrual, and the permits."""
         ferie = {LeaveBucket.FERIE} if self.ferie_accrual is not None else set()
-        return frozenset(ferie | {p.bucket for p in self.permits})
+        flex = {LeaveBucket.FLESSIBILITA} if self.flexibility is not None else set()
+        return frozenset(ferie | flex | {p.bucket for p in self.permits})
 
     def annual_days(self, service_months: int | None, day: date) -> Decimal:
         """Return the leave days of a year for a worker on ``day``.

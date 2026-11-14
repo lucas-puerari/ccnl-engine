@@ -13,6 +13,7 @@ from ccnl_engine.event.facade import (
     BoardLodgingEvent,
     DisabilityPermitEvent,
     ExtraordinaryLeaveEvent,
+    FlexibilityWeekEvent,
     FringeEvent,
     HolidayWorkEvent,
     HourlyParentalLeaveEvent,
@@ -78,6 +79,7 @@ EVENT_FEATURES: dict[type, str] = {
     BilateralFundEvent: "bilateral_funds",
     TerminationTFREvent: "termination_tfr",
     LeaveTakenEvent: "leave",
+    FlexibilityWeekEvent: "leave",
     BoardLodgingEvent: "board_lodging",
 }
 

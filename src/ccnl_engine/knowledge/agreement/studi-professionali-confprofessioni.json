@@ -109,17 +109,9 @@
         "text": "INJURY (Art. 123, p. 66): the injury day in full and 60% for the three days of carenza (art. 73 DPR 1124/1965); from the fourth day the employer tops the INAIL indemnity up to 75% of the retribuzione media giornaliera (work_rules.insured_absence.injury). The indemnity is not due when INAIL pays none."
       },
       {
-        "kind": "simplification",
-        "text": "Art. 92: the permits added by the flexibility of the hours (30 or 60 minutes a week over the normal hours), paid with the overtime premium within six months of the end of the yearly programme when not taken. The unused ROL and ex festività are paid at the deadline of Art. 91 c. 5 (permit_deadline) and the holidays on a Sunday by Art. 97 C (sunday_holidays).",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "unused_leave_hours",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Accrue the flexibility permits of Art. 92 and pay those not taken with the overtime premium."
-        }
+        "kind": "info",
+        "text": "FLEXIBILITY PERMITS (Art. 92, pp. 47-48): in a yearly programme of flexibility (EmployerProfile.flexibility_programme_month) a week over 40 hours earns 30 minutes of permit up to 44 hours and 60 minutes up to 48 (FlexibilityWeekEvent: the hours worked), not absorbed by other reductions; the hours not taken are paid with the 15% overtime premium of Art. 95 (OT_DIURNO) on the pay of the sixth month after the last month of the programme year, and at the end of the employment. A week over 48 hours is outside the regime and earns nothing. The unused ROL and ex festività are paid at the deadline of Art. 91 c. 5 and the holidays on a Sunday by Art. 97 C.",
+        "capability": "leave"
       },
       {
         "kind": "info",
@@ -2386,7 +2378,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "3d72e221c80a48b45f30437c9c7541f25165323c2e8699af8db4e27c413bc484",
+    "source_hash": "827b50dc8943cc787aa8244f0047ab1f0dd0bbbd9b1e2f280fb7f76fca99b8d1",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3077,6 +3069,48 @@
             "verified_at": "2026-11-06T13:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-06-ai-permit-deadline",
+            "effective_from": "2024-02-16"
+          }
+        }
+      },
+      "flexibility": {
+        "normal_weekly_hours": "40",
+        "bands": [
+          {
+            "up_to_hours": "44",
+            "minutes": "30"
+          },
+          {
+            "up_to_hours": "48",
+            "minutes": "60"
+          }
+        ],
+        "payout_months_after": 6,
+        "premium_band": "OT_DIURNO",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-studi-professionali-2024-02-16",
+              "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+              "kind": "associazione",
+              "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+              "published_on": "2024-02-16",
+              "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+            },
+            "page": "47-48",
+            "section": "Art. 92 - Flessibilita dell'orario",
+            "quote": "a) in caso di superamento dell'orario di lavoro fino a 44 (quarantaquattro) ore settimanali, un incremento pari a 30 (trenta) minuti per ciascuna settimana di superamento dell'orario normale; b) [...] oltre 44 (quarantaquattro) ore settimanali e fino a 48 (quarantotto) ore settimanali, un incremento del monte ore di permessi retribuiti pari a 60 (sessanta) minuti [...] In caso di mancata fruizione [...] le ore risultanti maturate saranno pagate con la maggiorazione prevista per le ore di straordinario e saranno liquidate entro e non oltre il sesto mese successivo a quello corrispondente il termine del programma annuale di flessibilità."
+          },
+          "transformation": "The permits of a year not taken lapse and are paid at the employer's choice (EmployerProfile.permit_carryover): with the December pay, or carried and paid with the pay of month 7 of the next year for what is left; the hours are paid at the basis of the residual leave of the termination.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-06T13:00:00Z",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-06T13:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-flexibility",
             "effective_from": "2024-02-16"
           }
         }
@@ -4411,6 +4445,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sunday_holidays"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-flexibility",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 92 (flexibility) and Art. 95 (overtime premium) of the CCNL of 16 February 2024.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "Added the flexibility permits of Art. 92 (30 or 60 minutes a week over 40 hours, paid with the 15% overtime premium in the sixth month after the programme year) and closed unused_leave_hours."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules.flexibility"
         ]
       }
     ],

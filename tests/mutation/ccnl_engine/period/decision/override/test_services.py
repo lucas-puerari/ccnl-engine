@@ -42,6 +42,7 @@ from ccnl_engine.events import (
     BoardLodgingEvent,
     DisabilityPermitEvent,
     ExtraordinaryLeaveEvent,
+    FlexibilityWeekEvent,
     HourlyParentalLeaveEvent,
     LeaveTakenEvent,
     MaternityLeaveEvent,
@@ -335,6 +336,7 @@ _FACTS_ONLY = frozenset({
     WorkInjuryEvent,
     FringeEvent,
     LeaveTakenEvent,
+    FlexibilityWeekEvent,
     BoardLodgingEvent,
 })
 
