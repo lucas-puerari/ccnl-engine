@@ -232,14 +232,14 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the yearly trattamento minimo and the income the test reads, take the income as a fact of the leave and pay the further days at 30% when the condition holds, then resolve this limitation.
 
-!!! warning "parental_month_split · parental_leave · impact unknown · open"
+!!! warning "parental_month_split · parental_leave · impact unknown · unsourced"
     When a counter of the parental leave (a rate band or the indemnified months) ends inside a calendar month of the leave that is not of thirty days, the engine pays the days of that month in order, one day of counter each and the last day what is left of the thirty: INPS counts the calendar month as one month (FAQ congedo parentale 2024, n. 10) but no source says which of its days fall in which band.
 
     **Applies when:** `parental_leave` applies; the run takes the engine code path.
 
     **Remediation:** Source how INPS splits a calendar month between two rates of the parental leave and apply it, then resolve this limitation.
 
-!!! warning "parental_extra_month_share · parental_leave · impact unknown · open"
+!!! warning "parental_extra_month_share · parental_leave · impact unknown · unsourced"
     The days of parental leave accrue the 13th and the other extra months in full at the employer's charge (art. 34 c. 5 D.Lgs. 151/2001: the leave does not reduce them), while the INPS indemnity is computed on a base that already holds their daily rateo (art. 23 c. 2, INPS circ. 122/2022): no source read settles whether the employer's extra month is reduced by the share INPS pays, so the rateo of a month on leave may be overstated.
 
     **Applies when:** `parental_leave` applies; the run takes the engine code path.
@@ -260,12 +260,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the TFR treatment of the permit days (an INPS or Ministry ruling, or case law of the Cassazione) and apply it, then resolve this limitation.
 
-!!! warning "notice_indemnity_partial · termination_notice · impact unknown · open"
+!!! note "notice_indemnity_partial · termination_notice · impact unknown · resolved"
     A notice partly worked pays the share of its calendar days left of the indemnity the CCNL band gives in monthly pays; the CCNL clause read (Federmeccanica Sez. Quarta Tit. VIII Art. 1) states the indemnity of the whole notice only, and practice also measures the rest by 30ths or 26ths of the monthly pay.
 
     **Applies when:** `termination_notice` applies; the run takes the engine code path.
 
-    **Remediation:** Source how the CCNL or case law measures the indemnity of a notice partly worked and apply it, then resolve this limitation.
+    **Remediation:** Resolved: art. 2118 c. 2 c.c. (https://www.normattiva.it/atto/caricaArticolo?art.versione=1&art.idGruppo=267&art.flagTipoArticolo=2&art.codiceRedazionale=042U0262&art.idArticolo=2118&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1942-04-04&art.progressivo=0&, sha256 834213e542e77f0f1079835b14c444432e208be59a9d3d4c859ff5ede6c8e11d): 'un'indennità equivalente all'importo della retribuzione che sarebbe spettata per il periodo di preavviso'; a notice partly worked owes the pay of the days left, as the engine computes. How a day of that pay is measured stays the declared residual notice_indemnity_day_measure. Read on 2026-11-15.
 
 !!! note "notice_indemnity_extra_months · termination_notice · impact yes · resolved"
     The indemnity is the monthly pays of the CCNL band on the monthly pay of art. 2121 c.c.; the 13th and 14th the notice would have accrued are not added, although art. 2121 counts 'ogni altro compenso di carattere continuativo', so the indemnity may be understated.
@@ -281,7 +281,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the indemnity is out of the TFR base unless the CCNL notice sets tfr_base true.
 
-!!! warning "notice_indemnity_day_measure · termination_notice · impact unknown · open"
+!!! warning "notice_indemnity_day_measure · termination_notice · impact unknown · unsourced"
     A CCNL that sets the notice in calendar days measures the indemnity on the pay of those days: the engine takes a calendar day as a 30th of the monthly pay; Commercio art. 209 refers the monthly pay to all the days of the calendar month, but its art. 210 sets the daily quota at 1/26 'in tutti i casi', so the indemnity may be understated.
 
     **Applies when:** `termination_notice` applies; the run takes the engine code path.
@@ -309,7 +309,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source how the employer splits the measure between two orders of the same kind (art. 499 c.p.c. on the intervention of creditors, case law of the Cassazione) and apply it, then resolve this limitation.
 
-!!! warning "mid_month_level_change · base_salary · impact unknown · open"
+!!! warning "mid_month_level_change · base_salary · impact unknown · unsourced"
     A promotion on a day other than the first of a month splits the monthly pay of the run between the level before and the new level by the payable days of the CCNL daily quota on each side of the promotion, component by component; the hourly quotas of the month (overtime, permits, absences) read the same split chain whatever the day of the event. The CCNL texts read (Commercio and Terziario art. 118, DMO art. 102) give the new level from the promotion but not how its month is split.
 
     **Applies when:** `base_salary` applies; the run takes the engine code path.

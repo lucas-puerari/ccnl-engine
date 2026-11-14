@@ -53,7 +53,6 @@ _KIND = "notice_indemnity_item"
 _FEATURE = "termination_notice"
 _ZERO = Decimal(0)
 #: Limitations of the indemnity.
-PARTIAL = "notice_indemnity_partial"
 _WITH_JUST_CAUSE = frozenset({TerminationCause.DISMISSAL, TerminationCause.RESIGNATION})
 DAY_MEASURE = "notice_indemnity_day_measure"
 _MONTH_DAYS = Decimal(30)
@@ -251,10 +250,8 @@ def _handle_notice_indemnity(
     if not unworked:
         return EventEffect(decisions=[_decision(terms, "notice_worked", _ZERO, inputs)])
     amount = money(monthly * pays * unworked / Decimal(period.days))
-    limitations = (
-        *((PARTIAL,) if unworked < period.days else ()),
-        *((DAY_MEASURE,) if band.indemnity_months is None else ()),
-    )
+    by_day = band.indemnity_months is None or unworked < period.days
+    limitations = (DAY_MEASURE,) if by_day else ()
     return _post(amount, terms, inputs, ctx, limitations, tfr=rules.tfr_base is True)
 
 

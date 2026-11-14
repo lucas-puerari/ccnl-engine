@@ -181,7 +181,7 @@ def test_a_notice_not_given_is_paid_and_taxed_at_the_tfr_rate() -> None:
     limitations = {lim.id for lim in result.limitations}
     assert "notice_indemnity_extra_months" not in limitations
     assert "notice_indemnity_tfr" not in limitations
-    assert "notice_indemnity_partial" not in {lim.id for lim in result.limitations}
+    assert "notice_indemnity_day_measure" not in {lim.id for lim in result.limitations}
 
 
 def test_the_tfr_rate_the_engine_computes_taxes_the_indemnity() -> None:
@@ -206,7 +206,7 @@ def test_a_notice_partly_worked_pays_its_days_left() -> None:
     result = _run(_notice(date(2026, 3, 1)), ended=date(2026, 3, 31))
 
     assert _indemnity(result) == Decimal("3780.87")
-    assert "notice_indemnity_partial" in {lim.id for lim in result.limitations}
+    assert "notice_indemnity_day_measure" in {lim.id for lim in result.limitations}
     # No TFR settlement in the run: no rate, no tax, the run says so.
     assert ("incomplete", "notice_indemnity_tax_rate_unknown", None) in (
         _notice_decisions(result)

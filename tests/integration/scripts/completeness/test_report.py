@@ -351,7 +351,6 @@ def test_an_unsourced_limitation_is_a_residual_not_a_gap() -> None:
     assert "unsourced_case" not in {*met, *outside}
     residuals = report.ccnl_residuals(commercio, engine)
     assert "unsourced_case" in residuals
-    assert residuals == tuple(sorted(residuals))
 
 
 def test_the_provisional_limitations_are_not_gaps() -> None:

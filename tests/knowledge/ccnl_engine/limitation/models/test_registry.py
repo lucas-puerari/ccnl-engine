@@ -61,7 +61,6 @@ from ccnl_engine.personal_withholding.services import SAME_KIND
 from ccnl_engine.seniority.rules import APPRENTICE_SENIORITY_VARIANT
 from ccnl_engine.sickness.handlers import CUMULATION_LIMITATION
 from ccnl_engine.termination.notice.handlers import DAY_MEASURE as NOTICE_DAY_MEASURE
-from ccnl_engine.termination.notice.handlers import PARTIAL as NOTICE_PARTIAL
 from ccnl_engine.variable_pay.arrears.handlers import UNUSED_DEDUCTIONS
 
 if TYPE_CHECKING:
@@ -131,13 +130,8 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         PROVISIONAL_INPS_RULESET,
         EXEMPT_CATEGORY_FLOOR,
         PARENTAL_INCOME_LIMITATION,
-        PARENTAL_SPLIT_LIMITATION,
-        PARENTAL_EXTRA_MONTH_LIMITATION,
-        NOTICE_PARTIAL,
-        NOTICE_DAY_MEASURE,
         HOURLY_CCNL_LIMITATION,
         SAME_KIND,
-        MID_MONTH_CHANGE,
         UNUSED_DEDUCTIONS,
         UNA_TANTUM,
         SUNDAY_CLAUSE,
@@ -148,6 +142,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         "sickness_inps_daily_base",
         "notice_indemnity_tfr",
         "notice_indemnity_extra_months",
+        "notice_indemnity_partial",
         "extraordinary_leave_daily_base",
         "naspi_dismissal_exceptions",
         "sickness_agricultural_fixed_term_days",
@@ -156,7 +151,13 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         PATERNITY_BASE_LIMITATION,
         PARENTAL_BASE_LIMITATION,
     }
-    assert by_status[LimitationStatus.UNSOURCED] == {PERMIT_TFR_LIMITATION}
+    assert by_status[LimitationStatus.UNSOURCED] == {
+        PERMIT_TFR_LIMITATION,
+        NOTICE_DAY_MEASURE,
+        MID_MONTH_CHANGE,
+        PARENTAL_SPLIT_LIMITATION,
+        PARENTAL_EXTRA_MONTH_LIMITATION,
+    }
 
 
 def _has_midpoint(ccnl: CCNL) -> bool:
