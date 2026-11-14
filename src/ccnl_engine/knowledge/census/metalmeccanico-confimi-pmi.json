@@ -19,6 +19,22 @@
       }
     },
     {
+      "id": "comporto_prolungato",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "COMPORTO PROLUNGATO (art. 48): 274/411/548 days by seniority after one long continuous illness, two illnesses of 91 days or more, or an illness of 91 days or more running at the end of the comporto breve; the engine ends the comporto at the breve limit.",
+      "calculation": "ccnl/metalmeccanico-confimi-pmi:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the comporto prolungato of art. 48 and its three triggers.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "metalmeccanico-confimi-pmi/comporto_prolungato"
+        ]
+      }
+    },
+    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",
@@ -223,22 +239,6 @@
       "links": {
         "limitations": [
           "provisional_ruleset"
-        ]
-      }
-    },
-    {
-      "id": "sickness_cumulation_window",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.",
-      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
-      "state": "unverified",
-      "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "sickness_cumulation_window"
         ]
       }
     },

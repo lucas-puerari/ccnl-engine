@@ -30,9 +30,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | overtime |
+| **Limits of this contract** | overtime, sickness |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-10-28 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 38 - Tredicesima mensilità (p. 119): "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell'anno il lavoratore, ha diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità quanti sono i mesi di anzianità di servizio presso l'azienda. La frazione di mese superiore ai 15 giorni va considerata a questi effetti come mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 6 values found verbatim on the cited pages and marked verified; 30 left as they were (derived or not on a text page). |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 24 values read identically by both readings and equal to the file. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source. | corrected | Replaced the flat 60%/75% rates with the treatment chain of art. 48: 100% then 80% by seniority, comporto breve over three years, 61-day restart, short-absence cuts and the hospital top-up. |
 
 ## Salary table
 
@@ -106,19 +107,19 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add a shift fact to the overtime event and the shift column of Art. 27, the compensatory-rest overtime and the ordinary night hours by the hour.
 
+!!! warning "metalmeccanico-confimi-pmi/comporto_prolungato · sickness · impact yes · open"
+    COMPORTO PROLUNGATO (art. 48): 274/411/548 days by seniority after one long continuous illness, two illnesses of 91 days or more, or an illness of 91 days or more running at the end of the comporto breve; the engine ends the comporto at the breve limit.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the comporto prolungato of art. 48 and its three triggers.
+
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
 
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -306,6 +307,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SENIORITY: 5 biennali. Amounts from the official CNEL C01A text: cat.2=21.59, cat.3=25.05, cat.4=26.75, cat.5=29.64, cat.6=32.43, cat.7=36.41, cat.8=40.95, cat.9=45.96. Levels 8Q and 9Q use the same scatto as cat.8 and cat.9 respectively.
     
     INPS: uses 2026-industria.json. Standard industry rates.
+    
+    SICKNESS (Art. 48, CCNL 2021, PDF pp. 174-175, https://www.confimimeccanica.it/files/circolari_doc_sindacali/CCNL%202021%201.pdf, sha256 53af5610412d7b423c2083a6f09f866a471e73fb6272b7dd00e3f3d14ec2fc1d; comporto as renewed by the ipotesi 6 agosto 2026, PDF pp. 17-18, https://www.confimimeccanica.it/images/CCNL%202026/Ipotesi_di_rinnovo_CIM_FIM_060826-.pdf, sha256 535d20c7d4793628a536f87664e3f5805e6b7c0ad31ae23bfe3242a87d4c8ab6): 'comporto breve, di: a) 183 giorni di calendario per anzianità di servizio fino a 3 anni compiuti; b) 274 giorni [...] oltre i 3 anni e fino ai 6 anni compiuti; c) 365 giorni [...] oltre i 6 anni. [...] riferiti alle assenze complessivamente verificatesi nei tre anni precedenti ogni ultimo episodio morboso'; 'alla intera retribuzione globale per i primi 122 giorni di calendario e all'80% della retribuzione globale per i giorni residui' (153 from three to six years, 214 over six); 'Il suddetto trattamento economico ricomincia ex novo in caso di malattia [...] intervenuto dopo un periodo di 61 giorni di calendario dalla ripresa del servizio'; hospital stays over 10 days paid in full up to 61 days; the first three days of the fourth short absence (at most 5 days) of the calendar year at 66%, of the fifth and later at 50%. Modelled as sickness_rules.cumulation, the same model as Federmeccanica.
     
 
 ## Raw data

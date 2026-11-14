@@ -974,6 +974,7 @@
       "metalmeccanico-confapi/sunday_holiday_and_ex_operai"
     ],
     "agreement/metalmeccanico-confimi-pmi.json": [
+      "metalmeccanico-confimi-pmi/comporto_prolungato",
       "metalmeccanico-confimi-pmi/overtime_shift_column"
     ],
     "agreement/metalmeccanico-federmeccanica.json": [

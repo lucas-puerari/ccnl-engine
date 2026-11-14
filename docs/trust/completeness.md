@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 359 open limitations (359 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 360 open limitations (360 with a monetary impact).
 
 ## Declared window
 
@@ -135,7 +135,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [metalmeccanica-cooperative](../contracts/metalmeccanica-cooperative.md) | `metalmeccanica` | exploratory | — | 18 rows | 18 open requirements; 1 weak rule; 15 monetary limitations; 19 non-native capabilities |
 | [metalmeccanico-artigianato](../contracts/metalmeccanico-artigianato.md) | `metalmeccanica` | exploratory | 2026-12-31 | 18 rows | 18 open requirements; 15 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [metalmeccanico-confapi](../contracts/metalmeccanico-confapi.md) | `metalmeccanica` | reviewed | — | 28 rows | 28 open requirements; 13 monetary limitations; 13 outside_input limitations; 21 non-native capabilities |
-| [metalmeccanico-confimi-pmi](../contracts/metalmeccanico-confimi-pmi.md) | `metalmeccanica` | exploratory | — | 17 rows | tables from 2026-06-01; 17 open requirements; 14 monetary limitations; 1 outside_input limitation; 18 non-native capabilities |
+| [metalmeccanico-confimi-pmi](../contracts/metalmeccanico-confimi-pmi.md) | `metalmeccanica` | exploratory | — | 17 rows | tables from 2026-06-01; 17 open requirements; 13 monetary limitations; 2 outside_input limitations; 19 non-native capabilities |
 | [metalmeccanico-federmeccanica](../contracts/metalmeccanico-federmeccanica.md) | `metalmeccanica` | production | — | 22 rows | 22 open requirements; 15 monetary limitations; 5 outside_input limitations; 21 non-native capabilities |
 | [multiservizi-anip](../contracts/multiservizi-anip.md) | `pulizia-multiservizi` | exploratory | — | 25 rows | 25 open requirements; 20 monetary limitations; 3 outside_input limitations; 21 non-native capabilities |
 | [noleggio-autobus-conducente-anav](../contracts/noleggio-autobus-conducente-anav.md) | `trasporti-logistica` | exploratory | — | 21 rows | 21 open requirements; 3 weak rules; 14 monetary limitations; 2 outside_input limitations; 19 non-native capabilities |

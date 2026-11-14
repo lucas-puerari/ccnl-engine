@@ -200,7 +200,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 81 | F020 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | Industria materiali da costruzione — Lapidei piccola industria | ~5000 | 2025 | ✅ | parental_leave, pension_fund_contribution | 41 / 8 / 21 / 0 | 🧪 | 🤖 |
 | 82 | C016 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | metalmeccanico cooperativo | ~28k | — | ⚠️ | inps_employer | 37 / 9 / 1 / 0 | 🧪 | 🤖 |
 | 83 | C030 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | metalmeccanico | ~350k | 2024 | ⚠️ | base_salary, inps_employer | 71 / 12 / 0 / 0 | 🧪 | 🤖 |
-| 84 | C01A | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | metalmeccanico | ~100k | — | ✅ | overtime | 25 / 22 / 0 / 0 | 🧪 | 🤖 |
+| 84 | C01A | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | metalmeccanico | ~100k | — | ✅ | overtime, sickness | 25 / 22 / 0 / 0 | 🧪 | 🤖 |
 | 85 | C018 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | metalmeccanico | ~350k | — | ⚠️ | base_salary, leave, overtime, sickness | 69 / 10 / 0 / 0 | 👁 | 🤖✓ |
 | 86 | C011 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | metalmeccanico | ~1,7M | 2025 | ⚠️ | base_salary, leave, overtime, sickness | 90 / 1 / 0 / 0 | 🏭 | 🤖✓ |
 | 87 | IC36 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | Trasporti - Noleggio autobus con conducente | ~5422 | 2025 | ⚠️ | seniority, una_tantum | 35 / 33 / 3 / 0 | 🧪 | 🤖 |
