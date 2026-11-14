@@ -3510,7 +3510,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "bd8bc767472a07bf739fea82fdfa336db2fcbd5572d24e0d17427f57904ed4c5",
+    "source_hash": "d73655c03391243862260d1b230e58a8eabf564e993b7050dcaa11cc09c5c15b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4600,6 +4600,31 @@
         "checked": [
           "levels.fixed_allowances.EDR_2021",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-gpt-logistica-trasporto-confetra-viaggiante-edr-2021",
+        "date": "2026-11-15",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "EDR of the renewal of 18 May 2021 and its place in the testo unico, read by a separate model session.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/136045",
+            "sha256": "0462ec99c68e13a4444203cfafba20142016ba20175c443fae43ccdeeb9feb39"
+          },
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "Confirmed: the EDR of 18 May 2021 is paid for 13 months and 'non avrà incidenza su alcun istituto contrattuale'; the testo unico keeps it."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels.fixed_allowances.EDR_2021"
         ]
       }
     ],

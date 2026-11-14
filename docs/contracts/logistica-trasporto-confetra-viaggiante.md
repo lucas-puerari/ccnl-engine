@@ -81,6 +81,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-10 | claude-opus-5-5 (ai) | Cached Confetra consolidated text pp. 92-95, arts. 71(5) and 77(8,11): travelling injury and holiday top-up. | confirmed | Art. 77(8) integrates work injury to full actual net pay until clinical recovery; art. 71(5) tops up a reduced-pay holiday to full actual pay only for eligible section-two employers. The distinct coincident-holiday payment remains open. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 60(1)(b), (2-4) coincident national holiday quota, cached consolidated text pp. 84-85. | confirmed | The national letter (b) holiday quota is 1/22 of monthly global pay on Saturday, Sunday or another holiday; local patron holidays are not calendared. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Relevance of the EDR of 18 May 2021, OCR of the scanned renewal, against the research of a separate model session. | corrected | EDR_2021 left out of the daily quota of absences and sickness. |
+| 2026-11-15 | gpt-6-sol (ai) | EDR of the renewal of 18 May 2021 and its place in the testo unico, read by a separate model session. | confirmed | Confirmed: the EDR of 18 May 2021 is paid for 13 months and 'non avrà incidenza su alcun istituto contrattuale'; the testo unico keeps it. |
 
 ## Salary table
 

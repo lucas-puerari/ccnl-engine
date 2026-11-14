@@ -96,6 +96,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 60(1)(b), (2-4) coincident national holiday quota, cached consolidated text pp. 84-85. | confirmed | The national letter (b) holiday quota is 1/22 of monthly global pay on Saturday, Sunday or another holiday; local patron holidays are not calendared. |
 | 2026-11-14 | gpt-6-sol (ai) | Part-time supplementary work clause, read by a separate model session. | confirmed | Confirmed: 18% of the hourly quota of the retribuzione globale up to 30% of the agreed annual hours, 40% past it (art. 56 cc. 16-17, PDF p. 70-71). |
 | 2026-11-15 | claude-opus-5-5 (ai) | Relevance of the EDR of 18 May 2021, OCR of the scanned renewal, against the research of a separate model session. | corrected | EDR_2021 left out of the daily quota of absences and sickness. |
+| 2026-11-15 | gpt-6-sol (ai) | EDR of the renewal of 18 May 2021 and its place in the testo unico, read by a separate model session. | confirmed | Confirmed: the EDR of 18 May 2021 is paid for 13 months and 'non avrà incidenza su alcun istituto contrattuale'; the testo unico keeps it. |
 
 ## Salary table
 
