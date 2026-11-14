@@ -715,7 +715,7 @@
     ],
     "agreement/comunicazione-artigianato-confartigianato.json": [
       "comunicazione-artigianato-confartigianato/apprentice_inps_rates_unsourced",
-      "comunicazione-artigianato-confartigianato/function_allowance_constant",
+      "comunicazione-artigianato-confartigianato/function_allowance_half_absorption",
       "comunicazione-artigianato-confartigianato/inps_sector_rates_unsourced",
       "comunicazione-artigianato-confartigianato/level_category_not_declared",
       "comunicazione-artigianato-confartigianato/pmi_non_artigiane_tables",

@@ -161,19 +161,25 @@
         }
       },
       {
+        "kind": "info",
+        "text": "FUNCTION ALLOWANCE (art. 71: 'al personale con qualifica di quadro sarà riconosciuta una indennità di funzione di euro 51,65'): the nota a verbale of 15 July 2026 (CNA, p. 2) reads it as 'distinto dai minimi contrattuali [...] non è pertanto ricompresa nell'importo indicato nelle tabelle retributive per il livello 1A', to be shown 'con voce autonoma e distinta' from 1 August 2026, and 'nulla è dovuto a titolo di arretrati o conguagli' for the earlier periods. The file pays it on level 1A from 1 August 2026, nothing before.",
+        "capability": "base_salary"
+      },
+      {
         "kind": "simplification",
-        "text": "Level 1A indennita di funzione EUR 51.65 assumed constant across all four tranches (Dec 2024 through Nov 2026+). Kitech.it only shows the Mar 2026 value; no primary source confirms the amount in Dec 2024 or Jul 2025. Difference is likely zero (function allowances are rarely changed in salary renewals) but not verified.",
+        "text": "Art. 71: the allowance absorbs the individual superminimo 'fino a concorrenza del 50% di tale importo' (at most 25,83). The engine pays it whole: its absorption (absorbed_by_individual_excess) offsets the whole allowance, not half of it.",
         "capability": "base_salary",
-        "monetary_impact": "unknown",
+        "monetary_impact": "yes",
         "limitation": {
-          "variant": "function_allowance_constant",
+          "variant": "function_allowance_half_absorption",
           "applies_when": {
+            "trigger": "outside_input",
             "levels": [
               "1A"
             ],
-            "effective_until": "2026-03-01"
+            "effective_from": "2026-08-01"
           },
-          "remediation": "Confirm the level 1A function allowance amount for the December 2024 and July 2025 tranches."
+          "remediation": "Absorb the individual superminimo into the art. 71 allowance up to half of its amount."
         }
       },
       {
@@ -1552,11 +1558,42 @@
       "fixed_allowances": [
         {
           "code": "IND_FUN",
-          "description": "Function allowance (level 1A only). Source: kitech.it Mar 2026. Amount assumed constant from Dec 2024.",
+          "description": "Indennita di funzione of the quadri (art. 71, EUR 51.65 since 1 September 1990), a separate item from 1 August 2026 (nota a verbale of 15 July 2026); nothing due for the earlier periods.",
           "monthly": {
             "periods": [
               {
                 "valid_from": "2024-12-01",
+                "valid_until": "2026-08-01",
+                "value": "0.00",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "cna-comunicazione-nota-quadri-2026-07-15",
+                      "title": "Verbale integrativo del CCNL Area Comunicazione, Norme particolari per i quadri, 15 luglio 2026 (scansione firmata, pubblicata da CNA)",
+                      "kind": "associazione",
+                      "url": "https://www.cna.it/wp-content/uploads/2026/09/Verbale-integrativo-del-CCNL-Area-Comunicazione-Norme-particolari-per-i-quadri-15-luglio-2026.pdf",
+                      "published_on": "2026-09-01",
+                      "sha256": "b446156243c13ea1a6e738004e846a9d1aeb546cebbcdf1da6ebea726b0954de"
+                    },
+                    "page": "2",
+                    "section": "Articolo 71 (Norme particolari per i quadri), Nota a verbale",
+                    "quote": "nulla è dovuto a titolo di arretrati o conguagli con riferimento a periodi antecedenti alla data di decorrenza sopra indicata"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-14T00:00:00Z",
+                    "effective_from": "2024-12-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-14T00:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-14-ai-function-allowance"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-08-01",
                 "valid_until": null,
                 "value": "51.65",
                 "provenance": {
@@ -2088,7 +2125,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "9acc692841aceb724199647c72d24fffa5ce4109192a86332fdfc63f7f8eae18",
+    "source_hash": "e19a46d2e144c76eb21b09c16150e04d350f16c1645c1a5b119fbdb3cc6cc13e",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2374,6 +2411,31 @@
         "checked": [
           "apprenticeship",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-function-allowance",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 71 function allowance of the quadri and the nota a verbale of 15 July 2026.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.cna.it/wp-content/uploads/2026/09/Verbale-integrativo-del-CCNL-Area-Comunicazione-Norme-particolari-per-i-quadri-15-luglio-2026.pdf",
+            "sha256": "b446156243c13ea1a6e738004e846a9d1aeb546cebbcdf1da6ebea726b0954de"
+          },
+          {
+            "url": "https://www.cna.it/wp-content/uploads/2025/10/CCNL-Area-Comunicazione.pdf",
+            "sha256": "68b590c4230eaae6abbb745dbcdfe1ecfd0560f7a05658fcabfca92744499700"
+          }
+        ],
+        "findings": [
+          "Read the nota a verbale on the page image: the allowance is separate from the 1A minimum from 1 August 2026 and nothing is due before. The file added it to the 1A minimum from December 2024; set it to zero until 31 July 2026, closed function_allowance_constant and recorded the 50% superminimo absorption of art. 71, which the engine cannot express."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.1A.fixed_allowances"
         ]
       }
     ]

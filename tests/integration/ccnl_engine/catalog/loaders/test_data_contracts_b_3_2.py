@@ -454,3 +454,11 @@ def test_fiaip_specialist_apprenticeship_track() -> None:
     ]
     assert steps == [(0, 2), (12, 1), (24, 0)]
     assert len(ccnl.apprenticeship_tracks_for("III")) == 2
+
+
+def test_comunicazione_function_allowance_from_august_2026() -> None:
+    """Nota a verbale 15 July 2026: separate from 1 August, nothing before."""
+    level = load_ccnl("comunicazione-artigianato-confartigianato").level_by_code("1A")
+    (allowance,) = [a for a in level.fixed_allowances if a.code == "IND_FUN"]
+    assert allowance.monthly.value_at(date(2026, 7, 31)) == Decimal("0.00")
+    assert allowance.monthly.value_at(date(2026, 8, 1)) == Decimal("51.65")

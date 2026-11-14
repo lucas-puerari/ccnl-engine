@@ -223,8 +223,8 @@ limits, the `rulesets` and dates it affects, a `monetary_impact` (`yes`,
 The <!-- trust:simplification-notes -->463<!-- /trust:simplification-notes -->
 simplification notes of the bundle each state their impact on what the engine
 computes from the bundle:
-<!-- trust:simplification-yes -->236<!-- /trust:simplification-yes --> `yes`,
-<!-- trust:simplification-unknown -->173<!-- /trust:simplification-unknown --> `unknown`
+<!-- trust:simplification-yes -->237<!-- /trust:simplification-yes --> `yes`,
+<!-- trust:simplification-unknown -->172<!-- /trust:simplification-unknown --> `unknown`
 and <!-- trust:simplification-no -->54<!-- /trust:simplification-no --> `no` (the
 engine refuses the case, or takes the value from the caller). A file whose
 note can move an amount without declaring a limitation does not load, so the
@@ -246,7 +246,7 @@ classifies it by obligation:
 - an engine limitation applies only when the run takes its code path, and the
   run records the traversal (an apprentice in a midpoint period of a CCNL
   whose midpoint components are unsourced);
-- <!-- trust:limitations-outside-input -->177<!-- /trust:limitations-outside-input -->
+- <!-- trust:limitations-outside-input -->178<!-- /trust:limitations-outside-input -->
   limitations depend on a fact the request cannot express (a hire date before
   a transitional regime, a fund the worker joins, a sector section): they are
   documented on the contract page and never recorded on a run. An amount

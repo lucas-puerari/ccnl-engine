@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Apprenticeship tracks against art. 36 and art. 3 Parte II of the signed 2024 renewal, read on the page images (pp. 7-9, 20). | corrected | The file had two generic tracks (operai_tecnici 70-100% over four years, amministrativi 70/80/90%) and level 6 as a destination; the text prints one row per group, figures and PMI: impiegati amministrativi are 60/70/90%, so the file overpaid the first two years by 10 points.<br>Tracks replaced: operai_tecnici, amministrativi -> artigiane_gruppo_1, artigiane_gruppo_2, artigiane_gruppo_2_figure_3_anni, artigiane_gruppo_3, artigiane_gruppo_3_figure_2_anni, impiegati_amministrativi, pmi, pmi_figure_2_anni. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 36 c. 6-7 and the dichiarazione a verbale on the percentages, signed renewal of 18 November 2024, PDF pp. 7-9 and 12. | confirmed | Read the percentage tables on the page images: every artisan track of the file matches the signed table, so the note claiming percentages assumed from the CCNA framework was stale; closed apprenticeship_percentages_assumed. The new percentages apply to hires from 16 May 2022, not from 18 November 2024: corrected the cohort limitation. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 71 function allowance of the quadri and the nota a verbale of 15 July 2026. | confirmed | Read the nota a verbale on the page image: the allowance is separate from the 1A minimum from 1 August 2026 and nothing is due before. The file added it to the 1A minimum from December 2024; set it to zero until 31 July 2026, closed function_allowance_constant and recorded the 50% superminimo absorption of art. 71, which the engine cannot express. |
 
 ## Salary table
 
@@ -155,12 +156,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Declare the worker category in the request; the levels map to both operai and impiegati.
 
-!!! warning "comunicazione-artigianato-confartigianato/function_allowance_constant · base_salary · impact unknown · open"
-    Level 1A indennita di funzione EUR 51.65 assumed constant across all four tranches (Dec 2024 through Nov 2026+). Kitech.it only shows the Mar 2026 value; no primary source confirms the amount in Dec 2024 or Jul 2025. Difference is likely zero (function allowances are rarely changed in salary renewals) but not verified.
+!!! warning "comunicazione-artigianato-confartigianato/function_allowance_half_absorption · base_salary · impact yes · open"
+    Art. 71: the allowance absorbs the individual superminimo 'fino a concorrenza del 50% di tale importo' (at most 25,83). The engine pays it whole: its absorption (absorbed_by_individual_excess) offsets the whole allowance, not half of it.
 
-    **Applies when:** `base_salary` applies; level in 1A; before 2026-03-01.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Confirm the level 1A function allowance amount for the December 2024 and July 2025 tranches.
+    **Remediation:** Absorb the individual superminimo into the art. 71 allowance up to half of its amount.
 
 !!! warning "comunicazione-artigianato-confartigianato/inps_sector_rates_unsourced · inps_employer · impact unknown · open"
     INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.
@@ -396,6 +397,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     INPS: reuses 2026-artigianato.json (ARTIGIANATO sector).
     
     APPRENTICESHIP (art. 36 Parte I, art. 3 Parte II, renewal 18 November 2024): each row of the table is a track (artigiane groups 1-3 with their 'figure a 2/3 anni', impiegati amministrativi, PMI); the caller picks the track with Apprentice.track where a level has several. The last percentage of each track holds past its semesters on purpose: art. 6-bis prolongs the apprenticeship by every suspension of at least 30 days and counts the suspension towards the pay progression (renewal p. 8), so an apprentice may be past the table; the caller ends the apprenticeship (Apprentice) at its end. Level 6 is not apprenticeable.
+    
+    FUNCTION ALLOWANCE (art. 71: 'al personale con qualifica di quadro sarà riconosciuta una indennità di funzione di euro 51,65'): the nota a verbale of 15 July 2026 (CNA, p. 2) reads it as 'distinto dai minimi contrattuali [...] non è pertanto ricompresa nell'importo indicato nelle tabelle retributive per il livello 1A', to be shown 'con voce autonoma e distinta' from 1 August 2026, and 'nulla è dovuto a titolo di arretrati o conguagli' for the earlier periods. The file pays it on level 1A from 1 August 2026, nothing before.
     
 
 ## Raw data

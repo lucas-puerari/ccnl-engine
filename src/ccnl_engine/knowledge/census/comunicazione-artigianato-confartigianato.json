@@ -67,18 +67,18 @@
       }
     },
     {
-      "id": "function_allowance_constant",
+      "id": "function_allowance_half_absorption",
       "institute": "base_salary",
       "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "Level 1A indennita di funzione EUR 51.65 assumed constant across all four tranches (Dec 2024 through Nov 2026+). Kitech.it only shows the Mar 2026 value; no primary source confirms the amount in Dec 2024 or Jul 2025. Difference is likely zero (function allowances are rarely changed in salary renewals) but not verified.",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 71: the allowance absorbs the individual superminimo 'fino a concorrenza del 50% di tale importo' (at most 25,83). The engine pays it whole: its absorption (absorbed_by_individual_excess) offsets the whole allowance, not half of it.",
       "calculation": "ccnl/comunicazione-artigianato-confartigianato:coverage.notes",
-      "state": "unverified",
-      "remediation": "Confirm the level 1A function allowance amount for the December 2024 and July 2025 tranches.",
+      "state": "absent",
+      "remediation": "Absorb the individual superminimo into the art. 71 allowance up to half of its amount.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "comunicazione-artigianato-confartigianato/function_allowance_constant"
+          "comunicazione-artigianato-confartigianato/function_allowance_half_absorption"
         ]
       }
     },
