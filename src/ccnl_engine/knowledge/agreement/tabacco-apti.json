@@ -72,15 +72,19 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS (Art. 34, renewal 2 July 2025 p. 8-9, CCNL 2021-2024 p. 44-45): modelled the operai rule (100% of the retribuzione normale from day 1 to day 180, comporto 180 days), the permanent impiegati and quadri rule (12 months, full and half stipendio 4+4, 5+5 or 6+6 months by seniority, interruptions summed unless one year apart) and the apprentices' 100% of the normal pay for at most 6 months a year (art. 6 as amended by the renewal). The serious-illness extension of the fixed operai to 12 months and the +90 days for certified disability (L. 68/99) keep the job 'senza corresponsione della retribuzione': they change no amount of the payslip. Not modelled: the certified life-saving therapy days left out of the comporto ('non sono considerati ed inclusi ... ai fini del computo dei periodi di comporto'), which could move the 180th paid day of the operai and the full and half stipendio months of the impiegati; the text is silent on the pay of those days. The sentence 'per le malattie che superano i sei giorni ... 100% della retribuzione normale netta anche per i giorni di carenza' was left unchanged by the renewal, while the main clause dropped 'netta': the gross basis of the main clause is used.",
+        "text": "SICKNESS (Art. 34, renewal 2 July 2025 p. 8-9, CCNL 2021-2024 p. 44-45): modelled the operai rule (100% of the retribuzione normale from day 1 to day 180, comporto 180 days), the permanent impiegati and quadri rule (12 months, full and half stipendio 4+4, 5+5 or 6+6 months by seniority, interruptions summed unless one year apart) and the apprentices' 100% of the normal pay for at most 6 months a year (art. 6 as amended by the renewal). The serious-illness extension of the fixed operai to 12 months and the +90 days for certified disability (L. 68/99) keep the job 'senza corresponsione della retribuzione': they change no amount of the payslip. The certified life-saving therapy days are left out of the comporto ('non sono considerati ed inclusi ... ai fini del computo dei periodi di comporto', CCNL 2021-2024 p. 45): the operai are paid 'fino al termine massimo del 180° giorno di malattia', a count of sick days the clause does not touch, so for them it keeps the job without pay. Not modelled: whether those days move the full and half stipendio months of the impiegati, on which the text is silent. The sentence 'per le malattie che superano i sei giorni ... 100% della retribuzione normale netta anche per i giorni di carenza' was left unchanged by the renewal, while the main clause dropped 'netta': the gross basis of the main clause is used.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "sickness_rules",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "outside_input",
+            "worker_categories": [
+              "impiegato",
+              "quadro"
+            ]
           },
-          "remediation": "Leave the certified life-saving therapy days out of the comporto count of Art. 34 and decide their pay."
+          "remediation": "Decide whether the certified life-saving therapy days move the full and half stipendio months of the impiegati (Art. 34)."
         }
       }
     ]
@@ -2609,7 +2613,7 @@
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "683e97116df10e9a4ead6b7e4fcfc6c053847e49a4e452fd6b5bc1a456c129ff"
+    "source_hash": "af7a466f8e4a8af4938ad0a6648b718a39b43298809669c12f49cad76541a65a"
   },
   "work_rules": {
     "sunday_holidays": {
@@ -2858,7 +2862,7 @@
           "section": "Articolo 6 - Apprendistato",
           "quote": "In caso di malattia viene mantenuto il rapporto e corrisposto il 50% 100% della retribuzione normale per un massimo di 6 mesi per ogni anno e nei limiti del periodo di durata dell'apprendistato."
         },
-        "transformation": "The renewal strikes '50%' and writes '100%': the whole normal (gross) pay, INPS indemnity included, from the first day, at most 180 days (six 30-day months) in a calendar year; the end of the apprenticeship is the end of the employment period. The renewal applies from 1 January 2025, the start of the window.",
+        "transformation": "The renewal strikes '50%' and writes '100%': the whole normal (gross) pay, INPS indemnity included, from the first day, at most 180 days (six 30-day months) in a calendar year; the end of the apprenticeship is the end of the employment period. The change carries no date of its own: the renewal is 'per il periodo 1° gennaio 2025 - 31 dicembre 2028' (p. 2), and where the parties meant the signature they wrote it (art. 26 bis, 'a far data dalla sottoscrizione'); 100% from 1 January 2025, the start of the window.",
         "extraction": {
           "method": "ai",
           "model": "claude-opus-5-5",
