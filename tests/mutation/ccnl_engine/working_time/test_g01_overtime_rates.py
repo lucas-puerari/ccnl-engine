@@ -128,3 +128,10 @@ def test_ortofrutticoli_rates_of_articles_48_to_55() -> None:
         "ORTO_RIPOSO": ("0.30", None),
         "ORTO_FESTIVO": ("0.30", None),
     }
+
+
+def test_studi_rest_day_takes_the_premium_alone() -> None:
+    """Studi art. 97 F: the hours on the rest day take the 30% premium alone."""
+    rates = _rates("studi-professionali-confprofessioni")
+    assert rates["STUDI_RIPOSO"] == ("0.30", None)
+    assert rates["STUDI_FESTIVO"] == ("0.30", None)
