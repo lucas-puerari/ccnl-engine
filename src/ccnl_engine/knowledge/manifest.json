@@ -779,7 +779,7 @@
       "valid_to": "2028-09-30",
       "ruleset_id": "ccnl/edilizia-artigianato-cna",
       "ruleset_version": "2026.2",
-      "source_hash": "0948661b82f08292cd13200e42bb8c8c600fa64369ae6277ce18f4b7e048853f",
+      "source_hash": "d242dc4f93d95637bc03c20def9a6a5d2bc6999f2ba1f84a1bfd23fdde473ab2",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/edilizia-artigianato-cna.json.gz"
@@ -813,7 +813,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-pmi-confapi-aniem",
       "ruleset_version": "2025.1",
-      "source_hash": "1be4db280e50a794902cd99148bf4c6858d0eda2b537941021488cfbbdabe4b8",
+      "source_hash": "f74ca9fbf290699c7da8698b5c0f55d24891e0f5ad03b5d713e29ac203fd77ed",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/edilizia-pmi-confapi-aniem.json.gz"

@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-20 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -69,6 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 65 uninterrupted actual service and hire anniversary against the cached PDF page 93. | corrected | A separate actual uninterrupted service start can exclude conventional military seniority without moving the hire anniversary; the common-year leap-day anniversary remains unspecified. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 65 whole-month loyalty twelfths on non-disciplinary dismissal, checked against the cached PDF text layer, page 93. | confirmed | After the preceding earned award, the clause pays whole-month twelfths on dismissal not for disciplinary reasons. |
 | 2026-11-14 | claude-opus-5-5 (ai) | INPS circ. 140/2012 par. 3.3 on the apprentice contribution, against the research of a separate model session. | confirmed | The cuneo reductions (0.91) do not apply to apprentices: the artigianato apprentice rates of the bundle are confirmed. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses of the operai, against the research of a separate model session; quote checked on the source text. | corrected | Added the operai comporto windows (9 months in 20, 12 in 24 above three and a half years). |
 
 ## Salary table
 
@@ -366,6 +367,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Apprenticeship specialistico tracks (Allegato D, verbale 05/09/2023, Art. 9): 1 Sp (54m, livelli 4-5): 0-12=78%, 12-24=80%, 24-36=86%, 36-42=91%, 42-54=96%. 3 Sp (42m, livello 3): 0-12=78%, 12-24=80%, 24-36=86%, 36-42=91%. SIMPLIFICATION: 2 Sp (45m, livelli 3-4): last 8th sem.=3m (not 6m) to reach 45m (the exact boundary of the last period is not published in textual form by any secondary source; total duration of 45m is confirmed). Source: studiodalmaschio.it; fareapprendistato.it; cdltorino.it.
     
     APPRENTICE INPS RATES (artigianato): 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI and integrativo, 11.61% for the employer (3.11% and 4.61% in the first two years of a firm up to 9 employees) and 5.84% for the worker. The 0.91 reduction of the artisan employers does not apply to apprentices: 'sul contributo per gli apprendisti non trovano applicazione le riduzioni del cuneo contributivo di cui alle leggi n. 388/2000 e n. 266/2005' (INPS circ. 140/2012 par. 3.3, https://servizi2.inps.it/servizi/Bussola/VisualizzaDoc.aspx?sVirtualURL=/Circolari/Circolare%20numero%20140%20del%2014-12-2012.htm, sha256 67d04317e66825fdb2cf6aa0b3106e644d76461e3e6ec17cd456b307948701a7). The wage-integration contribution of the sector is the FSBA, paid outside INPS (F24, code EBNA), not part of the INPS employer rate.
+    
+    COMPORTO OF SEVERAL ILLNESSES, OPERAI (Operai, malattia (CNEL 224212, scanned), PDF p. 44, https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212, sha256 2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95): 'Nel caso di più malattie o ricadute nella stessa malattia, l'operaio ha diritto alla conservazione del posto per un periodo massimo complessivo di nove mesi nell'arco di 20 mesi consecutivi. L'operaio con un'anzianità superiore a tre anni e mezzo ha diritto alla conservazione del posto per un periodo massimo complessivo di 12 mesi nell'arco di 24 mesi consecutivi.' Modelled for the operai (sickness_rules_by_category.operaio, the base rule with the windows): 274 days within 20 months, 365 within 24 above 42 months of seniority. The impiegati keep the base rule: their 9, 12 and 15 months within 30 months by seniority and their pay steps are not modelled (engine limitation sickness_cumulation_window).
     
 
 ## Raw data

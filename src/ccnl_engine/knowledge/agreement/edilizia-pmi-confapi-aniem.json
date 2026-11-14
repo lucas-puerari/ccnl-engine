@@ -212,6 +212,10 @@
           },
           "remediation": "Source the anniversary rule for a 29 February hire before changing the fallback."
         }
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES, OPERAI (Art. 26 (testo armonizzato 15 aprile 2025), PDF p. 60, https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf, sha256 25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba): 'Nel caso di più malattie o ricadute nella stessa malattia, l'operaio ha diritto alla conservazione del posto per un periodo massimo complessivo di nove mesi nell'arco di 20 mesi consecutivi. L'operaio con un'anzianità superiore a tre anni e mezzo ha diritto alla conservazione del posto per un periodo massimo complessivo di 12 mesi nell'arco di 24 mesi consecutivi.' Modelled for the operai (sickness_rules_by_category.operaio, the base rule with the windows): 274 days within 20 months, 365 within 24 above 42 months of seniority. The impiegati keep the base rule: their 9, 12 and 15 months within 30 months by seniority and their pay steps are not modelled (engine limitation sickness_cumulation_window)."
       }
     ]
   },
@@ -1895,7 +1899,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "1be4db280e50a794902cd99148bf4c6858d0eda2b537941021488cfbbdabe4b8",
+    "source_hash": "f74ca9fbf290699c7da8698b5c0f55d24891e0f5ad03b5d713e29ac203fd77ed",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
@@ -2233,6 +2237,43 @@
           "effective_from": "2025-04-15"
         }
       }
+    },
+    "sickness_rules_by_category": {
+      "operaio": {
+        "carenza_integration_rate": "0",
+        "full_pay_integration_rate": "1",
+        "max_duration_days": 180,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-aniem-armonizzato-15042025",
+              "title": "CCNL Edilizia CONFAPI ANIEM — Testo Armonizzato 15/04/2025",
+              "kind": "tabella_retributiva",
+              "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf"
+            },
+            "section": "Art. 26 — malattia operai: integrazione al 100% fino a 180 giorni"
+          },
+          "extraction": {
+            "method": "manual",
+            "extraction_timestamp": "2026-09-18T00:00:00",
+            "verification_status": "verified",
+            "effective_from": "2025-04-15"
+          }
+        },
+        "comporto_windows": [
+          {
+            "seniority_months_from": 0,
+            "window_months": 20,
+            "comporto_days": 274
+          },
+          {
+            "seniority_months_from": 42,
+            "window_months": 24,
+            "comporto_days": 365
+          }
+        ]
+      }
     }
   },
   "verification": {
@@ -2359,6 +2400,27 @@
         "independence": "same_process",
         "checked": [
           "parameters.loyalty_premium"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-edilizia-pmi-confapi-aniem-operai-comporto",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses of the operai, against the research of a separate model session; quote checked on the source text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
+            "sha256": "25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba"
+          }
+        ],
+        "findings": [
+          "Added the operai comporto windows (9 months in 20, 12 in 24 above three and a half years)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules_by_category"
         ]
       }
     ],

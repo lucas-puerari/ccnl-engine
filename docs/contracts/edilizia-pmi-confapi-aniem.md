@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-04-15 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 65 loyalty premium on cached harmonised text PDF page 96. | corrected | Annual anniversary award for clerical employees after twenty years; termination pro rata remains unmodelled. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 65, the elements of the monthly pay and the TFR article, against the loyalty premium encoding, by a separate model session. | corrected | Confirmed the 20 years, the anniversary and the one monthly pay.<br>Corrected: the TFR article is art. 72; the excluded conventional seniority and the 29 February anniversary are recorded as limitation loyalty_service_count. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 65 uninterrupted actual service and hire anniversary against the cached PDF page 96. | corrected | A separate actual uninterrupted service start can exclude conventional military, combatant and similar seniority without moving the hire anniversary; the common-year leap-day anniversary remains unspecified. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses of the operai, against the research of a separate model session; quote checked on the source text. | corrected | Added the operai comporto windows (9 months in 20, 12 in 24 above three and a half years). |
 
 ## Salary table
 
@@ -381,6 +382,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     HOURLY DIVISOR: 173, from Art. 25 CCNL: 'dividendo per 173 i valori minimi mensili'. Confirmed by official hourly rate column in FILLEA CGIL salary table.
     
     INPS: reuses 2026-edilizia.json (the edilizia rates by employer size and worker category). Cassa Edile ~18.5% contribution is separate and not included in INPS rates (review of 2026-10-30)
+    
+    COMPORTO OF SEVERAL ILLNESSES, OPERAI (Art. 26 (testo armonizzato 15 aprile 2025), PDF p. 60, https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf, sha256 25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba): 'Nel caso di più malattie o ricadute nella stessa malattia, l'operaio ha diritto alla conservazione del posto per un periodo massimo complessivo di nove mesi nell'arco di 20 mesi consecutivi. L'operaio con un'anzianità superiore a tre anni e mezzo ha diritto alla conservazione del posto per un periodo massimo complessivo di 12 mesi nell'arco di 24 mesi consecutivi.' Modelled for the operai (sickness_rules_by_category.operaio, the base rule with the windows): 274 days within 20 months, 365 within 24 above 42 months of seniority. The impiegati keep the base rule: their 9, 12 and 15 months within 30 months by seniority and their pay steps are not modelled (engine limitation sickness_cumulation_window).
     
 
 ## Raw data

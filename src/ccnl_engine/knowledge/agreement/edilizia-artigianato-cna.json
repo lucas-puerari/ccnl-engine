@@ -193,6 +193,10 @@
           },
           "remediation": "Source the anniversary rule for a 29 February hire before changing the fallback."
         }
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES, OPERAI (Operai, malattia (CNEL 224212, scanned), PDF p. 44, https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212, sha256 2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95): 'Nel caso di più malattie o ricadute nella stessa malattia, l'operaio ha diritto alla conservazione del posto per un periodo massimo complessivo di nove mesi nell'arco di 20 mesi consecutivi. L'operaio con un'anzianità superiore a tre anni e mezzo ha diritto alla conservazione del posto per un periodo massimo complessivo di 12 mesi nell'arco di 24 mesi consecutivi.' Modelled for the operai (sickness_rules_by_category.operaio, the base rule with the windows): 274 days within 20 months, 365 within 24 above 42 months of seniority. The impiegati keep the base rule: their 9, 12 and 15 months within 30 months by seniority and their pay steps are not modelled (engine limitation sickness_cumulation_window)."
       }
     ]
   },
@@ -2578,7 +2582,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "0948661b82f08292cd13200e42bb8c8c600fa64369ae6277ce18f4b7e048853f",
+    "source_hash": "d242dc4f93d95637bc03c20def9a6a5d2bc6999f2ba1f84a1bfd23fdde473ab2",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2770,6 +2774,43 @@
           "verification_status": "unverified",
           "effective_from": "2024-01-01"
         }
+      }
+    },
+    "sickness_rules_by_category": {
+      "operaio": {
+        "carenza_integration_rate": "1",
+        "full_pay_integration_rate": "1",
+        "max_duration_days": 180,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-edilizia-artigianato",
+              "title": "CCNL Edilizia - Artigianato (CNA / Confartigianato)",
+              "kind": "tabella_retributiva",
+              "url": "https://www.ilccnl.it/ccnl-edilizia-artigianato/"
+            },
+            "section": "Art. malattia — integrazione datoriale al 100% per 180 giorni"
+          },
+          "extraction": {
+            "method": "manual",
+            "extraction_timestamp": "2026-09-08T00:00:00",
+            "verification_status": "unverified",
+            "effective_from": "2024-01-01"
+          }
+        },
+        "comporto_windows": [
+          {
+            "seniority_months_from": 0,
+            "window_months": 20,
+            "comporto_days": 274
+          },
+          {
+            "seniority_months_from": 42,
+            "window_months": 24,
+            "comporto_days": 365
+          }
+        ]
       }
     }
   },
@@ -2989,6 +3030,27 @@
         "independence": "same_process",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-edilizia-artigianato-cna-operai-comporto",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses of the operai, against the research of a separate model session; quote checked on the source text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212",
+            "sha256": "2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95"
+          }
+        ],
+        "findings": [
+          "Added the operai comporto windows (9 months in 20, 12 in 24 above three and a half years)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules_by_category"
         ]
       }
     ]
