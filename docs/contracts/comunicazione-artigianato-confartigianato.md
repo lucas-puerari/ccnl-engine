@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer, worker_category |
 
-8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-11-18 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2026-11-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 28 values read identically by both readings and equal to the file. |
 | 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Apprenticeship tracks against art. 36 and art. 3 Parte II of the signed 2024 renewal, read on the page images (pp. 7-9, 20). | corrected | The file had two generic tracks (operai_tecnici 70-100% over four years, amministrativi 70/80/90%) and level 6 as a destination; the text prints one row per group, figures and PMI: impiegati amministrativi are 60/70/90%, so the file overpaid the first two years by 10 points.<br>Tracks replaced: operai_tecnici, amministrativi -> artigiane_gruppo_1, artigiane_gruppo_2, artigiane_gruppo_2_figure_3_anni, artigiane_gruppo_3, artigiane_gruppo_3_figure_2_anni, impiegati_amministrativi, pmi, pmi_figure_2_anni. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 36 c. 6-7 and the dichiarazione a verbale on the percentages, signed renewal of 18 November 2024, PDF pp. 7-9 and 12. | confirmed | Read the percentage tables on the page images: every artisan track of the file matches the signed table, so the note claiming percentages assumed from the CCNA framework was stale; closed apprenticeship_percentages_assumed. The new percentages apply to hires from 16 May 2022, not from 18 November 2024: corrected the cohort limitation. |
 
 ## Salary table
 
@@ -133,13 +134,6 @@ percentage: 0.95
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "comunicazione-artigianato-confartigianato/apprenticeship_percentages_assumed · base_salary · impact unknown · open"
-    APPRENTICESHIP: new rules from 2024-11-18 rinnovo for post-Nov-18-2024 contracts. Track durations confirmed from adapt.it (G016-specific): operai/tecnici max 5 years, amministrativi max 3 years, centraliniste 2 years. Percentage progressions (70/78/85/92/100% for operai/tecnici; 70/80/90% for amministrativi) follow the Confartigianato/CNA artigianato national framework agreement (CCNA); G016-specific source (adapt.it) confirms durations but not the individual percentages. SIMPLIFICATION: percentages assumed from artigianato CCNA framework; not found in a G016-specific primary source (CCNL PDF not fetched).
-
-    **Applies when:** `base_salary` applies.
-
-    **Remediation:** Source the G016 apprenticeship percentages from the CCNL text and correct the tracks.
-
 !!! warning "comunicazione-artigianato-confartigianato/pmi_non_artigiane_tables · base_salary · impact yes · open"
     Only aziende artigiane salary tables modelled. PMI non-artigiane tables (Art. 4, with EUR 207 total increase vs EUR 200 for artigiane, difference of EUR 7 in the Nov 2026 tranche) are not modelled. Applies to a small minority of firms covered by this CCNL.
 
@@ -148,11 +142,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add the Art. 4 PMI non-artigiane salary tables and a request field to select them.
 
 !!! warning "comunicazione-artigianato-confartigianato/previgente_apprenticeship_rules · base_salary · impact unknown · open"
-    APPRENTICESHIP SCOPE: only post-Nov-18-2024 rules modelled. Pre-renewal CCNL used a semestrali hybrid model (old percentage tables). Firms with apprenticeship contracts signed before Nov 18, 2024 may follow previgente rules. This is a deliberate scope decision (modelling current rules only); historical contract tracking is out of engine scope.
+    APPRENTICESHIP COHORT: 'Le nuove percentuali retributive previste nell'art. 36 [...] trovano applicazione solo per i lavoratori assunti a far data dalla sottoscrizione dell'Accordo di rinnovo del 16 maggio 2022. Per tutti gli altri lavoratori continuano a trovare applicazione le previgenti percentuali retributive' (dichiarazione a verbale, renewal of 18 November 2024, p. 12). The file models the current percentages only; an apprentice hired before 16 May 2022 is paid on them, not on the previous tables.
 
-    **Applies when:** `base_salary` applies.
+    **Applies when:** `base_salary` applies; contract type in apprentice; before 2027-05-16.
 
-    **Remediation:** Model the pre-18/11/2024 percentage tables gated on the apprenticeship start date, or open a limitation.
+    **Remediation:** Source the percentage tables in force before 16 May 2022 and gate them on the hire date.
 
 !!! warning "comunicazione-artigianato-confartigianato/level_category_not_declared · worker_category · impact unknown · open"
     LEVEL CATEGORY: all levels left null. Multiple levels map to both operai and impiegati roles — a genuine one-to-many mapping the schema cannot represent as a single category value.
@@ -396,6 +390,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEVEL 1A FUNCTION ALLOWANCE: indennita di funzione EUR 51.65, confirmed kitech.it Mar 2026 (base 2490.07 + allowance 51.65 = total 2541.72). Assumed constant from Dec 2024; no primary source shows a change in this amount through the 2024 rinnovo.
     
     LEVEL ORDERING: 6 (lowest) < 5 < 5bis < 4 < 3 < 2 < 1B < 1A (highest). Level 5bis has higher salary than level 5 — this is correct per the CCNL (5bis = specializzato BIS, above the basic specializzato).
+    
+    APPRENTICESHIP PERCENTAGES (Art. 36 c. 6-7, signed renewal of 18 November 2024, CNA, PDF pp. 7-9, read on the page images), on the retribuzione tabellare of the destination level: 1st group (levels 3, 2, 1B, 1A) and 2nd group (4, 5bis), 5 years, 60, 60, 70, 70, 85, 85, 90, 90, 100, 100% by semester; the 5bis figures of 3 years ('sbobinatura [...] con l'interpretazione dei contenuti, correzione bozze, battitura testi') 60, 60, 75, 75, 90, 90%; 3rd group (level 5), 4 years, 60, 60, 70, 70, 90, 90, 100, 100%; the level 5 figures of 2 years 60, 80, 85, 95%; impiegati amministrativi of every level, 3 years, 60, 60, 70, 70, 90, 90%. These are the tracks of the file; the PMI tracks are those of Parte II art. 3 (p. 20).
     
     INPS: reuses 2026-artigianato.json (ARTIGIANATO sector).
     
