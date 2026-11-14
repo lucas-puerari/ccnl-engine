@@ -373,6 +373,29 @@ detrazione needs no input: the conguaglio measures it on the total income,
 and what the earlier payers recognised is already in the IRPEF they
 withheld.
 
+### Art. 15 deductions at the conguaglio
+
+The conguaglio deducts the art. 15 TUIR charges the employer withheld, or
+paid under a collective or company agreement (art. 23 c. 3 DPR 600/1973):
+`CurrentYearTaxFacts.art15_expenses`, one `Art15Expense` per charge
+(`Art15Kind`). The deduction is 19% (the rate of the AdE 730/2026
+instructions; the Normattiva page shows 22% at every date back to 2004
+with no amending act):
+
+- medical expenses (letter c) above the 129.11 EUR franchise, never reduced
+  by income;
+- premiums (letter f) up to 530 EUR against death or a permanent disability
+  of at least 5%, 750 EUR with those that protect a person with a severe
+  disability, 1291.14 EUR against non-self-sufficiency net of the former,
+  whole up to 120,000 EUR of reddito complessivo and then reduced by
+  (240,000 - reddito) / 120,000 (c. 3-bis).
+
+Art. 16-ter caps the charges above 75,000 EUR of income, but it leaves out
+the medical expenses and its smallest cap (4,000 EUR) is above the letter f)
+maximum: it never binds here. The deduction joins the others in the net
+IRPEF of the conguaglio (component and final decision `art15_deductions`);
+the runs before it take none.
+
 ### Foreign tax credit at the conguaglio
 
 Art. 23 c. 3 DPR 600/1973, last sentences (art. 33 c. 4 D.Lgs. 33/2025 from

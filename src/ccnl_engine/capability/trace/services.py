@@ -52,6 +52,7 @@ _DECISION_FEATURES: dict[str, TraceState] = {
     "personal_withholdings": TraceState.NOT_APPLICABLE,
     "foreign_tax_credit": TraceState.NOT_APPLICABLE,
     "additional_irpef_base": TraceState.NOT_APPLICABLE,
+    "art15_deductions": TraceState.NOT_APPLICABLE,
     "addizionale_regionale": TraceState.NOT_APPLICABLE,
     "addizionale_comunale": TraceState.NOT_APPLICABLE,
     "bonus_pdr": TraceState.SKIPPED,

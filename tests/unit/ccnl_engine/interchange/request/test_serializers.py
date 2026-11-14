@@ -114,6 +114,7 @@ from ccnl_engine.seniority.inputs import (
 )
 from ccnl_engine.severance.provision.models import TfrFundBalance
 from ccnl_engine.sickness.models import SeriousIllnessKind, SicknessEpisode
+from ccnl_engine.tax_credit.art15.inputs import Art15Expense, Art15Kind
 from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
 from ccnl_engine.termination.inputs import TerminationTFREvent
 from ccnl_engine.termination.notice.inputs import NoticeIndemnityEvent
@@ -359,6 +360,7 @@ def _current_year() -> CurrentYearTaxFacts:
                 Decimal(0),
             ),
         ),
+        art15_expenses=(Art15Expense(Art15Kind.HEALTH, Decimal(300)),),
     )
 
 

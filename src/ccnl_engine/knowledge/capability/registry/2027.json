@@ -520,15 +520,15 @@
     {
       "feature": "art15_deductions",
       "layer": "net",
-      "implementation": "unsupported",
-      "applies_when": "outside_input",
-      "handler": null,
+      "implementation": "native",
+      "applies_when": "decided",
+      "handler": "decision",
       "evidence": "derived",
       "variants": [],
       "required_facts": [
-        "facts.art15_expenses"
+        "current_year.art15_expenses"
       ],
-      "description": "Detrazioni Art. 15 TUIR (interessi mutuo e oneri)"
+      "description": "Detrazioni art. 15 TUIR al conguaglio per gli oneri trattenuti o erogati dal datore (art. 23 c. 3 DPR 600/1973): spese sanitarie e premi assicurativi"
     },
     {
       "feature": "overtime",

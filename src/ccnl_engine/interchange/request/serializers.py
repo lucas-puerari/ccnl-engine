@@ -95,6 +95,7 @@ from ccnl_engine.seniority.inputs import (
 )
 from ccnl_engine.severance.provision.models import TfrFundBalance
 from ccnl_engine.sickness.diagnosis import SeriousIllnessKind
+from ccnl_engine.tax_credit.art15.inputs import Art15Expense, Art15Kind
 from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
 from ccnl_engine.withholding.deferral.inputs import ShortfallDeferralRequest
 from ccnl_engine.working_time.inputs import (
@@ -173,6 +174,8 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             ForeignTaxPaid,
             Headcount,
             PriorEmployerIncome,
+            Art15Expense,
+            Art15Kind,
             HolidayWorkKind,
             IncomeEstimateQuality,
             IndividualElement,

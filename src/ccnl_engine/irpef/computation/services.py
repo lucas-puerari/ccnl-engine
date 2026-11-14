@@ -88,6 +88,7 @@ def compute_tax(
     foreign_taxes: tuple[ForeignTaxPaid, ...] = (),
     fixed_term: bool = False,
     external_income: Decimal = _ZERO,
+    art15: Decimal = _ZERO,
 ) -> TaxResolution:
     """Compute IRPEF with a per-rule breakdown and the 2026 bonus measures.
 
@@ -158,6 +159,7 @@ def compute_tax(
             the trattamento integrativo (D.L. 3/2020 art. 1 c. 1), the
             somma esente and the ulteriore detrazione (L. 207/2024 art. 1
             c. 4, 6 and 9) all read it; zero when none is known.
+        art15: Art. 15 TUIR deduction of the conguaglio, zero otherwise.
 
     Returns:
         The IRPEF computation with all components, the updated recovery plan
@@ -175,6 +177,7 @@ def compute_tax(
         foreign_taxes,
         fixed_term=fixed_term,
         other_income=external_income,
+        art15=art15,
     )
     remaining = remaining_slots
     ordinary_tax, ulteriore = withhold_with_ulteriore(
@@ -222,6 +225,7 @@ def _annual(
     *,
     fixed_term: bool,
     other_income: Decimal,
+    art15: Decimal,
 ) -> tuple[NetIrpef, list[TaxLineItem], list[CalculationDecision]]:
     """Return the net annual IRPEF after the foreign tax credit, with its trace.
 
@@ -238,6 +242,7 @@ def _annual(
         fixed_term=fixed_term,
         other_income=other_income,
     )
+    annual = replace(annual, art15=art15)
     credit = foreign_tax_credit(foreign_taxes, taxable, annual, rules)
     if credit is not None:
         annual = replace(annual, foreign_credit=credit.amount)

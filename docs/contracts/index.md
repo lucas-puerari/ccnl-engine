@@ -30,7 +30,7 @@ on unverified sources, or be well sourced and not cleared for production.
   verified / derived / assumed / missing.
 - **Readiness:** the review tier of the contract ruleset.
 
-**Core payroll path: computed on every run of every contract** (27):
+**Core payroll path: computed on every run of every contract** (28):
 
 - ✅ `base_salary` (native)
 - ✅ `seniority` (native)
@@ -54,6 +54,7 @@ on unverified sources, or be well sourced and not cleared for production.
 - ✅ `addizionale_regionale` (native)
 - ✅ `addizionale_comunale` (native)
 - ✅ `family_deductions` (native)
+- ✅ `art15_deductions` (native)
 - ✅ `bonus_pdr` (native)
 - ✅ `rinnovo_substitute_tax` (native)
 - ✅ `notte_festivi_turni_substitute_tax` (native)
@@ -93,11 +94,10 @@ on unverified sources, or be well sourced and not cleared for production.
 - 📝 `bilateral_funds` (caller_supplied)
 - ⚠️ `pension_fund_contribution` (partial)
 
-**Outside the input: the request has no field for the fact, so the engine does not compute them** (3):
+**Outside the input: the request has no field for the fact, so the engine does not compute them** (2):
 
 - 🔲 `contribution_exemption` (unsupported)
 - 🔲 `fiscal_adjustment` (unsupported)
-- 🔲 `art15_deductions` (unsupported)
 
 | | Core payroll path of a contract |
 |---|---|
