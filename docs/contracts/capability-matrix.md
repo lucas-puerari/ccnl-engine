@@ -110,7 +110,7 @@ formulas or caller-declared amounts.
 | `standby` | Reperibilità (importi del CCNL per livello) | scenario | work_rules | native | event | event | — | — | implemented | none bundled |
 | `absence` | Assenze ingiustificate | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 23 / 0 / 0 / 0 |
 | `leave` | Ferie, ROL ed ex festività godute: retribuite nella paga del mese, scalano il saldo maturato | scenario | work_rules | native | event | event | — | — | implemented | 50 / 19 / 0 / 0 |
-| `sickness` | Malattia: episodi su più periodi, carenza, fasce INPS e integrazione CCNL | scenario | work_rules | native | event | event | — | multi_period_episode, inps_bands_and_carenza, ccnl_tiers | simplified | 64 / 195 / 7 / 0 |
+| `sickness` | Malattia: episodi su più periodi, carenza, fasce INPS e integrazione CCNL | scenario | work_rules | native | event | event | — | multi_period_episode, inps_bands_and_carenza, ccnl_tiers | simplified | 65 / 194 / 7 / 0 |
 | `fringe_benefit` | Fringe benefit (informativo) | scenario | work_rules | native | event | event | — | — | simplified | 0 / 1 / 1 / 0 |
 | `travel_allowance` | Indennità di trasferta (importo giornaliero dal chiamante, quota esente art. 51 c. 5 TUIR) | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `welfare` | Welfare aziendale (informativo) | scenario | work_rules | native | event | event | — | — | implemented | none bundled |
@@ -175,7 +175,7 @@ never grow.
 | 33 | [CCNL Comparto Istruzione e Ricerca 2025-2027 (trattamento economico) - ARAN, Università, tecnologi a tempo indeterminato](universita-tecnologi-aran.md) | ✅ | — | 4 / 4 / 1 / 0 |
 | 34 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | ⚠️ | base_salary | 16 / 8 / 0 / 0 |
 | 35 | [CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico](informatica-pmi-unimatica.md) | ✅ | — | 2 / 39 / 1 / 0 |
-| 36 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | ⚠️ | base_salary, inps_employer | 34 / 21 / 1 / 0 |
+| 36 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | ⚠️ | base_salary, inps_employer | 35 / 20 / 1 / 0 |
 | 37 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | ⚠️ | inps_employer, seniority | 50 / 10 / 1 / 1 |
 | 38 | [CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)](cooperative-sociali.md) | ⚠️ | base_salary, inps_employer | 62 / 47 / 0 / 0 |
 | 39 | [CCNL Cooperative e Consorzi Agricoli](cooperative-consorzi-agricoli.md) | ⚠️ | base_salary | 34 / 8 / 0 / 0 |

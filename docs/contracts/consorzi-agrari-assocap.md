@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 34 verified / 21 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 35 verified / 20 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-12-12 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | tranche_2027_01_missing: Allegato A gives the 2027-01-01 base salary for levels 1–6 (including 3S/4S); every value and effective date is already in levels[].base_salary.periods. Q also has the 1st-level value, but the table has no distinct Q row; this verdict does not independently validate Q equivalence |
 | 2026-11-08 | gpt-6-sol (ai) | Data fixes proposed by one session from the signed text and confirmed by a second independent session. | corrected | Closed cashier_allowance_missing. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 43 grandfathered seniority award, PDF p. 40; Art. 33 pay components, PDF p. 33. | corrected | Three monthly wages once after 25 years for employees already in service on 22 December 1997, including apprenticeship; excluded from TFR. Qualifying short breaks and specified interprovincial transfers can delay accrual; early termination may trigger a separate payment. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Table and cumulation of art. 36 against the research of a separate model session; table read on the text layer of the source. | corrected | Replaced one per-episode rule with the nine seniority bands of art. 36, each summed over three times its comporto.<br>The integration rates were 0: art. 36 c. 7 tops up to 100% or 50% of the net pay. |
 
 ## Salary table
 
@@ -128,13 +129,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -314,6 +308,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Apprenticeship: Art. 16 delegates rules to Annex E, not publicly available. layer_2 = out_of_scope.
     
     Headcount: ~2,133 workers (ASSOCAP, CNEL archive 2023).
+    
+    SICKNESS (Art. 36 cc. 4-6, CCNL 2024-2027, PDF pp. 35-36, https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf, sha256 592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea): the table of c. 4 sets the comporto (6 to 15 months) and the months at full and half pay by years of service; 'I periodi massimi di trattamento [...] si riferiscono alle assenze per una o più malattie verificatesi in un periodo di tempo pari al triplo di quello fissato per la conservazione del posto'. Modelled as sickness_rules.cumulation with a window of three times the comporto for each band. The text does not say how the comporto itself sums distinct illnesses: the engine counts it over the same window, which reaches the comporto only after three comporti of sickness in it. The apprentices' 6 months of the apprenticeship agreement and the TBC and oncological rules are not modelled.
     
 
 ## Raw data
