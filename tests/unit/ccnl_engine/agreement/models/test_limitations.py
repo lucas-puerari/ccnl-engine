@@ -44,6 +44,21 @@ def test_note_limitation_becomes_a_model_limitation() -> None:
     assert limitation.source == "ccnl/test:coverage.notes"
 
 
+def test_note_limitation_carries_its_search() -> None:
+    """An unsourced note keeps its status and the documents searched."""
+    searched = [{"url": "https://x.it/a.pdf", "sha256": "b" * 64, "title": "a"}]
+    spec = _SPEC | {"status": "unsourced", "searched": searched}
+    ccnl = _ccnl(
+        _note(capability="base_salary", monetary_impact="yes", limitation=spec)
+    )
+
+    (limitation,) = ccnl.limitations
+
+    assert limitation.status == "unsourced"
+    assert limitation.blocks
+    assert [doc.url for doc in limitation.searched] == ["https://x.it/a.pdf"]
+
+
 def test_note_limitation_keeps_the_totals_it_names() -> None:
     """An employer-only fund touches the employer cost alone."""
     spec = _SPEC | {"applies_when": {"trigger": "owed"}, "totals": ["employer_cost"]}

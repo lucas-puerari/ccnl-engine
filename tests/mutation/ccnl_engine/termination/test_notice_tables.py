@@ -76,16 +76,13 @@ def _notice(ccnl_id: str) -> NoticeRules:
 def test_the_calendar_days_from_the_1st_or_the_16th(
     ccnl_id: str, level: str, service: int, days: int, cause: TerminationCause
 ) -> None:
-    """Calendar days alike for either cause, with the rateo of the extras."""
+    """Calendar days alike for either cause, from the 1st or the 16th."""
     rules = _notice(ccnl_id)
     band = rules.band(level, cause, service)
 
     assert band is not None
     assert (band.months, band.days, band.indemnity_months) == (0, days, None)
-    assert (rules.starts.value, rules.extra_months_included) == (
-        "first_or_sixteenth",
-        True,
-    )
+    assert rules.starts.value == "first_or_sixteenth"
 
 
 @pytest.mark.parametrize(

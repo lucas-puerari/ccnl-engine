@@ -5455,7 +5455,7 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "d81c57f34fe43ad6aff14d74ff10617993ca72de9db98e20b5d825feeaa78744",
+    "source_hash": "412b948e81df1b250184f23bc32b7e15dd940c7e18086a43c5f20b5279603a5d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5739,7 +5739,6 @@
         }
       ],
       "starts": "day_after",
-      "extra_months_included": false,
       "tfr_base": null,
       "provenance": {
         "status": "verified",

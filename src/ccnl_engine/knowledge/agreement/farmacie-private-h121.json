@@ -1683,7 +1683,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "d9f6f1f417bca48e5a0ff89698f031bc5dd0baf46ea4ceafc289c2f517ee5c22",
+    "source_hash": "7ae25e82ca88b62fd94bf6046196297f206fe621fa2684b5cf65aada278400d7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2171,7 +2171,6 @@
         }
       ],
       "starts": "first_or_sixteenth",
-      "extra_months_included": true,
       "tfr_base": false,
       "provenance": {
         "status": "verified",

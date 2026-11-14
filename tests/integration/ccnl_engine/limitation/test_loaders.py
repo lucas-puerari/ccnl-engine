@@ -13,7 +13,7 @@ from ccnl_engine.limitation.loaders import (
     load_engine_limitations,
     parse_engine_limitations,
 )
-from ccnl_engine.limitation.models import LimitationTrigger
+from ccnl_engine.limitation.scope.models import LimitationTrigger
 
 _ENTRY: dict[str, Any] = {
     "id": "engine_path",
@@ -47,11 +47,8 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "parental_month_split",
         "parental_extra_month_share",
         "disability_permit_tfr",
-        "notice_indemnity_partial",
-        "notice_indemnity_extra_months",
         "notice_indemnity_day_measure",
         "parental_hourly_ccnl_rule",
-        "personal_withholding_same_kind",
         "mid_month_level_change",
         "arrears_unused_deductions",
         "una_tantum_readings",
@@ -62,6 +59,9 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "apprentice_seniority_simplified",
         "sickness_inps_daily_base",
         "notice_indemnity_tfr",
+        "notice_indemnity_extra_months",
+        "notice_indemnity_partial",
+        "personal_withholding_same_kind",
         "extraordinary_leave_daily_base",
         "naspi_dismissal_exceptions",
         "sickness_agricultural_fixed_term_days",

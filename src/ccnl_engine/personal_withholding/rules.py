@@ -52,10 +52,10 @@ The engine reads them as follows:
   amount, and a later one takes what its own limit and the combined limits
   leave after the earlier ones.  The half of art. 545 c. 5 and art. 68-70
   binds every deduction that follows another one;
-- two garnishments of the same kind, or two cessioni, share the fifth (or
-  tenth, or seventh) of their kind in the order of notification: no text
-  read says how the measure is split (engine limitation
-  ``personal_withholding_same_kind``);
+- two garnishments of the same kind share the fifth (or tenth, or
+  seventh) of their kind as the ordinanze di assegnazione set (art. 553
+  c.p.c.): each stated amount caps its deduction, within what the earlier
+  ones leave of the measure;
 - each limit is rounded down to the cent: art. 545 makes a garnishment
   beyond its limits "parzialmente inefficace".
 """

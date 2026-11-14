@@ -7,6 +7,7 @@ the employment what is still due.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import ROUND_DOWN, Decimal
 from typing import TYPE_CHECKING
@@ -25,7 +26,7 @@ from ccnl_engine.personal_withholding.inputs import (
 )
 from ccnl_engine.personal_withholding.limit.rules import ASSIGNMENT_LIMIT, FIFTH_LIMIT
 from ccnl_engine.personal_withholding.models import WithheldToDate
-from ccnl_engine.personal_withholding.services import SAME_KIND
+from ccnl_engine.personal_withholding.services import UNASSIGNED
 from ccnl_engine.year.competence.services import calculate_competence_year
 from ccnl_engine.year.tax_year.closing.rules import close_tax_year
 from tests.unit.ccnl_engine.builders import year_plan
@@ -108,7 +109,7 @@ def test_the_garnishment_takes_a_fifth_of_the_net_beside_the_assignment() -> Non
     assert _sum_ledger(march.ledger_entries, AccountKind.PERSONAL_WITHHOLDINGS) == (
         250 + decisions["pignoramento"].amount
     )
-    assert SAME_KIND not in {lim.id for lim in march.limitations}
+    assert UNASSIGNED not in {issue.code for issue in march.issues}
 
 
 def test_the_residual_is_carried_until_the_garnishment_is_paid() -> None:
@@ -154,8 +155,8 @@ def test_a_new_year_withholds_what_the_old_one_left() -> None:
     assert _withheld(february) == {"cessione": Decimal(3000)}
 
 
-def test_two_garnishments_of_one_kind_share_the_fifth() -> None:
-    """The later order waits for the earlier one, under a limitation."""
+def test_two_garnishments_of_one_kind_need_their_assigned_amounts() -> None:
+    """Art. 553 c.p.c.: without the ordinanza's amount the fact is missing."""
     later = PersonalWithholding(
         "pignoramento_2",
         PersonalWithholdingKind.ORDINARY,
@@ -165,8 +166,28 @@ def test_two_garnishments_of_one_kind_share_the_fifth() -> None:
     )
     march = _year(_GARNISHMENT, later).period_results[2]
 
-    assert _decisions(march)["pignoramento_2"].reason_code == "nothing_withheld"
-    assert SAME_KIND in {lim.id for lim in march.limitations}
+    (issue,) = (i for i in march.issues if i.code == UNASSIGNED)
+    assert issue.fact == "installment"
+    assert issue.status.value == "incomplete"
+
+
+def test_two_garnishments_take_their_assigned_amounts() -> None:
+    """With the amounts of the ordinanze each takes its own, no issue."""
+    first = replace(_GARNISHMENT, installment=Decimal(40))
+    later = PersonalWithholding(
+        "pignoramento_2",
+        PersonalWithholdingKind.ORDINARY,
+        date(_YEAR, 3, 2),
+        date(_YEAR, 3, 2),
+        Decimal(500),
+        Decimal(30),
+    )
+    march = _year(first, later).period_results[2]
+
+    decisions = _decisions(march)
+    assert decisions[first.withholding_id].amount == Decimal(40)
+    assert decisions["pignoramento_2"].amount == Decimal(30)
+    assert UNASSIGNED not in {issue.code for issue in march.issues}
 
 
 def test_the_end_of_the_employment_reports_the_residual() -> None:

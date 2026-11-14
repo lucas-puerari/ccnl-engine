@@ -4222,7 +4222,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "579c1dba1d93c720eab91fc6b9a7989873e0a871e98f07fc2f5624a06c7dc31f",
+    "source_hash": "71ef9ce237d7558e7c0a8925e878ca246d283f3d502c76a21677e8730eb445c9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -13731,7 +13731,6 @@
         }
       ],
       "starts": "first_or_sixteenth",
-      "extra_months_included": false,
       "provenance": {
         "status": "verified",
         "location": {

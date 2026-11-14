@@ -890,7 +890,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "438074a644fc37b8a80e39b4ee9351c88f8149007c8adf91d6be0e6c3feb4f35",
+    "source_hash": "be2cbbb9b1b713179c025f9939b8b7ae1acadff6163f3095d6e608a79fdd92e6",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1245,7 +1245,6 @@
         }
       ],
       "starts": "first_or_sixteenth",
-      "extra_months_included": false,
       "tfr_base": null,
       "provenance": {
         "status": "verified",

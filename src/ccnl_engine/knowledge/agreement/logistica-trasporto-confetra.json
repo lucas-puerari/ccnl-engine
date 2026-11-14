@@ -3007,7 +3007,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "1ca0d6514be997beac30b6adbc7d2806dc5d155c5eeb989e598bf323effd50f2",
+    "source_hash": "4bedd71a71ec67efeb2b91111dd5cfaed7b3d95b19e6ce29299f840d14196761",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3800,7 +3800,6 @@
         }
       ],
       "starts": "first_or_sixteenth",
-      "extra_months_included": true,
       "tfr_base": null,
       "provenance": {
         "status": "verified",

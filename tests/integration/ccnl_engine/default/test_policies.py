@@ -44,6 +44,11 @@ _CATALOG = load_capability_catalog(2026)
 
 #: ``requires_fact`` fields without a case, and why.
 _NOT_EXERCISED: dict[str, str] = {
+    "PersonalWithholding.installment": (
+        "only two garnishments of one kind read it as a fact, which no "
+        "registry pair states; tests/mutation/ccnl_engine/personal_withholding/"
+        "test_services.py exercises the missing-fact issue and the stated amounts"
+    ),
     "HolidayWorkEvent.in_periodic_shift": (
         "read only by the ANCE bands that exclude shift workers (operai "
         "art. 19 Sunday rest, impiegati art. 54 night-holiday); the registry's "

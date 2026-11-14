@@ -67,7 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-16 | claude-opus-5-5 (ai) | Checklist item 'confrontare lordo, netto e costo azienda con esempi indipendenti': a run of the engine against the cost table of the Ministry of Labour for the comparto ristorazione collettiva (DD 63 of 10 July 2025, national table of January 2026, D.Lgs. 36/2023 art. 41 c. 13). | flagged | Level 4, January 2026: paga base conglobata 19.832,28 a year over 12 equals the 1652.69 of the file (tranche of 1 September 2025); the quattordicesima of the table, 1.652,69, is that month. Match: reference case pubblici-esercizi-fipe-angem-ristorazione-collettiva_4_2026_ministry.json.<br>Employer contributions: the table prints Inps 29,75%, FIS 0,53% and CIGS 0,60%, 30.88% in all; the engine applies 30.8833% to an impiegato of a company of 51 employees (the FIS employer share 0.80% x 2/3 = 0.5333%, printed rounded). The CIGS line places the table above 50 employees (D.Lgs. 148/2015 art. 20, commercial companies with more than fifty employees). Match within the rounding of the printed rate; a rate, not a total, so no output is credited.<br>Deviations, with cause and decision: INAIL 1,09% is not computed by the engine (documented); the health fund (158,40 a year) is the owed limitation health_and_bilateral_funds, which leaves the employer cost incomplete on every run (checked: is_employer_cost_complete false); the EBT contribution, the complementary pension at a 30% enrolment and the three seniority increments of row A are averages of the table, not facts of one worker: not compared. No independent net pay example: not compared. |
 | 2026-10-17 | claude-opus-5-5 (ai) | The paga base and contingenza of every level from June 2024 against the accordo integrativo of 26 June 2024, the quattordicesima against the CCNL of 8 February 2018, and a year and a termination of a 4th level worker against a hand oracle. | confirmed | Accordo integrativo of 26 June 2024 (pp. 1-3): the 50 totals of contingenza and paga base of the ten levels from June 2024 to December 2027 match the file, with the tranches of 2025 and 2026 in September.<br>Art. 184 of the CCNL of 8 February 2018 (p. 128, scan read by OCR): quattordicesima of the pay in force on 30 June, paid with the July pay, in ratei of the twelve months before 1 July. Match.<br>Hand oracle (tests/knowledge/ccnl_engine/period/sector, scenarios ristorazione-year and ristorazione-june): a 4th level impiegato hired on 1 January 2026 by an employer with 10 employees, with the terziario rates up to 15 employees and the 0.77% sickness supplement of the pubblici esercizi taken apart; every payment and the year (gross, contributions, tax, net, TFR, employer cost) match the engine to the cent. The CCNL now covers every total of the definition of done. |
 | 2026-10-31 | claude-opus-5-5 (ai) | The basis of the indemnity for the leave not taken at the end of the employment, searched in the OCR of the signed text of 2018 (Artt. 114, 134, 135, 159, 160). | corrected | Art. 159 - Determinazione della retribuzione giornaliera (p. 116): the daily pay is the monthly pay divided by 26 for every contractual purpose: work_rules.leave_rules.termination; the accrual of the leave is not modelled, so the basis is not used yet. |
-| 2026-11-01 | claude-opus-5-5 (ai) | The notice of Artt. 208-209 (PDF pp. 143-144), checked by a separate session on the rendered pages. | confirmed | Art. 208 (PDF pp. 143-144, sha256 32a2831b... matched, page images read): 15 bands, A e B / 1 / 2 e 3 / 4 e 5 / 6S, 6 e 7 over the three service bands, the same for dismissal and resignation, no start day: work_rules.notice.<br>Art. 209 (p. 144): the indemnity is the normale retribuzione of the period, extra_months_included false; the exception of Art. 179 for the pubblici esercizi does not concern this file. |
+| 2026-11-01 | claude-opus-5-5 (ai) | The notice of Artt. 208-209 (PDF pp. 143-144), checked by a separate session on the rendered pages. | confirmed | Art. 208 (PDF pp. 143-144, sha256 32a2831b... matched, page images read): 15 bands, A e B / 1 / 2 e 3 / 4 e 5 / 6S, 6 e 7 over the three service bands, the same for dismissal and resignation, no start day: work_rules.notice.<br>Art. 209 (p. 144): the indemnity is the normale retribuzione of the period (the ratei of the extra months follow art. 2121 c. 1 c.c.); the exception of Art. 179 for the pubblici esercizi does not concern this file. |
 | 2026-11-05 | claude-opus-5-5 (ai) | The hourly divisor of the 44-hour week, Articolo 160 (PDF p. 116, printed p. 114), checked by a separate session on the page rendered at 200 and 400 dpi. | confirmed | Art. 160 c.1 (sha256 32a2831b... matched): 190 for a normal week of 44 hours, 172 for 40: work_rules.time_supplements.week_divisors 44/190.<br>The renewal of 5 June 2024 amends arts. 114, 135, 161, 183-184 and 199-202, not art. 160. |
 | 2026-11-05 | claude-opus-5-5 (ai) | Art. 186 (p. 17) of the renewal of 5 June 2024, OCR of the signed scan. | corrected | Art. 186 covers every sector of the CCNL: the Fondo Est of the Pubblici esercizi file applies to ristorazione collettiva, which had no health fund. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 13 commi 5-13 (renewal of 5 June 2024 pp. 7-8, CCNL 2018 p. 29), the encoding checked against the signed pages by a separate model session. | flagged | Confirmed the amounts by level and their mapping, the November 2027 payment, the part-time of comma 6 and the exclusion of comma 7.<br>Flagged: the quote condensed the table (now verbatim up to the table, the table in the transformation); the eligibility date of comma 5 is a reading, not stated; commi 8 (pre-1993 exception) and 12 (Fon.Te.) were missing from the limitation: added.<br>Kept as approximations under the limitation: trigger of comma 10, days worked, absorption. |
@@ -213,14 +213,14 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the yearly trattamento minimo and the income the test reads, take the income as a fact of the leave and pay the further days at 30% when the condition holds, then resolve this limitation.
 
-!!! warning "parental_month_split · parental_leave · impact unknown · open"
+!!! warning "parental_month_split · parental_leave · impact unknown · unsourced"
     When a counter of the parental leave (a rate band or the indemnified months) ends inside a calendar month of the leave that is not of thirty days, the engine pays the days of that month in order, one day of counter each and the last day what is left of the thirty: INPS counts the calendar month as one month (FAQ congedo parentale 2024, n. 10) but no source says which of its days fall in which band.
 
     **Applies when:** `parental_leave` applies; the run takes the engine code path.
 
     **Remediation:** Source how INPS splits a calendar month between two rates of the parental leave and apply it, then resolve this limitation.
 
-!!! warning "parental_extra_month_share · parental_leave · impact unknown · open"
+!!! warning "parental_extra_month_share · parental_leave · impact unknown · unsourced"
     The days of parental leave accrue the 13th and the other extra months in full at the employer's charge (art. 34 c. 5 D.Lgs. 151/2001: the leave does not reduce them), while the INPS indemnity is computed on a base that already holds their daily rateo (art. 23 c. 2, INPS circ. 122/2022): no source read settles whether the employer's extra month is reduced by the share INPS pays, so the rateo of a month on leave may be overstated.
 
     **Applies when:** `parental_leave` applies; the run takes the engine code path.
@@ -234,26 +234,26 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the collective rules on the leave by the hour of the CCNL (hours of a day of leave, cumulation) and apply them, then resolve this limitation.
 
-!!! warning "disability_permit_tfr · disability_permits · impact unknown · open"
+!!! warning "disability_permit_tfr · disability_permits · impact unknown · unsourced"
     The days of permit under L. 104/1992 art. 33 c. 3 keep the TFR base, as payroll practice holds; art. 2120 c. 3 c.c. keeps in the TFR base only the absences of art. 2110 c.c. and the wage integration, and no primary source read says the permits are among them, so the TFR quota of a month with permits may be overstated.
 
     **Applies when:** `disability_permits` applies; the run takes the engine code path.
 
     **Remediation:** Source the TFR treatment of the permit days (an INPS or Ministry ruling, or case law of the Cassazione) and apply it, then resolve this limitation.
 
-!!! warning "notice_indemnity_partial · termination_notice · impact unknown · open"
+!!! note "notice_indemnity_partial · termination_notice · impact unknown · resolved"
     A notice partly worked pays the share of its calendar days left of the indemnity the CCNL band gives in monthly pays; the CCNL clause read (Federmeccanica Sez. Quarta Tit. VIII Art. 1) states the indemnity of the whole notice only, and practice also measures the rest by 30ths or 26ths of the monthly pay.
 
     **Applies when:** `termination_notice` applies; the run takes the engine code path.
 
-    **Remediation:** Source how the CCNL or case law measures the indemnity of a notice partly worked and apply it, then resolve this limitation.
+    **Remediation:** Resolved: art. 2118 c. 2 c.c. (https://www.normattiva.it/atto/caricaArticolo?art.versione=1&art.idGruppo=267&art.flagTipoArticolo=2&art.codiceRedazionale=042U0262&art.idArticolo=2118&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1942-04-04&art.progressivo=0&, sha256 834213e542e77f0f1079835b14c444432e208be59a9d3d4c859ff5ede6c8e11d): 'un'indennità equivalente all'importo della retribuzione che sarebbe spettata per il periodo di preavviso'; a notice partly worked owes the pay of the days left, as the engine computes. How a day of that pay is measured stays the declared residual notice_indemnity_day_measure. Read on 2026-11-15.
 
-!!! warning "notice_indemnity_extra_months · termination_notice · impact yes · open"
+!!! note "notice_indemnity_extra_months · termination_notice · impact yes · resolved"
     The indemnity is the monthly pays of the CCNL band on the monthly pay of art. 2121 c.c.; the 13th and 14th the notice would have accrued are not added, although art. 2121 counts 'ogni altro compenso di carattere continuativo', so the indemnity may be understated.
 
     **Applies when:** `termination_notice` applies; the run takes the engine code path.
 
-    **Remediation:** Source whether the indemnity carries the rateo of the extra months (CCNL clause or case law) and add it, then resolve this limitation.
+    **Remediation:** Resolved: art. 2121 c. 1 c.c. (Normattiva, https://www.normattiva.it/atto/caricaArticolo?art.versione=2&art.idGruppo=267&art.flagTipoArticolo=2&art.codiceRedazionale=042U0262&art.idArticolo=2121&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1942-04-04&art.progressivo=0, sha256 d0e0175efc4dd4c7e4cc4d8431ed107547531932ccfc6dc5e078b94f0a45e7ec): 'L'indennità di cui all'articolo 2118 deve calcolarsi computando [...] ogni altro compenso di carattere continuativo'. The indemnity carries the rateo of the extra months; read on 2026-11-15.
 
 !!! note "notice_indemnity_tfr · termination_notice · impact yes · resolved"
     The notice indemnity enters the TFR base only when the CCNL puts it there: the Cassazione holds that it is out of it, being referable to a period not worked after the end of the employment, and art. 2120 c. 2 c.c. leaves a different rule to the collective agreement.
@@ -262,7 +262,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the indemnity is out of the TFR base unless the CCNL notice sets tfr_base true.
 
-!!! warning "notice_indemnity_day_measure · termination_notice · impact unknown · open"
+!!! warning "notice_indemnity_day_measure · termination_notice · impact unknown · unsourced"
     A CCNL that sets the notice in calendar days measures the indemnity on the pay of those days: the engine takes a calendar day as a 30th of the monthly pay; Commercio art. 209 refers the monthly pay to all the days of the calendar month, but its art. 210 sets the daily quota at 1/26 'in tutti i casi', so the indemnity may be understated.
 
     **Applies when:** `termination_notice` applies; the run takes the engine code path.
@@ -283,14 +283,14 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: EmploymentPeriod.naspi_case states the cases that owe, leave out or multiply the contribution; an end that could be one and does not state it is decided from its cause alone with the provisional issue naspi_dismissal_case_unknown, which names the fact.
 
-!!! warning "personal_withholding_same_kind · personal_withholdings · impact unknown · open"
+!!! note "personal_withholding_same_kind · personal_withholdings · impact unknown · resolved"
     Two garnishments of the same kind, or two salary assignments, share the measure of their kind (a fifth, or the tenth or seventh of the agente della riscossione) in the order of notification: art. 545 c. 4 c.p.c. sets 'un quinto per i tributi ... ed in eguale misura per ogni altro credito' and art. 5 DPR 180/1950 a cessione 'fino al quinto', but no text read says how two orders of the same kind split the measure, so the later order may be under- or overstated.
 
     **Applies when:** `personal_withholdings` applies; the run takes the engine code path.
 
-    **Remediation:** Source how the employer splits the measure between two orders of the same kind (art. 499 c.p.c. on the intervention of creditors, case law of the Cassazione) and apply it, then resolve this limitation.
+    **Remediation:** Resolved: art. 553 c. 1 c.p.c. (Normattiva, https://www.normattiva.it/atto/caricaArticolo?art.versione=4&art.idGruppo=93&art.flagTipoArticolo=1&art.codiceRedazionale=040U1443&art.idArticolo=553&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1940-10-28&art.progressivo=0&, sha256 b41bf831e63fcaacfe95231f9595da5d0e5619c162cc455a80632bba90c147cd): the judge 'le assegna in pagamento [...] ai creditori concorrenti' and 'L'obbligo di pagamento decorre, per il terzo, dalla notifica dell'ordinanza di assegnazione'. The amount each garnishment takes is the fact of its ordinanza: PersonalWithholding.installment, and two garnishments of one kind without it give the missing-fact issue personal_withholding_unassigned. Read on 2026-11-15.
 
-!!! warning "mid_month_level_change · base_salary · impact unknown · open"
+!!! warning "mid_month_level_change · base_salary · impact unknown · unsourced"
     A promotion on a day other than the first of a month splits the monthly pay of the run between the level before and the new level by the payable days of the CCNL daily quota on each side of the promotion, component by component; the hourly quotas of the month (overtime, permits, absences) read the same split chain whatever the day of the event. The CCNL texts read (Commercio and Terziario art. 118, DMO art. 102) give the new level from the promotion but not how its month is split.
 
     **Applies when:** `base_salary` applies; the run takes the engine code path.

@@ -2195,7 +2195,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "a8d4d39313c8bd141ec247bfd29583830198da16a02701a3293c8f128aee2cb6",
+    "source_hash": "c5a6e5eef9ec0a645ee820e9202064be86c48cf9da1fd52eeecc5bafe717f8f3",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -2712,7 +2712,6 @@
         }
       ],
       "starts": "first_or_sixteenth",
-      "extra_months_included": true,
       "tfr_base": false,
       "provenance": {
         "status": "verified",

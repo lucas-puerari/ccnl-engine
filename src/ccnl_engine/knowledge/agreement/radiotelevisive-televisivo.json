@@ -2178,7 +2178,7 @@
     "source": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "2755de28a19a6b0b80062bbb2a97894df3b5b33a2e44d7d39829737493691ffb"
+    "source_hash": "dd9d1367dfeb03f1cd7811126b9335fceec9617db63c2e9c075d3eae9916df41"
   },
   "work_rules": {
     "notice": {
@@ -2249,7 +2249,6 @@
         }
       ],
       "starts": "first_or_sixteenth",
-      "extra_months_included": true,
       "tfr_base": false,
       "provenance": {
         "status": "verified",

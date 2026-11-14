@@ -12,6 +12,12 @@ from ccnl_engine.agreement.census.models import Census
 from ccnl_engine.agreement.validity.models import ValidityWindow
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.limitation.loaders import load_engine_limitations
+from ccnl_engine.limitation.models import (
+    LimitationStatus,
+    ModelLimitation,
+    MonetaryImpact,
+    SearchedDocument,
+)
 from scripts.completeness import report
 from scripts.provenance.evidence.check import snapshot
 from scripts.provenance.rules import PayableRule
@@ -208,7 +214,8 @@ def test_the_page_names_every_ccnl_and_the_totals() -> None:
     built = report.build_report()
     page = report.render(built)
 
-    assert f"**Complete: 0/{len(built.rows)} CCNLs.**" in page
+    assert f"**Complete: 0/{len(built.rows)} CCNLs**" in page
+    assert "complete except declared residuals: 0." in page
     assert "| [anas](../contracts/anas.md) | `trasporti-logistica` |" in page
 
 
@@ -300,6 +307,50 @@ def test_the_rules_of_a_pending_file_are_not_weak() -> None:
 
     assert weak.by_sector == {}
     assert weak.common == 1
+
+
+def test_a_ccnl_with_only_residuals_left_is_not_complete() -> None:
+    """No open work, but a declared residual: complete except residuals."""
+    row = replace(_COMPLETE, residuals=("x/a",))
+
+    assert not row.complete
+    assert row.complete_except_residuals
+    assert row.gaps == ()
+    assert row.status == "complete except 1 declared residual"
+
+
+def test_residuals_are_shown_next_to_the_gaps() -> None:
+    """Open work and residuals: both counted in the cell."""
+    row = replace(_COMPLETE, weak_rules=1, residuals=("x/a", "y"))
+
+    assert not row.complete_except_residuals
+    assert row.status == "1 weak rule; 2 declared residuals"
+
+
+def test_an_unsourced_limitation_is_a_residual_not_a_gap() -> None:
+    """A declared residual leaves the open limitations for the residual list."""
+    commercio = load_ccnl("commercio-confcommercio")
+    residual = ModelLimitation(
+        id="unsourced_case",
+        capability="base_salary",
+        variant="unsourced_case",
+        summary="no source",
+        monetary_impact=MonetaryImpact.YES,
+        status=LimitationStatus.UNSOURCED,
+        rulesets=("commercio-confcommercio",),
+        source="engine",
+        remediation="none known",
+        searched=(
+            SearchedDocument(url="https://x.it/a.pdf", sha256="c" * 64, title="a"),
+        ),
+    )
+    engine = (*load_engine_limitations(), residual)
+
+    met, outside = report.ccnl_limitations(commercio, engine)
+
+    assert "unsourced_case" not in {*met, *outside}
+    residuals = report.ccnl_residuals(commercio, engine)
+    assert "unsourced_case" in residuals
 
 
 def test_the_provisional_limitations_are_not_gaps() -> None:

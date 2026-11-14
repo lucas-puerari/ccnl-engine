@@ -1331,7 +1331,7 @@
     "effective_until": null,
     "source": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
     "verification_status": "unverified",
-    "source_hash": "429856434aa22c3c2872ad96c6ab145d586c44f792c2fcd23b3304d651bfd89e",
+    "source_hash": "df19ed9adc0795ce003bbd7e1566efc543a98d42264c87087ae5526397306a5b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1733,7 +1733,6 @@
         }
       ],
       "starts": "same_day",
-      "extra_months_included": false,
       "tfr_base": null,
       "provenance": {
         "status": "verified",

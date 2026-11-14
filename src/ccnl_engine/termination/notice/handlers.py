@@ -2,7 +2,8 @@
 
 The indemnity is the pay of the notice not worked (art. 2118 c. 2 c.c.):
 the monthly pays of the CCNL band (or its calendar days) on the monthly
-pay of art. 2121 c.c., with the extra months where the CCNL says so; a
+pay of art. 2121 c.c., with the rateo of the extra months ('ogni altro
+compenso di carattere continuativo', which no CCNL can narrow); a
 notice partly worked pays the share of its days left.  The item is in the
 INPS base (art. 12 c. 4 lett. b L. 153/1969: "fatta salva l'imponibilità
 dell'indennità sostitutiva del preavviso"), out of the TFR base unless the
@@ -52,8 +53,6 @@ _KIND = "notice_indemnity_item"
 _FEATURE = "termination_notice"
 _ZERO = Decimal(0)
 #: Limitations of the indemnity.
-PARTIAL = "notice_indemnity_partial"
-EXTRA_MONTHS = "notice_indemnity_extra_months"
 _WITH_JUST_CAUSE = frozenset({TerminationCause.DISMISSAL, TerminationCause.RESIGNATION})
 DAY_MEASURE = "notice_indemnity_day_measure"
 _MONTH_DAYS = Decimal(30)
@@ -238,9 +237,7 @@ def _handle_notice_indemnity(
     pays = band.indemnity_months
     if pays is None:
         pays = Decimal(period.days) / _MONTH_DAYS
-    monthly = terms.monthly
-    if rules.extra_months_included:
-        monthly = monthly * terms.yearly_payments / _MONTHS
+    monthly = terms.monthly * terms.yearly_payments / _MONTHS
     inputs |= {
         "months_of_service": str(months),
         "notice_first_day": period.first_day.isoformat(),
@@ -253,11 +250,8 @@ def _handle_notice_indemnity(
     if not unworked:
         return EventEffect(decisions=[_decision(terms, "notice_worked", _ZERO, inputs)])
     amount = money(monthly * pays * unworked / Decimal(period.days))
-    limitations = (
-        *((PARTIAL,) if unworked < period.days else ()),
-        *(() if rules.extra_months_included else (EXTRA_MONTHS,)),
-        *((DAY_MEASURE,) if band.indemnity_months is None else ()),
-    )
+    by_day = band.indemnity_months is None or unworked < period.days
+    limitations = (DAY_MEASURE,) if by_day else ()
     return _post(amount, terms, inputs, ctx, limitations, tfr=rules.tfr_base is True)
 
 

@@ -99,8 +99,6 @@ class NoticeRules(BaseModel):
         bands: The bands; for a level and a cause, ordered by
             ``up_to_months`` with the open-ended band last.
         starts: The day the notice starts from.
-        extra_months_included: Whether the indemnity carries the rateo of
-            the extra monthly payments of the year.
         tfr_base: Whether the indemnity is in the TFR base by the CCNL;
             ``None`` when the CCNL does not say, and then it is out of it
             (Cass. 19 January 2023 n. 1581).
@@ -111,7 +109,6 @@ class NoticeRules(BaseModel):
 
     bands: tuple[NoticeBand, ...] = Field(min_length=1)
     starts: NoticeStart = NoticeStart.DAY_AFTER
-    extra_months_included: bool = False
     tfr_base: bool | None = None
     provenance: RuleProvenance
 

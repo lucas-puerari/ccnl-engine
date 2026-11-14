@@ -2046,7 +2046,7 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "4e2dc1c67b63b16d2fa98fd4662d2d10863be0578d8f7527a6d942b2d7f68183"
+    "source_hash": "65d23915763fa16d074a2e652475e05d2a5bf69f53770b82e1f912dbdd939b04"
   },
   "work_rules": {
     "notice": {
@@ -2190,7 +2190,6 @@
         }
       ],
       "starts": "first_or_sixteenth",
-      "extra_months_included": true,
       "tfr_base": false,
       "provenance": {
         "status": "verified",

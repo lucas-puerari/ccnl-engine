@@ -17,7 +17,7 @@ from decimal import ROUND_HALF_UP, Decimal
 import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.limitation.models import LimitationFacts
+from ccnl_engine.limitation.scope.models import LimitationFacts
 
 _CCNL = load_ccnl("lavoro-domestico-non-convivente")
 _HOURLY = (

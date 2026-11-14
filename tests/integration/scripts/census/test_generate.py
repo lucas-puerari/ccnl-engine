@@ -10,7 +10,9 @@ import pytest
 from ccnl_engine.agreement.census.models import Census
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.limitation.loaders import load_engine_limitations
+from ccnl_engine.limitation.models import LimitationStatus, SearchedDocument
 from scripts.census import generate
+from scripts.completeness import report
 from scripts.provenance.evidence.check import snapshot
 from scripts.provenance.rules import PayableRule
 
@@ -97,8 +99,28 @@ def test_merge_rejects_two_seeded_rows_with_one_id() -> None:
         generate.merge(None, "x", [{"id": "a"}, {"id": "a"}])
 
 
+def test_residual_and_future_limitations_seed_no_row() -> None:
+    """A declared residual and a future limitation are not open work."""
+    engine = load_engine_limitations()
+    future = [lim for lim in engine if lim.id in report.FUTURE_LIMITATIONS]
+    residual = engine[0].model_copy(
+        update={
+            "status": LimitationStatus.UNSOURCED,
+            "searched": (
+                SearchedDocument(url="https://x.it/a.pdf", sha256="d" * 64, title="a"),
+            ),
+        }
+    )
+
+    assert future
+    assert generate._open([*future, residual]) == []
+
+
 def test_every_weak_rule_and_open_limitation_has_a_row() -> None:
-    """The census reconciles all the weak evidence of the bundle."""
+    """The census reconciles all the weak evidence of the bundle.
+
+    The limitations of the unpublished year are future data, not open work.
+    """
     files = generate.build()
     censuses = [Census.model_validate(json.loads(text)) for text in files.values()]
     linked_rules = {
@@ -114,7 +136,8 @@ def test_every_weak_rule_and_open_limitation_has_a_row() -> None:
         for file, paths in evidence.weak_rules.items()
         for path in paths
     }
-    assert linked == {i for ids in evidence.open_limitations.values() for i in ids}
+    opened = {i for ids in evidence.open_limitations.values() for i in ids}
+    assert linked == opened - report.FUTURE_LIMITATIONS
     assert all(row.remediation for c in censuses for row in c.requirements)
 
 

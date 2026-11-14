@@ -103,9 +103,8 @@ def test_the_calendar_day_tables_of_the_terziario(
         (0, dismissal, None),
         (0, resignation, None),
     ]
-    assert (rules.starts.value, rules.extra_months_included, rules.tfr_base) == (
+    assert (rules.starts.value, rules.tfr_base) == (
         "first_or_sixteenth",
-        True,
         False,
     )
 
@@ -146,8 +145,7 @@ def test_the_tables_alike_for_either_cause(
         days,
         None if indemnity is None else Decimal(indemnity),
     )
-    assert (rules.starts.value, rules.extra_months_included, rules.tfr_base) == (
+    assert (rules.starts.value, rules.tfr_base) == (
         "day_after",
-        False,
         None,
     )
