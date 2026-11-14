@@ -58,7 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-06 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2027-06-01 |
 
 ## Review history
@@ -94,6 +94,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 71(5), section-two eligibility, physical PDF pp. 92-93; sickness and injury holiday targets. | corrected | Only employers covered before 29 January 2005 by the previous agreement qualify for the holiday top-up. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Cached Confetra consolidated text pp. 92-93, section-two eligibility and art. 71(5) injury holiday top-up. | confirmed | The existing conditional injury holiday target reaches full actual daily pay; the separate art. 60 coincident-holiday payment remains unmodelled. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 60(1)(b), (2-4) coincident national holiday quota, cached consolidated text pp. 84-85. | confirmed | The national letter (b) holiday quota is 1/22 of monthly global pay on Saturday, Sunday or another holiday; local patron holidays are not calendared. |
+| 2026-11-14 | gpt-6-sol (ai) | Part-time supplementary work clause, read by a separate model session. | confirmed | Confirmed: 18% of the hourly quota of the retribuzione globale up to 30% of the agreed annual hours, 40% past it (art. 56 cc. 16-17, PDF p. 70-71). |
 
 ## Salary table
 
@@ -187,11 +188,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Implement the separate 24-month apprentice classification progression for level 6J.
 
 !!! warning "logistica-trasporto-confetra/part_time_supplementary_rate · overtime · impact yes · open"
-    PART-TIME SUPPLEMENTARY HOURS: Art. 56 pays 18% of the global hourly pay on supplementary hours up to 30% of agreed annual hours, and 40% on the excess. OT_SUPPLEMENTARE derives the 18% rate only. A caller can split hours at the annual boundary and state multiplier 1.40 for the excess, but the engine cannot determine the boundary or split a crossing event from prior year-to-date hours. Saturday work has separate Art. 13 rates.
+    PART-TIME SUPPLEMENTARY HOURS: Art. 56 pays 18% of the global hourly pay on supplementary hours up to 30% of agreed annual hours, and 40% on the excess. The rate past the yearly share is paid when the event states the supplementary hours worked earlier in the year and the agreed annual hours (OvertimeEvent.supplementary_hours_before, agreed_annual_hours); without them the base rate is paid and the run carries this limitation. Saturday work has separate Art. 13 rates.
 
-    **Applies when:** a fact the request cannot express: never recorded on a run.
+    **Applies when:** `overtime` applies; the run takes the engine code path.
 
-    **Remediation:** Supply agreed annual hours and prior supplementary hours to split an event crossing the 30% annual boundary; derive the 40% multiplier on its excess without a caller override.
+    **Remediation:** State OvertimeEvent.supplementary_hours_before and agreed_annual_hours on the supplementary hours.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

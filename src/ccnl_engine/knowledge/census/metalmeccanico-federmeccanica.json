@@ -278,11 +278,11 @@
       "id": "part_time_supplementary_rate",
       "institute": "overtime",
       "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "PART-TIME SUPPLEMENTARY HOURS: work up to 40 weekly hours earns an all-inclusive 10% on the overtime-premium pay elements until supplementary hours exceed 50% of agreed annual part-time hours; the excess earns 20% (CCNL 5 February 2021, PDF p. 58). OT_SUPPLEMENTARE derives only 10%. A caller may split hours at the boundary and explicitly supply multiplier 1.20 for the excess; the engine cannot count year-to-date supplementary hours or split an event that crosses the boundary. The elastic clauses of the same section (PDF p. 57: 10% for a rearranged placement of hours, 15% for an increase in duration up to 25% of the normal annual part-time hours) and the conditions of supplementary work (specific needs, notice to the RSU, no proven individual impediment) are not modelled.",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "PART-TIME SUPPLEMENTARY HOURS: work up to 40 weekly hours earns an all-inclusive 10% on the overtime-premium pay elements until supplementary hours exceed 50% of agreed annual part-time hours; the excess earns 20% (CCNL 5 February 2021, PDF p. 58). The rate past the yearly share is paid when the event states the supplementary hours worked earlier in the year and the agreed annual hours (OvertimeEvent.supplementary_hours_before, agreed_annual_hours); without them the base rate is paid and the run carries this limitation. The elastic clauses of the same section (PDF p. 57: 10% for a rearranged placement of hours, 15% for an increase in duration up to 25% of the normal annual part-time hours) and the conditions of supplementary work are not modelled.",
       "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
       "state": "absent",
-      "remediation": "Supply agreed annual part-time hours and prior supplementary hours to split crossing events and derive the 20% rate on the excess without a caller override.",
+      "remediation": "State OvertimeEvent.supplementary_hours_before and agreed_annual_hours on the supplementary hours; the elastic clauses (10% and 15%) remain outside the model.",
       "origin": "seeded",
       "links": {
         "limitations": [

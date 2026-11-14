@@ -246,11 +246,11 @@
       "id": "part_time_supplementary_rate",
       "institute": "overtime",
       "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "PART-TIME SUPPLEMENTARY HOURS: Art. 56 pays 18% of the global hourly pay on supplementary hours up to 30% of agreed annual hours, and 40% on the excess. OT_SUPPLEMENTARE derives the 18% rate only. A caller can split hours at the annual boundary and state multiplier 1.40 for the excess, but the engine cannot determine the boundary or split a crossing event from prior year-to-date hours. Saturday work has separate Art. 13 rates.",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "PART-TIME SUPPLEMENTARY HOURS: Art. 56 pays 18% of the global hourly pay on supplementary hours up to 30% of agreed annual hours, and 40% on the excess. The rate past the yearly share is paid when the event states the supplementary hours worked earlier in the year and the agreed annual hours (OvertimeEvent.supplementary_hours_before, agreed_annual_hours); without them the base rate is paid and the run carries this limitation. Saturday work has separate Art. 13 rates.",
       "calculation": "ccnl/logistica-trasporto-confetra:coverage.notes",
       "state": "absent",
-      "remediation": "Supply agreed annual hours and prior supplementary hours to split an event crossing the 30% annual boundary; derive the 40% multiplier on its excess without a caller override.",
+      "remediation": "State OvertimeEvent.supplementary_hours_before and agreed_annual_hours on the supplementary hours.",
       "origin": "seeded",
       "links": {
         "limitations": [
