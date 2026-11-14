@@ -83,6 +83,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Arts. 110(8), 124 and the patron saint holiday list, cached 2024 PDF pp. 56 and 67. | corrected | Sickness and injury already cover the stated patron saint day; compulsory maternity and paternity holiday targets now cover it too. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 121 comporto lookback of 365 days back from the last sickness event. | corrected | Art. 121: 'per anno solare si intende un periodo di 365 giorni partendo a ritroso dell'ultimo evento morboso'; the comporto window now counts 365 days, not 12 calendar months (one day apart across 29 February). |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 98 (ex festività) and Art. 91 c. 5 (deadline) of the CCNL of 16 February 2024. | corrected | Art. 98 pays the ex festività not taken 'in coerenza con quanto previsto dall'articolo 91 comma 5': the deadline now covers that bucket too, so the 32 hours left are paid or carried to 31 July like the ROL. Narrowed unused_leave_hours to the Art. 92 flexibility permits and the Sunday festività of Art. 97 C. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 97 C-D, Art. 98 and Art. 44 of the CCNL of 16 February 2024. | corrected | Added the clause of Art. 97 C: a further daily quota (1/26, Art. 44) for a listed holiday, the patron, 4 November (c. D) and the ex festività of 19 March and 29 June (Art. 98) falling on a Sunday or on another holiday. Narrowed unused_leave_hours to the Art. 92 flexibility permits. |
 
 ## Salary table
 
@@ -145,11 +146,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Resolved: day-exact 365-day lookback (window_days), read on 2026-11-10.
 
 !!! warning "studi-professionali-confprofessioni/unused_leave_hours · base_salary · impact yes · open"
-    Art. 92 and Art. 97 C: the permits added by the flexibility of the hours (30 or 60 minutes a week over the normal hours), paid with the overtime premium within six months of the end of the yearly programme when not taken, and the festività falling on a Sunday (Art. 97 C, also for the ex festività of Art. 98). The unused ROL and ex festività are paid at the deadline of Art. 91 c. 5 (permit_deadline).
+    Art. 92: the permits added by the flexibility of the hours (30 or 60 minutes a week over the normal hours), paid with the overtime premium within six months of the end of the yearly programme when not taken. The unused ROL and ex festività are paid at the deadline of Art. 91 c. 5 (permit_deadline) and the holidays on a Sunday by Art. 97 C (sunday_holidays).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Accrue the flexibility permits of Art. 92 and pay those not taken with the overtime premium; pay the festività falling on a Sunday of Art. 97 C.
+    **Remediation:** Accrue the flexibility permits of Art. 92 and pay those not taken with the overtime premium.
 
 !!! warning "studi-professionali-confprofessioni/intermittent_availability · base_salary · impact yes · open"
     Art. 58: the indennità di disponibilità of the lavoro intermittente, 30%.
