@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 16 verified / 52 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 24 verified / 48 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -73,6 +73,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 147 of the renewal of 29 March 2024 against the ramp of Art. 61 C. | corrected | The 60 hours of the small imprese minori are 'per tutti i lavoratori dipendenti': the ramp now excludes the sub-sector piccola_impresa_minore; closed small_cooperative_new_hire_ramp. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Ferie at termination and Art. 187 of the testo ufficiale 2011. | corrected | The file had no basis for the leave left at termination: added the twelfths (more than 15 days a month), the 1/26 indemnity and the hourly quota of the permits. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 132 c. 2-3 - Lavoro festivo (holiday on a Sunday). | corrected | The file had no clause for a holiday falling on a Sunday, so its further daily quota was not paid: added the clause with the holidays the text lists and 4 November. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Artt. 121, 126, 128, 129 and 132 of the testo ufficiale 2011. | corrected | The overtime bands came from an aggregator (15/30/30/50%, premiums on the minimo): set the rates of Art. 126 (20/25/35/55%, highest when concurring) on the de facto hourly quota, the 48th-hour threshold, and the ordinary night, rest-day and holiday premiums. |
 
 ## Salary table
 
@@ -351,6 +352,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEAVE AT TERMINATION (testo ufficiale 2011, p. 166 and Art. 187): ferie in twelfths, a fraction above fifteen days counting as a month, the indemnity 'dividendo per ventisei la retribuzione mensile di fatto'; the permit hours left at the hourly quota of Art. 187 (168 at 40 hours, 165 at 38).
     
     HOLIDAY ON A SUNDAY (Art. 132 c. 2-3 - Lavoro festivo, p. 164 (printed 162-163)): a listed holiday falling on a Sunday pays a further daily quota (1/26 of the monthly pay); 4 November, celebrated on the first Sunday of November, takes the same treatment.
+    
+    OVERTIME AND ORDINARY PREMIUMS (testo ufficiale 2011): overtime at the hourly quota of the retribuzione di fatto with 20% up to the 48th weekly hour, 25% beyond, 35% on holidays, 55% at night, the highest when several concur (Art. 126); ordinary night work 25% (Art. 121); work on the weekly rest day the premium of 35% alone (Art. 129); work on a holiday paid as holiday overtime (Art. 132 c. 1); ordinary Sunday work in an authorised opening takes no premium (Art. 128 c. 3). The bands previously came from an aggregator at 15/30/30/50%.
     
 
 ## Raw data

@@ -490,7 +490,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/commercio-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "48a83593d03fe50c6c69d50117e4188dd6729fdd8367ad4c21781c5b6a49a19a",
+      "source_hash": "0a75094661e7df1f0200b9179beb37dbe2e12d4145d6419eb5c022180109da67",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/commercio-confcommercio.json.gz"
@@ -711,7 +711,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/distribuzione-cooperativa-ancc",
       "ruleset_version": "2026.2",
-      "source_hash": "ca6736a1e0542f2587bf638629571821432c99a6d1a4497e07f58376492ad1b4",
+      "source_hash": "6d76df31d8ce37a16bf54134af3a36b795c1abbd5b680d28a80bc7eb1da2f9e9",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/distribuzione-cooperativa-ancc.json.gz"
@@ -728,7 +728,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/dmo-federdistribuzione",
       "ruleset_version": "2026.2",
-      "source_hash": "9ec169c4218f2fd78e7b32f88f52f82b5c048e8ebbca8f729f37697af093acce",
+      "source_hash": "823f4a11157faa8010580f6f04ae3fc33fcc8fdbc73853b4a217bc333b012101",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/dmo-federdistribuzione.json.gz"
@@ -986,7 +986,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/fiori-recisi-ancef",
       "ruleset_version": "2026.2",
-      "source_hash": "b39fa178e037ee609c90ea13b6a8713266ed4e76965e3ca57c1f57ec758d72da",
+      "source_hash": "c516ebb630d20c5ba2f7eee3fa02f413f32bb60d20b97f3c733557ed37a2ebcd",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/fiori-recisi-ancef.json.gz"
@@ -2074,7 +2074,7 @@
       "valid_to": "2027-03-31",
       "ruleset_id": "ccnl/terziario-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "76217487d6c82ca174947be62d554f6b0759152d7f32370a27ceaa0b3eb5d4e9",
+      "source_hash": "bf582ce77c18365f3ccb1fb7337cc87b2dc8440e6eb2fcca3695a03e28f0968c",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/terziario-confesercenti.json.gz"

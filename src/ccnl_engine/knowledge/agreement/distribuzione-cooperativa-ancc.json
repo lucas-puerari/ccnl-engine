@@ -168,6 +168,11 @@
         "kind": "info",
         "text": "HOLIDAY ON A SUNDAY (Art. 132 c. 2-3 - Lavoro festivo, p. 164 (printed 162-163)): a listed holiday falling on a Sunday pays a further daily quota (1/26 of the monthly pay); 4 November, celebrated on the first Sunday of November, takes the same treatment.",
         "capability": "sunday_holiday"
+      },
+      {
+        "kind": "info",
+        "text": "OVERTIME AND ORDINARY PREMIUMS (testo ufficiale 2011): overtime at the hourly quota of the retribuzione di fatto with 20% up to the 48th weekly hour, 25% beyond, 35% on holidays, 55% at night, the highest when several concur (Art. 126); ordinary night work 25% (Art. 121); work on the weekly rest day the premium of 35% alone (Art. 129); work on a holiday paid as holiday overtime (Art. 132 c. 1); ordinary Sunday work in an authorised opening takes no premium (Art. 128 c. 3). The bands previously came from an aggregator at 15/30/30/50%.",
+        "capability": "overtime"
       }
     ]
   },
@@ -485,6 +490,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sunday_holidays"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-overtime-rates",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 121, 126, 128, 129 and 132 of the testo ufficiale 2011.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+            "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+          }
+        ],
+        "findings": [
+          "The overtime bands came from an aggregator (15/30/30/50%, premiums on the minimo): set the rates of Art. 126 (20/25/35/55%, highest when concurring) on the de facto hourly quota, the 48th-hour threshold, and the ordinary night, rest-day and holiday premiums."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements"
         ]
       }
     ]
@@ -3169,25 +3195,24 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
     "verification_status": "unverified",
-    "source_hash": "ca6736a1e0542f2587bf638629571821432c99a6d1a4497e07f58376492ad1b4",
+    "source_hash": "6d76df31d8ce37a16bf54134af3a36b795c1abbd5b680d28a80bc7eb1da2f9e9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
-          "description": "Straordinario diurno feriale",
+          "description": "Straordinario feriale fino alla 48a ora (art. 126)",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
-                "valid_from": "2024-04-01",
-                "value": "0.15",
-                "provenance": null,
-                "valid_until": null
+                "valid_from": "2011-01-01",
+                "valid_until": null,
+                "value": "0.20"
               }
             ]
           },
@@ -3195,71 +3220,86 @@
             "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "distribuzione-cooperativa-ancc",
-                "title": "CCNL Terziario-Distribuzione Cooperativa (ANCC-Legacoop/Confcooperative)",
-                "kind": "tabella_retributiva",
-                "url": "https://ilccnl.it/contratto/ccnl/distribuzione-cooperativa"
+                "document_id": "uiltucs-ccnl-cooperazione-2011",
+                "title": "CCNL per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                "published_on": "2011-01-01",
+                "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
               },
-              "section": "Straordinario diurno feriale — 15%"
+              "page": "printed 159-160",
+              "section": "Art. 126 Maggiorazioni",
+              "quote": "del 20% per la prestazione di lavoro fino alla 48° ora settimanale; del 25% per le prestazioni eccedenti la 48° ora settimanale. [...] nei giorni festivi [...] maggiorazione del 35% [...] la notte [...] maggiorazione del 55% [...] Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro né con altre maggiorazioni. In caso di più maggiorazioni concorrenti si applicherà unicamente la maggiorazione più alta."
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-04-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2011-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-overtime-rates"
             }
           }
         },
         {
-          "code": "OT_NOTTURNO",
-          "description": "Straordinario notturno",
+          "code": "OT_DIURNO_EXTRA",
+          "description": "Straordinario feriale oltre la 48a ora (art. 126)",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
-                "valid_from": "2024-04-01",
-                "value": "0.30",
-                "provenance": null,
-                "valid_until": null
+                "valid_from": "2011-01-01",
+                "valid_until": null,
+                "value": "0.25"
               }
             ]
           },
           "applies_to_kinds": [
-            "night"
+            "weekday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "distribuzione-cooperativa-ancc",
-                "title": "CCNL Terziario-Distribuzione Cooperativa (ANCC-Legacoop/Confcooperative)",
-                "kind": "tabella_retributiva",
-                "url": "https://ilccnl.it/contratto/ccnl/distribuzione-cooperativa"
+                "document_id": "uiltucs-ccnl-cooperazione-2011",
+                "title": "CCNL per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                "published_on": "2011-01-01",
+                "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
               },
-              "section": "Straordinario notturno — 30%"
+              "page": "printed 159-160",
+              "section": "Art. 126 Maggiorazioni",
+              "quote": "del 20% per la prestazione di lavoro fino alla 48° ora settimanale; del 25% per le prestazioni eccedenti la 48° ora settimanale. [...] nei giorni festivi [...] maggiorazione del 35% [...] la notte [...] maggiorazione del 55% [...] Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro né con altre maggiorazioni. In caso di più maggiorazioni concorrenti si applicherà unicamente la maggiorazione più alta."
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-04-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2011-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-overtime-rates"
             }
-          }
+          },
+          "hour_threshold_per_week": 48
         },
         {
           "code": "OT_FESTIVO",
-          "description": "Straordinario festivo diurno",
+          "description": "Straordinario festivo (art. 126)",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
-                "valid_from": "2024-04-01",
-                "value": "0.30",
-                "provenance": null,
-                "valid_until": null
+                "valid_from": "2011-01-01",
+                "valid_until": null,
+                "value": "0.35"
               }
             ]
           },
@@ -3267,35 +3307,85 @@
             "holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "distribuzione-cooperativa-ancc",
-                "title": "CCNL Terziario-Distribuzione Cooperativa (ANCC-Legacoop/Confcooperative)",
-                "kind": "tabella_retributiva",
-                "url": "https://ilccnl.it/contratto/ccnl/distribuzione-cooperativa"
+                "document_id": "uiltucs-ccnl-cooperazione-2011",
+                "title": "CCNL per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                "published_on": "2011-01-01",
+                "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
               },
-              "section": "Straordinario festivo diurno — 30%"
+              "page": "printed 159-160",
+              "section": "Art. 126 Maggiorazioni",
+              "quote": "del 20% per la prestazione di lavoro fino alla 48° ora settimanale; del 25% per le prestazioni eccedenti la 48° ora settimanale. [...] nei giorni festivi [...] maggiorazione del 35% [...] la notte [...] maggiorazione del 55% [...] Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro né con altre maggiorazioni. In caso di più maggiorazioni concorrenti si applicherà unicamente la maggiorazione più alta."
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-04-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2011-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-overtime-rates"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno 22-6 (art. 126)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2011-01-01",
+                "valid_until": null,
+                "value": "0.55"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-ccnl-cooperazione-2011",
+                "title": "CCNL per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                "published_on": "2011-01-01",
+                "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+              },
+              "page": "printed 159-160",
+              "section": "Art. 126 Maggiorazioni",
+              "quote": "del 20% per la prestazione di lavoro fino alla 48° ora settimanale; del 25% per le prestazioni eccedenti la 48° ora settimanale. [...] nei giorni festivi [...] maggiorazione del 35% [...] la notte [...] maggiorazione del 55% [...] Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro né con altre maggiorazioni. In caso di più maggiorazioni concorrenti si applicherà unicamente la maggiorazione più alta."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2011-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-overtime-rates"
             }
           }
         },
         {
           "code": "OT_NOTTURNO_FESTIVO",
-          "description": "Straordinario notturno festivo",
+          "description": "Straordinario notturno festivo: la maggiorazione piu alta, non cumulabile (art. 126 c. 5)",
           "kind": "percentage",
           "rate": {
             "periods": [
               {
-                "valid_from": "2024-04-01",
-                "value": "0.50",
-                "provenance": null,
-                "valid_until": null
+                "valid_from": "2011-01-01",
+                "valid_until": null,
+                "value": "0.55"
               }
             ]
           },
@@ -3303,21 +3393,29 @@
             "night_holiday"
           ],
           "provenance": {
-            "status": "derived",
+            "status": "verified",
             "location": {
               "source_document": {
-                "document_id": "distribuzione-cooperativa-ancc",
-                "title": "CCNL Terziario-Distribuzione Cooperativa (ANCC-Legacoop/Confcooperative)",
-                "kind": "tabella_retributiva",
-                "url": "https://ilccnl.it/contratto/ccnl/distribuzione-cooperativa"
+                "document_id": "uiltucs-ccnl-cooperazione-2011",
+                "title": "CCNL per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                "published_on": "2011-01-01",
+                "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
               },
-              "section": "Straordinario notturno festivo — 50%"
+              "page": "printed 159-160",
+              "section": "Art. 126 Maggiorazioni",
+              "quote": "del 20% per la prestazione di lavoro fino alla 48° ora settimanale; del 25% per le prestazioni eccedenti la 48° ora settimanale. [...] nei giorni festivi [...] maggiorazione del 35% [...] la notte [...] maggiorazione del 55% [...] Le varie maggiorazioni previste dal presente articolo non sono cumulabili tra loro né con altre maggiorazioni. In caso di più maggiorazioni concorrenti si applicherà unicamente la maggiorazione più alta."
             },
             "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-08T00:00:00",
-              "verification_status": "unverified",
-              "effective_from": "2024-04-01"
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2011-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-overtime-rates"
             }
           }
         }
@@ -3561,6 +3659,157 @@
               "verified_at": "2026-11-05T15:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-05-ai-week-divisors"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "uiltucs-ccnl-cooperazione-2011",
+            "title": "CCNL per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+            "published_on": "2011-01-01",
+            "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+          },
+          "page": "printed 159",
+          "section": "Art. 126 c. 1",
+          "quote": "verranno retribuite con la quota oraria della retribuzione di fatto, di cui all'art. 184 e con le seguenti maggiorazioni da calcolare sulla quota oraria della retribuzione normale di cui all'art. 183"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2011-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-14-ai-overtime-rates"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "ANCC_NOTTURNO",
+          "description": "Lavoro ordinario notturno 22-6 (art. 121)",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2011-01-01",
+                "valid_until": null,
+                "value": "0.25"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-ccnl-cooperazione-2011",
+                "title": "CCNL per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                "published_on": "2011-01-01",
+                "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+              },
+              "page": "printed 152",
+              "section": "Art. 121 Lavoro ordinario notturno",
+              "quote": "il lavoro effettuato dalle ore 22:00 alle ore 06:00 ai soli fini retributivi è compensato con la quota oraria della retribuzione di fatto di cui all'art. 184 e con la maggiorazione del 25% calcolata sulla retribuzione normale di cui all'art. 183."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2011-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-overtime-rates"
+            }
+          }
+        },
+        {
+          "code": "ANCC_FESTIVO",
+          "description": "Lavoro nelle festivita dell'art. 131, come straordinario festivo (art. 132 c. 1)",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2011-01-01",
+                "valid_until": null,
+                "value": "0.35"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-ccnl-cooperazione-2011",
+                "title": "CCNL per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                "published_on": "2011-01-01",
+                "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+              },
+              "page": "printed 162",
+              "section": "Art. 132 c. 1 Lavoro festivo",
+              "quote": "Le ore di lavoro, a qualsiasi titolo richieste, prestate nei giorni di cui all'art. 131, dovranno essere retribuite come lavoro straordinario festivo"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2011-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-overtime-rates"
+            }
+          }
+        },
+        {
+          "code": "ANCC_RIPOSO",
+          "description": "Lavoro nel giorno di riposo settimanale (art. 129)",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2011-01-01",
+                "valid_until": null,
+                "value": "0.35"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-ccnl-cooperazione-2011",
+                "title": "CCNL per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                "published_on": "2011-01-01",
+                "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+              },
+              "page": "printed 161",
+              "section": "Art. 129 Trattamento retributivo del lavoro nei giorni di riposo settimanale",
+              "quote": "Le ore di lavoro prestate nei giorni di riposo settimanale [...] dovranno essere retribuite con la sola maggiorazione del 35% sulla quota oraria della retribuzione normale"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2011-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-overtime-rates"
             }
           }
         }

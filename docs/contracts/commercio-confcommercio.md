@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-22 |
-| **Last review** | 2026-11-13 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -83,6 +83,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-13 | gpt-6-sol (ai) | Apprentice sickness clause, its encoding and the engine change, against the signed text, by a separate model session. | flagged | Confirmed: source, page and sha256; the 2024 renewal does not list the article among those changed.<br>Confirmed: 60% carenza for six events a year, 60% of the gross pay on hospital-stay days, nothing in the probation, gross basis, 180 days in the calendar year; hand amounts of the Commercio test case recomputed.<br>Flagged and corrected in the same change: quotes made verbatim; a relapse takes the rank of its event; no carenza past the comporto; missing-fact issues raised only when the fact can change the pay; the limitation states the 50-point difference of the alternative reading.<br>Flagged, kept as limitation apprentice_hospital_share: the text does not settle whether the hospital 60% adds to the INPS indemnity or is the total. |
 | 2026-11-13 | gpt-6-sol (ai) | Sunday overtime outside the weekly rest day against the overtime, Sunday-work and rest-day articles, by a separate model session. | confirmed | Confirmed: overtime 'nei giorni festivi o la domenica' is paid 30% also when the weekly rest falls on another day; the 'salvo' clause reserves rest-day work, at the same 30% with a compensatory rest.<br>Confirmed: the Sunday-work article sends Sunday overtime to this article, so the two 30% do not add up; night overtime stays at 50%, the premiums are not cumulative.<br>Flagged and corrected: a typo in the transformation and the paragraph label of the unnumbered texts. |
 | 2026-11-13 | gpt-6-sol (ai) | Operatori di vendita rows of the accordo integrativo of 28 March 2024 (scan pp. 64-65, page images) and the protocollo aggiuntivo of the TU 2019 (printed pp. 449-469), by a separate model session. | flagged | Confirmed: every paga base and contingenza + EDR of OV1 and OV2 from April 2024 to February 2027; ten three-year increments of 15,50 and 14,46; the terzo elemento nazionale applies as for the other levels (replaced by a provincial one).<br>Flagged and kept as limitation sales_operators_commissions: the commission guarantee of art. 217, the commission average of the 13th and 14th and the art. 27 premium are not modelled. |
+| 2026-11-14 | gpt-6-sol (ai) | Art. 149 (printed p. 147, PDF p. 149) of the Testo Unico 2019: the weekly threshold of the 20% overtime band, by a separate model session. | corrected | Confirmed: '15% [...] dalla 41a alla 48a ora settimanale; 20% [...] eccedenti la 48a ora settimanale'. OvertimeEvent.weekly_hours_before counts all the hours worked in the week, so the 20% band starts at 48, not at 8, which paid hours 41-48 at 20% when the caller stated the hours already worked. |
 
 ## Salary table
 

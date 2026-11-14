@@ -78,6 +78,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-13 | claude-opus-5-5 (ai) | Allegato 11 (PDF p. 98) and allegato 3 artt. 1, 14 (PDF pp. 71, 74) of the TU 2025 | corrected | Added levels OV1 and OV2 of the operatori di vendita on their own ladder, six tables 2023-2027, and their seniority increments. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 189, 191, 198 and 199 of the Testo Unico 2025, PDF pp. 57-59. | confirmed | The provincial terzi elementi are frozen local amounts the national text does not print; the existing territorial second-level input carries them with the incidences of the normal pay, and provincial_pay_element removes the 2,07 national element. Closed the limitation, which asked for an input that exists. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 141 c. 6 of the Testo Unico DMO 2025, deadline of the permits. | corrected | The file had the permit buckets but no deadline: the hours left at year end were never paid or carried. Added permit_deadline (30 June, ex festivita and ROL) as Art. 141 c. 6 sets it, the same clause as Commercio art. 158. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Weekly threshold of the overtime band beyond the 48th hour. | corrected | OvertimeEvent.weekly_hours_before counts all the hours worked in the week: the 20% band 'eccedenti la 48a ora settimanale' starts at 48, not at 8 (which paid the 41st-48th hours at 20% instead of 15% when the caller stated the hours before). |
 
 ## Salary table
 
