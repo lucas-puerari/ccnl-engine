@@ -36,7 +36,6 @@ _IRPEF: dict[str, Any] = {
 _UNSUPPORTED_2026 = {
     "contribution_exemption": "outside_input",
     "fiscal_adjustment": "outside_input",
-    "additional_irpef_base": "outside_input",
     "art15_deductions": "outside_input",
 }
 

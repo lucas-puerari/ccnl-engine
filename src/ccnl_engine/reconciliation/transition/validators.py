@@ -19,6 +19,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.balance.obligation.models import carried_item_id
+from ccnl_engine.irpef.prior.rules import taken_in
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.reconciliation.types import (
     InvariantCode,
@@ -100,7 +101,8 @@ def check_ytd_continuity(
     - ``earnings.inps_employee``: the EMPLOYEE_CONTRIBUTIONS total;
     - ``tax.surtax``: the SURTAX total less the SURTAX_REFUNDS total;
     - ``trattamento`` net credit: the ``tratt_integ_{run}`` entry less the
-      ``tratt_integ_recovery_{run}`` entry;
+      ``tratt_integ_recovery_{run}`` entry, plus the trattamento of the
+      earlier employments a conguaglio took in;
     - ``somma_esente`` net credit: the ``somma_esente_{run}`` entry less the
       ``somma_esente_recovery_{run}`` entry.
 
@@ -133,7 +135,8 @@ def check_ytd_continuity(
             "trattamento net credit",
             op.trattamento.net,
             _entry_total(result, {f"tratt_integ_{run}"})
-            - _entry_total(result, {f"tratt_integ_recovery_{run}"}),
+            - _entry_total(result, {f"tratt_integ_recovery_{run}"})
+            + taken_in(result.decisions, "trattamento_paid"),
             closing.trattamento.net,
         ),
         (

@@ -303,15 +303,17 @@
     {
       "feature": "additional_irpef_base",
       "layer": "net",
-      "implementation": "unsupported",
-      "applies_when": "outside_input",
-      "handler": null,
+      "implementation": "partial",
+      "applies_when": "decided",
+      "handler": "decision",
       "evidence": "derived",
-      "variants": [],
-      "required_facts": [
-        "facts.other_withholding_agents_income"
+      "variants": [
+        "irpef_and_trattamento_integrativo"
       ],
-      "description": "Redditi di altri sostituti nella base IRPEF del conguaglio"
+      "required_facts": [
+        "current_year.prior_employers"
+      ],
+      "description": "Redditi di altri sostituti nella base IRPEF del conguaglio (art. 23 c. 4 DPR 600/1973): IRPEF e trattamento integrativo; addizionali, ulteriore detrazione e somma esente sul solo rapporto"
     },
     {
       "feature": "territorial_supplement",

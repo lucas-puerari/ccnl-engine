@@ -347,6 +347,27 @@ March 2026 payslip: 3 months, interest 300.00 × 0.50% × 3 = 4.50 EUR, net
 pay 304.50 EUR lower, F24 code 1066 for 304.50 EUR. When March absences
 leave no pay, April withholds it with 4 months: 6.00 EUR.
 
+### Earlier employments of the year at the conguaglio
+
+At the request of the worker, who hands over the CU of the other payer,
+the conguaglio takes in the employment income of the earlier relationships
+of the year (art. 23 c. 4 DPR 600/1973):
+`CurrentYearTaxFacts.prior_employers`, one `PriorEmployerIncome` per CU with
+the days of the employment (`EmploymentSpell`), the taxable income, the
+IRPEF withheld and the trattamento integrativo paid. The income must be
+part of `other_employment_income`: the conguaglio moves it out of the
+income beyond this employment and into the tax of this one, so the
+reddito complessivo counts it once. The gross tax and the deductions are
+measured on the total, the art. 13 days on the union of the spells (days
+in two spells once), the IRPEF of the other payers counts as withheld and
+joins the IRPEF withheld of the year, as the CU totals it, and the
+trattamento integrativo they paid counts as paid. The run records the
+final decision `additional_irpef_base` with the income as its amount. A
+later payment that settles the year again takes the withholdings in once.
+Not taken in yet: the regional and municipal surtax, the ulteriore
+detrazione and the somma esente of the earlier employments, computed on
+this employment alone (the capability is `partial`).
+
 ### Foreign tax credit at the conguaglio
 
 Art. 23 c. 3 DPR 600/1973, last sentences (art. 33 c. 4 D.Lgs. 33/2025 from

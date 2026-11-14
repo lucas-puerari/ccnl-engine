@@ -61,6 +61,7 @@ from ccnl_engine.employment.period.inputs import (
 )
 from ccnl_engine.employment.rest_day.inputs import Weekday
 from ccnl_engine.employment.rota.inputs import Rota
+from ccnl_engine.employment.spell.models import EmploymentSpell
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import WorkEvent
 from ccnl_engine.extra_month.schedule.models import (
@@ -87,6 +88,7 @@ from ccnl_engine.irpef.other_income.inputs import (
     CurrentYearTaxFacts,
     IncomeEstimateQuality,
 )
+from ccnl_engine.irpef.prior.inputs import PriorEmployerIncome
 from ccnl_engine.leave.flexibility.inputs import FlexibilityWeekEvent
 from ccnl_engine.leave.inputs import LeaveTakenEvent
 from ccnl_engine.leave.types import LeaveBucket
@@ -338,13 +340,21 @@ def _prior_year() -> PriorYearTaxFacts:
 def _current_year() -> CurrentYearTaxFacts:
     return CurrentYearTaxFacts(
         tax_year=2026,
-        other_employment_income=Decimal(0),
+        other_employment_income=Decimal(1000),
         other_employment_inps_base=Decimal(0),
         other_income=Decimal("500.00"),
         main_dwelling_income=Decimal(0),
         exempt_regime_income=Decimal(0),
         estimated_on=date(2026, 1, 10),
         quality=next(iter(IncomeEstimateQuality)),
+        prior_employers=(
+            PriorEmployerIncome(
+                EmploymentSpell(date(2026, 1, 1), date(2026, 1, 31), fixed_term=True),
+                Decimal(1000),
+                Decimal(150),
+                Decimal(0),
+            ),
+        ),
     )
 
 

@@ -19,6 +19,7 @@ withheld to date under a garnishment or a salary assignment runs on too.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from decimal import Decimal
 from typing import TYPE_CHECKING, final
 
 from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
@@ -220,6 +221,15 @@ class EmploymentObligations:
         return next(
             (d for d in self.deferred_shortfall if d.tax_year == tax_year), None
         )
+
+    def deferred_irpef(self, tax_year: int) -> Decimal:
+        """Return the IRPEF the conguaglio of ``tax_year`` deferred.
+
+        Returns:
+            Zero without a deferral of the tax year.
+        """
+        deferred = self.deferred_of(tax_year)
+        return Decimal(0) if deferred is None else deferred.irpef
 
     def recovery_of(self, tax_year: int, kind: str) -> RecoveryPlan | None:
         """Return the plan of credit ``kind`` opened in ``tax_year``, if any.

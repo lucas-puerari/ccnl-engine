@@ -10,6 +10,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.irpef.prior.rules import taken_in
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.ledger.remittance.models import POST_CONGUAGLIO_WITHHOLDING
 from ccnl_engine.reconciliation.types import (
@@ -142,7 +143,8 @@ def check_irpef_withheld_continuity(
 
     The IRPEF of an earlier conguaglio deferred on written request (coded
     1066) is withheld on the run but belongs to the earlier year, so it is
-    left out.
+    left out; the IRPEF other payers withheld on the earlier employments a
+    conguaglio takes in joins the YTD without an entry of this run.
 
     Returns:
         A violation when the closing-minus-opening IRPEF delta diverges from
@@ -158,10 +160,12 @@ def check_irpef_withheld_continuity(
         ),
         _ZERO,
     )
+    prior = taken_in(result.decisions, "irpef_withheld")
     net_withholding = (
         _sum_account(result, AccountKind.ORDINARY_TAX)
         - deferred
         - _sum_account(result, AccountKind.TAX_REFUNDS)
+        + prior
     )
     if delta != net_withholding:
         return [

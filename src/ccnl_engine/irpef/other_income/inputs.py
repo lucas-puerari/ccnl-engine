@@ -14,7 +14,9 @@ from datetime import date
 from decimal import Decimal
 from enum import StrEnum
 
+from ccnl_engine.collection.validators import items_of_type, tuple_of
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.irpef.prior.inputs import PriorEmployerIncome
 from ccnl_engine.validators import (
     parse_enum,
     require_date,
@@ -92,6 +94,11 @@ class CurrentYearTaxFacts:
             207/2024 art. 1 c. 9), not in that of the family deductions.
         estimated_on: Date the amounts were stated.
         quality: How the amounts are known.
+        prior_employers: Earlier employments of :attr:`tax_year` the
+            worker asks the conguaglio to take in (art. 23 c. 4 DPR
+            600/1973), from their CU; their taxable income is part of
+            ``other_employment_income`` and the conguaglio moves it into
+            the tax of this employment (:mod:`~ccnl_engine.irpef.prior.rules`).
 
     Raises:
         InvalidInputError: When a field is not of its type or in its range.
@@ -105,6 +112,7 @@ class CurrentYearTaxFacts:
     exempt_regime_income: Decimal
     estimated_on: date
     quality: IncomeEstimateQuality
+    prior_employers: tuple[PriorEmployerIncome, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
         require_int(
@@ -132,6 +140,23 @@ class CurrentYearTaxFacts:
             feature=_FEATURE,
         )
         object.__setattr__(self, "quality", quality)
+        prior = tuple_of(
+            self.prior_employers,
+            f"{_OWNER}.prior_employers",
+            items_of_type(PriorEmployerIncome, feature=_FEATURE),
+            feature=_FEATURE,
+        )
+        object.__setattr__(self, "prior_employers", prior)
+        moved = sum((p.taxable for p in prior), _ZERO)
+        if moved > self.other_employment_income:
+            msg = (
+                f"prior_employers certify {moved} of taxable income, more than "
+                f"other_employment_income ({self.other_employment_income}), "
+                "which holds it"
+            )
+            raise InvalidInputError(
+                msg, field=f"{_OWNER}.prior_employers", feature=_FEATURE
+            )
         if self.main_dwelling_income > self.other_income:
             msg = (
                 f"main_dwelling_income {self.main_dwelling_income} is excluded "

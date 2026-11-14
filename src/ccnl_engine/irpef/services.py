@@ -163,7 +163,8 @@ def withhold_irpef(inp: _AmountsInput, taxable: _Taxable) -> _Irpef:
     Returns:
         The tax resolution and the family deductions it used.
     """
-    projected = taxable.projected
+    prior = inp.prior
+    projected = taxable.projected + prior.taxable
     family = resolve_family(
         inp.family_composition,
         inp.family_deduction_rules,
@@ -174,11 +175,17 @@ def withhold_irpef(inp: _AmountsInput, taxable: _Taxable) -> _Irpef:
     opening = inp.opening
     # Net credit = recognized minus already recovered; prevents re-recovering credits
     # that have already been clawed back in previous periods (D.L. 3/2020, art. 1 c. 3).
-    net_credit_ytd = opening.trattamento.recognized - opening.trattamento.recovered
+    net_credit_ytd = (
+        opening.trattamento.recognized
+        - opening.trattamento.recovered
+        + prior.trattamento_paid
+    )
     tax = compute_tax(
         projected,
         inp.rules,
-        opening_irpef_withheld=opening.tax.irpef + inp.deferred_irpef,
+        opening_irpef_withheld=opening.tax.irpef
+        + inp.deferred_irpef
+        + prior.irpef_withheld,
         opening_tratt_ytd=net_credit_ytd,
         remaining_slots=inp.withholding.remaining,
         family_deductions=_ZERO if family is None else family.deductions.total,

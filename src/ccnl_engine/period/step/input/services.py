@@ -28,6 +28,7 @@ from ccnl_engine.family.inputs import DependentRelationship
 from ccnl_engine.fund.assistance.policies import assistance_terms
 from ccnl_engine.fund.contractual.rules import contractual_run
 from ccnl_engine.fund.solidarity.coverage import covered_fund
+from ccnl_engine.irpef.prior.rules import conguaglio_intake
 from ccnl_engine.leave.services import leave_terms
 from ccnl_engine.pay_item.services import _hours_value
 from ccnl_engine.pension_fund.decision.services import pension_terms
@@ -213,6 +214,12 @@ def amounts_input(
     """
     request, contract, fiscal_year = ctx.request, ctx.contract, ctx.fiscal_year
     trattamento, ulteriore = _recovery_plans(ctx, fiscal_year)
+    intake = conguaglio_intake(
+        request.current_year,
+        ctx.employment_spells,
+        conguaglio=ctx.conguaglio,
+        settled=ctx.opening.cash.conguaglio is not None,
+    )
     return _AmountsInput(
         monthly_gross=ctx.monthly_gross,
         in_kind=ctx.chain.in_kind_total,
@@ -235,14 +242,14 @@ def amounts_input(
         comune_belfiore=request.comune_belfiore,
         family_composition=request.family_composition,
         family_deduction_rules=family_rules,
-        current_year=request.current_year,
+        current_year=intake.facts,
         ivs_ceiling_applies=ivs_ceiling_applies,
         inps_minimum=inps_minimum,
         pdr_rules=ctx.var_pay_rules.pdr,
         weekly_hours=_hours_value(request.weekly_hours),
         contributable_hours=_contributable_hours(request),
         domestic_hourly_rate=_domestic_rate(ctx),
-        eligible_work_days=spell_days(ctx.employment_spells),
+        eligible_work_days=spell_days(intake.spells),
         fixed_term_in_year=any(s.fixed_term for s in ctx.employment_spells),
         extra_tfr_quota=overtime_tfr(
             contract.ccnl, contract.level, request.events, contract.tctx.competence
@@ -259,7 +266,8 @@ def amounts_input(
         run_month=request.period_id.month,
         run_kind=ctx.run_kind,
         foreign_taxes=request.prior_year.foreign_taxes,
-        deferred_irpef=_deferred_irpef(ctx),
+        deferred_irpef=ctx.opening.cash.obligations.deferred_irpef(ctx.fiscal_year),
+        prior=intake.prior,
         additional_ivs=additional_ivs_position(ctx),
         tfr_treasury_fund=tfr_treasury_fund(ctx),
         public=_public_terms(ctx),
@@ -316,13 +324,3 @@ def _period_days(ctx: RunContext) -> int:
         first = max(first, period.started_on)
         last = last if period.ended_on is None else min(last, period.ended_on)
     return max(0, (last - first).days + 1 - unpaid_days_between(spells, first, last))
-
-
-def _deferred_irpef(ctx: RunContext) -> Decimal:
-    """Return the IRPEF a conguaglio of the run's tax year deferred.
-
-    Returns:
-        Zero without a deferral of the tax year.
-    """
-    deferred = ctx.opening.cash.obligations.deferred_of(ctx.fiscal_year)
-    return Decimal(0) if deferred is None else deferred.irpef

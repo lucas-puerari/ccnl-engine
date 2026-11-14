@@ -98,4 +98,8 @@ PERIOD_FACT_DEFAULTS: dict[str, FieldDefault] = {
         "unknown family: the art. 12 TUIR deductions are not ruled out; an "
         "empty FamilyComposition states that there is no dependant",
     ),
+    "CurrentYearTaxFacts.prior_employers": absence_is_fact(
+        "no request under art. 23 c. 4 DPR 600/1973: the conguaglio takes in "
+        "this employment alone"
+    ),
 }
