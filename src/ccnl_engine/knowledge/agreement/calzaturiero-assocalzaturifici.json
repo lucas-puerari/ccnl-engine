@@ -88,6 +88,26 @@
       {
         "kind": "info",
         "text": "APPRENTICE SENIORITY (Art. 23 Apprendistato, p. 52 of the CCNL industria delle calzature 17 July 2024, https://www.falc.biz/wp-content/uploads/2025/03/CCNL-contratto-collettivo-nazionale-di-lavoro-calzaturiero-2024.pdf, sha256 fd48de9dd4aa81fd5ca97c3dd94099d085ac61666831e6da37fe2fbab19558cf): 'L’anzianità durante il rapporto di apprendistato è utile per la maturazione e per la corresponsione degli aumenti periodici di anzianità. Gli aumenti saranno commisurati alle stesse percentuali del minimo contrattuale': the level increments, reduced by the apprenticeship percentage (seniority_increments.apprentice_level_amount and apprentice_pct_scaled)."
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP PERCENTAGE (art. 23, p. 52 of the text of 17 July 2024): '80% [90%, 100%] del minimo contrattuale del livello assegnato', the increments 'commisurati alle stesse percentuali del minimo contrattuale': the percentage reduces the minimo only, so the quadri function allowance is not reduced (apprenticeship_pct_relevant false)."
+      },
+      {
+        "kind": "simplification",
+        "text": "OBJECTIVE 1 AREAS (art. 23, p. 52): 'Nelle aree di cui all'obiettivo 1 del regolamento 93/2081/CEE ... la retribuzione degli apprendisti è stabilita nelle seguenti misure: 70% ... 80% ... 90% del minimo contrattuale del livello assegnato'; the Protocollo sul Mezzogiorno names Basilicata, Calabria, Campania, Puglia, Sardegna and Sicilia. The request has no workplace region, so every apprentice takes 80/90/100%.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "objective_one_apprentice_rates",
+          "applies_when": {
+            "trigger": "outside_input",
+            "contract_types": [
+              "apprentice"
+            ]
+          },
+          "remediation": "State whether the workplace is in an Objective 1 region and pay the apprentice 70/80/90% there."
+        }
       }
     ]
   },
@@ -1651,7 +1671,8 @@
               "effective_from": "2024-08-01",
               "verification_status": "unverified"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1761,7 +1782,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
     "verification_status": "unverified",
-    "source_hash": "5ec741d2218244cb72132ff488df2efe12f33426eb4192510acee084438b898e",
+    "source_hash": "9f7eb0f6bd7b540b6c686c7de551bbb5a64a7f1ba95a13a0cb1d856168098589",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1995,6 +2016,29 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-calzaturiero-apprentice-components",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 23 apprenticeship pay of the text of 17 July 2024 (p. 52).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.falc.biz/wp-content/uploads/2025/03/CCNL-contratto-collettivo-nazionale-di-lavoro-calzaturiero-2024.pdf",
+            "sha256": "fd48de9dd4aa81fd5ca97c3dd94099d085ac61666831e6da37fe2fbab19558cf"
+          }
+        ],
+        "findings": [
+          "The percentage applies to the minimo contrattuale only: the quadri function allowance is not reduced.",
+          "The lower rates of the Objective 1 areas were not recorded: now a limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels[*].fixed_allowances",
+          "coverage.notes"
         ]
       }
     ]

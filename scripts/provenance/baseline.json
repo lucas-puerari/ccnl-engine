@@ -671,6 +671,9 @@
       "bcc-credito-cooperativo/movement_loyalty_award",
       "bcc-credito-cooperativo/pre_1998_cohort_scatti"
     ],
+    "agreement/calzaturiero-assocalzaturifici.json": [
+      "calzaturiero-assocalzaturifici/objective_one_apprentice_rates"
+    ],
     "agreement/carta-cartone-assocarta.json": [
       "carta-cartone-assocarta/emc_absorption_unconfirmed"
     ],
