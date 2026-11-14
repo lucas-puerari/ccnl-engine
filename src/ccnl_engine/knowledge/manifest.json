@@ -31,7 +31,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/acconciatura-estetica-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "2737861b46251e22e11cdac69ae4516d11e0d30f6e3ce701cd00c0e7ed547ec7",
+      "source_hash": "2c75c7f6a3024dcc3218cf60617c18f49f5972efeafb585a1ff29a4346a19a5d",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/acconciatura-estetica-confartigianato.json.gz"
@@ -82,7 +82,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/agenzie-marittime-i481",
       "ruleset_version": "2026.2",
-      "source_hash": "bb2a3e2a28aa88ac04d4a57d749e297adea9899293817e793988d6dea40148f9",
+      "source_hash": "85dfdbd1ebe220d0f908a76e47f98510dda845954ca1cb2fbeb4fd857eefdaa3",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/agenzie-marittime-i481.json.gz"
@@ -99,7 +99,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/agenzie-viaggio-fiavet",
       "ruleset_version": "2026.2",
-      "source_hash": "2cc259900eb4466b0548958aa7ef70095ef5148ea65ff6d3e97aedf23192925a",
+      "source_hash": "d3b0070f3e75ab04dad029e464f702020454221d22e9c6fc4e0d8b422fad1961",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/agenzie-viaggio-fiavet.json.gz"
@@ -235,7 +235,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/autorimesse-ic35",
       "ruleset_version": "2026.2",
-      "source_hash": "9ebdda073f7c4971424d460927d6c1652e699e917c04fff09e378a23d8fec31c",
+      "source_hash": "9e7cdf32f5ced3f266375fb38dfd588886775efb3d0cdcd74ffb221b08872487",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/autorimesse-ic35.json.gz"
@@ -388,7 +388,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cemento-calce-gesso-industria",
       "ruleset_version": "2026.2",
-      "source_hash": "b117c8b83e82f5f09d247c043d111816320962fdfb110f6ff3cfab885259467e",
+      "source_hash": "6949ea0161f702dd2105f66ba78270e9826202a8a0c321c4d57b6577fda6f4b9",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/cemento-calce-gesso-industria.json.gz"
@@ -541,7 +541,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/consorzi-agrari-assocap",
       "ruleset_version": "2026.2",
-      "source_hash": "f3879fc94350be6727ab22ac785c42f5511a6694ab93119ac89bc40d4d208d26",
+      "source_hash": "52f0137808cd6bd073cbdd56d56691e0f3a715d8e8ca9e1c0b7600e77c1b2c4c",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/consorzi-agrari-assocap.json.gz"
@@ -609,7 +609,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cooperative-sociali",
       "ruleset_version": "2026.2",
-      "source_hash": "ee6b7fd14e2f43e5f33f0e18796aba5d4437f29b5d854d508567ad7bf2f3e3f7",
+      "source_hash": "87b9ad903d057800983396737959432100a068afe7bc992ffce9a45a77c94723",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/cooperative-sociali.json.gz"
@@ -660,7 +660,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-istruzione-ricerca-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "404189e890d68e2e7ebdbd064b08e8f69020d29bd6b818857bc31360060e3bfe",
+      "source_hash": "aed902ec75daff549ae02740a90c30693d541ca7ee4d22ad7bfd8952476eb744",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-istruzione-ricerca-aran.json.gz"
@@ -935,7 +935,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/farmacie-private-h121",
       "ruleset_version": "2026.2",
-      "source_hash": "ce2da3e7dd7f796472a2669014450d9dd31d5597db423f60ac0cabd11de15f14",
+      "source_hash": "068b45751e45d3c8e0fe5cdfbf4a670bd3a2fee288ae804171b021eb943c3e6f",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/farmacie-private-h121.json.gz"
@@ -1122,7 +1122,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/grafica-editoria-aieg",
       "ruleset_version": "2026.2",
-      "source_hash": "8f0e594f0469fa1d069ec1d1abc9adc2edf0de503508033cf09208b10ac862a0",
+      "source_hash": "c50c7a03ca26edb6fd531c74cc9d418b6b68c7c8e458399ac0abf6a46b708f5b",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/grafica-editoria-aieg.json.gz"
@@ -1853,7 +1853,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/recapito-corrispondenza-fise",
       "ruleset_version": "2026.2",
-      "source_hash": "f853b13dc5820ec656de3b935a021455760baa7c412a0bd2905441ea4863ee40",
+      "source_hash": "fb71f9dcb4c35060a46c176da8da0e6d981f0264270eeb46dcd8591a7bcf3d94",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/recapito-corrispondenza-fise.json.gz"
@@ -2006,7 +2006,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/sistemazioni-idraulico-forestali-operai",
       "ruleset_version": "2026.1",
-      "source_hash": "03a3dda7e767285f8ebd0e590698e1fc89811cedcde0980d9672f80bfe3d3a03",
+      "source_hash": "163f75eba7a4424e4ee87f2ac99d6bb648a8e7aa804110a24008ece6b3d51524",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/sistemazioni-idraulico-forestali-operai.json.gz"

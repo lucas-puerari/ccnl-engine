@@ -188,6 +188,27 @@
           "parameters",
           "work_rules"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-grafica-editoria-aieg-sunday-holidays",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+            "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
+          }
+        ],
+        "findings": [
+          "work_rules.sunday_holidays: 01-01, 01-06, easter_monday, 04-25, 05-01, 06-02, 08-15, 11-01, 11-04, 12-08, 12-25, 12-26, patron; divisor 26"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays"
+        ]
       }
     ]
   },
@@ -3083,7 +3104,7 @@
     "effective_until": null,
     "source": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
     "verification_status": "unverified",
-    "source_hash": "8f0e594f0469fa1d069ec1d1abc9adc2edf0de503508033cf09208b10ac862a0",
+    "source_hash": "c50c7a03ca26edb6fd531c74cc9d418b6b68c7c8e458399ac0abf6a46b708f5b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3329,6 +3350,52 @@
           "review_id": "2026-10-31-ai-sickness-comporto"
         },
         "note": "Not modelled: the hospital stays (day hospital included), the life-saving therapies and the continuous absences over a month (up to 90 days) left out of the counts; the absences of up to 3 days counted twice after the first 4 events of the comporto; the comporto of the apprentices on contracts under 36 months (a third of the contract)."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "11-04",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "divisor": 26,
+      "on_rest_day": false,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-grafici-editori-2021-rinnovo-2023",
+            "title": "CCNL Grafici Editori 19 gennaio 2021, nel PDF dell’ipotesi di rinnovo 19 dicembre 2023",
+            "kind": "associazione",
+            "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+            "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
+          },
+          "page": "116 (stampata 89)",
+          "section": "parte terza (impiegati), art. 5",
+          "quote": "Nel caso in cui le festività sopra elencate cadano di domenica, sarà dovuto, oltre la normale retribuzione mensile, un ventiseiesimo della retribuzione stessa."
+        },
+        "transformation": "Le festività elencate nell’art. 5 della parte terza sono convertite nei codici di calendario, compresi 25 aprile, 1° maggio, 2 giugno e il Santo Patrono. Il 4 novembre è aggiunto come 11-04 per la disposizione dello stesso articolo sul trattamento domenicale della celebrazione spostata. Per gli impiegati la quota aggiuntiva è 1/26 della retribuzione mensile; non si attribuisce questa quota agli operai.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2021-01-01",
+          "verification_status": "unverified"
+        }
       }
     }
   }

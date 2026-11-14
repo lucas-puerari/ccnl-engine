@@ -214,6 +214,27 @@
           "work_rules.sickness_rules",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-agenzie-marittime-i481-sunday-holidays",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fitcisl.org/wp-content/uploads/2023/07/2021_2023_CCNL-Agenzie-marittime.pdf",
+            "sha256": "19003c8b34277a77700ae77879ef4a3a4540021d78fec6aba568243d722ac32d"
+          }
+        ],
+        "findings": [
+          "work_rules.sunday_holidays: 01-01, 01-06, easter, easter_monday, 04-25, 05-01, 06-02, 08-15, 11-01, 11-04, 12-08, 12-25, 12-26, patron; divisor 22"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays"
+        ]
       }
     ]
   },
@@ -1327,7 +1348,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl-agenziemarittime21-23.pdf",
     "verification_status": "unverified",
-    "source_hash": "bb2a3e2a28aa88ac04d4a57d749e297adea9899293817e793988d6dea40148f9",
+    "source_hash": "85dfdbd1ebe220d0f908a76e47f98510dda845954ca1cb2fbeb4fd857eefdaa3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1589,6 +1610,53 @@
             ]
           }
         ]
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "11-04",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "divisor": 22,
+      "on_rest_day": false,
+      "on_saturday": true,
+      "on_coincident_holiday": true,
+      "exclude_compensatory_rest_day": true,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "agenzie-marittime-i481-2021-2023",
+            "title": "CCNL Agenzie marittime 2021–2023",
+            "kind": "associazione",
+            "url": "https://www.fitcisl.org/wp-content/uploads/2023/07/2021_2023_CCNL-Agenzie-marittime.pdf",
+            "sha256": "19003c8b34277a77700ae77879ef4a3a4540021d78fec6aba568243d722ac32d"
+          },
+          "page": "23",
+          "section": "art. 17",
+          "quote": "Per le festività di cui al punto b) cadenti di domenica o di sabato o altre festività è dovuto, in aggiunta alla retribuzione mensile la retribuzione globale di una giornata, calcolata in base ad un ventiduesimo di quella mensile. Uguale trattamento spetterà al lavoratore che risulti assente dal lavoro per i seguenti motivi:\na)   infortunio, malattia, gravidanza, puerperio e periodo di assenza facoltativa seguente al puerperio, congedo matrimoniale, ferie, permessi e assenze per giustificato motivo;\nb)   sospensione dal lavoro, a qualunque causa dovuta, indipendentemente dalla volontà del lavoratore."
+        },
+        "transformation": "Le festività del punto b) dell'art. 17 (PDF p. 22) sono codificate in holidays; la quota di un ventiduesimo della retribuzione mensile dà divisor 22. La clausola paga anche la coincidenza con sabato o altra festività. L'art. 17 (PDF p. 23) esclude il compenso se la festività coincide con il riposo compensativo. L'art. 15 (PDF p. 22) stabilisce per il 4 novembre: «Per quanto riguarda la festività la cui celebrazione è spostata alla domenica successiva (4 novembre), il lavoratore beneficerà del trattamento previsto per le festività che coincidono con la domenica.»: codificato come 11-04. Non è previsto il pagamento per qualunque giorno di riposo settimanale.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2021-07-30",
+          "verification_status": "unverified"
+        }
       }
     }
   }

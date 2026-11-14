@@ -250,6 +250,27 @@
         "checked": [
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-sistemazioni-idraulico-forestali-operai-sunday-holidays",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/05/CCNL-Idraulico-Forestale-2023.pdf",
+            "sha256": "fb09d06825c27a3abb8081bec9e1645f17e51920559a6406323225d26b549461"
+          }
+        ],
+        "findings": [
+          "work_rules.sunday_holidays: 01-01, 01-06, 04-25, 05-01, 06-02, 08-15, 11-01, 11-04, 12-08, 12-25, 12-26"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays"
+        ]
       }
     ]
   },
@@ -1083,7 +1104,7 @@
     "source": "https://redigo.info/",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "03a3dda7e767285f8ebd0e590698e1fc89811cedcde0980d9672f80bfe3d3a03",
+    "source_hash": "163f75eba7a4424e4ee87f2ac99d6bb648a8e7aa804110a24008ece6b3d51524",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -1278,6 +1299,49 @@
           "comporto_days": 180
         }
       ]
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "11-04",
+        "12-08",
+        "12-25",
+        "12-26"
+      ],
+      "on_rest_day": false,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-idraulico-forestale-2023",
+            "title": "CCNL Idraulico-Forestale 2021–2024",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2023/05/CCNL-Idraulico-Forestale-2023.pdf",
+            "sha256": "fb09d06825c27a3abb8081bec9e1645f17e51920559a6406323225d26b549461"
+          },
+          "page": "PDF p. 39 (stampata p. 38)",
+          "section": "art. 11",
+          "quote": "Per il trattamento da praticarsi ai lavoratori a tempo indeterminato\nnei giorni di festività nazionali ed infrasettimanali valgono le disposizioni\ndi cui alle leggi 27 maggio 1949 n. 260, 31 marzo 1954 n. 90 e 20 no-\nvembre 2000 n. 336, oltre al DPR 792/1985 e pertanto, nella ricorrenza\ndelle feste nazionali ed infrasettimanali di cui al presente articolo, anche\nse cadono di domenica, verrà usato ai lavoratori il seguente trattamento:\na) se non lavorano verrà corrisposta una giornata normale di paga com-\n    preso ogni accessorio;"
+        },
+        "transformation": "L'art. 11 paga ai lavoratori a tempo indeterminato una giornata normale di paga per le festività elencate anche quando cadono di domenica. Sono inclusi 25 aprile, 1 maggio e 2 giugno; il 4 novembre è rappresentato da 11-04, poiché la sua celebrazione è spostata alla prima domenica di novembre e l'articolo richiama il trattamento della festività nazionale coincidente con la domenica. Il lunedì dopo Pasqua non può cadere di domenica. Il Patrono cadente di domenica è trasferito al giorno feriale successivo, quindi non è incluso. Non è nominato un divisore; non sono previste le altre estensioni rappresentate dai flag.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": null,
+          "verification_status": "unverified"
+        }
+      }
     }
   }
 }

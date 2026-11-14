@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Data fixes proposed by one session from the signed text and confirmed by a second independent session. | corrected | Closed cashier_allowance_missing. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 43 grandfathered seniority award, PDF p. 40; Art. 33 pay components, PDF p. 33. | corrected | Three monthly wages once after 25 years for employees already in service on 22 December 1997, including apprenticeship; excluded from TFR. Qualifying short breaks and specified interprovincial transfers can delay accrual; early termination may trigger a separate payment. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Table and cumulation of art. 36 against the research of a separate model session; table read on the text layer of the source. | corrected | Replaced one per-episode rule with the nine seniority bands of art. 36, each summed over three times its comporto.<br>The integration rates were 0: art. 36 c. 7 tops up to 100% or 50% of the net pay. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text. | confirmed | work_rules.sunday_holidays: 01-01, 01-06, easter_monday, 04-25, 05-01, 06-02, 08-15, 11-01, 11-04, 12-08, 12-25, 12-26, patron; divisor 26 |
 
 ## Salary table
 

@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 8, 20 and 23 of the CCNL 2021-2023. | corrected | Art. 8: 'Il contratto di apprendistato professionalizzante è un contratto di lavoro a tempo indeterminato' with periods of lower classification; art. 20 puts 'eventuali scatti di anzianità maturati ai sensi dell'art. 23' in the retribuzione globale; art. 23 owes an increment each biennio of service: the increments of the level the apprentice is paid at. |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 1 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto and sick pay against a second research of a separate model session; quotes checked on the source. | corrected | Replaced 270 days of one episode with art. 32: 4 months in full and 5 or 8 at half pay, comporto 9 or 12 months, summed over 18 months. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text. | confirmed | work_rules.sunday_holidays: 01-01, 01-06, easter, easter_monday, 04-25, 05-01, 06-02, 08-15, 11-01, 11-04, 12-08, 12-25, 12-26, patron; divisor 22 |
 
 ## Salary table
 

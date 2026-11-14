@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | regional_seniority_cirl: For operai, the cited national agreement does not prescribe seniority increments: Art. 41 awards biennial increments to impiegati only; Art. 52 lists operai pay as national minimum plus regional supplementary salary, unchanged in the 2025 renewal. The agreement JSON has maximum_c |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source text. | corrected | Added the comporto window of the CCNL. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Rules of the 2021 text against the OCR of the renewal signed on 4 December 2025, from the research of a separate model session. | corrected | Arts. 49 (levels 1-5, parameters 100-123) and 52 (divisors 26 and 169) are reproduced in the renewal (PDF pp. 20-22); art. 7 is not amended. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text. | confirmed | work_rules.sunday_holidays: 01-01, 01-06, 04-25, 05-01, 06-02, 08-15, 11-01, 11-04, 12-08, 12-25, 12-26 |
 
 ## Salary table
 
