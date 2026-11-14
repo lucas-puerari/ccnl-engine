@@ -35,9 +35,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer, pension_fund_contribution |
+| **Limits of this contract** | inps_employer |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 139 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 36 verified / 139 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-11 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2026-08-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-11-07 | claude-opus-5-5 (ai) | The EDR 2024 of the renewal of 2024 and the AGENS circular Inf. 002/25 (text layer). | corrected | 'viene istituito un nuovo Elemento Distinto della Retribuzione (EDR 2024) nella misura di 40 euro lordi mensili al parametro 175 che verrà erogato per 14 mensilità': a permanent element paid 14 times a year, not 14 payments; the file set it to zero from May 2026. |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 33 values found verbatim on the cited pages and marked verified; 75 left as they were (derived or not on a text page). |
+| 2026-11-14 | claude-opus-5-5 (ai) | Fondo Priamo scheda 'I destinatari e i contributi' (PDF p. 2-3), against the research of a separate model session. | corrected | Added Fondo Priamo: 2% + 2% for members and the 6.80 monthly contractual contribution for every permanent worker. |
 
 ## Salary table
 
@@ -154,13 +155,6 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "autoferrotranvieri-internavigatori/priamo_pension_fund · pension_fund_contribution · impact yes · open"
-    EDR 2024: fixed_allowances per level, code 'edr_2024', 40 EUR at par.175 proportional to the parametro, paid from March 2025 on 14 monthly payments a year ('verrà erogato per 14 mensilità', renewal of 2024), with no end date. Per AGENS circular 20/03/2025 it is 'non computabile ai fini del TFR e della contribuzione al Fondo Priamo': modelled with tfr_relevant=false (Fondo Priamo is a bilateral pension fund, not modelled).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Source the Fondo Priamo contribution rates (employer, worker, TFR share) and add a PRIAMO entry to parameters.employer_funds; until then open a pension_fund_not_modelled-style limitation.
 
 !!! warning "autoferrotranvieri-internavigatori/public_operator_inps_scheme · inps_employer · impact unknown · open"
     INPS reuses 2026-terziario.json. The Autoferrotranvieri sector (TPL) includes both public-owned (ex-gestione governativa) and private operators. INPS classification is TERZIARIO for private TPL companies (confirmed by ASSTRA/ANAV membership profile and INPS contribution circulars for the trasporti locali sector). SIMPLIFICATION: some publicly-owned TPL operators may have different INPS contribution schemes; this file models private-sector employers.
@@ -370,6 +364,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     ADDITIONAL MONTHS: 14 (tredicesima in December + quattordicesima in June). Confirmed from CCNL Art. 40 (tredicesima) and Art. 41 (quattordicesima). Source: Thaler 2022 CCNL summary.
     
     SENIORITY: biennale (24 months), maximum 6 scatti. Per-level amounts (EUR/scatto) confirmed from Thaler 2022 CCNL summary table, all 33 parametri. Note: two pairs share the same scatto amount (par.158 = par.160 = 24.65; par.138 = par.139 = 21.06) — this is as published.
+    
+    EDR 2024: fixed_allowances per level, code 'edr_2024', 40 EUR at par.175 proportional to the parametro, paid from March 2025 on 14 monthly payments a year ('verrà erogato per 14 mensilità', renewal of 2024), with no end date. Per AGENS circular 20/03/2025 it is 'non computabile ai fini del TFR e della contribuzione al FONDO PRIAMO: 2% + 2% minimum on tabellare, contingenza, scatti and TDR for members (employer_funds PRIAMO), and 6.80 a month contractual contribution for every permanent worker (contractual_fund_contribution), per the fund's scheda of 29/10/2026.
     
     APPRENTICESHIP: CCNL Art. 36-bis (apprendistato professionalizzante). No wage reduction: the apprentice earns 100% of the destination parametro from day one; the track therefore covers every parametro. Source: Art. 36-bis per AGENS circular 20/03/2025.
     

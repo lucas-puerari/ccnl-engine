@@ -137,11 +137,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Calculate the full-month twelfths due on non-disciplinary dismissal after entitlement.
 
 !!! warning "edilizia-pmi-confapi-aniem/operai_seniority_ape · seniority · impact yes · open"
-    SENIORITY: Art. 49 (testo armonizzato 15/04/2025, p. 87) gives the scatti to 'L'impiegato' only, by category; the operai accrue the Anzianità professionale edile of Art. 29 (p. 64) through the Fondo Unico APE, out of an employer contribution 'nella misura stabilita per ciascuna circoscrizione territoriale'. The engine pays no scatti to a worker stated as operaio (seniority excluded_categories); the territorial APE contribution is not modelled, a run of levels 1-4 that does not state the category still pays the Art. 49 amounts, and level 1 has no Art. 49 amount (8.22 of the Impiegati 4a is used).
+    SENIORITY: Art. 49 (testo armonizzato 15/04/2025, p. 87) gives the scatti to 'L'impiegato' only, by category; the operai accrue the Anzianità professionale edile of Art. 29 (p. 64) through the Fondo Unico APE, out of an employer contribution 'nella misura stabilita per ciascuna circoscrizione territoriale'. The engine pays no scatti to a worker stated as operaio (seniority excluded_categories); the territorial APE contribution is not modelled, a run of levels 1-4 that does not state the category still pays the Art. 49 amounts, and level 1 has no Art. 49 amount (8.22 of the Impiegati 4a is used). Level 1 holds the impiegati di 4ª categoria di primo impiego: art. 49 (p. 87) gives 'Impiegati 4ª 8,22', the amount modelled for level 1 (filleacgil copy sha256 25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba).
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the territorial APE contribution (Fondo Unico APE) as an employer cost and source the level 1 amount of Art. 49.
+    **Remediation:** Add the territorial APE contribution (Fondo Unico APE) of the worker's circoscrizione as an employer cost.
 
 !!! warning "edilizia-pmi-confapi-aniem/provincial_evr · territorial_supplement · impact unknown · open"
     EVR (Elemento Variabile della Retribuzione): conditional, company/territory-specific bonus. Not modelled.
