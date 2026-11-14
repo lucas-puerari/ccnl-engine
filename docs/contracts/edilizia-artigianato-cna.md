@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, inps_employer, seniority |
+| **Limits of this contract** | base_salary, bilateral_funds, inps_employer, seniority, sickness |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 65 whole-month loyalty twelfths on non-disciplinary dismissal, checked against the cached PDF text layer, page 93. | confirmed | After the preceding earned award, the clause pays whole-month twelfths on dismissal not for disciplinary reasons. |
 | 2026-11-14 | claude-opus-5-5 (ai) | INPS circ. 140/2012 par. 3.3 on the apprentice contribution, against the research of a separate model session. | confirmed | The cuneo reductions (0.91) do not apply to apprentices: the artigianato apprentice rates of the bundle are confirmed. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses of the operai, against the research of a separate model session; quote checked on the source text. | corrected | Added the operai comporto windows (9 months in 20, 12 in 24 above three and a half years). |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses of the impiegati of art. 66, OCR of the scanned source, against the research of a separate model session. | corrected | Added the impiegato and quadro windows of several illnesses; the comporto of one illness and the reduced pay months stay a limitation. |
 
 ## Salary table
 
@@ -155,6 +156,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `base_salary` applies; the run takes the engine code path.
 
     **Remediation:** Source the anniversary rule for a 29 February hire before changing the fallback.
+
+!!! warning "edilizia-artigianato-cna/sickness_pay_bands · sickness · impact yes · open"
+    SICKNESS OF THE IMPIEGATI (Art. 66, scanned PDF p. 76): the comporto of one illness is 6 months up to 2 years of seniority and 12 above 6 years, while point 2) (2 to 6 years) states no number of months; pay is in full for 6 months, then 50% (2 to 6 years) or 75% for 3 months and 50% (above 6 years), and the relapse sums with the episode it continues. The engine keeps 180 days for one illness, applies the windows of several illnesses and pays every day of the comporto in full.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the comporto of one illness and the 75%/50% months of art. 66 by seniority; point 2) needs the months it does not state.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

@@ -322,6 +322,22 @@
       }
     },
     {
+      "id": "sickness_pay_bands",
+      "institute": "sickness",
+      "variant": "impiegato_quadro",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "SICKNESS OF THE IMPIEGATI (Art. 66, scanned PDF p. 76): the comporto of one illness is 6 months up to 2 years of seniority and 12 above 6 years, while point 2) (2 to 6 years) states no number of months; pay is in full for 6 months, then 50% (2 to 6 years) or 75% for 3 months and 50% (above 6 years), and the relapse sums with the episode it continues. The engine keeps 180 days for one illness, applies the windows of several illnesses and pays every day of the comporto in full.",
+      "calculation": "ccnl/edilizia-artigianato-cna:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the comporto of one illness and the 75%/50% months of art. 66 by seniority; point 2) needs the months it does not state.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "edilizia-artigianato-cna/sickness_pay_bands"
+        ]
+      }
+    },
+    {
       "id": "sunday_holiday_ccnl_clause",
       "institute": "sunday_holiday",
       "variant": "all",
