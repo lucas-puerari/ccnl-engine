@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 363 open limitations (363 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 362 open limitations (362 with a monetary impact).
 
 ## Declared window
 
@@ -108,7 +108,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [formazione-professionale](../contracts/formazione-professionale.md) | `istruzione-formazione` | exploratory | — | 22 rows | 22 open requirements; 2 weak rules; 17 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [forze-polizia-ordinamento-civile](../contracts/forze-polizia-ordinamento-civile.md) | `forze-polizia` | exploratory | — | 23 rows | 23 open requirements; 2 weak rules; 19 monetary limitations; 20 non-native capabilities |
 | [funivie-anef](../contracts/funivie-anef.md) | `trasporti-logistica` | exploratory | — | 21 rows | 21 open requirements; 2 weak rules; 16 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
-| [funzioni-centrali-aran](../contracts/funzioni-centrali-aran.md) | `pubblico-impiego` | reviewed | — | 19 rows | 19 open requirements; 16 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
+| [funzioni-centrali-aran](../contracts/funzioni-centrali-aran.md) | `pubblico-impiego` | reviewed | — | 18 rows | 18 open requirements; 16 monetary limitations; 18 non-native capabilities |
 | [funzioni-locali-aran](../contracts/funzioni-locali-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 18 rows | 18 open requirements; 16 monetary limitations; 18 non-native capabilities |
 | [gas-acqua-utilitalia](../contracts/gas-acqua-utilitalia.md) | `energia-utilities` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 19 non-native capabilities |
 | [gomma-plastica-federazione-gomma-plastica](../contracts/gomma-plastica-federazione-gomma-plastica.md) | `chimica` | exploratory | — | 22 rows | 22 open requirements; 2 weak rules; 18 monetary limitations; 19 non-native capabilities |

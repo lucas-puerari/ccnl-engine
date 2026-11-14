@@ -37,10 +37,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 26 verified / 5 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 44 verified / 5 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -57,7 +57,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-08-06 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -69,6 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Registry check: CNEL code, name, signatories and term against the 21st CNEL report of CCNLs in force (30 June 2025) and the term clause of the text read in the P1 review. | corrected | CNEL S005 matches (ARAN with CISL FP, CONFSAL UNSA, FLP, CGS, CONFINTESA FP, UIL PA).<br>Term: the CCNL of 6 August 2026 covers the triennio 2025-2027; meta.validity still held the CCNL of 9 May 2022 and is updated. |
 | 2026-10-17 | claude-opus-5-5 (ai) | The CTPS rates the file reads, against the INPS table of the Gestione Dipendenti Pubblici. | confirmed | The INPS page prints 'CTPS 33 24,2 8,8' (total, employer, worker): the 24.20% and 8.80% of the bundle. The rates no longer rest on the kitech.it proxy the limitation named; ctps_rates_proxy is resolved. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 28, commi 1–4 e 9, p. 44–45). | corrected | Notice bands by level, category and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Tabella 4 of the CCNL Funzioni Centrali of 6 August 2026 (PDF p. 67), text layer, against the research of a separate model session. | corrected | Added the six agency positions of ENAC, ANSFISA and ANSV for 2025-2027 as sub-sector levels. |
 
 ## Salary table
 
@@ -76,6 +77,12 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
+| `ISPETTORE_SPECIALISTA` | Ispettore specialista - ENAC, ANSFISA, ANSV | € 2,819.79 | 2027-01-01 |
+| `PII4S` | PII 4 super - ENAC, ANSFISA, ANSV | € 3,868.43 | 2027-01-01 |
+| `PII4` | PII 4 - ENAC, ANSFISA, ANSV | € 3,605.35 | 2027-01-01 |
+| `PII3` | PII 3 - ENAC, ANSFISA, ANSV | € 3,212.03 | 2027-01-01 |
+| `PII2` | PII 2 - ENAC, ANSFISA, ANSV | € 2,820.80 | 2027-01-01 |
+| `PII1` | PII 1 - ENAC, ANSFISA, ANSV | € 2,471.60 | 2027-01-01 |
 | `ELEVATE_PROFESSIONALITA` | Area Elevate Professionalità | € 3,107.21 | 2027-01-01 |
 | `FUNZIONARI` | Area Funzionari ed Elevata Qualificazione — Funzionari | € 2,275.39 | 2027-01-01 |
 | `ASSISTENTI` | Area Assistenti | € 1,873.56 | 2027-01-01 |
@@ -96,13 +103,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `inps_employer` applies.
 
     **Remediation:** Resolved: the CTPS rates of the bundle (employee 8.80%, employer 24.20%) are read from the INPS page 'I contributi dei dipendenti pubblici', table of the Gestione Dipendenti Pubblici, checked again on 2026-10-17 (contribution/2026/pubblica-amministrazione.json, inps.provenance, verified).
-
-!!! warning "funzioni-centrali-aran/agency_salary_tables · base_salary · impact unknown · open"
-    sub-settori ENAC, ANSFISA, ANSV e AGID hanno tabelle retributive proprie (Tabelle 3-6 CCNL) non modellate — out_of_scope per implementazione standard.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Add the ENAC, ANSFISA, ANSV and AGID tables with a fact selecting them, or refuse those employers.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -277,6 +277,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     codice CNEL S005 confermato da tre fonti secondarie convergenti: lavoro-economia.it (intestazione pagina "CCNL Comparto Funzioni Centrali [Cnel: S005]"), blia.it (ID S005-209278), contratticcnl.it (/ccnl/s005/). Verificato 2026-09-09.
     
     progressione economica non automatica — differenziali stipendiali assegnati per graduatoria (Art. 16 CCNL 2022-2024); seniority_increments.maximum_count=0.
+    
+    AGENCIES (CCNL 6 August 2026, tabelle 2 and 4, PDF p. 65-67): for ENAC, ANSFISA and ANSV the professionisti di II qualifica (PII 1-4 super) and the ispettori specialisti have their own tabellare, modelled as levels of the sub-sector enac_ansfisa_ansv; their other positions are transposed into the areas. AGID moved to the ordinary tables from 1 November 2024 (CCNL 27 January 2025 art. 30 c. 3), before the window of this ruleset.
     
     PENSION FUND. Perseo Sirio (1% + 1% of the retribuzione utile ai fini del TFR). Enrolment is a fact: the silenzio-assenso of the hires from 2 January 2019 (accordo ARAN 16/09/2021) is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual.
     

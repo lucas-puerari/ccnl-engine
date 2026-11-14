@@ -143,7 +143,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 24 | B122 | [CCNL Ceramica Industria (Confindustria) - Ceramica sanitaria e stoviglieria](ceramica-sanitaria-stoviglieria-confindustria.md) | ceramica | ~23k | — | ⚠️ | seniority | 52 / 18 / 1 / 1 | 🧪 | 🤖 |
 | 25 | B122 | [CCNL Ceramica Industria (Confindustria-Assopiastrelle)](ceramica-industria-confindustria.md) | ceramica | ~23k | — | ⚠️ | seniority | 48 / 12 / 1 / 1 | 🧪 | 🤖 |
 | 26 | B018 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | chimica | ~56k | 2026 | ✅ | — | 40 / 13 / 1 / 1 | 🧪 | 🤖 |
-| 27 | S005 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | Pubblica Amministrazione — Comparto Funzioni Centrali | ~250k | 2026 | ⚠️ | base_salary | 26 / 5 / 0 / 0 | 👁 | 🤖✓ |
+| 27 | S005 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | Pubblica Amministrazione — Comparto Funzioni Centrali | ~250k | 2026 | ✅ | — | 44 / 5 / 0 / 0 | 👁 | 🤖✓ |
 | 28 | S105 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | Pubblica Amministrazione | ~400k | 2026 | ✅ | — | 14 / 21 / 0 / 0 | 👁 | 🤖✓ |
 | 29 | S305 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN](istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~1,2M | 2026 | ⚠️ | base_salary, inps_employee, overtime, workplace_injury | 48 / 41 / 1 / 0 | 🧪 | 🤖 |
 | 30 | S305 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN, AFAM (Alta formazione artistica, musicale e coreutica)](afam-aran.md) | Pubblica Amministrazione | ~1,2M | 2026 | ✅ | sickness | 26 / 13 / 2 / 0 | 🧪 | 🤖 |
