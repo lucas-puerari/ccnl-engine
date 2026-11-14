@@ -24,6 +24,7 @@ from datetime import date, timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.absence.insured.parental.inputs import ParentalLeaveEvent
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.pay_item.rounding.policies import money
 
@@ -33,7 +34,6 @@ if TYPE_CHECKING:
     from ccnl_engine.absence.insured.parental.hourly.inputs import (
         HourlyParentalLeaveEvent,
     )
-    from ccnl_engine.absence.insured.parental.inputs import ParentalLeaveEvent
     from ccnl_engine.absence.insured.parental.models import ParentalRates
 
 __all__ = ["ParentalDays", "allocate", "cohort_unknown", "indemnity"]
@@ -108,6 +108,12 @@ class _Counters:
         )
         self.month_days = days
         self.rates = rates
+        first = (
+            event.started_on
+            if isinstance(event, ParentalLeaveEvent)
+            else event.hours[0].day
+        )
+        self.beyond = rates.beyond_rate(event.individual_income, first.year)
         self.born_on = event.child_born_on
         self.enhanced_until = _add_years(event.child_born_on, rates.enhanced_age_years)
         self.protection = event.protection_ended_on or event.child_born_on
@@ -116,7 +122,8 @@ class _Counters:
         """Consume one day of counter on ``day`` and return its rate.
 
         Returns:
-            The share INPS pays, ``None`` beyond the indemnified months.
+            The share INPS pays; beyond the indemnified months the rate of
+            the income condition, ``None`` when it cannot be told.
         """
         rates = self.rates
         if self.own < self.own_cap:
@@ -129,7 +136,7 @@ class _Counters:
         if self.shared < self.shared_cap:
             self.shared += 1
             return rates.indemnity_rate
-        return None
+        return self.beyond
 
 
 def allocate(event: ParentalLeaveEvent, rates: ParentalRates) -> ParentalDays:

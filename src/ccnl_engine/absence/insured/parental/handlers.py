@@ -30,6 +30,7 @@ from ccnl_engine.absence.insured.parental.holiday import (
     parental_holiday_units,
     parental_target,
 )
+from ccnl_engine.absence.insured.parental.income import income_check
 from ccnl_engine.absence.insured.parental.rules import allocate, indemnity
 from ccnl_engine.absence.insured.parental.top_up import (
     sixth_month_days,
@@ -224,24 +225,33 @@ def _handle_parental_leave(
     effect.issues.extend(
         _fact_issues(missing_counter, missing_sixth_end, days.cohort_unknown)
     )
-    effect.limitations = _parental_limitations(base.limitations, days, in_span)
+    limitations, income = _parental_limitations(
+        base.limitations, days, in_span, event.individual_income
+    )
+    effect.limitations = limitations
+    effect.issues.extend(income)
     return effect
 
 
 def _parental_limitations(
-    base: tuple[str, ...], days: ParentalDays, in_span: list[date]
-) -> tuple[str, ...]:
+    base: tuple[str, ...],
+    days: ParentalDays,
+    in_span: list[date],
+    income: Decimal | None,
+) -> tuple[tuple[str, ...], list[CalculationIssue]]:
     """Keep the base and parental leave limitations on the covered days.
 
     Returns:
-        Limitations of the run's portion of the parental leave.
+        Limitations of the run's portion of the parental leave, and the
+        missing fact of an unstated income past the indemnified months.
     """
     limitations = [*base, PARENTAL_EXTRA_MONTH_LIMITATION]
-    if any(days.rates[day] is None for day in in_span):
+    issue, unpublished = income_check(days.rates, in_span, income, PARENTAL)
+    if unpublished:
         limitations.append(PARENTAL_INCOME_LIMITATION)
     if days.split.intersection(in_span):
         limitations.append(PARENTAL_SPLIT_LIMITATION)
-    return tuple(limitations)
+    return tuple(limitations), [] if issue is None else [issue]
 
 
 def _fact_issues(

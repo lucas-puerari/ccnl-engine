@@ -70,7 +70,11 @@ NOT_NATIVE = frozenset({
 })
 #: Engine limitations that stand for the future data of the window: a run
 #: that reads a year whose sources are not published yet.
-FUTURE_LIMITATIONS = frozenset({"provisional_ruleset", "provisional_inps_ruleset"})
+FUTURE_LIMITATIONS = frozenset({
+    "provisional_ruleset",
+    "provisional_inps_ruleset",
+    "parental_income_condition",
+})
 REFERENCE_CASES = (
     ROOT / "tests" / "knowledge" / "ccnl_engine" / "period" / "reference_case"
 )
