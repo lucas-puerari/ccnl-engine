@@ -56,7 +56,7 @@ formulas or caller-declared amounts.
 | Scope | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
 | core | 24 | 0 | 0 | 0 |
-| scenario | 17 | 10 | 2 | 0 |
+| scenario | 18 | 10 | 2 | 0 |
 | outside_input | 0 | 0 | 0 | 6 |
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
@@ -75,6 +75,7 @@ formulas or caller-declared amounts.
 | `disability_permits` | Permessi L. 104/1992: indennità INPS pari all'intera retribuzione dei giorni, anticipata dal datore | scenario | work_rules | native | event | event | — | inps_indemnity | implemented | 0 / 1 / 0 / 0 |
 | `nursing_rests` | Riposi giornalieri D.Lgs. 151/2001 artt. 39-41: indennità INPS pari all'intera retribuzione delle ore, anticipata dal datore | scenario | work_rules | native | event | event | — | inps_indemnity | implemented | none bundled |
 | `board_lodging` | Indennità sostitutiva di vitto e alloggio del lavoratore domestico convivente per i giorni in cui non ne usufruisce (CCNL lavoro domestico artt. 17, 18, 24, 27, 29, 36): valore mensile in natura / 30 x giorni | scenario | work_rules | native | event | event | — | — | implemented | none bundled |
+| `meal_indennity` | Indennità sostitutiva del pasto del lavoratore domestico con orario di almeno 6 ore e presenza continuativa, per i giorni in cui il pasto non è erogato (CCNL lavoro domestico art. 14 c. 8, Tabella F): valore convenzionale x giorni | scenario | work_rules | native | event | event | — | — | implemented | none bundled |
 | `termination_notice` | Preavviso: indennità sostitutiva del preavviso non lavorato (art. 2118 c.c.), dovuta dal datore, sulla tabella CCNL; tassazione separata con l'aliquota del TFR (art. 19 c. 2 TUIR) | scenario | work_rules | native | event | event | — | notice_indemnity | implemented | none bundled |
 | `extraordinary_leave` | Congedo straordinario art. 42 c. 5 D.Lgs. 151/2001: indennità INPS sull'ultima retribuzione entro il massimale annuo, anticipata dal datore | scenario | work_rules | native | event | event | — | inps_indemnity | implemented | 0 / 1 / 0 / 0 |
 | `workplace_injury` | Infortunio sul lavoro: giorno dell'evento, carenza, indennità INAIL e integrazione CCNL | scenario | work_rules | native | event | event | — | injury_day_and_carenza, inail_indemnity, ccnl_top_up | verified | 1 / 0 / 0 / 0 |
@@ -167,7 +168,7 @@ never grow.
 | 26 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | ✅ | — | 40 / 13 / 1 / 1 |
 | 27 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | ✅ | — | 44 / 5 / 0 / 0 |
 | 28 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | ✅ | — | 14 / 21 / 0 / 0 |
-| 29 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN](istruzione-ricerca-aran.md) | ⚠️ | inps_employee, overtime, workplace_injury | 60 / 41 / 1 / 0 |
+| 29 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN](istruzione-ricerca-aran.md) | ✅ | overtime, workplace_injury | 60 / 41 / 1 / 0 |
 | 30 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN, AFAM (Alta formazione artistica, musicale e coreutica)](afam-aran.md) | ✅ | sickness | 26 / 13 / 2 / 0 |
 | 31 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN, Enti pubblici di ricerca (ASI compresa)](enti-ricerca-aran.md) | ⚠️ | base_salary, sickness | 34 / 4 / 1 / 0 |
 | 32 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN, Università (personale tecnico-amministrativo e CEL)](universita-aran.md) | ✅ | — | 22 / 4 / 5 / 0 |

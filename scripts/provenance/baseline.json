@@ -890,7 +890,6 @@
       "istituzioni-servizi-socio-assistenziali-anaste/maternity_holiday_scope"
     ],
     "agreement/istruzione-ricerca-aran.json": [
-      "istruzione-ricerca-aran/enam_base",
       "istruzione-ricerca-aran/fixed_hourly_overtime",
       "istruzione-ricerca-aran/teacher_hourly_divisor"
     ],
@@ -923,7 +922,6 @@
     "agreement/lavoro-domestico-non-convivente.json": [
       "lavoro-domestico-non-convivente/annual_minimi_not_updated",
       "lavoro-domestico-non-convivente/extra_month_hours",
-      "lavoro-domestico-non-convivente/meal_indennity",
       "lavoro-domestico-non-convivente/seniority_frozen_at_2026",
       "lavoro-domestico-non-convivente/tranches_from_2027"
     ],

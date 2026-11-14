@@ -3,26 +3,22 @@
 L. 93/1957 art. 3 c. 1 lett. a: the permanent teachers of the scuola
 dell'infanzia and primaria pay 1% of 80% of the stipendio.  The stipendio
 the ENAM counts excludes the IIS conglobata, which the retribuzione
-tabellare of the CCNL holds; the bundle does not give it apart, so a run
-that owes the ENAM traverses the open limitation ``enam_base`` the CCNL
-declares, and the contribution is computed on the whole minimum.
+tabellare of the CCNL holds since 1 January 2003: the CCNL states it for
+each ENAM level (``CCNLParameters.enam_iis_monthly``) and it is taken out
+of the minimum, in the same proportion as the minimum of the run.
 """
 
 from __future__ import annotations
 
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.employment.inputs import Permanent
 
 if TYPE_CHECKING:
-    from decimal import Decimal
-
     from ccnl_engine.period.context.services import RunContext
 
-__all__ = ["ENAM_BASE_VARIANT", "enam_paths", "enam_stipendio"]
-
-#: Variant of the CCNL limitation of the ENAM base.
-ENAM_BASE_VARIANT = "enam_base"
+__all__ = ["enam_stipendio"]
 
 
 def enam_stipendio(ctx: RunContext) -> Decimal | None:
@@ -41,15 +37,11 @@ def enam_stipendio(ctx: RunContext) -> Decimal | None:
         and contract.level.code in contract.ccnl.parameters.enam_levels
         and isinstance(ctx.request.contract_type, Permanent)
     )
-    return ctx.chain.base if owes else None
-
-
-def enam_paths(ctx: RunContext) -> frozenset[str]:
-    """Return the limitation path of a run that owes the ENAM.
-
-    Returns:
-        The ``enam_base`` path of the CCNL, empty when no ENAM is owed.
-    """
-    if enam_stipendio(ctx) is None:
-        return frozenset()
-    return frozenset({f"{ctx.contract.ccnl.meta.ccnl_id}/{ENAM_BASE_VARIANT}"})
+    if not owes:
+        return None
+    base = ctx.chain.base
+    iis = contract.ccnl.parameters.enam_iis_monthly[contract.level.code]
+    day = contract.tctx.competence
+    full = contract.level.base_salary.value_at(day)
+    excluded = iis.value_at(day) * (base / full if full else Decimal(0))
+    return max(base - excluded, Decimal(0))

@@ -6,10 +6,9 @@ iscritti pari all'1 per cento dell'ammontare lordo dello stipendio", on
 dell'infanzia and primaria.
 
 Docente infanzia e primaria, January 2026, 1945.26 (CCNL 2025-2027 Tabella
-A2: 23,343.16 / 12): base 80% = 1556.208, 1% = 15.56208 -> 15.56.  The
-stipendio should leave out the IIS conglobata, which the bundle does not
-give apart: the run has the open limitation
-``enam_base``.  The diplomato of the secondaria and a fixed term owe none.
+A2: 23,343.16 / 12) less the IIS conglobata of 532.01 (CCNL 24.7.2003
+Tabella 2: 6,384.11 / 12) = 1413.25; base 80% = 1130.60, 1% = 11.306 ->
+11.31.  The diplomato of the secondaria and a fixed term owe none.
 """
 
 from __future__ import annotations
@@ -20,6 +19,7 @@ from typing import TYPE_CHECKING
 import pytest
 
 from ccnl_engine import Employment
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.inputs import (
     FixedTerm,
     NaspiExclusion,
@@ -60,11 +60,10 @@ def _enam(result: PeriodResult) -> Decimal | None:
 
 
 def test_permanent_teacher_of_infanzia_and_primaria() -> None:
-    """15.56, with the open limitation of the base."""
+    """11.31 on the stipendio without the IIS conglobata, no limitation."""
     result = _january("DOCENTE_INFANZIA_PRIMARIA")
-    assert _enam(result) == Decimal("15.56")
-    assert _ENAM_BASE in {limitation.id for limitation in result.assurance.limitations}
-    assert not result.is_payable
+    assert _enam(result) == Decimal("11.31")
+    assert _ENAM_BASE not in {lim.id for lim in result.assurance.limitations}
 
 
 @pytest.mark.parametrize(
@@ -85,3 +84,12 @@ def test_others_owe_none(level: str, contract: Permanent | FixedTerm) -> None:
     assert _ENAM_BASE not in {
         limitation.id for limitation in result.assurance.limitations
     }
+
+
+def test_an_enam_level_needs_its_iis() -> None:
+    """A CCNL listing an ENAM level without its IIS conglobata is rejected."""
+    params = load_ccnl("istruzione-ricerca-aran").parameters
+    data = params.model_dump()
+    data["enam_iis_monthly"] = {}
+    with pytest.raises(ValueError, match="enam_iis_monthly"):
+        type(params).model_validate(data)

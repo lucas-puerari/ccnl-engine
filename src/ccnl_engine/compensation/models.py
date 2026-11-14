@@ -145,14 +145,17 @@ class CCNLParameters(BaseModel):
     pay days; ``additional_months_by_category``: the payments of a category.
     ``flat_pay_max_weekly_hours``: hours at the full minimum (domestic: 30);
     ``solidarity_fund``: D.Lgs. 148/2015 art. 26; ``raccordo_element``: ERC;
-    ``enam_levels``: ex ENAM; ``renewals``: raising the minimo (L. 199/2025);
+    ``enam_levels``: ex ENAM; ``enam_iis_monthly``: the IIS conglobata in the
+    tabellare of a level, which the ENAM stipendio leaves out; ``renewals``:
+    raising the minimo (L. 199/2025);
     ``health_funds``, with their elemento distinto; ``hourly_pay``,
     ``fixed_term_pay`` (operai edilizia, OTD); ``loyalty_premium`` (fedeltà).
     Loyalty awards may recur annually or pay once at a service milestone,
     with eligible worker categories and employer subsectors.
     ``daily_presence_allowances``: rates paid per counted qualifying day,
     rather than a fraction of monthly pay; ``meal_benefit_daily``: the
-    non-remunerative meal voucher value per eligible day.
+    non-remunerative meal voucher value per eligible day;
+    ``meal_indennity_daily``: the valore convenzionale of a meal owed and not given.
     ``equalisation_element`` retains the legacy single yearly element;
     ``equalisation_elements`` adds other yearly elements without replacing it.
     """
@@ -178,6 +181,7 @@ class CCNLParameters(BaseModel):
     contractual_fund_contribution: ContractualFundContribution | None = None
     raccordo_element: RaccordoElement | None = None
     enam_levels: tuple[str, ...] = ()
+    enam_iis_monthly: dict[str, TimeSeries] = Field(default_factory=dict)
     solidarity_fund: SolidarityFund | None = None
     hourly_pay: HourlyPay | None = None
     fixed_term_pay: FixedTermPay | None = None
@@ -189,6 +193,7 @@ class CCNLParameters(BaseModel):
     loyalty_premium: LoyaltyPremium | None = None
     daily_presence_allowances: tuple[DailyPresenceAllowance, ...] = ()
     meal_benefit_daily: TimeSeries | None = None
+    meal_indennity_daily: TimeSeries | None = None
 
     @model_validator(mode="after")
     def _check_positive_params(self) -> Self:
@@ -200,6 +205,10 @@ class CCNLParameters(BaseModel):
         Raises:
             ValueError: If any non-gap period in either series has value <= 0.
         """
+        missing = set(self.enam_levels) - set(self.enam_iis_monthly)
+        if missing:
+            msg = f"enam_levels {sorted(missing)} need their enam_iis_monthly"
+            raise ValueError(msg)
         for field_name, series in (
             ("hourly_divisor", self.hourly_divisor),
             ("additional_months", self.additional_months),

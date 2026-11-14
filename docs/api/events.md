@@ -35,6 +35,8 @@ gross, net and employer cost according to its treatment; see
 
 ::: ccnl_engine.events.BoardLodgingEvent
 
+::: ccnl_engine.events.MealIndennityEvent
+
 ::: ccnl_engine.events.NightShiftEvent
 
 ::: ccnl_engine.events.OvertimeEvent
