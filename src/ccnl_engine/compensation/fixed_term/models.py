@@ -36,6 +36,14 @@ class FixedTermPay(BaseModel):
             calcolato sul salario contrattuale'); ``None`` keeps the divisor.
         overtime_tfr_rate: TFR on the ordinary pay of the non-occasional
             overtime hours (OTD: 'elevata al 10 per cento').
+        seasonal_only: The rule covers only the seasonal fixed terms
+            (``FixedTerm.naspi_exclusion`` seasonal): Ortofrutticoli art. 72,
+            the 'personale assunto con contratto a tempo determinato
+            stagionale'.
+        percentages_on_overtime: Whether the percentages also apply to the
+            overtime hours (OTD art. 44: 'anche per le ore straordinarie');
+            false when the CCNL excludes them (Ortofrutticoli art. 72: 'con
+            esclusione di tutte le ore di lavoro straordinario').
         provenance: Source of the clause.
     """
 
@@ -46,4 +54,6 @@ class FixedTermPay(BaseModel):
     additional_months: TimeSeries
     tfr_rate: TimeSeries | None = None
     overtime_tfr_rate: TimeSeries | None = None
+    seasonal_only: bool = False
+    percentages_on_overtime: bool = True
     provenance: RuleProvenance
