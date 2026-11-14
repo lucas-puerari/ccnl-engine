@@ -1037,7 +1037,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/funivie-anef",
       "ruleset_version": "2026.2",
-      "source_hash": "8bc326ace2a61f2ee9d2f07d93ecf54cd3c9ceecfb783fcdb87b56cacd358c55",
+      "source_hash": "aeec8506317de6ec61e103626ba0c49129a957558a3919a02d006217f3ebc899",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/funivie-anef.json.gz"
@@ -3601,7 +3601,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "82be7d8948bc2d7c15851dc44afba4f0fedc562021b6e5fdf1cf2c0fc67fb972",
+      "source_hash": "f1ff0dfeb7532ab936c71cb70d3959858c95e21ed625bd0c19c606a2ded8ecc3",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/funivie-anef.json.gz",

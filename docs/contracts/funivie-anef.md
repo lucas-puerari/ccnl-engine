@@ -31,8 +31,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
 1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-16 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2028-03-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | The Quadri function allowance of Art. 5 (PDF p. 15) of the 2025 coordinated text, text layer, and Art. 5 c. 3 of the 2019 text (p. 13). | corrected | Art. 5 c. 3: EUR 118.79 a month to the workers of levels I super and I recognised in writing as Quadri, not absorbed by an individual superminimo; unchanged by the renewals of 19 July 2022 and 16 May 2025. |
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 42 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | quadri_function_allowance: Art. 5(1),(3) pays EUR 118.79 monthly to employer-recognised quadri of levels I super and I, without absorbing an individual superminimo or prejudicing second-level payments. funivie-anef.json already defines IND_FUNZIONE_QUADRO on both 1S and 1 at 118.79/month with role='quadro' |
+| 2026-11-15 | claude-opus-5-5 (ai) | Transitional seniority rule of art. 19 and Allegato 3.1 against the research of a separate model session; text layer of the source. | confirmed | Only the increment maturing on 30 April 2016 keeps the Allegato 3.1 amount; the caller states it as an earned increment. |
 
 ## Salary table
 
@@ -102,12 +103,12 @@ Destination levels: `1`, `2`, `3`, `4`, `5`, `6`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "funivie-anef/pre_2016_seniority_cohort · seniority · impact yes · open"
-    Allegato 3.1 (grandfathered scatti for workers hired before 30/04/2016) not modelled. Only Allegato 3 (standard post-2016 cohort) amounts implemented. Structural scope decision: pre-2016 grandfathered amounts affect a declining cohort; the new-hire case is exact.
+!!! note "funivie-anef/pre_2016_seniority_cohort · seniority · impact yes · resolved"
+    SENIORITY OF THE STAFF IN SERVICE ON 30 APRIL 2016 (art. 19 norma transitoria, PDF p. 28, and Allegato 3.1, PDF p. 49, https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf, sha256 24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482): 'Al personale in forza al 30 aprile 2016 sarà riconosciuto lo scatto di anzianità - in corso di maturazione - nel valore economico previsto dalla tabella allegata (All. 3.1), anche in caso di passaggi di livello'; the later increments follow Allegato 3. Allegato 3.1: 1S 81.00, 1 75.00, 2 68.00, 3 62.00, 4 56.00, 5 50.00, 6 47.00, 7 39.00. The data pays Allegato 3; for such a worker the caller states the increment matured at the Allegato 3.1 amount as Employment EarnedIncrements.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the Allegato 3.1 amounts for workers hired before 30/04/2016, selected by hire date or a worker fact.
+    **Remediation:** Resolved: art. 19 and Allegato 3.1 read on 2026-11-15; the 3.1 increment is a worker fact (EarnedIncrements).
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

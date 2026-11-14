@@ -226,7 +226,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 106 | H011 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | terziario | ~800k | 2024 | ⚠️ | base_salary, sickness | 100 / 2 / 0 / 0 | 🏭 | 🤖✓ |
 | 107 | D018 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | tessile abbigliamento moda PMI | ~48k | 2025 | ⚠️ | base_salary, seniority | 42 / 0 / 5 / 1 | 🧪 | 🔍 |
 | 108 | I810 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | trasporto aereo | ~40k | 2025 | ⚠️ | base_salary, sickness | 46 / 49 / 1 / 0 | 🧪 | 🤖 |
-| 109 | I911 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | Trasporto a fune | ~15k | 2025 | ⚠️ | seniority | 34 / 15 / 1 / 1 | 🧪 | 🤖 |
+| 109 | I911 | [CCNL Trasporto a Fune (Funivie Terrestri ed Aeree) - ANEF](funivie-anef.md) | Trasporto a fune | ~15k | 2025 | ✅ | — | 34 / 15 / 1 / 1 | 🧪 | 🤖 |
 | 110 | H058 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | turismo — alberghi, campeggi, pubblici esercizi, agenzie di viaggi | — | 2024 | ⚠️ | base_salary | 50 / 7 / 1 / 0 | 🧪 | 🤖 |
 | 111 | H052 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | Turismo | ~220k | 2024 | ⚠️ | base_salary, sickness | 79 / 1 / 0 / 0 | 🏭 | 🤖✓ |
 | 112 | H052 | [CCNL Turismo — Federalberghi/Faita - Alberghi a una e due stelle e campeggi minori](turismo-federalberghi-alberghi-minori.md) | Turismo | ~220k | 2024 | ⚠️ | base_salary, sickness | 69 / 1 / 0 / 0 | 🧪 | 🤖 |

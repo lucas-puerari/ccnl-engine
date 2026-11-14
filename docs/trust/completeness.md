@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 261 weak rules, 345 open limitations (345 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 261 weak rules, 344 open limitations (344 with a monetary impact).
 
 ## Declared window
 
@@ -107,7 +107,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [fiori-recisi-ancef](../contracts/fiori-recisi-ancef.md) | `commercio` | exploratory | — | 17 rows | 17 open requirements; 1 weak rule; 14 monetary limitations; 19 non-native capabilities |
 | [formazione-professionale](../contracts/formazione-professionale.md) | `istruzione-formazione` | exploratory | — | 19 rows | 19 open requirements; 2 weak rules; 14 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [forze-polizia-ordinamento-civile](../contracts/forze-polizia-ordinamento-civile.md) | `forze-polizia` | exploratory | — | 20 rows | 20 open requirements; 2 weak rules; 16 monetary limitations; 20 non-native capabilities |
-| [funivie-anef](../contracts/funivie-anef.md) | `trasporti-logistica` | exploratory | — | 18 rows | 18 open requirements; 2 weak rules; 13 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
+| [funivie-anef](../contracts/funivie-anef.md) | `trasporti-logistica` | exploratory | — | 17 rows | 17 open requirements; 2 weak rules; 13 monetary limitations; 18 non-native capabilities |
 | [funzioni-centrali-aran](../contracts/funzioni-centrali-aran.md) | `pubblico-impiego` | reviewed | — | 15 rows | 15 open requirements; 13 monetary limitations; 18 non-native capabilities |
 | [funzioni-locali-aran](../contracts/funzioni-locali-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 15 rows | 15 open requirements; 13 monetary limitations; 18 non-native capabilities |
 | [gas-acqua-utilitalia](../contracts/gas-acqua-utilitalia.md) | `energia-utilities` | exploratory | — | 18 rows | 18 open requirements; 1 weak rule; 15 monetary limitations; 19 non-native capabilities |

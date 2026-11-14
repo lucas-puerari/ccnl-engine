@@ -179,22 +179,6 @@
       }
     },
     {
-      "id": "pre_2016_seniority_cohort",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Allegato 3.1 (grandfathered scatti for workers hired before 30/04/2016) not modelled. Only Allegato 3 (standard post-2016 cohort) amounts implemented. Structural scope decision: pre-2016 grandfathered amounts affect a declining cohort; the new-hire case is exact.",
-      "calculation": "ccnl/funivie-anef:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the Allegato 3.1 amounts for workers hired before 30/04/2016, selected by hire date or a worker fact.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "funivie-anef/pre_2016_seniority_cohort"
-        ]
-      }
-    },
-    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",
