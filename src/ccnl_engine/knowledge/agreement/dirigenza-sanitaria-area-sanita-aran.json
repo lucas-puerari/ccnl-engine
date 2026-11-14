@@ -260,13 +260,70 @@
             "periods": [
               {
                 "valid_from": "2019-12-19",
-                "valid_until": "2024-12-31",
-                "value": "104.34"
+                "valid_until": "2022-01-01",
+                "gap_kind": "not_applicable"
               },
               {
-                "valid_from": "2024-12-31",
+                "valid_from": "2022-01-01",
+                "valid_until": "2025-01-01",
+                "value": "106.27",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-area-sanita-2019-2021",
+                      "title": "CCNL Area Sanità 2019-2021, 23 gennaio 2024 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf",
+                      "sha256": "de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375"
+                    },
+                    "page": "101",
+                    "section": "Art. 66 - Indennità di specificità sanitaria (printed p. 99)",
+                    "quote": "con decorrenza 31.12.2021 ed a valere dall'anno successivo, è istituita una specifica indennità, fissa e ricorrente, da corrispondersi per tredici mensilità [...] 2. L'indennità di cui al comma 1, per i dirigenti sanitari e delle professioni sanitarie, è definita nell'importo annuo lordo comprensivo della tredicesima mensilità, pari a € 1.381,49."
+                  },
+                  "transformation": "EUR 1,381.49 a year on 13 monthly payments: 106.27 a month, from 1 January 2022.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-14T20:30:00Z",
+                    "effective_from": "2022-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-14T20:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-14-ai-dirigenza-sanitaria-specificita"
+                  }
+                }
+              },
+              {
+                "valid_from": "2025-01-01",
                 "valid_until": null,
-                "value": "124.19"
+                "value": "124.19",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-area-sanita-2022-2024",
+                      "title": "CCNL Area Sanità 2022-2024, 27 febbraio 2026 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
+                      "sha256": "78f817dd3665df879f652b9778aeb634037664143ae195c2278d608efce4513a"
+                    },
+                    "page": "23",
+                    "section": "Art. 15 c. 3",
+                    "quote": "A decorrere dal 31.12.2024 e a valere dall'anno successivo, l'importo annuo lordo, comprensivo della tredicesima mensilità, dell'indennità di specificità sanitaria di cui all'art. 66 del CCNL 23.1.2024 è rideterminato in euro 1.614,46."
+                  },
+                  "transformation": "EUR 1,614.46 a year on 13 monthly payments: 124.19 a month, from 1 January 2025.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-14T20:30:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-14T20:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-14-ai-dirigenza-sanitaria-specificita"
+                  }
+                }
               }
             ]
           },
@@ -473,19 +530,6 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "Pre-31/12/2024 specificità sanitaria (104,34€/mese) calcolata per differenza: 124,19 - 17,90 (incremento stimato dalla fonte secondaria openssn, GOAL-plan) = approssimazione; il valore esatto del CCNL 23.1.2024 Art. 66 non è verificato.",
-        "capability": "base_salary",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "specificita_pre_2025_estimated",
-          "applies_when": {
-            "effective_until": "2024-12-31"
-          },
-          "remediation": "Source the exact Art. 66 amount of the CCNL 23.1.2024 for periods before 31/12/2024."
-        }
-      },
-      {
         "kind": "info",
         "text": "Pre-2024 tabellare 3.616,60€/mese = back-calculation dal valore 2024 (3.846,60) sottraendo +230€ (Art. 11 CCNL 27.02.2026). L'incremento +230€ è riportato esplicitamente nel testo ufficiale ARAN; la back-calculation è quindi aritmeticamente esatta rispetto alla fonte primaria."
       },
@@ -509,6 +553,10 @@
         "kind": "info",
         "text": "Art. 16 CCNL 27.2.2026 (art. 80 CCNL 23.1.2024): the indennità di direzione di struttura complessa, 11,157 EUR a year on 13 payments from 2024 (10,525 from 2022), is paid with the role 'direttore_sc' at 858.23 a month (809.62 before 2024); the yearly amount differs from 13 payments by 1 cent of rounding.",
         "capability": "base_salary"
+      },
+      {
+        "kind": "info",
+        "text": "SPECIFICITA SANITARIA: EUR 1,381.49 a year including the 13th (106.27 a month) from 1 January 2022 (CCNL 23.1.2024 art. 66, PDF p. 101), EUR 1,614.46 (124.19) from 1 January 2025 (CCNL 27.2.2026 art. 15 c. 3, PDF p. 23)."
       }
     ]
   },
@@ -519,7 +567,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "31cbbd1fc3aac1a703084083c8b278b5a5f46ef5d219106b443d9f6d3b4b8ebd",
+    "source_hash": "15ff5b7edc5d23e4e43d130b4aa78082381181cec49510998e2492bb7e8d01c1",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

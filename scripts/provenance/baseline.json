@@ -666,7 +666,6 @@
       "bancari-abi/scatti_freeze_2013_2014"
     ],
     "agreement/bcc-credito-cooperativo.json": [
-      "bcc-credito-cooperativo/art3_derogation_apprenticeship",
       "bcc-credito-cooperativo/inps_sector_rates_unsourced",
       "bcc-credito-cooperativo/movement_loyalty_award",
       "bcc-credito-cooperativo/pre_1998_cohort_scatti"
@@ -755,8 +754,7 @@
     ],
     "agreement/dirigenza-sanitaria-area-sanita-aran.json": [
       "dirigenza-sanitaria-area-sanita-aran/approximate_hourly_divisor",
-      "dirigenza-sanitaria-area-sanita-aran/position_pay_missing",
-      "dirigenza-sanitaria-area-sanita-aran/specificita_pre_2025_estimated"
+      "dirigenza-sanitaria-area-sanita-aran/position_pay_missing"
     ],
     "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json": [
       "dirigenza-sanitaria-medico-veterinaria-aran/approximate_hourly_divisor",

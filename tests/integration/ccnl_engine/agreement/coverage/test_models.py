@@ -40,6 +40,8 @@ _DECLARED_GAPS: dict[tuple[str, SalaryGapKind, date], int] = {
     ("trasporto-aereo-assaeroporti", _NOT_APPLICABLE, date(2025, 7, 1)): 11,
     # Art. 47: the ETDR of the educatori D1 from 1 January 2025.
     ("cooperative-sociali", _NOT_APPLICABLE, date(2025, 1, 1)): 1,
+    # Art. 66 CCNL 23.1.2024: the specificità sanitaria from 1 January 2022.
+    ("dirigenza-sanitaria-area-sanita-aran", _NOT_APPLICABLE, date(2022, 1, 1)): 1,
     # Indennità di struttura complessa before 2022 (art. 90 CCNL 2019) not read.
     ("dirigenza-sanitaria-medico-veterinaria-aran", _MISSING, date(2022, 1, 1)): 1,
     ("dirigenza-sanitaria-area-sanita-aran", _MISSING, date(2022, 1, 1)): 1,

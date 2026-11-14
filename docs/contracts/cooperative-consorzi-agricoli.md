@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-19 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | Artt. 49 and 61 (PDF pp. 67, 81) of the stesura of 3 August 2022, text layer. | corrected | Operai: at most 5 increments, not the 12 of the impiegati; impiegati of levels 3, 4, 6, 7: 26.86, 24.79, 23.76, 22.21, not the operai amounts the file paid them. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | operai_seniority_over_five: Art. 61 caps permanent operai at five biennial increments, not six at 144 months. The agreement already specifies cadence_months=24, maximum_count_by_category.operaio=5 and the 2006-07-01 category-specific amounts for levels 3–7. compensation/element/services.py passes worker_cat |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 60 of the verbale of 19 July 2024 (scanned pp. 14-15, read on the page images). | corrected | Added parameters.fixed_term_pay for the OTD: hourly pay with the 30.44% terzo elemento and twelve monthly payments.<br>Added the 8.63% TFR of art. 66 (stesura 2019-2023, p. 85) and took the terzo elemento out of the TFR base.<br>Chiarimento a verbale p. 86: the overtime hours worked with 'costanza e continuità' accrue the TFR at the 8.63% of art. 66 (no other rate; an independent reading found no reference to the 10% of the CCNL operai agricoli): parameters.fixed_term_pay.overtime_tfr_rate 0.0863. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 24 apprenticeship of the text signed 3 August 2022 (PDF p. 40), against the research of a separate model session. | corrected | The file paid apprentices 100% of the destination level; art. 24 pays by under-classification. Tracks added; the impiegati skip of the 5th level and the seasonal track remain a limitation. |
 
 ## Salary table
 
@@ -94,20 +95,22 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Apprenticeship
 
-**professionalizzante** (type: `percentage`)  
-Destination levels: `np`, `7`, `6`, `5`, `4`, `3`, `2`, `1`  
-percentage: 1.00
+**professionalizzante (livelli 1-5)** (type: `under_classification`)  
+Destination levels: `1`, `2`, `3`, `4`, `5`
+
+**professionalizzante (livello 6)** (type: `under_classification`)  
+Destination levels: `6`
 
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "cooperative-consorzi-agricoli/apprenticeship_passthrough · base_salary · impact unknown · open"
-    Apprendistato: regola non reperita nel PDF 2024. Modellato come 100% passthrough.
+!!! warning "cooperative-consorzi-agricoli/apprenticeship_passthrough · base_salary · impact yes · open"
+    APPRENTICESHIP (art. 24, text signed 3 August 2022 p. 40, unchanged by the renewal of 19 July 2024): destinations 1st-6th by under-classification (two levels below, one below, destination; the 6th after the first 12 months). Not modelled: the impiegati skip the 5th level, reserved to operai ('la progressione dei livelli sarà ad esempio la seguente: 7°-6°-4°, 6°-4°-3°'), so an impiegato apprentice destined to the 4th or 3rd is paid one level too high in the first or second period; and the apprentices of seasonal cycles, one level below for half the period and then the destination.
 
-    **Applies when:** `base_salary` applies; contract type in apprentice.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Source the apprenticeship rule of the 2024 CCNL and model its track.
+    **Remediation:** Skip the 5th level for impiegati apprentices and model the seasonal-cycle track of art. 24.
 
 !!! warning "cooperative-consorzi-agricoli/otd_terzo_elemento_missing · base_salary · impact yes · open"
     OTD (Art. 60, verbale 19 July 2024, pp. 14-15; Art. 66 of the stesura 2019-2023, p. 85): a fixed-term operaio is paid the hours worked (PeriodFacts.ordinary_hours_worked, minimo over 169) with the terzo elemento of 30.44% on them and on the overtime hours, outside the TFR base; TFR 8.63% of the minimo, and of the minimo of the overtime hours worked with 'costanza e continuità' (OvertimeEvent.non_occasional; p. 86); no extra month and no leave pay accrue (parameters.fixed_term_pay). Not modelled: the terzo elemento and the TFR on the salario integrativo of the second level, which the bundle does not hold; the balance of the ferie the OTD still takes, unpaid ('mera anticipazione economica').
@@ -122,13 +125,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation.
-
-!!! warning "apprenticeship_pct_undeclared_components · base_salary · impact unknown · open"
-    A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.
-
-    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

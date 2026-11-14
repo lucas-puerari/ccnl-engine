@@ -6,31 +6,15 @@
       "id": "apprenticeship_passthrough",
       "institute": "base_salary",
       "variant": "apprentice",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "Apprendistato: regola non reperita nel PDF 2024. Modellato come 100% passthrough.",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "APPRENTICESHIP (art. 24, text signed 3 August 2022 p. 40, unchanged by the renewal of 19 July 2024): destinations 1st-6th by under-classification (two levels below, one below, destination; the 6th after the first 12 months). Not modelled: the impiegati skip the 5th level, reserved to operai ('la progressione dei livelli sarà ad esempio la seguente: 7°-6°-4°, 6°-4°-3°'), so an impiegato apprentice destined to the 4th or 3rd is paid one level too high in the first or second period; and the apprentices of seasonal cycles, one level below for half the period and then the destination.",
       "calculation": "ccnl/cooperative-consorzi-agricoli:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the apprenticeship rule of the 2024 CCNL and model its track.",
+      "state": "absent",
+      "remediation": "Skip the 5th level for impiegati apprentices and model the seasonal-cycle track of art. 24.",
       "origin": "seeded",
       "links": {
         "limitations": [
           "cooperative-consorzi-agricoli/apprenticeship_passthrough"
-        ]
-      }
-    },
-    {
-      "id": "apprenticeship_pct_undeclared_components",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.",
-      "calculation": "ccnl_engine.apprenticeship.rules (percentage track chain)",
-      "state": "unverified",
-      "remediation": "Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "apprenticeship_pct_undeclared_components"
         ]
       }
     },

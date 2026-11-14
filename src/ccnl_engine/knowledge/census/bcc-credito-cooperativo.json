@@ -19,22 +19,6 @@
       }
     },
     {
-      "id": "art3_derogation_apprenticeship",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Apprenticeship (Art. 30) modelled for destination levels 3AP1-3AP4: months 0-18 one level below the destination, then the destination level. The Art. 3 comma 3 derogation (higher destination level) is assumed to follow the same 18-month rule.",
-      "calculation": "ccnl/bcc-credito-cooperativo:coverage.notes",
-      "state": "unverified",
-      "remediation": "Confirm that the Art. 3 comma 3 derogation follows the 18-month rule.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "bcc-credito-cooperativo/art3_derogation_apprenticeship"
-        ]
-      }
-    },
-    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",
