@@ -72,3 +72,9 @@ def test_a_ccnl_without_work_rules_holds_none(feature: str) -> None:
     )
 
     assert not accepted(feature, ccnl)
+
+
+@pytest.mark.parametrize("feature", ["bilateral_funds", "contract_renewal_arrears"])
+def test_an_employer_fact_is_accepted_by_design(feature: str) -> None:
+    """A territorial fund and earlier payslips are facts of the employer."""
+    assert accepted(feature, load_ccnl("commercio-confcommercio"))
