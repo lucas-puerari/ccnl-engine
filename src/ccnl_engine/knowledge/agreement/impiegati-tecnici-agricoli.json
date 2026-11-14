@@ -134,6 +134,10 @@
           },
           "remediation": "Key the first-level rows by the course and the school year attended (Apprentice.school_year)."
         }
+      },
+      {
+        "kind": "info",
+        "text": "SICKNESS (Art. 39 A, CCNL 18 giugno 2024, PDF pp. 39-40, https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf, sha256 94fba8a7cda3856266ed91ab8eec45264803a5396179772d67fbc995b7f7f076): comporto of 12 months; full pay for 3/5/6 months and half pay for 3/5/6 months by seniority (under 5 years, 5 to 10, over 10), the sick periods summed over 12 months. Modelled as sickness_rules.cumulation over a 1-year window, months of 30 days; how the comporto itself sums the episodes is not stated, and 365 days within one year end it only after a whole year of sickness."
       }
     ]
   },
@@ -229,6 +233,27 @@
         "independence": "separate_model",
         "checked": [
           "dual_apprenticeship"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-impiegati-tecnici-agricoli-sickness-cumulation",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Sick pay of art. 39 against the research of a separate model session; quote checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
+            "sha256": "94fba8a7cda3856266ed91ab8eec45264803a5396179772d67fbc995b7f7f076"
+          }
+        ],
+        "findings": [
+          "Replaced 100% for 180 days of one episode with the 3+3, 5+5, 6+6 months of art. 39 summed over 12 months."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules"
         ]
       }
     ]
@@ -814,7 +839,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "0cb084f26eccb1f87c60b3608ed3dc4890662e2a2d72039dfc7d643e854d1954",
+    "source_hash": "332dea9e0e545f72caf9a9e4d07b67a5fa764c3407af89348cb544bfd5ae65a3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1020,24 +1045,72 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 180,
       "provenance": {
-        "status": "derived",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "ccnl-agricoltura-impiegati-2022",
-            "title": "CCNL Agricoltura Impiegati e Quadri (Confagricoltura) 2022-2025",
-            "kind": "tabella_retributiva",
-            "url": "https://www.contratticcnl.it/ccnl/a021/"
+            "document_id": "flai-ccnl-impiegati-agricoli-2024-2027",
+            "title": "CCNL quadri e impiegati agricoli 18 giugno 2024 (FLAI-CGIL)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
+            "sha256": "94fba8a7cda3856266ed91ab8eec45264803a5396179772d67fbc995b7f7f076"
           },
-          "section": "Art. malattia — integrazione datoriale al 100% per 180 giorni"
+          "page": "39-40",
+          "section": "Art. 39 Malattia e infortunio, A) Malattia",
+          "quote": "Agli effetti del trattamento economico previsto dalla tabella precedente, i periodi di sospensione per malattia si sommano quando si verificano nell'arco di tempo di 12 mesi; mentre non si calcolano nella sommatoria i periodi di assenza per malattia verificatisi anteriormente ai 12 mesi considerati."
         },
         "extraction": {
           "method": "manual",
-          "extraction_timestamp": "2026-09-08T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2022-01-01"
-        }
+          "extraction_timestamp": "2026-11-15T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2024-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "review_id": "2026-11-15-ai-impiegati-tecnici-agricoli-sickness-cumulation"
+        },
+        "transformation": "Full pay for 3, 5 or 6 months and half pay for as many (anzianita under 5 years, 5 to 10, over 10), months of 30 days, summed over the 12 months that end on the day; comporto 12 months (365 days)."
+      },
+      "cumulation": {
+        "window_years": 1,
+        "reduced_integration_rate": "0",
+        "bands": [
+          {
+            "seniority_months_from": 0,
+            "full_pay_days": 90,
+            "comporto_days": 365,
+            "steps": [
+              {
+                "day_from": 91,
+                "day_until": 181,
+                "integration_rate": "0.5"
+              }
+            ]
+          },
+          {
+            "seniority_months_from": 60,
+            "full_pay_days": 150,
+            "comporto_days": 365,
+            "steps": [
+              {
+                "day_from": 151,
+                "day_until": 301,
+                "integration_rate": "0.5"
+              }
+            ]
+          },
+          {
+            "seniority_months_from": 121,
+            "full_pay_days": 180,
+            "comporto_days": 365,
+            "steps": [
+              {
+                "day_from": 181,
+                "day_until": 361,
+                "integration_rate": "0.5"
+              }
+            ]
+          }
+        ]
       }
     },
     "notice": {
