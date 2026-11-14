@@ -27,10 +27,13 @@ class TestLoadLegnoLapideiArtigianatoConfartigianato:
         assert ccnl.meta.cnel_code == "F060"
 
     def test_legno_lapidei_artigianato_confartigianato_has_8_levels(self) -> None:
-        """Contract has exactly 8 levels: F, E, D, C, CS, B, A, AS."""
+        """Legno has 8 levels F-AS; Lapidei 1-7 on a ladder of their own."""
         ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato")
-        assert len(ccnl.levels) == 8
-        assert {lv.code for lv in ccnl.levels} == {
+        legno = [lv for lv in ccnl.levels if lv.ladder is None]
+        lapidei = {lv.code for lv in ccnl.levels if lv.ladder == "lapidei"}
+        assert lapidei == {"1", "2", "3", "4", "5", "6", "7"}
+        assert len(legno) == 8
+        assert {lv.code for lv in legno} == {
             "F",
             "E",
             "D",
@@ -58,11 +61,14 @@ class TestLoadLegnoLapideiArtigianatoConfartigianato:
         assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1639.71")
 
     def test_legno_lapidei_artigianato_confartigianato_level_ordering(self) -> None:
-        """Level AS has highest order; level F has lowest order."""
+        """Legno AS highest, F lowest; Lapidei 1 highest, 7 lowest."""
         ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato")
-        by_order = sorted(ccnl.levels, key=lambda lv: lv.order)
-        assert by_order[0].code == "F"
-        assert by_order[-1].code == "AS"
+        for ladder, low, high in ((None, "F", "AS"), ("lapidei", "7", "1")):
+            ranked = sorted(
+                (lv for lv in ccnl.levels if lv.ladder == ladder),
+                key=lambda lv: lv.order,
+            )
+            assert (ranked[0].code, ranked[-1].code) == (low, high)
 
     def test_legno_lapidei_artigianato_confartigianato_additional_months(
         self,
@@ -493,3 +499,14 @@ class TestLoadOrafiArgentieriIndustriaFederorafi:
         assert track.periods[1].percentage == Decimal("0.90")
         assert track.periods[2].percentage == Decimal("0.95")
         assert track.periods[2].months_until is None
+
+
+def test_lapidei_tables_and_seniority() -> None:
+    """15 March 2024 tables, level 5; Art. 45 bis scatti before and from 2025."""
+    ccnl = load_ccnl("legno-lapidei-artigianato-confartigianato")
+    level = ccnl.level_by_code("5")
+    assert level.base_salary.value_at(date(2026, 9, 30)) == Decimal("1718.71")
+    assert level.base_salary.value_at(date(2026, 10, 1)) == Decimal("1762.71")
+    amount = ccnl.parameters.seniority_increments.amount_by_level["5"]
+    assert amount.value_at(date(2024, 12, 31)) == Decimal("7.75")
+    assert amount.value_at(date(2025, 1, 1)) == Decimal("12.75")

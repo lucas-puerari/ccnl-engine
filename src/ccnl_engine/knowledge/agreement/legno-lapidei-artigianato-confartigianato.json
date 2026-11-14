@@ -127,16 +127,33 @@
         "text": "APPRENTICESHIP: 3 gruppi from base CCNL 2022 (unchanged in 2024 rinnovo). Gruppo 1 (dest AS, A, B — operai 5 years = 60m), Gruppo 2 (dest CS, C, D — operai 5 years = 60m), Gruppo 3 (dest E — operai 2.5 years = 30m). Level F has no apprenticeship track."
       },
       {
+        "kind": "info",
+        "text": "LAPIDEI (Settore Lapidei, Escavazione, Marmo, imprese artigiane): seven levels 1-7 on a ladder of their own ('lapidei'), retribuzione tabellare of the signed integrative agreement of 15 March 2024 (CNA, pp. 5-7): from 1 March 2024, 1 January 2025, 1 January 2026 and 1 October 2026, e.g. level 5 1628,71, 1678,71, 1718,71, 1762,71. The October 2026 table runs on until the next renewal ('continuerà a produrre i suoi effetti', renewal of 5 March 2024 p. 2). Seniority (Art. 45 bis, integrative agreement of 17 February 2025, pp. 3-4): every two years up to five, 12,39 (level 1) to 6,20 (level 7), from 1 January 2025 17,39 to 11,20, read on the same switch date as the Legno amounts. The Piccole e Medie Imprese tables (pp. 7-12) are not this ruleset's.",
+        "capability": "base_salary"
+      },
+      {
         "kind": "simplification",
-        "text": "Only Legno/Arredamento/Mobili sub-sector salary tables modelled. Lapidei (stone/marble) sub-sector uses different salary tables and is not modelled. CNEL code F060 covers both sub-sectors. Workers in Lapidei should verify against the specific Lapidei tables.",
+        "text": "LAPIDEI APPRENTICES: the apprenticeship tracks of the file are the Legno ones (Art. 55, wood sector); the groups and percentages of the Lapidei apprentices are not modelled, and a Lapidei apprentice has no track.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "lapidei_tables_not_modelled",
+          "variant": "lapidei_apprenticeship",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "path",
+            "contract_types": [
+              "apprentice"
+            ],
+            "levels": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7"
+            ]
           },
-          "remediation": "Model the Lapidei sub-sector salary tables as a separate file."
+          "remediation": "Source the Lapidei apprenticeship groups and percentages of Art. 55 and add their tracks on the lapidei ladder."
         }
       },
       {
@@ -326,6 +343,32 @@
           "apprenticeship",
           "meta.notes"
         ]
+      },
+      {
+        "id": "2026-11-14-ai-lapidei",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Lapidei tables of the integrative agreement of 15 March 2024 (pp. 5-7) and Art. 45 bis of the integrative agreement of 17 February 2025 (pp. 3-4).",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+            "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+          },
+          {
+            "url": "https://www.cna.it/wp-content/uploads/2025/02/Verbale-integrativo-CCNL-Area-Legno-CNA-17-febbraio-2025.pdf",
+            "sha256": "63d320183639a4a96e60d902a31d4c4cd60c8b2f3f87200928c250cd2339cd65"
+          }
+        ],
+        "findings": [
+          "Read the 28 Lapidei amounts and the seniority table of Art. 45 bis on the page images; the Lapidei levels were absent, so a stone worker could only be classified on the Legno levels. Added levels 1-7 on the lapidei ladder with their seniority and closed lapidei_tables_not_modelled; recorded the Lapidei apprenticeship tracks as an open limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels",
+          "parameters.seniority_increments"
+        ]
       }
     ]
   },
@@ -461,6 +504,104 @@
               "valid_from": "2024-03-01",
               "valid_until": null,
               "value": "0.00"
+            }
+          ]
+        },
+        "1": {
+          "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2025-01-01",
+              "value": "12.39"
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "17.39"
+            }
+          ]
+        },
+        "2": {
+          "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2025-01-01",
+              "value": "11.36"
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "16.36"
+            }
+          ]
+        },
+        "3": {
+          "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2025-01-01",
+              "value": "9.30"
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "14.30"
+            }
+          ]
+        },
+        "4": {
+          "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2025-01-01",
+              "value": "8.26"
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "13.26"
+            }
+          ]
+        },
+        "5": {
+          "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2025-01-01",
+              "value": "7.75"
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "12.75"
+            }
+          ]
+        },
+        "6": {
+          "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2025-01-01",
+              "value": "7.23"
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "12.23"
+            }
+          ]
+        },
+        "7": {
+          "periods": [
+            {
+              "valid_from": "2024-03-01",
+              "valid_until": "2025-01-01",
+              "value": "6.20"
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": null,
+              "value": "11.20"
             }
           ]
         }
@@ -1829,6 +1970,1175 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    {
+      "code": "7",
+      "order": 9,
+      "description": "Lapidei level 7 (Settore Lapidei, Escavazione, Marmo)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2025-01-01",
+            "value": "1444.53",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "5",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row 7",
+                "quote": "7 1444,53"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1488.88",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "5-6",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Seconda tranche di incremento dal 01/01/2025', column 'Retribuzione tabellare dal 01/01/2025', row 7",
+                "quote": "7 1488,88"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1524.36",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "6",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Terza tranche di incremento dal 01/01/2026', column 'Retribuzione tabellare dal 01/01/2026', row 7",
+                "quote": "7 1524,36"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1563.38",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "6-7",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Quarta tranche di incremento dal 01/10/2026', column 'Retribuzione tabellare dal 01/10/2026', row 7",
+                "quote": "7 1563,38"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null,
+      "ladder": "lapidei",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+            "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+            "kind": "associazione",
+            "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+            "published_on": "2024-03-21",
+            "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+          },
+          "page": "5",
+          "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row 7",
+          "quote": "7 1444,53"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-03-01",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T00:00:00Z",
+          "review_id": "2026-11-14-ai-lapidei"
+        },
+        "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+      }
+    },
+    {
+      "code": "6",
+      "order": 10,
+      "description": "Lapidei level 6 (Settore Lapidei, Escavazione, Marmo)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2025-01-01",
+            "value": "1553.78",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "5",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row 6",
+                "quote": "6 1553,78"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1601.48",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "5-6",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Seconda tranche di incremento dal 01/01/2025', column 'Retribuzione tabellare dal 01/01/2025', row 6",
+                "quote": "6 1601,48"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1639.64",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "6",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Terza tranche di incremento dal 01/01/2026', column 'Retribuzione tabellare dal 01/01/2026', row 6",
+                "quote": "6 1639,64"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1681.62",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "6-7",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Quarta tranche di incremento dal 01/10/2026', column 'Retribuzione tabellare dal 01/10/2026', row 6",
+                "quote": "6 1681,62"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null,
+      "ladder": "lapidei",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+            "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+            "kind": "associazione",
+            "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+            "published_on": "2024-03-21",
+            "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+          },
+          "page": "5",
+          "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row 6",
+          "quote": "6 1553,78"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-03-01",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T00:00:00Z",
+          "review_id": "2026-11-14-ai-lapidei"
+        },
+        "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+      }
+    },
+    {
+      "code": "5",
+      "order": 11,
+      "description": "Lapidei level 5 (Settore Lapidei, Escavazione, Marmo)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2025-01-01",
+            "value": "1628.71",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "5",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row 5",
+                "quote": "5 1628,71"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1678.71",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "5-6",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Seconda tranche di incremento dal 01/01/2025', column 'Retribuzione tabellare dal 01/01/2025', row 5",
+                "quote": "5 1678,71"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1718.71",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "6",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Terza tranche di incremento dal 01/01/2026', column 'Retribuzione tabellare dal 01/01/2026', row 5",
+                "quote": "5 1718,71"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1762.71",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "6-7",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Quarta tranche di incremento dal 01/10/2026', column 'Retribuzione tabellare dal 01/10/2026', row 5",
+                "quote": "5 1762,71"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null,
+      "ladder": "lapidei",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+            "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+            "kind": "associazione",
+            "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+            "published_on": "2024-03-21",
+            "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+          },
+          "page": "5",
+          "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row 5",
+          "quote": "5 1628,71"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-03-01",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T00:00:00Z",
+          "review_id": "2026-11-14-ai-lapidei"
+        },
+        "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+      }
+    },
+    {
+      "code": "4",
+      "order": 12,
+      "description": "Lapidei level 4 (Settore Lapidei, Escavazione, Marmo)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2025-01-01",
+            "value": "1692.42",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "5",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row 4",
+                "quote": "4 1692,42"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1744.38",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "5-6",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Seconda tranche di incremento dal 01/01/2025', column 'Retribuzione tabellare dal 01/01/2025', row 4",
+                "quote": "4 1744,38"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1785.94",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "6",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Terza tranche di incremento dal 01/01/2026', column 'Retribuzione tabellare dal 01/01/2026', row 4",
+                "quote": "4 1785,94"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1831.66",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "6-7",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Quarta tranche di incremento dal 01/10/2026', column 'Retribuzione tabellare dal 01/10/2026', row 4",
+                "quote": "4 1831,66"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null,
+      "ladder": "lapidei",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+            "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+            "kind": "associazione",
+            "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+            "published_on": "2024-03-21",
+            "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+          },
+          "page": "5",
+          "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row 4",
+          "quote": "4 1692,42"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-03-01",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T00:00:00Z",
+          "review_id": "2026-11-14-ai-lapidei"
+        },
+        "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+      }
+    },
+    {
+      "code": "3",
+      "order": 13,
+      "description": "Lapidei level 3 (Settore Lapidei, Escavazione, Marmo)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2025-01-01",
+            "value": "1804.69",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "5",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row 3",
+                "quote": "3 1804,69"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "1860.09",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "5-6",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Seconda tranche di incremento dal 01/01/2025', column 'Retribuzione tabellare dal 01/01/2025', row 3",
+                "quote": "3 1860,09"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "1904.41",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "6",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Terza tranche di incremento dal 01/01/2026', column 'Retribuzione tabellare dal 01/01/2026', row 3",
+                "quote": "3 1904,41"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "1953.16",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "6-7",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Quarta tranche di incremento dal 01/10/2026', column 'Retribuzione tabellare dal 01/10/2026', row 3",
+                "quote": "3 1953,16"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null,
+      "ladder": "lapidei",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+            "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+            "kind": "associazione",
+            "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+            "published_on": "2024-03-21",
+            "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+          },
+          "page": "5",
+          "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row 3",
+          "quote": "3 1804,69"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-03-01",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T00:00:00Z",
+          "review_id": "2026-11-14-ai-lapidei"
+        },
+        "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+      }
+    },
+    {
+      "code": "2",
+      "order": 14,
+      "description": "Lapidei level 2 (Settore Lapidei, Escavazione, Marmo)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2025-01-01",
+            "value": "2072.40",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "5",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row 2",
+                "quote": "2 2072,40"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2136.02",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "5-6",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Seconda tranche di incremento dal 01/01/2025', column 'Retribuzione tabellare dal 01/01/2025', row 2",
+                "quote": "2 2136,02"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "2186.92",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "6",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Terza tranche di incremento dal 01/01/2026', column 'Retribuzione tabellare dal 01/01/2026', row 2",
+                "quote": "2 2186,92"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "2242.91",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "6-7",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Quarta tranche di incremento dal 01/10/2026', column 'Retribuzione tabellare dal 01/10/2026', row 2",
+                "quote": "2 2242,91"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null,
+      "ladder": "lapidei",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+            "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+            "kind": "associazione",
+            "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+            "published_on": "2024-03-21",
+            "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+          },
+          "page": "5",
+          "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row 2",
+          "quote": "2 2072,40"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-03-01",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T00:00:00Z",
+          "review_id": "2026-11-14-ai-lapidei"
+        },
+        "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+      }
+    },
+    {
+      "code": "1",
+      "order": 15,
+      "description": "Lapidei level 1 (Settore Lapidei, Escavazione, Marmo)",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2024-03-01",
+            "valid_until": "2025-01-01",
+            "value": "2210.41",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "5",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row 1",
+                "quote": "1 2210,41"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2024-03-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2025-01-01",
+            "valid_until": "2026-01-01",
+            "value": "2278.27",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "5-6",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Seconda tranche di incremento dal 01/01/2025', column 'Retribuzione tabellare dal 01/01/2025', row 1",
+                "quote": "1 2278,27"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2025-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-10-01",
+            "value": "2332.56",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "6",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Terza tranche di incremento dal 01/01/2026', column 'Retribuzione tabellare dal 01/01/2026', row 1",
+                "quote": "1 2332,56"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2026-01-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          },
+          {
+            "valid_from": "2026-10-01",
+            "valid_until": null,
+            "value": "2392.27",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+                  "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+                  "kind": "associazione",
+                  "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+                  "published_on": "2024-03-21",
+                  "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+                },
+                "page": "6-7",
+                "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Quarta tranche di incremento dal 01/10/2026', column 'Retribuzione tabellare dal 01/10/2026', row 1",
+                "quote": "1 2392,27"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2026-10-01",
+                "verification_status": "verified",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-lapidei"
+              },
+              "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+            }
+          }
+        ]
+      },
+      "fixed_allowances": [],
+      "category": null,
+      "ladder": "lapidei",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "cna-legno-lapidei-verbale-integrativo-tabelle-2024-03-15",
+            "title": "Verbale di accordo integrativo dell'Ipotesi di accordo di rinnovo del CCNL Area Legno-Lapidei del 5 marzo 2024, Roma 15 marzo 2024: Retribuzione tabellare (scansione firmata, pubblicata da CNA)",
+            "kind": "associazione",
+            "url": "https://www.cna.it/wp-content/uploads/2024/03/Verbale-accordo-integrativo-CCNL-Area-Legno-Lapidei-Tabelle-retributive-15-marzo-2024.pdf",
+            "published_on": "2024-03-21",
+            "sha256": "105debf56f97b3227e580a42254f6bd179ab19c155107a28e3050794453e53e5"
+          },
+          "page": "5",
+          "section": "Retribuzione tabellare - Imprese Artigiane, Settore Lapidei, Escavazione, Marmo; table 'Prima tranche di incremento dal 01/03/2024', column 'Retribuzione tabellare dal 01/03/2024', row 1",
+          "quote": "1 2210,41"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-03-01",
+          "verification_status": "verified",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T00:00:00Z",
+          "review_id": "2026-11-14-ai-lapidei"
+        },
+        "note": "Retribuzione tabellare conglobata, Imprese Artigiane, Settore Lapidei, Escavazione, Marmo (art. 44 CCNL Area Legno-Lapidei as renewed on 5 March 2024)."
+      }
     }
   ],
   "apprenticeship": [
@@ -2127,7 +3437,7 @@
     "effective_until": null,
     "source": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
     "verification_status": "unverified",
-    "source_hash": "2eccf44cdbf0e52b7e447707ca074101d8c596bf4ead39e93701d6231e3c53ed",
+    "source_hash": "d5bb5961c8b5559adc4bdda187bce8ac984fcb3164db0312ec14d3662f09d0f9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
