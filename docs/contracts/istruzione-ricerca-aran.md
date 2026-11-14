@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employee, overtime, workplace_injury |
+| **Limits of this contract** | base_salary, overtime, workplace_injury |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-07-01 |
-| **Last review** | 2026-10-17 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-12 | claude-opus-5-5 (ai) | Fasce stipendiali of the scuola staff, 2023-2027. | corrected | Every worker was paid the first fascia (0-8 years): the five higher fasce are now seniority steps, read on the tables of the three CCNL.<br>DOCENTE_SECONDARIA joined the scuola media and the laureato di II grado, equal in the first fascia only: split into DOCENTE_SECONDARIA (scuola media) and DOCENTE_LAUREATO_SECONDARIA_II. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Months from 1.1.2022 to 31.1.2023 (CCNL 2019-2021 Tabella C1). | corrected | The file started on 1.2.2023 (limitation before_february_2023): the tabellare dal 1.1.2021 and the elemento perequativo by fascia of Tabella C1 now cover 2022 and January 2023. |
 | 2026-10-17 | claude-opus-5-5 (ai) | The number of instalments of the elemento perequativo of the CCNL 19/04/2018 the file pays until its conglobamento. | corrected | The 35 elemento perequativo records of the Scuola levels move from assumed to derived: INPS msg. 3224/2018 reads the element as paid 'con cadenza mensile', Tabella D2 of the CCNL 19/04/2018 gives 10 monthly instalments in 2018, and Tabella C1 of the CCNL 6/12/2022 (p. 244) prints the yearly amount as twelve monthly ones (308,04 = 12 x 25,67). No text puts it in the tredicesima. Art. 37 of the Scuola section was not read, so the records stay derived.<br>The absence rule stays assumed: no text of the comparto fixes the daily quota of an unpaid absence of the scuola staff. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Tabella 2 IIS of the CCNL scuola 24 luglio 2003 (PDF p. 121), text layer. | corrected | The IIS conglobata of the docenti di scuola materna ed elementare is 6,384.11 a year at every position: left out of the ENAM base. |
 
 ## Salary table
 
@@ -104,13 +105,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `workplace_injury` applies; level in DOCENTE_DIPLOMATO_SECONDARIA, DOCENTE_INFANZIA_PRIMARIA, DOCENTE_LAUREATO_SECONDARIA_II, DOCENTE_SECONDARIA.
 
     **Remediation:** Give the docenti levels their own INAIL daily base (or divisor of the orario cattedra), or stop deriving it from the 156 divisor for them.
-
-!!! warning "istruzione-ricerca-aran/enam_base · inps_employee · impact yes · open"
-    The ENAM of a permanent teacher of the scuola dell'infanzia and primaria (L. 93/1957 art. 3: 1% of 80% of the stipendio) is computed on the whole minimum of the level; the stipendio it counts leaves out the IIS conglobata the retribuzione tabellare holds, which the bundle does not give apart: the contribution is overstated.
-
-    **Applies when:** `inps_employee` applies; the run takes the engine code path.
-
-    **Remediation:** Source the IIS conglobata of the profile, leave it out of the ENAM base, then remove this note.
 
 !!! warning "istruzione-ricerca-aran/fixed_hourly_overtime · overtime · impact yes · open"
     The ore aggiuntive of the docenti are paid at fixed hourly amounts by activity (CCNL 2019-2021 Tabella E1.6: corsi di recupero 55,00, insegnamento 38,50, non di insegnamento 19,25), not by time of day: no overtime band is modelled for the docenti levels, so their overtime event needs the amount as hourly_rate with multiplier 1. The ATA areas are paid by the bands of Tabella E1.7.
@@ -299,6 +293,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     ASSICURAZIONE SOCIALE VITA. The employers of this CCNL are Amministrazioni dello Stato (the State schools; the forze di polizia), which INPS circ. 104/2014 leaves out of the Assicurazione Sociale Vita (ex ENPDEP): meta.public_life_insurance is false.
     
     LEVELS. The Tabelle A1 and A2 of the CCNL 2022-2024 (from 1.1.2024) list 'Docente scuola dell'infanzia ed elementare' and 'Docente diplomato istituti sec. II grado' as two rows with the same amounts (22,420.48 a year in the first band): two levels with the same minimum, DOCENTE_INFANZIA_PRIMARIA and DOCENTE_DIPLOMATO_SECONDARIA, since only the first owes the ENAM.
+    
+    ENAM (L. 93/1957 art. 3): 1% of 80% of the stipendio of a permanent teacher of the scuola dell'infanzia and primaria, the IIS conglobata in the tabellare left out: EUR 6,384.11 a year on 12 months (CCNL 24.7.2003 Tabella 2, PDF p. 121), 532.01 a month (parameters.enam_iis_monthly).
     
     FASCE STIPENDIALI: the six fasce of anzianità di servizio (0-8, 9-14, 15-20, 21-27, 28-34, da 35) are paid as five seniority steps after 9, 15, 21, 28 and 35 years, each the difference between the monthly tabellari of two fasce (CCNL 2019-2021 Tabelle C1 and E1.5, 2022-2024 and 2025-2027 Tabella A2). The seniority is the anzianità di servizio recognised for the fasce (ricostruzione di carriera), which the caller states; the engine does not reconstruct it. The scuola media and the laureato di II grado have the same first fascia and differ above it: two levels, DOCENTE_SECONDARIA and DOCENTE_LAUREATO_SECONDARIA_II.
     

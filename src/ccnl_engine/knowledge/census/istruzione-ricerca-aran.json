@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "enam_base",
-      "institute": "inps_employee",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The ENAM of a permanent teacher of the scuola dell'infanzia and primaria (L. 93/1957 art. 3: 1% of 80% of the stipendio) is computed on the whole minimum of the level; the stipendio it counts leaves out the IIS conglobata the retribuzione tabellare holds, which the bundle does not give apart: the contribution is overstated.",
-      "calculation": "ccnl/istruzione-ricerca-aran:coverage.notes",
-      "state": "absent",
-      "remediation": "Source the IIS conglobata of the profile, leave it out of the ENAM base, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "istruzione-ricerca-aran/enam_base"
-        ]
-      }
-    },
-    {
       "id": "fixed_hourly_overtime",
       "institute": "overtime",
       "variant": "all",

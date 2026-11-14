@@ -15,7 +15,6 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.assurance.ruleset.services import provisional_paths
 from ccnl_engine.capability.results import CapabilityScope
-from ccnl_engine.contribution.enam.services import enam_paths
 from ccnl_engine.contribution.minimum_base.services import (
     minimum_base_paths,
 )
@@ -87,7 +86,6 @@ def run_limitations(
     traversed = (
         events.limitations
         | paid_month_paths(ctx, events.inps_base)
-        | enam_paths(ctx)
         | provisional_paths(ctx)
         | tfr_compensation_paths(ctx)
         | minimum_base_paths(ctx)
