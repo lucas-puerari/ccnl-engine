@@ -357,3 +357,16 @@ def test_fiaip_pays_the_permits_with_the_december_pay() -> None:
     )
 
     assert _paid(result) == {"ex": Decimal(32), "rol": Decimal(56) / 12}
+
+
+def test_studi_pays_the_ex_festivita_with_the_rol() -> None:
+    """Studi art. 98: the ex festività follow the deadline of art. 91 c. 5."""
+    result = _run(
+        False,
+        PeriodId(2026, 12),
+        _NOVEMBER,
+        slug="studi-professionali-confprofessioni",
+        level="3",
+    )
+
+    assert _paid(result)["ex"] == Decimal(32)

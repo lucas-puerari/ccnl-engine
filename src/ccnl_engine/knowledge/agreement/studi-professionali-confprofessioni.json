@@ -110,7 +110,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Artt. 91, 92, 97 C, 98: the ROL (40 or 66 hours) and the 32 hours of ex festività paid when not taken, the festività falling on Sunday and the flexibility hours not recovered.",
+        "text": "Art. 92 and Art. 97 C: the permits added by the flexibility of the hours (30 or 60 minutes a week over the normal hours), paid with the overtime premium within six months of the end of the yearly programme when not taken, and the festività falling on a Sunday (Art. 97 C, also for the ex festività of Art. 98). The unused ROL and ex festività are paid at the deadline of Art. 91 c. 5 (permit_deadline).",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -118,7 +118,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Pay the unused ROL, ex festività and flexibility hours."
+          "remediation": "Accrue the flexibility permits of Art. 92 and pay those not taken with the overtime premium; pay the festività falling on a Sunday of Art. 97 C."
         }
       },
       {
@@ -2386,7 +2386,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "fad5be1ac972b58c76d252dfdc7921ba5008c89c17359238aae625d907993b19",
+    "source_hash": "936f53349a75dda60e006108b9cc2033d895cd45b5554436294d2883e6f643d9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3050,6 +3050,7 @@
       "permit_deadline": {
         "carry_until_month": 7,
         "buckets": [
+          "ex_festivita",
           "rol"
         ],
         "provenance": {
@@ -3064,8 +3065,8 @@
               "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
             },
             "page": "47",
-            "section": "Art. 91 c. 5 - Distribuzione dell'orario settimanale",
-            "quote": "I permessi non fruiti entro l’anno di maturazione decadranno e saranno pagati con la retribuzione di fatto in atto al momento della scadenza, ovvero potranno essere fruiti in epoca successiva e comunque non oltre il 31 luglio dell’anno successivo."
+            "section": "Art. 91 c. 5 - Distribuzione dell'orario settimanale; Art. 98 - Festivita abolite (p. 50)",
+            "quote": "I permessi non fruiti entro l’anno di maturazione decadranno e saranno pagati con la retribuzione di fatto in atto al momento della scadenza, ovvero potranno essere fruiti in epoca successiva e comunque non oltre il 31 luglio dell’anno successivo. [Art. 98:] In alternativa al lavoratore che non usufruirà dei suddetti permessi dovrà essere corrisposta [...] un importo pari alla retribuzione normale giornaliera comprensiva di ogni elemento accessorio in coerenza con quanto previsto dall'articolo 91 comma 5."
           },
           "transformation": "The permits of a year not taken lapse and are paid at the employer's choice (EmployerProfile.permit_carryover): with the December pay, or carried and paid with the pay of month 7 of the next year for what is left; the hours are paid at the basis of the residual leave of the termination.",
           "extraction": {
@@ -4320,6 +4321,27 @@
         "checked": [
           "work_rules.sickness_rules.comporto_windows",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-ex-festivita-deadline",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 98 (ex festività) and Art. 91 c. 5 (deadline) of the CCNL of 16 February 2024.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "Art. 98 pays the ex festività not taken 'in coerenza con quanto previsto dall'articolo 91 comma 5': the deadline now covers that bucket too, so the 32 hours left are paid or carried to 31 July like the ROL. Narrowed unused_leave_hours to the Art. 92 flexibility permits and the Sunday festività of Art. 97 C."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules.permit_deadline"
         ]
       }
     ],
