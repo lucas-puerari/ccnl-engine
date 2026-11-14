@@ -3,22 +3,6 @@
   "ccnl_id": "terziario-confesercenti",
   "requirements": [
     {
-      "id": "apprentice_hospital_share",
-      "institute": "sickness",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "Art. 54 b): the employer pays 60% of the gross pay on the days of a hospital stay, read as added to the INPS indemnity ('oltre a quanto previsto dalla legislazione vigente'); the text does not say whether the 60% is instead the whole treatment the employer tops the INPS share up to, which would pay 50 points of the gross daily pay less on days 4-20 (60% in all against 50% + 60%). The INPS indemnity during the stay is not reduced to 2/5 for a worker without family dependants.",
-      "calculation": "ccnl/terziario-confesercenti:coverage.notes",
-      "state": "absent",
-      "remediation": "Source the reading of the hospital indemnity of the apprentice (a joint interpretation of the parties or a ruling) and apply it; then resolve this limitation.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "terziario-confesercenti/apprentice_hospital_share"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",
@@ -79,22 +63,6 @@
       "links": {
         "limitations": [
           "parental_income_condition"
-        ]
-      }
-    },
-    {
-      "id": "sickness_net_basis",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SICKNESS (Art. 187): the CCNL integrates up to a share of the net daily pay ('retribuzione giornaliera netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate and tops it up to the measure of the gross daily quota, as for the Commercio file. The events exempt from the carenza reduction are an input (SicknessEpisode.short_absence_exempt, read with carenza_by_event) (review of 2026-10-30).",
-      "calculation": "ccnl/terziario-confesercenti:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the net daily pay of Art. 187.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "terziario-confesercenti/sickness_net_basis"
         ]
       }
     },

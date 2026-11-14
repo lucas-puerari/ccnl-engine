@@ -89,7 +89,7 @@ Latest effective values per level (monthly gross, EUR).
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "enti-ricerca-aran/research_allowances_missing · base_salary · impact yes · open"
+!!! warning "enti-ricerca-aran/research_allowances_missing · base_salary · impact yes · unsourced"
     ALLOWANCES: the indennità di Ente of levels IV-VIII (Tabella C5) and the indennità di valorizzazione professionale of levels I-III (Tabella C6) are stated by the CCNL only as increments from 1.1.2027, their earlier amounts set by older contracts not read: not modelled, the caller pays them.
 
     **Applies when:** `base_salary` applies.

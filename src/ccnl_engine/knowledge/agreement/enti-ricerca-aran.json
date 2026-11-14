@@ -3738,7 +3738,35 @@
           "applies_when": {
             "trigger": "owed"
           },
-          "remediation": "Read the indennità di Ente and di valorizzazione professionale of the earlier CCNL and add them with the 2027 increments."
+          "remediation": "Read the indennità di Ente and di valorizzazione professionale of the earlier CCNL and add them with the 2027 increments.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+              "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a",
+              "title": "PDF p. 39 (stampata p. 37), art. 27, comma 1."
+            },
+            {
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+              "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904",
+              "title": "PDF p. 29 (stampata p. 26), tabella C5."
+            },
+            {
+              "url": "https://www.flcgil.it/files/pdf/20221206/ccnl-istruzione-e-ricerca-anticipi-trattamento-economico-2019-2021-del-6-dicembre-2022.pdf",
+              "sha256": "556101567f92cf16472b596e76ae58c868b1874aa44c7be748d8ff0b8a4017ae",
+              "title": "PDF p. 38 (stampata p. 36), tabelle D3.1 e D3.2, CCNL firmato 6/12/2022, copia pubblicata da firmatario."
+            },
+            {
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2023/10/CCNL_-ISTR-RICERCA-SIGLATO-19_4_2018-DEF_PUBB_2.pdf",
+              "sha256": "e3e567d838c91749a194acedf737b06c676bd6fcfc39007c3d7077641fb18341",
+              "title": "PDF p. 176 (stampata p. 173), tabelle E2.1/E2.2."
+            },
+            {
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2024/09/Ricerca_Raccolta-sistematica_Gennaio-2017_s1.pdf",
+              "sha256": "371e335f0501d71fa7854ff3f404cc375ecf4e44ca322f8c004be68217d6a60a",
+              "title": "PDF p. 102 (stampata p. 101), trascrizione art. 44, comma 3, CCNL 7/10/1996."
+            }
+          ]
         }
       },
       {
@@ -3792,7 +3820,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "dad0fa724d3452fb0933909f5c26b5d605a3ec7353c24edc19c0df62dae9fea2",
+    "source_hash": "9adc0750739094233202bceeda3f2b3d697a471756d5d53dd1e081e7ced5ac61",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

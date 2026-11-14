@@ -92,7 +92,35 @@
               "apprentice"
             ]
           },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+              "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4",
+              "title": "PDF p. 23 (stampata p. 23), art. 53."
+            },
+            {
+              "url": "https://www.gazzettaufficiale.it/eli/gu/2015/06/24/144/so/34/sg/pdf",
+              "sha256": "3a019a68a39ea23241f145e96ea144fecd2d1dd4aae290921c3d62100c8901db",
+              "title": "PDF p. 28 (stampata p. 24), d.lgs. 81/2015, art. 42, comma 5 e lett. b. Nessun importo di scatto è previsto in questa disposizione."
+            },
+            {
+              "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+              "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214",
+              "title": "PDF testuale di 67 pagine: altra impaginazione del CCNL 2021 e relativo allegato; nessuna clausola espressa sugli scatti degli apprendisti."
+            },
+            {
+              "url": "https://prestazioni.ebifarm.it/documenti/regolamento-prestazioni-2026.pdf?v=04",
+              "sha256": "a8a197aae013b332741eb13298513e5ccd80869d67bd2efd7de592e082c82e6e",
+              "title": "regolamento delle prestazioni dell'ente bilaterale, non degli scatti retributivi."
+            },
+            {
+              "url": "https://www.ebifarm.it/documents/circolare-INPS-numero-13-del-22-01-2025.pdf",
+              "sha256": "ee4ed562919ae042a5cdd8639ed133f7b2f75d9de5ffa8a686d354cc3c78426a",
+              "title": "circolare INPS reperita presso EBIFARM: non disciplina scatti o anzianità degli apprendisti."
+            }
+          ]
         }
       }
     ]
@@ -1732,7 +1760,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "e2d97d43679401a4ba4aff98cbced180981a389b0bb3b55f8dd9dfff0ad6a6ae",
+    "source_hash": "b684d45db0c68b36259b6d5447f689359417c90ebcfaece09092a323f3a5f36b",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },

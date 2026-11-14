@@ -141,7 +141,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the contingenza of art. 163 c. 2 if a current table prints it, then remove this note.
 
-!!! warning "pubblici-esercizi-fipe-angem/holiday_overtime_cumulation · overtime · impact unknown · open"
+!!! warning "pubblici-esercizi-fipe-angem/holiday_overtime_cumulation · overtime · impact unknown · unsourced"
     HOLIDAY OVERTIME: Art. 126 (PDF p. 99) gives 30% by day and 60% by night for every overtime hour; Art. 132 (p. 103) gives 20% for the hours worked on a festività. No clause links them: art. 126 c. 3 excludes cumulation only with ordinary night work, art. 130 c. 2 only Sunday work with the festività, and the special parts (arts. 246-247, 263-264) and the 2024 renewal repeat or leave them. The engine pays holiday overtime at 30%/60% without the 20%.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.

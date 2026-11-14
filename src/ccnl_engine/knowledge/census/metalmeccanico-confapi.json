@@ -115,22 +115,6 @@
       }
     },
     {
-      "id": "par_conto_ore_hourly_elements",
-      "institute": "leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "LEAVE, CONTO ORE: the hourly elements of art. 38 are included in the PAR payout at expiry when the caller states hourly_pay_elements (zero confirms none; missing blocks payment). The PAR left when employment ends before expiry remain unpaid: art. 22 specifies liquidation at expiry but no termination basis.",
-      "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
-      "state": "absent",
-      "remediation": "Source a basis and timing for paying PAR left when employment ends before the conto ore expires; art. 22 only specifies payment at expiry.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "metalmeccanico-confapi/par_conto_ore_hourly_elements"
-        ]
-      }
-    },
-    {
       "id": "par_conto_ore_payout",
       "institute": "leave",
       "variant": "all",

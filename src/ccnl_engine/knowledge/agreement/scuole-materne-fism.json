@@ -129,7 +129,20 @@
         "monetary_impact": "unknown",
         "limitation": {
           "variant": "sickness_net_basis",
-          "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 69, align the computation, then resolve this limitation."
+          "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 69, align the computation, then resolve this limitation.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+              "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36",
+              "title": "PDF p. 45 (nessuna pagina stampata), art. 69, lett. a). Citazione verificata sull’immagine della pagina, dopo OCR."
+            },
+            {
+              "url": "https://fism.net/wp-content/uploads/2026/07/CCNL-FISM-ACCORDO-ECONOMICO-2026-2027.pdf",
+              "sha256": "860148c95c1a4133983bf0d706f645a4895301fc99b4a4bd8aa05afef7d2da26",
+              "title": "accordo economico firmato il 7 luglio 2026; PDF di 8 pagine scansionate, lette con OCR; non contiene una definizione del netto dell’art. 69."
+            }
+          ]
         }
       },
       {
@@ -2530,7 +2543,7 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "0a6901f052c531232f5c96ef9d086b1b1412f8cc88271899225c275c5619c656",
+    "source_hash": "c88e9b3886c560f4fd33bb22784f24acd11c28f5a39cb3f7703091685a6e3c69",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

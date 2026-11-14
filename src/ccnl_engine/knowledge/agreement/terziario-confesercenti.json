@@ -4584,7 +4584,25 @@
           "applies_when": {
             "trigger": "run"
           },
-          "remediation": "Model the net daily pay of Art. 187."
+          "remediation": "Model the net daily pay of Art. 187.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+              "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0",
+              "title": "PDF p. 142 (stampata p. 142), art. 187. [I trattini sono quelli della sillabazione nel PDF; gli a capo sono stati sostituiti da spazi.]"
+            },
+            {
+              "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20260.pdf",
+              "sha256": "3b40cf4b51935290efb18c1ff22b3d1a51f7cd09720dc204c0f4295d3cf26cd9",
+              "title": "accordo firmato 22 marzo 2024, 62 pagine esaminate con OCR; l’indice delle modifiche non include l’art. 187 e non è stata trovata una definizione del netto."
+            },
+            {
+              "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20279.pdf",
+              "sha256": "31788db6977a060829e19b5f4a6f2ed5528d774a62c14be677e55cf2076b7870",
+              "title": "accordo integrativo firmato 28 marzo 2024, quattro pagine esaminate con OCR; classificazione, formazione e tabelle retributive, nessuna definizione del netto di malattia."
+            }
+          ]
         }
       },
       {
@@ -4667,7 +4685,25 @@
               "apprentice"
             ]
           },
-          "remediation": "Source the reading of the hospital indemnity of the apprentice (a joint interpretation of the parties or a ruling) and apply it; then resolve this limitation."
+          "remediation": "Source the reading of the hospital indemnity of the apprentice (a joint interpretation of the parties or a ruling) and apply it; then resolve this limitation.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+              "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0",
+              "title": "PDF p. 64 (stampata p. 64), art. 54."
+            },
+            {
+              "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20260.pdf",
+              "sha256": "3b40cf4b51935290efb18c1ff22b3d1a51f7cd09720dc204c0f4295d3cf26cd9",
+              "title": "ipotesi di accordo firmata il 22 marzo 2024; 62 pagine esaminate con OCR, nessun chiarimento sul trattamento economico del ricovero dell’apprendista."
+            },
+            {
+              "url": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2024//20279.pdf",
+              "sha256": "31788db6977a060829e19b5f4a6f2ed5528d774a62c14be677e55cf2076b7870",
+              "title": "accordo integrativo firmato il 28 marzo 2024; quattro pagine esaminate con OCR, tratta profili formativi e tabelle retributive, non l’indennità di ricovero."
+            }
+          ]
         }
       },
       {
@@ -4683,7 +4719,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "b9353acc99b2bfc5fb0222500e924dc3b7b72f0edcfdb8d093ace0c13eeb73a0",
+    "source_hash": "5faaef91e9b8642b38a2f791355feaac227486f6f7baaff6f06797f8a49cf9cc",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

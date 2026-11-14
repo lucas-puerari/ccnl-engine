@@ -307,7 +307,20 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Source a basis and timing for paying PAR left when employment ends before the conto ore expires; art. 22 only specifies payment at expiry."
+          "remediation": "Source a basis and timing for paying PAR left when employment ends before the conto ore expires; art. 22 only specifies payment at expiry.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+              "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad",
+              "title": "PDF p. 93 (stampata p. 93), art. 22."
+            },
+            {
+              "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
+              "sha256": "ae59a64f408072c1438892143e2146eea350d7e2c3e5883fb8538f86ffc47f53",
+              "title": "PDF p. 18 (stampata p. 18), art. 22, rinnovo 4 giugno 2026 (OCR controllato a 200 dpi)."
+            }
+          ]
         }
       },
       {
@@ -3304,7 +3317,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "eced163c4c511d62b13e49ea43351c003cc69b64120e1011d64c172c2457cfe4",
+    "source_hash": "ab0bf53217d480f323a9e274febdccee83a4ef8f3efe2ee6a53701770e74c14f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -106,12 +106,13 @@
       },
       {
         "kind": "simplification",
-        "text": "INPS: reuses the terziario contribution table. SIMPLIFICATION: tax_sector='terziario' is a modelling choice. Supporting facts: ASSIV/ANIVP/UNIV are not Confindustria members; private security companies do not access CIGO; the sector uses Ebivip (Ente Bilaterale Vigilanza Privata) for bilateral welfare, not INPS integration schemes. TERZIARIO is the standard classification for non-Confindustria services sector employers in INPS circular IVS rates. Counterargument: some aspects of the sector (24/7 operations, shift work) could suggest INDUSTRIA classification, whose employer rate is about 1.2 points higher in each headcount band of the bundle (review of 2026-10-30).",
+        "text": "INPS SECTOR: the INPS Manuale di classificazione dei datori di lavoro (May 2021, PDF p. 246, https://www.inps.it/content/dam/inps-site/pdf/allegati/3212KEY-manuale_di_classificazione_dei_datori_di_lavoro_maggio_2021.pdf, sha256 ad8704fbb47ccf22b7f3728a2537351294a12b2aa031a7bb2cce88121d884678) classes '80.10.00 Servizi di vigilanza privata' under CSC 70708, settore 7 'TERZIARIO (COMMERCIO, SERVIZI, PROFESSIONI E ARTI)' (p. 36): the terziario contribution table. An employer's own matricola may carry other authorisation codes, which the caller states.",
         "capability": "inps_employer",
         "monetary_impact": "unknown",
         "limitation": {
           "variant": "terziario_tax_sector_unverified",
-          "remediation": "Verify the INPS classification of private security employers against the INPS circular."
+          "remediation": "Resolved: INPS classification manual read on 2026-11-14.",
+          "status": "resolved"
         }
       },
       {
@@ -127,7 +128,35 @@
               "apprentice"
             ]
           },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-06-15",
+              "sha256": "1ab4eb7e8eb45b2dc55286d2e5ca771a0c5ff5910466c7445c1c32a99d1bcbc7",
+              "title": "HTML salvato art42.html), art. 42, comma 5, lett. a–b (non PDF)."
+            },
+            {
+              "url": "https://www.bollettinoadapt.it/wp-content/uploads/2019/10/ccnl2013.pdf",
+              "sha256": "c6b3a6176dee20e6a727e4da153bd3511850275e991e0e344f92e1d1b4c0df79",
+              "title": "PDF p. 46 (stampata p. 45), Capo 1 – Apprendistato."
+            },
+            {
+              "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/Tabelle_Retributive_Accordo_Integrativo_Filcams_Fisascat_UILTuCS_16_Febbraio_2024.pdf",
+              "sha256": "d98f968443033cd953e1a50f6019004eb576292532aea6a89d1c8b105e454d5b",
+              "title": "tabelle retributive, nessuna clausola su apprendisti/scatti."
+            },
+            {
+              "url": "https://olympus.uniurb.it/index.php?option=com_content&view=article&id=30121:vigilanza452023&catid=257&Itemid=139",
+              "sha256": "df45fd7b36344d00e5ac573e8b5867e69b81acb905d4d9012c24d262f2ebb801",
+              "title": "HTML): trascrizione di terzi; nessuna clausola specifica sugli scatti degli apprendisti."
+            },
+            {
+              "url": "https://www.gazzettaufficiale.it/eli/id/2015/06/24/15G00095/sg",
+              "sha256": "b91b6818b414c499ec5a24c4d846bb48738a029d360ab68f29eed7f8cb890922",
+              "title": "HTML): scheda del decreto, non testo dell'articolo; per la citazione usato il testo Normattiva sopra."
+            }
+          ]
         }
       },
       {
@@ -242,8 +271,8 @@
         ]
       },
       {
-        "id": "2026-11-15-ai-vigilanza-privata-assiv-comporto-year",
-        "date": "2026-11-15",
+        "id": "2026-11-14-ai-vigilanza-privata-assiv-comporto-year",
+        "date": "2026-11-14",
         "reviewer": "claude-opus-5-5",
         "reviewer_kind": "ai",
         "scope": "Comporto over the calendar year and paid days, against the research of a separate model session; quotes checked on the source.",
@@ -260,6 +289,28 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules",
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-vigilanza-privata-assiv-inps-sector",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "INPS sector of the private security employers in the INPS classification manual, from the targeted research of a separate model session; text layer.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.inps.it/content/dam/inps-site/pdf/allegati/3212KEY-manuale_di_classificazione_dei_datori_di_lavoro_maggio_2021.pdf",
+            "sha256": "ad8704fbb47ccf22b7f3728a2537351294a12b2aa031a7bb2cce88121d884678"
+          }
+        ],
+        "findings": [
+          "ATECO 80.10.00 is CSC 70708, settore 7 terziario."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "meta.tax_sector",
           "coverage.notes"
         ]
       }
@@ -1934,7 +1985,7 @@
     "effective_until": null,
     "source": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
     "verification_status": "unverified",
-    "source_hash": "0973e99f4c329f56c7c2b574d278ff63a02038b3e973f88d89751ef4d62265af",
+    "source_hash": "7ec37f87511e26252992cc4e9133984f7087d7bbc5f23607b0bf3a71ce2f024f",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

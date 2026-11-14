@@ -3,22 +3,6 @@
   "ccnl_id": "distribuzione-cooperativa-ancc",
   "requirements": [
     {
-      "id": "apprentice_seniority",
-      "institute": "seniority",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
-      "calculation": "ccnl/distribuzione-cooperativa-ancc:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "distribuzione-cooperativa-ancc/apprentice_seniority"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",
@@ -78,22 +62,6 @@
       "links": {
         "rules": [
           "agreement/distribuzione-cooperativa-ancc.json#additional_months[2025-05-01]"
-        ]
-      }
-    },
-    {
-      "id": "seniority_super_levels",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SENIORITY OF LEVELS 3S AND 4S: the Art. 182 table has rows III and IV only, while the minimum table of the 2024 renewal (art. 185, p. 70) prints 3S and 4S apart; the file pays 3S the III amount (21,79) and 4S the IV amount (19,93), a reading the text does not state.",
-      "calculation": "ccnl/distribuzione-cooperativa-ancc:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the seniority amount of levels 3S and 4S (signed table or interpretation of the parties).",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "distribuzione-cooperativa-ancc/seniority_super_levels"
         ]
       }
     },

@@ -152,7 +152,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Read whether the parental leave reduces the quattordicesima before 1 December 2027 and, if it does, take its days out of the accrual.
 
-!!! warning "turismo-federalberghi/apprenticeship_durations_unsourced · base_salary · impact yes · open"
+!!! warning "turismo-federalberghi/apprenticeship_durations_unsourced · base_salary · impact yes · unsourced"
     APPRENTICESHIP DURATIONS: the durations of the professionalizzante come from the accord of 17 April 2012 as amended in 2014, of which no signed or CNEL copy was found (only aggregator copies); the percentages of art. 58 are verified. Every apprentice run carries this limitation.
 
     **Applies when:** `base_salary` applies; contract type in apprentice.
@@ -166,7 +166,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: rol annual_hours tier of 108 hours for the sub-sector stabilimenti_balneari, read on 2026-11-06.
 
-!!! warning "turismo-federalberghi/hotel_legacy_award · base_salary · impact unknown · open"
+!!! warning "turismo-federalberghi/hotel_legacy_award · base_salary · impact unknown · unsourced"
     Art. 227 of the cached 2010 hotel-sector scan (PDF p. 183) abolishes the former seniority prize effective 31 May 1986 but preserves acquired rights of workers then in service. The referenced Annex G is missing from the cached scan and its amounts cannot be verified here. The 2024 production-tier rules do not encode this legacy entitlement; the different Federturismo Annex 9 is not evidence of its amounts.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.

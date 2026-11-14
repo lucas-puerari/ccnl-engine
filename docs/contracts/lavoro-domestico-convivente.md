@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-01-01 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -68,6 +68,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Art. 34 cc. 3, 4, 7 and the Tabelle H, I, L (PDF pp. 44-45, 59) against the role allowances, by a separate model session. | corrected | Confirmed the amounts, levels and roles of the Tabelle H, I and L.<br>Corrected: the quotes now hold the article text alone (the table amounts are in the transformation); the certification needs a copy handed over; the allowance of c. 7 is absorbed by any better treatment received overall, not only a superminimo. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 34 cc. 3, 4, 7 (PDF pp. 44-45) against caller-gated role allowances and offsets. | corrected | Role-gated monthly allowances work; independent eligibility checks and automatic offsets remain outside the model. |
 | 2026-11-09 | claude-opus-5-5 (ai) | INPS circolare 9/2026 table A (PDF p. 3) and published DOMINA quarters against the existing domestic rate test. | confirmed | The example-validation gap was already closed by four published DOMINA quarters in the bundled mutation test. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Pay of a convivente with fewer than 54 agreed weekly hours against art. 14 of the CCNL and art. 7 D.Lgs. 81/2015, from the targeted research of a separate model session; text layer. | confirmed | The CCNL is silent; art. 7 c. 2 D.Lgs. 81/2015 proportions the pay to the reduced hours, as the engine does. |
 
 ## Salary table
 
@@ -118,12 +119,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: art. 37 read on 2026-11-15; the 4% share is enforced by tests/knowledge/ccnl_engine/seniority/test_domestic_seniority_share.py.
 
-!!! warning "lavoro-domestico-convivente/part_time_scaling · base_salary · impact unknown · open"
-    REDUCED HOURS UNDER ART. 14 C. 1: a convivente may agree fewer than 54 weekly hours (art. 14 c. 1: 'con un massimo di [...] 54 ore settimanali'). The CCNL gives Tabella A as monthly values and no rule to proportion them to the agreed hours; the engine scales the pay linearly on the full time the employment states. The art. 14 c. 2 regime (levels C, B, B super up to 30 hours, Tabella B) is the separate file lavoro-domestico-convivente-orario-ridotto.
+!!! note "lavoro-domestico-convivente/part_time_scaling · base_salary · impact unknown · resolved"
+    REDUCED HOURS UNDER ART. 14 C. 1: a convivente may agree fewer than 54 weekly hours (art. 14 c. 1: 'con un massimo di [...] 54 ore settimanali'), and the CCNL gives no rule to proportion the Tabella A monthly values. The statutory default applies: the pay of a part-time worker 'è riproporzionato in ragione della ridotta entità della prestazione lavorativa' (art. 7 c. 2 D.Lgs. 81/2015, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-06-15;81~art7, sha256 799c73922cabdd3710f565337b1e6cbd7f3492d5ee8419bbcee1e55a42197d88), so the engine scales the pay linearly on the full time the employment states. The art. 14 c. 2 regime (levels C, B, B super up to 30 hours, Tabella B) is the separate file lavoro-domestico-convivente-orario-ridotto.
 
     **Applies when:** `base_salary` applies; the run takes the engine code path.
 
-    **Remediation:** Source how the Tabella A minimum of a convivente with fewer than 54 agreed weekly hours is computed and model it, then remove this note.
+    **Remediation:** Resolved: art. 7 c. 2 D.Lgs. 81/2015 read on 2026-11-14.
 
 !!! note "lavoro-domestico-convivente/hourly_inps_bracket_unvalidated · inps_employer · impact unknown · resolved"
     INPS BAND: the engine chooses the band of up to 24 weekly hours on the paga oraria effettiva of INPS (circ. 9/2026; INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore domestico): the monthly pay with board and lodging over the hours of the employment (weekly hours x 52 / 12), raised by the tredicesima (x 13 / 12). The 2026 bands match the published quarterly worked examples of CCNL signatory DOMINA (review of 2026-10-16); the caller must still state the actual monthly pay and contributable hours.

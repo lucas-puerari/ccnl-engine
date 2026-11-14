@@ -106,7 +106,7 @@
       },
       {
         "kind": "simplification",
-        "text": "REDUCED HOURS UNDER ART. 14 C. 1: a convivente may agree fewer than 54 weekly hours (art. 14 c. 1: 'con un massimo di [...] 54 ore settimanali'). The CCNL gives Tabella A as monthly values and no rule to proportion them to the agreed hours; the engine scales the pay linearly on the full time the employment states. The art. 14 c. 2 regime (levels C, B, B super up to 30 hours, Tabella B) is the separate file lavoro-domestico-convivente-orario-ridotto.",
+        "text": "REDUCED HOURS UNDER ART. 14 C. 1: a convivente may agree fewer than 54 weekly hours (art. 14 c. 1: 'con un massimo di [...] 54 ore settimanali'), and the CCNL gives no rule to proportion the Tabella A monthly values. The statutory default applies: the pay of a part-time worker 'è riproporzionato in ragione della ridotta entità della prestazione lavorativa' (art. 7 c. 2 D.Lgs. 81/2015, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-06-15;81~art7, sha256 799c73922cabdd3710f565337b1e6cbd7f3492d5ee8419bbcee1e55a42197d88), so the engine scales the pay linearly on the full time the employment states. The art. 14 c. 2 regime (levels C, B, B super up to 30 hours, Tabella B) is the separate file lavoro-domestico-convivente-orario-ridotto.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
@@ -114,7 +114,8 @@
           "applies_when": {
             "trigger": "path"
           },
-          "remediation": "Source how the Tabella A minimum of a convivente with fewer than 54 agreed weekly hours is computed and model it, then remove this note."
+          "remediation": "Resolved: art. 7 c. 2 D.Lgs. 81/2015 read on 2026-11-14.",
+          "status": "resolved"
         }
       },
       {
@@ -1881,7 +1882,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "bd9d77872d2b5a6995d60a76356a6493e4cc2bfe8dac28510261324646a4e225",
+    "source_hash": "004e6450e14d81cbcc06f25ee7a8399798b17ae33180a59bde43a086a4c1e55a",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
@@ -2372,6 +2373,27 @@
         ],
         "findings": [
           "The example-validation gap was already closed by four published DOMINA quarters in the bundled mutation test."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-lavoro-domestico-convivente-part-time-scaling",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Pay of a convivente with fewer than 54 agreed weekly hours against art. 14 of the CCNL and art. 7 D.Lgs. 81/2015, from the targeted research of a separate model session; text layer.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-06-15;81~art7",
+            "sha256": "799c73922cabdd3710f565337b1e6cbd7f3492d5ee8419bbcee1e55a42197d88"
+          }
+        ],
+        "findings": [
+          "The CCNL is silent; art. 7 c. 2 D.Lgs. 81/2015 proportions the pay to the reduced hours, as the engine does."
         ],
         "independence": "same_process",
         "checked": [

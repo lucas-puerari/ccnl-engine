@@ -161,7 +161,20 @@
               "apprentice"
             ]
           },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+              "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94",
+              "title": "PDF p. 87 (stampata p. 74), art. 56. [L'omissione «[…]» riguarda la definizione di gruppo aziendale.]"
+            },
+            {
+              "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/01/20251222_CCNL_web.pdf",
+              "sha256": "df6317b0b0054363ea554d724fb49a291b8079128f83bd8ca5904434d1b3d664",
+              "title": "altro testo integrale dei firmatari; nessuna clausola esplicita sugli scatti durante l'apprendistato (ricerca testuale «apprendist», «scatt», «anzianit»)."
+            }
+          ]
         }
       },
       {
@@ -191,7 +204,20 @@
           "applies_when": {
             "trigger": "path"
           },
-          "remediation": "Source the anniversary rule for a 29 February hire before changing the fallback."
+          "remediation": "Source the anniversary rule for a 29 February hire before changing the fallback.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+              "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94",
+              "title": "PDF p. 93 (stampata p. 80), art. 65."
+            },
+            {
+              "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/01/20251222_CCNL_web.pdf",
+              "sha256": "df6317b0b0054363ea554d724fb49a291b8079128f83bd8ca5904434d1b3d664",
+              "title": "PDF p. 93 (stampata p. 80), art. 65: identico testo contrattuale, senza disciplina del 29 febbraio."
+            }
+          ]
         }
       },
       {
@@ -2599,7 +2625,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "1f250b4800d7b3cc7a1f8e7e792349ea9d88d6b2e66012134cecb16f05c0547e",
+    "source_hash": "92c887cd86b20a63cb6d1d9cb226a80a66107dfe28b4898ffe96c500054b68fd",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

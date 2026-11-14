@@ -149,7 +149,15 @@
               "apprentice"
             ]
           },
-          "remediation": "Source the reading of the hospital indemnity of the apprentice (a joint interpretation of the parties or a ruling) and apply it; then resolve this limitation."
+          "remediation": "Source the reading of the hospital indemnity of the apprentice (a joint interpretation of the parties or a ruling) and apply it; then resolve this limitation.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://www.federdistribuzione.it/wp-content/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+              "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf",
+              "title": "PDF p. 24 (stampata p. 45), art. 47, comma 1. L’omissione segnalata da «[…]» riguarda soltanto la lettera a), relativa ai primi tre giorni di malattia."
+            }
+          ]
         }
       },
       {
@@ -4549,7 +4557,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "d508f9df890cb4fb6bc9a2857788b7c823cffe2f4d3cac22533377395906534f",
+    "source_hash": "6c5db0b1b1bcbd979735ef9f32794bc9a7fb9b0200b8b35af2937e7ec5718e8b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -111,7 +111,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Supply the worker's actual preserved monthly pre-1998 scatti balance as an individual element; without it, the old scatti cannot be reconstructed from the hire-date bands.
 
-!!! warning "scuole-private-laiche-aninsei/apprentice_seniority · seniority · impact unknown · open"
+!!! warning "scuole-private-laiche-aninsei/apprentice_seniority · seniority · impact unknown · unsourced"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
 
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.

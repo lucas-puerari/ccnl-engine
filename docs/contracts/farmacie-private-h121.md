@@ -30,8 +30,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
 1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2021-09-07 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2021-11-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 73, p. 27). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-06 | claude-opus-5-5 (ai) | Art. 3 Area Q and Tabella C (p. 59) of the CCNL of 7 September 2021. | corrected | Q2 and Q3 get 130 EUR after 12 years in level 1 and Area Q, 100 EUR before. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | isq_twelve_year_tier: The existing Q2 and Q3 fixed allowances are EUR 100 below 144 completed months and EUR 130 from 144 months, effective 2021-11-01. Both use career_service; the engine selects supplied SeniorityFact.career_months and applies mutually exclusive <144 / >=144 gates. With qualifying mo |
+| 2026-11-14 | claude-opus-5-5 (ai) | Apprentice seniority increments against art. 53 of the CCNL, from the targeted research of a separate model session; text layer. | confirmed | Art. 53 grants the increments to the lavoratore qualificato: none during the apprenticeship. |
 
 ## Salary table
 
@@ -110,12 +111,12 @@ under-level: `1`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "farmacie-private-h121/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
+!!! note "farmacie-private-h121/apprentice_seniority · seniority · impact unknown · resolved"
+    APPRENTICE SENIORITY: art. 53 of the CCNL 7 September 2021 (PDF p. 23, https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf, sha256 dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4) grants the 15 biennial increments to the 'lavoratore qualificato' ('Per l'anzianità maturata presso la stessa farmacia il lavoratore qualificato ha diritto a 15 scatti biennali'), so no increment is paid during the apprenticeship (apprentice_amount 0). The service still runs from the hire (art. 51): the bienni of the apprenticeship count once the worker is qualified.
 
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
+    **Remediation:** Resolved: art. 53 read on 2026-11-14.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

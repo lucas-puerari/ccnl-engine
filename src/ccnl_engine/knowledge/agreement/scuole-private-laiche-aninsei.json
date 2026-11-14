@@ -114,7 +114,25 @@
               "apprentice"
             ]
           },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+              "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65",
+              "title": "PDF p. 43 (stampata p. 43), art. 9.7. Citazione con le parole ricomposte dalle sillabazioni di fine riga del PDF."
+            },
+            {
+              "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-06-15",
+              "sha256": "1ab4eb7e8eb45b2dc55286d2e5ca771a0c5ff5910466c7445c1c32a99d1bcbc7",
+              "title": "norma generale letta; non stabilisce l’importo degli scatti degli apprendisti."
+            },
+            {
+              "url": "https://foe.it/?s=ANINSEI+apprendistato+anzianit%C3%A0",
+              "sha256": "7b8892119ece537d5a0d48a970464ba07155f9570597e564c0e9831089d9d306",
+              "title": "ricerca nel sito dell’associazione, nessun risultato; non è un documento contrattuale."
+            }
+          ]
         }
       }
     ]
@@ -5455,7 +5473,7 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "412b948e81df1b250184f23bc32b7e15dd940c7e18086a43c5f20b5279603a5d",
+    "source_hash": "72e381bf4f932db3847450219c36d45ff1f8a16e32fea2ac907cf5b2252a754a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

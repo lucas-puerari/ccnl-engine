@@ -67,22 +67,6 @@
       }
     },
     {
-      "id": "holiday_overtime_cumulation",
-      "institute": "overtime",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "HOLIDAY OVERTIME: Art. 126 (PDF p. 99) gives 30% by day and 60% by night for every overtime hour; Art. 132 (p. 103) gives 20% for the hours worked on a festività. No clause links them: art. 126 c. 3 excludes cumulation only with ordinary night work, art. 130 c. 2 only Sunday work with the festività, and the special parts (arts. 246-247, 263-264) and the 2024 renewal repeat or leave them. The engine pays holiday overtime at 30%/60% without the 20%.",
-      "calculation": "ccnl/pubblici-esercizi-fipe-angem:coverage.notes",
-      "state": "unverified",
-      "remediation": "Confirm whether the 20% of art. 132 is added to the overtime rate on a festività; if so set the bands to 0.5 and 0.8, else close this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "pubblici-esercizi-fipe-angem/holiday_overtime_cumulation"
-        ]
-      }
-    },
-    {
       "id": "parental_hourly_ccnl_rule",
       "institute": "parental_leave",
       "variant": "all",

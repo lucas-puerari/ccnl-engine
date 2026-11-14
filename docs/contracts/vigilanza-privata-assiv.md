@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer, seniority |
+| **Limits of this contract** | seniority |
 
 3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -55,7 +55,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-05-30 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
@@ -66,7 +66,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 42 values read identically by both readings and equal to the file. |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.injury. |
 | 2026-11-08 | gpt-6-sol (ai) | Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image. | corrected | The injury rule had no top-up of the INAIL indemnity; added: {"integration_rate": "1", "net_basis": true} |
-| 2026-11-15 | claude-opus-5-5 (ai) | Comporto over the calendar year and paid days, against the research of a separate model session; quotes checked on the source. | corrected | Comporto of 240 days over the calendar year; pay ends after 180 days. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Comporto over the calendar year and paid days, against the research of a separate model session; quotes checked on the source. | corrected | Comporto of 240 days over the calendar year; pay ends after 180 days. |
+| 2026-11-14 | claude-opus-5-5 (ai) | INPS sector of the private security employers in the INPS classification manual, from the targeted research of a separate model session; text layer. | confirmed | ATECO 80.10.00 is CSC 70708, settore 7 terziario. |
 
 ## Salary table
 
@@ -107,14 +108,14 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "vigilanza-privata-assiv/terziario_tax_sector_unverified · inps_employer · impact unknown · open"
-    INPS: reuses the terziario contribution table. SIMPLIFICATION: tax_sector='terziario' is a modelling choice. Supporting facts: ASSIV/ANIVP/UNIV are not Confindustria members; private security companies do not access CIGO; the sector uses Ebivip (Ente Bilaterale Vigilanza Privata) for bilateral welfare, not INPS integration schemes. TERZIARIO is the standard classification for non-Confindustria services sector employers in INPS circular IVS rates. Counterargument: some aspects of the sector (24/7 operations, shift work) could suggest INDUSTRIA classification, whose employer rate is about 1.2 points higher in each headcount band of the bundle (review of 2026-10-30).
+!!! note "vigilanza-privata-assiv/terziario_tax_sector_unverified · inps_employer · impact unknown · resolved"
+    INPS SECTOR: the INPS Manuale di classificazione dei datori di lavoro (May 2021, PDF p. 246, https://www.inps.it/content/dam/inps-site/pdf/allegati/3212KEY-manuale_di_classificazione_dei_datori_di_lavoro_maggio_2021.pdf, sha256 ad8704fbb47ccf22b7f3728a2537351294a12b2aa031a7bb2cce88121d884678) classes '80.10.00 Servizi di vigilanza privata' under CSC 70708, settore 7 'TERZIARIO (COMMERCIO, SERVIZI, PROFESSIONI E ARTI)' (p. 36): the terziario contribution table. An employer's own matricola may carry other authorisation codes, which the caller states.
 
     **Applies when:** `inps_employer` applies.
 
-    **Remediation:** Verify the INPS classification of private security employers against the INPS circular.
+    **Remediation:** Resolved: INPS classification manual read on 2026-11-14.
 
-!!! warning "vigilanza-privata-assiv/apprentice_seniority · seniority · impact unknown · open"
+!!! warning "vigilanza-privata-assiv/apprentice_seniority · seniority · impact unknown · unsourced"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
 
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.

@@ -73,7 +73,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SENIORITY biennale (24 months), max 7 scatti, amounts from Art. 41 CCNL 12/11/2020: 6 of 9 levels confirmed (A2, B1, B2, C1, C3, C4); A1=A2 (21.54), C2=C1 (25.56) and D1=C4 (30.73) by adjacent-level approximation (1° livello, 5°S and Quadri absent from the Art. 41 table).",
+        "text": "SENIORITY biennale (24 months), max 7 scatti, Art. 41 of the testo coordinato of the accordo of 11 November 2025 (PDF p. 104, https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf, sha256 526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f): '7° (C4 e D1) 30,73; 6°(C3) 28,10; 5°(C1 e C2) 25,56; 4°(B2) 24,38; 3°(B1) 23,24; 2°(A2) 21,54'. C2 and D1 take the rows the table names. The 1° livello (A1) has no row: its workers pass to the 2° livello 'dopo 18 mesi di effettivo servizio' (capitolo D punto 1.a, PDF p. 54), before the first biennio, so the A1 amount (21.54, as A2) is not paid at that level.",
         "capability": "seniority",
         "monetary_impact": "unknown",
         "limitation": {
@@ -86,7 +86,8 @@
               "D1"
             ]
           },
-          "remediation": "Source the Art. 41 amounts of 1° livello, 5°S and Quadri and replace the adjacent-level values."
+          "remediation": "Resolved: art. 41 and capitolo D of the testo coordinato 2025 read on 2026-11-14.",
+          "status": "resolved"
         }
       },
       {
@@ -235,6 +236,27 @@
         "checked": [
           "work_rules.insured_absence.maternity",
           "work_rules.insured_absence.injury"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-telecomunicazioni-asstel-seniority-rows",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Rows of the seniority table of art. 41 of the testo coordinato 2025, from the targeted research of a separate model session; text layer.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2026/10/CCNL-TLC-TESTO-coordinato-stesura-finale-291026-3.pdf",
+            "sha256": "526cb1337fc738cb3997c8812223f50c0ab7343170876e48c233c448135b431f"
+          }
+        ],
+        "findings": [
+          "C2 is in the 5° row (25.56) and D1 in the 7° (30.73); A1 passes to A2 after 18 months, before any biennio."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]
@@ -1914,7 +1936,7 @@
     "effective_until": null,
     "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
     "verification_status": "unverified",
-    "source_hash": "e4eb002b96de5ac7480d873582b64db3364aee3205acedfb8a804332f9473589",
+    "source_hash": "7506db93a64fe6b8d7a60387878b491062d04b71142a84b7e2f8515c32dbf478",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

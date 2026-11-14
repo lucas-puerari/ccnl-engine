@@ -219,7 +219,20 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Source the payment basis and timing for PAR left when employment ends before the conto ore expires."
+          "remediation": "Source the payment basis and timing for PAR left when employment ends before the conto ore expires.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+              "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151",
+              "title": "PDF p. 156 (stampata p. 152), Sez. Quarta, Tit. III, art. 5, Permessi annui retribuiti."
+            },
+            {
+              "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+              "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec",
+              "title": "PDF p. 35 (stampata p. 30), Sez. Quarta, Tit. III, art. 5, Permessi annui retribuiti; citazione della parte non barrata, verificata sull'immagine della pagina."
+            }
+          ]
         }
       },
       {
@@ -3398,7 +3411,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "ff4fa576c22d449dfa708a91b90bebc3e721f1aefdb9a686afc7a3df4875bb05",
+    "source_hash": "2436995a8a0ca47809c134a45c7e7edee0905a5b3a4ff6b85111a0234f5cea1f",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },

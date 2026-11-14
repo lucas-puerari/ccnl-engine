@@ -133,7 +133,30 @@
               "apprentice"
             ]
           },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://www.gazzettaufficiale.it/eli/gu/2015/06/24/144/so/34/sg/pdf",
+              "sha256": "3a019a68a39ea23241f145e96ea144fecd2d1dd4aae290921c3d62100c8901db",
+              "title": "PDF p. 28 (stampata p. 24), D.Lgs. 81/2015, art. 42, comma 5."
+            },
+            {
+              "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2009/04/c_edilicoop2000.pdf",
+              "sha256": "99e9fedbcad5b4a77ca54ba60394f092afbe677bc6837d0187d1e323109e8c4a",
+              "title": "PDF p. 40, art. 30 (testo storico, non prova della disciplina attuale)."
+            },
+            {
+              "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2025/02/20250221_Verbale-accordo-rinnovo-c-1-1.pdf",
+              "sha256": "f8c32f93abfee56487fc0a7836227c511ff00cd72a5a2ea7f2edc18fa013aa9f",
+              "title": "accordo 21/02/2025; nessuna clausola sugli scatti degli apprendisti nel testo estraibile."
+            },
+            {
+              "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2009/04/VERBALE-DI-ACCORDO-CCNL-COOPERATIVE.pdf",
+              "sha256": "0655507846614c2454c61dc922679ae02a35c1e10b66a5933409b3b92ec09748",
+              "title": "verbale/tabelle; nessuna clausola pertinente nel testo estraibile."
+            }
+          ]
         }
       },
       {
@@ -2402,7 +2425,7 @@
     "effective_until": null,
     "source": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/",
     "verification_status": "unverified",
-    "source_hash": "e9e3831253af7d276332bfb9d1cce14a45f45527b6f2d2d9b59a31362605a2cc",
+    "source_hash": "9a34bea0e74a65bc4e103b453edc2415c6cb07fa13d93203995c4c06bb70c8a3",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

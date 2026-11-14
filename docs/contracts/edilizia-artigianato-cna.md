@@ -136,7 +136,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Pass the Cassa Edile contributions as a bilateral fund event, or model the Cassa Edile system.
 
-!!! warning "edilizia-artigianato-cna/apprentice_seniority · seniority · impact unknown · open"
+!!! warning "edilizia-artigianato-cna/apprentice_seniority · seniority · impact unknown · unsourced"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
 
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
@@ -150,7 +150,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the artigianato rates of 2026 on an INPS or association table, mark the inps block of contribution/2026/artigianato.json derived, then remove this note.
 
-!!! warning "edilizia-artigianato-cna/loyalty_service_count · base_salary · impact yes · open"
+!!! warning "edilizia-artigianato-cna/loyalty_service_count · base_salary · impact yes · unsourced"
     Art. 65 does not specify the anniversary of a hire on 29 February in a common year; the engine uses 28 February.
 
     **Applies when:** `base_salary` applies; the run takes the engine code path.

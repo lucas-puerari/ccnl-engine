@@ -117,7 +117,7 @@ percentage: 0.95
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "carta-cartone-assocarta/emc_absorption_unconfirmed · base_salary · impact unknown · open"
+!!! warning "carta-cartone-assocarta/emc_absorption_unconfirmed · base_salary · impact unknown · unsourced"
     EMC CHECK: aggregators and a payroll firm print 2026 minimi without the EMC (C1 1960.11 = 1835.11 + 125), but none cites a clause removing it; the signed 2026 ipotesi keeps Art. 100 bis and Art. 49. The Assocarta 'nota illustrativa e tabella nuovi minimi' of 24/02/2026 is members-only and was not read: if it shows the EMC absorbed, the 2026-2028 values are EUR 13-33 too high.
 
     **Applies when:** `base_salary` applies; from 2026-04-01.

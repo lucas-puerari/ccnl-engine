@@ -67,22 +67,6 @@
       }
     },
     {
-      "id": "par_conto_ore_hourly_elements",
-      "institute": "leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "LEAVE, CONTO ORE: the hourly elements of Tit. IV art. 3 are included in the PAR payout at expiry when the caller states hourly_pay_elements (zero confirms none; missing blocks payment). PAR left when employment ends before expiry remain unpaid: Tit. III art. 5 specifies liquidation at expiry but no termination basis.",
-      "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
-      "state": "absent",
-      "remediation": "Source the payment basis and timing for PAR left when employment ends before the conto ore expires.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "metalmeccanico-federmeccanica/par_conto_ore_hourly_elements"
-        ]
-      }
-    },
-    {
       "id": "par_sector_and_shift_hours",
       "institute": "leave",
       "variant": "all",

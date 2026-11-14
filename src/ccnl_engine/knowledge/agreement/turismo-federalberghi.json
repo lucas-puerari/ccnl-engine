@@ -4088,7 +4088,30 @@
               "apprentice"
             ]
           },
-          "remediation": "Read a signed copy of the accord of 17 April 2012 and its 2014 amendment."
+          "remediation": "Read a signed copy of the accord of 17 April 2012 and its 2014 amendment.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%2018%20gennaio%202014/ccnl%20turismo%2018%2001%2014%20versione%20guida.pdf",
+              "sha256": "c81ff0334a9dbed9ec45136ced81d7e1db51a3d0f082badf511969a1fd049356",
+              "title": "PDF p. 12 (pagina stampata non indicata), titolo IV, capo I, art. 14 bis."
+            },
+            {
+              "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/Accordo%20apprendistato%2001%20agosto%202017/accordo%20apprendistato%2001082017.pdf",
+              "sha256": "92666822eab8d3767d80214c0ad575d62a6af410d14210c9410f50159ff4bb8c",
+              "title": "accordo successivo; richiama l'accordo del 2012 come modificato nel 2014, senza riprodurre la tabella originaria delle durate del professionalizzante."
+            },
+            {
+              "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/Accordo%2016%20giugno%202014%20-%20apprendistato/accordo%2016%20giugno%202014.pdf",
+              "sha256": "92ed6727025b1c830388bd043841c4d48497399cf7c6c04416e3b9e3543dd829",
+              "title": "accordo scansito, letto mediante OCR; modifica l'articolo 15 dell'accordo del 2012, non documenta le durate degli articoli 13–14."
+            },
+            {
+              "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+              "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b",
+              "title": "accordo di rinnovo scansito; l'estrazione testuale non restituisce le durate richieste. Non costituisce copia degli accordi ricercati."
+            }
+          ]
         }
       },
       {
@@ -4131,7 +4154,25 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Obtain Annex G and verify current applicability and cohort amounts before modelling."
+          "remediation": "Obtain Annex G and verify current applicability and cohort amounts before modelling.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+              "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4",
+              "title": "PDF p. 183 (stampata p. 183), art. 227, «Premio di anzianità» (testo controllato sull'immagine della scansione)."
+            },
+            {
+              "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%2018%20gennaio%202014/ccnl%20turismo%2018%2001%2014%20versione%20guida.pdf",
+              "sha256": "c81ff0334a9dbed9ec45136ced81d7e1db51a3d0f082badf511969a1fd049356",
+              "title": "accordo 2014, 29 pagine; nessun allegato G né tabella di questo premio."
+            },
+            {
+              "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+              "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b",
+              "title": "accordo 2024, 58 pagine; nessun allegato G né importi del premio di anzianità alberghiero."
+            }
+          ]
         }
       },
       {
@@ -4164,7 +4205,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "52d641398e38b5bac8557873319f6826b8e4f2a1b8d92945755923a839205e44",
+    "source_hash": "38b69b5e0728f2b716d4c681f4e7ba52d0713f918ea8e893083b0c6c7c4f38b4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -19,22 +19,6 @@
       }
     },
     {
-      "id": "apprenticeship_durations_unsourced",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "APPRENTICESHIP DURATIONS: the durations of the professionalizzante come from the accord of 17 April 2012 as amended in 2014, of which no signed or CNEL copy was found (only aggregator copies); the percentages of art. 58 are verified. Every apprentice run carries this limitation.",
-      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
-      "state": "absent",
-      "remediation": "Read a signed copy of the accord of 17 April 2012 and its 2014 amendment.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "turismo-federalberghi/apprenticeship_durations_unsourced"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",
@@ -95,22 +79,6 @@
       "links": {
         "limitations": [
           "turismo-federalberghi/guarantee_element_2027"
-        ]
-      }
-    },
-    {
-      "id": "hotel_legacy_award",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 227 of the cached 2010 hotel-sector scan (PDF p. 183) abolishes the former seniority prize effective 31 May 1986 but preserves acquired rights of workers then in service. The referenced Annex G is missing from the cached scan and its amounts cannot be verified here. The 2024 production-tier rules do not encode this legacy entitlement; the different Federturismo Annex 9 is not evidence of its amounts.",
-      "calculation": "ccnl/turismo-federalberghi:coverage.notes",
-      "state": "unverified",
-      "remediation": "Obtain Annex G and verify current applicability and cohort amounts before modelling.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "turismo-federalberghi/hotel_legacy_award"
         ]
       }
     },

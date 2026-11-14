@@ -117,7 +117,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Supply any actual preserved monthly balances as individual elements and, for the new allowance, the level held and whether service with the same employer was uninterrupted on 1 September 2025; absent those facts, the run cannot reconstruct the worker's historical pay or correct the milestone approximation.
 
-!!! warning "scuole-materne-fism/sickness_net_basis · sickness · impact unknown · open"
+!!! warning "scuole-materne-fism/sickness_net_basis · sickness · impact unknown · unsourced"
     SICKNESS (Art. 69): the CCNL integrates up to 100% of the net monthly pay ('retribuzione mensile netta') without saying how the net pay is computed. The engine grosses up the INPS indemnity by the worker's INPS rate (the 'lordizzazione' of payroll practice, Ordine dei Consulenti del Lavoro di Salerno) and tops it up to the measure of the gross daily quota; IRPEF is left out, as it falls on both. Day bands, carenza by event, the yearly comporto and the exclusion of apprentices are modelled.
 
     **Applies when:** `sickness` applies.

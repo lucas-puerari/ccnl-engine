@@ -142,7 +142,25 @@
         "monetary_impact": "unknown",
         "limitation": {
           "variant": "sickness_net_basis",
-          "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 46, align the computation, then resolve this limitation."
+          "remediation": "Find a source (an interpretation of the parties, an INPS or Ministry text) that defines the net daily pay of Art. 46, align the computation, then resolve this limitation.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_AREA-ALIMENTAZIONE-PANIFICAZIONE_2024.pdf",
+              "sha256": "5c0aa439b903f81d197cdda41896d100c195ea5c95b031949bf64399e105c2a2",
+              "title": "PDF p. 99 (stampata p. 100), art. 46."
+            },
+            {
+              "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+              "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e",
+              "title": "PDF p. 59, art. 46 (scansione, OCR verificato sul corrispondente testo leggibile FLAI; a capo ricomposti)."
+            },
+            {
+              "url": "https://www.fondofsba.it/wp-content/uploads/2024/11/Regolamento_FSBA_11_09_2024.pdf",
+              "sha256": "c345db470ee7a3427e302419a59ed5ce0733502b6a597c9f46fd5df37944b3db",
+              "title": "disciplina assegni di integrazione salariale FSBA, non il netto dell’integrazione per malattia dell’art. 46."
+            }
+          ]
         }
       },
       {
@@ -2174,7 +2192,7 @@
     "effective_until": null,
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "242a4c707afb3dae1e90720193c41c0d5ac01f228d83c0d6a67860b811de5ff0",
+    "source_hash": "f4df53419923f49fc380034edce47dcefd1ef81d0b9a910f602eb19c5c5d82f5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

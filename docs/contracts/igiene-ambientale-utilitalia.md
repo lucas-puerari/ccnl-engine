@@ -143,7 +143,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Verify the INPS rates of igiene ambientale against a sector-specific circular.
 
-!!! warning "igiene-ambientale-utilitalia/fund_paid_month · pension_fund_contribution · impact yes · open"
+!!! warning "igiene-ambientale-utilitalia/fund_paid_month · pension_fund_contribution · impact yes · unsourced"
     Previambiente is due on the pay of the month (art. 65 c. 8): none for a month without pay, and 'commisurato alla retribuzione corrisposta' for a month with a paid absence, a rule the engine does not compute. A month paid in part (an unpaid absence, sickness, a partial month) keeps the full contributions of an enrolled worker.
 
     **Applies when:** `pension_fund_contribution` applies; the run takes the engine code path.

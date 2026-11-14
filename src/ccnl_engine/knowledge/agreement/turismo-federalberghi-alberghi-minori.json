@@ -3822,7 +3822,20 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Obtain Annex G and verify current applicability and cohort amounts for smaller hotels before modelling."
+          "remediation": "Obtain Annex G and verify current applicability and cohort amounts for smaller hotels before modelling.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+              "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4",
+              "title": "PDF p. 183 (stampata p. 183), art. 227; citazione verificata sull'immagine della pagina renderizzata a 200 dpi."
+            },
+            {
+              "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+              "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b",
+              "title": "PDF p. 57 (stampata p. 57), «Stesura del CCNL» (lettura OCR della scansione)."
+            }
+          ]
         }
       },
       {
@@ -3855,7 +3868,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "bcb80b75b284835cd760b18ecff4f89e4aa8293f13721300708381e7c045364b",
+    "source_hash": "deb965c0b49c9477d2c80f12491fcfbb5c963ba0229ede84f830e67113371d61",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },

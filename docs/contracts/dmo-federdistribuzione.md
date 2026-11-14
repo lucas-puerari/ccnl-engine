@@ -161,7 +161,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: parameters.health_funds ebidim, fondo_est and quas, read on 2026-11-05.
 
-!!! warning "dmo-federdistribuzione/apprentice_hospital_share · sickness · impact yes · open"
+!!! warning "dmo-federdistribuzione/apprentice_hospital_share · sickness · impact yes · unsourced"
     Art. 47 b): the employer pays 60% of the gross pay on the days of a hospital stay, read as added to the INPS indemnity ('oltre a quanto previsto dalla legislazione vigente'); the text does not say whether the 60% is instead the whole treatment the employer tops the INPS share up to, which would pay 50 points of the gross daily pay less on days 4-20 (60% in all against 50% + 60%). The INPS indemnity during the stay is not reduced to 2/5 for a worker without family dependants.
 
     **Applies when:** `sickness` applies; contract type in apprentice.
