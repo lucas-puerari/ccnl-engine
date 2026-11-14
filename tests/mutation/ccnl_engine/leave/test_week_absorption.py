@@ -122,3 +122,10 @@ def test_the_cooperative_38_hour_week_leaves_24_hours(
         LeaveBucket.ROL: Decimal(rol),
         LeaveBucket.EX_FESTIVITA: Decimal(ex_festivita),
     }
+
+
+def test_the_small_cooperative_has_66_hours_in_march_2026() -> None:
+    """ANCC art. 147 (2024): 60 hours and 6 from April 2025; 6 more in April 2026."""
+    assert _permits(
+        "distribuzione-cooperativa-ancc", 40, subsector="piccola_impresa_minore"
+    ) == {LeaveBucket.ROL: Decimal(34), LeaveBucket.EX_FESTIVITA: Decimal(32)}

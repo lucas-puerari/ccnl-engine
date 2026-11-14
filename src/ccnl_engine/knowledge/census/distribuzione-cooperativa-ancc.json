@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "imprese_minori_permits",
-      "institute": "leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "PERMITS, IMPRESE MINORI (Title XV, Art. 147 as renewed on 29 March 2024, CNEL 183889 pp. 59-60): a 40-hour week for every worker; in the small firms of one unit or up to 20 full-time staff a unit, 60 hours of permits a year, 66 from 1 April 2025 and 72 from 1 April 2026 (aim 88). The file has no input for an impresa minore and applies the permits of the large cooperatives.",
-      "calculation": "ccnl/distribuzione-cooperativa-ancc:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the impresa minore sub-sector and the Art. 147 hours of its small firms.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "distribuzione-cooperativa-ancc/imprese_minori_permits"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",
@@ -334,6 +318,22 @@
       "links": {
         "limitations": [
           "sickness_cumulation_window"
+        ]
+      }
+    },
+    {
+      "id": "small_cooperative_new_hire_ramp",
+      "institute": "leave",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "Art. 147 (2024) grants the 60 hours of the small imprese minori 'per tutti i lavoratori dipendenti'; the engine applies to their new hires the ROL ramp of Art. 61 C (50% after two years, 100% after four), which has no sub-sector exception.",
+      "calculation": "ccnl/distribuzione-cooperativa-ancc:coverage.notes",
+      "state": "absent",
+      "remediation": "Exempt the small imprese minori from the ROL ramp of Art. 61 C.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "distribuzione-cooperativa-ancc/small_cooperative_new_hire_ramp"
         ]
       }
     },

@@ -155,16 +155,21 @@
         "capability": "leave"
       },
       {
+        "kind": "info",
+        "text": "PERMITS, IMPRESE MINORI (Title XV, Art. 147 as renewed on 29 March 2024, CNEL 183889 pp. 59-60): a 40-hour week for every worker (Employment full_time_weekly_hours 40: the 104 hours, not absorbed); in the small firms of one unit or up to 20 full-time staff a unit (EmployerProfile.subsector 'piccola_impresa_minore') 60 hours a year, read as the 32 of ex festività and 28 of reduction, plus 6 from 1 April 2025 and 6 from 1 April 2026 (72, aim 88).",
+        "capability": "leave"
+      },
+      {
         "kind": "simplification",
-        "text": "PERMITS, IMPRESE MINORI (Title XV, Art. 147 as renewed on 29 March 2024, CNEL 183889 pp. 59-60): a 40-hour week for every worker; in the small firms of one unit or up to 20 full-time staff a unit, 60 hours of permits a year, 66 from 1 April 2025 and 72 from 1 April 2026 (aim 88). The file has no input for an impresa minore and applies the permits of the large cooperatives.",
+        "text": "Art. 147 (2024) grants the 60 hours of the small imprese minori 'per tutti i lavoratori dipendenti'; the engine applies to their new hires the ROL ramp of Art. 61 C (50% after two years, 100% after four), which has no sub-sector exception.",
         "capability": "leave",
         "monetary_impact": "yes",
         "limitation": {
-          "variant": "imprese_minori_permits",
+          "variant": "small_cooperative_new_hire_ramp",
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add the impresa minore sub-sector and the Art. 147 hours of its small firms."
+          "remediation": "Exempt the small imprese minori from the ROL ramp of Art. 61 C."
         }
       }
     ]
@@ -399,6 +404,27 @@
         "checked": [
           "work_rules.leave_rules.permits",
           "work_rules.leave_rules.permit_deadline"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-small-cooperatives",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 147 of the renewal of 29 March 2024 (imprese minori).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+            "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
+          }
+        ],
+        "findings": [
+          "Added the hours of the small imprese minori (60, +6 from April 2025, +6 from April 2026) under the sub-sector piccola_impresa_minore and closed imprese_minori_permits; the other imprese minori work 40 hours and keep the 104. Recorded that the Art. 61 C ramp still applies to their new hires."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules.permits"
         ]
       }
     ]
@@ -3083,7 +3109,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
     "verification_status": "unverified",
-    "source_hash": "2f5b5cc75420c9fd059813bb3e73fcd7e997c17341c316f8bd44e9f1f875e567",
+    "source_hash": "fe86ddbc52e6605826bd325d583495a5baea800a037468c5b058219d52ac7bbd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3575,6 +3601,12 @@
           "annual_hours": [
             {
               "hours": "72"
+            },
+            {
+              "hours": "28",
+              "subsectors": [
+                "piccola_impresa_minore"
+              ]
             }
           ],
           "month_credit": "whole_month",
@@ -3652,7 +3684,75 @@
               "verification_status": "verified",
               "review_id": "2026-11-14-ai-permits"
             }
-          }
+          },
+          "extra_hours": [
+            {
+              "hours": "6",
+              "valid_from": "2025-04-01",
+              "subsectors": [
+                "piccola_impresa_minore"
+              ],
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-ancc-rinnovo-2024-183889",
+                    "title": "Ipotesi di accordo di rinnovo del CCNL distribuzione cooperativa, 29 marzo 2024, CNEL 183889 (scansione firmata)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                    "published_on": "2024-03-29",
+                    "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
+                  },
+                  "page": "59-60",
+                  "section": "Art. 147 Orario di lavoro (Titolo XV, imprese minori)",
+                  "quote": "nelle imprese minori della distribuzione cooperativa identificate nel presente titolo, che constano di una sola unità produttiva ovvero che occupano fino ad una media per unità produttiva di 20 addetti equivalenti f.t., i permessi individuali annui sono riconosciuti nella misura di 60 ore per tutti i lavoratori dipendenti. Saranno riconosciute ulteriori 12 ore di permesso retribuito in misura pari a 6 ore a decorrere dal 1° aprile 2025 e a ulteriori 6 ore dal 1° aprile 2026"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-14T00:00:00Z",
+                  "effective_from": "2025-04-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-14T00:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-14-ai-small-cooperatives"
+                }
+              }
+            },
+            {
+              "hours": "6",
+              "valid_from": "2026-04-01",
+              "subsectors": [
+                "piccola_impresa_minore"
+              ],
+              "provenance": {
+                "status": "verified",
+                "location": {
+                  "source_document": {
+                    "document_id": "cnel-ancc-rinnovo-2024-183889",
+                    "title": "Ipotesi di accordo di rinnovo del CCNL distribuzione cooperativa, 29 marzo 2024, CNEL 183889 (scansione firmata)",
+                    "kind": "cnel",
+                    "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+                    "published_on": "2024-03-29",
+                    "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
+                  },
+                  "page": "59-60",
+                  "section": "Art. 147 Orario di lavoro (Titolo XV, imprese minori)",
+                  "quote": "nelle imprese minori della distribuzione cooperativa identificate nel presente titolo, che constano di una sola unità produttiva ovvero che occupano fino ad una media per unità produttiva di 20 addetti equivalenti f.t., i permessi individuali annui sono riconosciuti nella misura di 60 ore per tutti i lavoratori dipendenti. Saranno riconosciute ulteriori 12 ore di permesso retribuito in misura pari a 6 ore a decorrere dal 1° aprile 2025 e a ulteriori 6 ore dal 1° aprile 2026"
+                },
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-14T00:00:00Z",
+                  "effective_from": "2026-04-01",
+                  "verified_by": "claude-opus-5-5",
+                  "verified_at": "2026-11-14T00:00:00Z",
+                  "verification_status": "verified",
+                  "review_id": "2026-11-14-ai-small-cooperatives"
+                }
+              }
+            }
+          ]
         }
       ],
       "permit_deadline": {
