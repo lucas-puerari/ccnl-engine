@@ -760,6 +760,7 @@
     ],
     "agreement/distribuzione-cooperativa-ancc.json": [
       "distribuzione-cooperativa-ancc/apprentice_seniority",
+      "distribuzione-cooperativa-ancc/imprese_minori_permits",
       "distribuzione-cooperativa-ancc/seniority_super_levels"
     ],
     "agreement/dmo-federdistribuzione.json": [

@@ -370,3 +370,24 @@ def test_studi_pays_the_ex_festivita_with_the_rol() -> None:
     )
 
     assert _paid(result)["ex"] == Decimal(32)
+
+
+@pytest.mark.parametrize(
+    ("period", "paid"),
+    [(PeriodId(2026, 12), {}), (PeriodId(2027, 6), {"ex": Decimal(32)})],
+)
+def test_ancc_carries_the_permits_to_june(
+    period: PeriodId, paid: dict[str, Decimal]
+) -> None:
+    """ANCC art. 115 c. 4: taken by 30 June, then paid; no choice of the employer."""
+    hours = Decimal(352) if period.year == 2026 else Decimal(384)
+    result = _run(
+        None,
+        period,
+        LeaveBalance(_EX, 2026, hours, Decimal(0)),
+        slug="distribuzione-cooperativa-ancc",
+        level="4",
+    )
+
+    assert {k: v for k, v in _paid(result).items() if k == "ex"} == paid
+    assert "permit_carryover" not in {b.detail for b in result.blockers}

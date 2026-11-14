@@ -109,3 +109,16 @@ def test_the_stabilimenti_balneari_accrue_108_hours(
     accrued = _permits("turismo-federalberghi", None, subsector)
 
     assert accrued[LeaveBucket.ROL] == Decimal(rol)
+
+
+@pytest.mark.parametrize(
+    ("week", "rol", "ex_festivita"), [(40, "72", "32"), (38, "24", "0")]
+)
+def test_the_cooperative_38_hour_week_leaves_24_hours(
+    week: int, rol: str, ex_festivita: str
+) -> None:
+    """ANCC Allegato 13 and art. 115: 38 hours absorb 80 of 104, 24 remain."""
+    assert _permits("distribuzione-cooperativa-ancc", week) == {
+        LeaveBucket.ROL: Decimal(rol),
+        LeaveBucket.EX_FESTIVITA: Decimal(ex_festivita),
+    }

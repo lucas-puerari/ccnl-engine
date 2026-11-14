@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | seniority |
+| **Limits of this contract** | leave, seniority |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 11 verified / 52 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 14 verified / 52 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -68,6 +68,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 187 c. 2 of the 2011 official text (PDF p. 201, text layer). | corrected | The divisors of the half-hour weeks (167 for 38.5, 184 from 42.5) are now expressible: added 38.5, 42.5 and 43.5 to time_supplements.week_divisors. |
 | 2026-11-13 | claude-opus-5-5 (ai) | Art. 75 of the signed ipotesi di accordo of 29 March 2024 deposited at the CNEL (accordo 183889, PDF p. 43, OCR of the page image). | confirmed | The 2024 renewal keeps two levels below for the first 24 months and one below after for destinations 4 to 1, one below throughout for level 5: the encoded tracks hold; limitation apprenticeship_2024_text_unread removed. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 182 of the testo ufficiale 2011 (seniority), against the renewals 2019 and 2024. | confirmed | Read Art. 182 in the text PDF (pp. 195-196): the seven amounts of the file match the table; the service counts from the 21st year of age, which the file did not apply. Upgraded the provenance from the aggregator to the signed text, added counted_from_age 21, and narrowed the proxy limitation to the 3S and 4S amounts, which the table does not print. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Artt. 61 C, 113, 115 and Allegato 13 of the testo ufficiale 2011; Art. 147 of the renewal of 29 March 2024. | corrected | The file had the ferie but no permit. Added the 104-hour pool with the 38-hour absorption that leaves 24 hours, the ramp of the hires after 22 December 2011 and the fixed 30 June deadline; recorded the imprese minori hours of Art. 147 (2024) as a limitation, the file having no input for them. |
 
 ## Salary table
 
@@ -129,6 +130,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
+
+!!! warning "distribuzione-cooperativa-ancc/imprese_minori_permits · leave · impact yes · open"
+    PERMITS, IMPRESE MINORI (Title XV, Art. 147 as renewed on 29 March 2024, CNEL 183889 pp. 59-60): a 40-hour week for every worker; in the small firms of one unit or up to 20 full-time staff a unit, 60 hours of permits a year, 66 from 1 April 2025 and 72 from 1 April 2026 (aim 88). The file has no input for an impresa minore and applies the permits of the large cooperatives.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add the impresa minore sub-sector and the Art. 147 hours of its small firms.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -338,6 +346,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     PRE-SIGNING TRANCHES: April 2023 (retroactive) and April 2024 tranches not modelled. Coverage starts at 2025-05-01 (first source-confirmed post-signing tranche).
     
     TERZO ELEMENTO (art. 186 c. 4): 3,10 EUR a month in provinces without collective surpluses, as the signed text prints; the renewal of 29 March 2024 does not amend art. 186. A Filcams pay table 2025-2027 prints 3,07: a summary table, not a signed text, so the signed amount is used. Where collective surpluses are in force, the frozen provincial amounts apply instead (not modelled: they depend on local bargaining).
+    
+    PERMITS, LARGE COOPERATIVES (Allegato 13, Art. 113, Art. 115, Art. 61 C of the testo ufficiale 2011, signed 22 December 2011): a pool of 104 hours a year, 32 for the abolished holidays and 72 of reduction; the 38-hour week of Art. 113 c. 1 absorbs 96 of them and leaves 24 (8 plus 16 not absorbable, Art. 115 c. 1), the 40-hour week of the hires after the signing (Art. 113 c. 5) absorbs none (EmployerProfile/Employment full_time_weekly_hours); the hires after 22 December 2011 take the 72 hours at 50% after two years and 100% after four (Art. 61 C); a twelfth per whole month of service; not taken by 30 June of the next year, paid with the pay of that date, with no choice of the employer (Art. 115 c. 4). The 2019 and 2024 renewals do not amend these articles.
     
 
 ## Raw data
