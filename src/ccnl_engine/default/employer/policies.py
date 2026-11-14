@@ -119,6 +119,13 @@ EMPLOYER_DEFAULTS: Mapping[str, FieldDefault] = {
         "weeks are kept by calendar year, marked inexact, and no payment of "
         "the hours left is made before the end of the employment",
     ),
+    "EmployerProfile.inail_rate": requires_fact(
+        "inail",
+        "employer.inail_rate",
+        FactEnforcement.PENDING,
+        "unknown INAIL rate of the position: no premium is accrued and the "
+        "employer cost leaves it out, without a blocker",
+    ),
     "EmployerProfile.second_level_elements": absence_is_fact("none agreed"),
     "EmployerProfile.sickness_window_counting": absence_is_fact(
         "the comporto of each illness the CCNL sets"

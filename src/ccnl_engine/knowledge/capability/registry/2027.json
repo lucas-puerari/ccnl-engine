@@ -64,15 +64,15 @@
     {
       "feature": "inail",
       "layer": "net",
-      "implementation": "unsupported",
-      "applies_when": "outside_input",
-      "handler": null,
+      "implementation": "native",
+      "applies_when": "decided",
+      "handler": "decision",
       "evidence": "derived",
       "variants": [],
       "required_facts": [
-        "employer.inail_tariff_rate"
+        "employer.inail_rate"
       ],
-      "description": "Premio INAIL a carico azienda"
+      "description": "Premio INAIL a carico azienda (imponibile del mese per il tasso applicato alla posizione, per mille)"
     },
     {
       "feature": "contribution_exemption",

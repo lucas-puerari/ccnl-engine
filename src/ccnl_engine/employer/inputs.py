@@ -5,6 +5,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 from datetime import date
+from decimal import Decimal
 
 from ccnl_engine.agreement.types import TaxSector
 from ccnl_engine.compensation.second_level.inputs import (
@@ -12,11 +13,13 @@ from ccnl_engine.compensation.second_level.inputs import (
     check_second_level_elements,
 )
 from ccnl_engine.contribution.zone.models import AgriculturalZone
+from ccnl_engine.employer.headcount import Headcount
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.regime.models import EmployerActivity
 from ccnl_engine.validators import (
     parse_enum,
     require_bool,
+    require_decimal,
     require_instance,
     require_int,
     require_str,
@@ -31,29 +34,6 @@ __all__ = [
 ]
 
 _FEATURE = "employer"
-
-
-@dataclass(frozen=True, slots=True)
-class Headcount:
-    """Employer headcount used to select INPS contribution tiers.
-
-    At least one: the worker being paid is an employee of the employer.
-
-    Attributes:
-        value: Number of employees, ``>= 1``. For the CIGO 50-person
-            threshold art. 13(2) requires the previous calendar year's
-            average (or the closing count of the first month for a new
-            employer). The engine uses this supplied value directly; it
-            does not derive or validate that statutory average.
-
-    Raises:
-        InvalidInputError: When ``value`` is not an int or is below 1.
-    """
-
-    value: int
-
-    def __post_init__(self) -> None:  # noqa: D105
-        require_int(self.value, "Headcount.value", feature=_FEATURE, minimum=1)
 
 
 def _validate_patron_day(day: str | None) -> None:
@@ -182,6 +162,10 @@ class EmployerProfile:
             ``missing_fact`` blocker.
         flexibility_programme_month: Month (1-12) the yearly programme of
             flexible hours starts (Studi art. 92); ``None``: calendar year.
+        inail_rate: The INAIL rate applied to the employer's position, per
+            mille, from the INAIL basi di calcolo of the year (art. 29 DPR
+            1124/1965): the run accrues the premium on its contribution
+            base.  ``None`` means not stated: no premium is computed.
 
     Raises:
         InvalidInputError: When ``headcount`` is not a :class:`Headcount`,
@@ -192,8 +176,9 @@ class EmployerProfile:
             ``provincial_pay_element``, ``second_level_premium``,
             ``permit_carryover``, ``legacy_section_applicable``,
             ``solidarity_fund_covered`` or
-            ``sickness_window_counting`` is not a bool, or ``subsector`` is
-            not a non-blank string.
+            ``sickness_window_counting`` is not a bool, ``subsector`` is
+            not a non-blank string, or ``inail_rate`` is not a non-negative
+            ``Decimal``.
     """
 
     headcount: Headcount
@@ -214,6 +199,7 @@ class EmployerProfile:
     flexibility_programme_month: int | None = None
     legacy_section_applicable: bool | None = None
     second_level_elements: tuple[SecondLevelElement, ...] = ()
+    inail_rate: Decimal | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         require_instance(
@@ -270,6 +256,13 @@ class EmployerProfile:
             ),
         )
         _validate_patron_day(self.patron_saint_day)
+        require_decimal(
+            self.inail_rate,
+            "EmployerProfile.inail_rate",
+            feature=_FEATURE,
+            minimum=Decimal(0),
+            optional=True,
+        )
         require_int(
             self.flexibility_programme_month,
             "EmployerProfile.flexibility_programme_month",

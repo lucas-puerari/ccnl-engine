@@ -55,9 +55,9 @@ formulas or caller-declared amounts.
 
 | Scope | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
-| core | 25 | 0 | 0 | 0 |
+| core | 26 | 0 | 0 | 0 |
 | scenario | 18 | 10 | 2 | 0 |
-| outside_input | 0 | 0 | 0 | 5 |
+| outside_input | 0 | 0 | 0 | 4 |
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -66,7 +66,7 @@ formulas or caller-declared amounts.
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | core | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 34 / 24 / 45 / 0 |
 | `inps_employer` | Contributi INPS a carico azienda | core | net | native | always | pipeline | — | — | simplified | 42 / 24 / 53 / 0 |
-| `inail` | Premio INAIL a carico azienda | outside_input | net | unsupported | outside_input | — | `employer.inail_tariff_rate` | — | unavailable | none bundled |
+| `inail` | Premio INAIL a carico azienda (imponibile del mese per il tasso applicato alla posizione, per mille) | core | net | native | decided | decision | `employer.inail_rate` | — | implemented | none bundled |
 | `contribution_exemption` | Esonero contributivo | outside_input | net | unsupported | outside_input | — | `employer.contribution_exemption` | — | unavailable | none bundled |
 | `fiscal_adjustment` | Conguaglio IRPEF da assistenza fiscale o periodo precedente | outside_input | net | unsupported | outside_input | — | `facts.fiscal_adjustment` | — | unavailable | none bundled |
 | `maternity_leave` | Congedo di maternità: indennità INPS anticipata e integrazione CCNL | scenario | work_rules | native | event | event | — | inps_indemnity, ccnl_top_up | verified | 1 / 0 / 0 / 0 |
