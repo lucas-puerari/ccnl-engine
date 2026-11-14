@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ✅ |
 | **Limits of this contract** | sickness |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | Art. 34 impiegati of the CCNL 2021-2024 (p. 45), kept by the 2025 renewal. | corrected | Added work_rules.sickness_rules_by_category for impiegati and quadri. |
 | 2026-11-07 | claude-opus-5-5 (ai) | Art. 6 (apprentices) and art. 34 (impiegati a tempo indeterminato) of the CCNL 2021-2024, kept by the 2025 renewal. | corrected | Added work_rules.apprentice_sickness_rules (50% for 180 days a year).<br>The impiegati and quadri rule covers only permanent contracts (permanent_only). |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 6 (apprentices) and Art. 34 (comporto extensions) of the 2 July 2025 renewal, read on the page images of p. 4 and p. 8-9. | corrected | The renewal raises the apprentice sickness treatment of Art. 6 from 50% to 100% of the normal pay; the file kept 50% and said the renewal left it unchanged.<br>The serious-illness and L. 68/99 comporto extensions are unpaid: the sickness_rules limitation is narrowed to the life-saving therapy days. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 6 table of durations and the level 5 sentence, CCNL 2021-2024 p. 23, kept by the 2025 renewal. | corrected | Destination level 5 had no apprenticeship track; added the 24-month track (level 6 for 6 months, then level 5). |
 
 ## Salary table
 
@@ -105,6 +106,9 @@ Destination levels: `2`, `3A`, `3B`, `4A`, `4B`
 
 **apprendistato professionalizzante (livello 1)** (type: `under_classification`)  
 Destination levels: `1`
+
+**apprendistato professionalizzante (livello 5)** (type: `under_classification`)  
+Destination levels: `5`
 
 ## Known simplifications
 
@@ -285,11 +289,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the CCNL clause on the holidays falling on a Sunday and record it as work_rules.sunday_holidays.
 
-### Without monetary impact
-
-!!! note ""
-    APPRENTICESHIP: under_classification for destinations 2, 3A, 3B, 4A, 4B (36-month, 10/12/14 periods) and level 1 (36-month, 10/10/16 periods). Destination 5 (24-month exception, Article 6) not modeled. Level 1S is not an apprenticeship destination.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -301,6 +300,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SALARY MODEL: split. base_salary = minimo tabellare (4 tranches: +60 at 4A on 01/01/2025, +50 on 01/01/2026, +50 on 01/01/2027, +40 on 01/01/2028). 50/50 parametric formula verified against published Allegato A table.
     
     CONTINGENZA: per-level amounts frozen at 01/11/1991 (Allegato B, CCNL 2021). EDR 10.33 EUR uniform for all levels (Accordo Interconfederale 31/07/1992).
+    
+    APPRENTICESHIP (Art. 6): under_classification for destinations 2, 3A, 3B, 4A, 4B (36 months, 10/12/14), level 1 (36 months, 10/10/16) and level 5 (24 months: level 6 for the first 6 months, level 5 from the second period). Level 1S is not an apprenticeship destination.
     
     APPRENTICE SENIORITY (Art. 6, p. 23 of the CCNL 2021-2024): a third of the apprenticeship counts for the aumenti periodici of the confirmed apprentice; no increment during it (seniority_increments.apprentice_amount 0.00).
     
