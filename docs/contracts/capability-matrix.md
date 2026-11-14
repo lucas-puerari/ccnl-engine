@@ -55,9 +55,9 @@ formulas or caller-declared amounts.
 
 | Scope | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
-| core | 28 | 0 | 0 | 0 |
+| core | 29 | 0 | 0 | 0 |
 | scenario | 18 | 10 | 2 | 0 |
-| outside_input | 0 | 0 | 0 | 2 |
+| outside_input | 0 | 0 | 0 | 1 |
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -68,7 +68,7 @@ formulas or caller-declared amounts.
 | `inps_employer` | Contributi INPS a carico azienda | core | net | native | always | pipeline | — | — | simplified | 42 / 24 / 53 / 0 |
 | `inail` | Premio INAIL a carico azienda (imponibile del mese per il tasso applicato alla posizione, per mille) | core | net | native | decided | decision | `employer.inail_rate` | — | implemented | none bundled |
 | `contribution_exemption` | Esonero contributivo | outside_input | net | unsupported | outside_input | — | `employer.contribution_exemption` | — | unavailable | none bundled |
-| `fiscal_adjustment` | Conguaglio IRPEF da assistenza fiscale o periodo precedente | outside_input | net | unsupported | outside_input | — | `facts.fiscal_adjustment` | — | unavailable | none bundled |
+| `fiscal_adjustment` | Conguaglio da assistenza fiscale (730-4): rimborsi, saldi e acconti in busta con rate, interessi e incapienza (DM 164/1999 art. 19) | core | net | native | decided | decision | `employment.tax_returns` | — | implemented | none bundled |
 | `maternity_leave` | Congedo di maternità: indennità INPS anticipata e integrazione CCNL | scenario | work_rules | native | event | event | — | inps_indemnity, ccnl_top_up | verified | 1 / 0 / 0 / 0 |
 | `paternity_leave` | Congedo di paternità obbligatorio: indennità INPS al 100% anticipata dal datore | scenario | work_rules | native | event | event | — | inps_indemnity | implemented | 0 / 1 / 0 / 0 |
 | `parental_leave` | Congedo parentale: indennità INPS al 30% o all'80% anticipata dal datore | scenario | work_rules | native | event | event | — | inps_indemnity | implemented | 0 / 1 / 0 / 0 |

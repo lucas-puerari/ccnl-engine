@@ -170,6 +170,7 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
     ),
     "Employment.individual_elements": absence_is_fact("no element above the minimo"),
     "Employment.personal_withholdings": absence_is_fact("no order notified"),
+    "Employment.tax_returns": absence_is_fact("no 730-4 statement received"),
     "IndividualElement.absorbable": absence_is_fact("not absorbed by increases"),
     "IndividualElement.as_of": absence_is_fact("read only when absorbable"),
     "IndividualElement.extra_months": absence_is_fact("paid on the extra months"),

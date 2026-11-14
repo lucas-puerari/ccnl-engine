@@ -12,7 +12,10 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.irpef.prior.rules import taken_in
 from ccnl_engine.ledger.models import AccountKind
-from ccnl_engine.ledger.remittance.models import POST_CONGUAGLIO_WITHHOLDING
+from ccnl_engine.ledger.remittance.models import (
+    FORM730_DEBIT_CODES,
+    POST_CONGUAGLIO_WITHHOLDING,
+)
 from ccnl_engine.reconciliation.types import (
     InvariantCode,
     ReconciliationViolation,
@@ -143,7 +146,8 @@ def check_irpef_withheld_continuity(
 
     The IRPEF of an earlier conguaglio deferred on written request (coded
     1066) is withheld on the run but belongs to the earlier year, so it is
-    left out; the IRPEF other payers withheld on the earlier employments a
+    left out, as are the 730-4 debts it settles (they settle the tax
+    return, not the pay); the IRPEF other payers withheld on the earlier employments a
     conguaglio takes in joins the YTD without an entry of this run.
 
     Returns:
@@ -156,7 +160,10 @@ def check_irpef_withheld_continuity(
             e.amount
             for e in result.ledger_entries
             if e.account == AccountKind.ORDINARY_TAX
-            and e.remittance_code == POST_CONGUAGLIO_WITHHOLDING
+            and (
+                e.remittance_code == POST_CONGUAGLIO_WITHHOLDING
+                or e.remittance_code in FORM730_DEBIT_CODES
+            )
         ),
         _ZERO,
     )

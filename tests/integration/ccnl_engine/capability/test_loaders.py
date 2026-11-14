@@ -35,7 +35,6 @@ _IRPEF: dict[str, Any] = {
 #: The capabilities no 2026 run computes, each with its predicate.
 _UNSUPPORTED_2026 = {
     "contribution_exemption": "outside_input",
-    "fiscal_adjustment": "outside_input",
 }
 
 

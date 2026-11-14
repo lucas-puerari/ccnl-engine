@@ -95,3 +95,10 @@ def test_a_state_of_a_later_schema_is_rejected() -> None:
 
     with pytest.raises(InvalidInputError, match="newer than"):
         period_state_from_json(json.dumps(payload))
+
+
+@pytest.mark.parametrize("schema", [14, 15, 16, 17])
+def test_a_state_before_schema_18_carries_no_730_installment(schema: int) -> None:
+    """Written before the 730 settlement, a state carries no installment."""
+    state = period_state_from_json(_stored(schema))
+    assert state.cash.obligations.form730 == ()

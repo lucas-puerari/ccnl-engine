@@ -28,6 +28,7 @@ from ccnl_engine.validators import (
     require_instance,
     require_int,
 )
+from ccnl_engine.withholding.assistance.inputs import Form730Installment
 
 if TYPE_CHECKING:
     from ccnl_engine.personal_withholding.models import WithheldToDate
@@ -159,12 +160,15 @@ class EmploymentObligations:
         personal_withholdings: Amount withheld to date under each
             garnishment or salary assignment, at most one per id
             (:mod:`~ccnl_engine.personal_withholding.services`).
+        form730: Installments of a 730-4 statement still to settle on the
+            payslips (:mod:`~ccnl_engine.withholding.assistance`).
     """
 
     recoveries: tuple[RecoveryObligation, ...] = ()
     surtax: tuple[SurtaxObligation, ...] = ()
     deferred_shortfall: tuple[DeferredShortfall, ...] = ()
     personal_withholdings: tuple[WithheldToDate, ...] = ()
+    form730: tuple[Form730Installment, ...] = ()
 
     def __post_init__(self) -> None:
         """Reject two recoveries of the same credit opened in the same year.
@@ -210,6 +214,7 @@ class EmploymentObligations:
         years = [r.tax_year for r in self.recoveries]
         years.extend(o.tax_year for o in self.surtax)
         years.extend(d.tax_year for d in self.deferred_shortfall)
+        years.extend(i.year for i in self.form730)
         return max(years, default=None)
 
     def deferred_of(self, tax_year: int) -> DeferredShortfall | None:

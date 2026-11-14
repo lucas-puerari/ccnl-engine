@@ -21,6 +21,7 @@ from typing import TYPE_CHECKING
 from ccnl_engine.balance.obligation.models import carried_item_id
 from ccnl_engine.irpef.prior.rules import taken_in
 from ccnl_engine.ledger.models import AccountKind
+from ccnl_engine.ledger.remittance.models import FORM730_SURTAX_CODES
 from ccnl_engine.reconciliation.types import (
     InvariantCode,
     ReconciliationViolation,
@@ -99,7 +100,8 @@ def check_ytd_continuity(
 
     - ``earnings.gross``: the CASH_EARNINGS total;
     - ``earnings.inps_employee``: the EMPLOYEE_CONTRIBUTIONS total;
-    - ``tax.surtax``: the SURTAX total less the SURTAX_REFUNDS total;
+    - ``tax.surtax``: the SURTAX total less the SURTAX_REFUNDS total and
+      the 730-4 surtax it settles;
     - ``trattamento`` net credit: the ``tratt_integ_{run}`` entry less the
       ``tratt_integ_recovery_{run}`` entry, plus the trattamento of the
       earlier employments a conguaglio took in;
@@ -128,7 +130,16 @@ def check_ytd_continuity(
             "surtax_ytd",
             op.tax.surtax,
             _sum_account(result, AccountKind.SURTAX)
-            - _sum_account(result, AccountKind.SURTAX_REFUNDS),
+            - _sum_account(result, AccountKind.SURTAX_REFUNDS)
+            - sum(
+                (
+                    e.amount
+                    for e in result.ledger_entries
+                    if e.account == AccountKind.SURTAX
+                    and e.remittance_code in FORM730_SURTAX_CODES
+                ),
+                _ZERO,
+            ),
             closing.tax.surtax,
         ),
         (

@@ -90,15 +90,15 @@
     {
       "feature": "fiscal_adjustment",
       "layer": "net",
-      "implementation": "unsupported",
-      "applies_when": "outside_input",
-      "handler": null,
+      "implementation": "native",
+      "applies_when": "decided",
+      "handler": "decision",
       "evidence": "derived",
       "variants": [],
       "required_facts": [
-        "facts.fiscal_adjustment"
+        "employment.tax_returns"
       ],
-      "description": "Conguaglio IRPEF da assistenza fiscale o periodo precedente"
+      "description": "Conguaglio da assistenza fiscale (730-4): rimborsi, saldi e acconti in busta con rate, interessi e incapienza (DM 164/1999 art. 19)"
     },
     {
       "feature": "maternity_leave",

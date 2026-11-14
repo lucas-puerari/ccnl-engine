@@ -126,6 +126,11 @@ from ccnl_engine.variable_pay.inputs import (
     TravelAllowanceEvent,
     WelfareEvent,
 )
+from ccnl_engine.withholding.assistance.inputs import (
+    Form730Kind,
+    Form730Line,
+    Form730Settlement,
+)
 from ccnl_engine.working_time.inputs import (
     HolidayWorkEvent,
     HolidayWorkKind,
@@ -280,6 +285,13 @@ def _employment(contract: Contract) -> Employment:
                 date(2026, 1, 1),
                 Decimal("9000.00"),
                 Decimal("250.00"),
+            ),
+        ),
+        tax_returns=(
+            Form730Settlement(
+                date(2026, 6, 20),
+                (Form730Line(Form730Kind.IRPEF_BALANCE, Decimal("-120.00")),),
+                2,
             ),
         ),
     )
