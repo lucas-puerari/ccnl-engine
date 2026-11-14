@@ -33,6 +33,7 @@ from ccnl_engine.absence.insured.parental.handlers import (
     PARENTAL_INCOME_LIMITATION,
     _cohort_issue,
 )
+from ccnl_engine.absence.insured.parental.hourly.agreement import agreement_issue
 from ccnl_engine.absence.insured.parental.hourly.rules import (
     allocate_hours,
     hourly_top_up,
@@ -141,7 +142,8 @@ def _handle_hourly_parental(
         issues.append(_cohort_issue())
     limitations = [*base.limitations, PARENTAL_EXTRA_MONTH_LIMITATION]
     issue, unpublished = income_check(days, in_span, event.individual_income, PARENTAL)
-    effect.issues = [*issues, *([] if issue is None else [issue])]
+    local = agreement_issue(event.local_hourly_agreement, PARENTAL)
+    effect.issues = [*issues, *(i for i in (issue, local) if i is not None)]
     if unpublished:
         limitations.append(PARENTAL_INCOME_LIMITATION)
     effect.limitations = (*limitations, HOURLY_CCNL_LIMITATION)

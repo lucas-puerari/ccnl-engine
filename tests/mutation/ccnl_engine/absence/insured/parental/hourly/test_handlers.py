@@ -305,3 +305,31 @@ def test_unknown_history_is_an_incomplete_fact_issue() -> None:
     )
     assert _parental_decision(result).inputs["integration"] == Decimal(0)
     assert NOT_MODELLED not in {i.code for i in result.issues}
+
+
+@pytest.mark.parametrize(
+    ("agreement", "code", "cause"),
+    [
+        (None, "parental_hourly_agreement_unknown", IssueCause.FACT),
+        (True, "parental_hourly_agreement_unmodelled", IssueCause.RULE),
+    ],
+)
+def test_a_local_agreement_unknown_or_stated_blocks_the_criterion(
+    agreement: bool | None, code: str, cause: IssueCause
+) -> None:
+    """Art. 32 c. 1-ter applies only without a company or territorial rule."""
+    result = _run(replace(_leave(2, 3), local_hourly_agreement=agreement))
+
+    (issue,) = (i for i in result.issues if i.code.startswith("parental_hourly_agr"))
+    assert issue.code == code
+    assert issue.cause is cause
+    assert issue.capability == "parental_leave"
+    assert issue.status is CalculationStatus.INCOMPLETE
+    assert issue.fact == ("local_hourly_agreement" if agreement is None else None)
+
+
+def test_no_local_agreement_applies_the_criterion() -> None:
+    """Stated false: no issue of the agreement."""
+    result = _run(replace(_leave(2, 3), local_hourly_agreement=False))
+
+    assert not [i for i in result.issues if i.code.startswith("parental_hourly_agr")]
