@@ -139,23 +139,19 @@ def test_the_levels_of_a_contract_are_listed_for_employment() -> None:
 def test_a_reviewed_ccnl_is_payable_only_in_simulation() -> None:
     """Concia UNIC is reviewed: its explicit D2 year pays in simulation only.
 
-    Operational mode adds the one readiness blocker of the CCNL ruleset.
-    The only other blocker of both is the holiday on a Sunday of October
-    and November 2026, whose Concia clause is not sourced.
+    Operational mode adds the one readiness blocker of the CCNL ruleset,
+    its only blocker.
     """
     simulated = _SIMULATION.calculate_competence_year(competence_year())
     operational = _OPERATIONAL.calculate_competence_year(competence_year())
-    sunday = (BlockerCode.OPEN_LIMITATION, "sunday_holiday_ccnl_clause")
 
     readiness = {r.readiness for r in simulated.rulesets if r.kind is RulesetKind.CCNL}
     assert readiness == {RulesetReadiness.REVIEWED}
-    assert {(b.code, b.detail) for b in simulated.blockers} == {sunday}
-    before = [r for r in simulated.period_results if r.period_id.month < 10]
-    assert all(r.is_payable for r in before)
+    assert not simulated.blockers
+    assert all(r.is_payable for r in simulated.period_results)
     assert not operational.is_net_pay_payable
     assert not operational.is_employer_cost_complete
     assert {(b.code, b.detail) for b in operational.blockers} == {
-        sunday,
         (BlockerCode.RULESET_NOT_PRODUCTION, "ccnl/concia-unic"),
     }
 

@@ -266,7 +266,7 @@ def sunday_holiday(ctx: RunContext) -> SundayHoliday:
     ex = _ex_november_fourth(ctx, clause, public=public)
     found = sundays(ctx)
     paid = STATUTORY if clause is None else frozenset(clause.holidays)
-    days = [] if public else [d for code, d, _ in found if code in paid]
+    days = [] if public else [d for code, d in found if code in paid]
     by = divisor(rules)
     # A paid holiday without a daily divisor the engine applies is open too.
     open_clause = bool(found) and (
@@ -275,7 +275,7 @@ def sunday_holiday(ctx: RunContext) -> SundayHoliday:
     if days and by is not None:
         result = _paid(ctx, clause, days, by)
     elif open_clause:
-        listed = ",".join(d.isoformat() for _, d, _ in found)
+        listed = ",".join(d.isoformat() for _, d in found)
         result = SundayHoliday(
             decisions=(_decision(ctx, "not_paid", {"days": listed}, _ZERO),)
         )
