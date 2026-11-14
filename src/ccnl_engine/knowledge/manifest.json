@@ -986,7 +986,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/fiori-recisi-ancef",
       "ruleset_version": "2026.2",
-      "source_hash": "623ccb9b0232dcc0a1e27105a42f507f2d2428c5d8e9e5537ac5e3884e1ead78",
+      "source_hash": "e0f0b3bba9e2f8dbb1d7586444ccbeb2e7b3eb38e6bc842b8dacf621f292125f",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/fiori-recisi-ancef.json.gz"

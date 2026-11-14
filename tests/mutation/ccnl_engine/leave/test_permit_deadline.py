@@ -323,3 +323,24 @@ def test_ced_pays_ex_festivita_and_rol_at_the_deadline(
     assert isinstance(result, PeriodResult)
 
     assert _paid(result) == {"ex": Decimal(32), "rol": rol}
+
+
+@pytest.mark.parametrize(
+    ("period", "paid"),
+    [(PeriodId(2026, 12), {}), (PeriodId(2027, 3), {"ex": Decimal(32)})],
+)
+def test_fiori_pays_the_permits_with_the_march_pay(
+    period: PeriodId, paid: dict[str, Decimal]
+) -> None:
+    """Fiori art. 29: not taken within the year, paid with the March pay; no choice."""
+    hours = Decimal(352) if period.year == 2026 else Decimal(384)
+    result = _run(
+        None,
+        period,
+        LeaveBalance(_EX, 2026, hours, Decimal(0)),
+        slug="fiori-recisi-ancef",
+        level="3",
+    )
+
+    assert _paid(result) == paid
+    assert "permit_carryover" not in {b.detail for b in result.blockers}

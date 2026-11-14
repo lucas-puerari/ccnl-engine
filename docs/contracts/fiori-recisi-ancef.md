@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 31 verified / 8 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 33 verified / 8 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-03-30 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Articolo 46 - 13° Mensilità (p. 29): "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno, e sempre che sia superato il periodo di prova, il lavoratore avrà diritto a tanti dodicesimi dell’ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestati nell’azienda, intendendo per mese intero, le frazioni pari o superiori a 15 giorni.". Added: at_least 15 (the file applied the engine default, at least 15 days). |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 30 values found verbatim on the cited pages and marked verified; 2 left as they were (derived or not on a text page). |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 29 of the CCNL 2023-2026 (permits, 39-hour week, March payout). | corrected | The file had the ferie but no permit: added the 32 hours of ex festivita and 40 of reduction, their absorption by the 39-hour week and the payout with the March pay of the next year. |
 
 ## Salary table
 
@@ -313,6 +314,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     L1-L2 and L3-L4 apprenticeship pay progression (2 levels below for first half, 1 level below for second half) confirmed from 2023 renewal news (UILTuCS / farecontrattazione.adapt.it): "due livelli inferiori alla mansione per la prima metà, un livello inferiore per la seconda metà." For L5: 12mo at level 6, then level 5 (from olympus.uniurb.it). Modelled as under_classification tracks (levels_below 2 then 1; L5 1 then 0). Durations are confirmed from olympus.uniurb.it; the internal half-split structure is not independently confirmed from the 2023 CCNL primary text for L1-L4 (review of 2026-10-30)
     
     tax_sector=terziario: ANCEF represents importers and wholesalers of cut flowers (commercio all'ingrosso). The INPS sector code is terziario (commercial trade, ATECO G). Terziario rates (FISASCAT/Confcommercio). This is consistent and confirmed — no dedicated floricoltura INPS sector code exists for the importing/wholesale sub-sector.
+    
+    PERMITS (Art. 29, CCNL 2023-2026, p. 21): 32 hours of ex festività and 40 hours of reduction a year; a 39-hour week, the employer's alternative to 40, absorbs the 32 hours and 16 of the 40 (full_time_weekly_hours); the hours not taken within the year are paid with the retribuzione di fatto of the March pay of the next year (the engine carries them to March and pays what is left then). The text does not say how the hours accrue in a partial year: no month rule, the balance of a partial year is marked inexact.
     
 
 ## Raw data
