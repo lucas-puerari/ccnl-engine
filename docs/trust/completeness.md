@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 262 weak rules, 384 open limitations (384 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 261 weak rules, 383 open limitations (383 with a monetary impact).
 
 ## Declared window
 
@@ -138,7 +138,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [metalmeccanico-confimi-pmi](../contracts/metalmeccanico-confimi-pmi.md) | `metalmeccanica` | exploratory | — | 21 rows | tables from 2026-06-01; 21 open requirements; 18 monetary limitations; 1 outside_input limitation; 18 non-native capabilities |
 | [metalmeccanico-federmeccanica](../contracts/metalmeccanico-federmeccanica.md) | `metalmeccanica` | production | — | 26 rows | 26 open requirements; 18 monetary limitations; 6 outside_input limitations; 21 non-native capabilities |
 | [multiservizi-anip](../contracts/multiservizi-anip.md) | `pulizia-multiservizi` | exploratory | — | 29 rows | 29 open requirements; 24 monetary limitations; 3 outside_input limitations; 21 non-native capabilities |
-| [noleggio-autobus-conducente-anav](../contracts/noleggio-autobus-conducente-anav.md) | `trasporti-logistica` | exploratory | — | 28 rows | 28 open requirements; 4 weak rules; 21 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
+| [noleggio-autobus-conducente-anav](../contracts/noleggio-autobus-conducente-anav.md) | `trasporti-logistica` | exploratory | — | 26 rows | 26 open requirements; 3 weak rules; 19 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
 | [occhiali-occhialeria-industria](../contracts/occhiali-occhialeria-industria.md) | `tessile-moda` | exploratory | — | 22 rows | 22 open requirements; 2 weak rules; 18 monetary limitations; 18 non-native capabilities |
 | [ooss-unsic-confsal](../contracts/ooss-unsic-confsal.md) | `organizzazioni-associative` | exploratory | — | 24 rows | 24 open requirements; 1 weak rule; 21 monetary limitations; 20 non-native capabilities |
 | [operai-agricoli-florovivaisti](../contracts/operai-agricoli-florovivaisti.md) | `agricoltura` | exploratory | — | 32 rows | tables from 2026-06-01; 32 open requirements; 1 weak rule; 22 monetary limitations; 7 outside_input limitations; 21 non-native capabilities |

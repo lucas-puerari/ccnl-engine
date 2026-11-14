@@ -231,8 +231,7 @@
     "agreement/noleggio-autobus-conducente-anav.json": {
       "additional_months[2024-01-01]": "assumed",
       "levels[Q1].fixed_allowances[INDENNITA_FUNZIONE]": "assumed",
-      "levels[Q2].fixed_allowances[INDENNITA_FUNZIONE]": "assumed",
-      "seniority_increments": "assumed"
+      "levels[Q2].fixed_allowances[INDENNITA_FUNZIONE]": "assumed"
     },
     "agreement/occhiali-occhialeria-industria.json": {
       "accrual_rule": "missing",
@@ -1003,8 +1002,7 @@
       "multiservizi-anip/renewal_not_signed_by_anip"
     ],
     "agreement/noleggio-autobus-conducente-anav.json": [
-      "noleggio-autobus-conducente-anav/apprentice_seniority",
-      "noleggio-autobus-conducente-anav/seniority_from_ic35",
+      "noleggio-autobus-conducente-anav/seniority_month_and_promotion",
       "noleggio-autobus-conducente-anav/t0_table_back_calculated",
       "noleggio-autobus-conducente-anav/una_tantum_effective_work_months"
     ],
