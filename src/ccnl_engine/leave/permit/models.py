@@ -76,6 +76,9 @@ class NewHireRamp(BaseModel):
         headcount_max: The ramp applies to an employer with at most this
             many employees (Farmacie Art. 24: "fino a 40 dipendenti");
             ``None`` for any employer.
+        excluded_subsectors: Employer sub-sectors the ramp does not reach
+            (Distribuzione cooperativa art. 147 (2024): the small imprese
+            minori grant their hours "per tutti i lavoratori dipendenti").
         steps: Shares by months since the hire; the first starts at 0.
         provenance: Source of the ramp.
     """
@@ -85,6 +88,7 @@ class NewHireRamp(BaseModel):
     hired_after: date
     hired_until: date | None = None
     headcount_max: int | None = Field(default=None, ge=1)
+    excluded_subsectors: tuple[str, ...] = ()
     steps: tuple[RampStep, ...] = Field(min_length=1)
     provenance: RuleProvenance | None = None
 
@@ -93,12 +97,15 @@ class NewHireRamp(BaseModel):
         _check_steps(self.steps)
         return self
 
-    def covers(self, headcount: int) -> bool:
+    def covers(self, headcount: int, subsector: str | None = None) -> bool:
         """Return whether the ramp applies to an employer of ``headcount``.
 
         Returns:
-            ``False`` above :attr:`headcount_max`.
+            ``False`` above :attr:`headcount_max` or for a ``subsector`` of
+            :attr:`excluded_subsectors`.
         """
+        if subsector is not None and subsector in self.excluded_subsectors:
+            return False
         return self.headcount_max is None or headcount <= self.headcount_max
 
     def share(self, hired_on: date, service_months: int) -> Decimal:

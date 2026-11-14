@@ -760,8 +760,7 @@
     ],
     "agreement/distribuzione-cooperativa-ancc.json": [
       "distribuzione-cooperativa-ancc/apprentice_seniority",
-      "distribuzione-cooperativa-ancc/seniority_super_levels",
-      "distribuzione-cooperativa-ancc/small_cooperative_new_hire_ramp"
+      "distribuzione-cooperativa-ancc/seniority_super_levels"
     ],
     "agreement/dmo-federdistribuzione.json": [
       "dmo-federdistribuzione/apprentice_hospital_share",

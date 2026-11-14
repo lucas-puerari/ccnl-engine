@@ -156,21 +156,8 @@
       },
       {
         "kind": "info",
-        "text": "PERMITS, IMPRESE MINORI (Title XV, Art. 147 as renewed on 29 March 2024, CNEL 183889 pp. 59-60): a 40-hour week for every worker (Employment full_time_weekly_hours 40: the 104 hours, not absorbed); in the small firms of one unit or up to 20 full-time staff a unit (EmployerProfile.subsector 'piccola_impresa_minore') 60 hours a year, read as the 32 of ex festività and 28 of reduction, plus 6 from 1 April 2025 and 6 from 1 April 2026 (72, aim 88).",
+        "text": "PERMITS, IMPRESE MINORI (Title XV, Art. 147 as renewed on 29 March 2024, CNEL 183889 pp. 59-60): a 40-hour week for every worker (Employment full_time_weekly_hours 40: the 104 hours, not absorbed); in the small firms of one unit or up to 20 full-time staff a unit (EmployerProfile.subsector 'piccola_impresa_minore') 60 hours a year, read as the 32 of ex festività and 28 of reduction, plus 6 from 1 April 2025 and 6 from 1 April 2026 (72, aim 88). Their new hires take the hours in full: the ROL ramp of Art. 61 C does not reach this sub-sector.",
         "capability": "leave"
-      },
-      {
-        "kind": "simplification",
-        "text": "Art. 147 (2024) grants the 60 hours of the small imprese minori 'per tutti i lavoratori dipendenti'; the engine applies to their new hires the ROL ramp of Art. 61 C (50% after two years, 100% after four), which has no sub-sector exception.",
-        "capability": "leave",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "small_cooperative_new_hire_ramp",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Exempt the small imprese minori from the ROL ramp of Art. 61 C."
-        }
       }
     ]
   },
@@ -421,6 +408,27 @@
         ],
         "findings": [
           "Added the hours of the small imprese minori (60, +6 from April 2025, +6 from April 2026) under the sub-sector piccola_impresa_minore and closed imprese_minori_permits; the other imprese minori work 40 hours and keep the 104. Recorded that the Art. 61 C ramp still applies to their new hires."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules.permits"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-small-cooperative-ramp",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 147 of the renewal of 29 March 2024 against the ramp of Art. 61 C.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+            "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
+          }
+        ],
+        "findings": [
+          "The 60 hours of the small imprese minori are 'per tutti i lavoratori dipendenti': the ramp now excludes the sub-sector piccola_impresa_minore; closed small_cooperative_new_hire_ramp."
         ],
         "independence": "same_process",
         "checked": [
@@ -3109,7 +3117,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
     "verification_status": "unverified",
-    "source_hash": "fe86ddbc52e6605826bd325d583495a5baea800a037468c5b058219d52ac7bbd",
+    "source_hash": "35dffbb93ae137004e76587d1d1b613863c308a7cef1476c61cec45d7ea6cade",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3618,6 +3626,9 @@
           ],
           "ramp": {
             "hired_after": "2011-12-22",
+            "excluded_subsectors": [
+              "piccola_impresa_minore"
+            ],
             "steps": [
               {
                 "service_months_min": 0,

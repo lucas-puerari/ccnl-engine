@@ -178,6 +178,19 @@ def test_ramp_gates_by_hire_window_and_employer_size() -> None:
     assert (ramp.covers(40), ramp.covers(41)) == (True, False)
 
 
+def test_ramp_skips_its_excluded_subsectors() -> None:
+    """ANCC art. 147 (2024): the small imprese minori take their hours in full."""
+    ramp = NewHireRamp(
+        hired_after=date(2011, 12, 22),
+        excluded_subsectors=("piccola_impresa_minore",),
+        steps=(RampStep(service_months_min=0, share=Decimal(0)),),
+    )
+
+    assert ramp.covers(10)
+    assert ramp.covers(10, "altro")
+    assert not ramp.covers(10, "piccola_impresa_minore")
+
+
 def test_ramp_must_start_at_zero_months() -> None:
     """A ramp whose first step is not at hire is rejected."""
     with pytest.raises(ValidationError, match="start at 0 months"):
