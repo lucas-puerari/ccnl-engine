@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority, una_tantum |
+| **Limits of this contract** | seniority, una_tantum |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 33 values found verbatim on the cited pages and marked verified; 3 left as they were (derived or not on a text page). |
 | 2026-11-09 | claude-opus-5-5 (ai) | Una Tantum of the signed renewal, PDF p. 1. | confirmed | Confirmed the C2 installments, service-on-signing condition, proportional service and part time, and TFR and Priamo exclusions; narrowed the obsolete exclusion note to the unmodelled effective-work-months condition. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 47 (seniority) and Art. 21 c. 9-10 (apprentice pay and credit) of the renewal of 6 October 2022, against the renewal of 23 May 2025. | confirmed | Read Art. 47 and Art. 21 on the page images: the nine amounts match the file; apprentices take no increment and the whole apprenticeship counts on continuation. Re-sourced the amounts, set the apprentice amount to zero with full credit, closed seniority_from_ic35 and apprentice_seniority, and recorded the c. 3 anticipation and c. 5 promotion rules, which the engine does not apply. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Allegato n. 5 (ott-23 column) and Art. 70 b) of the renewal of 6 October 2022, against the table before July 2025. | corrected | The eleven values from 1 January 2024 were already taken from the ANAV circular, not back-calculated: the limitation was stale and is closed. The signed annex prints C4 796,26 against the circular's 796,25; the file follows the annex. |
 
 ## Salary table
 
@@ -110,13 +111,6 @@ percentage: 0.95
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "noleggio-autobus-conducente-anav/t0_table_back_calculated · base_salary · impact unknown · open"
-    SIMPLIFICATION: T0 salary table (valid_from 2024-01-01, valid_until 2025-06-30) back-calculated from T1 minus riparametrated increment. Pre-2025-07-01 values are derived, not sourced from an official table. Results for dates before 2025-07-01 should not be relied upon.
-
-    **Applies when:** `base_salary` applies; before 2025-07-01.
-
-    **Remediation:** Source the pre-July 2025 salary table from an official ANAV table.
 
 !!! warning "noleggio-autobus-conducente-anav/una_tantum_effective_work_months · una_tantum · impact yes · open"
     The two una tantum installments are paid, but the agreement counts months of effective work; the engine counts months of employment, without reducing for months with no effective work. An absence spanning a covered month can overstate the payment.
@@ -318,6 +312,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SALARY MODEL: split. base_salary = retribuzione tabellare; fixed_allowances per level: CONTINGENZA (frozen) + EDR (10.33, frozen since Protocollo 1992) + EDR_RINNOVO (new EDR from 2025-07-01, per level, 14 mensilita) + INDENNITA_FUNZIONE (Q1=67.00, Q2=51.00 only).
     
     SALARY TABLE: 2024-2026 contract signed 23/05/2025, validity 01/01/2024-31/12/2026. Two salary tranches: T1 from 01/07/2025 (+60 EUR at C2, riparametrate), T2 from 01/08/2026 (+100 EUR at C2, riparametrate). New EDR (EDR_RINNOVO) introduced from 01/07/2025: 40.00 EUR at C2, riparametrate per level, paid for 14 mensilita.
+    
+    TABLE BEFORE JULY 2025: the retribuzione tabellare from 1 January 2024 to 30 June 2025 is the ott-23 column of Allegato n. 5 of the signed renewal of 6 October 2022 (p. 83, read on the page image), the last increase of Art. 70 b) (p. 75); the renewal of 23 May 2025 raises the table only from July 2025 and pays January 2024-May 2025 as una tantum. C4 is 796,26 as in the signed annex (the ANAV circular of 7 October 2022 prints 796,25).
     
     SENIORITY (Art. 47 of the signed renewal of 6 October 2022, CNEL 154242, pp. 79-80, kept by the renewal of 23 May 2025): an increment for every two years of service, up to nine, Q1, Q2 and A1 33,10, A2 32,19, B1 30,36, B2 29,57, B3 29,39, C1 29,23, C2 27,17, C3 26,61, C4 25,35; paid from the month after the biennium (c. 2). The amounts were first taken from the IC35 tables, which print the same figures.
     

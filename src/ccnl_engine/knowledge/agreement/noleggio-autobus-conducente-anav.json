@@ -72,17 +72,8 @@
         "text": "SALARY TABLE: 2024-2026 contract signed 23/05/2025, validity 01/01/2024-31/12/2026. Two salary tranches: T1 from 01/07/2025 (+60 EUR at C2, riparametrate), T2 from 01/08/2026 (+100 EUR at C2, riparametrate). New EDR (EDR_RINNOVO) introduced from 01/07/2025: 40.00 EUR at C2, riparametrate per level, paid for 14 mensilita."
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: T0 salary table (valid_from 2024-01-01, valid_until 2025-06-30) back-calculated from T1 minus riparametrated increment. Pre-2025-07-01 values are derived, not sourced from an official table. Results for dates before 2025-07-01 should not be relied upon.",
-        "capability": "base_salary",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "t0_table_back_calculated",
-          "applies_when": {
-            "effective_until": "2025-07-01"
-          },
-          "remediation": "Source the pre-July 2025 salary table from an official ANAV table."
-        }
+        "kind": "info",
+        "text": "TABLE BEFORE JULY 2025: the retribuzione tabellare from 1 January 2024 to 30 June 2025 is the ott-23 column of Allegato n. 5 of the signed renewal of 6 October 2022 (p. 83, read on the page image), the last increase of Art. 70 b) (p. 75); the renewal of 23 May 2025 raises the table only from July 2025 and pays January 2024-May 2025 as una tantum. C4 is 796,26 as in the signed annex (the ANAV circular of 7 October 2022 prints 796,25)."
       },
       {
         "kind": "info",
@@ -271,6 +262,27 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-t0-table",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Allegato n. 5 (ott-23 column) and Art. 70 b) of the renewal of 6 October 2022, against the table before July 2025.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://anav.it/wp-content/uploads/2023/01/contratto.noleggio.anav-FILT-CGIL_06.10.2022.pdf",
+            "sha256": "d42285732f2b7918d8672b53ac57a50f46887c14c586b44d0f7fbcb97ba2bfa9"
+          }
+        ],
+        "findings": [
+          "The eleven values from 1 January 2024 were already taken from the ANAV circular, not back-calculated: the limitation was stale and is closed. The signed annex prints C4 796,26 against the circular's 796,25; the file follows the annex."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary"
         ]
       }
     ]
@@ -614,31 +626,33 @@
           {
             "valid_from": "2024-01-01",
             "valid_until": "2025-07-01",
-            "value": "796.25",
+            "value": "796.26",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "noleggio-autobus-conducente-anav-tables-f72f715d",
-                  "title": "noleggio-autobus-conducente-anav: tabelle retributive (2022-anav.pdf)",
+                  "document_id": "anav-ccnl-noleggio-2022-filt",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente, 6 ottobre 2022, Allegato n. 5 (testo firmato pubblicato da ANAV)",
                   "kind": "associazione",
-                  "url": "https://anav.it/wp-content/uploads/2022/10/aumentoretributivonoleggio-07102022.pdf",
-                  "sha256": "f72f715d17951b1ff825be4186ec64b5fb26ca5b4f38ad18d78ab19d8f9279bb"
+                  "url": "https://anav.it/wp-content/uploads/2023/01/contratto.noleggio.anav-FILT-CGIL_06.10.2022.pdf",
+                  "published_on": "2023-01-01",
+                  "sha256": "d42285732f2b7918d8672b53ac57a50f46887c14c586b44d0f7fbcb97ba2bfa9"
                 },
-                "page": "1",
-                "section": "Allegato n. 2, colonna n (ott-23), riga C4",
-                "quote": "C4      100         729,09       511,44        10,33          67,16          22,39                 22,39                 22,39                751,48               773,87                796,25"
+                "page": "83",
+                "section": "Allegato n. 5 (A.N. 6 ottobre 2022), Nuove retribuzioni tabellari da erogare con la retribuzione relativa al mese di ott-23, riga C4",
+                "quote": "C4 100 729,09 511,44 10,33 67,16 22,39 22,39 22,39 751,48 773,87 796,26"
               },
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-08T05:00:00Z",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
                 "effective_from": "2024-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-08T05:00:00Z",
+                "verified_at": "2026-11-14T00:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-08-ai-noleggio-autobus-conducente-anav-tables"
-              }
+                "review_id": "2026-11-14-ai-t0-table"
+              },
+              "note": "The ANAV circular of 7 October 2022 prints 796,25 (729,09 + 67,16); the signed Allegato 5 prints 796,26 (729,09 + 3 x 22,39). The signed annex is followed."
             }
           },
           {
@@ -4037,7 +4051,7 @@
     "effective_until": "2026-12-31",
     "source": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "e692895c4bd0170a2eb3f256fb7f73cdf3cea7b14980b500cc507c785da00423",
+    "source_hash": "b3b9fdeea779c1879fa480c00846618994e09b7157ad58cc3b94799a1b691634",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }
