@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | leave |
+| **Limits of this contract** | — |
 
-1 documented simplification(s) and 1 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 50 verified / 0 derived / 4 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 53 verified / 0 derived / 4 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-19 |
-| **Last review** | 2026-11-13 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2027-08-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The sick pay and the comporto of the CCNL (work_rules.sickness_rules), read on the signed text. | corrected | Art. 22 (pp. 27-28): the integration reaches 100% for the three days of carenza, 75% for days 4-20 and 100% for days 21-180 of the normale retribuzione; Art. 25: 180 days of comporto. The file had assumed 100% for every day: corrected to day bands of 75% and 100%. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Artt. 94–95, p. 49-50). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-13 | claude-opus-5-5 (ai) | Artt. 22, 25, 30, 77, 78 and 81 of the 2024-2027 text deposited at the CNEL (H341, allegato 210360), text layer. | corrected | IND_FUN corrected from 154.94 (aggregator) to 154.93 for 14 months (art. 30).<br>Seniority amounts confirmed against the art. 81 table of 1 July 2017.<br>14 monthly payments sourced (artt. 77-78).<br>Sickness rates already verified on the FLAI text match art. 22 of the CNEL text: the assumed-rates limitation was stale. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Artt. 56, 61 and 62 of the CCNL 2024-2027 (permits, suppressed holidays, ferie). | corrected | The file had no leave rules and a note saying the text was not accessible; the ruleset source is that text. Added ferie (26 days, six-day week, divisor 26), the 66 hours of permits with their whole-month accrual and the 30 June deadline. |
 
 ## Salary table
 
@@ -281,6 +282,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     IND_FUN livello Q: 154,93 EUR per 14 mensilità (art. 30, testo CNEL H341 p. 31). La tabella dell'aggregatore (154,94, 300.000 lire) non coincide con il testo firmato.
     
     BASE SALARY: every base_salary period of the nine levels is verified against Allegato 1 of the FLAI text (p. 58, review 2026-10-17-ai-tables); no value is derived by the proportional rule any more (review of 2026-10-30).
+    
+    LEAVE (CCNL 2024-2027): ferie 26 working days on a week counted as six days (Art. 62, p. 74), twelfths per month of service at termination and an indemnity of a twenty-sixth of the monthly pay per day (Chiarimento a verbale, p. 75); 66 hours of permessi retribuiti a year, a twelfth per whole month of service (Art. 56, p. 68), not taken within the year paid 'con la retribuzione in atto al momento della scadenza' or taken by 30 June of the next year, as the employer states (EmployerProfile.permit_carryover); the hours left at termination are paid at the hourly quota on the same clause. The suppressed holidays of Art. 61 are not a bucket of hours: the day is paid if worked or falls on the weekly rest. Seasonal staff (Art. 72) take their leave and permits as a percentage of the pay, not modelled here.
     
     Salary model: conglobato. ilccnl.it Sept 2024 table shows Contingenza=0.00 e EDR=0.00 per tutti i livelli. Divisore orario 173 confermato da lavoro-economia.it c=72 (CNEL H341) quota diretta: 'L'importo della retribuzione oraria si ottiene dividendo l'importo della retribuzione mensile per il divisore convenzionale 173'. Verifica aritmetica su 4 livelli: 1 (2286.83/13.22=173), 2 (2020.70/11.68=173), 3 (1932.23/11.17=173), 6 (1599.53/9.25=173).
     

@@ -1666,7 +1666,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/ortofrutticoli-agrumari",
       "ruleset_version": "2024.1",
-      "source_hash": "95ee7f5a275a02919bf1129927ac77340575f8cac7072af307ff6a1917dd1163",
+      "source_hash": "0debdfb4882b3244c3fdaf59e7c7fee895bc90bceee6010b66265ed91bfcbf1a",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/ortofrutticoli-agrumari.json.gz"

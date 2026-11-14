@@ -253,3 +253,23 @@ def test_hourly_elements_are_added_only_when_stated_at_expiry() -> None:
     assert not _paid(missing)
     assert "hourly_pay_elements" in {b.detail for b in missing.blockers}
     assert not missing.closing_state.accrual.leave.balances[0].settled
+
+
+_ORTO = "ortofrutticoli-agrumari"
+
+
+@pytest.mark.parametrize(
+    ("carryover", "period", "paid"),
+    [
+        (False, PeriodId(2026, 12), {"rol": Decimal(66)}),
+        (True, PeriodId(2026, 12), {}),
+    ],
+)
+def test_ortofrutticoli_pays_the_66_hours_at_the_deadline(
+    carryover: bool, period: PeriodId, paid: dict[str, Decimal]
+) -> None:
+    """Art. 56: 66 hours a year, paid at year end or carried to 30 June."""
+    november = LeaveBalance(LeaveBucket.ROL, 2026, Decimal(66 * 11), Decimal(0))
+    result = _run(carryover, period, november, slug=_ORTO, level="4")
+
+    assert _paid(result) == paid
