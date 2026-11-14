@@ -1023,8 +1023,7 @@
       "organizzazioni-allevatori-aia/apprentice_inps_rates_unsourced"
     ],
     "agreement/ortofrutticoli-agrumari.json": [
-      "ortofrutticoli-agrumari/apprenticeship_other_durations",
-      "ortofrutticoli-agrumari/quas_contribution"
+      "ortofrutticoli-agrumari/apprenticeship_other_durations"
     ],
     "agreement/panificazione-artigianato-confartigianato.json": [
       "panificazione-artigianato-confartigianato/ert_veneto",
@@ -1056,8 +1055,6 @@
       "pubblici-esercizi-fipe-angem/small_company_pay_reduction"
     ],
     "agreement/pulizia-artigianato-confartigianato.json": [
-      "pulizia-artigianato-confartigianato/apprenticeship_percentages_2022",
-      "pulizia-artigianato-confartigianato/ind_fun_months_per_year",
       "pulizia-artigianato-confartigianato/inps_sector_rates_unsourced",
       "pulizia-artigianato-confartigianato/overtime_weekly_threshold",
       "pulizia-artigianato-confartigianato/special_collection_allowance"

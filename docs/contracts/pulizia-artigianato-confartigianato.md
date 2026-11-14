@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-17 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2029-12-01 |
 
 ## Review history
@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included.<br>Closed health_and_bilateral_funds (FSBA was its only remediation). |
 | 2026-11-14 | claude-opus-5-5 (ai) | INPS circ. 140/2012 par. 3.3 on the apprentice contribution, against the research of a separate model session. | confirmed | The cuneo reductions (0.91) do not apply to apprentices: the artigianato apprentice rates of the bundle are confirmed. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 39 table, PDF p. 22, read on the page image. | confirmed | Level 2 scatto 26.85 confirmed on the signed table. |
+| 2026-11-15 | claude-opus-5-5 (ai) | IND_FUN instalments and apprenticeship percentages against the 2014 text and the 2025 renewal, from the research of a separate model session. | corrected | IND_FUN enters every contractual institute: 13 instalments.<br>The 2025 renewal leaves art. 58 point 7 unchanged. |
 
 ## Salary table
 
@@ -129,19 +130,19 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model l'indennità speciale per livello as an allowance gated by a role (addetti alla riscossione) or record a limitation.
 
-!!! warning "pulizia-artigianato-confartigianato/ind_fun_months_per_year · base_salary · impact unknown · open"
-    SIMPLIFICATION: IND_FUN (EUR 25.82/mese) — il PDF non specifica il numero di mensilità. months_per_year=null (eredita 13). Impatto: ±25.82 EUR/anno se la risposta vera è 12 mensilità.
+!!! note "pulizia-artigianato-confartigianato/ind_fun_months_per_year · base_salary · impact unknown · resolved"
+    IND_FUN (EUR 25.82 a month, normativa quadri point 6, CCNL 18 settembre 2014, PDF p. 10, https://www.informaimpresa.it/wp-content/uploads/2014/09/CCNL-Pulizie-18-sette-2014_Firmato-84b.pdf, sha256 3b9549505ed29bae42278201160fadfb7427d07ec4113228eeb09aefb33b212e): 'da computarsi su tutti gli istituti contrattuali', so it enters the tredicesima (art. 38: 'pari alla retribuzione mensile globale'); months_per_year 13.
 
     **Applies when:** `base_salary` applies; level in 1; run kind in thirteenth.
 
-    **Remediation:** Source the number of yearly instalments of IND_FUN and set months_per_year.
+    **Remediation:** Resolved: normativa quadri point 6 read on 2026-11-15, 13 instalments.
 
-!!! warning "pulizia-artigianato-confartigianato/apprenticeship_percentages_2022 · base_salary · impact unknown · open"
-    SIMPLIFICATION: Percentuali apprendistato da PDF 2022. Il rinnovo dic 2025 estende scatti anzianità agli apprendisti ma non menziona variazioni alle aliquote. Rischio: basso.
+!!! note "pulizia-artigianato-confartigianato/apprenticeship_percentages_2022 · base_salary · impact unknown · resolved"
+    Apprenticeship percentages of art. 58 point 7 (accordo 27 ottobre 2022): the renewal of 17 December 2025 (PDF p. 5, https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf, sha256 4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416) reads 'Art. 58 — Apprendistato Professionalizzante omissis' and adds only point 7-bis (seniority increments of the apprentices), so the percentages stay.
 
     **Applies when:** `base_salary` applies; contract type in apprentice.
 
-    **Remediation:** Verify the apprenticeship percentages against the December 2025 renewal.
+    **Remediation:** Resolved: renewal of 17 December 2025 read on 2026-11-15, art. 58 point 7 unchanged.
 
 !!! warning "pulizia-artigianato-confartigianato/inps_sector_rates_unsourced · inps_employer · impact unknown · open"
     INPS RATES: the employer and worker INPS rates of the sector (artigianato) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.

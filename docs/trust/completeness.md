@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 356 open limitations (356 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 353 open limitations (353 with a monetary impact).
 
 ## Declared window
 
@@ -144,7 +144,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [operai-agricoli-florovivaisti](../contracts/operai-agricoli-florovivaisti.md) | `agricoltura` | exploratory | — | 29 rows | tables from 2026-06-01; 29 open requirements; 1 weak rule; 19 monetary limitations; 7 outside_input limitations; 21 non-native capabilities |
 | [orafi-argentieri-industria-federorafi](../contracts/orafi-argentieri-industria-federorafi.md) | `metalmeccanica` | exploratory | — | 17 rows | 17 open requirements; 1 weak rule; 14 monetary limitations; 18 non-native capabilities |
 | [organizzazioni-allevatori-aia](../contracts/organizzazioni-allevatori-aia.md) | `agricoltura` | exploratory | — | 19 rows | 19 open requirements; 1 weak rule; 16 monetary limitations; 19 non-native capabilities |
-| [ortofrutticoli-agrumari](../contracts/ortofrutticoli-agrumari.md) | `commercio` | exploratory | — | 18 rows | 18 open requirements; 1 weak rule; 13 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
+| [ortofrutticoli-agrumari](../contracts/ortofrutticoli-agrumari.md) | `commercio` | exploratory | — | 17 rows | 17 open requirements; 1 weak rule; 13 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [panificazione-artigianato-confartigianato](../contracts/panificazione-artigianato-confartigianato.md) | `alimentare` | exploratory | — | 19 rows | 19 open requirements; 16 monetary limitations; 1 outside_input limitation; 21 non-native capabilities |
 | [panificazione-assipan](../contracts/panificazione-assipan.md) | `alimentare` | exploratory | 2026-12-31 | 17 rows | 17 open requirements; 1 weak rule; 14 monetary limitations; 18 non-native capabilities |
 | [pelli-cuoio-industria-assopellettieri](../contracts/pelli-cuoio-industria-assopellettieri.md) | `pelli-calzature` | exploratory | — | 20 rows | 20 open requirements; 4 weak rules; 14 monetary limitations; 19 non-native capabilities |
@@ -152,7 +152,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [poste-italiane-k700](../contracts/poste-italiane-k700.md) | `servizi-postali` | exploratory | — | 19 rows | 19 open requirements; 1 weak rule; 14 monetary limitations; 2 outside_input limitations; 21 non-native capabilities |
 | [pubblici-esercizi-fipe-angem](../contracts/pubblici-esercizi-fipe-angem.md) | `turismo` | production | — | 20 rows | 20 open requirements; 13 monetary limitations; 5 outside_input limitations; 21 non-native capabilities |
 | [pubblici-esercizi-fipe-angem-ristorazione-collettiva](../contracts/pubblici-esercizi-fipe-angem-ristorazione-collettiva.md) | `turismo` | production | — | 17 rows | 17 open requirements; 13 monetary limitations; 2 outside_input limitations; 19 non-native capabilities |
-| [pulizia-artigianato-confartigianato](../contracts/pulizia-artigianato-confartigianato.md) | `pulizia-multiservizi` | exploratory | — | 49 rows | 49 open requirements; 29 weak rules; 17 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
+| [pulizia-artigianato-confartigianato](../contracts/pulizia-artigianato-confartigianato.md) | `pulizia-multiservizi` | exploratory | — | 47 rows | 47 open requirements; 29 weak rules; 15 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
 | [radiotelevisive-radiofonico](../contracts/radiotelevisive-radiofonico.md) | `spettacolo-media` | exploratory | — | 25 rows | 25 open requirements; 8 weak rules; 15 monetary limitations; 20 non-native capabilities |
 | [radiotelevisive-televisivo](../contracts/radiotelevisive-televisivo.md) | `spettacolo-media` | exploratory | — | 28 rows | 28 open requirements; 11 weak rules; 15 monetary limitations; 20 non-native capabilities |
 | [recapito-corrispondenza-fise](../contracts/recapito-corrispondenza-fise.md) | `servizi-postali` | exploratory | — | 17 rows | 17 open requirements; 2 weak rules; 13 monetary limitations; 18 non-native capabilities |

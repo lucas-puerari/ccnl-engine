@@ -38,7 +38,7 @@ def test_ccnl_limits_and_sources() -> None:
     rows = {row.ccnl_id: row for row in build_coverage_report(year).ccnl_rows}
     assert "night_work" in rows["pulizia-artigianato-confartigianato"].cells.limits
     orto = rows["ortofrutticoli-agrumari"].cells.limits
-    assert orto == "base_salary, contractual_funds"
+    assert orto == "base_salary"
     assert rows["ceramica-industria-confindustria"].cells.limits == "seniority"
     assert rows["energia-petrolio-confindustria"].cells.limits == "—"
     assert len(rows["anas"].sources.split(" / ")) == 4

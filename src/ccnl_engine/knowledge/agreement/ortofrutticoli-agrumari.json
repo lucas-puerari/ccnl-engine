@@ -148,7 +148,7 @@
       },
       {
         "kind": "simplification",
-        "text": "QUADRI (art. 31): the quadri join QuAS 'come previsto dall'art. 2 del Regolamento della Cassa'; the CCNL prints no amount, which the QuAS rules set.",
+        "text": "QUADRI (art. 30): the quadri join QuAS 'come previsto dall'art. 2 del Regolamento della Cassa'; the contribution of the QuAS rules (370 + 56 in 2025, 390 + 56 from 2026) is parameters.health_funds quas.",
         "capability": "contractual_funds",
         "monetary_impact": "yes",
         "limitation": {
@@ -159,7 +159,8 @@
               "Q"
             ]
           },
-          "remediation": "Source the QuAS contribution of the quadri from the rules of the Cassa and add the fund."
+          "remediation": "Resolved: QuAS rules 2025 and 2026 read on 2026-11-15.",
+          "status": "resolved"
         }
       },
       {
@@ -424,6 +425,36 @@
         "independence": "same_process",
         "checked": [
           "apprenticeship"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-ortofrutticoli-agrumari-quas",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "QuAS contribution of the H341 quadri in the QuAS rules 2025 and 2026, against the research of a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.quas.it/wp-content/uploads/2026/01/Regolamento2025.pdf",
+            "sha256": "941941de6d04a0b36c3e082ba61de05067b932bc634874b64b980f6285d95463"
+          },
+          {
+            "url": "https://www.quas.it/wp-content/uploads/2026/01/Regolamento2026_GestioneOrdinaria.pdf",
+            "sha256": "8882a8afb69a3f4bfebdf9bb5bcb51e050783ecd5fd28dbdf6c7d4b59075023d"
+          },
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+            "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+          }
+        ],
+        "findings": [
+          "Added the QuAS fund of the quadri: 370 + 56 in 2025, 390 + 56 from 2026; 2024 derived from the H011 amount."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.health_funds",
+          "coverage.notes"
         ]
       }
     ]
@@ -802,6 +833,72 @@
             "verified_at": "2026-11-14T00:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-14-ai-funds"
+          }
+        }
+      },
+      {
+        "code": "quas",
+        "description": "Cassa QuAS, assistenza sanitaria quadri, art. 30",
+        "levels": [
+          "Q"
+        ],
+        "employer": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "350.0"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2026-01-01",
+                "value": "370.0"
+              },
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "390.0"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "56.0"
+              }
+            ]
+          }
+        },
+        "employee_deductible": true,
+        "solidarity_rate": "0.1",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "quas-regolamento-2026",
+              "title": "Regolamento QuAS, gestione ordinaria, dal 1° gennaio 2026",
+              "kind": "altro",
+              "url": "https://www.quas.it/wp-content/uploads/2026/01/Regolamento2026_GestioneOrdinaria.pdf",
+              "sha256": "8882a8afb69a3f4bfebdf9bb5bcb51e050783ecd5fd28dbdf6c7d4b59075023d"
+            },
+            "page": "2",
+            "section": "Art. 3 Contributi (H341 Ortofrutticoli)",
+            "quote": "Dal 1° gennaio 2026, gli importi sono i seguenti: • H011 - Ccnl Terziario, Distribuzione e Servizi • H008 - Ccnl DMO • HV17 - Vigilanza Privata • T09M SALUTE • H077 SPORT • H341 ORTOFRUTTICOLI • H201 IMPORT/EXPORT FIORI € 446,00 (di cui € 56,00 a carico del Quadro e € 390,00 a carico dell’Azienda)."
+          },
+          "transformation": "Quadri: 390 a year from the employer and 56 from the worker from 2026; 370 and 56 in 2025 (Regolamento 2025 art. 3, PDF p. 2, https://www.quas.it/wp-content/uploads/2026/01/Regolamento2025.pdf, sha256 941941de6d04a0b36c3e082ba61de05067b932bc634874b64b980f6285d95463: H341 pays the H011 contribution); 2024 takes the H011 amount of 350, which no QuAS text read states for H341. Charged a twelfth a month; the one-off fee of 340 at a first enrolment is not modelled. The CCNL (art. 30, PDF p. 23, https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf, sha256 0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e) joins QuAS from 1 January 2004.",
+          "extraction": {
+            "method": "manual",
+            "extraction_timestamp": "2026-11-15T00:00:00",
+            "verification_status": "verified",
+            "effective_from": "2024-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "review_id": "2026-11-15-ai-ortofrutticoli-agrumari-quas"
           }
         }
       }
@@ -2720,7 +2817,7 @@
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "1774015c6f2e14491bf37fe9dd6ba2f03c233206cd9edd45300beaf6f5aeb0dc",
+    "source_hash": "6e844191ded91c270ba1f73f6b1d84c299891f7b0e9a552b2d1ea6b8b78d9edc",
     "source_type": "contracting_party"
   },
   "work_rules": {

@@ -93,7 +93,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: IND_FUN (EUR 25.82/mese) — il PDF non specifica il numero di mensilità. months_per_year=null (eredita 13). Impatto: ±25.82 EUR/anno se la risposta vera è 12 mensilità.",
+        "text": "IND_FUN (EUR 25.82 a month, normativa quadri point 6, CCNL 18 settembre 2014, PDF p. 10, https://www.informaimpresa.it/wp-content/uploads/2014/09/CCNL-Pulizie-18-sette-2014_Firmato-84b.pdf, sha256 3b9549505ed29bae42278201160fadfb7427d07ec4113228eeb09aefb33b212e): 'da computarsi su tutti gli istituti contrattuali', so it enters the tredicesima (art. 38: 'pari alla retribuzione mensile globale'); months_per_year 13.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
@@ -106,12 +106,13 @@
               "thirteenth"
             ]
           },
-          "remediation": "Source the number of yearly instalments of IND_FUN and set months_per_year."
+          "remediation": "Resolved: normativa quadri point 6 read on 2026-11-15, 13 instalments.",
+          "status": "resolved"
         }
       },
       {
         "kind": "simplification",
-        "text": "SIMPLIFICATION: Percentuali apprendistato da PDF 2022. Il rinnovo dic 2025 estende scatti anzianità agli apprendisti ma non menziona variazioni alle aliquote. Rischio: basso.",
+        "text": "Apprenticeship percentages of art. 58 point 7 (accordo 27 ottobre 2022): the renewal of 17 December 2025 (PDF p. 5, https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf, sha256 4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416) reads 'Art. 58 — Apprendistato Professionalizzante omissis' and adds only point 7-bis (seniority increments of the apprentices), so the percentages stay.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
@@ -121,7 +122,8 @@
               "apprentice"
             ]
           },
-          "remediation": "Verify the apprenticeship percentages against the December 2025 renewal."
+          "remediation": "Resolved: renewal of 17 December 2025 read on 2026-11-15, art. 58 point 7 unchanged.",
+          "status": "resolved"
         }
       },
       {
@@ -403,6 +405,33 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-pulizia-artigianato-confartigianato-quadri-apprentices",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "IND_FUN instalments and apprenticeship percentages against the 2014 text and the 2025 renewal, from the research of a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.informaimpresa.it/wp-content/uploads/2014/09/CCNL-Pulizie-18-sette-2014_Firmato-84b.pdf",
+            "sha256": "3b9549505ed29bae42278201160fadfb7427d07ec4113228eeb09aefb33b212e"
+          },
+          {
+            "url": "https://www.informaimpresa.it/wp-content/uploads/2025/12/Rinnovo-CCNL-servizi-di-pulizie_17.12.2025.pdf",
+            "sha256": "4bef34edad3ebf73772735fb48819b75fdfaf991eb9c53640e492c4f48ca0416"
+          }
+        ],
+        "findings": [
+          "IND_FUN enters every contractual institute: 13 instalments.",
+          "The 2025 renewal leaves art. 58 point 7 unchanged."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.fixed_allowances.IND_FUN",
+          "coverage.notes"
         ]
       }
     ]
@@ -1495,7 +1524,7 @@
               }
             ]
           },
-          "months_per_year": null,
+          "months_per_year": 13,
           "provenance": {
             "status": "assumed",
             "location": {
@@ -4450,7 +4479,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "bb852afb7bb12ae5d07745ba24fd971c2b73d5b4fcc3862c3cd25988dc6947c3",
+    "source_hash": "917b21e360544a896b5edbcd7a128b4e946b15a5f01d6a3788952117a9af56de",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, contractual_funds |
+| **Limits of this contract** | base_salary |
 
 2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-19 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-08-01 |
 
 ## Review history
@@ -68,6 +68,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 48, 50, 54 and 55 of the CCNL 2024-2027. | corrected | The overtime bands were labelled assumed: confirmed on Art. 50 and sourced; removed the 40-hour weekly threshold of the base band (every overtime hour is beyond the 40th); added the shift night, Sunday, rest-day and holiday premiums. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 6, 16, 23 and 31 of the CCNL 2024-2027. | corrected | The file had no fund: added Fondo EST and Fon.Te.; the EBO contribution is suspended; the QuAS amount of the quadri is not in the CCNL (limitation). |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 39-42 and Allegato 8 of the CCNL 2024-2027. | corrected | The file modelled no apprenticeship, saying the text was not accessible; the ruleset source is that text. Added the under-classification tracks of Art. 42 and the apprentice seniority at the level's amounts; durations other than 24 and 36 months recorded as a limitation. |
+| 2026-11-15 | claude-opus-5-5 (ai) | QuAS contribution of the H341 quadri in the QuAS rules 2025 and 2026, against the research of a separate model session. | corrected | Added the QuAS fund of the quadri: 370 + 56 in 2025, 390 + 56 from 2026; 2024 derived from the H011 amount. |
 
 ## Salary table
 
@@ -125,12 +126,12 @@ Destination levels: `5`, `4`, `3`, `2`, `1`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "ortofrutticoli-agrumari/quas_contribution · contractual_funds · impact yes · open"
-    QUADRI (art. 31): the quadri join QuAS 'come previsto dall'art. 2 del Regolamento della Cassa'; the CCNL prints no amount, which the QuAS rules set.
+!!! note "ortofrutticoli-agrumari/quas_contribution · contractual_funds · impact yes · resolved"
+    QUADRI (art. 30): the quadri join QuAS 'come previsto dall'art. 2 del Regolamento della Cassa'; the contribution of the QuAS rules (370 + 56 in 2025, 390 + 56 from 2026) is parameters.health_funds quas.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Source the QuAS contribution of the quadri from the rules of the Cassa and add the fund.
+    **Remediation:** Resolved: QuAS rules 2025 and 2026 read on 2026-11-15.
 
 !!! warning "ortofrutticoli-agrumari/apprenticeship_other_durations · base_salary · impact yes · open"
     APPRENTICESHIP DURATION: the halves of Art. 42 for levels 5 and 4 are encoded for apprenticeships of 36 and 24 months; another duration (6 months to 3 years) has its half elsewhere.
