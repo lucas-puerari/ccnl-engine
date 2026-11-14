@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -246,7 +246,12 @@ def _closing_cash(
             pdr=op.fringe.pdr + amounts.pdr_eligible,
         ),
         tax=_closing_tax(op, outcome),
-        trattamento=op.trattamento.after(
+        # The trattamento earlier employments paid joins the year's (art. 23
+        # c. 4 DPR 600/1973), as the CU totals it.
+        trattamento=replace(
+            op.trattamento,
+            recognized=op.trattamento.recognized + amounts.prior_trattamento_paid,
+        ).after(
             amounts.period_tratt,
             None if tratt is None else tratt.amount,
             None if tratt is None else tratt.reason_code,

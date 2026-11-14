@@ -226,3 +226,4 @@ class _PeriodAmounts:
     assistance: AssistanceContribution | None = None
     apart_inps: Decimal = Decimal(0)
     prior_irpef_withheld: Decimal = Decimal(0)
+    prior_trattamento_paid: Decimal = Decimal(0)

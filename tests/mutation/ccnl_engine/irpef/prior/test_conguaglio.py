@@ -11,6 +11,7 @@ employments; the IRPEF the other payer withheld counts as withheld.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 
@@ -142,3 +143,18 @@ def test_a_negative_certified_amount_is_rejected(field: str) -> None:
     with pytest.raises(InvalidInputError) as error:
         PriorEmployerIncome(**values)  # type: ignore[arg-type]
     assert error.value.field == f"PriorEmployerIncome.{field}"
+
+
+def test_the_trattamento_the_other_payer_paid_is_recovered() -> None:
+    """100.00 paid and not due on the total: recovered in eight installments.
+
+    D.L. 3/2020: a trattamento recovered above 60.00 is withheld in eight
+    installments, 12.50 on the conguaglio; the year's account counts it.
+    """
+    paid = replace(_PRIOR, trattamento_paid=Decimal(100))
+    result = _conguaglio((paid,))
+
+    assert result.tax_computation.trattamento_integrativo == Decimal("-12.50")
+    account = result.closing_state.cash.trattamento
+    assert account.recognized == Decimal(100)
+    assert account.recovered == Decimal("12.50")

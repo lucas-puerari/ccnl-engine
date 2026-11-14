@@ -17,6 +17,8 @@ from typing import TYPE_CHECKING
 from ccnl_engine.decision.models import CalculationDecision, CalculationStatus
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable
+
     from ccnl_engine.employment.spell.models import EmploymentSpell
     from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
 
@@ -29,6 +31,7 @@ __all__ = [
     "prior_decision",
     "prior_spells",
     "prior_totals",
+    "taken_in",
 ]
 
 #: Capability of the earlier employments the conguaglio takes in.
@@ -140,4 +143,21 @@ def conguaglio_intake(
     prior = PriorTotals() if settled else prior_totals(facts)
     return ConguaglioIntake(
         conguaglio_facts(facts), spells + prior_spells(facts), prior
+    )
+
+
+def taken_in(decisions: Iterable[CalculationDecision], key: str) -> Decimal:
+    """Return the amount ``key`` a conguaglio took in from other payers.
+
+    Returns:
+        The sum of the ``key`` input of the run's ``additional_irpef_base``
+        decisions: ``irpef_withheld`` or ``trattamento_paid``.
+    """
+    return sum(
+        (
+            Decimal(str(d.inputs[key]))
+            for d in decisions
+            if d.capability == ADDITIONAL_IRPEF_BASE
+        ),
+        _ZERO,
     )

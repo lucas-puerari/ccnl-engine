@@ -162,5 +162,6 @@ def _compute_amounts(
         issues=_issues(inp, irpef) + tfr.issues(),
         assistance=assistance,
         prior_irpef_withheld=inp.prior.irpef_withheld,
+        prior_trattamento_paid=inp.prior.trattamento_paid,
     )
     return amounts, breakdown, tax_comp, irpef.tax.recovery_plan

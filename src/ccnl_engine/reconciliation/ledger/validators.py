@@ -10,7 +10,7 @@ from __future__ import annotations
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.irpef.prior.rules import ADDITIONAL_IRPEF_BASE
+from ccnl_engine.irpef.prior.rules import taken_in
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.ledger.remittance.models import POST_CONGUAGLIO_WITHHOLDING
 from ccnl_engine.reconciliation.types import (
@@ -160,14 +160,7 @@ def check_irpef_withheld_continuity(
         ),
         _ZERO,
     )
-    prior = sum(
-        (
-            Decimal(str(d.inputs["irpef_withheld"]))
-            for d in result.decisions
-            if d.capability == ADDITIONAL_IRPEF_BASE
-        ),
-        _ZERO,
-    )
+    prior = taken_in(result.decisions, "irpef_withheld")
     net_withholding = (
         _sum_account(result, AccountKind.ORDINARY_TAX)
         - deferred
