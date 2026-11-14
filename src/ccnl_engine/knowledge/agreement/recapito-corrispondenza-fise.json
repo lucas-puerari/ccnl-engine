@@ -1660,7 +1660,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/",
     "verification_status": "unverified",
-    "source_hash": "f853b13dc5820ec656de3b935a021455760baa7c412a0bd2905441ea4863ee40",
+    "source_hash": "fb71f9dcb4c35060a46c176da8da0e6d981f0264270eeb46dcd8591a7bcf3d94",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1892,6 +1892,52 @@
           "comporto_days": 365
         }
       ]
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "11-04",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "on_rest_day": true,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-recapito-corrispondenza-fise-2011",
+            "title": "Testo definitivo CCNL 8 febbraio 2011",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/43",
+            "sha256": "aaec9fe6e382a0a0c1ae7988384c34e66d6696bf2d79d21d157dbb133d8a70d5"
+          },
+          "page": "31–32",
+          "section": "art. 21, commi 1 e 3; FESTIVITÀ. LEGGE 5 MARZO 1977 N. 54, comma 1",
+          "quote": "1. Sono considerati giorni festivi:\na) tutte le domeniche, oppure i giorni di riposo compensativo di cui all'art. 20 (riposo settimanale);\nb) le festività del 25 aprile, 1° maggio e 2 giugno, stabilite dalle vigenti disposizioni di legge, salve le eventuali sostituzioni o aggiunte che intervenissero per disposizioni di carattere generale;\nc) le seguenti festività:\n         1) Capodanno (1° gennaio);\n         2) Epifania (6 gennaio);\n         3) Pasqua (mobile);\n         4) Lunedì dopo Pasqua (mobile);\n         5) Assunzione (15 agosto);\n         6) Ognissanti (1° novembre);\n         7) Immacolata Concezione (8 dicembre);\n         8) S. Natale (25 dicembre);\n         9) S. Stefano (26 dicembre);\n         10) Festa del Patrono della località in cui il lavoratore presta la sua opera. Per il Comune di Roma la festa del Patrono è individuata, ai sensi del DPR n. 792/85, in SS. Pietro e Paolo (29 giugno).\n\n3. Soltanto nel caso in cui le ricorrenze festive di cui alle lett. b) e c) cadano in giornata di riposo settimanale al lavoratore spetta, in aggiunta al normale trattamento economico, un importo pari alle quote giornaliere degli elementi mensili della retribuzione.\n\n1. Per quanto riguarda la festività civile del 4 novembre la cui celebrazione è stata spostata alla domenica successiva, il lavoratore beneficerà del trattamento previsto per le festività che coincidono con la domenica, fermo restando che nessun compenso aggiuntivo compete nel caso di prestazione effettuata nei giorni di calendario 4 novembre."
+        },
+        "transformation": "Le festività delle lettere b) e c) sono pagate in aggiunta alla retribuzione normale quando cadono nel riposo settimanale: sono elencate in holidays, comprese 25 aprile, 1° maggio e 2 giugno. Il 4 novembre è codificato come 11-04 per la celebrazione domenicale, con fourth_november_on_sunday. Il comma 3 non nomina un divisore giornaliero; non prevede pagamento autonomo per il sabato o per coincidenza con un'altra festività.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2011-02-08",
+          "verification_status": "unverified"
+        }
+      }
     }
   },
   "verification": {
@@ -1938,6 +1984,27 @@
         "checked": [
           "work_rules.sickness_rules",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-recapito-corrispondenza-fise-sunday-holidays",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/43",
+            "sha256": "aaec9fe6e382a0a0c1ae7988384c34e66d6696bf2d79d21d157dbb133d8a70d5"
+          }
+        ],
+        "findings": [
+          "work_rules.sunday_holidays: 01-01, 01-06, easter, easter_monday, 04-25, 05-01, 06-02, 08-15, 11-01, 11-04, 12-08, 12-25, 12-26, patron"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays"
         ]
       }
     ]

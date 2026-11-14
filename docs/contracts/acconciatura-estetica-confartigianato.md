@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-05-20 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2026-10-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 20 values read identically by both readings and equal to the file. |
 | 2026-11-08 | claude-opus-5-5 (ai) | FSBA ordinary contribution, art. 3 of the 2024 regulation, read on the text layer (analysis by a separate model session). | corrected | Added parameters.solidarity_fund FSBA: 0.45%+0.15% up to 15 employees, 0.75%+0.25% above, on the INPS base, fixed terms included. |
 | 2026-11-14 | claude-opus-5-5 (ai) | INPS circ. 140/2012 par. 3.3 on the apprentice contribution, against the research of a separate model session. | confirmed | The cuneo reductions (0.91) do not apply to apprentices: the artigianato apprentice rates of the bundle are confirmed. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text. | confirmed | work_rules.sunday_holidays: 01-01, 01-06, 04-25, 05-01, 06-02, 08-15, 11-01, 11-04, 12-08, 12-25, 12-26, patron; divisor 26 |
 
 ## Salary table
 

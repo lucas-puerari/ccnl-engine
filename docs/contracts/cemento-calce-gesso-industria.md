@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 76, Preavviso di licenziamento e di dimissioni, p. 184-185). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 69 values found verbatim on the cited pages and marked verified; 4 left as they were (derived or not on a text page). |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source text. | corrected | Added the comporto window of the CCNL. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text. | confirmed | work_rules.sunday_holidays: 01-01, 01-06, 04-25, 05-01, 06-02, 08-15, 11-01, 11-04, 12-08, 12-25, 12-26, easter_monday, patron; divisor 26 |
 
 ## Salary table
 

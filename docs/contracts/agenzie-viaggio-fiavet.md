@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-26 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 64, 143 and 155 of the 2019 text (pp. 33, 57, 61). | corrected | APPRENTICE SENIORITY (CCNL Imprese di viaggi of 24 July 2019: art. 64 c. 1, p. 33; art. 143 c. 1 c), p. 57; art. 155, p. 61): the apprentice is paid a percentage of 'la normale retribuzione dei lavoratori qualificati di pari livello', whose voci include 'eventuali scatti di anzianità', and the six triennial increments count 'l'anzianità di servizio prestata senza interruzione': the level increments, scaled by the percentage. |
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 10 values found verbatim on the cited pages and marked verified; 50 left as they were (derived or not on a text page). |
 | 2026-11-07 | gpt-6-sol (ai) | Monthly minimums: the June 2024 paga base and the tranche increments, read from the page by two independent sessions of another model without being told the expected value. | confirmed | 60 values equal to the printed paga base or to the paga base plus the printed increments up to that date. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text. | confirmed | work_rules.sunday_holidays: 04-25, 05-01, 06-02, 01-01, 01-06, easter_monday, 08-15, 11-01, 12-08, 12-25, 12-26, patron, 11-04 |
 
 ## Salary table
 

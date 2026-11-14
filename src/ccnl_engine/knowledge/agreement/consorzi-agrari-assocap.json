@@ -289,6 +289,27 @@
           "work_rules.sickness_rules",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-consorzi-agrari-assocap-sunday-holidays",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+            "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+          }
+        ],
+        "findings": [
+          "work_rules.sunday_holidays: 01-01, 01-06, easter_monday, 04-25, 05-01, 06-02, 08-15, 11-01, 11-04, 12-08, 12-25, 12-26, patron; divisor 26"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays"
+        ]
       }
     ]
   },
@@ -2400,7 +2421,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "f3879fc94350be6727ab22ac785c42f5511a6694ab93119ac89bc40d4d208d26",
+    "source_hash": "52f0137808cd6bd073cbdd56d56691e0f3a715d8e8ca9e1c0b7600e77c1b2c4c",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2748,6 +2769,52 @@
           "verified_at": "2026-11-01T12:51:22Z",
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice"
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "11-04",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "divisor": 26,
+      "on_rest_day": false,
+      "on_saturday": false,
+      "on_coincident_holiday": true,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-consorzi-agrari-assocap-2024-2027",
+            "title": "CCNL Consorzi agrari 2024–2027",
+            "kind": "associazione",
+            "url": "https://www.faicisl.it/attachments/article/2385/CCNL%20CONSORZI%20AGRARI%202024%20-%202027.pdf",
+            "sha256": "592a52c168c4c1724cc49e7d01c1b010723c5673c5ee88ae06cf60a9074b04ea"
+          },
+          "page": "25",
+          "section": "art. 24, comma 2 (rinvio al comma 1)",
+          "quote": "In caso di coincidenza con la domenica di festività nazionali e infrasettimanali previste dalle leggi richiamate nel precedente comma o della ricorrenza del Santo Patrono del luogo di lavoro, sarà corrisposto al personale un ventiseiesimo della retribuzione mensile. Lo stesso criterio verrà seguito nel caso di coincidenza della festività del Santo Patrono del luogo di lavoro con altra festività nazionale o infrasettimanale. Si considera coincidente con la domenica la festività del 4 novembre, celebrata per legge nella prima domenica del mese."
+        },
+        "transformation": "Le festività nazionali e infrasettimanali richiamate dall'art. 24, comma 1, sono codificate nel calendario nazionale, inclusi 25 aprile, 1 maggio e 2 giugno; si aggiungono il Santo Patrono del luogo di lavoro e il 4 novembre celebrato nella prima domenica di novembre (11-04). La quota espressa è 1/26 della retribuzione mensile. La coincidenza del Patrono con un'altra festività è retribuita anche se non cade di domenica; il testo non estende la regola al sabato o al riposo settimanale non domenicale.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
         }
       }
     }

@@ -52,12 +52,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-08-06 |
-| **Last review** | — |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2024-01-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-15 | claude-opus-5-5 (ai) | Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text. The CCNL text read is silent: the law applies. | confirmed | work_rules.sunday_holidays: 04-25, 05-01, 06-02 |
 
 ## Salary table
 

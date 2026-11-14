@@ -554,7 +554,7 @@
     "effective_until": "2024-12-31",
     "source": "https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/",
     "verification_status": "unverified",
-    "source_hash": "404189e890d68e2e7ebdbd064b08e8f69020d29bd6b818857bc31360060e3bfe",
+    "source_hash": "aed902ec75daff549ae02740a90c30693d541ca7ee4d22ad7bfd8952476eb744",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -663,6 +663,53 @@
           "comporto_days": 540
         }
       ]
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02"
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "l-260-1949-art5",
+            "title": "L. 27 maggio 1949 n. 260, art. 5 (testo vigente)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=2&art.idGruppo=0&art.flagTipoArticolo=0&art.codiceRedazionale=049U0260&art.idArticolo=5&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1949-05-31&art.progressivo=0",
+            "sha256": "ed0f71cdb9682a60e84f95ac8229ce1f608faf5a9e2ecd2fb261dc047a457426"
+          },
+          "quote": "Qualora la festivita' ricorra nel giorno di domenica, spettera' ai lavoratori stessi, oltre la normale retribuzione globale di fatto giornaliera, compreso ogni elemento accessorio, anche una ulteriore retribuzione corrispondente all'aliquota giornaliera",
+          "section": "Art. 5"
+        },
+        "transformation": "The CCNL text read is silent on the holidays falling on a Sunday: the law pays the civil holidays only (documents read: https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL-area-IR-2022-2024.pdf, sha256 44c27ea302da97ca8f833aa0e94ec037034ec208ab1579f8d7d110562f9f8d5d; https://www.aranagenzia.it/wp-content/uploads/2024/08/2024_08_07_AREA-IR_2019-2021.pdf, sha256 2135b83f4ab2230ccacf14b657733ae67c3d0c2429b033cba605a7272e460a95)"
+      }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-15-ai-dirigenza-istruzione-ricerca-aran-sunday-holidays",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text. The CCNL text read is silent: the law applies.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=2&art.idGruppo=0&art.flagTipoArticolo=0&art.codiceRedazionale=049U0260&art.idArticolo=5&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1949-05-31&art.progressivo=0",
+            "sha256": "ed0f71cdb9682a60e84f95ac8229ce1f608faf5a9e2ecd2fb261dc047a457426"
+          }
+        ],
+        "findings": [
+          "work_rules.sunday_holidays: 04-25, 05-01, 06-02"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays"
+        ]
+      }
+    ]
   }
 }

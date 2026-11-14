@@ -4213,7 +4213,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "9ebdda073f7c4971424d460927d6c1652e699e917c04fff09e378a23d8fec31c",
+    "source_hash": "9e7cdf32f5ced3f266375fb38dfd588886775efb3d0cdcd74ffb221b08872487",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4544,6 +4544,54 @@
           }
         }
       }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "06-29",
+        "08-15",
+        "10-04",
+        "11-01",
+        "11-04",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "divisor": 26,
+      "on_rest_day": true,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "autorimesse-ic35-2025-2027",
+            "title": "testo unico 2025–2027",
+            "kind": "associazione",
+            "url": "https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf",
+            "sha256": "af0c6b2555f502ab52fcedb82b5d138093ef49499cac97ac19ec241e696f686d"
+          },
+          "page": "50–51",
+          "section": "art. 25, punto b) e Festività abolite",
+          "quote": "Nel caso in cui le ricorrenze festive di cui al punto b) cadano in giornate di riposo settimanale (secondo giorno nell'eventualità di settimana corta) in aggiunta al normale trattamento economico, al lavoratore spetta un importo pari ad un ventiseiesimo della retribuzione globale."
+        },
+        "transformation": "L'art. 25, punto b), elenca 1° e 6 gennaio, lunedì dell'Angelo, 25 aprile, 1° maggio, 2 giugno, 15 agosto, 4 ottobre, 1° novembre, 8 dicembre, 25 e 26 dicembre, patrono e 29 giugno per Roma: tutti sono pagati se coincidono con il riposo settimanale, con quota 1/26. L'art. 25, Festività abolite, prevede inoltre per il 4 novembre coincidente con il riposo settimanale lo stesso trattamento, con alternativa del riposo compensativo; si codifica 11-04 su 4 novembre stesso tramite on_rest_day. Il secondo giorno della settimana corta non implica pagamento per ogni sabato. Nessun altro flag è espresso.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2025-12-09",
+          "verification_status": "unverified"
+        }
+      }
     }
   },
   "verification": {
@@ -4740,6 +4788,27 @@
         "checked": [
           "parameters.meal_benefit_daily",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-autorimesse-ic35-sunday-holidays",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf",
+            "sha256": "af0c6b2555f502ab52fcedb82b5d138093ef49499cac97ac19ec241e696f686d"
+          }
+        ],
+        "findings": [
+          "work_rules.sunday_holidays: 01-01, 01-06, easter_monday, 04-25, 05-01, 06-02, 06-29, 08-15, 10-04, 11-01, 11-04, 12-08, 12-25, 12-26, patron; divisor 26"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays"
         ]
       }
     ]
