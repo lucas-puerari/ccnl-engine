@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 41 verified / 5 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 42 verified / 5 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Ferie at termination and the day and hour quotas of the CCNL 2023-2026. | corrected | The file had no basis for the leave left at termination: added the twelfths (15 days or more a month), the 1/26 day and the 1/170 hour. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Articolo 31 - Giorni festivi (holiday on a Sunday). | corrected | The file had no clause for a holiday falling on a Sunday, so its further daily quota was not paid: added the clause with the holidays the text lists and 4 November. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 31 and 33 of the CCNL 2023-2026. | corrected | Corrected the holiday (55%) and night (70%) overtime bands, added the night-holiday band (75%), the 48th-hour threshold and the 50% ordinary holiday premium; the premiums are on the retribuzione globale. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 30 of the CCNL 2023-2026. | corrected | Added the rest-day premium of Art. 30: 50% of the hourly quota of the retribuzione globale, the hours compensated by rest. |
 
 ## Salary table
 

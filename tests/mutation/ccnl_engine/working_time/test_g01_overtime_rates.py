@@ -92,7 +92,7 @@ def test_ancc_rates_of_articles_121_to_132() -> None:
 
 
 def test_fiori_rates_of_articles_31_and_33() -> None:
-    """30/55/55/70/75% overtime, holiday work 50%."""
+    """30/55/55/70/75% overtime, holiday and rest-day work 50%."""
     assert _rates("fiori-recisi-ancef") == {
         "OT_DIURNO": ("0.30", None),
         "OT_DIURNO_EXTRA": ("0.55", 48),
@@ -100,6 +100,7 @@ def test_fiori_rates_of_articles_31_and_33() -> None:
         "OT_NOTTURNO": ("0.70", None),
         "OT_NOTTURNO_FESTIVO": ("0.75", None),
         "FIORI_FESTIVO": ("0.50", None),
+        "FIORI_RIPOSO": ("0.50", None),
     }
 
 
