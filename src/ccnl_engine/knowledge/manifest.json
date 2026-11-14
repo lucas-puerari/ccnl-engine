@@ -235,7 +235,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/autorimesse-ic35",
       "ruleset_version": "2026.2",
-      "source_hash": "061620e24aba96a42622b995bf6d146334b0b47151b7e8afecd73d71075a21f6",
+      "source_hash": "9ebdda073f7c4971424d460927d6c1652e699e917c04fff09e378a23d8fec31c",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/autorimesse-ic35.json.gz"
@@ -371,7 +371,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/ced-assoced",
       "ruleset_version": "2026.2",
-      "source_hash": "419a0f4cea93566a2020ead0f7a691b60bebf85fab2f51ec5adccb62d4b7e0ef",
+      "source_hash": "571aafb3dcf4dfd8e42cb5a6fef89553cf0d784151f4270ffc60d2011d37788c",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/ced-assoced.json.gz"
@@ -2661,7 +2661,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "4f1620af6d5cf8f38c48569b1c9bf40b8438e95a96b760f29744bfa013112890",
+      "source_hash": "75fdc1508e0e31a44438b09f27731e520f40fa900d0c39304388db74104b57f2",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/autorimesse-ic35.json.gz",

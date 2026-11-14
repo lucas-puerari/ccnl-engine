@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "meal_voucher",
-      "institute": "welfare",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SIMPLIFICATION: Ticket restaurant excluded. Art. 44/84 provides 8.00 EUR/day (from 01/01/2023), rising to 10.00 EUR/day from 01/04/2027, conditional on >= 5 hours worked. Per-day and conditional: not representable as a monthly fixed allowance.",
-      "calculation": "ccnl/autorimesse-ic35:coverage.notes",
-      "state": "absent",
-      "remediation": "Post the ticket restaurant as a welfare item per day worked of at least 5 hours: 8.00 EUR a day from 2023-01-01, 10.00 EUR from 2027-04-01 (Art. 44/84).",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "autorimesse-ic35/meal_voucher"
-        ]
-      }
-    },
-    {
       "id": "mid_month_level_change",
       "institute": "base_salary",
       "variant": "all",

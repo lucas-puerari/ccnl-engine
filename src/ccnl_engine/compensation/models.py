@@ -155,7 +155,8 @@ class CCNLParameters(BaseModel):
     ``daily_presence_allowances``: rates paid per counted qualifying day,
     rather than a fraction of monthly pay; ``meal_benefit_daily``: the
     non-remunerative meal voucher value per eligible day;
-    ``meal_indennity_daily``: the valore convenzionale of a meal owed and not given.
+    ``meal_indennity_daily``: the valore convenzionale of a meal owed and not given;
+    ``meal_benefit_min_headcount``: the employees the employer needs for it.
     ``equalisation_element`` retains the legacy single yearly element;
     ``equalisation_elements`` adds other yearly elements without replacing it.
     """
@@ -193,6 +194,7 @@ class CCNLParameters(BaseModel):
     loyalty_premium: LoyaltyPremium | None = None
     daily_presence_allowances: tuple[DailyPresenceAllowance, ...] = ()
     meal_benefit_daily: TimeSeries | None = None
+    meal_benefit_min_headcount: int | None = Field(default=None, ge=1)
     meal_indennity_daily: TimeSeries | None = None
 
     @model_validator(mode="after")
