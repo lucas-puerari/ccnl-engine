@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 53 verified / 2 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 54 verified / 2 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -85,6 +85,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 98 (ex festività) and Art. 91 c. 5 (deadline) of the CCNL of 16 February 2024. | corrected | Art. 98 pays the ex festività not taken 'in coerenza con quanto previsto dall'articolo 91 comma 5': the deadline now covers that bucket too, so the 32 hours left are paid or carried to 31 July like the ROL. Narrowed unused_leave_hours to the Art. 92 flexibility permits and the Sunday festività of Art. 97 C. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 97 C-D, Art. 98 and Art. 44 of the CCNL of 16 February 2024. | corrected | Added the clause of Art. 97 C: a further daily quota (1/26, Art. 44) for a listed holiday, the patron, 4 November (c. D) and the ex festività of 19 March and 29 June (Art. 98) falling on a Sunday or on another holiday. Narrowed unused_leave_hours to the Art. 92 flexibility permits. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 92 (flexibility) and Art. 95 (overtime premium) of the CCNL of 16 February 2024. | corrected | Added the flexibility permits of Art. 92 (30 or 60 minutes a week over 40 hours, paid with the 15% overtime premium in the sixth month after the programme year) and closed unused_leave_hours. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 97 F and Art. 95 of the CCNL of 16 February 2024. | corrected | Added the rest-day premium of Art. 97 F: the hours on the weekly rest day take the premium alone, read as the 30% of Art. 95 for work on non-working days, with the compensatory rest. |
 
 ## Salary table
 
