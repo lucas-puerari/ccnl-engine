@@ -1479,7 +1479,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-artigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "1aa2a4f02a1574884aa90204e09db2ea2659ca8e4859811745fbb91fa1b5303b",
+      "source_hash": "787d91716bbeeb2867dd1ef10518a0c778e589c23c6e15e98cd0f71cda085c25",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-artigianato.json.gz"
@@ -4121,7 +4121,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "aa3c9e773f777f6ca9428669d97669c40521f66d44c1ad033c0987ae24275d5e",
+      "source_hash": "0d7bbc2d750f363bbe5c799887bcbb524e6bfaa60e6ce899fc9c30e119938ea8",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/metalmeccanico-artigianato.json.gz",

@@ -961,7 +961,6 @@
     ],
     "agreement/metalmeccanico-artigianato.json": [
       "metalmeccanico-artigianato/apprentice_inps_rates_unsourced",
-      "metalmeccanico-artigianato/centralinisti_apprenticeship",
       "metalmeccanico-artigianato/dual_apprenticeship_prorogation",
       "metalmeccanico-artigianato/inps_sector_rates_unsourced"
     ],

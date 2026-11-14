@@ -96,7 +96,7 @@
       },
       {
         "kind": "info",
-        "text": "APPRENTICESHIP percentage, 10 semesters (60 months max), operai progression (source EBLART, apprenticeship professionalizzante article): 70% (sem. I-II), 75% (III), 78% (IV), 80% (V), 85% (VI), 88% (VII), 92% (VIII), 100% (IX-X); track 'operai' for destinations 5, 4, 3, 2bis. Since the 2015 reform level 6° cannot be used as a destination."
+        "text": "APPRENTICESHIP, OPERAI AND TECHNICAL EMPLOYEES (Art. 27 c. 7 and 9, signed text of 17 December 2021, CNEL 162281 p. 76, and the renewal of 19 November 2024, CNEL 197521 p. 6): 1st group (cat. 1, 2, 2bis, 3) and 2nd group (cat. 4, 5) of the Metalmeccanica e installazione di impianti sector, 5 years, by semester 70, 70, 75, 78, 80, 85, 88, 92, 100, 100% of the retribuzione tabellare of the destination level ('Per gli impiegati tecnici la durata massima è quella prevista dai rispettivi gruppi'). Track 'operai', destinations 5, 4, 3, 2bis, 2, 1. Since the 2015 reform level 6 cannot be a destination."
       },
       {
         "kind": "info",
@@ -108,7 +108,7 @@
       },
       {
         "kind": "info",
-        "text": "APPRENTICESHIP administrative impiegati (destination levels 2, 1): 3 years, by semester 70, 70, 75, 80, 85 and 90% (Art. 27 as renewed on 19 November 2024), 100% thereafter. Track 'impiegati'. Level 1Q (quadro) excluded. Source: CCNL metalmeccanico artigianato renewal 17.12.2021 (EBLART summary); formazione-apprendistato.com; conflavoro.it 2021 summary; renewal of 19 November 2024 (review of 2026-10-30)"
+        "text": "APPRENTICESHIP, ADMINISTRATIVE EMPLOYEES: 'Per gli impiegati amministrativi di tutti i livelli di inquadramento la durata massima dell'apprendistato è di 3 anni' (Art. 27 c. 7, 2021 text p. 76), by semester 70, 70, 75, 80, 85, 90% (renewal 2024 p. 6), 100% thereafter; track 'impiegati', destinations 5, 4, 3, 2, 1 (Art. 17 places administrative work in categories 1 to 5, pp. 33-40; 2bis is for operai only, p. 34). Centralinisti: 'Per gli impiegati addetti al centralino la durata massima è di 2 anni', 70, 70, 75, 80% by semester; track 'impiegati_centralinisti', destination 5 (the 5th category of Art. 17, p. 40: 'attività di servizio con compiti esecutivi', the declaratoria whose example in the Orafi classification of the same CCNL, p. 49, is the 'Centralinista telefonico'). A level is shared by the tracks: the caller states the track (Apprentice.track) from the duties. Level 1Q (quadro) excluded."
       },
       {
         "kind": "info",
@@ -146,19 +146,6 @@
       {
         "kind": "info",
         "text": "TERM: the renewal of 19 November 2024 runs from 1 January 2023 to 31 December 2026 (Art. 2, signed scan) and keeps applying until the next renewal takes effect; the tabellare of 1 November 2026 stays in force after 2026 until a renewal is read."
-      },
-      {
-        "kind": "simplification",
-        "text": "APPRENTICESHIP (Art. 27 as renewed on 19 November 2024, signed scan p. 6, by semester on the retribuzione tabellare of the destination level): operai of the 1st and 2nd group 70, 70, 75, 78, 80, 85, 88, 92, 100, 100%; impiegati amministrativi 70, 70, 75, 80, 85, 90%; impiegati centralinisti 70, 70, 75, 80%, not modelled apart (their destination level is not distinguished).",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "centralinisti_apprenticeship",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Add an 'impiegati_centralinisti' track (70, 70, 75, 80% by semester, then 100%) selectable by Apprentice.track."
-        }
       },
       {
         "kind": "info",
@@ -2890,7 +2877,9 @@
         "5",
         "4",
         "3",
-        "2bis"
+        "2bis",
+        "2",
+        "1"
       ],
       "periods": [
         {
@@ -2939,6 +2928,9 @@
       "type": "percentage",
       "name": "impiegati",
       "destination_levels": [
+        "5",
+        "4",
+        "3",
         "2",
         "1"
       ],
@@ -2974,6 +2966,35 @@
           "percentage": "1.00"
         }
       ]
+    },
+    {
+      "type": "percentage",
+      "name": "impiegati_centralinisti",
+      "destination_levels": [
+        "5"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.70"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 18,
+          "months_until": 24,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ]
     }
   ],
   "ruleset": {
@@ -2983,7 +3004,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "1aa2a4f02a1574884aa90204e09db2ea2659ca8e4859811745fbb91fa1b5303b",
+    "source_hash": "787d91716bbeeb2867dd1ef10518a0c778e589c23c6e15e98cd0f71cda085c25",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3833,6 +3854,31 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules_by_category"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-apprenticeship-tracks",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 27 c. 7 (durations by group and employee kind) of the 2021 signed text and c. 9 (pay table) of the 2024 renewal; Art. 17 classification of the Meccanica sector.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/197521",
+            "sha256": "aa2fbade69b23a995ba12865adcece61c38f5ca44d3e52847597a65853823f7e"
+          },
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/162281",
+            "sha256": "fffeb9fa2cc1b375a1919de075e29b79261bc9929746db9563edd4cb2cca5365"
+          }
+        ],
+        "findings": [
+          "Read the 2024 table on the page image: groups 1 and 2, impiegati amministrativi and centralinisti have their own scale. The 2021 text keys the tracks by worker kind: groups 1 (cat. 1, 2, 2bis, 3) and 2 (cat. 4, 5) for operai and technical employees, administrative employees of every level, centralinisti. The file split them by level (operai 5-2bis, impiegati 2-1), so an administrative apprentice of levels 3-5 was paid on the operai scale and an operaio of levels 1-2 on the employee one. Extended both tracks to their levels, added the centralinisti track and closed centralinisti_apprenticeship."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "apprenticeship"
         ]
       }
     ],
