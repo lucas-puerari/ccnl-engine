@@ -35,22 +35,6 @@
       }
     },
     {
-      "id": "apprenticeship_percentages_assumed",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "APPRENTICESHIP: new rules from 2024-11-18 rinnovo for post-Nov-18-2024 contracts. Track durations confirmed from adapt.it (G016-specific): operai/tecnici max 5 years, amministrativi max 3 years, centraliniste 2 years. Percentage progressions (70/78/85/92/100% for operai/tecnici; 70/80/90% for amministrativi) follow the Confartigianato/CNA artigianato national framework agreement (CCNA); G016-specific source (adapt.it) confirms durations but not the individual percentages. SIMPLIFICATION: percentages assumed from artigianato CCNA framework; not found in a G016-specific primary source (CCNL PDF not fetched).",
-      "calculation": "ccnl/comunicazione-artigianato-confartigianato:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the G016 apprenticeship percentages from the CCNL text and correct the tracks.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "comunicazione-artigianato-confartigianato/apprenticeship_percentages_assumed"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",
@@ -341,12 +325,12 @@
     {
       "id": "previgente_apprenticeship_rules",
       "institute": "base_salary",
-      "variant": "all",
+      "variant": "apprentice",
       "discriminant": "applies_when.trigger = run",
-      "rule": "APPRENTICESHIP SCOPE: only post-Nov-18-2024 rules modelled. Pre-renewal CCNL used a semestrali hybrid model (old percentage tables). Firms with apprenticeship contracts signed before Nov 18, 2024 may follow previgente rules. This is a deliberate scope decision (modelling current rules only); historical contract tracking is out of engine scope.",
+      "rule": "APPRENTICESHIP COHORT: 'Le nuove percentuali retributive previste nell'art. 36 [...] trovano applicazione solo per i lavoratori assunti a far data dalla sottoscrizione dell'Accordo di rinnovo del 16 maggio 2022. Per tutti gli altri lavoratori continuano a trovare applicazione le previgenti percentuali retributive' (dichiarazione a verbale, renewal of 18 November 2024, p. 12). The file models the current percentages only; an apprentice hired before 16 May 2022 is paid on them, not on the previous tables.",
       "calculation": "ccnl/comunicazione-artigianato-confartigianato:coverage.notes",
       "state": "unverified",
-      "remediation": "Model the pre-18/11/2024 percentage tables gated on the apprenticeship start date, or open a limitation.",
+      "remediation": "Source the percentage tables in force before 16 May 2022 and gate them on the hire date.",
       "origin": "seeded",
       "links": {
         "limitations": [
