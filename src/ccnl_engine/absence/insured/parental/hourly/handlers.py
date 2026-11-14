@@ -38,6 +38,7 @@ from ccnl_engine.absence.insured.parental.hourly.rules import (
     hourly_top_up,
     hours_indemnity,
 )
+from ccnl_engine.absence.insured.parental.income import income_check
 from ccnl_engine.absence.insured.posting.services import post_lines
 from ccnl_engine.absence.insured.rules import InsuredPay
 from ccnl_engine.decision.models import CalculationIssue, CalculationStatus, IssueCause
@@ -138,9 +139,10 @@ def _handle_hourly_parental(
         )
     if unknown:
         issues.append(_cohort_issue())
-    effect.issues = issues
     limitations = [*base.limitations, PARENTAL_EXTRA_MONTH_LIMITATION]
-    if any(days[day] is None for day in in_span):
+    issue, unpublished = income_check(days, in_span, event.individual_income, PARENTAL)
+    effect.issues = [*issues, *([] if issue is None else [issue])]
+    if unpublished:
         limitations.append(PARENTAL_INCOME_LIMITATION)
     effect.limitations = (*limitations, HOURLY_CCNL_LIMITATION)
     return effect

@@ -60,6 +60,10 @@ class HourlyParentalLeaveEvent:
             before this event, including earlier hourly leave. ``None`` when
             the history is unknown; half a day of hourly leave counts as
             half a day toward the collective cap.
+        individual_income: Individual income of the parent in the year the
+            leave starts, for the months beyond the indemnified ones: art.
+            34 c. 3 D.Lgs. 151/2001 pays them 30% below 2.5 times the
+            trattamento minimo; ``None`` when not stated.
 
     Raises:
         InvalidInputError: When a field is of the wrong type, the days are
@@ -75,6 +79,7 @@ class HourlyParentalLeaveEvent:
     single_parent: bool = False
     parental_base_pay: InpsSicknessBase | None = None
     topped_up_days_before: Decimal | None = None
+    individual_income: Decimal | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         name = "HourlyParentalLeaveEvent"
@@ -86,6 +91,13 @@ class HourlyParentalLeaveEvent:
             self.taken, ParentalLeaveTaken, f"{name}.taken", feature=_PARENTAL
         )
         require_bool(self.single_parent, f"{name}.single_parent", feature=_PARENTAL)
+        require_decimal(
+            self.individual_income,
+            f"{name}.individual_income",
+            feature=_PARENTAL,
+            minimum=Decimal(0),
+            optional=True,
+        )
         require_decimal(
             self.topped_up_days_before,
             f"{name}.topped_up_days_before",

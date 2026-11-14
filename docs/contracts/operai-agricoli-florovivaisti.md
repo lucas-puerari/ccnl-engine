@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, bilateral_funds, inail, overtime, seniority, sickness, territorial_supplement |
 
-12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -81,6 +81,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Article 54 seniority profile amounts and provincial qualification in the cached 2022-2025 signed text, PDF pages 55-56. | corrected | The older figures on page 55 are superseded by the post-2006 figures on page 56 for provincial profile assignments; the provincial contracts and actual profile assignments remain unsourced. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Article 54 permanent-worker eligibility, cached signed text PDF page 55. | corrected | Art. 54 explicitly grants biennial increments to permanent workers only; fixed-term workers have a separate, unmodelled element under the 2026 renewal. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Apprentice seniority increments against art. 54 of the CCNL and art. 41 D.Lgs. 81/2015, from the targeted research of a separate model session; text layer. | confirmed | Art. 54 covers the operai a tempo indeterminato; the apprenticeship is a contract a tempo indeterminato: the apprentice accrues the increments of the classification level. |
+| 2026-11-14 | gpt-6-sol (ai) | Apprentice seniority increments against art. 54 and Allegato 10 of the CCNL and art. 41 D.Lgs. 81/2015; text layer. | flagged | Confirmed for the permanent apprentice: art. 54 covers the operai a tempo indeterminato and does not exclude apprentices.<br>Allegato 10 allows seasonal fixed-term apprentices, outside art. 54: declared as the open limitation seasonal_apprentice_seniority. |
 
 ## Salary table
 
@@ -141,11 +142,18 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Pass the provincial EBAN, FISA and Agrifondo contributions as bilateral fund events.
 
 !!! note "operai-agricoli-florovivaisti/apprentice_seniority · seniority · impact unknown · resolved"
-    APPRENTICE SENIORITY: art. 54 (PDF p. 55, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c) grants a biennial increment to 'gli operai a tempo indeterminato', and the apprenticeship is a contract 'a tempo indeterminato' (art. 41 c. 1 D.Lgs. 81/2015, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-06-15;81~art41): the apprentice accrues the increments of the level of their classification (Allegato 10, p. 123), with no amount of his own.
+    APPRENTICE SENIORITY: art. 54 (PDF p. 55, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c) grants a biennial increment to 'gli operai a tempo indeterminato', and the apprenticeship is a contract 'a tempo indeterminato' (art. 41 c. 1 D.Lgs. 81/2015, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-06-15;81~art41): the apprentice accrues the increments of the level of their classification (Allegato 10, p. 123), with no amount of their own.
 
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Resolved: art. 54 and art. 41 D.Lgs. 81/2015 read on 2026-11-14.
+
+!!! warning "operai-agricoli-florovivaisti/seasonal_apprentice_seniority · seniority · impact unknown · open"
+    SEASONAL APPRENTICES: Allegato 10 (PDF p. 124, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c) lets employers working in seasonal cycles hire apprentices 'anche a tempo determinato', and art. 54 grants the increments only to 'gli operai a tempo indeterminato'. The apprentice input states no term, so the engine pays a fixed-term seasonal apprentice the increments of the level once the biennium with the same employer is complete.
+
+    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+
+    **Remediation:** State on the apprentice input whether the apprenticeship is fixed-term and pay no increment to a fixed-term apprentice where the CCNL keeps them to permanent workers, then remove this note.
 
 !!! warning "operai-agricoli-florovivaisti/fixed_term_seniority_element · base_salary · impact yes · open"
     ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (Art. 54-bis, new, verbale of 28 May 2026): from 1 January 2027 a fixed-term operaio who worked at least 150 days a year for the same employer for three consecutive years receives, from the fourth year, 0.4% of the salario contrattuale. The request carries no history of days per employer, so it is not paid.
@@ -253,11 +261,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Resolved: the base of an operaio and of a partial month is the sickness base of the month before.
 
 !!! warning "parental_income_condition · parental_leave · impact unknown · open"
-    The days of parental leave beyond the indemnified months (three of each parent and three of the couple, nine of a sole parent) are paid nothing: art. 34 c. 3 D.Lgs. 151/2001 pays them 30% when the parent's income is below 2.5 times the trattamento minimo di pensione, an income test and a yearly amount the engine does not model.
+    The days of parental leave beyond the indemnified months are paid 30% when the parent's individual income (ParentalLeaveEvent.individual_income) is below 2.5 times the yearly trattamento minimo di pensione (art. 34 c. 3 D.Lgs. 151/2001); a year whose minimum the INPS has not published yet (2027) pays them nothing.
 
     **Applies when:** `parental_leave` applies; the run takes the engine code path.
 
-    **Remediation:** Source the yearly trattamento minimo and the income the test reads, take the income as a fact of the leave and pay the further days at 30% when the condition holds, then resolve this limitation.
+    **Remediation:** Add the trattamento minimo of each new year to the parental rates when the INPS circular publishes it.
 
 !!! warning "parental_month_split · parental_leave · impact unknown · unsourced"
     When a counter of the parental leave (a rate band or the indemnified months) ends inside a calendar month of the leave that is not of thirty days, the engine pays the days of that month in order, one day of counter each and the last day what is left of the thirty: INPS counts the calendar month as one month (FAQ congedo parentale 2024, n. 10) but no source says which of its days fall in which band.

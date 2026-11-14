@@ -163,22 +163,6 @@
       }
     },
     {
-      "id": "parental_income_condition",
-      "institute": "parental_leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The days of parental leave beyond the indemnified months (three of each parent and three of the couple, nine of a sole parent) are paid nothing: art. 34 c. 3 D.Lgs. 151/2001 pays them 30% when the parent's income is below 2.5 times the trattamento minimo di pensione, an income test and a yearly amount the engine does not model.",
-      "calculation": "ccnl_engine.absence.insured.parental.rules.allocate; D.Lgs. 151/2001 art. 34 (Normattiva, text in force on 2026-10-30, page sha256 aaf521a98f84e5d33cad1deee74452d789e5c58ec3d1ede4567453d7b7bd3967)",
-      "state": "unverified",
-      "remediation": "Source the yearly trattamento minimo and the income the test reads, take the income as a fact of the leave and pay the further days at 30% when the condition holds, then resolve this limitation.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "parental_income_condition"
-        ]
-      }
-    },
-    {
       "id": "provincial_profile_scatti",
       "institute": "seniority",
       "variant": "all",
@@ -238,6 +222,22 @@
       "links": {
         "rules": [
           "agreement/operai-agricoli-florovivaisti.json#additional_months[2022-06-01]"
+        ]
+      }
+    },
+    {
+      "id": "seasonal_apprentice_seniority",
+      "institute": "seniority",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "SEASONAL APPRENTICES: Allegato 10 (PDF p. 124, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c) lets employers working in seasonal cycles hire apprentices 'anche a tempo determinato', and art. 54 grants the increments only to 'gli operai a tempo indeterminato'. The apprentice input states no term, so the engine pays a fixed-term seasonal apprentice the increments of the level once the biennium with the same employer is complete.",
+      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
+      "state": "unverified",
+      "remediation": "State on the apprentice input whether the apprenticeship is fixed-term and pay no increment to a fixed-term apprentice where the CCNL keeps them to permanent workers, then remove this note.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "operai-agricoli-florovivaisti/seasonal_apprentice_seniority"
         ]
       }
     },

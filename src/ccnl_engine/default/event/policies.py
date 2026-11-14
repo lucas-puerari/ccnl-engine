@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.default.event.parental import PARENTAL_DEFAULTS
 from ccnl_engine.default.event.sickness import SICKNESS_DEFAULTS
 from ccnl_engine.default.event.travel import TRAVEL_DEFAULTS
 from ccnl_engine.default.models import (
@@ -287,4 +288,5 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "on the pay of the run, with a missing_fact paternity_base_pay blocker",
     ),
     **SICKNESS_DEFAULTS,
+    **PARENTAL_DEFAULTS,
 }

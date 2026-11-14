@@ -168,11 +168,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Resolved: the base of an operaio and of a partial month is the sickness base of the month before.
 
 !!! warning "parental_income_condition · parental_leave · impact unknown · open"
-    The days of parental leave beyond the indemnified months (three of each parent and three of the couple, nine of a sole parent) are paid nothing: art. 34 c. 3 D.Lgs. 151/2001 pays them 30% when the parent's income is below 2.5 times the trattamento minimo di pensione, an income test and a yearly amount the engine does not model.
+    The days of parental leave beyond the indemnified months are paid 30% when the parent's individual income (ParentalLeaveEvent.individual_income) is below 2.5 times the yearly trattamento minimo di pensione (art. 34 c. 3 D.Lgs. 151/2001); a year whose minimum the INPS has not published yet (2027) pays them nothing.
 
     **Applies when:** `parental_leave` applies; the run takes the engine code path.
 
-    **Remediation:** Source the yearly trattamento minimo and the income the test reads, take the income as a fact of the leave and pay the further days at 30% when the condition holds, then resolve this limitation.
+    **Remediation:** Add the trattamento minimo of each new year to the parental rates when the INPS circular publishes it.
 
 !!! warning "parental_month_split · parental_leave · impact unknown · unsourced"
     When a counter of the parental leave (a rate band or the indemnified months) ends inside a calendar month of the leave that is not of thirty days, the engine pays the days of that month in order, one day of counter each and the last day what is left of the thirty: INPS counts the calendar month as one month (FAQ congedo parentale 2024, n. 10) but no source says which of its days fall in which band.

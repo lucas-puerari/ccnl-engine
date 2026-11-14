@@ -46,6 +46,10 @@ class ParentalRates(BaseModel):
         child_age_years: Age of the child the leave ends at, 14.
         enhanced_age_years: Age of the child the enhanced rate ends at, 6.
         enhanced: The cohorts of the enhanced months, by first day.
+        income_multiple: Times the yearly trattamento minimo the parent's
+            income must stay below for the further months, 2.5 (c. 3).
+        minimum_pension_yearly: Yearly trattamento minimo di pensione by
+            year, from the INPS circular of the year.
         provenance: Source of the measures.
     """
 
@@ -61,6 +65,8 @@ class ParentalRates(BaseModel):
     child_age_years: int = Field(ge=1)
     enhanced_age_years: int = Field(ge=1)
     enhanced: tuple[EnhancedCohort, ...]
+    income_multiple: Decimal = Field(gt=Decimal(0))
+    minimum_pension_yearly: dict[int, Decimal] = Field(default_factory=dict)
     provenance: RuleProvenance
 
     @model_validator(mode="after")
@@ -97,3 +103,17 @@ class ParentalRates(BaseModel):
             ),
             default=0,
         )
+
+    def beyond_rate(self, income: Decimal | None, year: int) -> Decimal | None:
+        """Return the rate of a day beyond the indemnified months (c. 3).
+
+        Returns:
+            The indemnity rate when ``income`` is below the multiple of the
+            year's trattamento minimo, zero when it is not, ``None`` when
+            the income or the year's minimum is not known.
+        """
+        minimum = self.minimum_pension_yearly.get(year)
+        if income is None or minimum is None:
+            return None
+        below = income < self.income_multiple * minimum
+        return self.indemnity_rate if below else Decimal(0)
