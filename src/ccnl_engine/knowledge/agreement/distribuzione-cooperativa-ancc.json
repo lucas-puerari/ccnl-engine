@@ -173,6 +173,11 @@
         "kind": "info",
         "text": "OVERTIME AND ORDINARY PREMIUMS (testo ufficiale 2011): overtime at the hourly quota of the retribuzione di fatto with 20% up to the 48th weekly hour, 25% beyond, 35% on holidays, 55% at night, the highest when several concur (Art. 126); ordinary night work 25% (Art. 121); work on the weekly rest day the premium of 35% alone (Art. 129); work on a holiday paid as holiday overtime (Art. 132 c. 1); ordinary Sunday work in an authorised opening takes no premium (Art. 128 c. 3). The bands previously came from an aggregator at 15/30/30/50%.",
         "capability": "overtime"
+      },
+      {
+        "kind": "info",
+        "text": "FUNDS: Coopersalute (renewal 2024, art. 16): 14 EUR a month paid by the employer from January 2025 for the permanent workers, full or part time, and the apprentices, quadri excluded, with the 10% INPS solidarity contribution (the 30 EUR one-off enrolment fee is not modelled as a monthly charge); quadri (art. 58): 1,000 EUR a year by the employer and 100 EUR by the quadro; Previcooper: employer 1,55% and worker at least 0,55% of the TFR base for the enrolled worker (Employment.pension_fund). The employer names the health funds it pays (EmployerProfile.contractual_funds); none has an element in its place (Coopersalute is compulsory).",
+        "capability": "contractual_funds"
       }
     ]
   },
@@ -512,6 +517,32 @@
         "checked": [
           "work_rules.time_supplements"
         ]
+      },
+      {
+        "id": "2026-11-14-ai-funds",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 16 of the renewal of 29 March 2024; Art. 58 and the pension fund clause of the testo ufficiale 2011.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+            "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
+          },
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+            "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+          }
+        ],
+        "findings": [
+          "The file had no fund: added Coopersalute (14 EUR a month from 2025), the quadri health cover (1,000 + 100 EUR a year) and Previcooper (1,55% employer, 0,55% worker minimum on the TFR base)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.health_funds",
+          "parameters.employer_funds"
+        ]
       }
     ]
   },
@@ -711,7 +742,173 @@
           "review_id": "2026-10-18-ai-accrual-rule"
         }
       }
-    }
+    },
+    "health_funds": [
+      {
+        "code": "coopersalute",
+        "description": "Fondo Coopersalute, assistenza sanitaria integrativa, art. 16 (renewal 2024)",
+        "levels": [
+          "6",
+          "5",
+          "4",
+          "4S",
+          "3",
+          "3S",
+          "2",
+          "1"
+        ],
+        "permanent_only": true,
+        "apprentices_permanent": true,
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "14.00"
+              }
+            ]
+          }
+        },
+        "extra_months": false,
+        "solidarity_rate": "0.1",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "cnel-ancc-rinnovo-2024-183889",
+              "title": "Ipotesi di accordo di rinnovo del CCNL distribuzione cooperativa, 29 marzo 2024, CNEL 183889 (scansione firmata)",
+              "kind": "cnel",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+              "published_on": "2024-03-29",
+              "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
+            },
+            "page": "4-5",
+            "section": "Art. 16 Assistenza sanitaria integrativa",
+            "quote": "sono iscritti al Fondo Coopersalute i lavoratori dipendenti [...] assunti a tempo indeterminato con contratto a tempo pieno e con contratto a tempo parziale, ad esclusione dei quadri [...] sono iscritti al Fondo Coopersalute i lavoratori [...] assunti con contratto di apprendistato [...] un contributo a carico dell'impresa, pari a: per tutto il personale assunto, iscritto al Fondo Coopersalute, 14,00 euro mensili per ciascun iscritto a partire dal 1° gennaio 2025"
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2025-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-funds"
+          }
+        }
+      },
+      {
+        "code": "sanitaria_quadri",
+        "description": "Assistenza sanitaria integrativa dei quadri, art. 58",
+        "levels": [
+          "Q"
+        ],
+        "employer": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2009-01-01",
+                "valid_until": null,
+                "value": "1000.00"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "annual": {
+            "periods": [
+              {
+                "valid_from": "2009-01-01",
+                "valid_until": null,
+                "value": "100.00"
+              }
+            ]
+          }
+        },
+        "extra_months": false,
+        "employee_deductible": true,
+        "solidarity_rate": "0.1",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "uiltucs-ccnl-cooperazione-2011",
+              "title": "CCNL per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+              "kind": "associazione",
+              "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+              "published_on": "2011-01-01",
+              "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+            },
+            "page": "112-113 (printed 110-111)",
+            "section": "Art. 58 Assistenza sanitaria integrativa",
+            "quote": "Il finanziamento delle prestazioni [...] è individuato nell'importo complessivo annuo di euro 1.000,00 a carico delle imprese e di euro 100,00 a carico del Quadro a decorrere dal 1° gennaio 2009."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2009-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-funds"
+          }
+        }
+      }
+    ],
+    "employer_funds": [
+      {
+        "code": "PREVICOOPER",
+        "description": "Previcooper - Fondo pensione complementare dei dipendenti della distribuzione cooperativa",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2006-01-01",
+              "valid_until": null,
+              "value": "0.0155"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2006-01-01",
+              "valid_until": null,
+              "value": "0.0055"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "uiltucs-ccnl-cooperazione-2011",
+              "title": "CCNL per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+              "kind": "associazione",
+              "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+              "published_on": "2011-01-01",
+              "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+            },
+            "page": "56 (printed 54-55)",
+            "section": "Fondo di previdenza complementare",
+            "quote": "dal 1° gennaio 2006 il contributo – a carico dei datori di lavoro – per ogni lavoratore iscritto sarà pari all'1,55% della retribuzione utile per il computo del TFR. 2. La contribuzione minima a carico dei lavoratori non è modificata. [inizialmente] 0,55%, comprensivo dello 0,05% a titolo di quota associativa, a carico dei lavoratori"
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2006-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-funds"
+          }
+        }
+      }
+    ]
   },
   "apprenticeship": [
     {
@@ -3195,7 +3392,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
     "verification_status": "unverified",
-    "source_hash": "6d76df31d8ce37a16bf54134af3a36b795c1abbd5b680d28a80bc7eb1da2f9e9",
+    "source_hash": "313ae9f03c79e09051c756f4e8b291290377958548bb8a883ffa9cad0d296d10",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
