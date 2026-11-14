@@ -43,6 +43,10 @@ from ccnl_engine.working_time.overtime.policies import (
     resolve_overtime_rate,
 )
 from ccnl_engine.working_time.overtime.quota import EXEMPT_QUOTA_VARIANT, quota_premium
+from ccnl_engine.working_time.overtime.supplementary import (
+    SUPPLEMENTARY_VARIANT,
+    excess_rate,
+)
 from ccnl_engine.working_time.supplement.policies import (
     resolve_supplement,
     supplement_decision,
@@ -122,13 +126,73 @@ def _overtime(
     else:
         band = band_decision(paid, rate, bands, _standard_event_gross(paid))
         decisions.extend(() if band is None else (band,))
-        paid, quota, limitation = _with_quota_premium(event, paid, bands)
-        decisions.extend(() if quota is None else (quota,))
-        if limitation is not None:
-            return WorkResolution(
-                paid, tuple(decisions), overtime_issues(event, rate), (limitation,)
-            )
+        paid, limitations = _with_yearly_rules(event, paid, bands, decisions)
+        return WorkResolution(
+            paid, tuple(decisions), overtime_issues(event, rate), limitations
+        )
     return WorkResolution(paid, tuple(decisions), overtime_issues(event, rate))
+
+
+def _with_yearly_rules(
+    event: OvertimeEvent,
+    paid: OvertimeEvent,
+    bands: CCNLOvertimeBands,
+    decisions: list[CalculationDecision],
+) -> tuple[OvertimeEvent, tuple[str, ...]]:
+    """Apply the supplementary share and the exempt quota of the year.
+
+    Returns:
+        The paid event and the CCNL limitations of the missing facts; the
+        decisions of the rules applied are appended to ``decisions``.
+    """
+    limitations: list[str] = []
+    for step in (_with_supplementary_excess, _with_quota_premium):
+        paid, extra, limitation = step(event, paid, bands)
+        decisions.extend(() if extra is None else (extra,))
+        limitations.extend(() if limitation is None else (limitation,))
+    return paid, tuple(limitations)
+
+
+def _with_supplementary_excess(
+    event: OvertimeEvent, paid: OvertimeEvent, bands: CCNLOvertimeBands
+) -> tuple[OvertimeEvent, CalculationDecision | None, str | None]:
+    """Pay the supplementary hours past the yearly share at their rate.
+
+    The hours within the share keep the base band; a multiplier the caller
+    states is applied as given.
+
+    Returns:
+        As :func:`_with_quota_premium`.
+    """
+    excess = excess_rate(event, bands.supplementary_excess)
+    if excess is None or event.multiplier is not None or paid.multiplier is None:
+        return paid, None, None
+    if excess.unknown:
+        return paid, None, f"{bands.ccnl_id}/{SUPPLEMENTARY_VARIANT}"
+    assert bands.supplementary_excess is not None
+    base = paid.multiplier - 1
+    multiplier = paid.multiplier + (excess.rate - base) * excess.hours / event.hours
+    paid = replace(paid, multiplier=multiplier)
+    return (
+        paid,
+        CalculationDecision(
+            capability="overtime",
+            status=CalculationStatus.FINAL,
+            reason_code="part_time_supplementary_excess",
+            rule=f"{bands.ruleset}:work_rules.time_supplements.supplementary_excess",
+            rule_version=bands.version,
+            inputs={
+                "hours": event.hours,
+                "threshold_hours": excess.threshold,
+                "hours_past_threshold": excess.hours,
+                "base_rate": base,
+                "excess_rate": excess.rate,
+            },
+            source=bands.supplementary_excess.provenance.location,
+            amount=_standard_event_gross(paid),
+        ),
+        None,
+    )
 
 
 def _with_quota_premium(
