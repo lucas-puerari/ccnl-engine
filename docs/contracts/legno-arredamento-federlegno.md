@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-06-20 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2026-09-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 32 values read identically by both readings and equal to the file. |
 | 2026-11-08 | gpt-6-sol (ai) | Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image. | corrected | The injury rule had no top-up of the INAIL indemnity; added: {"integration_rate": "1", "carenza_rate": "1"} |
 | 2026-11-10 | claude-opus-5-5 (ai) | Third-period intermediate remuneration clause in the signed 2016 agreement and components of the tabular minimum in the signed 2026 renewal. | confirmed | The third period pays an intermediate retribuzione at the level below destination; the 2026 table prints base, contingenza and EDR in each minimum. Averaging the full tabular minimum gives AE3 to AE4 EUR 2209.26 in September 2026. The clause does not enumerate payslip components or personal superminima. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source. | corrected | Added the comporto window of art. 76 C and the impiegati article, the same for both. |
 
 ## Salary table
 
@@ -163,13 +164,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -359,6 +353,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP MIDPOINT: the signed agreement of 13 December 2016, p. 35, sets third-period pay at the intermediate value between the current and destination categories. The signed 2026 renewal, p. 53, prints paga base, contingenza and EDR separately in each level's minimum. The engine averages both levels' entire tabular pay (base plus both fixed allowances); this is an interpretation of 'retribuzione', not an explicit enumeration of components in the apprenticeship clause. Personal superminima are not specified by this clause.
     
     APPRENTICE SENIORITY (Parte VII, Regolamentazione dell'apprendistato professionalizzante, p. 149 of the CCNL Legno industria, https://www.filcacisl.it/sindacato/wp-content/uploads/2022/04/Ccnl-Legno-Industria-definitivo1.pdf, sha256 591296abac43a018b9ffe08f60a521584129d9717e87a46583b8125a58d067bf): 'L’intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell’anzianità aziendale, anche ai fini degli aumenti periodici di anzianità; tali aumenti saranno corrisposti nelle misure previste dal livello di appartenenza': seniority_increments.apprentice_level_amount.
+    
+    COMPORTO OF SEVERAL ILLNESSES (Art. 76 C operai, PDF p. 44, and the impiegati article, PDF pp. 46-49 (scanned), https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf, sha256 3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68): 'l'operaio non in prova avrà diritto alla conservazione del posto, in periodo di 30 mesi consecutivi (pari a 910 giorni di calendario), per un massimo di 13 mesi. Si conviene che il periodo di conservazione del posto di 13 mesi è pari a 395 giorni di calendario. [...] Ove l'operaio si ammali più volte nel corso di 30 mesi consecutivi, i relativi periodi di assenza sono cumulabili'. Modelled as sickness_rules.comporto_windows (395 days within 910).
     
     HOURLY DIVISOR 174 (40h x 52 / 12 = 173.33, rounded up as used by the sector): no published hourly table in accessible primary sources; independent secondary sources converge on 174 (previdenza-professionisti.it). Daily coefficient 26 confirmed by the CNEL F051 PDF.
     

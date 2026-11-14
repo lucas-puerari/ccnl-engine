@@ -82,6 +82,10 @@
         "text": "SIMPLIFICATION: apprenticeship type and percentages not publicly available from any free source (paywalled). Modelled as apprenticeship: [] with no rules defined.",
         "capability": "base_salary",
         "monetary_impact": "no"
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Art. 46, Norme comuni c. 1, CCNL 8 febbraio 2011 (CNEL archive, PDF in base64), PDF p. 46, https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/43, sha256 aaec9fe6e382a0a0c1ae7988384c34e66d6696bf2d79d21d157dbb133d8a70d5; the 2023 renewal leaves the article unchanged): 'Il diritto alla conservazione del posto viene a cessare qualora il lavoratore anche con più periodi di infermità superi in complesso i 12 mesi di assenza nell'arco di 36 mesi consecutivi. A tal fine si procede al cumulo dei periodi di assenza per malattie verificatesi nell'arco temporale degli ultimi 36 mesi che precedono l'ultimo giorno d'assenza per malattia.' Modelled as sickness_rules.comporto_windows (365 days within 36 months)."
       }
     ]
   },
@@ -1656,7 +1660,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/",
     "verification_status": "unverified",
-    "source_hash": "ca2f30818e2c79d402afd5767d8cab13a9ffcf57e287817a16b9387247c45438",
+    "source_hash": "f853b13dc5820ec656de3b935a021455760baa7c412a0bd2905441ea4863ee40",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1880,7 +1884,14 @@
           "verification_status": "unverified",
           "effective_from": "2023-11-14"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 36,
+          "comporto_days": 365
+        }
+      ]
     }
   },
   "verification": {
@@ -1905,6 +1916,28 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-recapito-corrispondenza-fise-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/43",
+            "sha256": "aaec9fe6e382a0a0c1ae7988384c34e66d6696bf2d79d21d157dbb133d8a70d5"
+          }
+        ],
+        "findings": [
+          "Added the comporto window of art. 46 (12 months within the 36 before the last day)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
+          "coverage.notes"
         ]
       }
     ]

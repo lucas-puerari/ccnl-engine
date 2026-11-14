@@ -142,6 +142,10 @@
       {
         "kind": "info",
         "text": "APPRENTICE SENIORITY (Art. 45, p. 63 of the CCNL testo definitivo 28 March 2023, CNEL deposit 245795, https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2026%2F1785247097907%2FCCNL%20Lavanderie%20industriali%2028%20marzo%202023.pdf, sha256 cdfa2207cd7010a97b45d65123fccd7822632475cc14e7b4eef5b5e6cf705aa7): 'L’intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell’anzianità aziendale, anche ai fini degli aumenti periodici di anzianità; tali aumenti saranno corrisposti nelle misure previste dal Modulo/Area professionale di appartenenza': seniority_increments.apprentice_level_amount."
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Art. 84, CCNL 28 marzo 2023, PDF pp. 115-116, https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2026%2F1785247097907%2FCCNL%20Lavanderie%20industriali%2028%20marzo%202023.pdf, sha256 cdfa2207cd7010a97b45d65123fccd7822632475cc14e7b4eef5b5e6cf705aa7): 'L'obbligo di conservazione del posto per l'azienda cesserà comunque ove nell'arco di 30 mesi si superi il predetto limite di 395 gg. anche con più malattie, con esclusione, per entrambi i limiti, dei periodi di ricovero ospedaliero.' Chiarimento a verbale: 'il periodo di conservazione del posto si considera nell'ambito di un periodo mobile da determinare con riferimento ai 912 giorni di calendario immediatamente precedenti.' Modelled as sickness_rules.comporto_windows (395 days within 912, hospital stays left out); the 455 days of a serious oncological illness are not modelled."
       }
     ]
   },
@@ -2026,7 +2030,7 @@
     "effective_until": null,
     "source": "https://www.assosistema.it/11527-2/",
     "verification_status": "unverified",
-    "source_hash": "1b46620e6c6754b9a58017d73e2b8ba61e2b5ad80600d5503da044954018d4f8",
+    "source_hash": "ad7b32d06f6c5d4cd7dc673da809d15c8f327d9b0d16a9ed9c174507572427a4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2250,7 +2254,42 @@
           "verification_status": "unverified",
           "effective_from": "2022-01-01"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 30,
+          "window_days": 912,
+          "comporto_days": 395,
+          "hospital_excluded": true
+        }
+      ]
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-15-ai-lavanderie-industriali-assosistema-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2026%2F1785247097907%2FCCNL%20Lavanderie%20industriali%2028%20marzo%202023.pdf",
+            "sha256": "cdfa2207cd7010a97b45d65123fccd7822632475cc14e7b4eef5b5e6cf705aa7"
+          }
+        ],
+        "findings": [
+          "Added the comporto window of art. 84; the 455-day oncological limit stays outside the model."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
+          "coverage.notes"
+        ]
+      }
+    ]
   }
 }

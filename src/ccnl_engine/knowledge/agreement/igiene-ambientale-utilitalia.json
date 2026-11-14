@@ -133,6 +133,23 @@
           },
           "remediation": "Source the rule of art. 65 for a partly employed month, model it, then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Art. 43 B cc. 1-2, testo consolidato 24.07.2025, PDF p. 118, https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf, sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756): 'il lavoratore non in prova ha diritto alla conservazione del posto per un periodo complessivo di 365 giorni di calendario. [...] si intende riferito al cumulo delle assenze verificatesi durante l'arco temporale di 1.095 giorni precedenti ogni nuovo ultimo episodio morboso.' Modelled as sickness_rules.comporto_windows (365 days within the 1,095 days before the day)."
+      },
+      {
+        "kind": "simplification",
+        "text": "COMPORTO EXCLUSIONS (art. 43 B cc. 3-4, art. 14.14): hospital stays are left out up to 120 days in the window (300 for serious illnesses), and apprentices have 240 days with 80/200-day exclusions; the window counts every sick day for every worker.",
+        "capability": "sickness",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "comporto_exclusion_caps",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Leave hospital stays out of the window up to 120 days (300 for serious illnesses) and give apprentices 240 days with 80/200-day exclusions."
+        }
       }
     ]
   },
@@ -5228,7 +5245,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "009fb70c7a7c25a69f056bb8e6369ea17efc157cbf7abc20a9b6d0c33cfb13a7",
+    "source_hash": "d80d535b941bc6b2f4257657d92e17f7757b076977d4bfbc748c248bb8c4b106",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -5490,7 +5507,15 @@
           "verification_status": "unverified",
           "effective_from": "2023-03-01"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 36,
+          "window_days": 1095,
+          "comporto_days": 365
+        }
+      ]
     },
     "insured_absence": {
       "maternity": {
@@ -5688,6 +5713,28 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.insured_absence.injury"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-igiene-ambientale-utilitalia-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+            "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
+          }
+        ],
+        "findings": [
+          "Added the comporto window of art. 43 B; the hospital and apprentice limits stay outside the model."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
+          "coverage.notes"
         ]
       }
     ]

@@ -36,9 +36,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer, pension_fund_contribution, seniority |
+| **Limits of this contract** | inps_employer, pension_fund_contribution, seniority, sickness |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -55,7 +55,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-09 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -68,6 +68,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 84 values found verbatim on the cited pages and marked verified; 16 left as they were (derived or not on a text page). |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | fasda_health_fund: The agreement already has parameters.health_funds[code=fasda]: employer annual EUR 338 from 2023-10-01 and EUR 404 from 2026-10-01 (EUR 84.50 and EUR 101 per quarter), 10% solidarity, 12-month fixed-term minimum, 19-hour weekly minimum, and probation exclusion. fund.health.servic |
 | 2026-11-08 | gpt-6-sol (ai) | Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image. | corrected | The injury rule had no top-up of the INAIL indemnity; added: {"integration_rate": "1", "net_basis": true, "carenza_rate": "1"} |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source. | corrected | Added the comporto window of art. 43 B; the hospital and apprentice limits stay outside the model. |
 
 ## Salary table
 
@@ -162,6 +163,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the rule of art. 65 for a partly employed month, model it, then remove this note.
 
+!!! warning "igiene-ambientale-utilitalia/comporto_exclusion_caps · sickness · impact yes · open"
+    COMPORTO EXCLUSIONS (art. 43 B cc. 3-4, art. 14.14): hospital stays are left out up to 120 days in the window (300 for serious illnesses), and apprentices have 240 days with 80/200-day exclusions; the window counts every sick day for every worker.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Leave hospital stays out of the window up to 120 days (300 for serious illnesses) and give apprentices 240 days with 80/200-day exclusions.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -175,13 +183,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -356,6 +357,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP OLD-TO-NEW LEVEL MAPPING. Art. 14 specifies tracks by old classification codes (1B-8, Q). New 16-level codes are mapped by parametric order: 1B to D2/D2s, 2B to D1/D1s, 3B to C2/C2s, 4B to C1/C1s, 5B to B2/B2s, 6B to B1/B1s, 7B to A2/A2s, 8 to A1, Q to Q. Three tracks are modelled with the exact periods and durations from the contract table.
     
     APPRENTICESHIP PERCENTAGE BASE. Art. 14 punto 8 (CCNL K540 testo consolidato 09/12/2025, fonte: utroppitu.eu) dispone che le indennità ex Art. 32 lett. D (indennità integrativa EUR 50.00) siano corrisposte per intero dal 1° periodo di formazione — pagamento a valore pieno, non soggetto alla percentuale. L'EDR (EUR 10.33, Art. 27 c.4 lett. d, Accordo interconfederale 31/07/1992) non è citato in Art. 14; per sua natura di elemento fisso interconfederale è trattato come esente dalla percentuale. Entrambi modellati con apprenticeship_pct_relevant=false.
+    
+    COMPORTO OF SEVERAL ILLNESSES (Art. 43 B cc. 1-2, testo consolidato 24.07.2025, PDF p. 118, https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf, sha256 57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756): 'il lavoratore non in prova ha diritto alla conservazione del posto per un periodo complessivo di 365 giorni di calendario. [...] si intende riferito al cumulo delle assenze verificatesi durante l'arco temporale di 1.095 giorni precedenti ogni nuovo ultimo episodio morboso.' Modelled as sickness_rules.comporto_windows (365 days within the 1,095 days before the day).
     
 
 ## Raw data

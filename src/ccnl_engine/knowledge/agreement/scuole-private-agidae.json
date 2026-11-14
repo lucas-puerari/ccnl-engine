@@ -121,6 +121,10 @@
         "text": "APPRENTICESHIP (Layer 2): apprendistato professionalizzante not modelled. Governed by Allegato 4 of the CCNL (Art. 25). Allegato 4 is not publicly accessible. Part-time and fixed-term (NASpI addizionale) function via generic engine rules without per-contract data. Layer 2 is therefore partial: apprenticeship gap is the only missing component.",
         "capability": "base_salary",
         "monetary_impact": "no"
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Art. 62 A n. 2, CCNL 3 luglio 2024, PDF p. 36 (scanned), https://www.flcgil.it/files/pdf/20240703/ccnl-agidae-2024-2027-del-3-luglio-2024.pdf, sha256 2841728821ff41c4a41bc5c2253d02ae49844ca59407829858a787b89fc0babc): 'mantenimento del posto di lavoro per assenze, anche non continuative, fino ad un massimo di 12 mesi (365 gg.) nel periodo di 3 anni o meno, dovute anche ad eventi morbosi diversi.' Modelled as sickness_rules.comporto_windows (365 days within 36 months); n. 1 keeps 6 months of one continuous absence, and the life-saving therapy days the article leaves out are not modelled."
       }
     ]
   },
@@ -181,6 +185,28 @@
             "url": "https://www.flcgil.it/files/pdf/20240710/ccnl-agidae-scuola-2024-2027-del-3-luglio-2024.pdf",
             "sha256": "6fbd1639a5cd984f98d59373682841eb0ef7712e9d2112ecbc0a4484a470c964"
           }
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-scuole-private-agidae-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flcgil.it/files/pdf/20240703/ccnl-agidae-2024-2027-del-3-luglio-2024.pdf",
+            "sha256": "2841728821ff41c4a41bc5c2253d02ae49844ca59407829858a787b89fc0babc"
+          }
+        ],
+        "findings": [
+          "Added the comporto window of art. 62 A n. 2 (12 months within 3 years)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
+          "coverage.notes"
         ]
       }
     ]
@@ -1409,7 +1435,7 @@
     "effective_until": null,
     "source": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "301d36d47e9e44709011b651a822285052ed5a53e553e837db4609ed7c7c8f5a",
+    "source_hash": "8f9712935615857548c1619057d532fcf97752e27fec64771f2494a043f92640",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1633,7 +1659,14 @@
           "verification_status": "unverified",
           "effective_from": "2024-01-01"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 36,
+          "comporto_days": 365
+        }
+      ]
     }
   }
 }

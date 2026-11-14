@@ -127,6 +127,10 @@
           },
           "remediation": "Check the definitive text, add the una tantum of December 2026 and the 2027 and 2028 tranches once set, then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Art. 76 C operai, PDF p. 44, and the impiegati article, PDF pp. 46-49 (scanned), https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf, sha256 3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68): 'l'operaio non in prova avrà diritto alla conservazione del posto, in periodo di 30 mesi consecutivi (pari a 910 giorni di calendario), per un massimo di 13 mesi. Si conviene che il periodo di conservazione del posto di 13 mesi è pari a 395 giorni di calendario. [...] Ove l'operaio si ammali più volte nel corso di 30 mesi consecutivi, i relativi periodi di assenza sono cumulabili'. Modelled as sickness_rules.comporto_windows (395 days within 910)."
       }
     ]
   },
@@ -293,6 +297,28 @@
         "independence": "same_process",
         "checked": [
           "apprenticeship",
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-legno-arredamento-federlegno-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+            "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+          }
+        ],
+        "findings": [
+          "Added the comporto window of art. 76 C and the impiegati article, the same for both."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
           "coverage.notes"
         ]
       }
@@ -5061,7 +5087,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "b37b142da9bf236fe30e88edbce36311951d58b3b102ba609c86ae631395a1b1",
+    "source_hash": "0fa2549b6deadb29fe72b4651e958aed4d7c34e2498e56ce28a7b562ee12e0ed",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5285,7 +5311,15 @@
           "verification_status": "unverified",
           "effective_from": "2022-01-01"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 30,
+          "window_days": 910,
+          "comporto_days": 395
+        }
+      ]
     },
     "insured_absence": {
       "maternity": {

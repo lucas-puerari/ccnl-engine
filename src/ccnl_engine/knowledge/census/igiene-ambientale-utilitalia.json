@@ -35,6 +35,22 @@
       }
     },
     {
+      "id": "comporto_exclusion_caps",
+      "institute": "sickness",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "COMPORTO EXCLUSIONS (art. 43 B cc. 3-4, art. 14.14): hospital stays are left out up to 120 days in the window (300 for serious illnesses), and apprentices have 240 days with 80/200-day exclusions; the window counts every sick day for every worker.",
+      "calculation": "ccnl/igiene-ambientale-utilitalia:coverage.notes",
+      "state": "absent",
+      "remediation": "Leave hospital stays out of the window up to 120 days (300 for serious illnesses) and give apprentices 240 days with 80/200-day exclusions.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "igiene-ambientale-utilitalia/comporto_exclusion_caps"
+        ]
+      }
+    },
+    {
       "id": "contractual_fund_partial",
       "institute": "pension_fund_contribution",
       "variant": "all",
@@ -286,22 +302,6 @@
       "links": {
         "rules": [
           "agreement/igiene-ambientale-utilitalia.json#additional_months[2026-02-01]"
-        ]
-      }
-    },
-    {
-      "id": "sickness_cumulation_window",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.",
-      "calculation": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
-      "state": "unverified",
-      "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "sickness_cumulation_window"
         ]
       }
     },

@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-11-14 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2026-06-01 |
 
 ## Review history
@@ -58,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-07 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 32 values read identically by both readings and equal to the file. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source. | corrected | Added the comporto window of art. 46 (12 months within the 36 before the last day). |
 
 ## Salary table
 
@@ -100,13 +101,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -288,6 +282,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Seniority: biennale (cadence=24), maximum 8 scatti. Per-level amounts from lavoro-economia.it (c=26), confirmed against kitech at Jun 2026 (L1=36.15, L2=33.05, L3S=32.54, L3=31.50, L4=30.47, L5S=29.70, L5=29.44, L6=28.41).
     
     Levels 1Q (Quadri), Operatore A (1650), Operatore B (1540) exist from Jun 2026 only — no prior tranche history. Not modelled to avoid open-ended periods with single-tranche data.
+    
+    COMPORTO OF SEVERAL ILLNESSES (Art. 46, Norme comuni c. 1, CCNL 8 febbraio 2011 (CNEL archive, PDF in base64), PDF p. 46, https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/43, sha256 aaec9fe6e382a0a0c1ae7988384c34e66d6696bf2d79d21d157dbb133d8a70d5; the 2023 renewal leaves the article unchanged): 'Il diritto alla conservazione del posto viene a cessare qualora il lavoratore anche con più periodi di infermità superi in complesso i 12 mesi di assenza nell'arco di 36 mesi consecutivi. A tal fine si procede al cumulo dei periodi di assenza per malattie verificatesi nell'arco temporale degli ultimi 36 mesi che precedono l'ultimo giorno d'assenza per malattia.' Modelled as sickness_rules.comporto_windows (365 days within 36 months).
     
 
 ## Raw data

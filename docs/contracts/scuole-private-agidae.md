@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-03 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 33 - Tredicesima mensilità (p. 21): "Nel caso di inizio o cessazione del rapporto di lavoro nel corso dell'anno, vanno corrisposti tanti dodicesimi dell'ultima mensilità percepita pari ai mesi di servizio prestati. 3. Le frazioni di mese vengono prese in considerazione solo se superiori a 15 giorni ed in tal caso equiparate ad un mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 12 values read identically by both readings and equal to the file. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Frozen and non-absorbable monthly seniority pay against Arts. 29, 32-33 on scanned PDF pages 20-21. | confirmed | — |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source. | corrected | Added the comporto window of art. 62 A n. 2 (12 months within 3 years). |
 
 ## Salary table
 
@@ -105,13 +106,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -292,6 +286,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     INPS: reuses 2026-terziario.json (TERZIARIO sector). Private religious schools are private-sector employers; employer INPS classification follows the general terziario sector consistent with other private educational and social institutions (cf. UNEBA T141 which uses the same sector).
     
     HOURLY RATE — TEACHING STAFF: hourly_divisor=164 (38h/week) applies to ATA/non-teaching staff. L4 docenti (scuola infanzia/primaria) have 24h/week; L5 docenti (scuola secondaria) have 18–22h/week; L6 (presidi) differ. The engine derives no hourly base for this CCNL (no verified hourly base provenance): overtime and absences take the caller's hourly rate, so the single divisor reaches no amount; it must be split by profile before the hourly base is verified. Base monthly salary and all annual financial figures (gross, net, INPS, TFR, IRPEF) are unaffected. (review of 2026-10-30)
+    
+    COMPORTO OF SEVERAL ILLNESSES (Art. 62 A n. 2, CCNL 3 luglio 2024, PDF p. 36 (scanned), https://www.flcgil.it/files/pdf/20240703/ccnl-agidae-2024-2027-del-3-luglio-2024.pdf, sha256 2841728821ff41c4a41bc5c2253d02ae49844ca59407829858a787b89fc0babc): 'mantenimento del posto di lavoro per assenze, anche non continuative, fino ad un massimo di 12 mesi (365 gg.) nel periodo di 3 anni o meno, dovute anche ad eventi morbosi diversi.' Modelled as sickness_rules.comporto_windows (365 days within 36 months); n. 1 keeps 6 months of one continuous absence, and the life-saving therapy days the article leaves out are not modelled.
     
 
 ## Raw data

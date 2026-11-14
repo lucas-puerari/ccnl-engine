@@ -69,6 +69,10 @@
       {
         "kind": "info",
         "text": "APPRENTICE SENIORITY (Art. 24, p. 40 of the CCNL testo definitivo 2023, CNEL deposit 176781, https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2023%2Fe5a59528-7634-4026-b087-0c21d247f1c7%2F20175.pdf, sha256 f32ae476b175e22d8b918c7f3e07f5472d91852505dc29e3ab022547f3b139c1, read on the OCR of the scan and on the 2021 text, same page): 'L’intero periodo di apprendistato professionalizzante è utile ai fini della maturazione dell’anzianità aziendale, anche ai fini degli aumenti periodici di anzianità; tali aumenti saranno corrisposti nelle misure previste dal livello/area-step di appartenenza': seniority_increments.apprentice_level_amount."
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Art. 52, rinnovo 28 aprile 2023, PDF p. 16 (scanned), https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf, sha256 dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c): 'L'obbligo di conservazione del posto per l'azienda cesserà comunque ove nell'arco di 30 mesi si superino i predetti limiti di 13 e 18 mesi, anche con più malattie, con esclusione, per entrambi i limiti, dei periodi di ricovero ospedaliero e di ricovero in day hospital'. Modelled as sickness_rules.comporto_windows: 395 days (13 months x 365/12), 548 for a serious illness, within 30 months, hospital stays left out; the 2-month extension for oncological therapies is not modelled."
       }
     ]
   },
@@ -161,6 +165,28 @@
         ],
         "independence": "separate_model",
         "checked": [
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-occhiali-occhialeria-industria-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/230428_OCCHIALI_RINNOVO%20CCNL%202023%202025.pdf",
+            "sha256": "dc5d33a21e61b0801df70a2d22363a842fcf5dc7264634daf1ae5cce1e67749c"
+          }
+        ],
+        "findings": [
+          "Added the comporto window of art. 52 (13 months, 18 for serious illnesses, within 30 months)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
           "coverage.notes"
         ]
       }
@@ -3273,7 +3299,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
     "verification_status": "verified",
-    "source_hash": "1074f8446b49871b8ae8f7230de935061e9ff096a1692be8629f10b85c2b6e94",
+    "source_hash": "4cfb135c8725626b0d12ef78d140cdc6534c9d538dfa86cbe688fd4a640c7e8f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3527,7 +3553,16 @@
           "verification_status": "unverified",
           "effective_from": "2023-01-01"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 30,
+          "comporto_days": 395,
+          "serious_comporto_days": 548,
+          "hospital_excluded": true
+        }
+      ]
     }
   }
 }
