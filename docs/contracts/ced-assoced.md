@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer, maternity_leave, shift_work, workplace_injury |
 
-5 documented simplification(s) and 1 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -347,6 +347,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Apprenticeship (Art. 23-24, 2022 stesura, ccnlced.it allegato): under_classification. First half 2 levels below, second half 1 level below. Level 5 exception: stays at Level 6 throughout 24-month track. Destination L2 duration 36 months (studiocerbone.com: 240 h/36 months for 2° livello). Source ccnlced.it showed '6 months' for L2 — treated as parsing artifact; 36 months adopted from studiocerbone.com.
     
     Salary tranches: 01/09/2025 (source-confirmed, redigo.info and kitech.it), 01/06/2026 (source-confirmed, both sources agree), 01/03/2027 (redigo.info only, single-source), 01/01/2028 (redigo.info only, single-source).
+    
+    APPRENTICESHIP SCOPE (Art. 22, stesura 9 March 2022, p. 40): 'L'apprendistato professionalizzante è ammesso [...] per tutte le qualifiche e mansioni comprese nei livelli 2°, 3°S, 3°, 4° e 5°': the tracks cover exactly these destinations; levels 1, Q and QDIR take no apprentice. Level 6 is a pay level of the level 5 apprentices, not a destination.
     
     SCATTI (Art. 166, stesura 9 March 2022, p. 106): abrogated from 1 January 2019, they keep maturing for the staff in service on 31 December 2018: five biennial increments from the hire date, QDIR 52, Q 47, 1° 44, 2° 40, 3°S 36, 3° 33, 4° 30, 5° 27, 6° 24 EUR (parameters.seniority_increments.hired_until).
     
