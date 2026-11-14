@@ -233,7 +233,7 @@ def test_buckets_and_seniority_dependence() -> None:
 
 def test_bucket_units() -> None:
     """Ferie are counted in days, the permits in hours."""
-    assert [b.unit for b in LeaveBucket] == ["days", "hours", "hours"]
+    assert [b.unit for b in LeaveBucket] == ["days", "hours", "hours", "hours"]
 
 
 def test_a_permit_deadline_names_buckets_with_permits() -> None:

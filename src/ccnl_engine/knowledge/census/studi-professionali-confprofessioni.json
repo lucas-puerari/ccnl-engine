@@ -353,22 +353,6 @@
           "una_tantum_readings"
         ]
       }
-    },
-    {
-      "id": "unused_leave_hours",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 92: the permits added by the flexibility of the hours (30 or 60 minutes a week over the normal hours), paid with the overtime premium within six months of the end of the yearly programme when not taken. The unused ROL and ex festività are paid at the deadline of Art. 91 c. 5 (permit_deadline) and the holidays on a Sunday by Art. 97 C (sunday_holidays).",
-      "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
-      "state": "absent",
-      "remediation": "Accrue the flexibility permits of Art. 92 and pay those not taken with the overtime premium.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "studi-professionali-confprofessioni/unused_leave_hours"
-        ]
-      }
     }
   ]
 }

@@ -7,12 +7,14 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
+    from collections.abc import Mapping
     from datetime import date
 
     from ccnl_engine.decision.models import CalculationDecision, CalculationIssue
     from ccnl_engine.leave.balance.models import LeaveAccount
     from ccnl_engine.leave.handlers import LeaveTerms
     from ccnl_engine.leave.models import PermitDeadline
+    from ccnl_engine.leave.types import LeaveBucket
     from ccnl_engine.ledger.models import LedgerEntry
     from ccnl_engine.pay_item.facade import CompetencePeriod, PayItem
     from ccnl_engine.pay_item.policies import PolicyContext, PolicyResolver
@@ -54,6 +56,8 @@ class SettlementTerms:
         deadline: The deadline the permits are paid at
             (``LeaveRules.permit_deadline``), ``None`` at the end of the
             employment.
+        premiums: Premium the hours of a bucket are paid with on top of
+            the quota (the overtime premium of the flexibility permits).
     """
 
     leave: LeaveTerms
@@ -67,6 +71,7 @@ class SettlementTerms:
     context: PolicyContext
     deadline: PermitDeadline | None = None
     hourly_pay_elements: Decimal | None = None
+    premiums: Mapping[LeaveBucket, Decimal] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)

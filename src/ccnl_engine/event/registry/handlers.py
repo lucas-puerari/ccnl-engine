@@ -32,6 +32,7 @@ from ccnl_engine.event.facade import (
     BonusEvent,
     DisabilityPermitEvent,
     ExtraordinaryLeaveEvent,
+    FlexibilityWeekEvent,
     FringeEvent,
     HolidayWorkEvent,
     HourlyParentalLeaveEvent,
@@ -56,6 +57,7 @@ from ccnl_engine.event.handlers import (
     EventEffect,
     _EventHandlerCtx,
 )
+from ccnl_engine.leave.flexibility.handlers import _handle_flexibility_week
 from ccnl_engine.leave.handlers import _handle_leave_taken
 from ccnl_engine.sickness.handlers import (
     _handle_sickness_episode,
@@ -95,6 +97,7 @@ _HANDLER_REGISTRY: dict[type, _EventHandlerFn] = {
     TerminationTFREvent: _handle_termination_tfr,
     SicknessEpisode: _handle_sickness_episode,
     LeaveTakenEvent: _handle_leave_taken,
+    FlexibilityWeekEvent: _handle_flexibility_week,
     MaternityLeaveEvent: _handle_maternity_leave,
     PaternityLeaveEvent: _handle_paternity_leave,
     ParentalLeaveEvent: _handle_parental_leave,

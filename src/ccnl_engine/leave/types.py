@@ -21,11 +21,15 @@ class LeaveBucket(StrEnum):
         EX_FESTIVITA: Paid hours in place of the festivities abolished by
             L. 54/1977, counted in hours, when the CCNL keeps them apart
             from the ROL.
+        FLESSIBILITA: Paid hours a flexible working time adds (Studi
+            professionali art. 92), counted in hours, keyed by the year the
+            yearly programme of flexibility starts.
     """
 
     FERIE = "ferie"
     ROL = "rol"
     EX_FESTIVITA = "ex_festivita"
+    FLESSIBILITA = "flessibilita"
 
     @property
     def unit(self) -> str:

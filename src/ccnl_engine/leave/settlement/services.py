@@ -53,6 +53,7 @@ __all__ = ["LEAVE_HISTORY_UNKNOWN", "settle_leave"]
 _KIND = "leave_settlement_item"
 _ZERO = Decimal(0)
 _TWELVE = Decimal(12)
+_ONE = Decimal(1)
 
 
 #: Issue of a closing run whose imported balances miss the leave.
@@ -229,7 +230,8 @@ def settle_leave(account: LeaveAccount, terms: SettlementTerms) -> LeaveSettleme
         if twelfths <= _ZERO:
             continue
         divisor, pay = _quota(bucket, rules, terms)
-        amount = money(twelfths * pay / (_TWELVE * divisor))
+        premium = _ONE + terms.premiums.get(bucket, _ZERO)
+        amount = money(twelfths * pay * premium / (_TWELVE * divisor))
         item_id = f"leave_{bucket}_{terms.tag}"
         inputs[f"{bucket}_divisor"] = divisor
         items.append(

@@ -111,6 +111,14 @@ EMPLOYER_DEFAULTS: Mapping[str, FieldDefault] = {
         "unknown local holiday: no patron saint holiday target or blocker; "
         "other holidays are unchanged",
     ),
+    "EmployerProfile.flexibility_programme_month": requires_fact(
+        "leave",
+        "employer.flexibility_programme_month",
+        FactEnforcement.PENDING,
+        "unknown start of the programme of flexibility: the permits of its "
+        "weeks are kept by calendar year, marked inexact, and no payment of "
+        "the hours left is made before the end of the employment",
+    ),
     "EmployerProfile.second_level_elements": absence_is_fact("none agreed"),
     "EmployerProfile.sickness_window_counting": absence_is_fact(
         "the comporto of each illness the CCNL sets"

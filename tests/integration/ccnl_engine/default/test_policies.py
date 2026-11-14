@@ -69,6 +69,12 @@ _NOT_EXERCISED: dict[str, str] = {
         "legacy-section CCNL rule; tests/mutation/ccnl_engine/sickness/holiday/"
         "test_legacy_section.py compares stated and unknown employer facts"
     ),
+    "EmployerProfile.flexibility_programme_month": (
+        "read only with flexibility weeks of a CCNL that sets their permits "
+        "(Studi art. 92), which the cases do not run; "
+        "tests/mutation/ccnl_engine/leave/flexibility/test_services.py "
+        "compares the stated and the unknown month"
+    ),
     "EmployerProfile.patron_saint_day": (
         "local patron saint dates are specific to each CCNL and employer; "
         "tests/mutation/ccnl_engine/sickness/holiday/test_patron_day.py and "

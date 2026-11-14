@@ -180,6 +180,8 @@ class EmployerProfile:
             them with the December pay.  ``None`` means not known: the runs
             of December and of the deadline pay nothing and have a
             ``missing_fact`` blocker.
+        flexibility_programme_month: Month (1-12) the yearly programme of
+            flexible hours starts (Studi art. 92); ``None``: calendar year.
 
     Raises:
         InvalidInputError: When ``headcount`` is not a :class:`Headcount`,
@@ -209,6 +211,7 @@ class EmployerProfile:
     sickness_window_counting: bool = False
     permit_carryover: bool | None = None
     patron_saint_day: str | None = None
+    flexibility_programme_month: int | None = None
     legacy_section_applicable: bool | None = None
     second_level_elements: tuple[SecondLevelElement, ...] = ()
 
@@ -267,6 +270,14 @@ class EmployerProfile:
             ),
         )
         _validate_patron_day(self.patron_saint_day)
+        require_int(
+            self.flexibility_programme_month,
+            "EmployerProfile.flexibility_programme_month",
+            feature=_FEATURE,
+            minimum=1,
+            maximum=12,
+            optional=True,
+        )
         require_str(
             self.subsector,
             "EmployerProfile.subsector",

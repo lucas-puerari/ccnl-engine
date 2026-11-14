@@ -86,6 +86,7 @@ from ccnl_engine.irpef.other_income.inputs import (
     CurrentYearTaxFacts,
     IncomeEstimateQuality,
 )
+from ccnl_engine.leave.flexibility.inputs import FlexibilityWeekEvent
 from ccnl_engine.leave.inputs import LeaveTakenEvent
 from ccnl_engine.leave.types import LeaveBucket
 from ccnl_engine.pension_fund.inputs import NoPensionFund, PensionFundEnrolment
@@ -153,6 +154,7 @@ _EVENTS: dict[type, WorkEvent] = {
         FringeEvent(_DAY, _AMOUNT),
         HolidayWorkEvent(_DAY, _AMOUNT, kind=HolidayWorkKind.HOLIDAY),
         LeaveTakenEvent(_DAY, next(iter(LeaveBucket)), Decimal(2)),
+        FlexibilityWeekEvent(_DAY, Decimal(42)),
         HolidayWorkEvent(_DAY, _AMOUNT),
         MaternityLeaveEvent(_DAY, date(2026, 8, 7)),
         PaternityLeaveEvent((_DAY,)),

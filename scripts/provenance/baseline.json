@@ -1115,8 +1115,7 @@
     ],
     "agreement/studi-professionali-confprofessioni.json": [
       "studi-professionali-confprofessioni/intermittent_availability",
-      "studi-professionali-confprofessioni/maternity_holiday_scope",
-      "studi-professionali-confprofessioni/unused_leave_hours"
+      "studi-professionali-confprofessioni/maternity_holiday_scope"
     ],
     "agreement/tabacco-apti.json": [
       "tabacco-apti/sickness_rules"

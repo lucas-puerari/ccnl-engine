@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, maternity_leave |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -84,6 +84,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 121 comporto lookback of 365 days back from the last sickness event. | corrected | Art. 121: 'per anno solare si intende un periodo di 365 giorni partendo a ritroso dell'ultimo evento morboso'; the comporto window now counts 365 days, not 12 calendar months (one day apart across 29 February). |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 98 (ex festività) and Art. 91 c. 5 (deadline) of the CCNL of 16 February 2024. | corrected | Art. 98 pays the ex festività not taken 'in coerenza con quanto previsto dall'articolo 91 comma 5': the deadline now covers that bucket too, so the 32 hours left are paid or carried to 31 July like the ROL. Narrowed unused_leave_hours to the Art. 92 flexibility permits and the Sunday festività of Art. 97 C. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 97 C-D, Art. 98 and Art. 44 of the CCNL of 16 February 2024. | corrected | Added the clause of Art. 97 C: a further daily quota (1/26, Art. 44) for a listed holiday, the patron, 4 November (c. D) and the ex festività of 19 March and 29 June (Art. 98) falling on a Sunday or on another holiday. Narrowed unused_leave_hours to the Art. 92 flexibility permits. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 92 (flexibility) and Art. 95 (overtime premium) of the CCNL of 16 February 2024. | corrected | Added the flexibility permits of Art. 92 (30 or 60 minutes a week over 40 hours, paid with the 15% overtime premium in the sixth month after the programme year) and closed unused_leave_hours. |
 
 ## Salary table
 
@@ -144,13 +145,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies.
 
     **Remediation:** Resolved: day-exact 365-day lookback (window_days), read on 2026-11-10.
-
-!!! warning "studi-professionali-confprofessioni/unused_leave_hours · base_salary · impact yes · open"
-    Art. 92: the permits added by the flexibility of the hours (30 or 60 minutes a week over the normal hours), paid with the overtime premium within six months of the end of the yearly programme when not taken. The unused ROL and ex festività are paid at the deadline of Art. 91 c. 5 (permit_deadline) and the holidays on a Sunday by Art. 97 C (sunday_holidays).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Accrue the flexibility permits of Art. 92 and pay those not taken with the overtime premium.
 
 !!! warning "studi-professionali-confprofessioni/intermittent_availability · base_salary · impact yes · open"
     Art. 58: the indennità di disponibilità of the lavoro intermittente, 30%.
@@ -379,6 +373,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     PART-TIME SUPPLEMENTARY HOURS (Art. 42, text of 16 February 2024, p. 36): the quota oraria of the retribuzione di fatto with a 40% maggiorazione (band OT_SUPPLEMENTARE). C. 4 leaves that pay out of 'ogni Istituto retributivo differito, compreso il Trattamento di fine rapporto': an overtime event enters neither the TFR base nor the extra months of the engine.
     
     INJURY (Art. 123, p. 66): the injury day in full and 60% for the three days of carenza (art. 73 DPR 1124/1965); from the fourth day the employer tops the INAIL indemnity up to 75% of the retribuzione media giornaliera (work_rules.insured_absence.injury). The indemnity is not due when INAIL pays none.
+    
+    FLEXIBILITY PERMITS (Art. 92, pp. 47-48): in a yearly programme of flexibility (EmployerProfile.flexibility_programme_month) a week over 40 hours earns 30 minutes of permit up to 44 hours and 60 minutes up to 48 (FlexibilityWeekEvent: the hours worked), not absorbed by other reductions; the hours not taken are paid with the 15% overtime premium of Art. 95 (OT_DIURNO) on the pay of the sixth month after the last month of the programme year, and at the end of the employment. A week over 48 hours is outside the regime and earns nothing. The unused ROL and ex festività are paid at the deadline of Art. 91 c. 5 and the holidays on a Sunday by Art. 97 C.
     
     ENTRY PAY (Art. 56, p. 40): an over 50 or long-term unemployed hired a tempo indeterminato may be paid two levels below for 9 months and one for the 6 after (Permanent.entry_pay, CCNL entry_pay); not for level 5. The engine applies the largest reduction the clause allows ('fino a').
     

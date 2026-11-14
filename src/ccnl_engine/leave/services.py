@@ -17,7 +17,7 @@ residual is paid once, since the settlement settles the balances.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, replace
+from dataclasses import replace
 from datetime import timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -32,8 +32,14 @@ from ccnl_engine.decision.models import (
 from ccnl_engine.employment.inputs import Permanent
 from ccnl_engine.leave.accrual.rules import AccrualFacts, accrue_month, month_service
 from ccnl_engine.leave.balance.models import LeaveAccount
+from ccnl_engine.leave.flexibility.services import (
+    accrue_weeks,
+    flexibility_payout,
+    flexibility_premiums,
+)
 from ccnl_engine.leave.handlers import LeaveTerms
 from ccnl_engine.leave.inputs import LeaveTakenEvent
+from ccnl_engine.leave.run.models import RunLeave
 from ccnl_engine.leave.settlement.models import (
     PERMIT_DEADLINE,
     LeaveSettlement,
@@ -45,57 +51,10 @@ from ccnl_engine.seniority.services import seniority_months_at
 from ccnl_engine.working_time.overtime.policies import CCNLOvertimeBands
 
 if TYPE_CHECKING:
-    from ccnl_engine.event.total.handlers import _EventTotals
     from ccnl_engine.leave.models import LeaveRules
-    from ccnl_engine.ledger.models import LedgerEntry
-    from ccnl_engine.pay_item.facade import PayItem
     from ccnl_engine.period.context.services import RunContext
 
 __all__ = ["RunLeave", "leave_terms", "part_time_ratio", "run_leave"]
-
-
-@dataclass(frozen=True)
-class RunLeave:
-    """Leave account after the run, with the indemnity it paid, if any.
-
-    Attributes:
-        account: The leave account the closing state carries.
-        settlement: Indemnity of the residual leave, on a run that closes
-            the employment; ``None`` on any other run.
-    """
-
-    account: LeaveAccount
-    settlement: LeaveSettlement | None = None
-
-    @property
-    def items(self) -> tuple[PayItem, ...]:
-        """Pay items of the indemnity."""
-        return () if self.settlement is None else self.settlement.items
-
-    @property
-    def entries(self) -> tuple[LedgerEntry, ...]:
-        """Ledger entries of the indemnity."""
-        return () if self.settlement is None else self.settlement.entries
-
-    def added_to(self, totals: _EventTotals) -> _EventTotals:
-        """Return ``totals`` with the account and the indemnity added.
-
-        Returns:
-            A copy of ``totals`` carrying the leave account, with the bases
-            of the indemnity, its decision and its issues added.
-        """
-        settlement = self.settlement
-        if settlement is None:
-            return replace(totals, leave=self.account)
-        return replace(
-            totals,
-            inps_base=totals.inps_base + settlement.inps_base,
-            tfr_base=totals.tfr_base + settlement.tfr_base,
-            irpef_base=totals.irpef_base + settlement.irpef_base,
-            decisions=(*totals.decisions, settlement.decision),
-            issues=totals.issues + settlement.issues,
-            leave=self.account,
-        )
 
 
 def leave_rules(ctx: RunContext) -> LeaveRules | None:
@@ -192,6 +151,9 @@ def _settlement_terms(ctx: RunContext, terms: LeaveTerms) -> SettlementTerms:
         tag=ctx.run_id,
         resolver=ctx.resolver,
         context=ctx.policy_context,
+        premiums=flexibility_premiums(
+            ctx.contract.ccnl, terms.rules, ctx.contract.tctx.competence
+        ),
     )
 
 
@@ -207,14 +169,19 @@ def run_leave(ctx: RunContext) -> RunLeave:
     rules = terms.rules
     if ctx.run_kind is RunKind.REGULAR and rules is not None and rules.buckets:
         account = accrue_month(account, rules, _accrual_facts(ctx))
+    month = ctx.request.employer.flexibility_programme_month
+    if rules is not None and rules.flexibility is not None:
+        account = accrue_weeks(account, rules.flexibility, ctx.request.events, month)
     for event in ctx.request.events:
         if isinstance(event, LeaveTakenEvent):
             account = account.taken(event.bucket, event.event_date.year, event.quantity)
     if not ctx.closes_employment:
+        flex = _flexibility_payout(ctx, account, terms, month)
+        account = account if flex is None else flex.account
         deadline = _deadline_payout(ctx, account, terms)
         if deadline is None:
-            return RunLeave(account)
-        return RunLeave(deadline.account, deadline)
+            return RunLeave(account, None, flex)
+        return RunLeave(deadline.account, deadline, flex)
     settlement = settle_leave(account, _settlement_terms(ctx, terms))
     return RunLeave(settlement.account, settlement)
 
@@ -283,4 +250,21 @@ def _deadline_payout(
     settlement = settle_leave(LeaveAccount(lapsing, account.known), base)
     return replace(
         settlement, account=account.with_balances(*settlement.account.balances)
+    )
+
+
+def _flexibility_payout(
+    ctx: RunContext, account: LeaveAccount, terms: LeaveTerms, month: int | None
+) -> LeaveSettlement | None:
+    """Pay the flexibility permits due on a regular run, if the CCNL sets them.
+
+    Returns:
+        The payment, ``None`` without flexibility or on another run.
+    """
+    flex = None if terms.rules is None else terms.rules.flexibility
+    if flex is None or ctx.run_kind is not RunKind.REGULAR:
+        return None
+    period = (ctx.request.period_id.year, ctx.request.period_id.month)
+    return flexibility_payout(
+        account, flex, _settlement_terms(ctx, terms), month, period
     )
