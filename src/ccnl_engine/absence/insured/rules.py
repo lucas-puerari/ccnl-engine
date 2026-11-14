@@ -80,7 +80,7 @@ class MonthPay:
     def monthly(self) -> Decimal:
         """Monthly pay: base salary, seniority and cash allowances."""
         chain = self.chain
-        return chain.base + chain.seniority + chain.allowances_total
+        return chain.base + chain.seniority + chain.absence_total
 
     def deducted(self, first: date, last: date) -> tuple[Decimal, Decimal]:
         """Return the payable units of ``first``-``last`` and their pay.
@@ -102,7 +102,7 @@ class MonthPay:
         whole = first.day == 1 and last.day == month_end and first.month == last.month
         units = divisor if whole else min(days * per_day, divisor)
         part = self.chain.prorated(units, divisor)
-        return units, part.base + part.seniority + part.allowances_total
+        return units, part.base + part.seniority + part.absence_total
 
     def grossed(self, insurer: Decimal, *, net_basis: bool) -> Decimal:
         """Return the insurer share as the gross pay it stands for.

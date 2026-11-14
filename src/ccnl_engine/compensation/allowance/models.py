@@ -73,6 +73,9 @@ class Allowance(BaseModel):
     ``second_level_premium`` (Unionalimentari, elemento di garanzia
     retributiva), decided by ``EmployerProfile.second_level_premium``.
 
+    ``absence_relevant=False`` leaves the allowance out of the daily quota of
+    an absence or a sickness (Logistica EDR 2021: 'non avrà incidenza su alcun
+    istituto contrattuale'): it is neither deducted nor topped up.
     ``in_kind=True``: a benefit in kind (board and lodging, domestico art. 36),
     unpaid on a regular run but in the TFR base, paid in cash in extra months.
     ``tfr_relevant_from`` dates the TFR relevance (Federalimentare art. 73).
@@ -98,6 +101,7 @@ class Allowance(BaseModel):
     tfr_relevant_from: date | None = None
     contribution_relevant: bool = True
     apprenticeship_pct_relevant: bool = True
+    absence_relevant: bool = True
     part_time_proportionable: bool = True
     in_kind: bool = False
     replaced_by: Literal["provincial_element", "second_level_premium"] | None = None

@@ -216,6 +216,12 @@ class MonthlyPayChain:
         return money(sum((v for a, v in self.allowances if not a.in_kind), _ZERO))
 
     @property
+    def absence_total(self) -> Decimal:
+        """Rounded sum of the cash allowances the absence quota counts."""
+        cash = (v for a, v in self.allowances if not a.in_kind and a.absence_relevant)
+        return money(sum(cash, _ZERO))
+
+    @property
     def in_kind_total(self) -> Decimal:
         """Rounded sum of the allowances provided in kind."""
         return money(sum((v for a, v in self.allowances if a.in_kind), _ZERO))

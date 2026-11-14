@@ -39,7 +39,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | absence, base_salary, sickness |
+| **Limits of this contract** | base_salary, sickness |
 
 4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -58,7 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-06 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-06-01 |
 
 ## Review history
@@ -80,6 +80,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 71(5), section-two eligibility, PDF pp. 92-93; sickness holiday target. | corrected | Only legacy-section employers qualify; injury treatment is still absent for travelling staff. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Cached Confetra consolidated text pp. 92-95, arts. 71(5) and 77(8,11): travelling injury and holiday top-up. | confirmed | Art. 77(8) integrates work injury to full actual net pay until clinical recovery; art. 71(5) tops up a reduced-pay holiday to full actual pay only for eligible section-two employers. The distinct coincident-holiday payment remains open. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 60(1)(b), (2-4) coincident national holiday quota, cached consolidated text pp. 84-85. | confirmed | The national letter (b) holiday quota is 1/22 of monthly global pay on Saturday, Sunday or another holiday; local patron holidays are not calendared. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Relevance of the EDR of 18 May 2021, OCR of the scanned renewal, against the research of a separate model session. | corrected | EDR_2021 left out of the daily quota of absences and sickness. |
+| 2026-11-15 | gpt-6-sol (ai) | EDR of the renewal of 18 May 2021 and its place in the testo unico, read by a separate model session. | confirmed | Confirmed: the EDR of 18 May 2021 is paid for 13 months and 'non avrà incidenza su alcun istituto contrattuale'; the testo unico keeps it. |
 
 ## Salary table
 
@@ -161,12 +163,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Pay the night allowance of art. 16 and the Sunday or holiday work within the ordinary hours outside the engine.
 
-!!! warning "logistica-trasporto-confetra-viaggiante/edr_2021_in_daily_base · absence · impact unknown · open"
-    EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; the 2021 EDR may still enter the daily base of absences and sickness, which 'nessuna incidenza su alcun istituto contrattuale' excludes.
+!!! note "logistica-trasporto-confetra-viaggiante/edr_2021_in_daily_base · absence · impact unknown · resolved"
+    EDR: the EDR of EUR 10.33/month (agreement 26 Jan 2001) is conglobated into the minimum pay tables (Art. 61 note). The EDR of art. 60 c. 8 (workers in service on 26 January 2011) and the EDR of the agreement of 18 May 2021 (13 mensilità, no effect on other institutes) are paid as allowances; The 2021 EDR 'non avrà incidenza su alcun istituto contrattuale' (renewal of 18 May 2021, CNEL deposit, PDF p. 3, scanned, https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/136045, sha256 0462ec99c68e13a4444203cfafba20142016ba20175c443fae43ccdeeb9feb39): absence_relevant false keeps it out of the daily quota of absences and sickness.
 
     **Applies when:** `absence` applies.
 
-    **Remediation:** Exclude EDR_2021 from the daily base of absences and sickness (a relevance flag on the allowance), or source that it enters it.
+    **Remediation:** Resolved: EDR_2021 has absence_relevant false (renewal of 18 May 2021 read on 2026-11-15).
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

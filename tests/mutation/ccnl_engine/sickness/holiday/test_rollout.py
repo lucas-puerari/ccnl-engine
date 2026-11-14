@@ -51,8 +51,8 @@ def _may(
 def test_logistica_holiday_is_not_topped_up_outside_its_section() -> None:
     """Art. 71 c. 5 is of the ex Magazzini Generali employers: no top-up."""
     assert _may("logistica-trasporto-confetra", "4", WorkerCategory.OPERAIO) == {
-        "abs": Decimal("507.13"),
-        "inps": Decimal("338.05"),
+        "abs": Decimal("504.61"),
+        "inps": Decimal("336.37"),
     }
 
 

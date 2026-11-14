@@ -107,7 +107,7 @@ def _quota(chain: MonthlyPayChain, units: Decimal, divisor: Decimal) -> Decimal:
         The prorated base, seniority and allowances, each rounded once.
     """
     part = chain.prorated(units, divisor)
-    return part.base + part.seniority + part.allowances_total
+    return part.base + part.seniority + part.absence_total
 
 
 def _within_month(

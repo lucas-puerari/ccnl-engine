@@ -28,4 +28,4 @@ def deducted_days(pay: MonthPay, days: tuple[date, ...]) -> tuple[Decimal, Decim
     units = sum((pay.deducted(day, day)[0] for day in days), _ZERO)
     units = min(units, pay.quota.divisor)
     part = pay.chain.prorated(units, pay.quota.divisor)
-    return units, part.base + part.seniority + part.allowances_total
+    return units, part.base + part.seniority + part.absence_total
