@@ -151,10 +151,10 @@
       "institute": "seniority",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "SENIORITY (CNEL 105782 art. 22, pp. 41-42, 90): Category-specific amounts now pay operai at levels 1-6 after four years (including levels 5 and 6), with at most one quota; levels 5-7 and Q pay impiegati up to eight biennial scatti. No current series for impiegati at levels 2-4 is verified. Without an EarnedIncrements worker fact, matured scatti are still repriced at the run date, including after promotion; the 50% ceiling of tabellare plus EUR 279.60 is not enforced. The worker must supply recognised sector service across contract changes and the correct category at mixed levels.",
+      "rule": "SENIORITY (CNEL 105782 art. 22, pp. 41-42, 90): Category-specific amounts now pay operai at levels 1-6 after four years (including levels 5 and 6), with at most one quota; levels 5-7 and Q pay impiegati up to eight biennial scatti. The impiegati scatti of levels 2-4 come from the appendix of the text signed on 8 June 2021 (PDF p. 85, https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0, sha256 ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f); its 1 July 2025 column is marked 'PROVVISORIO AI SENSI DELL'ART.73'. Without an EarnedIncrements worker fact, matured scatti are still repriced at the run date, including after promotion; the 50% ceiling of tabellare plus EUR 279.60 is not enforced. The worker must supply recognised sector service across contract changes and the correct category at mixed levels.",
       "calculation": "ccnl/multiservizi-anip:coverage.notes",
       "state": "absent",
-      "remediation": "Source the current impiegati scatto amounts for levels 2-4; supply earned amounts and recognised sector service from worker records, and implement automatic maturation-date pricing and the 50% ceiling.",
+      "remediation": "Supply earned amounts and recognised sector service from worker records, and implement automatic maturation-date pricing and the 50% ceiling; confirm the provisional July 2025 column.",
       "origin": "seeded",
       "links": {
         "limitations": [

@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | assistance_contribution, base_salary, seniority |
+| **Limits of this contract** | assistance_contribution, base_salary |
 
 5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -114,12 +114,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add the 2027 and 2028 tranches from the official ASSINDATCOLF/DOMINA tables.
 
-!!! warning "lavoro-domestico-non-convivente/seniority_frozen_at_2026 · seniority · impact unknown · open"
-    Seniority amounts frozen at 2026 base. Future ISTAT adjustments will raise base_salary but amount_by_level will need manual update.
+!!! note "lavoro-domestico-non-convivente/seniority_frozen_at_2026 · seniority · impact unknown · resolved"
+    SENIORITY: Art. 37 c. 1 (p. 44) gives 'un aumento del 4% sulla retribuzione minima contrattuale' every two years, at most 7; the minimum includes the indennità di funzione of levels D and D super (Art. 34 c. 2 a). The amounts are stored per minimum period, and a test holds them at 4% of every minimum, so a new ISTAT minimum fails until its increments are added.
 
     **Applies when:** `seniority` applies; from 2027-01-01.
 
-    **Remediation:** Update the seniority amounts with each ISTAT adjustment of the minimum tables.
+    **Remediation:** Resolved: art. 37 read on 2026-11-15; the 4% share is enforced by tests/knowledge/ccnl_engine/seniority/test_domestic_seniority_share.py.
 
 !!! warning "lavoro-domestico-non-convivente/extra_month_hours · assistance_contribution · impact unknown · open"
     The INPS contributions of the tredicesima are paid on the hours of the year: INPS bands them on the paga oraria effettiva, which spreads the tredicesima over the hours, so the tredicesima run charges no INPS hours. The Cas.Sa.Colf contribution of Art. 54 c. 2 is charged on the contributable hours the run states, a tredicesima run too: no bundled source says whether the tredicesima carries hours of its own for it.

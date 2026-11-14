@@ -83,22 +83,6 @@
       }
     },
     {
-      "id": "contractual_fund_partial",
-      "institute": "pension_fund_contribution",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "The Fondapi contractual contribution (10 EUR riparametrati a month) is owed on every run that pays the month, in full; the Scheda states no rule for a partly employed month, a part-time worker or the extra months: a partial month or part time pays the full amount, an extra-month run none.",
-      "calculation": "ccnl/edilizia-pmi-confapi-aniem:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the rule of the CCNL Confapi Aniem for a partial month and part time and model it, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "edilizia-pmi-confapi-aniem/contractual_fund_partial"
-        ]
-      }
-    },
-    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",

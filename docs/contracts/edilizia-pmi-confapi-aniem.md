@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, pension_fund_contribution, seniority, sickness, territorial_supplement |
+| **Limits of this contract** | base_salary, bilateral_funds, seniority, sickness, territorial_supplement |
 
 11 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🟢 Verified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 15 verified / 30 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 15 verified / 34 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 65 uninterrupted actual service and hire anniversary against the cached PDF page 96. | corrected | A separate actual uninterrupted service start can exclude conventional military, combatant and similar seniority without moving the hire anniversary; the common-year leap-day anniversary remains unspecified. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses of the operai, against the research of a separate model session; quote checked on the source text. | corrected | Added the operai comporto windows (9 months in 20, 12 in 24 above three and a half years). |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of the impiegati of art. 66 against the research of a separate model session; quote checked on the source. | corrected | Added the impiegato rule: comporto of one illness and of several within 30 months by seniority; the reduced pay months are recorded as a limitation. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Fondapi contribution of Allegato Y against the research of a separate model session; text layer of the source. | corrected | The operai pay per ordinary hour worked; the impiegati 14 months with 15 days in the month, part time in proportion. |
 
 ## Salary table
 
@@ -173,12 +174,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
 
-!!! warning "edilizia-pmi-confapi-aniem/contractual_fund_partial · pension_fund_contribution · impact unknown · open"
-    The Fondapi contractual contribution (10 EUR riparametrati a month) is owed on every run that pays the month, in full; the Scheda states no rule for a partly employed month, a part-time worker or the extra months: a partial month or part time pays the full amount, an extra-month run none.
+!!! note "edilizia-pmi-confapi-aniem/contractual_fund_partial · pension_fund_contribution · impact unknown · resolved"
+    FONDAPI: Allegato Y (PDF pp. 243-245, https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf, sha256 25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba): the operai pay the level amount / 173 plus 18.5% on 'le sole ore di lavoro ordinarie effettivamente prestate' (0.0685 to 0.0959 an hour, the monthly total rounded to the euro); the impiegati pay the level amount 'per quattordici mensilità', in full with at least 15 calendar days worked in the month and none below, in proportion to a part-time schedule.
 
     **Applies when:** `pension_fund_contribution` applies; the run takes the engine code path.
 
-    **Remediation:** Source the rule of the CCNL Confapi Aniem for a partial month and part time and model it, then remove this note.
+    **Remediation:** Resolved: Allegato Y read on 2026-11-15.
 
 !!! warning "edilizia-pmi-confapi-aniem/loyalty_service_count · base_salary · impact yes · open"
     Art. 65 does not specify the anniversary of a hire on 29 February in a common year; the engine uses 28 February.

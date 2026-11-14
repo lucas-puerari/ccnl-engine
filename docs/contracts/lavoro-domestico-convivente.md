@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | assistance_contribution, base_salary, seniority |
+| **Limits of this contract** | assistance_contribution, base_salary |
 
 10 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -111,12 +111,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add the 2027 and 2028 tranches from the official ASSINDATCOLF/DOMINA tables.
 
-!!! warning "lavoro-domestico-convivente/seniority_frozen_at_2026 · seniority · impact unknown · open"
-    Seniority amounts frozen at 2026 base. Future ISTAT adjustments will raise base_salary but amounts_by_level will need manual update.
+!!! note "lavoro-domestico-convivente/seniority_frozen_at_2026 · seniority · impact unknown · resolved"
+    SENIORITY: Art. 37 c. 1 (p. 44) gives 'un aumento del 4% sulla retribuzione minima contrattuale' every two years, at most 7; the minimum includes the indennità di funzione of levels D and D super (Art. 34 c. 2 a). The amounts are stored per minimum period, and a test holds them at 4% of every minimum, so a new ISTAT minimum fails until its increments are added.
 
     **Applies when:** `seniority` applies; from 2027-01-01.
 
-    **Remediation:** Update the seniority amounts with each ISTAT adjustment of the minimum tables.
+    **Remediation:** Resolved: art. 37 read on 2026-11-15; the 4% share is enforced by tests/knowledge/ccnl_engine/seniority/test_domestic_seniority_share.py.
 
 !!! warning "lavoro-domestico-convivente/part_time_scaling · base_salary · impact unknown · open"
     REDUCED HOURS UNDER ART. 14 C. 1: a convivente may agree fewer than 54 weekly hours (art. 14 c. 1: 'con un massimo di [...] 54 ore settimanali'). The CCNL gives Tabella A as monthly values and no rule to proportion them to the agreed hours; the engine scales the pay linearly on the full time the employment states. The art. 14 c. 2 regime (levels C, B, B super up to 30 hours, Tabella B) is the separate file lavoro-domestico-convivente-orario-ridotto.

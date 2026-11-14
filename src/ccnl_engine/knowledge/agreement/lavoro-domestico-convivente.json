@@ -88,7 +88,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Seniority amounts frozen at 2026 base. Future ISTAT adjustments will raise base_salary but amounts_by_level will need manual update.",
+        "text": "SENIORITY: Art. 37 c. 1 (p. 44) gives 'un aumento del 4% sulla retribuzione minima contrattuale' every two years, at most 7; the minimum includes the indennità di funzione of levels D and D super (Art. 34 c. 2 a). The amounts are stored per minimum period, and a test holds them at 4% of every minimum, so a new ISTAT minimum fails until its increments are added.",
         "capability": "seniority",
         "monetary_impact": "unknown",
         "limitation": {
@@ -96,7 +96,8 @@
           "applies_when": {
             "effective_from": "2027-01-01"
           },
-          "remediation": "Update the seniority amounts with each ISTAT adjustment of the minimum tables."
+          "remediation": "Resolved: art. 37 read on 2026-11-15; the 4% share is enforced by tests/knowledge/ccnl_engine/seniority/test_domestic_seniority_share.py.",
+          "status": "resolved"
         }
       },
       {
@@ -1880,7 +1881,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "b978e6ae432fbb224d8b97953c16589ff9f3ce5278156e7f2c284c0143ede1ae",
+    "source_hash": "bd9d77872d2b5a6995d60a76356a6493e4cc2bfe8dac28510261324646a4e225",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },

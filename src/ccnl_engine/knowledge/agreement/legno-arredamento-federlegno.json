@@ -117,7 +117,7 @@
       },
       {
         "kind": "simplification",
-        "text": "RENEWAL 2026-2028 (ipotesi di accordo of 3 September 2026, pp. 52-53): the paga base from 1 September 2026 is modelled; the ipotesi is not yet a definitive text. Not modelled: the una tantum of December 2026 and the IPCA increases of 1 January 2027 and 2028, which the parties will set in later meetings.",
+        "text": "RENEWAL 2026-2028 (ipotesi di accordo of 3 September 2026, pp. 52-53): the paga base from 1 September 2026 and the una tantum of 100.00 of December 2026 are modelled; the ipotesi is not yet a definitive text. Not modelled: the 39.00 a month at AS1 (parametro 134) from January 2027, to be riparametrato on the levels, and the IPCA increases of 1 January 2027 and 2028, which the parties will set in later meetings.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -125,7 +125,7 @@
           "applies_when": {
             "effective_from": "2026-09-01"
           },
-          "remediation": "Check the definitive text, add the una tantum of December 2026 and the 2027 and 2028 tranches once set, then remove this note."
+          "remediation": "Add the 39.00 riparametrato from January 2027 and the 2027 and 2028 IPCA tranches once set, check the definitive text, then remove this note."
         }
       },
       {
@@ -319,6 +319,28 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules",
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-legno-arredamento-federlegno-una-tantum",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Una tantum of the ipotesi of 3 September 2026, OCR of the scanned page, against the research of a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+            "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+          }
+        ],
+        "findings": [
+          "Added the una tantum of 100.00 of December 2026."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.una_tantum",
           "coverage.notes"
         ]
       }
@@ -547,7 +569,63 @@
           "review_id": "2026-10-18-ai-accrual-rule"
         }
       }
-    }
+    },
+    "una_tantum": [
+      {
+        "code": "UT_2026",
+        "covers_from": "2026-01-01",
+        "covers_until": "2026-08-31",
+        "month_min_days": 16,
+        "installments": [
+          {
+            "paid_in": "2026-12-01",
+            "amounts": {
+              "AE1": "100.00",
+              "AE2": "100.00",
+              "AE3": "100.00",
+              "AE4": "100.00",
+              "AS1": "100.00",
+              "AC1": "100.00",
+              "AS2": "100.00",
+              "AS3": "100.00",
+              "AC2": "100.00",
+              "AC3": "100.00",
+              "AS4": "100.00",
+              "AC4": "100.00",
+              "AC5": "100.00",
+              "AD1": "100.00",
+              "AD2": "100.00",
+              "AD3": "100.00"
+            }
+          }
+        ],
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-legno-ipotesi-2026-09-03",
+              "title": "CCNL legno arredamento industria, ipotesi di rinnovo 3 settembre 2026 (FILCA-CISL, scansione)",
+              "kind": "associazione",
+              "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+              "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+            },
+            "page": "52",
+            "section": "Trattamento economico, una tantum",
+            "quote": "Con la retribuzione del mese di dicembre 2026, ai lavoratori in forza alla data di erogazione, verrà erogata una somma una tantum, di medesimo importo per i vari livelli, omnicomprensiva di tutti gli istituti diretti ed indiretti ed esclusa dalla base di calcolo del TFR, del valore di € 100,00 lordi, a copertura del periodo 01.01.2026 – 31.08.2026."
+          },
+          "extraction": {
+            "method": "manual",
+            "extraction_timestamp": "2026-11-15T00:00:00",
+            "verification_status": "verified",
+            "effective_from": "2026-12-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "review_id": "2026-11-15-ai-legno-arredamento-federlegno-una-tantum"
+          },
+          "transformation": "100.00 at every level with the pay of December 2026, for January to August 2026; a hire 'fino al giorno 15 del mese' counts the month, approximated as 16 days of service in it."
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -5087,7 +5165,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "0fa2549b6deadb29fe72b4651e958aed4d7c34e2498e56ce28a7b562ee12e0ed",
+    "source_hash": "5ffc53e6fc7cbea0ee3cb00a5060e3b0f006af30dd62d357b5b8349061f356c2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

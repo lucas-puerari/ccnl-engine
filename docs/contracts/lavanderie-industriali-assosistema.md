@@ -30,8 +30,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
 1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -58,6 +58,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source. | corrected | Added the comporto window of art. 84; the 455-day oncological limit stays outside the model. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Increases of October 2027 and 2028 against the table of the signed renewal, from the research of a separate model session. | confirmed | Every level's increase of October 2027 and 2028 matches the signed table. |
 
 ## Salary table
 
@@ -106,12 +107,12 @@ Destination levels: `A2`, `C3`, `D2`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "lavanderie-industriali-assosistema/tranches_2027_2028_rounding · base_salary · impact unknown · open"
-    TRANCHES OF OCTOBER 2027 AND 2028: from the table of increases of the employer signatory's circular 113/26 (p. 11), which says it may change slightly in the rounding once shared with the unions; a later notice (125/26) says the unions accepted the tables, whose attachments are not public. The signed renewal of 19 May 2026 was not found.
+!!! note "lavanderie-industriali-assosistema/tranches_2027_2028_rounding · base_salary · impact unknown · resolved"
+    TRANCHES OF OCTOBER 2027 AND 2028: the increases of the table published by the signatory Filctem-CGIL with the renewal of 19 May 2026 (PDF p. 1, https://www.filctemcgil.it/images/download/CONTRATTI/lavanderie_industriali/260519_LAVANDERIE_ACCORDO%20DI_%20RINNOVO_2026_2028_TABELLE.pdf, sha256 473dd3315bc26d500f6e41193fe7559a0dd66bd5ed3c79282f6b7d260cc0d024) match to the cent those of circular 113/26 the data follows (B1: 50.00 in October 2027, 60.00 in October 2028).
 
     **Applies when:** `base_salary` applies; from 2027-10-01.
 
-    **Remediation:** Check the October 2027 and 2028 amounts against the signed renewal or the accepted tables of notice 125/26 and correct any cent.
+    **Remediation:** Resolved: union table of the renewal read on 2026-11-15, no cent differs.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

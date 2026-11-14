@@ -724,8 +724,7 @@
       "comunicazione-artigianato-confartigianato/function_allowance_half_absorption",
       "comunicazione-artigianato-confartigianato/inps_sector_rates_unsourced",
       "comunicazione-artigianato-confartigianato/level_category_not_declared",
-      "comunicazione-artigianato-confartigianato/pmi_non_artigiane_tables",
-      "comunicazione-artigianato-confartigianato/previgente_apprenticeship_rules"
+      "comunicazione-artigianato-confartigianato/pmi_non_artigiane_tables"
     ],
     "agreement/concia-unic.json": [
       "concia-unic/higher_overtime_bands"
@@ -814,7 +813,6 @@
       "edilizia-pmi-confapi-aniem/apprentice_its_evr_missing",
       "edilizia-pmi-confapi-aniem/apprentice_seniority",
       "edilizia-pmi-confapi-aniem/cassa_edile_accruals_missing",
-      "edilizia-pmi-confapi-aniem/contractual_fund_partial",
       "edilizia-pmi-confapi-aniem/impiegati_premio_fedelta",
       "edilizia-pmi-confapi-aniem/loyalty_service_count",
       "edilizia-pmi-confapi-aniem/operai_gruppo_3_track_merged",
@@ -856,9 +854,6 @@
     "agreement/forze-polizia-ordinamento-civile.json": [
       "forze-polizia-ordinamento-civile/assegno_funzionale_conditions_and_special_ranks",
       "forze-polizia-ordinamento-civile/renewal_2025_2027_pending_dpr"
-    ],
-    "agreement/funivie-anef.json": [
-      "funivie-anef/pre_2016_seniority_cohort"
     ],
     "agreement/gas-acqua-utilitalia.json": [
       "gas-acqua-utilitalia/industria_rates_proxy"
@@ -902,9 +897,6 @@
       "laterizi-industria-f021/apprentice_seniority",
       "laterizi-industria-f021/asq_seniority_from_as"
     ],
-    "agreement/lavanderie-industriali-assosistema.json": [
-      "lavanderie-industriali-assosistema/tranches_2027_2028_rounding"
-    ],
     "agreement/lavoro-domestico-convivente-orario-ridotto.json": [
       "lavoro-domestico-convivente-orario-ridotto/annual_minimi_not_updated",
       "lavoro-domestico-convivente-orario-ridotto/art34_role_conditions",
@@ -916,13 +908,11 @@
       "lavoro-domestico-convivente/art34_role_conditions",
       "lavoro-domestico-convivente/extra_month_hours",
       "lavoro-domestico-convivente/part_time_scaling",
-      "lavoro-domestico-convivente/seniority_frozen_at_2026",
       "lavoro-domestico-convivente/tranches_from_2027"
     ],
     "agreement/lavoro-domestico-non-convivente.json": [
       "lavoro-domestico-non-convivente/annual_minimi_not_updated",
       "lavoro-domestico-non-convivente/extra_month_hours",
-      "lavoro-domestico-non-convivente/seniority_frozen_at_2026",
       "lavoro-domestico-non-convivente/tranches_from_2027"
     ],
     "agreement/legno-arredamento-federlegno.json": [

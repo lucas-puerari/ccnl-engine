@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 71 function allowance of the quadri and the nota a verbale of 15 July 2026. | confirmed | Read the nota a verbale on the page image: the allowance is separate from the 1A minimum from 1 August 2026 and nothing is due before. The file added it to the 1A minimum from December 2024; set it to zero until 31 July 2026, closed function_allowance_constant and recorded the 50% superminimo absorption of art. 71, which the engine cannot express. |
 | 2026-11-14 | claude-opus-5-5 (ai) | INPS circ. 140/2012 par. 3.3 on the apprentice contribution, against the research of a separate model session. | confirmed | The cuneo reductions (0.91) do not apply to apprentices: the artigianato apprentice rates of the bundle are confirmed. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source text. | corrected | Added the comporto window of the CCNL. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Previgente apprenticeship table of art. 36 par. 7 (2018), page image, against the research of a separate model session. | corrected | Added six previgente tracks for apprentices hired before 16 May 2022. |
 
 ## Salary table
 
@@ -133,6 +134,30 @@ percentage: 0.90
 Destination levels: `5`  
 percentage: 0.95
 
+**artigiane_gruppo_1_previgente_2018** (type: `percentage`)  
+Destination levels: `1A`, `1B`, `2`, `3`  
+percentage: 1.00
+
+**artigiane_gruppo_2_previgente_2018** (type: `percentage`)  
+Destination levels: `4`, `5bis`  
+percentage: 1.00
+
+**artigiane_gruppo_2_figure_3_anni_previgente_2018** (type: `percentage`)  
+Destination levels: `5bis`  
+percentage: 0.90
+
+**artigiane_gruppo_3_previgente_2018** (type: `percentage`)  
+Destination levels: `5`  
+percentage: 1.00
+
+**artigiane_gruppo_3_figure_2_anni_previgente_2018** (type: `percentage`)  
+Destination levels: `5`  
+percentage: 0.95
+
+**impiegati_amministrativi_previgente_2018** (type: `percentage`)  
+Destination levels: `1A`, `1B`, `2`, `3`, `4`, `5bis`, `5`  
+percentage: 0.90
+
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
@@ -144,12 +169,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add the Art. 4 PMI non-artigiane salary tables and a request field to select them.
 
-!!! warning "comunicazione-artigianato-confartigianato/previgente_apprenticeship_rules · base_salary · impact unknown · open"
-    APPRENTICESHIP COHORT: 'Le nuove percentuali retributive previste nell'art. 36 [...] trovano applicazione solo per i lavoratori assunti a far data dalla sottoscrizione dell'Accordo di rinnovo del 16 maggio 2022. Per tutti gli altri lavoratori continuano a trovare applicazione le previgenti percentuali retributive' (dichiarazione a verbale, renewal of 18 November 2024, p. 12). The file models the current percentages only; an apprentice hired before 16 May 2022 is paid on them, not on the previous tables.
+!!! note "comunicazione-artigianato-confartigianato/previgente_apprenticeship_rules · base_salary · impact unknown · resolved"
+    APPRENTICESHIP COHORT: 'Le nuove percentuali retributive previste nell'art. 36 [...] trovano applicazione solo per i lavoratori assunti a far data dalla sottoscrizione dell'Accordo di rinnovo del 16 maggio 2022. Per tutti gli altri lavoratori continuano a trovare applicazione le previgenti percentuali retributive' (dichiarazione a verbale, renewal of 18 November 2024, p. 12). The file models the current percentages only; an apprentice hired before 16 May 2022 is paid on them, not on the previous tables. The tables before 16 May 2022 (art. 36 par. 7 of the CCNL 27 febbraio 2018, PDF p. 35) are the tracks named *_previgente_2018: the caller selects them with Apprentice.track for an apprentice hired before that day.
 
     **Applies when:** `base_salary` applies; contract type in apprentice; before 2027-05-16.
 
-    **Remediation:** Source the percentage tables in force before 16 May 2022 and gate them on the hire date.
+    **Remediation:** Resolved: previgente tables added as tracks on 2026-11-15; the caller chooses the track by hire date.
 
 !!! warning "comunicazione-artigianato-confartigianato/level_category_not_declared · worker_category · impact unknown · open"
     LEVEL CATEGORY: all levels left null. Multiple levels map to both operai and impiegati roles — a genuine one-to-many mapping the schema cannot represent as a single category value.

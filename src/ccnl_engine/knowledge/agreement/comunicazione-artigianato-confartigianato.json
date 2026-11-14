@@ -126,7 +126,7 @@
       },
       {
         "kind": "simplification",
-        "text": "APPRENTICESHIP COHORT: 'Le nuove percentuali retributive previste nell'art. 36 [...] trovano applicazione solo per i lavoratori assunti a far data dalla sottoscrizione dell'Accordo di rinnovo del 16 maggio 2022. Per tutti gli altri lavoratori continuano a trovare applicazione le previgenti percentuali retributive' (dichiarazione a verbale, renewal of 18 November 2024, p. 12). The file models the current percentages only; an apprentice hired before 16 May 2022 is paid on them, not on the previous tables.",
+        "text": "APPRENTICESHIP COHORT: 'Le nuove percentuali retributive previste nell'art. 36 [...] trovano applicazione solo per i lavoratori assunti a far data dalla sottoscrizione dell'Accordo di rinnovo del 16 maggio 2022. Per tutti gli altri lavoratori continuano a trovare applicazione le previgenti percentuali retributive' (dichiarazione a verbale, renewal of 18 November 2024, p. 12). The file models the current percentages only; an apprentice hired before 16 May 2022 is paid on them, not on the previous tables. The tables before 16 May 2022 (art. 36 par. 7 of the CCNL 27 febbraio 2018, PDF p. 35) are the tracks named *_previgente_2018: the caller selects them with Apprentice.track for an apprentice hired before that day.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
@@ -138,7 +138,8 @@
             ],
             "effective_until": "2027-05-16"
           },
-          "remediation": "Source the percentage tables in force before 16 May 2022 and gate them on the hire date."
+          "remediation": "Resolved: previgente tables added as tracks on 2026-11-15; the caller chooses the track by hire date.",
+          "status": "resolved"
         }
       },
       {
@@ -2108,6 +2109,340 @@
           "review_id": "2026-11-08-ai-comunicazione-artigianato-apprenticeship"
         }
       }
+    },
+    {
+      "type": "percentage",
+      "name": "artigiane_gruppo_1_previgente_2018",
+      "destination_levels": [
+        "1A",
+        "1B",
+        "2",
+        "3"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.60"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 36,
+          "months_until": 48,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 48,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-comunicazione-2018",
+            "title": "CCNL area comunicazione artigianato, 27 febbraio 2018 (FISTEL-CISL, scansione)",
+            "kind": "associazione",
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2020/09/CCNL-Area-Comunicazione.pdf",
+            "sha256": "0dd7c5250635b270cc064115d5288679d3cb1af6619f76c26a42ce9d91a13513"
+          },
+          "page": "35",
+          "section": "Art. 36 par. 7",
+          "quote": "Il trattamento economico durante l'apprendistato è determinato dall'applicazione delle percentuali riportate di seguito sulla retribuzione tabellare relativa al livello salariale nel quale egli sarà inquadrato al termine del periodo di apprendistato"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-11-15T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2018-02-27",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "review_id": "2026-11-15-ai-comunicazione-artigianato-confartigianato-previgente-apprenticeship"
+        },
+        "transformation": "Percentages by semester of the table of art. 36 par. 7 (read on the page image), for apprentices hired before 16 May 2022; the caller selects this track with Apprentice.track."
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "artigiane_gruppo_2_previgente_2018",
+      "destination_levels": [
+        "4",
+        "5bis"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.60"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 36,
+          "months_until": 48,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 48,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-comunicazione-2018",
+            "title": "CCNL area comunicazione artigianato, 27 febbraio 2018 (FISTEL-CISL, scansione)",
+            "kind": "associazione",
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2020/09/CCNL-Area-Comunicazione.pdf",
+            "sha256": "0dd7c5250635b270cc064115d5288679d3cb1af6619f76c26a42ce9d91a13513"
+          },
+          "page": "35",
+          "section": "Art. 36 par. 7",
+          "quote": "Il trattamento economico durante l'apprendistato è determinato dall'applicazione delle percentuali riportate di seguito sulla retribuzione tabellare relativa al livello salariale nel quale egli sarà inquadrato al termine del periodo di apprendistato"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-11-15T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2018-02-27",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "review_id": "2026-11-15-ai-comunicazione-artigianato-confartigianato-previgente-apprenticeship"
+        },
+        "transformation": "Percentages by semester of the table of art. 36 par. 7 (read on the page image), for apprentices hired before 16 May 2022; the caller selects this track with Apprentice.track."
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "artigiane_gruppo_2_figure_3_anni_previgente_2018",
+      "destination_levels": [
+        "5bis"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.60"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.90"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-comunicazione-2018",
+            "title": "CCNL area comunicazione artigianato, 27 febbraio 2018 (FISTEL-CISL, scansione)",
+            "kind": "associazione",
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2020/09/CCNL-Area-Comunicazione.pdf",
+            "sha256": "0dd7c5250635b270cc064115d5288679d3cb1af6619f76c26a42ce9d91a13513"
+          },
+          "page": "35",
+          "section": "Art. 36 par. 7",
+          "quote": "Il trattamento economico durante l'apprendistato è determinato dall'applicazione delle percentuali riportate di seguito sulla retribuzione tabellare relativa al livello salariale nel quale egli sarà inquadrato al termine del periodo di apprendistato"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-11-15T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2018-02-27",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "review_id": "2026-11-15-ai-comunicazione-artigianato-confartigianato-previgente-apprenticeship"
+        },
+        "transformation": "Percentages by semester of the table of art. 36 par. 7 (read on the page image), for apprentices hired before 16 May 2022; the caller selects this track with Apprentice.track."
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "artigiane_gruppo_3_previgente_2018",
+      "destination_levels": [
+        "5"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.60"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.75"
+        },
+        {
+          "months_from": 24,
+          "months_until": 36,
+          "percentage": "0.90"
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "percentage": "1.00"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-comunicazione-2018",
+            "title": "CCNL area comunicazione artigianato, 27 febbraio 2018 (FISTEL-CISL, scansione)",
+            "kind": "associazione",
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2020/09/CCNL-Area-Comunicazione.pdf",
+            "sha256": "0dd7c5250635b270cc064115d5288679d3cb1af6619f76c26a42ce9d91a13513"
+          },
+          "page": "35",
+          "section": "Art. 36 par. 7",
+          "quote": "Il trattamento economico durante l'apprendistato è determinato dall'applicazione delle percentuali riportate di seguito sulla retribuzione tabellare relativa al livello salariale nel quale egli sarà inquadrato al termine del periodo di apprendistato"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-11-15T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2018-02-27",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "review_id": "2026-11-15-ai-comunicazione-artigianato-confartigianato-previgente-apprenticeship"
+        },
+        "transformation": "Percentages by semester of the table of art. 36 par. 7 (read on the page image), for apprentices hired before 16 May 2022; the caller selects this track with Apprentice.track."
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "artigiane_gruppo_3_figure_2_anni_previgente_2018",
+      "destination_levels": [
+        "5"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 6,
+          "percentage": "0.60"
+        },
+        {
+          "months_from": 6,
+          "months_until": 12,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 12,
+          "months_until": 18,
+          "percentage": "0.85"
+        },
+        {
+          "months_from": 18,
+          "months_until": null,
+          "percentage": "0.95"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-comunicazione-2018",
+            "title": "CCNL area comunicazione artigianato, 27 febbraio 2018 (FISTEL-CISL, scansione)",
+            "kind": "associazione",
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2020/09/CCNL-Area-Comunicazione.pdf",
+            "sha256": "0dd7c5250635b270cc064115d5288679d3cb1af6619f76c26a42ce9d91a13513"
+          },
+          "page": "35",
+          "section": "Art. 36 par. 7",
+          "quote": "Il trattamento economico durante l'apprendistato è determinato dall'applicazione delle percentuali riportate di seguito sulla retribuzione tabellare relativa al livello salariale nel quale egli sarà inquadrato al termine del periodo di apprendistato"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-11-15T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2018-02-27",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "review_id": "2026-11-15-ai-comunicazione-artigianato-confartigianato-previgente-apprenticeship"
+        },
+        "transformation": "Percentages by semester of the table of art. 36 par. 7 (read on the page image), for apprentices hired before 16 May 2022; the caller selects this track with Apprentice.track."
+      }
+    },
+    {
+      "type": "percentage",
+      "name": "impiegati_amministrativi_previgente_2018",
+      "destination_levels": [
+        "1A",
+        "1B",
+        "2",
+        "3",
+        "4",
+        "5bis",
+        "5"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "percentage": "0.60"
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "percentage": "0.80"
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "percentage": "0.90"
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-area-comunicazione-2018",
+            "title": "CCNL area comunicazione artigianato, 27 febbraio 2018 (FISTEL-CISL, scansione)",
+            "kind": "associazione",
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2020/09/CCNL-Area-Comunicazione.pdf",
+            "sha256": "0dd7c5250635b270cc064115d5288679d3cb1af6619f76c26a42ce9d91a13513"
+          },
+          "page": "35",
+          "section": "Art. 36 par. 7",
+          "quote": "Il trattamento economico durante l'apprendistato è determinato dall'applicazione delle percentuali riportate di seguito sulla retribuzione tabellare relativa al livello salariale nel quale egli sarà inquadrato al termine del periodo di apprendistato"
+        },
+        "extraction": {
+          "method": "manual",
+          "extraction_timestamp": "2026-11-15T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2018-02-27",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "review_id": "2026-11-15-ai-comunicazione-artigianato-confartigianato-previgente-apprenticeship"
+        },
+        "transformation": "Percentages by semester of the table of art. 36 par. 7 (read on the page image), for apprentices hired before 16 May 2022; the caller selects this track with Apprentice.track."
+      }
     }
   ],
   "ruleset": {
@@ -2117,7 +2452,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "660ee1a676740416762245b260c43d35200cc371c5e678f8684f6f1c2c4ef59a",
+    "source_hash": "5a7fdf991a18e1fafe93f648d5433316187602c76ee4918274cef666b82000d6",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2477,6 +2812,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules.comporto_windows"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-comunicazione-artigianato-confartigianato-previgente-apprenticeship",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Previgente apprenticeship table of art. 36 par. 7 (2018), page image, against the research of a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2020/09/CCNL-Area-Comunicazione.pdf",
+            "sha256": "0dd7c5250635b270cc064115d5288679d3cb1af6619f76c26a42ce9d91a13513"
+          }
+        ],
+        "findings": [
+          "Added six previgente tracks for apprentices hired before 16 May 2022."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "apprenticeship"
         ]
       }
     ]

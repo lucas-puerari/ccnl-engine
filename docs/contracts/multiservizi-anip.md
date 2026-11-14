@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2021-06-08 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2025-07-01 |
 
 ## Review history
@@ -78,6 +78,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-10 | claude-opus-5-5 (ai) | Allegato 8 pp. 119-123 of the 2021 compiled CCNL, reproducing the 19 July 2012 apprenticeship agreement: maximum terms and pay grades effective 20 July 2012. | corrected | The annex prints II 24, III-IV 30, V-VII 36 months; the first half pays two ordinary levels below, the second half one below, except destination II at I throughout. The CNEL renewal has no amendment to these clauses. Individual reductions and extensions remain outside the maximum-term tracks. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 54 pension rates, frozen per-level bases and fund eligibility in CNEL 105782 pp. 69-70, 90; membership routing remains limited. | corrected | Verified all ten configured level bases against the page 90 table and the 1% shares and twelve payments against pp. 69-70.<br>The printed Q and 7 illustrative 1% amounts (12.28) differ from 1% of the printed 1222.75 base (12.23); applied the stated percentage and base, not the inconsistent illustrative amount.<br>Association-dependent fund choice and six-month calendar-year fixed-term eligibility remain open. |
 | 2026-11-10 | claude-opus-5-5 (ai) | CNEL 105782 art. 24, page 43, cash handling on the tabellare; art. 22 EDAR and remaining art. 24 event-dependent duties remain limited. | corrected | The cash-handling duty is normally assigned and carries error liability, so caller-stated role gates its 3% tabellare supplement. Collection thresholds and hardship and hourly duty events cannot be inferred from a monthly role. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Impiegati scatti of levels 2-4 in the appendix of the 2021 text, against the research of a separate model session. | corrected | Added the impiegati scatti of levels 2, 3 and 4 from July 2021 to July 2025 (the last provisional). |
 
 ## Salary table
 
@@ -103,6 +104,9 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Increment (monthly) |
 |---|---:|
+| `2` | € 66.18 |
+| `3` | € 70.20 |
+| `4` | € 74.66 |
 | `5` | € 80.03 |
 | `6` | € 95.22 |
 | `7` | € 107.28 |
@@ -168,11 +172,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the IPCA consuntivo of June 2025 and any later IPCA adjustment for ANIP and adjust the July 2025 minima.
 
 !!! warning "multiservizi-anip/multiservizi_seniority_maturation · seniority · impact yes · open"
-    SENIORITY (CNEL 105782 art. 22, pp. 41-42, 90): Category-specific amounts now pay operai at levels 1-6 after four years (including levels 5 and 6), with at most one quota; levels 5-7 and Q pay impiegati up to eight biennial scatti. No current series for impiegati at levels 2-4 is verified. Without an EarnedIncrements worker fact, matured scatti are still repriced at the run date, including after promotion; the 50% ceiling of tabellare plus EUR 279.60 is not enforced. The worker must supply recognised sector service across contract changes and the correct category at mixed levels.
+    SENIORITY (CNEL 105782 art. 22, pp. 41-42, 90): Category-specific amounts now pay operai at levels 1-6 after four years (including levels 5 and 6), with at most one quota; levels 5-7 and Q pay impiegati up to eight biennial scatti. The impiegati scatti of levels 2-4 come from the appendix of the text signed on 8 June 2021 (PDF p. 85, https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0, sha256 ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f); its 1 July 2025 column is marked 'PROVVISORIO AI SENSI DELL'ART.73'. Without an EarnedIncrements worker fact, matured scatti are still repriced at the run date, including after promotion; the 50% ceiling of tabellare plus EUR 279.60 is not enforced. The worker must supply recognised sector service across contract changes and the correct category at mixed levels.
 
     **Applies when:** `seniority` applies.
 
-    **Remediation:** Source the current impiegati scatto amounts for levels 2-4; supply earned amounts and recognised sector service from worker records, and implement automatic maturation-date pricing and the 50% ceiling.
+    **Remediation:** Supply earned amounts and recognised sector service from worker records, and implement automatic maturation-date pricing and the 50% ceiling; confirm the provisional July 2025 column.
 
 !!! warning "multiservizi-anip/multiservizi_sickness_by_category_and_basis · sickness · impact yes · open"
     SICKNESS (CNEL 139292 art. 51, pp. 22-24): category routing, the 100% net-global-pay operai band through day 180, the 50% band through day 270, the impiegati 100% first five months and 50% next seven months, and the rolling 36-month comporto are represented. Remaining: the operai 50% band is of gross global pay, while the model applies net_basis to the whole rule; impiegati pay is stipendio plus contingenza, while the engine uses global pay. The operai first working day and the impiegati non-probation and serious-fault conditions are not represented. The clause does not state a daily gross/net conversion or an amount for the excluded pay components.

@@ -108,11 +108,13 @@ def test_solidarity_on_the_contractual_part() -> None:
     assert _decision_inputs(result)["solidarity"] == Decimal("1.30")
 
 
-def test_partial_month_is_an_open_limitation() -> None:
-    """A hire on 15 January: the Scheda gives no rule, full amount."""
+@pytest.mark.parametrize(("hired", "expected"), [(15, "13.00"), (20, "0")])
+def test_partial_month_needs_15_days(hired: int, expected: str) -> None:
+    """Allegato Y: in full with 15 calendar days in the month, none below."""
     result = _january(
-        NoPensionFund(), period=EmploymentPeriod(started_on=date(2026, 1, 15))
+        NoPensionFund(), period=EmploymentPeriod(started_on=date(2026, 1, hired))
     )
-    assert _entry(result, "pension_fund_employer") == Decimal("13.00")
-    assert _PARTIAL in {limitation.id for limitation in result.assurance.limitations}
-    assert not result.is_payable
+    assert _entry(result, "pension_fund_employer") == Decimal(expected)
+    assert _PARTIAL not in {
+        limitation.id for limitation in result.assurance.limitations
+    }

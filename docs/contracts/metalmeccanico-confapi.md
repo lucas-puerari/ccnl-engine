@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2017-07-03 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -79,6 +79,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 10 p. 49 apprenticeship credit towards seniority increments. | corrected | Art. 10 counts the apprenticeship at 65% towards the increments of the worker kept on from 1 November 2018; added apprenticeship_credit_share 0.65 and resolved the limitation. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 38 hourly elements and Art. 22 expiry of PAR, cached PDF pp. 93-94 and 112; expiry valuation only. | corrected | Hourly remuneration is added to monthly pay / 173 at expiry when supplied by the caller; no termination payout basis appears in the cited clause. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 32(b,c), physical PDF pp. 104-105, maternity holiday and local holiday selection. | confirmed | The maternity holiday target exists; letters b and c cover reduced-pay pregnancy and puerperium holidays. The employer-stated patron date can denote the locally agreed substitute or 29 June in Rome; neither is inferred without the local fact. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto breve and pay of art. 55 against the research of a separate model session; quotes checked on the text layer of the source. | corrected | Replaced 100% for 180 days of one episode with the bands of art. 55: 2+4, 3+6, 4+8 months at full and half pay, comporto 6/9/12 months over three years. |
+| 2026-11-15 | gpt-6-sol (ai) | Comporto breve and pay bands of art. 55, read by a separate model session on the 2017 text and the 2026 renewal. | confirmed | Confirmed: comporto breve 6/9/12 months over the three years before the last episode, full and half pay 2+4, 3+6, 4+8 months over the same three years; the 2026 renewal keeps them and adds the disability extension. |
 
 ## Salary table
 
@@ -164,7 +166,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the leave of a 6-day week.
 
 !!! warning "metalmeccanico-confapi/sickness_rules · sickness · impact yes · open"
-    Sickness: comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27). The net-pay gross-up is modelled (sickness_rules.net_basis) (review of 2026-10-30).
+    Sickness not modelled: the comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the pay limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27). The comporto breve and its full and half pay over three years are sickness_rules.cumulation.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
@@ -432,6 +434,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEAVE AT TERMINATION (Art. 33, p. 106 of the CCNL of 3 July 2017): 'Per ogni giornata di ferie la retribuzione dovuta al lavoratore è costituita dalla retribuzione giornaliera globale di fatto'. No clause of the 2017 text or of the 2025-2028 renewal (OCR) defines that daily pay as a fraction of the monthly pay: the 1/26 of the retribuzione mensile fissa (Art. 32, p. 104) is the pay of a festività falling on a Sunday, the 1/6 of the weekly pay (Art. 15, p. 87) is the ferie of the discontinuous workers only, and the divisor 173 gives the hourly pay. The engine pays no residual (termination_residual_leave incomplete, termination_basis_not_sourced).
     
     Art. 98: the indennità di funzione of the quadri is paid as a fixed allowance with the role 'quadro': 69.72 on the 9th category (quadri A), 49.06 on the 8th category (quadri B); 32.75 with the role 'quadro_oreficeria' on the 8th category. The 32.75 has no starting date in Art. 98: the series starts at the CCNL of 3 July 2017 that prints it. Art. 98 does not say whether superminimi absorb it: the caller states a superminimo net of any part an individual agreement absorbs.
+    
+    SICKNESS (Art. 55 points 2-3, CCNL 3 luglio 2017, PDF pp. 136-138, https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf, sha256 c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad; the renewal of 4 June 2026, PDF pp. 25-28, https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf, sha256 ae59a64f408072c1438892143e2146eea350d7e2c3e5883fb8538f86ffc47f53, keeps them): comporto breve of 6, 9 or 12 months up to 3 years of seniority, over 3 to 6, over 6, over 'le assenze complessivamente verificatesi nei tre anni precedenti ogni nuovo ultimo episodio morboso'; 'intera retribuzione globale per i primi 2 mesi e metà retribuzione globale per i 4 mesi successivi' (3 and 6, 4 and 8 above). Modelled as sickness_rules.cumulation over three years, months of 30 days, net basis as before.
     
 
 ## Raw data
