@@ -1170,12 +1170,6 @@
     "agreement/uneba-uneba.json": [
       "uneba-uneba/ermt_territorial"
     ],
-    "agreement/universita-aran.json": [
-      "universita-aran/shared_rules_unchecked"
-    ],
-    "agreement/universita-tecnologi-aran.json": [
-      "universita-tecnologi-aran/shared_rules_unchecked"
-    ],
     "agreement/vetro-meccanizzato-assovetro.json": [
       "vetro-meccanizzato-assovetro/other_subsectors_tables"
     ],

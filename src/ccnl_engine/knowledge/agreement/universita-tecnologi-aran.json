@@ -668,17 +668,8 @@
         "text": "SCOPE: tecnologi a tempo indeterminato of the universities, a profile from 1.3.2026 (CCNL 2025-2027 Tabella B2): six posizioni stipendiali (0-5, 6-11, 12-17, 18-23, 24-30, 31 and more years) as seniority steps. No overtime table. Their pay is 'interamente disciplinato dal presente contratto' and 'si compone delle seguenti voci: a) stipendio tabellare di cui all'allegata Tabella A; b) premi correlati alla performance organizzativa ed individuale' (contratto of 24 February 2026, PDF p. 4-5, https://www.aranagenzia.it/wp-content/uploads/2026/02/2026_02_24_CIR-TECNOLOGI-SEQ.pdf, sha256 9d464fcfabd7c254ab6d9249a4900c3d1b0ed2543752e061b7c34771bad1275c): there is no fixed allowance; the performance premiums depend on local resources and are a caller event."
       },
       {
-        "kind": "simplification",
-        "text": "SHARED RULES: the hourly divisor, the tredicesima, the leave, absence, sickness and accrual rules are those of the scuola file of the same comparto (istruzione-ricerca-aran), not read again for the university staff.",
-        "capability": "sickness",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "shared_rules_unchecked",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "remediation": "Read the university sections of the CCNL 2019-2021 (18/1/2024) for leave, absence and sickness."
-        }
+        "kind": "info",
+        "text": "SHARED RULES CHECKED: the university staff's leave (CCNL 18.1.2024 art. 95, PDF p. 113: 'La durata delle ferie è di 32 giorni lavorativi', 30 for the first three years, on six working days) and sickness (CCNL Università 16.10.2008 art. 35, PDF p. 28-29, recalled by the 2024 text: 18 months over the three years, 'per i primi 9 mesi di assenza' full pay, 3 months at 90%, 6 months at 50%, further 18 months unpaid in grave cases) are the same as the scuola rules the file uses (https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf sha256 11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d; https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-UNIVERSITA-2006-09_Rev.pdf sha256 53f4287478134e36ad0ce7ec0b143160cab0b954aeee2da6dafde70ba2af5e2f). The five-day week (28 days, 26 for new hires) and the 4 days of festività soppresse are not modelled apart."
       },
       {
         "kind": "info",
@@ -718,7 +709,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "f3a4944678f2de23301e51b093014690989f3539a3abd8d323b7f7147d5a9824",
+    "source_hash": "5e4a017be557420ce8fb15ad5acfaf954e8aa24107effb8ea12945cfa4ff977c",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -914,6 +905,32 @@
         "independence": "same_process",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-universita-tecnologi-aran-shared-rules",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "University sections of the CCNL 18.1.2024 (art. 95) and art. 35 of the CCNL Università 2008, against the shared scuola rules.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+            "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-UNIVERSITA-2006-09_Rev.pdf",
+            "sha256": "53f4287478134e36ad0ce7ec0b143160cab0b954aeee2da6dafde70ba2af5e2f"
+          }
+        ],
+        "findings": [
+          "Leave and sickness rules of the university staff match the shared rules."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules",
+          "work_rules.sickness_rules"
         ]
       }
     ]

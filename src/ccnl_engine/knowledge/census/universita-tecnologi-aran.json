@@ -226,22 +226,6 @@
       }
     },
     {
-      "id": "shared_rules_unchecked",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = owed",
-      "rule": "SHARED RULES: the hourly divisor, the tredicesima, the leave, absence, sickness and accrual rules are those of the scuola file of the same comparto (istruzione-ricerca-aran), not read again for the university staff.",
-      "calculation": "ccnl/universita-tecnologi-aran:coverage.notes",
-      "state": "unverified",
-      "remediation": "Read the university sections of the CCNL 2019-2021 (18/1/2024) for leave, absence and sickness.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "universita-tecnologi-aran/shared_rules_unchecked"
-        ]
-      }
-    },
-    {
       "id": "sunday_holiday_ccnl_clause",
       "institute": "sunday_holiday",
       "variant": "all",

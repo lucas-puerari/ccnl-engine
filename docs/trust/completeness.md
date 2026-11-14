@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 359 open limitations (359 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 357 open limitations (357 with a monetary impact).
 
 ## Declared window
 
@@ -178,8 +178,8 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [turismo-federalberghi](../contracts/turismo-federalberghi.md) | `turismo` | production | — | 23 rows | 23 open requirements; 16 monetary limitations; 5 outside_input limitations; 20 non-native capabilities |
 | [turismo-federalberghi-alberghi-minori](../contracts/turismo-federalberghi-alberghi-minori.md) | `turismo` | exploratory | — | 24 rows | 24 open requirements; 16 monetary limitations; 6 outside_input limitations; 20 non-native capabilities |
 | [uneba-uneba](../contracts/uneba-uneba.md) | `socio-sanitario` | exploratory | — | 17 rows | 17 open requirements; 1 weak rule; 13 monetary limitations; 1 outside_input limitation; 18 non-native capabilities |
-| [universita-aran](../contracts/universita-aran.md) | `pubblico-impiego` | exploratory | — | 21 rows | 21 open requirements; 5 weak rules; 14 monetary limitations; 19 non-native capabilities |
-| [universita-tecnologi-aran](../contracts/universita-tecnologi-aran.md) | `pubblico-impiego` | exploratory | — | 17 rows | tables from 2026-03-01; 17 open requirements; 1 weak rule; 14 monetary limitations; 19 non-native capabilities |
+| [universita-aran](../contracts/universita-aran.md) | `pubblico-impiego` | exploratory | — | 20 rows | 20 open requirements; 5 weak rules; 13 monetary limitations; 18 non-native capabilities |
+| [universita-tecnologi-aran](../contracts/universita-tecnologi-aran.md) | `pubblico-impiego` | exploratory | — | 16 rows | tables from 2026-03-01; 16 open requirements; 1 weak rule; 13 monetary limitations; 18 non-native capabilities |
 | [vetro-meccanizzato-assovetro](../contracts/vetro-meccanizzato-assovetro.md) | `chimica` | exploratory | — | 45 rows | 45 open requirements; 29 weak rules; 13 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [vigilanza-privata-assiv](../contracts/vigilanza-privata-assiv.md) | `vigilanza` | exploratory | — | 19 rows | 19 open requirements; 1 weak rule; 16 monetary limitations; 20 non-native capabilities |
 | [vigilanza-privata-assiv-sf](../contracts/vigilanza-privata-assiv-sf.md) | `vigilanza` | exploratory | — | 21 rows | 21 open requirements; 3 weak rules; 16 monetary limitations; 20 non-native capabilities |
