@@ -305,8 +305,9 @@ class TestYearDecisions:
         # mètaSalute on each of the 12 monthly runs, the flexible benefits on
         # the February run.
         funds = 12 + 1
-        # The holidays on a Sunday of October and November, left unpaid.
-        sunday_holidays = 2
+        # 1 November on a Sunday, left unpaid; 4 October, out of the clause,
+        # takes the law and no decision.
+        sunday_holidays = 1
         # The PAR of 2024 left in the conto ore, paid in December (art. 5):
         # incomplete, the plan imports no leave history.
         conto_ore = 1

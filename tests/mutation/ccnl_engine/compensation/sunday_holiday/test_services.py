@@ -200,8 +200,6 @@ def test_the_ccnl_clause_pays_its_own_holidays() -> None:
 @pytest.mark.parametrize(
     ("ccnl", "year", "month", "days"),
     [
-        # 4 October is more recent than the Chimica text.
-        (_CHIMICA, 2026, 10, "2026-10-04"),
         # No clause: 1 November is not a holiday of L. 260/1949 art. 5, nor
         # 4 November, on the same first Sunday of November.
         (_ANAS, 2026, 11, "2026-11-01,2026-11-01"),
@@ -211,7 +209,7 @@ def test_the_ccnl_clause_pays_its_own_holidays() -> None:
         # divisor the engine applies.
         (_EDILIZIA_OPERAI, 2027, 4, "2027-04-25"),
     ],
-    ids=["recent-holiday", "no-clause", "november-fourth", "no-divisor"],
+    ids=["no-clause", "november-fourth", "no-divisor"],
 )
 def test_an_unsourced_holiday_records_the_limitation(
     ccnl: tuple[str, str], year: int, month: int, days: str
@@ -224,6 +222,18 @@ def test_an_unsourced_holiday_records_the_limitation(
     assert _limited(result)
     (decision,) = (d for d in result.decisions if d.capability == CAPABILITY)
     assert dict(decision.inputs) == {"days": days}
+
+
+def test_a_holiday_the_clause_leaves_out_takes_the_law() -> None:
+    """4 October 2026, not in Chimica art. 11: no quota, no limitation.
+
+    L. 151/2025 art. 1 c. 2 adds 4 October to L. 260/1949 art. 2, not to
+    the holidays of art. 5 that take the quota on a Sunday.
+    """
+    result = _run(_CHIMICA, 2026, 10)
+
+    assert _quota(result) == 0
+    assert not _limited(result)
 
 
 def test_a_public_employment_is_not_paid() -> None:

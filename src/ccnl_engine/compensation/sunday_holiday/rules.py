@@ -111,7 +111,7 @@ def _patron(
     clause: SundayHolidayPay | None,
     dated: list[tuple[NationalHoliday, dt.date | None]],
     rest: int,
-) -> list[tuple[str, dt.date, bool]]:
+) -> list[tuple[str, dt.date]]:
     """Return the patron saint holiday of the month the clause pays, if any.
 
     Returns:
@@ -124,15 +124,14 @@ def _patron(
     day = patron_day(clause, stated, year, dated, rest)
     if day is None or day.month != month or not employed(ctx, day):
         return []
-    return [(PATRON, day, False)]
+    return [(PATRON, day)]
 
 
-def sundays(ctx: RunContext) -> list[tuple[str, dt.date, bool]]:
+def sundays(ctx: RunContext) -> list[tuple[str, dt.date]]:
     """Return the national holidays of the month on a Sunday or the rest day.
 
     Returns:
-        Each day code, date and whether the holiday is a recent one (with a
-        ``valid_from``, as 4 October from 2026), within the employment: the
+        Each day code and date, within the employment: the
         holidays on a Sunday, or on the worker's rest day for a clause that
         pays it (with the statutory ones on a Sunday); in November, also 4
         November on the first Sunday of the month, or on the 4th when it is
@@ -161,11 +160,11 @@ def sundays(ctx: RunContext) -> list[tuple[str, dt.date, bool]]:
                 clause, holiday, day, dated, ctx.request.weekly_rest_day.number
             )
         ) and employed(ctx, day):
-            found.append((holiday.day, day, holiday.valid_from is not None))
+            found.append((holiday.day, day))
     found.extend(_patron(ctx, clause, dated, rest))
     fourth = _fourth_november(year, clause)
     if month == _NOVEMBER and fourth.weekday() == rest and employed(ctx, fourth):
-        found.append((FOURTH_NOVEMBER, fourth, False))
+        found.append((FOURTH_NOVEMBER, fourth))
     easter = easter_sunday(year)
     if (
         clause is not None
@@ -173,7 +172,7 @@ def sundays(ctx: RunContext) -> list[tuple[str, dt.date, bool]]:
         and (easter.month, easter.weekday()) == (month, rest)
         and employed(ctx, easter)
     ):
-        found.append((EASTER, easter, False))
+        found.append((EASTER, easter))
     return found
 
 
@@ -223,15 +222,16 @@ def whole_year(ctx: RunContext) -> bool:
 
 def unsourced(
     clause: SundayHolidayPay | None,
-    found: list[tuple[str, dt.date, bool]],
+    found: list[tuple[str, dt.date]],
     *,
     unpayable: bool = False,
 ) -> bool:
     """Return whether a holiday of the month has no sourced treatment.
 
-    A holiday the clause leaves out is open without a clause, or when the
-    holiday is more recent than the CCNL texts (4 October from 2026); 4
-    November is covered by a clause that pays it in another month.
+    Without a clause, a holiday outside L. 260/1949 art. 5 is open: the CCNL
+    may pay it.  A clause settles every holiday: one it leaves out takes the
+    law, which pays no quota for it, 4 October included (L. 151/2025 art. 1
+    c. 2 adds it to art. 2, not to the holidays of art. 5).
 
     Returns:
         True when one holiday is open, or ``unpayable`` (a paid holiday the
@@ -239,9 +239,4 @@ def unsourced(
     """
     if unpayable:
         return True
-    if clause is None:
-        return any(c not in STATUTORY for c, _, _ in found)
-    covered = set(clause.holidays)
-    if clause.ex_november_fourth is not None:
-        covered.add(FOURTH_NOVEMBER)
-    return any(c not in covered and recent for c, _, recent in found)
+    return clause is None and any(c not in STATUTORY for c, _ in found)
