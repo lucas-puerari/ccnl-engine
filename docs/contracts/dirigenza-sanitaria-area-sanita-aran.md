@@ -54,12 +54,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-02-27 |
-| **Last review** | — |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2024-01-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 66 of the CCNL of 23 January 2024 and art. 15 of the CCNL of 27 February 2026, against the research of a separate model session. | corrected | The pre-2025 amount was an estimate of 104.34; the text gives 1,381.49 a year on 13 payments, 106.27 a month, from 1 January 2022; the 2025 amount starts on 1 January 2025. |
 
 ## Salary table
 

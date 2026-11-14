@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-02-27 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2024-01-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | single_rate_across_tier_threshold: Verified source PDF SHA-256. Art. 38(10) sets successive nine-, three- and six-month sickness bands. The agreement JSON already declares [1,10) at 1, [10,13) at 0.9, and [13,infinity) at 0.5. SickPayRules.target_rate(index) selects the tier for each sick-day index; classify_days  |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 16 CCNL Area Sanità 27.2.2026 (PDF p. 23) and art. 80 CCNL 23.1.2024 (PDF p. 114), read on the text layer. | confirmed | The indennità di direzione di struttura complessa is 10,525 EUR a year from 2022 and 11,157 EUR from 1 January 2024, on 13 payments, owed to the dirigente with an incarico di direzione di struttura complessa: added with the role 'direttore_sc'. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 61 c. 3 of the CCNL Area Sanità of 23 January 2024 (PDF p. 97), against the research of a separate model session. | corrected | The tabellare of 3,616.60 is the regime value of art. 61 c. 3 (47,015.77 a year from 2021), not an estimate; the anticipazione of 2022-2023 remains open. |
 
 ## Salary table
 

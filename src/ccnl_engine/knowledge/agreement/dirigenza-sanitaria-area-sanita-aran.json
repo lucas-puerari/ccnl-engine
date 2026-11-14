@@ -567,7 +567,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "15ff5b7edc5d23e4e43d130b4aa78082381181cec49510998e2492bb7e8d01c1",
+    "source_hash": "11fd570a93560a300de538e8a0736430436c9b8326f6b87237b66bfe0ac36cd6",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -896,5 +896,30 @@
         }
       }
     }
+  },
+  "verification": {
+    "reviews": [
+      {
+        "id": "2026-11-14-ai-dirigenza-sanitaria-specificita",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 66 of the CCNL of 23 January 2024 and art. 15 of the CCNL of 27 February 2026, against the research of a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf",
+            "sha256": "de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375"
+          }
+        ],
+        "findings": [
+          "The pre-2025 amount was an estimate of 104.34; the text gives 1,381.49 a year on 13 payments, 106.27 a month, from 1 January 2022; the 2025 amount starts on 1 January 2025."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels"
+        ]
+      }
+    ]
   }
 }

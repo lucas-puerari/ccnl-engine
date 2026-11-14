@@ -677,7 +677,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-sanitaria-area-sanita-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "15ff5b7edc5d23e4e43d130b4aa78082381181cec49510998e2492bb7e8d01c1",
+      "source_hash": "11fd570a93560a300de538e8a0736430436c9b8326f6b87237b66bfe0ac36cd6",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-sanitaria-area-sanita-aran.json.gz"
@@ -694,7 +694,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-sanitaria-medico-veterinaria-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "ec2c261fd51982c53ce2227affc17e228cb9b7c82d97ec6adf7ccac4a8219ac2",
+      "source_hash": "1af064a2cfe701baeaa3148833f8d89754d0062ada7857968c38181b91000eff",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json.gz"

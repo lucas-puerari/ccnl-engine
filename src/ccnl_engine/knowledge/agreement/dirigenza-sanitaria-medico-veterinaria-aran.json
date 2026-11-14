@@ -502,7 +502,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "ec2c261fd51982c53ce2227affc17e228cb9b7c82d97ec6adf7ccac4a8219ac2",
+    "source_hash": "1af064a2cfe701baeaa3148833f8d89754d0062ada7857968c38181b91000eff",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -878,6 +878,27 @@
         "independence": "same_process",
         "checked": [
           "levels[0].fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-dirigenza-medica-tabellare",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 61 c. 3 of the CCNL Area Sanità of 23 January 2024 (PDF p. 97), against the research of a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf",
+            "sha256": "de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375"
+          }
+        ],
+        "findings": [
+          "The tabellare of 3,616.60 is the regime value of art. 61 c. 3 (47,015.77 a year from 2021), not an estimate; the anticipazione of 2022-2023 remains open."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels"
         ]
       }
     ]
