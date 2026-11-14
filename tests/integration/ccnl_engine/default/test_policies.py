@@ -44,6 +44,15 @@ _CATALOG = load_capability_catalog(2026)
 
 #: ``requires_fact`` fields without a case, and why.
 _NOT_EXERCISED: dict[str, str] = {
+    "ParentalLeaveEvent.individual_income": (
+        "read only past the indemnified months, which no registry pair "
+        "reaches; tests/mutation/ccnl_engine/absence/insured/parental/"
+        "test_handlers.py exercises the missing fact and both sides of the income"
+    ),
+    "HourlyParentalLeaveEvent.individual_income": (
+        "read only past the indemnified months; tests/mutation/ccnl_engine/"
+        "absence/insured/parental/hourly/test_handlers.py exercises the missing fact"
+    ),
     "PersonalWithholding.installment": (
         "only two garnishments of one kind read it as a fact, which no "
         "registry pair states; tests/mutation/ccnl_engine/personal_withholding/"

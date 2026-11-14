@@ -218,7 +218,27 @@ def test_beyond_the_indemnified_months_the_days_are_unpaid() -> None:
 
     assert _amounts(result) == {"absence_deduction": ("abs", Decimal("99.80"))}
     ids = {lim.id for lim in result.limitations}
-    assert "parental_income_condition" in ids
+    assert "parental_income_condition" not in ids
+    (issue,) = (i for i in result.issues if i.code == "parental_income_unknown")
+    assert issue.fact == "individual_income"
+
+
+def test_a_stated_income_in_a_year_without_its_minimum() -> None:
+    """2027 has no published minimum: the limitation, not the missing fact."""
+    leave = HourlyParentalLeaveEvent(
+        (
+            LeaveHours(date(2027, 3, 2), Decimal(4)),
+            LeaveHours(date(2027, 3, 3), Decimal(4)),
+        ),
+        _BORN,
+        ParentalLeaveTaken(90, 90, 90),
+        Decimal(8),
+        individual_income=Decimal(10000),
+    )
+    result = _run(leave, year=2027)
+
+    assert "parental_income_condition" in {lim.id for lim in result.limitations}
+    assert "parental_income_unknown" not in {i.code for i in result.issues}
 
 
 def test_an_unstated_end_matters_for_a_child_born_in_2024() -> None:

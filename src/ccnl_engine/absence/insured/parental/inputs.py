@@ -14,12 +14,14 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import date
+from decimal import Decimal
 
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.sickness.base.inputs import InpsSicknessBase
 from ccnl_engine.validators import (
     require_bool,
     require_date,
+    require_decimal,
     require_instance,
     require_int,
 )
@@ -83,6 +85,10 @@ class ParentalLeaveEvent:
             child by EARLIER leave events; the earlier months of this event
             are counted by the run from ``started_on`` and must not be
             included.  ``None`` when not stated: no top-up is paid.
+        individual_income: Individual income of the parent in the year the
+            leave starts, for the months beyond the indemnified ones: art.
+            34 c. 3 D.Lgs. 151/2001 pays them 30% below 2.5 times the
+            trattamento minimo; ``None`` when not stated.
 
     Raises:
         InvalidInputError: When a day is not a date, the leave ends before
@@ -98,6 +104,7 @@ class ParentalLeaveEvent:
     single_parent: bool = False
     parental_base_pay: InpsSicknessBase | None = None
     topped_up_days_before: int | None = None
+    individual_income: Decimal | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         for name in ("started_on", "ended_on", "child_born_on"):
@@ -126,6 +133,13 @@ class ParentalLeaveEvent:
                 feature=_PARENTAL,
                 minimum=0,
             )
+        require_decimal(
+            self.individual_income,
+            "ParentalLeaveEvent.individual_income",
+            feature=_PARENTAL,
+            minimum=Decimal(0),
+            optional=True,
+        )
         require_instance(
             self.parental_base_pay,
             InpsSicknessBase,

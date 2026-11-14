@@ -18,6 +18,7 @@ By hand (art. 34 c. 1):
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -299,14 +300,54 @@ def test_the_80_percent_months_run_out_inside_the_month() -> None:
     assert _limitations(result) == {"parental_month_split"}
 
 
-def test_the_days_beyond_the_indemnified_months_are_not_paid() -> None:
-    """The income condition of c. 3 is not modelled: the engine says so."""
-    taken = ParentalLeaveTaken(90, 90, 90)
+def test_the_days_beyond_the_indemnified_months_need_the_income() -> None:
+    """Art. 34 c. 3: without the parent's income the fact is missing."""
+    result = _run(_march(ParentalLeaveTaken(90, 90, 90)))
 
-    result = _run(_march(taken))
+    assert "maternity_item" not in _amounts(result)
+    assert _limitations(result) == set()
+    (issue,) = (i for i in result.issues if i.code == "parental_income_unknown")
+    assert (issue.capability, issue.fact) == ("parental_leave", "individual_income")
+
+
+@pytest.mark.parametrize(
+    ("income", "paid"),
+    [("19885.12", True), ("19885.13", False)],
+)
+def test_the_days_beyond_are_paid_30_percent_below_the_threshold(
+    income: str, paid: bool
+) -> None:
+    """2.5 times the 2026 minimum of 7954.05 (INPS circ. 153/2025) is 19885.125."""
+    beyond = replace(
+        _march(ParentalLeaveTaken(90, 90, 90)), individual_income=Decimal(income)
+    )
+    shared = _run(_march(ParentalLeaveTaken(90, 90, 0)))
+
+    result = _run(beyond)
+
+    expected = _amounts(shared)["maternity_item"] if paid else None
+    assert _amounts(result).get("maternity_item") == expected
+    assert _limitations(result) == set()
+    assert "parental_income_unknown" not in {i.code for i in result.issues}
+
+
+def test_a_year_without_its_minimum_keeps_the_limitation() -> None:
+    """2027: the INPS has not published the minimum yet, the days stay unpaid."""
+    leave = ParentalLeaveEvent(
+        date(2027, 3, 1),
+        date(2027, 3, 31),
+        _BORN,
+        ParentalLeaveTaken(90, 90, 90),
+        _MATERNITY_END,
+        parental_base_pay=_FEBRUARY,
+        individual_income=Decimal(10000),
+    )
+
+    result = _run(leave, year=2027)
 
     assert "maternity_item" not in _amounts(result)
     assert _limitations(result) == {"parental_income_condition"}
+    assert "parental_income_unknown" not in {i.code for i in result.issues}
 
 
 def test_an_unstated_end_of_the_maternity_leave_is_a_missing_fact() -> None:
