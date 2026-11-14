@@ -67,17 +67,9 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICESHIP: under_classification 2 levels below destination is the contract rule. Modelled as 100% passthrough: the apprentice is paid the destination level. The engine can express it (apprenticeship type under_classification, levels_below relative to each destination level), but the periods are not sourced (review of 2026-10-30)",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "apprenticeship_under_classification",
-          "applies_when": {
-            "trigger": "run"
-          },
-          "remediation": "Source the periods of the under-classification (Art. on apprendistato professionalizzante) and model them as an under_classification track with levels_below 2 (and 1 where due); until then record the limitation on the apprentice path (contract_types apprentice)."
-        }
+        "kind": "info",
+        "text": "APPRENTICESHIP (CCNL 14 November 2016, Art. 40, PDF p. 56): 'l’apprendista potrà essere inquadrato fino a due (2) livelli inferiori' to the destination and 'la retribuzione sarà corrispondente a quella minima contrattualmente prevista per tale livello di inquadramento'; the written contract states 'il livello di inquadramento iniziale e finale' (Art. 40, p. 55). Art. 40 bis (p. 57): destinations B2, C1, C2, C3 and D1 (ex 2°-6s), 36 months (D1 30). The text sets no step in time, so the caller picks the track of the individual contract: professionalizzante_2_sotto (not for D1, which has only D2 below), _1_sotto or _0_sotto; a classification changed during the apprenticeship is a new track from that date. The 2024 renewal (OCR searched) does not amend Artt. 40 and 40 bis.",
+        "capability": "base_salary"
       },
       {
         "kind": "info",
@@ -188,6 +180,27 @@
         "independence": "same_process",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-apprentice-classification",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 40 and 40 bis of the CCNL of 14 November 2016, apprentice classification and pay.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filcams.cgil.it/media/ccnl_industriaturistica_14112016_pdf",
+            "sha256": "a7f019a2cdea2335ad438890d84daf0ec5f9f332b37790dcd9d3fe21f934ec54"
+          }
+        ],
+        "findings": [
+          "Read Artt. 40 and 40 bis in the text PDF (pp. 55-57): classification up to two levels below the destination, chosen by the individual contract, paid at the minimum of that level; destinations B2-D1. Replaced the 100% passthrough over all levels with three named tracks (2, 1, 0 below) and closed apprenticeship_under_classification."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "apprenticeship"
         ]
       }
     ]
@@ -1859,24 +1872,55 @@
   },
   "apprenticeship": [
     {
-      "type": "percentage",
-      "name": "professionalizzante",
+      "type": "under_classification",
+      "name": "professionalizzante_2_sotto",
       "destination_levels": [
-        "D2",
-        "D1",
-        "C3",
-        "C2",
-        "C1",
         "B2",
-        "B1",
-        "A2",
-        "A1"
+        "C1",
+        "C2",
+        "C3"
       ],
       "periods": [
         {
           "months_from": 0,
           "months_until": null,
-          "percentage": "1.00"
+          "levels_below": 2
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_1_sotto",
+      "destination_levels": [
+        "B2",
+        "C1",
+        "C2",
+        "C3",
+        "D1"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_0_sotto",
+      "destination_levels": [
+        "B2",
+        "C1",
+        "C2",
+        "C3",
+        "D1"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "levels_below": 0
         }
       ]
     }
@@ -1888,7 +1932,7 @@
     "effective_until": null,
     "source": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
     "verification_status": "unverified",
-    "source_hash": "acf4da212af10c5be58b3eb39095809c4fab1bdf6b72df1d1fa452ae94e85962",
+    "source_hash": "e021324fa48dcd15aa6299370d6aaec5681c091181b1e1e00675aa19ce21696c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
