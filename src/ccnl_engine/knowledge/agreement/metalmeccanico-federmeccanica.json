@@ -3398,7 +3398,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "76f95ef8ca379ebe1276cb4618fc5d953eaaf21b88abef82a4f02810898e3630",
+    "source_hash": "ff4fa576c22d449dfa708a91b90bebc3e721f1aefdb9a686afc7a3df4875bb05",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -6532,6 +6532,27 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.time_supplements.supplementary_excess"
+        ]
+      },
+      {
+        "id": "2026-11-15-gpt-metalmeccanico-federmeccanica-shift-column",
+        "date": "2026-11-15",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Shift column of the overtime table of art. 7, read by a separate model session on the 2021 text and the 2025 ipotesi.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          }
+        ],
+        "findings": [
+          "Confirmed: night overtime 50% non a turni, 40% for two hours and 45% after a turni; night holiday overtime 75% and 65%; the 2025 ipotesi leaves the table (Omissis)."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements.overtime_bands"
         ]
       }
     ],

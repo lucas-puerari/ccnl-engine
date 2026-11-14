@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-11-22 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -85,6 +85,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-13 | gpt-6-sol (ai) | PAR of the Federmeccanica renewal of 22 November 2025 (scanned pp. 8-9, 33) against the settore siderurgico tier, by a separate model session. | flagged | Confirmed: 124 hours in place of the 104 for the settore siderurgico ('sono invece previsti [...] 124 ore'), with the same 32 hours of ex festività; the sector is that of the plants of Disciplina generale pp. 8-9.<br>Confirmed: the 8 hours of the turnisti on 15 or more weekly shifts including the night shift, the weekend wording struck out by the renewal; the 2027 and 2028 shift extras do not change the base tiers.<br>Flagged and corrected: the siderurgico turnisti have the 8 hours paid with the 13th, not accrued; the historical sottosettore hour needs service at 31 December 2012. |
 | 2026-11-14 | gpt-6-sol (ai) | Art. 7 quote esenti of the ipotesi of 22 November 2025 (PDF p. 35) and art. 2 decorrenza (PDF p. 4), read on the rendered scans by a separate model session. | confirmed | Confirmed: 8% more per overtime hour of the quote esenti past 40 hours a year (shift workers, firms above 200 employees) or 48 (non-shift workers in firms up to 200), absorbing better company terms; no separate decorrenza from the contract's 22 November 2025. |
 | 2026-11-14 | gpt-6-sol (ai) | Part-time supplementary work clause, read by a separate model session. | confirmed | Confirmed: 10% up to 50% of the normal annual part-time hours, 20% past it (CCNL 2021 PDF p. 58); the 2025 ipotesi does not change the clause. |
+| 2026-11-15 | gpt-6-sol (ai) | Shift column of the overtime table of art. 7, read by a separate model session on the 2021 text and the 2025 ipotesi. | confirmed | Confirmed: night overtime 50% non a turni, 40% for two hours and 45% after a turni; night holiday overtime 75% and 65%; the 2025 ipotesi leaves the table (Omissis). |
 
 ## Salary table
 

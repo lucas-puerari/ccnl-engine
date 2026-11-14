@@ -1530,7 +1530,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-federmeccanica",
       "ruleset_version": "2026.3",
-      "source_hash": "76f95ef8ca379ebe1276cb4618fc5d953eaaf21b88abef82a4f02810898e3630",
+      "source_hash": "ff4fa576c22d449dfa708a91b90bebc3e721f1aefdb9a686afc7a3df4875bb05",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-federmeccanica.json.gz"
