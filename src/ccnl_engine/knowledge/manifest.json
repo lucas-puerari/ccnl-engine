@@ -694,7 +694,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-sanitaria-medico-veterinaria-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "5623533232a50d5e81afd25583d3f0fd8246f94634bae04b244f9c10a33a1902",
+      "source_hash": "cd4865380010d05afe8d78ce03839c101f28aa11bc5d82cd4dbe630ae942d688",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json.gz"
@@ -3221,7 +3221,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "1e15a400c91d791ef4c75f2d1b71febebedda329854e69f30f600fe8577a8c71",
+      "source_hash": "9d8bacdbbbb8299c0daddeec3fbf5e6ea3ed3bf9366020a7e772d88c45b4c489",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/dirigenza-sanitaria-medico-veterinaria-aran.json.gz",

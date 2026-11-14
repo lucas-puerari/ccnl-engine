@@ -257,14 +257,29 @@
       }
     },
     {
+      "id": "rule_levels_dirigente_fixed_allowances_specificita_medi_3a1fdbcd",
+      "institute": "base_salary",
+      "variant": "all",
+      "rule": "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json#levels[DIRIGENTE].fixed_allowances[SPECIFICITA_MEDICO_VETERINARIA]",
+      "calculation": "base_salary",
+      "state": "unverified",
+      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
+      "origin": "seeded",
+      "links": {
+        "rules": [
+          "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json#levels[DIRIGENTE].fixed_allowances[SPECIFICITA_MEDICO_VETERINARIA]"
+        ]
+      }
+    },
+    {
       "id": "specificita_pre_2025_estimated",
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "Pre-31/12/2024 specificità medico-veterinaria (704,88€/mese) calcolata per differenza dal valore a regime 728,15€ sottraendo il presunto incremento 23,27€/mese × 13 = 302,51€/anno. L'importo pre-2024 è una stima basata sulle comunicazioni GOAL-plan (fonte secondaria); il valore esatto del CCNL 23.1.2024 Art. 65 non è verificato.",
+      "rule": "Specificità medico-veterinaria: 9,162.22 a year with the tredicesima from 2022 (art. 65 c. 1, CCNL 23.1.2024, PDF p. 100) = 704.79 a month, and 9,466.00 = 728.15 from 2025 (CCNL 27.2.2026). The 704.88 of the months before 2022 is an estimate: the amount of art. 90 bis of the CCNL 19.12.2019 was not read.",
       "calculation": "ccnl/dirigenza-sanitaria-medico-veterinaria-aran:coverage.notes",
       "state": "unverified",
-      "remediation": "Source the exact Art. 65 amount of the CCNL 23.1.2024 for periods before 31/12/2024.",
+      "remediation": "Source the amount of art. 90 bis of the CCNL 19.12.2019 for the months before 2022.",
       "origin": "seeded",
       "links": {
         "limitations": [

@@ -96,7 +96,8 @@
     },
     "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json": {
       "accrual_rule": "missing",
-      "additional_months[2019-12-19]": "assumed"
+      "additional_months[2019-12-19]": "assumed",
+      "levels[DIRIGENTE].fixed_allowances[SPECIFICITA_MEDICO_VETERINARIA]": "assumed"
     },
     "agreement/distribuzione-cooperativa-ancc.json": {
       "additional_months[2025-05-01]": "assumed"

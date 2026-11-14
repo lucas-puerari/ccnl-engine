@@ -246,8 +246,13 @@
             "periods": [
               {
                 "valid_from": "2019-12-19",
-                "valid_until": "2024-12-31",
+                "valid_until": "2022-01-01",
                 "value": "704.88"
+              },
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2024-12-31",
+                "value": "704.79"
               },
               {
                 "valid_from": "2024-12-31",
@@ -261,22 +266,27 @@
           "tfr_relevant": false,
           "contribution_relevant": true,
           "provenance": {
-            "status": "derived",
+            "status": "assumed",
             "location": {
               "source_document": {
-                "document_id": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
-                "title": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
-                "kind": "associazione",
-                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
+                "document_id": "ccnl-area-sanita-2019-2021",
+                "title": "CCNL Area Sanità 2019-2021, 23 gennaio 2024 (ARAN)",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf",
+                "sha256": "de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375"
               },
-              "section": "Tabella retributiva"
+              "page": "100",
+              "section": "Art. 65 c. 1",
+              "quote": "A decorrere dal 31.12.2021 ed a valere dall’anno successivo, l’indennità di specificità medico veterinaria di cui all’art. 90 bis del CCNL 19.12.2019 è rideterminata nei seguenti importi annui lordi comprensivi della tredicesima mensilità: Dirigenti medici e veterinari 9.162,22"
             },
             "extraction": {
               "method": "manual",
-              "extraction_timestamp": "2026-09-07T15:03:36",
+              "extraction_timestamp": "2026-11-15T00:00:00",
               "verification_status": "unverified",
-              "effective_from": "2020-01-01"
-            }
+              "effective_from": "2022-01-01",
+              "review_id": "2026-11-15-ai-dirigenza-sanitaria-medico-veterinaria-aran-specificita"
+            },
+            "transformation": "9,162.22 a year over 13 months = 704.79 from 2022; 9,466.00 / 13 = 728.15 from the year after 31 December 2024 (CCNL 27 febbraio 2026, PDF p. 23, https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf, sha256 78f817dd3665df879f652b9778aeb634037664143ae195c2278d608efce4513a). The value before 2022 (704.88) is still the estimate of the earlier note."
           }
         },
         {
@@ -472,15 +482,15 @@
       },
       {
         "kind": "simplification",
-        "text": "Pre-31/12/2024 specificità medico-veterinaria (704,88€/mese) calcolata per differenza dal valore a regime 728,15€ sottraendo il presunto incremento 23,27€/mese × 13 = 302,51€/anno. L'importo pre-2024 è una stima basata sulle comunicazioni GOAL-plan (fonte secondaria); il valore esatto del CCNL 23.1.2024 Art. 65 non è verificato.",
+        "text": "Specificità medico-veterinaria: 9,162.22 a year with the tredicesima from 2022 (art. 65 c. 1, CCNL 23.1.2024, PDF p. 100) = 704.79 a month, and 9,466.00 = 728.15 from 2025 (CCNL 27.2.2026). The 704.88 of the months before 2022 is an estimate: the amount of art. 90 bis of the CCNL 19.12.2019 was not read.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
           "variant": "specificita_pre_2025_estimated",
           "applies_when": {
-            "effective_until": "2024-12-31"
+            "effective_until": "2022-01-01"
           },
-          "remediation": "Source the exact Art. 65 amount of the CCNL 23.1.2024 for periods before 31/12/2024."
+          "remediation": "Source the amount of art. 90 bis of the CCNL 19.12.2019 for the months before 2022."
         }
       },
       {
@@ -527,7 +537,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "5623533232a50d5e81afd25583d3f0fd8246f94634bae04b244f9c10a33a1902",
+    "source_hash": "cd4865380010d05afe8d78ce03839c101f28aa11bc5d82cd4dbe630ae942d688",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -945,6 +955,32 @@
         "independence": "same_process",
         "checked": [
           "parameters.hourly_divisor"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-dirigenza-sanitaria-medico-veterinaria-aran-specificita",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Specificità of art. 65 against the research of a separate model session; quote checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf",
+            "sha256": "de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
+            "sha256": "78f817dd3665df879f652b9778aeb634037664143ae195c2278d608efce4513a"
+          }
+        ],
+        "findings": [
+          "704.88 replaced by 704.79 (9,162.22 / 13) for 2022-2024; the months before 2022 stay estimated."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.fixed_allowances.SPECIFICITA_MEDICO_VETERINARIA",
+          "coverage.notes"
         ]
       }
     ]

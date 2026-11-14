@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 8 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 1 verified / 7 derived / 2 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 16 CCNL Area Sanità 27.2.2026 (PDF p. 23) and art. 80 CCNL 23.1.2024 (PDF p. 114), read on the text layer. | confirmed | The indennità di direzione di struttura complessa is 10,525 EUR a year from 2022 and 11,157 EUR from 1 January 2024, on 13 payments, owed to the dirigente with an incarico di direzione di struttura complessa: added with the role 'direttore_sc'. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 61 c. 3 of the CCNL Area Sanità of 23 January 2024 (PDF p. 97), against the research of a separate model session. | corrected | The tabellare of 3,616.60 is the regime value of art. 61 c. 3 (47,015.77 a year from 2021), not an estimate; the anticipazione of 2022-2023 remains open. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Hourly divisor of art. 59 against the research of a separate model session; quote checked on the source. | corrected | The hourly divisor is 156 (art. 59 c. 4), not the approximation 165. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Specificità of art. 65 against the research of a separate model session; quote checked on the source. | corrected | 704.88 replaced by 704.79 (9,162.22 / 13) for 2022-2024; the months before 2022 stay estimated. |
 
 ## Salary table
 
@@ -98,11 +99,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Resolved: art. 59 c. 4 read on 2026-11-15, divisor 156.
 
 !!! warning "dirigenza-sanitaria-medico-veterinaria-aran/specificita_pre_2025_estimated · base_salary · impact unknown · open"
-    Pre-31/12/2024 specificità medico-veterinaria (704,88€/mese) calcolata per differenza dal valore a regime 728,15€ sottraendo il presunto incremento 23,27€/mese × 13 = 302,51€/anno. L'importo pre-2024 è una stima basata sulle comunicazioni GOAL-plan (fonte secondaria); il valore esatto del CCNL 23.1.2024 Art. 65 non è verificato.
+    Specificità medico-veterinaria: 9,162.22 a year with the tredicesima from 2022 (art. 65 c. 1, CCNL 23.1.2024, PDF p. 100) = 704.79 a month, and 9,466.00 = 728.15 from 2025 (CCNL 27.2.2026). The 704.88 of the months before 2022 is an estimate: the amount of art. 90 bis of the CCNL 19.12.2019 was not read.
 
-    **Applies when:** `base_salary` applies; before 2024-12-31.
+    **Applies when:** `base_salary` applies; before 2022-01-01.
 
-    **Remediation:** Source the exact Art. 65 amount of the CCNL 23.1.2024 for periods before 31/12/2024.
+    **Remediation:** Source the amount of art. 90 bis of the CCNL 19.12.2019 for the months before 2022.
 
 !!! warning "dirigenza-sanitaria-medico-veterinaria-aran/tabellare_pre_2024_estimated · base_salary · impact unknown · open"
     TABELLARE 2022-2023: 3,616.60 a month is the regime value of the CCNL 23.1.2024 art. 61 c. 3 (EUR 47,015.77 a year, from 1 January 2021, PDF p. 97). For 2022 and 2023 the CCNL 27.2.2026 art. 11 adds 'importi mensili lordi corrispondenti all'anticipazione economica ... già erogata' under L. 234/2021 art. 1 c. 609, without stating them; they are not modelled.
