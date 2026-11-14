@@ -4,8 +4,10 @@ A CCNL is complete when its census lists its requirements and nothing the
 model owes it is open: no requirement row still open, no weak payable rule
 (``assumed`` or ``missing``) it reads, no open limitation with a monetary
 impact, none whose fact has no input (``outside_input``), and no capability
-the engine leaves to the caller or does not compute.  Readiness, the review
-of the sources, and the comparison with real payslips are separate axes:
+the engine leaves to the caller or does not compute
+(:mod:`scripts.completeness.accepted` lists the ones that are not gaps).
+Readiness, the review of the sources, and the comparison with real
+payslips are separate axes:
 the report shows readiness for reference only and never derives one from
 the other.
 
@@ -50,6 +52,7 @@ from ccnl_engine.limitation.loaders import load_engine_limitations
 from ccnl_engine.limitation.models import LimitationStatus, ModelLimitation
 from ccnl_engine.limitation.scope.models import LimitationTrigger
 from ccnl_engine.sector.raw.loaders import supported_tax_years
+from scripts.completeness.accepted import BY_DESIGN, RULE_BACKED, accepted
 from scripts.provenance.rules import PayableRule, inventory
 
 if TYPE_CHECKING:
@@ -360,7 +363,7 @@ def non_native(ccnl: CCNL, years: Iterable[int]) -> tuple[str, ...]:
         row.feature
         for year in years
         for row in ccnl_capabilities(load_capability_catalog(year), ccnl)
-        if row.implementation in NOT_NATIVE
+        if row.implementation in NOT_NATIVE and not accepted(row.feature, ccnl)
     }
     return tuple(sorted(found))
 
@@ -641,6 +644,15 @@ def _window_lines(report: Report) -> list[str]:
         ),
         "",
         *pending,
+        "",
+        (
+            "Capabilities a caller value may replace are not counted as gaps "
+            "when the engine computes them from a rule the CCNL holds ("
+            f"{', '.join(f'`{f}`' for f in sorted(RULE_BACKED))}), nor when "
+            "their amount is a fact of a second-level agreement:"
+        ),
+        "",
+        *(f"- `{f}`: {reason}" for f, reason in sorted(BY_DESIGN.items())),
         "",
         "## Contracts",
     ]
