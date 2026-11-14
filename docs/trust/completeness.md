@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 261 weak rules, 341 open limitations (341 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 261 weak rules, 340 open limitations (340 with a monetary impact).
 
 ## Declared window
 
@@ -128,7 +128,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [lavoro-domestico-non-convivente](../contracts/lavoro-domestico-non-convivente.md) | `lavoro-domestico` | reviewed | — | 18 rows | 18 open requirements; 16 monetary limitations; 20 non-native capabilities |
 | [legno-arredamento-federlegno](../contracts/legno-arredamento-federlegno.md) | `legno-arredamento` | exploratory | — | 17 rows | 17 open requirements; 1 weak rule; 14 monetary limitations; 19 non-native capabilities |
 | [legno-lapidei-artigianato-confartigianato](../contracts/legno-lapidei-artigianato-confartigianato.md) | `legno-arredamento` | exploratory | — | 18 rows | 18 open requirements; 1 weak rule; 15 monetary limitations; 19 non-native capabilities |
-| [logistica-trasporto-confetra](../contracts/logistica-trasporto-confetra.md) | `trasporti-logistica` | reviewed | — | 19 rows | 19 open requirements; 15 monetary limitations; 2 outside_input limitations; 19 non-native capabilities |
+| [logistica-trasporto-confetra](../contracts/logistica-trasporto-confetra.md) | `trasporti-logistica` | reviewed | — | 18 rows | 18 open requirements; 15 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [logistica-trasporto-confetra-viaggiante](../contracts/logistica-trasporto-confetra-viaggiante.md) | `trasporti-logistica` | reviewed | — | 18 rows | 18 open requirements; 14 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
 | [marittimi-industria-armatoriale](../contracts/marittimi-industria-armatoriale.md) | `trasporti-logistica` | exploratory | — | 18 rows | 18 open requirements; 1 weak rule; 15 monetary limitations; 18 non-native capabilities |
 | [materiali-costruzione-lapidei-confapi](../contracts/materiali-costruzione-lapidei-confapi.md) | `materiali-estrattive` | exploratory | — | 38 rows | 38 open requirements; 21 weak rules; 14 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |

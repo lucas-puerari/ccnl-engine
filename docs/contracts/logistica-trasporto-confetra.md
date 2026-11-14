@@ -49,7 +49,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 70 verified / 3 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 71 verified / 3 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -97,6 +97,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | gpt-6-sol (ai) | Part-time supplementary work clause, read by a separate model session. | confirmed | Confirmed: 18% of the hourly quota of the retribuzione globale up to 30% of the agreed annual hours, 40% past it (art. 56 cc. 16-17, PDF p. 70-71). |
 | 2026-11-15 | claude-opus-5-5 (ai) | Relevance of the EDR of 18 May 2021, OCR of the scanned renewal, against the research of a separate model session. | corrected | EDR_2021 left out of the daily quota of absences and sickness. |
 | 2026-11-15 | gpt-6-sol (ai) | EDR of the renewal of 18 May 2021 and its place in the testo unico, read by a separate model session. | confirmed | Confirmed: the EDR of 18 May 2021 is paid for 13 months and 'non avrà incidenza su alcun istituto contrattuale'; the testo unico keeps it. |
+| 2026-11-15 | gpt-6-sol (ai) | Sixth-day overtime of art. 13 c. 6, read by a separate model session. | confirmed | Confirmed: 50% on the overtime of the sixth day for non-travelling staff on a five-day week; 30% on weekday daytime overtime. |
 
 ## Salary table
 
@@ -161,12 +162,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: EDR_2021 has absence_relevant false (renewal of 18 May 2021 read on 2026-11-15).
 
-!!! warning "logistica-trasporto-confetra/sixth_day_overtime · overtime · impact yes · open"
-    SIXTH DAY: Art. 13 c. 6 (p. 39) pays 50% for the overtime of the sixth day of a non-travelling worker whose normal week is spread over five days; the overtime bands have no such kind, so that overtime takes the 30% of the weekday band.
+!!! note "logistica-trasporto-confetra/sixth_day_overtime · overtime · impact yes · resolved"
+    SIXTH DAY: Art. 13 c. 6 (p. 39) pays 50% for the overtime of the sixth day of a non-travelling worker whose normal week is spread over five days: OT_SESTO_GIORNO, for an overtime event of kind saturday.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add a sixth-day kind to the overtime event and a 50% band, then remove this note.
+    **Remediation:** Resolved: the sixth-day overtime is the saturday kind with its 50% band (2026-11-15).
 
 !!! note "logistica-trasporto-confetra/health_and_bilateral_funds · bilateral_funds · impact yes · resolved"
     HEALTH AND BILATERAL FUNDS (artt. 51-52, pp. 64-65): Sanilog EUR 150 a year from the employer for the permanent workers with the 10% INPS solidarity, Ebilog EUR 3.50 + 0.50 a month, and the EAR of EUR 8 on 12 months of an employer that does not pay Ebilog, when it states so in EmployerProfile.contractual_funds. The artisan section (EBNA, FSBA) is not modelled.

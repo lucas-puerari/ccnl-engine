@@ -926,8 +926,7 @@
     ],
     "agreement/logistica-trasporto-confetra.json": [
       "logistica-trasporto-confetra/level_6j_apprenticeship",
-      "logistica-trasporto-confetra/part_time_supplementary_rate",
-      "logistica-trasporto-confetra/sixth_day_overtime"
+      "logistica-trasporto-confetra/part_time_supplementary_rate"
     ],
     "agreement/marittimi-industria-armatoriale.json": [
       "marittimi-industria-armatoriale/una_tantum_2024_2025"

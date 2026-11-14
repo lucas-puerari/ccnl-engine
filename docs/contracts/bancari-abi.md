@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-11-23 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2026-03-01 |
 
 ## Review history
@@ -72,6 +72,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Artt. 50, 90, 93, 94, 102, 103 and Allegato 2 (PDF p. 165) of the CCNL ABI 23 November 2023 (FABI text). | corrected | The importo ex ristrutturazione tabellare is owed for each scatto matured ('per ciascuno scatto di anzianità'), with the scatto: added to the amount of each scatto by level.<br>It enters the TFR base (art. 90) and is frozen with the scatti (art. 103).<br>A separate reading corrected the article of the exclusion (art. 68 c. 7, not 72) and recalled the older cohorts of art. 103 and art. 100. |
 | 2026-11-08 | gpt-6-sol (ai) | Artt. 68, 93, 94, 100, 102, 103 and Allegato 2 of the CCNL ABI 23 November 2023 against the importo ex ristrutturazione added to each scatto, by a separate model session. | corrected | Confirmed the amounts per scatto by level and their place in the TFR base.<br>Corrected: the exclusion is art. 68 c. 7, not art. 72; the older cohorts (art. 103 c. 2, art. 100) are recalled in the note. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 66 cc. 4-6, PDF p. 101, diagnosis-specific comporto and pay periods and dialysis exclusion. | corrected | The selected ordinary or 48-month period rises by 50% (12 to 30 months) for the listed cases, or doubles for oncological illness (36 months maximum); days necessary for dialysis do not count. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Maximum scatti of the staff in service on 19 December 1994, artt. 94 and 103, text layer. | corrected | The aree professionali in service on 19 December 1994 reach 12 scatti; the quadri of that cohort stay at the later caps until the 1994 number is sourced. |
 
 ## Salary table
 
@@ -130,11 +131,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the credito rates of 2026 on an INPS or association table, mark the inps block of contribution/2026/credito.json derived, then remove this note.
 
 !!! warning "bancari-abi/scatti_freeze_2013_2014 · seniority · impact yes · open"
-    SCATTI: the freeze of 1 January 2013 - 31 July 2014 (Art. 103 c. 3, testo coordinato p. 142) is modelled (seniority_increments.freezes: the months the engine ages across it do not count; the months the caller states are kept as recognised). Staff in service on 19 December 1994 keep a maximum of 12 scatti (Art. 94 c. 2, Art. 103 c. 2): the engine caps every worker at 8.
+    SCATTI: the freeze of 1 January 2013 - 31 July 2014 (Art. 103 c. 3, testo coordinato p. 142) is modelled (seniority_increments.freezes). The aree professionali in service on 19 December 1994 keep 'il numero massimo complessivo di 12 scatti' (Art. 103 c. 2, PDF p. 142, https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf, sha256 4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933): seniority_increments.in_service_cohort, read from the stated employment period. The quadri direttivi in service on that day keep 'il numero degli scatti ivi stabilito' by the CCNL of 1994 (Art. 94 c. 2, PDF p. 131), which this text does not print: they keep the caps of the later hires.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Cap the scatti at 12 for the staff in service on 19 December 1994.
+    **Remediation:** Source the number of scatti of the quadri direttivi in service on 19 December 1994 (CCNL ABI 19 dicembre 1994).
 
 !!! warning "bancari-abi/abi_saturday_overtime_and_hourly_base · overtime · impact yes · open"
     OVERTIME, SATURDAY AND HOURLY BASE: Saturday overtime is paid 30% (Art. 114 c. 15), and the request has no Saturday kind. The hourly pay of overtime and of holiday work is 1/360 of the annual pay for each day divided by 7,4 (Art. 114 c. 15): the hourly divisor carries the 360 x 7,4 / 13, but the engine applies it to the minimo tabellare, and the elements of the 'retribuzione annua' (scatti and other fixed items) were not read.
