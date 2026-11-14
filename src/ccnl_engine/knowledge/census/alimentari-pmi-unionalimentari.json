@@ -19,6 +19,22 @@
       }
     },
     {
+      "id": "bakery_premium_cumulation",
+      "institute": "overtime",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "BAKERY PREMIUM CUMULATION (art. 29, PANIFICAZIONE, PDF p. 119): the premiums marked * are 'Cumulabile con le altre maggiorazioni in misura non superiore al 55%'; the engine applies the higher premium alone, as for the other tables, so overtime at night or on holidays of the panificazione is underpaid.",
+      "calculation": "ccnl/alimentari-pmi-unionalimentari:coverage.notes",
+      "state": "absent",
+      "remediation": "Cumulate the panificazione premiums marked * up to 55% above the highest one.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "alimentari-pmi-unionalimentari/bakery_premium_cumulation"
+        ]
+      }
+    },
+    {
       "id": "disability_permit_tfr",
       "institute": "disability_permits",
       "variant": "all",

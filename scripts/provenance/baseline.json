@@ -635,6 +635,9 @@
       "alimentari-federalimentare/health_and_bilateral_funds",
       "alimentari-federalimentare/sugar_twenty_five_year_award"
     ],
+    "agreement/alimentari-pmi-unionalimentari.json": [
+      "alimentari-pmi-unionalimentari/bakery_premium_cumulation"
+    ],
     "agreement/alimentaristi-cooperative-e016.json": [
       "alimentaristi-cooperative-e016/travelling_salesmen_protocol"
     ],
