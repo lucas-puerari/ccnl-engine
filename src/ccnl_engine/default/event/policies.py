@@ -124,13 +124,20 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
     "ArrearsEvent.unused_deductions": requires_fact(
         "contract_renewal_arrears",
         "event.unused_deductions",
-        FactEnforcement.PENDING,
+        FactEnforcement.REPORTED,
         "unknown unused deductions: the separate tax is not reduced (art. 21 "
-        "c. 4 TUIR), with the arrears_unused_deductions limitation",
+        "c. 4 TUIR), with a missing_fact unused_deductions blocker",
     ),
     # The fact the arrears rate is computed from, with the event that reads it.
     "PriorYearTaxFacts.special_supplement_requested": absence_is_fact(
         "no written request (L. 199/2025 art. 1 c. 20): no supplement is paid"
+    ),
+    "PriorYearTaxFacts.arrears_unused_deductions": requires_fact(
+        "contract_renewal_arrears",
+        "prior_year.arrears_unused_deductions",
+        FactEnforcement.REPORTED,
+        "undeclared unused deductions: the una tantum of earlier years is not "
+        "reduced (art. 21 c. 4 TUIR), with a missing_fact unused_deductions blocker",
     ),
     "PriorYearTaxFacts.net_income_biennio": requires_fact(
         "contract_renewal_arrears",

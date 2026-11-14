@@ -108,6 +108,7 @@ def test_september_2025_splits_2024_from_2025() -> None:
             employment_period=EmploymentPeriod(date(2023, 3, 1)),
             weekly_hours=None,
             full_time_weekly_hours=None,
+            prior_year=PriorYearTaxFacts(),
         ),
     )
     events, met = una_tantum_events(

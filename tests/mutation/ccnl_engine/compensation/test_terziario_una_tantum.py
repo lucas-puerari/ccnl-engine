@@ -15,7 +15,7 @@ from typing import TYPE_CHECKING, cast
 
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.una_tantum.rules import una_tantum_events
-from ccnl_engine.inputs import EmploymentPeriod, Permanent
+from ccnl_engine.inputs import EmploymentPeriod, Permanent, PriorYearTaxFacts
 from ccnl_engine.run.models import RunKind
 from ccnl_engine.run.types import PeriodId
 
@@ -36,6 +36,7 @@ def _paid(hired: date, year: int) -> Decimal:
             weekly_hours=None,
             full_time_weekly_hours=None,
             contract_type=Permanent(),
+            prior_year=PriorYearTaxFacts(),
         ),
     )
     events, _ = una_tantum_events(request, _TERZIARIO, RunKind.REGULAR)

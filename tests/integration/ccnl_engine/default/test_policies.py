@@ -53,6 +53,11 @@ _NOT_EXERCISED: dict[str, str] = {
         "read only past the indemnified months; tests/mutation/ccnl_engine/"
         "absence/insured/parental/hourly/test_handlers.py exercises the missing fact"
     ),
+    "PriorYearTaxFacts.arrears_unused_deductions": (
+        "read only by the una tantum share of earlier years, which no registry "
+        "pair pays; tests/mutation/ccnl_engine/compensation/una_tantum/"
+        "test_rules.py carries it into the arrears event"
+    ),
     "PersonalWithholding.installment": (
         "only two garnishments of one kind read it as a fact, which no "
         "registry pair states; tests/mutation/ccnl_engine/personal_withholding/"

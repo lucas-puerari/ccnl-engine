@@ -24,6 +24,7 @@ stated is paid none.  These readings are the engine limitation
 from __future__ import annotations
 
 import calendar
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 from typing import TYPE_CHECKING
@@ -75,23 +76,30 @@ def _ratio(request: PeriodCalculationRequest) -> Decimal:
 
 
 def _arrears(
-    paid: date, amount: Decimal, served: list[tuple[int, int]], tax_year: int
+    paid: date,
+    amount: Decimal,
+    served: list[tuple[int, int]],
+    request: PeriodCalculationRequest,
 ) -> tuple[ArrearsEvent, ...]:
     """Return ``amount`` as the arrears of the earlier years and of the year.
 
     Returns:
-        One event for the share of the served months of earlier years and
-        one for the rest, each only when above zero; the rest refers to
-        the last served month, or to the payment month when earlier.
+        One event for the share of the served months of earlier years, with
+        the deductions the worker declared not used in them (art. 21 c. 4
+        TUIR), and one for the rest, each only when above zero; the rest
+        refers to the last served month, or to the payment month when
+        earlier.
     """
+    tax_year = request.payment_date.year
     earlier = [m for m in served if m[0] < tax_year]
     before = money(amount * len(earlier) / len(served))
     events = []
     if before:
         year, month = earlier[-1]
-        events.append(
-            ArrearsEvent(paid, before, reference_period=PeriodId(year, month))
-        )
+        unused = request.prior_year.arrears_unused_deductions
+        period = PeriodId(year, month)
+        event = ArrearsEvent(paid, before, reference_period=period)
+        events.append(replace(event, unused_deductions=unused))
     if amount - before:
         # An advance paid before its period ends refers to the payment month.
         year, month = min(served[-1], (paid.year, paid.month))
@@ -143,7 +151,7 @@ def _installment(
     amount = money(
         base * len(served) / (una.accrual_denominator or len(covered)) * _ratio(request)
     )
-    return _arrears(paid, amount, served, request.payment_date.year)
+    return _arrears(paid, amount, served, request)
 
 
 def una_tantum_events(
