@@ -3,22 +3,6 @@
   "ccnl_id": "acconciatura-estetica-confartigianato",
   "requirements": [
     {
-      "id": "apprentice_inps_rates_unsourced",
-      "institute": "inps_employer",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "APPRENTICE INPS RATES: the apprentice rates of the sector (artigianato) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles whether the 0.91 NASpI reduction of the artisan employers also applies to apprentices, nor the wage-integration contribution they owe (the FSBA is paid outside INPS). The contributions of an apprentice may differ.",
-      "calculation": "ccnl/acconciatura-estetica-confartigianato:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "acconciatura-estetica-confartigianato/apprentice_inps_rates_unsourced"
-        ]
-      }
-    },
-    {
       "id": "apprenticeship_pct_undeclared_components",
       "institute": "base_salary",
       "variant": "apprentice",

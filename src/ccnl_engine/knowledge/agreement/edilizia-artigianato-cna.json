@@ -178,20 +178,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "APPRENTICE INPS RATES: the apprentice rates of the sector (artigianato) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles whether the 0.91 NASpI reduction of the artisan employers also applies to apprentices, nor the wage-integration contribution they owe (the FSBA is paid outside INPS). The contributions of an apprentice may differ.",
-        "capability": "inps_employer",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "apprentice_inps_rates_unsourced",
-          "applies_when": {
-            "trigger": "run",
-            "contract_types": [
-              "apprentice"
-            ]
-          },
-          "remediation": "Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note."
-        }
+        "kind": "info",
+        "text": "APPRENTICE INPS RATES (artigianato): 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI and integrativo, 11.61% for the employer (3.11% and 4.61% in the first two years of a firm up to 9 employees) and 5.84% for the worker. The 0.91 reduction of the artisan employers does not apply to apprentices: 'sul contributo per gli apprendisti non trovano applicazione le riduzioni del cuneo contributivo di cui alle leggi n. 388/2000 e n. 266/2005' (INPS circ. 140/2012 par. 3.3, https://servizi2.inps.it/servizi/Bussola/VisualizzaDoc.aspx?sVirtualURL=/Circolari/Circolare%20numero%20140%20del%2014-12-2012.htm, sha256 67d04317e66825fdb2cf6aa0b3106e644d76461e3e6ec17cd456b307948701a7). The wage-integration contribution of the sector is the FSBA, paid outside INPS (F24, code EBNA), not part of the INPS employer rate."
       },
       {
         "kind": "simplification",
@@ -2590,7 +2578,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "8b65384cad0973013f7f5d7bc194326c806387d1dd070e9a35fa6713400565e1",
+    "source_hash": "0948661b82f08292cd13200e42bb8c8c600fa64369ae6277ce18f4b7e048853f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2980,6 +2968,27 @@
         "independence": "same_process",
         "checked": [
           "parameters.loyalty_premium.dismissal_pro_rata"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-artigianato-apprentice-inps",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "INPS circ. 140/2012 par. 3.3 on the apprentice contribution, against the research of a separate model session.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://servizi2.inps.it/servizi/Bussola/VisualizzaDoc.aspx?sVirtualURL=/Circolari/Circolare%20numero%20140%20del%2014-12-2012.htm",
+            "sha256": "67d04317e66825fdb2cf6aa0b3106e644d76461e3e6ec17cd456b307948701a7"
+          }
+        ],
+        "findings": [
+          "The cuneo reductions (0.91) do not apply to apprentices: the artigianato apprentice rates of the bundle are confirmed."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ]
