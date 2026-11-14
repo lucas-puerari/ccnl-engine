@@ -290,18 +290,18 @@
       }
     },
     {
-      "id": "seniority_amounts_proxy_source",
+      "id": "seniority_super_levels",
       "institute": "seniority",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "SENIORITY AMOUNTS: from kitech.it only (proxy source). No independent primary-source confirmation. Cadence (36 months) and maximum (10) confirmed from CCNL text via olympus.uniurb.it.",
+      "rule": "SENIORITY OF LEVELS 3S AND 4S: the Art. 182 table has rows III and IV only, while the minimum table of the 2024 renewal (art. 185, p. 70) prints 3S and 4S apart; the file pays 3S the III amount (21,79) and 4S the IV amount (19,93), a reading the text does not state.",
       "calculation": "ccnl/distribuzione-cooperativa-ancc:coverage.notes",
       "state": "unverified",
-      "remediation": "Confirm the seniority amounts against a primary CCNL source.",
+      "remediation": "Source the seniority amount of levels 3S and 4S (signed table or interpretation of the parties).",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "distribuzione-cooperativa-ancc/seniority_amounts_proxy_source"
+          "distribuzione-cooperativa-ancc/seniority_super_levels"
         ]
       }
     },
