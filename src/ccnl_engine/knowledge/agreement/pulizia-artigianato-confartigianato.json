@@ -125,19 +125,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: L2 scatto anzianità = 26.85 EUR (PDF 2022). Kitech lug 2026 riporta 26.86 EUR. Usato PDF come fonte primaria. Impatto: EUR 0.01/mese.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "level_2_seniority_amount",
-          "applies_when": {
-            "levels": [
-              "2"
-            ]
-          },
-          "remediation": "Confirm the level 2 seniority amount (26.85 or 26.86 EUR) against the signed table."
-        }
+        "kind": "info",
+        "text": "LEVEL 2 SCATTO: 26.85 EUR, read on the signed table of art. 39 (CCNL 18 settembre 2014, FILCAMS copy, PDF p. 22, scanned: '2° 26,85 EURO', https://www.filcams.cgil.it/media/ccnl_-imprese_artigiane_pulizia_18sett_2014_pdf, sha256 38fcc6d742327034b074737d8293908057611a19bffea503a63a8efebc727691); the 26.86 of a payroll site is wrong."
       },
       {
         "kind": "simplification",
@@ -393,6 +382,27 @@
         "independence": "same_process",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-pulizia-level-2-scatto",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 39 table, PDF p. 22, read on the page image.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filcams.cgil.it/media/ccnl_-imprese_artigiane_pulizia_18sett_2014_pdf",
+            "sha256": "38fcc6d742327034b074737d8293908057611a19bffea503a63a8efebc727691"
+          }
+        ],
+        "findings": [
+          "Level 2 scatto 26.85 confirmed on the signed table."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]
@@ -4440,7 +4450,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "513c73b775867c73d6453b90f7dd6565769b5233fde9184b69e02a31afa31f6e",
+    "source_hash": "bb852afb7bb12ae5d07745ba24fd971c2b73d5b4fcc3862c3cd25988dc6947c3",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

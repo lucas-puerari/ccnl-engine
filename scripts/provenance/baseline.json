@@ -1058,7 +1058,6 @@
       "pulizia-artigianato-confartigianato/apprenticeship_percentages_2022",
       "pulizia-artigianato-confartigianato/ind_fun_months_per_year",
       "pulizia-artigianato-confartigianato/inps_sector_rates_unsourced",
-      "pulizia-artigianato-confartigianato/level_2_seniority_amount",
       "pulizia-artigianato-confartigianato/overtime_weekly_threshold",
       "pulizia-artigianato-confartigianato/special_collection_allowance"
     ],
@@ -1097,8 +1096,7 @@
       "scuole-private-laiche-aninsei/salario_di_anzianita"
     ],
     "agreement/servizi-postali-appalto-fise.json": [
-      "servizi-postali-appalto-fise/conditional_integrative_allowance",
-      "servizi-postali-appalto-fise/level_4s_seniority_amount"
+      "servizi-postali-appalto-fise/conditional_integrative_allowance"
     ],
     "agreement/sistemazioni-idraulico-forestali-impiegati.json": [
       "sistemazioni-idraulico-forestali-impiegati/apprentice_inps_rates_unsourced",

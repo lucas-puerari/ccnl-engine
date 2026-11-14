@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "level_4s_seniority_amount",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: L4S impiegati seniority amount (52.44) sourced from kitech.it proxy; the corresponding cell in the primary source PDF (p.85) is partially obscured by an adhesive note in the scan.",
-      "calculation": "ccnl/servizi-postali-appalto-fise:coverage.notes",
-      "state": "unverified",
-      "remediation": "Confirm the level 4S seniority amount against a legible copy of the primary source.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "servizi-postali-appalto-fise/level_4s_seniority_amount"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",

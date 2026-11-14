@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-12-21 |
-| **Last review** | 2026-11-07 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2025-12-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. on malattia e infortunio (pp. 42-43): the comporto is twelve months of sickness summed over the 36 months before the last sick day; the operai are paid 100% up to day 180 counted over the same window and 50% after, the impiegati the whole pay for 6 months and 50% for 6 more within 18 months. The file kept 180 days of one illness: corrected to a cumulation over three years (180 days at 100%, 50% up to 365). |
 | 2026-11-05 | claude-opus-5-5 (ai) | The seniority increments of the apprentices, Accordo apprendistato, Trattamento economico/normativo, punto 7 (PDF p. 133), found by a separate research session and checked again on the page. | corrected | No increment during the apprenticeship: seniority_increments.apprentice_amount 0. |
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 28 values found verbatim on the cited pages and marked verified; 7 left as they were (derived or not on a text page). |
+| 2026-11-14 | claude-opus-5-5 (ai) | Allegato 1 art. 35 B, PDF p. 85, text layer. | corrected | Level 4s impiegati scatto 52.44 -> 52.79. |
 
 ## Salary table
 
@@ -109,13 +110,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model the Art. 34 condition on second-level bargaining with an employer input.
-
-!!! warning "servizi-postali-appalto-fise/level_4s_seniority_amount · seniority · impact unknown · open"
-    SIMPLIFICATION: L4S impiegati seniority amount (52.44) sourced from kitech.it proxy; the corresponding cell in the primary source PDF (p.85) is partially obscured by an adhesive note in the scan.
-
-    **Applies when:** `seniority` applies; level in 4S.
-
-    **Remediation:** Confirm the level 4S seniority amount against a legible copy of the primary source.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -310,6 +304,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Seniority Art. 35: dual model. Operai (Art. 35A): single premio after 24mo company service (max=1), amounts frozen at 31/12/1994 tabellare (L2=56.66, L3S=51.71, L3=49.70, L4S=47.24, L4=44.94, L5=40.72). Impiegati (Art. 35B): biennale (cadence=24mo), first scatto after 48mo, max=10 (5.55% biennale capped at 60%), amounts frozen at 2001 reference (L1=71.79, L2=62.62, L3=56.86, L4S=52.44 (kitech proxy), L5=49.40). L1 operai: no seniority. L3S, L4 impiegati: no seniority. Level categories are open, so callers must set Employment.category to operaio or impiegato; with seniority_months and no category the calculation is rejected.
     
     Apprenticeship (Allegato 10, 15/01/2013 accord, p.132-133): under_classification. Dest 1°: first 18mo at 3° (lb=3), next 18mo at 2° (lb=1). Dest 2°: first 18mo at 4° (lb=4), next 18mo at 3° (lb=2). Dest 3°: first 18mo at 5° (lb=3), next 18mo at 4° (lb=2). Dest 4°: whole period at 5° (lb=1). Non-uniform lb due to S levels interspersed.
+    
+    LEVEL 4S SCATTO: 52.79 EUR (Allegato 1 art. 35 B, PDF p. 85; the cell sits under a PDF note icon and reads 52,79 in the text layer). The 52.44 of a payroll site was wrong.
     
     APPRENTICE SENIORITY (Accordo apprendistato, Trattamento economico/normativo, punto 7, p. 133): no increment during the apprenticeship: 'La retribuzione degli apprendisti è composta da: retribuzione tabellare, indennità di contingenza ed EDR ex Accordo Interconfederale 31 luglio 1992.' seniority_increments.apprentice_amount 0. The apprentice pay lists no seniority element; the past service counts on confirmation for the last comma of art. 35 (the clerks' increments after 4 years).
     

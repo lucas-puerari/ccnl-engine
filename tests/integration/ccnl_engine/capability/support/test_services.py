@@ -87,7 +87,6 @@ def test_bundled_missing_notes_and_limitations() -> None:
             "inps_employer",
             "night_work",
             "overtime",
-            "seniority",
         ],
     }
 
