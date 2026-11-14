@@ -8,8 +8,10 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
+    from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.provenance.source.rule.models import RuleProvenance
     from ccnl_engine.working_time.models import OvertimeBand
+    from ccnl_engine.working_time.overtime.quota import OvertimeExemptQuota
 
 
 @dataclass(frozen=True)
@@ -29,6 +31,9 @@ class CCNLOvertimeBands:
             for the cash premium on banked hours.
         ruleset: Ruleset identifier of the CCNL.
         version: Ruleset version.
+        exempt_quota: Extra premium past the yearly exempt quota, if any.
+        headcount: Employer headcount, which chooses that quota.
+        ccnl_id: Identifier of the CCNL, which scopes its limitations.
     """
 
     bands: tuple[OvertimeBand, ...] = ()
@@ -36,10 +41,17 @@ class CCNLOvertimeBands:
     bank_source: RuleProvenance | None = None
     ruleset: str = "ccnl"
     version: str = "none"
+    exempt_quota: OvertimeExemptQuota | None = None
+    headcount: int | None = None
+    ccnl_id: str = "ccnl"
 
     @classmethod
     def of(
-        cls, ccnl: CCNL, year: int, level_code: str | None = None
+        cls,
+        ccnl: CCNL,
+        year: int,
+        level_code: str | None = None,
+        headcount: int | None = None,
     ) -> CCNLOvertimeBands:
         """Return the bands of ``ccnl`` that apply to ``level_code``.
 
@@ -55,9 +67,28 @@ class CCNLOvertimeBands:
         bands = tuple(b for b in every if not b.levels or level_code in b.levels)
         share = None if supplements is None else supplements.overtime_bank_share
         source = None if supplements is None else supplements.overtime_bank_provenance
+        quota = None if supplements is None else supplements.overtime_exempt_quota
         if ccnl.ruleset is not None:
-            return cls(bands, share, source, ccnl.ruleset.id, ccnl.ruleset.version)
-        return cls(bands, share, source, f"ccnl/{ccnl.meta.ccnl_id}", str(year))
+            ruleset, version = ccnl.ruleset.id, ccnl.ruleset.version
+        else:
+            ruleset, version = f"ccnl/{ccnl.meta.ccnl_id}", str(year)
+        return cls(
+            bands, share, source, ruleset, version, quota, headcount, ccnl.meta.ccnl_id
+        )
+
+    @classmethod
+    def of_run(cls, ctx: RunContext) -> CCNLOvertimeBands:
+        """Return the bands of the run's CCNL, level and employer.
+
+        Returns:
+            :meth:`of` with the competence year, the level and the headcount.
+        """
+        return cls.of(
+            ctx.contract.ccnl,
+            ctx.contract.tctx.competence.year,
+            ctx.request.level_code,
+            ctx.request.employer.headcount.value,
+        )
 
     def rule_of(self, band: OvertimeBand) -> str:
         """Return the rule identifier of ``band``.

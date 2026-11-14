@@ -120,12 +120,15 @@
       },
       {
         "kind": "simplification",
-        "text": "OVERTIME, QUOTE ESENTI: the 2025 ipotesi (p. 35) adds 8% to the overtime hours worked beyond the exempt quota of 40 or 48 hours a year; the engine does not count the overtime hours of the year, so it does not add it.",
+        "text": "OVERTIME, QUOTE ESENTI (art. 7, ipotesi of 22 November 2025 p. 35): 8% more per overtime hour of the regime past 40 hours a year (shift workers, firms above 200 employees) or 48 (workers not on shifts in firms up to 200) is added when the event states the hours of the regime worked earlier in the year (OvertimeEvent.exempt_quota_hours_before) and, in a firm up to 200 employees, whether the worker is on shifts (OvertimeEvent.in_periodic_shift). Without those facts the premium is not added and the run carries this limitation.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "overtime_exempt_quota_supplement",
-          "remediation": "Count the overtime hours of the year and add 8% past the exempt quota, or pass the multiplier on the overtime event."
+          "remediation": "State OvertimeEvent.exempt_quota_hours_before (and in_periodic_shift in a firm up to 200 employees) on the overtime of the quote esenti.",
+          "applies_when": {
+            "trigger": "path"
+          }
         }
       },
       {
@@ -3395,7 +3398,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "e6bb6b0e116913f0d6b5ce75f7147b9fceac227b841e896a9d37a69938a0cfe4",
+    "source_hash": "8e36da0107c6d86af5adcc7360c6a45c9749603858cd1aad1bd6c5a8f2df5fe9",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -3815,7 +3818,48 @@
             }
           }
         }
-      ]
+      ],
+      "overtime_exempt_quota": {
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2025-11-22",
+              "valid_until": null,
+              "value": "0.08"
+            }
+          ]
+        },
+        "quota_hours": 40,
+        "small_firm_quota_hours": 48,
+        "small_firm_headcount": 200,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "federmeccanica-ipotesi-2025-11-22",
+              "title": "Ipotesi di accordo di rinnovo del CCNL Federmeccanica-Assistal, 22 novembre 2025 (scansione firmata, UILM)",
+              "kind": "associazione",
+              "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+              "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+            },
+            "page": "35",
+            "section": "Art. 7 - Lavoro straordinario, notturno e festivo (printed p. 30)",
+            "quote": "Per le ore di straordinario in regime di «quote esenti» dall'accordo preventivo eccedenti le 40 ore annue, per i lavoratori turnisti e per i lavoratori non turnisti che lavorino in aziende con oltre 200 dipendenti, ovvero le 48 ore annue, per i lavoratori non turnisti che lavorino in aziende fino a 200 dipendenti, sarà corrisposta una maggiorazione aggiuntiva pari all'8% per ciascuna ora lavorata che assorbe fino a concorrenza i trattamenti di miglior favore eventualmente in atto a livello aziendale."
+          },
+          "transformation": "8% more per overtime hour of the regime past 40 hours a year (shift workers, firms above 200 employees) or 48 (workers not on shifts in firms up to 200), on the overtime hourly base, from the decorrenza of the contract (22 November 2025, art. 2). The hours of the regime worked earlier in the year are an event fact; the absorption of better company terms is not modelled (they are individual elements).",
+          "note": "Scanned PDF without a text layer: read on the page image.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T18:00:00Z",
+            "effective_from": "2025-11-22",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T18:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-federmeccanica-exempt-quota"
+          }
+        }
+      }
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -6270,6 +6314,27 @@
         "checked": [
           "work_rules.leave_rules.permits.rol.annual_hours",
           "work_rules.leave_rules.permits.rol.extra_hours"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-federmeccanica-exempt-quota",
+        "date": "2026-11-14",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Art. 7 quote esenti of the ipotesi of 22 November 2025 (PDF p. 35) and art. 2 decorrenza (PDF p. 4), read on the rendered scans by a separate model session.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+            "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+          }
+        ],
+        "findings": [
+          "Confirmed: 8% more per overtime hour of the quote esenti past 40 hours a year (shift workers, firms above 200 employees) or 48 (non-shift workers in firms up to 200), absorbing better company terms; no separate decorrenza from the contract's 22 November 2025."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements.overtime_exempt_quota"
         ]
       }
     ],

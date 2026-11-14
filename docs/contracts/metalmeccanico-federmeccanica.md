@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-11-22 |
-| **Last review** | 2026-11-13 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2028-06-01 |
 
 ## Review history
@@ -83,6 +83,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | gpt-6-sol (ai) | Part-time supplementary work (Sez. IV Tit. I C, PDF pp. 57-58), by a separate model session. | confirmed | Confirmed: 10% up to 50% of the normal annual part-time hours and 20% beyond, only up to 40 weekly hours, on the overtime-premium pay elements.<br>Confirmed: the engine derives only the 10% band; the 20% excess is a caller-supplied multiplier, and the annual count is outside the engine.<br>Flagged and added to the limitation: the elastic clauses (10% and 15%) and the conditions of supplementary work. |
 | 2026-11-10 | gpt-6-sol (ai) | Tit. IV art. 3 hourly pay and the conto ore deadline: expired PAR paid at the monthly pay over 173 plus the stated hourly elements. | confirmed | CONFIRMED: the hourly pay of the clause includes the hourly elements (incentives, hourly allowances, piecework) and the expired PAR are paid at it; divisor 173.<br>CONFIRMED: quotes verbatim; December 2027 example 10 x (2271.01 / 173 + 2.50) = 156.27 and an independent case recomputed.<br>CONFIRMED: payout at termination before the deadline is not regulated by the cited passages and stays a limitation. |
 | 2026-11-13 | gpt-6-sol (ai) | PAR of the Federmeccanica renewal of 22 November 2025 (scanned pp. 8-9, 33) against the settore siderurgico tier, by a separate model session. | flagged | Confirmed: 124 hours in place of the 104 for the settore siderurgico ('sono invece previsti [...] 124 ore'), with the same 32 hours of ex festività; the sector is that of the plants of Disciplina generale pp. 8-9.<br>Confirmed: the 8 hours of the turnisti on 15 or more weekly shifts including the night shift, the weekend wording struck out by the renewal; the 2027 and 2028 shift extras do not change the base tiers.<br>Flagged and corrected: the siderurgico turnisti have the 8 hours paid with the 13th, not accrued; the historical sottosettore hour needs service at 31 December 2012. |
+| 2026-11-14 | gpt-6-sol (ai) | Art. 7 quote esenti of the ipotesi of 22 November 2025 (PDF p. 35) and art. 2 decorrenza (PDF p. 4), read on the rendered scans by a separate model session. | confirmed | Confirmed: 8% more per overtime hour of the quote esenti past 40 hours a year (shift workers, firms above 200 employees) or 48 (non-shift workers in firms up to 200), absorbing better company terms; no separate decorrenza from the contract's 22 November 2025. |
 
 ## Salary table
 
@@ -136,11 +137,11 @@ percentage: 1.00
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement · overtime · impact yes · open"
-    OVERTIME, QUOTE ESENTI: the 2025 ipotesi (p. 35) adds 8% to the overtime hours worked beyond the exempt quota of 40 or 48 hours a year; the engine does not count the overtime hours of the year, so it does not add it.
+    OVERTIME, QUOTE ESENTI (art. 7, ipotesi of 22 November 2025 p. 35): 8% more per overtime hour of the regime past 40 hours a year (shift workers, firms above 200 employees) or 48 (workers not on shifts in firms up to 200) is added when the event states the hours of the regime worked earlier in the year (OvertimeEvent.exempt_quota_hours_before) and, in a firm up to 200 employees, whether the worker is on shifts (OvertimeEvent.in_periodic_shift). Without those facts the premium is not added and the run carries this limitation.
 
-    **Applies when:** `overtime` applies.
+    **Applies when:** `overtime` applies; the run takes the engine code path.
 
-    **Remediation:** Count the overtime hours of the year and add 8% past the exempt quota, or pass the multiplier on the overtime event.
+    **Remediation:** State OvertimeEvent.exempt_quota_hours_before (and in_periodic_shift in a firm up to 200 employees) on the overtime of the quote esenti.
 
 !!! warning "metalmeccanico-federmeccanica/shift_and_multiweek_premiums · overtime · impact yes · open"
     SHIFT WORK AND MULTI-WEEK SCHEDULE: the shift column of Art. 7 (night overtime 40% for the first two hours and 45% after, night holiday overtime 65%; night shift work 20%, 60% and 35% from 1 June 2013, 25%, 65% and 40% from 22 to 6) and the premiums of the orario plurisettimanale of Art. 5 as renewed on 22 November 2025 (15% Monday to Friday and 25% on Saturday, 20% and 30% for sudden needs, raised by 8% from the 81st hour, p. 32 of the signed scan) are not modelled: an overtime event of a shift worker or of a multi-week schedule takes the non-shift bands.

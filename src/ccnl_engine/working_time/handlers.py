@@ -106,11 +106,13 @@ def _handle_standard(
     """
     decisions: list[CalculationDecision] = []
     issues: list[CalculationIssue] = []
+    limitations: tuple[str, ...] = ()
     if not isinstance(event, (SickLeaveEvent, BonusEvent)):
         resolved = resolve_work_event(event, ctx.overtime_bands, ctx.hourly)
         event = resolved.event
         decisions.extend(resolved.decisions)
         issues.extend(resolved.issues)
+        limitations = resolved.limitations
     gross = _standard_event_gross(event)
     item, kind = _standard_event_item(
         event, gross, ctx.evt_id, ctx.cp, ctx.payment_date
@@ -157,4 +159,5 @@ def _handle_standard(
         regime_cap_used=cap_used,
         decisions=decisions,
         issues=issues,
+        limitations=limitations,
     )

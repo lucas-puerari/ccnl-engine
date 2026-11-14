@@ -150,11 +150,11 @@
       "id": "overtime_exempt_quota_supplement",
       "institute": "overtime",
       "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "OVERTIME, QUOTE ESENTI: the 2025 ipotesi (p. 35) adds 8% to the overtime hours worked beyond the exempt quota of 40 or 48 hours a year; the engine does not count the overtime hours of the year, so it does not add it.",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "OVERTIME, QUOTE ESENTI (art. 7, ipotesi of 22 November 2025 p. 35): 8% more per overtime hour of the regime past 40 hours a year (shift workers, firms above 200 employees) or 48 (workers not on shifts in firms up to 200) is added when the event states the hours of the regime worked earlier in the year (OvertimeEvent.exempt_quota_hours_before) and, in a firm up to 200 employees, whether the worker is on shifts (OvertimeEvent.in_periodic_shift). Without those facts the premium is not added and the run carries this limitation.",
       "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
       "state": "absent",
-      "remediation": "Count the overtime hours of the year and add 8% past the exempt quota, or pass the multiplier on the overtime event.",
+      "remediation": "State OvertimeEvent.exempt_quota_hours_before (and in_periodic_shift in a firm up to 200 employees) on the overtime of the quote esenti.",
       "origin": "seeded",
       "links": {
         "limitations": [
