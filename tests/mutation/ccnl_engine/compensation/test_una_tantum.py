@@ -153,3 +153,16 @@ def test_a_month_without_an_installment_pays_none() -> None:
     result = _run(2026, 6)
     assert _arrears(result) == []
     assert UNA_TANTUM not in {lim.id for lim in result.limitations}
+
+
+def test_the_run_traces_the_una_tantum_it_pays() -> None:
+    """A provisional una_tantum decision with the amount paid as arrears."""
+    result = _run(2026, 5)
+
+    (decision,) = (d for d in result.decisions if d.capability == "una_tantum")
+    assert decision.status.value == "provisional"
+    assert decision.reason_code == "contractual_una_tantum"
+    assert decision.amount == Decimal("100.00")
+    code = str(decision.inputs["una_tantum"])
+    assert decision.rule.endswith(f"parameters.una_tantum[{code}]")
+    assert decision.source is not None

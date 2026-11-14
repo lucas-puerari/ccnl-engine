@@ -30,7 +30,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ✅ |
+| **Core payroll path** | ⚠️ |
 | **Limits of this contract** | sickness, una_tantum |
 
 8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).

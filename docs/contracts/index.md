@@ -30,13 +30,14 @@ on unverified sources, or be well sourced and not cleared for production.
   verified / derived / assumed / missing.
 - **Readiness:** the review tier of the contract ruleset.
 
-**Core payroll path: computed on every run of every contract** (24):
+**Core payroll path: computed on every run of every contract** (25):
 
 - ✅ `base_salary` (native)
 - ✅ `seniority` (native)
 - ✅ `worker_category` (native)
 - ✅ `inps_employee` (native)
 - ✅ `inps_employer` (native)
+- ✅ `una_tantum` (native)
 - ✅ `personal_withholdings` (native)
 - ✅ `tfr` (native)
 - ✅ `tfr_revaluation` (native)
@@ -90,12 +91,11 @@ on unverified sources, or be well sourced and not cleared for production.
 - 📝 `bilateral_funds` (caller_supplied)
 - ⚠️ `pension_fund_contribution` (partial)
 
-**Outside the input: the request has no field for the fact, so the engine does not compute them** (6):
+**Outside the input: the request has no field for the fact, so the engine does not compute them** (5):
 
 - 🔲 `inail` (unsupported)
 - 🔲 `contribution_exemption` (unsupported)
 - 🔲 `fiscal_adjustment` (unsupported)
-- 🔲 `una_tantum` (unsupported)
 - 🔲 `additional_irpef_base` (unsupported)
 - 🔲 `art15_deductions` (unsupported)
 
@@ -197,7 +197,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 77 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)](lavoro-domestico-non-convivente.md) | lavoro domestico | ~900k | 2025 | ⚠️ | assistance_contribution, base_salary | 23 / 0 / 0 / 0 | 👁 | 🤖✓ |
 | 78 | I100 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra)](logistica-trasporto-confetra.md) | logistica | ~430k | 2024 | ⚠️ | base_salary, overtime | 71 / 3 / 0 / 0 | 👁 | 🤖✓ |
 | 79 | I100 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra) - Personale viaggiante](logistica-trasporto-confetra-viaggiante.md) | logistica | ~430k | 2024 | ⚠️ | base_salary, sickness | 56 / 30 / 0 / 0 | 👁 | 🤖✓ |
-| 80 | I391 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | navigazione marittima — personale di terra | ~15k | — | ✅ | una_tantum | 26 / 19 / 1 / 0 | 🧪 | 🤖 |
+| 80 | I391 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | navigazione marittima — personale di terra | ~15k | — | ⚠️ | una_tantum | 26 / 19 / 1 / 0 | 🧪 | 🤖 |
 | 81 | F020 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | Industria materiali da costruzione — Lapidei piccola industria | ~5000 | 2025 | ✅ | parental_leave, pension_fund_contribution | 41 / 8 / 21 / 0 | 🧪 | 🤖 |
 | 82 | C016 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | metalmeccanico cooperativo | ~28k | — | ⚠️ | inps_employer | 37 / 9 / 1 / 0 | 🧪 | 🤖 |
 | 83 | C030 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | metalmeccanico | ~350k | 2024 | ⚠️ | base_salary, inps_employer | 71 / 12 / 0 / 0 | 🧪 | 🤖 |
@@ -222,7 +222,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 102 | A181 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)](sistemazioni-idraulico-forestali-impiegati.md) | sistemazioni idraulico-forestali e idraulico-agrarie — impiegati | ~430 (impiegati subset) | 2025 | ⚠️ | inps_employer | 23 / 5 / 2 / 0 | 🧪 | 🤖 |
 | 103 | A181 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | sistemazioni idraulico-forestali e idraulico-agrarie — operai a tempo indeterminato | ~430 (operai OTI subset) | 2025 | ⚠️ | base_salary, inps_employer, seniority | 16 / 5 / 2 / 0 | 🧪 | 🤖 |
 | 104 | K411 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | telecomunicazioni | ~110k | 2025 | ⚠️ | inps_employer | 11 / 35 / 1 / 0 | 🧪 | 🤖 |
-| 105 | H012 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | Terziario distribuzione e servizi | ~230k | 2024 | ✅ | sickness, una_tantum | 106 / 2 / 0 / 0 | 👁 | 🤖✓ |
+| 105 | H012 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | Terziario distribuzione e servizi | ~230k | 2024 | ⚠️ | sickness, una_tantum | 106 / 2 / 0 / 0 | 👁 | 🤖✓ |
 | 106 | H011 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | terziario | ~800k | 2024 | ⚠️ | base_salary, sickness | 100 / 2 / 0 / 0 | 🏭 | 🤖✓ |
 | 107 | D018 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | tessile abbigliamento moda PMI | ~48k | 2025 | ⚠️ | base_salary, seniority | 42 / 0 / 5 / 1 | 🧪 | 🔍 |
 | 108 | I810 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | trasporto aereo | ~40k | 2025 | ⚠️ | base_salary, sickness | 46 / 49 / 1 / 0 | 🧪 | 🤖 |
