@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, seniority |
+| **Limits of this contract** | base_salary |
 
 2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 51 verified / 6 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 52 verified / 5 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-22 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2026-06-01 |
 
 ## Review history
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 54, tabella Livelli professionali / Durata, p. 107). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-10 | claude-opus-5-5 (ai) | FS fund ordinary contribution, covered employer and worker eligibility against the decrees and INPS circulars. | corrected | Art. 2(2) of the 2017 decree requires covered employers, not merely the Agens agreement; art. 6(1)(a) gives 0.20% split two-thirds and one-third for permanent non-executives including professional apprentices. INPS 208/2015 confirms March 2015 start; INPS 107/2018 confirms changed employer coverage from August 2017; INPS 70/2020 discusses broader benefit eligibility, not the contribution base. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 69 scatti table of the CCNL of 22 May 2025 (PDF p. 118), every level checked. | corrected | E3 scatto 22.66 -> 22.26; the other levels match the table. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Seniority table of art. 69 against the research of a separate model session; values checked on the source. | confirmed | The 16 amounts of art. 69 match the data; the article has one table for every tranche. |
 
 ## Salary table
 
@@ -125,12 +126,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the January 2024 - May 2025 salary tables if an arrears or history computation needs them.
 
-!!! warning "trasporto-ferroviario-agens/seniority_amounts_before_june_2026 · seniority · impact unknown · open"
-    SENIORITY AMOUNTS PRE-JUN 2025. Per-level scatto amounts are sourced from lavoro-economia.it/kitech.it representing the Jun 2026 table. Whether identical values applied in the Jun 2025 and Nov 2025 tranches is unconfirmed. Modelled as constant from 01/06/2025.
+!!! note "trasporto-ferroviario-agens/seniority_amounts_before_june_2026 · seniority · impact unknown · resolved"
+    SENIORITY AMOUNTS: art. 69 of the CCNL signed on 22 May 2025 (PDF p. 118) has one table of biennial increments, with no date of its own; the same amounts apply from 1 June 2025, 1 November 2025 and 1 June 2026.
 
     **Applies when:** `seniority` applies; before 2026-06-01.
 
-    **Remediation:** Confirm the seniority amounts of the June 2025 and November 2025 tranches.
+    **Remediation:** Resolved: art. 69 read on 2026-11-15, one table for every tranche.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

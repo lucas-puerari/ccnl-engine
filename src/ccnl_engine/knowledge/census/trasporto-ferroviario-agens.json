@@ -242,22 +242,6 @@
       }
     },
     {
-      "id": "seniority_amounts_before_june_2026",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SENIORITY AMOUNTS PRE-JUN 2025. Per-level scatto amounts are sourced from lavoro-economia.it/kitech.it representing the Jun 2026 table. Whether identical values applied in the Jun 2025 and Nov 2025 tranches is unconfirmed. Modelled as constant from 01/06/2025.",
-      "calculation": "ccnl/trasporto-ferroviario-agens:coverage.notes",
-      "state": "unverified",
-      "remediation": "Confirm the seniority amounts of the June 2025 and November 2025 tranches.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "trasporto-ferroviario-agens/seniority_amounts_before_june_2026"
-        ]
-      }
-    },
-    {
       "id": "sunday_holiday_ccnl_clause",
       "institute": "sunday_holiday",
       "variant": "all",
