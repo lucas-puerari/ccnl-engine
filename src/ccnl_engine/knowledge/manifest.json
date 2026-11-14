@@ -1241,7 +1241,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/istruzione-ricerca-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "6376df3421c808e3992c2b4d9dda298fe57ff1f4f3c671702f90e65f4e95b707",
+      "source_hash": "8af9bdb6e83d2b3421b9443c8acb5cbc6633ab39d8c782419aec41efaa7506fa",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/istruzione-ricerca-aran.json.gz"
@@ -3841,7 +3841,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "e768a8bb9ee83500cf1a68aa5baa80975a7f8ada2fd9406bcc92177ac888e857",
+      "source_hash": "733e271239db15ea8425c71db0e3e0633e83ab08dcc418217bf3a9864eaa80f0",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/istruzione-ricerca-aran.json.gz",

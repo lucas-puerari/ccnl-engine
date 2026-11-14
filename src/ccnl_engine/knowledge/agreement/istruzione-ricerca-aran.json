@@ -9291,6 +9291,472 @@
             "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 336
+        },
+        {
+          "code": "RPD_0",
+          "description": "Retribuzione Professionale Docenti, anzianità da 0 a 14 anni",
+          "months_per_year": 12,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2024-01-01",
+                "value": "194.80",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2019-2021",
+                      "title": "CCNL comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                      "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                    },
+                    "section": "Tabella E1.2 - RPD",
+                    "quote": "Da da 0 a 14 anni ... 194,80"
+                  },
+                  "transformation": "Valore of the RPD of the CCNL 2019-2021 for 12 monthly payments.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2022-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "200.20",
+                "provenance": {
+                  "status": "derived",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD",
+                    "quote": "Da da 0 a 14 anni 5,40 (incremento dal 1.1.2024)"
+                  },
+                  "transformation": "194.80 plus the increment of 1 January 2024, 5,40; the table prints the increment only.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "205.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+                    "quote": "Da da 0 a 14 anni ... 205,10"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2025, unchanged in 2026.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "210.40",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2025-2027",
+                      "title": "CCNL anticipazione economica comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                      "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                    },
+                    "section": "Tabella A3 - SCUOLA, RPD, valori rideterminati dal 1.1.2027",
+                    "quote": "Da da 0 a 14 anni ... 210,40"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2027 (art. 6 c. 1 lett. a).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              }
+            ]
+          },
+          "service_months_until": 180,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aran-comp-ir-2022-2024",
+                "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                "kind": "associazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+              },
+              "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+              "quote": "Da da 0 a 14 anni ... 205,10"
+            },
+            "transformation": "RPD of the docenti for the seniority band, the same for every order of school, on 12 monthly payments; the band is chosen by Employment.seniority.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-15T02:30:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-istruzione-rpd"
+            }
+          }
+        },
+        {
+          "code": "RPD_15",
+          "description": "Retribuzione Professionale Docenti, anzianità da 15 a 27 anni",
+          "months_per_year": 12,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2024-01-01",
+                "value": "239.50",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2019-2021",
+                      "title": "CCNL comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                      "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                    },
+                    "section": "Tabella E1.2 - RPD",
+                    "quote": "Da da 15 a 27 anni ... 239,50"
+                  },
+                  "transformation": "Valore of the RPD of the CCNL 2019-2021 for 12 monthly payments.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2022-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "246.10",
+                "provenance": {
+                  "status": "derived",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD",
+                    "quote": "Da da 15 a 27 anni 6,60 (incremento dal 1.1.2024)"
+                  },
+                  "transformation": "239.50 plus the increment of 1 January 2024, 6,60; the table prints the increment only.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "252.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+                    "quote": "Da da 15 a 27 anni ... 252,10"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2025, unchanged in 2026.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "258.70",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2025-2027",
+                      "title": "CCNL anticipazione economica comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                      "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                    },
+                    "section": "Tabella A3 - SCUOLA, RPD, valori rideterminati dal 1.1.2027",
+                    "quote": "Da da 15 a 27 anni ... 258,70"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2027 (art. 6 c. 1 lett. a).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              }
+            ]
+          },
+          "service_months_threshold": 180,
+          "service_months_until": 336,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aran-comp-ir-2022-2024",
+                "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                "kind": "associazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+              },
+              "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+              "quote": "Da da 15 a 27 anni ... 252,10"
+            },
+            "transformation": "RPD of the docenti for the seniority band, the same for every order of school, on 12 monthly payments; the band is chosen by Employment.seniority.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-15T02:30:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-istruzione-rpd"
+            }
+          }
+        },
+        {
+          "code": "RPD_28",
+          "description": "Retribuzione Professionale Docenti, anzianità da 28 anni",
+          "months_per_year": 12,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2024-01-01",
+                "value": "304.30",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2019-2021",
+                      "title": "CCNL comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                      "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                    },
+                    "section": "Tabella E1.2 - RPD",
+                    "quote": "Da da 28 anni ... 304,30"
+                  },
+                  "transformation": "Valore of the RPD of the CCNL 2019-2021 for 12 monthly payments.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2022-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "312.70",
+                "provenance": {
+                  "status": "derived",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD",
+                    "quote": "Da da 28 anni 8,40 (incremento dal 1.1.2024)"
+                  },
+                  "transformation": "304.30 plus the increment of 1 January 2024, 8,40; the table prints the increment only.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "320.30",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+                    "quote": "Da da 28 anni ... 320,30"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2025, unchanged in 2026.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "328.60",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2025-2027",
+                      "title": "CCNL anticipazione economica comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                      "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                    },
+                    "section": "Tabella A3 - SCUOLA, RPD, valori rideterminati dal 1.1.2027",
+                    "quote": "Da da 28 anni ... 328,60"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2027 (art. 6 c. 1 lett. a).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              }
+            ]
+          },
+          "service_months_threshold": 336,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aran-comp-ir-2022-2024",
+                "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                "kind": "associazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+              },
+              "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+              "quote": "Da da 28 anni ... 320,30"
+            },
+            "transformation": "RPD of the docenti for the seniority band, the same for every order of school, on 12 monthly payments; the band is chosen by Employment.seniority.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-15T02:30:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-istruzione-rpd"
+            }
+          }
         }
       ],
       "provenance": {
@@ -9709,6 +10175,472 @@
             "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 336
+        },
+        {
+          "code": "RPD_0",
+          "description": "Retribuzione Professionale Docenti, anzianità da 0 a 14 anni",
+          "months_per_year": 12,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2024-01-01",
+                "value": "194.80",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2019-2021",
+                      "title": "CCNL comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                      "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                    },
+                    "section": "Tabella E1.2 - RPD",
+                    "quote": "Da da 0 a 14 anni ... 194,80"
+                  },
+                  "transformation": "Valore of the RPD of the CCNL 2019-2021 for 12 monthly payments.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2022-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "200.20",
+                "provenance": {
+                  "status": "derived",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD",
+                    "quote": "Da da 0 a 14 anni 5,40 (incremento dal 1.1.2024)"
+                  },
+                  "transformation": "194.80 plus the increment of 1 January 2024, 5,40; the table prints the increment only.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "205.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+                    "quote": "Da da 0 a 14 anni ... 205,10"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2025, unchanged in 2026.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "210.40",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2025-2027",
+                      "title": "CCNL anticipazione economica comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                      "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                    },
+                    "section": "Tabella A3 - SCUOLA, RPD, valori rideterminati dal 1.1.2027",
+                    "quote": "Da da 0 a 14 anni ... 210,40"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2027 (art. 6 c. 1 lett. a).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              }
+            ]
+          },
+          "service_months_until": 180,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aran-comp-ir-2022-2024",
+                "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                "kind": "associazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+              },
+              "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+              "quote": "Da da 0 a 14 anni ... 205,10"
+            },
+            "transformation": "RPD of the docenti for the seniority band, the same for every order of school, on 12 monthly payments; the band is chosen by Employment.seniority.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-15T02:30:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-istruzione-rpd"
+            }
+          }
+        },
+        {
+          "code": "RPD_15",
+          "description": "Retribuzione Professionale Docenti, anzianità da 15 a 27 anni",
+          "months_per_year": 12,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2024-01-01",
+                "value": "239.50",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2019-2021",
+                      "title": "CCNL comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                      "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                    },
+                    "section": "Tabella E1.2 - RPD",
+                    "quote": "Da da 15 a 27 anni ... 239,50"
+                  },
+                  "transformation": "Valore of the RPD of the CCNL 2019-2021 for 12 monthly payments.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2022-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "246.10",
+                "provenance": {
+                  "status": "derived",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD",
+                    "quote": "Da da 15 a 27 anni 6,60 (incremento dal 1.1.2024)"
+                  },
+                  "transformation": "239.50 plus the increment of 1 January 2024, 6,60; the table prints the increment only.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "252.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+                    "quote": "Da da 15 a 27 anni ... 252,10"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2025, unchanged in 2026.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "258.70",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2025-2027",
+                      "title": "CCNL anticipazione economica comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                      "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                    },
+                    "section": "Tabella A3 - SCUOLA, RPD, valori rideterminati dal 1.1.2027",
+                    "quote": "Da da 15 a 27 anni ... 258,70"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2027 (art. 6 c. 1 lett. a).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              }
+            ]
+          },
+          "service_months_threshold": 180,
+          "service_months_until": 336,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aran-comp-ir-2022-2024",
+                "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                "kind": "associazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+              },
+              "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+              "quote": "Da da 15 a 27 anni ... 252,10"
+            },
+            "transformation": "RPD of the docenti for the seniority band, the same for every order of school, on 12 monthly payments; the band is chosen by Employment.seniority.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-15T02:30:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-istruzione-rpd"
+            }
+          }
+        },
+        {
+          "code": "RPD_28",
+          "description": "Retribuzione Professionale Docenti, anzianità da 28 anni",
+          "months_per_year": 12,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2024-01-01",
+                "value": "304.30",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2019-2021",
+                      "title": "CCNL comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                      "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                    },
+                    "section": "Tabella E1.2 - RPD",
+                    "quote": "Da da 28 anni ... 304,30"
+                  },
+                  "transformation": "Valore of the RPD of the CCNL 2019-2021 for 12 monthly payments.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2022-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "312.70",
+                "provenance": {
+                  "status": "derived",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD",
+                    "quote": "Da da 28 anni 8,40 (incremento dal 1.1.2024)"
+                  },
+                  "transformation": "304.30 plus the increment of 1 January 2024, 8,40; the table prints the increment only.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "320.30",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+                    "quote": "Da da 28 anni ... 320,30"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2025, unchanged in 2026.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "328.60",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2025-2027",
+                      "title": "CCNL anticipazione economica comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                      "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                    },
+                    "section": "Tabella A3 - SCUOLA, RPD, valori rideterminati dal 1.1.2027",
+                    "quote": "Da da 28 anni ... 328,60"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2027 (art. 6 c. 1 lett. a).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              }
+            ]
+          },
+          "service_months_threshold": 336,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aran-comp-ir-2022-2024",
+                "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                "kind": "associazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+              },
+              "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+              "quote": "Da da 28 anni ... 320,30"
+            },
+            "transformation": "RPD of the docenti for the seniority band, the same for every order of school, on 12 monthly payments; the band is chosen by Employment.seniority.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-15T02:30:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-istruzione-rpd"
+            }
+          }
         }
       ],
       "provenance": {
@@ -10080,6 +11012,472 @@
             "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 252
+        },
+        {
+          "code": "RPD_0",
+          "description": "Retribuzione Professionale Docenti, anzianità da 0 a 14 anni",
+          "months_per_year": 12,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2024-01-01",
+                "value": "194.80",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2019-2021",
+                      "title": "CCNL comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                      "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                    },
+                    "section": "Tabella E1.2 - RPD",
+                    "quote": "Da da 0 a 14 anni ... 194,80"
+                  },
+                  "transformation": "Valore of the RPD of the CCNL 2019-2021 for 12 monthly payments.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2022-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "200.20",
+                "provenance": {
+                  "status": "derived",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD",
+                    "quote": "Da da 0 a 14 anni 5,40 (incremento dal 1.1.2024)"
+                  },
+                  "transformation": "194.80 plus the increment of 1 January 2024, 5,40; the table prints the increment only.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "205.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+                    "quote": "Da da 0 a 14 anni ... 205,10"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2025, unchanged in 2026.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "210.40",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2025-2027",
+                      "title": "CCNL anticipazione economica comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                      "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                    },
+                    "section": "Tabella A3 - SCUOLA, RPD, valori rideterminati dal 1.1.2027",
+                    "quote": "Da da 0 a 14 anni ... 210,40"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2027 (art. 6 c. 1 lett. a).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              }
+            ]
+          },
+          "service_months_until": 180,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aran-comp-ir-2022-2024",
+                "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                "kind": "associazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+              },
+              "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+              "quote": "Da da 0 a 14 anni ... 205,10"
+            },
+            "transformation": "RPD of the docenti for the seniority band, the same for every order of school, on 12 monthly payments; the band is chosen by Employment.seniority.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-15T02:30:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-istruzione-rpd"
+            }
+          }
+        },
+        {
+          "code": "RPD_15",
+          "description": "Retribuzione Professionale Docenti, anzianità da 15 a 27 anni",
+          "months_per_year": 12,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2024-01-01",
+                "value": "239.50",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2019-2021",
+                      "title": "CCNL comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                      "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                    },
+                    "section": "Tabella E1.2 - RPD",
+                    "quote": "Da da 15 a 27 anni ... 239,50"
+                  },
+                  "transformation": "Valore of the RPD of the CCNL 2019-2021 for 12 monthly payments.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2022-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "246.10",
+                "provenance": {
+                  "status": "derived",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD",
+                    "quote": "Da da 15 a 27 anni 6,60 (incremento dal 1.1.2024)"
+                  },
+                  "transformation": "239.50 plus the increment of 1 January 2024, 6,60; the table prints the increment only.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "252.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+                    "quote": "Da da 15 a 27 anni ... 252,10"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2025, unchanged in 2026.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "258.70",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2025-2027",
+                      "title": "CCNL anticipazione economica comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                      "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                    },
+                    "section": "Tabella A3 - SCUOLA, RPD, valori rideterminati dal 1.1.2027",
+                    "quote": "Da da 15 a 27 anni ... 258,70"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2027 (art. 6 c. 1 lett. a).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              }
+            ]
+          },
+          "service_months_threshold": 180,
+          "service_months_until": 336,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aran-comp-ir-2022-2024",
+                "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                "kind": "associazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+              },
+              "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+              "quote": "Da da 15 a 27 anni ... 252,10"
+            },
+            "transformation": "RPD of the docenti for the seniority band, the same for every order of school, on 12 monthly payments; the band is chosen by Employment.seniority.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-15T02:30:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-istruzione-rpd"
+            }
+          }
+        },
+        {
+          "code": "RPD_28",
+          "description": "Retribuzione Professionale Docenti, anzianità da 28 anni",
+          "months_per_year": 12,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2024-01-01",
+                "value": "304.30",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2019-2021",
+                      "title": "CCNL comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                      "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                    },
+                    "section": "Tabella E1.2 - RPD",
+                    "quote": "Da da 28 anni ... 304,30"
+                  },
+                  "transformation": "Valore of the RPD of the CCNL 2019-2021 for 12 monthly payments.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2022-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "312.70",
+                "provenance": {
+                  "status": "derived",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD",
+                    "quote": "Da da 28 anni 8,40 (incremento dal 1.1.2024)"
+                  },
+                  "transformation": "304.30 plus the increment of 1 January 2024, 8,40; the table prints the increment only.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "320.30",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+                    "quote": "Da da 28 anni ... 320,30"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2025, unchanged in 2026.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "328.60",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2025-2027",
+                      "title": "CCNL anticipazione economica comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                      "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                    },
+                    "section": "Tabella A3 - SCUOLA, RPD, valori rideterminati dal 1.1.2027",
+                    "quote": "Da da 28 anni ... 328,60"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2027 (art. 6 c. 1 lett. a).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              }
+            ]
+          },
+          "service_months_threshold": 336,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aran-comp-ir-2022-2024",
+                "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                "kind": "associazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+              },
+              "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+              "quote": "Da da 28 anni ... 320,30"
+            },
+            "transformation": "RPD of the docenti for the seniority band, the same for every order of school, on 12 monthly payments; the band is chosen by Employment.seniority.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-15T02:30:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-istruzione-rpd"
+            }
+          }
         }
       ],
       "provenance": {
@@ -10451,6 +11849,472 @@
             "note": "Twelve monthly instalments, the tredicesima excluded, derived from three texts: INPS messaggio n. 3224 of 30 August 2018 (https://servizi2.inps.it/MessaggiZIP/Messaggio%20numero%203224%20del%2030-08-2018.pdf, sha256 2a11bf241c0f35d6b4e0190164d1c33e104ca1be3652f224fa5120f4d834c4d1, par. 1) reads arts. 37, 62, 88, 93 and 107 of the CCNL 19/04/2018 as an 'emolumento [...] erogato [...] con cadenza mensile'; Tabella D2 of the same CCNL (Università section, in the testo coordinato of the Università di Palermo) gives it 'per 10 mensilità dal 1° marzo al 31 dicembre 2018'; and Tabella C1 of this file's source prints the yearly amount as twelve times the monthly one (308,04 = 12 x 25,67). The text of art. 37 itself (Scuola section) was not read: derived, not verified. Re-read on 2026-10-17."
           },
           "service_months_until": 252
+        },
+        {
+          "code": "RPD_0",
+          "description": "Retribuzione Professionale Docenti, anzianità da 0 a 14 anni",
+          "months_per_year": 12,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2024-01-01",
+                "value": "194.80",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2019-2021",
+                      "title": "CCNL comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                      "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                    },
+                    "section": "Tabella E1.2 - RPD",
+                    "quote": "Da da 0 a 14 anni ... 194,80"
+                  },
+                  "transformation": "Valore of the RPD of the CCNL 2019-2021 for 12 monthly payments.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2022-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "200.20",
+                "provenance": {
+                  "status": "derived",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD",
+                    "quote": "Da da 0 a 14 anni 5,40 (incremento dal 1.1.2024)"
+                  },
+                  "transformation": "194.80 plus the increment of 1 January 2024, 5,40; the table prints the increment only.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "205.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+                    "quote": "Da da 0 a 14 anni ... 205,10"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2025, unchanged in 2026.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "210.40",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2025-2027",
+                      "title": "CCNL anticipazione economica comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                      "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                    },
+                    "section": "Tabella A3 - SCUOLA, RPD, valori rideterminati dal 1.1.2027",
+                    "quote": "Da da 0 a 14 anni ... 210,40"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2027 (art. 6 c. 1 lett. a).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              }
+            ]
+          },
+          "service_months_until": 180,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aran-comp-ir-2022-2024",
+                "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                "kind": "associazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+              },
+              "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+              "quote": "Da da 0 a 14 anni ... 205,10"
+            },
+            "transformation": "RPD of the docenti for the seniority band, the same for every order of school, on 12 monthly payments; the band is chosen by Employment.seniority.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-15T02:30:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-istruzione-rpd"
+            }
+          }
+        },
+        {
+          "code": "RPD_15",
+          "description": "Retribuzione Professionale Docenti, anzianità da 15 a 27 anni",
+          "months_per_year": 12,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2024-01-01",
+                "value": "239.50",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2019-2021",
+                      "title": "CCNL comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                      "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                    },
+                    "section": "Tabella E1.2 - RPD",
+                    "quote": "Da da 15 a 27 anni ... 239,50"
+                  },
+                  "transformation": "Valore of the RPD of the CCNL 2019-2021 for 12 monthly payments.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2022-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "246.10",
+                "provenance": {
+                  "status": "derived",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD",
+                    "quote": "Da da 15 a 27 anni 6,60 (incremento dal 1.1.2024)"
+                  },
+                  "transformation": "239.50 plus the increment of 1 January 2024, 6,60; the table prints the increment only.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "252.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+                    "quote": "Da da 15 a 27 anni ... 252,10"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2025, unchanged in 2026.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "258.70",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2025-2027",
+                      "title": "CCNL anticipazione economica comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                      "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                    },
+                    "section": "Tabella A3 - SCUOLA, RPD, valori rideterminati dal 1.1.2027",
+                    "quote": "Da da 15 a 27 anni ... 258,70"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2027 (art. 6 c. 1 lett. a).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              }
+            ]
+          },
+          "service_months_threshold": 180,
+          "service_months_until": 336,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aran-comp-ir-2022-2024",
+                "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                "kind": "associazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+              },
+              "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+              "quote": "Da da 15 a 27 anni ... 252,10"
+            },
+            "transformation": "RPD of the docenti for the seniority band, the same for every order of school, on 12 monthly payments; the band is chosen by Employment.seniority.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-15T02:30:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-istruzione-rpd"
+            }
+          }
+        },
+        {
+          "code": "RPD_28",
+          "description": "Retribuzione Professionale Docenti, anzianità da 28 anni",
+          "months_per_year": 12,
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": "2024-01-01",
+                "value": "304.30",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2019-2021",
+                      "title": "CCNL comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                      "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+                    },
+                    "section": "Tabella E1.2 - RPD",
+                    "quote": "Da da 28 anni ... 304,30"
+                  },
+                  "transformation": "Valore of the RPD of the CCNL 2019-2021 for 12 monthly payments.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2022-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2025-01-01",
+                "value": "312.70",
+                "provenance": {
+                  "status": "derived",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD",
+                    "quote": "Da da 28 anni 8,40 (incremento dal 1.1.2024)"
+                  },
+                  "transformation": "304.30 plus the increment of 1 January 2024, 8,40; the table prints the increment only.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2024-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2027-01-01",
+                "value": "320.30",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2022-2024",
+                      "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                      "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+                    },
+                    "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+                    "quote": "Da da 28 anni ... 320,30"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2025, unchanged in 2026.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2025-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "328.60",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "aran-comp-ir-2025-2027",
+                      "title": "CCNL anticipazione economica comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026 (ARAN)",
+                      "kind": "associazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                      "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+                    },
+                    "section": "Tabella A3 - SCUOLA, RPD, valori rideterminati dal 1.1.2027",
+                    "quote": "Da da 28 anni ... 328,60"
+                  },
+                  "transformation": "Valore rideterminato from 1 January 2027 (art. 6 c. 1 lett. a).",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T02:30:00Z",
+                    "effective_from": "2027-01-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T02:30:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-istruzione-rpd"
+                  }
+                }
+              }
+            ]
+          },
+          "service_months_threshold": 336,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "aran-comp-ir-2022-2024",
+                "title": "CCNL comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025 (ARAN)",
+                "kind": "associazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+                "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+              },
+              "section": "Tabella A3 - RPD, valori rideterminati dal 1.1.2025",
+              "quote": "Da da 28 anni ... 320,30"
+            },
+            "transformation": "RPD of the docenti for the seniority band, the same for every order of school, on 12 monthly payments; the band is chosen by Employment.seniority.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-15T02:30:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T02:30:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-istruzione-rpd"
+            }
+          }
         }
       ],
       "provenance": {
@@ -10868,23 +12732,8 @@
         "text": "Platea ~1,2M: ~800k docenti (infanzia, primaria, secondaria I e II), ~230k ATA scuola, ~130k personale università e ricerca, ~80k AFAM (quifinanza.it)."
       },
       {
-        "kind": "simplification",
-        "text": "Indennità di funzione (IF) docenti: da ~200€ a ~313€/mese a seconda dell'ordine (da CCNL 23/12/2025). Non modellata come fixed_allowance per eterogeneità tra ordini (SIMPLIFICATION).",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "docenti_function_allowance",
-          "applies_when": {
-            "trigger": "owed",
-            "levels": [
-              "DOCENTE_INFANZIA_PRIMARIA",
-              "DOCENTE_DIPLOMATO_SECONDARIA",
-              "DOCENTE_SECONDARIA",
-              "DOCENTE_LAUREATO_SECONDARIA_II"
-            ]
-          },
-          "remediation": "Model the docenti allowance of the CCNL 23/12/2025 as fixed allowances by order and by band of anzianita (service_months_threshold / service_months_until, as the RPD of afam-aran)."
-        }
+        "kind": "info",
+        "text": "RPD (Retribuzione Professionale Docenti, art. 83 CCNL 2007; Tabella A3): the same for every order of school, by service seniority (0-14, 15-27, 28 and over years), on 12 monthly payments: 205.10 / 252.10 / 320.30 from 1 January 2025, 210.40 / 258.70 / 328.60 from 1 January 2027; the worker's recognised seniority (Employment.seniority) chooses the band."
       },
       {
         "kind": "info",
@@ -10979,7 +12828,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "6376df3421c808e3992c2b4d9dda298fe57ff1f4f3c671702f90e65f4e95b707",
+    "source_hash": "8af9bdb6e83d2b3421b9443c8acb5cbc6633ab39d8c782419aec41efaa7506fa",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -11652,6 +13501,35 @@
         "findings": [
           "The 35 elemento perequativo records of the Scuola levels move from assumed to derived: INPS msg. 3224/2018 reads the element as paid 'con cadenza mensile', Tabella D2 of the CCNL 19/04/2018 gives 10 monthly instalments in 2018, and Tabella C1 of the CCNL 6/12/2022 (p. 244) prints the yearly amount as twelve monthly ones (308,04 = 12 x 25,67). No text puts it in the tredicesima. Art. 37 of the Scuola section was not read, so the records stay derived.",
           "The absence rule stays assumed: no text of the comparto fixes the daily quota of an unpaid absence of the scuola staff."
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-istruzione-rpd",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "RPD tables of the CCNL 2019-2021 (E1.2), 2022-2024 (A3) and 2025-2027 (A3), text layer, against the research of a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+            "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+            "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+            "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+          }
+        ],
+        "findings": [
+          "Added the RPD of the docenti by seniority band, 2022-2027; it is not an indennità di funzione by order of school."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels[*].fixed_allowances"
         ]
       }
     ]

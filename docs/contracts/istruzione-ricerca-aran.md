@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employee, overtime, workplace_injury |
+| **Limits of this contract** | inps_employee, overtime, workplace_injury |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 48 verified / 41 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 60 verified / 41 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-07-01 |
-| **Last review** | 2026-10-17 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-12 | claude-opus-5-5 (ai) | Fasce stipendiali of the scuola staff, 2023-2027. | corrected | Every worker was paid the first fascia (0-8 years): the five higher fasce are now seniority steps, read on the tables of the three CCNL.<br>DOCENTE_SECONDARIA joined the scuola media and the laureato di II grado, equal in the first fascia only: split into DOCENTE_SECONDARIA (scuola media) and DOCENTE_LAUREATO_SECONDARIA_II. |
 | 2026-10-12 | claude-opus-5-5 (ai) | Months from 1.1.2022 to 31.1.2023 (CCNL 2019-2021 Tabella C1). | corrected | The file started on 1.2.2023 (limitation before_february_2023): the tabellare dal 1.1.2021 and the elemento perequativo by fascia of Tabella C1 now cover 2022 and January 2023. |
 | 2026-10-17 | claude-opus-5-5 (ai) | The number of instalments of the elemento perequativo of the CCNL 19/04/2018 the file pays until its conglobamento. | corrected | The 35 elemento perequativo records of the Scuola levels move from assumed to derived: INPS msg. 3224/2018 reads the element as paid 'con cadenza mensile', Tabella D2 of the CCNL 19/04/2018 gives 10 monthly instalments in 2018, and Tabella C1 of the CCNL 6/12/2022 (p. 244) prints the yearly amount as twelve monthly ones (308,04 = 12 x 25,67). No text puts it in the tredicesima. Art. 37 of the Scuola section was not read, so the records stay derived.<br>The absence rule stays assumed: no text of the comparto fixes the daily quota of an unpaid absence of the scuola staff. |
+| 2026-11-15 | claude-opus-5-5 (ai) | RPD tables of the CCNL 2019-2021 (E1.2), 2022-2024 (A3) and 2025-2027 (A3), text layer, against the research of a separate model session. | corrected | Added the RPD of the docenti by seniority band, 2022-2027; it is not an indennità di funzione by order of school. |
 
 ## Salary table
 
@@ -90,13 +91,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "istruzione-ricerca-aran/docenti_function_allowance · base_salary · impact yes · open"
-    Indennità di funzione (IF) docenti: da ~200€ a ~313€/mese a seconda dell'ordine (da CCNL 23/12/2025). Non modellata come fixed_allowance per eterogeneità tra ordini (SIMPLIFICATION).
-
-    **Applies when:** `base_salary` applies; level in DOCENTE_DIPLOMATO_SECONDARIA, DOCENTE_INFANZIA_PRIMARIA, DOCENTE_LAUREATO_SECONDARIA_II, DOCENTE_SECONDARIA.
-
-    **Remediation:** Model the docenti allowance of the CCNL 23/12/2025 as fixed allowances by order and by band of anzianita (service_months_threshold / service_months_until, as the RPD of afam-aran).
 
 !!! warning "istruzione-ricerca-aran/teacher_hourly_divisor · workplace_injury · impact unknown · open"
     Hourly divisor 156 = 36h/settimana × 52/12. I docenti hanno orario cattedra (18h/settimana insegnamento), non direttamente comparabile. Il divisore si applica per l'hourly_rate indicativo.
@@ -289,6 +283,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 ??? note "Coverage notes"
     Platea ~1,2M: ~800k docenti (infanzia, primaria, secondaria I e II), ~230k ATA scuola, ~130k personale università e ricerca, ~80k AFAM (quifinanza.it).
+    
+    RPD (Retribuzione Professionale Docenti, art. 83 CCNL 2007; Tabella A3): the same for every order of school, by service seniority (0-14, 15-27, 28 and over years), on 12 monthly payments: 205.10 / 252.10 / 320.30 from 1 January 2025, 210.40 / 258.70 / 328.60 from 1 January 2027; the worker's recognised seniority (Employment.seniority) chooses the band.
     
     Layer 2 implemented. Part-time: engine scales by part_time_pct. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in tax file. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL.
     

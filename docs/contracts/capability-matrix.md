@@ -61,7 +61,7 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 4807 / 2181 / 199 / 28 |
+| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 4819 / 2181 / 199 / 28 |
 | `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 35 / 91 / 10 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | core | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 34 / 24 / 45 / 0 |
@@ -167,7 +167,7 @@ never grow.
 | 26 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | ✅ | — | 40 / 13 / 1 / 1 |
 | 27 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | ✅ | — | 44 / 5 / 0 / 0 |
 | 28 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | ✅ | — | 14 / 21 / 0 / 0 |
-| 29 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN](istruzione-ricerca-aran.md) | ⚠️ | base_salary, inps_employee, overtime, workplace_injury | 48 / 41 / 1 / 0 |
+| 29 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN](istruzione-ricerca-aran.md) | ⚠️ | inps_employee, overtime, workplace_injury | 60 / 41 / 1 / 0 |
 | 30 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN, AFAM (Alta formazione artistica, musicale e coreutica)](afam-aran.md) | ✅ | sickness | 26 / 13 / 2 / 0 |
 | 31 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN, Enti pubblici di ricerca (ASI compresa)](enti-ricerca-aran.md) | ⚠️ | base_salary, sickness | 34 / 4 / 1 / 0 |
 | 32 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN, Università (personale tecnico-amministrativo e CEL)](universita-aran.md) | ✅ | — | 22 / 4 / 5 / 0 |

@@ -9,8 +9,9 @@ Perseo Sirio: 1% + 1% of the retribuzione utile ai fini del TFR.
 
 January 2026, hired that month:
 
-- docente secondaria, 2105.59 (CCNL 2025-2027 Tabella A2: 25,267.04 / 12):
-  21.0559 -> 21.06 each, solidarity 2.10559 -> 2.11;
+- docente secondaria, 2105.59 (CCNL 2025-2027 Tabella A2: 25,267.04 / 12)
+  plus the RPD of 0-14 years, 205.10 (Tabella A3): 2310.69, 23.1069 ->
+  23.11 each, solidarity 2.31069 -> 2.31;
 - sanita, professionisti, 2076.58: 20.7658 -> 20.77 each, solidarity
   2.0766 -> 2.08.
 """
@@ -62,8 +63,8 @@ def _entry(result: PeriodResult, account: str) -> Decimal:
             "istruzione-ricerca-aran",
             "DOCENTE_SECONDARIA",
             "ESPERO",
-            "21.06",
-            "2.11",
+            "23.11",
+            "2.31",
         ),
         ("sanita-aran", "PROFESSIONISTI", "PERSEO_SIRIO", "20.77", "2.08"),
     ],
