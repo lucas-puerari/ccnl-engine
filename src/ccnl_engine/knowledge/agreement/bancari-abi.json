@@ -91,7 +91,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SCATTI: the freeze of 1 January 2013 - 31 July 2014 (Art. 103 c. 3, testo coordinato p. 142) is modelled (seniority_increments.freezes: the months the engine ages across it do not count; the months the caller states are kept as recognised). Staff in service on 19 December 1994 keep a maximum of 12 scatti (Art. 94 c. 2, Art. 103 c. 2): the engine caps every worker at 8.",
+        "text": "SCATTI: the freeze of 1 January 2013 - 31 July 2014 (Art. 103 c. 3, testo coordinato p. 142) is modelled (seniority_increments.freezes). The aree professionali in service on 19 December 1994 keep 'il numero massimo complessivo di 12 scatti' (Art. 103 c. 2, PDF p. 142, https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf, sha256 4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933): seniority_increments.in_service_cohort, read from the stated employment period. The quadri direttivi in service on that day keep 'il numero degli scatti ivi stabilito' by the CCNL of 1994 (Art. 94 c. 2, PDF p. 131), which this text does not print: they keep the caps of the later hires.",
         "capability": "seniority",
         "monetary_impact": "yes",
         "limitation": {
@@ -99,7 +99,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Cap the scatti at 12 for the staff in service on 19 December 1994."
+          "remediation": "Source the number of scatti of the quadri direttivi in service on 19 December 1994 (CCNL ABI 19 dicembre 1994)."
         }
       },
       {
@@ -398,7 +398,17 @@
           "valid_from": "2013-01-01",
           "valid_until": "2014-08-01"
         }
-      ]
+      ],
+      "in_service_cohort": {
+        "in_service_on": "1994-12-19",
+        "maximum_count": 12,
+        "maximum_count_by_level": {
+          "QD1": 8,
+          "QD2": 8,
+          "QD3": 7,
+          "QD4": 7
+        }
+      }
     },
     "solidarity_fund": {
       "code": "FONDO_SOLIDARIETA_CREDITO",
@@ -1872,7 +1882,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/rinnovo-ccnl-bancari-2023/",
     "verification_status": "unverified",
-    "source_hash": "eaf6350282a01ce4c4cb04eba2a02ab6ac1022d02b0384a094298bd5a26b1428",
+    "source_hash": "fd940c06dc336ca2e8d9134b059bd5fe231bad25a17c3cee585bf162bbfc423f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2539,6 +2549,27 @@
         ],
         "findings": [
           "The selected ordinary or 48-month period rises by 50% (12 to 30 months) for the listed cases, or doubles for oncological illness (36 months maximum); days necessary for dialysis do not count."
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-bancari-abi-1994-cohort",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Maximum scatti of the staff in service on 19 December 1994, artt. 94 and 103, text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fabi.it/wp-content/uploads/2025/07/ccnl-23-nov-2023_fabi.pdf",
+            "sha256": "4d92bc5226736682ddb1eedfaf7940df989fdc3cbbd99d0fa6347fd91979a933"
+          }
+        ],
+        "findings": [
+          "The aree professionali in service on 19 December 1994 reach 12 scatti; the quadri of that cohort stay at the later caps until the 1994 number is sourced."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments.in_service_cohort"
         ]
       }
     ]
