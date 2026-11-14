@@ -132,6 +132,10 @@
           },
           "remediation": "Support the Art. 79 administrative hourly quota and adoption/foster entry dates; verify the applicable collective pay base and carry topped-up days per child across events."
         }
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Art. 60, CCNL 2025-2027, PDF p. 108, https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf, sha256 af0c6b2555f502ab52fcedb82b5d138093ef49499cac97ac19ec241e696f686d): 'Il diritto alla conservazione del posto in caso di malattia viene a cessare qualora il lavoratore con più periodi di malattia raggiunga in complesso dodici mesi di assenza nell'arco di 36 mesi consecutivi.' Modelled as sickness_rules.comporto_windows (365 days within 36 months). The sick pay is unchanged: for the operai art. 60 has both 100% to the 180th day of the calendar year and 100% for 6 months then 50% for 6, without saying which prevails."
       }
     ]
   },
@@ -4146,7 +4150,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "6c4a1b313e5b772108b812d524d94f0801b769693477c1946e7bfd17c5aecb60",
+    "source_hash": "061620e24aba96a42622b995bf6d146334b0b47151b7e8afecd73d71075a21f6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4435,7 +4439,14 @@
           "verification_status": "unverified",
           "effective_from": "2022-12-15"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 36,
+          "comporto_days": 365
+        }
+      ]
     },
     "insured_absence": {
       "parental": {
@@ -4622,6 +4633,28 @@
         "independence": "same_process",
         "checked": [
           "work_rules.insured_absence.parental"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-autorimesse-ic35-comporto-r2",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto and sick pay against a second research of a separate model session; quotes checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf",
+            "sha256": "af0c6b2555f502ab52fcedb82b5d138093ef49499cac97ac19ec241e696f686d"
+          }
+        ],
+        "findings": [
+          "Added the comporto window of art. 60 (12 months within 36); the sick pay of the operai stays as it was, its two clauses being contradictory."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
+          "coverage.notes"
         ]
       }
     ]

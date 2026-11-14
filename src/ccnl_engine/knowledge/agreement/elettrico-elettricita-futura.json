@@ -82,6 +82,10 @@
       {
         "kind": "info",
         "text": "INPS rates from 2026-industria.json (industria sector, 50 employees tier). IRPEF 2026 brackets applied (L. 199/2025)."
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO (Art. 21 cc. 1-2, CCNL 11 febbraio 2025 (CNEL K051), PDF p. 49, https://pub-44429b7b330a431e94aea589bd6b8bed.r2.dev/K051/221685.pdf, sha256 6e317dea1b74d55618e655abc6477c5e006fbf960c2cacb8dc37ad61218ce8e3): 'il lavoratore, non in prova, ha diritto alla conservazione del posto per un periodo di 12 mesi. Si considera prosecuzione del periodo di malattia quella che intervenga non oltre 30 giorni dalla cessazione della malattia precedente'; 'raggiunga il limite di 18 mesi di assenza [...] entro l'arco massimo di 36 mesi consecutivi. Nel computo dei predetti limiti non si tiene conto dei periodi di degenza ospedaliera'. Modelled as max_duration_days 360 and sickness_rules.comporto_windows (540 days within 36 months, hospital stays left out); months of 30 days as the article states. The 32 months of the named serious illnesses and the apprentice and fixed-term limits are not modelled."
       }
     ]
   },
@@ -196,6 +200,28 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.insured_absence.injury"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-elettrico-elettricita-futura-comporto-r2",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto and sick pay against a second research of a separate model session; quotes checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://pub-44429b7b330a431e94aea589bd6b8bed.r2.dev/K051/221685.pdf",
+            "sha256": "6e317dea1b74d55618e655abc6477c5e006fbf960c2cacb8dc37ad61218ce8e3"
+          }
+        ],
+        "findings": [
+          "Comporto of one illness 360 days (12 months of 30 days) and 540 within 36 months, hospital stays left out."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
+          "coverage.notes"
         ]
       }
     ]
@@ -3080,7 +3106,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
     "verification_status": "unverified",
-    "source_hash": "78650fe4944b153231f6fa0686b38c7b417b2466c6b593b7f41b5419aed3c45b",
+    "source_hash": "8b2a5398230ee4b5c6119a24ad187ab115223e03691123ad48518f3d3f5ddcd9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3286,7 +3312,7 @@
     "sickness_rules": {
       "carenza_integration_rate": "1",
       "full_pay_integration_rate": "1",
-      "max_duration_days": 365,
+      "max_duration_days": 360,
       "provenance": {
         "status": "derived",
         "location": {
@@ -3304,7 +3330,15 @@
           "verification_status": "unverified",
           "effective_from": "2025-01-01"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 36,
+          "comporto_days": 540,
+          "hospital_excluded": true
+        }
+      ]
     },
     "insured_absence": {
       "maternity": {
