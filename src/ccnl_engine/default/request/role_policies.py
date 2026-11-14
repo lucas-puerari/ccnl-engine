@@ -1,4 +1,4 @@
-"""Default policies for worker roles and former-worker holiday compensation."""
+"""Default policies for worker roles, former-worker holidays and garnishments."""
 
 from __future__ import annotations
 
@@ -13,6 +13,13 @@ if TYPE_CHECKING:
 
 
 ROLE_DEFAULTS: Mapping[str, FieldDefault] = {
+    "PersonalWithholding.installment": requires_fact(
+        "personal_withholdings",
+        "personal_withholdings.installment",
+        FactEnforcement.REPORTED,
+        "a garnishment takes the legal fraction; two of one kind without their "
+        "ordinanze's amounts (art. 553 c.p.c.) report an installment blocker",
+    ),
     "Employment.holiday_company_offset": requires_fact(
         "base_salary",
         "employment.holiday_company_offset",

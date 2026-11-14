@@ -57,7 +57,6 @@ from ccnl_engine.limitation.models import LimitationStatus, MonetaryImpact
 from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
-from ccnl_engine.personal_withholding.services import SAME_KIND
 from ccnl_engine.seniority.rules import APPRENTICE_SENIORITY_VARIANT
 from ccnl_engine.sickness.handlers import CUMULATION_LIMITATION
 from ccnl_engine.termination.notice.handlers import DAY_MEASURE as NOTICE_DAY_MEASURE
@@ -131,7 +130,6 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         EXEMPT_CATEGORY_FLOOR,
         PARENTAL_INCOME_LIMITATION,
         HOURLY_CCNL_LIMITATION,
-        SAME_KIND,
         UNUSED_DEDUCTIONS,
         UNA_TANTUM,
         SUNDAY_CLAUSE,
@@ -143,6 +141,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         "notice_indemnity_tfr",
         "notice_indemnity_extra_months",
         "notice_indemnity_partial",
+        "personal_withholding_same_kind",
         "extraordinary_leave_daily_base",
         "naspi_dismissal_exceptions",
         "sickness_agricultural_fixed_term_days",

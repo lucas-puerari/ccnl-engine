@@ -98,14 +98,15 @@ class PersonalWithholding:
             what is left of it.
         installment: Monthly installment of a salary assignment or a
             payment delegation, or monthly measure of a maintenance order,
-            above zero; ``None`` for the other kinds, whose amount is the
-            legal fraction of the net pay.
+            above zero; for a garnishment the monthly amount the ordinanza
+            di assegnazione sets, needed when two garnishments of one kind
+            share its measure (art. 553 c.p.c.), else ``None``: the legal
+            fraction of the net pay.
 
     Raises:
         InvalidInputError: When a field is not of its type, ``starts_on``
             precedes ``notified_on``, ``total_due`` is not above zero, or
-            ``installment`` is missing for a kind that states it or given
-            for one that does not.
+            ``installment`` is missing for a kind that states it.
     """
 
     withholding_id: str
@@ -147,13 +148,6 @@ class PersonalWithholding:
             positive=True,
             optional=not stated,
         )
-        if not stated and self.installment is not None:
-            reject(
-                f"{owner}.installment",
-                f"None for a {kind} garnishment, whose amount the law sets",
-                self.installment,
-                feature=FEATURE,
-            )
 
 
 def check_personal_withholdings(

@@ -43,7 +43,6 @@ from ccnl_engine.pay_item.services import _make_entry, _require_resolution
 from ccnl_engine.personal_withholding.inputs import (
     FEATURE,
     INSTALLMENT_KINDS,
-    PersonalWithholdingKind,
 )
 from ccnl_engine.personal_withholding.models import WithheldToDate
 from ccnl_engine.personal_withholding.rules import DueWithholding, allocate
@@ -58,14 +57,13 @@ if TYPE_CHECKING:
     from ccnl_engine.personal_withholding.rules import Withheld
 
 __all__ = [
-    "SAME_KIND",
+    "UNASSIGNED",
     "PersonalWithholdingPostings",
     "post_personal_withholdings",
-    "same_kind_paths",
 ]
 
-#: Engine limitation of two deductions sharing the measure of their kind.
-SAME_KIND = "personal_withholding_same_kind"
+#: Issue of two garnishments of one kind without their assigned amounts.
+UNASSIGNED = "personal_withholding_unassigned"
 
 _ZERO = Decimal(0)
 _KIND = "employee_withholding_item"
@@ -143,23 +141,27 @@ def _residuals(ctx: RunContext) -> dict[str, Decimal]:
     }
 
 
-def same_kind_paths(ctx: RunContext) -> frozenset[str]:
-    """Return the limitation of the run when two deductions share a measure.
+def _unassigned_issue(active: list[PersonalWithholding]) -> CalculationIssue | None:
+    """Report two garnishments of one kind without their assigned amounts.
 
-    Two garnishments of the same kind, or two salary assignments, split the
-    fraction of their kind in the order of notification, which no text read
-    states.
+    Art. 553 c.p.c.: the ordinanze di assegnazione set what each takes.
 
     Returns:
-        ``{SAME_KIND}`` when the run applies two such deductions, else empty.
+        A missing-fact issue when such a pair lacks an amount, else None.
     """
-    kinds = [
-        w.kind
-        for w in _active(ctx, _residuals(ctx))
-        if w.kind not in INSTALLMENT_KINDS
-        or w.kind is PersonalWithholdingKind.SALARY_ASSIGNMENT
-    ]
-    return frozenset({SAME_KIND}) if len(set(kinds)) < len(kinds) else frozenset()
+    kinds = [w.kind for w in active if w.kind not in INSTALLMENT_KINDS]
+    shared = {k for k in kinds if kinds.count(k) > 1}
+    if not any(w.kind in shared and w.installment is None for w in active):
+        return None
+    return CalculationIssue(
+        code=UNASSIGNED,
+        capability=FEATURE,
+        message="personal_withholdings: state the installment the ordinanza "
+        "di assegnazione sets for each garnishment of one kind (art. 553 c.p.c.)",
+        status=CalculationStatus.INCOMPLETE,
+        cause=IssueCause.FACT,
+        fact="installment",
+    )
 
 
 def _decision(
@@ -276,10 +278,14 @@ def post_personal_withholdings(
             residuals[key] -= withheld.amount
             carried[key] = carried.get(key, _ZERO) + withheld.amount
     final = ctx.installment_run.final
-    issues = tuple(
-        _residual_issue(w, residuals[w.withholding_id], tfr_net)
-        for w in stated
-        if final and residuals[w.withholding_id]
+    unassigned = _unassigned_issue(active)
+    issues = (
+        *(() if unassigned is None else (unassigned,)),
+        *(
+            _residual_issue(w, residuals[w.withholding_id], tfr_net)
+            for w in stated
+            if final and residuals[w.withholding_id]
+        ),
     )
     return PersonalWithholdingPostings(
         items=tuple(item for item, _ in lines),

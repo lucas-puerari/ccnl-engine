@@ -328,12 +328,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: EmploymentPeriod.naspi_case states the cases that owe, leave out or multiply the contribution; an end that could be one and does not state it is decided from its cause alone with the provisional issue naspi_dismissal_case_unknown, which names the fact.
 
-!!! warning "personal_withholding_same_kind · personal_withholdings · impact unknown · open"
+!!! note "personal_withholding_same_kind · personal_withholdings · impact unknown · resolved"
     Two garnishments of the same kind, or two salary assignments, share the measure of their kind (a fifth, or the tenth or seventh of the agente della riscossione) in the order of notification: art. 545 c. 4 c.p.c. sets 'un quinto per i tributi ... ed in eguale misura per ogni altro credito' and art. 5 DPR 180/1950 a cessione 'fino al quinto', but no text read says how two orders of the same kind split the measure, so the later order may be under- or overstated.
 
     **Applies when:** `personal_withholdings` applies; the run takes the engine code path.
 
-    **Remediation:** Source how the employer splits the measure between two orders of the same kind (art. 499 c.p.c. on the intervention of creditors, case law of the Cassazione) and apply it, then resolve this limitation.
+    **Remediation:** Resolved: art. 553 c. 1 c.p.c. (Normattiva, https://www.normattiva.it/atto/caricaArticolo?art.versione=4&art.idGruppo=93&art.flagTipoArticolo=1&art.codiceRedazionale=040U1443&art.idArticolo=553&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1940-10-28&art.progressivo=0&, sha256 b41bf831e63fcaacfe95231f9595da5d0e5619c162cc455a80632bba90c147cd): the judge 'le assegna in pagamento [...] ai creditori concorrenti' and 'L'obbligo di pagamento decorre, per il terzo, dalla notifica dell'ordinanza di assegnazione'. The amount each garnishment takes is the fact of its ordinanza: PersonalWithholding.installment, and two garnishments of one kind without it give the missing-fact issue personal_withholding_unassigned. Read on 2026-11-15.
 
 !!! note "sickness_agricultural_fixed_term_days · sickness · impact unknown · resolved"
     INPS pays an operaio agricolo a tempo determinato for as many days as the registration in the elenchi of the year before (at most 180 a calendar year) when they are 51, else 30 days with 51 days of the current year before the illness, else none. An episode that does not state SicknessEpisode.agricultural_days is paid by INPS up to the 180 days a year, the 51-day requirements unchecked.

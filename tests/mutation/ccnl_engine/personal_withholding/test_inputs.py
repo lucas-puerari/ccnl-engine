@@ -38,7 +38,6 @@ def test_the_kind_is_read_from_its_value() -> None:
     ("change", "field"),
     [
         ({"installment": None}, "installment"),
-        ({"kind": "ordinary"}, "installment"),
         ({"starts_on": date(2026, 1, 9)}, "starts_on"),
         ({"total_due": Decimal(0)}, "total_due"),
         ({"withholding_id": " "}, "withholding_id"),
