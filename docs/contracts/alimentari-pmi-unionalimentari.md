@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-28 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | Art. 47 of the verbale of 28 May 2025 (p. 26, page image): the minimi from 1 April 2027 and 1 January 2028. | corrected | Two tranches of 70 EUR at parametro 137, reparametrised per level; the 2025 and 2026 columns equal the file. |
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 54 values found verbatim on the cited pages and marked verified; 18 left as they were (derived or not on a text page). |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 36 sickness rules of the CCNL 2024-2028 (alimentare): proposal by one session, field-by-field check of the text by a second independent session. | corrected | Comporto as a sum over the 17 months (up to 5 years of seniority, 180 days) or 24 months (over 5 years, 365 days) before the day, 'anche in caso di diverse malattie': modelled as cumulation; 180 days at full net pay, then 50%.<br>The second session confirmed 15 fields; the window_years fallback and the band boundaries are schema conventions, not contractual windows. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 47 table of the consolidated text signed on 18 March 2026 (PDF p. 144), read on the page image, against the file and the verbale of 28 May 2025 (p. 26). | corrected | 21 minimi of 2026-2028 differed by one or two cents from the later signed text and were corrected.<br>Both signed documents set four tranches of EUR 70: the 2027 and 2028 tranches are confirmed. |
 
 ## Salary table
 
@@ -68,15 +69,15 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `Q` | Quadri (executive staff) | € 3,105.89 | 2028-01-01 |
-| `1` | 1st level — senior specialists and team leaders | € 3,005.89 | 2028-01-01 |
+| `Q` | Quadri (executive staff) | € 3,105.90 | 2028-01-01 |
+| `1` | 1st level — senior specialists and team leaders | € 3,005.90 | 2028-01-01 |
 | `2` | 2nd level — skilled specialists | € 2,613.80 | 2028-01-01 |
-| `3` | 3rd level — intermediate skilled workers | € 2,156.42 | 2028-01-01 |
-| `4` | 4th level — qualified workers | € 1,895.04 | 2028-01-01 |
-| `5` | 5th level — semi-skilled workers | € 1,698.99 | 2028-01-01 |
-| `6` | 6th level — standard production workers | € 1,568.28 | 2028-01-01 |
-| `7` | 7th level — basic production workers | € 1,437.61 | 2028-01-01 |
-| `8` | 8th level — entry-level workers, simple repetitive tasks | € 1,306.92 | 2028-01-01 |
+| `3` | 3rd level — intermediate skilled workers | € 2,156.43 | 2028-01-01 |
+| `4` | 4th level — qualified workers | € 1,895.05 | 2028-01-01 |
+| `5` | 5th level — semi-skilled workers | € 1,698.98 | 2028-01-01 |
+| `6` | 6th level — standard production workers | € 1,568.26 | 2028-01-01 |
+| `7` | 7th level — basic production workers | € 1,437.59 | 2028-01-01 |
+| `8` | 8th level — entry-level workers, simple repetitive tasks | € 1,306.90 | 2028-01-01 |
 
 ## Seniority increments
 
@@ -272,6 +273,7 @@ Each simplification below is a model limitation of the registry. An open limitat
 | https://www.unionalimentari.com/ | tabella_retributiva | 2025-05-28 | [↗](https://www.unionalimentari.com/) |
 | https://www.lavorofacile.it/ | altro | 2021-04-01 | [↗](https://www.lavorofacile.it/) |
 | CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025) | associazione | 2025-05-28 | [↗](https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf) |
+| CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA) | associazione | 2026-03-18 | [↗](https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf) |
 
 ??? note "Coverage notes"
     Salary model: split. base_salary = paga base (changes each tranche); fixed_allowances = contingenza (per-level, frozen since 1993 Protocol) + EDR 10.33 (all levels, per Protocol 31/07/1992 Art. 1.1).
@@ -282,13 +284,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     Seniority: 5 biennali per Art. 5.5 CCNL text (settore alimentare). Fixed EUR amounts from 2021 CCNL; 2025 Unionalimentari circular (28/05/2025) makes no mention of changes to scatti amounts.
     
-    Salary tranches from CIRCOLARE ILLUSTRATIVA ACCORDO 28 MAGGIO 2025 (Unionalimentari official circular): tranche 1 = 01/06/2025, tranche 2 = 01/01/2026, tranche 3 = 01/04/2027 (not modeled), tranche 4 = 01/01/2028 (not modeled).
+    Salary tranches: 01/06/2025, 01/01/2026, 01/04/2027 and 01/01/2028, EUR 70 each at parametro 137 (art. 47 of the verbale of 28 May 2025 and of the consolidated text signed on 18 March 2026).
     
     Apprenticeship: Art. 8.1 CCNL — under-classification model, levels 1 through 7, multi-period per destination level. Complex schedule not publicly parsed in full. layer_2 = out_of_scope.
     
     Headcount: ~34,646 workers (CNEL archive, E018).
     
-    TRANCHES 2027-2028 (art. 47 of the verbale signed 28 May 2025, p. 26): 70.00 EUR at parametro 137 from 1 April 2027 and again from 1 January 2028, modelled per level as printed (e.g. level 8 1,255.82 and 1,306.92). The association circular's prose giving 32 EUR for the third tranche is wrong; its table matches the verbale.
+    TRANCHES 2027-2028 (art. 47): 70.00 EUR at parametro 137 from 1 April 2027 and again from 1 January 2028, as in the verbale signed 28 May 2025 (p. 26) and the consolidated text signed 18 March 2026 (PDF p. 144). The association circular's prose giving 32 EUR for the third tranche is wrong. Where the two signed tables differ by a cent the later text is used: it adds each increment to the previous minimo exactly (e.g. 3rd level 1,987.81 from 1 January 2026, 1,987.80 in the verbale).
     
 
 ## Raw data
