@@ -111,6 +111,7 @@ def _closing(
             shortfall=posted.capped.shortfall,
             deferred=posted.deferred.remaining,
             personal_withholdings=posted.personal.withheld,
+            form730=posted.form730.carried,
             additional_ivs=sum(
                 (
                     c.amount
@@ -215,6 +216,7 @@ def _result(
         + carried.decisions
         + capped.decisions
         + posted.deferred.decisions
+        + posted.form730.decisions
         + posted.personal.decisions
     )
     executed = events.totals.executed_features
@@ -234,6 +236,7 @@ def _result(
         + somma.issues
         + capped.issues
         + posted.deferred.issues
+        + posted.form730.issues
         + posted.personal.issues
         + _input_issues(ctx, events, amounts)
         + missing_source_issues(sources)

@@ -37,6 +37,7 @@ if TYPE_CHECKING:
     from ccnl_engine.tax_credit.somma_esente.services import (
         SommaEsenteOutcome,
     )
+    from ccnl_engine.withholding.assistance.inputs import Form730Installment
     from ccnl_engine.withholding.deferral.inputs import (
         DeferredShortfall,
     )
@@ -78,6 +79,7 @@ class RunOutcome:
             withhold after the run.
         personal_withholdings: Amount withheld to date per garnishment or
             salary assignment after the run.
+        form730: Installments of 730-4 statements a later pay settles.
         additional_ivs: Additional 1% IVS the run withheld, negative when
             its conguaglio gave some back.
         history_known: Whether the closing state holds the history of the
@@ -101,6 +103,7 @@ class RunOutcome:
     shortfall: WithholdingShortfall = field(default_factory=WithholdingShortfall)
     deferred: tuple[DeferredShortfall, ...] = ()
     personal_withholdings: tuple[WithheldToDate, ...] = ()
+    form730: tuple[Form730Installment, ...] = ()
     additional_ivs: Decimal = _ZERO
     history_known: bool = True
     employment_spells: tuple[EmploymentSpell, ...] = ()
@@ -160,6 +163,7 @@ def _advance(opening: PeriodState, outcome: RunOutcome) -> PeriodState:
         surtax=outcome.amounts.surtax.obligations,
         deferred_shortfall=outcome.deferred,
         personal_withholdings=outcome.personal_withholdings,
+        form730=outcome.form730,
     )
     return PeriodState(
         accrual=opening.accrual.after(

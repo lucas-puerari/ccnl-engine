@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 
-from ccnl_engine.collection.validators import frozenset_of
+from ccnl_engine.collection.validators import frozenset_of, items_of_type, tuple_of
 from ccnl_engine.compensation.individual.inputs import (
     IndividualElement,
     check_individual_elements,
@@ -53,6 +53,7 @@ from ccnl_engine.validators import (
     require_instances,
     require_str,
 )
+from ccnl_engine.withholding.assistance.inputs import Form730Settlement
 
 __all__ = ["Apprentice", "Contract", "Employment", "FixedTerm", "Permanent"]
 
@@ -165,6 +166,8 @@ class Employment:
             to the employer, each a
             :class:`~ccnl_engine.personal_withholding.inputs.PersonalWithholding`
             with its own id; a list is accepted and stored as a tuple.
+        tax_returns: The 730-4 statements the employer received, which the
+            payslips settle (:mod:`~ccnl_engine.withholding.assistance`).
 
     Raises:
         InvalidInputError: When a field is not of its type, a role is not a
@@ -202,6 +205,7 @@ class Employment:
     public_end_of_service: PublicEndOfService | None = None
     individual_elements: tuple[IndividualElement, ...] = ()
     personal_withholdings: tuple[PersonalWithholding, ...] = ()
+    tax_returns: tuple[Form730Settlement, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
         if not isinstance(self.ccnl_id, str) or not _CCNL_ID.fullmatch(self.ccnl_id):
@@ -257,27 +261,25 @@ class Employment:
             self.personal_withholdings, "Employment.personal_withholdings"
         )
         object.__setattr__(self, "personal_withholdings", withholdings)
-        require_decimal(
-            self.holiday_company_offset,
-            "Employment.holiday_company_offset",
+        for name in (
+            "holiday_company_offset",
+            "prior_extra_month_amount",
+            "erc_amount",
+        ):
+            require_decimal(
+                getattr(self, name),
+                f"Employment.{name}",
+                feature=FEATURE,
+                minimum=Decimal(0),
+                optional=True,
+            )
+        returns = tuple_of(
+            self.tax_returns,
+            "Employment.tax_returns",
+            items_of_type(Form730Settlement, feature=FEATURE),
             feature=FEATURE,
-            minimum=Decimal(0),
-            optional=True,
         )
-        require_decimal(
-            self.prior_extra_month_amount,
-            "Employment.prior_extra_month_amount",
-            feature=FEATURE,
-            optional=True,
-            minimum=Decimal(0),
-        )
-        require_decimal(
-            self.erc_amount,
-            "Employment.erc_amount",
-            feature=FEATURE,
-            minimum=Decimal(0),
-            optional=True,
-        )
+        object.__setattr__(self, "tax_returns", returns)
 
     def check_seniority_in(self, year: int, month: int) -> None:
         """Reject a seniority whose recognised service starts after a month.

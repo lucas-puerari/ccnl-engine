@@ -347,6 +347,38 @@ March 2026 payslip: 3 months, interest 300.00 × 0.50% × 3 = 4.50 EUR, net
 pay 304.50 EUR lower, F24 code 1066 for 304.50 EUR. When March absences
 leave no pay, April withholds it with 4 months: 6.00 EUR.
 
+### Settlement of the 730-4 statement
+
+The employer settles the results of the worker's 730 tax return on the
+payslips (DM 164/1999 art. 19; 730/2026 instructions for the withholding
+agent): `Employment.tax_returns`, one `Form730Settlement` per statement with
+the day it was received, its lines (`Form730Line`: the IRPEF balance, first
+and second acconto, the regional surtax, the municipal balance and acconto;
+positive to withhold, negative to refund) and the installments asked (1 to
+6). The amounts are the statement's, not recomputed:
+
+- the regular pay of the month after the receipt settles it first;
+- a line of 12 EUR or less is neither withheld nor refunded;
+- a refund is paid whole on that pay and compensated by the employer
+  (`CREDITS`, codes 1631, 3796, 3797). The engine sees one worker, not the
+  withholdings of every employee the employer may compensate with (art. 19
+  c. 2): it pays the refund on the first pay;
+- the balances and first acconti are withheld in the installments asked,
+  ending in November, each after the first with 0.33% interest for each
+  month of deferral (codes 4731, 4730, 3803, 3846, 3845; interest 1630,
+  3790, 3795); the second acconto is withheld whole in November;
+- what the pay left after every other line cannot cover moves to the next
+  pay of the year with 0.4% monthly interest (art. 19 c. 1; instructions
+  p. 173); what December still leaves is communicated to the worker
+  (`form730_debt_unrecovered`, c. 5).
+
+None of it is withholding on the pay of the run: it settles the tax return,
+so it stays out of the IRPEF and surtax withheld of the year and of their
+continuity checks. The installments still to settle are carried in
+`EmploymentObligations.form730` (state schema 18). Each run that settles any
+records a `fiscal_adjustment` decision with what it withheld, refunded and
+carried.
+
 ### Earlier employments of the year at the conguaglio
 
 At the request of the worker, who hands over the CU of the other payer,

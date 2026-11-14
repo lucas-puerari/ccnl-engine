@@ -11,6 +11,7 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.balance import serializers
+from ccnl_engine.balance.migrations import tfr_quotas_unknown
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.balance.serializers import (
     FIRST_SCHEMA_VERSION,
@@ -19,7 +20,6 @@ from ccnl_engine.balance.serializers import (
     migrate_state,
     period_state_from_json,
     period_state_to_json,
-    tfr_quotas_unknown,
 )
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.errors import InvalidInputError

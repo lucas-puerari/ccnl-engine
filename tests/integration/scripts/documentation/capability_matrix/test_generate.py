@@ -64,12 +64,12 @@ def test_rows_show_the_registry_and_rule_counts() -> None:
     counts = {"irpef": {"verified": 0, "derived": 24, "assumed": 0, "missing": 0}}
     rows = capability_rows(catalog, counts)
     (irpef,) = [row for row in rows if row.startswith("| `irpef` ")]
-    (fiscal,) = [row for row in rows if row.startswith("| `fiscal_adjustment` ")]
+    (exempt,) = [row for row in rows if row.startswith("| `contribution_exemption` ")]
     assert irpef.endswith(
         "| net | native | always | pipeline | — | — | implemented | 0 / 24 / 0 / 0 |"
     )
-    assert fiscal.endswith(
-        "| unsupported | outside_input | — | `facts.fiscal_adjustment` | — "
+    assert exempt.endswith(
+        "| unsupported | outside_input | — | `employer.contribution_exemption` | — "
         "| unavailable | none bundled |"
     )
     assert len(rows) == len(catalog.capabilities) + 2

@@ -53,6 +53,7 @@ if TYPE_CHECKING:
     from ccnl_engine.pension_fund.inputs import NoPensionFund, PensionFundEnrolment
     from ccnl_engine.personal_withholding.inputs import PersonalWithholding
     from ccnl_engine.run.models import PayrollRun, PayrollRunId
+    from ccnl_engine.withholding.assistance.inputs import Form730Settlement
     from ccnl_engine.withholding.schedule.models import WithholdingSchedule
 
 
@@ -162,6 +163,7 @@ class PeriodCalculationRequest:
             bonuses; zero states none, ``None`` is unknown.
         erc_amount: Annual ERC of the CCNL grafici editoriali, if known;
             ``public_end_of_service`` the regime of a public employee.
+        tax_returns: The 730-4 statements the payslips settle.
         personal_withholdings: Garnishments and salary assignments notified
             to the employer, withheld from the net pay.
     """
@@ -215,6 +217,7 @@ class PeriodCalculationRequest:
     holiday_company_offset: Decimal | None = None
     public_end_of_service: PublicEndOfService | None = None
     personal_withholdings: tuple[PersonalWithholding, ...] = ()
+    tax_returns: tuple[Form730Settlement, ...] = ()
 
     def __post_init__(self) -> None:
         """Guard dates, cross-year state or schedule and hours above full time.

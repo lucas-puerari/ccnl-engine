@@ -31,6 +31,7 @@ from ccnl_engine.tax_credit.somma_esente.services import (
     SommaEsentePosting,
     resolve_somma_esente,
 )
+from ccnl_engine.withholding.assistance.services import Form730Postings, settle_form730
 from ccnl_engine.withholding.cap.services import cap_withholding, run_net
 from ccnl_engine.withholding.deferral.services import (
     DeferredPostings,
@@ -76,6 +77,7 @@ class RunPostings:
     personal: PersonalWithholdingPostings = field(
         default_factory=PersonalWithholdingPostings
     )
+    form730: Form730Postings = field(default_factory=Form730Postings)
 
 
 def _no_credits(ctx: RunContext) -> RunCredits:
@@ -252,12 +254,15 @@ def post_run(
     all_entries = ledger_entries + other_entries + entries
     deferred = post_deferred(ctx, run_net(all_entries), opened)
     all_entries += deferred.entries
+    form730 = settle_form730(ctx, run_net(all_entries))
+    all_entries += form730.entries
     personal = post_personal_withholdings(ctx, all_entries)
     return RunPostings(
         amounts,
-        pay_items + items + deferred.items + personal.items,
+        pay_items + items + deferred.items + form730.items + personal.items,
         all_entries + personal.entries,
         capped,
         deferred,
         personal,
+        form730,
     )

@@ -193,6 +193,7 @@ class PeriodInput:
             holiday_company_offset=employment.holiday_company_offset,
             public_end_of_service=employment.public_end_of_service,
             personal_withholdings=employment.personal_withholdings,
+            tax_returns=employment.tax_returns,
             prior_year=self.prior_year,
             current_year=self.current_year,
             extra_month_accrual=extra_month_accrual,

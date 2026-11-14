@@ -44,6 +44,9 @@ __all__ = [
     "ACCOUNT_CODES",
     "ARREARS_WITHHOLDING",
     "CODED_ACCOUNTS",
+    "FORM730_DEBIT_CODES",
+    "FORM730_REFUND_CODES",
+    "FORM730_SURTAX_CODES",
     "IRPEF_WITHHOLDING",
     "MUNICIPAL_SURTAX_ADVANCE",
     "MUNICIPAL_SURTAX_BALANCE",
@@ -69,6 +72,14 @@ IRPEF_WITHHOLDING = "1001"
 #: 6/E/2021, instituted for the withholding of art. 23 c. 3 second sentence
 #: DPR 600/1973): the IRPEF of a conguaglio deferred on written request.
 POST_CONGUAGLIO_WITHHOLDING = "1066"
+#: Codes of the 730-4 statement the employer settles: debits withheld
+#: (IRPEF balance 4731 and acconti 4730, regional surtax 3803, municipal
+#: balance 3846 and acconto 3845, installment interest 1630, 3790, 3795;
+#: ris. AdE 368/E/2007 and 190/E/2009) and refunds paid and compensated
+#: (1631, 3796, 3797; ris. AdE 13/E/2015).
+FORM730_DEBIT_CODES = frozenset({"4730", "4731", "1630"})
+FORM730_SURTAX_CODES = frozenset({"3803", "3846", "3845", "3790", "3795"})
+FORM730_REFUND_CODES = frozenset({"1631", "3796", "3797"})
 #: "RITENUTE SU EMOLUMENTI ARRETRATI" (Allegato 1, provv. 31/01/2025).
 ARREARS_WITHHOLDING = "1002"
 #: "RITENUTE SU INDENNITA' PER CESSAZIONE DI RAPPORTO DI LAVORO E
@@ -148,11 +159,13 @@ ACCOUNT_CODES: Mapping[AccountKind, frozenset[str]] = MappingProxyType({
     AccountKind.ORDINARY_TAX: frozenset({
         IRPEF_WITHHOLDING,
         POST_CONGUAGLIO_WITHHOLDING,
+        *FORM730_DEBIT_CODES,
     }),
     AccountKind.SURTAX: frozenset({
         REGIONAL_SURTAX,
         MUNICIPAL_SURTAX_ADVANCE,
         MUNICIPAL_SURTAX_BALANCE,
+        *FORM730_SURTAX_CODES,
     }),
     AccountKind.SUBSTITUTE_TAX: frozenset({PDR_SUBSTITUTE_TAX, *REGIME_CODES.values()}),
     AccountKind.SEPARATE_TAX: frozenset({ARREARS_WITHHOLDING, SEVERANCE_WITHHOLDING}),
@@ -160,6 +173,7 @@ ACCOUNT_CODES: Mapping[AccountKind, frozenset[str]] = MappingProxyType({
         TRATTAMENTO_CREDIT,
         SOMMA_ESENTE_CREDIT,
         SPECIAL_SUPPLEMENT_CREDIT,
+        *FORM730_REFUND_CODES,
     }),
     AccountKind.CREDIT_RECOVERIES: frozenset({SOMMA_ESENTE_CREDIT}),
 })

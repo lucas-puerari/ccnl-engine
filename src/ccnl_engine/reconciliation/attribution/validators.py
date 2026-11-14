@@ -35,13 +35,19 @@ __all__ = [
 ]
 
 _ZERO = Decimal(0)
-_CREDITS = frozenset({"trattamento_integrativo", "somma_esente", "special_supplement"})
+_CREDITS = frozenset({
+    "trattamento_integrativo",
+    "somma_esente",
+    "special_supplement",
+    "fiscal_adjustment",
+})
 #: The surtax of the run, or the surtax an earlier run carried for lack of
 #: pay, which the withholding cap decides.
 _SURTAX = frozenset({
     "addizionale_regionale",
     "addizionale_comunale",
     "withholding_shortfall",
+    "fiscal_adjustment",
 })
 _WORK_TIME = frozenset({"night_work", "holiday_work", "shift_work"})
 #: A bilateral fund the caller declares, a contractual fund of the CCNL, or
@@ -126,6 +132,7 @@ ACCOUNT_CAPABILITIES: dict[AccountKind, frozenset[str]] = {
         "irpef",
         "withholding_shortfall",
         "shortfall_deferral",
+        "fiscal_adjustment",
     }),
     AccountKind.TAX_REFUNDS: frozenset({"irpef"}),
     AccountKind.SUBSTITUTE_TAX: frozenset({
