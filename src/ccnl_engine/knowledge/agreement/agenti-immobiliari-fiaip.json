@@ -102,6 +102,11 @@
         "kind": "info",
         "text": "HOLIDAY ON A SUNDAY (Art. 110 Riposo settimanale - Festivita; Art. 112 Festivita civile soppressa cadente di domenica, p. 73-74): a listed holiday falling on a Sunday pays a further daily quota (1/26 of the monthly pay); 4 November, celebrated on the first Sunday of November, takes the same treatment.",
         "capability": "sunday_holiday"
+      },
+      {
+        "kind": "info",
+        "text": "OVERTIME (Art. 109, pp. 72-73): on the hourly quota of the normal pay (1/168, Art. 161), 15% over the weekly hours, 30% on holidays, 30% at night (22-6), 50% at night on holidays. FLEXIBILITY (Art. 106, pp. 71-72): a week over 40 hours in a programme earns 45 minutes of permit up to 44 hours and 70 up to 48 (FlexibilityWeekEvent, EmployerProfile.flexibility_programme_month); the hours not taken are paid with the 15% premium in the sixth month after the programme year.",
+        "capability": "overtime"
       }
     ]
   },
@@ -369,6 +374,28 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sunday_holidays"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-overtime",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 106, 109 and 161 of the CCNL 2025.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.ebnaip.it/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+            "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+          }
+        ],
+        "findings": [
+          "The file had no overtime band, so overtime events had no CCNL premium: added the four bands of Art. 109 and the flexibility permits of Art. 106."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.leave_rules.flexibility"
         ]
       }
     ]
@@ -1993,7 +2020,7 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "550b7d3793908829edf3d6de7f0a7be2fac1afd227ba3fe8b9c5a55351844df9"
+    "source_hash": "80adba40e0ce601a2f50753fa26147ec00ea57afd70845c623d7ddfa5f81a165"
   },
   "work_rules": {
     "notice": {
@@ -2358,6 +2385,46 @@
             "review_id": "2026-11-14-ai-leave"
           }
         }
+      },
+      "flexibility": {
+        "normal_weekly_hours": "40",
+        "bands": [
+          {
+            "up_to_hours": "44",
+            "minutes": "45"
+          },
+          {
+            "up_to_hours": "48",
+            "minutes": "70"
+          }
+        ],
+        "payout_months_after": 6,
+        "premium_band": "OT_DIURNO",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ebnaip-ccnl-agenti-immobiliari-2025",
+              "title": "CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso 2025 (EBNAIP)",
+              "kind": "associazione",
+              "url": "https://www.ebnaip.it/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+              "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+            },
+            "page": "71-72",
+            "section": "Art. 106 Flessibilita dell'orario",
+            "quote": "sino al limite di 44 (quarantaquattro) ore settimanali [...] pari a 45 (quarantacinque) minuti per ciascuna settimana [...] sino al limite di 48 (quarantotto) ore settimanali [...] pari a 70 (settanta) minuti [...] le ore risultanti maturate saranno pagate con la maggiorazione prevista per le ore di straordinario e saranno liquidate entro e non oltre il sesto mese successivo a quello corrispondente al termine del programma annuale di flessibilità."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2025-05-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-overtime"
+          }
+        }
       }
     },
     "sunday_holidays": {
@@ -2403,6 +2470,204 @@
         }
       },
       "divisor": "26"
+    },
+    "time_supplements": {
+      "hourly_base_method": "gross_incl_allowances",
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ebnaip-ccnl-agenti-immobiliari-2025",
+            "title": "CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso 2025 (EBNAIP)",
+            "kind": "associazione",
+            "url": "https://www.ebnaip.it/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+            "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+          },
+          "page": "72; 96",
+          "section": "Art. 109; Art. 161 Quota oraria",
+          "quote": "verranno retribuite con la quota oraria della retribuzione [...] con le seguenti maggiorazioni da calcolare sulla quota oraria della normale retribuzione. [Art. 161:] La quota oraria della retribuzione, si ottiene dividendo l'importo mensile per 168."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2025-05-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-14-ai-overtime"
+        }
+      },
+      "overtime_bands": [
+        {
+          "code": "OT_DIURNO",
+          "description": "Straordinario feriale diurno (art. 109)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.15"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ebnaip-ccnl-agenti-immobiliari-2025",
+                "title": "CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso 2025 (EBNAIP)",
+                "kind": "associazione",
+                "url": "https://www.ebnaip.it/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+                "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+              },
+              "page": "72-73",
+              "section": "Art. 109 Maggiorazione del lavoro straordinario",
+              "quote": "15% (quindici per cento) per le ore di lavoro eccedenti l'orario di lavoro settimanale [...] 30% (trenta per cento) per le ore di lavoro straordinario prestate nei giorni festivi. 30% (trenta per cento) per le ore di lavoro straordinario prestate la notte [...] 50% (cinquanta per cento) nel caso di lavoro straordinario notturno festivo."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2025-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-overtime"
+            }
+          }
+        },
+        {
+          "code": "OT_FESTIVO",
+          "description": "Straordinario festivo (art. 109)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ebnaip-ccnl-agenti-immobiliari-2025",
+                "title": "CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso 2025 (EBNAIP)",
+                "kind": "associazione",
+                "url": "https://www.ebnaip.it/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+                "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+              },
+              "page": "72-73",
+              "section": "Art. 109 Maggiorazione del lavoro straordinario",
+              "quote": "15% (quindici per cento) per le ore di lavoro eccedenti l'orario di lavoro settimanale [...] 30% (trenta per cento) per le ore di lavoro straordinario prestate nei giorni festivi. 30% (trenta per cento) per le ore di lavoro straordinario prestate la notte [...] 50% (cinquanta per cento) nel caso di lavoro straordinario notturno festivo."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2025-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-overtime"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO",
+          "description": "Straordinario notturno (art. 109)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ebnaip-ccnl-agenti-immobiliari-2025",
+                "title": "CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso 2025 (EBNAIP)",
+                "kind": "associazione",
+                "url": "https://www.ebnaip.it/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+                "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+              },
+              "page": "72-73",
+              "section": "Art. 109 Maggiorazione del lavoro straordinario",
+              "quote": "15% (quindici per cento) per le ore di lavoro eccedenti l'orario di lavoro settimanale [...] 30% (trenta per cento) per le ore di lavoro straordinario prestate nei giorni festivi. 30% (trenta per cento) per le ore di lavoro straordinario prestate la notte [...] 50% (cinquanta per cento) nel caso di lavoro straordinario notturno festivo."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2025-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-overtime"
+            }
+          }
+        },
+        {
+          "code": "OT_NOTTURNO_FESTIVO",
+          "description": "Straordinario notturno festivo (art. 109)",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ebnaip-ccnl-agenti-immobiliari-2025",
+                "title": "CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso 2025 (EBNAIP)",
+                "kind": "associazione",
+                "url": "https://www.ebnaip.it/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+                "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+              },
+              "page": "72-73",
+              "section": "Art. 109 Maggiorazione del lavoro straordinario",
+              "quote": "15% (quindici per cento) per le ore di lavoro eccedenti l'orario di lavoro settimanale [...] 30% (trenta per cento) per le ore di lavoro straordinario prestate nei giorni festivi. 30% (trenta per cento) per le ore di lavoro straordinario prestate la notte [...] 50% (cinquanta per cento) nel caso di lavoro straordinario notturno festivo."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2025-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-overtime"
+            }
+          }
+        }
+      ]
     }
   }
 }

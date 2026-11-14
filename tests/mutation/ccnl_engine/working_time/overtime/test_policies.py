@@ -175,12 +175,12 @@ def test_explicit_multiplier_different_from_the_band_prevails() -> None:
 def test_no_band_and_no_multiplier_is_rejected() -> None:
     """A CCNL with no overtime band gives no multiplier: fail closed."""
     with pytest.raises(MissingRuleError, match="leaves the rate to the CCNL"):
-        _run(_overtime(), "agenti-immobiliari-fiaip", "III")
+        _run(_overtime(), "autoscuole-unasca", "3")
 
 
 def test_no_band_with_explicit_multiplier_has_nothing_to_compare() -> None:
     """Without a CCNL band the caller multiplier is applied with no issue."""
-    result = _run(_overtime(Decimal("1.30")), "agenti-immobiliari-fiaip", "III")
+    result = _run(_overtime(Decimal("1.30")), "autoscuole-unasca", "3")
     assert _overtime_paid(result) == Decimal("195.00")
     assert CALLER_MULTIPLIER_DIFFERS not in _codes(result)
 
