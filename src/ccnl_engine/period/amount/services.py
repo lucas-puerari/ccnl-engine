@@ -141,7 +141,7 @@ def _compute_amounts(
     taxable = taxable_income(inp, breakdown.employee, employee_rate, pdr, pension)
     irpef = withhold_irpef(inp, taxable)
     tax_comp = irpef.tax.computation
-    surtax = run_surtax(inp, taxable.projected, irpef.tax.irpef_net)
+    surtax = run_surtax(inp, taxable.projected + inp.prior.taxable, irpef.tax.irpef_net)
     amounts = _PeriodAmounts(
         monthly_gross=inp.monthly_gross,
         inps_employee=breakdown.employee,

@@ -50,6 +50,9 @@ _PRIOR = PriorEmployerIncome(
     taxable=Decimal(3000),
     irpef_withheld=Decimal(2000),
     trattamento_paid=Decimal(0),
+    regional_surtax_withheld=Decimal(0),
+    municipal_advance_withheld=Decimal(0),
+    municipal_surtax_withheld=Decimal(0),
 )
 
 
@@ -131,7 +134,17 @@ def test_the_certified_income_must_be_in_the_other_employment_income() -> None:
     assert error.value.field == "CurrentYearTaxFacts.prior_employers"
 
 
-@pytest.mark.parametrize("field", ["taxable", "irpef_withheld", "trattamento_paid"])
+@pytest.mark.parametrize(
+    "field",
+    [
+        "taxable",
+        "irpef_withheld",
+        "trattamento_paid",
+        "regional_surtax_withheld",
+        "municipal_advance_withheld",
+        "municipal_surtax_withheld",
+    ],
+)
 def test_a_negative_certified_amount_is_rejected(field: str) -> None:
     """Every CU amount is non-negative."""
     values = {
@@ -139,6 +152,9 @@ def test_a_negative_certified_amount_is_rejected(field: str) -> None:
         "taxable": Decimal(1),
         "irpef_withheld": Decimal(1),
         "trattamento_paid": Decimal(1),
+        "regional_surtax_withheld": Decimal(1),
+        "municipal_advance_withheld": Decimal(1),
+        "municipal_surtax_withheld": Decimal(1),
     } | {field: Decimal(-1)}
     with pytest.raises(InvalidInputError) as error:
         PriorEmployerIncome(**values)  # type: ignore[arg-type]
@@ -158,3 +174,32 @@ def test_the_trattamento_the_other_payer_paid_is_recovered() -> None:
     account = result.closing_state.cash.trattamento
     assert account.recognized == Decimal(100)
     assert account.recovered == Decimal("12.50")
+
+
+def _balance(result: PeriodResult, component: str) -> Decimal | None:
+    (decision,) = (
+        d
+        for d in result.decisions
+        if d.reason_code == "deferred_to_installments"
+        and d.inputs["component"] == component
+    )
+    return decision.amount
+
+
+def test_the_surtax_of_the_total_less_what_the_other_payer_withheld() -> None:
+    """Milano: 23080.00 of income; 30.00 and 10.00 withheld before (CU 546, 548).
+
+    The regional 312.16 and municipal 184.64 of the total are left at
+    282.16 and 174.64 for the installments.
+    """
+    withheld = replace(
+        _PRIOR,
+        regional_surtax_withheld=Decimal(30),
+        municipal_surtax_withheld=Decimal(10),
+    )
+    taken, plain = _conguaglio((withheld,)), _conguaglio((_PRIOR,))
+
+    assert _balance(plain, "regional_balance") == Decimal("312.16")
+    assert _balance(taken, "regional_balance") == Decimal("282.16")
+    assert _balance(plain, "municipal_balance") == Decimal("184.64")
+    assert _balance(taken, "municipal_balance") == Decimal("174.64")

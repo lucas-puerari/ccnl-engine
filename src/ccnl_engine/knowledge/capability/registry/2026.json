@@ -308,12 +308,12 @@
       "handler": "decision",
       "evidence": "derived",
       "variants": [
-        "irpef_and_trattamento_integrativo"
+        "irpef_trattamento_and_surtax"
       ],
       "required_facts": [
         "current_year.prior_employers"
       ],
-      "description": "Redditi di altri sostituti nella base IRPEF del conguaglio (art. 23 c. 4 DPR 600/1973): IRPEF e trattamento integrativo; addizionali, ulteriore detrazione e somma esente sul solo rapporto"
+      "description": "Redditi di altri sostituti nella base IRPEF del conguaglio (art. 23 c. 4 DPR 600/1973): IRPEF, trattamento integrativo e addizionali; ulteriore detrazione e somma esente sul solo rapporto"
     },
     {
       "feature": "territorial_supplement",

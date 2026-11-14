@@ -19,6 +19,7 @@ from ccnl_engine.decision.models import CalculationDecision, CalculationStatus
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
+    from ccnl_engine.balance.cash.account.models import TaxYtd
     from ccnl_engine.employment.spell.models import EmploymentSpell
     from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
 
@@ -31,6 +32,7 @@ __all__ = [
     "prior_decision",
     "prior_spells",
     "prior_totals",
+    "surtax_withheld",
     "taken_in",
 ]
 
@@ -47,6 +49,9 @@ class PriorTotals:
     taxable: Decimal = _ZERO
     irpef_withheld: Decimal = _ZERO
     trattamento_paid: Decimal = _ZERO
+    regional_surtax: Decimal = _ZERO
+    municipal_advance: Decimal = _ZERO
+    municipal_surtax: Decimal = _ZERO
 
 
 def prior_totals(facts: CurrentYearTaxFacts | None) -> PriorTotals:
@@ -60,6 +65,9 @@ def prior_totals(facts: CurrentYearTaxFacts | None) -> PriorTotals:
         sum((p.taxable for p in prior), _ZERO),
         sum((p.irpef_withheld for p in prior), _ZERO),
         sum((p.trattamento_paid for p in prior), _ZERO),
+        sum((p.regional_surtax_withheld for p in prior), _ZERO),
+        sum((p.municipal_advance_withheld for p in prior), _ZERO),
+        sum((p.municipal_surtax_withheld for p in prior), _ZERO),
     )
 
 
@@ -160,4 +168,22 @@ def taken_in(decisions: Iterable[CalculationDecision], key: str) -> Decimal:
             if d.capability == ADDITIONAL_IRPEF_BASE
         ),
         _ZERO,
+    )
+
+
+def surtax_withheld(tax: TaxYtd, prior: PriorTotals) -> TaxYtd:
+    """Return ``tax`` with the surtax the other payers withheld in the year.
+
+    The conguaglio determines the surtax on the total income and counts as
+    withheld the regional surtax, the municipal acconto and the municipal
+    saldo of the year the earlier payers withheld (CU punti 546-548).
+
+    Returns:
+        ``tax`` with their amounts added.
+    """
+    return replace(
+        tax,
+        regional_settled=tax.regional_settled + prior.regional_surtax,
+        municipal_advance=tax.municipal_advance + prior.municipal_advance,
+        municipal_settled=tax.municipal_settled + prior.municipal_surtax,
     )
