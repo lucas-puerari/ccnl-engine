@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-01-01 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2027-04-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The paga base nazionale conglobata (art. 110) of the nine levels against the Federturismo circular of 16 January 2025 that prints the tables agreed in the renewal of 21 December 2024. | corrected | Federturismo Confindustria, a signatory, prints in its circular of 16 January 2025 the paga base nazionale conglobata of art. 110 'condivise' by the parties for 01/01/2025, 01/06/2025, 01/05/2026 and 01/04/2027 (PDF pp. 1-2, rows A1-D1 on p. 1, D2 on p. 2): the 36 minimi of the file are checked against the general table, not the separate tables of the imprese di viaggi e turismo e congressi (different tranches) or the aziende alberghiere minori (art. 178).<br>The file's values were derived parametrically from A1 and D2 (an aggregator); 11 of them differ by one cent from the printed table and are corrected.<br>The ruleset names this source, published by Federturismo Confindustria, a signatory: source_type contracting_party.<br>Corrected to the printed table: A2 2025-01-01: 2164.27 -> 2164.26; A2 2027-04-01: 2315.87 -> 2315.88; B1 2025-01-01: 2016.87 -> 2016.88; B1 2027-04-01: 2158.18 -> 2158.17; C1 2025-06-01: 1771.22 -> 1771.21; C1 2027-04-01: 1861.27 -> 1861.28; C3 2025-01-01: 1540.03 -> 1540.02; C3 2025-06-01: 1568.17 -> 1568.16; C3 2027-04-01: 1647.90 -> 1647.91; D1 2025-01-01: 1481.04 -> 1481.05; D1 2027-04-01: 1584.79 -> 1584.80. |
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 40 and 106 of the testo definitivo of 14 November 2016 (pp. 56, 88). | corrected | The apprentice's retribuzione is 'quella minima contrattualmente prevista' for his level, apart from the scatti of art. 106: none during the apprenticeship. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Grandfathered seniority prize in Art. 182 and hotel awards in Annex 9 of the cached agreement; current-renewal status remains unconfirmed. | corrected | Art. 182 (PDF p. 160) preserves rights of workers in service on 31 May 1986. Annex 9 (PDF p. 316) lists one-off hotel milestones and departure fractions after year 10. A continuously employed 2026 worker has passed year 30; accrued rights and settlement require worker-specific facts. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Artt. 40 and 40 bis of the CCNL of 14 November 2016, apprentice classification and pay. | confirmed | Read Artt. 40 and 40 bis in the text PDF (pp. 55-57): classification up to two levels below the destination, chosen by the individual contract, paid at the minimum of that level; destinations B2-D1. Replaced the 100% passthrough over all levels with three named tracks (2, 1, 0 below) and closed apprenticeship_under_classification. |
 
 ## Salary table
 
@@ -96,9 +97,16 @@ Latest effective values per level (monthly gross, EUR).
 
 ## Apprenticeship
 
-**professionalizzante** (type: `percentage`)  
-Destination levels: `D2`, `D1`, `C3`, `C2`, `C1`, `B2`, `B1`, `A2`, `A1`  
-percentage: 1.00
+**professionalizzante_2_sotto** (type: `under_classification`)  
+Destination levels: `B2`, `C1`, `C2`, `C3`  
+under-level: `2`
+
+**professionalizzante_1_sotto** (type: `under_classification`)  
+Destination levels: `B2`, `C1`, `C2`, `C3`, `D1`  
+under-level: `1`
+
+**professionalizzante_0_sotto** (type: `under_classification`)  
+Destination levels: `B2`, `C1`, `C2`, `C3`, `D1`
 
 ## Known simplifications
 
@@ -110,13 +118,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies.
 
     **Remediation:** Resolved: six triennial increments (art. 114); read on 2026-11-06.
-
-!!! warning "industria-turistica-federturismo/apprenticeship_under_classification · base_salary · impact yes · open"
-    APPRENTICESHIP: under_classification 2 levels below destination is the contract rule. Modelled as 100% passthrough: the apprentice is paid the destination level. The engine can express it (apprenticeship type under_classification, levels_below relative to each destination level), but the periods are not sourced (review of 2026-10-30)
-
-    **Applies when:** `base_salary` applies.
-
-    **Remediation:** Source the periods of the under-classification (Art. on apprendistato professionalizzante) and model them as an under_classification track with levels_below 2 (and 1 where due); until then record the limitation on the apprentice path (contract_types apprentice).
 
 !!! warning "industria-turistica-federturismo/federturismo_legacy_awards · base_salary · impact yes · open"
     The cached collective agreement, Art. 182 (PDF p. 160), abolishes the seniority prize from 31 May 1986 but preserves rights of workers then in service. Annex 9 (PDF p. 316) prints hotel-sector awards of 1, 1.5, 2 and 3 monthly pays after 10, 15, 20 and 30 continuous years, plus further accrued fractions on departure after year 10. A continuously employed 2026 worker in the grandfathered cohort has at least 40 years of service: the 30-year milestone has already passed, but settlement or accrued rights cannot be ruled out. Continued force in the current renewal, historical settlement, and the basis and treatment of departure fractions are not established here. An annual loyalty award would incorrectly recur and cover new hires.
@@ -314,6 +315,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SALARY VALUES: parametric derivation verified to <0.02 EUR accuracy across all levels. A1 and D2 taken directly from source; all others derived via stable level-coefficient ratios.
     
     PRE-2025 NOT MODELLED: the CCNL H05B renewal starts Jan 2025; series begins 2025-01-01. Prior CCNL salary tables exist but are out of scope for the current engine version (coverage starts at renewal date). This is a deliberate scope decision.
+    
+    APPRENTICESHIP (CCNL 14 November 2016, Art. 40, PDF p. 56): 'l’apprendista potrà essere inquadrato fino a due (2) livelli inferiori' to the destination and 'la retribuzione sarà corrispondente a quella minima contrattualmente prevista per tale livello di inquadramento'; the written contract states 'il livello di inquadramento iniziale e finale' (Art. 40, p. 55). Art. 40 bis (p. 57): destinations B2, C1, C2, C3 and D1 (ex 2°-6s), 36 months (D1 30). The text sets no step in time, so the caller picks the track of the individual contract: professionalizzante_2_sotto (not for D1, which has only D2 below), _1_sotto or _0_sotto; a classification changed during the apprenticeship is a new track from that date. The 2024 renewal (OCR searched) does not amend Artt. 40 and 40 bis.
     
     TRATTAMENTO INTEGRATIVO SPECIALE (L. 199/2025 art. 1 cc. 18-21): for the work of 1 January - 30 September 2026 of a worker who asked for it (PriorYearTaxFacts.special_supplement_requested) with 2025 employment income up to 40,000 EUR, in an employer of food service, tourism or thermal establishments (EmployerProfile.activity), the engine pays 15% of the gross pay of the night hours and of the holiday overtime (AdE circ. 26/E/2023 par. 2: 'calcolata sulla retribuzione lorda'), outside income, as a credit the employer recovers in F24 (capability special_supplement).
     
