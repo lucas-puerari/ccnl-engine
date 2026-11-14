@@ -89,17 +89,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "FASA FAMILY MEMBERS (art. 74 quater): each dependent family member may be enrolled in FASA with EUR 2 a month from 1 January 2022; the request has no field for the enrolled family members, so the payment is not computed.",
-        "capability": "bilateral_funds",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "fasa_family_members",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Model the family members enrolled in FASA as a worker fact."
-        }
+        "kind": "info",
+        "text": "FASA FAMILY MEMBERS (art. 74 quater): each dependent family member may be enrolled in FASA with EUR 2 a month from 1 January 2022, 'modalità attuative ... demandate al Cda del Fondo'. The FASA Regolamento 2024 (art. 9, p. 5) puts it 'a carico del lavoratore, per ciascun soggetto da iscrivere', and the notices of 2026 and 2027 collect EUR 24 a year per member 'con bollettino MAV ... Non sono ammessi altri metodi di versamento', the MAV 'intestato al lavoratore Iscritto' (https://www.fondofasa.it/wp-content/uploads/2024/05/REGOLAMENTO-2024.pdf sha256 a3a3d6186f46fc72f13ab282bf6ec9641ec756b40ca1fb395068c1c9f37118fa; https://www.fondofasa.it/wp-content/uploads/2025/11/INFORMATIVA-2026-DEFINITIVA.pdf sha256 1762a7112fb0b886d57122982da64a171e12df7a4508ae692f4e9cf95b1c0ea1, p. 2-3): the worker pays the fund directly, outside the payslip, so no payroll amount follows."
       },
       {
         "kind": "info",
@@ -4231,7 +4222,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "757789f2ef17b199b771fc9746ae8d6b232e401fd73017a068b449ad0426cc7e",
+    "source_hash": "579c1dba1d93c720eab91fc6b9a7989873e0a871e98f07fc2f5624a06c7dc31f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -14316,6 +14307,31 @@
         "independence": "same_process",
         "checked": [
           "parameters.loyalty_premium"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-alimentari-federalimentare-fasa-family",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "FASA Regolamento 2024 art. 9 and the beneficiary notices 2026 and 2027, against the research of a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fondofasa.it/wp-content/uploads/2024/05/REGOLAMENTO-2024.pdf",
+            "sha256": "a3a3d6186f46fc72f13ab282bf6ec9641ec756b40ca1fb395068c1c9f37118fa"
+          },
+          {
+            "url": "https://www.fondofasa.it/wp-content/uploads/2025/11/INFORMATIVA-2026-DEFINITIVA.pdf",
+            "sha256": "1762a7112fb0b886d57122982da64a171e12df7a4508ae692f4e9cf95b1c0ea1"
+          }
+        ],
+        "findings": [
+          "The family member fee is paid by the worker to FASA by MAV only, not through the payslip: the fasa_family_members limitation had no payroll effect and becomes an info note."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ],

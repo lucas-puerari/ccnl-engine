@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "fasa_family_members",
-      "institute": "bilateral_funds",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "FASA FAMILY MEMBERS (art. 74 quater): each dependent family member may be enrolled in FASA with EUR 2 a month from 1 January 2022; the request has no field for the enrolled family members, so the payment is not computed.",
-      "calculation": "ccnl/alimentari-federalimentare:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the family members enrolled in FASA as a worker fact.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "alimentari-federalimentare/fasa_family_members"
-        ]
-      }
-    },
-    {
       "id": "health_and_bilateral_funds",
       "institute": "bilateral_funds",
       "variant": "all",
