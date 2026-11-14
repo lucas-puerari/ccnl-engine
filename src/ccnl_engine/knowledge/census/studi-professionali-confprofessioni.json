@@ -359,10 +359,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Artt. 91, 92, 97 C, 98: the ROL (40 or 66 hours) and the 32 hours of ex festività paid when not taken, the festività falling on Sunday and the flexibility hours not recovered.",
+      "rule": "Art. 92 and Art. 97 C: the permits added by the flexibility of the hours (30 or 60 minutes a week over the normal hours), paid with the overtime premium within six months of the end of the yearly programme when not taken, and the festività falling on a Sunday (Art. 97 C, also for the ex festività of Art. 98). The unused ROL and ex festività are paid at the deadline of Art. 91 c. 5 (permit_deadline).",
       "calculation": "ccnl/studi-professionali-confprofessioni:coverage.notes",
       "state": "absent",
-      "remediation": "Pay the unused ROL, ex festività and flexibility hours.",
+      "remediation": "Accrue the flexibility permits of Art. 92 and pay those not taken with the overtime premium; pay the festività falling on a Sunday of Art. 97 C.",
       "origin": "seeded",
       "links": {
         "limitations": [
