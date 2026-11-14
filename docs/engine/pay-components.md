@@ -643,14 +643,13 @@ on a second line, `tfr_kept`, to `tfr_accrual` or, with
 compensations scale by the share that leaves the company, and a termination
 settles the kept part.
 
-Declared residuals: the extra deduction of workers first employed from 2007
-(art. 8 c. 6, the room left by the first five years, up to 2,582.29 EUR a
-year) is left to the worker's tax return: the sources searched (D.Lgs.
-252/2005 art. 8, the COVIP guidance) set no rule for the withholding agent,
-so the run deducts within the ordinary cap alone. The eligibility
-conditions some CCNLs set (e.g. ALIFOND excludes fixed-term contracts up to
-six months) are the caller's: the engine computes the enrolment it is
-given. Fondapi on tessile PMI and metalmeccanico PMI computes on the contractual
+Declared residual `pension_extra_deduction_first_employed`: the extra
+deduction of workers first employed from 2007 (art. 8 c. 6, the room left
+by the first five years, up to half the annual cap from 1 July 2026) is left
+to the worker's tax return: the sources searched set no rule for the
+withholding agent, so the run deducts within the ordinary cap alone. The
+membership conditions a CCNL sets on its fund are CCNL data, recorded per
+CCNL until encoded (e.g. `multiservizi_pension_membership_eligibility`). Fondapi on tessile PMI and metalmeccanico PMI computes on the contractual
 minimum too; its base also counts the EDR (and, for the metalmeccanico, the
 indennita di funzione of the quadri and the elemento of the 8th and 9th
 categories), which the bundle pay lacks: an enrolled run has the open

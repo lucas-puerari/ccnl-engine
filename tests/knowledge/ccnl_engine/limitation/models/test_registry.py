@@ -54,6 +54,7 @@ from ccnl_engine.contribution.minimum_base.services import (
 )
 from ccnl_engine.limitation.loaders import load_engine_limitations
 from ccnl_engine.limitation.models import HOLDING, LimitationStatus, MonetaryImpact
+from ccnl_engine.pension_fund.services import EXTRA_DEDUCTION_LIMITATION
 from ccnl_engine.period.repositories import (
     BundledKnowledgeRepository,
 )
@@ -155,6 +156,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         MID_MONTH_CHANGE,
         PARENTAL_SPLIT_LIMITATION,
         PARENTAL_EXTRA_MONTH_LIMITATION,
+        EXTRA_DEDUCTION_LIMITATION,
     }
 
 
