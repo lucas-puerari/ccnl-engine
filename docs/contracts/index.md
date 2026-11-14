@@ -164,7 +164,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 44 | H121 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | Farmacie private | ~60k | 2021 | ⚠️ | seniority | 4 / 41 / 1 / 0 | 🧪 | 🤖 |
 | 45 | H121 | [CCNL Dipendenti delle Farmacie Private - Farmacie rurali sussidiate](farmacie-rurali-sussidiate-h121.md) | Farmacie private | ~60k | 2021 | ⚠️ | seniority | 4 / 41 / 1 / 0 | 🧪 | 🤖 |
 | 46 | H016 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | distribuzione-cooperativa | ~63k | — | ⚠️ | seniority | 26 / 48 / 1 / 0 | 🧪 | 🤖 |
-| 47 | F018 | [CCNL Edilizia PMI CONFAPI ANIEM](edilizia-pmi-confapi-aniem.md) | Edilizia | ~70000 | 2025 | ⚠️ | base_salary, bilateral_funds, pension_fund_contribution, seniority, sickness, territorial_supplement | 15 / 30 / 1 / 0 | 🧪 | 🤖 |
+| 47 | F018 | [CCNL Edilizia PMI CONFAPI ANIEM](edilizia-pmi-confapi-aniem.md) | Edilizia | ~70000 | 2025 | ⚠️ | base_salary, bilateral_funds, seniority, sickness, territorial_supplement | 15 / 34 / 1 / 0 | 🧪 | 🤖 |
 | 48 | F015 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | edilizia | ~350k | — | ⚠️ | base_salary, bilateral_funds, inps_employer, seniority, sickness | 29 / 45 / 1 / 0 | 🧪 | 🤖 |
 | 49 | F016 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | Edilizia | ~90000 | 2025 | ⚠️ | base_salary, bilateral_funds, seniority | 25 / 33 / 1 / 0 | 🧪 | 🤖 |
 | 50 | F012 | [CCNL Edilizia — Industria (ANCE), impiegati e quadri](edilizia-ance-impiegati.md) | edilizia | — | — | ⚠️ | base_salary, overtime, seniority, sickness, territorial_supplement | 44 / 23 / 0 / 0 | 🏭 | 🤖✓ |
@@ -190,7 +190,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 70 | T131 | [CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE)](istituzioni-servizi-socio-assistenziali-anaste.md) | servizi socio-assistenziali | ~120k | — | ✅ | maternity_leave | 59 / 11 / 1 / 0 | 🧪 | 🤖 |
 | 71 | F041 | [CCNL Lapidei — Industria (Confindustria Marmomacchine/ANEPLA)](lapidei-industria.md) | industria lapidea e delle cave | ~18k | — | ⚠️ | absence, base_salary, sickness | 49 / 30 / 1 / 1 | 🧪 | 🤖 |
 | 72 | F021 | [CCNL Laterizi e Manufatti Cementizi - Industria](laterizi-industria-f021.md) | industria | ~17k | — | ⚠️ | seniority | 33 / 66 / 1 / 0 | 🧪 | 🤖 |
-| 73 | D0L1 | [CCNL Lavanderie Industriali (Assosistema Confindustria)](lavanderie-industriali-assosistema.md) | lavanderie-industriali | ~17k | — | ⚠️ | base_salary | 0 / 57 / 1 / 1 | 🧪 | 🤖 |
+| 73 | D0L1 | [CCNL Lavanderie Industriali (Assosistema Confindustria)](lavanderie-industriali-assosistema.md) | lavanderie-industriali | ~17k | — | ✅ | — | 0 / 57 / 1 / 1 | 🧪 | 🤖 |
 | 74 | V925 | [CCNL Lavoratori Dipendenti Organizzazioni Sindacali (UNSIC/CONFSAL)](ooss-unsic-confsal.md) | Organizzazioni sindacali nazionali e territoriali | ~7k | 2023 | ⚠️ | base_salary, seniority | 19 / 13 / 1 / 0 | 🧪 | 🤖 |
 | 75 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi a orario ridotto, art. 14 c. 2)](lavoro-domestico-convivente-orario-ridotto.md) | lavoro domestico | — | — | ⚠️ | assistance_contribution, base_salary | 16 / 5 / 0 / 0 | 👁 | 🤖✓ |
 | 76 | H501 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (conviventi)](lavoro-domestico-convivente.md) | lavoro domestico | ~900k | — | ⚠️ | assistance_contribution, base_salary, seniority | 28 / 7 / 0 / 0 | 👁 | 🤖✓ |

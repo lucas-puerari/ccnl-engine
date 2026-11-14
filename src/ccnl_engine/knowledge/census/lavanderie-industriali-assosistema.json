@@ -257,22 +257,6 @@
       }
     },
     {
-      "id": "tranches_2027_2028_rounding",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "TRANCHES OF OCTOBER 2027 AND 2028: from the table of increases of the employer signatory's circular 113/26 (p. 11), which says it may change slightly in the rounding once shared with the unions; a later notice (125/26) says the unions accepted the tables, whose attachments are not public. The signed renewal of 19 May 2026 was not found.",
-      "calculation": "ccnl/lavanderie-industriali-assosistema:coverage.notes",
-      "state": "unverified",
-      "remediation": "Check the October 2027 and 2028 amounts against the signed renewal or the accepted tables of notice 125/26 and correct any cent.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "lavanderie-industriali-assosistema/tranches_2027_2028_rounding"
-        ]
-      }
-    },
-    {
       "id": "una_tantum_readings",
       "institute": "base_salary",
       "variant": "all",

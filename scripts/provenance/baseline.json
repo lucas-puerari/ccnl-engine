@@ -814,7 +814,6 @@
       "edilizia-pmi-confapi-aniem/apprentice_its_evr_missing",
       "edilizia-pmi-confapi-aniem/apprentice_seniority",
       "edilizia-pmi-confapi-aniem/cassa_edile_accruals_missing",
-      "edilizia-pmi-confapi-aniem/contractual_fund_partial",
       "edilizia-pmi-confapi-aniem/impiegati_premio_fedelta",
       "edilizia-pmi-confapi-aniem/loyalty_service_count",
       "edilizia-pmi-confapi-aniem/operai_gruppo_3_track_merged",
@@ -901,9 +900,6 @@
     "agreement/laterizi-industria-f021.json": [
       "laterizi-industria-f021/apprentice_seniority",
       "laterizi-industria-f021/asq_seniority_from_as"
-    ],
-    "agreement/lavanderie-industriali-assosistema.json": [
-      "lavanderie-industriali-assosistema/tranches_2027_2028_rounding"
     ],
     "agreement/lavoro-domestico-convivente-orario-ridotto.json": [
       "lavoro-domestico-convivente-orario-ridotto/annual_minimi_not_updated",

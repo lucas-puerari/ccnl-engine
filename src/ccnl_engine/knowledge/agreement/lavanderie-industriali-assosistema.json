@@ -87,7 +87,7 @@
       },
       {
         "kind": "simplification",
-        "text": "TRANCHES OF OCTOBER 2027 AND 2028: from the table of increases of the employer signatory's circular 113/26 (p. 11), which says it may change slightly in the rounding once shared with the unions; a later notice (125/26) says the unions accepted the tables, whose attachments are not public. The signed renewal of 19 May 2026 was not found.",
+        "text": "TRANCHES OF OCTOBER 2027 AND 2028: the increases of the table published by the signatory Filctem-CGIL with the renewal of 19 May 2026 (PDF p. 1, https://www.filctemcgil.it/images/download/CONTRATTI/lavanderie_industriali/260519_LAVANDERIE_ACCORDO%20DI_%20RINNOVO_2026_2028_TABELLE.pdf, sha256 473dd3315bc26d500f6e41193fe7559a0dd66bd5ed3c79282f6b7d260cc0d024) match to the cent those of circular 113/26 the data follows (B1: 50.00 in October 2027, 60.00 in October 2028).",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
@@ -96,7 +96,8 @@
             "trigger": "run",
             "effective_from": "2027-10-01"
           },
-          "remediation": "Check the October 2027 and 2028 amounts against the signed renewal or the accepted tables of notice 125/26 and correct any cent."
+          "remediation": "Resolved: union table of the renewal read on 2026-11-15, no cent differs.",
+          "status": "resolved"
         }
       },
       {
@@ -2030,7 +2031,7 @@
     "effective_until": null,
     "source": "https://www.assosistema.it/11527-2/",
     "verification_status": "unverified",
-    "source_hash": "ad7b32d06f6c5d4cd7dc673da809d15c8f327d9b0d16a9ed9c174507572427a4",
+    "source_hash": "55ae596d3cea70bdfeeb2cf73f1d4309e3a9bffb010746c14e1789fa7ccffd41",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2288,6 +2289,27 @@
         "checked": [
           "work_rules.sickness_rules",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-lavanderie-industriali-assosistema-tranches",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Increases of October 2027 and 2028 against the table of the signed renewal, from the research of a separate model session.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/lavanderie_industriali/260519_LAVANDERIE_ACCORDO%20DI_%20RINNOVO_2026_2028_TABELLE.pdf",
+            "sha256": "473dd3315bc26d500f6e41193fe7559a0dd66bd5ed3c79282f6b7d260cc0d024"
+          }
+        ],
+        "findings": [
+          "Every level's increase of October 2027 and 2028 matches the signed table."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels.base_salary"
         ]
       }
     ]
