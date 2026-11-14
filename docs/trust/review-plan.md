@@ -9,7 +9,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 14 | 273 | 188 | 0 | `funzioni-centrali-aran` |
-| terziario | 46 | 5 257 055 | 50 | 970 | 1842 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| terziario | 46 | 5 257 055 | 50 | 969 | 1843 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 49 | 4 969 900 | 148 | 1192 | 2368 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 67 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 151 | 309 | 2 | `metalmeccanico-artigianato` |
@@ -55,7 +55,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`autoferrotranvieri-internavigatori`](../contracts/autoferrotranvieri-internavigatori.md) | 120 000 | exploratory | 1 | 139 | 0 | party or official | none | none |
 | [`istituzioni-servizi-socio-assistenziali-anaste`](../contracts/istituzioni-servizi-socio-assistenziali-anaste.md) | 120 000 | exploratory | 1 | 11 | 59 | party or official | none | none |
 | [`vigilanza-privata-assiv`](../contracts/vigilanza-privata-assiv.md) | 85 000 | exploratory | 1 | 7 | 42 | party or official | none | none |
-| [`distribuzione-cooperativa-ancc`](../contracts/distribuzione-cooperativa-ancc.md) | 63 000 | exploratory | 1 | 53 | 10 | aggregator | none | none |
+| [`distribuzione-cooperativa-ancc`](../contracts/distribuzione-cooperativa-ancc.md) | 63 000 | exploratory | 1 | 52 | 11 | aggregator | none | none |
 | [`ortofrutticoli-agrumari`](../contracts/ortofrutticoli-agrumari.md) | 60 000 | exploratory | 4 | 0 | 50 | aggregator | none | none |
 | [`farmacie-private-h121`](../contracts/farmacie-private-h121.md) | 60 000 | exploratory | 1 | 41 | 4 | party or official | none | none |
 | [`farmacie-rurali-sussidiate-h121`](../contracts/farmacie-rurali-sussidiate-h121.md) | 60 000 | exploratory | 1 | 41 | 4 | party or official | none | none |

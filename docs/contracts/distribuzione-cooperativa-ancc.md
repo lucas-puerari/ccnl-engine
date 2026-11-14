@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 10 verified / 53 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 11 verified / 52 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-29 |
-| **Last review** | 2026-11-13 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 19 values found verbatim on the cited pages and marked verified; 36 left as they were (derived or not on a text page). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 187 c. 2 of the 2011 official text (PDF p. 201, text layer). | corrected | The divisors of the half-hour weeks (167 for 38.5, 184 from 42.5) are now expressible: added 38.5, 42.5 and 43.5 to time_supplements.week_divisors. |
 | 2026-11-13 | claude-opus-5-5 (ai) | Art. 75 of the signed ipotesi di accordo of 29 March 2024 deposited at the CNEL (accordo 183889, PDF p. 43, OCR of the page image). | confirmed | The 2024 renewal keeps two levels below for the first 24 months and one below after for destinations 4 to 1, one below throughout for level 5: the encoded tracks hold; limitation apprenticeship_2024_text_unread removed. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 182 of the testo ufficiale 2011 (seniority), against the renewals 2019 and 2024. | confirmed | Read Art. 182 in the text PDF (pp. 195-196): the seven amounts of the file match the table; the service counts from the 21st year of age, which the file did not apply. Upgraded the provenance from the aggregator to the signed text, added counted_from_age 21, and narrowed the proxy limitation to the 3S and 4S amounts, which the table does not print. |
 
 ## Salary table
 
@@ -115,12 +116,12 @@ under-level: `1`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "distribuzione-cooperativa-ancc/seniority_amounts_proxy_source · seniority · impact unknown · open"
-    SENIORITY AMOUNTS: from kitech.it only (proxy source). No independent primary-source confirmation. Cadence (36 months) and maximum (10) confirmed from CCNL text via olympus.uniurb.it.
+!!! warning "distribuzione-cooperativa-ancc/seniority_super_levels · seniority · impact unknown · open"
+    SENIORITY OF LEVELS 3S AND 4S: the Art. 182 table has rows III and IV only, while the minimum table of the 2024 renewal (art. 185, p. 70) prints 3S and 4S apart; the file pays 3S the III amount (21,79) and 4S the IV amount (19,93), a reading the text does not state.
 
-    **Applies when:** `seniority` applies.
+    **Applies when:** `seniority` applies; level in 3S, 4S.
 
-    **Remediation:** Confirm the seniority amounts against a primary CCNL source.
+    **Remediation:** Source the seniority amount of levels 3S and 4S (signed table or interpretation of the parties).
 
 !!! warning "distribuzione-cooperativa-ancc/apprentice_seniority · seniority · impact unknown · open"
     APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
@@ -320,7 +321,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     ADDITIONAL MONTHS: 14 (tredicesima December + quattordicesima June). Source: CCNL text (olympus.uniurb.it summary, kitech.it).
     
-    SENIORITY: triennial (cadence_months=36), maximum 10 scatti. Per-level amounts from kitech.it Dec 2025 (proxy, label SIMPLIFICATION). Q=27.82, L1=26.64, L2=24.52, L3S=21.79, L3=21.79, L4S=19.93, L4=19.93, L5=18.84, L6=16.51 EUR/scatto. L3S=L3 and L4S=L4 duplication confirmed plausible in Terziario family.
+    SENIORITY (Art. 182 of the testo ufficiale 2011, PDF pp. 195-196): ten triennial scatti of the service 'a decorrere dal 21° anno di età' (counted_from_age 21, from SeniorityFact.birth_date; without it the service counts from the start; c. 2 is the transition of 1 July 1975, kept as the first hire the rule covers), fixed amounts 'Dal 1° aprile 1987': Q 27,82, I 26,64, II 24,52, III 21,79, IV 19,93, V 18,84, VI 16,51, paid from the month after the triennium (c. 5). The economic renewal 2019 (CNEL 100291) replaces only art. 185 and the 2024 renewal (CNEL 183889) does not amend art. 182.
     
     INPS: uses 2026-terziario.json (terziario sector). No bilateral fund substituting INPS contributions. CNEL code: H016.
     
