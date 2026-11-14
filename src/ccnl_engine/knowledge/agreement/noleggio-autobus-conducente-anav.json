@@ -85,14 +85,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: Seniority amounts (cadence_months=24, max 9 tranches) taken from kitech.it tables for IC36, which show identical values to IC35 (ANIASA). Cross-contract borrowing — verify against official ANAV CCNL text.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "seniority_from_ic35",
-          "remediation": "Verify the seniority amounts against the official ANAV CCNL text."
-        }
+        "kind": "info",
+        "text": "SENIORITY (Art. 47 of the signed renewal of 6 October 2022, CNEL 154242, pp. 79-80, kept by the renewal of 23 May 2025): an increment for every two years of service, up to nine, Q1, Q2 and A1 33,10, A2 32,19, B1 30,36, B2 29,57, B3 29,39, C1 29,23, C2 27,17, C3 26,61, C4 25,35; paid from the month after the biennium (c. 2). The amounts were first taken from the IC35 tables, which print the same figures."
       },
       {
         "kind": "info",
@@ -126,19 +120,20 @@
         "text": "SALARY TABLES: the minimums of October 2023 are those of the signed CCNL of 6 October 2022 (allegato 5, PDF p. 83; the same column of ANAV's Allegato n. 2 of 7 October 2022); the renewal of 23 May 2025 (ANAV, signed, pp. 1-2) adds 60 EUR at C2 from July 2025 and 100 EUR from August 2026, re-proportioned by the parameters (100/134 for C4 and so on). The agreement does not state the rounding of the re-proportioned amounts: the file rounds the whole increase once, as the 2022 Allegato n. 2 adds the aumento a regime to the old tabellare (a cent may differ from rounding each tranche, e.g. C4 915,65 against 915,66)."
       },
       {
+        "kind": "info",
+        "text": "APPRENTICE SENIORITY (Art. 21 c. 9-10, p. 37): the apprentice pay lists 'la retribuzione tabellare, l'ex indennità di contingenza + e.d.r.' and named allowances, no increment; on continuation 'l'intero periodo di apprendistato professionalizzante è utile [...] ai fini degli aumenti periodici di anzianità'. apprentice_amount 0 during the apprenticeship and apprenticeship_credit_share 1 after it."
+      },
+      {
         "kind": "simplification",
-        "text": "APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.",
+        "text": "Art. 47 c. 3 and 5: an increment is paid from the first day of the month in which the biennium is completed when more than 15 days of that month remain, and on a promotion 'il dipendente mantiene l'importo in cifra fissa degli aumenti maturati nel livello di provenienza'. The engine pays from the month after the biennium and prices all the increments at the current level.",
         "capability": "seniority",
-        "monetary_impact": "unknown",
+        "monetary_impact": "yes",
         "limitation": {
-          "variant": "apprentice_seniority",
+          "variant": "seniority_month_and_promotion",
           "applies_when": {
-            "trigger": "path",
-            "contract_types": [
-              "apprentice"
-            ]
+            "trigger": "outside_input"
           },
-          "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
+          "remediation": "Bring the increment forward when more than 15 days of the month remain, and keep the matured increments at the amounts of the level they matured in."
         }
       }
     ]
@@ -251,6 +246,31 @@
         "independence": "same_process",
         "checked": [
           "parameters.una_tantum"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-seniority",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 47 (seniority) and Art. 21 c. 9-10 (apprentice pay and credit) of the renewal of 6 October 2022, against the renewal of 23 May 2025.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/154242",
+            "sha256": "7965a7906e87145463589dd5cda2d3aba34412e070de356cf71de1325cc096ac"
+          },
+          {
+            "url": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
+            "sha256": "a66db54eb020e05893f2685b5beb4b279fde605e0213ca48b7aa0b9c590cc093"
+          }
+        ],
+        "findings": [
+          "Read Art. 47 and Art. 21 on the page images: the nine amounts match the file; apprentices take no increment and the whole apprenticeship counts on continuation. Re-sourced the amounts, set the apprentice amount to zero with full credit, closed seniority_from_ic35 and apprentice_seniority, and recorded the c. 3 anticipation and c. 5 promotion rules, which the engine does not apply."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]
@@ -384,24 +404,67 @@
         }
       },
       "provenance": {
-        "status": "assumed",
+        "status": "verified",
         "location": {
           "source_document": {
-            "document_id": "kitech-ic36-tabella-retributiva",
-            "title": "kitech-ic36-tabella-retributiva",
-            "kind": "tabella_retributiva",
-            "url": "https://www.kitech.it/Retribuzione-stipendio-ccnl.aspx?CodiceCateg=548"
+            "document_id": "cnel-ic36-154242",
+            "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente e attivita correlate, 6 ottobre 2022 (ANAV, FILT-CGIL, FIT-CISL, UILTRASPORTI), CNEL 154242",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/154242",
+            "published_on": "2022-10-06",
+            "sha256": "7965a7906e87145463589dd5cda2d3aba34412e070de356cf71de1325cc096ac"
           },
-          "section": "Scatti di anzianita"
+          "page": "79-80 (PDF 81-82)",
+          "section": "Articolo 47 - Aumenti periodici di anzianita",
+          "quote": "per ogni biennio di servizio effettivamente prestato [...] Q1, Q2 e A1 € 33,10 A2 € 32,19 B1 € 30,36 B2 € 29,57 B3 € 29,39 C1 € 29,23 C2 € 27,17 C3 € 26,61 C4 € 25,35 [...] un massimo di 9 aumenti periodici"
         },
         "extraction": {
           "method": "ai",
-          "model": "claude-sonnet-4-6",
-          "extraction_timestamp": "2026-09-18T00:00:00",
-          "verification_status": "unverified",
-          "effective_from": "2024-01-01"
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T00:00:00",
+          "verification_status": "verified",
+          "effective_from": "2022-10-06",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T00:00:00Z",
+          "review_id": "2026-11-14-ai-seniority"
         }
-      }
+      },
+      "apprentice_amount": {
+        "periods": [
+          {
+            "valid_from": "2024-01-01",
+            "valid_until": null,
+            "value": "0.00",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-ic36-154242",
+                  "title": "Accordo nazionale di rinnovo del CCNL noleggio autobus con conducente e attivita correlate, 6 ottobre 2022 (ANAV, FILT-CGIL, FIT-CISL, UILTRASPORTI), CNEL 154242",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/154242",
+                  "published_on": "2022-10-06",
+                  "sha256": "7965a7906e87145463589dd5cda2d3aba34412e070de356cf71de1325cc096ac"
+                },
+                "page": "37 (PDF 39)",
+                "section": "Art. 21 c. 9-10, apprendistato professionalizzante",
+                "quote": "Agli apprendisti spettano [...] la retribuzione tabellare, l'ex indennità di contingenza + e.d.r., e i seguenti elementi retributivi [...] Al termine del contratto di apprendistato, in caso di prosecuzione del rapporto di lavoro, l'intero periodo di apprendistato professionalizzante è utile [...] ai fini degli aumenti periodici di anzianità"
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00",
+                "verification_status": "verified",
+                "effective_from": "2022-10-06",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "review_id": "2026-11-14-ai-seniority"
+              }
+            }
+          }
+        ]
+      },
+      "apprenticeship_credit_share": "1"
     },
     "accrual_rule": {
       "min_days": 14,
@@ -3974,7 +4037,7 @@
     "effective_until": "2026-12-31",
     "source": "https://anav.it/wp-content/uploads/2025/05/accordo-nazionale-di-rinnovo-del-ccnl-noleggio-autobus-con-conducente-e-le-relativie-attivita-correlate-23-maggio-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "002448ac8ca6c89da914b2a7492993aaf81236d301c512526eadc4535a37df94",
+    "source_hash": "e692895c4bd0170a2eb3f256fb7f73cdf3cea7b14980b500cc507c785da00423",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   }

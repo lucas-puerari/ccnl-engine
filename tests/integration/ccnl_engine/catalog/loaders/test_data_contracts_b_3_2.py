@@ -462,3 +462,16 @@ def test_comunicazione_function_allowance_from_august_2026() -> None:
     (allowance,) = [a for a in level.fixed_allowances if a.code == "IND_FUN"]
     assert allowance.monthly.value_at(date(2026, 7, 31)) == Decimal("0.00")
     assert allowance.monthly.value_at(date(2026, 8, 1)) == Decimal("51.65")
+
+
+def test_anav_apprentice_seniority_credited_on_continuation() -> None:
+    """Art. 21 c. 9-10: no increment while apprentice, whole period credited."""
+    increments = load_ccnl(
+        "noleggio-autobus-conducente-anav"
+    ).parameters.seniority_increments
+    assert increments.apprentice_amount is not None
+    assert increments.apprentice_amount.value_at(date(2026, 6, 1)) == Decimal("0.00")
+    assert increments.apprenticeship_credit_share == Decimal(1)
+    assert increments.amount_by_level["C2"].value_at(date(2026, 6, 1)) == Decimal(
+        "27.17"
+    )

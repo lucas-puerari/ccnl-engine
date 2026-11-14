@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, seniority, una_tantum |
 
-5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 34 verified / 33 derived / 4 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 35 verified / 33 derived / 3 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-23 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2026-08-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The una tantum of the renewal of 23 May 2025 (p. 1, OCR). | corrected | Renewal of 23 May 2025, p. 1: 600 EUR at C2 in two installments (June 2025, January 2026) for 1 January 2024 to 31 May 2025, staff in service on 23 May 2025, months with more than 15 days, part time by hours, outside the TFR: parameters.una_tantum[UT_2025]. |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 33 values found verbatim on the cited pages and marked verified; 3 left as they were (derived or not on a text page). |
 | 2026-11-09 | claude-opus-5-5 (ai) | Una Tantum of the signed renewal, PDF p. 1. | confirmed | Confirmed the C2 installments, service-on-signing condition, proportional service and part time, and TFR and Priamo exclusions; narrowed the obsolete exclusion note to the unmodelled effective-work-months condition. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 47 (seniority) and Art. 21 c. 9-10 (apprentice pay and credit) of the renewal of 6 October 2022, against the renewal of 23 May 2025. | confirmed | Read Art. 47 and Art. 21 on the page images: the nine amounts match the file; apprentices take no increment and the whole apprenticeship counts on continuation. Re-sourced the amounts, set the apprentice amount to zero with full credit, closed seniority_from_ic35 and apprentice_seniority, and recorded the c. 3 anticipation and c. 5 promotion rules, which the engine does not apply. |
 
 ## Salary table
 
@@ -117,13 +118,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the pre-July 2025 salary table from an official ANAV table.
 
-!!! warning "noleggio-autobus-conducente-anav/seniority_from_ic35 · seniority · impact unknown · open"
-    SIMPLIFICATION: Seniority amounts (cadence_months=24, max 9 tranches) taken from kitech.it tables for IC36, which show identical values to IC35 (ANIASA). Cross-contract borrowing — verify against official ANAV CCNL text.
-
-    **Applies when:** `seniority` applies.
-
-    **Remediation:** Verify the seniority amounts against the official ANAV CCNL text.
-
 !!! warning "noleggio-autobus-conducente-anav/una_tantum_effective_work_months · una_tantum · impact yes · open"
     The two una tantum installments are paid, but the agreement counts months of effective work; the engine counts months of employment, without reducing for months with no effective work. An absence spanning a covered month can overstate the payment.
 
@@ -131,12 +125,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Provide the covered months of effective work for this payment and count only those months when prorating each installment.
 
-!!! warning "noleggio-autobus-conducente-anav/apprentice_seniority · seniority · impact unknown · open"
-    APPRENTICE SENIORITY: the CCNL text read for this ruleset does not state whether apprentices accrue the level seniority increments or an amount of their own, and no apprentice amount is modelled. The engine pays no increment during the apprenticeship (provisional); the run is affected when the apprentice has matured increments the level pays.
+!!! warning "noleggio-autobus-conducente-anav/seniority_month_and_promotion · seniority · impact yes · open"
+    Art. 47 c. 3 and 5: an increment is paid from the first day of the month in which the biennium is completed when more than 15 days of that month remain, and on a promotion 'il dipendente mantiene l'importo in cifra fissa degli aumenti maturati nel livello di provenienza'. The engine pays from the month after the biennium and prices all the increments at the current level.
 
-    **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
+    **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note.
+    **Remediation:** Bring the increment forward when more than 15 days of the month remain, and keep the matured increments at the amounts of the level they matured in.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
@@ -325,11 +319,15 @@ Each simplification below is a model limitation of the registry. An open limitat
     
     SALARY TABLE: 2024-2026 contract signed 23/05/2025, validity 01/01/2024-31/12/2026. Two salary tranches: T1 from 01/07/2025 (+60 EUR at C2, riparametrate), T2 from 01/08/2026 (+100 EUR at C2, riparametrate). New EDR (EDR_RINNOVO) introduced from 01/07/2025: 40.00 EUR at C2, riparametrate per level, paid for 14 mensilita.
     
+    SENIORITY (Art. 47 of the signed renewal of 6 October 2022, CNEL 154242, pp. 79-80, kept by the renewal of 23 May 2025): an increment for every two years of service, up to nine, Q1, Q2 and A1 33,10, A2 32,19, B1 30,36, B2 29,57, B3 29,39, C1 29,23, C2 27,17, C3 26,61, C4 25,35; paid from the month after the biennium (c. 2). The amounts were first taken from the IC35 tables, which print the same figures.
+    
     HOURLY DIVISOR: 173, consistent with 40h/week x 52/12 = 173.33 convention; ADDITIONAL MONTHS: 14 (tredicesima + quattordicesima).
     
     TAX SECTOR: terziario (same classification as IC35 autorimesse; bus rental companies fall under ATECO division 49 which uses terziario INPS rates).
     
     SALARY TABLES: the minimums of October 2023 are those of the signed CCNL of 6 October 2022 (allegato 5, PDF p. 83; the same column of ANAV's Allegato n. 2 of 7 October 2022); the renewal of 23 May 2025 (ANAV, signed, pp. 1-2) adds 60 EUR at C2 from July 2025 and 100 EUR from August 2026, re-proportioned by the parameters (100/134 for C4 and so on). The agreement does not state the rounding of the re-proportioned amounts: the file rounds the whole increase once, as the 2022 Allegato n. 2 adds the aumento a regime to the old tabellare (a cent may differ from rounding each tranche, e.g. C4 915,65 against 915,66).
+    
+    APPRENTICE SENIORITY (Art. 21 c. 9-10, p. 37): the apprentice pay lists 'la retribuzione tabellare, l'ex indennità di contingenza + e.d.r.' and named allowances, no increment; on continuation 'l'intero periodo di apprendistato professionalizzante è utile [...] ai fini degli aumenti periodici di anzianità'. apprentice_amount 0 during the apprenticeship and apprenticeship_credit_share 1 after it.
     
 
 ## Raw data
