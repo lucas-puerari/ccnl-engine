@@ -54,8 +54,9 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "CCNL with that premium records its limitation"
     ),
     "OvertimeEvent.in_periodic_shift": absence_is_fact(
-        "unknown turnista status: in a firm up to the CCNL headcount the yearly "
-        "exempt quota is not chosen and the premium past it is not added"
+        "unknown turnista status: the overtime takes the bands of the non "
+        "turnisti; in a firm up to the CCNL headcount the yearly exempt quota "
+        "is not chosen and the premium past it is not added"
     ),
     "OvertimeEvent.supplementary_hours_before": absence_is_fact(
         "unknown earlier supplementary hours of the year: a CCNL whose rate "

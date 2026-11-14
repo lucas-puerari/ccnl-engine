@@ -160,15 +160,26 @@ def _bands_of(
     found: list[tuple[OvertimeBand, Decimal]] = []
     for band in bands.bands:
         rate = _in_force(band, event)
+        if rate is None:
+            continue
         if (
             band.code.startswith(_OVERTIME_PREFIX)
             and band.kind is paid_as
             and kind in band.applies_to_kinds
             and not band.required_context_kinds
-            and rate is not None
+            and _for_worker(band, event)
         ):
             found.append((band, rate))
     return found
+
+
+def _for_worker(band: OvertimeBand, event: OvertimeEvent) -> bool:
+    """Whether the band pays the event's shift column.
+
+    Returns:
+        True when its ``shift_workers`` is ``None`` or the turnista status.
+    """
+    return band.shift_workers in {None, bool(event.in_periodic_shift)}
 
 
 def _has_threshold(band: OvertimeBand) -> bool:
