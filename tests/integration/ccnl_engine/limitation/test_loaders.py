@@ -50,7 +50,6 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "notice_indemnity_day_measure",
         "parental_hourly_ccnl_rule",
         "mid_month_level_change",
-        "arrears_unused_deductions",
         "una_tantum_readings",
         "sunday_holiday_ccnl_clause",
     }
@@ -62,6 +61,7 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "notice_indemnity_extra_months",
         "notice_indemnity_partial",
         "personal_withholding_same_kind",
+        "arrears_unused_deductions",
         "extraordinary_leave_daily_base",
         "naspi_dismissal_exceptions",
         "sickness_agricultural_fixed_term_days",

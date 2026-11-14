@@ -872,7 +872,11 @@ DEFAULT_CASES: Mapping[str, tuple[DefaultCase, ...]] = {
         ),
     ),
     "ArrearsEvent.unused_deductions": (
-        _event_pair(replace(_unrated(), unused_deductions=Decimal(40)), _unrated()),
+        _event_pair(
+            replace(_arrears(PeriodId(2025, 6)), unused_deductions=Decimal(40)),
+            _arrears(PeriodId(2025, 6)),
+            "unused_deductions",
+        ),
     ),
     "ArrearsEvent.reference_period": (
         _event_pair(_arrears(PeriodId(2025, 6)), _arrears(None), "reference_period"),

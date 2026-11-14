@@ -13,7 +13,7 @@ from pydantic import ValidationError
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.una_tantum.models import UnaTantum, UnaTantumInstallment
 from ccnl_engine.compensation.una_tantum.rules import _months, una_tantum_events
-from ccnl_engine.inputs import EmploymentPeriod, WeeklyHours
+from ccnl_engine.inputs import EmploymentPeriod, PriorYearTaxFacts, WeeklyHours
 from ccnl_engine.run.models import RunKind
 from ccnl_engine.run.types import PeriodId
 
@@ -34,6 +34,7 @@ def _request(hired: date) -> PeriodCalculationRequest:
             employment_period=EmploymentPeriod(hired),
             weekly_hours=None,
             full_time_weekly_hours=None,
+            prior_year=PriorYearTaxFacts(),
         ),
     )
 
@@ -133,6 +134,7 @@ def _may_2026(
             employment_period=EmploymentPeriod(hired),
             weekly_hours=None if weekly is None else WeeklyHours(Decimal(weekly)),
             full_time_weekly_hours=None if full is None else WeeklyHours(Decimal(full)),
+            prior_year=PriorYearTaxFacts(),
         ),
     )
 
@@ -196,6 +198,7 @@ def _january_2026(hired: date) -> PeriodCalculationRequest:
             employment_period=EmploymentPeriod(hired),
             weekly_hours=None,
             full_time_weekly_hours=None,
+            prior_year=PriorYearTaxFacts(),
         ),
     )
 
@@ -282,3 +285,20 @@ def test_an_employment_ended_on_the_signing_day_is_in_service() -> None:
     )
     events, _ = una_tantum_events(request, _ANAV, RunKind.REGULAR)
     assert [e.amount for e in events] == [Decimal("300.00")]
+
+
+def test_the_earlier_years_carry_the_declared_unused_deductions() -> None:
+    """Art. 21 c. 4 TUIR: the worker's declaration reaches the separate share only."""
+    declared = PriorYearTaxFacts(arrears_unused_deductions=Decimal("40.00"))
+    request = cast(
+        "PeriodCalculationRequest",
+        SimpleNamespace(**{
+            **vars(_may_2026(date(2024, 1, 1))),
+            "prior_year": declared,
+        }),
+    )
+    events, _ = una_tantum_events(request, _FIAIP, RunKind.REGULAR)
+
+    assert [(e.reference_period, e.unused_deductions) for e in events] == [
+        (PeriodId(2025, 4), Decimal("40.00")),
+    ]

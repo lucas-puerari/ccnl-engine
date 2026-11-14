@@ -705,8 +705,12 @@ state it as `separate_tax_rate`; otherwise the engine computes it from
 `PriorYearTaxFacts.net_income_biennio` (the reddito complessivo netto of the
 two years): the average rate of the brackets of the tax year on half their
 sum, half the other year when one has no income, the first bracket when
-neither has (c. 3). The deductions of art. 21 c. 4 the worker did not use
-are not taken (engine limitation `arrears_unused_deductions`). Without
+neither has (c. 3). The tax is reduced by the deductions of art. 21 c. 4
+the worker declares not used in the years of the arrears
+(`ArrearsEvent.unused_deductions`; for the una tantum the engine pays,
+`PriorYearTaxFacts.arrears_unused_deductions`): unstated, the tax is not
+reduced and the run carries `arrears_unused_deductions_unknown`, a
+`missing_fact unused_deductions` blocker. Without
 either, the separate tax is not computed: an `arrears_separate_rate_unknown`
 issue and a `missing_fact net_income_biennio` blocker.
 `reference_period` is compared with the tax year of the run (a December

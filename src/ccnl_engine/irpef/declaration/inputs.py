@@ -73,14 +73,18 @@ class PriorYearTaxFacts:
         special_supplement_requested: Whether the worker asked in writing,
             attesting ``employment_income``, for the trattamento integrativo
             speciale of L. 199/2025 art. 1 cc. 18-20 (c. 20).
+        arrears_unused_deductions: The deductions of art. 12 and art. 13
+            cc. 1-2 TUIR the worker declared not used in the years of the
+            una tantum the engine pays as arrears (art. 21 c. 4 TUIR), in
+            EUR, ``>= 0``.  ``None`` when not declared.
 
     Raises:
         InvalidInputError: When ``employment_income`` is not a finite,
             non-negative ``Decimal``, a waiver names no regime,
             ``shortfall_deferral`` is not a request, two foreign taxes
             name the same State, ``net_income_biennio`` is not two
-            non-negative amounts, or ``special_supplement_requested`` is not
-            a bool.
+            non-negative amounts, ``special_supplement_requested`` is not
+            a bool, or ``arrears_unused_deductions`` is negative.
     """
 
     employment_income: Decimal | None = None
@@ -89,9 +93,17 @@ class PriorYearTaxFacts:
     foreign_taxes: tuple[ForeignTaxPaid, ...] = ()
     net_income_biennio: tuple[Decimal, Decimal] | None = None
     special_supplement_requested: bool = False
+    arrears_unused_deductions: Decimal | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         owner = "PriorYearTaxFacts"
+        require_decimal(
+            self.arrears_unused_deductions,
+            f"{owner}.arrears_unused_deductions",
+            feature=_FEATURE,
+            minimum=Decimal(0),
+            optional=True,
+        )
         require_decimal(
             self.employment_income,
             f"{owner}.employment_income",

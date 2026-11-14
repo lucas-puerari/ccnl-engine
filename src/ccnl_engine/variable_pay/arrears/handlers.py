@@ -25,6 +25,7 @@ from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
     CalculationStatus,
+    IssueCause,
 )
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.event.facade import ArrearsEvent
@@ -51,7 +52,7 @@ ORDINARY_TAXATION = "ordinary_taxation"
 REFERENCE_PERIOD_UNKNOWN = "reference_period_unknown"
 #: Engine limitation of a rate the engine computes without the deductions of
 #: art. 21 c. 4 TUIR the worker did not use in the years of the arrears.
-UNUSED_DEDUCTIONS = "arrears_unused_deductions"
+UNUSED_DEDUCTIONS_UNKNOWN = "arrears_unused_deductions_unknown"
 _NO_DEDUCTION = Decimal(0)
 
 
@@ -131,6 +132,23 @@ def _rate_issue(index: str, tax_year: int) -> CalculationIssue:
         ),
         status=CalculationStatus.INCOMPLETE,
         fact="net_income_biennio",
+    )
+
+
+def _unused_issue(index: str) -> CalculationIssue:
+    return CalculationIssue(
+        code=UNUSED_DEDUCTIONS_UNKNOWN,
+        capability=_CAPABILITY,
+        message=(
+            f"ArrearsEvent {index}: the separate tax is reduced by the deductions "
+            "the worker did not use in the years of the arrears, which the "
+            "worker declares (art. 21 c. 4 TUIR); state "
+            "ArrearsEvent.unused_deductions, or "
+            "PriorYearTaxFacts.arrears_unused_deductions for the una tantum"
+        ),
+        status=CalculationStatus.INCOMPLETE,
+        fact="unused_deductions",
+        cause=IssueCause.FACT,
     )
 
 
@@ -215,6 +233,5 @@ def _handle_arrears(event: ArrearsEvent, ctx: _EventHandlerCtx) -> EventEffect:
         intents=intents,
         inps_delta=gross,
         decisions=[replace(decision, inputs=inputs)],
-        issues=issues,
-        limitations=(UNUSED_DEDUCTIONS,) if computed and unused is None else (),
+        issues=[*issues, *([_unused_issue(ctx.evt_id)] if unused is None else [])],
     )
