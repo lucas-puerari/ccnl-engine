@@ -255,6 +255,27 @@
           "parameters.seniority_increments.apprentice_amount",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-farmacie-private-h121-sunday-holidays",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+            "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+          }
+        ],
+        "findings": [
+          "work_rules.sunday_holidays: 01-01, 01-06, easter_monday, 04-25, 05-01, 06-02, 08-15, 11-01, 12-08, 12-25, 12-26, patron, 11-04"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays"
+        ]
       }
     ]
   },
@@ -1715,7 +1736,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "ce2da3e7dd7f796472a2669014450d9dd31d5597db423f60ac0cabd11de15f14",
+    "source_hash": "068b45751e45d3c8e0fe5cdfbf4a670bd3a2fee288ae804171b021eb943c3e6f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2228,6 +2249,51 @@
           "verified_at": "2026-11-01T12:51:22Z",
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice"
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron",
+        "11-04"
+      ],
+      "on_rest_day": false,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-farmacie-private-2021",
+            "title": "CCNL per i Dipendenti da Farmacia Privata, 7 settembre 2021",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+            "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+          },
+          "page": "16",
+          "section": "art. 23",
+          "quote": "Nulla è dovuto al lavoratore nel caso che le festività ricorrano in un periodo di sospensione della retribuzione e dal servizio in conseguenza di provvedimento disciplinare o di assenza ingiustificata.\n\nNel caso di coincidenza di una delle festività di cui sopra con la domenica, in aggiunta alla retribuzione di fatto sarà corrisposto al lavoratore un ulteriore importo pari alla retribuzione di fatto giornaliera compreso ogni elemento accessorio.\n\nPer la festività civile del 4 novembre la cui celebrazione è stata spostata alla domenica successiva, ai sensi dell’art. 1, 2° comma, della legge 5 marzo 1977, n. 54, il lavoratore beneficerà del trattamento previsto per le festività che coincidono con la domenica."
+        },
+        "transformation": "L'art. 23 applica il trattamento delle festività coincidenti con la domenica alle dodici festività elencate nella citazione dello stesso articolo a p. 15 (1° gennaio, Epifania, lunedì dopo Pasqua, 25 aprile, 1° maggio, 2 giugno, 15 agosto, 1° novembre, 8 dicembre, 25 e 26 dicembre, patrono) e al 4 novembre celebrato la domenica successiva. Non nomina un divisore; non estende il trattamento al sabato, al riposo settimanale non domenicale o alla coincidenza con un'altra festività.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2021-09-07",
+          "verification_status": "unverified"
         }
       }
     }

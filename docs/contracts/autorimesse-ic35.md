@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Parental hourly supplement, Art. 68 and Art. 79, PDF pp. 113–114, 124–125. | confirmed | Art. 79(b): gli importi orari del trattamento economico si determinano dividendo la retribuzione giornaliera per la durata dell’orario giornaliero come determinato dalla lettera a);<br>Art. 68 grants 80% for the first 30 days and equates adoption and foster care; the current hourly event models half-days only. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto and sick pay against a second research of a separate model session; quotes checked on the source. | corrected | Added the comporto window of art. 60 (12 months within 36); the sick pay of the operai stays as it was, its two clauses being contradictory. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Ticket restaurant of art. 45 against the research of a separate model session; quotes checked on the text layer. | corrected | Added the daily meal benefit of 8.00 from 2023 and 10.00 from April 2027. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text. | confirmed | work_rules.sunday_holidays: 01-01, 01-06, easter_monday, 04-25, 05-01, 06-02, 06-29, 08-15, 10-04, 11-01, 11-04, 12-08, 12-25, 12-26, patron; divisor 26 |
 
 ## Salary table
 

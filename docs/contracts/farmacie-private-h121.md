@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2021-09-07 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2021-11-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Art. 3 Area Q and Tabella C (p. 59) of the CCNL of 7 September 2021. | corrected | Q2 and Q3 get 130 EUR after 12 years in level 1 and Area Q, 100 EUR before. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | isq_twelve_year_tier: The existing Q2 and Q3 fixed allowances are EUR 100 below 144 completed months and EUR 130 from 144 months, effective 2021-11-01. Both use career_service; the engine selects supplied SeniorityFact.career_months and applies mutually exclusive <144 / >=144 gates. With qualifying mo |
 | 2026-11-14 | claude-opus-5-5 (ai) | Apprentice seniority increments against art. 53 of the CCNL, from the targeted research of a separate model session; text layer. | confirmed | Art. 53 grants the increments to the lavoratore qualificato: none during the apprenticeship. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text. | confirmed | work_rules.sunday_holidays: 01-01, 01-06, easter_monday, 04-25, 05-01, 06-02, 08-15, 11-01, 12-08, 12-25, 12-26, patron, 11-04 |
 
 ## Salary table
 

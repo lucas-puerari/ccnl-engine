@@ -181,6 +181,27 @@
         "checked": [
           "work_rules.sickness_rules.comporto_windows"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-cemento-calce-gesso-industria-sunday-holidays",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
+            "sha256": "0577ad1f914031470abf63b59ffc33b0eff779311bbe10fe670a28b3b0823f97"
+          }
+        ],
+        "findings": [
+          "work_rules.sunday_holidays: 01-01, 01-06, 04-25, 05-01, 06-02, 08-15, 11-01, 11-04, 12-08, 12-25, 12-26, easter_monday, patron; divisor 26"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays"
+        ]
       }
     ]
   },
@@ -3662,7 +3683,7 @@
     "effective_until": null,
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
     "verification_status": "verified",
-    "source_hash": "b117c8b83e82f5f09d247c043d111816320962fdfb110f6ff3cfab885259467e",
+    "source_hash": "6949ea0161f702dd2105f66ba78270e9826202a8a0c321c4d57b6577fda6f4b9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4039,6 +4060,52 @@
           "verified_at": "2026-11-01T12:51:22Z",
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice"
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "11-04",
+        "12-08",
+        "12-25",
+        "12-26",
+        "easter_monday",
+        "patron"
+      ],
+      "divisor": 26,
+      "on_rest_day": false,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-cemento-calce-gesso-industria-2025",
+            "title": "CCNL 8 maggio 2025",
+            "kind": "associazione",
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
+            "sha256": "0577ad1f914031470abf63b59ffc33b0eff779311bbe10fe670a28b3b0823f97"
+          },
+          "page": "139 (stampata 123)",
+          "section": "art. 47",
+          "quote": "Nel caso che una delle festività di cui ai punti b), c) e d) coincida con la domenica - oppure con il giorno di riposo compensativo per i lavoratori che, per i casi previsti dalla legge e dal contratto, prestino la loro opera di domenica - verrà corrisposto 1/26 della retribuzione globale di fatto mensile."
+        },
+        "transformation": "La quota è 1/26 della retribuzione globale di fatto mensile. I punti b), c) e d) dell'art. 47 (PDF p. 138) elencano 25 aprile, 1° maggio, 2 giugno, 1° e 6 gennaio, lunedì successivo alla Pasqua, 15 agosto, 1° novembre, 8, 25 e 26 dicembre e Santo Patrono. L'art. 33, punto 3 (PDF pp. 115–116), equipara il 4 novembre, celebrato nella prima domenica di novembre, alle festività coincidenti con la domenica: aggiunto 11-04. Il riposo compensativo menzionato riguarda soltanto chi lavora di domenica nei casi previsti, non qualunque giorno di riposo settimanale.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2025-01-01",
+          "verification_status": "unverified"
         }
       }
     }

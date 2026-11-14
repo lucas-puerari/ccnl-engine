@@ -6090,7 +6090,7 @@
     "effective_until": null,
     "source": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
     "verification_status": "unverified",
-    "source_hash": "ee6b7fd14e2f43e5f33f0e18796aba5d4437f29b5d854d508567ad7bf2f3e3f7",
+    "source_hash": "87b9ad903d057800983396737959432100a068afe7bc992ffce9a45a77c94723",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -6593,6 +6593,52 @@
           }
         ]
       }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "11-04",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "divisor": 26,
+      "on_rest_day": true,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-cooperative-sociali-2023-2025",
+            "title": "CCNL Cooperative sociali 2023–2025",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+          },
+          "page": "PDF pp. 96–97",
+          "section": "artt. 59–60",
+          "quote": "Tutte le lavoratrici e i lavoratori devono fruire di 1 giorno di riposo in occasione di ciascuna delle seguenti festività:\n1) Capodanno;\n2) Epifania;\n3) Anniversario della Liberazione;\n4) Lunedì di Pasqua;\n5) Festa del Lavoro;\n6) 2 giugno (Festa della Repubblica)\n7) Assunzione della Madonna;\n8) Ognissanti;\n9) Immacolata Concezione;\n10) S. Natale;\n11) S. Stefano;\n12) S. Patrono (a Roma tale festività ricorre il 29 giugno).\n\nIn occasione delle suddette festività decorre a favore della lavoratrice e del lavoratore la normale retribuzione. Nel caso in cui una delle festività sopra indicate cada nel giorno di riposo settimanale, in aggiunta alla normale retribuzione viene corrisposto un ulteriore importo pari alla retribuzione normale di fatto giornaliera (1/26).\n\nPer la festività nazionale del 4 novembre, la cui celebrazione è stata spostata alla 1a domenica del mese, si provvederà a una retribuzione giornaliera suppletiva secondo la regola delle festività cadenti di domenica. Su richiesta anticipata del lavoratore e compatibilmente con le esigenze di servizio la direzione aziendale potrà concedere in sostituzione della retribuzione aggiuntiva di cui al presente comma il corrispondente permesso retribuito."
+        },
+        "transformation": "Le dodici festività dell'art. 59 sono codificate nel calendario nazionale; l'importo aggiuntivo spetta quando coincidono con il riposo settimanale e la quota espressa è 1/26. L'art. 60 aggiunge il 4 novembre, celebrato la prima domenica del mese, con retribuzione suppletiva secondo la regola delle festività domenicali; può essere sostituita da un permesso retribuito su richiesta e alle condizioni indicate.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-01-26",
+          "verification_status": "unverified"
+        }
+      }
     }
   },
   "verification": {
@@ -6822,6 +6868,27 @@
         "checked": [
           "coverage.notes",
           "levels[].fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-cooperative-sociali-sunday-holidays",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+          }
+        ],
+        "findings": [
+          "work_rules.sunday_holidays: 01-01, 01-06, easter_monday, 04-25, 05-01, 06-02, 08-15, 11-01, 11-04, 12-08, 12-25, 12-26, patron; divisor 26"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays"
         ]
       }
     ],

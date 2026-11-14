@@ -2484,7 +2484,7 @@
     "effective_until": "2027-12-31",
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
     "verification_status": "unverified",
-    "source_hash": "2cc259900eb4466b0548958aa7ef70095ef5148ea65ff6d3e97aedf23192925a",
+    "source_hash": "d3b0070f3e75ab04dad029e464f702020454221d22e9c6fc4e0d8b422fad1961",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -2675,6 +2675,51 @@
         "transformation": "Comporto of several illnesses (2026-11-01): the comporto of 180 days counts the sick days of every episode of the calendar year. Source: https://azstcnesa0002prodwe001.blob.core.windows.net/archivio-contratti/archivio%2F2019%2F%2F19056.pdf, p. 67 (sha256 1b62f2f580ad1224285f10d899341f6dcf89b51914dd0b7eac5572dd9b2cca2b): 'centottanta giorni per anno, intendendosi per tale il periodo compreso tra il 1° gennaio e il 31 dicembre. ... i relativi periodi di assenza sono cumulabili'"
       },
       "comporto_calendar_year": true
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron",
+        "11-04"
+      ],
+      "on_rest_day": true,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-agenzie-viaggio-fiavet-2019",
+            "title": "CCNL agenzie di viaggio e turismo, testo firmato il 24 luglio 2019",
+            "kind": "associazione",
+            "url": "https://www.fiavet.lazio.it/wp-content/uploads/2020/01/CCNL-firmato_24_luglio_2019-1.pdf",
+            "sha256": "397cf5d201544ad9d803513c884508932924f650db791c428a9b530cee054ff7"
+          },
+          "page": "49",
+          "section": "art. 121",
+          "quote": "A tutto il personale assente nelle giornate di festività, per riposo settimanale, per malattia, infortunio, dovrà essere corrisposta una giornata di retribuzione contrattuale senza alcuna maggiorazione."
+        },
+        "transformation": "L'art. 121 paga una giornata di retribuzione contrattuale quando le festività elencate nello stesso articolo coincidono con il riposo settimanale; sono inclusi 25 aprile, 1° maggio e 2 giugno. L'art. 123, comma 4 (p. 50), prevede lo stesso trattamento per il 4 novembre nel giorno stesso. Non è prevista una quota aggiuntiva per la sola domenica quando il riposo cade altrove. L'art. 145 indica 26 come divisore generale della retribuzione giornaliera, non come quota nominata dalla clausola sulle festività: divisor è null. Il 4 novembre non è ricondotto alla prima domenica di novembre.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-07-01",
+          "verification_status": "unverified"
+        }
+      }
     }
   },
   "verification": {
@@ -2741,6 +2786,27 @@
         "independence": "separate_model",
         "checked": [
           "levels.base_salary"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-agenzie-viaggio-fiavet-sunday-holidays",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fiavet.lazio.it/wp-content/uploads/2020/01/CCNL-firmato_24_luglio_2019-1.pdf",
+            "sha256": "397cf5d201544ad9d803513c884508932924f650db791c428a9b530cee054ff7"
+          }
+        ],
+        "findings": [
+          "work_rules.sunday_holidays: 04-25, 05-01, 06-02, 01-01, 01-06, easter_monday, 08-15, 11-01, 12-08, 12-25, 12-26, patron, 11-04"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays"
         ]
       }
     ]
