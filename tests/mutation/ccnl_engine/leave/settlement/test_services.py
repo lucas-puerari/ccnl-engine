@@ -333,3 +333,19 @@ def test_a_deadline_payment_is_a_leave_decision() -> None:
     assert settlement.decision.rule == "ccnl/x:work_rules.leave_rules.permit_deadline"
     assert settlement.decision.source == deadline.provenance.location  # type: ignore[union-attr]
     assert all("at the deadline" in str(i.source) for i in settlement.items)
+
+
+@pytest.mark.parametrize(
+    "slug",
+    ["ced-assoced", "fiori-recisi-ancef", "distribuzione-cooperativa-ancc"],
+)
+def test_the_bundled_rules_pay_the_residual_at_termination(slug: str) -> None:
+    """CED artt. 170-171, Fiori pp. 22 and 27, ANCC art. 187: 1/26 and hours."""
+    work_rules = load_ccnl(slug).work_rules
+    assert work_rules is not None
+    settlement = settle_leave(_account(), _terms(work_rules.leave_rules))
+
+    assert [i.amount for i in settlement.items] == [
+        Decimal("800.40"),
+        Decimal("113.25"),
+    ]

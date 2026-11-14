@@ -121,6 +121,11 @@
         "kind": "info",
         "text": "PERMITS (Art. 29, CCNL 2023-2026, p. 21): 32 hours of ex festività and 40 hours of reduction a year; a 39-hour week, the employer's alternative to 40, absorbs the 32 hours and 16 of the 40 (full_time_weekly_hours); the hours not taken within the year are paid with the retribuzione di fatto of the March pay of the next year (the engine carries them to March and pays what is left then). The text does not say how the hours accrue in a partial year: no month rule, the balance of a partial year is marked inexact.",
         "capability": "leave"
+      },
+      {
+        "kind": "info",
+        "text": "LEAVE AT TERMINATION (CCNL 2023-2026 pp. 22 and 27): ferie in twelfths, a fraction of fifteen days or more counting as a month, each day paid at the monthly pay over 26; the permit hours left at the hourly quota (1/170).",
+        "capability": "leave"
       }
     ]
   },
@@ -188,6 +193,27 @@
         "checked": [
           "work_rules.leave_rules.permits",
           "work_rules.leave_rules.permit_deadline"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-leave-termination",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Ferie at termination and the day and hour quotas of the CCNL 2023-2026.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+            "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
+          }
+        ],
+        "findings": [
+          "The file had no basis for the leave left at termination: added the twelfths (15 days or more a month), the 1/26 day and the 1/170 hour."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules.termination"
         ]
       }
     ]
@@ -1584,7 +1610,7 @@
     "effective_until": null,
     "source": "https://www.ccnlportatili.it/ccnl/fiori-recisi/",
     "verification_status": "unverified",
-    "source_hash": "e0f0b3bba9e2f8dbb1d7586444ccbeb2e7b3eb38e6bc842b8dacf621f292125f",
+    "source_hash": "881ecdb411a0fb53d37b003cefbd2f662c641957b3eb7632adbe74329d3e0c57",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1901,6 +1927,65 @@
             "verified_at": "2026-11-14T00:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-14-ai-permits"
+          }
+        }
+      },
+      "ferie_accrual": {
+        "month_credit": "half_or_more",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "fiori-recisi-ancef-ccnl-testo",
+              "title": "Contratto Collettivo Nazionale di Lavoro per i dipendenti da Aziende esercenti la lavorazione, il commercio, il trasporto, l'esportazione e l'importazione all'ingrosso di fiori freschi recisi, verde e piante ornamentali per imprese commerciali, consortili o cooperative. 2023 - 2026",
+              "kind": "associazione",
+              "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+              "published_on": "2023-03-30",
+              "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
+            },
+            "page": "22",
+            "section": "Articolo 32 - Ferie",
+            "quote": "In caso di cessazione del rapporto di lavoro, l'indennità sostitutiva delle ferie si calcola per dodicesimi, considerando come mese intero le frazioni di mese pari o superiori a quindici giorni."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2023-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-leave-termination"
+          }
+        }
+      },
+      "termination": {
+        "ferie_divisor": "26",
+        "permits_hourly": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "fiori-recisi-ancef-ccnl-testo",
+              "title": "Contratto Collettivo Nazionale di Lavoro per i dipendenti da Aziende esercenti la lavorazione, il commercio, il trasporto, l'esportazione e l'importazione all'ingrosso di fiori freschi recisi, verde e piante ornamentali per imprese commerciali, consortili o cooperative. 2023 - 2026",
+              "kind": "associazione",
+              "url": "https://www.ancef.eu/wp-content/uploads/2025/01/Librettro-Ancef-A5-con-copertina-per-uso-digitale.pdf",
+              "published_on": "2023-03-30",
+              "sha256": "371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd"
+            },
+            "page": "27",
+            "section": "Retribuzione (normale retribuzione, quote)",
+            "quote": "La quota oraria si ottiene con il divisore 170; il valore giornaliero si ottiene con il divisore 26."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2023-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-leave-termination"
           }
         }
       }

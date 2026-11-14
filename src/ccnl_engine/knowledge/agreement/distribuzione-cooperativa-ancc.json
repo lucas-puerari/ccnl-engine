@@ -158,6 +158,11 @@
         "kind": "info",
         "text": "PERMITS, IMPRESE MINORI (Title XV, Art. 147 as renewed on 29 March 2024, CNEL 183889 pp. 59-60): a 40-hour week for every worker (Employment full_time_weekly_hours 40: the 104 hours, not absorbed); in the small firms of one unit or up to 20 full-time staff a unit (EmployerProfile.subsector 'piccola_impresa_minore') 60 hours a year, read as the 32 of ex festività and 28 of reduction, plus 6 from 1 April 2025 and 6 from 1 April 2026 (72, aim 88). Their new hires take the hours in full: the ROL ramp of Art. 61 C does not reach this sub-sector.",
         "capability": "leave"
+      },
+      {
+        "kind": "info",
+        "text": "LEAVE AT TERMINATION (testo ufficiale 2011, p. 166 and Art. 187): ferie in twelfths, a fraction above fifteen days counting as a month, the indemnity 'dividendo per ventisei la retribuzione mensile di fatto'; the permit hours left at the hourly quota of Art. 187 (168 at 40 hours, 165 at 38).",
+        "capability": "leave"
       }
     ]
   },
@@ -433,6 +438,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.leave_rules.permits"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-leave-termination",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Ferie at termination and Art. 187 of the testo ufficiale 2011.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+            "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+          }
+        ],
+        "findings": [
+          "The file had no basis for the leave left at termination: added the twelfths (more than 15 days a month), the 1/26 indemnity and the hourly quota of the permits."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules.termination"
         ]
       }
     ]
@@ -3117,7 +3143,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
     "verification_status": "unverified",
-    "source_hash": "35dffbb93ae137004e76587d1d1b613863c308a7cef1476c61cec45d7ea6cade",
+    "source_hash": "3e6d6cadc8e1bc70be93c4dc8e496516c1648bf27315fee59baec5b94a29882e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3798,6 +3824,65 @@
             "verified_at": "2026-11-14T00:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-14-ai-permits"
+          }
+        }
+      },
+      "ferie_accrual": {
+        "month_credit": "more_than_half",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "uiltucs-ccnl-cooperazione-2011",
+              "title": "CCNL per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+              "kind": "associazione",
+              "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+              "published_on": "2011-01-01",
+              "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+            },
+            "page": "166",
+            "section": "Ratei ferie",
+            "quote": "In caso di risoluzione del rapporto di lavoro spetteranno al lavoratore tanti dodicesimi del periodo di ferie al quale ha diritto quanti sono i mesi di effettivo servizio prestati per l'anno di competenza, computandosi per mese intero le frazioni di mese superiori ai quindici giorni."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2011-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-leave-termination"
+          }
+        }
+      },
+      "termination": {
+        "ferie_divisor": "26",
+        "permits_hourly": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "uiltucs-ccnl-cooperazione-2011",
+              "title": "CCNL per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+              "kind": "associazione",
+              "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+              "published_on": "2011-01-01",
+              "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+            },
+            "page": "166; 201",
+            "section": "Ratei ferie; Art. 187 Divisori orari",
+            "quote": "L'indennità sostitutiva delle ferie si calcola dividendo per ventisei la retribuzione mensile di fatto di cui all'art. 184. [Art. 187:] La quota oraria della retribuzione, sia normale che di fatto, si ottiene dividendo l'importo mensile per i seguenti divisori orari"
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2011-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-leave-termination"
           }
         }
       }

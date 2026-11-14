@@ -371,7 +371,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/ced-assoced",
       "ruleset_version": "2026.2",
-      "source_hash": "6e8df61c7e865bddbe3f5359635ee5f5272dce51f994df127ad3575cfd101cbe",
+      "source_hash": "07d98c3abbf0b290fb490f4d698ea1acf994f8637061e00687165430bfc01ada",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/ced-assoced.json.gz"
@@ -711,7 +711,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/distribuzione-cooperativa-ancc",
       "ruleset_version": "2026.2",
-      "source_hash": "35dffbb93ae137004e76587d1d1b613863c308a7cef1476c61cec45d7ea6cade",
+      "source_hash": "3e6d6cadc8e1bc70be93c4dc8e496516c1648bf27315fee59baec5b94a29882e",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/distribuzione-cooperativa-ancc.json.gz"
@@ -986,7 +986,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/fiori-recisi-ancef",
       "ruleset_version": "2026.2",
-      "source_hash": "e0f0b3bba9e2f8dbb1d7586444ccbeb2e7b3eb38e6bc842b8dacf621f292125f",
+      "source_hash": "881ecdb411a0fb53d37b003cefbd2f662c641957b3eb7632adbe74329d3e0c57",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/fiori-recisi-ancef.json.gz"

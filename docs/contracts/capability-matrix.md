@@ -78,7 +78,7 @@ formulas or caller-declared amounts.
 | `termination_notice` | Preavviso: indennità sostitutiva del preavviso non lavorato (art. 2118 c.c.), dovuta dal datore, sulla tabella CCNL; tassazione separata con l'aliquota del TFR (art. 19 c. 2 TUIR) | scenario | work_rules | native | event | event | — | notice_indemnity | implemented | none bundled |
 | `extraordinary_leave` | Congedo straordinario art. 42 c. 5 D.Lgs. 151/2001: indennità INPS sull'ultima retribuzione entro il massimale annuo, anticipata dal datore | scenario | work_rules | native | event | event | — | inps_indemnity | implemented | 0 / 1 / 0 / 0 |
 | `workplace_injury` | Infortunio sul lavoro: giorno dell'evento, carenza, indennità INAIL e integrazione CCNL | scenario | work_rules | native | event | event | — | injury_day_and_carenza, inail_indemnity, ccnl_top_up | verified | 1 / 0 / 0 / 0 |
-| `termination_residual_leave` | Indennità sostitutiva di ferie e permessi residui alla cessazione, sulla base del CCNL | scenario | gross | native | termination_run | decision | `employment.employment_period`, `opening_balances.leave_balances` | — | implemented | 14 / 3 / 0 / 0 |
+| `termination_residual_leave` | Indennità sostitutiva di ferie e permessi residui alla cessazione, sulla base del CCNL | scenario | gross | native | termination_run | decision | `employment.employment_period`, `opening_balances.leave_balances` | — | implemented | 17 / 3 / 0 / 0 |
 | `naspi_dismissal` | Contributo NASpI per le interruzioni dei rapporti a tempo indeterminato e di apprendistato (L. 92/2012 art. 2 cc. 31-32): 41% del massimale mensile NASpI per ogni dodici mesi di anzianità negli ultimi tre anni | scenario | net | native | termination_run | decision | `employment.employment_period` | — | verified | 2 / 0 / 0 / 0 |
 | `termination_tfr` | Liquidazione TFR a tassazione separata (artt. 17 e 19 TUIR): fondo, quote dell'anno e aliquota media calcolati, importo e aliquota del chiamante come override | scenario | net | native | event | event | — | — | implemented | 2 / 1 / 0 / 0 |
 | `contract_renewal_arrears` | Arretrati rinnovo contratto: tassazione separata se di anni precedenti (aliquota dal chiamante), ordinaria se dell'anno | scenario | gross | caller_supplied | event | event | — | — | caller-supplied | none bundled |
@@ -108,7 +108,7 @@ formulas or caller-declared amounts.
 | `shift_work` | Lavoro a turni | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 48 / 0 / 0 / 0 |
 | `standby` | Reperibilità (importi del CCNL per livello) | scenario | work_rules | native | event | event | — | — | implemented | none bundled |
 | `absence` | Assenze ingiustificate | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 17 / 0 / 0 / 0 |
-| `leave` | Ferie, ROL ed ex festività godute: retribuite nella paga del mese, scalano il saldo maturato | scenario | work_rules | native | event | event | — | — | implemented | 47 / 19 / 0 / 0 |
+| `leave` | Ferie, ROL ed ex festività godute: retribuite nella paga del mese, scalano il saldo maturato | scenario | work_rules | native | event | event | — | — | implemented | 50 / 19 / 0 / 0 |
 | `sickness` | Malattia: episodi su più periodi, carenza, fasce INPS e integrazione CCNL | scenario | work_rules | native | event | event | — | multi_period_episode, inps_bands_and_carenza, ccnl_tiers | simplified | 61 / 198 / 7 / 0 |
 | `fringe_benefit` | Fringe benefit (informativo) | scenario | work_rules | native | event | event | — | — | simplified | 0 / 1 / 1 / 0 |
 | `travel_allowance` | Indennità di trasferta (importo giornaliero dal chiamante, quota esente art. 51 c. 5 TUIR) | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | none bundled |
@@ -158,7 +158,7 @@ never grow.
 | 17 | [CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)](autoferrotranvieri-internavigatori.md) | ⚠️ | inps_employer, pension_fund_contribution | 0 / 139 / 1 / 0 |
 | 18 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | ✅ | parental_leave, welfare | 55 / 40 / 1 / 1 |
 | 19 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | ✅ | — | 55 / 96 / 1 / 1 |
-| 20 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | ⚠️ | base_salary, inps_employer, maternity_leave, workplace_injury | 40 / 7 / 1 / 1 |
+| 20 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | ⚠️ | base_salary, inps_employer, maternity_leave, workplace_injury | 42 / 7 / 1 / 1 |
 | 21 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | ⚠️ | base_salary | 14 / 61 / 1 / 0 |
 | 22 | [CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)](sanita-privata-aiop-aris.md) | ⚠️ | base_salary, overtime, seniority, standby | 38 / 2 / 0 / 0 |
 | 23 | [CCNL Cemento, Calce e Gesso — Industria (Federbeton)](cemento-calce-gesso-industria.md) | ⚠️ | seniority | 45 / 36 / 1 / 0 |
@@ -184,7 +184,7 @@ never grow.
 | 43 | [CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)](farmacie-municipalizzate-assofarm.md) | ⚠️ | base_salary, inps_employer | 73 / 17 / 1 / 0 |
 | 44 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | ⚠️ | seniority | 4 / 41 / 1 / 0 |
 | 45 | [CCNL Dipendenti delle Farmacie Private - Farmacie rurali sussidiate](farmacie-rurali-sussidiate-h121.md) | ⚠️ | seniority | 4 / 41 / 1 / 0 |
-| 46 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | ⚠️ | seniority | 14 / 52 / 1 / 0 |
+| 46 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | ⚠️ | seniority | 16 / 52 / 1 / 0 |
 | 47 | [CCNL Edilizia PMI CONFAPI ANIEM](edilizia-pmi-confapi-aniem.md) | ⚠️ | base_salary, bilateral_funds, pension_fund_contribution, seniority, territorial_supplement | 15 / 30 / 1 / 0 |
 | 48 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | ⚠️ | base_salary, bilateral_funds, inps_employer, seniority | 29 / 45 / 1 / 0 |
 | 49 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | ⚠️ | base_salary, bilateral_funds, seniority | 25 / 33 / 1 / 0 |
@@ -192,7 +192,7 @@ never grow.
 | 51 | [CCNL Edilizia — Industria (ANCE), operai](edilizia-ance.md) | ⚠️ | base_salary, bilateral_funds, overtime, sickness, territorial_supplement | 47 / 7 / 0 / 0 |
 | 52 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | ✅ | — | 115 / 56 / 1 / 0 |
 | 53 | [CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)](esercizi-cinematografici-anec.md) | ⚠️ | inps_employer, sickness | 61 / 9 / 1 / 0 |
-| 54 | [CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)](fiori-recisi-ancef.md) | ⚠️ | seniority | 33 / 8 / 1 / 0 |
+| 54 | [CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)](fiori-recisi-ancef.md) | ⚠️ | seniority | 35 / 8 / 1 / 0 |
 | 55 | [CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)](formazione-professionale.md) | ⚠️ | base_salary | 0 / 34 / 1 / 1 |
 | 56 | [CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas](gas-acqua-utilitalia.md) | ⚠️ | inps_employer | 45 / 18 / 1 / 0 |
 | 57 | [CCNL Gomma e Plastica Industria (Federazione Gomma Plastica)](gomma-plastica-federazione-gomma-plastica.md) | ⚠️ | base_salary | 70 / 7 / 1 / 1 |
