@@ -123,6 +123,7 @@ class CoverageNote(BaseModel):
             totals=spec.totals,
             source=source,
             remediation=spec.remediation,
+            searched=spec.searched,
         )
 
 

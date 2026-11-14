@@ -10,12 +10,13 @@ import pytest
 from pydantic import ValidationError
 
 from ccnl_engine.limitation.models import (
-    LimitationFacts,
-    LimitationScope,
     LimitationStatus,
     ModelLimitation,
     MonetaryImpact,
+    NoteLimitation,
+    SearchedDocument,
 )
+from ccnl_engine.limitation.scope.models import LimitationFacts, LimitationScope
 from ccnl_engine.limitation.types import ResultTotal
 
 _FACTS = LimitationFacts(
@@ -160,10 +161,55 @@ def test_outside_input_limitation_never_applies() -> None:
         (MonetaryImpact.UNKNOWN, LimitationStatus.OPEN, True),
         (MonetaryImpact.NO, LimitationStatus.OPEN, False),
         (MonetaryImpact.YES, LimitationStatus.RESOLVED, False),
+        (MonetaryImpact.YES, LimitationStatus.UNSOURCED, True),
+        (MonetaryImpact.UNKNOWN, LimitationStatus.UNSOURCED, True),
+        (MonetaryImpact.NO, LimitationStatus.UNSOURCED, False),
     ],
 )
-def test_open_monetary_limitations_block(
+def test_holding_monetary_limitations_block(
     impact: MonetaryImpact, status: LimitationStatus, blocks: bool
 ) -> None:
-    """Only an open limitation that can move an amount blocks."""
-    assert _limitation(monetary_impact=impact, status=status).blocks is blocks
+    """An open or unsourced limitation that can move an amount blocks."""
+    searched = _SEARCHED if status is LimitationStatus.UNSOURCED else ()
+    limitation = _limitation(monetary_impact=impact, status=status, searched=searched)
+
+    assert limitation.blocks is blocks
+
+
+_SEARCHED = (
+    SearchedDocument(
+        url="https://www.inps.it/circolare.pdf",
+        sha256="a" * 64,
+        title="INPS circolare",
+    ),
+)
+
+
+def test_an_unsourced_limitation_lists_the_documents_searched() -> None:
+    """A declared residual without its search evidence is rejected."""
+    with pytest.raises(ValidationError, match="lists the documents searched"):
+        _limitation(status=LimitationStatus.UNSOURCED)
+
+
+@pytest.mark.parametrize("status", [LimitationStatus.OPEN, LimitationStatus.RESOLVED])
+def test_only_an_unsourced_limitation_lists_documents(status: LimitationStatus) -> None:
+    """Search evidence belongs to a declared residual only."""
+    with pytest.raises(ValidationError, match="only an unsourced"):
+        _limitation(status=status, searched=_SEARCHED)
+
+
+def test_a_note_limitation_checks_its_search_too() -> None:
+    """The note of a CCNL file follows the same rule."""
+    with pytest.raises(ValidationError, match="lists the documents searched"):
+        NoteLimitation(variant="v", status=LimitationStatus.UNSOURCED, remediation="r")
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [("url", "unavailable"), ("sha256", "ABC"), ("title", "")],
+)
+def test_a_searched_document_is_traceable(field: str, value: str) -> None:
+    """A searched document has a URL, a sha256 and a title."""
+    fields = {"url": "https://x.it/a.pdf", "sha256": "a" * 64, "title": "a"}
+    with pytest.raises(ValidationError):
+        SearchedDocument(**(fields | {field: value}))

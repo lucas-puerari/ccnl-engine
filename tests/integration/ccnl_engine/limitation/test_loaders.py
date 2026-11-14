@@ -13,7 +13,7 @@ from ccnl_engine.limitation.loaders import (
     load_engine_limitations,
     parse_engine_limitations,
 )
-from ccnl_engine.limitation.models import LimitationTrigger
+from ccnl_engine.limitation.scope.models import LimitationTrigger
 
 _ENTRY: dict[str, Any] = {
     "id": "engine_path",

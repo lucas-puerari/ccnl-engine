@@ -28,33 +28,31 @@ amount owed only on a fact the request has no field for is
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from datetime import date
 from enum import StrEnum
-from typing import Literal, Self
+from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ccnl_engine.limitation.scope.models import (
+    LimitationFacts,
+    LimitationScope,
+    LimitationTrigger,
+)
 from ccnl_engine.limitation.types import ALL_TOTALS, ResultTotal
 
 __all__ = [
+    "HOLDING",
     "LimitationFacts",
     "LimitationScope",
     "LimitationStatus",
-    "LimitationTrigger",
     "ModelLimitation",
     "MonetaryImpact",
     "NoteLimitation",
+    "SearchedDocument",
 ]
 
 #: Lower snake case identifier of a variant.
 _VARIANT = r"^[a-z][a-z0-9_]*$"
-
-ContractTypeName = Literal["permanent", "fixed_term", "apprentice"]
-WorkerCategoryName = Literal["operaio", "impiegato", "quadro", "dirigente"]
-RunKindName = Literal[
-    "regular", "thirteenth", "fourteenth", "adjustment", "termination"
-]
 
 
 class MonetaryImpact(StrEnum):
@@ -80,136 +78,56 @@ class LimitationStatus(StrEnum):
     Attributes:
         OPEN: The engine still computes the simplified amount.
         RESOLVED: The model was corrected, with a source and a test.
+        UNSOURCED: A declared residual: a documented search of the law,
+            the INPS and Ministry practice and the signed text found no
+            source and no statutory default for the case. The engine still
+            computes the simplified amount, so it keeps blocking the runs
+            it concerns; it is listed apart from the open work.
     """
 
     OPEN = "open"
     RESOLVED = "resolved"
+    UNSOURCED = "unsourced"
 
 
-class LimitationTrigger(StrEnum):
-    """What makes a limitation concern a run.
-
-    Attributes:
-        RUN: A run of an affected ruleset whose facts match the scope.
-        PATH: A run that traverses the code path of the limitation; the
-            engine reports the traversal.
-        OWED: An amount the contract owes in every run of an affected
-            ruleset that the scope matches, which the engine does not
-            compute: it concerns the run whether or not its capability
-            applies (a health fund paid for every worker).
-        OUTSIDE_INPUT: The fact that triggers it has no field in the
-            request, so no run can be told apart: it is documented only.
-            It is never an amount owed in every run (that one is ``owed``).
-    """
-
-    RUN = "run"
-    PATH = "path"
-    OWED = "owed"
-    OUTSIDE_INPUT = "outside_input"
+#: Statuses of a limitation that still holds.
+HOLDING = frozenset({LimitationStatus.OPEN, LimitationStatus.UNSOURCED})
 
 
-@dataclass(frozen=True)
-class LimitationFacts:
-    """Facts of one run that the scope of a limitation is matched against.
+class SearchedDocument(BaseModel):
+    """A document read without finding the source of a declared residual.
 
     Attributes:
-        ccnl_id: Identifier of the CCNL of the run.
-        as_of: Date the rules of the run were read at.
-        contract_type: ``permanent``, ``fixed_term`` or ``apprentice``.
-        level_code: Classification level of the request.
-        worker_category: Category of the worker, ``None`` when unknown.
-        run_kind: Kind of the run (``regular``, ``thirteenth``...).
-        seniority_months: Seniority of the worker, ``None`` when unknown.
-        applicable: Capabilities that concern the run.
-        traversed: Ids of the engine limitations whose path the run took.
-        headcount: Employer headcount, ``None`` when unknown.
-    """
-
-    ccnl_id: str
-    as_of: date
-    contract_type: str
-    level_code: str
-    worker_category: str | None
-    run_kind: str
-    seniority_months: int | None
-    applicable: frozenset[str]
-    traversed: frozenset[str] = frozenset()
-    headcount: int | None = None
-
-
-class LimitationScope(BaseModel):
-    """The runs a limitation concerns: every restriction set must match.
-
-    A restriction left ``None`` does not narrow the scope.  An unknown fact
-    (worker category, seniority) never rules a run out: what cannot be told
-    apart is kept.
-
-    Attributes:
-        trigger: What makes the limitation concern a run.
-        contract_types: Contract types concerned.
-        levels: Level codes concerned.
-        worker_categories: Worker categories concerned.
-        run_kinds: Run kinds concerned (an allowance paid fewer times a
-            year only matters in an extra-month run).
-        seniority_months_from: Least seniority, in months, concerned.
-        headcount_from: Least employer headcount concerned (a rate that
-            changes above a size threshold).
-        effective_from: First date concerned.
-        effective_until: First date no longer concerned.
+        url: Where the document was downloaded from.
+        sha256: Lowercase hex sha256 of the file read.
+        title: What the document is, for a human reader.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    trigger: LimitationTrigger = LimitationTrigger.RUN
-    contract_types: frozenset[ContractTypeName] | None = Field(None, min_length=1)
-    levels: frozenset[str] | None = Field(None, min_length=1)
-    worker_categories: frozenset[WorkerCategoryName] | None = Field(None, min_length=1)
-    run_kinds: frozenset[RunKindName] | None = Field(None, min_length=1)
-    seniority_months_from: int | None = Field(None, ge=1)
-    headcount_from: int | None = Field(None, ge=2)
-    effective_from: date | None = None
-    effective_until: date | None = None
-
-    @model_validator(mode="after")
-    def _ordered_dates(self) -> Self:
-        start, end = self.effective_from, self.effective_until
-        if start is not None and end is not None and end <= start:
-            msg = f"effective_until {end} must follow effective_from {start}"
-            raise ValueError(msg)
-        return self
-
-    def matches(self, facts: LimitationFacts) -> bool:
-        """Return whether the facts of a run fall within the scope.
-
-        Returns:
-            ``True`` when every restriction set matches the facts.
-        """
-        return (
-            _within(self.contract_types, facts.contract_type)
-            and _within(self.levels, facts.level_code)
-            and _within(self.run_kinds, facts.run_kind)
-            and (
-                facts.worker_category is None
-                or _within(self.worker_categories, facts.worker_category)
-            )
-            and _at_least(self.seniority_months_from, facts.seniority_months)
-            and _at_least(self.headcount_from, facts.headcount)
-            and (self.effective_from is None or facts.as_of >= self.effective_from)
-            and (self.effective_until is None or facts.as_of < self.effective_until)
-        )
+    url: str = Field(pattern=r"^https?://")
+    sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    title: str = Field(min_length=1)
 
 
-def _within(allowed: frozenset[str] | None, value: str) -> bool:
-    return allowed is None or value in allowed
+def _require_search(
+    status: LimitationStatus, searched: tuple[SearchedDocument, ...], name: str
+) -> None:
+    """Require the search evidence on a declared residual, and only there.
 
-
-def _at_least(threshold: int | None, value: int | None) -> bool:
-    """Return whether a known fact reaches the threshold.
-
-    Returns:
-        ``True`` without a threshold, for an unknown fact, or at or above it.
+    Raises:
+        ValueError: When an unsourced limitation lists no document read, or
+            another status lists some.
     """
-    return threshold is None or value is None or value >= threshold
+    unsourced = status is LimitationStatus.UNSOURCED
+    if unsourced and not searched:
+        msg = f"limitation {name}: an unsourced limitation lists the documents searched"
+        raise ValueError(msg)
+    if searched and not unsourced:
+        msg = (
+            f"limitation {name}: only an unsourced limitation lists documents searched"
+        )
+        raise ValueError(msg)
 
 
 class NoteLimitation(BaseModel):
@@ -224,6 +142,7 @@ class NoteLimitation(BaseModel):
         totals: The totals of a run it can make wrong.
         status: Whether it still holds.
         remediation: What closes it, for a human reader.
+        searched: The documents read, for an unsourced limitation only.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -233,6 +152,12 @@ class NoteLimitation(BaseModel):
     totals: frozenset[ResultTotal] = Field(ALL_TOTALS, min_length=1)
     status: LimitationStatus = LimitationStatus.OPEN
     remediation: str = Field(min_length=1)
+    searched: tuple[SearchedDocument, ...] = ()
+
+    @model_validator(mode="after")
+    def _check_searched(self) -> Self:
+        _require_search(self.status, self.searched, self.variant)
+        return self
 
 
 class ModelLimitation(BaseModel):
@@ -252,6 +177,7 @@ class ModelLimitation(BaseModel):
             the employer cost alone for an amount only the employer pays.
         source: Where it is declared: the CCNL file or the engine module.
         remediation: What closes it.
+        searched: The documents read, for an unsourced limitation only.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -267,19 +193,23 @@ class ModelLimitation(BaseModel):
     totals: frozenset[ResultTotal] = Field(ALL_TOTALS, min_length=1)
     source: str = Field(min_length=1)
     remediation: str = Field(min_length=1)
+    searched: tuple[SearchedDocument, ...] = ()
+
+    @model_validator(mode="after")
+    def _check_searched(self) -> Self:
+        _require_search(self.status, self.searched, self.id)
+        return self
 
     @property
     def blocks(self) -> bool:
         """Whether it makes a result it applies to not payable.
 
         Returns:
-            ``True`` for an open limitation whose monetary impact is
-            ``yes`` or ``unknown``.
+            ``True`` for an open or unsourced limitation whose monetary
+            impact is ``yes`` or ``unknown``: a declared residual still
+            computes the simplified amount.
         """
-        return (
-            self.status is LimitationStatus.OPEN
-            and self.monetary_impact is not MonetaryImpact.NO
-        )
+        return self.status in HOLDING and self.monetary_impact is not MonetaryImpact.NO
 
     def applies_to(self, facts: LimitationFacts) -> bool:
         """Return whether the limitation concerns the run of *facts*.

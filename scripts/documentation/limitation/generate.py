@@ -15,7 +15,8 @@ from ccnl_engine.limitation.loaders import load_engine_limitations
 
 if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
-    from ccnl_engine.limitation.models import LimitationScope, ModelLimitation
+    from ccnl_engine.limitation.models import ModelLimitation
+    from ccnl_engine.limitation.scope.models import LimitationScope
 
 _INTRO = (
     "Each simplification below is a model limitation of the registry. An open "

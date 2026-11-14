@@ -47,11 +47,8 @@ from ccnl_engine.capability.registry.models import CapabilityImplementation
 from ccnl_engine.capability.support.services import ccnl_capabilities
 from ccnl_engine.catalog.loaders import list_contracts, load_ccnl
 from ccnl_engine.limitation.loaders import load_engine_limitations
-from ccnl_engine.limitation.models import (
-    LimitationStatus,
-    LimitationTrigger,
-    ModelLimitation,
-)
+from ccnl_engine.limitation.models import LimitationStatus, ModelLimitation
+from ccnl_engine.limitation.scope.models import LimitationTrigger
 from ccnl_engine.sector.raw.loaders import supported_tax_years
 from scripts.provenance.rules import PayableRule, inventory
 
@@ -156,6 +153,10 @@ class CcnlCompleteness:
         renewal_due: End of the contract validity when it falls inside
             the declared window: the tables after it are future data, not
             a gap.
+        residuals: Declared residuals (``unsourced`` limitations with a
+            monetary impact): no source and no statutory default exists
+            after a documented search. Not open work, but they keep the
+            CCNL from being complete.
     """
 
     ccnl_id: str
@@ -171,6 +172,7 @@ class CcnlCompleteness:
     capabilities: tuple[str, ...]
     window_gaps: tuple[str, ...] = ()
     renewal_due: date | None = None
+    residuals: tuple[str, ...] = ()
 
     @property
     def gaps(self) -> tuple[str, ...]:
@@ -194,8 +196,23 @@ class CcnlCompleteness:
 
     @property
     def complete(self) -> bool:
-        """Whether nothing the model owes the CCNL is open."""
-        return not self.gaps
+        """Whether nothing the model owes the CCNL is open or residual."""
+        return not self.gaps and not self.residuals
+
+    @property
+    def complete_except_residuals(self) -> bool:
+        """Whether only declared residuals are left: no open work."""
+        return not self.gaps and bool(self.residuals)
+
+    @property
+    def status(self) -> str:
+        """The Gaps cell of the page."""
+        if self.complete:
+            return "complete"
+        residual = _count("declared residual", len(self.residuals))
+        if not self.gaps:
+            return f"complete except {residual}"
+        return "; ".join((*self.gaps, residual) if residual else self.gaps)
 
 
 @dataclass(frozen=True)
@@ -281,6 +298,22 @@ def _count(what: str, n: int, plural: str = "") -> str:
 
 def _blocking(limitation: ModelLimitation) -> bool:
     return limitation.status is LimitationStatus.OPEN and limitation.blocks
+
+
+def _residual(limitation: ModelLimitation) -> bool:
+    return limitation.status is LimitationStatus.UNSOURCED and limitation.blocks
+
+
+def ccnl_residuals(ccnl: CCNL, engine: Iterable[ModelLimitation]) -> tuple[str, ...]:
+    """Return the declared residuals of *ccnl*: its own and the engine ones.
+
+    Returns:
+        The ids of its unsourced limitations with a monetary impact.
+    """
+    ccnl_id = ccnl.meta.ccnl_id
+    own = (lim.id for lim in ccnl.limitations if _residual(lim))
+    shared = (lim.id for lim in engine if _residual(lim) and ccnl_id in lim.rulesets)
+    return (*own, *shared)
 
 
 def ccnl_limitations(
@@ -446,6 +479,7 @@ def assess(
         capabilities=non_native(ccnl, years),
         window_gaps=window_gaps(model_window(ccnl), Window.of(years)),
         renewal_due=renewal_due(ccnl, Window.of(years)),
+        residuals=ccnl_residuals(ccnl, engine),
     )
 
 
@@ -459,6 +493,7 @@ class Report:
             resources left out.
         open_limitations: Open limitations, each counted once.
         monetary_limitations: Those of them with a monetary impact.
+        declared_residuals: Unsourced limitations, each counted once.
         window: The declared window.
         pending: Yearly resources whose sources are not published yet.
     """
@@ -469,11 +504,17 @@ class Report:
     monetary_limitations: int
     window: Window
     pending: tuple[str, ...] = ()
+    declared_residuals: int = 0
 
     @property
     def complete(self) -> tuple[CcnlCompleteness, ...]:
         """The complete CCNLs."""
         return tuple(row for row in self.rows if row.complete)
+
+    @property
+    def complete_except_residuals(self) -> tuple[CcnlCompleteness, ...]:
+        """The CCNLs with only declared residuals left."""
+        return tuple(row for row in self.rows if row.complete_except_residuals)
 
     @property
     def census_errors(self) -> tuple[str, ...]:
@@ -507,6 +548,9 @@ def build_report() -> Report:
         monetary_limitations=sum(1 for lim in opened if lim.blocks),
         window=Window.of(years),
         pending=pending,
+        declared_residuals=sum(
+            1 for lim in every if lim.status is LimitationStatus.UNSOURCED
+        ),
     )
 
 
@@ -521,6 +565,11 @@ requirements and nothing the model owes it is open: no open requirement,
 no weak payable rule (`assumed` or `missing`) it reads, no open limitation
 with a monetary impact, none whose fact has no input (`outside_input`),
 and no capability left to the caller, partial or not computed.
+A CCNL whose only remaining limitations are declared residuals
+(`unsourced`: a documented search of the law, the INPS and Ministry
+practice and the signed text found no source and no statutory default)
+is *complete except declared residuals*: no open work is left, but the
+runs those residuals concern stay not payable, so it is not complete.
 Completeness is not readiness and not external validation: readiness is
 shown for reference only, and
 [the validation matrix](validation-matrix.md) tracks the comparisons.
@@ -538,10 +587,12 @@ def render(report: Report) -> str:
     lines = [
         _HEADER,
         (
-            f"**Complete: {len(report.complete)}/{len(report.rows)} CCNLs.** "
+            f"**Complete: {len(report.complete)}/{len(report.rows)} CCNLs**; "
+            f"complete except declared residuals: "
+            f"{len(report.complete_except_residuals)}. "
             f"Bundle: {report.weak_rules} weak rules, {report.open_limitations} "
             f"open limitations ({report.monetary_limitations} with a monetary "
-            "impact)."
+            f"impact), {report.declared_residuals} declared residuals."
         ),
         "",
         *_window_lines(report),
@@ -551,7 +602,7 @@ def render(report: Report) -> str:
     ]
     for row in report.rows:
         census = "missing" if row.census_rows is None else f"{row.census_rows} rows"
-        gaps = "; ".join(row.gaps) or "complete"
+        gaps = row.status
         renewal = row.renewal_due or "—"
         lines.append(
             f"| [{row.ccnl_id}](../contracts/{row.ccnl_id}.md) | `{row.family}` "
