@@ -359,7 +359,7 @@
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Sickness: comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27). The net-pay gross-up is modelled (sickness_rules.net_basis) (review of 2026-10-30).",
+      "rule": "Sickness not modelled: the comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the pay limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27). The comporto breve and its full and half pay over three years are sickness_rules.cumulation.",
       "calculation": "ccnl/metalmeccanico-confapi:coverage.notes",
       "state": "absent",
       "remediation": "Model the residual sickness rules of Art. 55.",

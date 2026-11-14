@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Employer top-up of the INAIL indemnity, read from the signed text by a separate model session (audit of the injury rules); quote checked on the text layer or the page image. | corrected | The injury rule had no top-up of the INAIL indemnity; added: {"integration_rate": "1", "carenza_rate": "1"} |
 | 2026-11-10 | claude-opus-5-5 (ai) | Third-period intermediate remuneration clause in the signed 2016 agreement and components of the tabular minimum in the signed 2026 renewal. | confirmed | The third period pays an intermediate retribuzione at the level below destination; the 2026 table prints base, contingenza and EDR in each minimum. Averaging the full tabular minimum gives AE3 to AE4 EUR 2209.26 in September 2026. The clause does not enumerate payslip components or personal superminima. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source. | corrected | Added the comporto window of art. 76 C and the impiegati article, the same for both. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Una tantum of the ipotesi of 3 September 2026, OCR of the scanned page, against the research of a separate model session. | corrected | Added the una tantum of 100.00 of December 2026. |
 
 ## Salary table
 
@@ -138,11 +139,11 @@ Destination levels: `AS4`
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
 !!! warning "legno-arredamento-federlegno/renewal_2026_ipotesi · base_salary · impact yes · open"
-    RENEWAL 2026-2028 (ipotesi di accordo of 3 September 2026, pp. 52-53): the paga base from 1 September 2026 is modelled; the ipotesi is not yet a definitive text. Not modelled: the una tantum of December 2026 and the IPCA increases of 1 January 2027 and 2028, which the parties will set in later meetings.
+    RENEWAL 2026-2028 (ipotesi di accordo of 3 September 2026, pp. 52-53): the paga base from 1 September 2026 and the una tantum of 100.00 of December 2026 are modelled; the ipotesi is not yet a definitive text. Not modelled: the 39.00 a month at AS1 (parametro 134) from January 2027, to be riparametrato on the levels, and the IPCA increases of 1 January 2027 and 2028, which the parties will set in later meetings.
 
     **Applies when:** `base_salary` applies; from 2026-09-01.
 
-    **Remediation:** Check the definitive text, add the una tantum of December 2026 and the 2027 and 2028 tranches once set, then remove this note.
+    **Remediation:** Add the 39.00 riparametrato from January 2027 and the 2027 and 2028 IPCA tranches once set, check the definitive text, then remove this note.
 
 !!! note "apprenticeship_midpoint_allowances · base_salary · impact yes · resolved"
     A midpoint_to_destination period pays the mean of the whole monthly pay of the pay level and the destination level: base salary and every active fixed allowance (an allowance of one level counts as zero on the other); the base takes the rest of the rounded mean of the totals. A CCNL whose text leaves the averaged components open carries its own limitation <ccnl_id>/apprenticeship_midpoint_components, recorded on the midpoint path.

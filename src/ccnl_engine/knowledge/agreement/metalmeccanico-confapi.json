@@ -194,7 +194,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Sickness: comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27). The net-pay gross-up is modelled (sickness_rules.net_basis) (review of 2026-10-30).",
+        "text": "Sickness not modelled: the comporto prolungato (9/13.5/18 months) and its treatment, short absences counted double from the eighth in the triennio, hospital stays over 10 days and sickness over 21 days left out of the pay limits (60/75/90 days, at most 120), the 2026 disability extension at 50% (renewal p. 27). The comporto breve and its full and half pay over three years are sickness_rules.cumulation.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -322,6 +322,10 @@
           },
           "remediation": "State the applicable local patron holiday date (including a locally agreed substitute or Rome-only 29 June) as employer.patron_saint_day."
         }
+      },
+      {
+        "kind": "info",
+        "text": "SICKNESS (Art. 55 points 2-3, CCNL 3 luglio 2017, PDF pp. 136-138, https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf, sha256 c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad; the renewal of 4 June 2026, PDF pp. 25-28, https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf, sha256 ae59a64f408072c1438892143e2146eea350d7e2c3e5883fb8538f86ffc47f53, keeps them): comporto breve of 6, 9 or 12 months up to 3 years of seniority, over 3 to 6, over 6, over 'le assenze complessivamente verificatesi nei tre anni precedenti ogni nuovo ultimo episodio morboso'; 'intera retribuzione globale per i primi 2 mesi e metà retribuzione globale per i 4 mesi successivi' (3 and 6, 4 and 8 above). Modelled as sickness_rules.cumulation over three years, months of 30 days, net basis as before."
       }
     ]
   },
@@ -3300,7 +3304,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "4c67b928774dd1e81f239675c6c41fdfc831122f83c2d01e7c7a75d14eb58a2f",
+    "source_hash": "eced163c4c511d62b13e49ea43351c003cc69b64120e1011d64c172c2457cfe4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4243,23 +4247,22 @@
       },
       "cumulation": {
         "window_years": 3,
-        "reset_after_days": null,
-        "reduced_integration_rate": "0.50",
+        "reduced_integration_rate": "0.5",
         "bands": [
           {
             "seniority_months_from": 0,
-            "full_pay_days": 61,
-            "comporto_days": 183
+            "full_pay_days": 60,
+            "comporto_days": 180
           },
           {
             "seniority_months_from": 36,
-            "full_pay_days": 91,
-            "comporto_days": 274
+            "full_pay_days": 90,
+            "comporto_days": 270
           },
           {
             "seniority_months_from": 72,
-            "full_pay_days": 122,
-            "comporto_days": 365
+            "full_pay_days": 120,
+            "comporto_days": 360
           }
         ]
       },
@@ -5220,6 +5223,57 @@
         "checked": [
           "work_rules.insured_absence.maternity.holiday",
           "coverage.notes.holiday_outside_calendar"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-metalmeccanico-confapi-sickness-cumulation",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto breve and pay of art. 55 against the research of a separate model session; quotes checked on the text layer of the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          },
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
+            "sha256": "ae59a64f408072c1438892143e2146eea350d7e2c3e5883fb8538f86ffc47f53"
+          }
+        ],
+        "findings": [
+          "Replaced 100% for 180 days of one episode with the bands of art. 55: 2+4, 3+6, 4+8 months at full and half pay, comporto 6/9/12 months over three years."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules",
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-gpt-metalmeccanico-confapi-sickness",
+        "date": "2026-11-15",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Comporto breve and pay bands of art. 55, read by a separate model session on the 2017 text and the 2026 renewal.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          },
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
+            "sha256": "ae59a64f408072c1438892143e2146eea350d7e2c3e5883fb8538f86ffc47f53"
+          }
+        ],
+        "findings": [
+          "Confirmed: comporto breve 6/9/12 months over the three years before the last episode, full and half pay 2+4, 3+6, 4+8 months over the same three years; the 2026 renewal keeps them and adds the disability extension."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sickness_rules"
         ]
       }
     ],
