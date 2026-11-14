@@ -223,8 +223,9 @@ def run_tfr_settlement(
         computed settlements and of the termination charges.
     """
     tfr = run.amounts.tfr
-    quota = _NO_QUOTA if tfr.to_pension_fund else tfr.amount
-    effect = settle_terminations(ctx, quota, run_to_pension_fund=tfr.to_pension_fund)
+    whole = tfr.to_pension_fund and not tfr.kept_amount
+    quota = _NO_QUOTA if whole else tfr.kept_amount
+    effect = settle_terminations(ctx, quota, run_to_pension_fund=whole)
     end = termination_charges(ctx, events.items, run.amounts.apart_inps, effect.rate)
     if not effect.decisions and not end.decisions and not end.issues:
         return events

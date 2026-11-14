@@ -151,6 +151,7 @@ def _tfr(
             "additional_ivs_deduction": tfr.deduction,
             "treasury_fund": "unknown" if treasury is None else str(treasury).lower(),
             "account": tfr.destination,
+            "fund_share": tfr.paid_share,
         },
         tfr.amount,
     )

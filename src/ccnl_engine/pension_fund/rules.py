@@ -66,6 +66,7 @@ class PensionFundTerms:
         employee_min_rate: Minimum employee rate of the CCNL, ``None`` when
             the bundle records none.
         tfr_to_fund: Whether the TFR accrued is paid to the fund.
+        tfr_share: The share of it paid to the fund.
         tfr_notional: Whether the TFR conferred stays a notional accrual
             (public administrations: INPS Gestione Dipendenti Pubblici
             accrues it and pays it to the fund at the termination).
@@ -89,6 +90,7 @@ class PensionFundTerms:
     employee_min_rate: Decimal | None
     tfr_to_fund: bool
     rules: ComplementaryPensionRules
+    tfr_share: Decimal = Decimal(1)
     tfr_notional: bool = False
     minimum_base: Decimal = _ZERO
     young_member_unknown: bool = False
@@ -197,6 +199,7 @@ def resolve_terms(
         employee_rate=enrolment.employee_rate,
         employee_min_rate=min_rate,
         tfr_to_fund=enrolment.tfr_to_fund,
+        tfr_share=enrolment.tfr_share,
         tfr_notional=ccnl.meta.tax_sector is TaxSector.PUBBLICA_AMMINISTRAZIONE,
         rules=rules,
         minimum_base=minimum_base,

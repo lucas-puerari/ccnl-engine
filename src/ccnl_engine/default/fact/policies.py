@@ -94,6 +94,9 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
         "(L. 92/2012 art. 2 c. 28-29) has a missing_fact naspi_exclusion "
         "blocker",
     ),
+    "PensionFundEnrolment.tfr_share": absence_is_fact(
+        "the whole TFR maturando goes to the fund"
+    ),
     "PensionFundEnrolment.young_member": requires_fact(
         "pension_fund_contribution",
         "employment.pension_fund.young_member",

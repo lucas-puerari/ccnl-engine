@@ -36,13 +36,21 @@ if TYPE_CHECKING:
 pytestmark = pytest.mark.legal_scenario
 
 
-def _run(slug: str, level: str, fund: str, month: int = 1) -> PeriodResult:
+def _run(
+    slug: str,
+    level: str,
+    fund: str,
+    month: int = 1,
+    share: Decimal = Decimal(1),
+) -> PeriodResult:
     employment = Employment(
         ccnl_id=slug,
         level_code=level,
         seniority=new_hire(),
         employment_period=EmploymentPeriod(date(2026, 1, 1)),
-        pension_fund=PensionFundEnrolment(fund, Decimal(0), tfr_to_fund=True),
+        pension_fund=PensionFundEnrolment(
+            fund, Decimal(0), tfr_to_fund=True, tfr_share=share
+        ),
         contract_type=Permanent(),
     )
     return regular_period(
@@ -79,3 +87,13 @@ def test_public_employee_cannot_confer_the_tfr_alone() -> None:
     """Perseo Sirio: the TFR alone is for the private employees only."""
     with pytest.raises(InvalidInputError, match="TFR alone"):
         _run("funzioni-centrali-aran", "FUNZIONARI", "PERSEO_SIRIO")
+
+
+def test_half_the_tfr_to_the_fund() -> None:
+    """Art. 8 c. 7 lett. c): half to Fon.Te., the rest kept in the company."""
+    whole = _entry(_run("commercio-confcommercio", "4", "FONTE"), "pension_fund_tfr")
+    result = _run("commercio-confcommercio", "4", "FONTE", share=Decimal("0.5"))
+    fund = _entry(result, "pension_fund_tfr")
+    kept = _entry(result, "tfr_accrual")
+    assert fund + kept == whole
+    assert abs(fund - kept) <= Decimal("0.01")

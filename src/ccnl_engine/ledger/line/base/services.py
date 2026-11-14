@@ -168,11 +168,33 @@ def _contribution_lines(amounts: _PeriodAmounts) -> list[_BaseLine]:
             "tfr",
             "tfr_accrual_item",
             amounts.tfr.account,
-            amounts.tfr.amount,
+            amounts.tfr.account_amount,
             TfrAccrualItem,
         ),
+        *_kept_tfr(amounts),
         *_pension_lines(amounts),
         *_assistance_lines(amounts),
+    ]
+
+
+def _kept_tfr(amounts: _PeriodAmounts) -> list[_BaseLine]:
+    """Return the TFR a partial conferment keeps out of the pension fund.
+
+    Returns:
+        One line to the company accrual or the Fondo Tesoreria when the
+        worker pays part of the TFR to the fund; none otherwise.
+    """
+    tfr = amounts.tfr
+    if not tfr.to_pension_fund or not tfr.kept_amount:
+        return []
+    return [
+        _BaseLine(
+            "tfr_kept",
+            "tfr_accrual_item",
+            tfr.kept_account,
+            tfr.kept_amount,
+            TfrAccrualItem,
+        )
     ]
 
 

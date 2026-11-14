@@ -4,8 +4,10 @@ D.Lgs. 252/2005 art. 10: when the TFR maturando of a worker goes to a
 complementary pension fund or to the Fondo Tesoreria INPS, the employer is
 exempted, in the same percentage of the TFR conferred, from the Fondo di
 garanzia TFR contribution (c. 2) and from the social contributions of the
-points of D.L. 203/2005 art. 8 (c. 3).  The engine models the TFR of a run
-as conferred whole or kept whole, so the percentage is 100% or zero.
+points of D.L. 203/2005 art. 8 (c. 3).  The percentage is the share of the
+TFR of the run that leaves the company (``TfrAccrual.conferred_share``): the
+pension fund share of a partial conferment, plus the rest when it goes to
+the Fondo Tesoreria.
 
 Both exemptions reduce the employer contributions of the run, never below
 zero.  An apprentice takes the art. 8 relief only: the 10% apprentice rate
@@ -29,7 +31,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.amount.types import _AmountsInput
     from ccnl_engine.contribution.results import ContributionBreakdown
-    from ccnl_engine.contribution.services import TfrAccrual
+    from ccnl_engine.contribution.tfr.services import TfrAccrual
     from ccnl_engine.severance.models import TfrCompensation
 
 __all__ = [
@@ -89,7 +91,9 @@ def with_tfr_compensation(
     base = _base(breakdown)
     room = breakdown.employer
     components: list[ContributionComponent] = []
-    for name, rate in _rates(compensation, inp):
+    share = accrual.conferred_share
+    for name, full in _rates(compensation, inp):
+        rate = full * share
         amount = min(money(base * rate), room)
         room -= amount
         components.append(ContributionComponent(name, base, -rate, -amount))

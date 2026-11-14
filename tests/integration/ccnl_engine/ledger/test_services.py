@@ -9,7 +9,7 @@ from ccnl_engine.agreement.validity.rules import TimeSeries, ValidityPeriod
 from ccnl_engine.amount.types import _PeriodAmounts
 from ccnl_engine.compensation.element.types import MonthlyPayChain
 from ccnl_engine.compensation.models import Allowance
-from ccnl_engine.contribution.services import TfrAccrual
+from ccnl_engine.contribution.tfr.services import TfrAccrual
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.ledger.services import (
     _build_pay_items,

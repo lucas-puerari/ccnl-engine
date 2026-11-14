@@ -634,11 +634,23 @@ an operaio qualificato of the industria with 160 hours owes 0.0801 x 160 =
 `contractual_fund_not_computed`; a level that leaves the category open,
 `contractual_fund_category_unknown`.
 
-Not modelled: the compensatory measures for employers whose TFR goes to a
-fund (D.Lgs. 252/2005 art. 10), the extra deduction of workers first
-employed from 2007 (art. 8 c. 6), a partial TFR conferment, and the eligibility
-conditions some CCNLs set (e.g. ALIFOND excludes fixed-term contracts up
-to six months). Fondapi on tessile PMI and metalmeccanico PMI computes on the contractual
+A worker enrolled in a compulsory scheme before 29 April 1993 may pay the
+fund only part of the TFR maturando (D.Lgs. 252/2005 art. 8 c. 7 lett. c),
+c. 9-bis): state the share in `PensionFundEnrolment.tfr_share` (default 1,
+all of it). The run posts the fund share to `pension_fund_tfr` and the rest
+on a second line, `tfr_kept`, to `tfr_accrual` or, with
+`Employment.tfr_treasury_fund`, to `tfr_treasury_fund`; the art. 10
+compensations scale by the share that leaves the company, and a termination
+settles the kept part.
+
+Declared residuals: the extra deduction of workers first employed from 2007
+(art. 8 c. 6, the room left by the first five years, up to 2,582.29 EUR a
+year) is left to the worker's tax return: the sources searched (D.Lgs.
+252/2005 art. 8, the COVIP guidance) set no rule for the withholding agent,
+so the run deducts within the ordinary cap alone. The eligibility
+conditions some CCNLs set (e.g. ALIFOND excludes fixed-term contracts up to
+six months) are the caller's: the engine computes the enrolment it is
+given. Fondapi on tessile PMI and metalmeccanico PMI computes on the contractual
 minimum too; its base also counts the EDR (and, for the metalmeccanico, the
 indennita di funzione of the quadri and the elemento of the 8th and 9th
 categories), which the bundle pay lacks: an enrolled run has the open
@@ -711,7 +723,7 @@ the TFR base (`employee_base_above_minimum`). A member enrolled after 5
 February 2021 before turning 35 has an employer rate of 2.2%: state it in
 `PensionFundEnrolment.young_member`. Left `None`, the run uses 2% and has
 the issue `pension_fund_young_member_unknown`. The 40% TFR quota of a worker
-employed before 28 April 1993 is not modelled.
+employed before 28 April 1993 is `tfr_share` 0.4.
 
 ```python
 --8<-- "docs/examples/pension_fund/example.py"

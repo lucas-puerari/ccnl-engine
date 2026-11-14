@@ -16,7 +16,7 @@ from ccnl_engine.tax_credit.recovery.models import InstallmentRun
 
 if TYPE_CHECKING:
     from ccnl_engine.balance.cash.models import TaxCashState
-    from ccnl_engine.contribution.services import TfrAccrual
+    from ccnl_engine.contribution.tfr.services import TfrAccrual
     from ccnl_engine.decision.models import (
         CalculationDecision,
         CalculationIssue,

@@ -722,7 +722,7 @@
     {
       "feature": "pension_fund_contribution",
       "layer": "net",
-      "implementation": "partial",
+      "implementation": "native",
       "applies_when": "decided",
       "handler": "decision",
       "evidence": "derived",

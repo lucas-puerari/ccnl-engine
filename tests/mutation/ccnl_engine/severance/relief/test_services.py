@@ -19,7 +19,7 @@ from ccnl_engine.contribution.results import (
     ContributionBreakdown,
     ContributionComponent,
 )
-from ccnl_engine.contribution.services import TfrAccrual
+from ccnl_engine.contribution.tfr.services import TfrAccrual
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.employment.inputs import Apprentice, Permanent
 from ccnl_engine.severance.models import TfrCompensation, TfrRules
@@ -85,6 +85,18 @@ def test_conferred_tfr_cuts_the_fund_rate_and_the_relief_points() -> None:
     assert result.employer == Decimal("541.15") - Decimal("8.47")
     exemption = next(c for c in result.components if c.name == RELIEF_COMPONENT)
     assert (exemption.base, exemption.rate) == (_BASE, Decimal("-0.0028"))
+
+
+def test_partial_conferment_scales_the_rates() -> None:
+    """Half the TFR to the fund: half the rates, 1.76 and 2.47 on 1764."""
+    accrual = TfrAccrual(
+        quota=Decimal("130.64"), to_pension_fund=True, fund_share=Decimal("0.5")
+    )
+    result = with_tfr_compensation(_input(), _breakdown(), accrual)
+    assert _credits(result) == {
+        GUARANTEE_FUND_COMPONENT: Decimal("-1.76"),
+        RELIEF_COMPONENT: Decimal("-2.47"),
+    }
 
 
 def test_dirigente_takes_the_rate_of_the_category() -> None:
