@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | — |
+| **Limits of this contract** | overtime |
 
-0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 80 verified / 41 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 273 verified / 38 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Art. 36 sickness rules of the CCNL 2024-2028 (alimentare): proposal by one session, field-by-field check of the text by a second independent session. | corrected | Comporto as a sum over the 17 months (up to 5 years of seniority, 180 days) or 24 months (over 5 years, 365 days) before the day, 'anche in caso di diverse malattie': modelled as cumulation; 180 days at full net pay, then 50%.<br>The second session confirmed 15 fields; the window_years fallback and the band boundaries are schema conventions, not contractual windows. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 47 table of the consolidated text signed on 18 March 2026 (PDF p. 144), read on the page image, against the file and the verbale of 28 May 2025 (p. 26). | corrected | 21 minimi of 2026-2028 differed by one or two cents from the later signed text and were corrected.<br>Both signed documents set four tranches of EUR 70: the 2027 and 2028 tranches are confirmed. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Panificazione industriale pay of the text signed on 18 March 2026 (PDF p. 145, 147-148, 153-154, 160), read on the page images, against the research of a separate model session on the CCNL 2021. | corrected | Added the seven panificazione industriale levels with paga base, contingenza, premio di produzione, premio per obiettivi and scatti.<br>The contingenza of the sector (art. 47 bis) is new in the 2026 text; the CCNL 2021 had none for these levels. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 29 tables of the text signed on 18 March 2026 (PDF p. 109-119), read on the page images, against the Federalimentare art. 31 bands. | corrected | The file had unverified overtime rates of 40%, 45% and 50% for everyone; the signed tables pay 45% for weekday overtime in every sub-sector and differ by sub-sector and category.<br>The sub-sector tables equal those of Federalimentare art. 31; the first also covers the prodotti da forno; the panificazione has its own table. |
 
 ## Salary table
 
@@ -107,6 +108,13 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "alimentari-pmi-unionalimentari/bakery_premium_cumulation · overtime · impact yes · open"
+    BAKERY PREMIUM CUMULATION (art. 29, PANIFICAZIONE, PDF p. 119): the premiums marked * are 'Cumulabile con le altre maggiorazioni in misura non superiore al 55%'; the engine applies the higher premium alone, as for the other tables, so overtime at night or on holidays of the panificazione is underpaid.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Cumulate the panificazione premiums marked * up to 55% above the highest one.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -296,6 +304,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     PANIFICAZIONE INDUSTRIALE (text signed 18 March 2026): levels P1, P2, P3A, P3B, P4, P5, P6 (1°, 2°, 3A, 3B, 4°, 5°, 6°) only for an employer of the sub-sector panificazione_industriale, on a ladder of their own: paga base (4 tranches of EUR 70 at 3B), contingenza of art. 47 bis, premio di produzione nazionale (14 months, out of the TFR by the exhaustive list of art. 59), premio per obiettivi of the sector in place of art. 53 (12 months) and five biennial scatti frozen at the 1997 amounts. No EDR: the signed text names none for the sector.
     
     TRANCHES 2027-2028 (art. 47): 70.00 EUR at parametro 137 from 1 April 2027 and again from 1 January 2028, as in the verbale signed 28 May 2025 (p. 26) and the consolidated text signed 18 March 2026 (PDF p. 144). The association circular's prose giving 32 EUR for the third tranche is wrong. Where the two signed tables differ by a cent the later text is used: it adds each increment to the previous minimo exactly (e.g. 3rd level 1,987.81 from 1 January 2026, 1,987.80 in the verbale).
+    
+    OVERTIME AND PREMIUMS (art. 29, text signed 18 March 2026, PDF p. 109-119): the tables by EmployerProfile.subsector (carni, dolciari, alimenti_zootecnici, lattiero_caseari, prodotti_da_forno, vini_liquori, bevande_gassate, acque_minerali, distillatori, birra_malto, conserve_vegetali, alimentari_varie, risiera, molitoria_pastificazione, conserve_ittiche, avicoli, panificazione_industriale), by category (the operai column; the impiegati column for impiegati and quadri), equal to the Federalimentare art. 31 tables. The intermedi column and the rows of overtime of shift workers and festive night overtime beyond 8 hours are not modelled: the caller states those rates. The 90% Sunday of the bread staff takes the role 'addetto_pane'.
     
 
 ## Raw data

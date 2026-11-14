@@ -133,7 +133,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/alimentari-pmi-unionalimentari",
       "ruleset_version": "2026.2",
-      "source_hash": "26ac0be9d9affadd6570075e0a7c770ebe21cd44c45c45b2b71b62f8a74f798a",
+      "source_hash": "94a6aa20b6aa53955e3624f68055e98427e9675d98f027d397f473987a860b11",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/alimentari-pmi-unionalimentari.json.gz"
@@ -2541,7 +2541,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "4abdb43b646bffc7f436866170a599a1dc4ab3f6317bdd0da56862c58cbf5f2f",
+      "source_hash": "7bdda0809e971bd83578ab9a26a2289ff8717a8f7ffcca532e541ffee7d9ebd1",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/alimentari-pmi-unionalimentari.json.gz",
