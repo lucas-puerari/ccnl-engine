@@ -31,6 +31,7 @@ from ccnl_engine import (
     PeriodFacts,
     PeriodResult,
 )
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.events import OvertimeEvent, SicknessEpisode
 from ccnl_engine.inputs import (
     Apprentice,
@@ -747,10 +748,12 @@ def _stated_gaps(
             "pension_fund_contribution",
             "partial_implementation",
         ))
-    if s.ccnl not in {_DMO, _CONFAPI} and any(r.period_id == _OCTOBER for r in results):
-        # 4 October 2026, a holiday since L. 151/2025, falls on a Sunday:
-        # whether it is paid apart is not sourced but for DMO (Art. 137)
-        # and Confapi (Art. 32 of the ipotesi of 4 June 2026).
+    rules = load_ccnl(s.ccnl).work_rules
+    unsourced = rules is None or rules.sunday_holidays is None
+    if unsourced and any(r.period_id.month >= _OCTOBER.month for r in results):
+        # 4 October and 1 November 2026 fall on a Sunday: a CCNL whose clause
+        # is not sourced may pay them; a clause that leaves 4 October out
+        # takes the law (L. 151/2025 adds it to L. 260/1949 art. 2 only).
         expected.add(_SUNDAY_HOLIDAY)
     return expected
 

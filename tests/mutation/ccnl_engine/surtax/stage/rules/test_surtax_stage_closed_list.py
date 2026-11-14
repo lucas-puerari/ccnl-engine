@@ -173,7 +173,7 @@ def test_a_closed_list_leaves_no_surtax_blocker(
         )
     )
     blockers = [b for b in year.blockers if b.feature != "sunday_holiday"]
-    assert {b.detail for b in year.blockers} - {b.detail for b in blockers} == {
+    assert {b.detail for b in year.blockers} - {b.detail for b in blockers} <= {
         "sunday_holiday_ccnl_clause"
     }
     details = {b.detail for b in blockers}

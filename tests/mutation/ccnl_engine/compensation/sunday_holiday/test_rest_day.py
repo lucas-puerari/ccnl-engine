@@ -163,12 +163,12 @@ def test_a_holiday_off_the_rest_day_pays_nothing(
     assert not _limited(result)
 
 
-def test_a_recent_holiday_on_the_rest_day_is_open() -> None:
-    """4 October 2026, not in art. 127, records the limitation."""
+def test_a_holiday_the_clause_leaves_out_on_the_rest_day_takes_the_law() -> None:
+    """4 October 2026, not in art. 127: the law pays no quota, nothing open."""
     result = _run(_TURISMO, 2026, 10)
 
-    assert _paid(result) == ("2026-10-04", Decimal(0))
-    assert _limited(result)
+    assert _paid(result) is None
+    assert not _limited(result)
 
 
 @pytest.mark.parametrize("ccnl", _SAME_CLAUSE, ids=_SAME_IDS)

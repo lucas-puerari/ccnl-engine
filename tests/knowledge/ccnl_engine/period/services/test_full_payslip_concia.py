@@ -261,12 +261,9 @@ class TestCandidateGroupEvidence:
         the codice civile, the industria INPS rates from the rate table of
         operai and impiegati with the CIGO and CIGS of D.Lgs. 148/2015, and
         the operaio category picks the employer rate: every run of the year
-        is payable in simulation mode, but October: 4 October 2026, a holiday
-        since L. 151/2025, falls on a Sunday, and is not in the art. 38 list.
+        is payable in simulation mode; 4 October 2026, out of the art. 38
+        list, takes the law, which pays no quota on a Sunday.
         """
         for result in _runs():
-            sunday = result.period_id.month == 10
-            assert {b.detail for b in result.blockers} == (
-                {"sunday_holiday_ccnl_clause"} if sunday else set()
-            )
-            assert result.is_payable is not sunday
+            assert not result.blockers
+            assert result.is_payable

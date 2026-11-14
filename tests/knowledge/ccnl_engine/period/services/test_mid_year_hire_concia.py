@@ -166,12 +166,10 @@ def test_surtax_left_for_2027(component: SurtaxComponent, amount: Decimal) -> No
 def test_every_run_is_payable() -> None:
     """Nothing the case reads blocks it in simulation mode.
 
-    But October: 4 October 2026, a holiday since L. 151/2025, falls on a
-    Sunday, and is not in the art. 38 list.
+    4 October 2026 falls on a Sunday and is not in the art. 38 list: it
+    takes the law, which pays no quota (L. 151/2025 adds it to L. 260/1949
+    art. 2 only).
     """
     for result in _runs():
-        sunday = result.period_id.month == 10
-        assert {b.detail for b in result.blockers} == (
-            {"sunday_holiday_ccnl_clause"} if sunday else set()
-        )
-        assert result.is_payable is not sunday
+        assert not result.blockers
+        assert result.is_payable
