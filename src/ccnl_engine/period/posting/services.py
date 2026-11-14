@@ -7,6 +7,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.errors import InvalidInputError
+from ccnl_engine.irpef.prior.rules import taken_in_now
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.ledger.services import (
     _build_pay_items,
@@ -136,6 +137,11 @@ def run_credits(ctx: RunContext, tax_computation: TaxComputation) -> RunCredits:
             run,
         ),
         request.current_year,
+        taken_in_now(
+            request.current_year,
+            conguaglio=ctx.conguaglio,
+            settled=ctx.opening.cash.conguaglio is not None,
+        ).somma_esente,
     )
     carried = post_carried_recoveries(
         ctx.opening.cash.obligations,

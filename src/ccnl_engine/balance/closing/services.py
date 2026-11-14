@@ -21,6 +21,7 @@ from ccnl_engine.balance.obligation.models import (
     RecoveryObligation,
 )
 from ccnl_engine.errors import DataIntegrityError, InvalidInputError
+from ccnl_engine.irpef.prior.rules import with_recognized
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.services import _sum_ledger
 
@@ -256,7 +257,9 @@ def _closing_cash(
             None if tratt is None else tratt.amount,
             None if tratt is None else tratt.reason_code,
         ),
-        somma_esente=op.somma_esente.after(somma.amount, somma.due, somma.reason),
+        somma_esente=with_recognized(op.somma_esente, somma.prior_paid).after(
+            somma.amount, somma.due, somma.reason
+        ),
         ulteriore_detrazione=(
             op.ulteriore_detrazione
             if amounts.ulteriore is None

@@ -38,6 +38,8 @@ class PriorEmployerIncome:
             the other payer withheld (CU punto 547).
         municipal_surtax_withheld: Municipal surtax saldo of the year the
             other payer withheld (CU punto 548).
+        somma_esente_paid: Somma esente of L. 207/2024 art. 1 c. 4 the
+            other payer paid (CU punto 725).
 
     Raises:
         InvalidInputError: When a field is not of its type or an amount is
@@ -51,6 +53,7 @@ class PriorEmployerIncome:
     regional_surtax_withheld: Decimal
     municipal_advance_withheld: Decimal
     municipal_surtax_withheld: Decimal
+    somma_esente_paid: Decimal
 
     def __post_init__(self) -> None:  # noqa: D105
         require_instance(
@@ -63,6 +66,7 @@ class PriorEmployerIncome:
             "regional_surtax_withheld",
             "municipal_advance_withheld",
             "municipal_surtax_withheld",
+            "somma_esente_paid",
         ):
             require_decimal(
                 getattr(self, name), f"{_OWNER}.{name}", feature=_FEATURE, minimum=_ZERO

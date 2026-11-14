@@ -53,6 +53,7 @@ _PRIOR = PriorEmployerIncome(
     regional_surtax_withheld=Decimal(0),
     municipal_advance_withheld=Decimal(0),
     municipal_surtax_withheld=Decimal(0),
+    somma_esente_paid=Decimal(0),
 )
 
 
@@ -143,6 +144,7 @@ def test_the_certified_income_must_be_in_the_other_employment_income() -> None:
         "regional_surtax_withheld",
         "municipal_advance_withheld",
         "municipal_surtax_withheld",
+        "somma_esente_paid",
     ],
 )
 def test_a_negative_certified_amount_is_rejected(field: str) -> None:
@@ -155,6 +157,7 @@ def test_a_negative_certified_amount_is_rejected(field: str) -> None:
         "regional_surtax_withheld": Decimal(1),
         "municipal_advance_withheld": Decimal(1),
         "municipal_surtax_withheld": Decimal(1),
+        "somma_esente_paid": Decimal(1),
     } | {field: Decimal(-1)}
     with pytest.raises(InvalidInputError) as error:
         PriorEmployerIncome(**values)  # type: ignore[arg-type]
@@ -203,3 +206,17 @@ def test_the_surtax_of_the_total_less_what_the_other_payer_withheld() -> None:
     assert _balance(taken, "regional_balance") == Decimal("282.16")
     assert _balance(plain, "municipal_balance") == Decimal("184.64")
     assert _balance(taken, "municipal_balance") == Decimal("174.64")
+
+
+def test_the_somma_esente_the_other_payer_paid_is_recovered() -> None:
+    """100.00 paid and not due on the total: recovered in ten installments.
+
+    L. 207/2024 art. 1 c. 4: a somma esente recovered above 60.00 is
+    withheld in ten installments, 10.00 on the conguaglio.
+    """
+    result = _conguaglio((replace(_PRIOR, somma_esente_paid=Decimal(100)),))
+
+    account = result.closing_state.cash.somma_esente
+    assert account.recognized == Decimal(100)
+    assert account.recovered == Decimal("10.00")
+    assert account.reason == "overpayment_recovery_opened"

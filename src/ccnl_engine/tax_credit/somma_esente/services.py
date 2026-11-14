@@ -30,6 +30,7 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
     IssueCause,
 )
+from ccnl_engine.irpef.prior.rules import with_recognized
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.tax_credit.somma_esente.posting.services import (
     SommaEsentePosting,
@@ -73,6 +74,7 @@ class SommaEsenteOutcome:
         issues: While an amount is due, a missing ``current_year`` when
             the income beyond this employment is not stated, or a
             provisional band with employment income of other employers.
+        prior_paid: Somma esente of earlier employments the account took in.
     """
 
     amount: Decimal = _ZERO
@@ -83,6 +85,7 @@ class SommaEsenteOutcome:
     entries: tuple[LedgerEntry, ...] = ()
     decisions: tuple[CalculationDecision, ...] = ()
     issues: tuple[CalculationIssue, ...] = ()
+    prior_paid: Decimal = _ZERO
 
 
 #: Other income can only raise the reddito complessivo, so the income beyond
@@ -143,6 +146,7 @@ def resolve_somma_esente(
     tax_year: int,
     posting: SommaEsentePosting,
     current_year: CurrentYearTaxFacts | None,
+    prior_paid: Decimal = _ZERO,
 ) -> SommaEsenteOutcome:
     """Return the somma esente of the run, its postings and its decision.
 
@@ -159,12 +163,14 @@ def resolve_somma_esente(
         current_year: Income of the tax year beyond this employment, which
             enters the reddito complessivo of c. 4; ``None`` when not
             stated.
+        prior_paid: Somma esente the earlier employments a conguaglio takes
+            in paid (art. 23 c. 4 DPR 600/1973), recognised in the account.
 
     Returns:
         The outcome; empty when the credit is not in force and nothing of
         it was paid or is being recovered this tax year.
     """
-    account = opening.cash.somma_esente
+    account = with_recognized(opening.cash.somma_esente, prior_paid)
     plan = opening.cash.obligations.recovery_of(tax_year, SOMMA_ESENTE_RECOVERY)
     if rules.somma_esente is None and plan is None and account.net == _ZERO:
         return SommaEsenteOutcome()
@@ -200,4 +206,5 @@ def resolve_somma_esente(
         entries=entries,
         decisions=(decision,),
         issues=_income_issues(annual, current_year, tax_year),
+        prior_paid=prior_paid,
     )

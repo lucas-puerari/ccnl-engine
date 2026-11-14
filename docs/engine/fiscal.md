@@ -366,10 +366,12 @@ municipal surtax of the year are determined on the total income, and the
 regional surtax, municipal acconto and municipal saldo the other payers
 withheld (CU punti 546-548) count as withheld. The run records the final
 decision `additional_irpef_base` with the income as its amount. A later
-payment that settles the year again takes the withholdings in once. Not
-taken in yet: the ulteriore detrazione and the somma esente the earlier
-employments recognised, computed on this employment's account alone (the
-capability is `partial`).
+payment that settles the year again takes the withholdings in once. The
+somma esente they paid (CU punto 725) joins the year's account, so the
+conguaglio recovers what is not due on the total income; the ulteriore
+detrazione needs no input: the conguaglio measures it on the total income,
+and what the earlier payers recognised is already in the IRPEF they
+withheld.
 
 ### Foreign tax credit at the conguaglio
 
