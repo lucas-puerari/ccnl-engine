@@ -64,6 +64,10 @@ class HourlyParentalLeaveEvent:
             leave starts, for the months beyond the indemnified ones: art.
             34 c. 3 D.Lgs. 151/2001 pays them 30% below 2.5 times the
             trattamento minimo; ``None`` when not stated.
+        local_hourly_agreement: Whether a company or territorial agreement
+            regulates the leave by the hour, in place of the general
+            criterion of art. 32 c. 1-ter D.Lgs. 151/2001; ``None`` when not
+            stated.
 
     Raises:
         InvalidInputError: When a field is of the wrong type, the days are
@@ -80,6 +84,7 @@ class HourlyParentalLeaveEvent:
     parental_base_pay: InpsSicknessBase | None = None
     topped_up_days_before: Decimal | None = None
     individual_income: Decimal | None = None
+    local_hourly_agreement: bool | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         name = "HourlyParentalLeaveEvent"
@@ -91,6 +96,9 @@ class HourlyParentalLeaveEvent:
             self.taken, ParentalLeaveTaken, f"{name}.taken", feature=_PARENTAL
         )
         require_bool(self.single_parent, f"{name}.single_parent", feature=_PARENTAL)
+        if self.local_hourly_agreement is not None:
+            field = f"{name}.local_hourly_agreement"
+            require_bool(self.local_hourly_agreement, field, feature=_PARENTAL)
         require_decimal(
             self.individual_income,
             f"{name}.individual_income",

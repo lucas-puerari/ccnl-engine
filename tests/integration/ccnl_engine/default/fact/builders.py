@@ -708,10 +708,15 @@ def _parental_topup(prior: int | None) -> PeriodInput:
     )
 
 
-def _hourly_parental(base: InpsSicknessBase | None, ended: date | None) -> PeriodInput:
+def _hourly_parental(
+    base: InpsSicknessBase | None,
+    ended: date | None,
+    agreement: bool | None = False,
+) -> PeriodInput:
     """Return two days of parental leave by the hour in March of an impiegato.
 
-    The same child as :func:`_parental`, an average day of 8 hours.
+    The same child as :func:`_parental`, an average day of 8 hours, no
+    company or territorial agreement unless ``agreement`` says otherwise.
 
     Returns:
         The March run; the indemnity needs the pay of the month before and
@@ -724,6 +729,7 @@ def _hourly_parental(base: InpsSicknessBase | None, ended: date | None) -> Perio
         Decimal(8),
         protection_ended_on=ended,
         parental_base_pay=base,
+        local_hourly_agreement=agreement,
     )
     run = _march(PeriodState.zero())
     employment = replace(_EMPLOYMENT, category=WorkerCategory.IMPIEGATO)
@@ -949,6 +955,13 @@ def sickness_cases[C](
                 _hourly_parental(_FEBRUARY_PAY, _MATERNITY_END),
                 _hourly_parental(_FEBRUARY_PAY, None),
                 "protection_ended_on",
+            ),
+        ),
+        "HourlyParentalLeaveEvent.local_hourly_agreement": (
+            case(
+                _hourly_parental(_FEBRUARY_PAY, _MATERNITY_END),
+                _hourly_parental(_FEBRUARY_PAY, _MATERNITY_END, None),
+                "local_hourly_agreement",
             ),
         ),
         "EmploymentPeriod.ended_by": (
