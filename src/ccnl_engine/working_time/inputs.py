@@ -68,6 +68,11 @@ class OvertimeEvent:
             regime, ``None`` when it is not or not known.
         in_periodic_shift: Whether the worker is a turnista, which chooses
             the yearly exempt quota; ``None`` when not stated.
+        supplementary_hours_before: Part-time supplementary hours worked
+            earlier in the calendar year, for a CCNL whose rate rises past a
+            share of the agreed annual hours.
+        agreed_annual_hours: Annual hours of the part-time contract that
+            share is taken of.
     """
 
     event_date: date
@@ -80,6 +85,8 @@ class OvertimeEvent:
     weekly_hours_before: Decimal | None = None
     exempt_quota_hours_before: Decimal | None = None
     in_periodic_shift: bool | None = None
+    supplementary_hours_before: Decimal | None = None
+    agreed_annual_hours: Decimal | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         feature = "overtime"
@@ -99,7 +106,12 @@ class OvertimeEvent:
                 positive=True,
                 optional=True,
             )
-        for name in ("weekly_hours_before", "exempt_quota_hours_before"):
+        for name in (
+            "weekly_hours_before",
+            "exempt_quota_hours_before",
+            "supplementary_hours_before",
+            "agreed_annual_hours",
+        ):
             require_decimal(
                 getattr(self, name),
                 f"OvertimeEvent.{name}",

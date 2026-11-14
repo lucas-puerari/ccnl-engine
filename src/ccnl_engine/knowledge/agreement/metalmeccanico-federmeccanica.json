@@ -150,15 +150,15 @@
       },
       {
         "kind": "simplification",
-        "text": "PART-TIME SUPPLEMENTARY HOURS: work up to 40 weekly hours earns an all-inclusive 10% on the overtime-premium pay elements until supplementary hours exceed 50% of agreed annual part-time hours; the excess earns 20% (CCNL 5 February 2021, PDF p. 58). OT_SUPPLEMENTARE derives only 10%. A caller may split hours at the boundary and explicitly supply multiplier 1.20 for the excess; the engine cannot count year-to-date supplementary hours or split an event that crosses the boundary. The elastic clauses of the same section (PDF p. 57: 10% for a rearranged placement of hours, 15% for an increase in duration up to 25% of the normal annual part-time hours) and the conditions of supplementary work (specific needs, notice to the RSU, no proven individual impediment) are not modelled.",
+        "text": "PART-TIME SUPPLEMENTARY HOURS: work up to 40 weekly hours earns an all-inclusive 10% on the overtime-premium pay elements until supplementary hours exceed 50% of agreed annual part-time hours; the excess earns 20% (CCNL 5 February 2021, PDF p. 58). The rate past the yearly share is paid when the event states the supplementary hours worked earlier in the year and the agreed annual hours (OvertimeEvent.supplementary_hours_before, agreed_annual_hours); without them the base rate is paid and the run carries this limitation. The elastic clauses of the same section (PDF p. 57: 10% for a rearranged placement of hours, 15% for an increase in duration up to 25% of the normal annual part-time hours) and the conditions of supplementary work are not modelled.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
           "variant": "part_time_supplementary_rate",
           "applies_when": {
-            "trigger": "outside_input"
+            "trigger": "path"
           },
-          "remediation": "Supply agreed annual part-time hours and prior supplementary hours to split crossing events and derive the 20% rate on the excess without a caller override.",
+          "remediation": "State OvertimeEvent.supplementary_hours_before and agreed_annual_hours on the supplementary hours; the elastic clauses (10% and 15%) remain outside the model.",
           "status": "open"
         }
       },
@@ -3398,7 +3398,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "8e36da0107c6d86af5adcc7360c6a45c9749603858cd1aad1bd6c5a8f2df5fe9",
+    "source_hash": "90f4bc21f60f38505c1bf43b4bb24f9d9cabd7c80c5b534bb64d6e56323052f1",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -3857,6 +3857,44 @@
             "verified_at": "2026-11-14T18:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-14-ai-federmeccanica-exempt-quota"
+          }
+        }
+      },
+      "supplementary_excess": {
+        "share": "0.50",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2021-02-05",
+              "valid_until": null,
+              "value": "0.20"
+            }
+          ]
+        },
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "fiom-ccnl-federmeccanica-2021-02-05",
+              "title": "CCNL Federmeccanica-Assistal 5 febbraio 2021, edizione verificata conforme al testo originale dalle organizzazioni firmatarie (FIOM-CGIL)",
+              "kind": "associazione",
+              "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+              "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+            },
+            "page": "58",
+            "section": "Sez. Quarta, Titolo I, art. 4 Rapporto a tempo parziale, Lavoro supplementare e straordinario (printed p. 54)",
+            "quote": "Il lavoro supplementare è consentito fino al raggiungimento delle 40 ore settimanali e per una quantità annua non superiore al 50 per cento della normale prestazione annua a tempo parziale ed è compensato con una maggiorazione onnicomprensiva del 10% da computare su gli elementi utili al calcolo delle maggiorazioni per lavoro straordinario, notturno e festivo. Per le prestazioni eccedenti tale limite annuo la maggiorazione onnicomprensiva sarà pari al 20%."
+          },
+          "transformation": "20% in place of 10% on the supplementary hours of the year past 50% of the normal annual part-time hours (event facts supplementary_hours_before and agreed_annual_hours); the 2025 ipotesi leaves the clause unchanged.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T19:00:00Z",
+            "effective_from": "2021-02-05",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T19:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-metalmeccanico-federmeccanica-supplementary-excess"
           }
         }
       }
@@ -6335,6 +6373,27 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.time_supplements.overtime_exempt_quota"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-metalmeccanico-federmeccanica-supplementary-excess",
+        "date": "2026-11-14",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Part-time supplementary work clause, read by a separate model session.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          }
+        ],
+        "findings": [
+          "Confirmed: 10% up to 50% of the normal annual part-time hours, 20% past it (CCNL 2021 PDF p. 58); the 2025 ipotesi does not change the clause."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements.supplementary_excess"
         ]
       }
     ],

@@ -57,6 +57,15 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "unknown turnista status: in a firm up to the CCNL headcount the yearly "
         "exempt quota is not chosen and the premium past it is not added"
     ),
+    "OvertimeEvent.supplementary_hours_before": absence_is_fact(
+        "unknown earlier supplementary hours of the year: a CCNL whose rate "
+        "rises past a share of the annual part-time hours pays the base band "
+        "and records its limitation"
+    ),
+    "OvertimeEvent.agreed_annual_hours": absence_is_fact(
+        "unknown annual part-time hours: the share past which the "
+        "supplementary rate rises is not known, the base band is paid"
+    ),
     "NightShiftEvent.supplement_amount": absence_is_fact(_FROM_CCNL),
     "NightShiftEvent.hours": absence_is_fact(_SUPPLEMENT_HOURS),
     "NightShiftEvent.before_22": absence_is_fact(

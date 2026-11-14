@@ -11,6 +11,7 @@ from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.working_time.overlap.rules import bands_overlap
 from ccnl_engine.working_time.overtime.quota import OvertimeExemptQuota
+from ccnl_engine.working_time.overtime.supplementary import SupplementaryExcess
 from ccnl_engine.working_time.supplement.models import (
     HourlyBaseMethod,
     IndividualElementsRule,
@@ -130,7 +131,9 @@ class TimeSupplements(BaseModel):
     a CCNL-specific note says otherwise.  ``supplement_bands`` are the
     supplements of ordinary night, holiday and shift work.
     ``overtime_exempt_quota`` is the extra premium of the overtime past the
-    yearly 'quote esenti' (:class:`OvertimeExemptQuota`).
+    yearly 'quote esenti' (:class:`OvertimeExemptQuota`);
+    ``supplementary_excess`` the rate of the part-time supplementary hours
+    past a share of the agreed annual hours (:class:`SupplementaryExcess`).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -149,6 +152,7 @@ class TimeSupplements(BaseModel):
     overtime_bank_provenance: RuleProvenance | None = None
     supplement_bands: tuple[SupplementBand, ...] = Field(default=())
     overtime_exempt_quota: OvertimeExemptQuota | None = None
+    supplementary_excess: SupplementaryExcess | None = None
 
     @model_validator(mode="after")
     def _distinct_weeks(self) -> Self:
