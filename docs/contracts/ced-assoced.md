@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 37 verified / 7 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 40 verified / 7 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-07-28 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -69,6 +69,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Local patron saint day in sickness and work injury holiday clauses. | confirmed | Art. 149 - Festività nel periodo di malattia o infortunio (p. 97): Ai sensi della L. 31 marzo 1954, n. 90, per le festività cadenti nel periodo di malattia o infortunio, il lavoratore ha diritto ad un'indennità integrativa di quella a carico rispettivamente dell'INPS e dell'INAIL, da corrispondersi a carico del datore di lavoro, in modo da raggiungere complessivamente il 100% (cento per cento) della retribuzione di fatto di cui all'art. 168. The stated local patron saint day is covered when the target opts in; unstated days leave other holidays unchanged. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Arts. 149 and 157 and the patron saint holiday list, cached 2022 PDF pp. 97 and 102. | corrected | Sickness and injury already include the stated patron saint day; maternity now includes it too. Optional parental leave was outside the maternity target at the time of this review. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 157, cached 2022 PDF p. 102: holidays during compulsory and optional leave. | corrected | The optional absence has the same daily holiday target as compulsory absence; the stated local patron is already a covered holiday. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 119 of the stesura of 9 March 2022 (permits, ROL ramp, deadline). | corrected | The file had the ferie but no permit: added the 32 hours of ex festivita, the 56/72 hours of ROL with the ramp of the hires after 9 March 2022, and the 30 June deadline of Art. 119. |
 
 ## Salary table
 
@@ -337,6 +338,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Salary tranches: 01/09/2025 (source-confirmed, redigo.info and kitech.it), 01/06/2026 (source-confirmed, both sources agree), 01/03/2027 (redigo.info only, single-source), 01/01/2028 (redigo.info only, single-source).
     
     SCATTI (Art. 166, stesura 9 March 2022, p. 106): abrogated from 1 January 2019, they keep maturing for the staff in service on 31 December 2018: five biennial increments from the hire date, QDIR 52, Q 47, 1° 44, 2° 40, 3°S 36, 3° 33, 4° 30, 5° 27, 6° 24 EUR (parameters.seniority_increments.hired_until).
+    
+    PERMITS (Art. 119, stesura 9 March 2022, p. 86): 32 hours for the abolished holidays and 56 of ROL, 72 in the firms with more than 15 employees (authentic interpretation: 88 and 104 hours in all); for the workers hired after 9 March 2022 the ROL are 50% after two years and 100% after four (the norma transitoria keeps 104 hours for the staff in service before); a twelfth per whole month of service; not taken within the year paid with the retribuzione di fatto at the deadline or taken by 30 June of the next year, as the employer states (EmployerProfile.permit_carryover).
     
 
 ## Raw data

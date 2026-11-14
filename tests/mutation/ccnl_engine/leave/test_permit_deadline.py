@@ -282,3 +282,44 @@ def test_dmo_pays_the_ex_festivita_at_the_deadline() -> None:
     )
 
     assert _paid(result) == {"ex": Decimal(32)}
+
+
+@pytest.mark.parametrize(
+    ("headcount", "rol"), [(10, Decimal(56)), (20, Decimal(72))], ids=["small", "large"]
+)
+def test_ced_pays_ex_festivita_and_rol_at_the_deadline(
+    headcount: int, rol: Decimal
+) -> None:
+    """CED art. 119: 32 + 56 hours, 72 of ROL above 15 employees, hired in 2020."""
+    opening = PeriodState.zero()
+    balances = tuple(
+        sorted(
+            (
+                LeaveBalance(_EX, 2026, Decimal(32 * 11), Decimal(0)),
+                LeaveBalance(LeaveBucket.ROL, 2026, rol * 11, Decimal(0)),
+            ),
+            key=lambda b: list(LeaveBucket).index(b.bucket),
+        )
+    )
+    opening = replace(
+        opening, accrual=replace(opening.accrual, leave=LeaveAccount(balances))
+    )
+    result = calculate_period(
+        PeriodCalculationRequest(
+            employer=EmployerProfile(
+                headcount=Headcount(headcount), permit_carryover=False
+            ),
+            period_id=PeriodId(2026, 12),
+            payment_date=date(2026, 12, 27),
+            ccnl_id="ced-assoced",
+            level_code="3",
+            opening_state=opening,
+            roles=frozenset(),
+            employment_period=EmploymentPeriod(date(2020, 1, 1)),
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
+    assert isinstance(result, PeriodResult)
+
+    assert _paid(result) == {"ex": Decimal(32), "rol": rol}

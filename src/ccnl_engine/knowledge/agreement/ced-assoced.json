@@ -142,6 +142,11 @@
           },
           "remediation": "Obtain an authoritative clarification of the conflicting percentage in Art. 147."
         }
+      },
+      {
+        "kind": "info",
+        "text": "PERMITS (Art. 119, stesura 9 March 2022, p. 86): 32 hours for the abolished holidays and 56 of ROL, 72 in the firms with more than 15 employees (authentic interpretation: 88 and 104 hours in all); for the workers hired after 9 March 2022 the ROL are 50% after two years and 100% after four (the norma transitoria keeps 104 hours for the staff in service before); a twelfth per whole month of service; not taken within the year paid with the retribuzione di fatto at the deadline or taken by 30 June of the next year, as the employer states (EmployerProfile.permit_carryover).",
+        "capability": "leave"
       }
     ]
   },
@@ -1973,7 +1978,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "29a11ceef2f260675c3ef8c021fe35ba33d664796ca43930bd70d752f54e728d",
+    "source_hash": "6e8df61c7e865bddbe3f5359635ee5f5272dce51f994df127ad3575cfd101cbe",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2137,6 +2142,159 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2022-03-09"
+        }
+      },
+      "permits": [
+        {
+          "bucket": "ex_festivita",
+          "annual_hours": [
+            {
+              "hours": "32"
+            }
+          ],
+          "month_credit": "whole_month",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                "title": "CCNL CED, ICT, Professioni Digitali e STP, 9 March 2022",
+                "kind": "associazione",
+                "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+                "published_on": "2022-03-09",
+                "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+              },
+              "page": "86",
+              "section": "Art. 119 (Permessi retribuiti - R.O.L.)",
+              "quote": "Gruppi di 4 o di 8 ore di permesso individuale retribuito pari a 32 ore, verranno fruiti dai lavoratori in sostituzione delle 4 festività abolite [...] un dodicesimo dei permessi di cui al presente articolo per ogni mese intero di servizio prestato"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2022-03-09",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-permits"
+            }
+          }
+        },
+        {
+          "bucket": "rol",
+          "annual_hours": [
+            {
+              "hours": "56"
+            },
+            {
+              "hours": "72",
+              "headcount_above": 15
+            }
+          ],
+          "month_credit": "whole_month",
+          "ramp": {
+            "hired_after": "2022-03-09",
+            "steps": [
+              {
+                "service_months_min": 0,
+                "share": "0"
+              },
+              {
+                "service_months_min": 24,
+                "share": "0.5"
+              },
+              {
+                "service_months_min": 48,
+                "share": "1"
+              }
+            ],
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                  "title": "CCNL CED, ICT, Professioni Digitali e STP, 9 March 2022",
+                  "kind": "associazione",
+                  "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+                  "published_on": "2022-03-09",
+                  "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+                },
+                "page": "86",
+                "section": "Art. 119 (Permessi retribuiti - R.O.L.)",
+                "quote": "per tutti i lavoratori assunti successivamente alla data di sottoscrizione del presente CCNL [...] le ulteriori ore di permesso di cui al terzo comma, verranno riconosciute in misura pari al 50%, decorsi due anni dall'assunzione e in misura pari al 100% decorsi quattro anni dall'assunzione."
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2022-03-09",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-permits"
+              }
+            }
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
+                "title": "CCNL CED, ICT, Professioni Digitali e STP, 9 March 2022",
+                "kind": "associazione",
+                "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+                "published_on": "2022-03-09",
+                "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+              },
+              "page": "86",
+              "section": "Art. 119 (Permessi retribuiti - R.O.L.)",
+              "quote": "ulteriori gruppi di permessi pari a 56 (cinquantasei) ore annue [...] nelle aziende oltre 15 dipendenti devono essere riconosciuti permessi complessivi a titolo di ROL e per festività soppresse pari a 104 ore annue."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "2022-03-09",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-permits"
+            }
+          }
+        }
+      ],
+      "permit_deadline": {
+        "carry_until_month": 6,
+        "buckets": [
+          "ex_festivita",
+          "rol"
+        ],
+        "permits_hourly": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
+              "title": "CCNL CED, ICT, Professioni Digitali e STP, 9 March 2022",
+              "kind": "associazione",
+              "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+              "published_on": "2022-03-09",
+              "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+            },
+            "page": "86",
+            "section": "Art. 119 (Permessi retribuiti - R.O.L.)",
+            "quote": "I permessi complessivi [...] non fruiti entro l'anno di maturazione decadranno e saranno corrisposti con la retribuzione di fatto di cui all'art. 168 in atto al momento della scadenza, oppure potranno essere fruiti in epoca successiva e comunque non oltre il 30 giugno dell'anno successivo."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2022-03-09",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-permits"
+          }
         }
       }
     },
@@ -2629,6 +2787,28 @@
         "checked": [
           "work_rules.insured_absence.maternity.parental_holiday",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-permits",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 119 of the stesura of 9 March 2022 (permits, ROL ramp, deadline).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+            "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+          }
+        ],
+        "findings": [
+          "The file had the ferie but no permit: added the 32 hours of ex festivita, the 56/72 hours of ROL with the ramp of the hires after 9 March 2022, and the 30 June deadline of Art. 119."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules.permits",
+          "work_rules.leave_rules.permit_deadline"
         ]
       }
     ]
