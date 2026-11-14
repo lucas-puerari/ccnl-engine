@@ -83,22 +83,6 @@
       }
     },
     {
-      "id": "meal_indennity",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "A non-convivente on 6 or more hours a day with continuous presence is owed the meal or, when it is not given, an indennita equal to its valore convenzionale (Art. 14 c. 8; Tabella F 2026: 2,33 per meal). The request carries no fact on daily hours, presence or meals given, so the engine pays none.",
-      "calculation": "ccnl/lavoro-domestico-non-convivente:coverage.notes",
-      "state": "unverified",
-      "remediation": "Add a fact for the days owed a meal not given and pay the Tabella F value for them.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "lavoro-domestico-non-convivente/meal_indennity"
-        ]
-      }
-    },
-    {
       "id": "mid_month_level_change",
       "institute": "base_salary",
       "variant": "all",

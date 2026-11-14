@@ -178,6 +178,17 @@
       "description": "Indennità sostitutiva di vitto e alloggio del lavoratore domestico convivente per i giorni in cui non ne usufruisce (CCNL lavoro domestico artt. 17, 18, 24, 27, 29, 36): valore mensile in natura / 30 x giorni"
     },
     {
+      "feature": "meal_indennity",
+      "layer": "work_rules",
+      "implementation": "native",
+      "applies_when": "event",
+      "handler": "event",
+      "evidence": "derived",
+      "variants": [],
+      "required_facts": [],
+      "description": "Indennità sostitutiva del pasto del lavoratore domestico con orario di almeno 6 ore e presenza continuativa, per i giorni in cui il pasto non è erogato (CCNL lavoro domestico art. 14 c. 8, Tabella F): valore convenzionale x giorni"
+    },
+    {
       "feature": "termination_notice",
       "layer": "work_rules",
       "implementation": "native",

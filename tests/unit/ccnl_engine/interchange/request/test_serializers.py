@@ -34,6 +34,7 @@ from ccnl_engine.calendar.inputs import CalendarOverride, CalendarOverrideReason
 from ccnl_engine.calendar.models import WorkCalendar
 from ccnl_engine.compensation.board.inputs import BoardLodgingEvent
 from ccnl_engine.compensation.individual.inputs import IndividualElement
+from ccnl_engine.compensation.meal.inputs import MealIndennityEvent
 from ccnl_engine.compensation.second_level.inputs import (
     SecondLevelAgreement,
     SecondLevelElement,
@@ -162,6 +163,7 @@ _EVENTS: dict[type, WorkEvent] = {
         ExtraordinaryLeaveEvent(_DAY, _DAY, Decimal("2000.00")),
         NursingRestEvent((LeaveHours(_DAY, Decimal(2)),), date(2026, 1, 15)),
         BoardLodgingEvent(_DAY, 5),
+        MealIndennityEvent(_DAY, 5),
         HourlyParentalLeaveEvent(
             (LeaveHours(_DAY, Decimal(4)), LeaveHours(date(2026, 3, 11), Decimal(4))),
             date(2025, 6, 1),

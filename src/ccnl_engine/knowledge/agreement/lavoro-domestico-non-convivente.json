@@ -117,20 +117,8 @@
         "text": "CAS.SA.COLF: contributi di assistenza contrattuale of Art. 54 c. 2, 0,06 EUR per paid hour, 0,02 withheld from the worker and 0,04 paid by the employer, charged on the contributable hours of the run."
       },
       {
-        "kind": "simplification",
-        "text": "A non-convivente on 6 or more hours a day with continuous presence is owed the meal or, when it is not given, an indennita equal to its valore convenzionale (Art. 14 c. 8; Tabella F 2026: 2,33 per meal). The request carries no fact on daily hours, presence or meals given, so the engine pays none.",
-        "capability": "base_salary",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "meal_indennity",
-          "applies_when": {
-            "run_kinds": [
-              "regular",
-              "termination"
-            ]
-          },
-          "remediation": "Add a fact for the days owed a meal not given and pay the Tabella F value for them."
-        }
+        "kind": "info",
+        "text": "MEAL INDENNITY (Art. 14 c. 8; Tabella F 2026: 2,33 per meal): a non-convivente on 6 or more hours a day with continuous presence is owed the meal or, when it is not given, an indennita equal to its valore convenzionale. The caller states the days owed a meal not given with MealIndennityEvent; the engine pays them at parameters.meal_indennity_daily."
       },
       {
         "kind": "simplification",
@@ -449,6 +437,41 @@
           "review_id": "2026-10-12-ai"
         }
       }
+    },
+    "meal_indennity_daily": {
+      "periods": [
+        {
+          "valid_from": "2026-01-01",
+          "valid_until": null,
+          "value": "2.33",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-lavoro-domestico-2025-10-28",
+                "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Assindatcolf)",
+                "kind": "associazione",
+                "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+                "published_on": "2025-10-28",
+                "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+              },
+              "page": "26, 59",
+              "section": "Art. 14 c. 8; Tabella F 2026 (pranzo e/o colazione 2,33)",
+              "quote": "spetta la fruizione del pasto, ovvero, in difetto di erogazione, un’indennità pari al suo valore convenzionale."
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-11-15T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "review_id": "2026-11-15-ai-lavoro-domestico-non-convivente-meal-indennity"
+            },
+            "transformation": "Tabella F 2026, pranzo e/o colazione: 2.33 a day"
+          }
+        }
+      ]
     }
   },
   "levels": [
@@ -1520,7 +1543,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "9441917449eefee0940b0ada98f1f1effc8dcdcc969931ea176b360f4d094699",
+    "source_hash": "db292e034effde005868c34dc85d217d5c96c4c4802b0c8e83feb27a731cfcf2",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
@@ -1983,6 +2006,49 @@
         ],
         "findings": [
           "BS: EUR 0.84 per paid hour; CS and DS: EUR 0.70 per paid hour; B, BS and CS: EUR 30.27 per month for valid certification."
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-lavoro-domestico-non-convivente-meal-indennity",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Valore convenzionale of the meal owed and not given, read on the CCNL text and Tabella F 2026.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+          }
+        ],
+        "findings": [
+          "Added parameters.meal_indennity_daily (2.33 from 2026) and closed the meal_indennity limitation, now paid by MealIndennityEvent."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.meal_indennity_daily",
+          "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-gpt-lavoro-domestico-non-convivente-meal-indennity",
+        "date": "2026-11-15",
+        "reviewer": "gpt-6-sol",
+        "reviewer_kind": "ai",
+        "scope": "Meal indennity clause and Tabella F value, read by a separate model session.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+            "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf"
+          }
+        ],
+        "findings": [
+          "Confirmed: Art. 14 c. 8 (PDF p. 26) owes the meal or its valore convenzionale on 6 or more daily hours with continuous presence, not limited to conviventi; Tabella F 2026 (PDF p. 59) values pranzo e/o colazione at 2,33."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.meal_indennity_daily"
         ]
       }
     ],

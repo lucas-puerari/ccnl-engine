@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | assistance_contribution, base_salary, inps_employer, seniority |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-10-28 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -68,6 +68,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-15 | claude-opus-5-5 (ai) | Checklist item 'ferie, permessi, festività, assenze, malattia e comporto': the sickness rule against the signed text of 28 October 2025. | confirmed | Art. 27 (p. 37): the three seniority bands, the 365-day count and the 50% / 100% pay match the file: verified. The +50% for oncological illness (c. 6) is declared. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | domestic_oncological_comporto: Art. 27(4)-(7) applies to non-conviventi: the ASL-documented oncological illness extends job-retention periods by 50%, not the 8/10/15 paid-day caps. The existing sickness bands have ordinary 10/45/180 and extended 15/68/270; the engine selects serious_comporto_days when Sickness |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 34 cc. 3, 4, 7 and Tabelle H, I, L on the cached signed CCNL PDF, printed pp. 44-45 and 59; role-gated hourly and monthly allowances for non-live-in workers. | corrected | BS: EUR 0.84 per paid hour; CS and DS: EUR 0.70 per paid hour; B, BS and CS: EUR 30.27 per month for valid certification. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Valore convenzionale of the meal owed and not given, read on the CCNL text and Tabella F 2026. | corrected | Added parameters.meal_indennity_daily (2.33 from 2026) and closed the meal_indennity limitation, now paid by MealIndennityEvent. |
+| 2026-11-15 | gpt-6-sol (ai) | Meal indennity clause and Tabella F value, read by a separate model session. | confirmed | Confirmed: Art. 14 c. 8 (PDF p. 26) owes the meal or its valore convenzionale on 6 or more daily hours with continuous presence, not limited to conviventi; Tabella F 2026 (PDF p. 59) values pranzo e/o colazione at 2,33. |
 
 ## Salary table
 
@@ -117,13 +119,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; from 2027-01-01.
 
     **Remediation:** Update the seniority amounts with each ISTAT adjustment of the minimum tables.
-
-!!! warning "lavoro-domestico-non-convivente/meal_indennity · base_salary · impact unknown · open"
-    A non-convivente on 6 or more hours a day with continuous presence is owed the meal or, when it is not given, an indennita equal to its valore convenzionale (Art. 14 c. 8; Tabella F 2026: 2,33 per meal). The request carries no fact on daily hours, presence or meals given, so the engine pays none.
-
-    **Applies when:** `base_salary` applies; run kind in regular, termination.
-
-    **Remediation:** Add a fact for the days owed a meal not given and pay the Tabella F value for them.
 
 !!! warning "lavoro-domestico-non-convivente/extra_month_hours · assistance_contribution · impact unknown · open"
     The INPS contributions of the tredicesima are paid on the hours of the year: INPS bands them on the paga oraria effettiva, which spreads the tredicesima over the hours, so the tredicesima run charges no INPS hours. The Cas.Sa.Colf contribution of Art. 54 c. 2 is charged on the contributable hours the run states, a tredicesima run too: no bundled source says whether the tredicesima carries hours of its own for it.
@@ -335,6 +330,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Livello Unico (hourly 5.83) is a special sub-under-18 level excluded from this model.
     
     CAS.SA.COLF: contributi di assistenza contrattuale of Art. 54 c. 2, 0,06 EUR per paid hour, 0,02 withheld from the worker and 0,04 paid by the employer, charged on the contributable hours of the run.
+    
+    MEAL INDENNITY (Art. 14 c. 8; Tabella F 2026: 2,33 per meal): a non-convivente on 6 or more hours a day with continuous presence is owed the meal or, when it is not given, an indennita equal to its valore convenzionale. The caller states the days owed a meal not given with MealIndennityEvent; the engine pays them at parameters.meal_indennity_daily.
     
     SICKNESS (Art. 27): INPS pays no indemnity to domestic workers; the employer pays 50% of the retribuzione globale di fatto up to the third day and 100% from the fourth, for at most 8, 10 or 15 days in the 365 days that end on the sick day, within a comporto of 10, 45 or 180 days, for up to 6 months of seniority, up to 2 years and over 2 years. A sick day is a thirtieth of the monthly pay (chiarimento a verbale 2).
     
