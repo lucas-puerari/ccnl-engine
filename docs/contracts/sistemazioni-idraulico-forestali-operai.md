@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-12-04 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | corrected | Art. 14 - Mensilità aggiuntive (13ª e 14ª) (p. 43): "dette mensilità aggiuntive sono frazionabili in dodicesimi nell’ipotesi di inizio o di cessazione del rapporto nel corso dell’anno. [...] La frazione di mese superiore a 15 giorni viene considerata come un mese intero.". Added: more_than 15 (the file applied the engine default, at least 15 days). |
 | 2026-11-01 | claude-opus-5-5 (ai) | Minimum pay of the operai forestali con rapporto di lavoro a tempo indeterminato from 1 January 2026, 2027 and 2028 against the tables of the signed 2025 renewal (Allegati B, C, C1, scanned pages read as images). AI review only. | corrected | The 2026-2028 minimums now cite the TOTALE NAZIONALE CONGLOBATO of the signed tables (pp. 29-31) instead of a secondary site and the Art. 35 parameters.<br>Level 3 in 2027 and 2028 was 1 cent below the table (1.507,53 and 1.528,09) and level 4 in 2026 1 cent above (1.537,90). |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | regional_seniority_cirl: For operai, the cited national agreement does not prescribe seniority increments: Art. 41 awards biennial increments to impiegati only; Art. 52 lists operai pay as national minimum plus regional supplementary salary, unchanged in the 2025 renewal. The agreement JSON has maximum_c |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source text. | corrected | Added the comporto window of the CCNL. |
 
 ## Salary table
 
@@ -146,13 +147,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -327,6 +321,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     CCNL A181 — Sistemazioni Idraulico-Forestali (Operai OTI). Split from impiegati contract: salary bands overlap, requiring separate files for correct engine ordering and under-classification apprenticeship. 5 livelli operai (O1-O5). Conglobato. Divisore 169, 14 mensilita.
     
     OVERTIME/LEAVE/ABSENCE (L3): Art. 50 CCNL 2023 — straordinario diurno 24%, notturno straordinario 38%, festivo straordinario 50%. Ferie 22 giorni (orario su 5 giorni, Art. 12). Malattia: trattamento INPS; nessuna integrazione datoriale a livello CCNL nazionale (Art. 60). Assenza: divisore 26. Rates from 2023 CCNL PDF; 2025 rinnovo structural rules assumed unchanged (text image-only).
+    
+    COMPORTO OF SEVERAL ILLNESSES (Art. 62 - Conservazione del posto, PDF p. 75, https://www.flai.it/wp-content/uploads/2023/05/CCNL-Idraulico-Forestale-2023.pdf, sha256 fb09d06825c27a3abb8081bec9e1645f17e51920559a6406323225d26b549461): 'L'operaio a tempo indeterminato, nel caso di malattia o di infortunio, ha diritto alla conservazione del posto per un periodo di 180 giorni, anche per più eventi, nell'arco degli ultimi 12 mesi.' Modelled as sickness_rules.comporto_windows: 180 days within the 12 months before the day; the fixed-term workers' 12 months in 24 are not modelled.
     
 
 ## Raw data

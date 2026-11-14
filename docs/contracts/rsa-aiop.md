@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2012-03-22 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2023-10-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 24 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
 | 2026-11-10 | claude-opus-5-5 (ai) | AIOP signed agreement: signing, validity, seniority premium, TFR, thirteen payments and ratification; renewal provision inspected. | confirmed | Premium verified on PDF page 11; ratification on page 12, start date on page 8, signing date on page 7. No later replacement verified. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source text. | corrected | Added the comporto window of the CCNL. |
 
 ## Salary table
 
@@ -153,13 +154,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -327,6 +321,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     CCNL T091 — AIOP RSA. Conglobated. 12 levels: A-B-C-D1-D2-D3-E1-E2-E3-F-G-H. Divisor 165, 13 months. Original 2012 contract, updated by accordo ponte Oct 2023.
     
     Accordo ponte (Oct 2023) expired June 2024. Contract applied in ultrattività pending renewal. Oct 2023 table modeled as current (valid_until null).
+    
+    COMPORTO OF SEVERAL ILLNESSES (Malattia - conservazione del posto, PDF p. 39, https://www.aiop.it/Portals/0/documenti/CCNL/ccnl_AiopRSA_v1_0.pdf, sha256 278e7c71b2b22f866dedd0aa4b89357df908966b3ce80d7c39fa58dc39744e4e): 'Il datore di lavoro può recedere dal rapporto allorquando il lavoratore si assenti oltre il limite dei dodici mesi complessivi (sommando tutti gli eventi) nell'arco di un quadriennio mobile.' Modelled as sickness_rules.comporto_windows: 365 days within the 48 months before the day; 12 months as 365 days; the 2 more months of a relapse with a long hospital stay are not modelled.
     
 
 ## Raw data

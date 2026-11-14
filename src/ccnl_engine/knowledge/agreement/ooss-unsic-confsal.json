@@ -127,6 +127,10 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Conservazione del posto, PDF p. 82, https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf, sha256 25f8b7efbb81b8eb2dc36c8bbb0157a7125fbcaa0e30c9da0f19e453dcbe9db3): 'Al lavoratore non in prova è garantita la conservazione del posto di lavoro per un periodo massimo di 180 giorni continuativi e/o frazionati in un anno solare. Ai fini del calcolo per la determinazione del periodo di comporto, per anno solare, si intende un periodo di 365 giorni partendo a ritroso dell'ultimo evento morboso [...] Sono esclusi dal computo del periodo di comporto i day hospital, i giorni di ricovero ospedaliero' Modelled as sickness_rules.comporto_windows: 180 days within the 365 days before the day; hospital stays left out; day hospital days are stays the caller states."
       }
     ]
   },
@@ -192,6 +196,27 @@
         "independence": "same_process",
         "checked": [
           "levels[*].base_salary"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-ooss-unsic-confsal-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the source text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
+            "sha256": "25f8b7efbb81b8eb2dc36c8bbb0157a7125fbcaa0e30c9da0f19e453dcbe9db3"
+          }
+        ],
+        "findings": [
+          "Added the comporto window of the CCNL."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.comporto_windows"
         ]
       }
     ]
@@ -1306,7 +1331,7 @@
     "effective_until": null,
     "source": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
     "verification_status": "unverified",
-    "source_hash": "2ecdee81f6d3e3228984abeaaa3885ec6a511826fc966944adeaed695530fa78",
+    "source_hash": "429856434aa22c3c2872ad96c6ab145d586c44f792c2fcd23b3304d651bfd89e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1530,7 +1555,16 @@
           "verification_status": "unverified",
           "effective_from": "2023-01-01"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 12,
+          "window_days": 365,
+          "comporto_days": 180,
+          "hospital_excluded": true
+        }
+      ]
     },
     "notice": {
       "bands": [

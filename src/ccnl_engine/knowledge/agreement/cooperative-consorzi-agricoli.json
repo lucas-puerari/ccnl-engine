@@ -91,6 +91,10 @@
       {
         "kind": "info",
         "text": "APPRENTICE INPS RATES (contribution/2026/agricoltura.json): employer 10% plus NASpI 1.61% (INPS circ. 108/2018 par. 3.2, applied to the agricultural contribution by circ. 116/2013 par. 1) plus CISOA 1.50% (circ. 1/2023; 'CIS operai agricoli 1,5000' of circ. 43/2026 allegato 1) = 13.11% (4.61% and 6.11% in the first two years up to nine employees); worker 5.84%."
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (Conservazione del posto, operai agricoli a tempo indeterminato, PDF p. 113, https://www.flai.it/wp-content/uploads/2018/11/CCNL-per-i-lavoratori-dipendenti-di-cooperative-e-consorzi-agricoli-2024-2027.pdf, sha256 2a3ccfd23d9545f5614e7af245eb51f60e89c323b1797b81b336d2d2d79e153e): 'L'operaio agricolo a tempo indeterminato, nel caso di malattia o di infortunio non sul lavoro, ha diritto alla conservazione del posto per un periodo di 180 giorni, anche per più eventi, nell'arco degli ultimi 12 mesi.' Modelled as sickness_rules.comporto_windows: 180 days within the 12 months before the day; the 12 months of a grave oncological illness in 18 are not modelled."
       }
     ]
   },
@@ -1922,7 +1926,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "8fb45babedaf9cc783a5478b9365c5f97baa4b30c6c7cd2776b30058109c76ba",
+    "source_hash": "d593cd75ad1c3db1192bd3443b03f3dc61a380ff93490cbbaed60c62fa3fff17",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2110,7 +2114,14 @@
           "verification_status": "unverified",
           "effective_from": "2024-07-19"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 12,
+          "comporto_days": 180
+        }
+      ]
     }
   },
   "verification": {
@@ -2263,6 +2274,27 @@
         "independence": "same_process",
         "checked": [
           "apprenticeship"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-cooperative-consorzi-agricoli-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the source text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-per-i-lavoratori-dipendenti-di-cooperative-e-consorzi-agricoli-2024-2027.pdf",
+            "sha256": "2a3ccfd23d9545f5614e7af245eb51f60e89c323b1797b81b336d2d2d79e153e"
+          }
+        ],
+        "findings": [
+          "Added the comporto window of the CCNL."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.comporto_windows"
         ]
       }
     ],

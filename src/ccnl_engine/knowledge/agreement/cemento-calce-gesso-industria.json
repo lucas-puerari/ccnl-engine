@@ -89,6 +89,10 @@
           },
           "remediation": "Source the CCNL clause on apprentice seniority and model it as seniority_increments.apprentice_amount (zero when apprentices accrue none), then remove this note."
         }
+      },
+      {
+        "kind": "info",
+        "text": "COMPORTO OF SEVERAL ILLNESSES (art. 55, PDF p. 148-149, https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf, sha256 0577ad1f914031470abf63b59ffc33b0eff779311bbe10fe670a28b3b0823f97): 'il lavoratore non in prova ha diritto alla conservazione del posto per un periodo complessivo di 14 mesi di calendario, raggiunti anche con più periodi di assenza, nell'ambito dei 30 mesi di calendario immediatamente precedenti.' Modelled as sickness_rules.comporto_windows: 426 days within the 30 months before the day; 14 months as 426 days (x 365/12)."
       }
     ]
   },
@@ -155,6 +159,27 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-cemento-calce-gesso-industria-comporto-window",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Comporto of several illnesses, against the research of a separate model session; quote checked on the source text.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
+            "sha256": "0577ad1f914031470abf63b59ffc33b0eff779311bbe10fe670a28b3b0823f97"
+          }
+        ],
+        "findings": [
+          "Added the comporto window of the CCNL."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sickness_rules.comporto_windows"
         ]
       }
     ]
@@ -3637,7 +3662,7 @@
     "effective_until": null,
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
     "verification_status": "verified",
-    "source_hash": "5c7618a5c4fff7c9f6c0bddc1aaced47bc12b2cf01ed0940d8141dcb8a68dbbc",
+    "source_hash": "9c10f53c98e6a441e1138ba527edcd5e608d4c24e66cf4d7ea17b0c5b4906279",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3861,7 +3886,14 @@
           "verification_status": "unverified",
           "effective_from": "2024-01-01"
         }
-      }
+      },
+      "comporto_windows": [
+        {
+          "seniority_months_from": 0,
+          "window_months": 30,
+          "comporto_days": 426
+        }
+      ]
     },
     "notice": {
       "bands": [

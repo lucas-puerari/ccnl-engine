@@ -57,7 +57,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-01-19 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 52 - Mensilità aggiuntive (p. 93): "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell'anno, il lavoratore dipendente ha diritto a tanti dodicesimi della 13ma e della 14ma per quanti sono i mesi di lavoro prestato. Per tali fini il periodo iniziale o finale superiore a 15 (quindici) giorni è computato come mese intero secondo il criterio della prevalenza.". Match: more_than 15. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 43 — Risoluzione del rapporto di lavoro, p. 83–84). | corrected | Notice bands checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 58 c. V of the testo definitivo of 26 March 2026 (CNEL V925, PDF p. 34), read on the page image. | corrected | 2026 salaries confirmed on the signed text; 2027 and 2028 tranches added. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source text. | corrected | Added the comporto window of the CCNL. |
 
 ## Salary table
 
@@ -140,13 +141,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -329,6 +323,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Headcount: 6,968 workers, 830 employers (ADAPT 18 Rapporto CNEL).
     
     SALARY 2026-2028: art. 58 c. V of the testo definitivo of 26 March 2026 (CNEL V925, PDF p. 34) sets the monthly pay from 1 January 2026, 2027 and 2028; the 2026 values of the proxy are confirmed and 2027-2028 added.
+    
+    COMPORTO OF SEVERAL ILLNESSES (Conservazione del posto, PDF p. 82, https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf, sha256 25f8b7efbb81b8eb2dc36c8bbb0157a7125fbcaa0e30c9da0f19e453dcbe9db3): 'Al lavoratore non in prova è garantita la conservazione del posto di lavoro per un periodo massimo di 180 giorni continuativi e/o frazionati in un anno solare. Ai fini del calcolo per la determinazione del periodo di comporto, per anno solare, si intende un periodo di 365 giorni partendo a ritroso dell'ultimo evento morboso [...] Sono esclusi dal computo del periodo di comporto i day hospital, i giorni di ricovero ospedaliero' Modelled as sickness_rules.comporto_windows: 180 days within the 365 days before the day; hospital stays left out; day hospital days are stays the caller states.
     
 
 ## Raw data
