@@ -30,7 +30,7 @@ on unverified sources, or be well sourced and not cleared for production.
   verified / derived / assumed / missing.
 - **Readiness:** the review tier of the contract ruleset.
 
-**Core payroll path: computed on every run of every contract** (29):
+**Core payroll path: computed on every run of every contract** (30):
 
 - ✅ `base_salary` (native)
 - ✅ `seniority` (native)
@@ -52,6 +52,7 @@ on unverified sources, or be well sourced and not cleared for production.
 - ✅ `sunday_holiday` (native)
 - ✅ `withholding_shortfall` (native)
 - ✅ `shortfall_deferral` (native)
+- ✅ `foreign_tax_credit` (native)
 - ✅ `addizionale_regionale` (native)
 - ✅ `addizionale_comunale` (native)
 - ✅ `family_deductions` (native)
@@ -62,7 +63,7 @@ on unverified sources, or be well sourced and not cleared for production.
 - ✅ `contractual_funds` (native)
 - ✅ `assistance_contribution` (native)
 
-**Scenario features: computed when the request declares the event, the fact or the termination** (30):
+**Scenario features: computed when the request declares the event, the fact or the termination** (29):
 
 - ✅ `maternity_leave` (native)
 - ✅ `paternity_leave` (native)
@@ -80,7 +81,6 @@ on unverified sources, or be well sourced and not cleared for production.
 - 📝 `contract_renewal_arrears` (caller_supplied)
 - 📝 `territorial_supplement` (caller_supplied)
 - 📝 `company_supplement` (caller_supplied)
-- ⚠️ `foreign_tax_credit` (partial)
 - 📝 `overtime` (caller_supplied)
 - 📝 `night_work` (caller_supplied)
 - 📝 `holiday_work` (caller_supplied)

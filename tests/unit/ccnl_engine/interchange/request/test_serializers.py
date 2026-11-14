@@ -115,7 +115,7 @@ from ccnl_engine.seniority.inputs import (
 from ccnl_engine.severance.provision.models import TfrFundBalance
 from ccnl_engine.sickness.models import SeriousIllnessKind, SicknessEpisode
 from ccnl_engine.tax_credit.art15.inputs import Art15Expense, Art15Kind
-from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
+from ccnl_engine.tax_credit.foreign.inputs import EarlierYearTax, ForeignTaxPaid
 from ccnl_engine.termination.inputs import TerminationTFREvent
 from ccnl_engine.termination.notice.inputs import NoticeIndemnityEvent
 from ccnl_engine.variable_pay.arrears.inputs import ArrearsEvent
@@ -346,7 +346,17 @@ def _prior_year() -> PriorYearTaxFacts:
         employment_income=Decimal("31000.00"),
         waived_regimes=frozenset(SubstituteTaxRegime),
         shortfall_deferral=ShortfallDeferralRequest(date(2026, 1, 15)),
-        foreign_taxes=(ForeignTaxPaid("FR", Decimal(1000), Decimal(200)),),
+        foreign_taxes=(
+            ForeignTaxPaid("FR", Decimal(1000), Decimal(200)),
+            ForeignTaxPaid(
+                "FR",
+                Decimal(500),
+                Decimal(80),
+                earlier=EarlierYearTax(
+                    2025, Decimal(6000), Decimal(4000), Decimal(30000)
+                ),
+            ),
+        ),
     )
 
 

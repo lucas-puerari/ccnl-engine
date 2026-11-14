@@ -14,7 +14,7 @@ import pytest
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.irpef.net.rules import NetIrpef
 from ccnl_engine.sector.loaders import load_year_rules
-from ccnl_engine.tax_credit.foreign.inputs import ForeignTaxPaid
+from ccnl_engine.tax_credit.foreign.inputs import EarlierYearTax, ForeignTaxPaid
 from ccnl_engine.tax_credit.foreign.rules import (
     foreign_credit_rule,
     foreign_tax_credit,
@@ -117,3 +117,29 @@ def test_rule_follows_the_norm_in_force(
     Presidente della Repubblica 22 dicembre 1986, n. 917)", c. 1 unchanged.
     """
     assert foreign_credit_rule(tax_year) == (rule, citation)
+
+
+@pytest.mark.parametrize(
+    ("used", "credit"),
+    [
+        # 2025: imposta lorda 6,000 on 30,000, 10,000 from France: quota 2,000.
+        (Decimal(0), Decimal("1500.00")),
+        # The 2025 netta of 4,000 less 3,000 already used leaves 1,000.
+        (Decimal(3000), Decimal("1000.00")),
+    ],
+)
+def test_income_of_an_earlier_year_takes_that_year_tax(
+    used: Decimal, credit: Decimal
+) -> None:
+    """Art. 165 c. 7: quota and netta of 2025, deducted from 2026."""
+    earlier = EarlierYearTax(
+        2025, Decimal(6000), Decimal(4000), Decimal(30000), credit_used=used
+    )
+    paid = ForeignTaxPaid("FR", Decimal(10000), Decimal(1500), earlier=earlier)
+
+    result = foreign_tax_credit((paid,), _TAXABLE, _ANNUAL, _RULES)
+
+    assert result is not None
+    assert result.amount == credit
+    assert result.decision.inputs["fr_2025_quota"] == Decimal("2000.00")
+    assert result.decision.inputs["fr_2025_credit"] == credit

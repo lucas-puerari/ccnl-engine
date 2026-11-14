@@ -477,10 +477,18 @@ France at 20,000 EUR the quota is the whole imposta lorda, the credit the
 imposta netta: no IRPEF and no surtax is due, and the conguaglio refunds
 what was withheld.
 
-Not modelled, left to the tax return: foreign income taxed in Italy in an
-earlier year (art. 165 c. 7 TUIR, which the art. 23 rule also allows at the
-conguaglio), the carry-over of the excess foreign tax (art. 165 c. 6) and a
-credit above the imposta netta (art. 11 c. 4 TUIR).
+Foreign income taxed in Italy in an earlier year (art. 165 c. 7 TUIR, which
+the art. 23 rule allows at the conguaglio "anche in precedenti periodi
+d'imposta"): the entry states `earlier`, an `EarlierYearTax` with the year
+and the tax of that year as its CU certifies it (imposta lorda, punto 361;
+imposta netta, punto 375; reddito complessivo; the credit already used,
+punto 376). Its quota is that year's imposta lorda times the foreign income
+over that year's income, its credit at most the foreign tax and that year's
+imposta netta less the credit already used; it is deducted from the tax of
+the conguaglio with the others (circ. AdE 9/E/2015 par. 3.3). One State may
+have one entry per year. Left to the tax return, as the norms give them to
+it: the carry-over of the excess foreign tax (art. 165 c. 6) and a credit
+above the imposta netta (art. 11 c. 4 TUIR).
 
 ## Employers that are not withholding agents
 
