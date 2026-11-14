@@ -936,7 +936,7 @@
     "agreement/legno-lapidei-artigianato-confartigianato.json": [
       "legno-lapidei-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "legno-lapidei-artigianato-confartigianato/inps_sector_rates_unsourced",
-      "legno-lapidei-artigianato-confartigianato/lapidei_tables_not_modelled"
+      "legno-lapidei-artigianato-confartigianato/lapidei_apprenticeship"
     ],
     "agreement/logistica-trasporto-confetra-viaggiante.json": [
       "logistica-trasporto-confetra-viaggiante/edr_2021_in_daily_base",
