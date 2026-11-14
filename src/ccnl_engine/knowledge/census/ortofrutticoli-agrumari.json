@@ -3,6 +3,22 @@
   "ccnl_id": "ortofrutticoli-agrumari",
   "requirements": [
     {
+      "id": "apprenticeship_other_durations",
+      "institute": "base_salary",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "APPRENTICESHIP DURATION: the halves of Art. 42 for levels 5 and 4 are encoded for apprenticeships of 36 and 24 months; another duration (6 months to 3 years) has its half elsewhere.",
+      "calculation": "ccnl/ortofrutticoli-agrumari:coverage.notes",
+      "state": "absent",
+      "remediation": "Derive the half of the apprenticeship from its stated duration (Apprentice duration) instead of fixed 24 and 36 month tracks.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "ortofrutticoli-agrumari/apprenticeship_other_durations"
+        ]
+      }
+    },
+    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",

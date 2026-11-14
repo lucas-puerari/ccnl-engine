@@ -475,3 +475,16 @@ def test_anav_apprentice_seniority_credited_on_continuation() -> None:
     assert increments.amount_by_level["C2"].value_at(date(2026, 6, 1)) == Decimal(
         "27.17"
     )
+
+
+def test_ortofrutticoli_apprenticeship_halves() -> None:
+    """Art. 42: level 5 from the 6th (two below) to the 6S (one below)."""
+    ccnl = load_ccnl("ortofrutticoli-agrumari")
+    track = ccnl.apprenticeship_track_named("professionalizzante_36_mesi")
+    steps = [
+        (p.months_from, p.levels_below)
+        for p in track.periods
+        if isinstance(p, UnderClassificationPeriod)
+    ]
+    assert steps == [(0, 2), (18, 1), (36, 0)]
+    assert len(ccnl.apprenticeship_tracks_for("3")) == 3

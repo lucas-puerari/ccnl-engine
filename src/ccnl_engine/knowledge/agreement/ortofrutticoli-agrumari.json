@@ -122,12 +122,6 @@
         "capability": "base_salary"
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: Apprendistato non modellato (apprenticeship=[]). Il rinnovo 2024 ha modificato la disciplina dell'apprendistato ma il testo consolidato è dietro paywall. Le fonti accessibili (aggregatori) non sono attribuibili con certezza al CCNL Fruitimprese H341 rispetto al CCNL Confsal/Fesica. Rischio: retribuzione apprendistato restituisce zero anziché un importo errato.",
-        "capability": "base_salary",
-        "monetary_impact": "no"
-      },
-      {
         "kind": "info",
         "text": "LEAVE (CCNL 2024-2027): ferie 26 working days on a week counted as six days (Art. 62, p. 74), twelfths per month of service at termination and an indemnity of a twenty-sixth of the monthly pay per day (Chiarimento a verbale, p. 75); 66 hours of permessi retribuiti a year, a twelfth per whole month of service (Art. 56, p. 68), not taken within the year paid 'con la retribuzione in atto al momento della scadenza' or taken by 30 June of the next year, as the employer states (EmployerProfile.permit_carryover); the hours left at termination are paid at the hourly quota on the same clause. The suppressed holidays of Art. 61 are not a bucket of hours: the day is paid if worked or falls on the weekly rest. Seasonal staff (Art. 72): see fixed_term_pay.",
         "capability": "leave"
@@ -166,6 +160,31 @@
             ]
           },
           "remediation": "Source the QuAS contribution of the quadri from the rules of the Cassa and add the fund."
+        }
+      },
+      {
+        "kind": "info",
+        "text": "APPRENTICESHIP (CCNL 2024-2027, artt. 39-42, PDF pp. 27-29): the professionalizzante for levels 5, 4, 3, 2 and 1 (coordination duties excluded), 6 months to 3 years as the individual contract states (Allegato 8, p. 86). The apprentice 'può essere inquadrato fino a due livelli inferiori'; for level 5 'al sesto livello per la prima metà del periodo e al sesto super per la seconda metà', for level 4 'al sesto super per la prima metà [...] e al quinto per la seconda metà': tracks professionalizzante_36_mesi and _24_mesi; for levels 3-1 the individual contract sets the level, tracks _2_sotto, _1_sotto, _0_sotto. The caller states the track (Apprentice.track). Seniority: the whole apprenticeship counts and the increments are paid 'nelle misure previste dal livello di appartenenza' (apprentice_level_amount).",
+        "capability": "base_salary"
+      },
+      {
+        "kind": "simplification",
+        "text": "APPRENTICESHIP DURATION: the halves of Art. 42 for levels 5 and 4 are encoded for apprenticeships of 36 and 24 months; another duration (6 months to 3 years) has its half elsewhere.",
+        "capability": "base_salary",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "apprenticeship_other_durations",
+          "applies_when": {
+            "trigger": "outside_input",
+            "contract_types": [
+              "apprentice"
+            ],
+            "levels": [
+              "5",
+              "4"
+            ]
+          },
+          "remediation": "Derive the half of the apprenticeship from its stated duration (Apprentice duration) instead of fixed 24 and 36 month tracks."
         }
       }
     ]
@@ -385,6 +404,27 @@
           "parameters.health_funds",
           "parameters.employer_funds"
         ]
+      },
+      {
+        "id": "2026-11-14-ai-apprenticeship",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 39-42 and Allegato 8 of the CCNL 2024-2027.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+            "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+          }
+        ],
+        "findings": [
+          "The file modelled no apprenticeship, saying the text was not accessible; the ruleset source is that text. Added the under-classification tracks of Art. 42 and the apprentice seniority at the level's amounts; durations other than 24 and 36 months recorded as a limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "apprenticeship"
+        ]
       }
     ]
   },
@@ -544,7 +584,8 @@
           "verification_status": "verified",
           "review_id": "2026-11-13-ai-ortofrutticoli-agrumari-cnel-text"
         }
-      }
+      },
+      "apprentice_level_amount": true
     },
     "accrual_rule": {
       "min_days": 15,
@@ -2569,7 +2610,108 @@
       "category": null
     }
   ],
-  "apprenticeship": [],
+  "apprenticeship": [
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_36_mesi",
+      "destination_levels": [
+        "5",
+        "4"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 18,
+          "levels_below": 2
+        },
+        {
+          "months_from": 18,
+          "months_until": 36,
+          "levels_below": 1
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_24_mesi",
+      "destination_levels": [
+        "5",
+        "4"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "levels_below": 1
+        },
+        {
+          "months_from": 24,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_2_sotto",
+      "destination_levels": [
+        "3",
+        "2",
+        "1"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "levels_below": 2
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_1_sotto",
+      "destination_levels": [
+        "3",
+        "2",
+        "1"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "levels_below": 1
+        }
+      ]
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante_0_sotto",
+      "destination_levels": [
+        "5",
+        "4",
+        "3",
+        "2",
+        "1"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ]
+    }
+  ],
   "ruleset": {
     "id": "ccnl/ortofrutticoli-agrumari",
     "version": "2024.1",
@@ -2578,7 +2720,7 @@
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "b09ed3011902d0dd6ef116807a38efdda7e279b9cdd4b359710954a413b087e2",
+    "source_hash": "1774015c6f2e14491bf37fe9dd6ba2f03c233206cd9edd45300beaf6f5aeb0dc",
     "source_type": "contracting_party"
   },
   "work_rules": {
