@@ -1811,7 +1811,7 @@
       "id": "parental_hourly_ccnl_rule",
       "capability": "parental_leave",
       "variant": "parental_hourly_ccnl_rule",
-      "summary": "A parental leave by the hour takes half the average daily hours a day and counts two such days as one day of leave, the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 (INPS circ. 152/2015 par. 2.2); a collective agreement, also of the company, that sets other hours to a day of leave or other rules of cumulation prevails, and the bundle holds none.",
+      "summary": "A parental leave by the hour takes half the average daily hours a day and counts two such days as one day of leave, the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 (INPS circ. 152/2015 par. 2.2). A national CCNL rule that sets other hours to a day of leave or other rules of cumulation prevails (art. 32 c. 1-bis), and the bundle holds none; a company or territorial agreement is the fact local_hourly_agreement of the event. Same-day cumulation with the other permits and rests of the decree, which the criterion excludes, is not checked.",
       "monetary_impact": "unknown",
       "status": "open",
       "rulesets": [

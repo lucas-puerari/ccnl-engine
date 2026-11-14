@@ -490,8 +490,12 @@ whose month it touches. The run deducts the days at the CCNL daily quota
   (INPS circ. 152/2015 par. 2.2): the hours are deducted at the CCNL hourly
   base as an unpaid absence and each day is paid half the daily indemnity
   at its rate, under the open limitation `parental_hourly_ccnl_rule` (a
-  collective rule on the hours of a day of leave prevails, and the bundle
-  holds none); same-day cumulation with the rests of artt. 39-40 and the
+  national CCNL rule on the hours of a day of leave prevails, and the bundle
+  holds none). A company or territorial agreement is a fact of the employer
+  (`local_hourly_agreement`): unstated, the run is incomplete with the
+  missing fact; stated true, it is incomplete with
+  `parental_hourly_agreement_unmodelled`, the agreement's rules not being
+  held. Same-day cumulation with the rests of artt. 39-40 and the
   hours of artt. 33 c. 2 and 42 c. 1 (INPS msg. 6704/2015) is not checked.
   Adoption is not modelled;
 - permits to assist a disabled person (L. 104/1992 art. 33 c. 3, three

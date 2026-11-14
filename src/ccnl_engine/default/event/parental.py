@@ -1,4 +1,4 @@
-"""Defaults of the parental leave facts read past the indemnified months."""
+"""Defaults of the parental leave facts: income and local hourly agreement."""
 
 from __future__ import annotations
 
@@ -17,11 +17,23 @@ _INCOME = (
     "individual_income blocker"
 )
 
+_AGREEMENT = (
+    "unknown company or territorial agreement on the leave by the hour: the run "
+    "applies the criterion of art. 32 c. 1-ter D.Lgs. 151/2001, with a "
+    "missing_fact local_hourly_agreement blocker"
+)
+
 PARENTAL_DEFAULTS: Mapping[str, FieldDefault] = {
     "ParentalLeaveEvent.individual_income": requires_fact(
         "parental_leave", "event.individual_income", FactEnforcement.REPORTED, _INCOME
     ),
     "HourlyParentalLeaveEvent.individual_income": requires_fact(
         "parental_leave", "event.individual_income", FactEnforcement.REPORTED, _INCOME
+    ),
+    "HourlyParentalLeaveEvent.local_hourly_agreement": requires_fact(
+        "parental_leave",
+        "event.local_hourly_agreement",
+        FactEnforcement.REPORTED,
+        _AGREEMENT,
     ),
 }

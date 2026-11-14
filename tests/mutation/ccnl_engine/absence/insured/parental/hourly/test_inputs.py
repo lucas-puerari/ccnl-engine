@@ -70,6 +70,7 @@ def test_wrong_days_are_rejected(
         ({"taken": (0, 0, 0)}, "taken"),
         ({"child_born_on": "2025-06-01"}, "child_born_on"),
         ({"parental_base_pay": Decimal(1)}, "parental_base_pay"),
+        ({"local_hourly_agreement": 0}, "local_hourly_agreement"),
     ],
 )
 def test_wrong_fields_are_rejected(changes: dict[str, object], field: str) -> None:
