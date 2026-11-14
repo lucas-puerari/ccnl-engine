@@ -148,6 +148,24 @@
       {
         "kind": "info",
         "text": "TERZO ELEMENTO (art. 186 c. 4): 3,10 EUR a month in provinces without collective surpluses, as the signed text prints; the renewal of 29 March 2024 does not amend art. 186. A Filcams pay table 2025-2027 prints 3,07: a summary table, not a signed text, so the signed amount is used. Where collective surpluses are in force, the frozen provincial amounts apply instead (not modelled: they depend on local bargaining)."
+      },
+      {
+        "kind": "info",
+        "text": "PERMITS, LARGE COOPERATIVES (Allegato 13, Art. 113, Art. 115, Art. 61 C of the testo ufficiale 2011, signed 22 December 2011): a pool of 104 hours a year, 32 for the abolished holidays and 72 of reduction; the 38-hour week of Art. 113 c. 1 absorbs 96 of them and leaves 24 (8 plus 16 not absorbable, Art. 115 c. 1), the 40-hour week of the hires after the signing (Art. 113 c. 5) absorbs none (EmployerProfile/Employment full_time_weekly_hours); the hires after 22 December 2011 take the 72 hours at 50% after two years and 100% after four (Art. 61 C); a twelfth per whole month of service; not taken by 30 June of the next year, paid with the pay of that date, with no choice of the employer (Art. 115 c. 4). The 2019 and 2024 renewals do not amend these articles.",
+        "capability": "leave"
+      },
+      {
+        "kind": "simplification",
+        "text": "PERMITS, IMPRESE MINORI (Title XV, Art. 147 as renewed on 29 March 2024, CNEL 183889 pp. 59-60): a 40-hour week for every worker; in the small firms of one unit or up to 20 full-time staff a unit, 60 hours of permits a year, 66 from 1 April 2025 and 72 from 1 April 2026 (aim 88). The file has no input for an impresa minore and applies the permits of the large cooperatives.",
+        "capability": "leave",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "imprese_minori_permits",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "remediation": "Add the impresa minore sub-sector and the Art. 147 hours of its small firms."
+        }
       }
     ]
   },
@@ -355,6 +373,32 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-permits",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 61 C, 113, 115 and Allegato 13 of the testo ufficiale 2011; Art. 147 of the renewal of 29 March 2024.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+            "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+          },
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
+            "sha256": "ac95bdd705f26d693bf3b466325794990791c7b6712097e620a12b041318f7f8"
+          }
+        ],
+        "findings": [
+          "The file had the ferie but no permit. Added the 104-hour pool with the 38-hour absorption that leaves 24 hours, the ramp of the hires after 22 December 2011 and the fixed 30 June deadline; recorded the imprese minori hours of Art. 147 (2024) as a limitation, the file having no input for them."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules.permits",
+          "work_rules.leave_rules.permit_deadline"
         ]
       }
     ]
@@ -3039,7 +3083,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
     "verification_status": "unverified",
-    "source_hash": "117b81528075ec0a361131d73b7406d6e3d82c158a1ed95935852b9963b2f17e",
+    "source_hash": "2f5b5cc75420c9fd059813bb3e73fcd7e997c17341c316f8bd44e9f1f875e567",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3482,6 +3526,168 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2024-04-01"
+        }
+      },
+      "permits": [
+        {
+          "bucket": "ex_festivita",
+          "annual_hours": [
+            {
+              "hours": "32"
+            }
+          ],
+          "month_credit": "whole_month",
+          "week_absorption": [
+            {
+              "weekly_hours": "38",
+              "hours": "32"
+            }
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-ccnl-cooperazione-2011",
+                "title": "CCNL per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                "published_on": "2011-01-01",
+                "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+              },
+              "page": "332-333 (printed 330-331)",
+              "section": "Allegato 13 (riduzione dell'orario)",
+              "quote": "Tale riduzione è comprensiva delle 32 ore relative alle ex 4 festività abolite [...] con l'adozione dell'orario di lavoro settimanale a 38 ore saranno assorbite 96 ore dal monte ore [...] (104–96 = 8 ore residue) [...] Le ore residue [...] sono incrementate di 16 ore annue per le imprese con oltre 15 dipendenti [...] Tali 16 ore non sono assorbibili."
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "1994-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-permits"
+            }
+          }
+        },
+        {
+          "bucket": "rol",
+          "annual_hours": [
+            {
+              "hours": "72"
+            }
+          ],
+          "month_credit": "whole_month",
+          "week_absorption": [
+            {
+              "weekly_hours": "38",
+              "hours": "48"
+            }
+          ],
+          "ramp": {
+            "hired_after": "2011-12-22",
+            "steps": [
+              {
+                "service_months_min": 0,
+                "share": "0"
+              },
+              {
+                "service_months_min": 24,
+                "share": "0.5"
+              },
+              {
+                "service_months_min": 48,
+                "share": "1"
+              }
+            ],
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "uiltucs-ccnl-cooperazione-2011",
+                  "title": "CCNL per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+                  "kind": "associazione",
+                  "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                  "published_on": "2011-01-01",
+                  "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+                },
+                "page": "118-119 (printed 116-117)",
+                "section": "Art. 61 C) Politiche di sostegno alla nuova occupazione stabile",
+                "quote": "Per tutti i lavoratori assunti a far data dalla sottoscrizione del presente CCNL, fermo restando il godimento di 32 ore di permessi retribuiti relativi alle festività soppresse, le ulteriori 72 ore di permessi retribuiti (per un totale di 104 ore), verranno riconosciute in misura pari al 50% decorsi 2 anni dalla assunzione e in misura pari al 100%, decorsi 4 anni dall'assunzione."
+              },
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T00:00:00Z",
+                "effective_from": "2011-12-22",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T00:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-permits"
+              }
+            }
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uiltucs-ccnl-cooperazione-2011",
+                "title": "CCNL per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+                "kind": "associazione",
+                "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+                "published_on": "2011-01-01",
+                "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+              },
+              "page": "152-153 (printed 150-151)",
+              "section": "Art. 115 Permessi",
+              "quote": "In riferimento all'orario normale di lavoro di cui all'art. 113 comma 1, a far data dal 1 gennaio 1994, le ore di permesso retribuite annue sono stabilite in 24. [...] un dodicesimo dei permessi di cui al presente articolo per ogni mese intero di anzianità di servizio"
+            },
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T00:00:00Z",
+              "effective_from": "1994-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-permits"
+            }
+          }
+        }
+      ],
+      "permit_deadline": {
+        "carry_until_month": 6,
+        "buckets": [
+          "ex_festivita",
+          "rol"
+        ],
+        "carry_fixed": true,
+        "permits_hourly": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "uiltucs-ccnl-cooperazione-2011",
+              "title": "CCNL per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+              "kind": "associazione",
+              "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+              "published_on": "2011-01-01",
+              "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+            },
+            "page": "153 (printed 151)",
+            "section": "Art. 115 c. 4 Permessi",
+            "quote": "Di norma tali permessi dovranno essere goduti entro l'anno di maturazione e comunque non oltre il 30 giugno dell'anno successivo; a tale data, se non usufruiti, decadranno e le corrispondenti ore saranno pagate con la retribuzione in atto al momento della scadenza."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "1994-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-permits"
+          }
         }
       }
     },
