@@ -3,22 +3,6 @@
   "ccnl_id": "calzaturiero-assocalzaturifici",
   "requirements": [
     {
-      "id": "apprenticeship_pct_undeclared_components",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.",
-      "calculation": "ccnl_engine.apprenticeship.rules (percentage track chain)",
-      "state": "unverified",
-      "remediation": "Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "apprenticeship_pct_undeclared_components"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",
@@ -127,6 +111,22 @@
       "links": {
         "limitations": [
           "notice_indemnity_partial"
+        ]
+      }
+    },
+    {
+      "id": "objective_one_apprentice_rates",
+      "institute": "base_salary",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "OBJECTIVE 1 AREAS (art. 23, p. 52): 'Nelle aree di cui all'obiettivo 1 del regolamento 93/2081/CEE ... la retribuzione degli apprendisti è stabilita nelle seguenti misure: 70% ... 80% ... 90% del minimo contrattuale del livello assegnato'; the Protocollo sul Mezzogiorno names Basilicata, Calabria, Campania, Puglia, Sardegna and Sicilia. The request has no workplace region, so every apprentice takes 80/90/100%.",
+      "calculation": "ccnl/calzaturiero-assocalzaturifici:coverage.notes",
+      "state": "absent",
+      "remediation": "State whether the workplace is in an Objective 1 region and pay the apprentice 70/80/90% there.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "calzaturiero-assocalzaturifici/objective_one_apprentice_rates"
         ]
       }
     },
