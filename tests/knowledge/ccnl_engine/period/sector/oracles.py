@@ -793,7 +793,15 @@ def _studi_june() -> tuple[Pay, ...]:
     )
 
 
-STUDI_YEAR = sector_year(_studi_year(), _STUDI, _FULL_YEAR, terminated=False)
+#: Art. 97 C-D (p. 49): a listed holiday on a Sunday pays a further daily
+#: quota of the monthly pay over 26 (Art. 44); 1 November 2026 is a Sunday and
+#: 4 November is celebrated on it: two quotas in November.
+STUDI_YEAR = sector_year(
+    with_sunday_holidays(_studi_year(), 11, 2, 26),
+    _STUDI,
+    _FULL_YEAR,
+    terminated=False,
+)
 STUDI_JUNE = sector_year(_studi_june(), _STUDI, _HALF_YEAR, terminated=True)
 
 

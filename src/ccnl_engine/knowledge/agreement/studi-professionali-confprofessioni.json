@@ -110,7 +110,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Art. 92 and Art. 97 C: the permits added by the flexibility of the hours (30 or 60 minutes a week over the normal hours), paid with the overtime premium within six months of the end of the yearly programme when not taken, and the festività falling on a Sunday (Art. 97 C, also for the ex festività of Art. 98). The unused ROL and ex festività are paid at the deadline of Art. 91 c. 5 (permit_deadline).",
+        "text": "Art. 92: the permits added by the flexibility of the hours (30 or 60 minutes a week over the normal hours), paid with the overtime premium within six months of the end of the yearly programme when not taken. The unused ROL and ex festività are paid at the deadline of Art. 91 c. 5 (permit_deadline) and the holidays on a Sunday by Art. 97 C (sunday_holidays).",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -118,7 +118,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Accrue the flexibility permits of Art. 92 and pay those not taken with the overtime premium; pay the festività falling on a Sunday of Art. 97 C."
+          "remediation": "Accrue the flexibility permits of Art. 92 and pay those not taken with the overtime premium."
         }
       },
       {
@@ -2386,7 +2386,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "936f53349a75dda60e006108b9cc2033d895cd45b5554436294d2883e6f643d9",
+    "source_hash": "3d72e221c80a48b45f30437c9c7541f25165323c2e8699af8db4e27c413bc484",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3766,6 +3766,54 @@
           "review_id": "2026-11-08-ai-studi-travel"
         }
       }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron",
+        "11-04",
+        "03-19",
+        "06-29"
+      ],
+      "divisor": "26",
+      "on_coincident_holiday": true,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-studi-professionali-2024-02-16",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali, 16 febbraio 2024, testo integrale definitivo (Confprofessioni)",
+            "kind": "associazione",
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "published_on": "2024-02-16",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          },
+          "page": "49-50",
+          "section": "Art. 97 C-D - Festivita; Art. 98 - Festivita abolite; Art. 44 - Quota giornaliera",
+          "quote": "In caso di coincidenza di una delle festività sopra elencate con una domenica o altra festività, in aggiunta alla normale retribuzione sarà corrisposta ai lavoratori un ulteriore importo pari alla retribuzione giornaliera comprensiva di ogni elemento accessorio. [...] Per la festività civile del 4 Novembre [...] il lavoratore beneficerà del trattamento previsto al comma precedente. [Art. 98:] Nel caso in cui le suddette festività abolite coincidano con la domenica, ai lavoratori spetterà lo stesso trattamento di cui al precedente articolo 97 lettera C)."
+        },
+        "transformation": "The permits of a year not taken lapse and are paid at the employer's choice (EmployerProfile.permit_carryover): with the December pay, or carried and paid with the pay of month 7 of the next year for what is left; the hours are paid at the basis of the residual leave of the termination.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-06T13:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-06T13:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-14-ai-sunday-holidays",
+          "effective_from": "2024-02-16"
+        }
+      }
     }
   },
   "verification": {
@@ -4342,6 +4390,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.leave_rules.permit_deadline"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-sunday-holidays",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 97 C-D, Art. 98 and Art. 44 of the CCNL of 16 February 2024.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "Added the clause of Art. 97 C: a further daily quota (1/26, Art. 44) for a listed holiday, the patron, 4 November (c. D) and the ex festività of 19 March and 29 June (Art. 98) falling on a Sunday or on another holiday. Narrowed unused_leave_hours to the Art. 92 flexibility permits."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sunday_holidays"
         ]
       }
     ],
