@@ -33,10 +33,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, sickness |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | sickness |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-07-01 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-12 | claude-opus-5-5 (ai) | Tecnologi a tempo indeterminato, Tabella B2 of the CCNL 2025-2027. | corrected | The tecnologi of the universities, introduced from 1.3.2026, are now a level with their six posizioni stipendiali. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Perseo Sirio employer and worker pension contributions for university technologists | corrected | University CCNL art. 94 p. 65 points to framework financing; the fund schedule p. 3 specifies 1% each on TFR pay; notional incentives remain outside the cash contribution. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Perseo Sirio public employee notional allocations versus run amounts | corrected | The pre-2001 optant's 28.94% TFR share and applicable 1.5% TFS-base increment are notional accounting outside payroll, not cash fund contributions or extra run costs; the ordinary TFR base remains posted. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Struttura della retribuzione of the tecnologi contract of 24 February 2026. | confirmed | The tecnologi have no fixed allowance: tabellare and performance premiums only. |
 
 ## Salary table
 
@@ -80,13 +81,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "universita-tecnologi-aran/tecnologi_allowances · base_salary · impact unknown · open"
-    SCOPE: tecnologi a tempo indeterminato of the universities, a profile from 1.3.2026 (CCNL 2025-2027 Tabella B2): six posizioni stipendiali (0-5, 6-11, 12-17, 18-23, 24-30, 31 and more years) as seniority steps. No overtime table; the allowances of the profile are not modelled.
-
-    **Applies when:** `base_salary` applies.
-
-    **Remediation:** Source the allowances of the tecnologi profile (CCNL 2025-2027) and model them or record the limitation.
 
 !!! warning "universita-tecnologi-aran/shared_rules_unchecked · sickness · impact unknown · open"
     SHARED RULES: the hourly divisor, the tredicesima, the leave, absence, sickness and accrual rules are those of the scuola file of the same comparto (istruzione-ricerca-aran), not read again for the university staff.
@@ -259,6 +253,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 | CCNL Scuola 2006-2009, still in force for ferie (art. 13), malattia (art. 17) and tredicesima (art. 80). | altro | 2007-11-29 | [↗](https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf) |
 
 ??? note "Coverage notes"
+    SCOPE: tecnologi a tempo indeterminato of the universities, a profile from 1.3.2026 (CCNL 2025-2027 Tabella B2): six posizioni stipendiali (0-5, 6-11, 12-17, 18-23, 24-30, 31 and more years) as seniority steps. No overtime table. Their pay is 'interamente disciplinato dal presente contratto' and 'si compone delle seguenti voci: a) stipendio tabellare di cui all'allegata Tabella A; b) premi correlati alla performance organizzativa ed individuale' (contratto of 24 February 2026, PDF p. 4-5, https://www.aranagenzia.it/wp-content/uploads/2026/02/2026_02_24_CIR-TECNOLOGI-SEQ.pdf, sha256 9d464fcfabd7c254ab6d9249a4900c3d1b0ed2543752e061b7c34771bad1275c): there is no fixed allowance; the performance premiums depend on local resources and are a caller event.
+    
     For public employees hired before 2001 who opt into TFR and join Perseo Sirio, 28.94% of the TFR accrual is allocated notionally by INPS or the public employer (for staff not enrolled with INPS for end-of-service benefits). For those enrolled with INPS for TFS, the additional 1.5% of the TFS contribution base is also accrued notionally by INPS. Neither is a monthly cash fund contribution or extra employer payroll cost. The run posts the ordinary TFR base and accrual, not these outside-run notional allocations; transfer to the fund occurs on termination subject to the continuity condition. Fund information note, public employee schedule p. 3, note (1): 'Le quote di TFR dei dipendenti pubblici non sono versate al fondo ma sono accantonate figurativamente presso:'.
     
 

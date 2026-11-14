@@ -35,22 +35,6 @@
       }
     },
     {
-      "id": "e2_e3_seniority_amounts",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SENIORITY: biennial (cadence 24 months), maximum 7 scatti. Per-level EUR amounts from lavoro-economia.it and kitech.it (both aggregators). NOTE: E2 and E3 show identical scatto amounts (22.66) in both aggregator sources; unconfirmed against the primary CCNL text and should be verified before relying on E2/E3 seniority amounts.",
-      "calculation": "ccnl/trasporto-ferroviario-agens:coverage.notes",
-      "state": "unverified",
-      "remediation": "Verify the E2 and E3 scatto amounts against the primary CCNL text.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "trasporto-ferroviario-agens/e2_e3_seniority_amounts"
-        ]
-      }
-    },
-    {
       "id": "maternity_daily_base",
       "institute": "maternity_leave",
       "variant": "all",

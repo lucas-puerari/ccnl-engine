@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, seniority |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-22 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2026-06-01 |
 
 ## Review history
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 31 (pp. 81-82): comporto of 12 months summed over 36 consecutive months, the net pay integrated to 100% for 9 months (days 1-3 included) and 80% for 3. The file kept 100% for 540 days of one illness: corrected to a cumulation over three years (274 days at 100% of the net pay, 80% up to 365). |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 54, tabella Livelli professionali / Durata, p. 107). | corrected | Notice bands by level and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-10 | claude-opus-5-5 (ai) | FS fund ordinary contribution, covered employer and worker eligibility against the decrees and INPS circulars. | corrected | Art. 2(2) of the 2017 decree requires covered employers, not merely the Agens agreement; art. 6(1)(a) gives 0.20% split two-thirds and one-third for permanent non-executives including professional apprentices. INPS 208/2015 confirms March 2015 start; INPS 107/2018 confirms changed employer coverage from August 2017; INPS 70/2020 discusses broader benefit eligibility, not the contribution base. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 69 scatti table of the CCNL of 22 May 2025 (PDF p. 118), every level checked. | corrected | E3 scatto 22.66 -> 22.26; the other levels match the table. |
 
 ## Salary table
 
@@ -109,20 +110,13 @@ Latest effective values per level (monthly gross, EUR).
 | `D3` | € 25.22 |
 | `E1` | € 24.34 |
 | `E2` | € 22.66 |
-| `E3` | € 22.66 |
+| `E3` | € 22.26 |
 | `F1` | € 18.58 |
 | `F2` | € 18.22 |
 
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "trasporto-ferroviario-agens/e2_e3_seniority_amounts · seniority · impact unknown · open"
-    SENIORITY: biennial (cadence 24 months), maximum 7 scatti. Per-level EUR amounts from lavoro-economia.it and kitech.it (both aggregators). NOTE: E2 and E3 show identical scatto amounts (22.66) in both aggregator sources; unconfirmed against the primary CCNL text and should be verified before relying on E2/E3 seniority amounts.
-
-    **Applies when:** `seniority` applies; level in E2, E3.
-
-    **Remediation:** Verify the E2 and E3 scatto amounts against the primary CCNL text.
 
 !!! warning "trasporto-ferroviario-agens/pre_june_2025_tables · base_salary · impact yes · open"
     PRE-JUN 2025 PERIOD NOT MODELLED. The CCNL contractual coverage runs 2024-01-01 to 2026-12-31. The Jan 2024 – May 2025 wage gap was compensated by a lump-sum una tantum paid in Aug 2025 (per redigo.info), explicitly stated as having no effect on any contractual institute ('non avranno riflessi su alcun istituto contrattuale'). Salary periods therefore start 01/06/2025. A run before 1 June 2025 reads no salary table and fails (SeriesGapError, outside the validity window of the file); the window declared for completeness starts on 1 January 2026, so only an arrears or history computation would need the earlier tables (review of 2026-10-30).
@@ -317,6 +311,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     HOURLY DIVISOR: 160, verbatim from ilccnl.it salary table. Standard for 40h/week contractual regime (160 = 40 × 4).
     
     ADDITIONAL MONTHS: 14 — tredicesima + quattordicesima, confirmed from lavoro-economia.it and redigo.info (rinnovo May 2025).
+    
+    SENIORITY: biennial (cadence 24 months), maximum 7 scatti. Amounts of art. 69 of the CCNL of 22 May 2025 (FIT-CISL copy, PDF p. 118, https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Mobilita-Attivita-Ferroviarie.pdf, sha256 270d82eb62f1e00c4bb8521e6ca06ae7fb4221fca2d985b6237426216e1e571f): every level as in the file, E2 22.66 and E3 22.26 ('E2 22,66 ... E3 22,26'); the aggregators' 22.66 for E3 was wrong.
     
     FUNCTION ALLOWANCES (IND_FUN): Q1 receives +250.00/month, Q2 receives +130.00/month. Modelled as fixed_allowances with code IND_FUN effective from first salary tranche (01/06/2025). Two aggregator sources (ilccnl.it, kitech.it) agree the allowances are additive to the base tabellare.
     

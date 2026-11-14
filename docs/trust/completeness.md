@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 367 open limitations (367 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 365 open limitations (365 with a monetary impact).
 
 ## Declared window
 
@@ -173,13 +173,13 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [tessile-pmi-uniontessile](../contracts/tessile-pmi-uniontessile.md) | `tessile-moda` | exploratory | 2027-03-31 | 29 rows | 29 open requirements; 6 weak rules; 19 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
 | [tessile-smi](../contracts/tessile-smi.md) | `tessile-moda` | exploratory | — | 21 rows | 21 open requirements; 2 weak rules; 17 monetary limitations; 18 non-native capabilities |
 | [trasporto-aereo-assaeroporti](../contracts/trasporto-aereo-assaeroporti.md) | `trasporti-logistica` | exploratory | — | 23 rows | 23 open requirements; 1 weak rule; 19 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
-| [trasporto-ferroviario-agens](../contracts/trasporto-ferroviario-agens.md) | `trasporti-logistica` | exploratory | 2026-12-31 | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 20 non-native capabilities |
+| [trasporto-ferroviario-agens](../contracts/trasporto-ferroviario-agens.md) | `trasporti-logistica` | exploratory | 2026-12-31 | 21 rows | 21 open requirements; 1 weak rule; 18 monetary limitations; 20 non-native capabilities |
 | [turismo-confesercenti](../contracts/turismo-confesercenti.md) | `turismo` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 17 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [turismo-federalberghi](../contracts/turismo-federalberghi.md) | `turismo` | production | — | 26 rows | 26 open requirements; 19 monetary limitations; 5 outside_input limitations; 20 non-native capabilities |
 | [turismo-federalberghi-alberghi-minori](../contracts/turismo-federalberghi-alberghi-minori.md) | `turismo` | exploratory | — | 27 rows | 27 open requirements; 19 monetary limitations; 6 outside_input limitations; 20 non-native capabilities |
 | [uneba-uneba](../contracts/uneba-uneba.md) | `socio-sanitario` | exploratory | — | 21 rows | 21 open requirements; 1 weak rule; 17 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [universita-aran](../contracts/universita-aran.md) | `pubblico-impiego` | exploratory | — | 24 rows | 24 open requirements; 5 weak rules; 17 monetary limitations; 19 non-native capabilities |
-| [universita-tecnologi-aran](../contracts/universita-tecnologi-aran.md) | `pubblico-impiego` | exploratory | — | 21 rows | tables from 2026-03-01; 21 open requirements; 1 weak rule; 18 monetary limitations; 20 non-native capabilities |
+| [universita-tecnologi-aran](../contracts/universita-tecnologi-aran.md) | `pubblico-impiego` | exploratory | — | 20 rows | tables from 2026-03-01; 20 open requirements; 1 weak rule; 17 monetary limitations; 19 non-native capabilities |
 | [vetro-meccanizzato-assovetro](../contracts/vetro-meccanizzato-assovetro.md) | `chimica` | exploratory | — | 48 rows | 48 open requirements; 29 weak rules; 16 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [vigilanza-privata-assiv](../contracts/vigilanza-privata-assiv.md) | `vigilanza` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 19 monetary limitations; 20 non-native capabilities |
 | [vigilanza-privata-assiv-sf](../contracts/vigilanza-privata-assiv-sf.md) | `vigilanza` | exploratory | — | 24 rows | 24 open requirements; 3 weak rules; 19 monetary limitations; 20 non-native capabilities |

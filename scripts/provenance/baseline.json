@@ -1144,7 +1144,6 @@
       "trasporto-aereo-assaeroporti/sickness_hospital_and_serious_illness"
     ],
     "agreement/trasporto-ferroviario-agens.json": [
-      "trasporto-ferroviario-agens/e2_e3_seniority_amounts",
       "trasporto-ferroviario-agens/pre_june_2025_tables",
       "trasporto-ferroviario-agens/seniority_amounts_before_june_2026"
     ],
@@ -1180,8 +1179,7 @@
       "universita-aran/shared_rules_unchecked"
     ],
     "agreement/universita-tecnologi-aran.json": [
-      "universita-tecnologi-aran/shared_rules_unchecked",
-      "universita-tecnologi-aran/tecnologi_allowances"
+      "universita-tecnologi-aran/shared_rules_unchecked"
     ],
     "agreement/vetro-meccanizzato-assovetro.json": [
       "vetro-meccanizzato-assovetro/other_subsectors_tables"
