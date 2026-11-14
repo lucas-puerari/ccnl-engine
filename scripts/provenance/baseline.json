@@ -896,7 +896,6 @@
     ],
     "agreement/istruzione-ricerca-aran.json": [
       "istruzione-ricerca-aran/docenti_function_allowance",
-      "istruzione-ricerca-aran/enam_base",
       "istruzione-ricerca-aran/fixed_hourly_overtime",
       "istruzione-ricerca-aran/teacher_hourly_divisor"
     ],
