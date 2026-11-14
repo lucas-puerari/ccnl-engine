@@ -30,10 +30,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, territorial_supplement |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | territorial_supplement |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-01-24 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2026-03-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 44 - Tredicesima mensilità (p. 44): "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno la lavoratrice ed il lavoratore avranno diritto a tanti dodicesimi dell’ammontare della 13° mensilità per quanti sono i mesi di servizio prestato. Le frazioni di mese pari o superiori ai 15 giorni saranno considerate come mese intero.". Match: at_least 15. |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 34 values read identically by both readings and equal to the file. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Art. 22 apprenticeship pay of the CCNL UNEBA 2023-2025 (PDF p. 32), text layer; the 2025 accordo (OCR, 30 pages) does not touch it. | corrected | The apprentice bands are 85% and 90% split at half of the duration, not 90/95/100% in three thirds: apprentices were overpaid. |
 
 ## Salary table
 
@@ -118,13 +119,6 @@ percentage: 1.00
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "uneba-uneba/equal_apprenticeship_bands · base_salary · impact unknown · open"
-    APPRENTICESHIP generic rule (Art. 22): 90/95/100% in three bands over the destination-level duration: 36 months for 2, 3S, 3 (track 'standard_36'), 24 months for 4S and 4 (track 'standard_24'), 18 months for 5S, 5, 6 (track 'standard_18'). The three bands are assumed of equal length. 6S is not listed in Art. 22 and is not a destination; professionals excluded from apprenticeship (nurses, physiotherapists, psychologists, social workers) and levels 1/Q are not modelled.
-
-    **Applies when:** `base_salary` applies; contract type in apprentice.
-
-    **Remediation:** Confirm the length of the three Art. 22 apprenticeship bands.
 
 !!! warning "uneba-uneba/ermt_territorial · territorial_supplement · impact yes · open"
     ERMT: Elemento Retributivo Mensile Territoriale is a territorial supplement, not part of the national CCNL salary table. Not modelled at national level.
@@ -322,6 +316,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEVEL Q — IND_FUN: fixed allowance EUR 100.00/month (Art. 43, 'indennità di funzioni pari a EUR 100,00 mensili lorde'). Paid over 14 mensilità, non-absorbable. Applied to all Q-level workers.
     
     APPRENTICESHIP OSS/4S rule (Art. 22 CCNL 2020, unchanged by the 2025 renewal; primary source olympus.uniurb.it): destination 4S (OSS), 18 months, 85% months 1-9 and 90% months 10-18, track 'oss_4S'. Select it with Apprentice(track='oss_4S'): level 4S is also covered by the generic 24-month track.
+    
+    APPRENTICESHIP (art. 22, text 2023-2025, PDF p. 32): two bands, 85% and 90% of the minimo conglobato of the destination level, split at half of the duration: 36 months for 2, 3S, 3 (18 + 18), 24 months for 4S and 4 (12 + 12), 18 months for 5S, 5, 6 and the OSS 4S (9 + 9). The earlier 90/95/100% in three bands was wrong.
     
     TEP ABOLISHED: Art. 80 of the 2025 renewal abolishes the Trattamento Economico Progressivo (progressive 36-month phased salary for new hires). Not modelled as it is no longer in force from 01.02.2025.
     

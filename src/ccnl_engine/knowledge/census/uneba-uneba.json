@@ -35,22 +35,6 @@
       }
     },
     {
-      "id": "equal_apprenticeship_bands",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "APPRENTICESHIP generic rule (Art. 22): 90/95/100% in three bands over the destination-level duration: 36 months for 2, 3S, 3 (track 'standard_36'), 24 months for 4S and 4 (track 'standard_24'), 18 months for 5S, 5, 6 (track 'standard_18'). The three bands are assumed of equal length. 6S is not listed in Art. 22 and is not a destination; professionals excluded from apprenticeship (nurses, physiotherapists, psychologists, social workers) and levels 1/Q are not modelled.",
-      "calculation": "ccnl/uneba-uneba:coverage.notes",
-      "state": "unverified",
-      "remediation": "Confirm the length of the three Art. 22 apprenticeship bands.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "uneba-uneba/equal_apprenticeship_bands"
-        ]
-      }
-    },
-    {
       "id": "ermt_territorial",
       "institute": "territorial_supplement",
       "variant": "all",
