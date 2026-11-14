@@ -54,12 +54,15 @@ def with_fixed_term_pay(
     """Return ``ccnl`` with the pay of a fixed-term worker it sets apart.
 
     A fixed-term worker of a category of ``parameters.fixed_term_pay`` is
-    paid by its hourly pay, with its monthly payments, and accrues no leave
-    (the percentages on the hours stand for the ferie).
+    paid by its hourly pay, with its monthly payments, accrues no leave and
+    takes no quota for a holiday on a Sunday (the percentages on the hours
+    stand for the ferie and the festività: OTD art. 50, Ortofrutticoli
+    artt. 55 and 72).
 
     Returns:
         ``ccnl`` unchanged, or a copy with the hourly pay, the monthly
-        payments and no leave rules of the fixed-term worker.
+        payments, no leave rules and no Sunday-holiday clause of the
+        fixed-term worker.
     """
     rule = ccnl.parameters.fixed_term_pay
     if rule is None or not covers(ccnl, category, contract_type):
@@ -76,7 +79,7 @@ def with_fixed_term_pay(
             "parameters": parameters,
             "work_rules": None
             if work is None
-            else work.model_copy(update={"leave_rules": None}),
+            else work.model_copy(update={"leave_rules": None, "sunday_holidays": None}),
         }
     )
 

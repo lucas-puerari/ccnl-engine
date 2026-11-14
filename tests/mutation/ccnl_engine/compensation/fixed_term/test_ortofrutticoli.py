@@ -74,3 +74,17 @@ def test_the_indemnity_leaves_out_the_overtime() -> None:
     ccnl = with_fixed_term_pay(load_ccnl(_CCNL_ID), WorkerCategory.OPERAIO, _SEASONAL)
     events = (OvertimeEvent(date(2026, 1, 15), Decimal(10)),)
     assert overtime_hours(ccnl, events) == 0
+
+
+def test_the_seasonal_worker_takes_no_sunday_holiday_quota() -> None:
+    """Art. 55: the holidays of the seasonal staff are in the art. 72 percentage."""
+    seasonal = with_fixed_term_pay(
+        load_ccnl(_CCNL_ID), WorkerCategory.OPERAIO, _SEASONAL
+    )
+    assert seasonal.work_rules is not None
+    assert seasonal.work_rules.sunday_holidays is None
+    ordinary = with_fixed_term_pay(
+        load_ccnl(_CCNL_ID), WorkerCategory.OPERAIO, FixedTerm()
+    )
+    assert ordinary.work_rules is not None
+    assert ordinary.work_rules.sunday_holidays is not None

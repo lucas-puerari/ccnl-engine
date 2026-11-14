@@ -72,6 +72,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 147 of the renewal of 29 March 2024 (imprese minori). | corrected | Added the hours of the small imprese minori (60, +6 from April 2025, +6 from April 2026) under the sub-sector piccola_impresa_minore and closed imprese_minori_permits; the other imprese minori work 40 hours and keep the 104. Recorded that the Art. 61 C ramp still applies to their new hires. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 147 of the renewal of 29 March 2024 against the ramp of Art. 61 C. | corrected | The 60 hours of the small imprese minori are 'per tutti i lavoratori dipendenti': the ramp now excludes the sub-sector piccola_impresa_minore; closed small_cooperative_new_hire_ramp. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Ferie at termination and Art. 187 of the testo ufficiale 2011. | corrected | The file had no basis for the leave left at termination: added the twelfths (more than 15 days a month), the 1/26 indemnity and the hourly quota of the permits. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 132 c. 2-3 - Lavoro festivo (holiday on a Sunday). | corrected | The file had no clause for a holiday falling on a Sunday, so its further daily quota was not paid: added the clause with the holidays the text lists and 4 November. |
 
 ## Salary table
 
@@ -348,6 +349,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     PERMITS, IMPRESE MINORI (Title XV, Art. 147 as renewed on 29 March 2024, CNEL 183889 pp. 59-60): a 40-hour week for every worker (Employment full_time_weekly_hours 40: the 104 hours, not absorbed); in the small firms of one unit or up to 20 full-time staff a unit (EmployerProfile.subsector 'piccola_impresa_minore') 60 hours a year, read as the 32 of ex festività and 28 of reduction, plus 6 from 1 April 2025 and 6 from 1 April 2026 (72, aim 88). Their new hires take the hours in full: the ROL ramp of Art. 61 C does not reach this sub-sector.
     
     LEAVE AT TERMINATION (testo ufficiale 2011, p. 166 and Art. 187): ferie in twelfths, a fraction above fifteen days counting as a month, the indemnity 'dividendo per ventisei la retribuzione mensile di fatto'; the permit hours left at the hourly quota of Art. 187 (168 at 40 hours, 165 at 38).
+    
+    HOLIDAY ON A SUNDAY (Art. 132 c. 2-3 - Lavoro festivo, p. 164 (printed 162-163)): a listed holiday falling on a Sunday pays a further daily quota (1/26 of the monthly pay); 4 November, celebrated on the first Sunday of November, takes the same treatment.
     
 
 ## Raw data

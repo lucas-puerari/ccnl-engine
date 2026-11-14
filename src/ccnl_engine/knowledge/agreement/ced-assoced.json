@@ -152,6 +152,11 @@
         "kind": "info",
         "text": "LEAVE AT TERMINATION (Artt. 134, 170, 171): ferie in twelfths per month of service (the text gives no rule for a month in part), each day paid at the monthly pay over 26; the permit hours left at the hourly quota (1/173).",
         "capability": "leave"
+      },
+      {
+        "kind": "info",
+        "text": "HOLIDAY ON A SUNDAY (Art. 116 (Festivita), p. 85): a listed holiday falling on a Sunday pays a further daily quota (1/26 of the monthly pay); 4 November, celebrated on the first Sunday of November, takes the same treatment.",
+        "capability": "sunday_holiday"
       }
     ]
   },
@@ -1983,7 +1988,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "07d98c3abbf0b290fb490f4d698ea1acf994f8637061e00687165430bfc01ada",
+    "source_hash": "020450c74ba3c04dc21f99eb5fde4a76ed39258d33120ec4634d1f2b0a0e7c69",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2584,6 +2589,50 @@
         ],
         "net_basis": true
       }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron",
+        "11-04"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
+            "title": "CCNL CED, ICT, Professioni Digitali e STP, 9 March 2022",
+            "kind": "associazione",
+            "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+            "published_on": "2022-03-09",
+            "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+          },
+          "page": "85",
+          "section": "Art. 116 (Festivita)",
+          "quote": "In caso di coincidenza di una delle festività sopra elencate con una domenica, in aggiunta alla retribuzione mensile sarà corrisposto ai lavoratori un ulteriore importo pari alla quota giornaliera della retribuzione di fatto di cui all'art. 170. Per la festività civile [...] (4 novembre), il lavoratore beneficerà del trattamento previsto per le festività che coincidono con la domenica."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2022-03-09",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-14-ai-sunday-holidays"
+        }
+      },
+      "divisor": "26"
     }
   },
   "verification": {
@@ -2894,6 +2943,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.leave_rules.termination"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-sunday-holidays",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 116 (Festivita) (holiday on a Sunday).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+            "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+          }
+        ],
+        "findings": [
+          "The file had no clause for a holiday falling on a Sunday, so its further daily quota was not paid: added the clause with the holidays the text lists and 4 November."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sunday_holidays"
         ]
       }
     ]

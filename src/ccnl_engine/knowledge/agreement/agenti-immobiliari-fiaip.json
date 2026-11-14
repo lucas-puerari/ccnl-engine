@@ -97,6 +97,11 @@
         "kind": "info",
         "text": "LEAVE (CCNL 2025, EBNAIP): ferie 26 working days on a week counted as six (Art. 122, p. 79), twelfths per month of service at termination (Art. 125); 56 hours of reduction and 32 of ex festività a year on both the 5- and 6-day week, a twelfth per whole month of service (Art. 105, pp. 70-71); not taken within the year paid with the December pay or, by agreement, taken by 30 June and the rest paid with the June pay (EmployerProfile.permit_carryover); daily quota 1/26 and hourly 1/168 (Artt. 160-161, p. 96), used for the leave left at termination.",
         "capability": "leave"
+      },
+      {
+        "kind": "info",
+        "text": "HOLIDAY ON A SUNDAY (Art. 110 Riposo settimanale - Festivita; Art. 112 Festivita civile soppressa cadente di domenica, p. 73-74): a listed holiday falling on a Sunday pays a further daily quota (1/26 of the monthly pay); 4 November, celebrated on the first Sunday of November, takes the same treatment.",
+        "capability": "sunday_holiday"
       }
     ]
   },
@@ -343,6 +348,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.leave_rules"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-sunday-holidays",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 110 Riposo settimanale - Festivita; Art. 112 Festivita civile soppressa cadente di domenica (holiday on a Sunday).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+            "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+          }
+        ],
+        "findings": [
+          "The file had no clause for a holiday falling on a Sunday, so its further daily quota was not paid: added the clause with the holidays the text lists and 4 November."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sunday_holidays"
         ]
       }
     ]
@@ -1967,7 +1993,7 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "b4fe9011916ef63433a6b5aae1debfb59206828c84e40c810852fba30bab8a14"
+    "source_hash": "550b7d3793908829edf3d6de7f0a7be2fac1afd227ba3fe8b9c5a55351844df9"
   },
   "work_rules": {
     "notice": {
@@ -2333,6 +2359,50 @@
           }
         }
       }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron",
+        "11-04"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "agenti-immobiliari-fiaip-ccnl-testo",
+            "title": "Contratto Collettivo Nazionale di Lavoro per dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso - Codice CNEL H0B1 - 19 maggio 2025 - Testo ufficiale",
+            "kind": "altro",
+            "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+            "published_on": "2025-05-19",
+            "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+          },
+          "page": "73-74",
+          "section": "Art. 110 Riposo settimanale - Festivita; Art. 112 Festivita civile soppressa cadente di domenica",
+          "quote": "Nel caso di coincidenza di una delle festività infrasettimanali sopra elencate con la domenica, in aggiunta alla normale retribuzione sarà corrisposto ai lavoratori un ulteriore importo pari ad 1/26 della retribuzione mensile comprensiva di ogni elemento accessorio. [Art. 112:] La ricorrenza del 4 novembre, sarà retribuita secondo i criteri previsti dall'ultimo comma del precedente articolo 110."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2025-05-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-14-ai-sunday-holidays"
+        }
+      },
+      "divisor": "26"
     }
   }
 }

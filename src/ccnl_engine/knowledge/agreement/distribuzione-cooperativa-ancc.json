@@ -163,6 +163,11 @@
         "kind": "info",
         "text": "LEAVE AT TERMINATION (testo ufficiale 2011, p. 166 and Art. 187): ferie in twelfths, a fraction above fifteen days counting as a month, the indemnity 'dividendo per ventisei la retribuzione mensile di fatto'; the permit hours left at the hourly quota of Art. 187 (168 at 40 hours, 165 at 38).",
         "capability": "leave"
+      },
+      {
+        "kind": "info",
+        "text": "HOLIDAY ON A SUNDAY (Art. 132 c. 2-3 - Lavoro festivo, p. 164 (printed 162-163)): a listed holiday falling on a Sunday pays a further daily quota (1/26 of the monthly pay); 4 November, celebrated on the first Sunday of November, takes the same treatment.",
+        "capability": "sunday_holiday"
       }
     ]
   },
@@ -459,6 +464,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.leave_rules.termination"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-sunday-holidays",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 132 c. 2-3 - Lavoro festivo (holiday on a Sunday).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+            "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+          }
+        ],
+        "findings": [
+          "The file had no clause for a holiday falling on a Sunday, so its further daily quota was not paid: added the clause with the holidays the text lists and 4 November."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sunday_holidays"
         ]
       }
     ]
@@ -3143,7 +3169,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/183889",
     "verification_status": "unverified",
-    "source_hash": "3e6d6cadc8e1bc70be93c4dc8e496516c1648bf27315fee59baec5b94a29882e",
+    "source_hash": "ca6736a1e0542f2587bf638629571821432c99a6d1a4497e07f58376492ad1b4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3909,6 +3935,50 @@
           "effective_from": "2024-04-01"
         }
       }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron",
+        "11-04"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "uiltucs-ccnl-cooperazione-2011",
+            "title": "CCNL per i dipendenti da imprese della distribuzione cooperativa, testo ufficiale in vigore dal 1 gennaio 2011",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2018/12/CCNL_Cooperazione_2011.pdf",
+            "published_on": "2011-01-01",
+            "sha256": "8ecf93f628ae223f3fc7b3b0d39d89e58bf85fa8f067a698ccf93189a09329f0"
+          },
+          "page": "164 (printed 162-163)",
+          "section": "Art. 132 c. 2-3 - Lavoro festivo",
+          "quote": "Nel caso di coincidenza di una delle festività infrasettimanali o nazionali con una domenica, in aggiunta alla retribuzione mensile sarà corrisposta ai lavoratori retribuiti in misura fissa [...] un ulteriore importo pari alla quota giornaliera della retribuzione di fatto di cui all'art. 184. Tale trattamento sarà applicato anche alla festività del 4 novembre"
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2011-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-14-ai-sunday-holidays"
+        }
+      },
+      "divisor": "26"
     }
   }
 }

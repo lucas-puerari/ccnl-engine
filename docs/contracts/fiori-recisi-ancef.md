@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 30 values found verbatim on the cited pages and marked verified; 2 left as they were (derived or not on a text page). |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 29 of the CCNL 2023-2026 (permits, 39-hour week, March payout). | corrected | The file had the ferie but no permit: added the 32 hours of ex festivita and 40 of reduction, their absorption by the 39-hour week and the payout with the March pay of the next year. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Ferie at termination and the day and hour quotas of the CCNL 2023-2026. | corrected | The file had no basis for the leave left at termination: added the twelfths (15 days or more a month), the 1/26 day and the 1/170 hour. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Articolo 31 - Giorni festivi (holiday on a Sunday). | corrected | The file had no clause for a holiday falling on a Sunday, so its further daily quota was not paid: added the clause with the holidays the text lists and 4 November. |
 
 ## Salary table
 
@@ -319,6 +320,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     PERMITS (Art. 29, CCNL 2023-2026, p. 21): 32 hours of ex festività and 40 hours of reduction a year; a 39-hour week, the employer's alternative to 40, absorbs the 32 hours and 16 of the 40 (full_time_weekly_hours); the hours not taken within the year are paid with the retribuzione di fatto of the March pay of the next year (the engine carries them to March and pays what is left then). The text does not say how the hours accrue in a partial year: no month rule, the balance of a partial year is marked inexact.
     
     LEAVE AT TERMINATION (CCNL 2023-2026 pp. 22 and 27): ferie in twelfths, a fraction of fifteen days or more counting as a month, each day paid at the monthly pay over 26; the permit hours left at the hourly quota (1/170).
+    
+    HOLIDAY ON A SUNDAY (Articolo 31 - Giorni festivi, p. 21-22): a listed holiday falling on a Sunday pays a further daily quota (1/26 of the monthly pay); 4 November, celebrated on the first Sunday of November, takes the same treatment.
     
 
 ## Raw data
