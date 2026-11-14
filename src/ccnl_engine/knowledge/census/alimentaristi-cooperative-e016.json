@@ -306,6 +306,22 @@
       }
     },
     {
+      "id": "travelling_salesmen_protocol",
+      "institute": "base_salary",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "VIAGGIATORI O PIAZZISTI (art. 21; protocollo aggiuntivo, TU 2019-2023 p. 63-64): V.P. of 1st and 2nd class are classified at level 2 and level 3 and take their minimi, contingenza, IAR, EDR and scatti (renewal 2024 p. 49: same parameters 165 and 130). Not modelled: the average of the commissions of the previous 12 months in the 13th month and the ferie, the 14th month computed on minimo, contingenza and scatti only, the 6.50% cash-handling allowance (12 months) and the diaria, 50% of which is pay.",
+      "calculation": "ccnl/alimentaristi-cooperative-e016:coverage.notes",
+      "state": "absent",
+      "remediation": "Model the commissions of a viaggiatore o piazzista and the protocol's 13th, 14th, cash-handling and diaria rules.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "alimentaristi-cooperative-e016/travelling_salesmen_protocol"
+        ]
+      }
+    },
+    {
       "id": "una_tantum_readings",
       "institute": "base_salary",
       "variant": "all",
