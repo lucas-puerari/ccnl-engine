@@ -306,22 +306,6 @@
       }
     },
     {
-      "id": "salary_2026_from_proxy",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "SIMPLIFICATION: 2026 salary values (L1=2788.00, L2=2331.75, L3=2096.38, L4=1863.44, L5=1735.04, L6=1588.78) sourced from proxy (kitech.it) for the 2026-2028 renewal. Primary source PDF covers 2023-2025 only.",
-      "calculation": "ccnl/ooss-unsic-confsal:coverage.notes",
-      "state": "unverified",
-      "remediation": "Verify the 2026-2028 salary values against the primary renewal text.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "ooss-unsic-confsal/salary_2026_from_proxy"
-        ]
-      }
-    },
-    {
       "id": "sickness_cumulation_window",
       "institute": "sickness",
       "variant": "all",

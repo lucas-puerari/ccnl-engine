@@ -166,17 +166,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "INPS BAND: the band of up to 24 weekly hours is chosen on the paga oraria effettiva of INPS (circ. 9/2026; INPS page Contributi e agevolazioni fiscali per chi assume un lavoratore domestico): the monthly pay with board and lodging over the hours of the employment (weekly hours x 52 / 12), raised by the tredicesima (x 13 / 12).",
-        "capability": "inps_employer",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "hourly_inps_bracket_unvalidated",
-          "applies_when": {
-            "trigger": "run"
-          },
-          "remediation": "Validate the hourly INPS bracket lookup for weekly hours up to 24 against the INPS domestic table, as for the convivente files."
-        }
+        "kind": "info",
+        "text": "INPS BAND: up to 24 weekly hours the band is chosen on the retribuzione oraria effettiva (fino a 9,61; oltre 9,61 fino a 11,70; oltre 11,70), above 24 hours the single row applies (INPS circ. 9/2026 par. 2, PDF p. 3, https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2026/02/Circolare_15154/Allegati/16551_Circolare-numero-9-del-03-02-2026.pdf, sha256 69025160fd599ca2c5ebde1c6c5643923157102a0c83c045ebf9d00ed5ccbfb3); the 2026 hourly contributions of contribution/2026/lavoro-domestico.json add up to the circular's totals with CUAF (1.27 + 0.43 = 1.70, 1.44 + 0.48 = 1.92)."
       },
       {
         "kind": "info",
@@ -1520,7 +1511,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "9441917449eefee0940b0ada98f1f1effc8dcdcc969931ea176b360f4d094699",
+    "source_hash": "8076f0ddbe4feeac71e5444a1ab82fd39db928a111c65ed7584db5f76b28f79e",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
@@ -1983,6 +1974,27 @@
         ],
         "findings": [
           "BS: EUR 0.84 per paid hour; CS and DS: EUR 0.70 per paid hour; B, BS and CS: EUR 30.27 per month for valid certification."
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-domestico-inps-band",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "INPS circ. 9/2026 par. 2 table A against the 2026 domestic contributions of the bundle.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2026/02/Circolare_15154/Allegati/16551_Circolare-numero-9-del-03-02-2026.pdf",
+            "sha256": "69025160fd599ca2c5ebde1c6c5643923157102a0c83c045ebf9d00ed5ccbfb3"
+          }
+        ],
+        "findings": [
+          "Band selection on the effective hourly pay up to 24 weekly hours and the 2026 amounts confirmed."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "coverage.notes"
         ]
       }
     ],

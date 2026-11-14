@@ -922,7 +922,6 @@
     "agreement/lavoro-domestico-non-convivente.json": [
       "lavoro-domestico-non-convivente/annual_minimi_not_updated",
       "lavoro-domestico-non-convivente/extra_month_hours",
-      "lavoro-domestico-non-convivente/hourly_inps_bracket_unvalidated",
       "lavoro-domestico-non-convivente/meal_indennity",
       "lavoro-domestico-non-convivente/seniority_frozen_at_2026",
       "lavoro-domestico-non-convivente/tranches_from_2027"
@@ -1004,8 +1003,7 @@
     ],
     "agreement/ooss-unsic-confsal.json": [
       "ooss-unsic-confsal/apprentice_seniority",
-      "ooss-unsic-confsal/level_5_apprentice_one_level_below",
-      "ooss-unsic-confsal/salary_2026_from_proxy"
+      "ooss-unsic-confsal/level_5_apprentice_one_level_below"
     ],
     "agreement/operai-agricoli-florovivaisti.json": [
       "operai-agricoli-florovivaisti/agricoli_apprentice_provincial_levels",

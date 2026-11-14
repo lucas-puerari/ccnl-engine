@@ -40,7 +40,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, seniority |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 1 verified / 19 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 19 verified / 13 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -57,8 +57,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-01-19 |
-| **Last review** | 2026-11-01 |
-| **Latest salary tranche** | 2026-01-01 |
+| **Last review** | 2026-11-14 |
+| **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
 
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 52 - Mensilità aggiuntive (p. 93): "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell'anno, il lavoratore dipendente ha diritto a tanti dodicesimi della 13ma e della 14ma per quanti sono i mesi di lavoro prestato. Per tali fini il periodo iniziale o finale superiore a 15 (quindici) giorni è computato come mese intero secondo il criterio della prevalenza.". Match: more_than 15. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 43 — Risoluzione del rapporto di lavoro, p. 83–84). | corrected | Notice bands checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 58 c. V of the testo definitivo of 26 March 2026 (CNEL V925, PDF p. 34), read on the page image. | corrected | 2026 salaries confirmed on the signed text; 2027 and 2028 tranches added. |
 
 ## Salary table
 
@@ -73,12 +74,12 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
-| `1` | Livello I - Direttore Generale | € 2,788.00 | 2026-01-01 |
-| `2` | Livello II - Direttori Nazionali / Coordinatori | € 2,331.75 | 2026-01-01 |
-| `3` | Livello III - Responsabili Regionali / Impiegati di concetto | € 2,096.38 | 2026-01-01 |
-| `4` | Livello IV - Responsabili Zonali / Operatori servizi | € 1,863.44 | 2026-01-01 |
-| `5` | Livello V - Impiegati d'ordine / Addetti | € 1,735.04 | 2026-01-01 |
-| `6` | Livello VI - Usciere / Fattorino / Autista / Addetto pulizie | € 1,588.78 | 2026-01-01 |
+| `1` | Livello I - Direttore Generale | € 2,872.27 | 2028-01-01 |
+| `2` | Livello II - Direttori Nazionali / Coordinatori | € 2,402.23 | 2028-01-01 |
+| `3` | Livello III - Responsabili Regionali / Impiegati di concetto | € 2,159.74 | 2028-01-01 |
+| `4` | Livello IV - Responsabili Zonali / Operatori servizi | € 1,919.76 | 2028-01-01 |
+| `5` | Livello V - Impiegati d'ordine / Addetti | € 1,787.48 | 2028-01-01 |
+| `6` | Livello VI - Usciere / Fattorino / Autista / Addetto pulizie | € 1,636.80 | 2028-01-01 |
 
 ## Seniority increments
 
@@ -111,13 +112,6 @@ under-level: `1`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "ooss-unsic-confsal/salary_2026_from_proxy · base_salary · impact unknown · open"
-    SIMPLIFICATION: 2026 salary values (L1=2788.00, L2=2331.75, L3=2096.38, L4=1863.44, L5=1735.04, L6=1588.78) sourced from proxy (kitech.it) for the 2026-2028 renewal. Primary source PDF covers 2023-2025 only.
-
-    **Applies when:** `base_salary` applies; from 2026-01-01.
-
-    **Remediation:** Verify the 2026-2028 salary values against the primary renewal text.
 
 !!! warning "ooss-unsic-confsal/level_5_apprentice_one_level_below · base_salary · impact unknown · open"
     SIMPLIFICATION: dest level 5 apprenticeship: lb=2 is structurally impossible (only 1 level below exists). Modelled as lb=1 for full 36mo duration per Art. 15 cap ('non piu di due livelli').
@@ -333,6 +327,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     No dedicated INPS code per contratticcnl.it. Tax sector=terziario applied.
     
     Headcount: 6,968 workers, 830 employers (ADAPT 18 Rapporto CNEL).
+    
+    SALARY 2026-2028: art. 58 c. V of the testo definitivo of 26 March 2026 (CNEL V925, PDF p. 34) sets the monthly pay from 1 January 2026, 2027 and 2028; the 2026 values of the proxy are confirmed and 2027-2028 added.
     
 
 ## Raw data

@@ -91,17 +91,8 @@
         "text": "Headcount: 6,968 workers, 830 employers (ADAPT 18 Rapporto CNEL)."
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: 2026 salary values (L1=2788.00, L2=2331.75, L3=2096.38, L4=1863.44, L5=1735.04, L6=1588.78) sourced from proxy (kitech.it) for the 2026-2028 renewal. Primary source PDF covers 2023-2025 only.",
-        "capability": "base_salary",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "salary_2026_from_proxy",
-          "applies_when": {
-            "effective_from": "2026-01-01"
-          },
-          "remediation": "Verify the 2026-2028 salary values against the primary renewal text."
-        }
+        "kind": "info",
+        "text": "SALARY 2026-2028: art. 58 c. V of the testo definitivo of 26 March 2026 (CNEL V925, PDF p. 34) sets the monthly pay from 1 January 2026, 2027 and 2028; the 2026 values of the proxy are confirmed and 2027-2028 added."
       },
       {
         "kind": "simplification",
@@ -180,6 +171,27 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.notice"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-ooss-2026-2028",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 58 c. V of the testo definitivo of 26 March 2026 (CNEL V925, PDF p. 34), read on the page image.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239762",
+            "sha256": "1546200b784416c11ca28857e3205e38150c808eac9888203be72ff7064db5f3"
+          }
+        ],
+        "findings": [
+          "2026 salaries confirmed on the signed text; 2027 and 2028 tranches added."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels[*].base_salary"
         ]
       }
     ]
@@ -435,24 +447,97 @@
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-01-01",
             "value": "2788.00",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-ooss-pdf",
-                  "title": "ccnl-ooss-pdf",
-                  "kind": "associazione",
-                  "url": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf"
+                  "document_id": "cnel-v925-2026-03-26",
+                  "title": "CCNL OOSS UNSIC-CONFSAL, testo definitivo 26 marzo 2026, depositato al CNEL (V925)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239762",
+                  "sha256": "1546200b784416c11ca28857e3205e38150c808eac9888203be72ff7064db5f3"
                 },
-                "section": "Tabella retributiva"
+                "page": "34",
+                "section": "Art. 58 c. V - Retribuzione lorda mensile",
+                "quote": "I ... 2.788,00 € ... 2.829,82 € ... 2.872,27 €"
               },
+              "transformation": "Retribuzione lorda mensile from 2026-01-01.",
+              "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T23:30:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-ooss-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "2829.82",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-v925-2026-03-26",
+                  "title": "CCNL OOSS UNSIC-CONFSAL, testo definitivo 26 marzo 2026, depositato al CNEL (V925)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239762",
+                  "sha256": "1546200b784416c11ca28857e3205e38150c808eac9888203be72ff7064db5f3"
+                },
+                "page": "34",
+                "section": "Art. 58 c. V - Retribuzione lorda mensile",
+                "quote": "I ... 2.788,00 € ... 2.829,82 € ... 2.872,27 €"
+              },
+              "transformation": "Retribuzione lorda mensile from 2027-01-01.",
+              "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T23:30:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-ooss-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2872.27",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-v925-2026-03-26",
+                  "title": "CCNL OOSS UNSIC-CONFSAL, testo definitivo 26 marzo 2026, depositato al CNEL (V925)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239762",
+                  "sha256": "1546200b784416c11ca28857e3205e38150c808eac9888203be72ff7064db5f3"
+                },
+                "page": "34",
+                "section": "Art. 58 c. V - Retribuzione lorda mensile",
+                "quote": "I ... 2.788,00 € ... 2.829,82 € ... 2.872,27 €"
+              },
+              "transformation": "Retribuzione lorda mensile from 2028-01-01.",
+              "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T23:30:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-ooss-2026-2028"
               }
             }
           }
@@ -509,24 +594,97 @@
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-01-01",
             "value": "2331.75",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-ooss-pdf",
-                  "title": "ccnl-ooss-pdf",
-                  "kind": "associazione",
-                  "url": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf"
+                  "document_id": "cnel-v925-2026-03-26",
+                  "title": "CCNL OOSS UNSIC-CONFSAL, testo definitivo 26 marzo 2026, depositato al CNEL (V925)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239762",
+                  "sha256": "1546200b784416c11ca28857e3205e38150c808eac9888203be72ff7064db5f3"
                 },
-                "section": "Tabella retributiva"
+                "page": "34",
+                "section": "Art. 58 c. V - Retribuzione lorda mensile",
+                "quote": "II ... 2.331,75 € ... 2.366,73 € ... 2.402,23 €"
               },
+              "transformation": "Retribuzione lorda mensile from 2026-01-01.",
+              "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T23:30:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-ooss-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "2366.73",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-v925-2026-03-26",
+                  "title": "CCNL OOSS UNSIC-CONFSAL, testo definitivo 26 marzo 2026, depositato al CNEL (V925)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239762",
+                  "sha256": "1546200b784416c11ca28857e3205e38150c808eac9888203be72ff7064db5f3"
+                },
+                "page": "34",
+                "section": "Art. 58 c. V - Retribuzione lorda mensile",
+                "quote": "II ... 2.331,75 € ... 2.366,73 € ... 2.402,23 €"
+              },
+              "transformation": "Retribuzione lorda mensile from 2027-01-01.",
+              "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T23:30:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-ooss-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2402.23",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-v925-2026-03-26",
+                  "title": "CCNL OOSS UNSIC-CONFSAL, testo definitivo 26 marzo 2026, depositato al CNEL (V925)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239762",
+                  "sha256": "1546200b784416c11ca28857e3205e38150c808eac9888203be72ff7064db5f3"
+                },
+                "page": "34",
+                "section": "Art. 58 c. V - Retribuzione lorda mensile",
+                "quote": "II ... 2.331,75 € ... 2.366,73 € ... 2.402,23 €"
+              },
+              "transformation": "Retribuzione lorda mensile from 2028-01-01.",
+              "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T23:30:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-ooss-2026-2028"
               }
             }
           }
@@ -583,24 +741,97 @@
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-01-01",
             "value": "2096.38",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-ooss-pdf",
-                  "title": "ccnl-ooss-pdf",
-                  "kind": "associazione",
-                  "url": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf"
+                  "document_id": "cnel-v925-2026-03-26",
+                  "title": "CCNL OOSS UNSIC-CONFSAL, testo definitivo 26 marzo 2026, depositato al CNEL (V925)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239762",
+                  "sha256": "1546200b784416c11ca28857e3205e38150c808eac9888203be72ff7064db5f3"
                 },
-                "section": "Tabella retributiva"
+                "page": "34",
+                "section": "Art. 58 c. V - Retribuzione lorda mensile",
+                "quote": "III ... 2.096,38 € ... 2.127,83 € ... 2.159,74 €"
               },
+              "transformation": "Retribuzione lorda mensile from 2026-01-01.",
+              "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T23:30:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-ooss-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "2127.83",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-v925-2026-03-26",
+                  "title": "CCNL OOSS UNSIC-CONFSAL, testo definitivo 26 marzo 2026, depositato al CNEL (V925)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239762",
+                  "sha256": "1546200b784416c11ca28857e3205e38150c808eac9888203be72ff7064db5f3"
+                },
+                "page": "34",
+                "section": "Art. 58 c. V - Retribuzione lorda mensile",
+                "quote": "III ... 2.096,38 € ... 2.127,83 € ... 2.159,74 €"
+              },
+              "transformation": "Retribuzione lorda mensile from 2027-01-01.",
+              "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T23:30:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-ooss-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2159.74",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-v925-2026-03-26",
+                  "title": "CCNL OOSS UNSIC-CONFSAL, testo definitivo 26 marzo 2026, depositato al CNEL (V925)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239762",
+                  "sha256": "1546200b784416c11ca28857e3205e38150c808eac9888203be72ff7064db5f3"
+                },
+                "page": "34",
+                "section": "Art. 58 c. V - Retribuzione lorda mensile",
+                "quote": "III ... 2.096,38 € ... 2.127,83 € ... 2.159,74 €"
+              },
+              "transformation": "Retribuzione lorda mensile from 2028-01-01.",
+              "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T23:30:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-ooss-2026-2028"
               }
             }
           }
@@ -657,24 +888,97 @@
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-01-01",
             "value": "1863.44",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-ooss-pdf",
-                  "title": "ccnl-ooss-pdf",
-                  "kind": "associazione",
-                  "url": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf"
+                  "document_id": "cnel-v925-2026-03-26",
+                  "title": "CCNL OOSS UNSIC-CONFSAL, testo definitivo 26 marzo 2026, depositato al CNEL (V925)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239762",
+                  "sha256": "1546200b784416c11ca28857e3205e38150c808eac9888203be72ff7064db5f3"
                 },
-                "section": "Tabella retributiva"
+                "page": "34",
+                "section": "Art. 58 c. V - Retribuzione lorda mensile",
+                "quote": "IV ... 1.863,44 € ... 1.891,39 € ... 1.919,76 €"
               },
+              "transformation": "Retribuzione lorda mensile from 2026-01-01.",
+              "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T23:30:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-ooss-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1891.39",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-v925-2026-03-26",
+                  "title": "CCNL OOSS UNSIC-CONFSAL, testo definitivo 26 marzo 2026, depositato al CNEL (V925)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239762",
+                  "sha256": "1546200b784416c11ca28857e3205e38150c808eac9888203be72ff7064db5f3"
+                },
+                "page": "34",
+                "section": "Art. 58 c. V - Retribuzione lorda mensile",
+                "quote": "IV ... 1.863,44 € ... 1.891,39 € ... 1.919,76 €"
+              },
+              "transformation": "Retribuzione lorda mensile from 2027-01-01.",
+              "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T23:30:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-ooss-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1919.76",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-v925-2026-03-26",
+                  "title": "CCNL OOSS UNSIC-CONFSAL, testo definitivo 26 marzo 2026, depositato al CNEL (V925)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239762",
+                  "sha256": "1546200b784416c11ca28857e3205e38150c808eac9888203be72ff7064db5f3"
+                },
+                "page": "34",
+                "section": "Art. 58 c. V - Retribuzione lorda mensile",
+                "quote": "IV ... 1.863,44 € ... 1.891,39 € ... 1.919,76 €"
+              },
+              "transformation": "Retribuzione lorda mensile from 2028-01-01.",
+              "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T23:30:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-ooss-2026-2028"
               }
             }
           }
@@ -731,24 +1035,97 @@
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-01-01",
             "value": "1735.04",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-ooss-pdf",
-                  "title": "ccnl-ooss-pdf",
-                  "kind": "associazione",
-                  "url": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf"
+                  "document_id": "cnel-v925-2026-03-26",
+                  "title": "CCNL OOSS UNSIC-CONFSAL, testo definitivo 26 marzo 2026, depositato al CNEL (V925)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239762",
+                  "sha256": "1546200b784416c11ca28857e3205e38150c808eac9888203be72ff7064db5f3"
                 },
-                "section": "Tabella retributiva"
+                "page": "34",
+                "section": "Art. 58 c. V - Retribuzione lorda mensile",
+                "quote": "V ... 1.735,04 € ... 1.761,07 € ... 1.787,48 €"
               },
+              "transformation": "Retribuzione lorda mensile from 2026-01-01.",
+              "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T23:30:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-ooss-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1761.07",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-v925-2026-03-26",
+                  "title": "CCNL OOSS UNSIC-CONFSAL, testo definitivo 26 marzo 2026, depositato al CNEL (V925)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239762",
+                  "sha256": "1546200b784416c11ca28857e3205e38150c808eac9888203be72ff7064db5f3"
+                },
+                "page": "34",
+                "section": "Art. 58 c. V - Retribuzione lorda mensile",
+                "quote": "V ... 1.735,04 € ... 1.761,07 € ... 1.787,48 €"
+              },
+              "transformation": "Retribuzione lorda mensile from 2027-01-01.",
+              "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T23:30:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-ooss-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1787.48",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-v925-2026-03-26",
+                  "title": "CCNL OOSS UNSIC-CONFSAL, testo definitivo 26 marzo 2026, depositato al CNEL (V925)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239762",
+                  "sha256": "1546200b784416c11ca28857e3205e38150c808eac9888203be72ff7064db5f3"
+                },
+                "page": "34",
+                "section": "Art. 58 c. V - Retribuzione lorda mensile",
+                "quote": "V ... 1.735,04 € ... 1.761,07 € ... 1.787,48 €"
+              },
+              "transformation": "Retribuzione lorda mensile from 2028-01-01.",
+              "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T23:30:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-ooss-2026-2028"
               }
             }
           }
@@ -805,24 +1182,97 @@
           },
           {
             "valid_from": "2026-01-01",
-            "valid_until": null,
+            "valid_until": "2027-01-01",
             "value": "1588.78",
             "provenance": {
-              "status": "derived",
+              "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "ccnl-ooss-pdf",
-                  "title": "ccnl-ooss-pdf",
-                  "kind": "associazione",
-                  "url": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf"
+                  "document_id": "cnel-v925-2026-03-26",
+                  "title": "CCNL OOSS UNSIC-CONFSAL, testo definitivo 26 marzo 2026, depositato al CNEL (V925)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239762",
+                  "sha256": "1546200b784416c11ca28857e3205e38150c808eac9888203be72ff7064db5f3"
                 },
-                "section": "Tabella retributiva"
+                "page": "34",
+                "section": "Art. 58 c. V - Retribuzione lorda mensile",
+                "quote": "VI ... 1.588,78 € ... 1.612,61 € ... 1.636,80 €"
               },
+              "transformation": "Retribuzione lorda mensile from 2026-01-01.",
+              "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
               "extraction": {
-                "method": "manual",
-                "extraction_timestamp": "2026-09-07T15:03:36",
-                "verification_status": "unverified",
-                "effective_from": "2020-01-01"
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T23:30:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-ooss-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-01-01",
+            "valid_until": "2028-01-01",
+            "value": "1612.61",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-v925-2026-03-26",
+                  "title": "CCNL OOSS UNSIC-CONFSAL, testo definitivo 26 marzo 2026, depositato al CNEL (V925)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239762",
+                  "sha256": "1546200b784416c11ca28857e3205e38150c808eac9888203be72ff7064db5f3"
+                },
+                "page": "34",
+                "section": "Art. 58 c. V - Retribuzione lorda mensile",
+                "quote": "VI ... 1.588,78 € ... 1.612,61 € ... 1.636,80 €"
+              },
+              "transformation": "Retribuzione lorda mensile from 2027-01-01.",
+              "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T23:30:00Z",
+                "effective_from": "2027-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-ooss-2026-2028"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1636.80",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "cnel-v925-2026-03-26",
+                  "title": "CCNL OOSS UNSIC-CONFSAL, testo definitivo 26 marzo 2026, depositato al CNEL (V925)",
+                  "kind": "cnel",
+                  "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239762",
+                  "sha256": "1546200b784416c11ca28857e3205e38150c808eac9888203be72ff7064db5f3"
+                },
+                "page": "34",
+                "section": "Art. 58 c. V - Retribuzione lorda mensile",
+                "quote": "VI ... 1.588,78 € ... 1.612,61 € ... 1.636,80 €"
+              },
+              "transformation": "Retribuzione lorda mensile from 2028-01-01.",
+              "note": "The CNEL API returns the PDF base64-encoded in a JSON body; the hash is of the decoded PDF.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T23:30:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T23:30:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-ooss-2026-2028"
               }
             }
           }
@@ -856,7 +1306,7 @@
     "effective_until": null,
     "source": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
     "verification_status": "unverified",
-    "source_hash": "2bee1e9902e70bd900240c112f2dad33016c5a9b0b95912472f862eebd1c847a",
+    "source_hash": "2ecdee81f6d3e3228984abeaaa3885ec6a511826fc966944adeaed695530fa78",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
