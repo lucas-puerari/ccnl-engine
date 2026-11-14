@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | bilateral_funds, inps_employer |
+| **Limits of this contract** | inps_employer |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-07-23 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 35 of the CCNL 9.7.2019 (pp. 24-26, OCR of the signed scan): comporto 12 months, whole pay for 3, 5 or 8 months and half for 3, 4 or 4 by seniority, the absences of the 24 months before each new episode summed. The file kept 270 days of one illness at 100% with an unpaid carenza: corrected to a cumulation over two years with three seniority bands. |
 | 2026-11-07 | claude-opus-5-5 (ai) | Values a primary-text verification found different from the printed tables (text layer). | corrected | 36 values corrected to the amounts printed on the cited pages. |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 19 values read identically by both readings and equal to the file. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 70 (Asfor Cinema) and Allegato n. 1 (Salute Sempre) of the CCNL of 23 July 2025. | corrected | Read both clauses on the page images. The file modelled no fund and stated that no public data existed: added the Asfor Cinema contribution (0,2% of the minimo, twelve months) and the Salute Sempre health fund (10 EUR a month, permanent workers after probation), and closed bilateral_funds_not_modelled. |
 
 ## Salary table
 
@@ -102,13 +103,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "cinema-audiovisivi-industria/bilateral_funds_not_modelled · bilateral_funds · impact unknown · open"
-    SIMPLIFICATION: No employer bilateral funds modeled. No public data found for a cinema-specific bilateral fund for impiegati/tecnici in production companies.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Confirm whether a sector bilateral fund applies and pass it as a bilateral fund event.
 
 !!! warning "cinema-audiovisivi-industria/fpls_rates_approximated · inps_employer · impact unknown · open"
     SIMPLIFICATION: the employees of film and audiovisual production are insured with the Fondo pensioni lavoratori dello spettacolo (FPLS, ex ENPALS) of INPS, whose contribution regime differs from the ordinary one; the industria rates are used as an approximation pending a dedicated FPLS contribution ruleset. For the workers enrolled after 31 December 1995 the IVS of the FPLS is the ordinary 33% (23.81 + 9.19) up to the annual massimale (INPS, Calcolo dei contributi IVS dei lavoratori dello spettacolo, updated 5 October 2026), as charged here; approximated are the daily bands of the workers enrolled before 1996 (massimale 892 a day in 2026, solidarity 5% above it) and the non-IVS contributions.
@@ -301,6 +295,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Salary periods: 5 tranches — Jan 2025 (+45 at L4), Jan 2026 (+45 at L4), Jul 2026 (+90, published anchor), Jul 2027 (+90), Jan 2028 (+90). Source: quotidianopiu.it + lavoro-economia.it.
     
     Non-Jul-2026 salary values computed parametrically: each level scaled by the L4 ratio at each tranche. Published Jul 2026 values are the direct source; others are derived.
+    
+    FUNDS (CCNL of 23 July 2025, ANICA): Asfor Cinema (art. 70, p. 41), 0,2% of the minimo tabellare for every employee 'per ogni mese solare', paid by the employer (twelve months); Salute Sempre (Allegato n. 1, p. 56), 10 EUR a month (120 a year) paid by the employer for the workers 'a tempo indeterminato al superamento del periodo di prova' (apprentices included: their contract is permanent, D.Lgs. 81/2015 art. 41), with the 10% INPS solidarity contribution. The employer names the funds it pays (EmployerProfile.contractual_funds); a firm with its own health plan 'non inferiore' is exempt from Salute Sempre, and neither fund owes an element in its place.
     
     SICKNESS INPS REGIME: the employees insured with the Fondo pensioni lavoratori dello spettacolo, operai and impiegati alike, have their own INPS sickness indemnity (INPS circ. 132/2021): from the fourth day, 60% up to the 20th day and 80% from the 21st to the 180th (regime 'spettacolo'), with 40 daily contributions from 1 January of the year before (SicknessEpisode.daily_contributions).
     

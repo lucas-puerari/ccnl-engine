@@ -69,17 +69,8 @@
         "monetary_impact": "no"
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: No employer bilateral funds modeled. No public data found for a cinema-specific bilateral fund for impiegati/tecnici in production companies.",
-        "capability": "bilateral_funds",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "bilateral_funds_not_modelled",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Confirm whether a sector bilateral fund applies and pass it as a bilateral fund event."
-        }
+        "kind": "info",
+        "text": "FUNDS (CCNL of 23 July 2025, ANICA): Asfor Cinema (art. 70, p. 41), 0,2% of the minimo tabellare for every employee 'per ogni mese solare', paid by the employer (twelve months); Salute Sempre (Allegato n. 1, p. 56), 10 EUR a month (120 a year) paid by the employer for the workers 'a tempo indeterminato al superamento del periodo di prova' (apprentices included: their contract is permanent, D.Lgs. 81/2015 art. 41), with the 10% INPS solidarity contribution. The employer names the funds it pays (EmployerProfile.contractual_funds); a firm with its own health plan 'non inferiore' is exempt from Salute Sempre, and neither fund owes an element in its place."
       },
       {
         "kind": "simplification",
@@ -182,6 +173,27 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-funds",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 70 (Asfor Cinema) and Allegato n. 1 (Salute Sempre) of the CCNL of 23 July 2025.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.anica.it/multimedia/files/allegati/CCNL%20Cineaudiovisivo%2023%20luglio%202025%20Testo%20definitivo.pdf",
+            "sha256": "2fa6b9899a19c4730026569800eb971ce2f372df5756b3396d48d0c81e13fdf6"
+          }
+        ],
+        "findings": [
+          "Read both clauses on the page images. The file modelled no fund and stated that no public data existed: added the Asfor Cinema contribution (0,2% of the minimo, twelve months) and the Salute Sempre health fund (10 EUR a month, permanent workers after probation), and closed bilateral_funds_not_modelled."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.health_funds"
         ]
       }
     ]
@@ -364,7 +376,97 @@
         },
         "note": "Quote read by OCR of a scanned PDF."
       }
-    }
+    },
+    "health_funds": [
+      {
+        "code": "asfor_cinema",
+        "description": "Asfor Cinema, Organismo Bilaterale per la Formazione, art. 70",
+        "employer": {
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "0.002"
+              }
+            ]
+          }
+        },
+        "extra_months": false,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "anica-ccnl-cineaudiovisivo-2025",
+              "title": "CCNL Industria cineaudiovisiva, 23 luglio 2025, testo definitivo (ANICA, SLC-CGIL, Fistel-CISL, UILCOM-UIL)",
+              "kind": "associazione",
+              "url": "https://www.anica.it/multimedia/files/allegati/CCNL%20Cineaudiovisivo%2023%20luglio%202025%20Testo%20definitivo.pdf",
+              "published_on": "2025-07-23",
+              "sha256": "2fa6b9899a19c4730026569800eb971ce2f372df5756b3396d48d0c81e13fdf6"
+            },
+            "page": "41",
+            "section": "Art. 70 Organismo Bilaterale per la Formazione \"Asfor Cinema\"",
+            "quote": "l'Organismo sarà finanziato dalle Aziende che applicano il presente CCNL, con un contributo dello 0,2% del minimo tabellare per ciascun dipendente e per ogni mese solare di vigenza del CCNL"
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2025-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-funds"
+          }
+        }
+      },
+      {
+        "code": "salute_sempre",
+        "description": "Fondo Salute Sempre, assistenza sanitaria integrativa, art. 76 and Allegato n. 1",
+        "permanent_only": true,
+        "apprentices_permanent": true,
+        "excludes_probation": true,
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2018-01-01",
+                "valid_until": null,
+                "value": "10.00"
+              }
+            ]
+          }
+        },
+        "extra_months": false,
+        "solidarity_rate": "0.1",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "anica-ccnl-cineaudiovisivo-2025",
+              "title": "CCNL Industria cineaudiovisiva, 23 luglio 2025, testo definitivo (ANICA, SLC-CGIL, Fistel-CISL, UILCOM-UIL)",
+              "kind": "associazione",
+              "url": "https://www.anica.it/multimedia/files/allegati/CCNL%20Cineaudiovisivo%2023%20luglio%202025%20Testo%20definitivo.pdf",
+              "published_on": "2025-07-23",
+              "sha256": "2fa6b9899a19c4730026569800eb971ce2f372df5756b3396d48d0c81e13fdf6"
+            },
+            "page": "56 (PDF 58)",
+            "section": "Allegato n. 1, Assistenza sanitaria integrativa, Fondo \"Salute Sempre\"",
+            "quote": "con decorrenza dal 01/01/2018 saranno iscritti automaticamente al Fondo tutti i lavoratori disciplinati dal CCNL industria cineaudiovisiva a tempo indeterminato al superamento del periodo di prova. Il costo pro-dipendente sarà interamente a carico dell'azienda che verserà al Fondo il contributo pari a euro 10 mensili (euro 120 annuali)"
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2018-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-funds"
+          }
+        }
+      }
+    ]
   },
   "apprenticeship": [],
   "levels": [
@@ -2334,7 +2436,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/contratti-collettivi/ccnl.aspx?c=153",
     "verification_status": "unverified",
-    "source_hash": "f3d5d9575a7f0bd9eb9a76718eb2e5098c989cd92b2fed819240fcd929457e81",
+    "source_hash": "0f7e64c8dd10a816171b678c44d47d9572e69a56f22401f7b24487dc1271fcd2",
     "published_at": "2026-09-18",
     "source_type": "commercial_secondary"
   },
