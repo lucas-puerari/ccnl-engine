@@ -4,8 +4,8 @@ D.Lgs. 252/2005 art. 10 and D.L. 203/2005 art. 8: the employer of a worker
 whose TFR goes to a pension fund or to the Fondo Tesoreria is exempted from
 the Fondo di garanzia contribution and from 0.28 points of the social
 contributions (INPS circ. 70/2007 par. 6, circ. 4/2008).  An apprentice
-takes the relief only and the run records the
-``tfr_compensation_apprentice_guarantee_fund`` limitation.
+takes the relief only: the apprentice rate holds no Fondo di garanzia share
+(INPS circ. 108/2018 par. 3.2).
 """
 
 from __future__ import annotations
@@ -27,7 +27,6 @@ from ccnl_engine.period.services import (
 )
 from ccnl_engine.run.types import PeriodId
 from ccnl_engine.severance.relief.services import (
-    APPRENTICE_GUARANTEE_FUND,
     GUARANTEE_FUND_COMPONENT,
     RELIEF_COMPONENT,
 )
@@ -65,17 +64,12 @@ def _credits(result: PeriodResult) -> dict[str, Decimal]:
     }
 
 
-def _limitations(result: PeriodResult) -> set[str]:
-    return {lim.id for lim in result.limitations}
-
-
 def test_tfr_to_the_treasury_fund_takes_both_compensations() -> None:
     """A worker of industria: Fondo di garanzia 0.20% and 0.28 points."""
     result = _run(tfr_treasury_fund=True)
     found = _credits(result)
     assert set(found) == {GUARANTEE_FUND_COMPONENT, RELIEF_COMPONENT}
     assert all(amount < 0 for amount in found.values())
-    assert APPRENTICE_GUARANTEE_FUND not in _limitations(result)
 
 
 def test_dirigente_industriale_is_exempted_from_its_0_40_rate() -> None:
@@ -90,25 +84,23 @@ def test_dirigente_industriale_is_exempted_from_its_0_40_rate() -> None:
     assert fund == -(base * Decimal("0.0040")).quantize(Decimal("0.01"))
 
 
-def test_apprentice_takes_the_relief_and_records_the_limitation() -> None:
-    """The Fondo di garanzia share of the apprentice rate is not sourced."""
+def test_apprentice_takes_the_relief_only() -> None:
+    """The apprentice rate holds no Fondo di garanzia share to exempt."""
     result = _run(contract_type=_APPRENTICE, tfr_treasury_fund=True)
     assert set(_credits(result)) == {RELIEF_COMPONENT}
-    assert APPRENTICE_GUARANTEE_FUND in _limitations(result)
 
 
-def test_apprentice_in_a_pension_fund_records_the_limitation() -> None:
+def test_apprentice_in_a_pension_fund_takes_the_relief_only() -> None:
     """The TFR paid to the pension fund is conferred as well."""
     enrolment = PensionFundEnrolment("COMETA", Decimal("0.012"), tfr_to_fund=True)
     result = _run(contract_type=_APPRENTICE, pension_fund=enrolment)
-    assert APPRENTICE_GUARANTEE_FUND in _limitations(result)
+    assert set(_credits(result)) == {RELIEF_COMPONENT}
 
 
 def test_apprentice_keeping_the_tfr_takes_no_compensation() -> None:
     """TFR in the company: no exemption, no limitation."""
     result = _run(contract_type=_APPRENTICE, tfr_treasury_fund=False)
     assert _credits(result) == {}
-    assert APPRENTICE_GUARANTEE_FUND not in _limitations(result)
 
 
 def test_agricoltura_has_no_compensation_rule() -> None:
@@ -120,4 +112,3 @@ def test_agricoltura_has_no_compensation_rule() -> None:
         tfr_treasury_fund=True,
     )
     assert _credits(result) == {}
-    assert APPRENTICE_GUARANTEE_FUND not in _limitations(result)

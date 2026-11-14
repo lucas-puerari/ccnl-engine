@@ -42,7 +42,6 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "sickness_cumulation_window",
         "provisional_ruleset",
         "provisional_inps_ruleset",
-        "tfr_compensation_apprentice_guarantee_fund",
         "inps_minimum_base_exempt_category",
         "maternity_daily_base",
         "paternity_daily_base",
@@ -69,6 +68,7 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "extraordinary_leave_daily_base",
         "naspi_dismissal_exceptions",
         "sickness_agricultural_fixed_term_days",
+        "tfr_compensation_apprentice_guarantee_fund",
     }
     assert all(
         lim.applies_when.trigger is LimitationTrigger.PATH for lim in limitations
