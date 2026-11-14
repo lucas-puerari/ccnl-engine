@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "ex_sublevel_scatto_mapping",
-      "institute": "seniority",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "B128 and B132 each contain two ex-classification sub-levels (B128: ex-4/2 and ex-5/2; B132: ex-4/1 and ex-5/1) sharing the same base salary but with different scatto amounts. Modeled as B128/B128_ex52 and B132/B132_ex51. Plain codes carry the ex-4 (higher) scatto as best-guess; _ex52/_ex51 codes carry the ex-5 (lower) scatto. Mapping is unverifiable from public sources (B128: 47.92 vs 44.44; B132: 50.05 vs 47.73).",
-      "calculation": "ccnl/consorzi-di-bonifica-snebi:coverage.notes",
-      "state": "unverified",
-      "remediation": "Verify which ex-classification sub-level carries each scatto amount against the CCNL text.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "consorzi-di-bonifica-snebi/ex_sublevel_scatto_mapping"
-        ]
-      }
-    },
-    {
       "id": "higher_tier_scatto_amounts",
       "institute": "seniority",
       "variant": "all",

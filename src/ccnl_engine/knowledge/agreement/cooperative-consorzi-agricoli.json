@@ -51,17 +51,18 @@
       },
       {
         "kind": "simplification",
-        "text": "Apprendistato: regola non reperita nel PDF 2024. Modellato come 100% passthrough.",
+        "text": "APPRENTICESHIP (art. 24, text signed 3 August 2022 p. 40, unchanged by the renewal of 19 July 2024): destinations 1st-6th by under-classification (two levels below, one below, destination; the 6th after the first 12 months). Not modelled: the impiegati skip the 5th level, reserved to operai ('la progressione dei livelli sarà ad esempio la seguente: 7°-6°-4°, 6°-4°-3°'), so an impiegato apprentice destined to the 4th or 3rd is paid one level too high in the first or second period; and the apprentices of seasonal cycles, one level below for half the period and then the destination.",
         "capability": "base_salary",
-        "monetary_impact": "unknown",
+        "monetary_impact": "yes",
         "limitation": {
           "variant": "apprenticeship_passthrough",
           "applies_when": {
+            "trigger": "outside_input",
             "contract_types": [
               "apprentice"
             ]
           },
-          "remediation": "Source the apprenticeship rule of the 2024 CCNL and model its track."
+          "remediation": "Skip the 5th level for impiegati apprentices and model the seasonal-cycle track of art. 24."
         }
       },
       {
@@ -1817,25 +1818,101 @@
   },
   "apprenticeship": [
     {
-      "type": "percentage",
-      "name": "professionalizzante",
+      "type": "under_classification",
+      "name": "professionalizzante (livelli 1-5)",
       "destination_levels": [
-        "np",
-        "7",
-        "6",
-        "5",
-        "4",
-        "3",
+        "1",
         "2",
-        "1"
+        "3",
+        "4",
+        "5"
       ],
       "periods": [
         {
           "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": 24,
+          "levels_below": 1
+        },
+        {
+          "months_from": 24,
           "months_until": null,
-          "percentage": "1.00"
+          "levels_below": 0
         }
-      ]
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "uila-ccnl-cooperative-agricole-2019-2023",
+            "title": "CCNL cooperative e consorzi agricoli 2019-2023, stesura firmata 3 agosto 2022 (UILA)",
+            "kind": "associazione",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/03_08_2022-STESURA-CCNL-COOPERATIVE-AGRICOLE-2019-2023.pdf",
+            "sha256": "586ec86c279b9cf2484217d15e0e663985d32c3ed31a4e649e1574a1f594004b"
+          },
+          "page": "40",
+          "section": "Art. 24 - Apprendistato professionalizzante",
+          "quote": "L'inquadramento e il relativo trattamento economico è così determinato: • nel primo periodo di apprendistato professionalizzante (pari a 12 mesi): due livelli sotto quello di destinazione finale; • nel secondo periodo (pari a 12 mesi): un livello sotto quello di destinazione finale; • nel terzo ed ultimo periodo (pari a 12 mesi): inquadramento al livello di destinazione finale. Gli apprendisti con destinazione finale al 6° livello saranno inquadrati al livello di destinazione finale con decorrenza dalla fine del primo periodo di apprendistato."
+        },
+        "transformation": "36 months: two levels below the destination for 12 months, one below for 12, then the destination; the renewal of 19 July 2024 leaves art. 24 unchanged.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T20:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T20:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-14-ai-cooperative-consorzi-agricoli-apprenticeship"
+        }
+      }
+    },
+    {
+      "type": "under_classification",
+      "name": "professionalizzante (livello 6)",
+      "destination_levels": [
+        "6"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 12,
+          "levels_below": 2
+        },
+        {
+          "months_from": 12,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "uila-ccnl-cooperative-agricole-2019-2023",
+            "title": "CCNL cooperative e consorzi agricoli 2019-2023, stesura firmata 3 agosto 2022 (UILA)",
+            "kind": "associazione",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/03_08_2022-STESURA-CCNL-COOPERATIVE-AGRICOLE-2019-2023.pdf",
+            "sha256": "586ec86c279b9cf2484217d15e0e663985d32c3ed31a4e649e1574a1f594004b"
+          },
+          "page": "40",
+          "section": "Art. 24 - Apprendistato professionalizzante",
+          "quote": "L'inquadramento e il relativo trattamento economico è così determinato: • nel primo periodo di apprendistato professionalizzante (pari a 12 mesi): due livelli sotto quello di destinazione finale; • nel secondo periodo (pari a 12 mesi): un livello sotto quello di destinazione finale; • nel terzo ed ultimo periodo (pari a 12 mesi): inquadramento al livello di destinazione finale. Gli apprendisti con destinazione finale al 6° livello saranno inquadrati al livello di destinazione finale con decorrenza dalla fine del primo periodo di apprendistato."
+        },
+        "transformation": "24 months: two levels below the 6th for the first 12 months, then the 6th.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T20:00:00Z",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T20:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-14-ai-cooperative-consorzi-agricoli-apprenticeship"
+        }
+      }
     }
   ],
   "ruleset": {
@@ -1845,7 +1922,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "720d25a047e15f88250cae74bbf3bf717795f8945a66f53a96c9ca6f0986b3f9",
+    "source_hash": "8fb45babedaf9cc783a5478b9365c5f97baa4b30c6c7cd2776b30058109c76ba",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2165,6 +2242,27 @@
           "parameters.fixed_term_pay",
           "parameters.fixed_term_pay.tfr_rate",
           "parameters.fixed_term_pay.overtime_tfr_rate"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-cooperative-consorzi-agricoli-apprenticeship",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 24 apprenticeship of the text signed 3 August 2022 (PDF p. 40), against the research of a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/03_08_2022-STESURA-CCNL-COOPERATIVE-AGRICOLE-2019-2023.pdf",
+            "sha256": "586ec86c279b9cf2484217d15e0e663985d32c3ed31a4e649e1574a1f594004b"
+          }
+        ],
+        "findings": [
+          "The file paid apprentices 100% of the destination level; art. 24 pays by under-classification. Tracks added; the impiegati skip of the 5th level and the seasonal track remain a limitation."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "apprenticeship"
         ]
       }
     ],

@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -79,6 +79,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Art. 26 of the CCNL 17 December 2021 and the interconfederal agreement of 1 February 2018 it reproduces (pp. 89-93), not changed by the 2024 renewal. Final encoding (dual_apprenticeship JSON) checked against the PDFs by a separate model session (.private flv2). | flagged | The first-level percentages and the third-level halves on the tabellare match.<br>Point 9 (p. 95): when the school objectives are not met, the next year keeps the previous year's percentage; not expressible, recorded as dual_apprenticeship_prorogation.<br>Ambiguous in the text, kept as read: the base of the 10% training share ('di quella che gli sarebbe dovuta'). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 73 of the CCNL 17 December 2021 (PDF p. 147), text layer. | corrected | Added work_rules.sickness_rules_by_category for impiegati and quadri. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 27 c. 7 (durations by group and employee kind) of the 2021 signed text and c. 9 (pay table) of the 2024 renewal; Art. 17 classification of the Meccanica sector. | confirmed | Read the 2024 table on the page image: groups 1 and 2, impiegati amministrativi and centralinisti have their own scale. The 2021 text keys the tracks by worker kind: groups 1 (cat. 1, 2, 2bis, 3) and 2 (cat. 4, 5) for operai and technical employees, administrative employees of every level, centralinisti. The file split them by level (operai 5-2bis, impiegati 2-1), so an administrative apprentice of levels 3-5 was paid on the operai scale and an operaio of levels 1-2 on the employee one. Extended both tracks to their levels, added the centralinisti track and closed centralinisti_apprenticeship. |
+| 2026-11-14 | claude-opus-5-5 (ai) | INPS circ. 140/2012 par. 3.3 on the apprentice contribution, against the research of a separate model session. | confirmed | The cuneo reductions (0.91) do not apply to apprentices: the artigianato apprentice rates of the bundle are confirmed. |
 
 ## Salary table
 
@@ -136,13 +137,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the artigianato rates of 2026 on an INPS or association table, mark the inps block of contribution/2026/artigianato.json derived, then remove this note.
 
-!!! warning "metalmeccanico-artigianato/apprentice_inps_rates_unsourced · inps_employer · impact unknown · open"
-    APPRENTICE INPS RATES: the apprentice rates of the sector (artigianato) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles whether the 0.91 NASpI reduction of the artisan employers also applies to apprentices, nor the wage-integration contribution they owe (the FSBA is paid outside INPS). The contributions of an apprentice may differ.
-
-    **Applies when:** `inps_employer` applies; contract type in apprentice.
-
-    **Remediation:** Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note.
-
 !!! warning "metalmeccanico-artigianato/dual_apprenticeship_prorogation · base_salary · impact yes · open"
     SCHOOL OBJECTIVES NOT MET (accordo interconfederale 1 febbraio 2018, point 9, PDF p. 95): 'nel caso di mancato raggiungimento degli obiettivi formativi scolastici, all'apprendista non spetta, per il successivo anno di apprendistato, l'avanzamento delle percentuali retributive'. The engine pays the year of Apprentice.months_elapsed.
 
@@ -178,12 +172,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.
 
-!!! warning "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · open"
-    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.
+!!! note "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · resolved"
+    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8 and no Fondo di garanzia exemption: the 10% apprentice rate of L. 296/2006 art. 1 c. 773 is split by the D.M. 28 marzo 2007 among FPLD 9.01, CUAF 0.11, malattia 0.53, maternità 0.05 and INAIL 0.30, with no Fondo di garanzia share to exempt.
 
     **Applies when:** `inps_employer` applies; the run takes the engine code path; contract type in apprentice.
 
-    **Remediation:** Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.
+    **Remediation:** Resolved: the apprentice rate holds no Fondo di garanzia share, so none is exempted.
 
 !!! warning "maternity_daily_base · maternity_leave · impact unknown · open"
     The INPS maternity indemnity of an operaia, or of a leave whose month before was not worked in full, is computed on the pay of the run over 30 with the rateo of the extra months, not on the pay of the month before the leave: art. 23 c. 5 D.Lgs. 151/2001 divides the pay of an operaia by the days worked or paid (or by the hours, when fewer than the contract), and the divisor of her daily rateo of the 13th is not settled by a primary source. The base of another worker over a whole month is computed from MaternityLeaveEvent.maternity_base_pay.
@@ -356,6 +350,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP, ADMINISTRATIVE EMPLOYEES: 'Per gli impiegati amministrativi di tutti i livelli di inquadramento la durata massima dell'apprendistato è di 3 anni' (Art. 27 c. 7, 2021 text p. 76), by semester 70, 70, 75, 80, 85, 90% (renewal 2024 p. 6), 100% thereafter; track 'impiegati', destinations 5, 4, 3, 2, 1 (Art. 17 places administrative work in categories 1 to 5, pp. 33-40; 2bis is for operai only, p. 34). Centralinisti: 'Per gli impiegati addetti al centralino la durata massima è di 2 anni', 70, 70, 75, 80% by semester; track 'impiegati_centralinisti', destination 5 (the 5th category of Art. 17, p. 40: 'attività di servizio con compiti esecutivi', the declaratoria whose example in the Orafi classification of the same CCNL, p. 49, is the 'Centralinista telefonico'). A level is shared by the tracks: the caller states the track (Apprentice.track) from the duties. Level 1Q (quadro) excluded.
     
     APPRENTICE SENIORITY: apprentices accrue no scatti before 1 January 2025; from that date they accrue scatti of 10 euro each, not scaled by the apprentice percentage, on the cadence of the other workers, and those in service on that date accrue from it ('la maturazione dell'anzianità di servizio ai fini del riconoscimento degli scatti decorre da pari data', Art. 27 as renewed on 19 November 2024, signed scan p. 6). At the end of the apprenticeship the matured scatti are revalued to the amount of the final level.
+    
+    APPRENTICE INPS RATES (artigianato): 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI and integrativo, 11.61% for the employer (3.11% and 4.61% in the first two years of a firm up to 9 employees) and 5.84% for the worker. The 0.91 reduction of the artisan employers does not apply to apprentices: 'sul contributo per gli apprendisti non trovano applicazione le riduzioni del cuneo contributivo di cui alle leggi n. 388/2000 e n. 266/2005' (INPS circ. 140/2012 par. 3.3, https://servizi2.inps.it/servizi/Bussola/VisualizzaDoc.aspx?sVirtualURL=/Circolari/Circolare%20numero%20140%20del%2014-12-2012.htm, sha256 67d04317e66825fdb2cf6aa0b3106e644d76461e3e6ec17cd456b307948701a7). The wage-integration contribution of the sector is the FSBA, paid outside INPS (F24, code EBNA), not part of the INPS employer rate.
     
     TERM: the renewal of 19 November 2024 runs from 1 January 2023 to 31 December 2026 (Art. 2, signed scan) and keeps applying until the next renewal takes effect; the tabellare of 1 November 2026 stays in force after 2026 until a renewal is read.
     

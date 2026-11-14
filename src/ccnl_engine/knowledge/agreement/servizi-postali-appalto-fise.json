@@ -83,19 +83,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: L4S impiegati seniority amount (52.44) sourced from kitech.it proxy; the corresponding cell in the primary source PDF (p.85) is partially obscured by an adhesive note in the scan.",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "level_4s_seniority_amount",
-          "applies_when": {
-            "levels": [
-              "4S"
-            ]
-          },
-          "remediation": "Confirm the level 4S seniority amount against a legible copy of the primary source."
-        }
+        "kind": "info",
+        "text": "LEVEL 4S SCATTO: 52.79 EUR (Allegato 1 art. 35 B, PDF p. 85; the cell sits under a PDF note icon and reads 52,79 in the text layer). The 52.44 of a payroll site was wrong."
       },
       {
         "kind": "simplification",
@@ -200,6 +189,27 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-postali-4s-scatto",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Allegato 1 art. 35 B, PDF p. 85, text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+            "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
+          }
+        ],
+        "findings": [
+          "Level 4s impiegati scatto 52.44 -> 52.79."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]
@@ -329,7 +339,32 @@
               {
                 "valid_from": "2023-12-21",
                 "valid_until": null,
-                "value": "52.44"
+                "value": "52.79",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "slp-cisl-ccnl-servizi-postali-2023",
+                      "title": "CCNL servizi postali in appalto, 21 dicembre 2023, versione stampa (SLP-CISL)",
+                      "kind": "associazione",
+                      "url": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
+                      "sha256": "85cf6d7066abe5ba2740d39b989b159065a20bd7013f07afae8b77ccbf48cde4"
+                    },
+                    "page": "85",
+                    "section": "Allegato 1, art. 35 B - Scatti di anzianità impiegati",
+                    "quote": "4s € 47,24 € 52,79"
+                  },
+                  "transformation": "Scatto of the impiegati of level 4s; the cell is under a PDF note icon, legible in the text layer and with annotations hidden.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-14T23:00:00Z",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-14T23:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-14-ai-postali-4s-scatto"
+                  }
+                }
               }
             ]
           },
@@ -2117,7 +2152,7 @@
     "effective_until": null,
     "source": "https://slp-cisl.it/wp-content/uploads/2025/09/CCNL-SERVIZI-POSTALI-versione-stampa-250624.pdf",
     "verification_status": "unverified",
-    "source_hash": "bb5a0aed0d66796854bd9dc9dca9f535c7f5b52e64349a7684c63b93e99fde2a",
+    "source_hash": "f731fbb2f45d89eb500ae01b40072ce09b84cb0c3f695a0c42a84ea3935c9b97",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

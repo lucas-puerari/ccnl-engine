@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | inps_employer, seniority |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-05-21 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-01 | claude-opus-5-5 (ai) | The indennità di funzione of the quadri, Art. 78 (p. 83). | corrected | Art. 78 (p. 83): 140.00 for 14 months to the quadri; p. 11: the Area Quadri is the parametri 162, 164, 185, 187: levels[AQ*].fixed_allowances[IND_FUNZIONE_QUADRI]. Found by a delegated search, checked again on the PDF text. |
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 45 values found verbatim on the cited pages and marked verified; 4 left as they were (derived or not on a text page). |
 | 2026-11-08 | claude-opus-5-5 (ai) | Allegato A (PDF pp. 157, 159) and Allegato Q (p. 230) of the text of 21 May 2025, text layer. | corrected | Added the table of the staff in service on 15 July 2000 as base_salary_by_cohort.<br>Corrected the post-2000 base salaries that differed by a cent from the printed table: D115 2026-01-01 1764.29->1764.28; D116 2026-01-01 1779.62->1779.63; C127 2026-01-01 1948.38->1948.39; A157 2026-01-01 2408.65->2408.64; AQ164 2026-01-01 2516.04->2516.03 |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 72 scatti table of the CCNL 2023-2026 (PDF p. 72), against the research of a separate model session. | corrected | The sub-level mapping was inverted: ex 4ª f.f. has the lower scatto (44.44, 47.73), ex 5ª f.f. the higher (47.92, 50.05). |
 
 ## Salary table
 
@@ -79,10 +80,10 @@ Latest effective values per level (monthly gross, EUR).
 | `A157` | A157 | € 2,408.64 | 2026-01-01 |
 | `A135` | A135 | € 2,071.13 | 2026-01-01 |
 | `A134` | A134 | € 2,055.79 | 2026-01-01 |
-| `B132_ex51` | B132 — ex cat. 5/1 (alternate scatto 47.73) | € 2,025.10 | 2026-01-01 |
-| `B132` | B132 — ex cat. 4/1 (best-guess scatto 50.05) | € 2,025.10 | 2026-01-01 |
-| `B128_ex52` | B128 — ex cat. 5/2 (alternate scatto 44.44) | € 1,963.73 | 2026-01-01 |
-| `B128` | B128 — ex cat. 4/2 (best-guess scatto 47.92) | € 1,963.73 | 2026-01-01 |
+| `B132_ex51` | B132 — ex cat. 5ª f.f. 1° livello (scatto 50.05) | € 2,025.10 | 2026-01-01 |
+| `B132` | B132 — ex cat. 4ª f.f. 1° livello (scatto 47.73) | € 2,025.10 | 2026-01-01 |
+| `B128_ex52` | B128 — ex cat. 5ª f.f. 2° livello (scatto 47.92) | € 1,963.73 | 2026-01-01 |
+| `B128` | B128 — ex cat. 4ª f.f. 2° livello (scatto 44.44) | € 1,963.73 | 2026-01-01 |
 | `C127` | C127 | € 1,948.39 | 2026-01-01 |
 | `C122` | C122 | € 1,871.68 | 2026-01-01 |
 | `C118` | C118 | € 1,810.32 | 2026-01-01 |
@@ -102,13 +103,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "consorzi-di-bonifica-snebi/ex_sublevel_scatto_mapping · seniority · impact unknown · open"
-    B128 and B132 each contain two ex-classification sub-levels (B128: ex-4/2 and ex-5/2; B132: ex-4/1 and ex-5/1) sharing the same base salary but with different scatto amounts. Modeled as B128/B128_ex52 and B132/B132_ex51. Plain codes carry the ex-4 (higher) scatto as best-guess; _ex52/_ex51 codes carry the ex-5 (lower) scatto. Mapping is unverifiable from public sources (B128: 47.92 vs 44.44; B132: 50.05 vs 47.73).
-
-    **Applies when:** `seniority` applies; level in B128, B128_ex52, B132, B132_ex51.
-
-    **Remediation:** Verify which ex-classification sub-level carries each scatto amount against the CCNL text.
 
 !!! warning "consorzi-di-bonifica-snebi/higher_tier_scatto_amounts · seniority · impact unknown · open"
     Seniority: 10 scatti total — tier 1: 6 biennali (cadence 24 months), tier 2: 1 dodicennale (cadence 144 months after tier 1 exhausted), tier 3: 3 quadriennali (cadence 48 months). All tiers modeled. Per-scatto amounts for tiers 2-3 assumed equal to tier 1 amounts (no independent source found for higher-tier amounts; best-guess from standard CCNL practice).
@@ -319,6 +313,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Tranches: 2025-07-01 (+3%) and 2026-01-01 (+2.2%). Both sourced from redigo.info primary table. No pre-July-2025 salary is modeled; engine returns no result for as_of before 2025-07-01.
     
     DUAL COHORT (Allegato A, PDF pp. 157 and 159; Allegato Q p. 230): the 'dipendenti in servizio al 15 luglio 2000' are paid a lower table than those 'assunti a decorrere dal 15/7/2000'; modelled as Level.base_salary_by_cohort, chosen by the hire date (EmploymentPeriod.started_on, else the start of the stated seniority). Tables from 1 July 2025.
+    
+    B128 and B132 each hold two ex-classification sub-levels with the same base salary and different scatti (art. 72, CCNL 2023-2026 PDF p. 72: '4^ f.f. 1° liv. Euro 47,73 2° liv. Euro 44,44 ... 5^ f.f. 1° liv. Euro 50,05 2° liv. Euro 47,92'): B128 (ex 4ª f.f. 2° liv.) 44.44, B128_ex52 (ex 5ª f.f. 2° liv.) 47.92, B132 (ex 4ª f.f. 1° liv.) 47.73, B132_ex51 (ex 5ª f.f. 1° liv.) 50.05; the caller picks the code of the worker's former class. Source https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf sha256 558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097.
     
     layer_2 out_of_scope: no apprenticeship data found in available public sources. Full CCNL PDF required.
     

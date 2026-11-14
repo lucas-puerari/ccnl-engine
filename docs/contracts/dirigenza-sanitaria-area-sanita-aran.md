@@ -37,7 +37,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, workplace_injury |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -54,12 +54,14 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-02-27 |
-| **Last review** | — |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2024-01-01 |
 
 ## Review history
 
-No review is recorded.
+| Date | Reviewer | Scope | Outcome | Findings |
+|---|---|---|---|---|
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 66 of the CCNL of 23 January 2024 and art. 15 of the CCNL of 27 February 2026, against the research of a separate model session. | corrected | The pre-2025 amount was an estimate of 104.34; the text gives 1,381.49 a year on 13 payments, 106.27 a month, from 1 January 2022; the 2025 amount starts on 1 January 2025. |
 
 ## Salary table
 
@@ -91,13 +93,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `workplace_injury` applies.
 
     **Remediation:** Source the divisor of Art. 27 (or the INAIL base of the SSN dirigenti) and replace 165, or mark it not applicable.
-
-!!! warning "dirigenza-sanitaria-area-sanita-aran/specificita_pre_2025_estimated · base_salary · impact unknown · open"
-    Pre-31/12/2024 specificità sanitaria (104,34€/mese) calcolata per differenza: 124,19 - 17,90 (incremento stimato dalla fonte secondaria openssn, GOAL-plan) = approssimazione; il valore esatto del CCNL 23.1.2024 Art. 66 non è verificato.
-
-    **Applies when:** `base_salary` applies; before 2024-12-31.
-
-    **Remediation:** Source the exact Art. 66 amount of the CCNL 23.1.2024 for periods before 31/12/2024.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -277,6 +272,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     PENSION FUND. Perseo Sirio (1% + 1% of the retribuzione utile ai fini del TFR). Enrolment is a fact: the silenzio-assenso of the hires from 2 January 2019 (accordo ARAN 16/09/2021) is not inferred, nor the three months a fixed term needs to enrol. The TFR conferred stays a notional INPS accrual.
     
     Art. 16 CCNL 27.2.2026 (art. 80 CCNL 23.1.2024): the indennità di direzione di struttura complessa, 11,157 EUR a year on 13 payments from 2024 (10,525 from 2022), is paid with the role 'direttore_sc' at 858.23 a month (809.62 before 2024); the yearly amount differs from 13 payments by 1 cent of rounding.
+    
+    SPECIFICITA SANITARIA: EUR 1,381.49 a year including the 13th (106.27 a month) from 1 January 2022 (CCNL 23.1.2024 art. 66, PDF p. 101), EUR 1,614.46 (124.19) from 1 January 2025 (CCNL 27.2.2026 art. 15 c. 3, PDF p. 23).
     
     Stipendio tabellare da Art. 11 CCNL 27.02.2026: incremento +230€/mese da 1/1/2024, valore a regime 50.005,77€/anno per 13 mensilità = 3.846,60€/mese.
     

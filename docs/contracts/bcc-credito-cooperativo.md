@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer, seniority |
 
-4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-09 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2026-01-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 55 (p. 75) of the testo coordinato signed on 19.12.2024: the job and the whole pay are kept 6, 8, 12, one month per year up to 18, or 22 months by seniority, summing the absences of the 18 months before. The file kept 180 days of one illness: corrected to a cumulation over 18 months with ten seniority bands. The FABI copy cited before returns 404; the Eutekne copy of the same signed text is cited. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Artt. 101 and 113 (PDF pp. 117, 128) of the testo coordinato of 19 December 2024, text layer. | corrected | Art. 101: 'al personale in servizio alla data del 31.12.1997, gli scatti di anzianità competono nel numero massimo di 12 più un ulteriore aumento periodico'; for the 3rd and 4th level 'resta confermato il numero complessivo di 9 scatti'. Art. 113: 12 for the aree professionali. Encoded as seniority_increments.in_service_cohort. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 102, PDF p. 117: movement service, eligible levels, percentage and payment month. | corrected | 25 cumulative movement years; QD3/QD4 only; 90.66% of enumerated monthly items payable in the qualification month. The model uses caller-stated credited seniority and approximates the item base with run-chain monthly pay. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 30 c. 1 derogation of art. 3 c. 3 (PDF p. 38), against the research of a separate model session. | confirmed | The derogation follows the 18-month rule: the assumption is confirmed and the limitation closed. |
 
 ## Salary table
 
@@ -109,13 +110,6 @@ Destination levels: `3AP1`, `3AP2`, `3AP3`, `3AP4`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "bcc-credito-cooperativo/art3_derogation_apprenticeship · base_salary · impact unknown · open"
-    Apprenticeship (Art. 30) modelled for destination levels 3AP1-3AP4: months 0-18 one level below the destination, then the destination level. The Art. 3 comma 3 derogation (higher destination level) is assumed to follow the same 18-month rule.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Confirm that the Art. 3 comma 3 derogation follows the 18-month rule.
 
 !!! warning "bcc-credito-cooperativo/inps_sector_rates_unsourced · inps_employer · impact unknown · open"
     INPS RATES: the employer and worker INPS rates of the sector (credito) are totals no 2026 INPS or association table confirms: the only component split found is the INPS guide of 2012 and the 2026 totals come from a software house page that does not prove its year. The contributions of every run rest on them.
@@ -166,12 +160,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.
 
-!!! warning "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · open"
-    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.
+!!! note "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · resolved"
+    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8 and no Fondo di garanzia exemption: the 10% apprentice rate of L. 296/2006 art. 1 c. 773 is split by the D.M. 28 marzo 2007 among FPLD 9.01, CUAF 0.11, malattia 0.53, maternità 0.05 and INAIL 0.30, with no Fondo di garanzia share to exempt.
 
     **Applies when:** `inps_employer` applies; the run takes the engine code path; contract type in apprentice.
 
-    **Remediation:** Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.
+    **Remediation:** Resolved: the apprentice rate holds no Fondo di garanzia share, so none is exempted.
 
 !!! warning "maternity_daily_base · maternity_leave · impact unknown · open"
     The INPS maternity indemnity of an operaia, or of a leave whose month before was not worked in full, is computed on the pay of the run over 30 with the rateo of the extra months, not on the pay of the month before the leave: art. 23 c. 5 D.Lgs. 151/2001 divides the pay of an operaia by the days worked or paid (or by the hours, when fewer than the contract), and the divisor of her daily rateo of the 13th is not settled by a primary source. The base of another worker over a whole month is computed from MaternityLeaveEvent.maternity_base_pay.
@@ -320,6 +314,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     First period valid_from set to 2024-09-01 (first tranche date per Allegato A). Pre-tranche salaries belong to the previous CCNL and are not modelled.
     
     Seniority (Art. 113): first scatto after 4 years (48 months), then every 36 months; maximum 8 scatti for the Aree Professionali and the 1st and 2nd level of the Quadri Direttivi, 7 for the 3rd and 4th level (Art. 101), via maximum_count_by_level; 12 (9) only for the staff in service on 31 December 1997 (review of 2026-10-30).
+    
+    Apprenticeship (Art. 30) modelled for destination levels 3AP1-3AP4: months 0-18 one level below the destination, then the destination level. The Art. 3 comma 3 derogation keeps the same 18-month steps: 'le lavoratrici e/o i lavoratori di cui all'art. 3, comma 3, primo alinea del presente contratto sono inquadrati, per i primi diciotto mesi di apprendistato, nel primo livello retributivo della 2a area professionale e, per gli ulteriori diciotto mesi, al secondo livello retributivo della 2a area professionale' (CCNL 9 luglio 2024, art. 30 c. 1, PDF p. 38, https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/CCNL%2009.07.2024.pdf/download, sha256 of the copy read 7e8c9343708f1005d92eb72a72e0af2f84a8a4e0b40378be80001bf9ff675f4d; the server returns copies with different hashes).
     
     Hourly divisor 160 in both periods per Art. 114 (rounding down to the nearest multiple of 5): 37.5h x 52 / 12 = 162.5 → 160 (pre-July 2025); 37h x 52 / 12 = 160.33 → 160 (from July 2025, Art. 118).
     

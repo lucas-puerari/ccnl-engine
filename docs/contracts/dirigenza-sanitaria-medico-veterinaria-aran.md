@@ -45,7 +45,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 0 verified / 9 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 1 verified / 8 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-02-27 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-14 |
 | **Latest salary tranche** | 2024-01-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | single_rate_across_tier_threshold: Verified source PDF SHA-256. Art. 38(10) sets successive nine-, three- and six-month sickness bands. The agreement JSON already declares [1,10) at 1, [10,13) at 0.9, and [13,infinity) at 0.5. SickPayRules.target_rate(index) selects the tier for each sick-day index; classify_days  |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 16 CCNL Area Sanità 27.2.2026 (PDF p. 23) and art. 80 CCNL 23.1.2024 (PDF p. 114), read on the text layer. | confirmed | The indennità di direzione di struttura complessa is 10,525 EUR a year from 2022 and 11,157 EUR from 1 January 2024, on 13 payments, owed to the dirigente with an incarico di direzione di struttura complessa: added with the role 'direttore_sc'. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 61 c. 3 of the CCNL Area Sanità of 23 January 2024 (PDF p. 97), against the research of a separate model session. | corrected | The tabellare of 3,616.60 is the regime value of art. 61 c. 3 (47,015.77 a year from 2021), not an estimate; the anticipazione of 2022-2023 remains open. |
 
 ## Salary table
 
@@ -103,11 +104,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source the exact Art. 65 amount of the CCNL 23.1.2024 for periods before 31/12/2024.
 
 !!! warning "dirigenza-sanitaria-medico-veterinaria-aran/tabellare_pre_2024_estimated · base_salary · impact unknown · open"
-    Pre-2024 tabellare 3.616,60€/mese = 47.015,77€/anno ricavato sottraendo l'incremento di 230€/mese (× 13) dal valore 2024. Il valore del CCNL 19.12.2019 (base periodo 1) è stimato in assenza di consultazione del testo del previgente contratto.
+    TABELLARE 2022-2023: 3,616.60 a month is the regime value of the CCNL 23.1.2024 art. 61 c. 3 (EUR 47,015.77 a year, from 1 January 2021, PDF p. 97). For 2022 and 2023 the CCNL 27.2.2026 art. 11 adds 'importi mensili lordi corrispondenti all'anticipazione economica ... già erogata' under L. 234/2021 art. 1 c. 609, without stating them; they are not modelled.
 
     **Applies when:** `base_salary` applies; before 2024-01-01.
 
-    **Remediation:** Source the tabellare of the CCNL 19.12.2019 from the previgente contract text.
+    **Remediation:** Source the anticipazione of 2022 and 2023 (L. 234/2021 art. 1 c. 609) for the dirigenza medica and add it to the tabellare of those years.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

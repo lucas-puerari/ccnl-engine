@@ -357,10 +357,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "Pre-2024 tabellare 3.616,60€/mese = 47.015,77€/anno ricavato sottraendo l'incremento di 230€/mese (× 13) dal valore 2024. Il valore del CCNL 19.12.2019 (base periodo 1) è stimato in assenza di consultazione del testo del previgente contratto.",
+      "rule": "TABELLARE 2022-2023: 3,616.60 a month is the regime value of the CCNL 23.1.2024 art. 61 c. 3 (EUR 47,015.77 a year, from 1 January 2021, PDF p. 97). For 2022 and 2023 the CCNL 27.2.2026 art. 11 adds 'importi mensili lordi corrispondenti all'anticipazione economica ... già erogata' under L. 234/2021 art. 1 c. 609, without stating them; they are not modelled.",
       "calculation": "ccnl/dirigenza-sanitaria-medico-veterinaria-aran:coverage.notes",
       "state": "unverified",
-      "remediation": "Source the tabellare of the CCNL 19.12.2019 from the previgente contract text.",
+      "remediation": "Source the anticipazione of 2022 and 2023 (L. 234/2021 art. 1 c. 609) for the dirigenza medica and add it to the tabellare of those years.",
       "origin": "seeded",
       "links": {
         "limitations": [

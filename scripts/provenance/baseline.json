@@ -621,7 +621,6 @@
   },
   "open_limitations": {
     "agreement/acconciatura-estetica-confartigianato.json": [
-      "acconciatura-estetica-confartigianato/apprentice_inps_rates_unsourced",
       "acconciatura-estetica-confartigianato/inps_sector_rates_unsourced"
     ],
     "agreement/afam-aran.json": [
@@ -646,7 +645,6 @@
       "assicurazioni-ania/inps_sector_rates_unsourced"
     ],
     "agreement/autoferrotranvieri-internavigatori.json": [
-      "autoferrotranvieri-internavigatori/priamo_pension_fund",
       "autoferrotranvieri-internavigatori/public_operator_inps_scheme"
     ],
     "agreement/autorimesse-ic35.json": [
@@ -666,7 +664,6 @@
       "bancari-abi/scatti_freeze_2013_2014"
     ],
     "agreement/bcc-credito-cooperativo.json": [
-      "bcc-credito-cooperativo/art3_derogation_apprenticeship",
       "bcc-credito-cooperativo/inps_sector_rates_unsourced",
       "bcc-credito-cooperativo/movement_loyalty_award",
       "bcc-credito-cooperativo/pre_1998_cohort_scatti"
@@ -718,7 +715,6 @@
       "commercio-confcommercio/sickness_net_basis"
     ],
     "agreement/comunicazione-artigianato-confartigianato.json": [
-      "comunicazione-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "comunicazione-artigianato-confartigianato/function_allowance_half_absorption",
       "comunicazione-artigianato-confartigianato/inps_sector_rates_unsourced",
       "comunicazione-artigianato-confartigianato/level_category_not_declared",
@@ -734,7 +730,6 @@
     ],
     "agreement/consorzi-di-bonifica-snebi.json": [
       "consorzi-di-bonifica-snebi/apprentice_inps_rates_unsourced",
-      "consorzi-di-bonifica-snebi/ex_sublevel_scatto_mapping",
       "consorzi-di-bonifica-snebi/higher_tier_scatto_amounts"
     ],
     "agreement/cooperative-consorzi-agricoli.json": [
@@ -755,8 +750,7 @@
     ],
     "agreement/dirigenza-sanitaria-area-sanita-aran.json": [
       "dirigenza-sanitaria-area-sanita-aran/approximate_hourly_divisor",
-      "dirigenza-sanitaria-area-sanita-aran/position_pay_missing",
-      "dirigenza-sanitaria-area-sanita-aran/specificita_pre_2025_estimated"
+      "dirigenza-sanitaria-area-sanita-aran/position_pay_missing"
     ],
     "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json": [
       "dirigenza-sanitaria-medico-veterinaria-aran/approximate_hourly_divisor",
@@ -801,7 +795,6 @@
       "edilizia-ance/territorial_sector_allowance"
     ],
     "agreement/edilizia-artigianato-cna.json": [
-      "edilizia-artigianato-cna/apprentice_inps_rates_unsourced",
       "edilizia-artigianato-cna/apprentice_seniority",
       "edilizia-artigianato-cna/cassa_edile_accruals_missing",
       "edilizia-artigianato-cna/inps_sector_rates_unsourced",
@@ -878,7 +871,6 @@
       "igiene-ambientale-utilitalia/industria_rates_proxy"
     ],
     "agreement/impianti-sportivi-sport.json": [
-      "impianti-sportivi-sport/level_ii_ex_fourteenth_print",
       "impianti-sportivi-sport/level_v_first_semester_overpaid",
       "impianti-sportivi-sport/level_vi_whole_track_at_destination",
       "impianti-sportivi-sport/overtime_weekly_hours_not_stated",
@@ -937,7 +929,6 @@
       "legno-arredamento-federlegno/renewal_2026_ipotesi"
     ],
     "agreement/legno-lapidei-artigianato-confartigianato.json": [
-      "legno-lapidei-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "legno-lapidei-artigianato-confartigianato/inps_sector_rates_unsourced",
       "legno-lapidei-artigianato-confartigianato/lapidei_apprenticeship"
     ],
@@ -963,7 +954,6 @@
       "metalmeccanica-cooperative/cooperative_inps_rates_unverified"
     ],
     "agreement/metalmeccanico-artigianato.json": [
-      "metalmeccanico-artigianato/apprentice_inps_rates_unsourced",
       "metalmeccanico-artigianato/dual_apprenticeship_prorogation",
       "metalmeccanico-artigianato/inps_sector_rates_unsourced"
     ],
@@ -1036,7 +1026,6 @@
       "ortofrutticoli-agrumari/quas_contribution"
     ],
     "agreement/panificazione-artigianato-confartigianato.json": [
-      "panificazione-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "panificazione-artigianato-confartigianato/ert_veneto",
       "panificazione-artigianato-confartigianato/inps_sector_rates_unsourced",
       "panificazione-artigianato-confartigianato/sickness_net_basis",
@@ -1066,11 +1055,9 @@
       "pubblici-esercizi-fipe-angem/small_company_pay_reduction"
     ],
     "agreement/pulizia-artigianato-confartigianato.json": [
-      "pulizia-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "pulizia-artigianato-confartigianato/apprenticeship_percentages_2022",
       "pulizia-artigianato-confartigianato/ind_fun_months_per_year",
       "pulizia-artigianato-confartigianato/inps_sector_rates_unsourced",
-      "pulizia-artigianato-confartigianato/level_2_seniority_amount",
       "pulizia-artigianato-confartigianato/overtime_weekly_threshold",
       "pulizia-artigianato-confartigianato/special_collection_allowance"
     ],
@@ -1109,8 +1096,7 @@
       "scuole-private-laiche-aninsei/salario_di_anzianita"
     ],
     "agreement/servizi-postali-appalto-fise.json": [
-      "servizi-postali-appalto-fise/conditional_integrative_allowance",
-      "servizi-postali-appalto-fise/level_4s_seniority_amount"
+      "servizi-postali-appalto-fise/conditional_integrative_allowance"
     ],
     "agreement/sistemazioni-idraulico-forestali-impiegati.json": [
       "sistemazioni-idraulico-forestali-impiegati/apprentice_inps_rates_unsourced",
@@ -1140,7 +1126,6 @@
       "terziario-confesercenti/una_tantum_apprentices_sales"
     ],
     "agreement/tessile-moda-artigianato-confartigianato.json": [
-      "tessile-moda-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "tessile-moda-artigianato-confartigianato/chimica_ceramica_level_rules",
       "tessile-moda-artigianato-confartigianato/chimica_ceramica_subsectors",
       "tessile-moda-artigianato-confartigianato/inps_sector_rates_unsourced",
@@ -1236,7 +1221,6 @@
       "provisional_ruleset",
       "sickness_cumulation_window",
       "sunday_holiday_ccnl_clause",
-      "tfr_compensation_apprentice_guarantee_fund",
       "una_tantum_readings"
     ]
   }

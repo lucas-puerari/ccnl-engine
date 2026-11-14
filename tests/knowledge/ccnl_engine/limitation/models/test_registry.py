@@ -59,9 +59,6 @@ from ccnl_engine.period.repositories import (
 )
 from ccnl_engine.personal_withholding.services import SAME_KIND
 from ccnl_engine.seniority.rules import APPRENTICE_SENIORITY_VARIANT
-from ccnl_engine.severance.relief.services import (
-    APPRENTICE_GUARANTEE_FUND,
-)
 from ccnl_engine.sickness.handlers import CUMULATION_LIMITATION
 from ccnl_engine.termination.notice.handlers import DAY_MEASURE as NOTICE_DAY_MEASURE
 from ccnl_engine.termination.notice.handlers import EXTRA_MONTHS as NOTICE_EXTRA_MONTHS
@@ -133,7 +130,6 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         CUMULATION_LIMITATION,
         PROVISIONAL_RULESET,
         PROVISIONAL_INPS_RULESET,
-        APPRENTICE_GUARANTEE_FUND,
         EXEMPT_CATEGORY_FLOOR,
         MATERNITY_BASE_LIMITATION,
         PATERNITY_BASE_LIMITATION,
@@ -160,6 +156,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         "extraordinary_leave_daily_base",
         "naspi_dismissal_exceptions",
         "sickness_agricultural_fixed_term_days",
+        "tfr_compensation_apprentice_guarantee_fund",
     }
 
 

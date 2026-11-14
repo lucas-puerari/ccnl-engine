@@ -151,7 +151,6 @@
         "ceramica-industria-confindustria",
         "ceramica-sanitaria-stoviglieria-confindustria",
         "comunicazione-artigianato-confartigianato",
-        "cooperative-consorzi-agricoli",
         "cooperative-sociali",
         "edilizia-ance-impiegati",
         "edilizia-artigianato-cna",
@@ -692,9 +691,9 @@
       "id": "tfr_compensation_apprentice_guarantee_fund",
       "capability": "inps_employer",
       "variant": "tfr_compensation_apprentice",
-      "summary": "An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.",
+      "summary": "An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8 and no Fondo di garanzia exemption: the 10% apprentice rate of L. 296/2006 art. 1 c. 773 is split by the D.M. 28 marzo 2007 among FPLD 9.01, CUAF 0.11, malattia 0.53, maternità 0.05 and INAIL 0.30, with no Fondo di garanzia share to exempt.",
       "monetary_impact": "yes",
-      "status": "open",
+      "status": "resolved",
       "rulesets": [
         "acconciatura-estetica-confartigianato",
         "agenti-immobiliari-fiaip",
@@ -813,8 +812,8 @@
           "apprentice"
         ]
       },
-      "source": "ccnl_engine.severance.relief.services; INPS messaggio n. 5859 of 7 March 2008, par. 3 (art. 8 relief of apprentices); INPS circ. 70/2007 par. 6 (Fondo di garanzia exemption, rates 0.20% and 0.40%)",
-      "remediation": "Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due."
+      "source": "ccnl_engine.severance.relief.services; INPS circ. n. 108 of 14 November 2018, par. 3.2, PDF p. 10 (https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2018/11/Circolare_397/Allegati/5081_Circolare-numero-108-del-14-11-2018.pdf, sha256 67b393337ceae0a16ffef8047de183a28eb9fc379c8aa33e9d4f3270d188a35e)",
+      "remediation": "Resolved: the apprentice rate holds no Fondo di garanzia share, so none is exempted."
     },
     {
       "id": "inps_minimum_base_exempt_category",

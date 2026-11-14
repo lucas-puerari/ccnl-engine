@@ -247,10 +247,10 @@
       "institute": "seniority",
       "variant": "operaio",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "SENIORITY: Art. 49 (testo armonizzato 15/04/2025, p. 87) gives the scatti to 'L'impiegato' only, by category; the operai accrue the Anzianità professionale edile of Art. 29 (p. 64) through the Fondo Unico APE, out of an employer contribution 'nella misura stabilita per ciascuna circoscrizione territoriale'. The engine pays no scatti to a worker stated as operaio (seniority excluded_categories); the territorial APE contribution is not modelled, a run of levels 1-4 that does not state the category still pays the Art. 49 amounts, and level 1 has no Art. 49 amount (8.22 of the Impiegati 4a is used).",
+      "rule": "SENIORITY: Art. 49 (testo armonizzato 15/04/2025, p. 87) gives the scatti to 'L'impiegato' only, by category; the operai accrue the Anzianità professionale edile of Art. 29 (p. 64) through the Fondo Unico APE, out of an employer contribution 'nella misura stabilita per ciascuna circoscrizione territoriale'. The engine pays no scatti to a worker stated as operaio (seniority excluded_categories); the territorial APE contribution is not modelled, a run of levels 1-4 that does not state the category still pays the Art. 49 amounts, and level 1 has no Art. 49 amount (8.22 of the Impiegati 4a is used). Level 1 holds the impiegati di 4ª categoria di primo impiego: art. 49 (p. 87) gives 'Impiegati 4ª 8,22', the amount modelled for level 1 (filleacgil copy sha256 25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba).",
       "calculation": "ccnl/edilizia-pmi-confapi-aniem:coverage.notes",
       "state": "absent",
-      "remediation": "Add the territorial APE contribution (Fondo Unico APE) as an employer cost and source the level 1 amount of Art. 49.",
+      "remediation": "Add the territorial APE contribution (Fondo Unico APE) of the worker's circoscrizione as an employer cost.",
       "origin": "seeded",
       "links": {
         "limitations": [
@@ -478,22 +478,6 @@
       "links": {
         "limitations": [
           "edilizia-pmi-confapi-aniem/territorial_sector_allowance"
-        ]
-      }
-    },
-    {
-      "id": "tfr_compensation_apprentice_guarantee_fund",
-      "institute": "inps_employer",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.",
-      "calculation": "ccnl_engine.severance.relief.services; INPS messaggio n. 5859 of 7 March 2008, par. 3 (art. 8 relief of apprentices); INPS circ. 70/2007 par. 6 (Fondo di garanzia exemption, rates 0.20% and 0.40%)",
-      "state": "absent",
-      "remediation": "Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "tfr_compensation_apprentice_guarantee_fund"
         ]
       }
     },

@@ -8,9 +8,10 @@ points of D.L. 203/2005 art. 8 (c. 3).  The engine models the TFR of a run
 as conferred whole or kept whole, so the percentage is 100% or zero.
 
 Both exemptions reduce the employer contributions of the run, never below
-zero.  An apprentice takes the art. 8 relief only: whether the apprentice
-rate includes a Fondo di garanzia share to exempt is not sourced, and the
-run records the :data:`APPRENTICE_GUARANTEE_FUND` limitation.
+zero.  An apprentice takes the art. 8 relief only: the 10% apprentice rate
+(L. 296/2006 art. 1 c. 773) is split by the D.M. 28 marzo 2007 among FPLD,
+CUAF, malattia, maternità and INAIL, with no Fondo di garanzia share to
+exempt (INPS circ. 108/2018 par. 3.2).
 """
 
 from __future__ import annotations
@@ -22,7 +23,6 @@ from ccnl_engine.contribution.results import ContributionComponent
 from ccnl_engine.employment.inputs import Apprentice
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.pay_item.services import _ZERO
-from ccnl_engine.pension_fund.inputs import PensionFundEnrolment
 
 if TYPE_CHECKING:
     from decimal import Decimal
@@ -30,14 +30,11 @@ if TYPE_CHECKING:
     from ccnl_engine.amount.types import _AmountsInput
     from ccnl_engine.contribution.results import ContributionBreakdown
     from ccnl_engine.contribution.services import TfrAccrual
-    from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.severance.models import TfrCompensation
 
 __all__ = [
-    "APPRENTICE_GUARANTEE_FUND",
     "GUARANTEE_FUND_COMPONENT",
     "RELIEF_COMPONENT",
-    "tfr_compensation_paths",
     "with_tfr_compensation",
 ]
 
@@ -45,8 +42,6 @@ __all__ = [
 GUARANTEE_FUND_COMPONENT = "tfr_guarantee_fund_exemption"
 #: Component of the art. 8 D.L. 203/2005 relief (D.Lgs. 252/2005 art. 10 c. 3).
 RELIEF_COMPONENT = "tfr_relief_exemption"
-#: Engine limitation of an apprentice whose TFR leaves the company.
-APPRENTICE_GUARANTEE_FUND = "tfr_compensation_apprentice_guarantee_fund"
 _EMPLOYER_BASES = ("non_ivs_employer", "ivs_employer")
 
 
@@ -104,23 +99,3 @@ def with_tfr_compensation(
     return replace(
         breakdown, employer=room, components=(*breakdown.components, *components)
     )
-
-
-def tfr_compensation_paths(ctx: RunContext) -> frozenset[str]:
-    """Return the limitation path of an apprentice whose TFR leaves the company.
-
-    Returns:
-        :data:`APPRENTICE_GUARANTEE_FUND` when the run is of an apprentice
-        whose TFR goes to a pension fund or to the Fondo Tesoreria, in a
-        sector with compensations; nothing otherwise.
-    """
-    request = ctx.request
-    if ctx.contract.year_rules.tfr.compensation is None or not isinstance(
-        request.contract_type, Apprentice
-    ):
-        return frozenset()
-    pension = request.pension_fund
-    to_fund = isinstance(pension, PensionFundEnrolment) and pension.tfr_to_fund
-    if to_fund or request.tfr_treasury_fund:
-        return frozenset({APPRENTICE_GUARANTEE_FUND})
-    return frozenset()

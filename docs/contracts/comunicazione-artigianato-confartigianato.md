@@ -36,7 +36,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, inps_employer, worker_category |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Apprenticeship tracks against art. 36 and art. 3 Parte II of the signed 2024 renewal, read on the page images (pp. 7-9, 20). | corrected | The file had two generic tracks (operai_tecnici 70-100% over four years, amministrativi 70/80/90%) and level 6 as a destination; the text prints one row per group, figures and PMI: impiegati amministrativi are 60/70/90%, so the file overpaid the first two years by 10 points.<br>Tracks replaced: operai_tecnici, amministrativi -> artigiane_gruppo_1, artigiane_gruppo_2, artigiane_gruppo_2_figure_3_anni, artigiane_gruppo_3, artigiane_gruppo_3_figure_2_anni, impiegati_amministrativi, pmi, pmi_figure_2_anni. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 36 c. 6-7 and the dichiarazione a verbale on the percentages, signed renewal of 18 November 2024, PDF pp. 7-9 and 12. | confirmed | Read the percentage tables on the page images: every artisan track of the file matches the signed table, so the note claiming percentages assumed from the CCNA framework was stale; closed apprenticeship_percentages_assumed. The new percentages apply to hires from 16 May 2022, not from 18 November 2024: corrected the cohort limitation. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 71 function allowance of the quadri and the nota a verbale of 15 July 2026. | confirmed | Read the nota a verbale on the page image: the allowance is separate from the 1A minimum from 1 August 2026 and nothing is due before. The file added it to the 1A minimum from December 2024; set it to zero until 31 July 2026, closed function_allowance_constant and recorded the 50% superminimo absorption of art. 71, which the engine cannot express. |
+| 2026-11-14 | claude-opus-5-5 (ai) | INPS circ. 140/2012 par. 3.3 on the apprentice contribution, against the research of a separate model session. | confirmed | The cuneo reductions (0.91) do not apply to apprentices: the artigianato apprentice rates of the bundle are confirmed. |
 
 ## Salary table
 
@@ -170,13 +171,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the artigianato rates of 2026 on an INPS or association table, mark the inps block of contribution/2026/artigianato.json derived, then remove this note.
 
-!!! warning "comunicazione-artigianato-confartigianato/apprentice_inps_rates_unsourced · inps_employer · impact unknown · open"
-    APPRENTICE INPS RATES: the apprentice rates of the sector (artigianato) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles whether the 0.91 NASpI reduction of the artisan employers also applies to apprentices, nor the wage-integration contribution they owe (the FSBA is paid outside INPS). The contributions of an apprentice may differ.
-
-    **Applies when:** `inps_employer` applies; contract type in apprentice.
-
-    **Remediation:** Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note.
-
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -219,12 +213,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.
 
-!!! warning "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · open"
-    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.
+!!! note "tfr_compensation_apprentice_guarantee_fund · inps_employer · impact yes · resolved"
+    An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8 and no Fondo di garanzia exemption: the 10% apprentice rate of L. 296/2006 art. 1 c. 773 is split by the D.M. 28 marzo 2007 among FPLD 9.01, CUAF 0.11, malattia 0.53, maternità 0.05 and INAIL 0.30, with no Fondo di garanzia share to exempt.
 
     **Applies when:** `inps_employer` applies; the run takes the engine code path; contract type in apprentice.
 
-    **Remediation:** Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.
+    **Remediation:** Resolved: the apprentice rate holds no Fondo di garanzia share, so none is exempted.
 
 !!! warning "maternity_daily_base · maternity_leave · impact unknown · open"
     The INPS maternity indemnity of an operaia, or of a leave whose month before was not worked in full, is computed on the pay of the run over 30 with the rateo of the extra months, not on the pay of the month before the leave: art. 23 c. 5 D.Lgs. 151/2001 divides the pay of an operaia by the days worked or paid (or by the hours, when fewer than the contract), and the divisor of her daily rateo of the 13th is not settled by a primary source. The base of another worker over a whole month is computed from MaternityLeaveEvent.maternity_base_pay.
@@ -399,6 +393,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP (art. 36 Parte I, art. 3 Parte II, renewal 18 November 2024): each row of the table is a track (artigiane groups 1-3 with their 'figure a 2/3 anni', impiegati amministrativi, PMI); the caller picks the track with Apprentice.track where a level has several. The last percentage of each track holds past its semesters on purpose: art. 6-bis prolongs the apprenticeship by every suspension of at least 30 days and counts the suspension towards the pay progression (renewal p. 8), so an apprentice may be past the table; the caller ends the apprenticeship (Apprentice) at its end. Level 6 is not apprenticeable.
     
     FUNCTION ALLOWANCE (art. 71: 'al personale con qualifica di quadro sarà riconosciuta una indennità di funzione di euro 51,65'): the nota a verbale of 15 July 2026 (CNA, p. 2) reads it as 'distinto dai minimi contrattuali [...] non è pertanto ricompresa nell'importo indicato nelle tabelle retributive per il livello 1A', to be shown 'con voce autonoma e distinta' from 1 August 2026, and 'nulla è dovuto a titolo di arretrati o conguagli' for the earlier periods. The file pays it on level 1A from 1 August 2026, nothing before.
+    
+    APPRENTICE INPS RATES (artigianato): 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI and integrativo, 11.61% for the employer (3.11% and 4.61% in the first two years of a firm up to 9 employees) and 5.84% for the worker. The 0.91 reduction of the artisan employers does not apply to apprentices: 'sul contributo per gli apprendisti non trovano applicazione le riduzioni del cuneo contributivo di cui alle leggi n. 388/2000 e n. 266/2005' (INPS circ. 140/2012 par. 3.3, https://servizi2.inps.it/servizi/Bussola/VisualizzaDoc.aspx?sVirtualURL=/Circolari/Circolare%20numero%20140%20del%2014-12-2012.htm, sha256 67d04317e66825fdb2cf6aa0b3106e644d76461e3e6ec17cd456b307948701a7). The wage-integration contribution of the sector is the FSBA, paid outside INPS (F24, code EBNA), not part of the INPS employer rate.
     
 
 ## Raw data

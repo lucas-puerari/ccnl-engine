@@ -3,22 +3,6 @@
   "ccnl_id": "panificazione-artigianato-confartigianato",
   "requirements": [
     {
-      "id": "apprentice_inps_rates_unsourced",
-      "institute": "inps_employer",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "APPRENTICE INPS RATES: the apprentice rates of the sector (artigianato) apply the 10% of L. 296/2006 art. 1 c. 773 plus the 1.61% NASpI, but no source found settles whether the 0.91 NASpI reduction of the artisan employers also applies to apprentices, nor the wage-integration contribution they owe (the FSBA is paid outside INPS). The contributions of an apprentice may differ.",
-      "calculation": "ccnl/panificazione-artigianato-confartigianato:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the apprentice rates of artigianato (an INPS circular or an association table of 2026), mark the apprentice block of contribution/2026/artigianato.json derived, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "panificazione-artigianato-confartigianato/apprentice_inps_rates_unsourced"
-        ]
-      }
-    },
-    {
       "id": "arrears_unused_deductions",
       "institute": "contract_renewal_arrears",
       "variant": "all",
@@ -367,22 +351,6 @@
       "links": {
         "limitations": [
           "sunday_holiday_ccnl_clause"
-        ]
-      }
-    },
-    {
-      "id": "tfr_compensation_apprentice_guarantee_fund",
-      "institute": "inps_employer",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "An apprentice whose TFR goes to a pension fund or to the Fondo Tesoreria takes the 0.28-point relief of D.L. 203/2005 art. 8, but not the exemption from the 0.20% Fondo di garanzia contribution of D.Lgs. 252/2005 art. 10 c. 2: no source found says whether the apprentice rate (10% of L. 296/2006 art. 1 c. 773 plus NASpI and the integration funds) holds a Fondo di garanzia share to exempt. The employer contributions of the run may be overstated by 0.20% of the INPS base.",
-      "calculation": "ccnl_engine.severance.relief.services; INPS messaggio n. 5859 of 7 March 2008, par. 3 (art. 8 relief of apprentices); INPS circ. 70/2007 par. 6 (Fondo di garanzia exemption, rates 0.20% and 0.40%)",
-      "state": "absent",
-      "remediation": "Find an INPS source on the Fondo di garanzia share of the apprentice rate, then exempt it with the other workers or record that none is due.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "tfr_compensation_apprentice_guarantee_fund"
         ]
       }
     },

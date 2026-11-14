@@ -80,22 +80,8 @@
         "text": "DUAL COHORT (Allegato A, PDF pp. 157 and 159; Allegato Q p. 230): the 'dipendenti in servizio al 15 luglio 2000' are paid a lower table than those 'assunti a decorrere dal 15/7/2000'; modelled as Level.base_salary_by_cohort, chosen by the hire date (EmploymentPeriod.started_on, else the start of the stated seniority). Tables from 1 July 2025."
       },
       {
-        "kind": "simplification",
-        "text": "B128 and B132 each contain two ex-classification sub-levels (B128: ex-4/2 and ex-5/2; B132: ex-4/1 and ex-5/1) sharing the same base salary but with different scatto amounts. Modeled as B128/B128_ex52 and B132/B132_ex51. Plain codes carry the ex-4 (higher) scatto as best-guess; _ex52/_ex51 codes carry the ex-5 (lower) scatto. Mapping is unverifiable from public sources (B128: 47.92 vs 44.44; B132: 50.05 vs 47.73).",
-        "capability": "seniority",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "ex_sublevel_scatto_mapping",
-          "applies_when": {
-            "levels": [
-              "B128",
-              "B128_ex52",
-              "B132",
-              "B132_ex51"
-            ]
-          },
-          "remediation": "Verify which ex-classification sub-level carries each scatto amount against the CCNL text."
-        }
+        "kind": "info",
+        "text": "B128 and B132 each hold two ex-classification sub-levels with the same base salary and different scatti (art. 72, CCNL 2023-2026 PDF p. 72: '4^ f.f. 1° liv. Euro 47,73 2° liv. Euro 44,44 ... 5^ f.f. 1° liv. Euro 50,05 2° liv. Euro 47,92'): B128 (ex 4ª f.f. 2° liv.) 44.44, B128_ex52 (ex 5ª f.f. 2° liv.) 47.92, B132 (ex 4ª f.f. 1° liv.) 47.73, B132_ex51 (ex 5ª f.f. 1° liv.) 50.05; the caller picks the code of the worker's former class. Source https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf sha256 558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097."
       },
       {
         "kind": "simplification",
@@ -243,6 +229,27 @@
           "levels.base_salary_by_cohort",
           "levels.base_salary"
         ]
+      },
+      {
+        "id": "2026-11-14-ai-bonifica-ex-sublevels",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 72 scatti table of the CCNL 2023-2026 (PDF p. 72), against the research of a separate model session.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+            "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+          }
+        ],
+        "findings": [
+          "The sub-level mapping was inverted: ex 4ª f.f. has the lower scatto (44.44, 47.73), ex 5ª f.f. the higher (47.92, 50.05)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
+        ]
       }
     ]
   },
@@ -374,7 +381,7 @@
                 {
                   "valid_from": "2025-07-01",
                   "valid_until": null,
-                  "value": "47.92"
+                  "value": "44.44"
                 }
               ]
             },
@@ -383,7 +390,7 @@
                 {
                   "valid_from": "2025-07-01",
                   "valid_until": null,
-                  "value": "44.44"
+                  "value": "47.92"
                 }
               ]
             },
@@ -392,7 +399,7 @@
                 {
                   "valid_from": "2025-07-01",
                   "valid_until": null,
-                  "value": "50.05"
+                  "value": "47.73"
                 }
               ]
             },
@@ -401,7 +408,7 @@
                 {
                   "valid_from": "2025-07-01",
                   "valid_until": null,
-                  "value": "47.73"
+                  "value": "50.05"
                 }
               ]
             },
@@ -605,7 +612,7 @@
                 {
                   "valid_from": "2025-07-01",
                   "valid_until": null,
-                  "value": "47.92"
+                  "value": "44.44"
                 }
               ]
             },
@@ -614,7 +621,7 @@
                 {
                   "valid_from": "2025-07-01",
                   "valid_until": null,
-                  "value": "44.44"
+                  "value": "47.92"
                 }
               ]
             },
@@ -623,7 +630,7 @@
                 {
                   "valid_from": "2025-07-01",
                   "valid_until": null,
-                  "value": "50.05"
+                  "value": "47.73"
                 }
               ]
             },
@@ -632,7 +639,7 @@
                 {
                   "valid_from": "2025-07-01",
                   "valid_until": null,
-                  "value": "47.73"
+                  "value": "50.05"
                 }
               ]
             },
@@ -836,7 +843,7 @@
                 {
                   "valid_from": "2025-07-01",
                   "valid_until": null,
-                  "value": "47.92"
+                  "value": "44.44"
                 }
               ]
             },
@@ -845,7 +852,7 @@
                 {
                   "valid_from": "2025-07-01",
                   "valid_until": null,
-                  "value": "44.44"
+                  "value": "47.92"
                 }
               ]
             },
@@ -854,7 +861,7 @@
                 {
                   "valid_from": "2025-07-01",
                   "valid_until": null,
-                  "value": "50.05"
+                  "value": "47.73"
                 }
               ]
             },
@@ -863,7 +870,7 @@
                 {
                   "valid_from": "2025-07-01",
                   "valid_until": null,
-                  "value": "47.73"
+                  "value": "50.05"
                 }
               ]
             },
@@ -2533,7 +2540,7 @@
     {
       "code": "B128",
       "order": 11,
-      "description": "B128 — ex cat. 4/2 (best-guess scatto 47.92)",
+      "description": "B128 — ex cat. 4ª f.f. 2° livello (scatto 44.44)",
       "category": "operaio",
       "base_salary": {
         "periods": [
@@ -2689,7 +2696,7 @@
     {
       "code": "B128_ex52",
       "order": 12,
-      "description": "B128 — ex cat. 5/2 (alternate scatto 44.44)",
+      "description": "B128 — ex cat. 5ª f.f. 2° livello (scatto 47.92)",
       "category": "operaio",
       "base_salary": {
         "periods": [
@@ -2845,7 +2852,7 @@
     {
       "code": "B132",
       "order": 13,
-      "description": "B132 — ex cat. 4/1 (best-guess scatto 50.05)",
+      "description": "B132 — ex cat. 4ª f.f. 1° livello (scatto 47.73)",
       "category": "operaio",
       "base_salary": {
         "periods": [
@@ -3001,7 +3008,7 @@
     {
       "code": "B132_ex51",
       "order": 14,
-      "description": "B132 — ex cat. 5/1 (alternate scatto 47.73)",
+      "description": "B132 — ex cat. 5ª f.f. 1° livello (scatto 50.05)",
       "category": "operaio",
       "base_salary": {
         "periods": [
@@ -5024,7 +5031,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "dd71d16213b652295db313aec701640b94807750831a9f5d51845896ca69f60e",
+    "source_hash": "85fc2448b98d0f6a8ef8a036c6a832c5fcd3de15db69c694bf7c6027f76a5696",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
