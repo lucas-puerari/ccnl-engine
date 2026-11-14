@@ -8,7 +8,9 @@ from datetime import date
 from decimal import Decimal
 
 from ccnl_engine.agreement.facade import TaxSector
+from ccnl_engine.apprenticeship.models import UnderClassificationPeriod
 from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.compensation.ladder.rules import level_below
 
 
 class TestLoadRadiotelevisiveTelevisivoG091:
@@ -353,6 +355,18 @@ class TestLoadTabaccoApti:
         ccnl = load_ccnl("tabacco-apti")
         lv = ccnl.level_by_code("4A")
         assert lv.base_salary.value_at(date(2026, 1, 1)) == Decimal("1244.90")
+
+    def test_tabacco_apti_level_5_apprentice_track(self) -> None:
+        """Art. 6: destination 5 at level 6 for 6 months, then at level 5."""
+        ccnl = load_ccnl("tabacco-apti")
+        (track,) = ccnl.apprenticeship_tracks_for("5")
+        five = ccnl.level_by_code("5")
+        steps = [
+            (p.months_from, level_below(ccnl.levels, five, p.levels_below).code)
+            for p in track.periods
+            if isinstance(p, UnderClassificationPeriod)
+        ]
+        assert steps == [(0, "6"), (6, "5")]
 
     def test_tabacco_apti_level_ordering(self) -> None:
         """Level 1S is highest order; level 6 is lowest order."""
