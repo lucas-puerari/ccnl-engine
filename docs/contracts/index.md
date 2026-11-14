@@ -30,7 +30,7 @@ on unverified sources, or be well sourced and not cleared for production.
   verified / derived / assumed / missing.
 - **Readiness:** the review tier of the contract ruleset.
 
-**Core payroll path: computed on every run of every contract** (26):
+**Core payroll path: computed on every run of every contract** (27):
 
 - ✅ `base_salary` (native)
 - ✅ `seniority` (native)
@@ -40,6 +40,7 @@ on unverified sources, or be well sourced and not cleared for production.
 - ✅ `inail` (native)
 - ✅ `una_tantum` (native)
 - ✅ `personal_withholdings` (native)
+- ✅ `additional_irpef_base` (native)
 - ✅ `tfr` (native)
 - ✅ `tfr_revaluation` (native)
 - ✅ `irpef` (native)
@@ -59,7 +60,7 @@ on unverified sources, or be well sourced and not cleared for production.
 - ✅ `contractual_funds` (native)
 - ✅ `assistance_contribution` (native)
 
-**Scenario features: computed when the request declares the event, the fact or the termination** (31):
+**Scenario features: computed when the request declares the event, the fact or the termination** (30):
 
 - ✅ `maternity_leave` (native)
 - ✅ `paternity_leave` (native)
@@ -75,7 +76,6 @@ on unverified sources, or be well sourced and not cleared for production.
 - ✅ `naspi_dismissal` (native)
 - ✅ `termination_tfr` (native)
 - 📝 `contract_renewal_arrears` (caller_supplied)
-- ⚠️ `additional_irpef_base` (partial)
 - 📝 `territorial_supplement` (caller_supplied)
 - 📝 `company_supplement` (caller_supplied)
 - ⚠️ `foreign_tax_credit` (partial)

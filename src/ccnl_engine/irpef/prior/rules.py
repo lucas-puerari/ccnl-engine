@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from ccnl_engine.balance.cash.account.models import TaxYtd
     from ccnl_engine.employment.spell.models import EmploymentSpell
     from ccnl_engine.irpef.other_income.inputs import CurrentYearTaxFacts
+    from ccnl_engine.tax_credit.account.models import CreditAccount
 
 __all__ = [
     "ADDITIONAL_IRPEF_BASE",
@@ -34,6 +35,8 @@ __all__ = [
     "prior_totals",
     "surtax_withheld",
     "taken_in",
+    "taken_in_now",
+    "with_recognized",
 ]
 
 #: Capability of the earlier employments the conguaglio takes in.
@@ -52,6 +55,7 @@ class PriorTotals:
     regional_surtax: Decimal = _ZERO
     municipal_advance: Decimal = _ZERO
     municipal_surtax: Decimal = _ZERO
+    somma_esente: Decimal = _ZERO
 
 
 def prior_totals(facts: CurrentYearTaxFacts | None) -> PriorTotals:
@@ -68,6 +72,7 @@ def prior_totals(facts: CurrentYearTaxFacts | None) -> PriorTotals:
         sum((p.regional_surtax_withheld for p in prior), _ZERO),
         sum((p.municipal_advance_withheld for p in prior), _ZERO),
         sum((p.municipal_surtax_withheld for p in prior), _ZERO),
+        sum((p.somma_esente_paid for p in prior), _ZERO),
     )
 
 
@@ -115,6 +120,7 @@ def prior_decision(prior: PriorTotals, year: int) -> CalculationDecision | None:
         inputs={
             "irpef_withheld": str(prior.irpef_withheld),
             "trattamento_paid": str(prior.trattamento_paid),
+            "somma_esente_paid": str(prior.somma_esente),
         },
         amount=prior.taxable,
     )
@@ -148,7 +154,7 @@ def conguaglio_intake(
     """
     if not conguaglio or facts is None or not facts.prior_employers:
         return ConguaglioIntake(facts, spells, PriorTotals())
-    prior = PriorTotals() if settled else prior_totals(facts)
+    prior = taken_in_now(facts, conguaglio=conguaglio, settled=settled)
     return ConguaglioIntake(
         conguaglio_facts(facts), spells + prior_spells(facts), prior
     )
@@ -187,3 +193,26 @@ def surtax_withheld(tax: TaxYtd, prior: PriorTotals) -> TaxYtd:
         municipal_advance=tax.municipal_advance + prior.municipal_advance,
         municipal_settled=tax.municipal_settled + prior.municipal_surtax,
     )
+
+
+def taken_in_now(
+    facts: CurrentYearTaxFacts | None, *, conguaglio: bool, settled: bool
+) -> PriorTotals:
+    """Return the amounts the run takes in from the earlier employments.
+
+    Returns:
+        Their totals on the payment that settles the year first; zeros on
+        any other payment.
+    """
+    if not conguaglio or settled:
+        return PriorTotals()
+    return prior_totals(facts)
+
+
+def with_recognized[A: CreditAccount](account: A, amount: Decimal) -> A:
+    """Return ``account`` with ``amount`` other payers recognised added.
+
+    Returns:
+        The account of the year as the CU totals it.
+    """
+    return replace(account, recognized=account.recognized + amount)

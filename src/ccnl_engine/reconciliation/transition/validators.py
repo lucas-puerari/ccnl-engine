@@ -143,7 +143,8 @@ def check_ytd_continuity(
             "somma_esente net credit",
             op.somma_esente.net,
             _entry_total(result, {f"somma_esente_{run}"})
-            - _entry_total(result, {f"somma_esente_recovery_{run}"}),
+            - _entry_total(result, {f"somma_esente_recovery_{run}"})
+            + taken_in(result.decisions, "somma_esente_paid"),
             closing.somma_esente.net,
         ),
     )

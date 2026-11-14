@@ -55,8 +55,8 @@ formulas or caller-declared amounts.
 
 | Scope | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
-| core | 26 | 0 | 0 | 0 |
-| scenario | 18 | 10 | 3 | 0 |
+| core | 27 | 0 | 0 | 0 |
+| scenario | 18 | 10 | 2 | 0 |
 | outside_input | 0 | 0 | 0 | 3 |
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
@@ -85,7 +85,7 @@ formulas or caller-declared amounts.
 | `contract_renewal_arrears` | Arretrati rinnovo contratto: tassazione separata se di anni precedenti (aliquota dal chiamante), ordinaria se dell'anno | scenario | gross | caller_supplied | event | event | — | — | caller-supplied | none bundled |
 | `una_tantum` | Una tantum contrattuale (rate per livello del CCNL, in proporzione al servizio) | core | gross | native | decided | decision | — | — | implemented | none bundled |
 | `personal_withholdings` | Pignoramenti presso il datore di lavoro, cessioni del quinto e delegazioni sul netto (art. 545 c.p.c., artt. 5 e 68-70 DPR 180/1950, art. 72-ter DPR 602/1973) | core | net | native | decided | decision | — | — | implemented | none bundled |
-| `additional_irpef_base` | Redditi di altri sostituti nella base IRPEF del conguaglio (art. 23 c. 4 DPR 600/1973): IRPEF, trattamento integrativo e addizionali; ulteriore detrazione e somma esente sul solo rapporto | scenario | net | partial | decided | decision | `current_year.prior_employers` | irpef_trattamento_and_surtax | simplified | none bundled |
+| `additional_irpef_base` | Redditi di altri sostituti nel conguaglio (art. 23 c. 4 DPR 600/1973): IRPEF, trattamento integrativo, addizionali e somma esente sul totale, ritenute e crediti dei precedenti sostituti come già trattenuti o erogati | core | net | native | decided | decision | `current_year.prior_employers` | — | implemented | none bundled |
 | `territorial_supplement` | Integrazione da contratto territoriale (EmployerProfile.second_level_elements) | scenario | gross | caller_supplied | decided | decision | — | — | caller-supplied | none bundled |
 | `company_supplement` | Integrazione da contratto aziendale (EmployerProfile.second_level_elements) | scenario | gross | caller_supplied | decided | decision | — | — | caller-supplied | none bundled |
 | `tfr` | Trattamento di Fine Rapporto | core | net | native | always | pipeline | `employment.tfr_treasury_fund` | — | simplified | 18 / 0 / 18 / 0 |
