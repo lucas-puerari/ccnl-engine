@@ -94,9 +94,8 @@
         "text": "Headcount: ~34,646 workers (CNEL archive, E018)."
       },
       {
-        "kind": "simplification",
-        "text": "SIMPLIFICATION: Settore panificazione industriale (7 levels: 1, 3A, 3B, 4, 5, 6, plus viaggiatori) not modeled — separate salary tables; only settore alimentare 9 levels implemented.",
-        "monetary_impact": "no"
+        "kind": "info",
+        "text": "PANIFICAZIONE INDUSTRIALE (text signed 18 March 2026): levels P1, P2, P3A, P3B, P4, P5, P6 (1°, 2°, 3A, 3B, 4°, 5°, 6°) only for an employer of the sub-sector panificazione_industriale, on a ladder of their own: paga base (4 tranches of EUR 70 at 3B), contingenza of art. 47 bis, premio di produzione nazionale (14 months, out of the TFR by the exhaustive list of art. 59), premio per obiettivi of the sector in place of art. 53 (12 months) and five biennial scatti frozen at the 1997 amounts. No EDR: the signed text names none for the sector."
       },
       {
         "kind": "info",
@@ -215,6 +214,29 @@
         "independence": "same_process",
         "checked": [
           "levels[*].base_salary"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Panificazione industriale pay of the text signed on 18 March 2026 (PDF p. 145, 147-148, 153-154, 160), read on the page images, against the research of a separate model session on the CCNL 2021.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+            "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+          }
+        ],
+        "findings": [
+          "Added the seven panificazione industriale levels with paga base, contingenza, premio di produzione, premio per obiettivi and scatti.",
+          "The contingenza of the sector (art. 47 bis) is new in the 2026 text; the CCNL 2021 had none for these levels."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels",
+          "parameters.seniority_increments_by_subsector"
         ]
       }
     ]
@@ -416,6 +438,105 @@
           "verified_at": "2026-10-18T13:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-10-18-ai-accrual-rule"
+        }
+      }
+    },
+    "seniority_increments_by_subsector": {
+      "panificazione_industriale": {
+        "cadence_months": 24,
+        "maximum_count": 5,
+        "amount_by_level": {
+          "P1": {
+            "periods": [
+              {
+                "valid_from": "1997-08-01",
+                "valid_until": null,
+                "value": "34.28"
+              }
+            ]
+          },
+          "P2": {
+            "periods": [
+              {
+                "valid_from": "1997-08-01",
+                "valid_until": null,
+                "value": "31.67"
+              }
+            ]
+          },
+          "P3A": {
+            "periods": [
+              {
+                "valid_from": "1997-08-01",
+                "valid_until": null,
+                "value": "29.25"
+              }
+            ]
+          },
+          "P3B": {
+            "periods": [
+              {
+                "valid_from": "1997-08-01",
+                "valid_until": null,
+                "value": "27.24"
+              }
+            ]
+          },
+          "P4": {
+            "periods": [
+              {
+                "valid_from": "1997-08-01",
+                "valid_until": null,
+                "value": "22.91"
+              }
+            ]
+          },
+          "P5": {
+            "periods": [
+              {
+                "valid_from": "1997-08-01",
+                "valid_until": null,
+                "value": "20.27"
+              }
+            ]
+          },
+          "P6": {
+            "periods": [
+              {
+                "valid_from": "1997-08-01",
+                "valid_until": null,
+                "value": "17.14"
+              }
+            ]
+          }
+        },
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "unionalimentari-ccnl-2026-03-18",
+              "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+              "kind": "associazione",
+              "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+              "published_on": "2026-03-18",
+              "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+            },
+            "page": "147-148",
+            "section": "Aumenti periodici di anzianità per il settore panificazione industriale (printed p. 145-146)",
+            "quote": "per ogni biennio di effettivo servizio prestato nella stessa azienda, gli operai e gli impiegati, hanno diritto a maturare cinque aumenti biennali di anzianità ... A quella data gli importi maturati verranno congelati in cifra ... 1° 34,28 2° 31,67 3° A 29,25 3° B 27,24 4° 22,91 5° 20,27 6° 17,14 (*) Importi in vigore dal 1° agosto 1997"
+          },
+          "transformation": "Five biennial increments at the fixed amounts frozen on 1 August 1997, from the month after the biennium.",
+          "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T15:00:00Z",
+            "effective_from": "1997-08-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T15:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+          }
         }
       }
     }
@@ -3726,6 +3847,2190 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    {
+      "code": "P1",
+      "order": 16,
+      "description": "Panificazione industriale 1° livello: preposti ai servizi commerciale, amministrativo, tecnico e chimico con discrezionalità di poteri",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-01-01",
+            "value": "1779.66",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "1° ... 1779.66 ... 1868.83 ... 1958.00 ... 2047.17 ... 200"
+              },
+              "transformation": "Paga base of the panificazione industriale level 1° from 2025-06-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-04-01",
+            "value": "1868.83",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "1° ... 1779.66 ... 1868.83 ... 1958.00 ... 2047.17 ... 200"
+              },
+              "transformation": "Paga base of the panificazione industriale level 1° from 2026-01-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2028-01-01",
+            "value": "1958.00",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "1° ... 1779.66 ... 1868.83 ... 1958.00 ... 2047.17 ... 200"
+              },
+              "transformation": "Paga base of the panificazione industriale level 1° from 2027-04-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "2047.17",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "1° ... 1779.66 ... 1868.83 ... 1958.00 ... 2047.17 ... 200"
+              },
+              "transformation": "Paga base of the panificazione industriale level 1° from 2028-01-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          }
+        ]
+      },
+      "subsectors": [
+        "panificazione_industriale"
+      ],
+      "ladder": "panificazione",
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza al 1.11.1991, panificazione industriale (art. 47 bis)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": null,
+                "value": "530.43"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "145",
+              "section": "Art. 47 bis - Indennità di contingenza panificazione (printed p. 143)",
+              "quote": "Al 1° novembre 1991, l'indennità di contingenza risulta essere quella di seguito indicata. ... 1° 530,43"
+            },
+            "transformation": "Frozen monthly contingenza of the level, on every monthly payment and in the TFR (art. 59 lists the contingenza).",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2025-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        },
+        {
+          "code": "PREMIO_PRODUZIONE",
+          "description": "Premio di produzione nazionale, panificazione industriale",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": null,
+                "value": "35.20"
+              }
+            ]
+          },
+          "tfr_relevant": false,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "153-154",
+              "section": "Premio di produzione per il settore panificazione industriale (printed p. 151-152); art. 59 TFR (PDF p. 160)",
+              "quote": "Il premio di produzione nazionale è determinato in cifra come da tabella seguente a far data dal 1.8.1995 ... 1° 35,20"
+            },
+            "transformation": "Monthly amount of the level. The 13th and 14th months are 'pari alla retribuzione normale mensile di fatto' (artt. 48-49), so it is paid on 14 months; the TFR elements are 'tassativamente elencati' in art. 59 and the premio is not among them, so it is out of the TFR base. The text names neither point for the premio itself.",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2025-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        },
+        {
+          "code": "PREMIO_OBIETTIVI_PANIFICAZIONE",
+          "description": "Premio per obiettivi of the panificazione industriale, paid by the firms that pay no premio per obiettivi, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2004-01-01",
+                "valid_until": "2023-11-01",
+                "value": "21.45"
+              },
+              {
+                "valid_from": "2023-11-01",
+                "valid_until": "2027-01-01",
+                "value": "25.27"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "38.01"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "154",
+              "section": "Premio per obiettivi per il settore panificazione industriale (printed p. 152)",
+              "quote": "sono erogati per 12 mensilità e sono comprensivi dell'incidenza su tutti gli istituti contrattuali e di legge, compreso il T.F.R. ... 200 1° 21,45 25,27 38,01"
+            },
+            "transformation": "Paid in place of the premio per obiettivi of art. 53 by the firms without one (EmployerProfile.second_level_premium), on 12 months, its incidence on every institute already included: out of the TFR base.",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2004-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "unionalimentari-ccnl-2026-03-18",
+            "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+            "kind": "associazione",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+            "published_on": "2026-03-18",
+            "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+          },
+          "page": "80-82, 145",
+          "section": "Classificazione panificazione industriale; paghe base",
+          "quote": "I lavoratori occupati nei panifici ad indirizzo produttivo industriale sono inquadrati in una classificazione di sei livelli"
+        },
+        "transformation": "Level 1° of the panificazione industriale, only for an employer of that sub-sector, on a ladder of its own.",
+        "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T15:00:00Z",
+          "effective_from": "2025-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+        }
+      }
+    },
+    {
+      "code": "P2",
+      "order": 15,
+      "description": "Panificazione industriale 2° livello: funzioni di concetto con compiti di controllo e di coordinamento",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-01-01",
+            "value": "1640.59",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "2° ... 1640.59 ... 1722.63 ... 1804.67 ... 1886.71 ... 184"
+              },
+              "transformation": "Paga base of the panificazione industriale level 2° from 2025-06-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-04-01",
+            "value": "1722.63",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "2° ... 1640.59 ... 1722.63 ... 1804.67 ... 1886.71 ... 184"
+              },
+              "transformation": "Paga base of the panificazione industriale level 2° from 2026-01-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2028-01-01",
+            "value": "1804.67",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "2° ... 1640.59 ... 1722.63 ... 1804.67 ... 1886.71 ... 184"
+              },
+              "transformation": "Paga base of the panificazione industriale level 2° from 2027-04-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1886.71",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "2° ... 1640.59 ... 1722.63 ... 1804.67 ... 1886.71 ... 184"
+              },
+              "transformation": "Paga base of the panificazione industriale level 2° from 2028-01-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          }
+        ]
+      },
+      "subsectors": [
+        "panificazione_industriale"
+      ],
+      "ladder": "panificazione",
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza al 1.11.1991, panificazione industriale (art. 47 bis)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": null,
+                "value": "527.52"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "145",
+              "section": "Art. 47 bis - Indennità di contingenza panificazione (printed p. 143)",
+              "quote": "Al 1° novembre 1991, l'indennità di contingenza risulta essere quella di seguito indicata. ... 2° 527,52"
+            },
+            "transformation": "Frozen monthly contingenza of the level, on every monthly payment and in the TFR (art. 59 lists the contingenza).",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2025-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        },
+        {
+          "code": "PREMIO_PRODUZIONE",
+          "description": "Premio di produzione nazionale, panificazione industriale",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": null,
+                "value": "32.54"
+              }
+            ]
+          },
+          "tfr_relevant": false,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "153-154",
+              "section": "Premio di produzione per il settore panificazione industriale (printed p. 151-152); art. 59 TFR (PDF p. 160)",
+              "quote": "Il premio di produzione nazionale è determinato in cifra come da tabella seguente a far data dal 1.8.1995 ... 2° 32,54"
+            },
+            "transformation": "Monthly amount of the level. The 13th and 14th months are 'pari alla retribuzione normale mensile di fatto' (artt. 48-49), so it is paid on 14 months; the TFR elements are 'tassativamente elencati' in art. 59 and the premio is not among them, so it is out of the TFR base. The text names neither point for the premio itself.",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2025-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        },
+        {
+          "code": "PREMIO_OBIETTIVI_PANIFICAZIONE",
+          "description": "Premio per obiettivi of the panificazione industriale, paid by the firms that pay no premio per obiettivi, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2004-01-01",
+                "valid_until": "2023-11-01",
+                "value": "19.74"
+              },
+              {
+                "valid_from": "2023-11-01",
+                "valid_until": "2027-01-01",
+                "value": "23.26"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "34.98"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "154",
+              "section": "Premio per obiettivi per il settore panificazione industriale (printed p. 152)",
+              "quote": "sono erogati per 12 mensilità e sono comprensivi dell'incidenza su tutti gli istituti contrattuali e di legge, compreso il T.F.R. ... 184 2° 19,74 23,26 34,98"
+            },
+            "transformation": "Paid in place of the premio per obiettivi of art. 53 by the firms without one (EmployerProfile.second_level_premium), on 12 months, its incidence on every institute already included: out of the TFR base.",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2004-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "unionalimentari-ccnl-2026-03-18",
+            "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+            "kind": "associazione",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+            "published_on": "2026-03-18",
+            "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+          },
+          "page": "80-82, 145",
+          "section": "Classificazione panificazione industriale; paghe base",
+          "quote": "I lavoratori occupati nei panifici ad indirizzo produttivo industriale sono inquadrati in una classificazione di sei livelli"
+        },
+        "transformation": "Level 2° of the panificazione industriale, only for an employer of that sub-sector, on a ladder of its own.",
+        "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T15:00:00Z",
+          "effective_from": "2025-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+        }
+      }
+    },
+    {
+      "code": "P3A",
+      "order": 14,
+      "description": "Panificazione industriale 3A livello: guidano, controllano, coordinano squadre di altri lavoratori",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-01-01",
+            "value": "1511.07",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "3A ... 1511.07 ... 1586.42 ... 1661.77 ... 1737.12 ... 169"
+              },
+              "transformation": "Paga base of the panificazione industriale level 3A from 2025-06-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-04-01",
+            "value": "1586.42",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "3A ... 1511.07 ... 1586.42 ... 1661.77 ... 1737.12 ... 169"
+              },
+              "transformation": "Paga base of the panificazione industriale level 3A from 2026-01-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2028-01-01",
+            "value": "1661.77",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "3A ... 1511.07 ... 1586.42 ... 1661.77 ... 1737.12 ... 169"
+              },
+              "transformation": "Paga base of the panificazione industriale level 3A from 2027-04-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1737.12",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "3A ... 1511.07 ... 1586.42 ... 1661.77 ... 1737.12 ... 169"
+              },
+              "transformation": "Paga base of the panificazione industriale level 3A from 2028-01-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          }
+        ]
+      },
+      "subsectors": [
+        "panificazione_industriale"
+      ],
+      "ladder": "panificazione",
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza al 1.11.1991, panificazione industriale (art. 47 bis)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": null,
+                "value": "524.80"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "145",
+              "section": "Art. 47 bis - Indennità di contingenza panificazione (printed p. 143)",
+              "quote": "Al 1° novembre 1991, l'indennità di contingenza risulta essere quella di seguito indicata. ... 3A 524,80"
+            },
+            "transformation": "Frozen monthly contingenza of the level, on every monthly payment and in the TFR (art. 59 lists the contingenza).",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2025-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        },
+        {
+          "code": "PREMIO_PRODUZIONE",
+          "description": "Premio di produzione nazionale, panificazione industriale",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": null,
+                "value": "30.09"
+              }
+            ]
+          },
+          "tfr_relevant": false,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "153-154",
+              "section": "Premio di produzione per il settore panificazione industriale (printed p. 151-152); art. 59 TFR (PDF p. 160)",
+              "quote": "Il premio di produzione nazionale è determinato in cifra come da tabella seguente a far data dal 1.8.1995 ... 3A 30,09"
+            },
+            "transformation": "Monthly amount of the level. The 13th and 14th months are 'pari alla retribuzione normale mensile di fatto' (artt. 48-49), so it is paid on 14 months; the TFR elements are 'tassativamente elencati' in art. 59 and the premio is not among them, so it is out of the TFR base. The text names neither point for the premio itself.",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2025-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        },
+        {
+          "code": "PREMIO_OBIETTIVI_PANIFICAZIONE",
+          "description": "Premio per obiettivi of the panificazione industriale, paid by the firms that pay no premio per obiettivi, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2004-01-01",
+                "valid_until": "2023-11-01",
+                "value": "18.23"
+              },
+              {
+                "valid_from": "2023-11-01",
+                "valid_until": "2027-01-01",
+                "value": "21.46"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "32.22"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "154",
+              "section": "Premio per obiettivi per il settore panificazione industriale (printed p. 152)",
+              "quote": "sono erogati per 12 mensilità e sono comprensivi dell'incidenza su tutti gli istituti contrattuali e di legge, compreso il T.F.R. ... 169 3A 18,23 21,46 32,22"
+            },
+            "transformation": "Paid in place of the premio per obiettivi of art. 53 by the firms without one (EmployerProfile.second_level_premium), on 12 months, its incidence on every institute already included: out of the TFR base.",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2004-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "unionalimentari-ccnl-2026-03-18",
+            "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+            "kind": "associazione",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+            "published_on": "2026-03-18",
+            "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+          },
+          "page": "80-82, 145",
+          "section": "Classificazione panificazione industriale; paghe base",
+          "quote": "I lavoratori occupati nei panifici ad indirizzo produttivo industriale sono inquadrati in una classificazione di sei livelli"
+        },
+        "transformation": "Level 3A of the panificazione industriale, only for an employer of that sub-sector, on a ladder of its own.",
+        "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T15:00:00Z",
+          "effective_from": "2025-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+        }
+      }
+    },
+    {
+      "code": "P3B",
+      "order": 13,
+      "description": "Panificazione industriale 3B livello: impastatore, infornatore con responsabilità diretta, conduttore di forni",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-01-01",
+            "value": "1406.40",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "3B ... 1406.40 ... 1476.40 ... 1546.40 ... 1616.40 ... 157"
+              },
+              "transformation": "Paga base of the panificazione industriale level 3B from 2025-06-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-04-01",
+            "value": "1476.40",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "3B ... 1406.40 ... 1476.40 ... 1546.40 ... 1616.40 ... 157"
+              },
+              "transformation": "Paga base of the panificazione industriale level 3B from 2026-01-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2028-01-01",
+            "value": "1546.40",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "3B ... 1406.40 ... 1476.40 ... 1546.40 ... 1616.40 ... 157"
+              },
+              "transformation": "Paga base of the panificazione industriale level 3B from 2027-04-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1616.40",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "3B ... 1406.40 ... 1476.40 ... 1546.40 ... 1616.40 ... 157"
+              },
+              "transformation": "Paga base of the panificazione industriale level 3B from 2028-01-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          }
+        ]
+      },
+      "subsectors": [
+        "panificazione_industriale"
+      ],
+      "ladder": "panificazione",
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza al 1.11.1991, panificazione industriale (art. 47 bis)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": null,
+                "value": "522.81"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "145",
+              "section": "Art. 47 bis - Indennità di contingenza panificazione (printed p. 143)",
+              "quote": "Al 1° novembre 1991, l'indennità di contingenza risulta essere quella di seguito indicata. ... 3B 522,81"
+            },
+            "transformation": "Frozen monthly contingenza of the level, on every monthly payment and in the TFR (art. 59 lists the contingenza).",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2025-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        },
+        {
+          "code": "PREMIO_PRODUZIONE",
+          "description": "Premio di produzione nazionale, panificazione industriale",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": null,
+                "value": "28.04"
+              }
+            ]
+          },
+          "tfr_relevant": false,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "153-154",
+              "section": "Premio di produzione per il settore panificazione industriale (printed p. 151-152); art. 59 TFR (PDF p. 160)",
+              "quote": "Il premio di produzione nazionale è determinato in cifra come da tabella seguente a far data dal 1.8.1995 ... 3B 28,04"
+            },
+            "transformation": "Monthly amount of the level. The 13th and 14th months are 'pari alla retribuzione normale mensile di fatto' (artt. 48-49), so it is paid on 14 months; the TFR elements are 'tassativamente elencati' in art. 59 and the premio is not among them, so it is out of the TFR base. The text names neither point for the premio itself.",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2025-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        },
+        {
+          "code": "PREMIO_OBIETTIVI_PANIFICAZIONE",
+          "description": "Premio per obiettivi of the panificazione industriale, paid by the firms that pay no premio per obiettivi, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2004-01-01",
+                "valid_until": "2023-11-01",
+                "value": "16.84"
+              },
+              {
+                "valid_from": "2023-11-01",
+                "valid_until": "2027-01-01",
+                "value": "19.84"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "29.84"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "154",
+              "section": "Premio per obiettivi per il settore panificazione industriale (printed p. 152)",
+              "quote": "sono erogati per 12 mensilità e sono comprensivi dell'incidenza su tutti gli istituti contrattuali e di legge, compreso il T.F.R. ... 157 3B 16,84 19,84 29,84"
+            },
+            "transformation": "Paid in place of the premio per obiettivi of art. 53 by the firms without one (EmployerProfile.second_level_premium), on 12 months, its incidence on every institute already included: out of the TFR base.",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2004-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "unionalimentari-ccnl-2026-03-18",
+            "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+            "kind": "associazione",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+            "published_on": "2026-03-18",
+            "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+          },
+          "page": "80-82, 145",
+          "section": "Classificazione panificazione industriale; paghe base",
+          "quote": "I lavoratori occupati nei panifici ad indirizzo produttivo industriale sono inquadrati in una classificazione di sei livelli"
+        },
+        "transformation": "Level 3B of the panificazione industriale, only for an employer of that sub-sector, on a ladder of its own.",
+        "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T15:00:00Z",
+          "effective_from": "2025-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+        }
+      }
+    },
+    {
+      "code": "P4",
+      "order": 12,
+      "description": "Panificazione industriale 4° livello: attività tecniche qualificate nella produzione, confezione, distribuzione",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-01-01",
+            "value": "1186.66",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "4° ... 1186.66 ... 1245.96 ... 1305.26 ... 1364.56 ... 133"
+              },
+              "transformation": "Paga base of the panificazione industriale level 4° from 2025-06-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-04-01",
+            "value": "1245.96",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "4° ... 1186.66 ... 1245.96 ... 1305.26 ... 1364.56 ... 133"
+              },
+              "transformation": "Paga base of the panificazione industriale level 4° from 2026-01-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2028-01-01",
+            "value": "1305.26",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "4° ... 1186.66 ... 1245.96 ... 1305.26 ... 1364.56 ... 133"
+              },
+              "transformation": "Paga base of the panificazione industriale level 4° from 2027-04-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1364.56",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "4° ... 1186.66 ... 1245.96 ... 1305.26 ... 1364.56 ... 133"
+              },
+              "transformation": "Paga base of the panificazione industriale level 4° from 2028-01-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          }
+        ]
+      },
+      "subsectors": [
+        "panificazione_industriale"
+      ],
+      "ladder": "panificazione",
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza al 1.11.1991, panificazione industriale (art. 47 bis)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": null,
+                "value": "517.62"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "145",
+              "section": "Art. 47 bis - Indennità di contingenza panificazione (printed p. 143)",
+              "quote": "Al 1° novembre 1991, l'indennità di contingenza risulta essere quella di seguito indicata. ... 4° 517,62"
+            },
+            "transformation": "Frozen monthly contingenza of the level, on every monthly payment and in the TFR (art. 59 lists the contingenza).",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2025-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        },
+        {
+          "code": "PREMIO_PRODUZIONE",
+          "description": "Premio di produzione nazionale, panificazione industriale",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": null,
+                "value": "23.55"
+              }
+            ]
+          },
+          "tfr_relevant": false,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "153-154",
+              "section": "Premio di produzione per il settore panificazione industriale (printed p. 151-152); art. 59 TFR (PDF p. 160)",
+              "quote": "Il premio di produzione nazionale è determinato in cifra come da tabella seguente a far data dal 1.8.1995 ... 4° 23,55"
+            },
+            "transformation": "Monthly amount of the level. The 13th and 14th months are 'pari alla retribuzione normale mensile di fatto' (artt. 48-49), so it is paid on 14 months; the TFR elements are 'tassativamente elencati' in art. 59 and the premio is not among them, so it is out of the TFR base. The text names neither point for the premio itself.",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2025-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        },
+        {
+          "code": "PREMIO_OBIETTIVI_PANIFICAZIONE",
+          "description": "Premio per obiettivi of the panificazione industriale, paid by the firms that pay no premio per obiettivi, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2004-01-01",
+                "valid_until": "2023-11-01",
+                "value": "14.27"
+              },
+              {
+                "valid_from": "2023-11-01",
+                "valid_until": "2027-01-01",
+                "value": "16.81"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "25.28"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "154",
+              "section": "Premio per obiettivi per il settore panificazione industriale (printed p. 152)",
+              "quote": "sono erogati per 12 mensilità e sono comprensivi dell'incidenza su tutti gli istituti contrattuali e di legge, compreso il T.F.R. ... 133 4° 14,27 16,81 25,28"
+            },
+            "transformation": "Paid in place of the premio per obiettivi of art. 53 by the firms without one (EmployerProfile.second_level_premium), on 12 months, its incidence on every institute already included: out of the TFR base.",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2004-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "unionalimentari-ccnl-2026-03-18",
+            "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+            "kind": "associazione",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+            "published_on": "2026-03-18",
+            "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+          },
+          "page": "80-82, 145",
+          "section": "Classificazione panificazione industriale; paghe base",
+          "quote": "I lavoratori occupati nei panifici ad indirizzo produttivo industriale sono inquadrati in una classificazione di sei livelli"
+        },
+        "transformation": "Level 4° of the panificazione industriale, only for an employer of that sub-sector, on a ladder of its own.",
+        "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T15:00:00Z",
+          "effective_from": "2025-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+        }
+      }
+    },
+    {
+      "code": "P5",
+      "order": 11,
+      "description": "Panificazione industriale 5° livello: attività semplici o di esclusivo ausilio",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-01-01",
+            "value": "1057.13",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "5° ... 1057.13 ... 1110.19 ... 1163.25 ... 1216.31 ... 119"
+              },
+              "transformation": "Paga base of the panificazione industriale level 5° from 2025-06-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-04-01",
+            "value": "1110.19",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "5° ... 1057.13 ... 1110.19 ... 1163.25 ... 1216.31 ... 119"
+              },
+              "transformation": "Paga base of the panificazione industriale level 5° from 2026-01-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2028-01-01",
+            "value": "1163.25",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "5° ... 1057.13 ... 1110.19 ... 1163.25 ... 1216.31 ... 119"
+              },
+              "transformation": "Paga base of the panificazione industriale level 5° from 2027-04-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1216.31",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "5° ... 1057.13 ... 1110.19 ... 1163.25 ... 1216.31 ... 119"
+              },
+              "transformation": "Paga base of the panificazione industriale level 5° from 2028-01-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          }
+        ]
+      },
+      "subsectors": [
+        "panificazione_industriale"
+      ],
+      "ladder": "panificazione",
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza al 1.11.1991, panificazione industriale (art. 47 bis)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": null,
+                "value": "514.66"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "145",
+              "section": "Art. 47 bis - Indennità di contingenza panificazione (printed p. 143)",
+              "quote": "Al 1° novembre 1991, l'indennità di contingenza risulta essere quella di seguito indicata. ... 5° 514,66"
+            },
+            "transformation": "Frozen monthly contingenza of the level, on every monthly payment and in the TFR (art. 59 lists the contingenza).",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2025-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        },
+        {
+          "code": "PREMIO_PRODUZIONE",
+          "description": "Premio di produzione nazionale, panificazione industriale",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": null,
+                "value": "20.79"
+              }
+            ]
+          },
+          "tfr_relevant": false,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "153-154",
+              "section": "Premio di produzione per il settore panificazione industriale (printed p. 151-152); art. 59 TFR (PDF p. 160)",
+              "quote": "Il premio di produzione nazionale è determinato in cifra come da tabella seguente a far data dal 1.8.1995 ... 5° 20,79"
+            },
+            "transformation": "Monthly amount of the level. The 13th and 14th months are 'pari alla retribuzione normale mensile di fatto' (artt. 48-49), so it is paid on 14 months; the TFR elements are 'tassativamente elencati' in art. 59 and the premio is not among them, so it is out of the TFR base. The text names neither point for the premio itself.",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2025-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        },
+        {
+          "code": "PREMIO_OBIETTIVI_PANIFICAZIONE",
+          "description": "Premio per obiettivi of the panificazione industriale, paid by the firms that pay no premio per obiettivi, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2004-01-01",
+                "valid_until": "2023-11-01",
+                "value": "12.66"
+              },
+              {
+                "valid_from": "2023-11-01",
+                "valid_until": "2027-01-01",
+                "value": "14.93"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "22.51"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "154",
+              "section": "Premio per obiettivi per il settore panificazione industriale (printed p. 152)",
+              "quote": "sono erogati per 12 mensilità e sono comprensivi dell'incidenza su tutti gli istituti contrattuali e di legge, compreso il T.F.R. ... 119 5° 12,66 14,93 22,51"
+            },
+            "transformation": "Paid in place of the premio per obiettivi of art. 53 by the firms without one (EmployerProfile.second_level_premium), on 12 months, its incidence on every institute already included: out of the TFR base.",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2004-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "unionalimentari-ccnl-2026-03-18",
+            "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+            "kind": "associazione",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+            "published_on": "2026-03-18",
+            "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+          },
+          "page": "80-82, 145",
+          "section": "Classificazione panificazione industriale; paghe base",
+          "quote": "I lavoratori occupati nei panifici ad indirizzo produttivo industriale sono inquadrati in una classificazione di sei livelli"
+        },
+        "transformation": "Level 5° of the panificazione industriale, only for an employer of that sub-sector, on a ladder of its own.",
+        "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T15:00:00Z",
+          "effective_from": "2025-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+        }
+      }
+    },
+    {
+      "code": "P6",
+      "order": 10,
+      "description": "Panificazione industriale 6° livello: lavori di semplice manovalanza",
+      "base_salary": {
+        "periods": [
+          {
+            "valid_from": "2025-06-01",
+            "valid_until": "2026-01-01",
+            "value": "890.33",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "6° ... 890.33 ... 934.92 ... 979.51 ... 1024.10 ... 100"
+              },
+              "transformation": "Paga base of the panificazione industriale level 6° from 2025-06-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2025-06-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2027-04-01",
+            "value": "934.92",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "6° ... 890.33 ... 934.92 ... 979.51 ... 1024.10 ... 100"
+              },
+              "transformation": "Paga base of the panificazione industriale level 6° from 2026-01-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2026-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2027-04-01",
+            "valid_until": "2028-01-01",
+            "value": "979.51",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "6° ... 890.33 ... 934.92 ... 979.51 ... 1024.10 ... 100"
+              },
+              "transformation": "Paga base of the panificazione industriale level 6° from 2027-04-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2027-04-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          },
+          {
+            "valid_from": "2028-01-01",
+            "valid_until": null,
+            "value": "1024.10",
+            "provenance": {
+              "status": "verified",
+              "location": {
+                "source_document": {
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                  "kind": "associazione",
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+                },
+                "page": "145",
+                "section": "Paghe base del settore panificazione industriale (printed p. 143)",
+                "quote": "6° ... 890.33 ... 934.92 ... 979.51 ... 1024.10 ... 100"
+              },
+              "transformation": "Paga base of the panificazione industriale level 6° from 2028-01-01: four tranches of EUR 70 at level 3B (parametro 157), 173 hours, contingenza of 31.1.1977 included.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+              "extraction": {
+                "method": "ai",
+                "model": "claude-opus-5-5",
+                "extraction_timestamp": "2026-11-14T15:00:00Z",
+                "effective_from": "2028-01-01",
+                "verified_by": "claude-opus-5-5",
+                "verified_at": "2026-11-14T15:00:00Z",
+                "verification_status": "verified",
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+              }
+            }
+          }
+        ]
+      },
+      "subsectors": [
+        "panificazione_industriale"
+      ],
+      "ladder": "panificazione",
+      "fixed_allowances": [
+        {
+          "code": "CONTINGENZA",
+          "description": "Indennità di contingenza al 1.11.1991, panificazione industriale (art. 47 bis)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": null,
+                "value": "511.71"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "145",
+              "section": "Art. 47 bis - Indennità di contingenza panificazione (printed p. 143)",
+              "quote": "Al 1° novembre 1991, l'indennità di contingenza risulta essere quella di seguito indicata. ... 6° 511,71"
+            },
+            "transformation": "Frozen monthly contingenza of the level, on every monthly payment and in the TFR (art. 59 lists the contingenza).",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2025-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        },
+        {
+          "code": "PREMIO_PRODUZIONE",
+          "description": "Premio di produzione nazionale, panificazione industriale",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2025-06-01",
+                "valid_until": null,
+                "value": "17.60"
+              }
+            ]
+          },
+          "tfr_relevant": false,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "153-154",
+              "section": "Premio di produzione per il settore panificazione industriale (printed p. 151-152); art. 59 TFR (PDF p. 160)",
+              "quote": "Il premio di produzione nazionale è determinato in cifra come da tabella seguente a far data dal 1.8.1995 ... 6° 17,60"
+            },
+            "transformation": "Monthly amount of the level. The 13th and 14th months are 'pari alla retribuzione normale mensile di fatto' (artt. 48-49), so it is paid on 14 months; the TFR elements are 'tassativamente elencati' in art. 59 and the premio is not among them, so it is out of the TFR base. The text names neither point for the premio itself.",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2025-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        },
+        {
+          "code": "PREMIO_OBIETTIVI_PANIFICAZIONE",
+          "description": "Premio per obiettivi of the panificazione industriale, paid by the firms that pay no premio per obiettivi, on 12 months",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2004-01-01",
+                "valid_until": "2023-11-01",
+                "value": "10.73"
+              },
+              {
+                "valid_from": "2023-11-01",
+                "valid_until": "2027-01-01",
+                "value": "12.64"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "19.01"
+              }
+            ]
+          },
+          "months_per_year": 12,
+          "tfr_relevant": false,
+          "replaced_by": "second_level_premium",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unionalimentari-ccnl-2026-03-18",
+                "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                "published_on": "2026-03-18",
+                "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+              },
+              "page": "154",
+              "section": "Premio per obiettivi per il settore panificazione industriale (printed p. 152)",
+              "quote": "sono erogati per 12 mensilità e sono comprensivi dell'incidenza su tutti gli istituti contrattuali e di legge, compreso il T.F.R. ... 100 6° 10,73 12,64 19,01"
+            },
+            "transformation": "Paid in place of the premio per obiettivi of art. 53 by the firms without one (EmployerProfile.second_level_premium), on 12 months, its incidence on every institute already included: out of the TFR base.",
+            "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-14T15:00:00Z",
+              "effective_from": "2004-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-14T15:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+            }
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "unionalimentari-ccnl-2026-03-18",
+            "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+            "kind": "associazione",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+            "published_on": "2026-03-18",
+            "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+          },
+          "page": "80-82, 145",
+          "section": "Classificazione panificazione industriale; paghe base",
+          "quote": "I lavoratori occupati nei panifici ad indirizzo produttivo industriale sono inquadrati in una classificazione di sei livelli"
+        },
+        "transformation": "Level 6° of the panificazione industriale, only for an employer of that sub-sector, on a ladder of its own.",
+        "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T15:00:00Z",
+          "effective_from": "2025-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T15:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-panificazione"
+        }
+      }
     }
   ],
   "ruleset": {
@@ -3735,7 +6040,7 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "b5a738dde5af550785b5fff1bdb23cba5edf6c307a13438065d5eb98e8388a9c",
+    "source_hash": "26ac0be9d9affadd6570075e0a7c770ebe21cd44c45c45b2b71b62f8a74f798a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

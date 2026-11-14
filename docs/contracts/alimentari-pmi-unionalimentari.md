@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ✅ |
 | **Limits of this contract** | — |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 38 verified / 34 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 80 verified / 41 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 54 values found verbatim on the cited pages and marked verified; 18 left as they were (derived or not on a text page). |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 36 sickness rules of the CCNL 2024-2028 (alimentare): proposal by one session, field-by-field check of the text by a second independent session. | corrected | Comporto as a sum over the 17 months (up to 5 years of seniority, 180 days) or 24 months (over 5 years, 365 days) before the day, 'anche in caso di diverse malattie': modelled as cumulation; 180 days at full net pay, then 50%.<br>The second session confirmed 15 fields; the window_years fallback and the band boundaries are schema conventions, not contractual windows. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 47 table of the consolidated text signed on 18 March 2026 (PDF p. 144), read on the page image, against the file and the verbale of 28 May 2025 (p. 26). | corrected | 21 minimi of 2026-2028 differed by one or two cents from the later signed text and were corrected.<br>Both signed documents set four tranches of EUR 70: the 2027 and 2028 tranches are confirmed. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Panificazione industriale pay of the text signed on 18 March 2026 (PDF p. 145, 147-148, 153-154, 160), read on the page images, against the research of a separate model session on the CCNL 2021. | corrected | Added the seven panificazione industriale levels with paga base, contingenza, premio di produzione, premio per obiettivi and scatti.<br>The contingenza of the sector (art. 47 bis) is new in the 2026 text; the CCNL 2021 had none for these levels. |
 
 ## Salary table
 
@@ -69,6 +70,13 @@ Latest effective values per level (monthly gross, EUR).
 
 | Level | Description | Base salary (monthly) | Effective from |
 |---|---|---:|:---:|
+| `P1` | Panificazione industriale 1° livello: preposti ai servizi commerciale, amministrativo, tecnico e chimico con discrezionalità di poteri | € 2,047.17 | 2028-01-01 |
+| `P2` | Panificazione industriale 2° livello: funzioni di concetto con compiti di controllo e di coordinamento | € 1,886.71 | 2028-01-01 |
+| `P3A` | Panificazione industriale 3A livello: guidano, controllano, coordinano squadre di altri lavoratori | € 1,737.12 | 2028-01-01 |
+| `P3B` | Panificazione industriale 3B livello: impastatore, infornatore con responsabilità diretta, conduttore di forni | € 1,616.40 | 2028-01-01 |
+| `P4` | Panificazione industriale 4° livello: attività tecniche qualificate nella produzione, confezione, distribuzione | € 1,364.56 | 2028-01-01 |
+| `P5` | Panificazione industriale 5° livello: attività semplici o di esclusivo ausilio | € 1,216.31 | 2028-01-01 |
+| `P6` | Panificazione industriale 6° livello: lavori di semplice manovalanza | € 1,024.10 | 2028-01-01 |
 | `Q` | Quadri (executive staff) | € 3,105.90 | 2028-01-01 |
 | `1` | 1st level — senior specialists and team leaders | € 3,005.90 | 2028-01-01 |
 | `2` | 2nd level — skilled specialists | € 2,613.80 | 2028-01-01 |
@@ -261,11 +269,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the CCNL clause on the holidays falling on a Sunday and record it as work_rules.sunday_holidays.
 
-### Without monetary impact
-
-!!! note ""
-    SIMPLIFICATION: Settore panificazione industriale (7 levels: 1, 3A, 3B, 4, 5, 6, plus viaggiatori) not modeled — separate salary tables; only settore alimentare 9 levels implemented.
-
 ## Sources
 
 | Document | Kind | Date | URL |
@@ -289,6 +292,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Apprenticeship: Art. 8.1 CCNL — under-classification model, levels 1 through 7, multi-period per destination level. Complex schedule not publicly parsed in full. layer_2 = out_of_scope.
     
     Headcount: ~34,646 workers (CNEL archive, E018).
+    
+    PANIFICAZIONE INDUSTRIALE (text signed 18 March 2026): levels P1, P2, P3A, P3B, P4, P5, P6 (1°, 2°, 3A, 3B, 4°, 5°, 6°) only for an employer of the sub-sector panificazione_industriale, on a ladder of their own: paga base (4 tranches of EUR 70 at 3B), contingenza of art. 47 bis, premio di produzione nazionale (14 months, out of the TFR by the exhaustive list of art. 59), premio per obiettivi of the sector in place of art. 53 (12 months) and five biennial scatti frozen at the 1997 amounts. No EDR: the signed text names none for the sector.
     
     TRANCHES 2027-2028 (art. 47): 70.00 EUR at parametro 137 from 1 April 2027 and again from 1 January 2028, as in the verbale signed 28 May 2025 (p. 26) and the consolidated text signed 18 March 2026 (PDF p. 144). The association circular's prose giving 32 EUR for the third tranche is wrong. Where the two signed tables differ by a cent the later text is used: it adds each increment to the previous minimo exactly (e.g. 3rd level 1,987.81 from 1 January 2026, 1,987.80 in the verbale).
     

@@ -365,11 +365,12 @@ class TestLoadAlimentariPmiUnionalimentari:
         assert ccnl.meta.cnel_code == "E018"
 
     def test_alimentari_pmi_unionalimentari_has_9_levels(self) -> None:
-        """Settore alimentare has exactly 9 levels."""
+        """Settore alimentare has 9 levels, the panificazione industriale 7."""
         ccnl = load_ccnl("alimentari-pmi-unionalimentari")
-        assert len(ccnl.levels) == 9
-        codes = {lv.code for lv in ccnl.levels}
+        codes = {lv.code for lv in ccnl.levels if lv.ladder is None}
         assert codes == {"Q", "1", "2", "3", "4", "5", "6", "7", "8"}
+        bakery = {lv.code for lv in ccnl.levels if lv.ladder == "panificazione"}
+        assert bakery == {"P1", "P2", "P3A", "P3B", "P4", "P5", "P6"}
 
     def test_alimentari_pmi_unionalimentari_level4_salary_jun2025(self) -> None:
         """Level 4 paga base Jun 2025: 1672.78 (Unionalimentari circular)."""
@@ -386,7 +387,8 @@ class TestLoadAlimentariPmiUnionalimentari:
     def test_alimentari_pmi_unionalimentari_level_ordering(self) -> None:
         """Highest order level is Q; lowest is 8."""
         ccnl = load_ccnl("alimentari-pmi-unionalimentari")
-        sorted_levels = sorted(ccnl.levels, key=lambda lv: lv.order)
+        ordinary = [lv for lv in ccnl.levels if lv.ladder is None]
+        sorted_levels = sorted(ordinary, key=lambda lv: lv.order)
         assert sorted_levels[0].code == "8"
         assert sorted_levels[-1].code == "Q"
 
@@ -405,7 +407,7 @@ class TestLoadAlimentariPmiUnionalimentari:
     def test_alimentari_pmi_unionalimentari_split_allowances(self) -> None:
         """All 9 levels carry CONTINGENZA, EDR and the EGR (split model)."""
         ccnl = load_ccnl("alimentari-pmi-unionalimentari")
-        for lv in ccnl.levels:
+        for lv in (lv for lv in ccnl.levels if lv.ladder is None):
             codes = {a.code for a in lv.fixed_allowances}
             assert codes == {"CONTINGENZA", "EDR", "EGR"}
 
