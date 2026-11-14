@@ -643,7 +643,8 @@
     ],
     "agreement/assicurazioni-ania.json": [
       "assicurazioni-ania/funzionari_economic_allowance",
-      "assicurazioni-ania/inps_sector_rates_unsourced"
+      "assicurazioni-ania/inps_sector_rates_unsourced",
+      "assicurazioni-ania/sickness_serious_extensions"
     ],
     "agreement/autoferrotranvieri-internavigatori.json": [
       "autoferrotranvieri-internavigatori/public_operator_inps_scheme"

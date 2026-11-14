@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 353 open limitations (353 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 354 open limitations (354 with a monetary impact).
 
 ## Declared window
 
@@ -58,7 +58,7 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [alimentari-pmi-unionalimentari](../contracts/alimentari-pmi-unionalimentari.md) | `alimentare` | exploratory | — | 17 rows | 17 open requirements; 1 weak rule; 13 monetary limitations; 1 outside_input limitation; 18 non-native capabilities |
 | [alimentaristi-cooperative-e016](../contracts/alimentaristi-cooperative-e016.md) | `alimentare` | exploratory | — | 17 rows | 17 open requirements; 1 weak rule; 13 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [anas](../contracts/anas.md) | `trasporti-logistica` | exploratory | — | 18 rows | tables from 2026-03-01; 18 open requirements; 1 weak rule; 15 monetary limitations; 18 non-native capabilities |
-| [assicurazioni-ania](../contracts/assicurazioni-ania.md) | `assicurazioni` | exploratory | — | 20 rows | 20 open requirements; 2 weak rules; 15 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
+| [assicurazioni-ania](../contracts/assicurazioni-ania.md) | `assicurazioni` | exploratory | — | 20 rows | 20 open requirements; 2 weak rules; 14 monetary limitations; 2 outside_input limitations; 21 non-native capabilities |
 | [attivita-minerarie-assorisorse](../contracts/attivita-minerarie-assorisorse.md) | `materiali-estrattive` | exploratory | — | 18 rows | 18 open requirements; 3 weak rules; 13 monetary limitations; 18 non-native capabilities |
 | [autoferrotranvieri-internavigatori](../contracts/autoferrotranvieri-internavigatori.md) | `trasporti-logistica` | exploratory | — | 18 rows | 18 open requirements; 1 weak rule; 14 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [autorimesse-ic35](../contracts/autorimesse-ic35.md) | `servizi-automobilistici` | exploratory | — | 21 rows | 21 open requirements; 2 weak rules; 15 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |

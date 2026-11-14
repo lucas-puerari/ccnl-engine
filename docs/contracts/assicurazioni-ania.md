@@ -33,9 +33,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, inps_employer |
+| **Limits of this contract** | base_salary, inps_employer, sickness |
 
-3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 20 verified / 10 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 21 verified / 9 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-05-13 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2028-01-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: art. 113 (p. 81) and Allegato 18 cap. 3 artt. 5, 8 and 9 (pp. 250, 253, OCR) of the CCNL of 22 February 2017. | corrected | The apprentice is classified up to two levels below, then one; the period 'è computato integralmente nella maturazione dell'anzianità e degli automatismi' (art. 8), the general CCNL applies to what the accordo does not settle (art. 9) and art. 113 counts the seniority of the scatto from the hire month: the increments of the level the apprentice is paid at. |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 24 values read identically by both readings and equal to the file. |
 | 2026-11-08 | gpt-6-sol (ai) | Allegati 2/A and 2/B (tranches 1.1.2026, 1.1.2027, 1.1.2028) of the signed annex, scanned pp. 3, 5, 7, 9, transcribed cell by cell by a separate model session; art. 113 of the CCNL 2017 (CNEL 224217, p. 81). Class 1 of 2/B checked against the base salaries of the file and on the page image (L5 2027). | corrected | Added Level.class_tables for both cohorts.<br>Corrected the 2027 base salary of L5 to the printed 2391.48 (was 2391.49). |
+| 2026-11-15 | claude-opus-5-5 (ai) | Sickness of artt. 44 and 46 against the research of a separate model session; quotes checked on the OCR of the source. | corrected | Replaced 360 days of one episode with the chain of art. 46 reset after four months, by seniority, with the serious-illness and hospital rules of art. 44. |
 
 ## Salary table
 
@@ -131,6 +132,13 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source the credito rates of 2026 on an INPS or association table, mark the inps block of contribution/2026/credito.json derived, then remove this note.
 
+!!! warning "assicurazioni-ania/sickness_serious_extensions · sickness · impact yes · open"
+    SICKNESS LIMITS NOT MODELLED (art. 44): a chain longer than the 40 months of art. 46 counts all its days; the two more months of the life-saving therapies and the 150-day exclusion of stays over 7 days for the serious illnesses are not applied; the apprentices' 2, 4 or 6 months of the apprenticeship agreement are not applied.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Model the life-saving therapy extension, the 150-day stay exclusion of art. 44 c. 2 and the apprentice comporto of the apprenticeship agreement.
+
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
 
@@ -144,13 +152,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
-
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
-
-    **Applies when:** `sickness` applies; the run takes the engine code path.
-
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
@@ -333,6 +334,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SOLIDARITY FUND: Fondo di solidarietà del settore assicurativo (accord ANIA of 20 May 2013, D.I. 78459 of 17 January 2014): ordinary contribution 0.30% of the INPS taxable pay of permanent workers, 0.20% employer and 0.10% worker, dirigenti excluded (INPS circ. 56/2015 p. 11); collected by INPS in the overall rate.
     
     CLASS TABLES (art. 113; Allegati 2/A and 2/B of the renewal 2026, signed annex pp. 3, 5, 7, 9): the salary of the personale amministrativo is the cell of its level and seniority class, in Allegato 2/A for the staff in service on 18 December 1999 and 2/B for the later hires (Level.class_tables, by the hire date and the months of service); the increments of parameters.seniority_increments are then not paid. Classes of 2/A: two years each up to cl 6, three after, cl 13 'oltre'; of 2/B: four years, then three, cl 12 'oltre'. The art. 113 rule that counts the service from the first of the month of hire (hired by the 15th) or of the next month is read off SeniorityFact.months.
+    
+    SICKNESS (Artt. 44 and 46, ipotesi di intesa 13 maggio 2026, PDF pp. 7-8 (scanned), https://www.fisac-cgil.it/wp-content/uploads/CCNL-ANIA_compressed.pdf, sha256 b93a0549d28901da9a9c4d5d50b5a76e659cdead9e8d89313fa240b194f202ae): comporto of 12 months up to 10 years of seniority and 18 above, 'Per l'intera durata dei periodi suindicati sarà corrisposto un importo pari all'intera retribuzione'; the absences 'si sommano a meno che, tra una assenza ed un'altra, non intercorra un intervallo di almeno quattro mesi', over the 40 months before each day. Modelled as sickness_rules.cumulation: a chain reset after 120 days of work with the comporto over the chain, 360/540 days in full, 450/720 for a serious illness, hospital stays over 15 days left out up to 120.
     
     Salary tables: FirstCISL Gruppo Unipol, Allegato 2/B — Tabella omnicomprensiva post-1999, decorrenza 01/01/2026, 01/01/2027, 01/01/2028.
     
