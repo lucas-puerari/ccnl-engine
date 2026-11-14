@@ -31,7 +31,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | inps_employer, seniority |
+| **Limits of this contract** | inps_employer |
 
 3 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Allegato A (PDF pp. 157, 159) and Allegato Q (p. 230) of the text of 21 May 2025, text layer. | corrected | Added the table of the staff in service on 15 July 2000 as base_salary_by_cohort.<br>Corrected the post-2000 base salaries that differed by a cent from the printed table: D115 2026-01-01 1764.29->1764.28; D116 2026-01-01 1779.62->1779.63; C127 2026-01-01 1948.38->1948.39; A157 2026-01-01 2408.65->2408.64; AQ164 2026-01-01 2516.04->2516.03 |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 72 scatti table of the CCNL 2023-2026 (PDF p. 72), against the research of a separate model session. | corrected | The sub-level mapping was inverted: ex 4ª f.f. has the lower scatto (44.44, 47.73), ex 5ª f.f. the higher (47.92, 50.05). |
 | 2026-11-15 | claude-opus-5-5 (ai) | Sick pay and comporto against the research of a separate model session; quotes checked on the source. | corrected | Replaced the per-episode tiers with the chain of art. 98 reset after three months, 10 months in full and 5 at half pay. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Amounts of the later seniority increments of art. 72, from the research of a separate model session. | confirmed | Art. 72 gives each of the ten increments the unit amount of its comma 4 or 5: the tiers already pay it. |
 
 ## Salary table
 
@@ -105,12 +106,12 @@ Latest effective values per level (monthly gross, EUR).
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "consorzi-di-bonifica-snebi/higher_tier_scatto_amounts · seniority · impact unknown · open"
-    Seniority: 10 scatti total — tier 1: 6 biennali (cadence 24 months), tier 2: 1 dodicennale (cadence 144 months after tier 1 exhausted), tier 3: 3 quadriennali (cadence 48 months). All tiers modeled. Per-scatto amounts for tiers 2-3 assumed equal to tier 1 amounts (no independent source found for higher-tier amounts; best-guess from standard CCNL practice).
+!!! note "consorzi-di-bonifica-snebi/higher_tier_scatto_amounts · seniority · impact unknown · resolved"
+    Seniority: 10 increments, 6 biennial, 1 after twelve years and 3 quadriennial. Art. 72 (PDF p. 80, https://www.faicisl.it/attachments/article/2356/FAI%20CISL%20-%20CCNL%20BONIFICA%202023%20-%202026.pdf, sha256 8f09770620642bc2d3179029ddacf84f7f5530831c5d5d5d6f854f2fb955c83a): 'L'importo di ciascun aumento periodico è determinato in cifra fissa, di ammontare pari, per ciascuna fascia funzionale e per ciascun livello, a quello indicato al precedente 4° comma', so every tier pays the same unit amount.
 
     **Applies when:** `seniority` applies.
 
-    **Remediation:** Source the amounts of the dodicennale and quadriennali scatti and correct tiers 2-3.
+    **Remediation:** Resolved: art. 72 read on 2026-11-15, one unit amount for every increment.
 
 !!! note "consorzi-di-bonifica-snebi/quadri_function_allowance · base_salary · impact unknown · resolved"
     AQ-category levels (AQ162, AQ164, AQ185, AQ187) are quadri. An indennita di funzione may apply per standard quadri CCNL practice, but the amount could not be confirmed from available public sources; not modeled.

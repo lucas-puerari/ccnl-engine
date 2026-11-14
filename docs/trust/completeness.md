@@ -14,7 +14,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 354 open limitations (354 with a monetary impact).
+**Complete: 0/136 CCNLs.** Bundle: 260 weak rules, 351 open limitations (351 with a monetary impact).
 
 ## Declared window
 
@@ -80,15 +80,15 @@ Future data, registered apart from the gaps: a contract whose validity ends insi
 | [comunicazione-artigianato-confartigianato](../contracts/comunicazione-artigianato-confartigianato.md) | `carta-grafica` | exploratory | — | 22 rows | 22 open requirements; 1 weak rule; 17 monetary limitations; 2 outside_input limitations; 21 non-native capabilities |
 | [concia-unic](../contracts/concia-unic.md) | `pelli-calzature` | reviewed | — | 16 rows | 16 open requirements; 14 monetary limitations; 18 non-native capabilities |
 | [consorzi-agrari-assocap](../contracts/consorzi-agrari-assocap.md) | `agricoltura` | exploratory | — | 19 rows | 19 open requirements; 1 weak rule; 15 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
-| [consorzi-di-bonifica-snebi](../contracts/consorzi-di-bonifica-snebi.md) | `bonifica-forestazione` | exploratory | — | 20 rows | 20 open requirements; 2 weak rules; 16 monetary limitations; 20 non-native capabilities |
+| [consorzi-di-bonifica-snebi](../contracts/consorzi-di-bonifica-snebi.md) | `bonifica-forestazione` | exploratory | — | 19 rows | 19 open requirements; 2 weak rules; 15 monetary limitations; 19 non-native capabilities |
 | [contoterzismo-caiagromec](../contracts/contoterzismo-caiagromec.md) | `agricoltura` | exploratory | — | 18 rows | 18 open requirements; 1 weak rule; 15 monetary limitations; 18 non-native capabilities |
 | [cooperative-consorzi-agricoli](../contracts/cooperative-consorzi-agricoli.md) | `agricoltura` | exploratory | — | 18 rows | 18 open requirements; 15 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [cooperative-sociali](../contracts/cooperative-sociali.md) | `socio-sanitario` | reviewed | — | 20 rows | 20 open requirements; 15 monetary limitations; 3 outside_input limitations; 20 non-native capabilities |
 | [dirigenza-funzioni-centrali-aran](../contracts/dirigenza-funzioni-centrali-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 15 rows | 15 open requirements; 13 monetary limitations; 18 non-native capabilities |
 | [dirigenza-funzioni-locali-aran](../contracts/dirigenza-funzioni-locali-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 16 rows | 16 open requirements; 13 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [dirigenza-istruzione-ricerca-aran](../contracts/dirigenza-istruzione-ricerca-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 16 rows | 16 open requirements; 14 monetary limitations; 19 non-native capabilities |
-| [dirigenza-sanitaria-area-sanita-aran](../contracts/dirigenza-sanitaria-area-sanita-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 17 rows | tables from 2026-03-01; 17 open requirements; 14 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
-| [dirigenza-sanitaria-medico-veterinaria-aran](../contracts/dirigenza-sanitaria-medico-veterinaria-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 21 rows | tables from 2026-03-01; 21 open requirements; 2 weak rules; 16 monetary limitations; 1 outside_input limitation; 20 non-native capabilities |
+| [dirigenza-sanitaria-area-sanita-aran](../contracts/dirigenza-sanitaria-area-sanita-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 16 rows | tables from 2026-03-01; 16 open requirements; 13 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
+| [dirigenza-sanitaria-medico-veterinaria-aran](../contracts/dirigenza-sanitaria-medico-veterinaria-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 20 rows | tables from 2026-03-01; 20 open requirements; 2 weak rules; 15 monetary limitations; 1 outside_input limitation; 19 non-native capabilities |
 | [distribuzione-cooperativa-ancc](../contracts/distribuzione-cooperativa-ancc.md) | `commercio` | exploratory | — | 19 rows | 19 open requirements; 1 weak rule; 16 monetary limitations; 19 non-native capabilities |
 | [dmo-federdistribuzione](../contracts/dmo-federdistribuzione.md) | `commercio` | reviewed | — | 19 rows | 19 open requirements; 15 monetary limitations; 2 outside_input limitations; 20 non-native capabilities |
 | [edilizia-ance](../contracts/edilizia-ance.md) | `edilizia` | reviewed | — | 28 rows | 28 open requirements; 17 monetary limitations; 9 outside_input limitations; 20 non-native capabilities |

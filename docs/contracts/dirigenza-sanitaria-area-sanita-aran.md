@@ -35,7 +35,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, workplace_injury |
+| **Limits of this contract** | base_salary |
 
 2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -54,7 +54,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-02-27 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2024-01-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 66 of the CCNL of 23 January 2024 and art. 15 of the CCNL of 27 February 2026, against the research of a separate model session. | corrected | The pre-2025 amount was an estimate of 104.34; the text gives 1,381.49 a year on 13 payments, 106.27 a month, from 1 January 2022; the 2025 amount starts on 1 January 2025. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Hourly divisor of art. 59 against the research of a separate model session; quote checked on the source. | corrected | The hourly divisor is 156 (art. 59 c. 4), not the approximation 165. |
 
 ## Salary table
 
@@ -87,12 +88,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Take the retribuzione di posizione (Art. 14) as a worker fact by type of incarico, or document IndividualElement as its channel.
 
-!!! warning "dirigenza-sanitaria-area-sanita-aran/approximate_hourly_divisor · workplace_injury · impact unknown · open"
-    Hourly divisor 165 = 38h/settimana × 52/12 = 164.67 ≈ 165 (CCNL Area Sanità 23.01.2024 Art. 27 conferma orario settimanale 38h per la dirigenza sanitaria SSN). Il valore 165 è il divisore contrattuale standard.
+!!! note "dirigenza-sanitaria-area-sanita-aran/approximate_hourly_divisor · workplace_injury · impact unknown · resolved"
+    Hourly divisor 156 (Art. 59 c. 4 of the CCNL Area Sanità of 23 January 2024, PDF p. 96, confirmed by the CCNL of 27 February 2026): 'La retribuzione oraria si ottiene dividendo le corrispondenti retribuzioni mensili di cui al comma 2 per 156'. The divisor 40 of art. 27 c. 3 counts the further hours of the retribuzione di risultato, not the hourly pay.
 
     **Applies when:** `workplace_injury` applies.
 
-    **Remediation:** Source the divisor of Art. 27 (or the INAIL base of the SSN dirigenti) and replace 165, or mark it not applicable.
+    **Remediation:** Resolved: art. 59 c. 4 read on 2026-11-15, divisor 156.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

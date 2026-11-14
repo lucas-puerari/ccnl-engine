@@ -68,7 +68,31 @@
         {
           "valid_from": "2019-12-19",
           "valid_until": null,
-          "value": "165"
+          "value": "156",
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-area-sanita-2019-2021",
+                "title": "CCNL Area Sanità 2019-2021, 23 gennaio 2024 (ARAN)",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf",
+                "sha256": "de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375"
+              },
+              "page": "96",
+              "section": "Art. 59 c. 4",
+              "quote": "La retribuzione oraria si ottiene dividendo le corrispondenti retribuzioni mensili di cui al comma 2 per 156."
+            },
+            "extraction": {
+              "method": "manual",
+              "extraction_timestamp": "2026-11-15T00:00:00",
+              "verification_status": "verified",
+              "effective_from": "2019-12-19",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "review_id": "2026-11-15-ai-dirigenza-sanitaria-area-sanita-aran-hourly-divisor"
+            }
+          }
         }
       ]
     },
@@ -518,7 +542,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Hourly divisor 165 = 38h/settimana × 52/12 = 164.67 ≈ 165 (CCNL Area Sanità 23.01.2024 Art. 27 conferma orario settimanale 38h per la dirigenza sanitaria SSN). Il valore 165 è il divisore contrattuale standard.",
+        "text": "Hourly divisor 156 (Art. 59 c. 4 of the CCNL Area Sanità of 23 January 2024, PDF p. 96, confirmed by the CCNL of 27 February 2026): 'La retribuzione oraria si ottiene dividendo le corrispondenti retribuzioni mensili di cui al comma 2 per 156'. The divisor 40 of art. 27 c. 3 counts the further hours of the retribuzione di risultato, not the hourly pay.",
         "capability": "workplace_injury",
         "monetary_impact": "unknown",
         "limitation": {
@@ -526,7 +550,8 @@
           "applies_when": {
             "trigger": "run"
           },
-          "remediation": "Source the divisor of Art. 27 (or the INAIL base of the SSN dirigenti) and replace 165, or mark it not applicable."
+          "remediation": "Resolved: art. 59 c. 4 read on 2026-11-15, divisor 156.",
+          "status": "resolved"
         }
       },
       {
@@ -567,7 +592,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "11fd570a93560a300de538e8a0736430436c9b8326f6b87237b66bfe0ac36cd6",
+    "source_hash": "2e55724fb15aed9b293bda2df0f05f0ef69f73405a6fc597beae694cb035444f",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -918,6 +943,27 @@
         "independence": "same_process",
         "checked": [
           "levels"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-dirigenza-sanitaria-area-sanita-aran-hourly-divisor",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly divisor of art. 59 against the research of a separate model session; quote checked on the source.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf",
+            "sha256": "de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375"
+          }
+        ],
+        "findings": [
+          "The hourly divisor is 156 (art. 59 c. 4), not the approximation 165."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.hourly_divisor"
         ]
       }
     ]

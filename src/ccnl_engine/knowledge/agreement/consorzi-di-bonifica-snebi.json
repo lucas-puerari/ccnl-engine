@@ -85,7 +85,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Seniority: 10 scatti total — tier 1: 6 biennali (cadence 24 months), tier 2: 1 dodicennale (cadence 144 months after tier 1 exhausted), tier 3: 3 quadriennali (cadence 48 months). All tiers modeled. Per-scatto amounts for tiers 2-3 assumed equal to tier 1 amounts (no independent source found for higher-tier amounts; best-guess from standard CCNL practice).",
+        "text": "Seniority: 10 increments, 6 biennial, 1 after twelve years and 3 quadriennial. Art. 72 (PDF p. 80, https://www.faicisl.it/attachments/article/2356/FAI%20CISL%20-%20CCNL%20BONIFICA%202023%20-%202026.pdf, sha256 8f09770620642bc2d3179029ddacf84f7f5530831c5d5d5d6f854f2fb955c83a): 'L'importo di ciascun aumento periodico è determinato in cifra fissa, di ammontare pari, per ciascuna fascia funzionale e per ciascun livello, a quello indicato al precedente 4° comma', so every tier pays the same unit amount.",
         "capability": "seniority",
         "monetary_impact": "unknown",
         "limitation": {
@@ -93,7 +93,8 @@
           "applies_when": {
             "trigger": "run"
           },
-          "remediation": "Source the amounts of the dodicennale and quadriennali scatti and correct tiers 2-3."
+          "remediation": "Resolved: art. 72 read on 2026-11-15, one unit amount for every increment.",
+          "status": "resolved"
         }
       },
       {
@@ -275,6 +276,27 @@
         "checked": [
           "work_rules.sickness_rules",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-consorzi-di-bonifica-snebi-scatti",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Amounts of the later seniority increments of art. 72, from the research of a separate model session.",
+        "outcome": "confirmed",
+        "sources": [
+          {
+            "url": "https://www.faicisl.it/attachments/article/2356/FAI%20CISL%20-%20CCNL%20BONIFICA%202023%20-%202026.pdf",
+            "sha256": "8f09770620642bc2d3179029ddacf84f7f5530831c5d5d5d6f854f2fb955c83a"
+          }
+        ],
+        "findings": [
+          "Art. 72 gives each of the ten increments the unit amount of its comma 4 or 5: the tiers already pay it."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.seniority_increments"
         ]
       }
     ]
@@ -5057,7 +5079,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "1460a6d15e634fb54c2aa31e65be0d1757f7a41e1832d968a93aeb38861bc010",
+    "source_hash": "eb9c35801394dc8cd256cde47cbdeffc23c9c6ee32803a3c93adef606198bd5c",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

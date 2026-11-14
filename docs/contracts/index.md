@@ -128,8 +128,8 @@ on unverified sources, or be well sourced and not cleared for production.
 | 8 | S125 | [CCNL Area Dirigenza Funzioni Locali 2022-2024 — ARAN](dirigenza-funzioni-locali-aran.md) | Pubblica Amministrazione | ~13k | 2026 | ⚠️ | base_salary | 0 / 11 / 0 / 0 | 🧪 | 🤖 |
 | 9 | S325 | [CCNL Area Dirigenza Istruzione e Ricerca 2022-2024 — ARAN](dirigenza-istruzione-ricerca-aran.md) | Pubblica Amministrazione | ~8k | 2026 | ✅ | workplace_injury | 0 / 15 / 0 / 0 | 🧪 | 🤖 |
 | 10 | F060 | [CCNL Area Legno-Lapidei — Artigianato](legno-lapidei-artigianato-confartigianato.md) | legno arredamento lapidei artigianato | ~95k | 2024 | ⚠️ | inps_employer | 62 / 6 / 1 / 0 | 🧪 | 🤖 |
-| 11 | S225 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Medici e Veterinari SSN)](dirigenza-sanitaria-medico-veterinaria-aran.md) | Pubblica Amministrazione | ~100k | 2026 | ⚠️ | base_salary, workplace_injury | 1 / 8 / 1 / 1 | 🧪 | 🤖 |
-| 12 | S225 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Sanitari: psicologi, farmacisti, biologi, fisici, chimici)](dirigenza-sanitaria-area-sanita-aran.md) | Pubblica Amministrazione | ~37k | 2026 | ⚠️ | base_salary, workplace_injury | 0 / 11 / 0 / 0 | 🧪 | 🤖 |
+| 11 | S225 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Medici e Veterinari SSN)](dirigenza-sanitaria-medico-veterinaria-aran.md) | Pubblica Amministrazione | ~100k | 2026 | ⚠️ | base_salary | 1 / 8 / 1 / 1 | 🧪 | 🤖 |
+| 12 | S225 | [CCNL Area Sanità 2022-2024 — ARAN (Dirigenti Sanitari: psicologi, farmacisti, biologi, fisici, chimici)](dirigenza-sanitaria-area-sanita-aran.md) | Pubblica Amministrazione | ~37k | 2026 | ⚠️ | base_salary | 0 / 11 / 0 / 0 | 🧪 | 🤖 |
 | 13 | V751 | [CCNL Area Tessile-Moda e Chimica-Ceramica — Artigianato](tessile-moda-artigianato-confartigianato.md) | tessile moda chimica ceramica artigianato | ~120k | 2024 | ⚠️ | base_salary, inps_employer, seniority | 62 / 11 / 1 / 0 | 🧪 | 🤖 |
 | 14 | A051 | [CCNL Attivita Agromeccaniche (Contoterzismo) CAI Agromec-FAI-FLAI-UILA](contoterzismo-caiagromec.md) | Agricoltura | ~4k | 2024 | ✅ | — | 25 / 24 / 1 / 0 | 🧪 | 🤖 |
 | 15 | B282 | [CCNL Attivita Minerarie (ASSORISORSE)](attivita-minerarie-assorisorse.md) | Industria estrattiva - Miniere, cave, saline, metallurgia estrattiva | ~3000 | 2022 | ✅ | — | 36 / 0 / 2 / 1 | 🧪 | 🤖 |
@@ -154,7 +154,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 34 | S205 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | Pubblica Amministrazione | ~580k | 2025 | ⚠️ | base_salary | 16 / 8 / 0 / 0 | 👁 | 🤖✓ |
 | 35 | G029 | [CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico](informatica-pmi-unimatica.md) | informatica-servizi-innovativi | ~20k | — | ✅ | — | 2 / 39 / 1 / 0 | 🧪 | 🤖 |
 | 36 | A141 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | Agricoltura | ~2k | 2023 | ⚠️ | base_salary, inps_employer | 35 / 20 / 1 / 0 | 🧪 | 🤖 |
-| 37 | A131 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | Agricoltura | ~4k | 2025 | ⚠️ | inps_employer, seniority | 50 / 10 / 1 / 1 | 🧪 | 🤖 |
+| 37 | A131 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | Agricoltura | ~4k | 2025 | ⚠️ | inps_employer | 50 / 10 / 1 / 1 | 🧪 | 🤖 |
 | 38 | T151 | [CCNL Cooperative Sociali (Confcooperative/Legacoop/AGCI)](cooperative-sociali.md) | servizi socio-assistenziali | ~380k | — | ⚠️ | base_salary, inps_employer | 62 / 47 / 0 / 0 | 👁 | 🤖✓ |
 | 39 | A016 | [CCNL Cooperative e Consorzi Agricoli](cooperative-consorzi-agricoli.md) | cooperative e consorzi agricoli — impiegati e operai agricoli | ~60k | 2024 | ⚠️ | base_salary | 34 / 8 / 0 / 0 | 🧪 | 🤖 |
 | 40 | T611 | [CCNL Dipendenti Aziende Enti Pubblici Economici Federcasa](federcasa.md) | Case popolari | ~6k | 2024 | ⚠️ | base_salary, inps_employer | 1 / 23 / 1 / 0 | 🧪 | 🤖 |
