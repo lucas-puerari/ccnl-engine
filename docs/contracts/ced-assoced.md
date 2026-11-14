@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 49 verified / 4 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 51 verified / 4 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -73,6 +73,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 134, 170 and 171 of the stesura of 9 March 2022. | corrected | The file had no basis for the leave left at termination, so the ferie and permits left were not paid: added the 1/26 day and the 1/173 hour. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 116 (Festivita) (holiday on a Sunday). | corrected | The file had no clause for a holiday falling on a Sunday, so its further daily quota was not paid: added the clause with the holidays the text lists and 4 November. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 104, 106, 111, 117 and 118 of the stesura of 9 March 2022. | corrected | Corrected the weekday overtime band (15%, was 30%), added the tier beyond the 48th hour (20%), the night-holiday band, the holiday and rest-day premiums; recorded the Title XI shift premiums as a limitation. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Artt. 221, 266-269 of the stesura of 9 March 2022. | corrected | The file had no fund: added EBCE, EASI with their elements in place and the Il Mio Domani pension fund. |
 
 ## Salary table
 
@@ -356,6 +357,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     HOLIDAY ON A SUNDAY (Art. 116 (Festivita), p. 85): a listed holiday falling on a Sunday pays a further daily quota (1/26 of the monthly pay); 4 November, celebrated on the first Sunday of November, takes the same treatment.
     
     OVERTIME AND ORDINARY PREMIUMS (stesura 9 March 2022): overtime 15% from the 41st to the 48th weekly hour, 20% beyond, 30% on holidays, 50% at night (24-6), not cumulative (Art. 104); holiday work as holiday overtime (Art. 117); rest-day work the premium of 30% alone (Art. 118); ordinary night work is forbidden outside the shift CED of Title XI (Art. 106). The bands previously had 30% for weekday overtime and no tier beyond the 48th hour.
+    
+    FUNDS (stesura 9 March 2022): EBCE (art. 221) 8 EUR by the employer and 3 by the worker a month for 14 months, every employee, in full for part time, else an element of 26 EUR for 14 months in the TFR base, not reproportioned; EASI (artt. 266-268) 15 + 2 EUR a month for the permanent workers, the fixed terms of more than 12 months and the apprentices, else an element of 36 EUR for 14 months in the TFR base; pension fund Il Mio Domani (art. 269) 1,55% by the employer and 0,55% by the enrolled worker of the TFR base.
     
 
 ## Raw data

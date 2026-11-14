@@ -1023,6 +1023,9 @@
     "agreement/organizzazioni-allevatori-aia.json": [
       "organizzazioni-allevatori-aia/apprentice_inps_rates_unsourced"
     ],
+    "agreement/ortofrutticoli-agrumari.json": [
+      "ortofrutticoli-agrumari/quas_contribution"
+    ],
     "agreement/panificazione-artigianato-confartigianato.json": [
       "panificazione-artigianato-confartigianato/apprentice_inps_rates_unsourced",
       "panificazione-artigianato-confartigianato/ert_veneto",

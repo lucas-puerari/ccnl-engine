@@ -146,6 +146,27 @@
         "kind": "info",
         "text": "HOLIDAY ON A SUNDAY (Art. 55 - Festivita; Art. 61): a listed holiday on a Sunday pays a further daily quota, 1/26 of the normal pay (paga conglobata and scatti, p. 81); 4 November, on the first Sunday of November, too.",
         "capability": "sunday_holiday"
+      },
+      {
+        "kind": "info",
+        "text": "FUNDS: Fondo EST (art. 23) 10 EUR a month by the employer for the permanent workers and the fixed terms and seasonal workers of at least 5 months, 13 EUR from 1 May 2027; an employer that does not enrol pays the benefits itself (no element). Fon.Te. (art. 16) 1% by the employer and 1% by the enrolled worker of the TFR base. The Ente Bilaterale Ortofrutta contribution of art. 6 is suspended (nota a verbale).",
+        "capability": "contractual_funds"
+      },
+      {
+        "kind": "simplification",
+        "text": "QUADRI (art. 31): the quadri join QuAS 'come previsto dall'art. 2 del Regolamento della Cassa'; the CCNL prints no amount, which the QuAS rules set.",
+        "capability": "contractual_funds",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "quas_contribution",
+          "applies_when": {
+            "trigger": "outside_input",
+            "levels": [
+              "Q"
+            ]
+          },
+          "remediation": "Source the QuAS contribution of the quadri from the rules of the Cassa and add the fund."
+        }
       }
     ]
   },
@@ -341,6 +362,28 @@
         "independence": "same_process",
         "checked": [
           "work_rules.time_supplements"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-funds",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 6, 16, 23 and 31 of the CCNL 2024-2027.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+            "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+          }
+        ],
+        "findings": [
+          "The file had no fund: added Fondo EST and Fon.Te.; the EBO contribution is suspended; the QuAS amount of the quadri is not in the CCNL (limitation)."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.health_funds",
+          "parameters.employer_funds"
         ]
       }
     ]
@@ -660,7 +703,119 @@
           "review_id": "2026-11-14-ai-seasonal"
         }
       }
-    }
+    },
+    "health_funds": [
+      {
+        "code": "fondo_est",
+        "description": "Fondo EST, assistenza sanitaria integrativa, art. 23",
+        "levels": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6S",
+          "6",
+          "7"
+        ],
+        "minimum_fixed_term_months": 5,
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2027-05-01",
+                "value": "10.00"
+              },
+              {
+                "valid_from": "2027-05-01",
+                "valid_until": null,
+                "value": "13.00"
+              }
+            ]
+          }
+        },
+        "extra_months": false,
+        "solidarity_rate": "0.1",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ortofrutticoli-agrumari-ccnl-testo",
+              "title": "Contratto collettivo nazionale di lavoro per i dipendenti da aziende ortofrutticole ed agrumarie 1 gennaio 2024 - 31 dicembre 2027",
+              "kind": "associazione",
+              "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+              "published_on": "2024-07-19",
+              "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+            },
+            "page": "28-29 (PDF 16)",
+            "section": "Art. 23 - Assistenza Sanitaria Integrativa",
+            "quote": "a tutti i lavoratori assunti con contratto a tempo indeterminato o contratto a tempo determinato e stagionali di durata di almeno 5 mesi [...] Il contributo a carico del datore di lavoro, per il periodo di assunzione, sarà pari ad €10 mensili per ogni singolo lavoratore [...] A partire dal 01/05/2027 la contribuzione a carico del datore di lavoro sarà di € 13,00."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2024-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-funds"
+          }
+        }
+      }
+    ],
+    "employer_funds": [
+      {
+        "code": "FONTE",
+        "description": "Fon.Te., previdenza complementare, art. 16",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "0.01"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2024-01-01",
+              "valid_until": null,
+              "value": "0.01"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ortofrutticoli-agrumari-ccnl-testo",
+              "title": "Contratto collettivo nazionale di lavoro per i dipendenti da aziende ortofrutticole ed agrumarie 1 gennaio 2024 - 31 dicembre 2027",
+              "kind": "associazione",
+              "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+              "published_on": "2024-07-19",
+              "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+            },
+            "page": "18-19 (PDF 11)",
+            "section": "Art. 16 - Previdenza complementare",
+            "quote": "1% a carico dell'azienda commisurato alla retribuzione utile per il calcolo del TF nel periodo di riferimento; 1% a carico del lavoratore commisurato alla retribuzione utile per il calcolo del TFR"
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2024-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-funds"
+          }
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -2423,7 +2578,7 @@
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "e5b542665c3879f785bffe7064fd7b527061b6e726603aab551e9190beabc838",
+    "source_hash": "b09ed3011902d0dd6ef116807a38efdda7e279b9cdd4b359710954a413b087e2",
     "source_type": "contracting_party"
   },
   "work_rules": {
