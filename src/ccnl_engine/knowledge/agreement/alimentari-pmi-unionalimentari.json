@@ -43,6 +43,15 @@
         "pages": [],
         "published_on": "2025-05-28",
         "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+      },
+      {
+        "document_id": "unionalimentari-ccnl-2026-03-18",
+        "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
+        "kind": "associazione",
+        "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+        "pages": [],
+        "published_on": "2026-03-18",
+        "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
       }
     ],
     "extraction": {
@@ -74,7 +83,7 @@
       },
       {
         "kind": "info",
-        "text": "Salary tranches from CIRCOLARE ILLUSTRATIVA ACCORDO 28 MAGGIO 2025 (Unionalimentari official circular): tranche 1 = 01/06/2025, tranche 2 = 01/01/2026, tranche 3 = 01/04/2027 (not modeled), tranche 4 = 01/01/2028 (not modeled)."
+        "text": "Salary tranches: 01/06/2025, 01/01/2026, 01/04/2027 and 01/01/2028, EUR 70 each at parametro 137 (art. 47 of the verbale of 28 May 2025 and of the consolidated text signed on 18 March 2026)."
       },
       {
         "kind": "info",
@@ -91,7 +100,7 @@
       },
       {
         "kind": "info",
-        "text": "TRANCHES 2027-2028 (art. 47 of the verbale signed 28 May 2025, p. 26): 70.00 EUR at parametro 137 from 1 April 2027 and again from 1 January 2028, modelled per level as printed (e.g. level 8 1,255.82 and 1,306.92). The association circular's prose giving 32 EUR for the third tranche is wrong; its table matches the verbale."
+        "text": "TRANCHES 2027-2028 (art. 47): 70.00 EUR at parametro 137 from 1 April 2027 and again from 1 January 2028, as in the verbale signed 28 May 2025 (p. 26) and the consolidated text signed 18 March 2026 (PDF p. 144). The association circular's prose giving 32 EUR for the third tranche is wrong. Where the two signed tables differ by a cent the later text is used: it adds each increment to the previous minimo exactly (e.g. 3rd level 1,987.81 from 1 January 2026, 1,987.80 in the verbale)."
       }
     ]
   },
@@ -184,6 +193,28 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.sickness_rules"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 47 table of the consolidated text signed on 18 March 2026 (PDF p. 144), read on the page image, against the file and the verbale of 28 May 2025 (p. 26).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+            "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+          }
+        ],
+        "findings": [
+          "21 minimi of 2026-2028 differed by one or two cents from the later signed text and were corrected.",
+          "Both signed documents set four tranches of EUR 70: the 2027 and 2028 tranches are confirmed."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "levels[*].base_salary"
         ]
       }
     ]
@@ -460,62 +491,66 @@
           {
             "valid_from": "2027-04-01",
             "valid_until": "2028-01-01",
-            "value": "2988.37",
+            "value": "2988.38",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "unionalimentari-verbale-2025-05-28",
-                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
-                  "published_on": "2025-05-28",
-                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "26",
-                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
-                "quote": "Quadri [...] Minimi dal 1.4.2027 Incrementi 117,52 Minimi 2988,37"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "Quadri ... 2753.34 | 2870.86 | 2988.38 | 3105.90"
               },
+              "transformation": "Minimo dal 2027-04-01 of the consolidated text signed on 18 March 2026, which replaces the 2988.37 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2027-04-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T17:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "3105.89",
+            "value": "3105.90",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "unionalimentari-verbale-2025-05-28",
-                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
-                  "published_on": "2025-05-28",
-                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "26",
-                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
-                "quote": "Quadri [...] Minimi dal 1.1.2028 Incrementi 117,52 Minimi 3105,89"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "Quadri ... 2753.34 | 2870.86 | 2988.38 | 3105.90"
               },
+              "transformation": "Minimo dal 2028-01-01 of the consolidated text signed on 18 March 2026, which replaces the 3105.89 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2028-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T17:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           }
@@ -822,62 +857,66 @@
           {
             "valid_from": "2027-04-01",
             "valid_until": "2028-01-01",
-            "value": "2888.37",
+            "value": "2888.38",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "unionalimentari-verbale-2025-05-28",
-                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
-                  "published_on": "2025-05-28",
-                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "26",
-                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
-                "quote": "1° [...] Minimi dal 1.4.2027 Incrementi 117,52 Minimi 2888,37"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "1° ... 2653.34 | 2770.86 | 2888.38 | 3005.90"
               },
+              "transformation": "Minimo dal 2027-04-01 of the consolidated text signed on 18 March 2026, which replaces the 2888.37 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2027-04-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T17:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "3005.89",
+            "value": "3005.90",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "unionalimentari-verbale-2025-05-28",
-                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
-                  "published_on": "2025-05-28",
-                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "26",
-                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
-                "quote": "1° [...] Minimi dal 1.1.2028 Incrementi 117,52 Minimi 3005,89"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "1° ... 2653.34 | 2770.86 | 2888.38 | 3005.90"
               },
+              "transformation": "Minimo dal 2028-01-01 of the consolidated text signed on 18 March 2026, which replaces the 3005.89 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2028-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T17:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           }
@@ -1516,92 +1555,99 @@
           {
             "valid_from": "2026-01-01",
             "valid_until": "2027-04-01",
-            "value": "1987.80",
+            "value": "1987.81",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
-                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
-                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "7",
-                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.1.2026",
-                "quote": "3°         1819,19        84,31      1.903,50        84,31       1.987,80         84,31      2.072,11        84,31        2.156,42         337,23            165"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "3° ... 1903.50 | 1987.81 | 2072.12 | 2156.43"
               },
+              "transformation": "Minimo dal 2026-01-01 of the consolidated text signed on 18 March 2026, which replaces the 1987.80 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T20:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": "2028-01-01",
-            "value": "2072.11",
+            "value": "2072.12",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "unionalimentari-verbale-2025-05-28",
-                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
-                  "published_on": "2025-05-28",
-                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "26",
-                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
-                "quote": "3° [...] Minimi dal 1.4.2027 Incrementi 84,31 Minimi 2072,11"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "3° ... 1903.50 | 1987.81 | 2072.12 | 2156.43"
               },
+              "transformation": "Minimo dal 2027-04-01 of the consolidated text signed on 18 March 2026, which replaces the 2072.11 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2027-04-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T17:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "2156.42",
+            "value": "2156.43",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "unionalimentari-verbale-2025-05-28",
-                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
-                  "published_on": "2025-05-28",
-                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "26",
-                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
-                "quote": "3° [...] Minimi dal 1.1.2028 Incrementi 84,31 Minimi 2156,42"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "3° ... 1903.50 | 1987.81 | 2072.12 | 2156.43"
               },
+              "transformation": "Minimo dal 2028-01-01 of the consolidated text signed on 18 March 2026, which replaces the 2156.42 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2028-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T17:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           }
@@ -1908,62 +1954,66 @@
           {
             "valid_from": "2027-04-01",
             "valid_until": "2028-01-01",
-            "value": "1820.95",
+            "value": "1820.96",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "unionalimentari-verbale-2025-05-28",
-                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
-                  "published_on": "2025-05-28",
-                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "26",
-                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
-                "quote": "4° [...] Minimi dal 1.4.2027 Incrementi 74,09 Minimi 1820,95"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "4° ... 1672.78 | 1746.87 | 1820.96 | 1895.05"
               },
+              "transformation": "Minimo dal 2027-04-01 of the consolidated text signed on 18 March 2026, which replaces the 1820.95 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2027-04-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T17:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "1895.04",
+            "value": "1895.05",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "unionalimentari-verbale-2025-05-28",
-                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
-                  "published_on": "2025-05-28",
-                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "26",
-                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
-                "quote": "4° [...] Minimi dal 1.1.2028 Incrementi 74,09 Minimi 1895,04"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "4° ... 1672.78 | 1746.87 | 1820.96 | 1895.05"
               },
+              "transformation": "Minimo dal 2028-01-01 of the consolidated text signed on 18 March 2026, which replaces the 1895.04 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2028-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T17:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           }
@@ -2240,92 +2290,99 @@
           {
             "valid_from": "2026-01-01",
             "valid_until": "2027-04-01",
-            "value": "1566.15",
+            "value": "1566.14",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
-                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
-                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "7",
-                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.1.2026",
-                "quote": "5°        1433,30        66,42       1.499,72        66,42        1.566,15        66,42      1.632,57        66,42           1.698,99      265,69            130"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "5° ... 1499.72 | 1566.14 | 1632.56 | 1698.98"
               },
+              "transformation": "Minimo dal 2026-01-01 of the consolidated text signed on 18 March 2026, which replaces the 1566.15 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T20:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": "2028-01-01",
-            "value": "1632.57",
+            "value": "1632.56",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "unionalimentari-verbale-2025-05-28",
-                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
-                  "published_on": "2025-05-28",
-                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "26",
-                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
-                "quote": "5° [...] Minimi dal 1.4.2027 Incrementi 66,42 Minimi 1632,57"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "5° ... 1499.72 | 1566.14 | 1632.56 | 1698.98"
               },
+              "transformation": "Minimo dal 2027-04-01 of the consolidated text signed on 18 March 2026, which replaces the 1632.57 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2027-04-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T17:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "1698.99",
+            "value": "1698.98",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "unionalimentari-verbale-2025-05-28",
-                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
-                  "published_on": "2025-05-28",
-                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "26",
-                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
-                "quote": "5° [...] Minimi dal 1.1.2028 Incrementi 66,42 Minimi 1698,99"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "5° ... 1499.72 | 1566.14 | 1632.56 | 1698.98"
               },
+              "transformation": "Minimo dal 2028-01-01 of the consolidated text signed on 18 March 2026, which replaces the 1698.99 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2028-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T17:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           }
@@ -2602,92 +2659,99 @@
           {
             "valid_from": "2026-01-01",
             "valid_until": "2027-04-01",
-            "value": "1445.65",
+            "value": "1445.64",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
-                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
-                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "7",
-                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.1.2026",
-                "quote": "6°        1323,02         61,31      1.384,33        61,31       1.445,65         61,31      1.506,96        61,31           1.568,28      245,26            120"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "6° ... 1384.33 | 1445.64 | 1506.95 | 1568.26"
               },
+              "transformation": "Minimo dal 2026-01-01 of the consolidated text signed on 18 March 2026, which replaces the 1445.65 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T20:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": "2028-01-01",
-            "value": "1506.96",
+            "value": "1506.95",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "unionalimentari-verbale-2025-05-28",
-                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
-                  "published_on": "2025-05-28",
-                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "26",
-                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
-                "quote": "6° [...] Minimi dal 1.4.2027 Incrementi 61,31 Minimi 1506,96"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "6° ... 1384.33 | 1445.64 | 1506.95 | 1568.26"
               },
+              "transformation": "Minimo dal 2027-04-01 of the consolidated text signed on 18 March 2026, which replaces the 1506.96 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2027-04-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T17:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "1568.28",
+            "value": "1568.26",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "unionalimentari-verbale-2025-05-28",
-                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
-                  "published_on": "2025-05-28",
-                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "26",
-                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
-                "quote": "6° [...] Minimi dal 1.1.2028 Incrementi 61,31 Minimi 1568,28"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "6° ... 1384.33 | 1445.64 | 1506.95 | 1568.26"
               },
+              "transformation": "Minimo dal 2028-01-01 of the consolidated text signed on 18 March 2026, which replaces the 1568.28 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2028-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T17:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           }
@@ -2964,92 +3028,99 @@
           {
             "valid_from": "2026-01-01",
             "valid_until": "2027-04-01",
-            "value": "1325.20",
+            "value": "1325.19",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
-                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
-                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "7",
-                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.1.2026",
-                "quote": "7°         1212,79       56,20       1.268,99        56,20       1.325,20         56,20      1.381,40        56,20           1.437,61      224,82            110"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "7° ... 1268.99 | 1325.19 | 1381.39 | 1437.59"
               },
+              "transformation": "Minimo dal 2026-01-01 of the consolidated text signed on 18 March 2026, which replaces the 1325.20 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T20:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": "2028-01-01",
-            "value": "1381.40",
+            "value": "1381.39",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "unionalimentari-verbale-2025-05-28",
-                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
-                  "published_on": "2025-05-28",
-                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "26",
-                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
-                "quote": "7° [...] Minimi dal 1.4.2027 Incrementi 56,20 Minimi 1381,40"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "7° ... 1268.99 | 1325.19 | 1381.39 | 1437.59"
               },
+              "transformation": "Minimo dal 2027-04-01 of the consolidated text signed on 18 March 2026, which replaces the 1381.40 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2027-04-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T17:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "1437.61",
+            "value": "1437.59",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "unionalimentari-verbale-2025-05-28",
-                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
-                  "published_on": "2025-05-28",
-                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "26",
-                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
-                "quote": "7° [...] Minimi dal 1.1.2028 Incrementi 56,20 Minimi 1437,61"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "7° ... 1268.99 | 1325.19 | 1381.39 | 1437.59"
               },
+              "transformation": "Minimo dal 2028-01-01 of the consolidated text signed on 18 March 2026, which replaces the 1437.61 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2028-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T17:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           }
@@ -3326,92 +3397,99 @@
           {
             "valid_from": "2026-01-01",
             "valid_until": "2027-04-01",
-            "value": "1204.73",
+            "value": "1204.72",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "alimentari-pmi-unionalimentari-tables-85fbb024",
-                  "title": "alimentari-pmi-unionalimentari: tabelle retributive (circular-2025.pdf)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.unionalimentari.com/wp-content/uploads/2025/06/Circolare-illustrativa-accordo-28-maggio-2025.pdf",
-                  "sha256": "85fbb0242738a0d34e7549a302c9c4002b5ff257146b3c3aeee10b8a945b7ba6"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "7",
-                "section": "§ 19 Tabella minimi mensili (esclusa panificazione), colonna Minimi dal 1.1.2026",
-                "quote": "8°        1102,54         51,09       1.153,63       51,09       1.204,73         51,09      1.255,82        51,09        1.306,92         204,38            100"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "8° ... 1153.63 | 1204.72 | 1255.81 | 1306.90"
               },
+              "transformation": "Minimo dal 2026-01-01 of the consolidated text signed on 18 March 2026, which replaces the 1204.73 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T20:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2026-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T20:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-alimentari-pmi-unionalimentari-tables"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           },
           {
             "valid_from": "2027-04-01",
             "valid_until": "2028-01-01",
-            "value": "1255.82",
+            "value": "1255.81",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "unionalimentari-verbale-2025-05-28",
-                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
-                  "published_on": "2025-05-28",
-                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "26",
-                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
-                "quote": "8° [...] Minimi dal 1.4.2027 Incrementi 51,09 Minimi 1255,82"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "8° ... 1153.63 | 1204.72 | 1255.81 | 1306.90"
               },
+              "transformation": "Minimo dal 2027-04-01 of the consolidated text signed on 18 March 2026, which replaces the 1255.82 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2027-04-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T17:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           },
           {
             "valid_from": "2028-01-01",
             "valid_until": null,
-            "value": "1306.92",
+            "value": "1306.90",
             "provenance": {
               "status": "verified",
               "location": {
                 "source_document": {
-                  "document_id": "unionalimentari-verbale-2025-05-28",
-                  "title": "CCNL Alimentari PMI Unionalimentari Confapi, verbale di accordo di rinnovo 28 maggio 2025 (con rettifica 6 giugno 2025)",
+                  "document_id": "unionalimentari-ccnl-2026-03-18",
+                  "title": "CCNL piccola e media industria alimentare Unionalimentari-Confapi 2024-2028, testo firmato Roma 18 marzo 2026 (scansione, copia UILA)",
                   "kind": "associazione",
-                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-Unionalimentari-Confapi-Verbale-di-rettifica-28-06-25.pdf",
-                  "published_on": "2025-05-28",
-                  "sha256": "0ab3ecf2d31a037aa18fb77aca31c5e97a1b1015487f5b068e9ca073224b4a17"
+                  "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+                  "published_on": "2026-03-18",
+                  "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
                 },
-                "page": "26",
-                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione)",
-                "quote": "8° [...] Minimi dal 1.1.2028 Incrementi 51,09 Minimi 1306,92"
+                "page": "144",
+                "section": "Art. 47 - Tabella minimi mensili (esclusa panificazione), printed p. 142",
+                "quote": "8° ... 1153.63 | 1204.72 | 1255.81 | 1306.90"
               },
+              "transformation": "Minimo dal 2028-01-01 of the consolidated text signed on 18 March 2026, which replaces the 1306.92 of the verbale of 28 May 2025: the signed text adds the printed increment to the previous minimo to the cent.",
+              "note": "Scanned PDF without a text layer: read by OCR (tesseract, Italian) and checked on the page image.",
               "extraction": {
                 "method": "ai",
                 "model": "claude-opus-5-5",
-                "extraction_timestamp": "2026-11-07T17:00:00Z",
+                "extraction_timestamp": "2026-11-14T14:00:00Z",
                 "effective_from": "2028-01-01",
                 "verified_by": "claude-opus-5-5",
-                "verified_at": "2026-11-07T17:00:00Z",
+                "verified_at": "2026-11-14T14:00:00Z",
                 "verification_status": "verified",
-                "review_id": "2026-11-07-ai-unionalimentari-2027-2028"
+                "review_id": "2026-11-14-ai-alimentari-pmi-unionalimentari-signed-text"
               }
             }
           }
@@ -3657,7 +3735,7 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "e344705e9b906e31bc1c2dc62739a32cfa97072cee6b098fe15c3a9b4ba383c0",
+    "source_hash": "b5a738dde5af550785b5fff1bdb23cba5edf6c307a13438065d5eb98e8388a9c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

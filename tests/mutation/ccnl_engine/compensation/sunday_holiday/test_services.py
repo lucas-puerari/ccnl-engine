@@ -177,7 +177,7 @@ def test_the_quota_is_paid_on_the_whole_monthly_pay() -> None:
     quota = (july.period_gross / 26).quantize(Decimal("0.01"))
 
     (decision,) = (d for d in august.decisions if d.capability == CAPABILITY)
-    assert decision.inputs["monthly"] == july.period_gross == Decimal("3818.23")
+    assert decision.inputs["monthly"] == july.period_gross == Decimal("3818.24")
     assert august.period_gross == july.period_gross + quota
     for account in ("employee_contributions", "tfr_accrual"):
         assert _posted(august, account) > _posted(july, account)
