@@ -55,9 +55,9 @@ formulas or caller-declared amounts.
 
 | Scope | native | caller_supplied | partial | unsupported |
 |---|---:|---:|---:|---:|
-| core | 24 | 0 | 0 | 0 |
+| core | 25 | 0 | 0 | 0 |
 | scenario | 18 | 10 | 2 | 0 |
-| outside_input | 0 | 0 | 0 | 6 |
+| outside_input | 0 | 0 | 0 | 5 |
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -83,7 +83,7 @@ formulas or caller-declared amounts.
 | `naspi_dismissal` | Contributo NASpI per le interruzioni dei rapporti a tempo indeterminato e di apprendistato (L. 92/2012 art. 2 cc. 31-32): 41% del massimale mensile NASpI per ogni dodici mesi di anzianità negli ultimi tre anni | scenario | net | native | termination_run | decision | `employment.employment_period` | — | verified | 2 / 0 / 0 / 0 |
 | `termination_tfr` | Liquidazione TFR a tassazione separata (artt. 17 e 19 TUIR): fondo, quote dell'anno e aliquota media calcolati, importo e aliquota del chiamante come override | scenario | net | native | event | event | — | — | implemented | 2 / 1 / 0 / 0 |
 | `contract_renewal_arrears` | Arretrati rinnovo contratto: tassazione separata se di anni precedenti (aliquota dal chiamante), ordinaria se dell'anno | scenario | gross | caller_supplied | event | event | — | — | caller-supplied | none bundled |
-| `una_tantum` | Una tantum contrattuale | outside_input | gross | unsupported | outside_input | — | `facts.events[una_tantum]` | — | unavailable | none bundled |
+| `una_tantum` | Una tantum contrattuale (rate per livello del CCNL, in proporzione al servizio) | core | gross | native | decided | decision | — | — | implemented | none bundled |
 | `personal_withholdings` | Pignoramenti presso il datore di lavoro, cessioni del quinto e delegazioni sul netto (art. 545 c.p.c., artt. 5 e 68-70 DPR 180/1950, art. 72-ter DPR 602/1973) | core | net | native | decided | decision | — | — | implemented | none bundled |
 | `additional_irpef_base` | Redditi di altri sostituti nella base IRPEF del conguaglio | outside_input | net | unsupported | outside_input | — | `facts.other_withholding_agents_income` | — | unavailable | none bundled |
 | `territorial_supplement` | Integrazione da contratto territoriale (EmployerProfile.second_level_elements) | scenario | gross | caller_supplied | decided | decision | — | — | caller-supplied | none bundled |
@@ -219,7 +219,7 @@ never grow.
 | 77 | [CCNL Lavoro Domestico — DOMINA/FIDALDO/ASSINDATCOLF (non conviventi)](lavoro-domestico-non-convivente.md) | ⚠️ | assistance_contribution, base_salary | 23 / 0 / 0 / 0 |
 | 78 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra)](logistica-trasporto-confetra.md) | ⚠️ | base_salary, overtime | 71 / 3 / 0 / 0 |
 | 79 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra) - Personale viaggiante](logistica-trasporto-confetra-viaggiante.md) | ⚠️ | base_salary, sickness | 56 / 30 / 0 / 0 |
-| 80 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | ✅ | una_tantum | 26 / 19 / 1 / 0 |
+| 80 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | ⚠️ | una_tantum | 26 / 19 / 1 / 0 |
 | 81 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | ✅ | parental_leave, pension_fund_contribution | 41 / 8 / 21 / 0 |
 | 82 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | ⚠️ | inps_employer | 37 / 9 / 1 / 0 |
 | 83 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | ⚠️ | base_salary, inps_employer | 71 / 12 / 0 / 0 |
@@ -244,7 +244,7 @@ never grow.
 | 102 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Impiegati)](sistemazioni-idraulico-forestali-impiegati.md) | ⚠️ | inps_employer | 23 / 5 / 2 / 0 |
 | 103 | [CCNL Sistemazioni Idraulico-Forestali e Idraulico-Agraria (Operai OTI)](sistemazioni-idraulico-forestali-operai.md) | ⚠️ | base_salary, inps_employer, seniority | 16 / 5 / 2 / 0 |
 | 104 | [CCNL Telecomunicazioni — Assotelecomunicazioni (Asstel)](telecomunicazioni-asstel.md) | ⚠️ | inps_employer | 11 / 35 / 1 / 0 |
-| 105 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | ✅ | sickness, una_tantum | 106 / 2 / 0 / 0 |
+| 105 | [CCNL Terziario Distribuzione e Servizi — Confesercenti](terziario-confesercenti.md) | ⚠️ | sickness, una_tantum | 106 / 2 / 0 / 0 |
 | 106 | [CCNL Terziario, Distribuzione e Servizi (Confcommercio)](commercio-confcommercio.md) | ⚠️ | base_salary, sickness | 100 / 2 / 0 / 0 |
 | 107 | [CCNL Tessile-Abbigliamento-Moda PMI (Uniontessile-Confapi)](tessile-pmi-uniontessile.md) | ⚠️ | base_salary, seniority | 42 / 0 / 5 / 1 |
 | 108 | [CCNL Trasporto Aereo — Gestori Aeroportuali](trasporto-aereo-assaeroporti.md) | ⚠️ | base_salary, sickness | 46 / 49 / 1 / 0 |

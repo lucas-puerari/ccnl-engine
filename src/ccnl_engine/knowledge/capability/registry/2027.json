@@ -281,15 +281,13 @@
     {
       "feature": "una_tantum",
       "layer": "gross",
-      "implementation": "unsupported",
-      "applies_when": "outside_input",
-      "handler": null,
+      "implementation": "native",
+      "applies_when": "decided",
+      "handler": "decision",
       "evidence": "derived",
       "variants": [],
-      "required_facts": [
-        "facts.events[una_tantum]"
-      ],
-      "description": "Una tantum contrattuale"
+      "required_facts": [],
+      "description": "Una tantum contrattuale (rate per livello del CCNL, in proporzione al servizio)"
     },
     {
       "feature": "personal_withholdings",

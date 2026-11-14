@@ -27,6 +27,7 @@ from ccnl_engine.compensation.renewal_minimum.services import (
 )
 from ccnl_engine.compensation.second_level.rules import second_level_decisions
 from ccnl_engine.compensation.sunday_holiday.services import sunday_holiday
+from ccnl_engine.compensation.una_tantum.decisions import una_tantum_decisions
 from ccnl_engine.contribution.ceiling.services import (
     IvsCeiling,
     ivs_ceiling_decision,
@@ -284,6 +285,7 @@ def run_decisions(
         + second_level_decisions(ctx)
         + totals.decisions
         + meal_benefit_decisions(ctx)
+        + una_tantum_decisions(ctx)
         + amounts.decisions
         + caller_supplied_decisions(
             request.events, contract.ccnl, request.level_code, hourly_terms(ctx)

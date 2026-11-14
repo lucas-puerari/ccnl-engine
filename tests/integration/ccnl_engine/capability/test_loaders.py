@@ -37,7 +37,6 @@ _UNSUPPORTED_2026 = {
     "inail": "outside_input",
     "contribution_exemption": "outside_input",
     "fiscal_adjustment": "outside_input",
-    "una_tantum": "outside_input",
     "additional_irpef_base": "outside_input",
     "art15_deductions": "outside_input",
 }
