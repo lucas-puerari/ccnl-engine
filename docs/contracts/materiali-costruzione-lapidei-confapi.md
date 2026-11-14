@@ -30,7 +30,7 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ✅ |
+| **Core payroll path** | ⚠️ |
 | **Limits of this contract** | parental_leave, pension_fund_contribution |
 
 4 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).

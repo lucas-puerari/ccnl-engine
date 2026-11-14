@@ -30,7 +30,7 @@ on unverified sources, or be well sourced and not cleared for production.
   verified / derived / assumed / missing.
 - **Readiness:** the review tier of the contract ruleset.
 
-**Core payroll path: computed on every run of every contract** (30):
+**Core payroll path: computed on every run of every contract** (31):
 
 - ✅ `base_salary` (native)
 - ✅ `seniority` (native)
@@ -61,9 +61,10 @@ on unverified sources, or be well sourced and not cleared for production.
 - ✅ `rinnovo_substitute_tax` (native)
 - ✅ `notte_festivi_turni_substitute_tax` (native)
 - ✅ `contractual_funds` (native)
+- ✅ `pension_fund_contribution` (native)
 - ✅ `assistance_contribution` (native)
 
-**Scenario features: computed when the request declares the event, the fact or the termination** (29):
+**Scenario features: computed when the request declares the event, the fact or the termination** (28):
 
 - ✅ `maternity_leave` (native)
 - ✅ `paternity_leave` (native)
@@ -93,7 +94,6 @@ on unverified sources, or be well sourced and not cleared for production.
 - 📝 `travel_allowance` (caller_supplied)
 - ✅ `welfare` (native)
 - 📝 `bilateral_funds` (caller_supplied)
-- ⚠️ `pension_fund_contribution` (partial)
 
 **Outside the input: the request has no field for the fact, so the engine does not compute them** (1):
 
@@ -198,7 +198,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 78 | I100 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra)](logistica-trasporto-confetra.md) | logistica | ~430k | 2024 | ⚠️ | base_salary, overtime | 71 / 3 / 0 / 0 | 👁 | 🤖✓ |
 | 79 | I100 | [CCNL Logistica, Trasporto Merci e Spedizione (Confetra) - Personale viaggiante](logistica-trasporto-confetra-viaggiante.md) | logistica | ~430k | 2024 | ⚠️ | base_salary, sickness | 56 / 30 / 0 / 0 | 👁 | 🤖✓ |
 | 80 | I391 | [CCNL Marittimi — Industria Armatoriale (CONFITARMA)](marittimi-industria-armatoriale.md) | navigazione marittima — personale di terra | ~15k | — | ⚠️ | una_tantum | 26 / 19 / 1 / 0 | 🧪 | 🤖 |
-| 81 | F020 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | Industria materiali da costruzione — Lapidei piccola industria | ~5000 | 2025 | ✅ | parental_leave, pension_fund_contribution | 41 / 8 / 21 / 0 | 🧪 | 🤖 |
+| 81 | F020 | [CCNL Materiali da Costruzione PMI — Lapidei (CONFAPI ANIEM)](materiali-costruzione-lapidei-confapi.md) | Industria materiali da costruzione — Lapidei piccola industria | ~5000 | 2025 | ⚠️ | parental_leave, pension_fund_contribution | 41 / 8 / 21 / 0 | 🧪 | 🤖 |
 | 82 | C016 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | metalmeccanico cooperativo | ~28k | — | ⚠️ | inps_employer | 37 / 9 / 1 / 0 | 🧪 | 🤖 |
 | 83 | C030 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | metalmeccanico | ~350k | 2024 | ⚠️ | base_salary, inps_employer | 71 / 12 / 0 / 0 | 🧪 | 🤖 |
 | 84 | C01A | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | metalmeccanico | ~100k | — | ✅ | overtime, sickness | 25 / 22 / 0 / 0 | 🧪 | 🤖 |
