@@ -259,22 +259,6 @@
       }
     },
     {
-      "id": "previgente_apprenticeship_rules",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "APPRENTICESHIP COHORT: 'Le nuove percentuali retributive previste nell'art. 36 [...] trovano applicazione solo per i lavoratori assunti a far data dalla sottoscrizione dell'Accordo di rinnovo del 16 maggio 2022. Per tutti gli altri lavoratori continuano a trovare applicazione le previgenti percentuali retributive' (dichiarazione a verbale, renewal of 18 November 2024, p. 12). The file models the current percentages only; an apprentice hired before 16 May 2022 is paid on them, not on the previous tables.",
-      "calculation": "ccnl/comunicazione-artigianato-confartigianato:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source the percentage tables in force before 16 May 2022 and gate them on the hire date.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "comunicazione-artigianato-confartigianato/previgente_apprenticeship_rules"
-        ]
-      }
-    },
-    {
       "id": "provisional_inps_ruleset",
       "institute": "inps_employer",
       "variant": "all",

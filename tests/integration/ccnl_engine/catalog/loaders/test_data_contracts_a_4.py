@@ -235,16 +235,22 @@ class TestLoadComunicazioneArtigianatoConfartigianato:
     def test_comunicazione_artigianato_confartigianato_apprenticeship_tracks(
         self,
     ) -> None:
-        """One track a row of art. 36 and art. 3 Parte II (renewal 2024)."""
+        """One track a row of art. 36 (2024 and the 2018 table) and art. 3 Parte II."""
         ccnl = load_ccnl("comunicazione-artigianato-confartigianato")
         by_name = {t.name: t for t in ccnl.apprenticeship}
         assert sorted(by_name) == [
             "artigiane_gruppo_1",
+            "artigiane_gruppo_1_previgente_2018",
             "artigiane_gruppo_2",
             "artigiane_gruppo_2_figure_3_anni",
+            "artigiane_gruppo_2_figure_3_anni_previgente_2018",
+            "artigiane_gruppo_2_previgente_2018",
             "artigiane_gruppo_3",
             "artigiane_gruppo_3_figure_2_anni",
+            "artigiane_gruppo_3_figure_2_anni_previgente_2018",
+            "artigiane_gruppo_3_previgente_2018",
             "impiegati_amministrativi",
+            "impiegati_amministrativi_previgente_2018",
             "pmi",
             "pmi_figure_2_anni",
         ]
