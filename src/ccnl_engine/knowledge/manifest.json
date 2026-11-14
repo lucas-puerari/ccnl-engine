@@ -65,7 +65,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/agenti-immobiliari-fiaip",
       "ruleset_version": "2026.2",
-      "source_hash": "b4fe9011916ef63433a6b5aae1debfb59206828c84e40c810852fba30bab8a14",
+      "source_hash": "550b7d3793908829edf3d6de7f0a7be2fac1afd227ba3fe8b9c5a55351844df9",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/agenti-immobiliari-fiaip.json.gz"
@@ -371,7 +371,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/ced-assoced",
       "ruleset_version": "2026.2",
-      "source_hash": "07d98c3abbf0b290fb490f4d698ea1acf994f8637061e00687165430bfc01ada",
+      "source_hash": "020450c74ba3c04dc21f99eb5fde4a76ed39258d33120ec4634d1f2b0a0e7c69",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/ced-assoced.json.gz"
@@ -711,7 +711,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/distribuzione-cooperativa-ancc",
       "ruleset_version": "2026.2",
-      "source_hash": "3e6d6cadc8e1bc70be93c4dc8e496516c1648bf27315fee59baec5b94a29882e",
+      "source_hash": "ca6736a1e0542f2587bf638629571821432c99a6d1a4497e07f58376492ad1b4",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/distribuzione-cooperativa-ancc.json.gz"
@@ -986,7 +986,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/fiori-recisi-ancef",
       "ruleset_version": "2026.2",
-      "source_hash": "881ecdb411a0fb53d37b003cefbd2f662c641957b3eb7632adbe74329d3e0c57",
+      "source_hash": "b39fa178e037ee609c90ea13b6a8713266ed4e76965e3ca57c1f57ec758d72da",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/fiori-recisi-ancef.json.gz"
@@ -1666,7 +1666,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/ortofrutticoli-agrumari",
       "ruleset_version": "2024.1",
-      "source_hash": "accc041717fb2b5954767ed2ef54ab429158f2801a16b20600c4a61f26abe0dd",
+      "source_hash": "4550f94ea15199401a5a4eff88e71c8ef210d524bbd9b4691566544276d9dbee",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/ortofrutticoli-agrumari.json.gz"

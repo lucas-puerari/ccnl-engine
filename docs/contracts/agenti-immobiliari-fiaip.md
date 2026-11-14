@@ -68,6 +68,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. 163, una tantum table and hire-date clause, PDF pp. 97-98. | confirmed | Verified both installments for all seven levels against the final PDF, including the 1 January 2024 full-payment cutoff and proportional payment for later hires through 1 May 2025. Removed an obsolete exclusion note. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 40 and 55, apprentice pay steps and the specialist track, PDF pp. 41 and 46. | confirmed | Read both pages on the page image: Art. 55 gives 24 months from level V to level III; Art. 40 gives two levels below for the first half and one below for the second to the apprentices of the CCNL, with no exception for Art. 55. Added the 24-month track and closed the specialist_apprenticeship_track limitation. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 105, 122, 125, 160 and 161 of the CCNL 2025 (ferie, permits, deadline, quotas). | corrected | The file had no leave rules: added the ferie, the 32 + 56 hours of permits with their whole-month accrual, the December/June deadline and the termination quotas. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 110 Riposo settimanale - Festivita; Art. 112 Festivita civile soppressa cadente di domenica (holiday on a Sunday). | corrected | The file had no clause for a holiday falling on a Sunday, so its further daily quota was not paid: added the clause with the holidays the text lists and 4 November. |
 
 ## Salary table
 
@@ -317,6 +318,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     Art. 15 (p. 26): Fon.Te., employer 1.55% and worker minimum 0.55% of the TFR base, the 0.05 quota associativa included in each (parameters.employer_funds FONTE); the TFR share, 50% or 100%, is the worker's choice. The una tantum of 15.50 EUR at enrolment is not paid by the engine.
     
     LEAVE (CCNL 2025, EBNAIP): ferie 26 working days on a week counted as six (Art. 122, p. 79), twelfths per month of service at termination (Art. 125); 56 hours of reduction and 32 of ex festività a year on both the 5- and 6-day week, a twelfth per whole month of service (Art. 105, pp. 70-71); not taken within the year paid with the December pay or, by agreement, taken by 30 June and the rest paid with the June pay (EmployerProfile.permit_carryover); daily quota 1/26 and hourly 1/168 (Artt. 160-161, p. 96), used for the leave left at termination.
+    
+    HOLIDAY ON A SUNDAY (Art. 110 Riposo settimanale - Festivita; Art. 112 Festivita civile soppressa cadente di domenica, p. 73-74): a listed holiday falling on a Sunday pays a further daily quota (1/26 of the monthly pay); 4 November, celebrated on the first Sunday of November, takes the same treatment.
     
 
 ## Raw data

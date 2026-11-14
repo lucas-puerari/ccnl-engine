@@ -136,6 +136,11 @@
         "kind": "info",
         "text": "SEASONAL STAFF (Art. 72, p. 81): the 'personale assunto con contratto a tempo determinato stagionale' (FixedTerm.naspi_exclusion seasonal, Employment.category stated) is paid the paga conglobata of the hours worked and an indemnity of 34,45% on it, overtime excluded, for the ferie (8,33), tredicesima (8,33), quattordicesima (8,33), festività (5,44), preavviso (0,85) and permessi (3,17); no leave accrues and no extra month is paid; the TFR is 7,40% of all the sums paid. Other fixed-term workers keep the ordinary rules.",
         "capability": "leave"
+      },
+      {
+        "kind": "info",
+        "text": "HOLIDAY ON A SUNDAY (Art. 55 - Festivita; Art. 61 - Festivita soppresse, p. 66 (PDF 35); 73): a listed holiday falling on a Sunday pays a further daily quota (the CCNL absence divisor: the clause names none); 4 November, celebrated on the first Sunday of November, takes the same treatment.",
+        "capability": "sunday_holiday"
       }
     ]
   },
@@ -289,6 +294,27 @@
         "independence": "same_process",
         "checked": [
           "parameters.fixed_term_pay"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-sunday-holidays",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 55 - Festivita; Art. 61 - Festivita soppresse (holiday on a Sunday).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+            "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+          }
+        ],
+        "findings": [
+          "The file had no clause for a holiday falling on a Sunday, so its further daily quota was not paid: added the clause with the holidays the text lists and 4 November."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.sunday_holidays"
         ]
       }
     ]
@@ -2371,7 +2397,7 @@
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "accc041717fb2b5954767ed2ef54ab429158f2801a16b20600c4a61f26abe0dd",
+    "source_hash": "4550f94ea15199401a5a4eff88e71c8ef210d524bbd9b4691566544276d9dbee",
     "source_type": "contracting_party"
   },
   "work_rules": {
@@ -2945,6 +2971,47 @@
           "verified_at": "2026-11-01T12:51:22Z",
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice"
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron",
+        "11-04"
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ortofrutticoli-agrumari-ccnl-testo",
+            "title": "Contratto collettivo nazionale di lavoro per i dipendenti da aziende ortofrutticole ed agrumarie 1 gennaio 2024 - 31 dicembre 2027",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Ortofrutticolo-Agrumario-2025-FLAI.pdf",
+            "published_on": "2024-07-19",
+            "sha256": "0264d1857a1f61cf0ff2e4028e78cb6e7d5c74ca133b765acef993dd2edfa38e"
+          },
+          "page": "66 (PDF 35); 73",
+          "section": "Art. 55 - Festivita; Art. 61 - Festivita soppresse",
+          "quote": "Nel caso di coincidenza di una delle festività infrasettimanali sopra elencate con una domenica, in aggiunta alla normale retribuzione sarà corrisposta ai lavoratori retribuiti in misura fissa [...] un ulteriore importo pari alla retribuzione normale giornaliera compreso ogni elemento accessorio. [Art. 61:] Per il 4 novembre valgono le disposizioni per le festività cadenti di domenica."
+        },
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-14T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-14-ai-sunday-holidays"
         }
       }
     }
