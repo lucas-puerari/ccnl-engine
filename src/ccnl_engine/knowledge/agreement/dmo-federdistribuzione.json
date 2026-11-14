@@ -155,6 +155,11 @@
       {
         "kind": "info",
         "text": "OPERATORI DI VENDITA (protocollo aggiuntivo, allegato 3 art. 14, TU 2025 PDF p. 74): ten three-year increments of 15,50 (I categoria) and 14,46 (II categoria) from 1 October 1986, the cadence and count of the other levels; levels OV1 and OV2, ladder operatori_vendita."
+      },
+      {
+        "kind": "info",
+        "text": "LEAVE, DEADLINE (Art. 141 c. 6, TU 2025 p. 85): the permits not taken within the year are paid with the retribuzione di fatto of art. 191 at the deadline, or taken by 30 June of the next year, as the employer states (EmployerProfile.permit_carryover).",
+        "capability": "leave"
       }
     ]
   },
@@ -4544,7 +4549,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "dd1dd642e6fce31b75635caaed7ad56f4b4abea230b3cdb8ec7dc4232eaa36d8",
+    "source_hash": "9ec169c4218f2fd78e7b32f88f52f82b5c048e8ebbca8f729f37697af093acce",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5461,7 +5466,40 @@
             }
           ]
         }
-      ]
+      ],
+      "permit_deadline": {
+        "carry_until_month": 6,
+        "buckets": [
+          "ex_festivita",
+          "rol"
+        ],
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-dmo-testo-unico-2025-09-29",
+              "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico 29 settembre 2025 (Federdistribuzione)",
+              "kind": "associazione",
+              "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+              "published_on": "2025-09-29",
+              "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+            },
+            "page": "44",
+            "section": "Art. 141 c. 6 - Permessi retribuiti (printed p. 85)",
+            "quote": "I permessi non fruiti entro l'anno di maturazione decadranno e saranno pagati con la retribuzione di fatto di cui all'art. 191 in atto al momento della scadenza, oppure potranno essere fruiti in epoca successiva e comunque non oltre il 30 giugno dell'anno successivo."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2025-09-29",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-permit-deadline"
+          }
+        }
+      }
     },
     "sickness_rules": {
       "provenance": {
@@ -6393,6 +6431,27 @@
         "independence": "same_process",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-permit-deadline",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 141 c. 6 of the Testo Unico DMO 2025, deadline of the permits.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "The file had the permit buckets but no deadline: the hours left at year end were never paid or carried. Added permit_deadline (30 June, ex festivita and ROL) as Art. 141 c. 6 sets it, the same clause as Commercio art. 158."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.leave_rules.permit_deadline"
         ]
       }
     ],

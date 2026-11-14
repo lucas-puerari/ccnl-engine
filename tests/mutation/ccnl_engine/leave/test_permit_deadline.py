@@ -273,3 +273,12 @@ def test_ortofrutticoli_pays_the_66_hours_at_the_deadline(
     result = _run(carryover, period, november, slug=_ORTO, level="4")
 
     assert _paid(result) == paid
+
+
+def test_dmo_pays_the_ex_festivita_at_the_deadline() -> None:
+    """DMO art. 141 c. 6, as Commercio art. 158: paid with the December pay."""
+    result = _run(
+        False, PeriodId(2026, 12), _NOVEMBER, slug="dmo-federdistribuzione", level="IV"
+    )
+
+    assert _paid(result) == {"ex": Decimal(32)}

@@ -77,6 +77,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-13 | gpt-6-sol (ai) | Sunday overtime outside the weekly rest day against the overtime, Sunday-work and rest-day articles, by a separate model session. | confirmed | Confirmed: overtime 'nei giorni festivi o la domenica' is paid 30% also when the weekly rest falls on another day; the 'salvo' clause reserves rest-day work, at the same 30% with a compensatory rest.<br>Confirmed: the Sunday-work article sends Sunday overtime to this article, so the two 30% do not add up; night overtime stays at 50%, the premiums are not cumulative.<br>Flagged and corrected: a typo in the transformation and the paragraph label of the unnumbered texts. |
 | 2026-11-13 | claude-opus-5-5 (ai) | Allegato 11 (PDF p. 98) and allegato 3 artt. 1, 14 (PDF pp. 71, 74) of the TU 2025 | corrected | Added levels OV1 and OV2 of the operatori di vendita on their own ladder, six tables 2023-2027, and their seniority increments. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 189, 191, 198 and 199 of the Testo Unico 2025, PDF pp. 57-59. | confirmed | The provincial terzi elementi are frozen local amounts the national text does not print; the existing territorial second-level input carries them with the incidences of the normal pay, and provincial_pay_element removes the 2,07 national element. Closed the limitation, which asked for an input that exists. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 141 c. 6 of the Testo Unico DMO 2025, deadline of the permits. | corrected | The file had the permit buckets but no deadline: the hours left at year end were never paid or carried. Added permit_deadline (30 June, ex festivita and ROL) as Art. 141 c. 6 sets it, the same clause as Commercio art. 158. |
 
 ## Salary table
 
@@ -364,6 +365,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     ORDINARY HOUR PREMIUMS (Testo Unico 29 September 2025, pp. 43-44): ordinary night 15% (art. 134), Sunday 30% (art. 136 c. 7, without a better second-level treatment), weekly rest day 30% (art. 139), holidays as straordinario festivo 30% with the hour paid apart (art. 138): work_rules.time_supplements.supplement_bands DMO_*.
     
     OPERATORI DI VENDITA (protocollo aggiuntivo, allegato 3 art. 14, TU 2025 PDF p. 74): ten three-year increments of 15,50 (I categoria) and 14,46 (II categoria) from 1 October 1986, the cadence and count of the other levels; levels OV1 and OV2, ladder operatori_vendita.
+    
+    LEAVE, DEADLINE (Art. 141 c. 6, TU 2025 p. 85): the permits not taken within the year are paid with the retribuzione di fatto of art. 191 at the deadline, or taken by 30 June of the next year, as the employer states (EmployerProfile.permit_carryover).
     
 
 ## Raw data
