@@ -30,10 +30,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ✅ |
-| **Limits of this contract** | — |
+| **Core payroll path** | ⚠️ |
+| **Limits of this contract** | contractual_funds |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 62 verified / 0 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 64 verified / 0 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 72 of the CCNL 2024-2027 (seasonal staff). | corrected | Seasonal workers were paid like permanent ones (monthly pay, leave, extra months). Added fixed_term_pay for the seasonal fixed terms: hours, 34,45% indemnity without overtime, twelve payments, TFR 7,40%. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 55 - Festivita; Art. 61 - Festivita soppresse (holiday on a Sunday). | corrected | The file had no clause for a holiday falling on a Sunday, so its further daily quota was not paid: added the clause with the holidays the text lists and 4 November. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 48, 50, 54 and 55 of the CCNL 2024-2027. | corrected | The overtime bands were labelled assumed: confirmed on Art. 50 and sourced; removed the 40-hour weekly threshold of the base band (every overtime hour is beyond the 40th); added the shift night, Sunday, rest-day and holiday premiums. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Artt. 6, 16, 23 and 31 of the CCNL 2024-2027. | corrected | The file had no fund: added Fondo EST and Fon.Te.; the EBO contribution is suspended; the QuAS amount of the quadri is not in the CCNL (limitation). |
 
 ## Salary table
 
@@ -103,6 +104,13 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
+
+!!! warning "ortofrutticoli-agrumari/quas_contribution · contractual_funds · impact yes · open"
+    QUADRI (art. 31): the quadri join QuAS 'come previsto dall'art. 2 del Regolamento della Cassa'; the CCNL prints no amount, which the QuAS rules set.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Source the QuAS contribution of the quadri from the rules of the Cassa and add the fund.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -293,6 +301,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     OVERTIME AND ORDINARY PREMIUMS (CCNL 2024-2027): overtime on the paga conglobata at 35% beyond the 40th weekly hour, 42% on holidays, 50% at night, 60% at night on holidays (Art. 50); night hours in normal shifts 15% (Art. 48); work on the Sunday rest day 30% premium alone (riposo settimanale); work on a holiday the hours with 30% (Art. 55, read for every worker: the sentence also names the seasonal treatment of Art. 72).
     
     HOLIDAY ON A SUNDAY (Art. 55 - Festivita; Art. 61): a listed holiday on a Sunday pays a further daily quota, 1/26 of the normal pay (paga conglobata and scatti, p. 81); 4 November, on the first Sunday of November, too.
+    
+    FUNDS: Fondo EST (art. 23) 10 EUR a month by the employer for the permanent workers and the fixed terms and seasonal workers of at least 5 months, 13 EUR from 1 May 2027; an employer that does not enrol pays the benefits itself (no element). Fon.Te. (art. 16) 1% by the employer and 1% by the enrolled worker of the TFR base. The Ente Bilaterale Ortofrutta contribution of art. 6 is suspended (nota a verbale).
     
     Salary model: conglobato. ilccnl.it Sept 2024 table shows Contingenza=0.00 e EDR=0.00 per tutti i livelli. Divisore orario 173 confermato da lavoro-economia.it c=72 (CNEL H341) quota diretta: 'L'importo della retribuzione oraria si ottiene dividendo l'importo della retribuzione mensile per il divisore convenzionale 173'. Verifica aritmetica su 4 livelli: 1 (2286.83/13.22=173), 2 (2020.70/11.68=173), 3 (1932.23/11.17=173), 6 (1599.53/9.25=173).
     

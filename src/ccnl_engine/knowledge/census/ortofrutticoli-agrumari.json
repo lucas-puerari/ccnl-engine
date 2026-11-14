@@ -259,6 +259,22 @@
       }
     },
     {
+      "id": "quas_contribution",
+      "institute": "contractual_funds",
+      "variant": "all",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "QUADRI (art. 31): the quadri join QuAS 'come previsto dall'art. 2 del Regolamento della Cassa'; the CCNL prints no amount, which the QuAS rules set.",
+      "calculation": "ccnl/ortofrutticoli-agrumari:coverage.notes",
+      "state": "absent",
+      "remediation": "Source the QuAS contribution of the quadri from the rules of the Cassa and add the fund.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "ortofrutticoli-agrumari/quas_contribution"
+        ]
+      }
+    },
+    {
       "id": "rule_work_rules_absence_rules",
       "institute": "base_salary",
       "variant": "all",

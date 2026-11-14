@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Articolo 31 - Giorni festivi (holiday on a Sunday). | corrected | The file had no clause for a holiday falling on a Sunday, so its further daily quota was not paid: added the clause with the holidays the text lists and 4 November. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 31 and 33 of the CCNL 2023-2026. | corrected | Corrected the holiday (55%) and night (70%) overtime bands, added the night-holiday band (75%), the 48th-hour threshold and the 50% ordinary holiday premium; the premiums are on the retribuzione globale. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 30 of the CCNL 2023-2026. | corrected | Added the rest-day premium of Art. 30: 50% of the hourly quota of the retribuzione globale, the hours compensated by rest. |
+| 2026-11-14 | claude-opus-5-5 (ai) | Art. 54 of the CCNL 2023-2026. | corrected | The file had no fund: added Fondo EST and its element in place. |
 
 ## Salary table
 
@@ -326,6 +327,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     HOLIDAY ON A SUNDAY (Articolo 31 - Giorni festivi, p. 21-22): a listed holiday falling on a Sunday pays a further daily quota (1/26 of the monthly pay); 4 November, celebrated on the first Sunday of November, takes the same treatment.
     
     OVERTIME (Art. 33): on the retribuzione globale, 30% from the 41st to the 48th weekly hour, 55% beyond, 55% on holidays, 70% at night (22-6), 75% at night on holidays; work on a holiday paid with 50% (Art. 31). The bands previously had 50% for holiday and night overtime and no night-holiday band.
+    
+    FUNDS (art. 54): Fondo EST for the permanent workers, 10 EUR by the employer and 2 by the worker a month, else an element of 16 EUR for 14 months (read in the TFR base as normal pay). The fixed terms and the seasonal workers are left to the next renewal.
     
 
 ## Raw data

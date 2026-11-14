@@ -175,6 +175,11 @@
           },
           "remediation": "Model the Art. 111 shift premiums (15% of the hourly quota, 25% allowance for fixed night or holiday shifts)."
         }
+      },
+      {
+        "kind": "info",
+        "text": "FUNDS (stesura 9 March 2022): EBCE (art. 221) 8 EUR by the employer and 3 by the worker a month for 14 months, every employee, in full for part time, else an element of 26 EUR for 14 months in the TFR base, not reproportioned; EASI (artt. 266-268) 15 + 2 EUR a month for the permanent workers, the fixed terms of more than 12 months and the apprentices, else an element of 36 EUR for 14 months in the TFR base; pension fund Il Mio Domani (art. 269) 1,55% by the employer and 0,55% by the enrolled worker of the TFR base.",
+        "capability": "contractual_funds"
       }
     ]
   },
@@ -382,7 +387,197 @@
         }
       },
       "apprentice_level_amount": true
-    }
+    },
+    "health_funds": [
+      {
+        "code": "ebce",
+        "description": "Ente Bilaterale Nazionale CED (EBCE), art. 221",
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "8.00"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "3.00"
+              }
+            ]
+          }
+        },
+        "extra_months": true,
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "26.00"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "alternative_scaled": false,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
+              "title": "CCNL CED, ICT, Professioni Digitali e STP, 9 March 2022",
+              "kind": "associazione",
+              "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+              "published_on": "2022-03-09",
+              "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+            },
+            "page": "127",
+            "section": "Art. 221 (Finanziamento dell'Ente Bilaterale)",
+            "quote": "Dal 1° aprile 2022 la quota contrattuale di servizio per il finanziamento dell'EBCE è fissata nella misura globale di 11 (undici) euro mensili per 14 (quattordici) mensilità, di cui 8 (otto) euro a carico dei datori di lavoro e 3 (tre) euro a carico dei lavoratori. [...] un elemento distinto della retribuzione non assorbibile di importo pari a euro 26,00. Tale elemento deve essere corrisposto per 14 mensilità e rientra nella retribuzione di fatto e nella base di calcolo per il trattamento di fine rapporto. L'importo non è riproporzionabile"
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2022-04-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-funds"
+          }
+        }
+      },
+      {
+        "code": "easi",
+        "description": "Fondo EASI, assistenza sanitaria integrativa, artt. 266-268",
+        "permanent_only": false,
+        "minimum_fixed_term_months": 13,
+        "employer": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "15.00"
+              }
+            ]
+          }
+        },
+        "employee": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "2.00"
+              }
+            ]
+          }
+        },
+        "extra_months": false,
+        "employee_deductible": true,
+        "solidarity_rate": "0.1",
+        "alternative": {
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2022-04-01",
+                "valid_until": null,
+                "value": "36.00"
+              }
+            ]
+          }
+        },
+        "alternative_extra_months": true,
+        "alternative_tfr": true,
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
+              "title": "CCNL CED, ICT, Professioni Digitali e STP, 9 March 2022",
+              "kind": "associazione",
+              "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+              "published_on": "2022-03-09",
+              "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+            },
+            "page": "151",
+            "section": "Artt. 266 and 268 (Fondo EASI)",
+            "quote": "per tutti i dipendenti con contratto a tempo indeterminato o determinato con durata superiore a 12 mesi e per gli apprendisti [...] Dal 1° aprile 2022, il contributo annuale è fissato in euro 204,00 [...] 12 rate mensili di cui euro 15,00 [...] a carico del datore di lavoro ed euro 2,00 [...] a carico di ciascun lavoratore [...] un elemento distinto della retribuzione di euro 36,00 per quattordici mensilità, utile ai fini di tutti gli istituti contrattuali, compreso il TFR."
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2022-04-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-funds"
+          }
+        }
+      }
+    ],
+    "employer_funds": [
+      {
+        "code": "IL_MIO_DOMANI",
+        "description": "Fondo Pensione Aperto Il Mio Domani, art. 269",
+        "rate": {
+          "periods": [
+            {
+              "valid_from": "2019-01-01",
+              "valid_until": null,
+              "value": "0.0155"
+            }
+          ]
+        },
+        "employee_min_rate": {
+          "periods": [
+            {
+              "valid_from": "2019-01-01",
+              "valid_until": null,
+              "value": "0.0055"
+            }
+          ]
+        },
+        "contribution_base": "tfr_base",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "stesura-ccnl-ced-09-marzo-2022-pdf",
+              "title": "CCNL CED, ICT, Professioni Digitali e STP, 9 March 2022",
+              "kind": "associazione",
+              "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+              "published_on": "2022-03-09",
+              "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+            },
+            "page": "151",
+            "section": "Art. 269 (Previdenza complementare)",
+            "quote": "A decorrere dal 1° gennaio 2019 le aziende contribuiscono con un'aliquota pari all' 1,55% della retribuzione utile per il calcolo del TFR a favore dei lavoratori iscritti i lavoratori iscritti possono versare una contribuzione pari allo 0,55% della retribuzione utile per il calcolo del TFR"
+          },
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-14T00:00:00Z",
+            "effective_from": "2019-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-14T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-14-ai-funds"
+          }
+        }
+      }
+    ]
   },
   "apprenticeship": [
     {
@@ -2006,7 +2201,7 @@
     "effective_until": null,
     "source": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "278cd46759241430e6b02e69354d329fc2eb82047a0601861c3ab06c0adbd55c",
+    "source_hash": "81a2f584efec7b295ed70e0f492a3641ff4f28f832a169c61e3add1119f25350",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3221,6 +3416,28 @@
         "independence": "same_process",
         "checked": [
           "work_rules.time_supplements"
+        ]
+      },
+      {
+        "id": "2026-11-14-ai-funds",
+        "date": "2026-11-14",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Artt. 221, 266-269 of the stesura of 9 March 2022.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fondoeasi.it/fondo-easi/ccnl-ced-ced-ict-professioni-digitali-e-stp/stesura-ccnl-ced-09-marzo-2022.pdf",
+            "sha256": "1ee460e786c76ced31b09153adf30a99ccb59c8587b4080b5cfb7045d150661e"
+          }
+        ],
+        "findings": [
+          "The file had no fund: added EBCE, EASI with their elements in place and the Il Mio Domani pension fund."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "parameters.health_funds",
+          "parameters.employer_funds"
         ]
       }
     ]

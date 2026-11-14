@@ -371,7 +371,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/ced-assoced",
       "ruleset_version": "2026.2",
-      "source_hash": "278cd46759241430e6b02e69354d329fc2eb82047a0601861c3ab06c0adbd55c",
+      "source_hash": "81a2f584efec7b295ed70e0f492a3641ff4f28f832a169c61e3add1119f25350",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/ced-assoced.json.gz"
@@ -986,7 +986,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/fiori-recisi-ancef",
       "ruleset_version": "2026.2",
-      "source_hash": "cc84dbbafae46e4e296d01bdd3303c26436c678b262bc78939d5979772ad4396",
+      "source_hash": "f9af0714944aa5bf716ea2b443518b404bee47415510521867ed3fab9cb7aa78",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/fiori-recisi-ancef.json.gz"
@@ -1666,7 +1666,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/ortofrutticoli-agrumari",
       "ruleset_version": "2024.1",
-      "source_hash": "e5b542665c3879f785bffe7064fd7b527061b6e726603aab551e9190beabc838",
+      "source_hash": "b09ed3011902d0dd6ef116807a38efdda7e279b9cdd4b359710954a413b087e2",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/ortofrutticoli-agrumari.json.gz"
@@ -4341,7 +4341,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "19a45ac575230f8a4482bd08d7297e171188a0047efd5e224b323bf7189f8ff5",
+      "source_hash": "294a7fcc5a866b3336fbfa536575ed93b811e0d82f01ae2521765631cfbc4896",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/ortofrutticoli-agrumari.json.gz",
