@@ -10,6 +10,7 @@ from typing import TYPE_CHECKING, cast
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.equalisation.rules import equalisation_outcome
 from ccnl_engine.inputs import EmploymentPeriod, WeeklyHours
+from ccnl_engine.irpef.declaration.inputs import PriorYearTaxFacts
 from ccnl_engine.run.models import RunKind
 from ccnl_engine.run.types import PeriodId
 
@@ -31,6 +32,7 @@ def _request(
     return cast(
         "PeriodCalculationRequest",
         SimpleNamespace(
+            prior_year=PriorYearTaxFacts(),
             period_id=PeriodId(year=year, month=month),
             level_code="5",
             employment_period=EmploymentPeriod(hired, ended),

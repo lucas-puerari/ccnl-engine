@@ -166,4 +166,12 @@ EMPLOYER_DEFAULTS: Mapping[str, FieldDefault] = {
     "ContributionExemption.made_permanent": absence_is_fact(
         "a hire, not a fixed term made permanent"
     ),
+    "PriorYearTaxFacts.pay_above_ccnl": requires_fact(
+        "base_salary",
+        "prior_year.pay_above_ccnl",
+        _REPORTED,
+        "unknown pay above the CCNL of the year before: the elemento "
+        "perequativo reads the individual elements, with a missing_fact "
+        "pay_above_ccnl when the element is owed",
+    ),
 }

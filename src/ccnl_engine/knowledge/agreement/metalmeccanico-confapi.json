@@ -137,7 +137,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "State the pay above the CCNL of the year before as a fact of the run, or pass the element as a bonus and leave the employer flag true."
+          "remediation": "Resolved (2026-11-15): PriorYearTaxFacts.pay_above_ccnl states the pay above the CCNL of the year before, which the element is reduced by 'fino a concorrenza'; not stated, the run reads the individual elements and names the missing fact pay_above_ccnl.",
+          "status": "resolved"
         }
       },
       {
@@ -3317,7 +3318,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "ab0bf53217d480f323a9e274febdccee83a4ef8f3efe2ee6a53701770e74c14f",
+    "source_hash": "313132087eea7cfdceab4ab9f32eb9457b2ddcce7c0122d8a1590761ea31f38d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

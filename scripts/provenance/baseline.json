@@ -918,7 +918,6 @@
     ],
     "agreement/metalmeccanico-confapi.json": [
       "metalmeccanico-confapi/child_sickness_and_oncological_permits",
-      "metalmeccanico-confapi/elemento_perequativo",
       "metalmeccanico-confapi/flexibility_and_hours_bank",
       "metalmeccanico-confapi/holiday_outside_calendar",
       "metalmeccanico-confapi/ipca_top_up",
@@ -935,7 +934,6 @@
       "metalmeccanico-confimi-pmi/overtime_shift_column"
     ],
     "agreement/metalmeccanico-federmeccanica.json": [
-      "metalmeccanico-federmeccanica/elemento_perequativo",
       "metalmeccanico-federmeccanica/holiday_outside_calendar",
       "metalmeccanico-federmeccanica/par_sector_and_shift_hours",
       "metalmeccanico-federmeccanica/part_time_elastic_clauses",

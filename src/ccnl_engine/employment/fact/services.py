@@ -22,6 +22,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.compensation.equalisation.rules import pay_above_issue
 from ccnl_engine.compensation.presence.issues import presence_issues
 from ccnl_engine.decision.models import (
     CalculationIssue,
@@ -276,6 +277,7 @@ def fact_issues(ctx: RunContext) -> tuple[CalculationIssue | None, ...]:
         *presence_issues(ctx),
         provincial_issue(ctx),
         premium_issue(ctx),
+        pay_above_issue(ctx),
         sector_issue(ctx),
         cigo_activity_issue(ctx),
         subsector_issue(ctx),
