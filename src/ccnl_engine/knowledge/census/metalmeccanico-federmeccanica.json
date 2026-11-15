@@ -35,22 +35,6 @@
       }
     },
     {
-      "id": "part_time_elastic_clauses",
-      "institute": "overtime",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "PART-TIME ELASTIC CLAUSES (CCNL 5 February 2021, PDF p. 57): 10% for a rearranged placement of the hours and 15% for an increase in duration up to 25% of the normal annual part-time hours. The request has no field for the hours of an elastic clause.",
-      "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
-      "state": "absent",
-      "remediation": "Add an optional fact for the hours worked under an elastic clause and pay its 10% or 15%, then resolve this limitation.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "metalmeccanico-federmeccanica/part_time_elastic_clauses"
-        ]
-      }
-    },
-    {
       "id": "shift_and_multiweek_premiums",
       "institute": "overtime",
       "variant": "all",

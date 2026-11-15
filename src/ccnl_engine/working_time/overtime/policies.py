@@ -36,6 +36,7 @@ from ccnl_engine.decision.models import (
     IssueCause,
 )
 from ccnl_engine.errors import MissingRuleError
+from ccnl_engine.working_time.event_kinds import OvertimeKind
 from ccnl_engine.working_time.models import TimeSupplementKind, WorkKind
 from ccnl_engine.working_time.overtime.decisions import CCNL_BAND_APPLIED, band_decision
 from ccnl_engine.working_time.overtime.models import CCNLOvertimeBands
@@ -196,7 +197,9 @@ def resolve_overtime_rate(
 
     Returns:
         The caller's multiplier, a weighted weekly-tier multiplier when
-        preceding weekly hours are stated, or ``1 + band`` of the first tier.
+        preceding weekly hours are stated, or ``1 + band`` of the first tier
+        (the band alone for hours moved under an elastic clause, already
+        in the pay).
 
     Raises:
         MissingRuleError: When the event has no multiplier and the CCNL
@@ -232,7 +235,8 @@ def resolve_overtime_rate(
         raise MissingRuleError(
             msg, as_of=event.event_date, feature=_OT, remediation=_MULTIPLIER
         )
-    return OvertimeRate(Decimal(1) + supplement, True, band, supplement, tiers)
+    paid = Decimal(event.kind is not OvertimeKind.ELASTIC_PLACEMENT)
+    return OvertimeRate(paid + supplement, True, band, supplement, tiers)
 
 
 def overtime_issues(
