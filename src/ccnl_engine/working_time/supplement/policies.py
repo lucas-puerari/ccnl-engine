@@ -110,8 +110,7 @@ class SupplementPay:
     """The supplement of an event and what it is computed from.
 
     Attributes:
-        amount: ``rate * hours * hourly base`` or ``rate * hours`` for
-            fixed hourly allowances, rounded to the cent.
+        amount: ``rate * hours * hourly base`` (or ``rate * hours``), in cents.
         band: The CCNL band applied.
         rate: Its rate on the event date.
         hours: Hours of the event.
@@ -123,6 +122,21 @@ class SupplementPay:
     rate: Decimal
     hours: Decimal
     base: HourlyBase | None
+
+    @property
+    def apart(self) -> Decimal:
+        """Hours paid on top of the monthly pay at the base; zero otherwise."""
+        if not self.band.paid_apart or self.base is None:
+            return Decimal(0)
+        return money(self.base.rate * self.hours)
+
+    @property
+    def posted(self) -> bool:
+        """Whether the engine posts all the event is due, at a settled rate."""
+        if self.band.paid_apart is False:
+            return True
+        unresolved = self.band.excludes_periodic_shift and self.rate == 0
+        return bool(self.apart) and not unresolved
 
 
 def resolve_supplement(event: SupplementEvent, terms: HourlyTerms) -> SupplementPay:
@@ -212,9 +226,7 @@ def supplement_decision(
     return CalculationDecision(
         capability=_FEATURES[type(event)],
         status=(
-            CalculationStatus.FINAL
-            if band.hours_paid_apart is False
-            else CalculationStatus.PROVISIONAL
+            CalculationStatus.FINAL if pay.posted else CalculationStatus.PROVISIONAL
         ),
         reason_code=SUPPLEMENT_APPLIED,
         rule=supplement_rule(terms, band),
@@ -232,7 +244,8 @@ def supplement_decision(
                 if pay.base is None
                 else {"hourly_base_rule": terms.rule_of(BASE_PATH)}
             ),
-            "hours_paid_apart": _PAID_APART[band.hours_paid_apart],
+            "hours_paid_apart": _PAID_APART[band.paid_apart],
+            **({"hours_amount": pay.apart} if pay.apart else {}),
             **(
                 {"in_periodic_shift": "yes" if event.in_periodic_shift else "no"}
                 if band.excludes_periodic_shift and isinstance(event, HolidayWorkEvent)
@@ -253,7 +266,7 @@ def supplement_issue(
         ``supplement_hours_not_posted`` when the CCNL pays the hours apart
         or does not settle it, else ``None``.
     """
-    paid_apart = pay.band.hours_paid_apart
+    paid_apart = pay.band.paid_apart
     if pay.band.excludes_periodic_shift and pay.rate == 0:
         if paid_apart is False:
             return None
@@ -266,7 +279,7 @@ def supplement_issue(
             capability=_FEATURES[type(event)],
             cause=IssueCause.RULE,
         )
-    if paid_apart is False:
+    if pay.posted:
         return None
     day = event.event_date.isoformat()
     base = "" if pay.base is None else f" (hourly base {pay.base.rate:.4f})"

@@ -5,8 +5,12 @@ value may replace.  Two kinds are not a gap of the model:
 
 - a capability the engine computes from a rule of the CCNL when the caller
   states no value (overtime, night, holiday and shift work, unjustified
-  absences, travel allowance): accepted for a CCNL that holds the rule, a
-  gap for one that does not;
+  absences, travel allowance): accepted for a CCNL whose rule the engine
+  computes, a gap for one that does not.  A band computes when it is a
+  fixed amount, or a share of an hourly base the engine derives for every
+  level (:func:`~ccnl_engine.working_time.hourly.components.derives_hourly_base`),
+  and when what the hours are due is settled (``SupplementBand.paid_apart``):
+  hours paid on top of the monthly pay are priced at that base;
 - a capability whose amount is a fact only the employer knows (a
   second-level agreement, a territorial fund, the pay of earlier payslips):
   accepted by design, for every CCNL or, where a CCNL hands it to the
@@ -17,12 +21,15 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.working_time.hourly.components import derives_hourly_base
+from ccnl_engine.working_time.models import TimeSupplementKind
 from ccnl_engine.working_time.supplement.models import SupplementWork
 
 if TYPE_CHECKING:
     from collections.abc import Callable, Mapping
 
     from ccnl_engine.agreement.facade import CCNL
+    from ccnl_engine.working_time.supplement.models import SupplementBand
 
 __all__ = ["BY_DESIGN", "RULE_BACKED", "accepted"]
 
@@ -61,16 +68,32 @@ _HOLIDAY = frozenset({
 _SHIFT = frozenset({SupplementWork.DAY_SHIFT, SupplementWork.NIGHT_SHIFT})
 
 
+def _computes(band: SupplementBand, based: bool) -> bool:
+    if band.paid_apart is None:
+        return False
+    if band.paid_apart:
+        return based
+    return band.fixed_per_hour or band.per_shift or based
+
+
 def _supplements(ccnl: CCNL, works: frozenset[SupplementWork]) -> bool:
     work = ccnl.work_rules
     rules = None if work is None else work.time_supplements
-    return rules is not None and any(b.work in works for b in rules.supplement_bands)
+    if rules is None:
+        return False
+    bands = [b for b in rules.supplement_bands if b.work in works]
+    based = bool(bands) and derives_hourly_base(ccnl)
+    return any(_computes(b, based) for b in bands)
 
 
 def _overtime(ccnl: CCNL) -> bool:
     work = ccnl.work_rules
     rules = None if work is None else work.time_supplements
-    return rules is not None and bool(rules.overtime_bands)
+    if rules is None or not rules.overtime_bands:
+        return False
+    return derives_hourly_base(ccnl) or all(
+        b.kind is not TimeSupplementKind.PERCENTAGE for b in rules.overtime_bands
+    )
 
 
 def _absence(ccnl: CCNL) -> bool:

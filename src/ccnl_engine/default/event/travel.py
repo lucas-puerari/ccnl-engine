@@ -50,6 +50,11 @@ TRAVEL_DEFAULTS: Mapping[str, FieldDefault] = {
         "(Federmeccanica): there, unstated, the event without daily_amount is "
         "rejected"
     ),
+    "TravelAllowanceEvent.agreed_at_hiring": absence_is_fact(
+        "read only by a CCNL that pays a share of the daily minimum (Lavoro "
+        "domestico art. 33): there, unstated, the event without daily_amount "
+        "is rejected"
+    ),
     "TravelAllowanceEvent.overnight": absence_is_fact(
         "read with meals: unstated, the event of such a CCNL without "
         "daily_amount is rejected"

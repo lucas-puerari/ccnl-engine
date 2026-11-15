@@ -45,6 +45,7 @@ from ccnl_engine.errors import InvalidInputError, MissingRuleError
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 from ccnl_engine.working_time.hourly.base import HourlyBase
 from ccnl_engine.working_time.hourly.components import (
+    base_record,
     components,
     individual,
     level_method,
@@ -120,10 +121,8 @@ class HourlyTerms:
     def base_source(self) -> SourceLocation | None:
         """Location of the hourly base rule, when recorded."""
         supplements = self.supplements
-        record = None if supplements is None else supplements.hourly_base_provenance
         level = self.level
-        if level is not None and level.hourly_base_provenance is not None:
-            record = level.hourly_base_provenance
+        record = base_record(supplements, level)
         return None if record is None else record.location
 
     def rule_of(self, path: str) -> str:

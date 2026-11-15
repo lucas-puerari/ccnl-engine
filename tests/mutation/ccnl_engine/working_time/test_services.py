@@ -226,11 +226,20 @@ def test_overtime_is_paid_at_the_ccnl_hourly_base(pilot: Pilot) -> None:
 
 @pytest.mark.parametrize("pilot", _PILOTS, ids=[p.slug for p in _PILOTS])
 def test_holiday_hours_take_the_ccnl_supplement(pilot: Pilot) -> None:
-    """8 h x rate x monthly / divisor, provisional where the hours are apart."""
+    """8 h x rate x monthly / divisor; the 8 hours themselves paid on top.
+
+    L. 260/1949 art. 5 c. 3 pays the hours worked on a holiday "oltre la
+    normale retribuzione globale di fatto giornaliera": the decision is
+    final and states the pay of the hours at the hourly base.
+    """
     decision = _decision(_run(pilot), "holiday_work", "ccnl_supplement_applied")
 
     assert decision.amount == _supplement(pilot, _HOLIDAY_HOURS, pilot.holiday)
-    assert decision.status is CalculationStatus.PROVISIONAL
+    assert decision.status is CalculationStatus.FINAL
+    assert decision.inputs["hours_paid_apart"] == "yes"
+    assert decision.inputs["hours_amount"] == _cents(
+        _HOLIDAY_HOURS * _monthly(pilot) / Decimal(pilot.divisor)
+    )
 
 
 @pytest.mark.parametrize(

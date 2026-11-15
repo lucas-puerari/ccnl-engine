@@ -108,7 +108,11 @@ def _travel_terms(ctx: RunContext) -> TravelTerms:
     ccnl = ctx.contract.ccnl
     work = ccnl.work_rules
     bands = CCNLOvertimeBands.of(ccnl, ctx.contract.tctx.competence.year)
-    return TravelTerms(None if work is None else work.travel_allowance, bands.ruleset)
+    return TravelTerms(
+        None if work is None else work.travel_allowance,
+        bands.ruleset,
+        ctx.regular_chain.base,
+    )
 
 
 def _standby_terms(ctx: RunContext) -> StandbyTerms:
