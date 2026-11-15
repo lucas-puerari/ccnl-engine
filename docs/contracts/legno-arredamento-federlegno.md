@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 17 verified / 88 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 23 verified / 88 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-10 | claude-opus-5-5 (ai) | Third-period intermediate remuneration clause in the signed 2016 agreement and components of the tabular minimum in the signed 2026 renewal. | confirmed | The third period pays an intermediate retribuzione at the level below destination; the 2026 table prints base, contingenza and EDR in each minimum. Averaging the full tabular minimum gives AE3 to AE4 EUR 2209.26 in September 2026. The clause does not enumerate payslip components or personal superminima. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source. | corrected | Added the comporto window of art. 76 C and the impiegati article, the same for both. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Una tantum of the ipotesi of 3 September 2026, OCR of the scanned page, against the research of a separate model session. | corrected | Added the una tantum of 100.00 of December 2026. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base, bands[0:night], bands[1:night_shift], bands[2:holiday], bands[3:sunday], bands[4:rest_day].<br>Left out: travel: kind share applied by hand. |
 
 ## Salary table
 

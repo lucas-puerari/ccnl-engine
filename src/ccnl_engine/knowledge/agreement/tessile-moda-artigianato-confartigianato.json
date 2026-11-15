@@ -331,6 +331,29 @@
         "checked": [
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-tessile-moda-artigianato-confartigianato-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.cna.it/wp-content/uploads/2021/01/CCNL-Area-Tessile-Moda-Chimica-Ceramica.pdf",
+            "sha256": "27240326b23f4e0ca597de9bb3029e83bf057d8ed3ef1183090c76bcbd712800"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[3:night_holiday], bands[14:night_holiday_shift].",
+          "Left out: bands[0:night]: more night bands the engine cannot tell apart; bands[1:holiday]: more holiday bands the engine cannot tell apart; bands[2:sunday]: more sunday bands the engine cannot tell apart; bands[4:day_shift]: more day_shift bands the engine cannot tell apart; bands[5:night]: more night bands the engine cannot tell apart; bands[6:holiday]: more holiday bands the engine cannot tell apart; bands[7:sunday]: more sunday bands the engine cannot tell apart; bands[8:day_shift]: more day_shift bands the engine cannot tell apart; bands[9:night_shift]: more night_shift bands the engine cannot tell apart; bands[10:night]: more night bands the engine cannot tell apart; bands[11:night_shift]: more night_shift bands the engine cannot tell apart; bands[12:holiday]: more holiday bands the engine cannot tell apart; bands[13:sunday]: more sunday bands the engine cannot tell apart; travel: kind delegated applied by hand."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -4818,13 +4841,13 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
     "verification_status": "unverified",
-    "source_hash": "39313ee6a40c3ade5ed9050876df70c268d86c00528be074e0b4574601367e51",
+    "source_hash": "828b4dbf703bc9b1323507d97e1edd59b695ab1f1a18a9cd6fff0ee49cfcee28",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -5004,6 +5027,116 @@
               "extraction_timestamp": "2026-09-08T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2022-09-07"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ww-cna-it-wp-content-uploads-2021-01-ccnl-area-tessile-moda-chimica-ceramica-pdf",
+            "title": "CCNL Area Tessile Moda Chimica Ceramica",
+            "kind": "associazione",
+            "url": "https://www.cna.it/wp-content/uploads/2021/01/CCNL-Area-Tessile-Moda-Chimica-Ceramica.pdf",
+            "sha256": "27240326b23f4e0ca597de9bb3029e83bf057d8ed3ef1183090c76bcbd712800"
+          },
+          "page": "66",
+          "section": "Artt. 37-38; per la composizione della retribuzione di fatto, art. 33 c. 2, p. 65",
+          "quote": "La retribuzione è oraria e si ottiene dividendo la retribuzione mensile per 173. In caso di orario settimanale di 36 ore di cui all'art. 46 “Lavoro a squadre” la retribuzione oraria si ottiene dividendo la retribuzione mensile per 156. Art. 38 Orario di lavoro L’orario di lavoro contrattuale è, di norma, di 40 ore settimanali e di norma, di 8 ore giornaliere"
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-tessile-moda-artigianato-confartigianato-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_HOLIDAY_3",
+          "description": "Area Tessile/Moda: festivo o domenicale notturno; non cumulabile con altre maggiorazioni",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2017-12-14",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ww-cna-it-wp-content-uploads-2021-01-ccnl-area-tessile-moda-chimica-ceramica-pdf",
+                "title": "CCNL Area Tessile Moda Chimica Ceramica",
+                "kind": "associazione",
+                "url": "https://www.cna.it/wp-content/uploads/2021/01/CCNL-Area-Tessile-Moda-Chimica-Ceramica.pdf",
+                "sha256": "27240326b23f4e0ca597de9bb3029e83bf057d8ed3ef1183090c76bcbd712800"
+              },
+              "page": "68",
+              "section": "Art. 43, Area Tessile/Moda",
+              "quote": "lavoro notturno festivo 50% Le percentuali di cui sopra si applicano sulla retribuzione di fatto comprensiva, per gli addetti a lavoro a squadre, dell'1,05%. Le dette percentuali di maggiorazione non sono cumulabili né fra loro, né con quelle previste per il Lavoro Straordinario e la maggiore assorbe la minore."
+            },
+            "transformation": "Area Tessile/Moda: festivo o domenicale notturno; non cumulabile con altre maggiorazioni",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2017-12-14",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-tessile-moda-artigianato-confartigianato-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_HOLIDAY_SHIFT_14",
+          "description": "Settore Ceramica, Terracotta, Gres e Decorazione di Piastrelle: domenica in turno notturno avvicendato; prevale sul 10% notturno",
+          "work": "night_holiday_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2017-12-14",
+                "valid_until": null,
+                "value": "0.20"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ww-cna-it-wp-content-uploads-2021-01-ccnl-area-tessile-moda-chimica-ceramica-pdf",
+                "title": "CCNL Area Tessile Moda Chimica Ceramica",
+                "kind": "associazione",
+                "url": "https://www.cna.it/wp-content/uploads/2021/01/CCNL-Area-Tessile-Moda-Chimica-Ceramica.pdf",
+                "sha256": "27240326b23f4e0ca597de9bb3029e83bf057d8ed3ef1183090c76bcbd712800"
+              },
+              "page": "70",
+              "section": "Art. 43, Settore Ceramica, Terracotta, Gres e Decorazione di Piastrelle",
+              "quote": "8) lavoro nei giorni domenicali per gli addetti a turni 20% avvicendati nei turni notturni Le percentuali di maggiorazione sopra dette non sono cumulabili, intendendosi che la maggiore assorbe la minore."
+            },
+            "transformation": "Settore Ceramica, Terracotta, Gres e Decorazione di Piastrelle: domenica in turno notturno avvicendato; prevale sul 10% notturno",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2017-12-14",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-tessile-moda-artigianato-confartigianato-time-supplements"
             }
           }
         }

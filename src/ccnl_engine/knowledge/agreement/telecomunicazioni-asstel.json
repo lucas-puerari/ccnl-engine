@@ -258,6 +258,29 @@
         "checked": [
           "parameters.seniority_increments"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-telecomunicazioni-asstel-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.asstel.it/wp-content/uploads/2023/04/ccnl-tlc-testo-definitivo-finale-26042021-1.pdf",
+            "sha256": "3703628d2e6c783bd4d0dd922271b479876843711dbd14b0f89b3fc6bd3948a8"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[0:night_shift], bands[1:night], bands[2:holiday], bands[3:rest_day], bands[4:holiday_compensatory_rest], bands[5:sunday], bands[6:night_holiday_shift], bands[7:night_holiday], bands[8:night_holiday_shift_compensatory_rest], bands[9:night_holiday_compensatory_rest].",
+          "Left out: bands[10:night]: quote skipped; travel: kind delegated applied by hand."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -1936,13 +1959,13 @@
     "effective_until": null,
     "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
     "verification_status": "unverified",
-    "source_hash": "3fe4a798d8db3d438e09abfaa285403277bf4a8cfe3411e18caabfcc6a077928",
+    "source_hash": "32d9593ad2c238aecd364ee7f0fadc39580a3a27e9ba3d4b2c586e8325b68250",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -2085,6 +2108,444 @@
               "extraction_timestamp": "2026-09-08T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "el-it-wp-content-uploads-2023-04-ccnl-tlc-testo-definitivo-finale-26042021-1-pdf",
+            "title": "ccnl tlc testo definitivo finale 26042021 1",
+            "kind": "associazione",
+            "url": "https://www.asstel.it/wp-content/uploads/2023/04/ccnl-tlc-testo-definitivo-finale-26042021-1.pdf",
+            "sha256": "3703628d2e6c783bd4d0dd922271b479876843711dbd14b0f89b3fc6bd3948a8"
+          },
+          "page": "79",
+          "section": "Art. 40 c. 2",
+          "quote": "2. La retribuzione oraria dei lavoratori anche ai fini dei vari istituti contrattuali, salvo diverse indicazioni, si determina dividendo per 173 i minimi tabellari della classificazione unica, gli aumenti periodici di anzianità, gli aumenti di merito, nonché gli altri compensi già eventualmente fissati a mese ed aggiungendo a tali valori gli altri elementi orari della retribuzione, quali incentivi, indennità varie, ecc."
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-telecomunicazioni-asstel-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_SHIFT_0",
+          "description": "Lavoro notturno ordinario dei lavoratori a turni avvicendati (22–7)",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-11-12",
+                "valid_until": null,
+                "value": "0.15"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "el-it-wp-content-uploads-2023-04-ccnl-tlc-testo-definitivo-finale-26042021-1-pdf",
+                "title": "ccnl tlc testo definitivo finale 26042021 1",
+                "kind": "associazione",
+                "url": "https://www.asstel.it/wp-content/uploads/2023/04/ccnl-tlc-testo-definitivo-finale-26042021-1.pdf",
+                "sha256": "3703628d2e6c783bd4d0dd922271b479876843711dbd14b0f89b3fc6bd3948a8"
+              },
+              "page": "61",
+              "section": "Art. 30 c. 12",
+              "quote": "Lavoro notturno 15% 32%"
+            },
+            "transformation": "Lavoro notturno ordinario dei lavoratori a turni avvicendati (22–7)",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2020-11-12",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-telecomunicazioni-asstel-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_1",
+          "description": "Lavoro notturno ordinario del restante personale (22–7)",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-11-12",
+                "valid_until": null,
+                "value": "0.32"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "el-it-wp-content-uploads-2023-04-ccnl-tlc-testo-definitivo-finale-26042021-1-pdf",
+                "title": "ccnl tlc testo definitivo finale 26042021 1",
+                "kind": "associazione",
+                "url": "https://www.asstel.it/wp-content/uploads/2023/04/ccnl-tlc-testo-definitivo-finale-26042021-1.pdf",
+                "sha256": "3703628d2e6c783bd4d0dd922271b479876843711dbd14b0f89b3fc6bd3948a8"
+              },
+              "page": "61",
+              "section": "Art. 30 c. 12",
+              "quote": "Lavoro notturno 15% 32%"
+            },
+            "transformation": "Lavoro notturno ordinario del restante personale (22–7)",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2020-11-12",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-telecomunicazioni-asstel-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_2",
+          "description": "Lavoro festivo senza riposo compensativo",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-11-12",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "el-it-wp-content-uploads-2023-04-ccnl-tlc-testo-definitivo-finale-26042021-1-pdf",
+                "title": "ccnl tlc testo definitivo finale 26042021 1",
+                "kind": "associazione",
+                "url": "https://www.asstel.it/wp-content/uploads/2023/04/ccnl-tlc-testo-definitivo-finale-26042021-1.pdf",
+                "sha256": "3703628d2e6c783bd4d0dd922271b479876843711dbd14b0f89b3fc6bd3948a8"
+              },
+              "page": "61",
+              "section": "Art. 30 c. 12",
+              "quote": "Lavoro festivo 50% 50%"
+            },
+            "transformation": "Lavoro festivo senza riposo compensativo",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2020-11-12",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-telecomunicazioni-asstel-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_REST_DAY_3",
+          "description": "Lavoro nel giorno di riposo settimanale senza riposo compensativo",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-11-12",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "el-it-wp-content-uploads-2023-04-ccnl-tlc-testo-definitivo-finale-26042021-1-pdf",
+                "title": "ccnl tlc testo definitivo finale 26042021 1",
+                "kind": "associazione",
+                "url": "https://www.asstel.it/wp-content/uploads/2023/04/ccnl-tlc-testo-definitivo-finale-26042021-1.pdf",
+                "sha256": "3703628d2e6c783bd4d0dd922271b479876843711dbd14b0f89b3fc6bd3948a8"
+              },
+              "page": "61",
+              "section": "Art. 30 c. 12",
+              "quote": "Lavoro festivo 50% 50%"
+            },
+            "transformation": "Lavoro nel giorno di riposo settimanale senza riposo compensativo",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2020-11-12",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-telecomunicazioni-asstel-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_COMPENSATORY_REST_4",
+          "description": "Lavoro festivo con riposo compensativo",
+          "work": "holiday_compensatory_rest",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-11-12",
+                "valid_until": null,
+                "value": "0.15"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "el-it-wp-content-uploads-2023-04-ccnl-tlc-testo-definitivo-finale-26042021-1-pdf",
+                "title": "ccnl tlc testo definitivo finale 26042021 1",
+                "kind": "associazione",
+                "url": "https://www.asstel.it/wp-content/uploads/2023/04/ccnl-tlc-testo-definitivo-finale-26042021-1.pdf",
+                "sha256": "3703628d2e6c783bd4d0dd922271b479876843711dbd14b0f89b3fc6bd3948a8"
+              },
+              "page": "61",
+              "section": "Art. 30 c. 12",
+              "quote": "Lavoro festivo con riposo 15% 15% compensativo"
+            },
+            "transformation": "Lavoro festivo con riposo compensativo",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2020-11-12",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-telecomunicazioni-asstel-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_SUNDAY_5",
+          "description": "Domenica lavorativa con riposo compensativo in altro giorno",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-11-12",
+                "valid_until": null,
+                "value": "0.15"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "el-it-wp-content-uploads-2023-04-ccnl-tlc-testo-definitivo-finale-26042021-1-pdf",
+                "title": "ccnl tlc testo definitivo finale 26042021 1",
+                "kind": "associazione",
+                "url": "https://www.asstel.it/wp-content/uploads/2023/04/ccnl-tlc-testo-definitivo-finale-26042021-1.pdf",
+                "sha256": "3703628d2e6c783bd4d0dd922271b479876843711dbd14b0f89b3fc6bd3948a8"
+              },
+              "page": "61",
+              "section": "Art. 30 c. 12",
+              "quote": "Lavoro festivo con riposo 15% 15% compensativo"
+            },
+            "transformation": "Domenica lavorativa con riposo compensativo in altro giorno",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2020-11-12",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-telecomunicazioni-asstel-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_HOLIDAY_SHIFT_6",
+          "description": "Lavoro notturno e festivo dei turnisti",
+          "work": "night_holiday_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-11-12",
+                "valid_until": null,
+                "value": "0.55"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "el-it-wp-content-uploads-2023-04-ccnl-tlc-testo-definitivo-finale-26042021-1-pdf",
+                "title": "ccnl tlc testo definitivo finale 26042021 1",
+                "kind": "associazione",
+                "url": "https://www.asstel.it/wp-content/uploads/2023/04/ccnl-tlc-testo-definitivo-finale-26042021-1.pdf",
+                "sha256": "3703628d2e6c783bd4d0dd922271b479876843711dbd14b0f89b3fc6bd3948a8"
+              },
+              "page": "61",
+              "section": "Art. 30 c. 12",
+              "quote": "Lavoro notturno e festivo 55% 60%"
+            },
+            "transformation": "Lavoro notturno e festivo dei turnisti",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2020-11-12",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-telecomunicazioni-asstel-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_HOLIDAY_7",
+          "description": "Lavoro notturno e festivo del restante personale",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-11-12",
+                "valid_until": null,
+                "value": "0.60"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "el-it-wp-content-uploads-2023-04-ccnl-tlc-testo-definitivo-finale-26042021-1-pdf",
+                "title": "ccnl tlc testo definitivo finale 26042021 1",
+                "kind": "associazione",
+                "url": "https://www.asstel.it/wp-content/uploads/2023/04/ccnl-tlc-testo-definitivo-finale-26042021-1.pdf",
+                "sha256": "3703628d2e6c783bd4d0dd922271b479876843711dbd14b0f89b3fc6bd3948a8"
+              },
+              "page": "61",
+              "section": "Art. 30 c. 12",
+              "quote": "Lavoro notturno e festivo 55% 60%"
+            },
+            "transformation": "Lavoro notturno e festivo del restante personale",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2020-11-12",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-telecomunicazioni-asstel-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_HOLIDAY_SHIFT_COMPENSATORY_REST_8",
+          "description": "Lavoro notturno festivo con riposo compensativo dei turnisti",
+          "work": "night_holiday_shift_compensatory_rest",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-11-12",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "el-it-wp-content-uploads-2023-04-ccnl-tlc-testo-definitivo-finale-26042021-1-pdf",
+                "title": "ccnl tlc testo definitivo finale 26042021 1",
+                "kind": "associazione",
+                "url": "https://www.asstel.it/wp-content/uploads/2023/04/ccnl-tlc-testo-definitivo-finale-26042021-1.pdf",
+                "sha256": "3703628d2e6c783bd4d0dd922271b479876843711dbd14b0f89b3fc6bd3948a8"
+              },
+              "page": "61",
+              "section": "Art. 30 c. 12",
+              "quote": "Lavoro notturno festivo con 50% 55% riposo compensativo"
+            },
+            "transformation": "Lavoro notturno festivo con riposo compensativo dei turnisti",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2020-11-12",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-telecomunicazioni-asstel-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_HOLIDAY_COMPENSATORY_REST_9",
+          "description": "Lavoro notturno festivo con riposo compensativo del restante personale",
+          "work": "night_holiday_compensatory_rest",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2020-11-12",
+                "valid_until": null,
+                "value": "0.55"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "el-it-wp-content-uploads-2023-04-ccnl-tlc-testo-definitivo-finale-26042021-1-pdf",
+                "title": "ccnl tlc testo definitivo finale 26042021 1",
+                "kind": "associazione",
+                "url": "https://www.asstel.it/wp-content/uploads/2023/04/ccnl-tlc-testo-definitivo-finale-26042021-1.pdf",
+                "sha256": "3703628d2e6c783bd4d0dd922271b479876843711dbd14b0f89b3fc6bd3948a8"
+              },
+              "page": "61",
+              "section": "Art. 30 c. 12",
+              "quote": "Lavoro notturno festivo con 50% 55% riposo compensativo"
+            },
+            "transformation": "Lavoro notturno festivo con riposo compensativo del restante personale",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2020-11-12",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-telecomunicazioni-asstel-time-supplements"
             }
           }
         }

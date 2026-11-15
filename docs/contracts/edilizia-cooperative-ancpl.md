@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 25 verified / 33 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 30 verified / 33 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-02-21 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 2 values found verbatim on the cited pages and marked verified; 30 left as they were (derived or not on a text page). |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 24 values read identically by both readings and equal to the file. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Historical cohort and frozen valuation in Art. 98 of the 2000 text; no inference about continued force in the current agreement. | corrected | Art. 98 (PDF p. 97) limits the annual award to clerical employees already at 20 years' uninterrupted actual service on 30 April 1982. The frozen Art. 80 items 1–14 pay and whole-month fractions on non-disciplinary departure cannot be inferred from current pay; the cohort may still be employed in 2026. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: bands[1:day_shift], bands[2:night_shift], bands[5:holiday], bands[6:night_holiday], bands[7:sunday].<br>Left out: bands[0:night]: more night bands the engine cannot tell apart; bands[3:night]: work/role/rate not applicable (guardiano); bands[4:night]: quote skipped; travel: kind delegated applied by hand. |
 
 ## Salary table
 

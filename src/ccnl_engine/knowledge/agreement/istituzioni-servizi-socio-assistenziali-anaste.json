@@ -281,6 +281,28 @@
           "work_rules.insured_absence.maternity.holiday",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-istituzioni-servizi-socio-assistenziali-anaste-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.anaste.com/download/?wpdmdl=11171",
+            "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[0:night_shift], bands[1:night], bands[2:holiday], bands[3:holiday_compensatory_rest], bands[4:sunday], bands[5:night_holiday], travel."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -2865,13 +2887,13 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "4862a0ebc2d835506a0f0d9d4ed2723d939ebbcf40edab03d5257e21f1aa76f4",
+    "source_hash": "567a9376b2d8bc81eff3c4affcf3a2e59d082a7879070174e53d1eb753b4276a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -3017,6 +3039,280 @@
             }
           }
         }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "https-www-anaste-com-download-wpdmdl-11171",
+            "title": "?wpdmdl=11171",
+            "kind": "associazione",
+            "url": "https://www.anaste.com/download/?wpdmdl=11171",
+            "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+          },
+          "page": "63",
+          "section": "Art. 68 cc. 1-3",
+          "quote": "1. Gli elementi che concorrono a formare la normale retribuzione sono i seguenti: - minimo contrattuale conglobato; - salario di anzianita; - eventuale elemento integrativo derivante dalla contrattazione integrativa territoriale o aziendale; = eventuali super minimi e/o assegni ad personam; - indennita di funzione. 2. Limporto giornaliero della retribuzione si ottiene dividendo per 26 l’importo mensile. 3. L’importo orario della retribuzione si ottiene dividendo l’importo mensile per 164."
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-istituzioni-servizi-socio-assistenziali-anaste-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_SHIFT_0",
+          "description": "Servizio ordinario notturno in turno, dalle 22:00 alle 6:00",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.20"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-anaste-com-download-wpdmdl-11171",
+                "title": "?wpdmdl=11171",
+                "kind": "associazione",
+                "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+              },
+              "page": "67",
+              "section": "Art. 78 cc. 1-3 lett. a",
+              "quote": "1. Si considera lavoro ordinatio notturno quello svolto nel turno di lavoro tra le ore 22:00 e le ore 6:00 del giorno successivo. 2. E considerato turno notturno festivo quello svolto: - tra le ore 22:00 del giorno pre-festivo e le ore 6:00 del giorno festivo; - tra le ore 22:00 del giorno festivo e le ore 6:00 di quello successivo al giorno festivo. 3. In aggiunta alla notmale retribuzione spettante al dipendente, competono, altresi, le seguenti maggiorazioni: a) Servizio ordinario notturno in turno 20%;"
+            },
+            "transformation": "Servizio ordinario notturno in turno, dalle 22:00 alle 6:00",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-istituzioni-servizi-socio-assistenziali-anaste-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_1",
+          "description": "Servizio ordinario notturno non programmato, dalle 22:00 alle 6:00",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.25"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-anaste-com-download-wpdmdl-11171",
+                "title": "?wpdmdl=11171",
+                "kind": "associazione",
+                "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+              },
+              "page": "67",
+              "section": "Art. 78 c. 3 lett. b",
+              "quote": "3. In aggiunta alla notmale retribuzione spettante al dipendente, competono, altresi, le seguenti maggiorazioni: a) Servizio ordinario notturno in turno 20%; b) Servizio ordinario notturno non programmato 25%;"
+            },
+            "transformation": "Servizio ordinario notturno non programmato, dalle 22:00 alle 6:00",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-istituzioni-servizi-socio-assistenziali-anaste-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_2",
+          "description": "Servizio ordinario festivo; riposo supplementare secondo l'art. 55 c. 3, oppure pagamento delle ore secondo il c. 4",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.15"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-anaste-com-download-wpdmdl-11171",
+                "title": "?wpdmdl=11171",
+                "kind": "associazione",
+                "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+              },
+              "page": "67",
+              "section": "Art. 78 c. 3 lett. c",
+              "quote": "3. In aggiunta alla notmale retribuzione spettante al dipendente, competono, altresi, le seguenti maggiorazioni: a) Servizio ordinario notturno in turno 20%; b) Servizio ordinario notturno non programmato 25%; ) Servizio ordinario domenicale e/o festivo 15%;"
+            },
+            "transformation": "Servizio ordinario festivo; riposo supplementare secondo l'art. 55 c. 3, oppure pagamento delle ore secondo il c. 4",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-istituzioni-servizi-socio-assistenziali-anaste-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_COMPENSATORY_REST_3",
+          "description": "Servizio ordinario festivo con riposo supplementare retribuito (art. 55 c. 3)",
+          "work": "holiday_compensatory_rest",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.15"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-anaste-com-download-wpdmdl-11171",
+                "title": "?wpdmdl=11171",
+                "kind": "associazione",
+                "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+              },
+              "page": "67",
+              "section": "Art. 78 c. 3 lett. c; Art. 55 c. 3",
+              "quote": "3. In aggiunta alla notmale retribuzione spettante al dipendente, competono, altresi, le seguenti maggiorazioni: a) Servizio ordinario notturno in turno 20%; b) Servizio ordinario notturno non programmato 25%; ) Servizio ordinario domenicale e/o festivo 15%;"
+            },
+            "transformation": "Servizio ordinario festivo con riposo supplementare retribuito (art. 55 c. 3)",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-istituzioni-servizi-socio-assistenziali-anaste-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_SUNDAY_4",
+          "description": "Servizio ordinario domenicale, anche con riposo settimanale in altro giorno (art. 42 c. 3)",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.15"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-anaste-com-download-wpdmdl-11171",
+                "title": "?wpdmdl=11171",
+                "kind": "associazione",
+                "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+              },
+              "page": "67",
+              "section": "Art. 78 c. 3 lett. c; Art. 42 c. 3",
+              "quote": "3. In aggiunta alla notmale retribuzione spettante al dipendente, competono, altresi, le seguenti maggiorazioni: a) Servizio ordinario notturno in turno 20%; b) Servizio ordinario notturno non programmato 25%; ) Servizio ordinario domenicale e/o festivo 15%;"
+            },
+            "transformation": "Servizio ordinario domenicale, anche con riposo settimanale in altro giorno (art. 42 c. 3)",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-istituzioni-servizi-socio-assistenziali-anaste-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_HOLIDAY_5",
+          "description": "Servizio ordinario domenicale o festivo notturno (turni 22:00–6:00 individuati dall'art. 78 c. 2)",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.25"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-anaste-com-download-wpdmdl-11171",
+                "title": "?wpdmdl=11171",
+                "kind": "associazione",
+                "url": "https://www.anaste.com/download/?wpdmdl=11171",
+                "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+              },
+              "page": "67",
+              "section": "Art. 78 cc. 2-3 lett. d",
+              "quote": "3. In aggiunta alla notmale retribuzione spettante al dipendente, competono, altresi, le seguenti maggiorazioni: a) Servizio ordinario notturno in turno 20%; b) Servizio ordinario notturno non programmato 25%; ) Servizio ordinario domenicale e/o festivo 15%; d) Servizio ordinario domenicale e/o festivo notturno 25%."
+            },
+            "transformation": "Servizio ordinario domenicale o festivo notturno (turni 22:00–6:00 individuati dall'art. 78 c. 2)",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-istituzioni-servizi-socio-assistenziali-anaste-time-supplements"
+            }
+          }
+        }
       ]
     },
     "absence_rules": {
@@ -3106,7 +3402,7 @@
           "location": {
             "source_document": {
               "document_id": "snalv-it-docs-anaste25-pdf6-pdf",
-              "title": "https://snalv.it/docs/anaste25/pdf6.pdf",
+              "title": "pdf6",
               "kind": "altro",
               "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
               "pages": [],
@@ -3135,7 +3431,7 @@
             "location": {
               "source_document": {
                 "document_id": "snalv-it-docs-anaste25-pdf6-pdf",
-                "title": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                "title": "pdf6",
                 "kind": "altro",
                 "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
                 "pages": [],
@@ -3225,6 +3521,37 @@
           "extraction_timestamp": "2026-11-14T00:00:00Z",
           "effective_from": "2026-10-09",
           "verification_status": "unverified"
+        }
+      }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "https-www-anaste-com-download-wpdmdl-11171",
+              "title": "?wpdmdl=11171",
+              "kind": "associazione",
+              "url": "https://www.anaste.com/download/?wpdmdl=11171",
+              "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+            },
+            "page": "69",
+            "section": "Art. 82 cc. 1-4",
+            "quote": "1. Per trasferta si intende lo spostamento provvisorio del lavoratore verso una localita diversa dal comune in cui esegue normalmente la propria attivita. 2. La trasferta ¢ richiesta dal datore di lavoro. 3. Se la sede di missione è ricompresa in un massimo di 10 Km dalla sede abituale di setvizio, al lavoratore non compete alcuna indennita aggiuntiva, ad eccezione delle maggioti spese sostenute per lo spostamento. 4. Qualora la sede di missione si trovi ad una distanza maggiore, al lavoratore competera il rimborso a piè di lista delle spese sostenute per trasporto e per 'eventuale vitto ed alloggio."
+          },
+          "transformation": "The CCNL pays no daily travel allowance: the trasferta is refunded at documented cost",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-15T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-15-ai-istituzioni-servizi-socio-assistenziali-anaste-time-supplements"
+          }
         }
       }
     }

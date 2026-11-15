@@ -2625,7 +2625,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "7a5ab06d083e68f1bcf3239370358d554bc913857bddbd6318aa624cd5fa7cbf",
+    "source_hash": "4f183e3454d2c962e894f608db8f7c0e156a3137d76e2cf8f77e9c4a0089c20e",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2740,6 +2740,536 @@
               "effective_from": "2024-01-01"
             }
           }
+        }
+      ],
+      "supplement_bands": [
+        {
+          "code": "U_HOLIDAY_0",
+          "description": "Festività infrasettimanali e giorno festivo",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-224212",
+                "title": "224212",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212",
+                "sha256": "2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95"
+              },
+              "page": "33",
+              "section": "Art. 22, voce 2",
+              "quote": "Lavoro festivo                                                      45%"
+            },
+            "transformation": "Festività infrasettimanali e giorno festivo",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-edilizia-artigianato-cna-time-supplements"
+            }
+          },
+          "categories": [
+            "operaio"
+          ]
+        },
+        {
+          "code": "U_NIGHT_1",
+          "description": "Ore 22–6, fuori da turni",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.28"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-224212",
+                "title": "224212",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212",
+                "sha256": "2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95"
+              },
+              "page": "33",
+              "section": "Art. 22, voce 4",
+              "quote": "Lavoro notturno non compreso in turni regolari avvicendati.         28%"
+            },
+            "transformation": "Ore 22–6, fuori da turni",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-edilizia-artigianato-cna-time-supplements"
+            }
+          },
+          "categories": [
+            "operaio"
+          ]
+        },
+        {
+          "code": "U_DAY_SHIFT_2",
+          "description": "Turno diurno regolare avvicendato",
+          "work": "day_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.12"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-224212",
+                "title": "224212",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212",
+                "sha256": "2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95"
+              },
+              "page": "33",
+              "section": "Art. 22, voce 5",
+              "quote": "Lavoro diurno compreso in turni regolari avvicendati                12%"
+            },
+            "transformation": "Turno diurno regolare avvicendato",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-edilizia-artigianato-cna-time-supplements"
+            }
+          },
+          "categories": [
+            "operaio"
+          ]
+        },
+        {
+          "code": "U_NIGHT_SHIFT_3",
+          "description": "Turno notturno regolare avvicendato",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.14"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-224212",
+                "title": "224212",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212",
+                "sha256": "2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95"
+              },
+              "page": "33",
+              "section": "Art. 22, voce 6",
+              "quote": "Lavoro notturno compreso in turni regolari avvicendati              14%"
+            },
+            "transformation": "Turno notturno regolare avvicendato",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-edilizia-artigianato-cna-time-supplements"
+            }
+          },
+          "categories": [
+            "operaio"
+          ]
+        },
+        {
+          "code": "U_NIGHT_HOLIDAY_6",
+          "description": "Festivo notturno ordinario",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-224212",
+                "title": "224212",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212",
+                "sha256": "2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95"
+              },
+              "page": "33",
+              "section": "Art. 22, voce 10",
+              "quote": "Lavoro festivo notturno                                                 50%"
+            },
+            "transformation": "Festivo notturno ordinario",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-edilizia-artigianato-cna-time-supplements"
+            }
+          },
+          "categories": [
+            "operaio"
+          ]
+        },
+        {
+          "code": "U_SUNDAY_7",
+          "description": "Domenica con riposo compensativo, esclusi turnisti",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.08"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-224212",
+                "title": "224212",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212",
+                "sha256": "2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95"
+              },
+              "page": "33",
+              "section": "Art. 22, voce 12",
+              "quote": "Lavoro domenicale con riposo compensativo, esclusi i turnisti 8%"
+            },
+            "transformation": "Domenica con riposo compensativo, esclusi turnisti",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-edilizia-artigianato-cna-time-supplements"
+            }
+          },
+          "categories": [
+            "operaio"
+          ]
+        },
+        {
+          "code": "U_REST_DAY_8",
+          "description": "Prestazione nella giornata di riposo compensativo prefissata, se spostamento non comunicato almeno 24 ore prima",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-224212",
+                "title": "224212",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212",
+                "sha256": "2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95"
+              },
+              "page": "23",
+              "section": "Art. 10, commi 3-4",
+              "quote": "L'eventuale spostamento del riposo settimanale della giornata di riposo compensativo prefissata deve essere comunicata all'operaio almeno 24 ore prima In difetto e in caso di prestazione di lavoro è dovuta anche la maggiorazione per lavoro festivo."
+            },
+            "transformation": "Prestazione nella giornata di riposo compensativo prefissata, se spostamento non comunicato almeno 24 ore prima",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-edilizia-artigianato-cna-time-supplements"
+            }
+          },
+          "categories": [
+            "operaio"
+          ]
+        },
+        {
+          "code": "U_SATURDAY_SIXTH_DAY_9",
+          "description": "Sabato quale sesto giorno ordinario",
+          "work": "saturday_sixth_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.08"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-224212",
+                "title": "224212",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212",
+                "sha256": "2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95"
+              },
+              "page": "19",
+              "section": "Art. 6, comma 5",
+              "quote": "Ove l'impresa, per obiettive esigenze tecnico-produttive ripartisca su sei giorni l'orario normale contrattuale di lavoro, per le ore in tal modo prestate nella giornata di sabato è dovuta una maggiorazione dell'8%, calcolata sugli elementi della retribuzione di cui al punto 3) dell'art. 25."
+            },
+            "transformation": "Sabato quale sesto giorno ordinario",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-edilizia-artigianato-cna-time-supplements"
+            }
+          },
+          "categories": [
+            "operaio"
+          ]
+        },
+        {
+          "code": "U_HOLIDAY_10",
+          "description": "Impiegati: festivo",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-224212",
+                "title": "224212",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212",
+                "sha256": "2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95"
+              },
+              "page": "71",
+              "section": "Art. 57, tabella",
+              "quote": "lavoro festivo                                          45%"
+            },
+            "transformation": "Impiegati: festivo",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-edilizia-artigianato-cna-time-supplements"
+            }
+          },
+          "categories": [
+            "impiegato"
+          ]
+        },
+        {
+          "code": "U_NIGHT_11",
+          "description": "Impiegati: ore 22–6 non in turni",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.34"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-224212",
+                "title": "224212",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212",
+                "sha256": "2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95"
+              },
+              "page": "71",
+              "section": "Art. 57, tabella",
+              "quote": "lavoro notturno non compreso in turni periodici         34%"
+            },
+            "transformation": "Impiegati: ore 22–6 non in turni",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-edilizia-artigianato-cna-time-supplements"
+            }
+          },
+          "categories": [
+            "impiegato"
+          ]
+        },
+        {
+          "code": "U_NIGHT_SHIFT_12",
+          "description": "Impiegati: notturno in turni periodici",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.10"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-224212",
+                "title": "224212",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212",
+                "sha256": "2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95"
+              },
+              "page": "71",
+              "section": "Art. 57, tabella",
+              "quote": "lavoro notturno compreso in turni periodici             10%"
+            },
+            "transformation": "Impiegati: notturno in turni periodici",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-edilizia-artigianato-cna-time-supplements"
+            }
+          },
+          "categories": [
+            "impiegato"
+          ]
+        },
+        {
+          "code": "U_NIGHT_HOLIDAY_13",
+          "description": "Impiegati: festivo notturno fuori turni",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-224212",
+                "title": "224212",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212",
+                "sha256": "2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95"
+              },
+              "page": "71",
+              "section": "Art. 57, tabella",
+              "quote": "lavoro festivo notturno escluso quello compreso in turni periodici \\ 50%"
+            },
+            "transformation": "Impiegati: festivo notturno fuori turni",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-05-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-edilizia-artigianato-cna-time-supplements"
+            }
+          },
+          "categories": [
+            "impiegato"
+          ]
         }
       ]
     },
@@ -3229,6 +3759,29 @@
         "checked": [
           "work_rules.sickness_rules_by_category",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-edilizia-artigianato-cna-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224212",
+            "sha256": "2f0ed6307013f33074f2febb7bebb48911882c1d026590cdf1384c0b8bf0ee95"
+          }
+        ],
+        "findings": [
+          "Applied: bands[0:holiday], bands[1:night], bands[2:day_shift], bands[3:night_shift], bands[6:night_holiday], bands[7:sunday], bands[8:rest_day], bands[9:saturday_sixth_day], bands[10:holiday], bands[11:night], bands[12:night_shift], bands[13:night_holiday].",
+          "Left out: bands[4:night]: quote skipped; bands[5:night]: quote skipped; travel: kind share applied by hand."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ]

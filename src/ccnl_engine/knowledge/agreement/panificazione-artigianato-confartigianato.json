@@ -2192,13 +2192,13 @@
     "effective_until": null,
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "f3658137963d1eab0d97d5a6428588f872f9cc98d1298c032052cebd7bd8d631",
+    "source_hash": "1c58ce00dc8d6c6af32d382dea5bb0cfab0eb8bbaa7fa95f29817915b32c097b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -2305,6 +2305,157 @@
               "extraction_timestamp": "2026-09-08T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2023-01-01"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "22-04-2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+            "title": "2024 06 06 CCNL AREA ALIMENTAZIONE ARTIGIANATO PANIFICAZIONE 2023 2026",
+            "kind": "associazione",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+            "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
+          },
+          "page": "38",
+          "section": "Art. 24 bis, comma 2 (base); art. 31, p. 42 (divisore); art. 22, p. 36 (orario)",
+          "quote": "Il lavoro notturno, intendendosi per tale quello svolto dalle ore 21 alle ore 4, sarà compensato con una maggiorazione del 50% sulla retribuzione globale di fatto."
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-panificazione-artigianato-confartigianato-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_0",
+          "description": "Panificazione: lavoro ordinario dalle 21 alle 4, anche in turno; la norma speciale non distingue il turno notturno.",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-12-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "22-04-2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                "title": "2024 06 06 CCNL AREA ALIMENTAZIONE ARTIGIANATO PANIFICAZIONE 2023 2026",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
+              },
+              "page": "38",
+              "section": "Art. 24 bis, comma 2",
+              "quote": "Il lavoro notturno, intendendosi per tale quello svolto dalle ore 21 alle ore 4, sarà compensato con una maggiorazione del 50% sulla retribuzione globale di fatto."
+            },
+            "transformation": "Panificazione: lavoro ordinario dalle 21 alle 4, anche in turno; la norma speciale non distingue il turno notturno.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2021-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-panificazione-artigianato-confartigianato-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_1",
+          "description": "Panificazione: festività nazionali e infrasettimanali; retribuzione delle ore effettivamente lavorate più maggiorazione.",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-12-01",
+                "valid_until": null,
+                "value": "0.20"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "22-04-2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                "title": "2024 06 06 CCNL AREA ALIMENTAZIONE ARTIGIANATO PANIFICAZIONE 2023 2026",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
+              },
+              "page": "38",
+              "section": "Art. 24 bis, comma 3",
+              "quote": "Il lavoro prestato in giornate festive nazionali ed infrasettimanali ai sensi di legge sarà retribuito in misura delle effettive prestazioni con la maggiorazione del 20%."
+            },
+            "transformation": "Panificazione: festività nazionali e infrasettimanali; retribuzione delle ore effettivamente lavorate più maggiorazione.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2021-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-panificazione-artigianato-confartigianato-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_DAY_SHIFT_4",
+          "description": "Solo addetti alla produzione: turno diurno avvicendato di 8 ore consecutive tra le 6 e le 22 senza pausa pasto di mezz'ora; spetta anche per prestazione continuativa NON avvicendata nelle stesse condizioni.",
+          "work": "day_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-12-01",
+                "valid_until": null,
+                "value": "0.065"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "22-04-2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+                "title": "2024 06 06 CCNL AREA ALIMENTAZIONE ARTIGIANATO PANIFICAZIONE 2023 2026",
+                "kind": "associazione",
+                "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+                "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
+              },
+              "page": "40",
+              "section": "Art. 27, comma 2",
+              "quote": "sarà corrisposta una maggiorazione del 6,50% sulla retribuzione."
+            },
+            "transformation": "Solo addetti alla produzione: turno diurno avvicendato di 8 ore consecutive tra le 6 e le 22 senza pausa pasto di mezz'ora; spetta anche per prestazione continuativa NON avvicendata nelle stesse condizioni.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2021-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-panificazione-artigianato-confartigianato-time-supplements"
             }
           }
         }
@@ -2443,6 +2594,37 @@
         },
         "transformation": "La metà dell’orario medio giornaliero regola la fruizione a ore e il minimo di 4 ore è una soglia di fruizione, non l’equiparazione di una giornata intera a un numero di ore: day_hours = null. Nessun riproporzionamento espresso per il part-time né decorrenza specifica nell’articolo."
       }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "22-04-2024-06-06-ccnl-area-alimentazione-artigianato-panificazione-2023-2026-pdf",
+              "title": "2024 06 06 CCNL AREA ALIMENTAZIONE ARTIGIANATO PANIFICAZIONE 2023 2026",
+              "kind": "associazione",
+              "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+              "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
+            },
+            "page": "57",
+            "section": "Art. 41, comma 1",
+            "quote": "Ai lavoratori temporaneamente incaricati a prestare servizio fuori dalla giurisdizione del comune ove ha sede l'impresa presso la quale sono in forza, sarà rimborsato l'importo delle spese di viaggio, di vitto e di alloggio, nei limiti della normalità liquidato in base a nota documentata, salvo accordi forfettari tra le parti interessate."
+          },
+          "transformation": "The CCNL pays no daily travel allowance: the trasferta is refunded at documented cost",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-15T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-15-ai-panificazione-artigianato-confartigianato-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -2554,6 +2736,29 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules.comporto_windows"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-panificazione-artigianato-confartigianato-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
+            "sha256": "8a29e01b3f000b1d1896f8303c015cdd3301538a99ea30e2397ce56da8b2724e"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[0:night], bands[1:holiday], bands[4:day_shift], travel.",
+          "Left out: bands[2:sunday]: more sunday bands the engine cannot tell apart; bands[3:sunday]: more sunday bands the engine cannot tell apart."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ],
