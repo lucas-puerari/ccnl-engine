@@ -32,10 +32,8 @@ _IRPEF: dict[str, Any] = {
     "evidence": "derived",
 }
 
-#: The capabilities no 2026 run computes, each with its predicate.
-_UNSUPPORTED_2026 = {
-    "contribution_exemption": "outside_input",
-}
+#: The capabilities no 2026 run computes, each with its predicate: none.
+_UNSUPPORTED_2026: dict[str, str] = {}
 
 
 def _doc(*entries: object, schema_version: int = 2) -> dict[str, object]:
@@ -59,7 +57,7 @@ class TestBundledRegistry:
         assert "spouse_increase_bands" in entry.variants
 
     def test_unsupported_capabilities_and_predicates(self) -> None:
-        """The nine unsupported capabilities name when they apply."""
+        """No capability is left unsupported."""
         catalog = load_capability_catalog(2026)
         unsupported = {
             e.feature: e.applies_when.value

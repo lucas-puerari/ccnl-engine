@@ -96,6 +96,10 @@ state types.
 
 ::: ccnl_engine.inputs.ForeignTaxPaid
 
+::: ccnl_engine.inputs.ContributionExemption
+
+::: ccnl_engine.inputs.ExemptionMeasure
+
 ::: ccnl_engine.inputs.ShortfallDeferralRequest
 
 ::: ccnl_engine.inputs.SubstituteTaxRegime

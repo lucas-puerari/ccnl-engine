@@ -26,6 +26,7 @@
         "ivs_rate": "0.2381",
         "relief_excluded": {
           "rate": "0.0063333",
+          "fund_rate": "0.0033333",
           "rate_by_category": {
             "dirigente": null
           },
@@ -62,6 +63,7 @@
         "ivs_rate": "0.2381",
         "relief_excluded": {
           "rate": "0.0083333",
+          "fund_rate": "0.0053333",
           "rate_by_category": {
             "dirigente": null
           },
@@ -98,6 +100,7 @@
         "ivs_rate": "0.2381",
         "relief_excluded": {
           "rate": "0.0083333",
+          "fund_rate": "0.0053333",
           "rate_by_category": {
             "dirigente": null
           },
@@ -377,7 +380,7 @@
     "published_at": "2026-09-07",
     "source": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2022/10/Circolare_13970/Allegati/13873_Circolare-numero-117-del-20-10-2022_Allegato-n-1.pdf",
     "verification_status": "unverified",
-    "source_hash": "60e055938b978d6c48e312a40f3e1459b1e8220d423d43bb5afafe493ab752c1",
+    "source_hash": "e5dc40e2f1a2ed442013d85cc890126e5e000a47ec6c16cbc28f07adf0be5447",
     "source_type": "institutional_secondary"
   }
 }

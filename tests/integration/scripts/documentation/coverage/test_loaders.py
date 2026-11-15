@@ -63,7 +63,7 @@ def test_every_capability_has_one_scope_listed_once() -> None:
     for entry in catalog.capabilities:
         assert capability_scope(entry) in SCOPES
         assert page.count(f"`{entry.feature}` ({entry.implementation.value})") == 1
-    assert {capability_scope(e) for e in catalog.capabilities} == set(SCOPES)
+    assert {capability_scope(e) for e in catalog.capabilities} <= set(SCOPES)
 
 
 def test_human_verified_needs_a_human_review_that_records_its_values() -> None:
