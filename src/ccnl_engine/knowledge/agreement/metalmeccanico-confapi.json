@@ -3296,7 +3296,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "8866fe7a174545179ed6cda471f5295774fb487428f43337cc7a3ab33d8a8ffd",
+    "source_hash": "710df87ab645d47d933630b30e21a3273891ac2dd7ab8f21b1c75d8c938e14d8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3914,6 +3914,47 @@
               "review_id": "2026-11-02-ai-night-before-22"
             }
           }
+        },
+        {
+          "code": "U_NIGHT_SHIFT_0",
+          "description": "Lavoro notturno ordinario a turni: 25% sia fino alle ore 22 sia oltre le ore 22; il notturno decorre dalle 12 ore successive all’inizio del turno del mattino, con l’eccezione prevista per la predisposizione degli impianti dalle ore 6.",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2016-11-01",
+                "valid_until": null,
+                "value": "0.25"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-fim-cisl-it-wp-content-uploads-2021-03-ccnl-unionmeccanica-pdf",
+                "title": "CCNL Unionmeccanica",
+                "kind": "associazione",
+                "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+                "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+              },
+              "page": "101",
+              "section": "Art. 29, comma 1, tabella, lett. b)",
+              "quote": "Il lavoro notturno, ai fini retributivi, decorre dalle 12 ore successive all’inizio del turno del mattino per ciascun gruppo lavorativo; tuttavia non si considera notturno il lavoro compiuto dalle ore 6, nel limite di un’ora giornaliera, per la predisposizione del funzionamento degli impianti. È considerato lavoro festivo quello effettuato nei giorni previsti dall’articolo 31. Le percentuali di maggiorazione per il lavoro straordinario, per il lavoro notturno e per il lavoro festivo da corrispondere oltre alla normale retribuzione e da calcolarsi sugli elementi della stessa. sono le seguenti: Lavoro non a turni a turni a) lavoro straordinario diurno 20% 20% b) lavoro notturno - fino alle ore 22 25% 25% - oltre le ore22 35% 25%"
+            },
+            "transformation": "Lavoro notturno ordinario a turni: 25% sia fino alle ore 22 sia oltre le ore 22; il notturno decorre dalle 12 ore successive all’inizio del turno del mattino, con l’eccezione prevista per la predisposizione degli impianti dalle ore 6.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2016-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-metalmeccanico-confapi-time-supplements"
+            }
+          }
         }
       ]
     },
@@ -4167,7 +4208,7 @@
           "location": {
             "source_document": {
               "document_id": "fim-cisl-it-wp-content-uploads-2021-03-ccnl-unionmeccanica-pdf",
-              "title": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+              "title": "CCNL Unionmeccanica",
               "kind": "associazione",
               "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
               "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
@@ -5285,6 +5326,32 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.sickness_rules"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-metalmeccanico-confapi-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          },
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260617-Unionmeccanica-Confapi-Verbale-accordo-minimi-1-giugno-2026-IPCA-signed.pdf",
+            "sha256": "61857a25fcb618e5df4353ee564a718c7b549919b37bf60734a722c2a69756f5"
+          }
+        ],
+        "findings": [
+          "Applied: bands[0:night_shift]."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ],

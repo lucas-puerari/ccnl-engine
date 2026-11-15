@@ -2721,13 +2721,13 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "42fd52a40a5a36aeefa3ffb060cacf9563eb988eeaa8e3180b1dc64d1e15066b",
+    "source_hash": "8c1daff19ff323224a5b127294bcd1586fe3a8e05edb3b904dedb57b1850b68c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -2933,7 +2933,117 @@
           }
         }
       ],
-      "hourly_divisor_weekly_hours": 40
+      "hourly_divisor_weekly_hours": 40,
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "unione-doc-contratti-lavoro-contrattazione-collettiva-ccnl-ristorazione-2018-pdf",
+            "title": "ccnl ristorazione 2018",
+            "kind": "associazione",
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          },
+          "page": "116",
+          "section": "Art. 160 c. 1",
+          "quote": "Articolo 160 - Determinazione della retribuzione oraria (1) La retribuzione oraria si ottiene dividendo la retribuzione per: - 190 per il personale con orario normale di quarantaquattro ore settimanali; - 172 per il personale con orario normale di quaranta ore settimanali."
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-pubblici-esercizi-fipe-angem-ristorazione-collettiva-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_0",
+          "description": "Lavoro notturno ordinario: maggiorazione dalle 00:00 alle 06:00; periodo notturno 23:00–06:00.",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2018-02-08",
+                "valid_until": null,
+                "value": "0.25"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unione-doc-contratti-lavoro-contrattazione-collettiva-ccnl-ristorazione-2018-pdf",
+                "title": "ccnl ristorazione 2018",
+                "kind": "associazione",
+                "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+                "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+              },
+              "page": "99",
+              "section": "Art. 124 c. 1",
+              "quote": "Articolo 124 - Maggiorazione per lavoro nottumo (1) Le ore di lavoro nottumo svolto dalle ore ventiquattro alle ore sei verranno retribuite con la retribuzione oraria maggiorata del 25 per cento fatte salve le condizioni di miglior favore."
+            },
+            "transformation": "Lavoro notturno ordinario: maggiorazione dalle 00:00 alle 06:00; periodo notturno 23:00–06:00.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2018-02-08",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-pubblici-esercizi-fipe-angem-ristorazione-collettiva-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_1",
+          "description": "Lavoro ordinario nelle festività dell’art. 131.",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2018-02-08",
+                "valid_until": null,
+                "value": "0.20"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "unione-doc-contratti-lavoro-contrattazione-collettiva-ccnl-ristorazione-2018-pdf",
+                "title": "ccnl ristorazione 2018",
+                "kind": "associazione",
+                "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+                "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+              },
+              "page": "103",
+              "section": "Art. 132 c. 1",
+              "quote": "Articolo 132 - Maggiorazione per festività (1) AI personale che presta la propria opera nelle festività di cui al presente articolo è dovuta, oltre alla normale retribuzione giornaliera, la retribuzione per le ore di servizio effettivamente prestate, con la maggiorazione del 20 percento."
+            },
+            "transformation": "Lavoro ordinario nelle festività dell’art. 131.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2018-02-08",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-pubblici-esercizi-fipe-angem-ristorazione-collettiva-time-supplements"
+            }
+          }
+        }
+      ]
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -3448,6 +3558,37 @@
           "verification_status": "unverified"
         }
       }
+    },
+    "capability_basis": {
+      "shift_work": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "unione-doc-contratti-lavoro-contrattazione-collettiva-ccnl-ristorazione-2018-pdf",
+              "title": "ccnl ristorazione 2018",
+              "kind": "associazione",
+              "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+              "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+            },
+            "page": "116",
+            "section": "Art. 157 c. 1",
+            "quote": "Articolo 157 - Elementi della retribuzione (1) Di norma, la retribuzione del lavoratore è distinta nelle seguenti voci: a) paga base nazionale; b) eventuali trattamenti salariali integrativi comunque denominati previsti per ciascun comparto nelle parti generale e speciale del presente Contratto; ©) indennità di contingenza; d) eventuali scatti di anzianità nelle misure e con le modalità previste all'articolo 182; €) Per il personale tavoleggiante dei pubblici esercizi la retribuzione è costituita di norma, dalla percentuale di servizio secondo le misure e le modalità previste agli articoli 167 e seguenti."
+          },
+          "transformation": "shift_work: none in ccnl.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-15T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-15-ai-pubblici-esercizi-fipe-angem-ristorazione-collettiva-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -3703,6 +3844,29 @@
         "independence": "separate_model",
         "checked": [
           "parameters.equalisation_element"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-pubblici-esercizi-fipe-angem-ristorazione-collettiva-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[0:night], bands[1:holiday], none.shift_work.",
+          "Left out: bands[2:sunday]: quote skipped; none.rest_day: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ],
