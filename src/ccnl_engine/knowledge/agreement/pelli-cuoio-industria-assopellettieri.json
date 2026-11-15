@@ -1346,7 +1346,7 @@
     "effective_until": null,
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2023//20098.pdf",
     "verification_status": "unverified",
-    "source_hash": "c0961aa6e0be34dabd7f9e390168499a9078673dc35485751c6f5d7bbb7b9cf4",
+    "source_hash": "cfc48c1058c0dd48026892b75ed0fbdc16c349f6d14a16d92997a036bb684354",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1595,6 +1595,26 @@
           "verification_status": "unverified"
         },
         "note": "The pay of Art. 57 B and the 2023 renewal (signed 26.05.2023, which extends the comporto of serious illnesses) were not obtained; the 15 months of the serious illnesses on life-saving therapy are not modelled. The source cited before (CNEL 20098.pdf) is the UNILAVORO PMI / UNIPEL / FILP-CONFSAL CCNL, not this one."
+      }
+    },
+    "parental_hourly": {
+      "part_time_scaled": true,
+      "effective_from": "2021-03-01",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-pelli-ombrelli-1-3-2021",
+            "title": "CCNL Pelli Ombrelli 1 3 2021",
+            "kind": "associazione",
+            "url": "https://farecontrattazione.adapt.it/wp-content/uploads/2022/01/CCNL-Pelli-Ombrelli-1-3-2021.pdf",
+            "sha256": "c7203938272c11c600058b57ee6d7fda115667234b25c725ed02c1541cfc473f"
+          },
+          "page": "15",
+          "section": "Art. 53 - Aspettative - Permessi; Congedi parentali",
+          "quote": "t. 32, comma 1-ter, del D.lgs n.151/2001, l’utilizzo su base giornaliera e oraria dei periodi di congedo parentale è disciplinato come segue: - i permessi sono frazionabili per gruppi di 4 ore giornaliere (riproporzionabili per i contratti a tempo parziale), per un periodo complessivo non inferiore ad una giornata lavorativa nel mese di utilizzo. - Per l’equiparazione dei periodi di congedo utilizzati in modo continuativo con quelli su base giornaliera o oraria, si fa riferimento al divisore fisso contrattuale, pari a 173 ore/mese. Pertanto, la suddetta equiparazione avviene secondo i seguenti parametri: 6 mesi = 1038 ore; 7 mesi = 1.211 ore; 10 mesi = 1730 ore. (…omissis…) 16"
+        },
+        "transformation": "I gruppi di 4 ore sono frazioni di fruizione, non l'equivalenza di una giornata. Il divisore 173 ore/mese equipara periodi mensili, non la singola giornata: day_hours = null. Il riproporzionamento per il tempo parziale è espresso. L'art. 6 fissa la decorrenza degli istituti modificati al 1° marzo 2021, salvo diversa previsione, qui assente."
       }
     }
   },

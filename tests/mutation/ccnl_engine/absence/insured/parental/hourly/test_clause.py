@@ -47,7 +47,7 @@ if TYPE_CHECKING:
 
 _RECORD = RuleProvenance(status=ProvenanceStatus.MISSING)
 _COMMERCIO = ("commercio-confcommercio", "4")
-_UNRECORDED = ("gas-acqua-utilitalia", "4")
+_UNRECORDED = ("consorzi-agrari-assocap", "1")
 
 
 @pytest.mark.parametrize(
