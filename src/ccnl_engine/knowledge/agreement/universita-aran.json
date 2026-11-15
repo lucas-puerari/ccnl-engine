@@ -1231,7 +1231,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "58631f16d9da69fd8bfd61f87dd0e38666331284b7c936f1d02dd7c40ac9bfac",
+    "source_hash": "b4c0d39264dca11f05ed07b5f5939044955f25e5ac2734383a80e8c0a0714146",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -1758,11 +1758,24 @@
       ]
     },
     "absence_rules": {
-      "daily_divisor_method": "by_26",
+      "daily_divisor_method": "by_30",
       "daily_hours": null,
       "provenance": {
-        "status": "assumed",
-        "note": "No text of the comparto fixes the daily quota of an unpaid absence of the scuola staff: the only daily divisor in the texts read is the 1/30 of the compenso individuale accessorio (CCNL Scuola 2007, p. 75). by_26 is kept as extracted, not sourced. Searched on 2026-10-12: the trade press reports a deduction of 1/30 of the taxable monthly pay for a day of strike and 1/30 of the RPD or CIA for the first ten days of sickness (NoiPA practice), but no statute, CCNL or NoiPA document read gives the daily quota of an unpaid absence; it stays assumed until one is found."
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-funzioni-centrali-2022-2024",
+            "title": "CCNL Comparto Funzioni Centrali 2022-2024, 27 gennaio 2025",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
+            "published_on": "2025-01-27",
+            "sha256": "7115a9eb2d432a906e9df8e5fcb275dae415cfe4edcebe9ac40ea0a494eff924"
+          },
+          "page": "46",
+          "section": "Art. 29 c. 4 (retribuzione giornaliera)",
+          "quote": "4. La retribuzione giornaliera si ottiene dividendo la corrispondente retribuzione mensile per 30."
+        },
+        "transformation": "The CCNL of the comparto Istruzione e Ricerca (2019-2021, 2022-2024, 2025-2027) states no daily pay for the deduction of an unpaid absence (aspettativa, sciopero, assenza ingiustificata); no official source (MEF, NoiPA, ARAN) fixing it was found. By the maintainer's decision of 2026-11-15 the deduction takes the 1/30 of the monthly pay of the public payroll practice, the rule the ARAN states for the comparto Funzioni Centrali (art. 29 c. 4, quoted)."
       }
     },
     "leave_rules": {

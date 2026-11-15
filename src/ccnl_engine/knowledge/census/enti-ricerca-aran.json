@@ -3,21 +3,6 @@
   "ccnl_id": "enti-ricerca-aran",
   "requirements": [
     {
-      "id": "rule_work_rules_absence_rules",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/enti-ricerca-aran.json#work_rules.absence_rules",
-      "calculation": "base_salary, sickness",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/enti-ricerca-aran.json#work_rules.absence_rules"
-        ]
-      }
-    },
-    {
       "id": "shared_rules_unchecked",
       "institute": "sickness",
       "variant": "all",

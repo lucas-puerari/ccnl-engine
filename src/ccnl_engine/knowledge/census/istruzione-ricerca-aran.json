@@ -19,21 +19,6 @@
       }
     },
     {
-      "id": "rule_work_rules_absence_rules",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/istruzione-ricerca-aran.json#work_rules.absence_rules",
-      "calculation": "base_salary, sickness",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/istruzione-ricerca-aran.json#work_rules.absence_rules"
-        ]
-      }
-    },
-    {
       "id": "teacher_hourly_divisor",
       "institute": "workplace_injury",
       "variant": "all",
