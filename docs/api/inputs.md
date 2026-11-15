@@ -44,6 +44,10 @@ state types.
 
 ::: ccnl_engine.inputs.SecondLevelElement
 
+::: ccnl_engine.inputs.SecondLevelRate
+
+::: ccnl_engine.inputs.RateUnit
+
 ::: ccnl_engine.inputs.SeniorityFact
 
 ::: ccnl_engine.inputs.SeniorityPromotion
