@@ -1224,13 +1224,13 @@
     "effective_until": null,
     "source": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
     "verification_status": "unverified",
-    "source_hash": "d3686731a18ae9f3e71e9e685cbfc76dd6defbbfa8f91b36584bd3ad0c0bfba0",
+    "source_hash": "b0b4f5cea9eb8c8542020b5986d21e5ecbdbc27d8464659ae27ae7c1c8c266a8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "minimo_e_anzianita",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -1337,6 +1337,117 @@
               "extraction_timestamp": "2026-09-08T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2024-02-16"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-245848",
+            "title": "245848",
+            "kind": "associazione",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          },
+          "page": "63",
+          "section": "Art. 118; divisore art. 127; orario art. 75",
+          "quote": "Per normale retribuzione si intende a tutti gli effetti previsti dal presente Contratto quella costituita dai seguenti elementi: 1. salario unico nazionale (paga base tabellare conglobata); 2. eventuali terzi elementi; 3. eventuali scatti di anzianità di cui al successivo art. 111."
+        },
+        "transformation": "The supplements are measured on minimo_e_anzianita over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-vigilanza-privata-federdat-gpg-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_SUNDAY_2",
+          "description": "Domenica, dalle 0 alle 24, anche con riposo in altro giorno; entrambi i ruoli.",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": null,
+                "value": "0.71"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-245848",
+                "title": "245848",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "64",
+              "section": "Art. 122, continuazione",
+              "quote": "opera nel giorno di domenica, spetterà oltre alla normale retribuzione mensile un'indennità per ogni ora effettivamente lavorata dalle ore 0 alle ore 24 della domenica, così definita: euro 0,71."
+            },
+            "transformation": "Domenica, dalle 0 alle 24, anche con riposo in altro giorno; entrambi i ruoli.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-vigilanza-privata-federdat-gpg-time-supplements"
+            }
+          },
+          "fixed_per_hour": true
+        },
+        {
+          "code": "U_HOLIDAY_3",
+          "description": "Ore ordinarie nelle festività nazionali e infrasettimanali; oltre al mensile spetta anche la quota oraria per le ore lavorate (art. 91).",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": null,
+                "value": "0.35"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-245848",
+                "title": "245848",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "65",
+              "section": "Art. 128, comma 1 lett. a; art. 91",
+              "quote": "Le maggiorazioni per lavoro festivo e lavoro straordinario si calcolano sulla quota giornaliera od oraria della normale retribuzione, con le seguenti percentuali: a)35% per le ore di lavoro normale - nei limiti dell’orario giornaliero contrattuale - prestate nei giorni di festività nazionali ed infrasettimanali;"
+            },
+            "transformation": "Ore ordinarie nelle festività nazionali e infrasettimanali; oltre al mensile spetta anche la quota oraria per le ore lavorate (art. 91).",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-vigilanza-privata-federdat-gpg-time-supplements"
             }
           }
         }
@@ -1618,6 +1729,37 @@
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://a, sha256 6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29)."
       }
+    },
+    "capability_basis": {
+      "shift_work": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-245848",
+              "title": "245848",
+              "kind": "associazione",
+              "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+              "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+            },
+            "page": "43",
+            "section": "Art. 79",
+            "quote": "Per l’attività prestata nelle giornate domenicali o in orario notturno, nessuna particolare maggiorazione competerà al dipendente, giacché tale attività espletata ordinariamente nel ciclo continuo, caratteristico del servizio di vigilanza, trova la sua particolare remunerazione nella determinazione complessiva del trattamento economico e normativo previsto dal presente Contratto."
+          },
+          "transformation": "shift_work: none in ccnl.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-15T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-15-ai-vigilanza-privata-federdat-gpg-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -1717,6 +1859,29 @@
         "checked": [
           "work_rules.sickness_rules",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-vigilanza-privata-federdat-gpg-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[2:sunday], bands[3:holiday], none.shift_work.",
+          "Left out: bands[0:night]: more night bands the engine cannot tell apart; bands[1:night]: more night bands the engine cannot tell apart; bands[4:rest_day]: more rest_day bands the engine cannot tell apart; bands[5:rest_day]: more rest_day bands the engine cannot tell apart; travel: kind share applied by hand."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ]

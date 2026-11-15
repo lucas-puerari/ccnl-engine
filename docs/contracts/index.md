@@ -135,7 +135,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 15 | B282 | [CCNL Attivita Minerarie (ASSORISORSE)](attivita-minerarie-assorisorse.md) | Industria estrattiva - Miniere, cave, saline, metallurgia estrattiva | ~3000 | 2022 | ✅ | — | 36 / 0 / 2 / 1 | 🧪 | 🤖 |
 | 16 | I320 | [CCNL Attività Ferroviarie — AGENS](trasporto-ferroviario-agens.md) | trasporto | ~75k | 2025 | ⚠️ | base_salary | 55 / 5 / 1 / 0 | 🧪 | 🤖 |
 | 17 | I022 | [CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)](autoferrotranvieri-internavigatori.md) | trasporti | ~120k | 2024 | ⚠️ | inps_employer | 36 / 139 / 1 / 0 | 🧪 | 🤖 |
-| 18 | IC35 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | Autorimesse e noleggio automezzi | ~41k | 2025 | ✅ | parental_leave | 55 / 40 / 1 / 1 | 🧪 | 🤖 |
+| 18 | IC35 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | Autorimesse e noleggio automezzi | ~41k | 2025 | ✅ | parental_leave | 59 / 40 / 1 / 1 | 🧪 | 🤖 |
 | 19 | I192 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | autostrade e trafori — addetti alle concessionarie autostradali | ~15k | 2023 | ✅ | sickness | 55 / 96 / 1 / 1 | 🧪 | 🤖 |
 | 20 | H601 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | Terziario | ~22k | 2025 | ⚠️ | base_salary, inps_employer, maternity_leave, shift_work, workplace_injury | 51 / 4 / 1 / 1 | 🧪 | 🤖 |
 | 21 | G022 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | carta-cartone | ~35k | 2026 | ⚠️ | base_salary | 14 / 61 / 1 / 0 | 🧪 | 🤖 |
@@ -161,31 +161,31 @@ on unverified sources, or be well sourced and not cleared for production.
 | 41 | E018 | [CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)](alimentari-pmi-unionalimentari.md) | Alimentare | ~35k | 2025 | ✅ | overtime | 273 / 38 / 1 / 0 | 🧪 | 🤖 |
 | 42 | H401 | [CCNL Dipendenti da Proprietari di Fabbricati (Confedilizia)](portieri-fabbricati-confedilizia.md) | portieri e custodi di condominio | ~40k | 2025 | ⚠️ | base_salary | 64 / 5 / 1 / 0 | 🧪 | 🤖 |
 | 43 | H124 | [CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)](farmacie-municipalizzate-assofarm.md) | Farmacie municipalizzate e partecipate da enti locali | ~6k | 2022 | ⚠️ | base_salary, inps_employer | 74 / 16 / 1 / 0 | 🧪 | 🤖 |
-| 44 | H121 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | Farmacie private | ~60k | 2021 | ✅ | — | 4 / 41 / 1 / 0 | 🧪 | 🤖 |
-| 45 | H121 | [CCNL Dipendenti delle Farmacie Private - Farmacie rurali sussidiate](farmacie-rurali-sussidiate-h121.md) | Farmacie private | ~60k | 2021 | ⚠️ | seniority | 4 / 41 / 1 / 0 | 🧪 | 🤖 |
+| 44 | H121 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | Farmacie private | ~60k | 2021 | ✅ | — | 9 / 41 / 1 / 0 | 🧪 | 🤖 |
+| 45 | H121 | [CCNL Dipendenti delle Farmacie Private - Farmacie rurali sussidiate](farmacie-rurali-sussidiate-h121.md) | Farmacie private | ~60k | 2021 | ⚠️ | seniority | 9 / 41 / 1 / 0 | 🧪 | 🤖 |
 | 46 | H016 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | distribuzione-cooperativa | ~63k | — | ⚠️ | seniority | 26 / 48 / 1 / 0 | 🧪 | 🤖 |
 | 47 | F018 | [CCNL Edilizia PMI CONFAPI ANIEM](edilizia-pmi-confapi-aniem.md) | Edilizia | ~70000 | 2025 | ⚠️ | base_salary, bilateral_funds, seniority, sickness, territorial_supplement | 15 / 34 / 1 / 0 | 🧪 | 🤖 |
 | 48 | F015 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | edilizia | ~350k | — | ⚠️ | base_salary, bilateral_funds, inps_employer, seniority, sickness | 41 / 45 / 1 / 0 | 🧪 | 🤖 |
 | 49 | F016 | [CCNL Edilizia — Cooperative (ANCPL/Legacoop/Confcooperative/AGCI)](edilizia-cooperative-ancpl.md) | Edilizia | ~90000 | 2025 | ⚠️ | base_salary, bilateral_funds, seniority | 30 / 33 / 1 / 0 | 🧪 | 🤖 |
 | 50 | F012 | [CCNL Edilizia — Industria (ANCE), impiegati e quadri](edilizia-ance-impiegati.md) | edilizia | — | — | ⚠️ | base_salary, overtime, seniority, sickness, territorial_supplement | 44 / 23 / 0 / 0 | 🏭 | 🤖✓ |
 | 51 | F012 | [CCNL Edilizia — Industria (ANCE), operai](edilizia-ance.md) | edilizia | ~550k | 2025 | ⚠️ | base_salary, bilateral_funds, overtime, sickness, territorial_supplement | 47 / 7 / 0 / 0 | 👁 | 🤖✓ |
-| 52 | B254 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | energia | ~38k | — | ✅ | — | 115 / 56 / 1 / 0 | 🧪 | 🤖 |
+| 52 | B254 | [CCNL Energia e Petrolio (Confindustria Energia)](energia-petrolio-confindustria.md) | energia | ~38k | — | ✅ | — | 119 / 56 / 1 / 0 | 🧪 | 🤖 |
 | 53 | G211 | [CCNL Esercizi Cinematografici e Cinema-Teatrali (ANEC)](esercizi-cinematografici-anec.md) | cinema | ~6k | — | ⚠️ | inps_employer, sickness | 61 / 9 / 1 / 0 | 🧪 | 🤖 |
 | 54 | H201 | [CCNL Fiori Freschi Recisi, Verde e Piante Ornamentali (ANCEF)](fiori-recisi-ancef.md) | Fiori recisi, verde e piante ornamentali (import-export) | ~1.3k | 2023 | ⚠️ | seniority | 42 / 5 / 1 / 0 | 🧪 | 🤖 |
 | 55 | T261 | [CCNL Formazione Professionale (CNOS-FAP/CIOFS-FP/FORMA/CNF)](formazione-professionale.md) | formazione professionale | ~19.8k | — | ⚠️ | base_salary | 0 / 34 / 1 / 1 | 🧪 | 🤖 |
-| 56 | K321 | [CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas](gas-acqua-utilitalia.md) | gas e acqua | ~65k | 2025 | ⚠️ | inps_employer | 45 / 18 / 1 / 0 | 🧪 | 🤖 |
+| 56 | K321 | [CCNL Gas e Acqua — Utilitalia/Proxigas/Anfida/Assogas](gas-acqua-utilitalia.md) | gas e acqua | ~65k | 2025 | ⚠️ | inps_employer | 49 / 18 / 1 / 0 | 🧪 | 🤖 |
 | 57 | B371 | [CCNL Gomma e Plastica Industria (Federazione Gomma Plastica)](gomma-plastica-federazione-gomma-plastica.md) | gomma-plastica | ~90k | — | ⚠️ | base_salary, sickness | 70 / 7 / 1 / 1 | 🧪 | 🤖 |
 | 58 | G011 | [CCNL Grafica e Editoria Industria (AIEG-Acigraf)](grafica-editoria-aieg.md) | grafica-editoria | ~70k | — | ✅ | — | 6 / 70 / 1 / 0 | 🧪 | 🤖 |
 | 59 | T511 | [CCNL Gruppo ANAS](anas.md) | anas spa - personale non dirigente | ~7k | 2025 | ✅ | — | 29 / 14 / 1 / 0 | 🧪 | 🤖 |
 | 60 | K540 | [CCNL Igiene Ambientale — Servizi Ambientali e di Igiene Urbana](igiene-ambientale-utilitalia.md) | servizi ambientali | ~65k | 2025 | ⚠️ | inps_employer, pension_fund_contribution, sickness | 74 / 76 / 1 / 0 | 🧪 | 🤖 |
-| 61 | H077 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | impianti sportivi, palestre e attività sportive | 35533 | 2024 | ⚠️ | base_salary, overtime, sickness | 42 / 4 / 1 / 1 | 🧪 | 🤖 |
+| 61 | H077 | [CCNL Impianti e Attività Sportive Profit e No-profit](impianti-sportivi-sport.md) | impianti sportivi, palestre e attività sportive | 35533 | 2024 | ⚠️ | base_salary, overtime, sickness | 47 / 4 / 1 / 1 | 🧪 | 🤖 |
 | 62 | A021 | [CCNL Impiegati e Tecnici Agricoli — Confagricoltura/CIA/Coldiretti](impiegati-tecnici-agricoli.md) | agricoltura | ~80k | 2024 | ⚠️ | base_salary, bilateral_funds | 12 / 7 / 1 / 1 | 🧪 | 🤖 |
 | 63 | B011 | [CCNL Industria Chimica e Farmaceutica (Federchimica-Farmindustria-Assistal)](chimica-farmaceutica-federchimica.md) | chimica | ~210k | — | ⚠️ | base_salary, leave, overtime, sickness, workplace_injury | 126 / 6 / 0 / 0 | 👁 | 🤖✓ |
-| 64 | H05B | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | turismo — alberghi, campeggi, villaggi e strutture ricettive | ~40k | 2025 | ⚠️ | base_salary | 36 / 10 / 1 / 0 | 🧪 | 🤖 |
+| 64 | H05B | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | turismo — alberghi, campeggi, villaggi e strutture ricettive | ~40k | 2025 | ⚠️ | base_salary | 37 / 10 / 1 / 0 | 🧪 | 🤖 |
 | 65 | G111 | [CCNL Industrie Cineaudiovisive (ANICA)](cinema-audiovisivi-industria.md) | Cinema e audiovisivo | ~2.3k | 2025 | ⚠️ | inps_employer | 57 / 6 / 1 / 0 | 🧪 | 🤖 |
 | 66 | HV17 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (GPG)](vigilanza-privata-assiv.md) | vigilanza-privata | ~85k | 2023 | ⚠️ | seniority | 44 / 7 / 1 / 0 | 🧪 | 🤖 |
-| 67 | HV17 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (Servizi fiduciari)](vigilanza-privata-assiv-sf.md) | vigilanza privata — servizi fiduciari (SF) | ~40k | 2023 | ⚠️ | base_salary, seniority | 46 / 5 / 2 / 1 | 🧪 | 🤖 |
-| 68 | T241 | [CCNL Istituzioni Formative Private (Scuole Private Religiose) — AGIDAE](scuole-private-agidae.md) | istruzione privata | ~50k | — | ⚠️ | seniority | 13 / 31 / 1 / 0 | 🧪 | 🤖 |
+| 67 | HV17 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (Servizi fiduciari)](vigilanza-privata-assiv-sf.md) | vigilanza privata — servizi fiduciari (SF) | ~40k | 2023 | ⚠️ | base_salary, seniority | 48 / 5 / 2 / 1 | 🧪 | 🤖 |
+| 68 | T241 | [CCNL Istituzioni Formative Private (Scuole Private Religiose) — AGIDAE](scuole-private-agidae.md) | istruzione privata | ~50k | — | ⚠️ | seniority | 15 / 31 / 1 / 0 | 🧪 | 🤖 |
 | 69 | T141 | [CCNL Istituzioni Socio-Assistenziali — UNEBA](uneba-uneba.md) | servizi socio-assistenziali | ~130k | — | ✅ | territorial_supplement | 40 / 8 / 1 / 0 | 🧪 | 🤖 |
 | 70 | T131 | [CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE)](istituzioni-servizi-socio-assistenziali-anaste.md) | servizi socio-assistenziali | ~120k | — | ✅ | maternity_leave | 66 / 11 / 1 / 0 | 🧪 | 🤖 |
 | 71 | F041 | [CCNL Lapidei — Industria (Confindustria Marmomacchine/ANEPLA)](lapidei-industria.md) | industria lapidea e delle cave | ~18k | — | ⚠️ | absence, base_salary, sickness | 49 / 30 / 1 / 1 | 🧪 | 🤖 |
@@ -231,7 +231,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 111 | H052 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | Turismo | ~220k | 2024 | ⚠️ | base_salary, sickness | 79 / 1 / 0 / 0 | 🏭 | 🤖✓ |
 | 112 | H052 | [CCNL Turismo — Federalberghi/Faita - Alberghi a una e due stelle e campeggi minori](turismo-federalberghi-alberghi-minori.md) | Turismo | ~220k | 2024 | ⚠️ | base_salary, sickness | 69 / 1 / 0 / 0 | 🧪 | 🤖 |
 | 113 | B132 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | vetro industria — settori meccanizzati | ~28k | 2026 | ⚠️ | base_salary | 73 / 0 / 28 / 1 | 🧪 | 🔍 |
-| 114 | HV51 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | vigilanza privata — guardie particolari giurate (GPG) | ~45k | 2026 | ✅ | — | 24 / 5 / 1 / 1 | 🧪 | 🤖 |
+| 114 | HV51 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | vigilanza privata — guardie particolari giurate (GPG) | ~45k | 2026 | ✅ | — | 27 / 5 / 1 / 1 | 🧪 | 🤖 |
 | 115 | HV51 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | vigilanza privata — servizi fiduciari (SF) | — | 2026 | ⚠️ | base_salary, contractual_funds, overtime | 27 / 0 / 0 / 1 | 🧪 | 🤖 |
 | 116 | H0B1 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | agenzie immobiliari | — | 2025 | ✅ | — | 42 / 1 / 2 / 0 | 🧪 | 🤖 |
 | 117 | IC91 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | autoscuole e consulenza automobilistica | — | 2023 | ✅ | — | 1 / 32 / 1 / 0 | 🧪 | 🤖 |
@@ -248,7 +248,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 128 | F051 | [CCNL per i lavoratori dell'industria del legno, del sughero, del mobile, dell'arredamento e delle industrie affini (Federlegno-Arredo)](legno-arredamento-federlegno.md) | industria | ~90k | — | ⚠️ | base_salary | 23 / 88 / 1 / 0 | 🧪 | 🤖 |
 | 129 | D014 | [CCNL per i lavoratori dell'industria tessile, abbigliamento, moda (SMI)](tessile-smi.md) | industria | ~160k | — | ✅ | — | 40 / 7 / 1 / 1 | 🧪 | 🤖 |
 | 130 | J271 | [CCNL per i lavoratori delle Banche di Credito Cooperativo, Casse Rurali ed Artigiane](bcc-credito-cooperativo.md) | credito | ~33k | — | ⚠️ | base_salary, inps_employer, seniority | 36 / 7 / 0 / 0 | 🧪 | 🤖 |
-| 131 | K051 | [CCNL per i lavoratori delle imprese produttrici, distributrici di energia elettrica (Elettricita Futura)](elettrico-elettricita-futura.md) | industria | ~60k | — | ✅ | — | 57 / 21 / 1 / 0 | 🧪 | 🤖 |
+| 131 | K051 | [CCNL per i lavoratori delle imprese produttrici, distributrici di energia elettrica (Elettricita Futura)](elettrico-elettricita-futura.md) | industria | ~60k | — | ✅ | — | 58 / 21 / 1 / 0 | 🧪 | 🤖 |
 | 132 | J241 | [CCNL per i lavoratori dipendenti dalle aziende di credito (ABI)](bancari-abi.md) | credito | ~270k | 2023 | ⚠️ | base_salary, inps_employer, overtime, seniority, sickness | 43 / 2 / 0 / 0 | 🧪 | 🤖 |
 | 133 | K461 | [CCNL per i lavoratori dipendenti delle aziende termali](aziende-termali-federterme.md) | turismo termale | — | — | ⚠️ | bilateral_funds, inps_employer, seniority | 0 / 65 / 1 / 0 | 🧪 | 🤖 |
 | 134 | J121 | [CCNL per il personale dipendente non dirigente delle imprese di assicurazione (ANIA)](assicurazioni-ania.md) | assicurazioni | ~45k | 2026 | ⚠️ | base_salary, inps_employer, sickness | 21 / 9 / 1 / 1 | 🧪 | 🤖 |

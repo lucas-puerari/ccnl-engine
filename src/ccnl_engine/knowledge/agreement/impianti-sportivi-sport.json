@@ -2223,12 +2223,12 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "1d73549b1dbb3a05b1aef6424d3614d8ca20562180e60e6548d47cf9066f05e0",
+    "source_hash": "968fda520f1d8483fb8556a96b8b0b045dec812a659b9422a71558fa78125292",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "hourly_divisor_weekly_hours": 40,
       "week_divisors": [
         {
@@ -2453,6 +2453,198 @@
               "extraction_timestamp": "2026-09-11T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "https-www-cusi-it-wp-content-uploads-2024-02-ccnl-sport-2024-2026-pdf",
+            "title": "CCNL Sport 2024 2026",
+            "kind": "associazione",
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+            "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+          },
+          "page": "90",
+          "section": "Art. 120, comma unico",
+          "quote": "La quota oraria della retribuzione, sia normale che di fatto, si ottiene dividendo l’importo mensile per i seguenti divisori convenzionali: a) 173, per il personale la cui durata normale di lavoro è di 40 ore settimanali; b) 195, per il personale la cui durata di lavoro è di 45 ore settimanali."
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-impianti-sportivi-sport-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_0",
+          "description": "Lavoro ordinario notturno dalle 23:00 alle 6:00; maggiorazione sulla retribuzione di fatto, assorbibile da trattamenti aziendali equivalenti.",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "0.10"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-cusi-it-wp-content-uploads-2024-02-ccnl-sport-2024-2026-pdf",
+                "title": "CCNL Sport 2024 2026",
+                "kind": "associazione",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "76",
+              "section": "Art. 84, comma 1",
+              "quote": "Le ore di lavoro ordinario prestate di notte - intendendosi per tali quelle effettuate dalle ore 23:00 alle ore 6:00 del mattino - verranno retribuite con la quota oraria di retribuzione di fatto di cui all'art. 117, maggiorata del 10%."
+            },
+            "transformation": "Lavoro ordinario notturno dalle 23:00 alle 6:00; maggiorazione sulla retribuzione di fatto, assorbibile da trattamenti aziendali equivalenti.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-impianti-sportivi-sport-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_SUNDAY_1",
+          "description": "Domenica ordinaria con riposo settimanale in altro giorno; base paga base e contingenza, non l'intera retribuzione di fatto.",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "0.10"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-cusi-it-wp-content-uploads-2024-02-ccnl-sport-2024-2026-pdf",
+                "title": "CCNL Sport 2024 2026",
+                "kind": "associazione",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "73",
+              "section": "Art. 77, comma 2",
+              "quote": "Ai sensi della delega di cui all'art. 9, D.Lgs. n. 66/2003, comma 2, lett. d), le parti concordano che ai lavoratori che godono del riposo settimanale in giornata diversa dalla domenica, verrà corrisposta una indennità in cifra fissa pari al 10% (dieci per cento) della quota oraria della paga base e della contingenza per ciascuna ora di lavoro ordinario effettivamente prestato di domenica."
+            },
+            "transformation": "Domenica ordinaria con riposo settimanale in altro giorno; base paga base e contingenza, non l'intera retribuzione di fatto.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-impianti-sportivi-sport-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_2",
+          "description": "Anche le prestazioni nei festivi ex art. 78, a qualsiasi titolo richieste, sono compensate come straordinario festivo (art. 79): quota oraria di fatto più 30% della normale retribuzione esclusa lett. b).",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-cusi-it-wp-content-uploads-2024-02-ccnl-sport-2024-2026-pdf",
+                "title": "CCNL Sport 2024 2026",
+                "kind": "associazione",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "76",
+              "section": "Art. 83, comma 2; rinvio Art. 79, comma 1",
+              "quote": "Salvo quanto disposto dal successivo art. 84, le ore straordinarie di lavoro prestato nei giorni festivi verranno retribuite con la quota oraria della retribuzione di fatto di cui all'art. 117, e con la maggiorazione del 30% sulla quota oraria della normale retribuzione di cui all'art. 116, con esclusione della lettera b)."
+            },
+            "transformation": "Anche le prestazioni nei festivi ex art. 78, a qualsiasi titolo richieste, sono compensate come straordinario festivo (art. 79): quota oraria di fatto più 30% della normale retribuzione esclusa lett. b).",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-impianti-sportivi-sport-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_REST_DAY_3",
+          "description": "Prestazione nel riposo settimanale di legge: sola maggiorazione e riposo compensativo il giorno successivo.",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-cusi-it-wp-content-uploads-2024-02-ccnl-sport-2024-2026-pdf",
+                "title": "CCNL Sport 2024 2026",
+                "kind": "associazione",
+                "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+                "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+              },
+              "page": "74",
+              "section": "Art. 80, comma unico",
+              "quote": "Le ore di lavoro prestate nei giorni di riposo settimanale di cui alla legge 22 febbraio 1934, n. 370, dovranno essere retribuite con la sola maggiorazione del 30% sulla quota oraria della normale retribuzione di cui all'art. 116, con esclusione della lettera b), fermo restando il diritto del lavoratore di godere il riposo compensativo nel giorno successivo, avuto riguardo alle disposizioni di legge vigenti in materia."
+            },
+            "transformation": "Prestazione nel riposo settimanale di legge: sola maggiorazione e riposo compensativo il giorno successivo.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-impianti-sportivi-sport-time-supplements"
             }
           }
         }
@@ -2913,6 +3105,37 @@
           "verification_status": "unverified"
         }
       }
+    },
+    "capability_basis": {
+      "shift_work": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "https-www-cusi-it-wp-content-uploads-2024-02-ccnl-sport-2024-2026-pdf",
+              "title": "CCNL Sport 2024 2026",
+              "kind": "associazione",
+              "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+              "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+            },
+            "page": "19",
+            "section": "Art. 7, comma 1, primo trattino",
+            "quote": "Nelle aziende che abbiano, anche in più unità decentrate nell'ambito di una stessa provincia, più di 25 dipendenti potranno essere concordate particolari norme riguardanti: - turni o nastri orari, distribuzione dell'orario di lavoro attraverso uno o più dei seguenti regimi di orario: turni continui, turni spezzati, fasce differenziate;"
+          },
+          "transformation": "shift_work: delegated to second level.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-15T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-15-ai-impianti-sportivi-sport-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -3234,6 +3457,29 @@
         "independence": "same_process",
         "checked": [
           "levels[II].fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-impianti-sportivi-sport-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+            "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[0:night], bands[1:sunday], bands[2:holiday], bands[3:rest_day], none.shift_work.",
+          "Left out: travel: kind share applied by hand."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ]

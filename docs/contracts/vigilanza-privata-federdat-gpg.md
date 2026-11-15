@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 24 verified / 5 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 27 verified / 5 derived / 1 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 32, 123-124 and 157 of the CCNL of 9 July 2026 (pp. 23, 64, 76, OCR). | corrected | Apprentices accrue the level increments in full: art. 32 c. 1 (p. 23 of the CCNL of 9 July 2026) sets their pay 'in applicazione del principio di parità di trattamento' (no percentage), art. 123 (p. 64) counts seniority 'dal giorno in cui il lavoratore inizia di fatto la prestazione lavorativa nell'Istituto, quali che siano le mansioni', and the six triennial increments are fixed per level (art. 124; art. 157 for the servizi fiduciari). |
 | 2026-11-13 | claude-opus-5-5 (ai) | Arts. 21 and 64 of the renewal of 9 July 2026 (CNEL 245848, PDF pp. 16, 34-35) and arts. 21 and 48 of the text of 4 May 2023 (CNEL 167336, PDF pp. 17, 34), scanned pages read on the images. | corrected | Added health_funds ebilav (0,20% + 0,10%, alternative 25 EUR) and ebilav_sanitario (12 EUR, alternative 15 EUR), the same HV51 clauses as the FEDERDAT SF file; the substitutes are paid on the 14 monthly payments of this file. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto over the calendar year and paid days, against the research of a separate model session; quotes checked on the source. | corrected | Comporto of 240 days over the calendar year; pay ends after 180 days. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base, bands[2:sunday], bands[3:holiday], none.shift_work.<br>Left out: bands[0:night]: more night bands the engine cannot tell apart; bands[1:night]: more night bands the engine cannot tell apart; bands[4:rest_day]: more rest_day bands the engine cannot tell apart; bands[5:rest_day]: more rest_day bands the engine cannot tell apart; travel: kind share applied by hand. |
 
 ## Salary table
 

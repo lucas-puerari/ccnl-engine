@@ -4213,7 +4213,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "173cd79c53488607d2ff7d6b7c955bbac11e2b80c29bf1dca2455a1f8b2dbb62",
+    "source_hash": "2baf7598b2e32d83a9a0929e991c2067d2a9a801b88906dc4472ce71f1fed474",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4429,6 +4429,173 @@
               "review_id": "2026-11-05-ai-week-divisors"
             }
           }
+        }
+      ],
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_0",
+          "description": "Lavoro notturno ordinario, ore 24–06; per i tecnici in turni avvicendati, orario del terzo turno. Esclusi i guardiani notturni, cui si applica una maggiorazione tabellare distinta.",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "0.25"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-filtcgil-it-images-contratti-contratto-aniasa-a-stampa-2025-2027-pdf",
+                "title": "Contratto Aniasa a stampa 2025 2027",
+                "kind": "associazione",
+                "url": "https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf",
+                "sha256": "af0c6b2555f502ab52fcedb82b5d138093ef49499cac97ac19ec241e696f686d"
+              },
+              "page": "47",
+              "section": "Art. 21, commi 3, 7–8",
+              "quote": "6) lavoro notturno in turni avvicendati e non 25%. Le suddette percentuali non sono cumulabili, intendendosi che la maggiore assorbe la minore. La percentuale in corrispondenza del punto 6) non si calcola per i guardiani notturni, per i quali la retribuzione tabellare viene maggiorata del 10%."
+            },
+            "transformation": "Lavoro notturno ordinario, ore 24–06; per i tecnici in turni avvicendati, orario del terzo turno. Esclusi i guardiani notturni, cui si applica una maggiorazione tabellare distinta.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-autorimesse-ic35-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_2",
+          "description": "Prestazione nelle festività nazionali e infrasettimanali; ore lavorate retribuite separatamente con maggiorazione.",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-filtcgil-it-images-contratti-contratto-aniasa-a-stampa-2025-2027-pdf",
+                "title": "Contratto Aniasa a stampa 2025 2027",
+                "kind": "associazione",
+                "url": "https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf",
+                "sha256": "af0c6b2555f502ab52fcedb82b5d138093ef49499cac97ac19ec241e696f686d"
+              },
+              "page": "47",
+              "section": "Art. 21, comma 7, n. 5; Art. 25, comma sulle festività lavorate",
+              "quote": "5) lavoro compiuto nei giorni considerati festivi 50%;"
+            },
+            "transformation": "Prestazione nelle festività nazionali e infrasettimanali; ore lavorate retribuite separatamente con maggiorazione.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-autorimesse-ic35-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_REST_DAY_3",
+          "description": "Lavoro nel giorno di riposo settimanale, considerato festivo (incluso il riposo compensativo di chi lavora la domenica).",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-filtcgil-it-images-contratti-contratto-aniasa-a-stampa-2025-2027-pdf",
+                "title": "Contratto Aniasa a stampa 2025 2027",
+                "kind": "associazione",
+                "url": "https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf",
+                "sha256": "af0c6b2555f502ab52fcedb82b5d138093ef49499cac97ac19ec241e696f686d"
+              },
+              "page": "47",
+              "section": "Art. 21, commi 4 e 7, n. 5",
+              "quote": "E' considerato lavoro festivo quello eseguito nei giorni festivi di cui all'articolo 25 nonché quello eseguito la domenica, salvo il caso dei lavoratori per i quali, ai sensi di legge, il riposo compensativo cade in altro giorno; nel qual caso è lavoro festivo quello eventualmente compiuto nel giorno di riposo compensativo."
+            },
+            "transformation": "Lavoro nel giorno di riposo settimanale, considerato festivo (incluso il riposo compensativo di chi lavora la domenica).",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-autorimesse-ic35-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_SUNDAY_4",
+          "description": "Indennità fissa per ogni domenica lavorata con riposo compensativo in altro giorno, non per ora; il turno deve ricadere interamente nella domenica o iniziare nella domenica.",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "5.00"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-filtcgil-it-images-contratti-contratto-aniasa-a-stampa-2025-2027-pdf",
+                "title": "Contratto Aniasa a stampa 2025 2027",
+                "kind": "associazione",
+                "url": "https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf",
+                "sha256": "af0c6b2555f502ab52fcedb82b5d138093ef49499cac97ac19ec241e696f686d"
+              },
+              "page": "95",
+              "section": "Art. 45, Indennità lavoro domenicale",
+              "quote": "Per il lavoro prestato nelle domeniche con riposo compensativo in altro giorno della settimana, verrà corrisposta un’indennità di € 5,00 per ogni domenica lavorata comprensiva dell’incidenza di tutti gli istituti contrattuali e non entra a far parte del trattamento di fine rapporto."
+            },
+            "transformation": "Indennità fissa per ogni domenica lavorata con riposo compensativo in altro giorno, non per ora; il turno deve ricadere interamente nella domenica o iniziare nella domenica.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-autorimesse-ic35-time-supplements"
+            }
+          },
+          "per_shift": true
         }
       ]
     },
@@ -4828,6 +4995,29 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.sunday_holidays"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-autorimesse-ic35-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf",
+            "sha256": "af0c6b2555f502ab52fcedb82b5d138093ef49499cac97ac19ec241e696f686d"
+          }
+        ],
+        "findings": [
+          "Applied: bands[0:night], bands[2:holiday], bands[3:rest_day], bands[4:sunday].",
+          "Left out: bands[1:night_early]: quote skipped; bands[5:day_shift]: quote skipped; bands[6:night_shift]: quote skipped; travel: kind quotas applied by hand."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ]

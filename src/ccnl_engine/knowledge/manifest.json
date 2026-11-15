@@ -184,7 +184,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/assicurazioni-ania",
       "ruleset_version": "2026.2",
-      "source_hash": "866f829d7ac6e113868df63bf769e714ae94a3ca2f0b0e7ed2afa3e85c2bc25b",
+      "source_hash": "997fee02bb9bed646d4c8fc479e79515a466e6bf787322c748a2757e79b93318",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/assicurazioni-ania.json.gz"
@@ -235,7 +235,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/autorimesse-ic35",
       "ruleset_version": "2026.2",
-      "source_hash": "173cd79c53488607d2ff7d6b7c955bbac11e2b80c29bf1dca2455a1f8b2dbb62",
+      "source_hash": "2baf7598b2e32d83a9a0929e991c2067d2a9a801b88906dc4472ce71f1fed474",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/autorimesse-ic35.json.gz"
@@ -830,7 +830,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/elettrico-elettricita-futura",
       "ruleset_version": "2026.2",
-      "source_hash": "c94aac613a294a4f153958bab593ffa7a76db9f46229aa5cdb26e02d04e462e9",
+      "source_hash": "66067f982f27f3cfaf716d6573421bb6f451497a23c7ce29a226d30be8620377",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/elettrico-elettricita-futura.json.gz"
@@ -847,7 +847,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/energia-petrolio-confindustria",
       "ruleset_version": "2026.2",
-      "source_hash": "9ddfc3605f2443c3383ae9085091c16f2862ce16798ecfe2fe7a63d6b2907abd",
+      "source_hash": "5eafa5e5a802a0855cb64eaba6d5caf0cc85cbf93127cb170ce528c0a8b7aab3",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/energia-petrolio-confindustria.json.gz"
@@ -935,7 +935,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/farmacie-private-h121",
       "ruleset_version": "2026.2",
-      "source_hash": "254508f9fce98841bd1105e18491fd1565d8dd4653d2d0ce4a4a0a6cd27defb0",
+      "source_hash": "5f2766ca56a17af4f4a8dfd974e316f95ff27fda904cdfa1e78f57d2ad8b94fe",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/farmacie-private-h121.json.gz"
@@ -952,7 +952,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/farmacie-rurali-sussidiate-h121",
       "ruleset_version": "2026.2",
-      "source_hash": "17872ae38860860dfc6cf33c604cfa2b29b18f09057fd4ed12962a99b1d5b77b",
+      "source_hash": "0cfc2f23bc181eaf11d470476144c021df632fba94990782145bf3ebe0548705",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/farmacie-rurali-sussidiate-h121.json.gz"
@@ -1088,7 +1088,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/gas-acqua-utilitalia",
       "ruleset_version": "2026.2",
-      "source_hash": "a34bce1412cc50a002d9d9e2163ce48254993506e45275c45012de49c9e43318",
+      "source_hash": "cbd3467b1297d416154c447946d771b34a1f8c9170d6df1536c70ca785615708",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/gas-acqua-utilitalia.json.gz"
@@ -1156,7 +1156,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/impianti-sportivi-sport",
       "ruleset_version": "2024.1",
-      "source_hash": "1d73549b1dbb3a05b1aef6424d3614d8ca20562180e60e6548d47cf9066f05e0",
+      "source_hash": "968fda520f1d8483fb8556a96b8b0b045dec812a659b9422a71558fa78125292",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/impianti-sportivi-sport.json.gz"
@@ -1190,7 +1190,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/industria-turistica-federturismo",
       "ruleset_version": "2026.2",
-      "source_hash": "e021324fa48dcd15aa6299370d6aaec5681c091181b1e1e00675aa19ce21696c",
+      "source_hash": "9b81cab9f74d04afd323a83162274e108dd98f25f14a907ea408c7d988c908f7",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/industria-turistica-federturismo.json.gz"
@@ -1938,7 +1938,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/scuole-private-agidae",
       "ruleset_version": "2026.2",
-      "source_hash": "6d31305a3944e0ef36e6b7644b0e75c596a81d249a02a1a0241402df2a9f747b",
+      "source_hash": "e4cc2fc100b9768c2a4343d20fa728bfa7878beb2171fd04203ffbbc3d129324",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/scuole-private-agidae.json.gz"
@@ -2295,7 +2295,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/vigilanza-privata-assiv-sf",
       "ruleset_version": "2026.2",
-      "source_hash": "a4c9a0dbb440c361833e9e254b1273d551ed7d41f39d351a659a9642587be359",
+      "source_hash": "896b813975aecc566b10d30b6fd37535457e3c90a841f8fe5165ee21ef7ba964",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/vigilanza-privata-assiv-sf.json.gz"
@@ -2329,7 +2329,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/vigilanza-privata-federdat-gpg",
       "ruleset_version": "2026.2",
-      "source_hash": "d3686731a18ae9f3e71e9e685cbfc76dd6defbbfa8f91b36584bd3ad0c0bfba0",
+      "source_hash": "b0b4f5cea9eb8c8542020b5986d21e5ecbdbc27d8464659ae27ae7c1c8c266a8",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/vigilanza-privata-federdat-gpg.json.gz"

@@ -264,6 +264,29 @@
         "checked": [
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-farmacie-rurali-sussidiate-h121-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+            "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[4:night_holiday], bands[5:sunday], bands[6:rest_day], bands[7:holiday], none.shift_work.",
+          "Left out: bands[0:night]: more night bands the engine cannot tell apart; bands[1:night]: more night bands the engine cannot tell apart; bands[2:night]: more night bands the engine cannot tell apart; bands[3:night]: more night bands the engine cannot tell apart."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -1760,13 +1783,13 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "17872ae38860860dfc6cf33c604cfa2b29b18f09057fd4ed12962a99b1d5b77b",
+    "source_hash": "0cfc2f23bc181eaf11d470476144c021df632fba94990782145bf3ebe0548705",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -1909,6 +1932,198 @@
               "extraction_timestamp": "2026-09-08T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2021-01-01"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "menti-contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+            "title": "ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021",
+            "kind": "associazione",
+            "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+            "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+          },
+          "page": "25",
+          "section": "Art. 54, comma 1",
+          "quote": "La normale retribuzione del lavoratore è costituita dalle seguenti voci: a. retribuzione base nazionale conglobata; b. indennità di contingenza successiva al 31 gennaio 1977, nelle misure previste per il settore del commercio, ai cui accordi si fa rinvio; c. eventuali scatti di anzianità per gli aventi diritto ai sensi dell’art. 53 del presente CCNL; d. indennità speciale quadri per gli aventi diritto ai sensi dell’art. 3 del presente CCNL; e. l’elemento distinto della retribuzione (E.D.R.) di € 10,33, di cui all’accordo sul costo del lavoro del 31 luglio 1992 da corrispondersi per 13 mensilità."
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-farmacie-rurali-sussidiate-h121-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_HOLIDAY_4",
+          "description": "Servizio notturno in festività infrasettimanale; quota oraria di fatto e maggiorazione, senza cumulo",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "menti-contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+              },
+              "page": "14",
+              "section": "Art. 19, commi 5–6",
+              "quote": "In caso di coincidenza totale o parziale del servizio notturno con una delle festività infrasettimanali previste dall’art. 23, le ore di servizio notturno effettuate durante le festività infrasettimanali verranno compensate con la quota oraria della retribuzione di fatto di cui all’art. 55 e con la maggiorazione del 30% da calcolarsi sulla quota oraria della normale retribuzione di cui all’art. 54. Resta comunque espressamente escluso ogni cumulo tra le diverse maggiorazioni."
+            },
+            "transformation": "Servizio notturno in festività infrasettimanale; quota oraria di fatto e maggiorazione, senza cumulo",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2021-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-farmacie-rurali-sussidiate-h121-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_SUNDAY_5",
+          "description": "Servizio ordinario in turno di apertura della farmacia con riposo compensativo, massimo otto ore",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "0.13"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "menti-contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+              },
+              "page": "14",
+              "section": "Art. 22, comma 2",
+              "quote": "Quando nella giornata della domenica o nella giornata stabilita per il riposo settimanale la farmacia deve rimanere aperta al pubblico per turno stabilito dalle Autorità, il lavoratore è tenuto, se richiesto, a prestare normale servizio e ha diritto di godere del riposo compensativo in altra giornata della settimana per 24 ore consecutive ed inoltre a percepire un compenso pari: - al 13% di un 173° della normale retribuzione mensile per ogni ora di lavoro prestata, entro il limite di otto."
+            },
+            "transformation": "Servizio ordinario in turno di apertura della farmacia con riposo compensativo, massimo otto ore",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2021-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-farmacie-rurali-sussidiate-h121-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_REST_DAY_6",
+          "description": "Servizio ordinario in turno di apertura della farmacia con riposo compensativo, massimo otto ore",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "0.13"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "menti-contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+              },
+              "page": "14",
+              "section": "Art. 22, comma 2",
+              "quote": "Quando nella giornata della domenica o nella giornata stabilita per il riposo settimanale la farmacia deve rimanere aperta al pubblico per turno stabilito dalle Autorità, il lavoratore è tenuto, se richiesto, a prestare normale servizio e ha diritto di godere del riposo compensativo in altra giornata della settimana per 24 ore consecutive ed inoltre a percepire un compenso pari: - al 13% di un 173° della normale retribuzione mensile per ogni ora di lavoro prestata, entro il limite di otto."
+            },
+            "transformation": "Servizio ordinario in turno di apertura della farmacia con riposo compensativo, massimo otto ore",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2021-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-farmacie-rurali-sussidiate-h121-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_7",
+          "description": "Lavoro richiesto in festività ex art. 23, trattato come straordinario festivo",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "menti-contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+              },
+              "page": "16",
+              "section": "Art. 25, comma 1",
+              "quote": "Le ore di lavoro a qualsiasi titolo richieste, prestate nei giorni festivi indicati nel precedente art. 23 dovranno essere compensate come lavoro straordinario festivo nella misura e con le modalità previste dagli artt. 17 e 18del presente contratto."
+            },
+            "transformation": "Lavoro richiesto in festività ex art. 23, trattato come straordinario festivo",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2021-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-farmacie-rurali-sussidiate-h121-time-supplements"
             }
           }
         }
@@ -2338,6 +2553,37 @@
           "extraction_timestamp": "2026-11-14T00:00:00Z",
           "effective_from": "2021-09-07",
           "verification_status": "unverified"
+        }
+      }
+    },
+    "capability_basis": {
+      "shift_work": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "menti-contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+              "title": "ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021",
+              "kind": "associazione",
+              "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+              "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+            },
+            "page": "37",
+            "section": "Art. 100, comma 2, lett. a, n. 1",
+            "quote": "Alla contrattazione integrativa regionale, con durata triennale, è demandata: a) la trattazione degli aspetti organizzativi territoriali sulle seguenti materie: 1) turni e nastri orari;"
+          },
+          "transformation": "shift_work: delegated to second level.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-15T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-15-ai-farmacie-rurali-sussidiate-h121-time-supplements"
+          }
         }
       }
     }
