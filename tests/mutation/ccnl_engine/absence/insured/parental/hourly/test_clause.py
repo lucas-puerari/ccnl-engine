@@ -26,7 +26,12 @@ from ccnl_engine.absence.insured.parental.hourly.handlers import (
 from ccnl_engine.absence.insured.parental.hourly.models import ParentalHourlyClause
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.errors import InvalidInputError
-from ccnl_engine.events import LeaveHours, NursingRestEvent
+from ccnl_engine.events import (
+    HourlyParentalLeaveEvent,
+    LeaveHours,
+    NursingRestEvent,
+    ParentalLeaveTaken,
+)
 from ccnl_engine.provenance.source.rule.models import (
     ProvenanceStatus,
     RuleProvenance,
@@ -203,3 +208,69 @@ def test_an_aran_ccnl_makes_the_days_with_its_six_hours() -> None:
     result = _run(leave, ccnl_id="universita-aran", level_code="COLLABORATORE")
     (item,) = (i for i in result.pay_items if i.kind == "maternity_item")
     assert item.absence_days == 2
+
+
+@pytest.mark.parametrize(
+    ("clause", "day", "criterion"),
+    [
+        (ParentalHourlyClause(provenance=_RECORD), date(2026, 3, 2), True),
+        (
+            ParentalHourlyClause(regulated=True, provenance=_RECORD),
+            date(2026, 3, 2),
+            False,
+        ),
+        (
+            ParentalHourlyClause(day_hours=Decimal(6), provenance=_RECORD),
+            date(2026, 3, 2),
+            False,
+        ),
+        (
+            ParentalHourlyClause(
+                regulated=True, effective_from=date(2026, 3, 3), provenance=_RECORD
+            ),
+            date(2026, 3, 2),
+            True,
+        ),
+        (
+            ParentalHourlyClause(
+                regulated=True, effective_from=date(2026, 3, 3), provenance=_RECORD
+            ),
+            date(2026, 3, 3),
+            False,
+        ),
+    ],
+)
+def test_the_criterion_applies_without_regulation(
+    clause: ParentalHourlyClause, day: date, criterion: bool
+) -> None:
+    """Art. 32 c. 1-ter: "In caso di mancata regolamentazione [...] delle modalità"."""
+    assert clause.criterion_on(day) is criterion
+
+
+def test_a_regulated_ccnl_takes_the_average_day() -> None:
+    """No hours of its own: a day of leave is the average daily hours."""
+    terms = SimpleNamespace(
+        hourly_clause=ParentalHourlyClause(regulated=True, provenance=_RECORD),
+        part_time=Decimal("0.5"),
+    )
+    assert _day_hours(_leave(2, 3), cast("InsuredTerms", terms)) == Decimal(8)
+
+
+def test_federmeccanica_takes_blocks_of_two_hours() -> None:
+    """Blocks of 2 hours, art. 5: four of them on an 8-hour day are one day."""
+    leave = HourlyParentalLeaveEvent(
+        tuple(LeaveHours(date(2026, 3, d), Decimal(2)) for d in (2, 3, 4, 5)),
+        _BORN,
+        ParentalLeaveTaken(0, 0, 0),
+        Decimal(8),
+        protection_ended_on=date(2025, 9, 1),
+        local_hourly_agreement=False,
+    )
+    rests = NursingRestEvent((LeaveHours(date(2026, 3, 3), Decimal(2)),), _BORN)
+    result = _run(leave, rests)
+    (item,) = (
+        i
+        for i in result.pay_items
+        if i.kind == "maternity_item" and "evt0" in i.item_id
+    )
+    assert item.absence_days == 1

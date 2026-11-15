@@ -3683,7 +3683,7 @@
     "effective_until": null,
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
     "verification_status": "verified",
-    "source_hash": "4e2f52e44d6978fc27d8650131594c3af26cf32e6adc95585d84937cfad65dec",
+    "source_hash": "7cadcd4c0cbb974f9fce4ca69329835163e8739dba3b86426196ab90d0b0daa6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4110,6 +4110,7 @@
       }
     },
     "parental_hourly": {
+      "regulated": true,
       "provenance": {
         "status": "derived",
         "location": {

@@ -28,8 +28,13 @@ class ParentalHourlyClause(BaseModel):
 
     Attributes:
         day_hours: Hours of a full-time worker that make one day of leave;
-            ``None`` when the CCNL does not set them and the general
-            criterion of art. 32 c. 1-ter applies.
+            ``None`` when the CCNL does not set them.
+        regulated: The CCNL regulates the ways of the leave by the hour
+            (art. 32 c. 1-bis), so the general criterion of c. 1-ter, which
+            applies "In caso di mancata regolamentazione [...] delle
+            modalità di fruizione", does not: without ``day_hours`` a day
+            of leave is the average daily hours (INPS circ. 152/2015 par.
+            2.2), with no half-day rule and no ban on cumulation.
         part_time_scaled: The CCNL scales ``day_hours`` by the part-time
             ratio.
         effective_from: First day the CCNL rule applies, ``None`` for every
@@ -42,6 +47,7 @@ class ParentalHourlyClause(BaseModel):
 
     day_hours: Decimal | None = Field(default=None, gt=0)
     part_time_scaled: bool = False
+    regulated: bool = False
     effective_from: date | None = None
     provenance: RuleProvenance
 
@@ -55,3 +61,13 @@ class ParentalHourlyClause(BaseModel):
         if self.day_hours is None:
             return False
         return self.effective_from is None or day >= self.effective_from
+
+    def criterion_on(self, day: date) -> bool:
+        """Return whether the general criterion of art. 32 c. 1-ter applies.
+
+        Returns:
+            ``True`` on a day before the clause, or when the CCNL neither
+            regulates the leave by the hour nor sets its hours.
+        """
+        before = self.effective_from is not None and day < self.effective_from
+        return before or (self.day_hours is None and not self.regulated)

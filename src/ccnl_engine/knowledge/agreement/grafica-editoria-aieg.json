@@ -3104,7 +3104,7 @@
     "effective_until": null,
     "source": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
     "verification_status": "unverified",
-    "source_hash": "4f441f2e3c851c5eaeb17c49b901b3fbe95a0a7f0cf7897110e76b2f75c2b6d7",
+    "source_hash": "0e556b3862e040d344e4e820e65a4f69b2a3e6d21d15b4837048b07e424a4ff5",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3399,6 +3399,7 @@
       }
     },
     "parental_hourly": {
+      "regulated": true,
       "provenance": {
         "status": "derived",
         "location": {

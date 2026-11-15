@@ -4213,7 +4213,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "9c66efaaf46e07e1a36450b37d27b6337e29ae5f2f68c6f3543262c97ce5863f",
+    "source_hash": "173cd79c53488607d2ff7d6b7c955bbac11e2b80c29bf1dca2455a1f8b2dbb62",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4594,6 +4594,7 @@
       }
     },
     "parental_hourly": {
+      "regulated": true,
       "provenance": {
         "status": "derived",
         "location": {

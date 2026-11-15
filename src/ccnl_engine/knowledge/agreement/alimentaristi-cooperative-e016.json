@@ -3677,7 +3677,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
     "verification_status": "unverified",
-    "source_hash": "5b7bb0d91ae19a318e76ec2fcc6df7f0f36847a65bf4e98798242438901e901f",
+    "source_hash": "9e8882f05a904a504beac07f4c76613bf6ad1e3457432a483603b51141b62981",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -3937,6 +3937,7 @@
       }
     },
     "parental_hourly": {
+      "regulated": true,
       "provenance": {
         "status": "derived",
         "location": {

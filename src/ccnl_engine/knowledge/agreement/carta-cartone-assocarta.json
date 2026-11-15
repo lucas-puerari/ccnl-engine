@@ -2862,7 +2862,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
     "verification_status": "unverified",
-    "source_hash": "88434d98e328d1f4ccec9fb3da9e5fed3f99b7d6cfa65afe94b96b5bb3b5f6a3",
+    "source_hash": "e5580b1651b6525bcc3b93763def576fa46c7345a4cd5d7d19d7642104501a9b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3075,6 +3075,7 @@
       }
     },
     "parental_hourly": {
+      "regulated": true,
       "provenance": {
         "status": "derived",
         "location": {

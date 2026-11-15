@@ -7251,7 +7251,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
     "verification_status": "unverified",
-    "source_hash": "ee45fe76ca0143ffb9b9e0d58815626c691d36c9500f859f6885c026bae56e16",
+    "source_hash": "9ddfc3605f2443c3383ae9085091c16f2862ce16798ecfe2fe7a63d6b2907abd",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -7546,6 +7546,7 @@
     },
     "parental_hourly": {
       "effective_from": "2025-05-01",
+      "regulated": true,
       "provenance": {
         "status": "derived",
         "location": {
