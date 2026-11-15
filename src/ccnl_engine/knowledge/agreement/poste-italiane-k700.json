@@ -2114,7 +2114,7 @@
     "effective_until": null,
     "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "ef5b6d57168d7f1dd7331216c8ea35ec1c863984116d5a70b360234844607d4c",
+    "source_hash": "193c0c8bbe4eb559dd70687d6b0e841f59775871aff208375bfcbbb10becc6ee",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2474,6 +2474,47 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 84ca233b59d12f2026028da61615d216d540f7c94a72b04c85713ade1115a437)."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "divisor": "26",
+      "on_rest_day": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-poste-italiane-2024-2027",
+            "title": "CCNL Poste Italiane 2024–2027 (UIL Poste)",
+            "kind": "associazione",
+            "url": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
+            "sha256": "84ca233b59d12f2026028da61615d216d540f7c94a72b04c85713ade1115a437"
+          },
+          "page": "PDF p. 100 (stampata p. 99)",
+          "section": "art. 37, comma V",
+          "quote": "V. Qualora le festività di cui al comma I coincidano con la domenica ovvero, per i soli lavoratori turnisti, in altro giorno della settimana fissato come riposo settimanale, fermo restando quanto previsto al comma successivo, al lavoratore spetta, oltre alla normale retribuzione mensile, un ulteriore trattamento economico pari ad 1/26 della retribuzione base mensile. Ove le stesse festività coincidano con la domenica e questa, per il personale turnista, sia considerata giorno lavorativo, non spetta al personale medesimo l’erogazione del trattamento economico di cui al presente comma, fermi restando quelli diversi previsti dal presente CCNL"
+        },
+        "transformation": "L'art. 37 comma V paga 1/26 della retribuzione base mensile per le festività del comma I cadenti di domenica; le festività codificate sono 04-25, 05-01, 06-02, 01-01, 01-06, easter_monday, 08-15, 11-01, 12-08, 12-25, 12-26, patron; il '1/26' fissa divisor='26'; 'per i soli lavoratori turnisti, in altro giorno della settimana fissato come riposo settimanale' impone on_rest_day=true. Il 4 novembre non compare nell'elenco del comma I e rientra nel trattamento delle festività soppresse del comma IX, non in una quota aggiuntiva: «IX. In relazione al combinato disposto della legge 5 marzo 1977 n. 54 e del D.P.R. 28 dicembre 1985 n. 792, a compensazione ed in luogo delle festività civili e religiose soppresse, vengono riconosciute 4 giornate di permesso retribuito all'anno. Tali permessi sono fruiti, compatibilmente con le esigenze organizzative e produttive, nell’anno di riferimento. Ove le relative giornate non fossero fruite entro detto termine, l’Azienda provvederà ad imputare, a tale titolo, i primi giorni di ferie goduti dal lavoratore nell’anno medesimo.» (art. 37, comma IX, PDF p. 101, stampata p. 100; SHA-256 PDF: 84ca233b59d12f2026028da61615d216d540f7c94a72b04c85713ade1115a437). Quindi holidays resta invariato ed ex_november_fourth=null. I commi VI-VII riguardano invece la conversione del trattamento economico delle festività del comma I cadenti di domenica in permessi; non risultano on_saturday, on_coincident_holiday, exclude_compensatory_rest_day, fourth_november_on_sunday, annual_share, week_days_divisors, excluded.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        }
       }
     }
   }

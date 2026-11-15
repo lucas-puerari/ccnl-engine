@@ -2543,7 +2543,7 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "c88e9b3886c560f4fd33bb22784f24acd11c28f5a39cb3f7703091685a6e3c69",
+    "source_hash": "89d0e4b40d232837a2833a1220b385aa54f140e735c91a7e4ffd0d6542cab08d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2772,6 +2772,52 @@
           "effective_from": "2024-01-01"
         },
         "transformation": "Art. 69 a): the integration reaches 100% of the net monthly pay for at most 180 sick days in the calendar year, every episode of the year counted; stored as the 180 days of comporto_calendar_year, past which the CCNL integrates nothing. The comporto of b) (180 continuous days, 365 in three calendar years) keeps the job and does not change the pay. The text is a scan: the quote is from an OCR of the signed PDF, read on 2026-10-30."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "11-04",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "divisor": 26,
+      "on_rest_day": false,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-fism-2024-2027",
+            "title": "CCNL FISM 2024-27",
+            "kind": "associazione",
+            "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+            "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
+          },
+          "page": "44",
+          "section": "art. 65",
+          "quote": "La festività civile del 4 novembre, spostata alla prima domenica successiva, secondo quanto disposto dalla legge n. 54/1977, e le festività religiose e civili coincidenti con la domenica vengono retribuite con un 26mo della retribuzione globale oltre la normale retribuzione o, su richiesta del lavoratore, con permessi retribuiti"
+        },
+        "transformation": "L'art. 65 prevede una quota aggiuntiva pari a 1/26 della retribuzione globale per il 4 novembre spostato alla prima domenica successiva (11-04) e per le festività religiose e civili coincidenti con la domenica. Le festività sono quelle elencate all'art. 61 lett. b (PDF p. 41), incluso il Santo Patrono, considerato festivo anche dall'art. 65 (PDF p. 43); il lunedì di Pasqua non può coincidere con la domenica. Nessuna estensione al riposo settimanale, al sabato o alle festività coincidenti tra loro è indicata.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        },
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
       }
     }
   }

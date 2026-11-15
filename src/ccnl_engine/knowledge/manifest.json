@@ -31,7 +31,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/acconciatura-estetica-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "2c75c7f6a3024dcc3218cf60617c18f49f5972efeafb585a1ff29a4346a19a5d",
+      "source_hash": "4e10b2c425ff605034216b2ec57f658df0c8ae86f6fe201f9e2eddef77bd400f",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/acconciatura-estetica-confartigianato.json.gz"
@@ -167,7 +167,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/anas",
       "ruleset_version": "2026.2",
-      "source_hash": "35a6fa870c6cad2cbcbbe414b81e6c5f1b5e17eb8abadb00032dab9d2cf72a4d",
+      "source_hash": "1d95f2d664f9bca93978c2ea49034663377a15dc0adc68026e13298b5731c276",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/anas.json.gz"
@@ -201,7 +201,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/attivita-minerarie-assorisorse",
       "ruleset_version": "2026.1",
-      "source_hash": "484884a1fe5aec29340786bfbfdfb787eccaf0d114f4b7a74cb0400834ab74b2",
+      "source_hash": "3bb3afbbf3b1955d35cbf9595da879f5c2bd1624c56144a9c6489aa49c4934ca",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/attivita-minerarie-assorisorse.json.gz"
@@ -218,7 +218,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/autoferrotranvieri-internavigatori",
       "ruleset_version": "2026.2",
-      "source_hash": "02bff02796717283ab72ff9343bc19dafae39846b8fe134c0a4cc9ca962756b4",
+      "source_hash": "cb73f0a10b0cf6b9b8d47a565737c5273f05436fee88579cab1e72855ec1f4fd",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/autoferrotranvieri-internavigatori.json.gz"
@@ -969,7 +969,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/federcasa",
       "ruleset_version": "2026.2",
-      "source_hash": "b829048a3af2c58bbb1725b7c389234e0cb796a9cb261b1302191ec530efcd98",
+      "source_hash": "c9f5871a66c47255ba0efe3924cf8d287dde0212c02a51b46caa48b0658cbc56",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/federcasa.json.gz"
@@ -1377,7 +1377,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/legno-lapidei-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "c6ea43479b500f20deccfc9a90f6d99edd917091f10bffb24775c3127f2232ee",
+      "source_hash": "5e1afe938deacbba5ebf767bfce7a9e48fc88aaf7fd2aec6273a9cbca819d5c2",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/legno-lapidei-artigianato-confartigianato.json.gz"
@@ -1530,7 +1530,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-federmeccanica",
       "ruleset_version": "2026.3",
-      "source_hash": "341b5b9f412fb455804f2326f5d7efc2309a6984cff04fd08fee9fd655a99aea",
+      "source_hash": "194bdd154c1438d7e352844c778c5a416dc97328d575d900699c690e03930f52",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-federmeccanica.json.gz"
@@ -1632,7 +1632,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/orafi-argentieri-industria-federorafi",
       "ruleset_version": "2026.2",
-      "source_hash": "ca165fb0eefb0e0a45513a5307110179d42cc5adf4bc2a6e2b093d51c335b43b",
+      "source_hash": "2250b46752148a124205fa57d443ccdc2d286177b511fef313dc7d86da5c8adf",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/orafi-argentieri-industria-federorafi.json.gz"
@@ -1751,7 +1751,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/poste-italiane-k700",
       "ruleset_version": "2026.2",
-      "source_hash": "ef5b6d57168d7f1dd7331216c8ea35ec1c863984116d5a70b360234844607d4c",
+      "source_hash": "193c0c8bbe4eb559dd70687d6b0e841f59775871aff208375bfcbbb10becc6ee",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/poste-italiane-k700.json.gz"
@@ -1921,7 +1921,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/scuole-materne-fism",
       "ruleset_version": "2026.2",
-      "source_hash": "c88e9b3886c560f4fd33bb22784f24acd11c28f5a39cb3f7703091685a6e3c69",
+      "source_hash": "89d0e4b40d232837a2833a1220b385aa54f140e735c91a7e4ffd0d6542cab08d",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/scuole-materne-fism.json.gz"
@@ -2278,7 +2278,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/vetro-meccanizzato-assovetro",
       "ruleset_version": "2026.2",
-      "source_hash": "2aebd13291f3a713184ab265c82d28ad2ca3e3b007144364587f973ae729d269",
+      "source_hash": "1fb7deb7b1c03fa9380569a9b05848e9b660ec14119434d4b2aebbd14bd48f59",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/vetro-meccanizzato-assovetro.json.gz"
@@ -4181,7 +4181,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "bdd0750d9f1f5502e2357496ec7047872969cb0814f7388cac8f0098a52de377",
+      "source_hash": "31a020f756423eebcf1240a6e3b3d4b9acf558b7c563056a6a3fa17aa1f68e86",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/metalmeccanico-federmeccanica.json.gz",

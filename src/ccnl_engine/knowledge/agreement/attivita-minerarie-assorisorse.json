@@ -1656,8 +1656,78 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "484884a1fe5aec29340786bfbfdfb787eccaf0d114f4b7a74cb0400834ab74b2",
+    "source_hash": "3bb3afbbf3b1955d35cbf9595da879f5c2bd1624c56144a9c6489aa49c4934ca",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
+  },
+  "work_rules": {
+    "parental_hourly": {
+      "effective_from": "2017-03-01",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "rinnovo-2017.pdf",
+            "title": "Rinnovo CCNL per le attività minerarie del 15 febbraio 2017",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/170215_MINIERE_RINNOVO%20CCNL%202016-2019.pdf",
+            "sha256": "fce64a969e6b787339585e45dd451523990ba61178adfaba12193a8fef68683c"
+          },
+          "page": "4–5",
+          "section": "Maternità e paternità",
+          "quote": "Ai sensi dell’art. 32 del D. LGS. n. 151/2001 e successive modificazioni, a decorrere dal mese successivo a quello di sottoscrizione dei presente rinnovo il congedo parentale potrà essere fruito anche ad ore. La lavoratrice/ii lavoratore può usufruire di permessi su base oraria fino a un massimo dell'orario giornaliero previsto dalla contrattazione collettiva nazionale o aziendale, se diversa. Ò Il congedo potrà essere fruito, sia dal personale a tempo pieno che dal personale a tempo parziale, per periodi minimi di un’ora giornaliera, la cui somma nell'arco di ciascun mese di utilizzo deve corrispondere a giornate"
+        },
+        "transformation": "Nessuna equiparazione numerica espressa fra giornata e ore: il massimo rinvia all'orario giornaliero contrattuale e un'ora è soltanto il minimo di fruizione; day_hours = null. La stessa soglia minima è prevista per tempo pieno e parziale, senza riproporzionamento espresso: part_time_scaled = false. Il rinnovo è sottoscritto il 15 febbraio 2017 (p. 1): il mese successivo inizia il 1° marzo 2017.",
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "12-04",
+        "patron",
+        "11-04"
+      ],
+      "divisor": 25,
+      "on_rest_day": false,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-195",
+            "title": "PDF CNEL, verbale 2010 con art. 26 completo in allegato",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/195",
+            "sha256": "d1d3b2a5320d5f0d6ea53bcd2643cdcdcdac83eb08eb88af6d94886d10c2f0d1"
+          },
+          "page": "5 (stampata 4)",
+          "section": "art. 26",
+          "quote": "Qualora una delle festività di cui alle lettere b), c) e d) cada di domenica è dovuta al lavoratore una giornata di retribuzione calcolata secondo le norme di cui agli artt. 10 (parte operai), 8 (parte intermedi), 6 (parte impiegati"
+        },
+        "transformation": "Le lettere b), c) e d) dell'art. 26 elencate nel report comprendono 25 aprile, 1° maggio, 2 giugno, 1° e 6 gennaio, lunedì di Pasqua, 15 agosto, 1° novembre, 8, 25 e 26 dicembre, 4 dicembre (S. Barbara) e Santo Patrono. Le norme retributive richiamate fissano la retribuzione giornaliera a 1/25 della mensile (testo CNEL https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/605, sha256 b532ac1e5e655c2024a1f27e717280e0670356c19d9274fdd143ea62b77afe25, artt. 10, 8 e 6). Il compenso è dovuto per la domenica anche se lavorata con riposo compensativo altrove; non è un pagamento generalizzato per ogni giorno di riposo. Il 4 novembre non compare nell'elenco dell'art. 26, ma l'art. 22, comma 9, lett. A), punto 2, lo equipara espressamente alle festività coincidenti con la domenica: «2. Per quanto riguarda le due festività, la cui celebrazione è spostata alla domenica successiva (2 giugno e 4 novembre), il lavoratore beneficerà del trattamento previsto per le festività che coincidono con la domenica.» (cnel-605-conversion.pdf, pagina PDF 38, sha256 8a9212c1a91673e53b2b3c1ace08554a8df8052b801a5282cbd2ccb73d49617c). Inclusione di 11-04 riferita al trattamento ordinario; eccezioni per gruppi di lavoratori nell'art. 22, comma 9, lett. A), punto 3, B), punto 2, e C), punto 1: i compensi possono essere assorbiti nei riposi retribuiti e non pagati separatamente a novembre. Vedi notes.md.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": null,
+          "verification_status": "unverified"
+        },
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
+      }
+    }
   }
 }
