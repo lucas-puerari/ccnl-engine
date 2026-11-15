@@ -168,7 +168,7 @@ never grow.
 | 26 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | ✅ | — | 40 / 13 / 1 / 1 |
 | 27 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | ✅ | — | 44 / 5 / 0 / 0 |
 | 28 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | ✅ | — | 14 / 21 / 0 / 0 |
-| 29 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN](istruzione-ricerca-aran.md) | ✅ | overtime | 60 / 42 / 0 / 0 |
+| 29 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN](istruzione-ricerca-aran.md) | ✅ | — | 60 / 42 / 0 / 0 |
 | 30 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN, AFAM (Alta formazione artistica, musicale e coreutica)](afam-aran.md) | ✅ | — | 26 / 15 / 0 / 0 |
 | 31 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN, Enti pubblici di ricerca (ASI compresa)](enti-ricerca-aran.md) | ✅ | — | 34 / 8 / 0 / 0 |
 | 32 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN, Università (personale tecnico-amministrativo e CEL)](universita-aran.md) | ✅ | — | 22 / 9 / 0 / 0 |

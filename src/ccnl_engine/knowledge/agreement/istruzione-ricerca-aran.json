@@ -12806,23 +12806,8 @@
         "text": "ENAM (L. 93/1957 art. 3): 1% of 80% of the stipendio of a permanent teacher of the scuola dell'infanzia and primaria, the IIS conglobata in the tabellare left out: EUR 6,384.11 a year on 12 months (CCNL 24.7.2003 Tabella 2, PDF p. 121), 532.01 a month (parameters.enam_iis_monthly)."
       },
       {
-        "kind": "simplification",
-        "text": "The ore aggiuntive of the docenti are paid at fixed hourly amounts by activity (CCNL 2019-2021 Tabella E1.6: corsi di recupero 55,00, insegnamento 38,50, non di insegnamento 19,25), not by time of day: no overtime band is modelled for the docenti levels, so their overtime event needs the amount as hourly_rate with multiplier 1. The ATA areas are paid by the bands of Tabella E1.7.",
-        "capability": "overtime",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "fixed_hourly_overtime",
-          "applies_when": {
-            "trigger": "outside_input",
-            "levels": [
-              "DOCENTE_INFANZIA_PRIMARIA",
-              "DOCENTE_DIPLOMATO_SECONDARIA",
-              "DOCENTE_SECONDARIA",
-              "DOCENTE_LAUREATO_SECONDARIA_II"
-            ]
-          },
-          "remediation": "Pass the amount of Tabella E1.6 of the activity as hourly_rate with multiplier 1."
-        }
+        "kind": "info",
+        "text": "The ore aggiuntive of the docenti are paid at fixed hourly amounts by activity (CCNL 2019-2021 Tabella E1.6: corsi di recupero 55,00, insegnamento 38,50, non di insegnamento 19,25): bands OT_CORSO_RECUPERO_DOC, OT_INSEGNAMENTO_DOC and OT_NON_INSEGNAMENTO_DOC on the overtime kinds corso_recupero, insegnamento_aggiuntivo and non_insegnamento_aggiuntivo. The ATA areas are paid by the bands of Tabella E1.7."
       },
       {
         "kind": "info",
@@ -12841,7 +12826,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "7e0142b46cbc182ac52758b28a3118d8148bfc340a394b846d8228f4181b79a8",
+    "source_hash": "283d44467c42119ef82c8a1ffb1657dd875d718d4271d2d26a4c840e5f0c656b",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -13276,6 +13261,126 @@
               "review_id": "2026-10-12-ai-overtime"
             },
             "transformation": "Compenso orario lordo of the ATA 'prestazioni aggiuntive all'orario d'obbligo' by area: diurne, notturne o festive, notturne e festive; paid per hour in place of the hourly rate. Not amended by the CCNL 2022-2024 (art. 23, Tabella B4 is università) nor by the CCNL 2025-2027 (art. 11, Tabella B4 università)."
+          }
+        },
+        {
+          "code": "OT_CORSO_RECUPERO_DOC",
+          "description": "Ore aggiuntive per corsi di recupero, docenti (Tabella E1.6)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "55.00"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "corso_recupero"
+          ],
+          "levels": [
+            "DOCENTE_INFANZIA_PRIMARIA",
+            "DOCENTE_DIPLOMATO_SECONDARIA",
+            "DOCENTE_SECONDARIA",
+            "DOCENTE_LAUREATO_SECONDARIA_II"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "257",
+              "section": "Tabella E1.6 - SCUOLA (art. 80), dal 1 gennaio 2024",
+              "quote": "Docenti diplomati e laureati delle istituzioni scolastiche di ogni ordine e grado e personale educativo € 55,00 € 38,50 € 19,25"
+            },
+            "transformation": "Compenso orario lordo of the docenti for 'prestazioni aggiuntive all'orario d'obbligo' by activity: corsi di recupero, ore aggiuntive di insegnamento, ore aggiuntive non di insegnamento; paid per hour in place of the hourly rate, the whole pay of the hour. The CCNLs of 23/12/2025 and 1/7/2026 do not re-determine the table."
+          }
+        },
+        {
+          "code": "OT_INSEGNAMENTO_DOC",
+          "description": "Ore aggiuntive di insegnamento, docenti (Tabella E1.6)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "38.50"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "insegnamento_aggiuntivo"
+          ],
+          "levels": [
+            "DOCENTE_INFANZIA_PRIMARIA",
+            "DOCENTE_DIPLOMATO_SECONDARIA",
+            "DOCENTE_SECONDARIA",
+            "DOCENTE_LAUREATO_SECONDARIA_II"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "257",
+              "section": "Tabella E1.6 - SCUOLA (art. 80), dal 1 gennaio 2024",
+              "quote": "Docenti diplomati e laureati delle istituzioni scolastiche di ogni ordine e grado e personale educativo € 55,00 € 38,50 € 19,25"
+            },
+            "transformation": "Compenso orario lordo of the docenti for 'prestazioni aggiuntive all'orario d'obbligo' by activity: corsi di recupero, ore aggiuntive di insegnamento, ore aggiuntive non di insegnamento; paid per hour in place of the hourly rate, the whole pay of the hour. The CCNLs of 23/12/2025 and 1/7/2026 do not re-determine the table."
+          }
+        },
+        {
+          "code": "OT_NON_INSEGNAMENTO_DOC",
+          "description": "Ore aggiuntive non di insegnamento, docenti (Tabella E1.6)",
+          "kind": "indennita_per_hour",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "19.25"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "non_insegnamento_aggiuntivo"
+          ],
+          "levels": [
+            "DOCENTE_INFANZIA_PRIMARIA",
+            "DOCENTE_DIPLOMATO_SECONDARIA",
+            "DOCENTE_SECONDARIA",
+            "DOCENTE_LAUREATO_SECONDARIA_II"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "257",
+              "section": "Tabella E1.6 - SCUOLA (art. 80), dal 1 gennaio 2024",
+              "quote": "Docenti diplomati e laureati delle istituzioni scolastiche di ogni ordine e grado e personale educativo € 55,00 € 38,50 € 19,25"
+            },
+            "transformation": "Compenso orario lordo of the docenti for 'prestazioni aggiuntive all'orario d'obbligo' by activity: corsi di recupero, ore aggiuntive di insegnamento, ore aggiuntive non di insegnamento; paid per hour in place of the hourly rate, the whole pay of the hour. The CCNLs of 23/12/2025 and 1/7/2026 do not re-determine the table."
           }
         }
       ]
