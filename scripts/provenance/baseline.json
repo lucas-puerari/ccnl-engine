@@ -936,7 +936,6 @@
     "agreement/metalmeccanico-federmeccanica.json": [
       "metalmeccanico-federmeccanica/holiday_outside_calendar",
       "metalmeccanico-federmeccanica/par_sector_and_shift_hours",
-      "metalmeccanico-federmeccanica/part_time_elastic_clauses",
       "metalmeccanico-federmeccanica/shift_and_multiweek_premiums"
     ],
     "agreement/multiservizi-anip.json": [

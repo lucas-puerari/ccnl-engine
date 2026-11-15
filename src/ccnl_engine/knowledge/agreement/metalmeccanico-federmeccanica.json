@@ -260,8 +260,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "status": "open",
-          "remediation": "Add an optional fact for the hours worked under an elastic clause and pay its 10% or 15%, then resolve this limitation."
+          "status": "resolved",
+          "remediation": "Resolved (2026-11-15): OvertimeEvent kind elastica_collocazione pays the 10% on the moved hours, elastica_aumento the added hours at 15% (bands OT_ELASTICA_*)."
         }
       }
     ]
@@ -3427,7 +3427,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "8cff562878e383cef12680ca39d1ddfab79ee797e162174271e8290bbd114c21",
+    "source_hash": "6687ebbe08089ec77d221f4dffd96591ec2870144c4b6bec86846a757ba2e5e5",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -3893,6 +3893,74 @@
               "verified_at": "2026-10-17T10:11:39Z",
               "review_id": "2026-10-17-ai-supplementary"
             }
+          }
+        },
+        {
+          "code": "OT_ELASTICA_COLLOCAZIONE",
+          "description": "Part-time, ore spostate per clausola elastica (art. 4): maggiorazione 10%",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "valid_until": null,
+                "value": "0.10",
+                "provenance": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "elastica_collocazione"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-federmeccanica-2021-02-05",
+                "title": "CCNL Metalmeccanici Federmeccanica-Assistal 5 febbraio 2021 (testo FIOM-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+              },
+              "page": "57",
+              "section": "Sez. Quarta, Titolo I, Art. 4 (clausole elastiche)",
+              "quote": "Nel caso di variazione della collocazione temporale della prestazione al lavoratore sarà corrisposta per le ore oggetto di modifica una maggiorazione della retribuzione nella misura onnicomprensiva pari al 10% da computare sugli elementi utili al calcolo delle maggiorazioni per lavoro straordinario, notturno e festivo."
+            },
+            "transformation": "The hours moved to another time are already in the pay: the band pays the 10% only (OvertimeKind elastic placement)."
+          }
+        },
+        {
+          "code": "OT_ELASTICA_AUMENTO",
+          "description": "Part-time, ore in aumento per clausola elastica (art. 4): maggiorazione 15%",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "valid_until": null,
+                "value": "0.15",
+                "provenance": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "elastica_aumento"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-federmeccanica-2021-02-05",
+                "title": "CCNL Metalmeccanici Federmeccanica-Assistal 5 febbraio 2021 (testo FIOM-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+              },
+              "page": "57",
+              "section": "Sez. Quarta, Titolo I, Art. 4 (clausole elastiche)",
+              "quote": "per le ore di lavoro prestate in aumento dovrà essere corrisposta una maggiorazione della retribuzione nella misura onnicomprensiva pari al 15% da computare su gli elementi utili al calcolo delle maggiorazioni per lavoro straordinario, notturno e festivo."
+            },
+            "transformation": "The hours added under the elastic clause are paid with the 15% onnicomprensiva; the clause allows up to 25% of the normal annual part-time hours."
           }
         }
       ],

@@ -48,6 +48,8 @@ class WorkKind(StrEnum):
     SATURDAY = "saturday"
     SUNDAY = "sunday"
     SUPPLEMENTARE = "supplementare"
+    ELASTICA_COLLOCAZIONE = "elastica_collocazione"
+    ELASTICA_AUMENTO = "elastica_aumento"
 
 
 class OvertimeBand(BaseModel):

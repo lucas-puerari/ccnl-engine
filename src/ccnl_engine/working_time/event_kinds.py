@@ -22,6 +22,11 @@ class OvertimeKind(StrEnum):
         NIGHT_HOLIDAY: Night overtime on a public holiday (festivo notturno).
         SUPPLEMENTARY: Part-time hours beyond the agreed ones within the full
             week (D.Lgs. 81/2015 art. 6 c. 2), at the supplementare band.
+        ELASTIC_PLACEMENT: Part-time hours moved to another time under an
+            elastic clause (D.Lgs. 81/2015 art. 6 c. 4): already in the pay,
+            they take the premium of their band only.
+        ELASTIC_INCREASE: Part-time hours added under an elastic clause,
+            paid with the premium of their band.
     """
 
     WEEKDAY = "weekday"
@@ -32,6 +37,8 @@ class OvertimeKind(StrEnum):
     SATURDAY = "saturday"
     SUNDAY = "sunday"
     SUPPLEMENTARY = "supplementare"
+    ELASTIC_PLACEMENT = "elastica_collocazione"
+    ELASTIC_INCREASE = "elastica_aumento"
 
 
 class HolidayWorkKind(StrEnum):

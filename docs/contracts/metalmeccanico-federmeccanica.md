@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 92 verified / 5 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 92 verified / 7 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -187,12 +187,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Top up pregnancy and puerperium holidays, the substitute patron holiday and Rome-only 29 June when the applicable local facts are stated.
 
-!!! warning "metalmeccanico-federmeccanica/part_time_elastic_clauses · overtime · impact yes · open"
+!!! note "metalmeccanico-federmeccanica/part_time_elastic_clauses · overtime · impact yes · resolved"
     PART-TIME ELASTIC CLAUSES (CCNL 5 February 2021, PDF p. 57): 10% for a rearranged placement of the hours and 15% for an increase in duration up to 25% of the normal annual part-time hours. The request has no field for the hours of an elastic clause.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add an optional fact for the hours worked under an elastic clause and pay its 10% or 15%, then resolve this limitation.
+    **Remediation:** Resolved (2026-11-15): OvertimeEvent kind elastica_collocazione pays the 10% on the moved hours, elastica_aumento the added hours at 15% (bands OT_ELASTICA_*).
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
