@@ -58,6 +58,12 @@ _ACTIVITIES = frozenset({
     EmployerActivity.TOURISM,
     EmployerActivity.THERMAL_ESTABLISHMENT,
 })
+_NIGHT_HOLIDAY = frozenset({
+    HolidayWorkKind.NIGHT_HOLIDAY,
+    HolidayWorkKind.NIGHT_HOLIDAY_COMPENSATORY_REST,
+    HolidayWorkKind.NIGHT_HOLIDAY_SHIFT,
+    HolidayWorkKind.NIGHT_HOLIDAY_SHIFT_COMPENSATORY_REST,
+})
 _OVERTIME = frozenset({
     OvertimeKind.NIGHT,
     OvertimeKind.HOLIDAY,
@@ -89,7 +95,7 @@ def _qualifies(event: object) -> bool:
     if isinstance(event, NightShiftEvent):
         return True
     if isinstance(event, HolidayWorkEvent):
-        return event.kind is HolidayWorkKind.NIGHT_HOLIDAY
+        return event.kind in _NIGHT_HOLIDAY
     if isinstance(event, ShiftWorkEvent):
         return event.kind is ShiftKind.NIGHT
     return isinstance(event, OvertimeEvent) and event.kind in _OVERTIME

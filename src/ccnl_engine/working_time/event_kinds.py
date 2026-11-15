@@ -64,6 +64,15 @@ class HolidayWorkKind(StrEnum):
         REST_DAY: Hours worked on the weekly rest day.
         NIGHT_HOLIDAY: Hours worked on a public holiday at night (lavoro
             festivo notturno), which a CCNL may pay at a rate of its own.
+        NIGHT_HOLIDAY_COMPENSATORY_REST: The same hours with a compensatory
+            rest day (metalmeccanici: notturno festivo con riposo
+            compensativo).
+        NIGHT_HOLIDAY_SHIFT: Night hours on a public holiday of a rotating
+            shift worker, from 22:00 to 6:00, where the CCNL pays them apart
+            (Federmeccanica art. 7 row h, shift column); hours before 22:00
+            are ``NIGHT_HOLIDAY``.
+        NIGHT_HOLIDAY_SHIFT_COMPENSATORY_REST: The same shift hours with a
+            compensatory rest day (row i, shift column).
         SATURDAY_SIXTH_DAY: Ordinary hours worked on Saturday or the sixth
             day of the week (Alimentari art. 31).
     """
@@ -73,6 +82,9 @@ class HolidayWorkKind(StrEnum):
     SUNDAY = "sunday"
     REST_DAY = "rest_day"
     NIGHT_HOLIDAY = "night_holiday"
+    NIGHT_HOLIDAY_COMPENSATORY_REST = "night_holiday_compensatory_rest"
+    NIGHT_HOLIDAY_SHIFT = "night_holiday_shift"
+    NIGHT_HOLIDAY_SHIFT_COMPENSATORY_REST = "night_holiday_shift_compensatory_rest"
     SATURDAY_SIXTH_DAY = "saturday_sixth_day"
 
 

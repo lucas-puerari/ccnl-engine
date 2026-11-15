@@ -53,6 +53,9 @@ _HOLIDAY = frozenset({
     SupplementWork.SUNDAY,
     SupplementWork.REST_DAY,
     SupplementWork.NIGHT_HOLIDAY,
+    SupplementWork.NIGHT_HOLIDAY_COMPENSATORY_REST,
+    SupplementWork.NIGHT_HOLIDAY_SHIFT,
+    SupplementWork.NIGHT_HOLIDAY_SHIFT_COMPENSATORY_REST,
 })
 _SHIFT = frozenset({SupplementWork.DAY_SHIFT, SupplementWork.NIGHT_SHIFT})
 
