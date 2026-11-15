@@ -44,7 +44,6 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "provisional_inps_ruleset",
         "inps_minimum_base_exempt_category",
         "parental_income_condition",
-        "parental_extra_month_share",
         "parental_hourly_ccnl_rule",
         "una_tantum_readings",
         "sunday_holiday_ccnl_clause",
@@ -70,6 +69,7 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "disability_permit_tfr",
         "mid_month_level_change",
         "parental_month_split",
+        "parental_extra_month_share",
     }
     assert all(
         lim.applies_when.trigger is LimitationTrigger.PATH for lim in limitations

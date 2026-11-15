@@ -166,7 +166,7 @@ def test_four_half_days_are_two_days_of_leave_at_80_percent() -> None:
     (item,) = (i for i in result.pay_items if i.kind == "maternity_item")
     assert item.absence_days == Decimal(2)
     ids = {lim.id for lim in result.limitations}
-    assert "parental_extra_month_share" in ids
+    assert "parental_extra_month_share" not in ids
     assert "parental_hourly_ccnl_rule" not in ids
 
 

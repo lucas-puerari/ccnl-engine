@@ -266,11 +266,11 @@ def _limitations(result: PeriodResult) -> set[str]:
     """Return the parental limitations of the run but the extra-month one.
 
     Returns:
-        Their ids; every run on leave has ``parental_extra_month_share``.
+        Their ids; no run on leave has ``parental_extra_month_share``.
     """
     ids = {lim.id for lim in result.limitations if lim.id.startswith("parental")}
-    assert "parental_extra_month_share" in ids
-    return ids - {"parental_extra_month_share"}
+    assert "parental_extra_month_share" not in ids
+    return ids
 
 
 def test_a_whole_month_at_80_percent() -> None:

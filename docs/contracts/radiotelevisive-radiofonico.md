@@ -180,12 +180,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the rates follow the days of each period, as INPS circ. 57/2024.
 
-!!! warning "parental_extra_month_share · parental_leave · impact unknown · unsourced"
-    The days of parental leave accrue the 13th and the other extra months in full at the employer's charge (art. 34 c. 5 D.Lgs. 151/2001: the leave does not reduce them), while the INPS indemnity is computed on a base that already holds their daily rateo (art. 23 c. 2, INPS circ. 122/2022): no source read settles whether the employer's extra month is reduced by the share INPS pays, so the rateo of a month on leave may be overstated.
+!!! note "parental_extra_month_share · parental_leave · impact unknown · resolved"
+    The days of parental leave accrue the 13th and the other extra months in full at the employer's charge: the leave does not reduce them (art. 34 c. 5 D.Lgs. 151/2001), and no source sets a netting of the share the INPS indemnity holds in its base (art. 23 c. 2); by the maintainer's decision of 2026-11-15 the employer pays the whole rateo, as the text reads.
 
     **Applies when:** `parental_leave` applies; the run takes the engine code path.
 
-    **Remediation:** Source how the extra months of a parental leave are split between INPS and the employer and net the INPS share from the employer's rateo, then resolve this limitation.
+    **Remediation:** Resolved by the decision of 2026-11-15: the employer pays the whole rateo of the extra months.
 
 !!! warning "parental_hourly_ccnl_rule · parental_leave · impact unknown · open"
     A parental leave by the hour follows the national CCNL rule on the hours of a day of leave (art. 32 c. 1-bis D.Lgs. 151/2001, work_rules.parental_hourly), or without one the general criterion of art. 32 c. 1-ter: half the average daily hours a day, two such days a day of leave, no cumulation with the nursing rests on the same day (INPS circ. 152/2015 par. 2.1-2.2). The run records this limitation while the bundle does not record the rule of the CCNL; a company or territorial agreement is the fact local_hourly_agreement of the event.

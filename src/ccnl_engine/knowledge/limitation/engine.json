@@ -1561,9 +1561,9 @@
       "id": "parental_extra_month_share",
       "capability": "parental_leave",
       "variant": "parental_extra_month_share",
-      "summary": "The days of parental leave accrue the 13th and the other extra months in full at the employer's charge (art. 34 c. 5 D.Lgs. 151/2001: the leave does not reduce them), while the INPS indemnity is computed on a base that already holds their daily rateo (art. 23 c. 2, INPS circ. 122/2022): no source read settles whether the employer's extra month is reduced by the share INPS pays, so the rateo of a month on leave may be overstated.",
+      "summary": "The days of parental leave accrue the 13th and the other extra months in full at the employer's charge: the leave does not reduce them (art. 34 c. 5 D.Lgs. 151/2001), and no source sets a netting of the share the INPS indemnity holds in its base (art. 23 c. 2); by the maintainer's decision of 2026-11-15 the employer pays the whole rateo, as the text reads.",
       "monetary_impact": "unknown",
-      "status": "unsourced",
+      "status": "resolved",
       "rulesets": [
         "acconciatura-estetica-confartigianato",
         "afam-aran",
@@ -1705,40 +1705,8 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.absence.insured.parental.handlers._handle_parental_leave; D.Lgs. 151/2001 art. 34 c. 5 (Normattiva, text in force on 2026-10-30, page sha256 aaf521a98f84e5d33cad1deee74452d789e5c58ec3d1ede4567453d7b7bd3967) and art. 23 c. 2",
-      "remediation": "Source how the extra months of a parental leave are split between INPS and the employer and net the INPS share from the employer's rateo, then resolve this limitation.",
-      "searched": [
-        {
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2001-03-26;151~art34",
-          "sha256": "01946d1dc1e363138c4d73502facbb404c4b2bb8ce6e3ea7955c984c10b1b0c8",
-          "title": "art. 34, comma 5 (HTML, senza pagina PDF)."
-        },
-        {
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2001-03-26;151~art23",
-          "sha256": "f127076b31d13acabe918e4cb13097cfd508a707d8aa605533c218f203d54e87",
-          "title": "art. 23, comma 2 (HTML, senza pagina PDF)."
-        },
-        {
-          "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2022/10/Circolare_13978/Allegati/14966_Circolare-numero-122-del-27-10-2022.pdf",
-          "sha256": "0f3dfc31dbe4fd2ed9f8ca004183d87db0dab9798add4a555c31c7d46d93a71c",
-          "title": "circolare INPS n. 122 del 27 ottobre 2022, § 3.1, PDF p. 8."
-        },
-        {
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2001-03-26;151~art22",
-          "sha256": "4a24438d8e800a22eefc799c446a78c8eaf27bd108ba1fef399e32ad0a3ee656",
-          "title": "regola modalità di corresponsione e anzianità nel congedo di maternità, non il riparto economico della tredicesima nel congedo parentale."
-        },
-        {
-          "url": "https://www.inps.it/it/it/inps-comunica/atti/circolari-messaggi-e-normativa/dettaglio.circolari-e-messaggi.2022.10.circolare-numero-122-del-27-10-2022_13978.html",
-          "sha256": "6c2d08c9e4bbcb6a00dafeffe5950dab513f5fc2181cd1f54e074476d7f5449a",
-          "title": "pagina indice con testo caricato separatamente; utilizzato il PDF allegato."
-        },
-        {
-          "url": "https://www.inps.it/it/it/inps-comunica/atti/circolari-messaggi-e-normativa/dettaglio.content-fragment-detail.circolari-e-messaggi.2022.10.circolare-numero-122-del-27-10-2022_13978.json",
-          "sha256": "cda15667e253aec00af8f5f1cbd500f2f1d3f466fb45a2f4c483214c1d500a78",
-          "title": "testo e collegamento al PDF della medesima circolare; nessuna disposizione autonoma sul conguaglio."
-        }
-      ]
+      "source": "D.Lgs. 151/2001 artt. 23 c. 2 and 34 c. 5; maintainer decision of 2026-11-15; ccnl_engine.absence.insured.parental.handlers",
+      "remediation": "Resolved by the decision of 2026-11-15: the employer pays the whole rateo of the extra months."
     },
     {
       "id": "parental_hourly_ccnl_rule",

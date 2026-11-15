@@ -51,7 +51,6 @@ __all__ = [
     "PARENTAL",
     "PARENTAL_BASE_LIMITATION",
     "PARENTAL_BASE_UNKNOWN",
-    "PARENTAL_EXTRA_MONTH_LIMITATION",
     "PARENTAL_INCOME_LIMITATION",
     "PROTECTION_END_UNKNOWN",
     "_handle_parental_leave",
@@ -65,8 +64,6 @@ PARENTAL_BASE_UNKNOWN = "parental_base_pay_unknown"
 PARENTAL_BASE_LIMITATION = "parental_daily_base"
 #: Days beyond the indemnified months: the income condition is not modelled.
 PARENTAL_INCOME_LIMITATION = "parental_income_condition"
-#: The extra months of the leave are accrued in full at the employer's charge.
-PARENTAL_EXTRA_MONTH_LIMITATION = "parental_extra_month_share"
 #: The unstated end of the protected leave could give more enhanced months.
 PROTECTION_END_UNKNOWN = "parental_protection_end_unknown"
 _DEDUCTION = "absence_deduction"
@@ -242,7 +239,7 @@ def _parental_limitations(
         Limitations of the run's portion of the parental leave, and the
         missing fact of an unstated income past the indemnified months.
     """
-    limitations = [*base, PARENTAL_EXTRA_MONTH_LIMITATION]
+    limitations = [*base]
     issue, unpublished = income_check(days.rates, in_span, income, PARENTAL)
     if unpublished:
         limitations.append(PARENTAL_INCOME_LIMITATION)

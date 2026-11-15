@@ -18,7 +18,6 @@ from ccnl_engine import PayrollEngine
 from ccnl_engine.absence.insured.handlers import MATERNITY_BASE_LIMITATION
 from ccnl_engine.absence.insured.parental.handlers import (
     PARENTAL_BASE_LIMITATION,
-    PARENTAL_EXTRA_MONTH_LIMITATION,
     PARENTAL_INCOME_LIMITATION,
 )
 from ccnl_engine.absence.insured.parental.hourly.handlers import (
@@ -149,9 +148,9 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         "notice_indemnity_day_measure",
         "mid_month_level_change",
         "parental_month_split",
+        "parental_extra_month_share",
     }
     assert by_status[LimitationStatus.UNSOURCED] == {
-        PARENTAL_EXTRA_MONTH_LIMITATION,
         EXTRA_DEDUCTION_LIMITATION,
     }
 

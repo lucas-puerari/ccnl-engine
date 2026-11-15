@@ -226,12 +226,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the rates follow the days of each period, as INPS circ. 57/2024.
 
-!!! warning "parental_extra_month_share · parental_leave · impact unknown · unsourced"
-    The days of parental leave accrue the 13th and the other extra months in full at the employer's charge (art. 34 c. 5 D.Lgs. 151/2001: the leave does not reduce them), while the INPS indemnity is computed on a base that already holds their daily rateo (art. 23 c. 2, INPS circ. 122/2022): no source read settles whether the employer's extra month is reduced by the share INPS pays, so the rateo of a month on leave may be overstated.
+!!! note "parental_extra_month_share · parental_leave · impact unknown · resolved"
+    The days of parental leave accrue the 13th and the other extra months in full at the employer's charge: the leave does not reduce them (art. 34 c. 5 D.Lgs. 151/2001), and no source sets a netting of the share the INPS indemnity holds in its base (art. 23 c. 2); by the maintainer's decision of 2026-11-15 the employer pays the whole rateo, as the text reads.
 
     **Applies when:** `parental_leave` applies; the run takes the engine code path.
 
-    **Remediation:** Source how the extra months of a parental leave are split between INPS and the employer and net the INPS share from the employer's rateo, then resolve this limitation.
+    **Remediation:** Resolved by the decision of 2026-11-15: the employer pays the whole rateo of the extra months.
 
 !!! note "disability_permit_tfr · disability_permits · impact unknown · resolved"
     The days of permit under L. 104/1992 art. 33 c. 3 keep the TFR base. Art. 33 c. 4 refers to art. 43 D.Lgs. 151/2001, which applies art. 34 c. 5: the days are paid and counted in the seniority; no primary source states their TFR base, and by the maintainer's decision of 2026-11-15 they stay in it, as payroll practice holds.
