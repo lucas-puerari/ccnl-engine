@@ -3,14 +3,14 @@
 from __future__ import annotations
 
 from decimal import Decimal
-from typing import Literal
+from typing import Literal, Self
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
-__all__ = ["CcnlTravelAllowance", "TravelAllowanceBand"]
+__all__ = ["CcnlTravelAllowance", "TravelAllowanceBand", "TravelQuotas"]
 
 
 class TravelAllowanceBand(BaseModel):
@@ -55,6 +55,29 @@ class TravelAllowanceBand(BaseModel):
         return lower and upper
 
 
+class TravelQuotas(BaseModel):
+    """CCNL amounts of a trasferta by its meals and lodging.
+
+    Federmeccanica art. 7 (Sez. Quarta, Titolo I): "Trasferta intera" for
+    two meals and the overnight stay, otherwise a "Quota per il pasto
+    meridiano o serale" for each meal and a "Quota per il pernottamento",
+    each due on its own conditions (distance, return times).
+
+    Attributes:
+        whole: Amount of a day with both meals and the overnight stay.
+        meal: Amount of each meal.
+        overnight: Amount of the overnight stay.
+        provenance: Source of the amounts.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    whole: TimeSeries
+    meal: TimeSeries
+    overnight: TimeSeries
+    provenance: RuleProvenance | None = None
+
+
 class CcnlTravelAllowance(BaseModel):
     """CCNL amounts of the daily travel allowance (indennità di trasferta).
 
@@ -76,12 +99,14 @@ class CcnlTravelAllowance(BaseModel):
             trasferta of 18 to 24 hours), pay of the period that enters the
             TFR base; ``None`` without one.
         night_from_hours: Hours away from which the night allowance is due.
+        quotas: Amounts by meals and lodging in place of the bands of hours
+            (Federmeccanica); ``bands`` is then empty.
         provenance: Source and status of the amounts.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    bands: tuple[TravelAllowanceBand, ...] = Field(min_length=1)
+    bands: tuple[TravelAllowanceBand, ...] = ()
     tfr_base: Literal["none", "whole", "above_exempt"] | None = None
     mission_duration: bool = False
     habitual_discount: Decimal = Field(default=Decimal(0), ge=Decimal(0), le=Decimal(1))
@@ -90,7 +115,15 @@ class CcnlTravelAllowance(BaseModel):
     )
     night_allowance: TimeSeries | None = None
     night_from_hours: Decimal = Decimal(18)
+    quotas: TravelQuotas | None = None
     provenance: RuleProvenance | None = None
+
+    @model_validator(mode="after")
+    def _bands_or_quotas(self) -> Self:
+        if bool(self.bands) == (self.quotas is not None):
+            msg = "a travel allowance has bands of hours or quotas, exactly one"
+            raise ValueError(msg)
+        return self
 
     def band_of(self, hours: Decimal) -> TravelAllowanceBand | None:
         """Return the span of ``hours`` away.

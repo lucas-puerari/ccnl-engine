@@ -141,20 +141,27 @@ def test_invalid_events_are_rejected(changes: dict[str, object], field: str) -> 
         _trip(**changes)
 
 
-def _run(*events: object) -> PeriodResult:
+def _run(
+    *events: object,
+    ccnl: tuple[str, str] = ("metalmeccanico-federmeccanica", "C3"),
+) -> PeriodResult:
     return calculate_period(
         PeriodCalculationRequest(
             employer=EmployerProfile(headcount=Headcount(50)),
             period_id=PeriodId(year=2026, month=3),
             payment_date=date(2026, 3, 28),
-            ccnl_id="metalmeccanico-federmeccanica",
-            level_code="C3",
+            ccnl_id=ccnl[0],
+            level_code=ccnl[1],
             opening_state=PeriodState.zero(),
             events=tuple(events),  # type: ignore[arg-type]
         ),
         repo=bundled_repository(),
         resolver=bundled_policies(),
     )
+
+
+#: A CCNL without travel allowance amounts or TFR rule.
+_NO_RULE = ("commercio-confcommercio", "4")
 
 
 def _account(result: PeriodResult, account: AccountKind) -> Decimal:
@@ -295,13 +302,13 @@ def test_logistica_tfr_takes_the_part_above_the_exemption() -> None:
 def test_without_ccnl_amounts_the_daily_amount_is_required() -> None:
     """A CCNL without amounts rejects an event without daily_amount."""
     with pytest.raises(MissingRuleError, match="travel allowance amounts"):
-        _run(_ccnl_trip(tfr_base="none"))
+        _run(_ccnl_trip(tfr_base="none"), ccnl=_NO_RULE)
 
 
 def test_without_ccnl_rule_the_tfr_base_is_required() -> None:
     """A CCNL without a TFR rule needs the event's tfr_base."""
     with pytest.raises(MissingRuleError, match="no TFR rule"):
-        _run(_trip(tfr_base=None))
+        _run(_trip(tfr_base=None), ccnl=_NO_RULE)
 
 
 def test_logistica_night_allowance_from_18_hours() -> None:
@@ -622,9 +629,9 @@ def test_a_ccnl_amount_not_yet_in_force_names_its_ruleset() -> None:
 def test_the_errors_name_the_feature_the_field_and_the_day() -> None:
     """A missing amount or TFR rule names what to state, for which feature."""
     with pytest.raises(MissingRuleError) as missing:
-        _run(_ccnl_trip(tfr_base="none"))
+        _run(_ccnl_trip(tfr_base="none"), ccnl=_NO_RULE)
     with pytest.raises(MissingRuleError) as no_rule:
-        _run(_trip(tfr_base=None))
+        _run(_trip(tfr_base=None), ccnl=_NO_RULE)
 
     assert missing.value.as_of == _DAY
     assert missing.value.feature == "travel_allowance"
