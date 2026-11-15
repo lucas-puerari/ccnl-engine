@@ -85,3 +85,18 @@ def test_a_ccnl_without_work_rules_holds_none(feature: str) -> None:
 def test_an_employer_fact_is_accepted_by_design(feature: str) -> None:
     """A territorial fund and earlier payslips are facts of the employer."""
     assert accepted(feature, load_ccnl("commercio-confcommercio"))
+
+
+@pytest.mark.parametrize(
+    ("feature", "holds"), [("overtime", True), ("night_work", False)]
+)
+def test_a_capability_handed_to_the_employer_is_accepted(
+    feature: str, holds: bool
+) -> None:
+    """AFAM art. 34 c. 4 leaves the overtime to the local integrative bargaining."""
+    afam = load_ccnl("afam-aran")
+    assert afam.work_rules is not None
+
+    assert accepted(feature, afam) is holds
+    assert ("overtime" in afam.work_rules.capability_basis) is True
+    assert (feature in report.non_native(afam, (2026,))) is not holds

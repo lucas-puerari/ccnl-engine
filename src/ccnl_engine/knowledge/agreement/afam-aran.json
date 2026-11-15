@@ -6078,7 +6078,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "f97ee8df859917a222013a3920052991c94c548d9609bda5f21617e620d505d4",
+    "source_hash": "68554c999a6df72dd93448fd72cf0eb8fd3352504d0f31d6630a521a785448d9",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -6316,6 +6316,27 @@
           "section": "Art. 5"
         },
         "transformation": "The CCNL text read is silent on the holidays falling on a Sunday: the law pays the civil holidays only; art. 5 names the 'Stato, enti pubblici e datori privati', and the maintainer decided on 2026-11-15 that it applies to public employment (documents read: https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf, sha256 11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d; https://www.aranagenzia.it/wp-content/uploads/2024/07/ccnl-2002-2005_AFAM.pdf, sha256 32676c0c9d16f2639a9dd8b6d4506cfa86f9cdf23775520387f71fa3ef3f8f59; https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf, sha256 8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904; https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf, sha256 99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a; https://www.aranagenzia.it/wp-content/uploads/2023/10/CCNL_-ISTR-RICERCA-SIGLATO-19_4_2018-DEF_PUBB_2.pdf, sha256 e3e567d838c91749a194acedf737b06c676bd6fcfc39007c3d7077641fb18341; https://www.aranagenzia.it/wp-content/uploads/2024/07/AFAM-quadriennio.pdf, sha256 8ac434882c0ceae5887f558babad77cbaaf631dd88eb215adf413db6035bb0ff; https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-SCUOLA-2006-2009.pdf, sha256 e71227f907cf2292f4994e535c2b431bb2961221ad16eae12c803d8bf911757d)"
+      }
+    },
+    "capability_basis": {
+      "overtime": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-afam-2002-2005",
+              "title": "CCNL AFAM 2002-2005, 16 febbraio 2005",
+              "kind": "amministrazione",
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/ccnl-2002-2005_AFAM.pdf",
+              "sha256": "32676c0c9d16f2639a9dd8b6d4506cfa86f9cdf23775520387f71fa3ef3f8f59"
+            },
+            "page": "25",
+            "section": "Art. 34, c. 4",
+            "quote": "In quanto autorizzate e compatibilmente con le risorse disponibili, le prestazioni eccedenti l'orario di lavoro sono retribuite con le modalità e nella misura definite in sede di contrattazione integrativa locale."
+          },
+          "transformation": "The overtime of the AFAM technical and administrative staff is paid as the local integrative bargaining sets: no national rate, the amount is a fact of the employer (the caller states it). The CCNL 18/1/2024 keeps the earlier AFAM CCNLs where not replaced (art. 1 c. 16)."
+        }
       }
     }
   },
