@@ -12,10 +12,12 @@ The firm must have no second-level bargaining with economic content:
 ``EmployerProfile.second_level_elements`` in force in the year before; the
 flag not stated, the run leaves out an amount it would pay and names the
 missing fact.  The pay above the CCNL of the year before reduces it "fino a
-concorrenza": the engine reads it from the individual elements of the run
+concorrenza": ``PriorYearTaxFacts.pay_above_ccnl`` when the request states
+it; otherwise the engine reads it from the individual elements of the run
 (``Employment.individual_elements``), each at its monthly amount on 31
 December of the year before and the part-time fraction, for each month
-served in the year before.  A run without the employment period pays none.
+served in the year before, and the run names the missing fact.  A run
+without the employment period pays none.
 It is paid as an ordinary bonus
 (:class:`~ccnl_engine.variable_pay.inputs.BonusEvent`): in the INPS base,
 taxed with the run as income of its year, out of the TFR base.
@@ -30,6 +32,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.compensation.individual.rules import monthly_on
 from ccnl_engine.compensation.una_tantum.rules import _months
+from ccnl_engine.decision.models import CalculationIssue, CalculationStatus
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.run.models import RunKind
 from ccnl_engine.variable_pay.inputs import BonusEvent
@@ -38,9 +41,10 @@ if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.compensation.equalisation.models import EqualisationElement
     from ccnl_engine.employment.period.inputs import EmploymentPeriod
+    from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.period.requests import PeriodCalculationRequest
 
-__all__ = ["EqualisationOutcome", "equalisation_outcome"]
+__all__ = ["EqualisationOutcome", "equalisation_outcome", "pay_above_issue"]
 
 _MONTHS = Decimal(12)
 
@@ -182,16 +186,22 @@ def _amount(
     owed = yearly * months / _MONTHS
     if element.part_time_proportional:
         owed *= _ratio(request)
-    if not request.individual_elements or not element.deduct_individual:
+    if not element.deduct_individual:
         return money(owed)
+    above = request.prior_year.pay_above_ccnl
+    if above is None:
+        if not request.individual_elements:
+            return money(owed)
+        level = ccnl.level_by_code(request.level_code)
+        day = date(request.period_id.year - 1, 12, 31)
+        monthly = sum(
+            (monthly_on(e, level, day) for e in request.individual_elements),
+            Decimal(0),
+        )
+        above = monthly * months * _ratio(request)
     if element.individual_excludes:
-        return Decimal(0)
-    level = ccnl.level_by_code(request.level_code)
-    day = date(request.period_id.year - 1, 12, 31)
-    monthly = sum(
-        (monthly_on(e, level, day) for e in request.individual_elements), Decimal(0)
-    )
-    return money(max(owed - monthly * months * _ratio(request), Decimal(0)))
+        return Decimal(0) if above else money(owed)
+    return money(max(owed - above, Decimal(0)))
 
 
 def equalisation_outcome(
@@ -229,4 +239,47 @@ def equalisation_outcome(
         events.append(BonusEvent(paid, amount))
     return EqualisationOutcome(
         tuple(events), unknowns[0] if unknowns else None, tuple(unknowns)
+    )
+
+
+def pay_above_issue(ctx: RunContext) -> CalculationIssue | None:
+    """Return the missing fact of the pay above the CCNL of the year before.
+
+    Returns:
+        An incomplete issue naming ``pay_above_ccnl`` when the run owes an
+        element that deducts it, the employer states no second-level
+        bargaining and the request does not state the pay; else ``None``.
+    """
+    request, ccnl = ctx.request, ctx.contract.ccnl
+    if (
+        request.prior_year.pay_above_ccnl is not None
+        or request.employer.second_level_premium is not False
+    ):
+        return None
+    legacy = ccnl.parameters.equalisation_element
+    elements = (
+        *((legacy,) if legacy is not None else ()),
+        *ccnl.parameters.equalisation_elements,
+    )
+    owed = [
+        e.code
+        for e in elements
+        if e.deduct_individual
+        and _pays(e, request, ctx.run_kind)
+        and not _company(request, before=e.bargaining_year_before)
+        and _served(e, request)
+    ]
+    if not owed:
+        return None
+    return CalculationIssue(
+        code="pay_above_ccnl_unknown",
+        capability="base_salary",
+        message=(
+            f"the elemento perequativo ({', '.join(owed)}) is reduced by the pay "
+            "above the CCNL of the year before, which the request does not state: "
+            "the amount shown reads the individual elements; state "
+            "PriorYearTaxFacts.pay_above_ccnl"
+        ),
+        status=CalculationStatus.INCOMPLETE,
+        fact="pay_above_ccnl",
     )

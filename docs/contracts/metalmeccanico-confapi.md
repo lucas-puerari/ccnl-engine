@@ -130,12 +130,12 @@ Destination levels: `3`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "metalmeccanico-confapi/elemento_perequativo · base_salary · impact yes · open"
+!!! note "metalmeccanico-confapi/elemento_perequativo · base_salary · impact yes · resolved"
     Art. 48 (p. 122): the elemento perequativo of 485 EUR a year with the June pay to the worker in service on 1 January of a firm without second-level bargaining with economic content (EmployerProfile.second_level_premium false), for the months of the year before over twelve; the engine pays it (parameters.equalisation_element). Left open: the pay above the CCNL the worker received in the year before (superminimi, premi annui, other pay subject to contributions) has no field in the request; the engine reads it from the individual elements of the run, each amount on 31 December of the year before at the part-time fraction, for each month served, on twelve monthly payments, so an element agreed since, the share of the extra months or a yearly premium of the year before is not seen. A run without the employment period pays none; a second-level element the employer states counts when in force in the year before.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** State the pay above the CCNL of the year before as a fact of the run, or pass the element as a bonus and leave the employer flag true.
+    **Remediation:** Resolved (2026-11-15): PriorYearTaxFacts.pay_above_ccnl states the pay above the CCNL of the year before, which the element is reduced by 'fino a concorrenza'; not stated, the run reads the individual elements and names the missing fact pay_above_ccnl.
 
 !!! warning "metalmeccanico-confapi/standby_and_travel · base_salary · impact yes · open"
     Art. 28: reperibilità (amounts by group of levels adjusted each June) and trasferta.

@@ -31,8 +31,8 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, leave, overtime, sickness |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | leave, overtime, sickness |
 
 8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -159,12 +159,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved (2026-11-15): the supplementary hours without the earlier hours or the agreed annual hours have a missing_fact supplementary_hours_before or agreed_annual_hours (overtime_supplementary_share_unknown).
 
-!!! warning "metalmeccanico-federmeccanica/elemento_perequativo · base_salary · impact yes · open"
+!!! note "metalmeccanico-federmeccanica/elemento_perequativo · base_salary · impact yes · resolved"
     ELEMENTO PEREQUATIVO (Sez. Quarta Tit. IV Art. 13, pp. 177-178): 485 euro a year with the June pay to the worker in service on 1 January of a company without second-level bargaining (EmployerProfile.second_level_premium false), for the months of the year before over twelve; the engine pays it (parameters.equalisation_element). Left open: the pay above the CCNL the worker received in the year before (superminimi, premi annui, other pay subject to contributions) has no field in the request; the engine reads it from the individual elements of the run, each amount on 31 December of the year before at the part-time fraction, for each month served, on twelve monthly payments, so an element agreed since, the share of the extra months or a yearly premium of the year before is not seen. A run without the employment period pays none; a second-level element the employer states counts when in force in the year before.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** State the pay above the CCNL of the year before as a fact of the run, or pass the element as a bonus and leave the employer flag true.
+    **Remediation:** Resolved (2026-11-15): PriorYearTaxFacts.pay_above_ccnl states the pay above the CCNL of the year before, which the element is reduced by 'fino a concorrenza'; not stated, the run reads the individual elements and names the missing fact pay_above_ccnl.
 
 !!! warning "metalmeccanico-federmeccanica/par_sector_and_shift_hours · leave · impact yes · open"
     LEAVE, PAR (Sez. Quarta, Titolo III, Art. 5, renewal of 22 November 2025 p. 33): the settore siderurgico (EmployerProfile.subsector steel) accrues 124 hours in place of 104, and the turnisti on 15 or more weekly shifts including the night shift (Employment.qualifying_shifts) 8 hours more. Not modelled: the 8 hours of the siderurgico turnisti, paid with the 13th; the further 4 hours from 2027 at 18 or more weekly shifts and 4 more from 2028 at 21 for the non siderurgico workers; and the hour of the sottosettori of the accordo of 16 July 1979 for the workers in service at 31 December 2012.
