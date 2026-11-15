@@ -3,12 +3,16 @@
 from __future__ import annotations
 
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
 import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.working_time.subsector.rules import subsectors_of, with_subsector
+
+if TYPE_CHECKING:
+    from ccnl_engine.agreement.facade import CCNL
 
 _PMI = load_ccnl("tessile-pmi-uniontessile")
 _ART = load_ccnl("tessile-moda-artigianato-confartigianato")
@@ -73,3 +77,41 @@ def test_without_subsector_levels_the_ccnl_is_unchanged() -> None:
     """No sub-sector level and no table of the run: the same CCNL."""
     commercio = load_ccnl("commercio-confcommercio")
     assert with_subsector(commercio, None, None, level_code="4") == (commercio, False)
+
+
+def _works(ccnl: CCNL) -> dict[str, Decimal | None]:
+    rules = ccnl.work_rules
+    assert rules is not None
+    assert rules.time_supplements is not None
+    return {
+        b.work.value: b.rate.periods[0].value
+        for b in rules.time_supplements.supplement_bands
+    }
+
+
+def test_a_run_of_no_subsector_is_of_the_main_sector() -> None:
+    """Tessile-moda artigianato has rules of its own: no chimica band, not unknown."""
+    ccnl, unknown = with_subsector(_ART, None, None, level_code="4")
+    works = _works(ccnl)
+    assert not unknown
+    assert works.get("night_holiday") == Decimal("0.50")
+    assert "night" not in works
+
+
+@pytest.mark.parametrize(
+    ("subsector", "night"), [("chimica", "0.30"), ("ceramica", "0.30")]
+)
+def test_a_run_of_a_subsector_takes_its_bands(subsector: str, night: str) -> None:
+    """Art. 43: each sector its own night work."""
+    ccnl, unknown = with_subsector(_ART, subsector, None, level_code="4")
+    assert not unknown
+    assert _works(ccnl)["night"] == Decimal(night)
+
+
+def test_without_a_main_sector_the_first_subsector_prices_the_run() -> None:
+    """Alimentari has bands of its sub-sectors only: unknown, the first one."""
+    ccnl, unknown = with_subsector(
+        load_ccnl("alimentari-federalimentare"), None, None, level_code="3"
+    )
+    assert unknown
+    assert ccnl.work_rules is not None
