@@ -1,21 +1,5 @@
 {
   "schema_version": 1,
   "ccnl_id": "universita-tecnologi-aran",
-  "requirements": [
-    {
-      "id": "rule_work_rules_absence_rules",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/universita-tecnologi-aran.json#work_rules.absence_rules",
-      "calculation": "base_salary, sickness",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/universita-tecnologi-aran.json#work_rules.absence_rules"
-        ]
-      }
-    }
-  ]
+  "requirements": []
 }

@@ -3,9 +3,6 @@
     "agreement/acconciatura-estetica-confartigianato.json": {
       "additional_months[2023-02-01]": "assumed"
     },
-    "agreement/afam-aran.json": {
-      "work_rules.absence_rules": "assumed"
-    },
     "agreement/agenti-immobiliari-fiaip.json": {
       "additional_months[2025-05-01]": "assumed",
       "seniority_increments": "assumed"
@@ -116,9 +113,6 @@
     "agreement/energia-petrolio-confindustria.json": {
       "additional_months[2025-07-01]": "assumed"
     },
-    "agreement/enti-ricerca-aran.json": {
-      "work_rules.absence_rules": "assumed"
-    },
     "agreement/esercizi-cinematografici-anec.json": {
       "additional_months[2023-01-01]": "assumed"
     },
@@ -178,9 +172,6 @@
     },
     "agreement/istituzioni-servizi-socio-assistenziali-anaste.json": {
       "additional_months[2023-01-01]": "assumed"
-    },
-    "agreement/istruzione-ricerca-aran.json": {
-      "work_rules.absence_rules": "assumed"
     },
     "agreement/lapidei-industria.json": {
       "accrual_rule": "missing",
@@ -403,12 +394,6 @@
     },
     "agreement/uneba-uneba.json": {
       "additional_months[2024-10-01]": "assumed"
-    },
-    "agreement/universita-aran.json": {
-      "work_rules.absence_rules": "assumed"
-    },
-    "agreement/universita-tecnologi-aran.json": {
-      "work_rules.absence_rules": "assumed"
     },
     "agreement/vetro-meccanizzato-assovetro.json": {
       "accrual_rule": "missing",
