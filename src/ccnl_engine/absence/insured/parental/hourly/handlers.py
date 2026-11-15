@@ -7,8 +7,9 @@ out of the INPS and TFR bases, at the CCNL hourly base of their day
 indemnity, half the daily base at the rate of each day (art. 34 c. 1 D.Lgs.
 151/2001; INPS circ. 152/2015 par. 2.2).  A collective rule on the hours
 that make a day of leave prevails over the general criterion of art. 32 c.
-1-ter; the bundle holds none, so the run records the open engine
-limitation ``parental_hourly_ccnl_rule``.
+1-ter: the run records the open engine limitation
+``parental_hourly_ccnl_rule`` while the bundle does not record the rule of
+the CCNL (``work_rules.parental_hourly``) or the rule sets its own hours.
 """
 
 from __future__ import annotations
@@ -45,8 +46,13 @@ from ccnl_engine.absence.insured.rules import InsuredPay
 from ccnl_engine.decision.models import CalculationIssue, CalculationStatus, IssueCause
 
 if TYPE_CHECKING:
+    from datetime import date
+
     from ccnl_engine.absence.insured.parental.hourly.inputs import (
         HourlyParentalLeaveEvent,
+    )
+    from ccnl_engine.absence.insured.parental.hourly.models import (
+        ParentalHourlyClause,
     )
     from ccnl_engine.event.handlers import EventEffect, _EventHandlerCtx
 
@@ -140,11 +146,35 @@ def _handle_hourly_parental(
         )
     if unknown:
         issues.append(_cohort_issue())
-    limitations = [*base.limitations, PARENTAL_EXTRA_MONTH_LIMITATION]
     issue, unpublished = income_check(days, in_span, event.individual_income, PARENTAL)
     local = agreement_issue(event.local_hourly_agreement, PARENTAL)
     effect.issues = [*issues, *(i for i in (issue, local) if i is not None)]
+    effect.limitations = _limitations(
+        base.limitations,
+        terms.hourly_clause,
+        event.hours[0].day,
+        unpublished=unpublished,
+    )
+    return effect
+
+
+def _limitations(
+    base: tuple[str, ...],
+    clause: ParentalHourlyClause | None,
+    first: date,
+    *,
+    unpublished: bool,
+) -> tuple[str, ...]:
+    """Return the limitations of the leave by the hour of the run.
+
+    Returns:
+        Those of the daily base and of the indemnified months; the income
+        threshold when it is not published; the CCNL rule while the bundle
+        does not record it or it sets its own hours to a day of leave.
+    """
+    limitations = [*base, PARENTAL_EXTRA_MONTH_LIMITATION]
     if unpublished:
         limitations.append(PARENTAL_INCOME_LIMITATION)
-    effect.limitations = (*limitations, HOURLY_CCNL_LIMITATION)
-    return effect
+    if clause is None or clause.sets_hours_on(first):
+        limitations.append(HOURLY_CCNL_LIMITATION)
+    return tuple(limitations)

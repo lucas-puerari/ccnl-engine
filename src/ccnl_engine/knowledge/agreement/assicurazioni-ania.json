@@ -17619,7 +17619,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "53c1a6095f5b73c8bb2d068d202106be6980e7a8bbcc225dad7b5564b36e29f5",
+    "source_hash": "866f829d7ac6e113868df63bf769e714ae94a3ca2f0b0e7ed2afa3e85c2bc25b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -17861,6 +17861,25 @@
           "section": "Art. 5"
         },
         "transformation": "The civil holidays listed are paid under the cited law when they fall on Sunday. The CCNL treats 4 November as an abolished holiday, not as a Sunday holiday carrying additional pay: Allegato 7, premessa, PDF p. 231: 'che la Legge 5 marzo 1977, n. 54 ha dichiarato non più festivi, e quindi lavorativi, i seguenti giorni:' and 'Unità Nazionale (4 novembre).' Allegato 7, art. 2, PDF p. 232: 'In sostituzione delle giornate già festive di cui alla premessa, i lavoratori/trici avranno diritto – per ciascun anno di durata dell’accordo – di usufruire di tante giornate di permesso straordinario retribuito quante sono le giornate ex festive previste come lavorative, a condizione che nelle giornate già festive abbiano effettivamente prestato la propria attività lavorativa o – anche se assenti – abbiano comunque percepito per le stesse la retribuzione loro spettante.' Source: testo-coordinato-2017.pdf, sha256 8ece938521408684e42e603a94c334b9e9d2c62e0517cc7eef18e5fc6e9cf5be. No 11-04 holiday or separate ex_november_fourth payment is added. Other documents previously read: https://www.fisac-cgil.it/wp-content/uploads/CCNL-ANIA_compressed.pdf sha256 b93a0549d28901da9a9c4d5d50b5a76e659cdead9e8d89313fa240b194f202ae; https://www.fisac-cgil.it/wp-content/uploads/CCNL_ANIA_20221116-0_Ipotesi_di_intesa.pdf sha256 3f601994154be25d912eed73cf644cf885a0647cce7d17d0daded71ff815badd; https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf sha256 727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb."
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-152-2015",
+            "title": "INPS Circolare n. 152 del 18 agosto 2015",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20152%20del%2018-08-2015.pdf",
+            "published_on": "2015-08-18",
+            "sha256": "6e74e62dd50378c23117df7aaca509ab9b8b93e60f99cad23e9c64982fd3734e"
+          },
+          "page": "2",
+          "section": "par. 2.1",
+          "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb)."
       }
     }
   },

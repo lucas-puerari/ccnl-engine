@@ -1950,7 +1950,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "1c6b38f1834a2c6ae6bcdcba1fbbdb31650f93795eb28cc031096f3cecf691ed",
+    "source_hash": "ffdd60406f0746d83c5a4727d2a2eac32884942a30f22c6e94a09ea30105f8b1",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2873,6 +2873,25 @@
           },
           "transformation": "integration_days 150: the compulsory leave of art. 16 D.Lgs. 151/2001 (five months) the clause refers to; net_basis false: the clause measures the retribuzione without saying netta"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-152-2015",
+            "title": "INPS Circolare n. 152 del 18 agosto 2015",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20152%20del%2018-08-2015.pdf",
+            "published_on": "2015-08-18",
+            "sha256": "6e74e62dd50378c23117df7aaca509ab9b8b93e60f99cad23e9c64982fd3734e"
+          },
+          "page": "2",
+          "section": "par. 2.1",
+          "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 8842aac0e23bd7060d5d9f81f7ab79ceaee2c5591b879daf0f8acfbcac2438d5; https://a, sha256 d01c1635bf8f5185043f6c5509f0c829fb58bdb1d9ef2943f554d825f60d1710)."
       }
     }
   },

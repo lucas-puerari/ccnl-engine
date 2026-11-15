@@ -2114,7 +2114,7 @@
     "effective_until": null,
     "source": "https://www.uilposte.it/wp-content/uploads/2025/01/CCNL-Posteitaliane-Uilposte2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "720eb95bf9bb8213ba85be17cfd3a071deb32c792a410dac2546a6a7a7abe4a3",
+    "source_hash": "ef5b6d57168d7f1dd7331216c8ea35ec1c863984116d5a70b360234844607d4c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2455,6 +2455,25 @@
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-152-2015",
+            "title": "INPS Circolare n. 152 del 18 agosto 2015",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20152%20del%2018-08-2015.pdf",
+            "published_on": "2015-08-18",
+            "sha256": "6e74e62dd50378c23117df7aaca509ab9b8b93e60f99cad23e9c64982fd3734e"
+          },
+          "page": "2",
+          "section": "par. 2.1",
+          "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 84ca233b59d12f2026028da61615d216d540f7c94a72b04c85713ade1115a437)."
       }
     }
   }

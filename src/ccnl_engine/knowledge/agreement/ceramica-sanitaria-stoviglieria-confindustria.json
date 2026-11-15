@@ -4118,7 +4118,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
     "verification_status": "unverified",
-    "source_hash": "8a58ca17209cdc025b2658164e59c27256d30b0ab9f00472871a1d66f20538e1",
+    "source_hash": "914cebb6370ed5498c982af6863ce2fc9135b6a64fe9c844f21e16868d6b4b45",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },
@@ -4324,6 +4324,25 @@
           "comporto_days": 365
         }
       ]
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-152-2015",
+            "title": "INPS Circolare n. 152 del 18 agosto 2015",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20152%20del%2018-08-2015.pdf",
+            "published_on": "2015-08-18",
+            "sha256": "6e74e62dd50378c23117df7aaca509ab9b8b93e60f99cad23e9c64982fd3734e"
+          },
+          "page": "2",
+          "section": "par. 2.1",
+          "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 9b93ef29503bb26488f68cfeaa5959552022692f9906703398a87d05244010c5; https://a, sha256 6a62203105c06f3b9d53b1278bce2271beb9a1dcd9a6538b336b461b0a19c154)."
+      }
     }
   },
   "verification": {

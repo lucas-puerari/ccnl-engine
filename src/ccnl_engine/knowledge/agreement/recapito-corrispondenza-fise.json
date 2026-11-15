@@ -1660,7 +1660,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/",
     "verification_status": "unverified",
-    "source_hash": "fb71f9dcb4c35060a46c176da8da0e6d981f0264270eeb46dcd8591a7bcf3d94",
+    "source_hash": "7f3301e19c0cfe7d10219553223de80308ba422a3f91c576040357efd9f37d2a",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1937,6 +1937,25 @@
           "effective_from": "2011-02-08",
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-152-2015",
+            "title": "INPS Circolare n. 152 del 18 agosto 2015",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20152%20del%2018-08-2015.pdf",
+            "published_on": "2015-08-18",
+            "sha256": "6e74e62dd50378c23117df7aaca509ab9b8b93e60f99cad23e9c64982fd3734e"
+          },
+          "page": "2",
+          "section": "par. 2.1",
+          "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://s, sha256 785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50; https://a, sha256 aaec9fe6e382a0a0c1ae7988384c34e66d6696bf2d79d21d157dbb133d8a70d5; https://w, sha256 b4394f1dbb34c7fe1c75bf977736778dc2dab550d55b8bd371ae38ad2f04b3d3)."
       }
     }
   },

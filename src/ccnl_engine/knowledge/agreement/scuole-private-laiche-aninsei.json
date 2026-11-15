@@ -5473,7 +5473,7 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "72e381bf4f932db3847450219c36d45ff1f8a16e32fea2ac907cf5b2252a754a",
+    "source_hash": "c2afb2319c3a305987e7f8bf2e21a006eed5a3ba34246f7de368eccb9b9ac3fb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5782,6 +5782,25 @@
           "verified_at": "2026-11-01T12:51:22Z",
           "verification_status": "verified"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-152-2015",
+            "title": "INPS Circolare n. 152 del 18 agosto 2015",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20152%20del%2018-08-2015.pdf",
+            "published_on": "2015-08-18",
+            "sha256": "6e74e62dd50378c23117df7aaca509ab9b8b93e60f99cad23e9c64982fd3734e"
+          },
+          "page": "2",
+          "section": "par. 2.1",
+          "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://f, sha256 7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65)."
       }
     }
   },

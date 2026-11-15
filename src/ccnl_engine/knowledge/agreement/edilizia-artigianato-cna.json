@@ -2625,7 +2625,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "92c887cd86b20a63cb6d1d9cb226a80a66107dfe28b4898ffe96c500054b68fd",
+    "source_hash": "7a5ab06d083e68f1bcf3239370358d554bc913857bddbd6318aa624cd5fa7cbf",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2948,6 +2948,25 @@
           },
           "transformation": "Several illnesses: 9, 12 or 15 months (274, 365, 456 days) within 12, 18 or 24 months, up to 2 years of seniority, to 6, above 6; full pay from the first day. Quadri: art. 78 applies the rules of the impiegati."
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-152-2015",
+            "title": "INPS Circolare n. 152 del 18 agosto 2015",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20152%20del%2018-08-2015.pdf",
+            "published_on": "2015-08-18",
+            "sha256": "6e74e62dd50378c23117df7aaca509ab9b8b93e60f99cad23e9c64982fd3734e"
+          },
+          "page": "2",
+          "section": "par. 2.1",
+          "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 df6317b0b0054363ea554d724fb49a291b8079128f83bd8ca5904434d1b3d664)."
       }
     }
   },
