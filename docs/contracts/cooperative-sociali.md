@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 62 verified / 47 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 65 verified / 47 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Artt. 47, 57, 78, 79 and 81 of the CCNL Cooperative sociali 2025 against the role allowances, by a separate model session. | corrected | Confirmed the indennità professionali, their levels and amounts, the ETDR and the reperibilità in struttura.<br>Corrected: the indennità di cassa 30.99 (art. 81) and the affiancamento 50 (art. 78) are fixed monthly amounts too: added as role allowances.<br>Flagged: the conditions of the roles (ETDR categories, medico F1 experience, reperibilità programming) are caller-stated: limitation role_conditions_caller_stated. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Fixed role allowances and remaining event-based limitations against the cached consolidated CCNL, PDF pp. 84, 92-94, 109-111. | corrected | Fixed ETDR, professional, in-structure availability, assignment and cash-handling allowances were already encoded with role gates and dated provenance; no duplicate amounts added.<br>Narrowed the limitation to the remaining event, shift, leave and probation logic; maternity and injury top-ups are already modeled. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text. | confirmed | work_rules.sunday_holidays: 01-01, 01-06, easter_monday, 04-25, 05-01, 06-02, 08-15, 11-01, 11-04, 12-08, 12-25, 12-26, patron; divisor 26 |
+| 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base, bands[5:day_shift], bands[6:night_shift].<br>Left out: bands[0:night]: quote quote_not_in_file; bands[1:night]: quote quote_not_in_file; bands[2:night]: work/role/rate not applicable (addette e addetti ai servizi di sorveglianza e custodia non soggetti a turni, attività esclusivamente notturna); bands[3:holiday]: quote quote_not_in_file; bands[4:sunday]: quote quote_not_in_file. |
 
 ## Salary table
 

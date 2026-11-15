@@ -337,7 +337,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/calzaturiero-assocalzaturifici",
       "ruleset_version": "2026.2",
-      "source_hash": "a8ad0ae3ebe1f284b75d216f12d70926e8c49ed9ebe15d4582005a3827e3ed68",
+      "source_hash": "50650a70dd5416d3da223a64e4f54d5cd97bf8c99dfe982ffef5688c4089c624",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/calzaturiero-assocalzaturifici.json.gz"
@@ -609,7 +609,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cooperative-sociali",
       "ruleset_version": "2026.2",
-      "source_hash": "c3b38b135021742e766caa13bf8e5954242d1fb7617f3d23294a8952081ada6b",
+      "source_hash": "04845bbc9a1588d54d518a5962904c88e34a1c1c784a5689ca91ce59a30d4290",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/cooperative-sociali.json.gz"
@@ -694,7 +694,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-sanitaria-medico-veterinaria-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "cd561ee5db7d153dda7bfb1fd2249b7d5d6731705553bcf77c721aaa025dce1b",
+      "source_hash": "3010c98b540ad1510538070859ecdf4e0dd21b6e54defa5f417fbe4e8d2f11b2",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-sanitaria-medico-veterinaria-aran.json.gz"
@@ -1122,7 +1122,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/grafica-editoria-aieg",
       "ruleset_version": "2026.2",
-      "source_hash": "0e556b3862e040d344e4e820e65a4f69b2a3e6d21d15b4837048b07e424a4ff5",
+      "source_hash": "90c7ff6b4800a6780378be9ecf5e3ebc80e529adfb9440820e3ad9989fc44900",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/grafica-editoria-aieg.json.gz"
@@ -1139,7 +1139,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/igiene-ambientale-utilitalia",
       "ruleset_version": "2026.2",
-      "source_hash": "3351d9672a1e65783d49cc9255fc75a20799bc0bd314bfa518a7444f049ae659",
+      "source_hash": "68441cf7b7b1a0cd768f506bfb9d54e8b99f1a07030b57ec9b2706886193b965",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/igiene-ambientale-utilitalia.json.gz"
@@ -1173,7 +1173,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/impiegati-tecnici-agricoli",
       "ruleset_version": "2026.2",
-      "source_hash": "c750fc5dd903ac87d9faeb903e79a17c9f75d2a1df0e3aaf90a6c85711de369b",
+      "source_hash": "e1211b1a18fb72a4cf16fd61b08044ff686bed39b948ee0732157ac9268ba606",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/impiegati-tecnici-agricoli.json.gz"
@@ -1513,7 +1513,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-confimi-pmi",
       "ruleset_version": "2025.1",
-      "source_hash": "687f7a8e90542c735e2d5472575b780e046c754192f8247b25e4669f1e1b2009",
+      "source_hash": "1089b617bba92af18e540604dbf6ef68ae8ec5ac0f872da92b2997db6614f78f",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/metalmeccanico-confimi-pmi.json.gz"
@@ -2074,7 +2074,7 @@
       "valid_to": "2027-03-31",
       "ruleset_id": "ccnl/terziario-confesercenti",
       "ruleset_version": "2026.2",
-      "source_hash": "10321583b82015c4c70b4754c8cdc1df52bc16447f59bfc366ea4095e7ddbfd5",
+      "source_hash": "d9c891b32db3cb72112f4a788de63a0d1e5d378c283261a530e7242f80ce2215",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/terziario-confesercenti.json.gz"
@@ -2159,7 +2159,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "ccnl/trasporto-ferroviario-agens",
       "ruleset_version": "2026.2",
-      "source_hash": "1f900b97f79091e017147c01d935bcfd212511bbac04f0319c0353cdc37058a1",
+      "source_hash": "3bce4f3656ee82aa5ad74347943a5891c2598335e5f9c971500306f5ca28f1cf",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/trasporto-ferroviario-agens.json.gz"
@@ -2227,7 +2227,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/uneba-uneba",
       "ruleset_version": "2026.2",
-      "source_hash": "7fe343406af8d7572c919cffe63ddba6c5711aa02ecb3023a90b2f593ca2183d",
+      "source_hash": "65c8c82260b78402da18683ba64376f10d25efe26a1ef1ddb4b67ec2f92109ad",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/uneba-uneba.json.gz"
@@ -2312,7 +2312,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/vigilanza-privata-assiv",
       "ruleset_version": "2026.2",
-      "source_hash": "c3babd9297fa2b3ce8f852cbd41e368772891daeb5de4ef45ae81c7ab45195cb",
+      "source_hash": "d393867ef2e31187a0b08a2dd33feb1ebcdbc1eb0acdc79b43ef44e4a59bdafc",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/vigilanza-privata-assiv.json.gz"
