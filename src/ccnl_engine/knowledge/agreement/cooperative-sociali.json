@@ -6090,7 +6090,7 @@
     "effective_until": null,
     "source": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
     "verification_status": "unverified",
-    "source_hash": "c3b38b135021742e766caa13bf8e5954242d1fb7617f3d23294a8952081ada6b",
+    "source_hash": "04845bbc9a1588d54d518a5962904c88e34a1c1c784a5689ca91ce59a30d4290",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -6275,6 +6275,116 @@
               "verified_at": "2026-10-13T07:21:20Z",
               "verification_status": "verified",
               "review_id": "2026-10-13-ai-production"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ociali-it-wp-content-uploads-low-legacoop-contratto-collettivo-2025-completo-pdf",
+            "title": "low LEGACOOP Contratto Collettivo 2025 COMPLETO",
+            "kind": "associazione",
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+          },
+          "page": "92",
+          "section": "Art. 53 c. 4",
+          "quote": "sottoindicate riferite ai minimi contrattuali conglobati: a) lavoro diurno straordinario 15%"
+        },
+        "transformation": "The supplements are measured on minimo_tabellare over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-cooperative-sociali-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_DAY_SHIFT_5",
+          "description": "Ogni ora di turno diurno effettivamente svolta in servizio su turni ruotanti con continuità nelle 24 ore e almeno 5 notti al mese per persona; base: quota oraria lorda.",
+          "work": "day_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "valid_until": null,
+                "value": "0.10"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ociali-it-wp-content-uploads-low-legacoop-contratto-collettivo-2025-completo-pdf",
+                "title": "low LEGACOOP Contratto Collettivo 2025 COMPLETO",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "93",
+              "section": "Art. 56 c. 1",
+              "quote": "Alle lavoratrici e ai lavoratori, inseriti in servizi funzionanti su turni ruotanti con continuità nell’arco delle 24 ore, comprensivi di almeno 5 notti al mese per la singola lavoratrice o lavoratore, viene corrisposta un’indennità di turno pari al 10% della quota oraria lorda per ogni ora di turno effettivamente svolta dalla singola lavoratrice o lavoratore."
+            },
+            "transformation": "Ogni ora di turno diurno effettivamente svolta in servizio su turni ruotanti con continuità nelle 24 ore e almeno 5 notti al mese per persona; base: quota oraria lorda.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2023-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-cooperative-sociali-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_SHIFT_6",
+          "description": "Ogni ora di turno notturno effettivamente svolta in servizio su turni ruotanti con continuità nelle 24 ore e almeno 5 notti al mese per persona; sostituisce l'indennità notturna dell'art. 54; base: quota oraria lorda.",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "valid_until": null,
+                "value": "0.10"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ociali-it-wp-content-uploads-low-legacoop-contratto-collettivo-2025-completo-pdf",
+                "title": "low LEGACOOP Contratto Collettivo 2025 COMPLETO",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "93",
+              "section": "Art. 56 c. 1",
+              "quote": "Alle lavoratrici e ai lavoratori, inseriti in servizi funzionanti su turni ruotanti con continuità nell’arco delle 24 ore, comprensivi di almeno 5 notti al mese per la singola lavoratrice o lavoratore, viene corrisposta un’indennità di turno pari al 10% della quota oraria lorda per ogni ora di turno effettivamente svolta dalla singola lavoratrice o lavoratore."
+            },
+            "transformation": "Ogni ora di turno notturno effettivamente svolta in servizio su turni ruotanti con continuità nelle 24 ore e almeno 5 notti al mese per persona; sostituisce l'indennità notturna dell'art. 54; base: quota oraria lorda.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2023-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-cooperative-sociali-time-supplements"
             }
           }
         }
@@ -6908,6 +7018,29 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.sunday_holidays"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-cooperative-sociali-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[5:day_shift], bands[6:night_shift].",
+          "Left out: bands[0:night]: quote quote_not_in_file; bands[1:night]: quote quote_not_in_file; bands[2:night]: work/role/rate not applicable (addette e addetti ai servizi di sorveglianza e custodia non soggetti a turni, attività esclusivamente notturna); bands[3:holiday]: quote quote_not_in_file; bands[4:sunday]: quote quote_not_in_file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ],

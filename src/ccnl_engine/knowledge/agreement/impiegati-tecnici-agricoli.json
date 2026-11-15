@@ -255,6 +255,29 @@
         "checked": [
           "work_rules.sickness_rules"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-impiegati-tecnici-agricoli-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://pub-44429b7b330a431e94aea589bd6b8bed.r2.dev/A021/216332.pdf",
+            "sha256": "b251e33ea1f92bdd5572933f14dbbc89603cbeef5e5be2a2f3bee37c17067ab1"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[0:night], bands[1:holiday], bands[3:night_holiday], none.shift_work.",
+          "Left out: bands[2:sunday]: quote quote_not_in_file; none.rest_day: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -839,13 +862,13 @@
     "effective_until": "2027-12-31",
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "c750fc5dd903ac87d9faeb903e79a17c9f75d2a1df0e3aaf90a6c85711de369b",
+    "source_hash": "e1211b1a18fb72a4cf16fd61b08044ff686bed39b948ee0732157ac9268ba606",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -988,6 +1011,157 @@
               "extraction_timestamp": "2026-09-08T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2022-01-01"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "https-pub-44429b7b330a431e94aea589bd6b8bed-r2-dev-a021-216332-pdf",
+            "title": "216332",
+            "kind": "associazione",
+            "url": "https://pub-44429b7b330a431e94aea589bd6b8bed.r2.dev/A021/216332.pdf",
+            "sha256": "b251e33ea1f92bdd5572933f14dbbc89603cbeef5e5be2a2f3bee37c17067ab1"
+          },
+          "page": "34",
+          "section": "Art. 31, commi 1–2",
+          "quote": "La retribuzione degli impiegati agricoli è così composta: Minimo di stipendio-base mensile (art. 70) Indennità di contingenza (art. 33) Elemento distinto della retribuzione (EDR) Minimo di stipendio integrativo Aumenti periodici di anzianità (art. 34) Agli effetti del computo dei vari istituti economici contrattuali, la quota di retribuzione giornaliera si ottiene dividendo quella mensile per 26, mentre la quota di retribuzione oraria si ottiene dividendo l'importo mensile per 169."
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-impiegati-tecnici-agricoli-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_0",
+          "description": "Notturno ordinario: ore 20:00–06:00 durante l'ora solare; 22:00–05:00 durante l'ora legale (art. 20, pagina 26).",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-pub-44429b7b330a431e94aea589bd6b8bed-r2-dev-a021-216332-pdf",
+                "title": "216332",
+                "kind": "associazione",
+                "url": "https://pub-44429b7b330a431e94aea589bd6b8bed.r2.dev/A021/216332.pdf",
+                "sha256": "b251e33ea1f92bdd5572933f14dbbc89603cbeef5e5be2a2f3bee37c17067ab1"
+              },
+              "page": "27",
+              "section": "Art. 20, elenco maggiorazioni, lett. b",
+              "quote": "b) lavoro notturno 50%"
+            },
+            "transformation": "Notturno ordinario: ore 20:00–06:00 durante l'ora solare; 22:00–05:00 durante l'ora legale (art. 20, pagina 26).",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2024-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-impiegati-tecnici-agricoli-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_1",
+          "description": "Festività nazionali e infrasettimanali: ore lavorate pagate oltre alla normale retribuzione; art. 22, pagina 28.",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-pub-44429b7b330a431e94aea589bd6b8bed-r2-dev-a021-216332-pdf",
+                "title": "216332",
+                "kind": "associazione",
+                "url": "https://pub-44429b7b330a431e94aea589bd6b8bed.r2.dev/A021/216332.pdf",
+                "sha256": "b251e33ea1f92bdd5572933f14dbbc89603cbeef5e5be2a2f3bee37c17067ab1"
+              },
+              "page": "27",
+              "section": "Art. 20, elenco maggiorazioni, lett. c; trattamento ore: art. 22, commi 3–4, p. 28",
+              "quote": "c) lavoro festivo 50%"
+            },
+            "transformation": "Festività nazionali e infrasettimanali: ore lavorate pagate oltre alla normale retribuzione; art. 22, pagina 28.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2024-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-impiegati-tecnici-agricoli-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_HOLIDAY_3",
+          "description": "Lavoro festivo notturno; maggiorazione complessiva non cumulata con le bande separate.",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-07-01",
+                "valid_until": null,
+                "value": "0.65"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-pub-44429b7b330a431e94aea589bd6b8bed-r2-dev-a021-216332-pdf",
+                "title": "216332",
+                "kind": "associazione",
+                "url": "https://pub-44429b7b330a431e94aea589bd6b8bed.r2.dev/A021/216332.pdf",
+                "sha256": "b251e33ea1f92bdd5572933f14dbbc89603cbeef5e5be2a2f3bee37c17067ab1"
+              },
+              "page": "27",
+              "section": "Art. 20, elenco maggiorazioni, lett. e",
+              "quote": "e) lavoro festivo notturno 65%"
+            },
+            "transformation": "Lavoro festivo notturno; maggiorazione complessiva non cumulata con le bande separate.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2024-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-impiegati-tecnici-agricoli-time-supplements"
             }
           }
         }
@@ -1215,6 +1389,37 @@
           "extraction_timestamp": "2026-11-14T00:00:00Z",
           "effective_from": "2024-01-01",
           "verification_status": "unverified"
+        }
+      }
+    },
+    "capability_basis": {
+      "shift_work": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "https-pub-44429b7b330a431e94aea589bd6b8bed-r2-dev-a021-216332-pdf",
+              "title": "216332",
+              "kind": "associazione",
+              "url": "https://pub-44429b7b330a431e94aea589bd6b8bed.r2.dev/A021/216332.pdf",
+              "sha256": "b251e33ea1f92bdd5572933f14dbbc89603cbeef5e5be2a2f3bee37c17067ab1"
+            },
+            "page": "27",
+            "section": "Art. 20, elenco maggiorazioni",
+            "quote": "a) lavoro straordinario 30% b) lavoro notturno 50% c) lavoro festivo 50% d) lavoro straordinario festivo 60% e) lavoro festivo notturno 65%"
+          },
+          "transformation": "shift_work: none in ccnl.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-15T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-15-ai-impiegati-tecnici-agricoli-time-supplements"
+          }
         }
       }
     }

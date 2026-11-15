@@ -209,6 +209,29 @@
         "checked": [
           "work_rules.sunday_holidays"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-grafica-editoria-aieg-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2023/03/Ccnl-grafici-editoriali.pdf",
+            "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[1:holiday], bands[5:day_shift], bands[6:night_shift], travel.",
+          "Left out: bands[0:night]: quote quote_not_in_file; bands[2:sunday]: quote quote_not_in_file; bands[3:sunday]: quote quote_not_in_file; bands[4:rest_day]: quote quote_not_in_file; bands[7:night_early]: quote skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -3104,13 +3127,13 @@
     "effective_until": null,
     "source": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
     "verification_status": "unverified",
-    "source_hash": "0e556b3862e040d344e4e820e65a4f69b2a3e6d21d15b4837048b07e424a4ff5",
+    "source_hash": "90c7ff6b4800a6780378be9ecf5e3ebc80e529adfb9440820e3ad9989fc44900",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -3253,6 +3276,157 @@
               "extraction_timestamp": "2026-09-08T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2022-05-01"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "https-www-fistelcisl-it-wp-content-uploads-2023-03-ccnl-grafici-editoriali-pdf",
+            "title": "Ccnl grafici editoriali",
+            "kind": "associazione",
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2023/03/Ccnl-grafici-editoriali.pdf",
+            "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+          },
+          "page": "84",
+          "section": "Parte Seconda, art. 3 (operai); vedi note per impiegati e turni",
+          "quote": "Agli effetti contrattuali e previdenziali, la conversione degli importi da mensili ad orari verrà determinata per gli operai dividendo gli importi mensili stessi per 173."
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-grafica-editoria-aieg-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_HOLIDAY_1",
+          "description": "Prestazione in festività nazionale o infrasettimanale; per gli impiegati le ore lavorate sono corrisposte oltre al mensile.",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-01-19",
+                "valid_until": null,
+                "value": "0.60"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-fistelcisl-it-wp-content-uploads-2023-03-ccnl-grafici-editoriali-pdf",
+                "title": "Ccnl grafici editoriali",
+                "kind": "associazione",
+                "url": "https://www.fistelcisl.it/wp-content/uploads/2023/03/Ccnl-grafici-editoriali.pdf",
+                "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+              },
+              "page": "85",
+              "section": "Parte Seconda, art. 5, punto 2°; Parte Terza, art. 5, p. 97",
+              "quote": "In caso di prestazione di lavoro sarà corrisposta, oltre al trattamento di cui sopra, la retribuzione delle ore di lavoro effettivamente prestate, maggiorata del 60%."
+            },
+            "transformation": "Prestazione in festività nazionale o infrasettimanale; per gli impiegati le ore lavorate sono corrisposte oltre al mensile.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2021-01-19",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-grafica-editoria-aieg-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_DAY_SHIFT_5",
+          "description": "Primo e secondo turno avvicendato, escluso primo turno con interruzione meridiana; sul salario/stipendio contrattuale (valore base e contingenza).",
+          "work": "day_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-01-19",
+                "valid_until": null,
+                "value": "0.06"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-fistelcisl-it-wp-content-uploads-2023-03-ccnl-grafici-editoriali-pdf",
+                "title": "Ccnl grafici editoriali",
+                "kind": "associazione",
+                "url": "https://www.fistelcisl.it/wp-content/uploads/2023/03/Ccnl-grafici-editoriali.pdf",
+                "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+              },
+              "page": "56",
+              "section": "Parte Prima, art. 27, punto 1",
+              "quote": "Ai lavoratori turnisti sarà corrisposta la maggiorazione del 6% per il 1° e 2° turno sul salario o stipendio contrattuale (valore base e indennità di contingenza)"
+            },
+            "transformation": "Primo e secondo turno avvicendato, escluso primo turno con interruzione meridiana; sul salario/stipendio contrattuale (valore base e contingenza).",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2021-01-19",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-grafica-editoria-aieg-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_SHIFT_6",
+          "description": "Terzo turno avvicendato, sul salario/stipendio contrattuale (valore base e contingenza); orario medio di 36 ore, retribuito per 40.",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2009-07-01",
+                "valid_until": null,
+                "value": "0.26"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-fistelcisl-it-wp-content-uploads-2023-03-ccnl-grafici-editoriali-pdf",
+                "title": "Ccnl grafici editoriali",
+                "kind": "associazione",
+                "url": "https://www.fistelcisl.it/wp-content/uploads/2023/03/Ccnl-grafici-editoriali.pdf",
+                "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+              },
+              "page": "57",
+              "section": "Parte Prima, art. 27, punto 2",
+              "quote": "A decorrere dal 1° luglio 2009 la maggiorazione del turno notturno viene elevata dal 25% al 26%. Tale aumento percentuale verrà assorbito fino a concorrenza dei trattamenti economici eventualmente riconosciuti a livello aziendale allo stesso titolo."
+            },
+            "transformation": "Terzo turno avvicendato, sul salario/stipendio contrattuale (valore base e contingenza); orario medio di 36 ore, retribuito per 40.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2009-07-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-grafica-editoria-aieg-time-supplements"
             }
           }
         }
@@ -3415,6 +3589,37 @@
           "quote": "Nel caso in cui il congedo venga chiesto in modalità di fruizione oraria, lo stesso\nsarà riconosciuto in gruppi minimi di 4 ore giornaliere, fermo restando i termini\ndi preavviso sopra indicati.\nL’Azienda e la R.S.U. potranno definire modalità e condizioni per la fruizione\ndei congedi parentali su base oraria in misura inferiore a quelli previsti dalle\nnorme di Legge, in relazione alle esigenze organizzative e produttive."
         },
         "transformation": "Le 4 ore sono un gruppo minimo giornaliero di fruizione, non ore equiparate a una giornata di congedo: day_hours=null. Nessun riproporzionamento per il part-time né decorrenza specifica nella clausola."
+      }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "https-www-fistelcisl-it-wp-content-uploads-2023-03-ccnl-grafici-editoriali-pdf",
+              "title": "Ccnl grafici editoriali",
+              "kind": "associazione",
+              "url": "https://www.fistelcisl.it/wp-content/uploads/2023/03/Ccnl-grafici-editoriali.pdf",
+              "sha256": "7e88da7983914d7be1b07f7d8f8c43a104f32f787e745255f5e624f544f7788c"
+            },
+            "page": "69",
+            "section": "Parte Prima, art. 40, lettere a–c",
+            "quote": "a) il rimborso delle spese effettive di viaggio, corrispondenti ai normali mezzi di trasporto; b) il rimborso delle spese di vitto e alloggio — nei limiti della normalità — quando la durata del servizio obblighi il lavoratore ad incontrare tali spese; c) il rimborso delle altre eventuali spese vive necessarie per l’espletamento della missione."
+          },
+          "transformation": "The CCNL pays no daily travel allowance: the trasferta is refunded at documented cost",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-15T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-15-ai-grafica-editoria-aieg-time-supplements"
+          }
+        }
       }
     }
   }

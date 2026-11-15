@@ -4719,7 +4719,7 @@
     "effective_until": "2027-03-31",
     "source": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
     "verification_status": "unverified",
-    "source_hash": "10321583b82015c4c70b4754c8cdc1df52bc16447f59bfc366ea4095e7ddbfd5",
+    "source_hash": "d9c891b32db3cb72112f4a788de63a0d1e5d378c283261a530e7242f80ce2215",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -6235,6 +6235,37 @@
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0; https://c, sha256 31788db6977a060829e19b5f4a6f2ed5528d774a62c14be677e55cf2076b7870)."
       }
+    },
+    "capability_basis": {
+      "shift_work": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "fesercenti-it-wp-content-uploads-2023-01-ccnl-contratto-collettivo-nazionale-pdf",
+              "title": "CCNL contratto collettivo nazionale",
+              "kind": "associazione",
+              "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+              "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+            },
+            "page": "27",
+            "section": "Art. 12, comma 1, n. 1",
+            "quote": "1) turni o nastri orari, distribuzione dell’orario di lavoro attraverso uno o più dei seguenti regimi di orario: turni continui, turni spezzati, fasce differenziate;"
+          },
+          "transformation": "shift_work: none in ccnl.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-15T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-15-ai-terziario-confesercenti-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -6748,6 +6779,28 @@
         "independence": "same_process",
         "checked": [
           "work_rules.time_supplements.overtime_bands"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-terziario-confesercenti-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confesercenti.it/wp-content/uploads/2023/01/CCNL_contratto-collettivo-nazionale.pdf",
+            "sha256": "18a2f10cf41209a56523473660321348214c1d8d54900257cf805ad8488f7ec0"
+          }
+        ],
+        "findings": [
+          "Applied: none.shift_work."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ],

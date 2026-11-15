@@ -313,6 +313,29 @@
           "meta.tax_sector",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-vigilanza-privata-assiv-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/CCNL_Vigilanza_Privata_e_Servizi_Fiduciari_Filcams_Fisascat_2013-2015.pdf",
+            "sha256": "dfdf700d1b2f68b4babcd77b82fa93959302dd4dba67b8cdcf5ec860621ea5e6"
+          }
+        ],
+        "findings": [
+          "Applied: bands[2:holiday], bands[3:sunday], none.shift_work.",
+          "Left out: bands[0:night]: work/role/rate not applicable (GPG: zona stradale e trasporto-scorta valori); bands[1:night]: work/role/rate not applicable (GPG: piantonamento fisso, sala conta e centrale operativa); bands[4:rest_day]: more rest_day bands the engine cannot tell apart; bands[5:rest_day]: more rest_day bands the engine cannot tell apart; travel: kind share applied by hand."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -1985,7 +2008,7 @@
     "effective_until": null,
     "source": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
     "verification_status": "unverified",
-    "source_hash": "c3babd9297fa2b3ce8f852cbd41e368772891daeb5de4ef45ae81c7ab45195cb",
+    "source_hash": "d393867ef2e31187a0b08a2dd33feb1ebcdbc1eb0acdc79b43ef44e4a59bdafc",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -2100,6 +2123,91 @@
               "effective_from": "2023-05-04"
             }
           }
+        }
+      ],
+      "supplement_bands": [
+        {
+          "code": "U_HOLIDAY_2",
+          "description": "Lavoro ordinario nelle festività nazionali e infrasettimanali",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2013-02-01",
+                "valid_until": null,
+                "value": "0.35"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "c-ccnl-ccnl-vigilanza-privata-e-servizi-fiduciari-filcams-fisascat-2013-2015-pdf",
+                "title": "CCNL Vigilanza Privata e Servizi Fiduciari Filcams Fisascat 2013 2015",
+                "kind": "associazione",
+                "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/CCNL_Vigilanza_Privata_e_Servizi_Fiduciari_Filcams_Fisascat_2013-2015.pdf",
+                "sha256": "dfdf700d1b2f68b4babcd77b82fa93959302dd4dba67b8cdcf5ec860621ea5e6"
+              },
+              "page": "77",
+              "section": "Art. 116 c. 1 lett. a",
+              "quote": "a) 35% perle ore di lavoro normale - nei limiti dell'orario giornaliero contrattuale - prestate nei giorni di festività nazionali ed infrasettimanali di cui al precedente art. 88;"
+            },
+            "transformation": "Lavoro ordinario nelle festività nazionali e infrasettimanali",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2013-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-vigilanza-privata-assiv-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_SUNDAY_3",
+          "description": "Domenica ordinaria, anche con riposo settimanale in altro giorno",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2013-02-01",
+                "valid_until": null,
+                "value": "0.71"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "c-ccnl-ccnl-vigilanza-privata-e-servizi-fiduciari-filcams-fisascat-2013-2015-pdf",
+                "title": "CCNL Vigilanza Privata e Servizi Fiduciari Filcams Fisascat 2013 2015",
+                "kind": "associazione",
+                "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/CCNL_Vigilanza_Privata_e_Servizi_Fiduciari_Filcams_Fisascat_2013-2015.pdf",
+                "sha256": "dfdf700d1b2f68b4babcd77b82fa93959302dd4dba67b8cdcf5ec860621ea5e6"
+              },
+              "page": "73",
+              "section": "Art. 108 c. 3 e tabella",
+              "quote": "Al lavoratore sia del Ruolo Tecnico-operativo che del Ruolo Amministrativo che presti la sua opera nel giorno di domenica, spetterà oltre alla normale retribuzione mensile di cui all'art. 105 un'indennità per ogni ora effettivamente lavorata dalle ore 0 alle ore 24 della domenica, così definita: Tabella i AI 01 febbraio 2013 Euro 0,71"
+            },
+            "transformation": "Domenica ordinaria, anche con riposo settimanale in altro giorno",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2013-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-vigilanza-privata-assiv-time-supplements"
+            }
+          },
+          "fixed_per_hour": true
         }
       ]
     },
@@ -2258,6 +2366,37 @@
           "extraction_timestamp": "2026-11-14T00:00:00Z",
           "effective_from": "2023-06-01",
           "verification_status": "unverified"
+        }
+      }
+    },
+    "capability_basis": {
+      "shift_work": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "c-ccnl-ccnl-vigilanza-privata-e-servizi-fiduciari-filcams-fisascat-2013-2015-pdf",
+              "title": "CCNL Vigilanza Privata e Servizi Fiduciari Filcams Fisascat 2013 2015",
+              "kind": "associazione",
+              "url": "https://www.univigilanza.it/download.aspx?file=/public/ccnl/CCNL_Vigilanza_Privata_e_Servizi_Fiduciari_Filcams_Fisascat_2013-2015.pdf",
+              "sha256": "dfdf700d1b2f68b4babcd77b82fa93959302dd4dba67b8cdcf5ec860621ea5e6"
+            },
+            "page": "55",
+            "section": "Art. 75 c. 1",
+            "quote": "In relazione al primo comma del precedente art. 71, per l’attività prestata nelle giornate domenicali o în orario notturno, salvo quanto previsto dall'art. 108, nessuna particolare maggiorazione competerà al dipendente, giacché tale attività espletata ordinariamente nel ciclo continuo, caratteristico del servizio di vigilanza, trova la sua particolare remunerazione nella"
+          },
+          "transformation": "shift_work: none in ccnl.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-15T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-15-ai-vigilanza-privata-assiv-time-supplements"
+          }
         }
       }
     }
