@@ -1784,7 +1784,7 @@
     "effective_until": null,
     "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "35a6fa870c6cad2cbcbbe414b81e6c5f1b5e17eb8abadb00032dab9d2cf72a4d",
+    "source_hash": "1d95f2d664f9bca93978c2ea49034663377a15dc0adc68026e13298b5731c276",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2107,6 +2107,25 @@
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "anas-ccnl-2025-2027",
+            "title": "CCNL Gruppo ANAS 2025–2027",
+            "kind": "associazione",
+            "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+            "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
+          },
+          "page": "74",
+          "section": "Art. 56, comma 1",
+          "quote": "1. La fruizione del congedo parentale su base oraria è consentita in misura pari ad almeno 2 ore dell'orario giornaliero, riferito al mese immediatamente precedente a quello nel corso del quale ha inizio il congedo parentale. La Società potrà garantire la fruizione del congedo orario per multipli di ora."
+        },
+        "transformation": "Le 2 ore sono la frazione minima di fruizione, non le ore equiparate a una giornata: l'art. 56 non stabilisce un'equiparazione giornaliera esplicita; day_hours = null. Non prevede riproporzionamento per il part-time né una decorrenza specifica della clausola.",
+        "note": "Scanned PDF: the quote is read from the image of page 74."
       }
     }
   }

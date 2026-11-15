@@ -6240,7 +6240,7 @@
     "effective_until": null,
     "source": "https://www.uiltrasporti.it/wp-content/uploads/2025/03/TABELLA-AUTOFERRO.pdf",
     "verification_status": "unverified",
-    "source_hash": "02bff02796717283ab72ff9343bc19dafae39846b8fe134c0a4cc9ca962756b4",
+    "source_hash": "cb73f0a10b0cf6b9b8d47a565737c5273f05436fee88579cab1e72855ec1f4fd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -6455,6 +6455,24 @@
           "verification_status": "unverified"
         },
         "note": "Not modelled: two thirds instead of half of the reference pay past six months when the worker has more than two dependants (art. 4); the 30 months of comporto, 18 paid in full, of the serious illnesses of p. 4; the own rules of the area operativa staff of all. A) A.N. 27 novembre 2000 and of the apprentices (180 days in the calendar year). The source is a compilation of the signatory union that reproduces the national agreements; later renewals were not checked for changes to them."
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-autoferrotranvieri-internavigatori-accordo-2015-art-33",
+            "title": "CCNL Autoferrotranvieri-Internavigatori (TPL-Mobilità), accordo nazionale 28 novembre 2015, art. 33",
+            "kind": "associazione",
+            "url": "https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/ccnl_tpl.pdf",
+            "sha256": "db379d5488a7deff0f0647e9e599042c5ff049059f266ba8621c49e36e149f7a"
+          },
+          "page": "52",
+          "section": "Art. 33, comma 3, lettere a)-c)",
+          "quote": "a) ai soli fini del computo del congedo parentale la durata dell’orario giornaliero di lavoro è quella risultante dalla distribuzione giornaliera dell’orario contrattuale settimanale nazionale o aziendale ove esistente; b) gli importi orari del trattamento economico si determinano dividendo la retribuzione giornaliera per la durata dell’orario giornaliero come determinato dalla lettera a); c) la fruizione dei permessi di cui al presente articolo è riconosciuta: i. in giornate intere non frazionabili per i lavoratori mobili che effettuano servizi rientranti nel campo di applicazione del Regolamento CE n. 561/2006 e ss.mm.ii., e del D.Lgs. n. 234/2007; ii. in misura pari alla metà dell’orario giornaliero di cui alla lettera a) per il personale di esercizio rientrante nel campo di applicazione del R.D. n. 2328/1923, convertito in L. n. 473/1925 e della L. n. 138/1958;. iii. per multipli di un’ora, e comunque non inferiore a 2 (due) ore, per il restante personale. In caso di oggettive difficoltà applicative di quanto previsto ai precedenti alinea, le parti a livello aziendale potranno concordare una diversa modalità di fruizione del congedo parentale"
+        },
+        "transformation": "La giornata è definita dall'orario giornaliero risultante dalla distribuzione dell'orario settimanale nazionale o aziendale, non da un numero fisso di ore: day_hours = null. La metà giornata e il minimo di due ore sono modalità di fruizione, non l'equivalenza di una giornata. La clausola non prevede un riproporzionamento esplicito per il part-time né una data specifica di decorrenza."
       }
     }
   },

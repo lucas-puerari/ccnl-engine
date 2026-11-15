@@ -1236,7 +1236,7 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "2c75c7f6a3024dcc3218cf60617c18f49f5972efeafb585a1ff29a4346a19a5d",
+    "source_hash": "4e10b2c425ff605034216b2ec57f658df0c8ae86f6fe201f9e2eddef77bd400f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1501,6 +1501,26 @@
           "effective_from": null,
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "effective_from": "2022-10-10",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "",
+            "title": "Accordo di rinnovo CCNL acconciatura ed estetica del 10 ottobre 2022",
+            "kind": "associazione",
+            "url": "https://confartigianatomarcatrevigiana.it/wp-content/uploads/2022/10/CCNL-ACCONCIATURA-CON-TABELLE-10.10.2022.pdf",
+            "sha256": "142dcfe339b3b9e1b0d6f49bf467f5ba01dddb6c8299c945e4cc39b905490d70"
+          },
+          "page": "19",
+          "section": "Art. 32 — Tutela della maternità e paternità, Congedo parentale",
+          "quote": "Per il solo congedo parentale, in caso di modalità di fruizione del congedo su base oraria da parte del genitore, la fruizione è consentita in misura pari alla metà dell'orario medio giornaliero del periodo di paga mensile precedente a quello nel corso del quale ha avuto inizio il congedo parentale"
+        },
+        "transformation": "La metà dell'orario medio giornaliero del mese precedente definisce la misura della fruizione oraria, non un numero fisso di ore equiparato a una giornata: day_hours = null. Nessun riproporzionamento esplicito per il part-time: part_time_scaled = false. L'art. 2 fa decorrere le modifiche dalla sottoscrizione dell'accordo del 10 ottobre 2022.",
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
       }
     }
   },
