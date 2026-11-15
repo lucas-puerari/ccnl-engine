@@ -4479,7 +4479,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "2c467c1c15603ad3ee07982383e7e71475fb2f60d7f515b12ba7c8f7aeed1390",
+    "source_hash": "c5fae06c91cf18d7c8dadcdea57e8fd95549bc09937d189bb22b4b7426489054",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -5068,6 +5068,7 @@
     },
     "parental_hourly": {
       "effective_from": "2022-10-27",
+      "regulated": true,
       "provenance": {
         "status": "derived",
         "location": {

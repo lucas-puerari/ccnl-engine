@@ -36,8 +36,8 @@ def check_cumulation(
 
     Raises:
         InvalidInputError: When the general criterion applies (the CCNL is
-            recorded and sets no hours of its own, no local agreement) and
-            a day holds both.
+            recorded and neither regulates the leave nor sets its hours, no
+            local agreement) and a day holds both.
     """
     if clause is None:
         return
@@ -54,9 +54,7 @@ def check_cumulation(
         if event.local_hourly_agreement is not False:
             continue
         both = sorted(
-            h.day
-            for h in event.hours
-            if h.day in rests and not clause.sets_hours_on(h.day)
+            h.day for h in event.hours if h.day in rests and clause.criterion_on(h.day)
         )
         if both:
             msg = (

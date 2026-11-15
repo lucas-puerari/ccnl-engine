@@ -497,13 +497,18 @@ whose month it touches. The run deducts the days at the CCNL daily quota
   scaled by the part-time ratio when `part_time_scaled`) make each day the
   share its hours are of a day of leave (ARAN: 6 hours); the shares must
   make whole days, and a day that falls in two days of leave takes each
-  one's rate for its part. The run records the open limitation
-  `parental_hourly_ccnl_rule` while the CCNL has no record. A company or territorial agreement is a fact of the employer
+  one's rate for its part. A CCNL that regulates the ways of the leave
+  by the hour without setting its hours (`regulated`, e.g. Federmeccanica:
+  blocks of 2 or 4 hours) is outside art. 32 c. 1-ter, which applies "In
+  caso di mancata regolamentazione [...] delle modalità di fruizione": a
+  day of leave is the average daily hours (INPS circ. 152/2015 par. 2.2),
+  with no half-day rule and no ban on cumulation. The run records the open
+  limitation `parental_hourly_ccnl_rule` while the CCNL has no record. A company or territorial agreement is a fact of the employer
   (`local_hourly_agreement`): unstated, the run is incomplete with the
   missing fact; stated true, it is incomplete with
   `parental_hourly_agreement_unmodelled`, the agreement's rules not being
-  held. Under the criterion (recorded CCNL without hours of its own, no
-  local agreement) a day of leave by the hour that is also a day of nursing
+  held. Under the criterion (recorded CCNL that neither regulates the
+  leave nor sets its hours, no local agreement) a day of leave by the hour that is also a day of nursing
   rest (artt. 39-40) is rejected; the hours of artt. 33 c. 2 and 42 c. 1
   have no event of their own.
   Adoption is not modelled;

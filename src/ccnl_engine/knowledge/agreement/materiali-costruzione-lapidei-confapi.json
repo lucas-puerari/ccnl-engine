@@ -2528,7 +2528,7 @@
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "7a4f9e2075629f9c7a1971f9e0a2931c8ae7692cd45953bce232b323859a94e1"
+    "source_hash": "8b2ae3bc09ce3469c0e90f1e339d7caa39cf7164736a238431cf465925fb5928"
   },
   "work_rules": {
     "insured_absence": {
@@ -2566,6 +2566,7 @@
       }
     },
     "parental_hourly": {
+      "regulated": true,
       "provenance": {
         "status": "derived",
         "location": {

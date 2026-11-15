@@ -4807,7 +4807,7 @@
     "effective_until": "2027-12-31",
     "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
     "verification_status": "unverified",
-    "source_hash": "70ec5e6c435da473610d78364c216379bf31e451d426e3049ff02313240138e4",
+    "source_hash": "0e101508fc075eae4b2aaadc65253db857c61b25508b0ea04cacd0d2ac9ec5e7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5068,6 +5068,7 @@
       }
     },
     "parental_hourly": {
+      "regulated": true,
       "provenance": {
         "status": "derived",
         "location": {

@@ -184,14 +184,15 @@ def _day_hours(event: HourlyParentalLeaveEvent, terms: InsuredTerms) -> Decimal 
 
     Returns:
         The CCNL hours in force on the first day of leave, scaled by the
-        part-time ratio when the CCNL scales them; ``None`` for the general
-        criterion.
+        part-time ratio when the CCNL scales them; the average daily hours
+        of a CCNL that regulates the leave without them; ``None`` for the
+        general criterion.
     """
     clause = terms.hourly_clause
-    if clause is None or clause.day_hours is None:
+    if clause is None or clause.criterion_on(event.hours[0].day):
         return None
-    if not clause.sets_hours_on(event.hours[0].day):
-        return None
+    if clause.day_hours is None:
+        return event.average_daily_hours
     ratio = terms.part_time
     if not clause.part_time_scaled or ratio is None:
         return clause.day_hours

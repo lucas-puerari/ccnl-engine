@@ -3411,7 +3411,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "7633529262fc031fe78ae8bdfe7f79459da6fe908b97b46ef5c3b0e8ba89759a",
+    "source_hash": "c080b3ddf4ba7a1f971fe04f087c9778b08e2f1027e1d4850bb1868404a7b10e",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -5960,6 +5960,7 @@
     },
     "parental_hourly": {
       "part_time_scaled": true,
+      "regulated": true,
       "provenance": {
         "status": "derived",
         "location": {
