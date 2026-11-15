@@ -836,8 +836,7 @@
       "istituzioni-servizi-socio-assistenziali-anaste/maternity_holiday_scope"
     ],
     "agreement/istruzione-ricerca-aran.json": [
-      "istruzione-ricerca-aran/fixed_hourly_overtime",
-      "istruzione-ricerca-aran/teacher_hourly_divisor"
+      "istruzione-ricerca-aran/fixed_hourly_overtime"
     ],
     "agreement/lapidei-industria.json": [
       "lapidei-industria/apprenticeship_passthrough",
