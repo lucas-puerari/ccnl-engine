@@ -3820,7 +3820,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "9adc0750739094233202bceeda3f2b3d697a471756d5d53dd1e081e7ced5ac61",
+    "source_hash": "bede971d0c0714003ae60539f03c2bc02db778a053a4cabb8d9aae29683613c8",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -4010,6 +4010,28 @@
           "verified_at": "2026-11-01T18:33:13Z",
           "review_id": "2026-11-01-ai-notice-3"
         }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02"
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "l-260-1949-art5",
+            "title": "L. 27 maggio 1949 n. 260, art. 5 (testo vigente)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=2&art.idGruppo=0&art.flagTipoArticolo=0&art.codiceRedazionale=049U0260&art.idArticolo=5&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1949-05-31&art.progressivo=0",
+            "sha256": "ed0f71cdb9682a60e84f95ac8229ce1f608faf5a9e2ecd2fb261dc047a457426"
+          },
+          "quote": "Qualora la festivita' ricorra nel giorno di domenica, spettera' ai lavoratori stessi, oltre la normale retribuzione globale di fatto giornaliera, compreso ogni elemento accessorio, anche una ulteriore retribuzione corrispondente all'aliquota giornaliera",
+          "section": "Art. 5"
+        },
+        "transformation": "The CCNL text read is silent on the holidays falling on a Sunday: the law pays the civil holidays only; art. 5 names the 'Stato, enti pubblici e datori privati', and the maintainer decided on 2026-11-15 that it applies to public employment (documents read: https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf, sha256 11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d; https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf, sha256 99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a; https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf, sha256 8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904; https://www.aranagenzia.it/wp-content/uploads/2024/09/Ricerca_Raccolta-sistematica_Gennaio-2017_s1.pdf, sha256 371e335f0501d71fa7854ff3f404cc375ecf4e44ca322f8c004be68217d6a60a)"
       }
     }
   },

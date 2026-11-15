@@ -236,12 +236,14 @@ def test_a_holiday_the_clause_leaves_out_takes_the_law() -> None:
     assert not _limited(result)
 
 
-def test_a_public_employment_is_not_paid() -> None:
-    """The treatment of a public employment is not sourced."""
-    result = _run(_ANAS, 2027, 4, sector=EmploymentSector.PUBLIC)
+def test_a_public_employment_is_paid_as_a_private_one() -> None:
+    """Art. 5 names the "Stato, enti pubblici e datori privati" (2026-11-15)."""
+    public = _run(_ANAS, 2027, 4, sector=EmploymentSector.PUBLIC)
+    private = _run(_ANAS, 2027, 4)
 
-    assert _decisions(result) == [("not_paid", Decimal(0))]
-    assert _limited(result)
+    assert _decisions(public) == _decisions(private)
+    assert _quota(public) == _quota(private)
+    assert _limited(public) == _limited(private)
 
 
 @pytest.mark.parametrize(
@@ -454,11 +456,12 @@ def test_a_whole_year_ex_holiday_records_nothing(
     assert not _limited(result)
 
 
-def test_a_public_employment_has_no_ex_holiday() -> None:
-    """The treatment of a public employment is not sourced."""
-    result = _run(_CHIMICA, 2026, 8, sector=EmploymentSector.PUBLIC)
+def test_a_public_employment_takes_the_ex_holiday_of_its_ccnl() -> None:
+    """The clause of the CCNL applies to a public employment too."""
+    public = _run(_CHIMICA, 2026, 8, sector=EmploymentSector.PUBLIC)
 
-    assert _decisions(result) == []
+    assert _decisions(public) == _decisions(_run(_CHIMICA, 2026, 8))
+    assert _decisions(public)
 
 
 _CINEMA = ("cinema-audiovisivi-industria", "3")

@@ -537,7 +537,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "f8b1c3c64a3589059bb8e7522a0abf9244b212b9f9c166f3d1541328d57d9ee9",
+    "source_hash": "cd561ee5db7d153dda7bfb1fd2249b7d5d6731705553bcf77c721aaa025dce1b",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -882,6 +882,28 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375)."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02"
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "l-260-1949-art5",
+            "title": "L. 27 maggio 1949 n. 260, art. 5 (testo vigente)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=2&art.idGruppo=0&art.flagTipoArticolo=0&art.codiceRedazionale=049U0260&art.idArticolo=5&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1949-05-31&art.progressivo=0",
+            "sha256": "ed0f71cdb9682a60e84f95ac8229ce1f608faf5a9e2ecd2fb261dc047a457426"
+          },
+          "quote": "Qualora la festivita' ricorra nel giorno di domenica, spettera' ai lavoratori stessi, oltre la normale retribuzione globale di fatto giornaliera, compreso ogni elemento accessorio, anche una ulteriore retribuzione corrispondente all'aliquota giornaliera",
+          "section": "Art. 5"
+        },
+        "transformation": "The CCNL text read is silent on the holidays falling on a Sunday: the law pays the civil holidays only; art. 5 names the 'Stato, enti pubblici e datori privati', and the maintainer decided on 2026-11-15 that it applies to public employment (documents read: https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf, sha256 78f817dd3665df879f652b9778aeb634037664143ae195c2278d608efce4513a; https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf, sha256 de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375)"
       }
     }
   },

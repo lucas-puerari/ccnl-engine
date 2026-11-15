@@ -1835,7 +1835,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "b674c836012a0b0dde9290cb8e2c7210b7c7e93a7ed4f9efe90fab87eddf51ba",
+    "source_hash": "d3d8b1b76e351cc14f4c34546eb9b62fc9355151fec6c441bd310071bfc4a671",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -2234,6 +2234,28 @@
           "quote": "151/2001, ai fini del computo dei giorni di congedo parentale fruiti da un lavoratore a\ntempo pieno, 6 ore di congedo parentale sono convenzionalmente equiparate ad un\ngiorno. In caso di part-time il suddetto numero di ore è riproporzionato per tenere conto\ndella minore durata della prestazione lavorativa. I congedi parentali ad ore non sono,\nin ogni caso, fruibili per meno di un’ora."
         },
         "transformation": "L'art. 26, comma 7 equipara esplicitamente 6 ore a un giorno di congedo per il tempo pieno e riproporziona tale numero per il part-time. L'art. 2, comma 2 fa decorrere gli effetti dal giorno successivo alla stipulazione del 6 agosto 2026: 7 agosto 2026."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02"
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "l-260-1949-art5",
+            "title": "L. 27 maggio 1949 n. 260, art. 5 (testo vigente)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=2&art.idGruppo=0&art.flagTipoArticolo=0&art.codiceRedazionale=049U0260&art.idArticolo=5&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1949-05-31&art.progressivo=0",
+            "sha256": "ed0f71cdb9682a60e84f95ac8229ce1f608faf5a9e2ecd2fb261dc047a457426"
+          },
+          "quote": "Qualora la festivita' ricorra nel giorno di domenica, spettera' ai lavoratori stessi, oltre la normale retribuzione globale di fatto giornaliera, compreso ogni elemento accessorio, anche una ulteriore retribuzione corrispondente all'aliquota giornaliera",
+          "section": "Art. 5"
+        },
+        "transformation": "The CCNL text read is silent on the holidays falling on a Sunday: the law pays the civil holidays only; art. 5 names the 'Stato, enti pubblici e datori privati', and the maintainer decided on 2026-11-15 that it applies to public employment (documents read: https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf, sha256 1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e; https://www.aranagenzia.it/wp-content/uploads/2023/05/Frontespizio-e-CCNL-Comparto-Funzioni-Centrali-2019-2021-1.pdf, sha256 459fb979cbfc9cc64ea251fdae5fb868533ebe9ecd7c17980c4c99ff0f79285f; https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf, sha256 7115a9eb2d432a906e9df8e5fcb275dae415cfe4edcebe9ac40ea0a494eff924; https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf, sha256 d374410b7e202197f2cfd5828994bb56572533daf3dc39c4e775e888c915762e)"
       }
     }
   },

@@ -3962,7 +3962,7 @@
     "effective_until": null,
     "source": "https://www.normattiva.it/atto/caricaDettaglioAtto?atto.dataPubblicazioneGazzetta=2025-04-18&atto.codiceRedazionale=25G00046&atto.articolo.numero=0&atto.articolo.sottoArticolo=1&atto.articolo.sottoArticolo1=0&qId=1ede7c71-4666-4c74-b496-2391fce88e7f",
     "verification_status": "unverified",
-    "source_hash": "f0aed48f9480c7b2e214f3500fd838aed7522027870d8c9898aa79bc1b9d10db",
+    "source_hash": "836621a71b2c9539554ffe5d45fe47d46985b3f0bc59c717f52b4e53af6ac9b4",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -4205,6 +4205,28 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 ccd1b5f35e50accc4a6d49f48aeb5a772ac8b9fa0206d441e66f0d7b386abf0f)."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02"
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "l-260-1949-art5",
+            "title": "L. 27 maggio 1949 n. 260, art. 5 (testo vigente)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=2&art.idGruppo=0&art.flagTipoArticolo=0&art.codiceRedazionale=049U0260&art.idArticolo=5&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1949-05-31&art.progressivo=0",
+            "sha256": "ed0f71cdb9682a60e84f95ac8229ce1f608faf5a9e2ecd2fb261dc047a457426"
+          },
+          "quote": "Qualora la festivita' ricorra nel giorno di domenica, spettera' ai lavoratori stessi, oltre la normale retribuzione globale di fatto giornaliera, compreso ogni elemento accessorio, anche una ulteriore retribuzione corrispondente all'aliquota giornaliera",
+          "section": "Art. 5"
+        },
+        "transformation": "The CCNL text read is silent on the holidays falling on a Sunday: the law pays the civil holidays only; art. 5 names the 'Stato, enti pubblici e datori privati', and the maintainer decided on 2026-11-15 that it applies to public employment (documents read: https://www.gazzettaufficiale.it/eli/gu/2025/04/18/91/so/12/sg/pdf, sha256 7178cab9d4e678ca1e4f80c9bc99379147e126e763809f53aa3730fdf68f19e1; https://www.gazzettaufficiale.it/eli/gu/2022/05/31/126/so/21/sg/pdf, sha256 fca529b223d710a51d410f2a2f9617753d58bfc149e9b66ec06c9896ad27af03; https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110001&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG, sha256 f4381f3159827b5938036bd536f7ebe3a8806528eb5a9900e19861b30d00b606; https://www.gazzettaufficiale.it/do/atto/serie_generale/caricaPdf?cdimg=009G006100000080110002&dgu=2009-05-25&art.dataPubblicazioneGazzetta=2009-05-25&art.codiceRedazionale=009G0061&art.num=8&art.tiposerie=SG, sha256 ccd1b5f35e50accc4a6d49f48aeb5a772ac8b9fa0206d441e66f0d7b386abf0f)"
       }
     }
   },

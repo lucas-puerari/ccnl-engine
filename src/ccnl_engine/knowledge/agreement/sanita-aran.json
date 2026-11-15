@@ -890,7 +890,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "be2cbbb9b1b713179c025f9939b8b7ae1acadff6163f3095d6e608a79fdd92e6",
+    "source_hash": "5ffe8437bd4f5fe2dd875a0e7135ff85cbe671f8acabc562d05ea5b489671ca0",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1270,6 +1270,28 @@
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice-2"
         }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02"
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "l-260-1949-art5",
+            "title": "L. 27 maggio 1949 n. 260, art. 5 (testo vigente)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=2&art.idGruppo=0&art.flagTipoArticolo=0&art.codiceRedazionale=049U0260&art.idArticolo=5&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1949-05-31&art.progressivo=0",
+            "sha256": "ed0f71cdb9682a60e84f95ac8229ce1f608faf5a9e2ecd2fb261dc047a457426"
+          },
+          "quote": "Qualora la festivita' ricorra nel giorno di domenica, spettera' ai lavoratori stessi, oltre la normale retribuzione globale di fatto giornaliera, compreso ogni elemento accessorio, anche una ulteriore retribuzione corrispondente all'aliquota giornaliera",
+          "section": "Art. 5"
+        },
+        "transformation": "The CCNL text read is silent on the holidays falling on a Sunday: the law pays the civil holidays only; art. 5 names the 'Stato, enti pubblici e datori privati', and the maintainer decided on 2026-11-15 that it applies to public employment (documents read: https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf, sha256 44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d; https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf, sha256 c9f57cf60c3ae2cacbfea57dd856ba13d4e9d197a4bc1c58f9b3d37aa5785722; https://www.aranagenzia.it/wp-content/uploads/2025/10/2025.10.27-CCNL-comparto-definitivo-3.pdf, sha256 2d5a0d966527851b1e06cd2d7e758905877e65eedaf84e0aaaeb083f3b2fac47)"
       }
     }
   },
