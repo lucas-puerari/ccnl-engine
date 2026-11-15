@@ -3705,7 +3705,7 @@
     "effective_until": null,
     "source": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "d6c3883b69efee1c5c13ae94196be13e6d28dae81d68a824ca669a167147d0ea",
+    "source_hash": "044f84775eb0ce6b60371de615a74a389d3436c5884944834d2cba110b239c38",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3955,6 +3955,53 @@
           "quote": "Al padre e alla madre lavoratori sarà concesso, anche in unità orarie, l’utilizzo dei congedi di cui all’articolo 32\ndel D.Lgs. n.151/2000 e normative successive."
         },
         "transformation": "La clausola consente la fruizione in unità orarie ma non equipara un numero di ore a una giornata di congedo: day_hours = null. Non dispone riproporzionamenti per il part-time né indica una decorrenza specifica."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "06-29",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron",
+        "11-04"
+      ],
+      "divisor": 26,
+      "on_rest_day": true,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-laterizi-industria-2020",
+            "title": "CCNL laterizi e manufatti industria, 12 febbraio 2020",
+            "kind": "associazione",
+            "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+            "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+          },
+          "page": "75",
+          "section": "art. 80, lett. b (con rinvio all'art. 16, punti b e c; art. 15 per il 4 novembre)",
+          "quote": "Il trattamento economico spettante ai lavoratori in occasione delle festività di cui ai punti b) e c) dell’art. 16 è regolato come segue:\n        a) nel caso che la festività cada dal lunedì al sabato il trattamento è compreso nella retribuzione mensile. In caso di prestazione di lavoro in tali giornate festive sarà corrisposta, oltre alla retribuzione di cui sopra, la retribuzione per le ore di lavoro effettivamente prestate, con la maggiorazione della percentuale di cui all’art. 67;\n        b) nel caso che la festività coincida con la domenica o con il giorno di riposo compensativo del lavoro domenicale è dovuto, in aggiunta alla retribuzione mensile, un compenso pari a 1/26 della stessa."
+        },
+        "transformation": "Per gli operai, l'art. 80 paga 1/26 della retribuzione mensile aggiuntivo per le festività dei punti b e c dell'art. 16 coincidenti con la domenica o con il riposo compensativo del lavoro domenicale: si elencano i giorni dell'art. 16, incluso 29 giugno limitatamente al Comune di Roma e il patrono locale. L'art. 15 estende il trattamento al 4 novembre celebrato la domenica successiva. Il sabato non dà diritto alla quota aggiuntiva; la coincidenza del patrono con altra festività prevede in alternativa un giorno sostitutivo concordato, perciò non è codificata come pagamento incondizionato. Per gli impiegati l'art. 16 rinvia all'Accordo interconfederale del 3 dicembre 1954, senza quantificare qui il trattamento.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2020-02-12",
+          "verification_status": "unverified"
+        }
       }
     }
   }

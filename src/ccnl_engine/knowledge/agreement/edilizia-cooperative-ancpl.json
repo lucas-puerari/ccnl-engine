@@ -2425,7 +2425,7 @@
     "effective_until": null,
     "source": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/",
     "verification_status": "unverified",
-    "source_hash": "cdc98b92d3d0b07825a22a72a695b34723b64f685bae7dc2b0fd6287794cd767",
+    "source_hash": "017958b16abcaf5800e23c645f15c69a1eeda5c4365683dcdf414e1472ec7069",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
@@ -2596,6 +2596,52 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 99e9fedbcad5b4a77ca54ba60394f092afbe677bc6837d0187d1e323109e8c4a)."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "11-04",
+        "12-08",
+        "12-25",
+        "12-26",
+        "easter_monday",
+        "patron"
+      ],
+      "divisor": 25,
+      "on_rest_day": false,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "c_edilicoop2000",
+            "title": "Testo integrale storico cooperative edilizia (2000)",
+            "kind": "associazione",
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2009/04/c_edilicoop2000.pdf",
+            "sha256": "99e9fedbcad5b4a77ca54ba60394f092afbe677bc6837d0187d1e323109e8c4a"
+          },
+          "page": "90",
+          "section": "art. 84",
+          "quote": "In caso di coincidenza con la domenica di una delle festività di cui alle lett. b) e c) si applicano le norme dell'Accordo interconfederale 3.12.54. Peraltro l'importo della quota giornaliera della retribuzione di fatto di cui all'art. 1 del predetto accordo, sarà determinato dividendo la retribuzione mensile per 25."
+        },
+        "transformation": "Per gli impiegati, le festività delle lett. b) e c) elencate nell'art. 84 (PDF pp. 89–90) sono pagate se coincidono con la domenica; la quota giornaliera è la retribuzione mensile divisa per 25. Il successivo richiamo al trattamento del comma 4 per il 2 giugno e il 4 novembre (PDF p. 90) include 06-02 e 11-04; il 4 novembre è celebrato nella prima domenica di novembre. Nessun altro flag è espresso dalla clausola.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": null,
+          "verification_status": "unverified"
+        }
       }
     }
   }
