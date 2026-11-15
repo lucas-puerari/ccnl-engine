@@ -8,22 +8,29 @@ the cap left with none stated carry the missing fact ``extra_deduction``.
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 from types import SimpleNamespace
 from typing import TYPE_CHECKING, cast
 
 import pytest
 
+from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.pension_fund.inputs import PensionFundEnrolment
-from ccnl_engine.pension_fund.rules import PensionContribution, _contribution
+from ccnl_engine.pension_fund.models import ComplementaryPensionRules
+from ccnl_engine.pension_fund.rules import (
+    PensionContribution,
+    _contribution,
+    contribute,
+    resolve_terms,
+)
 from ccnl_engine.pension_fund.services import (
     EXTRA_DEDUCTION_UNKNOWN,
     extra_deduction_issue,
 )
 
 if TYPE_CHECKING:
-    from ccnl_engine.pension_fund.models import ComplementaryPensionRules
     from ccnl_engine.pension_fund.rules import PensionFundTerms
 
 _RULES = cast(
@@ -104,3 +111,25 @@ def test_the_extra_cannot_be_negative() -> None:
         PensionFundEnrolment(
             "ALIFOND", Decimal("0.01"), True, extra_deduction=Decimal(-1)
         )
+
+
+def test_the_enrolment_carries_the_extra_into_the_contribution() -> None:
+    """Alimentari ALIFOND: the stated 2,582.29 reach the cap of the run."""
+    rules = ComplementaryPensionRules(
+        deduction_cap=Decimal("5300.00"), solidarity_rate=Decimal("0.10")
+    )
+    terms = resolve_terms(
+        load_ccnl("alimentari-federalimentare"),
+        PensionFundEnrolment(
+            "ALIFOND", Decimal("0.01"), True, extra_deduction=Decimal("2582.29")
+        ),
+        None,
+        date(2026, 6, 1),
+        rules,
+        apprentice=False,
+    )
+    paid = contribute(terms, Decimal(2000), Decimal("5300.00"))
+
+    assert terms.extra_deduction == Decimal("2582.29")
+    assert paid.deductible == paid.employer + paid.employee
+    assert paid.deductible > 0
