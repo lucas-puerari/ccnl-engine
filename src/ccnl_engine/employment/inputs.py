@@ -71,8 +71,7 @@ class Employment:
 
     Facts are validated on construction: a value of the wrong type or an
     impossible combination raises
-    :class:`~ccnl_engine.errors.InvalidInputError` instead of
-    producing a payslip.
+    :class:`~ccnl_engine.errors.InvalidInputError`, not a payslip.
 
     Attributes:
         ccnl_id: CCNL slug or CNEL code; ambiguous or unknown ids raise
@@ -93,9 +92,9 @@ class Employment:
         full_time_week_days: Working days of the full-time week, 5 or 6; a CCNL
             that sets the daily pay by the week (Pulizia art. 34: 22 or 26) uses
             it.  ``None`` keeps the CCNL default divisor.
-        qualifying_shifts: Whether the worker works in a rotation of at least
-            15 shifts per week including nights and/or weekends; ``None``
-            when not stated. A day worker states ``False``.
+        qualifying_shifts: Whether the worker is in a rotation of 15 or more
+            weekly shifts with nights (a day worker: ``False``); ``weekly_shifts``
+            how many, for PAR hours from 18 or 21 (Federmeccanica art. 5).
         rota: Rota of a security guard (``5+1``, ``6+1+1``, ``5+2``); a CCNL
             that sets the ferie by rota (FEDERDAT art. 89: 25, 23 or 22 days)
             uses it.  ``None`` keeps the CCNL default days.
@@ -197,6 +196,7 @@ class Employment:
     full_time_week_days: int | None = None
     rota: Rota | None = None
     qualifying_shifts: bool | None = None
+    weekly_shifts: int | None = None
     work_pattern: WorkPattern | None = None
     weekly_rest_day: Weekday = Weekday.SUNDAY
     seniority: SeniorityFact | None = None

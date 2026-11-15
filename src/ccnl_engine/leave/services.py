@@ -131,6 +131,7 @@ def _accrual_facts(ctx: RunContext) -> AccrualFacts:
         full_time_week=None if week is None else week.value,
         subsector=request.employer.subsector,
         qualifying_shifts=request.qualifying_shifts,
+        weekly_shifts=request.weekly_shifts,
         entry_pay=isinstance(request.contract_type, Permanent)
         and request.contract_type.entry_pay,
     )
