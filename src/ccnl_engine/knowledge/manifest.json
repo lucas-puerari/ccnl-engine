@@ -116,7 +116,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/alimentari-federalimentare",
       "ruleset_version": "2026.2",
-      "source_hash": "dab44ecbdc28fe977b80ff66b828fe842e1323f791a50aff0b28110319fd3fb6",
+      "source_hash": "c897f17fe92f5d67697a969506780a8372431dc8ed70608f7b1ca2e5e5523c0f",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/alimentari-federalimentare.json.gz"
@@ -1054,7 +1054,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/funzioni-centrali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "d3d8b1b76e351cc14f4c34546eb9b62fc9355151fec6c441bd310071bfc4a671",
+      "source_hash": "d0ee1b77a25df50843a10f50842ec1a2c0184ccfc4ee0eacaf0b67f655cc0517",
       "source_type": "institutional_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/funzioni-centrali-aran.json.gz"
@@ -1071,7 +1071,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/funzioni-locali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "0c656645f2686846570e964805fd3a17941f1f676bc839ace1e907b21064d3a4",
+      "source_hash": "aaead19478ebbde0c33321b0b273415cbac43e23852fc4ee489f8d47972efd3c",
       "source_type": "institutional_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/funzioni-locali-aran.json.gz"
@@ -1547,7 +1547,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/multiservizi-anip",
       "ruleset_version": "2026.2",
-      "source_hash": "48ec2834fe29e08851c246d3f69eef096b8c08c333411b05d93d931dceeb594e",
+      "source_hash": "bee92253195437c5c506ae0c2abeaa05f4e368d5dabbd1e0863bb9f570c9f193",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/multiservizi-anip.json.gz"

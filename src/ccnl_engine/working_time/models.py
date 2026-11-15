@@ -158,10 +158,13 @@ class TimeSupplements(BaseModel):
     ``gross_incl_allowances`` base leaves out (Logistica art. 74: the EDR of
     2021 has "nessuna incidenza su alcun istituto contrattuale").
 
-    ``hourly_base_yearly_payments`` adds to the base the rateo of the
-    further monthly payments: the monthly elements times the payments over
-    12 (Sanità art. 47 c. 7: "dividendo per 156 la retribuzione base
-    mensile [...] comprensiva del rateo di tredicesima mensilità").
+    ``hourly_base_yearly_payments`` adds to the base of the overtime hour
+    the rateo of the further monthly payments: the monthly elements times
+    the payments over 12 (Sanità art. 47 c. 7: "La misura oraria dei
+    compensi per lavoro straordinario [...] dividendo per 156 la
+    retribuzione base mensile [...] comprensiva del rateo di tredicesima
+    mensilità"); the maggiorazioni of night, holiday and shift work stay on
+    the monthly elements.
 
     ``overtime_bank_share`` is the fraction of the ordinary overtime premium
     paid immediately when the worker elects rest instead of payment; it does

@@ -1359,7 +1359,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "0c656645f2686846570e964805fd3a17941f1f676bc839ace1e907b21064d3a4",
+    "source_hash": "aaead19478ebbde0c33321b0b273415cbac43e23852fc4ee489f8d47972efd3c",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1543,7 +1543,323 @@
             }
           }
         }
-      ]
+      ],
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_0",
+          "description": "Lavoro ordinario notturno senza rotazione per turno (22:00–06:00).",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-02-24",
+                "valid_until": null,
+                "value": "0.20"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "w-aranagenzia-it-wp-content-uploads-2026-02-ccnl-comparto-2022-2024-23-02-26-pdf",
+                "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
+              },
+              "page": "37",
+              "section": "Art. 26 c. 5",
+              "quote": "Anche in assenza di rotazione per turno, nel caso di lavoro ordinario notturno e festivo, è dovuta una maggiorazione della retribuzione oraria di cui all’art. 74, comma 2, lett. b) del CCNL del 16.11.2022 nella misura: - del 20% nel caso di prestazione lavorativa resa in via ordinaria, in fascia notturna o in giornata festiva;"
+            },
+            "transformation": "Lavoro ordinario notturno senza rotazione per turno (22:00–06:00).",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-02-24",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-funzioni-locali-aran-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_1",
+          "description": "Lavoro ordinario festivo senza rotazione per turno; il lavoro festivo infrasettimanale fuori dall'orario ordinario segue invece il comma 2.",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-02-24",
+                "valid_until": null,
+                "value": "0.20"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "w-aranagenzia-it-wp-content-uploads-2026-02-ccnl-comparto-2022-2024-23-02-26-pdf",
+                "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
+              },
+              "page": "37",
+              "section": "Art. 26 c. 5",
+              "quote": "Anche in assenza di rotazione per turno, nel caso di lavoro ordinario notturno e festivo, è dovuta una maggiorazione della retribuzione oraria di cui all’art. 74, comma 2, lett. b) del CCNL del 16.11.2022 nella misura: - del 20% nel caso di prestazione lavorativa resa in via ordinaria, in fascia notturna o in giornata festiva;"
+            },
+            "transformation": "Lavoro ordinario festivo senza rotazione per turno; il lavoro festivo infrasettimanale fuori dall'orario ordinario segue invece il comma 2.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-02-24",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-funzioni-locali-aran-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_HOLIDAY_2",
+          "description": "Lavoro ordinario notturno-festivo senza turnazione.",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-02-24",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "w-aranagenzia-it-wp-content-uploads-2026-02-ccnl-comparto-2022-2024-23-02-26-pdf",
+                "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
+              },
+              "page": "37",
+              "section": "Art. 26 c. 5",
+              "quote": "- del 30% nel caso di prestazione lavorativa resa in via ordinaria in fascia notturna- festiva."
+            },
+            "transformation": "Lavoro ordinario notturno-festivo senza turnazione.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-02-24",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-funzioni-locali-aran-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_REST_DAY_3",
+          "description": "Lavoro nel giorno di riposo settimanale non goduto, con riposo compensativo; compenso aggiuntivo pari al 50% per ora effettiva.",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-02-24",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "w-aranagenzia-it-wp-content-uploads-2026-02-ccnl-comparto-2022-2024-23-02-26-pdf",
+                "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
+              },
+              "page": "37",
+              "section": "Art. 26 c. 1",
+              "quote": "Al dipendente che per particolari esigenze di servizio non usufruisce del giorno di riposo settimanale deve essere corrisposto, per ogni ora di lavoro effettivamente prestata, un compenso aggiuntivo pari al 50% della retribuzione oraria di cui all’art. 74, comma 2, lett. b) del CCNL del 16.11.2022, con diritto al riposo compensativo di almeno 24 ore consecutive da fruire di regola entro 15 giorni e comunque non oltre il bimestre successivo."
+            },
+            "transformation": "Lavoro nel giorno di riposo settimanale non goduto, con riposo compensativo; compenso aggiuntivo pari al 50% per ora effettiva.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-02-24",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-funzioni-locali-aran-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_DAY_SHIFT_4",
+          "description": "Turno diurno antimeridiano o pomeridiano, 06:00–22:00.",
+          "work": "day_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-02-24",
+                "valid_until": null,
+                "value": "0.10"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "w-aranagenzia-it-wp-content-uploads-2026-02-ccnl-comparto-2022-2024-23-02-26-pdf",
+                "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
+              },
+              "page": "36",
+              "section": "Art. 25 c. 5 lett. a",
+              "quote": "a) turno diurno, antimeridiano e pomeridiano (tra le 6,00 e le 22,00): maggiorazione oraria del 10% della retribuzione di cui all’art. 74, comma 2, lett. c) del CCNL 16.11.2022;"
+            },
+            "transformation": "Turno diurno antimeridiano o pomeridiano, 06:00–22:00.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-02-24",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-funzioni-locali-aran-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_SHIFT_5",
+          "description": "Turno notturno (22:00–06:00) o festivo.",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-02-24",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "w-aranagenzia-it-wp-content-uploads-2026-02-ccnl-comparto-2022-2024-23-02-26-pdf",
+                "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
+              },
+              "page": "36",
+              "section": "Art. 25 c. 5 lett. b",
+              "quote": "b) turno notturno o festivo: maggiorazione oraria del 30% della retribuzione di cui all’art. 74, comma 2, lett. c) del CCNL 16.11.2022;"
+            },
+            "transformation": "Turno notturno (22:00–06:00) o festivo.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-02-24",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-funzioni-locali-aran-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_HOLIDAY_SHIFT_6",
+          "description": "Turno festivo-notturno.",
+          "work": "night_holiday_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-02-24",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "w-aranagenzia-it-wp-content-uploads-2026-02-ccnl-comparto-2022-2024-23-02-26-pdf",
+                "title": "CCNL Comparto Funzioni Locali 2022-2024, 23 febbraio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+                "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
+              },
+              "page": "36",
+              "section": "Art. 25 c. 5 lett. c",
+              "quote": "c) turno festivo-notturno: maggiorazione oraria del 50% della retribuzione di cui all’art. 74, comma 2, lett. c) del CCNL 16.11.2022;"
+            },
+            "transformation": "Turno festivo-notturno.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-02-24",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-funzioni-locali-aran-time-supplements"
+            }
+          }
+        }
+      ],
+      "hourly_base_yearly_payments": 13,
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-funzioni-locali-2019-2021-aran",
+            "title": "CCNL Comparto Funzioni Locali 2019-2021, 16 novembre 2022",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_16_COMP-FL_2019-2021.pdf",
+            "sha256": "8cea8d673cf66299d55169c60b1624417c804cf294b0045b234e35a2e76b764d"
+          },
+          "page": "43",
+          "section": "Art. 32 c. 4",
+          "quote": "La misura oraria dei compensi per lavoro straordinario è determinata maggiorando la misura oraria di lavoro ordinario calcolata convenzionalmente dividendo per 156 la retribuzione di cui all’art. 74, comma 2, lett. b) (Nozione di retribuzione) incrementata del rateo della 13^mensilità."
+        },
+        "transformation": "The hourly pay is the retribuzione of art. 74 c. 2 lett. b over 156; the overtime hour adds the rateo of the tredicesima. The night, holiday and rest-day supplements (CCNL 23/2/2026 art. 26) are on the same lett. b, the shift supplements (art. 25 c. 5) on lett. c: for a worker without individual elements (differenziali stipendiali, RIA, assegni personali, posizione) both are the stipendio tabellare; the indennità di comparto is in neither.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2022-11-16",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-funzioni-locali-aran-time-supplements"
+        }
+      }
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -1780,6 +2096,37 @@
         },
         "transformation": "The CCNL text read is silent on the holidays falling on a Sunday: the law pays the civil holidays only; art. 5 names the 'Stato, enti pubblici e datori privati', and the maintainer decided on 2026-11-15 that it applies to public employment (documents read: https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf, sha256 145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e; https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf, sha256 b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08; https://www.aranagenzia.it/wp-content/uploads/2023/10/CCNL-Comparto-Funzioni-Locali-2019-2021-16.11.2022.pdf, sha256 8cea8d673cf66299d55169c60b1624417c804cf294b0045b234e35a2e76b764d)"
       }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "w-aranagenzia-it-wp-content-uploads-2026-10-ccnl-comparto-fl-25-27-firmato-2-pdf",
+              "title": "CCNL Comparto Funzioni Locali 2025-2027, 28 ottobre 2026",
+              "kind": "amministrazione",
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+              "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
+            },
+            "page": "54",
+            "section": "Art. 44 c. 1",
+            "quote": "1. I valori di cui all’art. 57 (Trattamento di trasferta) CCNL 16.11.2022, comma 1, lett. c) e d) sono rispettivamente rideterminati in € 48,68 ed € 24,48."
+          },
+          "transformation": "The CCNL pays no daily travel allowance: the trasferta is refunded at documented cost",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-15T00:00:00Z",
+            "effective_from": "2026-10-29",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-15-ai-funzioni-locali-aran-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -1885,6 +2232,37 @@
         "checked": [
           "levels.base_salary",
           "levels.fixed_allowances"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-funzioni-locali-aran-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_16_COMP-FL_2019-2021.pdf",
+            "sha256": "8cea8d673cf66299d55169c60b1624417c804cf294b0045b234e35a2e76b764d"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
+            "sha256": "b08e21d819f677203e914f4925afbdf0dcd916fc92c1cdb260a1144f4656cd08"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+            "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
+          }
+        ],
+        "findings": [
+          "Applied: bands[0:night], bands[1:holiday], bands[2:night_holiday], bands[3:rest_day], bands[4:day_shift], bands[5:night_shift], bands[6:night_holiday_shift], travel.",
+          "Left out: bands[7:holiday]: work/role/rate not applicable (turnista)."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ],

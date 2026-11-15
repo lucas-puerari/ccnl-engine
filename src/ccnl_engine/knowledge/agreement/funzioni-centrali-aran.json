@@ -1835,7 +1835,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "d3d8b1b76e351cc14f4c34546eb9b62fc9355151fec6c441bd310071bfc4a671",
+    "source_hash": "d0ee1b77a25df50843a10f50842ec1a2c0184ccfc4ee0eacaf0b67f655cc0517",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -2019,7 +2019,413 @@
             }
           }
         }
-      ]
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "https-www-aranagenzia-it-wp-content-uploads-2025-01-ccnl-l-c-fc-2022-2024-pdf",
+            "title": "CCNL Comparto Funzioni Centrali 2022-2024",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
+            "sha256": "7115a9eb2d432a906e9df8e5fcb275dae415cfe4edcebe9ac40ea0a494eff924"
+          },
+          "page": "46",
+          "section": "Art. 29 cc. 2 lett. a), 3",
+          "quote": "3. La retribuzione oraria si ottiene dividendo le corrispondenti retribuzioni mensili per 156. Nel caso di orario di lavoro ridotto ai sensi dell’art. 18 del CCNL 12 febbraio 2018, il valore del divisore è fissato in 151."
+        },
+        "transformation": "The hourly pay is the monthly retribuzione of art. 70 c. 2 lett. a over 156 (151 for the reduced hours of art. 18, not modelled); the overtime hour adds the rateo of the tredicesima (CCNL 12/2/2018 art. 25 c. 4, p. 31, sha256 d374410b...: \"La misura oraria dei compensi per lavoro straordinario è determinata maggiorando la retribuzione oraria di cui all’art. 70, comma 2, lett. a), a cui viene aggiunto il rateo della tredicesima mensilità\"). The differenziali stipendiali are individual elements of the worker.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-funzioni-centrali-aran-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_0",
+          "description": "Lavoro ordinario notturno fuori turno, ore 22–6; non cumulabile come seconda maggiorazione con quella del turno.",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2018-02-12",
+                "valid_until": null,
+                "value": "0.20"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "25-01-ccnl-definitivo-funzioni-centrali-triennio-2016-2018-firmato-12-2-2018-pdf",
+                "title": "CCNL Comparto Funzioni Centrali 2016-2018, 12 febbraio 2018",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf",
+                "sha256": "d374410b7e202197f2cfd5828994bb56572533daf3dc39c4e775e888c915762e"
+              },
+              "page": "29",
+              "section": "Art. 21 c. 4",
+              "quote": "4. Per il lavoro ordinario notturno o festivo prestato da dipendenti non in turno, è dovuta una maggiorazione della retribuzione oraria di cui all’art. 70, comma 2, lett. a) nella misura del 20%. Tale maggiorazione è elevata al 30% nel caso di lavoro ordinario festivo-notturno."
+            },
+            "transformation": "Lavoro ordinario notturno fuori turno, ore 22–6; non cumulabile come seconda maggiorazione con quella del turno.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2018-02-12",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-funzioni-centrali-aran-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_1",
+          "description": "Lavoro ordinario festivo fuori turno; il festivo infrasettimanale non ordinario segue art. 21 c. 2.",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2018-02-12",
+                "valid_until": null,
+                "value": "0.20"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "25-01-ccnl-definitivo-funzioni-centrali-triennio-2016-2018-firmato-12-2-2018-pdf",
+                "title": "CCNL Comparto Funzioni Centrali 2016-2018, 12 febbraio 2018",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf",
+                "sha256": "d374410b7e202197f2cfd5828994bb56572533daf3dc39c4e775e888c915762e"
+              },
+              "page": "29",
+              "section": "Art. 21 c. 4",
+              "quote": "4. Per il lavoro ordinario notturno o festivo prestato da dipendenti non in turno, è dovuta una maggiorazione della retribuzione oraria di cui all’art. 70, comma 2, lett. a) nella misura del 20%. Tale maggiorazione è elevata al 30% nel caso di lavoro ordinario festivo-notturno."
+            },
+            "transformation": "Lavoro ordinario festivo fuori turno; il festivo infrasettimanale non ordinario segue art. 21 c. 2.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2018-02-12",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-funzioni-centrali-aran-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_HOLIDAY_2",
+          "description": "Lavoro ordinario festivo-notturno fuori turno.",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2018-02-12",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "25-01-ccnl-definitivo-funzioni-centrali-triennio-2016-2018-firmato-12-2-2018-pdf",
+                "title": "CCNL Comparto Funzioni Centrali 2016-2018, 12 febbraio 2018",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf",
+                "sha256": "d374410b7e202197f2cfd5828994bb56572533daf3dc39c4e775e888c915762e"
+              },
+              "page": "29",
+              "section": "Art. 21 c. 4",
+              "quote": "Tale maggiorazione è elevata al 30% nel caso di lavoro ordinario festivo-notturno."
+            },
+            "transformation": "Lavoro ordinario festivo-notturno fuori turno.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2018-02-12",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-funzioni-centrali-aran-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_REST_DAY_3",
+          "description": "Dipendente non in turno privato del riposo settimanale: anche riposo compensativo.",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2018-02-12",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "25-01-ccnl-definitivo-funzioni-centrali-triennio-2016-2018-firmato-12-2-2018-pdf",
+                "title": "CCNL Comparto Funzioni Centrali 2016-2018, 12 febbraio 2018",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf",
+                "sha256": "d374410b7e202197f2cfd5828994bb56572533daf3dc39c4e775e888c915762e"
+              },
+              "page": "29",
+              "section": "Art. 21 c. 1",
+              "quote": "1. Il dipendente non in turno che, per particolari esigenze di servizio, non usufruisca del giorno di riposo settimanale, ha diritto al riposo compensativo delle ore lavorate, da fruire entro 15 giorni e comunque non oltre il bimestre successivo. Allo stesso deve essere, altresì, corrisposto, per ogni ora di lavoro effettivamente prestato, un compenso pari al 50% della retribuzione oraria di cui all’art. 70, comma 2, lett. a)."
+            },
+            "transformation": "Dipendente non in turno privato del riposo settimanale: anche riposo compensativo.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2018-02-12",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-funzioni-centrali-aran-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_DAY_SHIFT_4",
+          "description": "Turno diurno 6–22.",
+          "work": "day_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2018-02-12",
+                "valid_until": "2026-08-06",
+                "value": "0.10",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-funzioni-centrali-2016-2018-aran",
+                      "title": "CCNL Comparto Funzioni Centrali 2016-2018, 12 febbraio 2018",
+                      "kind": "amministrazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf",
+                      "sha256": "d374410b7e202197f2cfd5828994bb56572533daf3dc39c4e775e888c915762e"
+                    },
+                    "page": "27",
+                    "section": "Art. 19 c. 5",
+                    "quote": "a) turno diurno, antimeridiano e pomeridiano (tra le 6,00 e le 22,00): maggiorazione oraria del 10% della retribuzione di cui all’art. 70, comma 2, lett. a);"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T00:00:00Z",
+                    "effective_from": "2018-02-12",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T00:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-funzioni-centrali-aran-time-supplements"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-08-06",
+                "valid_until": null,
+                "value": "0.10"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ww-aranagenzia-it-wp-content-uploads-2026-08-2026-08-06-ccnl-cfc-2025-2027-1-pdf",
+                "title": "CCNL Comparto Funzioni Centrali 2025-2027, 6 agosto 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+              },
+              "page": "39",
+              "section": "Art. 28 c. 5 lett. a)",
+              "quote": "a) turno diurno, antimeridiano e pomeridiano (tra le 6:00 e le 22:00): maggiorazione oraria del 10% della retribuzione di cui all’art. 29 (Retribuzione e sue definizioni), comma 2, lett. a), del CCNL 27 gennaio 2025;"
+            },
+            "transformation": "Turno diurno 6–22.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-08-06",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-funzioni-centrali-aran-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_SHIFT_5",
+          "description": "Turno notturno (22–6) o festivo.",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2018-02-12",
+                "valid_until": "2026-08-06",
+                "value": "0.30",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-funzioni-centrali-2016-2018-aran",
+                      "title": "CCNL Comparto Funzioni Centrali 2016-2018, 12 febbraio 2018",
+                      "kind": "amministrazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf",
+                      "sha256": "d374410b7e202197f2cfd5828994bb56572533daf3dc39c4e775e888c915762e"
+                    },
+                    "page": "27",
+                    "section": "Art. 19 c. 5",
+                    "quote": "b) turno notturno o festivo: maggiorazione oraria del 30% della retribuzione di cui all’art. 70, comma 2, lett. a);"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T00:00:00Z",
+                    "effective_from": "2018-02-12",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T00:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-funzioni-centrali-aran-time-supplements"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-08-06",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ww-aranagenzia-it-wp-content-uploads-2026-08-2026-08-06-ccnl-cfc-2025-2027-1-pdf",
+                "title": "CCNL Comparto Funzioni Centrali 2025-2027, 6 agosto 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+              },
+              "page": "40",
+              "section": "Art. 28 c. 5 lett. b)",
+              "quote": "b) turno notturno o festivo: maggiorazione oraria del 30% della retribuzione di cui all’art. 29 (Retribuzione e sue definizioni), comma 2, lett. a), del CCNL 27 gennaio 2025;"
+            },
+            "transformation": "Turno notturno (22–6) o festivo.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-08-06",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-funzioni-centrali-aran-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_HOLIDAY_SHIFT_6",
+          "description": "Turno festivo-notturno.",
+          "work": "night_holiday_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2018-02-12",
+                "valid_until": "2026-08-06",
+                "value": "0.50",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "ccnl-funzioni-centrali-2016-2018-aran",
+                      "title": "CCNL Comparto Funzioni Centrali 2016-2018, 12 febbraio 2018",
+                      "kind": "amministrazione",
+                      "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf",
+                      "sha256": "d374410b7e202197f2cfd5828994bb56572533daf3dc39c4e775e888c915762e"
+                    },
+                    "page": "27",
+                    "section": "Art. 19 c. 5",
+                    "quote": "c) turno festivo-notturno: maggiorazione oraria del 50% della retribuzione di cui all’art. 70, comma 2, lett. a);"
+                  },
+                  "extraction": {
+                    "method": "ai",
+                    "model": "claude-opus-5-5",
+                    "extraction_timestamp": "2026-11-15T00:00:00Z",
+                    "effective_from": "2018-02-12",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-15T00:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-15-ai-funzioni-centrali-aran-time-supplements"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-08-06",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ww-aranagenzia-it-wp-content-uploads-2026-08-2026-08-06-ccnl-cfc-2025-2027-1-pdf",
+                "title": "CCNL Comparto Funzioni Centrali 2025-2027, 6 agosto 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+                "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+              },
+              "page": "40",
+              "section": "Art. 28 c. 5 lett. c)",
+              "quote": "c) turno festivo-notturno: maggiorazione oraria del 50% della retribuzione di cui all’art. 29 (Retribuzione e sue definizioni), comma 2, lett. a), del CCNL 27 gennaio 2025;"
+            },
+            "transformation": "Turno festivo-notturno.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-08-06",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-funzioni-centrali-aran-time-supplements"
+            }
+          }
+        }
+      ],
+      "hourly_base_yearly_payments": 13
     },
     "absence_rules": {
       "daily_divisor_method": "by_30",
@@ -2390,6 +2796,37 @@
         "independence": "same_process",
         "checked": [
           "levels"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-funzioni-centrali-aran-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf",
+            "sha256": "d374410b7e202197f2cfd5828994bb56572533daf3dc39c4e775e888c915762e"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
+            "sha256": "7115a9eb2d432a906e9df8e5fcb275dae415cfe4edcebe9ac40ea0a494eff924"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+            "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[0:night], bands[1:holiday], bands[2:night_holiday], bands[3:rest_day], bands[4:day_shift], bands[5:night_shift], bands[6:night_holiday_shift].",
+          "Left out: bands[7:holiday]: quote skipped; travel: kind bands applied by hand."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ],

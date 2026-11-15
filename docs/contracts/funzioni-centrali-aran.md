@@ -48,7 +48,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 44 verified / 5 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 52 verified / 5 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -70,6 +70,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-17 | claude-opus-5-5 (ai) | The CTPS rates the file reads, against the INPS table of the Gestione Dipendenti Pubblici. | confirmed | The INPS page prints 'CTPS 33 24,2 8,8' (total, employer, worker): the 24.20% and 8.80% of the bundle. The rates no longer rest on the kitech.it proxy the limitation named; ctps_rates_proxy is resolved. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 28, commi 1–4 e 9, p. 44–45). | corrected | Notice bands by level, category and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Tabella 4 of the CCNL Funzioni Centrali of 6 August 2026 (PDF p. 67), text layer, against the research of a separate model session. | corrected | Added the six agency positions of ENAC, ANSFISA and ANSV for 2025-2027 as sub-sector levels. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base, bands[0:night], bands[1:holiday], bands[2:night_holiday], bands[3:rest_day], bands[4:day_shift], bands[5:night_shift], bands[6:night_holiday_shift].<br>Left out: bands[7:holiday]: quote skipped; travel: kind bands applied by hand. |
 
 ## Salary table
 

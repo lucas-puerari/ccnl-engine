@@ -5681,7 +5681,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "48ec2834fe29e08851c246d3f69eef096b8c08c333411b05d93d931dceeb594e",
+    "source_hash": "bee92253195437c5c506ae0c2abeaa05f4e368d5dabbd1e0863bb9f570c9f193",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -6552,6 +6552,37 @@
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://a, sha256 4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167; https://w, sha256 ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f)."
       }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "l-it-cne-cne-sa-0002-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-105782",
+              "title": "CCNL Multiservizi ANIP, archivio CNEL (accordo 105782)",
+              "kind": "cnel",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+              "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+            },
+            "page": "45",
+            "section": "Articolo 27 - TRASFERTE, commi 1-2",
+            "quote": "L’impresa, per esigenze di servizio, può inviare il lavoratore fuori dell’abituale sede di lavoro. In tale caso il lavoratore conserva la retribuzione relativa alla propria sede di lavoro e avrà diritto: a) al rimborso delle spese effettive di viaggio corrispondenti ai normali mezzi di trasporto; b) al rimborso delle spese di vitto e/o alloggio a piè di lista, quando la durata della missione obblighi il lavoratore a incontrare tali spese; c) al rimborso delle altre spese vive necessarie all’espletamento della missione."
+          },
+          "transformation": "The CCNL pays no daily travel allowance: the trasferta is refunded at documented cost",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-15T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-15-ai-multiservizi-anip-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -6964,6 +6995,28 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments.amount_by_level"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-multiservizi-anip-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/105782",
+            "sha256": "e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7"
+          }
+        ],
+        "findings": [
+          "Applied: travel."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ]
