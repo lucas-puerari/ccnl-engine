@@ -169,7 +169,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [radiotelevisive-televisivo](../contracts/radiotelevisive-televisivo.md) | `spettacolo-media` | exploratory | — | 15 rows | 15 open requirements; 11 weak rules; 4 monetary limitations; 8 non-native capabilities |
 | [recapito-corrispondenza-fise](../contracts/recapito-corrispondenza-fise.md) | `servizi-postali` | exploratory | — | 2 rows | 2 open requirements; 2 weak rules; 5 non-native capabilities |
 | [rsa-aiop](../contracts/rsa-aiop.md) | `socio-sanitario` | exploratory | — | 5 rows | 5 open requirements; 1 weak rule; 3 monetary limitations; 1 outside_input limitation; 7 non-native capabilities |
-| [sanita-aran](../contracts/sanita-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 1 rows | 1 open requirement; 1 monetary limitation; 6 non-native capabilities |
+| [sanita-aran](../contracts/sanita-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 1 rows | 1 open requirement; 1 monetary limitation; 1 non-native capability |
 | [sanita-privata-aiop-aris](../contracts/sanita-privata-aiop-aris.md) | `socio-sanitario` | exploratory | 2018-12-31 | 6 rows | 6 open requirements; 2 monetary limitations; 4 outside_input limitations; 6 non-native capabilities |
 | [scuole-materne-fism](../contracts/scuole-materne-fism.md) | `istruzione-formazione` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 1 monetary limitation; 1 outside_input limitation; 7 non-native capabilities; 1 declared residual |
 | [scuole-private-agidae](../contracts/scuole-private-agidae.md) | `istruzione-formazione` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 1 monetary limitation; 1 outside_input limitation; 6 non-native capabilities |
