@@ -110,6 +110,7 @@ def _resolve_inps(
         ceiling=raw.ceiling,
         employer_rate_by_category=employer_tier.rate_by_category,
         employer_fixed_term_rate_by_category=employer_tier.fixed_term_rate_by_category,
+        relief_excluded=employer_tier.relief_excluded,
         zone_reduction=raw.zone_reduction,
         employee_additional=raw.employee_additional,
         minimum_base=raw.minimum_base,

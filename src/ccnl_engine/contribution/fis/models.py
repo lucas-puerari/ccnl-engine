@@ -56,7 +56,8 @@ def with_fis_reduction(
 
     Returns:
         ``rates`` without a cut that applies; with it, the employee, employer
-        and category rates lowered by its shares; with the fact unknown,
+        and category rates lowered by its shares, and the FIS the
+        exemptions exclude lowered with them; with the fact unknown,
         ``rates`` flagged ``fis_reduction_open``, for a ``missing_fact``
         issue.
     """
@@ -69,10 +70,14 @@ def with_fis_reduction(
         category: rate - cut.employer_rate
         for category, rate in rates.employer_rate_by_category.items()
     }
+    excluded = rates.relief_excluded
     return rates.model_copy(
         update={
             "employee_rate": rates.employee_rate - cut.employee_rate,
             "employer_rate": rates.employer_rate - cut.employer_rate,
             "employer_rate_by_category": by_category,
+            "relief_excluded": None
+            if excluded is None
+            else excluded.reduced(cut.employer_rate),
         }
     )

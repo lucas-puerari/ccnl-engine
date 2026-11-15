@@ -15,16 +15,13 @@ from pydantic import BaseModel, ConfigDict, model_validator
 from ccnl_engine.agreement.facade import PublicPensionFund
 from ccnl_engine.contribution.additional_ivs.models import AdditionalIvsRule
 from ccnl_engine.contribution.cigs.models import CigsIndotto
+from ccnl_engine.contribution.exemption.models import ReliefExclusion
 from ccnl_engine.contribution.fis.models import FisReduction
 from ccnl_engine.contribution.minimum_base.models import MinimumBaseRule
 from ccnl_engine.contribution.zone.models import ZoneReduction
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
-from ccnl_engine.types import (
-    NonNegativeRate,
-    PositiveCeiling,
-    assert_ivs_le_total,
-)
+from ccnl_engine.types import NonNegativeRate, PositiveCeiling, assert_ivs_le_total
 
 
 class EndOfServiceRates(BaseModel):
@@ -182,7 +179,8 @@ class InpsRates(BaseModel):
     of the agricultural disadvantaged zones and ``zone_reduction_open``
     flags rates of an employer that does not say its zone.
     ``sick_pay_supplements`` are the additional sickness contributions of
-    the employers of an INPS sick-pay regime, by regime id.
+    the employers of an INPS sick-pay regime, by regime id;
+    ``relief_excluded`` the part of the rate no exemption cuts.
     ``wage_integration_employer_rate`` and ``wage_integration_employee_rate``
     are the CIGO, CIGS or FIS shares the rates hold for the headcount, the
     shares apprentices owe too (INPS circ. 76/2022 par. 1): a solidarity fund
@@ -210,6 +208,7 @@ class InpsRates(BaseModel):
     ceiling_provenance: RuleProvenance | None = None
     fis_reduction: FisReduction | None = None
     fis_reduction_open: bool = False
+    relief_excluded: ReliefExclusion | None = None
     cigs_indotto: CigsIndotto | None = None
     cigs_indotto_open: bool = False
     base_whole_euro: bool = True

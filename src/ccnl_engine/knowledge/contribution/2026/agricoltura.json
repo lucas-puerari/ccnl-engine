@@ -21,6 +21,39 @@
         },
         "fixed_term_rate_by_category": {
           "operaio": "0.25253"
+        },
+        "relief_excluded": {
+          "rate": "0.0030",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "inps-circolare-82-2026",
+                "title": "INPS Circolare n. 82 del 29 luglio 2026",
+                "kind": "inps_circolare",
+                "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2026/07/Circolare_15337/Allegati/16906_Circolare-numero-82-del-29-07-2026.pdf",
+                "published_on": "2026-07-29",
+                "sha256": "89edfbeaf1da7495aac9141c2a76537e1ba5ba5b72e88b0e3ff9477db11bbd70"
+              },
+              "page": "5",
+              "section": "par. 3, Assetto e misura dell'esonero",
+              "quote": "Si ricorda, in particolare, che non sono oggetto di sgravio le seguenti contribuzioni: - i premi e i contributi dovuti all’INAIL; - il contributo, ove dovuto, al Fondo per l’erogazione ai lavoratori dipendenti del settore privato dei trattamenti di fine rapporto [...] - il contributo, ove dovuto, ai Fondi di cui agli articoli 26, 27 e 29 del decreto legislativo 14 settembre 2015, n. 148 [...] - il contributo previsto dall’articolo 25, quarto comma, della legge 21 dicembre 1978, n. 845, in misura pari allo 0,30 per cento della retribuzione imponibile"
+            },
+            "transformation": "Agricoltura, operai (OTI and OTD): the disoccupazione agricola 2.75 holds the 0.30 of continuing training (INPS circ. 43/2026 all. 1 and 2, col. A: 'Disoccupazione agricola (comprende la quota dello 0,30% dei fondi interprofessionali'); INAIL is outside the rate: 0.0030. Impiegati, quadri and dirigenti: no breakdown of their 25.63 and 24.13 in the sources searched: left open.",
+            "note": "Breakdown of the tier rates checked against the rate tables of the tier provenance. The same exclusions in INPS circ. 90/2025, 91/2025 and 10/2026. The Fondo di garanzia TFR (L. 297/1982), CIGO and CIGS are not in the list and stay in the base; INAIL, the Fondo di Tesoreria TFR and the pension solidarity contribution are not part of the tier rate.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-01-01",
+              "verification_status": "unverified"
+            }
+          },
+          "rate_by_category": {
+            "impiegato": null,
+            "quadro": null,
+            "dirigente": null
+          }
         }
       }
     ],
@@ -173,7 +206,7 @@
     "published_at": "2026-09-07",
     "source": "https://ciatreviso.it/contributi-inps-inail-2026-agricoli-aliquote-e-le-scadenze-per-operai-otd-e-oti/",
     "verification_status": "unverified",
-    "source_hash": "81654ef629d3c64bd94ce9c6f378b2bc532f7c38a3d6d8a8e6f1210d377dd339",
+    "source_hash": "f477d50b172df01a700f0213d791099725747713d142f7e71c2467468c9c328b",
     "source_type": "contracting_party"
   }
 }

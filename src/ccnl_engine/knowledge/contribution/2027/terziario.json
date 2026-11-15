@@ -23,17 +23,110 @@
       {
         "max_employees": 5,
         "rate": "0.2931333",
-        "ivs_rate": "0.2381"
+        "ivs_rate": "0.2381",
+        "relief_excluded": {
+          "rate": "0.0063333",
+          "rate_by_category": {
+            "dirigente": null
+          },
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "inps-circolare-82-2026",
+                "title": "INPS Circolare n. 82 del 29 luglio 2026",
+                "kind": "inps_circolare",
+                "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2026/07/Circolare_15337/Allegati/16906_Circolare-numero-82-del-29-07-2026.pdf",
+                "published_on": "2026-07-29",
+                "sha256": "89edfbeaf1da7495aac9141c2a76537e1ba5ba5b72e88b0e3ff9477db11bbd70"
+              },
+              "page": "5",
+              "section": "par. 3, Assetto e misura dell'esonero",
+              "quote": "Si ricorda, in particolare, che non sono oggetto di sgravio le seguenti contribuzioni: - i premi e i contributi dovuti all’INAIL; - il contributo, ove dovuto, al Fondo per l’erogazione ai lavoratori dipendenti del settore privato dei trattamenti di fine rapporto [...] - il contributo, ove dovuto, ai Fondi di cui agli articoli 26, 27 e 29 del decreto legislativo 14 settembre 2015, n. 148 [...] - il contributo previsto dall’articolo 25, quarto comma, della legge 21 dicembre 1978, n. 845, in misura pari allo 0,30 per cento della retribuzione imponibile"
+            },
+            "transformation": "Terziario, tier up to 5 employees: of the rate (IVS 23.81, NASpI 1.31, continuing training 0.30, Fondo di garanzia TFR 0.20, CUAF 0.68, maternita 0.24, malattia 2.44, FIS, CIGS 0.60 above 15) the 0.30 of continuing training and the employer FIS 0.33333 (0.50, one third to the worker) are excluded (art. 29 D.Lgs. 148/2015): 0.0063333. With the FIS cut of art. 29 c. 8-bis the excluded FIS falls with it. No dirigenti rate: left open.",
+            "note": "Breakdown of the tier rates checked against the rate tables of the tier provenance. The same exclusions in INPS circ. 90/2025, 91/2025 and 10/2026. The Fondo di garanzia TFR (L. 297/1982), CIGO and CIGS are not in the list and stay in the base; INAIL, the Fondo di Tesoreria TFR and the pension solidarity contribution are not part of the tier rate. 2027: the 2026 exclusions carried over until the 2027 circulars are published.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2027-01-01",
+              "verification_status": "unverified"
+            }
+          }
+        }
       },
       {
         "max_employees": 15,
         "rate": "0.2951333",
-        "ivs_rate": "0.2381"
+        "ivs_rate": "0.2381",
+        "relief_excluded": {
+          "rate": "0.0083333",
+          "rate_by_category": {
+            "dirigente": null
+          },
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "inps-circolare-82-2026",
+                "title": "INPS Circolare n. 82 del 29 luglio 2026",
+                "kind": "inps_circolare",
+                "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2026/07/Circolare_15337/Allegati/16906_Circolare-numero-82-del-29-07-2026.pdf",
+                "published_on": "2026-07-29",
+                "sha256": "89edfbeaf1da7495aac9141c2a76537e1ba5ba5b72e88b0e3ff9477db11bbd70"
+              },
+              "page": "5",
+              "section": "par. 3, Assetto e misura dell'esonero",
+              "quote": "Si ricorda, in particolare, che non sono oggetto di sgravio le seguenti contribuzioni: - i premi e i contributi dovuti all’INAIL; - il contributo, ove dovuto, al Fondo per l’erogazione ai lavoratori dipendenti del settore privato dei trattamenti di fine rapporto [...] - il contributo, ove dovuto, ai Fondi di cui agli articoli 26, 27 e 29 del decreto legislativo 14 settembre 2015, n. 148 [...] - il contributo previsto dall’articolo 25, quarto comma, della legge 21 dicembre 1978, n. 845, in misura pari allo 0,30 per cento della retribuzione imponibile"
+            },
+            "transformation": "Terziario, tier up to 15 employees: of the rate (IVS 23.81, NASpI 1.31, continuing training 0.30, Fondo di garanzia TFR 0.20, CUAF 0.68, maternita 0.24, malattia 2.44, FIS, CIGS 0.60 above 15) the 0.30 of continuing training and the employer FIS 0.53333 (0.80, one third to the worker) are excluded (art. 29 D.Lgs. 148/2015): 0.0083333. With the FIS cut of art. 29 c. 8-bis the excluded FIS falls with it. No dirigenti rate: left open.",
+            "note": "Breakdown of the tier rates checked against the rate tables of the tier provenance. The same exclusions in INPS circ. 90/2025, 91/2025 and 10/2026. The Fondo di garanzia TFR (L. 297/1982), CIGO and CIGS are not in the list and stay in the base; INAIL, the Fondo di Tesoreria TFR and the pension solidarity contribution are not part of the tier rate. 2027: the 2026 exclusions carried over until the 2027 circulars are published.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2027-01-01",
+              "verification_status": "unverified"
+            }
+          }
+        }
       },
       {
         "max_employees": null,
         "rate": "0.3011333",
-        "ivs_rate": "0.2381"
+        "ivs_rate": "0.2381",
+        "relief_excluded": {
+          "rate": "0.0083333",
+          "rate_by_category": {
+            "dirigente": null
+          },
+          "provenance": {
+            "status": "assumed",
+            "location": {
+              "source_document": {
+                "document_id": "inps-circolare-82-2026",
+                "title": "INPS Circolare n. 82 del 29 luglio 2026",
+                "kind": "inps_circolare",
+                "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2026/07/Circolare_15337/Allegati/16906_Circolare-numero-82-del-29-07-2026.pdf",
+                "published_on": "2026-07-29",
+                "sha256": "89edfbeaf1da7495aac9141c2a76537e1ba5ba5b72e88b0e3ff9477db11bbd70"
+              },
+              "page": "5",
+              "section": "par. 3, Assetto e misura dell'esonero",
+              "quote": "Si ricorda, in particolare, che non sono oggetto di sgravio le seguenti contribuzioni: - i premi e i contributi dovuti all’INAIL; - il contributo, ove dovuto, al Fondo per l’erogazione ai lavoratori dipendenti del settore privato dei trattamenti di fine rapporto [...] - il contributo, ove dovuto, ai Fondi di cui agli articoli 26, 27 e 29 del decreto legislativo 14 settembre 2015, n. 148 [...] - il contributo previsto dall’articolo 25, quarto comma, della legge 21 dicembre 1978, n. 845, in misura pari allo 0,30 per cento della retribuzione imponibile"
+            },
+            "transformation": "Terziario, tier up to any employees: of the rate (IVS 23.81, NASpI 1.31, continuing training 0.30, Fondo di garanzia TFR 0.20, CUAF 0.68, maternita 0.24, malattia 2.44, FIS, CIGS 0.60 above 15) the 0.30 of continuing training and the employer FIS 0.53333; the CIGS 0.60 stays in the base are excluded (art. 29 D.Lgs. 148/2015): 0.0083333. With the FIS cut of art. 29 c. 8-bis the excluded FIS falls with it. No dirigenti rate: left open.",
+            "note": "Breakdown of the tier rates checked against the rate tables of the tier provenance. The same exclusions in INPS circ. 90/2025, 91/2025 and 10/2026. The Fondo di garanzia TFR (L. 297/1982), CIGO and CIGS are not in the list and stay in the base; INAIL, the Fondo di Tesoreria TFR and the pension solidarity contribution are not part of the tier rate. 2027: the 2026 exclusions carried over until the 2027 circulars are published.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2027-01-01",
+              "verification_status": "unverified"
+            }
+          }
+        }
       }
     ],
     "ceiling": "122295.00",
@@ -214,7 +307,7 @@
     "published_at": "2026-10-14",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "48146f83b6fc17110e88cfb44a36152063090fd6165de0565cd6f740a23caeb5",
+    "source_hash": "bf1e392dc2542396ec4e90e4507cc94057ddbcd16379924d3e3031bb01517fe4",
     "source_type": "estimated",
     "provisional": true
   }
