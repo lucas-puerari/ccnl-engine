@@ -1530,7 +1530,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-federmeccanica",
       "ruleset_version": "2026.3",
-      "source_hash": "c09db580ba4ffb283f105078d77e774afd4318ac4950c2ade65227e6ea67b2ce",
+      "source_hash": "de2a2267287b9110f65b3e70e90a47dbec940d2527013f9a1dab056ca6268532",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-federmeccanica.json.gz"
@@ -4181,7 +4181,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "e43a0a36849172478b862ed4c05ce34608e9152bfbf851e9e4e44a5921810a89",
+      "source_hash": "27682f89ee61ae9c031dee029a81a304a16a0bac8c83c97d0becf203028a417e",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/metalmeccanico-federmeccanica.json.gz",

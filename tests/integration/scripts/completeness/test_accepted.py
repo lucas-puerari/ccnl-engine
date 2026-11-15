@@ -52,8 +52,14 @@ def test_alimentari_holds_its_working_time_rules(feature: str) -> None:
     [("night_work", False), ("shift_work", False), ("holiday_work", True)],
 )
 def test_a_supplement_without_its_band_stays_a_gap(feature: str, holds: bool) -> None:
-    """Federmeccanica holds holiday bands, no ordinary night or shift band."""
-    assert accepted(feature, load_ccnl("metalmeccanico-federmeccanica")) is holds
+    """Agenti immobiliari holds holiday bands, no ordinary night or shift band."""
+    assert accepted(feature, load_ccnl("agenti-immobiliari-fiaip")) is holds
+
+
+@pytest.mark.parametrize("feature", ["night_work", "shift_work", "holiday_work"])
+def test_federmeccanica_holds_its_night_and_shift_bands(feature: str) -> None:
+    """Art. 7: night before and after 22, the shift workers' night hours."""
+    assert accepted(feature, load_ccnl("metalmeccanico-federmeccanica"))
 
 
 def test_a_second_level_supplement_is_accepted_by_design() -> None:
