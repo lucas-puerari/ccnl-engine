@@ -145,6 +145,32 @@
             "TECNOLOGO": {
               "periods": [
                 {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2026-02-25",
+                  "gap_kind": "not_applicable"
+                },
+                {
+                  "valid_from": "2026-02-25",
+                  "valid_until": "2026-03-01",
+                  "value": "328.33",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "sequenza-tecnologi-2026-02-24",
+                        "title": "Sequenza contrattuale per i tecnologi a tempo indeterminato delle Università, 24 febbraio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026_02_24_CIR-TECNOLOGI-SEQ.pdf",
+                        "sha256": "9d464fcfabd7c254ab6d9249a4900c3d1b0ed2543752e061b7c34771bad1275c"
+                      },
+                      "page": "9",
+                      "section": "Tabella A - Stipendio tabellare annuo",
+                      "quote": "da 0 a 5 33.000,00 da 6 a 11 36.940,00"
+                    },
+                    "transformation": "The step from the position da 0 a 5 to da 6 a 11: 36.940,00 / 12 - 33.000,00 / 12 = 3078.33 - 2750.00 = 328.33 a month, until the redetermination of 1 March 2026."
+                  }
+                },
+                {
                   "valid_from": "2026-03-01",
                   "valid_until": "2027-01-01",
                   "value": "343.63",
@@ -212,6 +238,32 @@
           "amount_by_level": {
             "TECNOLOGO": {
               "periods": [
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2026-02-25",
+                  "gap_kind": "not_applicable"
+                },
+                {
+                  "valid_from": "2026-02-25",
+                  "valid_until": "2026-03-01",
+                  "value": "328.34",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "sequenza-tecnologi-2026-02-24",
+                        "title": "Sequenza contrattuale per i tecnologi a tempo indeterminato delle Università, 24 febbraio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026_02_24_CIR-TECNOLOGI-SEQ.pdf",
+                        "sha256": "9d464fcfabd7c254ab6d9249a4900c3d1b0ed2543752e061b7c34771bad1275c"
+                      },
+                      "page": "9",
+                      "section": "Tabella A - Stipendio tabellare annuo",
+                      "quote": "da 6 a 11 36.940,00 da 12 a 17 40.880,00"
+                    },
+                    "transformation": "The step from the position da 6 a 11 to da 12 a 17: 40.880,00 / 12 - 36.940,00 / 12 = 3406.67 - 3078.33 = 328.34 a month, until the redetermination of 1 March 2026."
+                  }
+                },
                 {
                   "valid_from": "2026-03-01",
                   "valid_until": "2027-01-01",
@@ -281,6 +333,32 @@
             "TECNOLOGO": {
               "periods": [
                 {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2026-02-25",
+                  "gap_kind": "not_applicable"
+                },
+                {
+                  "valid_from": "2026-02-25",
+                  "valid_until": "2026-03-01",
+                  "value": "328.33",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "sequenza-tecnologi-2026-02-24",
+                        "title": "Sequenza contrattuale per i tecnologi a tempo indeterminato delle Università, 24 febbraio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026_02_24_CIR-TECNOLOGI-SEQ.pdf",
+                        "sha256": "9d464fcfabd7c254ab6d9249a4900c3d1b0ed2543752e061b7c34771bad1275c"
+                      },
+                      "page": "9",
+                      "section": "Tabella A - Stipendio tabellare annuo",
+                      "quote": "da 12 a 17 40.880,00 da 18 a 23 44.820,00"
+                    },
+                    "transformation": "The step from the position da 12 a 17 to da 18 a 23: 44.820,00 / 12 - 40.880,00 / 12 = 3735.00 - 3406.67 = 328.33 a month, until the redetermination of 1 March 2026."
+                  }
+                },
+                {
                   "valid_from": "2026-03-01",
                   "valid_until": "2027-01-01",
                   "value": "343.63",
@@ -349,6 +427,32 @@
             "TECNOLOGO": {
               "periods": [
                 {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2026-02-25",
+                  "gap_kind": "not_applicable"
+                },
+                {
+                  "valid_from": "2026-02-25",
+                  "valid_until": "2026-03-01",
+                  "value": "328.33",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "sequenza-tecnologi-2026-02-24",
+                        "title": "Sequenza contrattuale per i tecnologi a tempo indeterminato delle Università, 24 febbraio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026_02_24_CIR-TECNOLOGI-SEQ.pdf",
+                        "sha256": "9d464fcfabd7c254ab6d9249a4900c3d1b0ed2543752e061b7c34771bad1275c"
+                      },
+                      "page": "9",
+                      "section": "Tabella A - Stipendio tabellare annuo",
+                      "quote": "da 18 a 23 44.820,00 da 24 a 30 48.760,00"
+                    },
+                    "transformation": "The step from the position da 18 a 23 to da 24 a 30: 48.760,00 / 12 - 44.820,00 / 12 = 4063.33 - 3735.00 = 328.33 a month, until the redetermination of 1 March 2026."
+                  }
+                },
+                {
                   "valid_from": "2026-03-01",
                   "valid_until": "2027-01-01",
                   "value": "343.63",
@@ -416,6 +520,32 @@
           "amount_by_level": {
             "TECNOLOGO": {
               "periods": [
+                {
+                  "valid_from": "2026-01-01",
+                  "valid_until": "2026-02-25",
+                  "gap_kind": "not_applicable"
+                },
+                {
+                  "valid_from": "2026-02-25",
+                  "valid_until": "2026-03-01",
+                  "value": "328.34",
+                  "provenance": {
+                    "status": "derived",
+                    "location": {
+                      "source_document": {
+                        "document_id": "sequenza-tecnologi-2026-02-24",
+                        "title": "Sequenza contrattuale per i tecnologi a tempo indeterminato delle Università, 24 febbraio 2026",
+                        "kind": "amministrazione",
+                        "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026_02_24_CIR-TECNOLOGI-SEQ.pdf",
+                        "sha256": "9d464fcfabd7c254ab6d9249a4900c3d1b0ed2543752e061b7c34771bad1275c"
+                      },
+                      "page": "9",
+                      "section": "Tabella A - Stipendio tabellare annuo",
+                      "quote": "da 24 a 30 48.760,00 da 31 in poi 52.700,00"
+                    },
+                    "transformation": "The step from the position da 24 a 30 to da 31 in poi: 52.700,00 / 12 - 48.760,00 / 12 = 4391.67 - 4063.33 = 328.34 a month, until the redetermination of 1 March 2026."
+                  }
+                },
                 {
                   "valid_from": "2026-03-01",
                   "valid_until": "2027-01-01",
@@ -487,7 +617,12 @@
         "rate": {
           "periods": [
             {
-              "valid_from": "2026-03-01",
+              "valid_from": "2026-01-01",
+              "valid_until": "2026-02-25",
+              "gap_kind": "not_applicable"
+            },
+            {
+              "valid_from": "2026-02-25",
               "valid_until": null,
               "value": "0.01"
             }
@@ -496,7 +631,12 @@
         "employee_min_rate": {
           "periods": [
             {
-              "valid_from": "2026-03-01",
+              "valid_from": "2026-01-01",
+              "valid_until": "2026-02-25",
+              "gap_kind": "not_applicable"
+            },
+            {
+              "valid_from": "2026-02-25",
               "valid_until": null,
               "value": "0.01"
             }
@@ -567,6 +707,32 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
+          {
+            "valid_from": "2026-01-01",
+            "valid_until": "2026-02-25",
+            "gap_kind": "not_applicable"
+          },
+          {
+            "valid_from": "2026-02-25",
+            "valid_until": "2026-03-01",
+            "value": "2750.00",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "sequenza-tecnologi-2026-02-24",
+                  "title": "Sequenza contrattuale per i tecnologi a tempo indeterminato delle Università, 24 febbraio 2026",
+                  "kind": "amministrazione",
+                  "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026_02_24_CIR-TECNOLOGI-SEQ.pdf",
+                  "sha256": "9d464fcfabd7c254ab6d9249a4900c3d1b0ed2543752e061b7c34771bad1275c"
+                },
+                "page": "9",
+                "section": "Tabella A - Stipendio tabellare annuo, posizioni stipendiali da 0 a 5; art. 1 c. 3",
+                "quote": "Tabella A Stipendio tabellare annuo Valori in Euro per 12 mensilità cui aggiungere la 13^ mensilità [...] da 0 a 5 33.000,00"
+              },
+              "transformation": "33,000.00 a year over 12 = 2,750.00 a month, from the day after the signing ('Gli effetti della presente sequenza contrattuale decorrono dal giorno successivo alla data di stipulazione', art. 1 c. 3, p. 4) to the redetermination of 1 March 2026 (CCNL 1/7/2026 Tabella B2: 2,750.00 + 128.15)."
+            }
+          },
           {
             "valid_from": "2026-03-01",
             "valid_until": "2027-01-01",
@@ -709,7 +875,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "ac73cdd6cd42ae21784279219559b6d65d93dcd835a3167859b4a1b15168e068",
+    "source_hash": "b4e7633164505ceccfa6b158007394f18115b6d47dc6f7d1b23f08d41823623f",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -890,6 +1056,82 @@
             "quote": "L'indennita' di trasferta di cui all'articolo 1, primo comma, della legge 26 luglio 1978, n. 417, e all'articolo 1, primo comma, del decreto del Presidente della Repubblica 16 gennaio 1978, n. 513, l'indennita' supplementare prevista dal primo e secondo comma dell'articolo 14 della legge 18 dicembre 1973, n. 836, nonche' l'indennita' di cui all'articolo 8 del decreto legislativo luogotenenziale 7 giugno 1945, n. 320, sono soppresse. Sono soppresse le analoghe disposizioni contenute nei contratti collettivi nazionali e nei provvedimenti di recepimento degli accordi sindacali"
           },
           "transformation": "Since 1 January 2006 the public employees of the comparto have no daily travel allowance for the missions in Italy: the law suppressed it and the analogous clauses of the CCNLs. What is left is the refund of the documented expenses of the mission, a fact of the employer, which the caller states (maintainer decision of 2026-11-15)."
+        }
+      },
+      "overtime": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "sequenza-tecnologi-2026-02-24",
+              "title": "Sequenza contrattuale per i tecnologi a tempo indeterminato delle Università, 24 febbraio 2026",
+              "kind": "amministrazione",
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026_02_24_CIR-TECNOLOGI-SEQ.pdf",
+              "sha256": "9d464fcfabd7c254ab6d9249a4900c3d1b0ed2543752e061b7c34771bad1275c"
+            },
+            "page": "6",
+            "section": "Struttura della retribuzione",
+            "quote": "La struttura della retribuzione del tecnologo si compone delle seguenti voci: a) stipendio tabellare di cui all’allegata Tabella A; b) premi correlati alla performance organizzativa ed individuale."
+          },
+          "transformation": "The pay of the tecnologo is the tabellare and the performance premiums only: the sequence sets no premium of overtime, and nothing is owed for it. The performance premiums come from the resources and regulations of each university (an employer fact)."
+        }
+      },
+      "shift_work": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "sequenza-tecnologi-2026-02-24",
+              "title": "Sequenza contrattuale per i tecnologi a tempo indeterminato delle Università, 24 febbraio 2026",
+              "kind": "amministrazione",
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026_02_24_CIR-TECNOLOGI-SEQ.pdf",
+              "sha256": "9d464fcfabd7c254ab6d9249a4900c3d1b0ed2543752e061b7c34771bad1275c"
+            },
+            "page": "6",
+            "section": "Struttura della retribuzione",
+            "quote": "La struttura della retribuzione del tecnologo si compone delle seguenti voci: a) stipendio tabellare di cui all’allegata Tabella A; b) premi correlati alla performance organizzativa ed individuale."
+          },
+          "transformation": "The pay of the tecnologo is the tabellare and the performance premiums only: the sequence sets no premium of shift work, and nothing is owed for it. The performance premiums come from the resources and regulations of each university (an employer fact)."
+        }
+      },
+      "night_work": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "sequenza-tecnologi-2026-02-24",
+              "title": "Sequenza contrattuale per i tecnologi a tempo indeterminato delle Università, 24 febbraio 2026",
+              "kind": "amministrazione",
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026_02_24_CIR-TECNOLOGI-SEQ.pdf",
+              "sha256": "9d464fcfabd7c254ab6d9249a4900c3d1b0ed2543752e061b7c34771bad1275c"
+            },
+            "page": "6",
+            "section": "Struttura della retribuzione",
+            "quote": "La struttura della retribuzione del tecnologo si compone delle seguenti voci: a) stipendio tabellare di cui all’allegata Tabella A; b) premi correlati alla performance organizzativa ed individuale."
+          },
+          "transformation": "The pay of the tecnologo is the tabellare and the performance premiums only: the sequence sets no premium of night work, and nothing is owed for it. The performance premiums come from the resources and regulations of each university (an employer fact)."
+        }
+      },
+      "holiday_work": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "sequenza-tecnologi-2026-02-24",
+              "title": "Sequenza contrattuale per i tecnologi a tempo indeterminato delle Università, 24 febbraio 2026",
+              "kind": "amministrazione",
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026_02_24_CIR-TECNOLOGI-SEQ.pdf",
+              "sha256": "9d464fcfabd7c254ab6d9249a4900c3d1b0ed2543752e061b7c34771bad1275c"
+            },
+            "page": "6",
+            "section": "Struttura della retribuzione",
+            "quote": "La struttura della retribuzione del tecnologo si compone delle seguenti voci: a) stipendio tabellare di cui all’allegata Tabella A; b) premi correlati alla performance organizzativa ed individuale."
+          },
+          "transformation": "The pay of the tecnologo is the tabellare and the performance premiums only: the sequence sets no premium of holiday work, and nothing is owed for it. The performance premiums come from the resources and regulations of each university (an employer fact)."
         }
       }
     }

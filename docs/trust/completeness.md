@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 4/136 CCNLs**; complete except declared residuals: 0. Bundle: 251 weak rules, 284 open limitations (284 with a monetary impact), 30 declared residuals.
+**Complete: 5/136 CCNLs**; complete except declared residuals: 0. Bundle: 251 weak rules, 284 open limitations (284 with a monetary impact), 30 declared residuals.
 
 ## Declared window
 
@@ -191,7 +191,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [turismo-federalberghi-alberghi-minori](../contracts/turismo-federalberghi-alberghi-minori.md) | `turismo` | exploratory | — | 8 rows | 8 open requirements; 3 monetary limitations; 5 outside_input limitations; 4 non-native capabilities; 1 declared residual |
 | [uneba-uneba](../contracts/uneba-uneba.md) | `socio-sanitario` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 outside_input limitation; 4 non-native capabilities |
 | [universita-aran](../contracts/universita-aran.md) | `pubblico-impiego` | exploratory | — | 0 rows | complete |
-| [universita-tecnologi-aran](../contracts/universita-tecnologi-aran.md) | `pubblico-impiego` | exploratory | — | 0 rows | tables from 2026-03-01; 4 non-native capabilities |
+| [universita-tecnologi-aran](../contracts/universita-tecnologi-aran.md) | `pubblico-impiego` | exploratory | — | 0 rows | complete |
 | [vetro-meccanizzato-assovetro](../contracts/vetro-meccanizzato-assovetro.md) | `chimica` | exploratory | — | 30 rows | 30 open requirements; 29 weak rules; 1 outside_input limitation; 7 non-native capabilities |
 | [vigilanza-privata-assiv](../contracts/vigilanza-privata-assiv.md) | `vigilanza` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 monetary limitation; 5 non-native capabilities; 1 declared residual |
 | [vigilanza-privata-assiv-sf](../contracts/vigilanza-privata-assiv-sf.md) | `vigilanza` | exploratory | — | 5 rows | 5 open requirements; 3 weak rules; 2 monetary limitations; 6 non-native capabilities; 1 declared residual |
