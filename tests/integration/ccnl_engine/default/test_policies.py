@@ -44,6 +44,11 @@ _CATALOG = load_capability_catalog(2026)
 
 #: ``requires_fact`` fields without a case, and why.
 _NOT_EXERCISED: dict[str, str] = {
+    "Employment.weekly_shifts": (
+        "read only by the Federmeccanica PAR hours of 18 and 21 weekly shifts, "
+        "from 2027, which no registry pair reaches; tests/mutation/ccnl_engine/"
+        "leave/permit/test_weekly_shifts.py exercises the stated and unknown fact"
+    ),
     "PriorYearTaxFacts.pay_above_ccnl": (
         "read only in the month of the elemento perequativo of a firm without "
         "second-level bargaining, which no registry pair reaches; "
