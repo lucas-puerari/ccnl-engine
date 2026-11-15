@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | leave, overtime, sickness |
+| **Limits of this contract** | leave, overtime |
 
-8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -179,13 +179,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Source the payment basis and timing for PAR left when employment ends before the conto ore expires.
-
-!!! warning "metalmeccanico-federmeccanica/holiday_outside_calendar · sickness · impact yes · open"
-    Art. 9 (Sez. IV Tit. III): the holidays of letters b and c in a sickness or a work injury reach 100% (sickness_rules.holiday and insured_absence.injury.holiday). Not calculated: the holiday top-up during pregnancy and puerperium, the patron saint substitute and 29 June, a letter b holiday in Rome only, outside the national calendar.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Top up pregnancy and puerperium holidays, the substitute patron holiday and Rome-only 29 June when the applicable local facts are stated.
 
 !!! note "metalmeccanico-federmeccanica/part_time_elastic_clauses · overtime · impact yes · resolved"
     PART-TIME ELASTIC CLAUSES (CCNL 5 February 2021, PDF p. 57): 10% for a rearranged placement of the hours and 15% for an increase in duration up to 25% of the normal annual part-time hours. The request has no field for the hours of an elastic clause.
@@ -391,6 +384,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICE SENIORITY (Disciplina dell'apprendistato professionalizzante, Art. 13, p. 272 of the CCNL 5 February 2021): the apprenticeship counts for the aumenti periodici of the worker kept in service for 65% of its length; no increment during it (seniority_increments.apprentice_amount 0.00).
     
     LEAVE, CONTO ORE (Sez. IV Tit. III Art. 5, p. 156): the PAR not taken in their year are carried 24 more months and the residual is paid with the December pay of the second year after, at the pay of that run (work_rules.leave_rules.permit_deadline, carry_years 2).
+    
+    Art. 9 (Sez. IV Tit. III): the holidays of letters b and c in a sickness, a work injury or the compulsory maternity leave reach 100% (sickness_rules.holiday, insured_absence.injury.holiday, insured_absence.maternity.holiday). Letter c) is the patron saint of the workplace or the festivity agreed locally in its place, and for Rome SS. Pietro e Paolo (29 June, letter b point 4): the request states that date as EmployerProfile.patron_saint_day.
     
 
 ## Raw data
