@@ -159,6 +159,8 @@ def resolve_supplement(event: SupplementEvent, terms: HourlyTerms) -> Supplement
             )
         if event.in_periodic_shift:
             rate = Decimal(0)
+    if band.per_shift:
+        return _per_shift(event, band, rate, field, feature)
     base = (
         None
         if band.fixed_per_hour
@@ -173,6 +175,27 @@ def resolve_supplement(event: SupplementEvent, terms: HourlyTerms) -> Supplement
         hours,
         base,
     )
+
+
+def _per_shift(
+    event: SupplementEvent,
+    band: SupplementBand,
+    rate: Decimal,
+    field: str,
+    feature: str,
+) -> SupplementPay:
+    """Return the supplement of a band paid per turn: ``rate * shifts``.
+
+    Returns:
+        The supplement, its ``hours`` the turns of the event.
+    """
+    shifts = getattr(event, "shifts", None)
+    if shifts is None:
+        name = f"{type(event).__name__}.shifts"
+        why = f"the CCNL band {band.code} pays the turn and {name} is not stated"
+        reject_underived(field, feature, event.event_date, Unstated(name, why))
+    turns = Decimal(shifts)
+    return SupplementPay(money(rate * turns), band, rate, turns, None)
 
 
 def supplement_decision(
@@ -201,6 +224,7 @@ def supplement_decision(
             "band_code": band.code,
             "band_supplement": pay.rate,
             "fixed_per_hour": str(band.fixed_per_hour).lower(),
+            **({"per_shift": "true"} if band.per_shift else {}),
             "hours": pay.hours,
             **({} if pay.base is None else pay.base.inputs()),
             **(

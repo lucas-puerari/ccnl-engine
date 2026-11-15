@@ -1,8 +1,9 @@
 """The CCNL supplement bands of night, holiday and shift work and the hourly base."""
 
 from enum import StrEnum
+from typing import Self
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, model_validator
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.employment.category.models import WorkerCategory
@@ -119,6 +120,8 @@ class SupplementBand(BaseModel):
             amount per hour when ``fixed_per_hour`` is true.
         fixed_per_hour: Whether the rate is an absolute EUR amount per hour
             rather than a share of the worker's hourly base.
+        per_shift: Whether the rate is an absolute EUR amount per turn
+            worked (scuola Tabella E1.8), paid on the turns of the event.
         base: Monthly pay elements of its hourly base when the CCNL names
             others than those of :attr:`TimeSupplements.hourly_base_method`
             (Pubblici Esercizi art. 130: paga base and contingenza only);
@@ -148,6 +151,7 @@ class SupplementBand(BaseModel):
     work: SupplementWork
     rate: TimeSeries
     fixed_per_hour: bool = False
+    per_shift: bool = False
     base: HourlyBaseMethod | None = None
     hours_paid_apart: bool | None
     role: str | None = None
@@ -156,3 +160,18 @@ class SupplementBand(BaseModel):
     categories: tuple[WorkerCategory, ...] = ()
     excludes_periodic_shift: bool = False
     provenance: RuleProvenance
+
+    @model_validator(mode="after")
+    def _one_unit(self) -> Self:
+        """Reject a band paid both per hour and per turn.
+
+        Returns:
+            The validated band.
+
+        Raises:
+            ValueError: When ``fixed_per_hour`` and ``per_shift`` are both set.
+        """
+        if self.fixed_per_hour and self.per_shift:
+            msg = f"supplement band {self.code} is paid per hour or per turn, not both"
+            raise ValueError(msg)
+        return self

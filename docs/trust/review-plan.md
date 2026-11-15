@@ -8,7 +8,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
-| pubblica-amministrazione | 14 | 7 548 000 | 5 | 284 | 221 | 0 | `funzioni-centrali-aran` |
+| pubblica-amministrazione | 14 | 7 548 000 | 5 | 287 | 221 | 0 | `funzioni-centrali-aran` |
 | terziario | 46 | 5 257 055 | 46 | 951 | 1966 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 49 | 4 969 900 | 150 | 1213 | 2607 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 67 | 0 | `lavoro-domestico-non-convivente` |
@@ -23,7 +23,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---|---:|---:|---:|---|---|---|
 | [`afam-aran`](../contracts/afam-aran.md) | 1 200 000 | exploratory | 0 | 15 | 26 | party or official | none | none |
 | [`enti-ricerca-aran`](../contracts/enti-ricerca-aran.md) | 1 200 000 | exploratory | 0 | 8 | 34 | party or official | none | none |
-| [`istruzione-ricerca-aran`](../contracts/istruzione-ricerca-aran.md) | 1 200 000 | exploratory | 0 | 42 | 60 | party or official | none | none |
+| [`istruzione-ricerca-aran`](../contracts/istruzione-ricerca-aran.md) | 1 200 000 | exploratory | 0 | 45 | 60 | party or official | none | none |
 | [`universita-aran`](../contracts/universita-aran.md) | 1 200 000 | exploratory | 0 | 9 | 22 | party or official | none | none |
 | [`universita-tecnologi-aran`](../contracts/universita-tecnologi-aran.md) | 1 200 000 | exploratory | 0 | 5 | 4 | party or official | none | none |
 | [`sanita-aran`](../contracts/sanita-aran.md) | 580 000 | reviewed | 0 | 8 | 16 | party or official | maintainer | 2027-01-31 |

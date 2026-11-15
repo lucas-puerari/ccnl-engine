@@ -26,6 +26,8 @@ _FROM_CCNL = (
     "the value the CCNL sets, derived from its sourced rule; where the CCNL "
     "sets none the engine applies, the event is rejected"
 )
+#: The turns of a supplement event, read only by a band paid per turn.
+_TURNS = "no turns: a band paid per turn (scuola Tabella E1.8) rejects the event"
 _SUPPLEMENT_HOURS = (
     "read only without supplement_amount, which then requires it to derive "
     "the CCNL supplement"
@@ -57,8 +59,10 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "night hours from 22:00; hours before it are a fact of the timesheet "
         "the event records"
     ),
+    "NightShiftEvent.shifts": absence_is_fact(_TURNS),
     "HolidayWorkEvent.supplement_amount": absence_is_fact(_FROM_CCNL),
     "HolidayWorkEvent.hours": absence_is_fact(_SUPPLEMENT_HOURS),
+    "HolidayWorkEvent.shifts": absence_is_fact(_TURNS),
     "HolidayWorkEvent.kind": absence_is_fact(
         "work on a public holiday; a Sunday, rest day or compensatory rest is "
         "a fact of the timesheet the event records"
