@@ -10,6 +10,9 @@ from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.contribution.exemption.inputs import (
     ContributionExemption as Exemption,
 )
+from ccnl_engine.contribution.exemption.inputs import (
+    MothersExemption,
+)
 from ccnl_engine.employment.fact.inputs import WeeklyHours, WorkPattern
 from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.pension_fund.inputs import PENSION_FUND_TYPES
@@ -45,4 +48,5 @@ def employment_fields(
         ("tfr_treasury_fund", e.tfr_treasury_fund, bool, True),
         ("qualifying_shifts", e.qualifying_shifts, bool, True),
         ("contribution_exemption", e.contribution_exemption, Exemption, True),
+        ("mothers_exemption", e.mothers_exemption, MothersExemption, True),
     )

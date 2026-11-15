@@ -464,8 +464,18 @@ issue `contribution_exemption_other_run`.
 Not sourced: whether the cap a month leaves unused carries over, and
 whether the NASpI addizionale of a fixed-term mother is in the base. Not
 modelled: the partial exemption of L. 199/2025 cc. 153-154 and the parents'
-reduced hours of cc. 214-218 (their decrees are not published), and the
-exemption of the worker's share of mothers (L. 213/2023 art. 1 c. 180).
+reduced hours of cc. 214-218 (their decrees are not published).
+
+`Employment.mothers_exemption` states that the worker is a mother of three
+or more children, with the birth day of the youngest (L. 213/2023 art. 1 c.
+180, INPS circ. 27/2024). On a permanent contract, to the pay period of
+December 2026 and the month the youngest turns eighteen, her IVS share
+(`ivs_employee`) is exempted up to 250.00 a month, 8.06 a day when the
+employment starts or ends in the month, not cut for part time: the
+negative employee component `mothers_ivs_exemption` lowers the employee
+contributions, so the taxable income rises; the decision carries the code
+`ELA3`. A fixed-term contract or domestic work is rejected. The additional
+1% IVS is left out: the circular does not name it.
 
 ## Residual leave at the termination
 

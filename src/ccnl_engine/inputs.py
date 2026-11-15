@@ -32,6 +32,7 @@ from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.contribution.exemption.inputs import (
     ContributionExemption,
     ExemptionMeasure,
+    MothersExemption,
 )
 from ccnl_engine.employer.inputs import (
     AgriculturalZone,
@@ -134,6 +135,7 @@ __all__ = [
     "IndividualElement",
     "InpsBaseYtd",
     "LeaveBalance",
+    "MothersExemption",
     "NaspiCase",
     "NaspiExclusion",
     "NoPensionFund",

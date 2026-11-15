@@ -19,6 +19,7 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.contribution.exemption.inputs import EXEMPTION_FEATURE
+from ccnl_engine.contribution.exemption.mothers import mothers_decisions
 from ccnl_engine.contribution.exemption.rules import (
     measure_rule,
     month_cap,
@@ -256,7 +257,7 @@ def exemption_decisions(
     """
     run = exemption_run(ctx)
     if run is None:
-        return ()
+        return mothers_decisions(ctx, breakdown)
     amount = -sum(
         (c.amount for c in breakdown.components if c.name == EXEMPTION_COMPONENT),
         _ZERO,
@@ -276,4 +277,5 @@ def exemption_decisions(
             },
             amount=amount,
         ),
+        *mothers_decisions(ctx, breakdown),
     )

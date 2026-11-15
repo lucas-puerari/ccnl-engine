@@ -100,6 +100,8 @@ state types.
 
 ::: ccnl_engine.inputs.ExemptionMeasure
 
+::: ccnl_engine.inputs.MothersExemption
+
 ::: ccnl_engine.inputs.ShortfallDeferralRequest
 
 ::: ccnl_engine.inputs.SubstituteTaxRegime

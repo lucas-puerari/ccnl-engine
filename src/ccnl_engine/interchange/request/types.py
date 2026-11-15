@@ -20,6 +20,7 @@ from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.contribution.exemption.inputs import (
     ContributionExemption,
     ExemptionMeasure,
+    MothersExemption,
 )
 from ccnl_engine.contribution.zone.models import AgriculturalZone
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
@@ -147,6 +148,7 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             Art15Expense,
             ContributionExemption,
             ExemptionMeasure,
+            MothersExemption,
             Art15Kind,
             HolidayWorkKind,
             IncomeEstimateQuality,

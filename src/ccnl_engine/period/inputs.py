@@ -195,6 +195,7 @@ class PeriodInput:
             personal_withholdings=employment.personal_withholdings,
             tax_returns=employment.tax_returns,
             contribution_exemption=employment.contribution_exemption,
+            mothers_exemption=employment.mothers_exemption,
             prior_year=self.prior_year,
             current_year=self.current_year,
             extra_month_accrual=extra_month_accrual,
