@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | sickness |
+| **Limits of this contract** | — |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -86,13 +86,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "afam-aran/shared_rules_unchecked · sickness · impact unknown · open"
-    SHARED RULES: the hourly divisor, the tredicesima, the leave, absence, sickness and accrual rules are those of the scuola file of the same comparto (istruzione-ricerca-aran), not read again for the AFAM staff. No overtime table is modelled.
-
-    **Applies when:** `sickness` applies.
-
-    **Remediation:** Read the AFAM sections of the CCNL 2019-2021 (18/1/2024) for leave, absence, sickness and overtime.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -245,6 +238,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 ??? note "Coverage notes"
     SCOPE: staff of the AFAM institutions (accademie, conservatori, ISIA): Aree Operatori, Assistenti, Funzionari, Elevate Qualificazioni (new classification of art. 165 CCNL 18/1/2024 from 1.5.2024, allegato J), docenti di prima fascia and ricercatori, with seven bands of anzianità di servizio (Tabella D2 of the CCNL 2022-2024 and 2025-2027) as seniority steps, from 1.1.2024.
+    
+    SHARED RULES, verified for the AFAM staff (review of 2026-11-15): the AFAM section of the CCNL 18/1/2024 keeps the earlier AFAM CCNLs where not replaced (art. 1 c. 16). Ferie: 32 working days on 6 days (28 on 5), 30 (26) in the first 3 years of service (CCNL AFAM 16/2/2005 art. 9 cc. 2-5, as replaced by art. 6 CCNL 4/8/2010; sha256 32676c0c9d16f2639a9dd8b6d4506cfa86f9cdf23775520387f71fa3ef3f8f59, p. 8): as leave_rules. Sickness: 18 months of comporto over the triennio, 9 months at 100%, 3 at 90%, 6 at 50% (art. 11 cc. 1-2, 8, p. 10): as sickness_rules. The 4 days of rest of the festività soppresse (art. 9) and the 18 hours of permits for personal reasons (art. 4 c. 2 CCNL 2010; art. 168 CCNL 2024) are leave taken, with no pay effect: not modelled. Overtime of the technical-administrative staff is paid as set by the local integrative bargaining (art. 34 c. 4, p. 25): no national rate.
     
     PENSION FUND: the AFAM staff join the Fondo Scuola Espero ('compresi i dipendenti dell'AFAM'), 1% + 1% for public employees (employer_funds ESPERO), per the fund's scheda of 28/10/2026.
     

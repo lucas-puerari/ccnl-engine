@@ -6058,17 +6058,8 @@
         "text": "SCOPE: staff of the AFAM institutions (accademie, conservatori, ISIA): Aree Operatori, Assistenti, Funzionari, Elevate Qualificazioni (new classification of art. 165 CCNL 18/1/2024 from 1.5.2024, allegato J), docenti di prima fascia and ricercatori, with seven bands of anzianità di servizio (Tabella D2 of the CCNL 2022-2024 and 2025-2027) as seniority steps, from 1.1.2024."
       },
       {
-        "kind": "simplification",
-        "text": "SHARED RULES: the hourly divisor, the tredicesima, the leave, absence, sickness and accrual rules are those of the scuola file of the same comparto (istruzione-ricerca-aran), not read again for the AFAM staff. No overtime table is modelled.",
-        "capability": "sickness",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "shared_rules_unchecked",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "remediation": "Read the AFAM sections of the CCNL 2019-2021 (18/1/2024) for leave, absence, sickness and overtime."
-        }
+        "kind": "info",
+        "text": "SHARED RULES, verified for the AFAM staff (review of 2026-11-15): the AFAM section of the CCNL 18/1/2024 keeps the earlier AFAM CCNLs where not replaced (art. 1 c. 16). Ferie: 32 working days on 6 days (28 on 5), 30 (26) in the first 3 years of service (CCNL AFAM 16/2/2005 art. 9 cc. 2-5, as replaced by art. 6 CCNL 4/8/2010; sha256 32676c0c9d16f2639a9dd8b6d4506cfa86f9cdf23775520387f71fa3ef3f8f59, p. 8): as leave_rules. Sickness: 18 months of comporto over the triennio, 9 months at 100%, 3 at 90%, 6 at 50% (art. 11 cc. 1-2, 8, p. 10): as sickness_rules. The 4 days of rest of the festività soppresse (art. 9) and the 18 hours of permits for personal reasons (art. 4 c. 2 CCNL 2010; art. 168 CCNL 2024) are leave taken, with no pay effect: not modelled. Overtime of the technical-administrative staff is paid as set by the local integrative bargaining (art. 34 c. 4, p. 25): no national rate."
       },
       {
         "kind": "info",
@@ -6087,7 +6078,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "389fc15bc05344a0d4bd33ef46ff6b663d8536a89dbde942fec242d4e3a19a98",
+    "source_hash": "f97ee8df859917a222013a3920052991c94c548d9609bda5f21617e620d505d4",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

@@ -606,9 +606,6 @@
     "agreement/acconciatura-estetica-confartigianato.json": [
       "acconciatura-estetica-confartigianato/inps_sector_rates_unsourced"
     ],
-    "agreement/afam-aran.json": [
-      "afam-aran/shared_rules_unchecked"
-    ],
     "agreement/agenzie-marittime-i481.json": [
       "agenzie-marittime-i481/function_allowance_on_fourteenth"
     ],
@@ -785,9 +782,6 @@
       "edilizia-pmi-confapi-aniem/provincial_evr",
       "edilizia-pmi-confapi-aniem/sickness_pay_bands",
       "edilizia-pmi-confapi-aniem/territorial_sector_allowance"
-    ],
-    "agreement/enti-ricerca-aran.json": [
-      "enti-ricerca-aran/shared_rules_unchecked"
     ],
     "agreement/esercizi-cinematografici-anec.json": [
       "esercizi-cinematografici-anec/fpls_rates_approximated",
