@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | leave, overtime, sickness |
+| **Limits of this contract** | leave, overtime |
 
-8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 92 verified / 11 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 92 verified / 17 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -146,11 +146,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Resolved (2026-11-15): exempt_quota_hours_before stated places the overtime in the regime, absent it is agreed overtime; an event in the regime whose quota needs the turnista status has a missing_fact in_periodic_shift (overtime_exempt_quota_unknown).
 
 !!! warning "metalmeccanico-federmeccanica/shift_and_multiweek_premiums · overtime · impact yes · open"
-    MULTI-WEEK SCHEDULE AND SHIFT NIGHT-HOLIDAY: the premiums of the orario plurisettimanale of Art. 5 as renewed on 22 November 2025 are the bands OT_PLURI (15%), OT_PLURI_SABATO (25%) and, for sudden needs, OT_PLURI_IMPROVVISO (20%) and OT_PLURI_IMPROVVISO_SABATO (30%), premium only. Not modelled: their rise 'a partire dalla 81esima ora' ('elevate nella misura onnicomprensiva dell'8%'), which needs the hours of the schedule worked in the year, and the night-holiday rates of the shift workers of Art. 7 rows h) and i) (60%, 35%; 65%, 40% from 22 to 6). The shift column of the overtime of Art. 7 is: OT_NOTTURNO_TURNI, OT_NOTTURNO_TURNI_EXTRA and OT_NOTTURNO_FESTIVO_TURNI for an event with in_periodic_shift.
+    MULTI-WEEK SCHEDULE: the premiums of the orario plurisettimanale of Art. 5 as renewed on 22 November 2025 are the bands OT_PLURI (15%), OT_PLURI_SABATO (25%) and, for sudden needs, OT_PLURI_IMPROVVISO (20%) and OT_PLURI_IMPROVVISO_SABATO (30%), premium only. Not modelled: their rise 'a partire dalla 81esima ora' ('elevate nella misura onnicomprensiva dell'8%'), which needs the hours of the schedule worked in the year. The night-holiday work of Art. 7 rows h) and i) is paid by the FED_NOTTURNO_FESTIVO* supplement bands, the shift column of the overtime by OT_NOTTURNO_TURNI, OT_NOTTURNO_TURNI_EXTRA and OT_NOTTURNO_FESTIVO_TURNI for an event with in_periodic_shift.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add the hours of the multi-week schedule worked in the year to pay the 8% from the 81st hour, and the night-holiday rates of the shift workers, then resolve this limitation.
+    **Remediation:** Add the hours of the multi-week schedule worked in the year to pay the 8% from the 81st hour, then resolve this limitation.
 
 !!! note "metalmeccanico-federmeccanica/part_time_supplementary_rate · overtime · impact yes · resolved"
     PART-TIME SUPPLEMENTARY HOURS: work up to 40 weekly hours earns an all-inclusive 10% on the overtime-premium pay elements until supplementary hours exceed 50% of agreed annual part-time hours; the excess earns 20% (CCNL 5 February 2021, PDF p. 58). The rate past the yearly share is paid when the event states the supplementary hours worked earlier in the year and the agreed annual hours (OvertimeEvent.supplementary_hours_before, agreed_annual_hours); without them the base rate is paid and the run carries this limitation. The elastic clauses of the same section (PDF p. 57: 10% for a rearranged placement of hours, 15% for an increase in duration up to 25% of the normal annual part-time hours) and the conditions of supplementary work are not modelled.
@@ -179,13 +179,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Source the payment basis and timing for PAR left when employment ends before the conto ore expires.
-
-!!! warning "metalmeccanico-federmeccanica/holiday_outside_calendar · sickness · impact yes · open"
-    Art. 9 (Sez. IV Tit. III): the holidays of letters b and c in a sickness or a work injury reach 100% (sickness_rules.holiday and insured_absence.injury.holiday). Not calculated: the holiday top-up during pregnancy and puerperium, the patron saint substitute and 29 June, a letter b holiday in Rome only, outside the national calendar.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Top up pregnancy and puerperium holidays, the substitute patron holiday and Rome-only 29 June when the applicable local facts are stated.
 
 !!! note "metalmeccanico-federmeccanica/part_time_elastic_clauses · overtime · impact yes · resolved"
     PART-TIME ELASTIC CLAUSES (CCNL 5 February 2021, PDF p. 57): 10% for a rearranged placement of the hours and 15% for an increase in duration up to 25% of the normal annual part-time hours. The request has no field for the hours of an elastic clause.
@@ -391,6 +384,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICE SENIORITY (Disciplina dell'apprendistato professionalizzante, Art. 13, p. 272 of the CCNL 5 February 2021): the apprenticeship counts for the aumenti periodici of the worker kept in service for 65% of its length; no increment during it (seniority_increments.apprentice_amount 0.00).
     
     LEAVE, CONTO ORE (Sez. IV Tit. III Art. 5, p. 156): the PAR not taken in their year are carried 24 more months and the residual is paid with the December pay of the second year after, at the pay of that run (work_rules.leave_rules.permit_deadline, carry_years 2).
+    
+    Art. 9 (Sez. IV Tit. III): the holidays of letters b and c in a sickness, a work injury or the compulsory maternity leave reach 100% (sickness_rules.holiday, insured_absence.injury.holiday, insured_absence.maternity.holiday). Letter c) is the patron saint of the workplace or the festivity agreed locally in its place, and for Rome SS. Pietro e Paolo (29 June, letter b point 4): the request states that date as EmployerProfile.patron_saint_day.
     
 
 ## Raw data

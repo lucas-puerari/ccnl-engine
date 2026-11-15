@@ -105,7 +105,7 @@ formulas or caller-declared amounts.
 | `art15_deductions` | Detrazioni art. 15 TUIR al conguaglio per gli oneri trattenuti o erogati dal datore (art. 23 c. 3 DPR 600/1973): spese sanitarie e premi assicurativi | core | net | native | decided | decision | `current_year.art15_expenses` | — | implemented | none bundled |
 | `overtime` | Lavoro straordinario e supplementare | scenario | work_rules | caller_supplied | event | event | — | ccnl_band_multiplier, caller_multiplier | caller-supplied | 283 / 296 / 4 / 0 |
 | `night_work` | Lavoro notturno | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 89 / 1 / 0 / 0 |
-| `holiday_work` | Lavoro festivo | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 235 / 3 / 0 / 0 |
+| `holiday_work` | Lavoro festivo | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 235 / 9 / 0 / 0 |
 | `shift_work` | Lavoro a turni | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 77 / 2 / 0 / 0 |
 | `standby` | Reperibilità (importi del CCNL per livello) | scenario | work_rules | native | event | event | — | — | implemented | none bundled |
 | `absence` | Assenze ingiustificate | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 23 / 0 / 0 / 0 |
@@ -225,7 +225,7 @@ never grow.
 | 83 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | ⚠️ | base_salary, inps_employer | 71 / 12 / 0 / 0 |
 | 84 | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | ✅ | overtime, sickness | 25 / 22 / 0 / 0 |
 | 85 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | ⚠️ | base_salary, leave, overtime, sickness | 69 / 10 / 0 / 0 |
-| 86 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | ✅ | leave, overtime, sickness | 92 / 11 / 0 / 0 |
+| 86 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | ✅ | leave, overtime | 92 / 17 / 0 / 0 |
 | 87 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | ⚠️ | seniority, una_tantum | 35 / 33 / 3 / 0 |
 | 88 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | ✅ | — | 77 / 11 / 1 / 1 |
 | 89 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | ⚠️ | base_salary, bilateral_funds, inail, overtime, seniority, sickness, territorial_supplement | 22 / 6 / 1 / 0 |
