@@ -33,7 +33,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, leave, overtime, sickness |
 
-14 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 69 verified / 10 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 69 verified / 11 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -213,13 +213,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Model flexible schedule hours and compensation windows separately from overtime, and track elected overtime rest balances and their later liquidation.
-
-!!! warning "metalmeccanico-confapi/par_conto_ore_hourly_elements · leave · impact yes · unsourced"
-    LEAVE, CONTO ORE: the hourly elements of art. 38 are included in the PAR payout at expiry when the caller states hourly_pay_elements (zero confirms none; missing blocks payment). The PAR left when employment ends before expiry remain unpaid: art. 22 specifies liquidation at expiry but no termination basis.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Source a basis and timing for paying PAR left when employment ends before the conto ore expires; art. 22 only specifies payment at expiry.
 
 !!! warning "metalmeccanico-confapi/holiday_outside_calendar · sickness · impact yes · open"
     Art. 32(b,c) holiday top-ups are modelled for sickness, compulsory maternity and injury, excluding letter a) and 4 October. A stated patron_saint_day covers the local patron day, its locally agreed substitute, or Rome-only 29 June when applicable. Without the applicable local date from the employer, these holidays cannot be calculated.
@@ -427,6 +420,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEAVE AT TERMINATION (Art. 33, p. 106 of the CCNL of 3 July 2017): 'Per ogni giornata di ferie la retribuzione dovuta al lavoratore è costituita dalla retribuzione giornaliera globale di fatto'. No clause of the 2017 text or of the 2025-2028 renewal (OCR) defines that daily pay as a fraction of the monthly pay: the 1/26 of the retribuzione mensile fissa (Art. 32, p. 104) is the pay of a festività falling on a Sunday, the 1/6 of the weekly pay (Art. 15, p. 87) is the ferie of the discontinuous workers only, and the divisor 173 gives the hourly pay. The engine pays no residual (termination_residual_leave incomplete, termination_basis_not_sourced).
     
     Art. 98: the indennità di funzione of the quadri is paid as a fixed allowance with the role 'quadro': 69.72 on the 9th category (quadri A), 49.06 on the 8th category (quadri B); 32.75 with the role 'quadro_oreficeria' on the 8th category. The 32.75 has no starting date in Art. 98: the series starts at the CCNL of 3 July 2017 that prints it. Art. 98 does not say whether superminimi absorb it: the caller states a superminimo net of any part an individual agreement absorbs.
+    
+    LEAVE, CONTO ORE: the hourly elements of art. 38 are included in the PAR payout at expiry when the caller states hourly_pay_elements (zero confirms none; missing blocks payment). The PAR and the ferie left when the employment ends before the expiry are paid at the termination (work_rules.leave_rules.termination).
     
     SICKNESS (Art. 55 points 2-3, CCNL 3 luglio 2017, PDF pp. 136-138, https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf, sha256 c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad; the renewal of 4 June 2026, PDF pp. 25-28, https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf, sha256 ae59a64f408072c1438892143e2146eea350d7e2c3e5883fb8538f86ffc47f53, keeps them): comporto breve of 6, 9 or 12 months up to 3 years of seniority, over 3 to 6, over 6, over 'le assenze complessivamente verificatesi nei tre anni precedenti ogni nuovo ultimo episodio morboso'; 'intera retribuzione globale per i primi 2 mesi e metà retribuzione globale per i 4 mesi successivi' (3 and 6, 4 and 8 above). Modelled as sickness_rules.cumulation over three years, months of 30 days, net basis as before.
     

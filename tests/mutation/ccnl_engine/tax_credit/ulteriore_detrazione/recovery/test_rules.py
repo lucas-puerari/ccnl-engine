@@ -130,9 +130,10 @@ class TestConguaglioRecovery:
 def _terminated() -> CompetenceYearResult:
     """C3 at 38 of 40 hours, employed 1 January to 30 November 2026.
 
-    About 20,400 EUR of projected taxable income; 144 absence hours in
-    October and in November bring the final income to 19,172.46 EUR, so
-    the 915.07 EUR deduction for 334 days is not due.  October takes part
+    About 20,400 EUR of projected taxable income; 144 absence hours in each
+    month from August to November bring the final income, the ferie and PAR
+    left paid at the cessation included, to 18,449.13 EUR, so the 915.07 EUR
+    deduction for 334 days is not due.  The months of the absences take part
     of it back by withholding, the November conguaglio at the cessation the
     rest.
 
@@ -147,7 +148,7 @@ def _terminated() -> CompetenceYearResult:
                 hourly_rate=Decimal("12.50"),
             ),
         )
-        for month in (10, 11)
+        for month in (8, 9, 10, 11)
     }
     return calculate_competence_year(
         year_plan(

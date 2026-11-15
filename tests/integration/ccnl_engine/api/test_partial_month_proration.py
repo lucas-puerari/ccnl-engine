@@ -75,16 +75,17 @@ def _run(
 
 
 def _month_pay(result: PeriodResult) -> Decimal:
-    """Return the gross of the month, without the ratei of a termination.
+    """Return the gross of the month, without the settlements of a termination.
 
     The run of the termination month also liquidates the tredicesima ratei
-    not yet paid, as extra-month earnings next to the month.
+    not yet paid and the leave left, next to the month.
 
     Returns:
-        The gross less the extra-month earnings.
+        The gross less the extra-month earnings and the leave settlement.
     """
+    settled = {"extra_month_earning", "leave_settlement_item"}
     ratei = sum(
-        (i.amount for i in result.pay_items if i.kind == "extra_month_earning"),
+        (i.amount for i in result.pay_items if i.kind in settled),
         Decimal(0),
     )
     return result.period_gross - ratei

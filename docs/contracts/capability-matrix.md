@@ -79,7 +79,7 @@ formulas or caller-declared amounts.
 | `termination_notice` | Preavviso: indennità sostitutiva del preavviso non lavorato (art. 2118 c.c.), dovuta dal datore, sulla tabella CCNL; tassazione separata con l'aliquota del TFR (art. 19 c. 2 TUIR) | scenario | work_rules | native | event | event | — | notice_indemnity | implemented | none bundled |
 | `extraordinary_leave` | Congedo straordinario art. 42 c. 5 D.Lgs. 151/2001: indennità INPS sull'ultima retribuzione entro il massimale annuo, anticipata dal datore | scenario | work_rules | native | event | event | — | inps_indemnity | implemented | 0 / 1 / 0 / 0 |
 | `workplace_injury` | Infortunio sul lavoro: giorno dell'evento, carenza, indennità INAIL e integrazione CCNL | scenario | work_rules | native | event | event | — | injury_day_and_carenza, inail_indemnity, ccnl_top_up | verified | 1 / 0 / 0 / 0 |
-| `termination_residual_leave` | Indennità sostitutiva di ferie e permessi residui alla cessazione, sulla base del CCNL | scenario | gross | native | termination_run | decision | `employment.employment_period`, `opening_balances.leave_balances` | — | implemented | 17 / 3 / 0 / 0 |
+| `termination_residual_leave` | Indennità sostitutiva di ferie e permessi residui alla cessazione, sulla base del CCNL | scenario | gross | native | termination_run | decision | `employment.employment_period`, `opening_balances.leave_balances` | — | implemented | 17 / 5 / 0 / 0 |
 | `naspi_dismissal` | Contributo NASpI per le interruzioni dei rapporti a tempo indeterminato e di apprendistato (L. 92/2012 art. 2 cc. 31-32): 41% del massimale mensile NASpI per ogni dodici mesi di anzianità negli ultimi tre anni | scenario | net | native | termination_run | decision | `employment.employment_period` | — | verified | 2 / 0 / 0 / 0 |
 | `termination_tfr` | Liquidazione TFR a tassazione separata (artt. 17 e 19 TUIR): fondo, quote dell'anno e aliquota media calcolati, importo e aliquota del chiamante come override | scenario | net | native | event | event | — | — | implemented | 2 / 1 / 0 / 0 |
 | `contract_renewal_arrears` | Arretrati rinnovo contratto: tassazione separata se di anni precedenti (aliquota dal chiamante), ordinaria se dell'anno | scenario | gross | caller_supplied | event | event | — | — | caller-supplied | none bundled |
@@ -224,8 +224,8 @@ never grow.
 | 82 | [CCNL Metalmeccanica - Cooperative](metalmeccanica-cooperative.md) | ⚠️ | inps_employer | 37 / 9 / 1 / 0 |
 | 83 | [CCNL Metalmeccanica e Installazione di Impianti — Artigianato](metalmeccanico-artigianato.md) | ⚠️ | base_salary, inps_employer | 71 / 12 / 0 / 0 |
 | 84 | [CCNL Metalmeccanici Piccola Industria (CONFIMI IMPRESA MECCANICA)](metalmeccanico-confimi-pmi.md) | ✅ | overtime, sickness | 25 / 22 / 0 / 0 |
-| 85 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | ⚠️ | base_salary, leave, overtime, sickness | 69 / 10 / 0 / 0 |
-| 86 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | ✅ | leave | 92 / 17 / 0 / 0 |
+| 85 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | ⚠️ | base_salary, leave, overtime, sickness | 69 / 11 / 0 / 0 |
+| 86 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | ✅ | leave | 92 / 18 / 0 / 0 |
 | 87 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | ⚠️ | seniority, una_tantum | 35 / 33 / 3 / 0 |
 | 88 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | ✅ | — | 77 / 11 / 1 / 1 |
 | 89 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | ⚠️ | base_salary, bilateral_funds, inail, overtime, seniority, sickness, territorial_supplement | 22 / 6 / 1 / 0 |

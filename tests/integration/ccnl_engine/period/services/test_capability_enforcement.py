@@ -45,8 +45,8 @@ from tests.integration.ccnl_engine.surtax.residence.builders import (
 )
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 
-_CCNL = "metalmeccanico-federmeccanica"
-_LEVEL = "C3"
+_CCNL = "chimica-farmaceutica-federchimica"
+_LEVEL = "E2"
 _YEAR = 2026
 _RESIDUAL_LEAVE = "termination_residual_leave"
 _TFR_REVALUATION = "tfr_revaluation"

@@ -455,11 +455,30 @@ def _industria_year_without_overtime() -> tuple[Pay, ...]:
     return (*months, thirteenth)
 
 
+#: Residual leave paid on the last regular run (CCNL 5 February 2021, sha256
+#: ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151): the
+#: ferie are four weeks of 5 days (Art. 10, p. 166), 20 days a year, paid
+#: at the "retribuzione giornaliera globale di fatto", 8 hours at the monthly
+#: pay over 173 (Titolo IV, Art. 3, p. 173): a day is the pay over 21.625;
+#: the 104 PAR hours (Art. 5, p. 154) at the full-time pay over 173.  Left
+#: before the expiry of the conto ore, they are paid at the termination by
+#: the maintainer's decision of 2026-11-15.  Six months: 10 days, 52 hours.
+_FERIE_DAY = Decimal("21.625")
+
+
+def _metal_leave(
+    pay: Decimal, days: Decimal, hours: Decimal, full_time: Decimal | None = None
+) -> Decimal:
+    full = pay if full_time is None else full_time
+    return _cents(days * pay / _FERIE_DAY) + _cents(hours * full / 173)
+
+
 def _industria_june() -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _C3_UNTIL_MAY, _C3_UNTIL_MAY) for m in range(1, 6)]
     #: Six twelfths of the tredicesima are paid with the last month.
     ratei = _cents(_C3_FROM_JUNE * 6 / 12)
-    june = _C3_FROM_JUNE + ratei
+    leave = _metal_leave(_C3_FROM_JUNE, Decimal(10), Decimal(52))
+    june = _C3_FROM_JUNE + ratei + leave
     return (*pays, Pay(_run(6), june, june))
 
 
@@ -497,8 +516,12 @@ def _part_time_june() -> tuple[Pay, ...]:
     month = _cents(_C3_UNTIL_MAY * _HALF)
     pays = [Pay(_run(m), month, month) for m in range(1, 6)]
     last = _cents(_C3_FROM_JUNE * _HALF)
-    #: Six twelfths of the part-time tredicesima, with the last month.
-    june = last + _cents(last * 6 / 12)
+    #: Six twelfths of the part-time tredicesima, with the last month; the
+    #: residual ferie at the part-time pay, the PAR hours halved at the
+    #: full-time pay over 173, the engine's full-time pay being the part-time
+    #: pay over the ratio (1,105.72 / 0.5 = 2,211.44, a cent above the minimo).
+    leave = _metal_leave(last, Decimal(10), Decimal(26), last / _HALF)
+    june = last + _cents(last * 6 / 12) + leave
     return (*pays, Pay(_run(6), june, june))
 
 
@@ -570,8 +593,9 @@ def _apprentice_june() -> tuple[Pay, ...]:
     month = _cents(_C3_UNTIL_MAY * _APPRENTICE_PCT)
     pays = [Pay(_run(m), month, month) for m in range(1, 6)]
     last = _cents(_C3_FROM_JUNE * _APPRENTICE_PCT)
-    #: Six twelfths of the apprentice tredicesima, with the last month.
-    june = last + _cents(last * 6 / 12)
+    #: Six twelfths of the apprentice tredicesima, with the last month, and
+    #: the residual leave at the apprentice pay.
+    june = last + _cents(last * 6 / 12) + _metal_leave(last, Decimal(10), Decimal(52))
     return (*pays, Pay(_run(6), june, june))
 
 
@@ -594,8 +618,18 @@ APPRENTICE_JUNE = sector_year(
 #: rates of the industria impiegato.
 _FIXED_TERM = replace(_INDUSTRIA, employer_supplement=Decimal("0.0140"))
 
+
+def _fixed_term_year() -> tuple[Pay, ...]:
+    pays = list(_industria_year_without_overtime())
+    #: The year's 20 days of ferie and 104 PAR hours, paid in December.
+    leave = _metal_leave(_C3_FROM_JUNE, Decimal(20), Decimal(104))
+    december = pays[11]
+    pays[11] = Pay(december.run_id, december.gross + leave, december.tfr_base + leave)
+    return tuple(pays)
+
+
 FIXED_TERM_YEAR = sector_year(
-    with_sunday_holidays(_industria_year_without_overtime(), 11, 2, 26),
+    with_sunday_holidays(_fixed_term_year(), 11, 2, 26),
     _FIXED_TERM,
     _FULL_YEAR,
     terminated=True,
@@ -657,7 +691,11 @@ def _mid_month() -> tuple[Pay, ...]:
     for m in range(4, 10):
         pay = _C3_UNTIL_MAY if m < 6 else _C3_FROM_JUNE
         months.append(Pay(_run(m), pay, pay))
-    october = _cents(_C3_FROM_JUNE * 17 / 26) + _cents(_C3_FROM_JUNE * 8 / 12)
+    #: Residual leave: eight twelfths of 20 days of ferie (a fraction above
+    #: 15 days a month, Art. 10), and the PAR of the six whole months April
+    #: to September, 52 hours.
+    leave = _metal_leave(_C3_FROM_JUNE, Decimal(20) * 8 / 12, Decimal(52))
+    october = _cents(_C3_FROM_JUNE * 17 / 26) + _cents(_C3_FROM_JUNE * 8 / 12) + leave
     return (*months, Pay(_run(10), october, october))
 
 
@@ -1235,8 +1273,11 @@ def _confapi_year() -> tuple[Pay, ...]:
 
 def _confapi_june() -> tuple[Pay, ...]:
     pays = [Pay(_run(m), _confapi(m), _confapi(m)) for m in range(1, 6)]
-    #: Six twelfths of the tredicesima are paid with the last month.
-    june = _CONFAPI_FROM_JUNE + _cents(_CONFAPI_FROM_JUNE * 6 / 12)
+    #: Six twelfths of the tredicesima are paid with the last month, and the
+    #: residual leave as for Federmeccanica (art. 24, p. 106; divisor 173, p.
+    #: 48): 10 days of ferie, 52 PAR hours.
+    leave = _metal_leave(_CONFAPI_FROM_JUNE, Decimal(10), Decimal(52))
+    june = _CONFAPI_FROM_JUNE + _cents(_CONFAPI_FROM_JUNE * 6 / 12) + leave
     return (*pays, Pay(_run(6), june, june))
 
 

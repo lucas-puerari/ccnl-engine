@@ -534,6 +534,10 @@ _RESIDUAL_LEAVE_UNPAID: dict[str, str | None] = {
     _EDIL: "leave_accrual_not_modelled",
     _EDILIZIA_IMPIEGATI: "leave_accrual_not_modelled",
     _ALIMENTARI: "leave_accrual_not_modelled",
+    # Paid at the termination, but the PAR of a rotation of 15 shifts is
+    # unknown without Employment.qualifying_shifts: an estimate.
+    _METAL: "residual_leave_estimated",
+    _CONFAPI: "residual_leave_estimated",
 }
 
 

@@ -86,11 +86,12 @@ def _blocker_keys(result: PeriodResult) -> set[tuple[BlockerCode, str | None, st
 def test_incomplete_coverage_is_not_payable() -> None:
     """Metalmeccanico C3, last month of an employment resigned on 30 January.
 
-    The final payslip must settle the residual leave, which the CCNL texts
-    read give no divisor for: it applies to this run and is decided
-    incomplete, so the report has an ``unresolved`` gap and the result is
-    not payable.  The TFR fund at 31 December 2025 is revalued for January
-    (art. 2120 c. 5 c.c.) on the January index: no gap.
+    The final payslip must settle the residual leave of an employment begun
+    in 2020, whose balances the opening state does not hold: it applies to
+    this run and is decided incomplete on the missing leave balances, so
+    the report has an ``unresolved`` gap and the result is not payable.
+    The TFR fund at 31 December 2025 is revalued for January (art. 2120 c.
+    5 c.c.) on the January index: no gap.
     ``base_salary`` cites the signed tables: no evidence blocker.  January
     is the only payment of the employment, so the year's income is one
     month of pay and the somma esente is due on an assumed income, an
@@ -125,15 +126,18 @@ def test_incomplete_coverage_is_not_payable() -> None:
         for b in result.blockers
         if b.code is BlockerCode.CAPABILITY_NOT_COMPUTED
     }
-    assert [i.code for i in result.issues] == ["somma_esente_income_unknown"]
+    assert [i.code for i in result.issues] == [
+        "leave_history_unknown",
+        "somma_esente_income_unknown",
+    ]
     assert result.is_payable is False
     assert gaps == {"termination_residual_leave": "unresolved"}
     # The gap follows from its decision: one blocker per cause.
     assert blocked == set()
     assert (
-        BlockerCode.CALCULATION_ISSUE,
+        BlockerCode.MISSING_FACT,
         "termination_residual_leave",
-        "termination_basis_not_sourced",
+        "leave_balances",
     ) in (_blocker_keys(result))
     assert (BlockerCode.RULE_SOURCE_WEAK, "base_salary", "assumed") not in (
         _blocker_keys(result)

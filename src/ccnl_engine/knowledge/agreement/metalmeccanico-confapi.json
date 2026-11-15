@@ -299,30 +299,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "LEAVE, CONTO ORE: the hourly elements of art. 38 are included in the PAR payout at expiry when the caller states hourly_pay_elements (zero confirms none; missing blocks payment). The PAR left when employment ends before expiry remain unpaid: art. 22 specifies liquidation at expiry but no termination basis.",
-        "capability": "leave",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "par_conto_ore_hourly_elements",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Source a basis and timing for paying PAR left when employment ends before the conto ore expires; art. 22 only specifies payment at expiry.",
-          "status": "unsourced",
-          "searched": [
-            {
-              "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
-              "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad",
-              "title": "PDF p. 93 (stampata p. 93), art. 22."
-            },
-            {
-              "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
-              "sha256": "ae59a64f408072c1438892143e2146eea350d7e2c3e5883fb8538f86ffc47f53",
-              "title": "PDF p. 18 (stampata p. 18), art. 22, rinnovo 4 giugno 2026 (OCR controllato a 200 dpi)."
-            }
-          ]
-        }
+        "kind": "info",
+        "text": "LEAVE, CONTO ORE: the hourly elements of art. 38 are included in the PAR payout at expiry when the caller states hourly_pay_elements (zero confirms none; missing blocks payment). The PAR and the ferie left when the employment ends before the expiry are paid at the termination (work_rules.leave_rules.termination)."
       },
       {
         "kind": "simplification",
@@ -3318,7 +3296,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "313132087eea7cfdceab4ab9f32eb9457b2ddcce7c0122d8a1590761ea31f38d",
+    "source_hash": "8866fe7a174545179ed6cda471f5295774fb487428f43337cc7a3ab33d8a8ffd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4181,7 +4159,26 @@
           }
         }
       ],
-      "termination": null,
+      "termination": {
+        "ferie_divisor": "21.625",
+        "permits_hourly": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "fim-cisl-it-wp-content-uploads-2021-03-ccnl-unionmeccanica-pdf",
+              "title": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+              "kind": "associazione",
+              "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+              "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+            },
+            "page": "106",
+            "section": "Art. 24 - Ferie",
+            "quote": "In caso di risoluzione del rapporto di lavoro al lavoratore spetterà il pagamento delle ferie in proporzione dei dodicesimi maturati."
+          },
+          "transformation": "Ferie left at the termination are paid at the 'retribuzione giornaliera globale di fatto' (same page). The ferie are four weeks counted on the 5-day week (20 days, leave_rules), so a day of ferie is the 8 hours of a fifth of the 40-hour week at the hourly pay, the monthly pay over 173 (PDF p. 48): ferie_divisor 173 / 8 = 21.625, not the 1/26 of a day of a 6-day week. The PAR left are paid by the hour at the monthly pay over 173. The CCNL liquidates the PAR of the conto ore at its expiry and says nothing of a termination before it: by the maintainer's decision of 2026-11-15 they are paid at the termination with the pay then in force, as at the expiry."
+        }
+      },
       "permit_deadline": {
         "carry_until_month": 12,
         "carry_years": 2,
