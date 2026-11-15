@@ -81,6 +81,7 @@ class AccrualFacts:
         qualifying_shifts: Whether the worker works in a system of at least
             15 weekly shifts including night and/or weekend shifts; ``None``
             when unknown.
+        weekly_shifts: Weekly shifts of the rotation, ``None`` when unknown.
         entry_pay: Whether the worker was hired on the entry pay of the CCNL
             (``Permanent.entry_pay``; Studi art. 56, the contratto di
             reimpiego).
@@ -96,6 +97,7 @@ class AccrualFacts:
     full_time_week: Decimal | None = None
     subsector: str | None = None
     qualifying_shifts: bool | None = None
+    weekly_shifts: int | None = None
     entry_pay: bool = False
 
     @property
@@ -195,10 +197,14 @@ def _permit(permit: PermitRules, facts: AccrualFacts) -> tuple[Decimal, bool]:
         facts.subsector,
         day=facts.last_day,
         qualifying_shifts=facts.qualifying_shifts,
+        weekly_shifts=facts.weekly_shifts,
     )
     if any(
         item.shift_fact_unknown(
-            facts.last_day, facts.subsector, facts.qualifying_shifts
+            facts.last_day,
+            facts.subsector,
+            facts.qualifying_shifts,
+            facts.weekly_shifts,
         )
         for item in permit.extra_hours
     ):

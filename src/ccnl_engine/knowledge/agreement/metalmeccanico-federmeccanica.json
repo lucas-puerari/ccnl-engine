@@ -187,7 +187,7 @@
       },
       {
         "kind": "simplification",
-        "text": "LEAVE, PAR (Sez. Quarta, Titolo III, Art. 5, renewal of 22 November 2025 p. 33): the settore siderurgico (EmployerProfile.subsector steel) accrues 124 hours in place of 104, and the turnisti on 15 or more weekly shifts including the night shift (Employment.qualifying_shifts) 8 hours more. Not modelled: the 8 hours of the siderurgico turnisti, paid with the 13th; the further 4 hours from 2027 at 18 or more weekly shifts and 4 more from 2028 at 21 for the non siderurgico workers; and the hour of the sottosettori of the accordo of 16 July 1979 for the workers in service at 31 December 2012.",
+        "text": "LEAVE, PAR (Sez. Quarta, Titolo III, Art. 5, renewal of 22 November 2025 p. 33): the settore siderurgico (EmployerProfile.subsector steel) accrues 124 hours in place of 104, every other firm (subsector general) 104, and the turnisti on 15 or more weekly shifts including the night shift (Employment.qualifying_shifts) 8 hours more. The further 4 hours from 2027 at 18 or more weekly shifts and 4 more from 2028 at 21 for the non siderurgico workers are permit extra_hours on Employment.weekly_shifts. Not modelled: the 8 hours of the siderurgico turnisti, paid with the 13th; and the hour of the sottosettori of the accordo of 16 July 1979 for the workers in service at 31 December 2012.",
         "capability": "leave",
         "monetary_impact": "yes",
         "limitation": {
@@ -195,7 +195,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Add employment facts for 18 and 21 weekly shifts with night work and for the historical sottosettore, accrue their hours, and pay the siderurgico shift hours with the 13th."
+          "remediation": "Pay the 8 hours of the siderurgico turnisti with the 13th and add the fact of the 1979 sottosettori for the workers in service at 31 December 2012, then resolve this limitation."
         }
       },
       {
@@ -3418,7 +3418,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "2e4b85bec35d9c8006ddb5c5df936c265ddb0cf397e12283862957e762b42f32",
+    "source_hash": "fde554c83e21afff2e2ba3fb99a77ca1eb1d04a07a9c757ac33092d2a73da1d0",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -4759,6 +4759,70 @@
                   "verified_at": "2026-11-14T02:00:00Z",
                   "verification_status": "verified",
                   "review_id": "2026-11-13-gpt-metalmeccanico-federmeccanica-par-siderurgico"
+                }
+              }
+            },
+            {
+              "hours": "4",
+              "valid_from": "2027-01-01",
+              "excluded_subsectors": [
+                "steel"
+              ],
+              "min_weekly_shifts": 18,
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "uilm-federmeccanica-ipotesi-2025-11-22",
+                    "title": "Ipotesi di accordo di rinnovo del CCNL Federmeccanica-Assistal, 22 novembre 2025 (scansione firmata, UILM)",
+                    "kind": "associazione",
+                    "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                    "published_on": "2025-11-22",
+                    "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                  },
+                  "page": "33",
+                  "section": "Sez. Quarta, Titolo III, Art. 5 - Riduzione dell'orario (scanned page read on the image)",
+                  "quote": "Per i lavoratori non addetti al settore siderurgico che prestano la propria opera in sistemi di turnazione di 18 o più turni settimanali comprendendo il turno notturno è riconosciuto a decorrere dal 1° gennaio 2027 un ulteriore permesso annuo retribuito di 4 ore computato in ragione di anno di servizio o frazione di esso"
+                },
+                "transformation": "4 hours a year more from 1 January 2027 for the worker not in the settore siderurgico on a rotation of 18 or more weekly shifts with the night shift (Employment.weekly_shifts); the absorption by company reductions is not modelled.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-15T00:00:00Z",
+                  "effective_from": "2027-01-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "hours": "4",
+              "valid_from": "2028-01-01",
+              "excluded_subsectors": [
+                "steel"
+              ],
+              "min_weekly_shifts": 21,
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "uilm-federmeccanica-ipotesi-2025-11-22",
+                    "title": "Ipotesi di accordo di rinnovo del CCNL Federmeccanica-Assistal, 22 novembre 2025 (scansione firmata, UILM)",
+                    "kind": "associazione",
+                    "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                    "published_on": "2025-11-22",
+                    "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+                  },
+                  "page": "33",
+                  "section": "Sez. Quarta, Titolo III, Art. 5 - Riduzione dell'orario (scanned page read on the image)",
+                  "quote": "Per i lavoratori non addetti al settore siderurgico che prestano la propria opera in sistemi di turnazione di 21 turni settimanali comprendendo il turno notturno è riconosciuto a decorrere dal 1° gennaio 2028 un ulteriore permesso annuo retribuito di 4 ore computato in ragione di anno di servizio o frazione di esso"
+                },
+                "transformation": "4 hours a year more from 1 January 2028 for the worker not in the settore siderurgico on a rotation of 21 weekly shifts with the night shift, on top of the 4 hours of 18 shifts.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-15T00:00:00Z",
+                  "effective_from": "2028-01-01",
+                  "verification_status": "unverified"
                 }
               }
             }
@@ -6919,6 +6983,9 @@
         },
         "transformation": "The forfait in place of the reimbursement: 'Trasferta intera' for both meals and the overnight stay, otherwise each meal and the overnight stay at their quota, from 1 June 2021 44,12, 11,92, 20,28, adjusted each June by the verbali on the IPCA (renewal of 22 November 2025: 'con le stesse modalità'). The lunch is due beyond 20 km or without a return for the unpaid break, the dinner without a return home by 21, the overnight stay without a return home by 22: the event states them (meals, overnight). The indemnity 'continua ad essere esclusa dal calcolo della retribuzione spettante per tutti gli istituti di legge e/o di Contratto': tfr_base none."
       }
+    },
+    "subsector_rules": {
+      "general": {}
     }
   },
   "verification": {

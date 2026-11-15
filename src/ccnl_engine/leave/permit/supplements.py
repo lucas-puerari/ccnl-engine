@@ -19,7 +19,9 @@ class PermitExtraHours(BaseModel):
     tuple covers all. ``excluded_subsectors`` removes the named sectors;
     if the employer sub-sector is unknown, this supplement cannot be granted.
     ``qualifying_shifts`` requires the worker's rotating shift pattern to
-    include at least 15 weekly shifts with night and/or weekend shifts.
+    include at least 15 weekly shifts with night and/or weekend shifts;
+    ``min_weekly_shifts`` at least that many weekly shifts with the night
+    shift (Federmeccanica art. 5: 18 from 2027, 21 from 2028).
     Dates bound the competence month, with an exclusive end.
     """
 
@@ -31,6 +33,7 @@ class PermitExtraHours(BaseModel):
     subsectors: tuple[str, ...] = ()
     excluded_subsectors: tuple[str, ...] = ()
     qualifying_shifts: bool = False
+    min_weekly_shifts: int | None = Field(default=None, gt=0)
     provenance: RuleProvenance
 
     def _active(self, day: date, subsector: str | None) -> bool:
@@ -46,13 +49,24 @@ class PermitExtraHours(BaseModel):
         )
 
     def shift_fact_unknown(
-        self, day: date, subsector: str | None, shifts: bool | None
+        self,
+        day: date,
+        subsector: str | None,
+        shifts: bool | None,
+        weekly: int | None = None,
     ) -> bool:
         """Return whether missing shift or sector facts could change the credit.
 
         Returns:
             ``True`` when a payable shift supplement cannot be resolved.
         """
+        if self.min_weekly_shifts is not None:
+            return (
+                self._active(day, subsector)
+                and subsector not in self.excluded_subsectors
+                and weekly is None
+                and shifts is not False
+            )
         return (
             self.qualifying_shifts
             and self._active(day, subsector)
@@ -67,7 +81,13 @@ class PermitExtraHours(BaseModel):
             )
         )
 
-    def applies(self, day: date, subsector: str | None, shifts: bool | None) -> bool:
+    def applies(
+        self,
+        day: date,
+        subsector: str | None,
+        shifts: bool | None,
+        weekly: int | None = None,
+    ) -> bool:
         """Return whether this supplement is due for these facts.
 
         Returns:
@@ -80,4 +100,8 @@ class PermitExtraHours(BaseModel):
                 or (subsector is not None and subsector not in self.excluded_subsectors)
             )
             and (not self.qualifying_shifts or shifts is True)
+            and (
+                self.min_weekly_shifts is None
+                or (weekly is not None and weekly >= self.min_weekly_shifts)
+            )
         )

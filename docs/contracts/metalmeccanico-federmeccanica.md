@@ -167,11 +167,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Resolved (2026-11-15): PriorYearTaxFacts.pay_above_ccnl states the pay above the CCNL of the year before, which the element is reduced by 'fino a concorrenza'; not stated, the run reads the individual elements and names the missing fact pay_above_ccnl.
 
 !!! warning "metalmeccanico-federmeccanica/par_sector_and_shift_hours · leave · impact yes · open"
-    LEAVE, PAR (Sez. Quarta, Titolo III, Art. 5, renewal of 22 November 2025 p. 33): the settore siderurgico (EmployerProfile.subsector steel) accrues 124 hours in place of 104, and the turnisti on 15 or more weekly shifts including the night shift (Employment.qualifying_shifts) 8 hours more. Not modelled: the 8 hours of the siderurgico turnisti, paid with the 13th; the further 4 hours from 2027 at 18 or more weekly shifts and 4 more from 2028 at 21 for the non siderurgico workers; and the hour of the sottosettori of the accordo of 16 July 1979 for the workers in service at 31 December 2012.
+    LEAVE, PAR (Sez. Quarta, Titolo III, Art. 5, renewal of 22 November 2025 p. 33): the settore siderurgico (EmployerProfile.subsector steel) accrues 124 hours in place of 104, every other firm (subsector general) 104, and the turnisti on 15 or more weekly shifts including the night shift (Employment.qualifying_shifts) 8 hours more. The further 4 hours from 2027 at 18 or more weekly shifts and 4 more from 2028 at 21 for the non siderurgico workers are permit extra_hours on Employment.weekly_shifts. Not modelled: the 8 hours of the siderurgico turnisti, paid with the 13th; and the hour of the sottosettori of the accordo of 16 July 1979 for the workers in service at 31 December 2012.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Add employment facts for 18 and 21 weekly shifts with night work and for the historical sottosettore, accrue their hours, and pay the siderurgico shift hours with the 13th.
+    **Remediation:** Pay the 8 hours of the siderurgico turnisti with the 13th and add the fact of the 1979 sottosettori for the workers in service at 31 December 2012, then resolve this limitation.
 
 !!! warning "metalmeccanico-federmeccanica/par_conto_ore_hourly_elements · leave · impact yes · unsourced"
     LEAVE, CONTO ORE: the hourly elements of Tit. IV art. 3 are included in the PAR payout at expiry when the caller states hourly_pay_elements (zero confirms none; missing blocks payment). PAR left when employment ends before expiry remain unpaid: Tit. III art. 5 specifies liquidation at expiry but no termination basis.

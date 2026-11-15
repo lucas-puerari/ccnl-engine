@@ -173,6 +173,7 @@ class PeriodInput:
             full_time_week_days=employment.full_time_week_days,
             rota=employment.rota,
             qualifying_shifts=employment.qualifying_shifts,
+            weekly_shifts=employment.weekly_shifts,
             work_pattern=employment.work_pattern,
             weekly_rest_day=employment.weekly_rest_day,
             employment_period=employment.employment_period,
