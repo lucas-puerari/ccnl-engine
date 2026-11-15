@@ -14,7 +14,12 @@ from ccnl_engine.ledger.models import AccountKind, PostingIntent
 from ccnl_engine.pay_item.facade import TravelAllowanceItem
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.pay_item.services import _ZERO, _require_resolution
-from ccnl_engine.working_time.travel.quotas import quota_amount
+from ccnl_engine.working_time.travel.quotas import (
+    band_hours,
+    minimum_share,
+    night_amount,
+    quota_amount,
+)
 
 if TYPE_CHECKING:
     from ccnl_engine.variable_pay.inputs import TravelAllowanceEvent
@@ -124,10 +129,12 @@ class TravelTerms:
     Attributes:
         rules: CCNL amounts and TFR rule, ``None`` when the CCNL has none.
         ruleset: Ruleset identifier of the CCNL.
+        monthly_minimum: Monthly minimum of the level, for a share of it.
     """
 
     rules: CcnlTravelAllowance | None
     ruleset: str
+    monthly_minimum: Decimal = _ZERO
 
 
 def _daily_amount(event: TravelAllowanceEvent, terms: TravelTerms | None) -> Decimal:
@@ -148,14 +155,10 @@ def _daily_amount(event: TravelAllowanceEvent, terms: TravelTerms | None) -> Dec
         raise MissingRuleError(msg, as_of=event.event_date, feature=_FEATURE)
     if rules.quotas is not None:
         return quota_amount(event, rules.quotas, terms.ruleset)
-    if rules.mission_duration and event.mission_hours is None:
-        msg = "the CCNL requires the total mission duration in mission_hours"
-        raise MissingRuleError(msg, as_of=event.event_date, feature=_FEATURE)
-    if not rules.mission_duration and event.hours_away is None:
-        msg = "the CCNL requires hours_away for its daily travel bands"
-        raise MissingRuleError(msg, as_of=event.event_date, feature=_FEATURE)
-    hours = event.mission_hours if rules.mission_duration else event.hours_away
-    band = rules.band_of(hours or _ZERO)
+    if rules.minimum_share is not None:
+        return minimum_share(event, rules, terms.monthly_minimum)
+    hours = band_hours(event, rules)
+    band = rules.band_of(hours)
     if (
         band is None
         and rules.mission_duration
@@ -191,23 +194,6 @@ def _discounted_daily(
         rules.long_mission_discount if event.mission_over_month else _ZERO,
     )
     return money(daily * (Decimal(1) - discount)) if discount else daily
-
-
-def _night(event: TravelAllowanceEvent, terms: TravelTerms | None) -> Decimal:
-    """Return the CCNL night allowance of the days of the event.
-
-    Returns:
-        The amount for each day of the hours the CCNL requires, zero
-        without the allowance or the hours.
-    """
-    if terms is None or terms.rules is None:
-        return _ZERO
-    rules, hours = terms.rules, event.hours_away
-    night = rules.night_allowance
-    if night is None or hours is None or hours < rules.night_from_hours:
-        return _ZERO
-    with rule_scope(ruleset=terms.ruleset, feature=_FEATURE):
-        return money(night.value_at(event.event_date) * event.days)
 
 
 def _tfr_base(event: TravelAllowanceEvent, terms: TravelTerms | None) -> str:
@@ -263,7 +249,9 @@ def _handle_travel_allowance(
     )
     gross, taxable = assessment.gross, assessment.taxable
     tfr = {"none": _ZERO, "whole": gross, "above_exempt": taxable}[tfr_base]
-    night = _night(event, ctx.ccnl_travel)
+    terms, night = ctx.ccnl_travel, _ZERO
+    if terms is not None and terms.rules is not None:
+        night = night_amount(event, terms.rules, terms.ruleset)
     gross, taxable, tfr = gross + night, taxable + night, tfr + night
     resolution = _require_resolution(ctx.resolver, _KIND, ctx.context)
     item = TravelAllowanceItem(
