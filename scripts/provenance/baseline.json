@@ -847,13 +847,11 @@
     "agreement/lavoro-domestico-convivente-orario-ridotto.json": [
       "lavoro-domestico-convivente-orario-ridotto/annual_minimi_not_updated",
       "lavoro-domestico-convivente-orario-ridotto/art34_role_conditions",
-      "lavoro-domestico-convivente-orario-ridotto/extra_month_hours",
       "lavoro-domestico-convivente-orario-ridotto/students_other_levels"
     ],
     "agreement/lavoro-domestico-convivente.json": [
       "lavoro-domestico-convivente/annual_minimi_not_updated",
       "lavoro-domestico-convivente/art34_role_conditions",
-      "lavoro-domestico-convivente/extra_month_hours",
       "lavoro-domestico-convivente/tranches_from_2027"
     ],
     "agreement/lavoro-domestico-non-convivente.json": [

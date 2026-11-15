@@ -159,6 +159,23 @@ def test_thirteenth_pays_board_and_lodging_in_cash() -> None:
     assert _tfr(result) == Decimal("103.23")
 
 
+def test_thirteenth_charges_no_cassa_colf_on_stated_hours() -> None:
+    """The tredicesima carries no hours: stated ones charge no Cassa Colf.
+
+    INPS spreads it over the hours of the year (paga oraria effettiva) and
+    Cas.Sa.Colf charges the hours of the same quarterly bollettino.
+    """
+    result = _run(PayrollRun.thirteenth(2026, 12), 216)
+
+    assert _account(result, "bilateral_fund_employee") == _ZERO
+    assert _account(result, "bilateral_fund_employer") == _ZERO
+    assert not [
+        lim
+        for lim in result.limitations
+        if lim.variant == "extra_month_hours" and lim.blocks
+    ]
+
+
 def test_termination_ratei_include_board_and_lodging() -> None:
     """Employed January to June: the June run settles 6/12 of the tredicesima.
 

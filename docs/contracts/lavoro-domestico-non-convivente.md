@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | assistance_contribution, base_salary |
+| **Limits of this contract** | base_salary |
 
 5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -122,12 +122,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: art. 37 read on 2026-11-15; the 4% share is enforced by tests/knowledge/ccnl_engine/seniority/test_domestic_seniority_share.py.
 
-!!! warning "lavoro-domestico-non-convivente/extra_month_hours · assistance_contribution · impact unknown · unsourced"
-    The INPS contributions of the tredicesima are paid on the hours of the year: INPS bands them on the paga oraria effettiva, which spreads the tredicesima over the hours, so the tredicesima run charges no INPS hours. The Cas.Sa.Colf contribution of Art. 54 c. 2 is charged on the contributable hours the run states, a tredicesima run too: no bundled source says whether the tredicesima carries hours of its own for it.
+!!! note "lavoro-domestico-non-convivente/extra_month_hours · assistance_contribution · impact unknown · resolved"
+    The INPS and Cas.Sa.Colf contributions of the tredicesima are paid on the hours of the year: INPS bands them on the paga oraria effettiva, which spreads the tredicesima over the hours (INPS, scheda "Contributi e agevolazioni fiscali per chi assume un lavoratore domestico", sha256 c24c2b4d...: "la tredicesima mensilità (gratifica natalizia), ripartita per ore"), and Cas.Sa.Colf charges the hours of the same quarterly INPS bollettino (Cas.Sa.Colf, "Versamento contributi", text sha256 56f318e6...: "La quota dei contributi si calcola moltiplicando il numero di ore retribuite nel trimestre per 0,06€"; Regolamento Lavoratori art. 5, text sha256 b8612cf6...: "codice F2 (FONDO COLF) all’interno del bollettino trimestrale dell’INPS"). A tredicesima run charges neither.
 
     **Applies when:** `assistance_contribution` applies; run kind in thirteenth.
 
-    **Remediation:** Source from the Cas.Sa.Colf rules whether the tredicesima carries contributable hours and set them for extra-month runs.
+    **Remediation:** Resolved: an extra-month run charges no INPS and no Cas.Sa.Colf hours; the regular runs of the year carry them (review of 2026-11-16).
 
 !!! note "lavoro-domestico-non-convivente/oncological_comporto · sickness · impact unknown · resolved"
     Art. 27 c. 6: the comporto is 50% longer for an oncological illness certified by the ASL. The episode can state a serious illness (SicknessEpisode.serious_illness), but the domestic sickness rules have no serious-illness rule, so the engine keeps the ordinary comporto (review of 2026-10-30).
