@@ -202,6 +202,19 @@
           },
           "remediation": "Model the commission earnings of the operatori di vendita as an input, then the art. 217 guarantee, the commission average of the extra months and the art. 27 premium."
         }
+      },
+      {
+        "kind": "simplification",
+        "text": "NOTICE INDEMNITY BY THE DAY: a notice in calendar days is paid at the monthly pay over 30 for each day, the default of the engine (decision of 2026-11-15). Art. 209 of the Testo Unico 30 July 2019 refers the monthly pay to all the days of the calendar month, but art. 210 sets the daily quota at 1/26 'in tutti i casi': which of them measures a day of notice is not settled, so the indemnity of a notice not worked in full may be understated.",
+        "capability": "termination_notice",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "notice_daily_quota",
+          "applies_when": {
+            "trigger": "run"
+          },
+          "remediation": "Settle whether the daily quota of art. 210 measures a day of notice and apply it, then resolve this limitation."
+        }
       }
     ]
   },
@@ -4338,7 +4351,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "f3bb461e49ee0fa63c2399f12d462a56c55a016231ad64837b470fac200098db",
+    "source_hash": "785106bc5a56d07a22760834d0af8d417986b641462757ed76cf1afe44b007e6",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

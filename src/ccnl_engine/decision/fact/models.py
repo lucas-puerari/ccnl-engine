@@ -85,6 +85,7 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "tfr_quotas": "OpeningBalances.tfr_quotas",
     "tfr_treasury_fund": "Employment.tfr_treasury_fund",
     "pay_above_ccnl": "PriorYearTaxFacts.pay_above_ccnl",
+    "extra_deduction": "PensionFundEnrolment.extra_deduction",
     "in_periodic_shift": "OvertimeEvent.in_periodic_shift",
     "supplementary_hours_before": "OvertimeEvent.supplementary_hours_before",
     "agreed_annual_hours": "OvertimeEvent.agreed_annual_hours",

@@ -31,7 +31,6 @@ from ccnl_engine.absence.insured.parental.handlers import (
     PARENTAL,
     PARENTAL_BASE_LIMITATION,
     PARENTAL_BASE_UNKNOWN,
-    PARENTAL_EXTRA_MONTH_LIMITATION,
     PARENTAL_INCOME_LIMITATION,
     _cohort_issue,
 )
@@ -171,7 +170,7 @@ def _limitations(
         threshold when it is not published; the CCNL rule while the bundle
         does not record it.
     """
-    limitations = [*base, PARENTAL_EXTRA_MONTH_LIMITATION]
+    limitations = [*base]
     if unpublished:
         limitations.append(PARENTAL_INCOME_LIMITATION)
     if clause is None:

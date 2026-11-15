@@ -26,11 +26,7 @@ from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.fund.models import EmployerFund
 from ccnl_engine.pay_item.rounding.policies import money
-from ccnl_engine.pension_fund.enrolment.rules import (
-    check_category,
-    fund_of,
-    in_force,
-)
+from ccnl_engine.pension_fund.enrolment.rules import check_category, fund_of, in_force
 from ccnl_engine.pension_fund.fixed_base import fixed_level_base
 from ccnl_engine.pension_fund.inputs import PENSION_FEATURE
 
@@ -81,6 +77,7 @@ class PensionFundTerms:
             the enrolment; ``None`` when not stated.
         enrolled_monthly: Fixed employer amount of an enrolled worker.
         fixed_level_base: Historical fixed base of the worker's level, if set.
+        extra_deduction: Deduction above the cap the worker states, if any.
     """
 
     fund: EmployerFund
@@ -98,6 +95,7 @@ class PensionFundTerms:
     conventional_base: Decimal | None = None
     enrolled_monthly: Decimal = _ZERO
     fixed_level_base: Decimal = _ZERO
+    extra_deduction: Decimal | None = None
 
 
 @dataclass(frozen=True)
@@ -209,6 +207,7 @@ def resolve_terms(
         conventional_base=enrolment.conventional_base,
         enrolled_monthly=_ZERO if fixed is None else fixed[1],
         fixed_level_base=fixed_level_base(fund, level_code, day),
+        extra_deduction=enrolment.extra_deduction,
     )
 
 
@@ -269,7 +268,8 @@ def _contribution(
     deducted_ytd: Decimal,
 ) -> PensionContribution:
     employer, employee, contractual = amounts
-    headroom = max(_ZERO, rules.deduction_cap - deducted_ytd)
+    extra = _ZERO if terms is None else terms.extra_deduction or _ZERO
+    headroom = max(_ZERO, rules.deduction_cap + extra - deducted_ytd)
     return PensionContribution(
         terms=terms,
         base=base,

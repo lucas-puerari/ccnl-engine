@@ -201,12 +201,16 @@ def test_the_bundle_totals_match_the_evidence_snapshot() -> None:
     assert built.census_errors == ()
 
 
-def test_today_no_ccnl_is_complete() -> None:
-    """Every census is seeded only: every CCNL is incomplete and says why."""
+def test_today_only_federmeccanica_is_complete() -> None:
+    """Every other census is seeded only: those CCNLs are incomplete."""
     built = report.build_report()
 
-    assert built.complete == ()
-    assert all(row.census_rows == len(row.open_rows) for row in built.rows)
+    assert [row.ccnl_id for row in built.complete] == ["metalmeccanico-federmeccanica"]
+    assert all(
+        row.census_rows == len(row.open_rows)
+        for row in built.rows
+        if row.ccnl_id != "metalmeccanico-federmeccanica"
+    )
 
 
 def test_the_page_names_every_ccnl_and_the_totals() -> None:
@@ -214,8 +218,8 @@ def test_the_page_names_every_ccnl_and_the_totals() -> None:
     built = report.build_report()
     page = report.render(built)
 
-    assert f"**Complete: 0/{len(built.rows)} CCNLs**" in page
-    assert "complete except declared residuals: 1." in page
+    assert f"**Complete: 1/{len(built.rows)} CCNLs**" in page
+    assert "complete except declared residuals: 0." in page
     assert "| [anas](../contracts/anas.md) | `trasporti-logistica` |" in page
 
 
@@ -232,7 +236,7 @@ def test_check_and_strict_modes(
     assert page.is_file()
     assert report.main(["--check"]) == 0
     assert report.main(["--check", "--strict"]) == 1
-    assert "Complete: 0/136 CCNLs." in capsys.readouterr().out
+    assert "Complete: 1/136 CCNLs." in capsys.readouterr().out
 
 
 def test_a_census_error_fails_every_mode(
