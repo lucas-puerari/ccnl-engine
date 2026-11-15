@@ -88,7 +88,7 @@ def test_an_employer_fact_is_accepted_by_design(feature: str) -> None:
 
 
 @pytest.mark.parametrize(
-    ("feature", "holds"), [("overtime", True), ("night_work", False)]
+    ("feature", "holds"), [("overtime", True), ("travel_allowance", False)]
 )
 def test_a_capability_handed_to_the_employer_is_accepted(
     feature: str, holds: bool
