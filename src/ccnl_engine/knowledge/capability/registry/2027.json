@@ -77,15 +77,20 @@
     {
       "feature": "contribution_exemption",
       "layer": "net",
-      "implementation": "unsupported",
-      "applies_when": "outside_input",
-      "handler": null,
+      "implementation": "native",
+      "applies_when": "decided",
+      "handler": "decision",
       "evidence": "derived",
-      "variants": [],
-      "required_facts": [
-        "employer.contribution_exemption"
+      "variants": [
+        "young",
+        "women",
+        "zes",
+        "mothers"
       ],
-      "description": "Esonero contributivo"
+      "required_facts": [
+        "employment.contribution_exemption"
+      ],
+      "description": "Esonero contributivo del datore (DL 60/2024 artt. 22-24, L. 199/2025 cc. 210-213)"
     },
     {
       "feature": "fiscal_adjustment",

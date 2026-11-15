@@ -254,8 +254,7 @@ pension fund goes to `pension_fund_tfr` whatever the fact says.
 
 When the TFR of a run goes to a pension fund or to the Fondo Tesoreria, the
 employer contributions of the run fall by two exemptions on the INPS base,
-in the same percentage as the TFR conferred (the engine confers the TFR of
-a run whole, so 100%):
+in the same percentage as the TFR conferred (`TfrAccrual.conferred_share`):
 
 | Component | Rate | Source |
 |---|---|---|
@@ -430,6 +429,43 @@ posts the caller's payout and `amount x separate_tax_rate`, as before; an
 `amount` without its rate is rejected, since the engine cannot split a
 payout it did not compute into quotas and revaluations. Every value the
 caller gives is a `caller_override` decision.
+
+## Contribution exemptions
+
+`Employment.contribution_exemption` states the exemption of the employer
+contributions INPS admitted the hire to; whether a hire qualifies is the
+employer's to know. The engine owns the caps, durations and exclusions:
+
+| `measure` | Law | Share | Monthly cap | Months | UniEmens |
+|---|---|---|---|---|---|
+| `young` | DL 60/2024 art. 22, hires to 30 April 2026 | 0.7, or 1 with a net headcount growth (`share`) | 500; 650 with `territorial` | 24 | `EG35`, `ES35` |
+| `women` | DL 60/2024 art. 23, hires to 31 December 2026 | 1 | 650 | 24 | `ED25`, `EDZE` with `territorial` |
+| `zes` | DL 60/2024 art. 24, hires to 30 April 2026 | 0.7 or 1 | 650 | 24 | `EZES` |
+| `mothers` | L. 199/2025 art. 1 cc. 210-213, hires in 2026 | 1 | 666.66 | 12 fixed term, 18 with `made_permanent`, 24 | `ELM3` |
+
+The exemption cuts the employer contributions of the run less what no
+exemption cuts (INPS circ. 82/2026 p. 5): the 0.30% of continuing training
+and the FIS or solidarity fund share, read from the tier as
+`relief_excluded`, and a solidarity fund on top of the sector rates. It
+applies after the compensations of the TFR conferred (circ. 90/2025 and
+91/2025), up to the cap of the month: 1/31 of it a day, cut to the cent
+(500/31 = 16.12), for the days covered when the employment or the
+exemption starts or ends in the month, and in proportion for a part-time
+worker. It posts the negative employer component `contribution_exemption`
+and the decision `contribution_exemption` with the code. An apprentice, a
+domestic or public employment, a dirigente of `young` or `zes` and a hire
+after the last day are rejected. A category whose rate the tables do not
+break down (the dirigenti of industria, artigianato and terziario, the
+staff of agricoltura) takes no exemption, with the issue
+`contribution_exemption_exclusion_unknown`; a separate extra-month or
+adjustment run leaves the cap to the regular run of its month, with the
+issue `contribution_exemption_other_run`.
+
+Not sourced: whether the cap a month leaves unused carries over, and
+whether the NASpI addizionale of a fixed-term mother is in the base. Not
+modelled: the partial exemption of L. 199/2025 cc. 153-154 and the parents'
+reduced hours of cc. 214-218 (their decrees are not published), and the
+exemption of the worker's share of mothers (L. 213/2023 art. 1 c. 180).
 
 ## Residual leave at the termination
 

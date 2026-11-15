@@ -174,6 +174,9 @@ def with_solidarity_tiers(
             },
             "wage_integration_employer_rate": tier.employer_rate,
             "wage_integration_employee_rate": tier.employee_rate,
+            "relief_excluded": None
+            if inps.relief_excluded is None
+            else inps.relief_excluded.with_fund(tier.employer_rate),
         }
     )
     apprentice = rules.apprentice

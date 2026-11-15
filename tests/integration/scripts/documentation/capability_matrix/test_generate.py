@@ -68,10 +68,8 @@ def test_rows_show_the_registry_and_rule_counts() -> None:
     assert irpef.endswith(
         "| net | native | always | pipeline | — | — | implemented | 0 / 24 / 0 / 0 |"
     )
-    assert exempt.endswith(
-        "| unsupported | outside_input | — | `employer.contribution_exemption` | — "
-        "| unavailable | none bundled |"
-    )
+    assert "| native | decided | decision | " in exempt
+    assert "`employment.contribution_exemption`" in exempt
     assert len(rows) == len(catalog.capabilities) + 2
 
 

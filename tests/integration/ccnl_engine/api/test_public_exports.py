@@ -75,6 +75,8 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
     }),
     "ccnl_engine.inputs": frozenset({
         "Apprentice",
+        "ContributionExemption",
+        "ExemptionMeasure",
         "CalendarOverride",
         "CalendarOverrideReason",
         "CollectiveDismissal",

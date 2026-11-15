@@ -29,6 +29,10 @@ from ccnl_engine.compensation.second_level.inputs import (
 )
 from ccnl_engine.contribution.base.models import InpsBaseYtd
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
+from ccnl_engine.contribution.exemption.inputs import (
+    ContributionExemption,
+    ExemptionMeasure,
+)
 from ccnl_engine.employer.inputs import (
     AgriculturalZone,
     EmployerActivity,
@@ -108,6 +112,7 @@ __all__ = [
     "CalendarOverrideReason",
     "CollectiveDismissal",
     "ContributableHours",
+    "ContributionExemption",
     "ContributionHistory",
     "CurrentYearTaxFacts",
     "DeferredShortfall",
@@ -121,6 +126,7 @@ __all__ = [
     "EmploymentSector",
     "EmploymentSpell",
     "EngineMode",
+    "ExemptionMeasure",
     "FamilyComposition",
     "FixedTerm",
     "ForeignTaxPaid",

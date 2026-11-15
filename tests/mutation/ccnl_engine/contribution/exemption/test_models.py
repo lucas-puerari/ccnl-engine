@@ -21,6 +21,7 @@ from ccnl_engine.sector.loaders import load_year_rules
 _PROVENANCE = RuleProvenance(status=ProvenanceStatus.MISSING)
 _EXCLUSION = ReliefExclusion(
     rate=Decimal("0.0063333"),
+    fund_rate=Decimal("0.0033333"),
     rate_by_category={
         WorkerCategory.DIRIGENTE: None,
         WorkerCategory.QUADRO: Decimal("0.0030"),
@@ -56,6 +57,7 @@ def test_the_fis_cut_lowers_the_excluded_fis() -> None:
     excluded = with_fis_reduction(rates, reduced=True, headcount=5).relief_excluded
     assert excluded is not None
     assert excluded.rate == Decimal("0.0050333")
+    assert excluded.fund_rate == Decimal("0.0020333")
     assert excluded.rate_by_category == {
         WorkerCategory.DIRIGENTE: None,
         WorkerCategory.QUADRO: Decimal("0.0017"),
@@ -72,3 +74,11 @@ def test_the_bundle_reads_the_tier_of_the_headcount() -> None:
         assert inps.relief_excluded is not None
         assert inps.relief_excluded.rate == Decimal(rate)
         assert inps.relief_excluded.for_category(WorkerCategory.DIRIGENTE) is None
+
+
+def test_a_fund_in_place_of_the_fis_takes_its_share() -> None:
+    """A fund of 0.45% employer: 0.63333% - 0.33333% + 0.45% = 0.75%."""
+    excluded = _EXCLUSION.with_fund(Decimal("0.0045"))
+    assert excluded.rate == Decimal("0.0075000")
+    assert excluded.fund_rate == Decimal("0.0045")
+    assert excluded.rate_by_category[WorkerCategory.QUADRO] == Decimal("0.0041667")

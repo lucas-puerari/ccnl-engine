@@ -7,6 +7,9 @@ from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
+from ccnl_engine.contribution.exemption.inputs import (
+    ContributionExemption as Exemption,
+)
 from ccnl_engine.employment.fact.inputs import WeeklyHours, WorkPattern
 from ccnl_engine.employment.period.inputs import EmploymentPeriod
 from ccnl_engine.pension_fund.inputs import PENSION_FUND_TYPES
@@ -40,4 +43,6 @@ def employment_fields(
         ("prior_extra_month_amount", e.prior_extra_month_amount, Decimal, True),
         ("tfr_fund", e.tfr_fund, TfrFundBalance, True),
         ("tfr_treasury_fund", e.tfr_treasury_fund, bool, True),
+        ("qualifying_shifts", e.qualifying_shifts, bool, True),
+        ("contribution_exemption", e.contribution_exemption, Exemption, True),
     )

@@ -44,7 +44,7 @@ def test_without_notes_the_registry_applies() -> None:
 
 
 def test_missing_note_lowers_its_capability() -> None:
-    """A native or caller-supplied capability becomes partial; others stay."""
+    """A native or caller-supplied capability becomes partial."""
     ccnl = _with_missing(
         load_ccnl("metalmeccanico-federmeccanica"),
         "base_salary",
@@ -56,7 +56,7 @@ def test_missing_note_lowers_its_capability() -> None:
     assert rows["base_salary"] == (_IMPL.PARTIAL, True)
     assert rows["overtime"] == (_IMPL.PARTIAL, True)
     assert rows["sickness"] == (_IMPL.PARTIAL, True)
-    assert rows["contribution_exemption"] == (_IMPL.UNSUPPORTED, True)
+    assert rows["contribution_exemption"] == (_IMPL.PARTIAL, True)
     assert rows["irpef"] == (_IMPL.NATIVE, False)
 
 
