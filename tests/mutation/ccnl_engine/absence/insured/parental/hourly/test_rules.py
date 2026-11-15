@@ -90,8 +90,12 @@ def test_hours_that_make_no_whole_day_are_rejected(
     hours: tuple[str, ...], day_hours: Decimal | None, match: str
 ) -> None:
     """Whole days of leave, under the criterion or the CCNL hours."""
-    with pytest.raises(InvalidInputError, match=match):
+    with pytest.raises(InvalidInputError, match=match) as error:
         allocate_hours(_leave(*hours), _RATES, day_hours)
+    assert (error.value.field, error.value.feature) == (
+        "HourlyParentalLeaveEvent.hours",
+        "parental_leave",
+    )
 
 
 def test_the_criterion_keeps_its_pairs() -> None:
@@ -128,10 +132,30 @@ def test_the_top_up_skips_days_out_of_its_reach() -> None:
     })
     days = HourlyDays({
         date(2026, 3, 2): ((Fraction(1, 2), Decimal("0.3")),),
-        date(2026, 3, 3): ((Fraction(1, 2), None),),
+        date(2026, 3, 3): ((Fraction(1, 2), Decimal("0.3")),),
         date(2026, 3, 4): ((Fraction(1, 2), Decimal("0.8")),),
         date(2026, 3, 5): ((Fraction(1, 2), Decimal("0.3")),),
+        date(2026, 3, 6): ((Fraction(1, 2), None),),
         date(2026, 4, 1): ((Fraction(1, 2), Decimal("0.3")),),
+    })
+    leave = replace(_leave("4", "4"), topped_up_days_before=Decimal(0))
+    amount, covered = hourly_top_up(
+        leave, days, _MARCH, Decimal(100), rule, Decimal("0.3")
+    )
+    assert (amount, covered) == (Decimal("20.00"), Decimal(1))
+
+
+def test_the_cap_left_is_shared_by_the_days() -> None:
+    """Half a day left of the cap: the first eligible half only."""
+    rule = ParentalTopUp.model_validate({
+        "rate": "0.5",
+        "max_days": 1,
+        "provenance": {"status": "missing"},
+    })
+    days = HourlyDays({
+        date(2026, 2, 27): ((Fraction(1, 2), Decimal("0.3")),),
+        date(2026, 3, 2): ((Fraction(1, 2), Decimal("0.3")),),
+        date(2026, 3, 3): ((Fraction(1, 2), Decimal("0.3")),),
     })
     leave = replace(_leave("4", "4"), topped_up_days_before=Decimal(0))
     amount, covered = hourly_top_up(

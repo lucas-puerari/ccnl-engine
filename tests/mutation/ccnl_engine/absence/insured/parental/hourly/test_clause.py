@@ -195,3 +195,11 @@ def test_only_an_unrecorded_ccnl_takes_the_limitation() -> None:
     clause = ParentalHourlyClause(day_hours=Decimal(6), provenance=_RECORD)
     assert HOURLY_CCNL_LIMITATION not in _limitations((), clause, unpublished=False)
     assert HOURLY_CCNL_LIMITATION in _limitations((), None, unpublished=False)
+
+
+def test_an_aran_ccnl_makes_the_days_with_its_six_hours() -> None:
+    """Università: 6 hours from 19 January 2024; 4 + 4 + 4 hours are 2 days."""
+    leave = replace(_leave(2, 3, 4), local_hourly_agreement=False)
+    result = _run(leave, ccnl_id="universita-aran", level_code="COLLABORATORE")
+    (item,) = (i for i in result.pay_items if i.kind == "maternity_item")
+    assert item.absence_days == 2

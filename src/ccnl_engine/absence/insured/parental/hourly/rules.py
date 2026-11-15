@@ -38,6 +38,7 @@ __all__ = ["HourlyDays", "allocate_hours", "hourly_top_up", "hours_indemnity"]
 
 _ZERO = Decimal(0)
 _FIELD = "HourlyParentalLeaveEvent.hours"
+_WHERE = {"field": _FIELD, "feature": "parental_leave"}
 _HALF = Fraction(1, 2)
 
 #: Part of a day of leave and its rate, ``None`` beyond the indemnified months.
@@ -60,7 +61,7 @@ class HourlyDays:
         Returns:
             The sum of its parts.
         """
-        return sum((part for part, _ in self.pieces[day]), Fraction(0))
+        return Fraction(sum(part for part, _ in self.pieces[day]))
 
     def rate(self, day: date) -> Decimal | None:
         """Return the rate of ``day``.
@@ -82,9 +83,8 @@ class HourlyDays:
         Returns:
             The sum of their shares.
         """
-        total = sum(
-            (self.share(day) for day in self.pieces if first <= day <= last),
-            Fraction(0),
+        total = Fraction(
+            sum(self.share(day) for day in self.pieces if first <= day <= last)
         )
         return _decimal(total)
 
@@ -122,20 +122,20 @@ def _shares(
                 f"{_FIELD} must be half of average_daily_hours ({half}) on each "
                 "day: the general criterion of art. 32 c. 1-ter"
             )
-            raise InvalidInputError(msg, field=_FIELD, feature="parental_leave")
+            raise InvalidInputError(msg, **_WHERE)
         if len(event.hours) % 2:
             msg = f"{_FIELD} must hold whole days of leave: an even number"
-            raise InvalidInputError(msg, field=_FIELD, feature="parental_leave")
+            raise InvalidInputError(msg, **_WHERE)
         return [(item.day, _HALF) for item in event.hours]
     unit = Fraction(day_hours)
     shares = [(item.day, Fraction(item.hours) / unit) for item in event.hours]
-    total = sum((share for _, share in shares), Fraction(0))
+    total = Fraction(sum(share for _, share in shares))
     if total.denominator != 1:
         msg = (
             f"{_FIELD} must make whole days of leave of {day_hours} hours, the "
             "CCNL equivalence (INPS circ. 152/2015 par. 2.2)"
         )
-        raise InvalidInputError(msg, field=_FIELD, feature="parental_leave")
+        raise InvalidInputError(msg, **_WHERE)
     return shares
 
 
@@ -164,7 +164,7 @@ def allocate_hours(
     days = [item.day for item in event.hours]
     if days[-1] >= _add_years(event.child_born_on, rates.child_age_years):
         msg = f"{_FIELD} must precede the child's {rates.child_age_years}th birthday"
-        raise InvalidInputError(msg, field=_FIELD, feature="parental_leave")
+        raise InvalidInputError(msg, **_WHERE)
     counters = _Counters(event, rates)
     taken: list[Decimal | None] = []
     position = Fraction(0)
@@ -210,7 +210,7 @@ def hourly_top_up(
     for day, part, rate in _eligible(days, span[1], rule, standard_rate):
         used = min(part, room)
         room -= used
-        if used and day >= span[0]:
+        if day >= span[0]:
             amount += max(Fraction(0), Fraction(rule.rate) - Fraction(rate)) * used
             covered += used
     return money(_decimal(amount) * daily), _decimal(covered)
@@ -243,14 +243,13 @@ def hours_indemnity(
         The daily base at the rate of each part of a day of leave, rounded
         once.
     """
-    paid = sum(
-        (
+    paid = Fraction(
+        sum(
             part * Fraction(rate)
             for day, parts in days.pieces.items()
             if first <= day <= last
             for part, rate in parts
             if rate is not None
-        ),
-        Fraction(0),
+        )
     )
     return money(daily * _decimal(paid))
