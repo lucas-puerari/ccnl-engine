@@ -138,7 +138,7 @@
       },
       {
         "kind": "simplification",
-        "text": "MULTI-WEEK SCHEDULE: the premiums of the orario plurisettimanale of Art. 5 as renewed on 22 November 2025 (15% Monday to Friday and 25% on Saturday, 20% and 30% for sudden needs, raised by 8% from the 81st hour, p. 32 of the signed scan) are not modelled. The night work of Art. 7 is in supplement_bands: 20% before 22 (FED_NOTTURNO_FINO_22), 30% after 22 not on shifts (FED_NOTTURNO_OLTRE_22), the shift workers 25% from 22 to 6 (FED_NOTTURNO_TURNI) or 20% in the impiantistiche activities over the 24 hours (FED_NOTTURNO_TURNI_IMPIANTI, role impianti_24h); their night-holiday rates of rows h) and i) (60%, 35%; 65%, 40% from 22 to 6) are not modelled. The shift column of the overtime of Art. 7 is: OT_NOTTURNO_TURNI, OT_NOTTURNO_TURNI_EXTRA and OT_NOTTURNO_FESTIVO_TURNI for an event with in_periodic_shift.",
+        "text": "MULTI-WEEK SCHEDULE AND SHIFT NIGHT-HOLIDAY: the premiums of the orario plurisettimanale of Art. 5 as renewed on 22 November 2025 are the bands OT_PLURI (15%), OT_PLURI_SABATO (25%) and, for sudden needs, OT_PLURI_IMPROVVISO (20%) and OT_PLURI_IMPROVVISO_SABATO (30%), premium only. Not modelled: their rise 'a partire dalla 81esima ora' ('elevate nella misura onnicomprensiva dell'8%'), which needs the hours of the schedule worked in the year, and the night-holiday rates of the shift workers of Art. 7 rows h) and i) (60%, 35%; 65%, 40% from 22 to 6). The shift column of the overtime of Art. 7 is: OT_NOTTURNO_TURNI, OT_NOTTURNO_TURNI_EXTRA and OT_NOTTURNO_FESTIVO_TURNI for an event with in_periodic_shift.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -146,7 +146,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the multi-week premiums of Art. 5 and the night-holiday rates of the shift workers with a fact naming the schedule of the worker, then resolve this limitation."
+          "remediation": "Add the hours of the multi-week schedule worked in the year to pay the 8% from the 81st hour, and the night-holiday rates of the shift workers, then resolve this limitation."
         }
       },
       {
@@ -3427,7 +3427,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "6687ebbe08089ec77d221f4dffd96591ec2870144c4b6bec86846a757ba2e5e5",
+    "source_hash": "26b790aca2448836c4001fd2d694500bcc5e70e69405e9a20ded970c36c01e6f",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -3961,6 +3961,142 @@
               "quote": "per le ore di lavoro prestate in aumento dovrà essere corrisposta una maggiorazione della retribuzione nella misura onnicomprensiva pari al 15% da computare su gli elementi utili al calcolo delle maggiorazioni per lavoro straordinario, notturno e festivo."
             },
             "transformation": "The hours added under the elastic clause are paid with the 15% onnicomprensiva; the clause allows up to 25% of the normal annual part-time hours."
+          }
+        },
+        {
+          "code": "OT_PLURI",
+          "description": "Orario plurisettimanale, ore oltre l'orario normale lunedì-venerdì: 15%",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-11-22",
+                "valid_until": null,
+                "value": "0.15",
+                "provenance": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "plurisettimanale"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ipotesi-rinnovo-federmeccanica-2025-11-22",
+                "title": "Ipotesi di accordo di rinnovo CCNL Federmeccanica-Assistal 22 novembre 2025 (siglata, scansione UILM)",
+                "kind": "associazione",
+                "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+              },
+              "page": "32",
+              "section": "Sez. Quarta, Titolo III, Art. 5 (orario plurisettimanale)",
+              "quote": "Per le ore prestate oltre l'orario contrattuale settimanale normale sarà riconosciuta ai lavoratori interessati una maggiorazione della retribuzione nella misura onnicomprensiva del 15% per le ore prestate dal lunedì al venerdì e del 25% per le ore prestate al sabato da computare sugli elementi utili al calcolo delle maggiorazioni per lavoro straordinario, notturno e festivo. Nel caso di orario plurisettimanale per necessità improvvise le suddette maggiorazioni saranno elevate rispettivamente alla misura onnicomprensiva del 20% e del 30%."
+            },
+            "transformation": "Orario plurisettimanale (art. 5 as renewed): the hours above the normal week are already paid ('I lavoratori interessati percepiranno la retribuzione relativa all'orario contrattuale settimanale normale sia nei periodi di superamento che in quelli di minore prestazione'), so the band pays the premium only. Scan read by OCR, checked on 2026-11-15."
+          }
+        },
+        {
+          "code": "OT_PLURI_SABATO",
+          "description": "Orario plurisettimanale, ore oltre l'orario normale al sabato: 25%",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-11-22",
+                "valid_until": null,
+                "value": "0.25",
+                "provenance": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "plurisettimanale_sabato"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ipotesi-rinnovo-federmeccanica-2025-11-22",
+                "title": "Ipotesi di accordo di rinnovo CCNL Federmeccanica-Assistal 22 novembre 2025 (siglata, scansione UILM)",
+                "kind": "associazione",
+                "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+              },
+              "page": "32",
+              "section": "Sez. Quarta, Titolo III, Art. 5 (orario plurisettimanale)",
+              "quote": "Per le ore prestate oltre l'orario contrattuale settimanale normale sarà riconosciuta ai lavoratori interessati una maggiorazione della retribuzione nella misura onnicomprensiva del 15% per le ore prestate dal lunedì al venerdì e del 25% per le ore prestate al sabato da computare sugli elementi utili al calcolo delle maggiorazioni per lavoro straordinario, notturno e festivo. Nel caso di orario plurisettimanale per necessità improvvise le suddette maggiorazioni saranno elevate rispettivamente alla misura onnicomprensiva del 20% e del 30%."
+            },
+            "transformation": "Orario plurisettimanale (art. 5 as renewed): the hours above the normal week are already paid ('I lavoratori interessati percepiranno la retribuzione relativa all'orario contrattuale settimanale normale sia nei periodi di superamento che in quelli di minore prestazione'), so the band pays the premium only. Scan read by OCR, checked on 2026-11-15."
+          }
+        },
+        {
+          "code": "OT_PLURI_IMPROVVISO",
+          "description": "Orario plurisettimanale per necessità improvvise, lunedì-venerdì: 20%",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-11-22",
+                "valid_until": null,
+                "value": "0.20",
+                "provenance": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "plurisettimanale_improvviso"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ipotesi-rinnovo-federmeccanica-2025-11-22",
+                "title": "Ipotesi di accordo di rinnovo CCNL Federmeccanica-Assistal 22 novembre 2025 (siglata, scansione UILM)",
+                "kind": "associazione",
+                "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+              },
+              "page": "32",
+              "section": "Sez. Quarta, Titolo III, Art. 5 (orario plurisettimanale)",
+              "quote": "Per le ore prestate oltre l'orario contrattuale settimanale normale sarà riconosciuta ai lavoratori interessati una maggiorazione della retribuzione nella misura onnicomprensiva del 15% per le ore prestate dal lunedì al venerdì e del 25% per le ore prestate al sabato da computare sugli elementi utili al calcolo delle maggiorazioni per lavoro straordinario, notturno e festivo. Nel caso di orario plurisettimanale per necessità improvvise le suddette maggiorazioni saranno elevate rispettivamente alla misura onnicomprensiva del 20% e del 30%."
+            },
+            "transformation": "Orario plurisettimanale (art. 5 as renewed): the hours above the normal week are already paid ('I lavoratori interessati percepiranno la retribuzione relativa all'orario contrattuale settimanale normale sia nei periodi di superamento che in quelli di minore prestazione'), so the band pays the premium only. Scan read by OCR, checked on 2026-11-15."
+          }
+        },
+        {
+          "code": "OT_PLURI_IMPROVVISO_SABATO",
+          "description": "Orario plurisettimanale per necessità improvvise, sabato: 30%",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-11-22",
+                "valid_until": null,
+                "value": "0.30",
+                "provenance": null
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "plurisettimanale_improvviso_sabato"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ipotesi-rinnovo-federmeccanica-2025-11-22",
+                "title": "Ipotesi di accordo di rinnovo CCNL Federmeccanica-Assistal 22 novembre 2025 (siglata, scansione UILM)",
+                "kind": "associazione",
+                "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
+                "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec"
+              },
+              "page": "32",
+              "section": "Sez. Quarta, Titolo III, Art. 5 (orario plurisettimanale)",
+              "quote": "Per le ore prestate oltre l'orario contrattuale settimanale normale sarà riconosciuta ai lavoratori interessati una maggiorazione della retribuzione nella misura onnicomprensiva del 15% per le ore prestate dal lunedì al venerdì e del 25% per le ore prestate al sabato da computare sugli elementi utili al calcolo delle maggiorazioni per lavoro straordinario, notturno e festivo. Nel caso di orario plurisettimanale per necessità improvvise le suddette maggiorazioni saranno elevate rispettivamente alla misura onnicomprensiva del 20% e del 30%."
+            },
+            "transformation": "Orario plurisettimanale (art. 5 as renewed): the hours above the normal week are already paid ('I lavoratori interessati percepiranno la retribuzione relativa all'orario contrattuale settimanale normale sia nei periodi di superamento che in quelli di minore prestazione'), so the band pays the premium only. Scan read by OCR, checked on 2026-11-15."
           }
         }
       ],

@@ -50,6 +50,10 @@ class WorkKind(StrEnum):
     SUPPLEMENTARE = "supplementare"
     ELASTICA_COLLOCAZIONE = "elastica_collocazione"
     ELASTICA_AUMENTO = "elastica_aumento"
+    PLURISETTIMANALE = "plurisettimanale"
+    PLURISETTIMANALE_SABATO = "plurisettimanale_sabato"
+    PLURISETTIMANALE_IMPROVVISO = "plurisettimanale_improvviso"
+    PLURISETTIMANALE_IMPROVVISO_SABATO = "plurisettimanale_improvviso_sabato"
 
 
 class OvertimeBand(BaseModel):

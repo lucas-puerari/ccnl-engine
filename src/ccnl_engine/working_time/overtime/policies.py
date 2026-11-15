@@ -65,6 +65,15 @@ _FALLBACK = {
     WorkKind.SUNDAY: WorkKind.WEEKDAY,
 }
 
+#: Hours already in the pay, which take the premium of their band only.
+_PREMIUM_ONLY = frozenset({
+    OvertimeKind.ELASTIC_PLACEMENT,
+    OvertimeKind.MULTIWEEK,
+    OvertimeKind.MULTIWEEK_SATURDAY,
+    OvertimeKind.MULTIWEEK_SUDDEN,
+    OvertimeKind.MULTIWEEK_SUDDEN_SATURDAY,
+})
+
 
 @dataclass(frozen=True)
 class OvertimeRate:
@@ -198,8 +207,8 @@ def resolve_overtime_rate(
     Returns:
         The caller's multiplier, a weighted weekly-tier multiplier when
         preceding weekly hours are stated, or ``1 + band`` of the first tier
-        (the band alone for hours moved under an elastic clause, already
-        in the pay).
+        (the band alone for hours already in the pay: moved under an
+        elastic clause, or above the normal week of a multi-week schedule).
 
     Raises:
         MissingRuleError: When the event has no multiplier and the CCNL
@@ -235,7 +244,7 @@ def resolve_overtime_rate(
         raise MissingRuleError(
             msg, as_of=event.event_date, feature=_OT, remediation=_MULTIPLIER
         )
-    paid = Decimal(event.kind is not OvertimeKind.ELASTIC_PLACEMENT)
+    paid = Decimal(event.kind not in _PREMIUM_ONLY)
     return OvertimeRate(paid + supplement, True, band, supplement, tiers)
 
 
