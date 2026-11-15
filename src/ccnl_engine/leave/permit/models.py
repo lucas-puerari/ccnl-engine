@@ -285,6 +285,7 @@ class PermitRules(BaseModel):
                 item.hours
                 for item in self.extra_hours
                 if day is not None
+                and not item.paid_with_thirteenth
                 and item.applies(
                     day, subsector, shifts, weekly, roles=roles, hired_on=hired_on
                 )

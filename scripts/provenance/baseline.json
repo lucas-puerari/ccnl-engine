@@ -928,9 +928,6 @@
       "metalmeccanico-confimi-pmi/comporto_prolungato",
       "metalmeccanico-confimi-pmi/overtime_shift_column"
     ],
-    "agreement/metalmeccanico-federmeccanica.json": [
-      "metalmeccanico-federmeccanica/par_sector_and_shift_hours"
-    ],
     "agreement/multiservizi-anip.json": [
       "multiservizi-anip/anip_unsigned_renewal",
       "multiservizi-anip/multiservizi_apprenticeship_destinations",

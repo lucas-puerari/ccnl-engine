@@ -177,17 +177,8 @@
         "text": "HOURLY RATE AND SUPPLEMENTS (Art. 7 Sez. Quarta Tit. III of the CCNL of 5 February 2021, rates untouched by the renewal of 22 November 2025): without a caller value the engine derives the hourly base (minimi, scatti and fixed allowances over 173) and the supplements on holiday hours (50%) and on holiday hours with a compensatory rest (10%), equal in both columns. Whether those hours are also paid on top of the monthly pay is not settled: a derived holiday supplement is provisional. Not derived, the caller states the amount: ordinary night work (20% until 22 and 30% after; shift workers 15%, 20% from June 2013, 25% from 22 to 6 in the impiantistica), because its window starts 12 hours after the morning shift of each work group and its rate depends on the hour and on the shift column, facts the request does not carry; night holiday work and Sunday work. Individual elements (merito, superminimi, cottimi) are not in the hourly base. Absences: no clause sets the divisor of an absence deduction; the 1/26 of art. 9 (festività on a Sunday) is taken by analogy (work_rules.absence_rules derived, was verified on the wrong clause): the caller states AbsenceEvent.hourly_rate."
       },
       {
-        "kind": "simplification",
-        "text": "LEAVE, PAR (Sez. Quarta, Titolo III, Art. 5, renewal of 22 November 2025 p. 33): the settore siderurgico (EmployerProfile.subsector steel) accrues 124 hours in place of 104, every other firm (subsector general) 104, and the turnisti on 15 or more weekly shifts including the night shift (Employment.qualifying_shifts) 8 hours more. The further 4 hours from 2027 at 18 or more weekly shifts and 4 more from 2028 at 21 for the non siderurgico workers are permit extra_hours on Employment.weekly_shifts. The hour of the sottosettori of the accordo of 16 July 1979 (8 hours a year) goes to the workers holding the role sottosettore_1979 hired by 31 December 2012. Not modelled: the 8 hours of the siderurgico turnisti, paid with the 13th.",
-        "capability": "leave",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "par_sector_and_shift_hours",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Pay the 8 hours of the siderurgico turnisti with the 13th, then resolve this limitation."
-        }
+        "kind": "info",
+        "text": "LEAVE, PAR (Sez. Quarta, Titolo III, Art. 5, renewal of 22 November 2025 p. 33): the settore siderurgico (EmployerProfile.subsector steel) accrues 124 hours in place of 104, every other firm (subsector general) 104, and the turnisti on 15 or more weekly shifts including the night shift (Employment.qualifying_shifts) 8 hours more. The further 4 hours from 2027 at 18 or more weekly shifts and 4 more from 2028 at 21 for the non siderurgico workers are permit extra_hours on Employment.weekly_shifts. The hour of the sottosettori of the accordo of 16 July 1979 (8 hours a year) goes to the workers holding the role sottosettore_1979 hired by 31 December 2012. The 8 hours of the siderurgico turnisti are paid with the thirteenth (extra_hours paid_with_thirteenth)."
       },
       {
         "kind": "info",
@@ -3387,7 +3378,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "f13e82ad464e8f9d92c3003c0c0bde70af1b20a34c20ad2f32987434ecf73c80",
+    "source_hash": "ef7cf968897afe1c37897d8f7c9af637713c447b968e2c2b80d4d0ee3449bfd9",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -4842,6 +4833,31 @@
                   "quote": "A titolo di transazione novativa, a soluzione del contenzioso derivante dal CCNL 16 luglio 1979, l’accordo del 1° settembre 1983 ha riconosciuto un’ulteriore riduzione di orario pari ad un permesso retribuito annuo di 8 ore, per i lavoratori delle imprese appartenenti ai sottosettori indicati nella «Tabella allegata» alle «Modifiche apportate all’articolo 5, Disciplina generale, Sezione terza, del CCNL 1° maggio 1976, dall’accordo 16 luglio 1979», non più riportate nei successivi contratti collettivi di categoria. Tale riduzione resta confermata per i soli lavoratori in forza al 31 dicembre 2012."
                 },
                 "transformation": "8 more PAR hours a year for the workers of the firms of the sub-sectors of the 1979 table, in service at 31 December 2012. The table is no longer printed in the CCNL: whether the worker belongs to it is the employer's fact, the role sottosettore_1979 (Employment.roles); a worker hired after 31 December 2012 never takes the hour. The renewal of 22 November 2025 leaves the clause unchanged (p. 33)."
+              }
+            },
+            {
+              "hours": "8",
+              "valid_from": "2000-01-01",
+              "subsectors": [
+                "steel"
+              ],
+              "qualifying_shifts": true,
+              "paid_with_thirteenth": true,
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-federmeccanica-2021-02-05",
+                    "title": "CCNL Metalmeccanici Federmeccanica-Assistal 5 febbraio 2021 (testo FIOM-CGIL)",
+                    "kind": "associazione",
+                    "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                    "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+                  },
+                  "page": "155",
+                  "section": "Sez. Quarta, Titolo III, Art. 5, Permessi annui retribuiti",
+                  "quote": "Per gli stessi lavoratori turnisti addetti al settore siderurgico, tale permesso di 8 ore è monetizzato e riconosciuto a decorrere dal 1° gennaio 2000; la monetizzazione è corrisposta insieme alla tredicesima mensilità al valore retributivo sul quale la stessa è computata."
+                },
+                "transformation": "The 8 hours of the turnisti on 15 or more weekly shifts with nights (Employment.qualifying_shifts) of the settore siderurgico (subsector steel) are paid, not taken: the run paying the thirteenth pays 8 hours over the hourly divisor of that thirteenth, which carries its fraction of the year ('computato in ragione di anno di servizio o frazione di esso', previous page). The renewal of 22 November 2025 leaves the clause unchanged (p. 33)."
               }
             }
           ]

@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs**; complete except declared residuals: 0. Bundle: 256 weak rules, 288 open limitations (288 with a monetary impact), 37 declared residuals.
+**Complete: 0/136 CCNLs**; complete except declared residuals: 1. Bundle: 256 weak rules, 287 open limitations (287 with a monetary impact), 37 declared residuals.
 
 ## Declared window
 
@@ -148,7 +148,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [metalmeccanico-artigianato](../contracts/metalmeccanico-artigianato.md) | `metalmeccanica` | exploratory | 2026-12-31 | 4 rows | 4 open requirements; 3 monetary limitations; 1 outside_input limitation; 6 non-native capabilities; 6 declared residuals |
 | [metalmeccanico-confapi](../contracts/metalmeccanico-confapi.md) | `metalmeccanica` | reviewed | — | 12 rows | 12 open requirements; 1 monetary limitation; 11 outside_input limitations; 5 non-native capabilities; 6 declared residuals |
 | [metalmeccanico-confimi-pmi](../contracts/metalmeccanico-confimi-pmi.md) | `metalmeccanica` | exploratory | — | 2 rows | tables from 2026-06-01; 2 open requirements; 2 outside_input limitations; 4 non-native capabilities; 6 declared residuals |
-| [metalmeccanico-federmeccanica](../contracts/metalmeccanico-federmeccanica.md) | `metalmeccanica` | production | — | 1 rows | 1 open requirement; 1 outside_input limitation; 1 non-native capability; 6 declared residuals |
+| [metalmeccanico-federmeccanica](../contracts/metalmeccanico-federmeccanica.md) | `metalmeccanica` | production | — | 0 rows | complete except 6 declared residuals |
 | [multiservizi-anip](../contracts/multiservizi-anip.md) | `pulizia-multiservizi` | exploratory | — | 9 rows | 9 open requirements; 6 monetary limitations; 3 outside_input limitations; 5 non-native capabilities; 8 declared residuals |
 | [noleggio-autobus-conducente-anav](../contracts/noleggio-autobus-conducente-anav.md) | `trasporti-logistica` | exploratory | — | 9 rows | 9 open requirements; 3 weak rules; 4 monetary limitations; 2 outside_input limitations; 8 non-native capabilities; 6 declared residuals |
 | [occhiali-occhialeria-industria](../contracts/occhiali-occhialeria-industria.md) | `tessile-moda` | exploratory | — | 3 rows | 3 open requirements; 2 weak rules; 1 monetary limitation; 4 non-native capabilities; 6 declared residuals |
