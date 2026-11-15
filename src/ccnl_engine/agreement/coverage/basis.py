@@ -28,10 +28,14 @@ class CapabilityBasisKind(StrEnum):
         NONE_BY_LAW: A law suppressed the amount, the clauses of the CCNL
             included; what is left (a refund of documented expenses) is a
             fact of the employer.
+        NONE_IN_CCNL: The CCNL sets the premium only in cases it names (the
+            night and holiday shifts) and none for the same work outside
+            them: nothing is owed there.
     """
 
     DELEGATED_TO_SECOND_LEVEL = "delegated_to_second_level"
     NONE_BY_LAW = "none_by_law"
+    NONE_IN_CCNL = "none_in_ccnl"
 
 
 class CapabilityBasis(BaseModel):

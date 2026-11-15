@@ -33,10 +33,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 34 verified / 5 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 34 verified / 8 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -88,13 +88,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "enti-ricerca-aran/research_allowances_missing · base_salary · impact yes · unsourced"
-    ALLOWANCES: the indennità di Ente of levels IV-VIII (Tabella C5) and the indennità di valorizzazione professionale of levels I-III (Tabella C6) are stated by the CCNL only as increments from 1.1.2027, their earlier amounts set by older contracts not read: not modelled, the caller pays them.
-
-    **Applies when:** `base_salary` applies.
-
-    **Remediation:** Read the indennità di Ente and di valorizzazione professionale of the earlier CCNL and add them with the 2027 increments.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -247,6 +240,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
 ??? note "Coverage notes"
     SCOPE: staff of the enti pubblici di ricerca (ASI included): levels IV-VIII (Tabella C3, one tabellare) and the ricercatori and tecnologi of levels I-III (Tabella C4, seven bands of anzianità di servizio as seniority steps), from 1.1.2024 (CCNL 2022-2024) and 2025-2027 (CCNL 2025-2027).
+    
+    ALLOWANCES: the indennità di valorizzazione professionale of levels I-III is a fixed allowance for 13 mensilità (IND_VALORIZZAZIONE). The monthly quota of the indennità di Ente of levels IV-VIII is set by the integrative bargaining of each body (CCNL 7/4/2006 art. 14 c. 2: 'La quota mensile dell'indennità di ente, stabilita in sede di contrattazione integrativa [...] è definita in ciascun Ente'; sha256 86188afeb4c34f78a88cc719a7ef23d89e4f8b421e4ff92c33e92e5ac15b2023, p. 15): a fact of the employer, which the caller states; the national tables only raise its annual amount.
     
     SHARED RULES, verified for the research bodies (review of 2026-11-15): the CCNL 23/12/2025 keeps the earlier CCNLs where not replaced (art. 1 c. 13). Ferie: 32 working days on 6 days (28 on 5), 30 (26) in the first 3 years (CCNL Ricerca 21/2/2002 art. 6 cc. 2-5, sha256 862e64ba15c4e7287602ba271d4c504d31426b5019232818e0cef0b28a3c275a, p. 10): as leave_rules. Sickness: 18 months of comporto over the triennio, 9 months at 100%, 3 at 90%, 6 at 50% of the fixed pay (art. 17 cc. 1-2, 9, pp. 17-19): as sickness_rules. The 4 days of rest of the festività soppresse (CCNL 18/1/2024 art. 126 c. 1 lett. b, p. 152) and the 18 hours of permits (art. 128) are leave taken, with no pay effect: not modelled. Overtime: individual limit of 200 hours a year (CCNL 2002 art. 34 c. 3 lett. o); its hourly base is not set by the texts read.
     

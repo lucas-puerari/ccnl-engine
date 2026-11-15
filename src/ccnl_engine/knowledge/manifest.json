@@ -864,7 +864,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/enti-ricerca-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "e757c8adcf9e5a4c3d63f957930f7dbb88911936d7a7f6968253e57c0d8a5ec6",
+      "source_hash": "4d611e36a28784421c8a3c8c09a07c146d25b86add2e4c3269ef849709b9af0a",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/enti-ricerca-aran.json.gz"

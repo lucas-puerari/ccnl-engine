@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 3/136 CCNLs**; complete except declared residuals: 0. Bundle: 251 weak rules, 285 open limitations (285 with a monetary impact), 31 declared residuals.
+**Complete: 4/136 CCNLs**; complete except declared residuals: 0. Bundle: 251 weak rules, 285 open limitations (285 with a monetary impact), 30 declared residuals.
 
 ## Declared window
 
@@ -110,7 +110,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [edilizia-pmi-confapi-aniem](../contracts/edilizia-pmi-confapi-aniem.md) | `edilizia` | exploratory | — | 13 rows | 13 open requirements; 1 weak rule; 9 monetary limitations; 3 outside_input limitations; 7 non-native capabilities; 1 declared residual |
 | [elettrico-elettricita-futura](../contracts/elettrico-elettricita-futura.md) | `energia-utilities` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 2 monetary limitations; 4 non-native capabilities |
 | [energia-petrolio-confindustria](../contracts/energia-petrolio-confindustria.md) | `energia-utilities` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 2 monetary limitations; 4 non-native capabilities |
-| [enti-ricerca-aran](../contracts/enti-ricerca-aran.md) | `pubblico-impiego` | exploratory | — | 0 rows | 1 non-native capability; 1 declared residual |
+| [enti-ricerca-aran](../contracts/enti-ricerca-aran.md) | `pubblico-impiego` | exploratory | — | 0 rows | complete |
 | [esercizi-cinematografici-anec](../contracts/esercizi-cinematografici-anec.md) | `spettacolo-media` | exploratory | — | 6 rows | 6 open requirements; 1 weak rule; 4 monetary limitations; 1 outside_input limitation; 6 non-native capabilities |
 | [farmacie-municipalizzate-assofarm](../contracts/farmacie-municipalizzate-assofarm.md) | `farmacie` | exploratory | — | 4 rows | 4 open requirements; 1 weak rule; 3 monetary limitations; 6 non-native capabilities |
 | [farmacie-private-h121](../contracts/farmacie-private-h121.md) | `farmacie` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule; 4 non-native capabilities |

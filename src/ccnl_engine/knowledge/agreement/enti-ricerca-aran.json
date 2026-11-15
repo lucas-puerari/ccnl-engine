@@ -3368,7 +3368,44 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_VALORIZZAZIONE",
+          "description": "Indennità di valorizzazione professionale (art. 8 CCNL 21/2/2002)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2027-01-01",
+                "value": "124.26"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "130.16"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "section": "Tabella C6 - Enti di ricerca, indennità di valorizzazione professionale",
+              "quote": "Indennità di Valorizzazione professionale Valori in Euro mensili da corrispondere per 13 mensilità Incrementi dal 1.1.2027 III 5,90",
+              "page": "29"
+            },
+            "transformation": "Indennità di valorizzazione professionale, monthly for 13 mensilità: the 165.000 lire of 1 January 2001 (CCNL 21/2/2002 art. 8 c. 2, tabella N), converted at 1,936.27 lire per euro and rounded to the cent (85.22, Reg. CE 1103/97), plus the increments of 1 December 2007 (17.54, CCNL 13/5/2009 art. 15 tab. G), 1 March 2018 (9.30, CCNL 19/4/2018 tab. E2.2), 1 January 2021 (5.60) and 1 January 2024 (6.60, CCNL 18/1/2024 art. 147 c. 2, tab. D3.2): 124.26 from 2024; plus 5.90 from 1 January 2027 (this table): 130.16. The enti may add the resources of art. 8 c. 3 in proportion: an individual element."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -3531,7 +3568,44 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_VALORIZZAZIONE",
+          "description": "Indennità di valorizzazione professionale (art. 8 CCNL 21/2/2002)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2027-01-01",
+                "value": "144.56"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "151.36"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "section": "Tabella C6 - Enti di ricerca, indennità di valorizzazione professionale",
+              "quote": "Indennità di Valorizzazione professionale Valori in Euro mensili da corrispondere per 13 mensilità Incrementi dal 1.1.2027 II 6,80",
+              "page": "29"
+            },
+            "transformation": "Indennità di valorizzazione professionale, monthly for 13 mensilità: the 192.000 lire of 1 January 2001 (CCNL 21/2/2002 art. 8 c. 2, tabella N), converted at 1,936.27 lire per euro and rounded to the cent (99.16, Reg. CE 1103/97), plus the increments of 1 December 2007 (20.40, CCNL 13/5/2009 art. 15 tab. G), 1 March 2018 (10.80, CCNL 19/4/2018 tab. E2.2), 1 January 2021 (6.60) and 1 January 2024 (7.60, CCNL 18/1/2024 art. 147 c. 2, tab. D3.2): 144.56 from 2024; plus 6.80 from 1 January 2027 (this table): 151.36. The enti may add the resources of art. 8 c. 3 in proportion: an individual element."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -3694,7 +3768,44 @@
           }
         ]
       },
-      "fixed_allowances": [],
+      "fixed_allowances": [
+        {
+          "code": "IND_VALORIZZAZIONE",
+          "description": "Indennità di valorizzazione professionale (art. 8 CCNL 21/2/2002)",
+          "monthly": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": "2027-01-01",
+                "value": "173.95"
+              },
+              {
+                "valid_from": "2027-01-01",
+                "valid_until": null,
+                "value": "182.15"
+              }
+            ]
+          },
+          "months_per_year": 13,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2025-2027",
+                "title": "CCNL sui principali aspetti del trattamento economico, Comparto Istruzione e Ricerca 2025-2027, 1 luglio 2026",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
+                "published_on": "2026-07-01",
+                "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
+              },
+              "section": "Tabella C6 - Enti di ricerca, indennità di valorizzazione professionale",
+              "quote": "Indennità di Valorizzazione professionale Valori in Euro mensili da corrispondere per 13 mensilità Incrementi dal 1.1.2027 I 8,20",
+              "page": "29"
+            },
+            "transformation": "Indennità di valorizzazione professionale, monthly for 13 mensilità: the 231.000 lire of 1 January 2001 (CCNL 21/2/2002 art. 8 c. 2, tabella N), converted at 1,936.27 lire per euro and rounded to the cent (119.30, Reg. CE 1103/97), plus the increments of 1 December 2007 (24.55, CCNL 13/5/2009 art. 15 tab. G), 1 March 2018 (13.00, CCNL 19/4/2018 tab. E2.2), 1 January 2021 (7.90) and 1 January 2024 (9.20, CCNL 18/1/2024 art. 147 c. 2, tab. D3.2): 173.95 from 2024; plus 8.20 from 1 January 2027 (this table): 182.15. The enti may add the resources of art. 8 c. 3 in proportion: an individual element."
+          }
+        }
+      ],
       "provenance": {
         "status": "derived",
         "location": {
@@ -3729,45 +3840,8 @@
         "text": "SCOPE: staff of the enti pubblici di ricerca (ASI included): levels IV-VIII (Tabella C3, one tabellare) and the ricercatori and tecnologi of levels I-III (Tabella C4, seven bands of anzianità di servizio as seniority steps), from 1.1.2024 (CCNL 2022-2024) and 2025-2027 (CCNL 2025-2027)."
       },
       {
-        "kind": "simplification",
-        "text": "ALLOWANCES: the indennità di Ente of levels IV-VIII (Tabella C5) and the indennità di valorizzazione professionale of levels I-III (Tabella C6) are stated by the CCNL only as increments from 1.1.2027, their earlier amounts set by older contracts not read: not modelled, the caller pays them.",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "research_allowances_missing",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "remediation": "Read the indennità di Ente and di valorizzazione professionale of the earlier CCNL and add them with the 2027 increments.",
-          "status": "unsourced",
-          "searched": [
-            {
-              "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
-              "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a",
-              "title": "PDF p. 39 (stampata p. 37), art. 27, comma 1."
-            },
-            {
-              "url": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
-              "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904",
-              "title": "PDF p. 29 (stampata p. 26), tabella C5."
-            },
-            {
-              "url": "https://www.flcgil.it/files/pdf/20221206/ccnl-istruzione-e-ricerca-anticipi-trattamento-economico-2019-2021-del-6-dicembre-2022.pdf",
-              "sha256": "556101567f92cf16472b596e76ae58c868b1874aa44c7be748d8ff0b8a4017ae",
-              "title": "PDF p. 38 (stampata p. 36), tabelle D3.1 e D3.2, CCNL firmato 6/12/2022, copia pubblicata da firmatario."
-            },
-            {
-              "url": "https://www.aranagenzia.it/wp-content/uploads/2023/10/CCNL_-ISTR-RICERCA-SIGLATO-19_4_2018-DEF_PUBB_2.pdf",
-              "sha256": "e3e567d838c91749a194acedf737b06c676bd6fcfc39007c3d7077641fb18341",
-              "title": "PDF p. 176 (stampata p. 173), tabelle E2.1/E2.2."
-            },
-            {
-              "url": "https://www.aranagenzia.it/wp-content/uploads/2024/09/Ricerca_Raccolta-sistematica_Gennaio-2017_s1.pdf",
-              "sha256": "371e335f0501d71fa7854ff3f404cc375ecf4e44ca322f8c004be68217d6a60a",
-              "title": "PDF p. 102 (stampata p. 101), trascrizione art. 44, comma 3, CCNL 7/10/1996."
-            }
-          ]
-        }
+        "kind": "info",
+        "text": "ALLOWANCES: the indennità di valorizzazione professionale of levels I-III is a fixed allowance for 13 mensilità (IND_VALORIZZAZIONE). The monthly quota of the indennità di Ente of levels IV-VIII is set by the integrative bargaining of each body (CCNL 7/4/2006 art. 14 c. 2: 'La quota mensile dell'indennità di ente, stabilita in sede di contrattazione integrativa [...] è definita in ciascun Ente'; sha256 86188afeb4c34f78a88cc719a7ef23d89e4f8b421e4ff92c33e92e5ac15b2023, p. 15): a fact of the employer, which the caller states; the national tables only raise its annual amount."
       },
       {
         "kind": "info",
@@ -3811,7 +3885,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "e757c8adcf9e5a4c3d63f957930f7dbb88911936d7a7f6968253e57c0d8a5ec6",
+    "source_hash": "4d611e36a28784421c8a3c8c09a07c146d25b86add2e4c3269ef849709b9af0a",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -4099,7 +4173,7 @@
         }
       },
       "night_work": {
-        "kind": "delegated_to_second_level",
+        "kind": "none_in_ccnl",
         "provenance": {
           "status": "derived",
           "location": {
@@ -4114,11 +4188,11 @@
             "section": "Art. 47, c. 2 (Lavoro in turni)",
             "quote": "per ogni ora di lavoro prestato secondo appositi turni avvicendati giornalieri spetta una maggiorazione pari al 20% della misura oraria dei compensi per lavoro straordinario ; per i turni effettuati in giorni festivi la maggiorazione di cui sopra è pari al 50%, mentre per quelli notturni e festivi la medesima è pari all’80%."
           },
-          "transformation": "The CCNLs of the research bodies set the only national premium of night work, that of the night shifts of art. 47 c. 2; ordinary night work outside shifts has none. The hourly measure of overtime it applies to is not set by any CCNL (see overtime), so the premium depends on the employer's measure. The amount is a fact of the employer, which the caller states (maintainer decision of 2026-11-15)."
+          "transformation": "The CCNLs of the research bodies set the only national premium of night work, that of the night shifts of art. 47 c. 2; ordinary night work outside shifts has none. The hourly measure of overtime it applies to is not set by any CCNL (see overtime), so the premium depends on the employer's measure. Outside shifts nothing is owed; a night or holiday shift is paid as shift work."
         }
       },
       "holiday_work": {
-        "kind": "delegated_to_second_level",
+        "kind": "none_in_ccnl",
         "provenance": {
           "status": "derived",
           "location": {
@@ -4133,7 +4207,7 @@
             "section": "Art. 47, c. 2 (Lavoro in turni)",
             "quote": "per ogni ora di lavoro prestato secondo appositi turni avvicendati giornalieri spetta una maggiorazione pari al 20% della misura oraria dei compensi per lavoro straordinario ; per i turni effettuati in giorni festivi la maggiorazione di cui sopra è pari al 50%, mentre per quelli notturni e festivi la medesima è pari all’80%."
           },
-          "transformation": "The CCNLs of the research bodies set the only national premium of holiday work, that of the holiday shifts of art. 47 c. 2; ordinary holiday work outside shifts has none. The hourly measure of overtime it applies to is not set by any CCNL (see overtime), so the premium depends on the employer's measure. The amount is a fact of the employer, which the caller states (maintainer decision of 2026-11-15)."
+          "transformation": "The CCNLs of the research bodies set the only national premium of holiday work, that of the holiday shifts of art. 47 c. 2; ordinary holiday work outside shifts has none. The hourly measure of overtime it applies to is not set by any CCNL (see overtime), so the premium depends on the employer's measure. Outside shifts nothing is owed; a night or holiday shift is paid as shift work."
         }
       },
       "travel_allowance": {
