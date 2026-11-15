@@ -41,6 +41,7 @@ from ccnl_engine.extra_month.decision.services import accrual_decisions
 from ccnl_engine.extra_month.settlement.run import run_settlement
 from ccnl_engine.fund.assistance.policies import assistance_decision
 from ccnl_engine.fund.health.services import contractual_funds
+from ccnl_engine.leave.permit.monetised import monetised_permit_payment
 from ccnl_engine.leave.services import run_leave
 from ccnl_engine.pay_item.rounding.policies import contribution_base
 from ccnl_engine.pension_fund.decision.services import (
@@ -126,8 +127,7 @@ def run_events(ctx: RunContext) -> RunEvents:
     """Post the variable events and the extra-month settlements of the run.
 
     Unpaid absences that deduct more than the pay of the run are rejected
-    before the settlements are merged.  The leave of the run (accrual,
-    leave taken, indemnity of the residual on termination) merges last.
+    before the settlements, the leave of the run among them, are merged.
 
     Returns:
         The event totals with the settled bases and the leave account
@@ -143,6 +143,7 @@ def run_events(ctx: RunContext) -> RunEvents:
         ctx.monthly_gross,
         with_sickness=any(i.code == WITH_UNPAID_ABSENCE for i in events.totals.issues),
     )
+    paid = (*legacy_holiday_payment(ctx), monetised_permit_payment(ctx))
     parts = (  # noqa: RUF005
         settlement,
         erc,
@@ -153,7 +154,7 @@ def run_events(ctx: RunContext) -> RunEvents:
         run_leave(ctx),
         sunday_holiday(ctx),
         loyalty_premium(ctx),
-    ) + legacy_holiday_payment(ctx)
+    ) + paid
     totals = events.totals
     for part in parts:
         totals = part.added_to(totals)

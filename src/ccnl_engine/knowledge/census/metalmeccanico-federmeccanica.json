@@ -3,22 +3,6 @@
   "ccnl_id": "metalmeccanico-federmeccanica",
   "requirements": [
     {
-      "id": "par_sector_and_shift_hours",
-      "institute": "leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "LEAVE, PAR (Sez. Quarta, Titolo III, Art. 5, renewal of 22 November 2025 p. 33): the settore siderurgico (EmployerProfile.subsector steel) accrues 124 hours in place of 104, every other firm (subsector general) 104, and the turnisti on 15 or more weekly shifts including the night shift (Employment.qualifying_shifts) 8 hours more. The further 4 hours from 2027 at 18 or more weekly shifts and 4 more from 2028 at 21 for the non siderurgico workers are permit extra_hours on Employment.weekly_shifts. The hour of the sottosettori of the accordo of 16 July 1979 (8 hours a year) goes to the workers holding the role sottosettore_1979 hired by 31 December 2012. Not modelled: the 8 hours of the siderurgico turnisti, paid with the 13th.",
-      "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
-      "state": "absent",
-      "remediation": "Pay the 8 hours of the siderurgico turnisti with the 13th, then resolve this limitation.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "metalmeccanico-federmeccanica/par_sector_and_shift_hours"
-        ]
-      }
-    },
-    {
       "id": "shift_and_multiweek_premiums",
       "institute": "overtime",
       "variant": "all",
