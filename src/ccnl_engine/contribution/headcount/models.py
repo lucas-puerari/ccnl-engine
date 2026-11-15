@@ -14,6 +14,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 from ccnl_engine.agreement.facade import PublicPensionFund
 from ccnl_engine.contribution.additional_ivs.models import AdditionalIvsRule
 from ccnl_engine.contribution.cigs.models import CigsIndotto
+from ccnl_engine.contribution.exemption.models import ReliefExclusion
 from ccnl_engine.contribution.fis.models import FisReduction
 from ccnl_engine.contribution.minimum_base.models import MinimumBaseRule
 from ccnl_engine.contribution.rate.models import (
@@ -40,7 +41,8 @@ class InpsEmployerTier(BaseModel):
     ``ivs_rate`` is the IVS (Invalidità, Vecchiaia, Superstiti) portion of
     ``rate``.  Only this portion is subject to the annual massimale retributivo
     (Art. 1 c. 18 L. 335/1995); the remainder (NASpI, CUAF, CIG, etc.) is
-    always applied to the full contribution base.
+    always applied to the full contribution base.  ``relief_excluded`` is
+    the part of the rate the contribution exemptions do not cut.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -50,6 +52,7 @@ class InpsEmployerTier(BaseModel):
     ivs_rate: NonNegativeRate
     rate_by_category: dict[WorkerCategory, NonNegativeRate] = {}
     fixed_term_rate_by_category: dict[WorkerCategory, NonNegativeRate] = {}
+    relief_excluded: ReliefExclusion | None = None
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
