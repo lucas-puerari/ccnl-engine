@@ -78,6 +78,10 @@ class Allowance(BaseModel):
     istituto contrattuale'): it is neither deducted nor topped up.
     ``in_kind=True``: a benefit in kind (board and lodging, domestico art. 36),
     unpaid on a regular run but in the TFR base, paid in cash in extra months.
+    ``in_global_pay=True``: its value enters the bases the CCNL measures on
+    the "retribuzione globale di fatto" (domestico, chiarimento a verbale 5:
+    "ivi incluse le indennità di vitto e alloggio"), the hourly base of the
+    time supplements and the daily quota of a holiday on a Sunday.
     ``tfr_relevant_from`` dates the TFR relevance (Federalimentare art. 73).
     ``below_weekly_hours`` pays the allowance only to a worker whose stated
     ``Employment.weekly_hours`` is below it (Portieri art. 122 c. 2: B5 under
@@ -104,6 +108,7 @@ class Allowance(BaseModel):
     absence_relevant: bool = True
     part_time_proportionable: bool = True
     in_kind: bool = False
+    in_global_pay: bool = False
     replaced_by: Literal["provincial_element", "second_level_premium"] | None = None
     service_months_threshold: int | None = Field(default=None, ge=0)
     service_months_until: int | None = Field(default=None, ge=1)
@@ -129,6 +134,9 @@ class Allowance(BaseModel):
                 f"allowance {self.code}: hourly rate requires "
                 "a zero monthly placeholder"
             )
+            raise ValueError(msg)
+        if self.in_global_pay and not self.in_kind:
+            msg = f"allowance {self.code}: in_global_pay is for a benefit in kind"
             raise ValueError(msg)
         if not self.contribution_relevant:
             msg = (

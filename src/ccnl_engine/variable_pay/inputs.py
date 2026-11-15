@@ -196,6 +196,12 @@ class TravelAllowanceEvent:
             CCNL that pays by meals and lodging; ``None`` otherwise.
         overnight: Whether the overnight quota is due each day, with
             ``meals``.
+        agreed_at_hiring: Whether the hiring letter provides for the duty to
+            travel, read by a CCNL that pays a share of the daily minimum
+            (Lavoro domestico art. 33 c. 2: no diaria "nel caso in cui il
+            relativo obbligo fosse stato contrattualmente previsto nella
+            lettera di assunzione"); ``None`` when not stated, which such a
+            CCNL rejects.
 
     Raises:
         InvalidInputError: When a field is invalid, neither
@@ -217,6 +223,7 @@ class TravelAllowanceEvent:
     mission_over_month: bool = False
     meals: int | None = None
     overnight: bool | None = None
+    agreed_at_hiring: bool | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         feature = "travel_allowance"
@@ -253,13 +260,15 @@ class TravelAllowanceEvent:
             maximum=2,
             optional=True,
         )
-        if self.overnight is not None:
-            require_bool(self.overnight, f"{name}.overnight", feature=feature)
+        for fact in ("overnight", "agreed_at_hiring"):
+            if getattr(self, fact) is not None:
+                require_bool(getattr(self, fact), f"{name}.{fact}", feature=feature)
         if (
             self.daily_amount is None
             and self.hours_away is None
             and self.mission_hours is None
             and self.meals is None
+            and self.agreed_at_hiring is None
         ):
             msg = f"{name}: state daily_amount or the hours_away of the CCNL span"
             raise InvalidInputError(msg, field=f"{name}.hours_away", feature=feature)
