@@ -27,6 +27,13 @@ class OvertimeKind(StrEnum):
             they take the premium of their band only.
         ELASTIC_INCREASE: Part-time hours added under an elastic clause,
             paid with the premium of their band.
+        MULTIWEEK: Hours above the normal week of a multi-week schedule
+            (orario plurisettimanale), Monday to Friday: already in the pay
+            of the normal week, they take the premium of their band only.
+        MULTIWEEK_SATURDAY: The same hours on a Saturday.
+        MULTIWEEK_SUDDEN: Hours of a multi-week schedule for sudden needs,
+            Monday to Friday, premium only.
+        MULTIWEEK_SUDDEN_SATURDAY: The same hours on a Saturday.
     """
 
     WEEKDAY = "weekday"
@@ -39,6 +46,10 @@ class OvertimeKind(StrEnum):
     SUPPLEMENTARY = "supplementare"
     ELASTIC_PLACEMENT = "elastica_collocazione"
     ELASTIC_INCREASE = "elastica_aumento"
+    MULTIWEEK = "plurisettimanale"
+    MULTIWEEK_SATURDAY = "plurisettimanale_sabato"
+    MULTIWEEK_SUDDEN = "plurisettimanale_improvviso"
+    MULTIWEEK_SUDDEN_SATURDAY = "plurisettimanale_improvviso_sabato"
 
 
 class HolidayWorkKind(StrEnum):
