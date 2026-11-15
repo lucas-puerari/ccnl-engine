@@ -5079,7 +5079,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2026/03/06/ccnl-consorzi-di-bonifica-le-tabelle-retributive-aggiornate/",
     "verification_status": "unverified",
-    "source_hash": "eb9c35801394dc8cd256cde47cbdeffc23c9c6ee32803a3c93adef606198bd5c",
+    "source_hash": "47512755d1c81545c9483f929bcaacc00509fc234180ff69bc8d4c03f1b9bd7d",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -5319,6 +5319,25 @@
           "effective_from": "2025-05-21",
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "part_time_scaled": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "flai-ccnl-2026",
+            "title": "CCNL per i Dipendenti dai Consorzi di Bonifica e di Miglioramento Fondiario",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_Bonifica_2026.pdf",
+            "sha256": "558ceea951e7e87041ca50e1cb173ec12a5dcf8cee7a267d7fe79800d2c2e097"
+          },
+          "page": "101",
+          "section": "Art. 103 - Gravidanza e puerperio",
+          "quote": "I congedi di cui all’art. 32, comma 1 del D.Lgs. 26 marzo 2001, n. 151 e successive modificazioni, sono fruibili sia su base giornaliera che su base oraria dai lavoratori e dalle lavoratrici con le modalità di cui al presente articolo. L’opzione tra la fruizione su base giornaliera o base oraria è rimessa alla libera scelta del singolo genitore. La fruizione su base oraria è consentita in misura pari alla metà dell’orario medio giornaliero del periodo di paga mensile immediatamente precedente a quello nel corso del quale ha inizio il congedo"
+        },
+        "transformation": "La metà dell'orario medio giornaliero del singolo lavoratore determina la misura della fruizione oraria, non le ore equivalenti a una giornata: day_hours=null. Il riferimento all'orario individuale riproporziona di fatto la misura quando l'orario giornaliero del part-time è ridotto; nessuna data specifica è indicata nell'articolo."
       }
     }
   }

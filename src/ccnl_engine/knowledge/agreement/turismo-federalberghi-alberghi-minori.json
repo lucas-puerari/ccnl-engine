@@ -3868,7 +3868,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "deb965c0b49c9477d2c80f12491fcfbb5c963ba0229ede84f830e67113371d61",
+    "source_hash": "4c820de39c92057ef5b34a2d2206f1c854e3793e378f102b43d07aaf0c84f07a",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },
@@ -4841,6 +4841,26 @@
           "effective_from": "2010-01-01",
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "effective_from": "2024-07-01",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-turismo-ipotesi-di-accordo-5-luglio-2024",
+            "title": "ccnl turismo   ipotesi di accordo 5 luglio 2024",
+            "kind": "associazione",
+            "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+            "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+          },
+          "page": "55",
+          "section": "Articolo 180, comma 4",
+          "quote": "4) | congedi parentali possono essere frazionati, anche a ore secondo quanto previsto dalle vigenti disposizioni di legge, in misura pari alla metà dell'orario medio giornaliero del periodo di paga quadrisettimanale o mensile immediatamente precedente a quello nel corso del quale ha inizio il |) congedo"
+        },
+        "transformation": "La metà dell'orario medio giornaliero determina la misura della fruizione a ore, non il numero di ore equiparate a una giornata di congedo. Nessuna equiparazione espressa: day_hours = null. Nessun riproporzionamento esplicito per il part-time. Decorrenza generale del contratto: 1° luglio 2024 (art. 199, comma 1, pagina 57).",
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
       }
     }
   },

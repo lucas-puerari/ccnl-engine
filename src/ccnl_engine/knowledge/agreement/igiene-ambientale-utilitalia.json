@@ -5257,7 +5257,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "9958fedf6ca9c2db803bd0ffeb7816cf917ff4f54be2aec04a9901f2cc7d4a0d",
+    "source_hash": "3351d9672a1e65783d49cc9255fc75a20799bc0bd314bfa518a7444f049ae659",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -5593,6 +5593,26 @@
         },
         "integration_rate": "1",
         "net_basis": true
+      }
+    },
+    "parental_hourly": {
+      "part_time_scaled": true,
+      "effective_from": "2022-01-01",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "testo-consolidato-2026.txt",
+            "title": "CCNL Servizi Ambientali — testo consolidato (estrazione testuale)",
+            "kind": "associazione",
+            "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+            "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
+          },
+          "page": "126",
+          "section": "Art. 45, lett. B), comma 1",
+          "quote": "1. Ai sensi dell'art. 32 del D. Lgs. n.151/2001, a decorrere dal 1º gennaio 2022, il congedo parentale potrà essere fruito, sia dal personale a tempo pieno che dal personale a tempo parziale, anche in modalità oraria, in misura pari alla metà dell'orario medio giornaliero a norma dell'art.32, comma 1 ter del D.Lgs. n. 151/2001.; in ogni caso la somma delle ore nell'arco di ciascun mese di utilizzo deve corrispondere a giornate intere"
+        },
+        "transformation": "La metà dell'orario medio giornaliero disciplina la misura della fruizione oraria, non fissa un numero di ore equivalente a una giornata: day_hours=null. La stessa misura riferita all'orario medio giornaliero si applica espressamente anche al personale a tempo parziale, quindi le ore seguono il suo orario medio giornaliero. La decorrenza è indicata espressamente."
       }
     }
   },

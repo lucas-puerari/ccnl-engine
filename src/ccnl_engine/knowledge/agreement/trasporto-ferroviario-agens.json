@@ -2595,7 +2595,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "cca5f1c489d949fbc3512b3f7bb0ca89829e828b97ea9bfe3cf3097fa93cc306",
+    "source_hash": "1f900b97f79091e017147c01d935bcfd212511bbac04f0319c0353cdc37058a1",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2879,6 +2879,50 @@
           "quote": "2.2 Ciascun genitore può scegliere fra la fruizione giornaliera e quella oraria del congedo\n      parentale.\n      La fruizione su base oraria è consentita, previo preavviso scritto di almeno 2 giorni, in\n      misura pari a mezza giornata di ferie e per il personale per il quale è prevista dal presente\n      CCNL o dagli eventuali contratti aziendali la fruizione delle ferie a mezza giornata."
         },
         "transformation": "La clausola misura la fruizione oraria in mezza giornata di ferie, senza indicare quante ore equivalgano a una giornata intera di congedo: day_hours = null. Non prevede un riproporzionamento orario per il part-time né indica una decorrenza specifica."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "06-29",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26"
+      ],
+      "on_rest_day": true,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "contratto-mobilita-area-af-22-05-2025",
+            "title": "contratto mobilita area af 22.05.2025",
+            "kind": "associazione",
+            "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+            "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
+          },
+          "page": "77",
+          "section": "art. 29, punti 2.1 e 2.4",
+          "quote": "2.4 Ove una festività di cui al punto 2.1 coincida con la domenica o con il diverso giorno della settimana destinato al riposo settimanale, il lavoratore ha diritto ad un’altra giornata di riposo da fruire entro 90 giorni. Ove per esigenze produttive e/o organizzative non sia possibile la fruizione dell’ulteriore giornata di riposo entro il termine suddetto, al dipendente verrà corrisposta una giornata di retribuzione calcolata sulle voci retributive di cui al punto 3 dell’art. 68 (Retribuzione), all’art. 69 (Aumenti periodici di anzianità) e all’art. 72 (Salario professionale) del presente CCNL"
+        },
+        "transformation": "Il punto 2.4 si applica alle festività elencate al punto 2.1, comprese quelle del 25 aprile, 1° maggio e 2 giugno: in caso di coincidenza con domenica o diverso riposo settimanale spetta anzitutto un'altra giornata di riposo entro 90 giorni; una giornata di retribuzione spetta soltanto se esigenze produttive e/o organizzative ne impediscono la fruizione entro il termine. Il 29 giugno sostituisce il patrono, salvo diverso giorno individuato in sede aziendale. Il 4 novembre non è elencato. Nessun divisore è nominato. Per le festività soppresse, incluso il 4 novembre (L. 54/1977), l'art. 29, punto 4, sostituisce il relativo trattamento con quattro permessi retribuiti, senza quota aggiuntiva per la domenica: citazione verbatim, PDF CCNL Mobilità/Area AF del 22 maggio 2025, pagina PDF 78 (pagina stampata 77), sha256 07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224: «4. In sostituzione delle soppresse festività di cui alla Legge n. 54/1977 e del relativo trattamento, ai lavoratori spettano, nel corso di ciascun anno, quattro giorni di permesso individuale retribuito non frazionabile, salvo quanto previsto al successivo paragrafo.»",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2025-05-22",
+          "verification_status": "unverified"
+        }
       }
     }
   }
