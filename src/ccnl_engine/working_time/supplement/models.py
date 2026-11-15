@@ -9,6 +9,9 @@ from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
+#: Work on a public holiday the worker is not given another day of rest for.
+PUBLIC_HOLIDAY_WORK = frozenset({"holiday", "night_holiday", "night_holiday_shift"})
+
 
 class HourlyBaseMethod(StrEnum):
     """Monthly pay elements the CCNL divides by its hourly divisor.
@@ -175,3 +178,18 @@ class SupplementBand(BaseModel):
             msg = f"supplement band {self.code} is paid per hour or per turn, not both"
             raise ValueError(msg)
         return self
+
+    @property
+    def paid_apart(self) -> bool | None:
+        """Whether the hours themselves are due on top of the monthly pay.
+
+        Returns:
+            The CCNL's ``hours_paid_apart``; where it is silent, the law for
+            the hours worked on a public holiday (L. 260/1949 art. 5 c. 3:
+            "oltre la normale retribuzione globale di fatto giornaliera, [...]
+            la retribuzione per le ore di lavoro effettivamente prestate");
+            ``None`` for other work the CCNL does not settle.
+        """
+        if self.hours_paid_apart is not None:
+            return self.hours_paid_apart
+        return True if self.work in PUBLIC_HOLIDAY_WORK else None

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import replace
+from decimal import Decimal
 
 from ccnl_engine.decision.models import (
     CalculationDecision,
@@ -71,6 +72,37 @@ def _pdr_ceiling_exceeded(
     return prior_income > ctx.pdr_income_ceiling
 
 
+def _hours_apart(
+    event: object, apart: Decimal, ctx: _EventHandlerCtx, treatment: EventTreatment
+) -> EventEffect:
+    """Return the pay of the hours a supplement band is due on top of.
+
+    The hours themselves (worked on a public holiday, or paid apart by the
+    CCNL) are pay of the period at ordinary tax: the work-time regime
+    covers only the supplement.
+
+    Returns:
+        Nothing without such hours; the item, posting and base deltas of
+        the hours, of the event's kind.
+    """
+    if not apart or not isinstance(
+        event, (HolidayWorkEvent, NightShiftEvent, ShiftWorkEvent)
+    ):
+        return EventEffect()
+    paid = replace(event, supplement_amount=apart)
+    evt_id = f"{ctx.evt_id}_hours"
+    item, kind = _standard_event_item(paid, apart, evt_id, ctx.cp, ctx.payment_date)
+    resolution = _require_resolution(ctx.resolver, kind, ctx.context)
+    di, dt, dirpef = _treatment_deltas(treatment, apart)
+    return EventEffect(
+        items=[item],
+        intents=[_make_standard_event_intent(paid, apart, evt_id, kind, resolution)],
+        inps_delta=di,
+        tfr_delta=dt,
+        irpef_delta=dirpef,
+    )
+
+
 def _premium(event: object) -> bool:
     """Return whether the event is a premium withheld apart from the period.
 
@@ -107,12 +139,14 @@ def _handle_standard(
     decisions: list[CalculationDecision] = []
     issues: list[CalculationIssue] = []
     limitations: tuple[str, ...] = ()
+    apart = _ZERO
     if not isinstance(event, (SickLeaveEvent, BonusEvent)):
         resolved = resolve_work_event(event, ctx.overtime_bands, ctx.hourly)
         event = resolved.event
         decisions.extend(resolved.decisions)
         issues.extend(resolved.issues)
         limitations = resolved.limitations
+        apart = resolved.apart
     gross = _standard_event_gross(event)
     item, kind = _standard_event_item(
         event, gross, ctx.evt_id, ctx.cp, ctx.payment_date
@@ -147,13 +181,14 @@ def _handle_standard(
     special = special_supplement_lines(event, gross, decisions, ctx)
     decisions.extend(special.decisions)
     issues.extend(special.issues)
+    hours = _hours_apart(event, apart, ctx, treatment)
 
     return EventEffect(
-        items=[item, *special.items],
-        intents=[*intents, *special.intents],
-        inps_delta=di,
-        tfr_delta=dt,
-        irpef_delta=dirpef,
+        items=[item, *special.items, *hours.items],
+        intents=[*intents, *special.intents, *hours.intents],
+        inps_delta=di + hours.inps_delta,
+        tfr_delta=dt + hours.tfr_delta,
+        irpef_delta=dirpef + hours.irpef_delta,
         separate_irpef_delta=dirpef if _premium(event) else _ZERO,
         substitute_delta=substitute_delta,
         regime_cap_used=cap_used,
