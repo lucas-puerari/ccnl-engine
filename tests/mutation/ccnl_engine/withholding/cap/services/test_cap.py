@@ -36,7 +36,7 @@ from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.amount.types import _PeriodAmounts
 from ccnl_engine.balance.cash.account.models import WithholdingShortfall
 from ccnl_engine.balance.models import PeriodState
-from ccnl_engine.contribution.services import TfrAccrual
+from ccnl_engine.contribution.tfr.services import TfrAccrual
 from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.event.facade import AbsenceEvent, FringeEvent

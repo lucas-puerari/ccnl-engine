@@ -11,8 +11,8 @@ from ccnl_engine.contribution.services import (
     CIGS_INDOTTO_UNKNOWN,
     FIS_REDUCTION_UNKNOWN,
     run_contributions,
-    tfr_accrual,
 )
+from ccnl_engine.contribution.tfr.services import tfr_accrual
 from ccnl_engine.decision.rules import pdr_decision
 from ccnl_engine.end_of_service.services import (
     end_of_service_issue,

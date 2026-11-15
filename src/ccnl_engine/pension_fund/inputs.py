@@ -46,6 +46,12 @@ class PensionFundEnrolment:
         tfr_to_fund: Whether the TFR accrued is paid to the fund
             (D.Lgs. 252/2005 art. 8 c. 1-2).  Required: the choice is the
             worker's, and it moves the TFR out of the company.
+        tfr_share: The share of the TFR maturando paid to the fund, when
+            ``tfr_to_fund``: 1 for all of it; less for a worker enrolled in
+            a compulsory scheme before 29 April 1993 who confers the share
+            the agreements set, or at least 50% (D.Lgs. 252/2005 art. 8 c.
+            7 lett. c), c. 9-bis from 1 July 2026).  The rest stays in the
+            company or goes to the Fondo Tesoreria.
         young_member: Whether the worker belongs to the members the CCNL
             favours for the age at enrolment (Cometa: enrolled after 5
             February 2021 before turning 35), read only by a fund with a
@@ -72,6 +78,7 @@ class PensionFundEnrolment:
     fund_code: str
     employee_rate: Decimal
     tfr_to_fund: bool
+    tfr_share: Decimal = _ONE
     young_member: bool | None = None
     conventional_base: Decimal | None = None
     seniority_to_fund: bool = False
@@ -104,6 +111,13 @@ class PensionFundEnrolment:
                 "tfr_to_fund must be True"
             )
             raise InvalidInputError(msg, feature=PENSION_FEATURE)
+        require_decimal(
+            self.tfr_share,
+            f"{owner}.tfr_share",
+            feature=PENSION_FEATURE,
+            positive=True,
+            maximum=_ONE,
+        )
         if self.young_member is not None:
             require_bool(
                 self.young_member, f"{owner}.young_member", feature=PENSION_FEATURE

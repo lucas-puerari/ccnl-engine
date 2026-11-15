@@ -24,6 +24,8 @@ if TYPE_CHECKING:
     )
 
 _ZERO = Decimal(0)
+#: Engine limitation of the extra deduction of D.Lgs. 252/2005 art. 8 c. 6.
+EXTRA_DEDUCTION_LIMITATION = "pension_extra_deduction_first_employed"
 #: A fund with a young member rate needs the enrolment to state it.
 YOUNG_MEMBER_UNKNOWN = CalculationIssue(
     code="pension_fund_young_member_unknown",
@@ -144,3 +146,19 @@ def projected_adjustment(
         return _ZERO
     deducted = inp.opening.earnings.pension_deducted + pension.deductible
     return upcoming_adjustment(pension.terms, inp.upcoming_gross, deducted)
+
+
+def capped_paths(pension: PensionContribution | None) -> frozenset[str]:
+    """Return the limitation path of contributions above the deduction cap.
+
+    A worker first employed from 2007 may deduct more than the annual cap
+    (D.Lgs. 252/2005 art. 8 c. 6); the request does not say who is, and no
+    source says whether the withholding agent grants it.
+
+    Returns:
+        :data:`EXTRA_DEDUCTION_LIMITATION` when the cap left less deductible
+        than the contributions of the run, else nothing.
+    """
+    if pension is None or pension.deductible >= pension.employer + pension.employee:
+        return frozenset()
+    return frozenset({EXTRA_DEDUCTION_LIMITATION})

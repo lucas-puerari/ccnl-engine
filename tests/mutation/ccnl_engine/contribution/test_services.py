@@ -14,7 +14,7 @@ from typing import Any
 
 import pytest
 
-from ccnl_engine.contribution.services import (
+from ccnl_engine.contribution.tfr.services import (
     TFR_TREASURY_FUND_CODE,
     TfrAccrual,
     tfr_accrual,

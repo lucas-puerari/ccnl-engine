@@ -260,7 +260,7 @@ def _result(
         issues=issues,
         decisions=with_open_facts(all_decisions, issues),
         rulesets=run_rulesets(ctx, sources),
-        limitations=run_limitations(ctx, report, events.totals),
+        limitations=run_limitations(ctx, report, events.totals, amounts.amounts),
         extra_months=run_extra_month_progress(ctx),
     )
 

@@ -742,12 +742,6 @@ def _stated_gaps(
     if s.ccnl == _EDIL:
         # The year scenario states worked hours but no eligible holiday count.
         expected.add((BlockerCode.MISSING_FACT, "base_salary", "paid_holiday_days"))
-    if s.ccnl in {_EDIL, _EDILIZIA_IMPIEGATI}:
-        expected.add((
-            BlockerCode.CAPABILITY_NOT_COMPUTED,
-            "pension_fund_contribution",
-            "partial_implementation",
-        ))
     rules = load_ccnl(s.ccnl).work_rules
     unsourced = rules is None or rules.sunday_holidays is None
     if unsourced and any(r.period_id.month >= _OCTOBER.month for r in results):

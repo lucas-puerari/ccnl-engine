@@ -66,3 +66,10 @@ def test_conversion_date_needs_the_conversion() -> None:
             tfr_to_fund=True,
             seniority_converted_on=date(2024, 3, 1),
         )
+
+
+@pytest.mark.parametrize("share", [Decimal(0), Decimal("1.01"), Decimal("-0.5")])
+def test_tfr_share_is_a_positive_fraction(share: Decimal) -> None:
+    """The share paid to the fund is in (0, 1]."""
+    with pytest.raises(InvalidInputError, match="tfr_share"):
+        PensionFundEnrolment("FONTE", Decimal(0), tfr_to_fund=True, tfr_share=share)
