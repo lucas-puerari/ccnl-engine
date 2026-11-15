@@ -121,3 +121,28 @@ def individual(chain: MonthlyPayChain) -> tuple[tuple[str, Decimal], ...]:
         Each element and its full-time monthly amount.
     """
     return tuple((a.code, v) for a, v in chain.allowances if a.individual)
+
+
+def cash_pay(chain: MonthlyPayChain) -> Decimal:
+    """Return the monthly retribuzione di fatto of ``chain``.
+
+    Returns:
+        The minimo, the seniority and the cash allowances of the CCNL.
+    """
+    parts = components(chain, HourlyBaseMethod.GROSS_INCL_ALLOWANCES, ())
+    return sum((v for _, v in parts), Decimal(0))
+
+
+def rateo(
+    parts: tuple[tuple[str, Decimal], ...], payments: int | None
+) -> tuple[tuple[str, Decimal], ...]:
+    """Return the rateo of the further monthly payments the base includes.
+
+    Returns:
+        ``("rateo", monthly * (payments - 12) / 12)``; nothing without
+        ``payments``.
+    """
+    if payments is None:
+        return ()
+    monthly = sum((v for _, v in parts), Decimal(0))
+    return (("rateo", monthly * (payments - 12) / 12),)

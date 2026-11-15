@@ -13,10 +13,11 @@ if TYPE_CHECKING:
     from ccnl_engine.variable_pay.inputs import TravelAllowanceEvent
     from ccnl_engine.working_time.travel.models import (
         CcnlTravelAllowance,
+        TravelDailyShare,
         TravelQuotas,
     )
 
-__all__ = ["band_hours", "minimum_share", "night_amount", "quota_amount"]
+__all__ = ["band_hours", "night_amount", "quota_amount", "share_amount"]
 
 _FEATURE = "travel_allowance"
 _ZERO = Decimal(0)
@@ -49,35 +50,44 @@ def quota_amount(
         return quotas.meal.value_at(day) * event.meals + overnight
 
 
-def minimum_share(
-    event: TravelAllowanceEvent, rules: CcnlTravelAllowance, monthly: Decimal
+def share_amount(
+    event: TravelAllowanceEvent, share: TravelDailyShare, monthly: Decimal
 ) -> Decimal:
-    """Return the diaria of a share of the daily minimum, none when agreed at hiring.
-
-    Lavoro domestico art. 33 c. 2: no diaria "nel caso in cui il relativo
-    obbligo fosse stato contrattualmente previsto nella lettera di assunzione".
+    """Return the diaria of a share of the daily pay.
 
     Returns:
-        The share of ``monthly`` over the divisor of the daily minimum; zero
-        when the hiring letter provides for the duty to travel.
+        ``rate`` times ``monthly`` over the divisor, less the discount of a
+        day without an overnight stay; zero when the hiring letter provides
+        for the travel and the CCNL then pays none.  An event that does not
+        state a fact the diaria depends on (``agreed_at_hiring``,
+        ``overnight``) is rejected by :func:`_require`.
+    """
+    if share.hiring_letter_exempts:
+        _require(event, "agreed_at_hiring", "whether the hiring letter provides for it")
+        if event.agreed_at_hiring:
+            return _ZERO
+    daily = share.rate * monthly / share.divisor
+    if share.no_overnight_discount:
+        _require(event, "overnight", "whether the day has an overnight stay away")
+        if not event.overnight:
+            daily *= Decimal(1) - share.no_overnight_discount
+    return money(daily)
+
+
+def _require(event: TravelAllowanceEvent, field: str, what: str) -> None:
+    """Reject an event that does not state ``field``.
 
     Raises:
-        MissingRuleError: When the event does not state ``agreed_at_hiring``.
+        MissingRuleError: When ``field`` is ``None``.
     """
-    if event.agreed_at_hiring is None:
-        msg = (
-            "the CCNL pays no diaria when the hiring letter provides for the "
-            "duty to travel, and the event does not state it"
-        )
+    if getattr(event, field) is None:
+        msg = f"the CCNL diaria depends on {what}, and the event does not state it"
         raise MissingRuleError(
             msg,
             as_of=event.event_date,
             feature=_FEATURE,
-            remediation="Pass TravelAllowanceEvent.agreed_at_hiring.",
+            remediation=f"Pass TravelAllowanceEvent.{field}.",
         )
-    if event.agreed_at_hiring or rules.minimum_share is None:
-        return _ZERO
-    return money(rules.minimum_share * monthly / rules.minimum_divisor)
 
 
 def night_amount(

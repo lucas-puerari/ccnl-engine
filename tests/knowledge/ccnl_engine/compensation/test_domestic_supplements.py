@@ -123,5 +123,5 @@ def test_a_share_of_the_minimum_excludes_bands_and_quotas() -> None:
     with pytest.raises(ValidationError, match="exactly one"):
         CcnlTravelAllowance.model_validate({
             "bands": [band],
-            "minimum_share": "0.20",
+            "daily_share": {"rate": "0.20", "base": "minimum"},
         })

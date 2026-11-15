@@ -151,7 +151,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 31 | S305 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN, Enti pubblici di ricerca (ASI compresa)](enti-ricerca-aran.md) | Pubblica Amministrazione | ~1,2M | 2026 | ✅ | — | 34 / 8 / 0 / 0 | 🧪 | 🤖 |
 | 32 | S305 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN, Università (personale tecnico-amministrativo e CEL)](universita-aran.md) | Pubblica Amministrazione | ~1,2M | 2026 | ✅ | — | 22 / 9 / 0 / 0 | 🧪 | 🤖 |
 | 33 | S305 | [CCNL Comparto Istruzione e Ricerca 2025-2027 (trattamento economico) - ARAN, Università, tecnologi a tempo indeterminato](universita-tecnologi-aran.md) | Pubblica Amministrazione | ~1,2M | 2026 | ✅ | — | 4 / 6 / 0 / 0 | 🧪 | 🤖 |
-| 34 | S205 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | Pubblica Amministrazione | ~580k | 2025 | ⚠️ | base_salary | 16 / 8 / 0 / 0 | 👁 | 🤖✓ |
+| 34 | S205 | [CCNL Comparto Sanità 2022-2024 — ARAN](sanita-aran.md) | Pubblica Amministrazione | ~580k | 2025 | ⚠️ | base_salary | 22 / 8 / 0 / 0 | 👁 | 🤖✓ |
 | 35 | G029 | [CCNL Comunicazione, Informatica e Servizi Innovativi PMI — Settore Informatico](informatica-pmi-unimatica.md) | informatica-servizi-innovativi | ~20k | — | ✅ | — | 2 / 39 / 1 / 0 | 🧪 | 🤖 |
 | 36 | A141 | [CCNL Consorzi Agrari (ASSOCAP-FLAI-FAI-UILA)](consorzi-agrari-assocap.md) | Agricoltura | ~2k | 2023 | ⚠️ | base_salary, inps_employer | 35 / 20 / 1 / 0 | 🧪 | 🤖 |
 | 37 | A131 | [CCNL Consorzi di Bonifica (SNEBI-FLAI-FAI-FILBI)](consorzi-di-bonifica-snebi.md) | Agricoltura | ~4k | 2025 | ⚠️ | inps_employer | 50 / 10 / 1 / 1 | 🧪 | 🤖 |

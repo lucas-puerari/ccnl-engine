@@ -16,9 +16,9 @@ from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.pay_item.services import _ZERO, _require_resolution
 from ccnl_engine.working_time.travel.quotas import (
     band_hours,
-    minimum_share,
     night_amount,
     quota_amount,
+    share_amount,
 )
 
 if TYPE_CHECKING:
@@ -130,11 +130,13 @@ class TravelTerms:
         rules: CCNL amounts and TFR rule, ``None`` when the CCNL has none.
         ruleset: Ruleset identifier of the CCNL.
         monthly_minimum: Monthly minimum of the level, for a share of it.
+        monthly_pay: Monthly retribuzione di fatto, for a share of it.
     """
 
     rules: CcnlTravelAllowance | None
     ruleset: str
     monthly_minimum: Decimal = _ZERO
+    monthly_pay: Decimal = _ZERO
 
 
 def _daily_amount(event: TravelAllowanceEvent, terms: TravelTerms | None) -> Decimal:
@@ -155,8 +157,12 @@ def _daily_amount(event: TravelAllowanceEvent, terms: TravelTerms | None) -> Dec
         raise MissingRuleError(msg, as_of=event.event_date, feature=_FEATURE)
     if rules.quotas is not None:
         return quota_amount(event, rules.quotas, terms.ruleset)
-    if rules.minimum_share is not None:
-        return minimum_share(event, rules, terms.monthly_minimum)
+    if rules.daily_share is not None:
+        share = rules.daily_share
+        monthly = (
+            terms.monthly_minimum if share.base == "minimum" else terms.monthly_pay
+        )
+        return _discounted_daily(event, rules, share_amount(event, share, monthly))
     hours = band_hours(event, rules)
     band = rules.band_of(hours)
     if (

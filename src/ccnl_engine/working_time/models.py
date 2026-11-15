@@ -158,6 +158,11 @@ class TimeSupplements(BaseModel):
     ``gross_incl_allowances`` base leaves out (Logistica art. 74: the EDR of
     2021 has "nessuna incidenza su alcun istituto contrattuale").
 
+    ``hourly_base_yearly_payments`` adds to the base the rateo of the
+    further monthly payments: the monthly elements times the payments over
+    12 (Sanità art. 47 c. 7: "dividendo per 156 la retribuzione base
+    mensile [...] comprensiva del rateo di tredicesima mensilità").
+
     ``overtime_bank_share`` is the fraction of the ordinary overtime premium
     paid immediately when the worker elects rest instead of payment; it does
     not value the deferred base hours or track a rest balance. Its provenance
@@ -183,6 +188,7 @@ class TimeSupplements(BaseModel):
     week_divisors: tuple[WeekDivisor, ...] = Field(default=())
     individual_elements: IndividualElementsRule | None = None
     hourly_base_excluded: tuple[str, ...] = Field(default=())
+    hourly_base_yearly_payments: int | None = Field(default=None, ge=13, le=16)
     overtime_bands: tuple[OvertimeBand, ...] = Field(default=())
     overtime_bank_share: Decimal | None = Field(
         default=None, gt=Decimal(0), le=Decimal(1)
