@@ -33,22 +33,6 @@
           "metalmeccanico-federmeccanica/par_sector_and_shift_hours"
         ]
       }
-    },
-    {
-      "id": "shift_and_multiweek_premiums",
-      "institute": "overtime",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "MULTI-WEEK SCHEDULE: the premiums of the orario plurisettimanale of Art. 5 as renewed on 22 November 2025 are the bands OT_PLURI (15%), OT_PLURI_SABATO (25%) and, for sudden needs, OT_PLURI_IMPROVVISO (20%) and OT_PLURI_IMPROVVISO_SABATO (30%), premium only. Not modelled: their rise 'a partire dalla 81esima ora' ('elevate nella misura onnicomprensiva dell'8%'), which needs the hours of the schedule worked in the year. The night-holiday work of Art. 7 rows h) and i) is paid by the FED_NOTTURNO_FESTIVO* supplement bands, the shift column of the overtime by OT_NOTTURNO_TURNI, OT_NOTTURNO_TURNI_EXTRA and OT_NOTTURNO_FESTIVO_TURNI for an event with in_periodic_shift.",
-      "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the hours of the multi-week schedule worked in the year to pay the 8% from the 81st hour, then resolve this limitation.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "metalmeccanico-federmeccanica/shift_and_multiweek_premiums"
-        ]
-      }
     }
   ]
 }
