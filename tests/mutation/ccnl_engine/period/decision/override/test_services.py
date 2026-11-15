@@ -257,14 +257,21 @@ def test_fringe_benefit_keeps_its_own_decision() -> None:
 
 
 def test_supplement_bands_match_their_work() -> None:
-    """Holiday compares with its supplement bands; night and shifts have none."""
+    """Each compares with the supplement bands of its work."""
     night = _only((NightShiftEvent(_DAY, Decimal(30)),))
     holiday = _only((HolidayWorkEvent(_DAY, Decimal(30)),))
     shift = _only((ShiftWorkEvent(_DAY, Decimal(12)),))
-    assert night.inputs["bundle_band"] == NOT_IN_BUNDLE
+    assert night.inputs["bundle_band[FED_NOTTURNO_OLTRE_22]"] == Decimal("0.30")
     assert holiday.inputs["bundle_band[FED_FESTIVO]"] == Decimal("0.50")
     assert "bundle_band[OT_FESTIVO]" not in holiday.inputs
-    assert shift.inputs["bundle_band"] == NOT_IN_BUNDLE
+    assert shift.inputs["bundle_band[FED_NOTTURNO_TURNI]"] == Decimal("0.25")
+
+
+def test_a_ccnl_without_the_band_says_so() -> None:
+    """Agenti immobiliari has no night band."""
+    ccnl = load_ccnl("agenti-immobiliari-fiaip")
+    night = _only((NightShiftEvent(_DAY, Decimal(30)),), ccnl)
+    assert night.inputs["bundle_band"] == NOT_IN_BUNDLE
 
 
 def test_shift_without_kind_compares_with_every_shift_band() -> None:
