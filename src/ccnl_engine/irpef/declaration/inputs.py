@@ -77,6 +77,12 @@ class PriorYearTaxFacts:
             cc. 1-2 TUIR the worker declared not used in the years of the
             una tantum the engine pays as arrears (art. 21 c. 4 TUIR), in
             EUR, ``>= 0``.  ``None`` when not declared.
+        pay_above_ccnl: The pay above the CCNL the worker received in the
+            year before (superminimi, premi, other pay subject to
+            contributions), in EUR, ``>= 0``, which reduces the elemento
+            perequativo "fino a concorrenza" (Federmeccanica art. 13).
+            ``None`` when not stated: the run reads the individual elements
+            and names the missing fact.
 
     Raises:
         InvalidInputError: When ``employment_income`` is not a finite,
@@ -84,7 +90,8 @@ class PriorYearTaxFacts:
             ``shortfall_deferral`` is not a request, two foreign taxes
             name the same State, ``net_income_biennio`` is not two
             non-negative amounts, ``special_supplement_requested`` is not
-            a bool, or ``arrears_unused_deductions`` is negative.
+            a bool, or ``arrears_unused_deductions`` or ``pay_above_ccnl``
+            is negative.
     """
 
     employment_income: Decimal | None = None
@@ -94,16 +101,18 @@ class PriorYearTaxFacts:
     net_income_biennio: tuple[Decimal, Decimal] | None = None
     special_supplement_requested: bool = False
     arrears_unused_deductions: Decimal | None = None
+    pay_above_ccnl: Decimal | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         owner = "PriorYearTaxFacts"
-        require_decimal(
-            self.arrears_unused_deductions,
-            f"{owner}.arrears_unused_deductions",
-            feature=_FEATURE,
-            minimum=Decimal(0),
-            optional=True,
-        )
+        for name in ("arrears_unused_deductions", "pay_above_ccnl"):
+            require_decimal(
+                getattr(self, name),
+                f"{owner}.{name}",
+                feature=_FEATURE,
+                minimum=Decimal(0),
+                optional=True,
+            )
         require_decimal(
             self.employment_income,
             f"{owner}.employment_income",

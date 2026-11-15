@@ -173,7 +173,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "State the pay above the CCNL of the year before as a fact of the run, or pass the element as a bonus and leave the employer flag true."
+          "remediation": "Resolved (2026-11-15): PriorYearTaxFacts.pay_above_ccnl states the pay above the CCNL of the year before, which the element is reduced by 'fino a concorrenza'; not stated, the run reads the individual elements and names the missing fact pay_above_ccnl.",
+          "status": "resolved"
         }
       },
       {
@@ -3426,7 +3427,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "c09db580ba4ffb283f105078d77e774afd4318ac4950c2ade65227e6ea67b2ce",
+    "source_hash": "9170b99adef938543881e25c78f8dc05a54876165115d31223507d7dfebfc6a8",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
