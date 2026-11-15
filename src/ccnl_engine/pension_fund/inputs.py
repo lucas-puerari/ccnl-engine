@@ -64,6 +64,13 @@ class PensionFundEnrolment:
             seniority increments into fund contributions, read only by a
             fund with a ``seniority_conversion`` (Previambiente art. 65
             lett. A) bis): not unless stated.
+        extra_deduction: The deduction above the annual cap the worker
+            states for the tax year (D.Lgs. 252/2005 art. 8 c. 6: a worker
+            first employed after its coming into force deducts, in the
+            twenty years after the fifth year of membership, the room the
+            first five years left, up to half the cap a year), at least zero;
+            ``None`` when not stated.  The withholding agent applies it to
+            the ritenute (AdE circ. 70/E/2007).
         seniority_converted_on: Date of the request of a worker already in
             service (lett. A) bis c. 6): the increments matured by then stay
             in the pay, frozen, and only the later ones are converted;
@@ -83,6 +90,7 @@ class PensionFundEnrolment:
     conventional_base: Decimal | None = None
     seniority_to_fund: bool = False
     seniority_converted_on: date | None = None
+    extra_deduction: Decimal | None = None
 
     @property
     def tfr_only(self) -> bool:
@@ -117,6 +125,13 @@ class PensionFundEnrolment:
             feature=PENSION_FEATURE,
             positive=True,
             maximum=_ONE,
+        )
+        require_decimal(
+            self.extra_deduction,
+            f"{owner}.extra_deduction",
+            feature=PENSION_FEATURE,
+            minimum=_ZERO,
+            optional=True,
         )
         if self.young_member is not None:
             require_bool(

@@ -4,11 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ccnl_engine.default.models import (
-    FactEnforcement,
-    absence_is_fact,
-    requires_fact,
-)
+from ccnl_engine.default.models import FactEnforcement, absence_is_fact, requires_fact
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -104,6 +100,12 @@ FACT_DEFAULTS: Mapping[str, FieldDefault] = {
         "unknown young membership: a fund with a young member rate (Cometa) "
         "uses its base rate and the run has a missing_fact young_member "
         "blocker",
+    ),
+    "PensionFundEnrolment.extra_deduction": requires_fact(
+        "pension_fund_contribution",
+        "employment.pension_fund.extra_deduction",
+        _REPORTED,
+        "unknown extra deduction: the ordinary cap, a missing_fact",
     ),
     "PensionFundEnrolment.conventional_base": requires_fact(
         "pension_fund_contribution",

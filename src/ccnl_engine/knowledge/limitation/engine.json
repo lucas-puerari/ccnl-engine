@@ -3396,9 +3396,9 @@
       "id": "pension_extra_deduction_first_employed",
       "capability": "pension_fund_contribution",
       "variant": "pension_extra_deduction_first_employed",
-      "summary": "A worker first employed after D.Lgs. 252/2005 came into force may deduct, in the twenty years after the fifth year of membership, the contributions above the annual cap within the room the first five years left, up to half the annual cap (art. 8 c. 6, as amended by L. 199/2025 from 1 July 2026). The request has no field for the first employment or the room left, and the sources searched set no rule for the withholding agent: a run whose contributions exceed the cap left deducts within the ordinary cap, and the worker may claim the rest in the tax return.",
+      "summary": "A worker first employed after D.Lgs. 252/2005 came into force may deduct, in the twenty years after the fifth year of membership, the contributions above the annual cap within the room the first five years left, up to half the annual cap (art. 8 c. 6). The withholding agent applies it (AdE circ. 70/E/2007: the employer excludes the deductible contributions from the income of the ritenute): the worker states the deduction of the year as PensionFundEnrolment.extra_deduction, and contributions above the cap left with none stated carry the missing fact extra_deduction.",
       "monetary_impact": "unknown",
-      "status": "unsourced",
+      "status": "resolved",
       "rulesets": [
         "acconciatura-estetica-confartigianato",
         "afam-aran",
@@ -3540,20 +3540,8 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.pension_fund.services.capped_paths; D.Lgs. 252/2005 art. 8 c. 6",
-      "remediation": "Source whether and how the withholding agent grants the extra deduction at the conguaglio, add the worker's statement as an optional input and apply it, then resolve this limitation.",
-      "searched": [
-        {
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252~art8!vig=2026-07-01",
-          "sha256": "d182546ccf61578699f0a78a08a7211e425be7ea7b8e7c1ae9ff7060669caf3d",
-          "title": "art. 8, cc. 4 and 6: the cap and the extra deduction, no rule for the withholding agent."
-        },
-        {
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252~art10!vig=2026-01-01",
-          "sha256": "08db33336c237659caaf7c8fa83afca8aab8192410858c1c09839d7bfa9fc4ab",
-          "title": "art. 10: the employer compensations, not the worker's deduction."
-        }
-      ]
+      "source": "D.Lgs. 252/2005 art. 8 c. 6; AdE circ. 70/E/2007; ccnl_engine.pension_fund.services.extra_deduction_issue",
+      "remediation": "Resolved: the extra deduction is an input of the enrolment."
     }
   ]
 }

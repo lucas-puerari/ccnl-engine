@@ -49,6 +49,11 @@ _NOT_EXERCISED: dict[str, str] = {
         "from 2027, which no registry pair reaches; tests/mutation/ccnl_engine/"
         "leave/permit/test_weekly_shifts.py exercises the stated and unknown fact"
     ),
+    "PensionFundEnrolment.extra_deduction": (
+        "read only when the contributions of a run exceed the deduction cap "
+        "left, which no registry pair reaches; tests/mutation/ccnl_engine/"
+        "pension_fund/test_extra_deduction.py exercises the missing fact"
+    ),
     "PriorYearTaxFacts.pay_above_ccnl": (
         "read only in the month of the elemento perequativo of a firm without "
         "second-level bargaining, which no registry pair reaches; "

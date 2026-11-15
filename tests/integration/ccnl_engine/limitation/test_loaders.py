@@ -47,7 +47,6 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "parental_hourly_ccnl_rule",
         "una_tantum_readings",
         "sunday_holiday_ccnl_clause",
-        "pension_extra_deduction_first_employed",
     }
     assert {lim.id for lim in limitations} - blocking == {
         "apprenticeship_midpoint_allowances",
@@ -70,6 +69,7 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "mid_month_level_change",
         "parental_month_split",
         "parental_extra_month_share",
+        "pension_extra_deduction_first_employed",
     }
     assert all(
         lim.applies_when.trigger is LimitationTrigger.PATH for lim in limitations
