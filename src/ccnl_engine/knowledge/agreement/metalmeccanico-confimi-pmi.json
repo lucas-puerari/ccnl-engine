@@ -1918,7 +1918,7 @@
     "effective_until": null,
     "source": "https://www.fim-cisl.it/2025/10/29/metalmeccanica-piccola-industria-firmato-il-rinnovo-del-ccnl-confimi/",
     "verification_status": "unverified",
-    "source_hash": "7bf404f39230dd2637d9b492c99f7d5f1dc3f60282af3af1b51ac54eed1eb505",
+    "source_hash": "e91ff580a7f2690826a51a60c0ec238c71d1ec6ccdd9d51d95973ca6db57266e",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
@@ -2287,6 +2287,54 @@
         "hospital_stay": {
           "more_than_days": 10,
           "max_full_days": 61
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "06-29",
+        "08-15",
+        "10-04",
+        "11-01",
+        "11-04",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "divisor": 26,
+      "on_rest_day": false,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-metalmeccanici-pmi-confimi-2016",
+            "title": "CCNL 2016 Metalmeccanici PMI Confimi",
+            "kind": "associazione",
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-2016-Metalmeccanici-PMI-Confimi.pdf",
+            "sha256": "842c80dd4c5eed9ed9600ffcafe90f57c8113e9e6ef8fc93f021e8f09e44c0a4"
+          },
+          "page": "107 (stampata 106)",
+          "section": "art. 29",
+          "quote": "Qualora, invece, una delle festività cada di domenica, ai lavoratori è dovuto, in aggiunta alla normale retribuzione mensile, l’importo di una quota giornaliera della retribuzione di fatto, pari a 1/26 della retribuzione mensile fissa. Tale trattamento è dovuto, per il giorno di domenica coincidente con una delle dette festività, anche a coloro che, nei casi consentiti dalla legge, lavorino di domenica, godendo il prescritto riposo compensativo in altro giorno della settimana. Al trattamento in parola si aggiunge inoltre, per coloro che lavorano di domenica, il compenso previsto dall’articolo 27 per tali prestazioni."
+        },
+        "transformation": "La quota è 1/26; le festività sono quelle elencate all'art. 29 del CCNL 2016, PDF p. 107, incluso il patrono o la festività sostitutiva e SS. Pietro e Paolo (29 giugno) solo per il comune di Roma. L'art. 29, PDF p. 108, equipara il 4 novembre, celebrato la prima domenica di novembre. Il rinnovo 2026 aggiunge «6) San Francesco (4 ottobre);» all'art. 29 (https://www.confimimeccanica.it/images/CCNL%202026/Ipotesi_di_rinnovo_CIM_FIM_060826-.pdf; sha256 535d20c7d4793628a536f87664e3f5805e6b7c0ad31ae23bfe3242a87d4c8ab6; PDF p. 13). La clausola paga la coincidenza con la domenica anche quando si lavora quel giorno con riposo compensativo altrove; non estende il pagamento alle festività cadenti nel giorno di riposo settimanale non domenicale.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2026-08-06",
+          "verification_status": "unverified"
         }
       }
     }

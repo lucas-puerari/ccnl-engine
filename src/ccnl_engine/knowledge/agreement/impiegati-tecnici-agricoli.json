@@ -839,7 +839,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "8624f1d563ca12b6be8cc744bb1f0540678273209f4ae769fc1f77b6fa07e105",
+    "source_hash": "c750fc5dd903ac87d9faeb903e79a17c9f75d2a1df0e3aaf90a6c85711de369b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1184,6 +1184,37 @@
           "verified_at": "2026-11-01T18:19:31Z",
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice-2"
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "11-04"
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-quadri-impiegati-agricoli-2024-2027",
+            "title": "CCNL quadri e impiegati agricoli 2024-2027",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
+            "sha256": "94fba8a7cda3856266ed91ab8eec45264803a5396179772d67fbc995b7f7f076"
+          },
+          "page": "28",
+          "section": "art. 22, ex giornate festive, lett. a)",
+          "quote": "a) per la festività nazionale del 4 novembre la cui celebrazione è stata spostata alla prima domenica di novembre, si applicherà il trattamento previsto dalla citata legge n. 90 del 31/3/1954 per il caso di feste nazionali coincidenti con la domenica come stabilito dal precedente 3° comma, punto 1). Pertanto il 4 novembre è una giornata lavorativa a tutti gli effetti;"
+        },
+        "transformation": "L'art. 22, punto 1, riconosce un'ulteriore aliquota giornaliera per le festività nazionali della lettera a) cadenti di domenica: 25 aprile, 1° maggio e 2 giugno. La lettera a) sulle ex giornate festive applica lo stesso trattamento alla celebrazione del 4 novembre, spostata alla prima domenica di novembre (11-04). Il testo non specifica un divisore per questa aliquota.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
         }
       }
     }

@@ -2865,7 +2865,7 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "175204603029617c2e17fcee19a4a3822796928c65b34d7df5b9b31cf3e6b52a",
+    "source_hash": "4862a0ebc2d835506a0f0d9d4ed2723d939ebbcf40edab03d5257e21f1aa76f4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3181,6 +3181,51 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381; https://s, sha256 0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98)."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "11-04",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "divisor": 26,
+      "on_rest_day": false,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "anaste-ccnl-2026-2028",
+            "title": "Testo ufficiale firmato ANASTE 2026–2028 del 9 ottobre 2026",
+            "kind": "associazione",
+            "url": "https://www.anaste.com/download/?wpdmdl=11171",
+            "sha256": "e02bac8a5fd3587d63518dda5547adf4ac1e01ea835c3cc23703506c47bfb381"
+          },
+          "page": "55–56, 63",
+          "section": "art. 55, commi 1, 5 e 9; art. 68, comma 2",
+          "quote": "1. A tutti i dipendenti è riconosciuto un giorno di riposo in occasione di ciascuna delle seguenti festività: Capodanno, Epifania, Anniversario della Liberazione, lunedì di Pasqua, Festa del Lavoro, Festa della Repubblica, Assunzione di Maria SS., Ognissanti, Immacolata Concezione, Santo Natale, Santo Stefano, Santo Patrono.\n5. In caso di coincidenza di una delle predette festività infrasettimanali con la domenica in aggiunta alla normale retribuzione sarà corrisposto ai lavoratori un ulteriore importo pari alla retribuzione di cui all’art. 68 del CCNL.\n9. Per la festività nazionale del 4 novembre, la cui celebrazione è stata spostata alla prima domenica dello stesso mese, si provvederà ad una retribuzione giornaliera suppletiva secondo la regola delle festività cadenti di domenica o, previa intesa tra le Parti, tale giornata potrà confluire nella Banca Ore.\n2. L’importo giornaliero della retribuzione si ottiene dividendo per 26 l’importo mensile."
+        },
+        "transformation": "Art. 55, comma 5, paga la coincidenza domenicale delle festività del comma 1: incluse quelle a data fissa e il Santo Patrono, ma non il lunedì di Pasqua, che non può cadere di domenica. Il comma 9 prevede per il 4 novembre, celebrato la prima domenica del mese, una retribuzione suppletiva secondo la stessa regola, salvo intesa per la Banca Ore. L'art. 68, comma 2, determina l'importo giornaliero in 1/26 del mensile. Non sono espressamente previste le altre estensioni o esclusioni.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2026-10-09",
+          "verification_status": "unverified"
+        }
       }
     }
   }

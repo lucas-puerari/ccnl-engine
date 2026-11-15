@@ -2223,7 +2223,7 @@
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=13",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "b19f7cb4b316cd2bfdba21ba06aab63c2be1504568262839a96db1b5acbcdfd1",
+    "source_hash": "1d73549b1dbb3a05b1aef6424d3614d8ca20562180e60e6548d47cf9066f05e0",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -2866,6 +2866,52 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca; https://a, sha256 a8e5ef705707cd9c6716ab7af876241967a464d01b80bcb895e4ac81b7424809)."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron",
+        "11-04"
+      ],
+      "divisor": 26,
+      "on_rest_day": false,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-sport-2024-2026",
+            "title": "CCNL per i lavoratori dello sport 2024–2026",
+            "kind": "associazione",
+            "url": "https://www.cusi.it/wp-content/uploads/2024/02/CCNL-Sport-2024-2026.pdf",
+            "sha256": "aa156c97c7ab6cb27632cec71025d6bedb6fb7bc015799881379c1c9abff4bca"
+          },
+          "page": "74",
+          "section": "art. 78",
+          "quote": "In caso di coincidenza di una delle festività sopra elencate con una domenica, in aggiunta alla retribuzione mensile sarà corrisposto ai lavoratori un ulteriore importo pari alla quota giornaliera della retribuzione di fatto di cui all'art. 117.\nPer la festività civile la cui celebrazione è stata spostata alla prima domenica del mese, ai sensi dell'art. 1, 2º comma, della legge 5 marzo 1977, n. 54 (4 novembre), il lavoratore beneficerà del trattamento previsto per le festività che coincidono con la domenica."
+        },
+        "transformation": "L'art. 78 (PDF pp. 73–74) paga di domenica le festività elencate a p. 73 e il 4 novembre celebrato la prima domenica di novembre: codici delle dodici festività elencate più 11-04. L'art. 119 (PDF p. 90) determina la quota giornaliera dividendo la retribuzione mensile per 26. Nessuna estensione espressa al sabato, alle coincidenze tra festività o al riposo settimanale non domenicale; nessuna esclusione di codici di indennità.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        }
       }
     }
   },

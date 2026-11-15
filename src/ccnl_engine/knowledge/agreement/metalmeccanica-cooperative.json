@@ -1890,7 +1890,7 @@
     "effective_until": null,
     "source": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/",
     "verification_status": "unverified",
-    "source_hash": "bfbc82f0b0e25f2fb0559c80ee856a70d1a0f7b9ad1d492c30b7243f910031bf",
+    "source_hash": "512d5db7f21055c1ab9ac930bc6749adfb294bc98762211cf81da15e11e9885a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2163,6 +2163,53 @@
           "quote": "Il congedo parentale spetta al genitore richiedente, anche qualora l’altro genitore non ne abbia diritto.\nL’utilizzo su base oraria dei periodi di congedo parentale è frazionabile per gruppi di 2 o 4 ore giornaliere\nriproporzionati, rispettivamente, ad un’ora e a 2 ore, per i part-time pari o inferiori a 20 ore settimanali. Esso\nnon potrà essere programmato per un periodo inferiore ad una giornata lavorativa nel mese di utilizzo."
         },
         "transformation": "I gruppi di 2 o 4 ore sono frazioni di fruizione, non un'equiparazione espressa di una giornata a un numero di ore: day_hours = null. Per part-time fino a 20 ore settimanali sono riproporzionati a 1 o 2 ore: part_time_scaled = true. L'art. 2 fa decorrere l'accordo dalla stipula del 22 luglio 2025, senza decorrenza speciale per l'art. 5."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "06-29",
+        "08-15",
+        "11-01",
+        "11-04",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "divisor": 26,
+      "on_rest_day": false,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "242519",
+            "title": "testo CNEL firmato, accordo 242519",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/242519",
+            "sha256": "bde3a8cd131000a533e4457dad53ee9ce94d6d17f67e26e1f7cffb32eb07081b"
+          },
+          "page": "102",
+          "section": "art. 9, Festività",
+          "quote": "Qualora, invece, una delle festività cada di domenica, ai lavoratori è dovuto, in aggiunta alla normale retri-\nbuzione mensile, l’importo di una quota giornaliera della retribuzione di fatto, pari a 1/26 della retribuzione\nmensile fissa.\nTale trattamento è dovuto, per il giorno di domenica coincidente con una delle dette festività, anche a coloro\nche, nei casi consentiti dalla legge, lavorino di domenica, godendo il prescritto riposo compensativo in altro\ngiorno della settimana. Al trattamento in parola si aggiunge inoltre, per coloro che lavorano di domenica, il\ncompenso previsto dall’art. 7 del presente titolo per tali prestazioni."
+        },
+        "transformation": "Le festività delle lettere a), b) e c) dell'art. 9 (PDF pp. 101–102) sono pagate quando cadono di domenica: 06-29 solo nel comune di Roma; patron indica il patrono della sede di lavoro o la festività sostitutiva concordata. La quota è 1/26 della retribuzione mensile fissa. L'art. 9, PDF p. 102, prevede inoltre: «Per quanto riguarda la festività (4 novembre) la cui celebrazione ha luogo nella prima domenica di novem-\nbre, il lavoratore beneficerà del trattamento previsto per le festività che coincidono con la domenica.»: da qui 11-04. Il riposo compensativo del lavoratore domenicale non estende il pagamento alle festività cadenti nel giorno di riposo settimanale non domenicale.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2025-07-22",
+          "verification_status": "unverified"
+        }
       }
     }
   }

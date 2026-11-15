@@ -1760,7 +1760,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "aaf6ca6bf85593ab9f76bff92d2a50cd39fa1be87b0f805a6589d6fc1fd022c6",
+    "source_hash": "17872ae38860860dfc6cf33c604cfa2b29b18f09057fd4ed12962a99b1d5b77b",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },
@@ -2293,6 +2293,52 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://u, sha256 dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4; https://w, sha256 b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214)."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron",
+        "11-04"
+      ],
+      "divisor": 26,
+      "on_rest_day": false,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-farmacie-private-2021",
+            "title": "CCNL per i Dipendenti da Farmacia Privata, 7 settembre 2021",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2023/07/CCNL-per-i-Dipendenti-da-Farmacia-Privata-7-settembre-2021.pdf",
+            "sha256": "dfc1fc57234cb43fb5ab7a4a7e22d89c464b7784b344cedd288de560f170cea4"
+          },
+          "page": "16",
+          "section": "art. 23",
+          "quote": "Nulla è dovuto al lavoratore nel caso che le festività ricorrano in un periodo di sospensione della retribuzione e dal servizio in conseguenza di provvedimento disciplinare o di assenza ingiustificata.\n\nNel caso di coincidenza di una delle festività di cui sopra con la domenica, in aggiunta alla retribuzione di fatto sarà corrisposto al lavoratore un ulteriore importo pari alla retribuzione di fatto giornaliera compreso ogni elemento accessorio.\n\nPer la festività civile del 4 novembre la cui celebrazione è stata spostata alla domenica successiva, ai sensi dell’art. 1, 2° comma, della legge 5 marzo 1977, n. 54, il lavoratore beneficerà del trattamento previsto per le festività che coincidono con la domenica."
+        },
+        "transformation": "L'art. 23 (PDF p. 15) elenca le festività richiamate da 'di cui sopra', incluse 25 aprile, 1° maggio, 2 giugno e patrono: sono i codici in holidays. L'art. 23 (PDF p. 16) riconosce per esse la retribuzione giornaliera aggiuntiva se coincidono con la domenica e lo stesso trattamento per il 4 novembre celebrato la domenica successiva (11-04). L'art. 57 (PDF p. 24) definisce la quota giornaliera della retribuzione di fatto come importo mensile diviso 26. Non sono espresse estensioni ad altri giorni o esclusioni di indennità.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2021-09-07",
+          "verification_status": "unverified"
+        }
       }
     }
   }

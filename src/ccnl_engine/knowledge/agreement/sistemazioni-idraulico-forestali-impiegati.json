@@ -1388,7 +1388,7 @@
     "source": "https://www.lavoro-economia.it/?c=9",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "8572c60885a9cc38d57c36fc275f26859c20e043313249f663fc200b44d063ef",
+    "source_hash": "c89ab14fee776f85f0928b1811722c9419118f950ed51d2d827370dd98d8f621",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -1601,6 +1601,45 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 fb09d06825c27a3abb8081bec9e1645f17e51920559a6406323225d26b549461)."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "11-04",
+        "12-08",
+        "12-25",
+        "12-26"
+      ],
+      "divisor": 26,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-idraulico-forestale-2023",
+            "title": "CCNL Idraulico-Forestale 2023 (testo 2021–2024)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2023/05/CCNL-Idraulico-Forestale-2023.pdf",
+            "sha256": "fb09d06825c27a3abb8081bec9e1645f17e51920559a6406323225d26b549461"
+          },
+          "page": "PDF pp. 38–40 (stampate pp. 37–39)",
+          "section": "art. 11 «Festività»",
+          "quote": "Sono considerati giorni festivi tutte le domeniche ed i seguenti:\n1)     il primo giorno dell’anno;\n2)     il 6 gennaio, Epifania del Signore;\n\n3)      il 25 aprile, Anniversario della Liberazione;\n4)      il giorno di lunedì dopo Pasqua;\n5)      il 1° maggio, festa del lavoro;\n6)      il 2 giugno, Anniversario della fondazione della Repubblica;\n7)      il 15 agosto, giorno dell’Assunzione della B.V. Maria;\n8)      il 1° novembre, giorno di Ognissanti;\n9)      il 4 novembre; giorno dell’unità nazionale*;\n10)     l’8 dicembre, giorno dell’Immacolata Concezione;\n11)     il 25 dicembre, giorno di Natale;\n12)     il 26 dicembre, S. Stefano;\n13)     la Festa del Patrono del luogo**\n\nQuando la festa del Patrono del luogo cade di domenica o in giorno festivo infrasettimanale, si considera festivo il giorno feriale susseguente.\n\nPer il trattamento da praticarsi ai lavoratori a tempo indeterminato nei giorni di festività nazionali ed infrasettimanali valgono le disposizioni di cui alle leggi 27 maggio 1949 n. 260, 31 marzo 1954 n. 90 e 20 novembre 2000 n. 336, oltre al DPR 792/1985 e pertanto, nella ricorrenza delle feste nazionali ed infrasettimanali di cui al presente articolo, anche se cadono di domenica, verrà usato ai lavoratori il seguente trattamento:\na) se non lavorano verrà corrisposta una giornata normale di paga compreso ogni accessorio;\nb) se lavorano è dovuta, oltre alla retribuzione di cui al precedente punto a), una seconda retribuzione per le ore di lavoro effettivamente prestato, maggiorate della percentuale per il lavoro festivo.\n\na) per la festività nazionale 4 novembre, la cui celebrazione è stata spostata alla prima domenica di novembre, si applicherà il trattamento previsto dalla legge 31.3.1954, n. 90 per il caso di festività nazionale coincidente con la domenica. Pertanto il 4 novembre è giornata lavorativa a tutti gli effetti;"
+        },
+        "transformation": "Per i lavoratori a tempo indeterminato, le feste elencate che possono cadere di domenica danno diritto alla giornata normale di paga; sono compresi 25 aprile, 1° maggio e 2 giugno. Il 4 novembre è codificato 11-04 per il trattamento della prima domenica di novembre. Esclusi il lunedì dopo Pasqua, che non può cadere di domenica, e il Patrono, la cui ricorrenza domenicale viene spostata al giorno feriale successivo. Il divisore 26 è quello della quota giornaliera della retribuzione mensile previsto dall'art. 39, comma 7, dell'accordo di rinnovo del 4 dicembre 2025 (PDF p. 18, https://www.flai.it/wp-content/uploads/2018/11/CCNL_idraulico-forestale-Accordo-di_rinnovo_2025.pdf, sha256 d4349690b91ccd63f4d49dc573fbbe6a9aa04fa52e0f7a5efb60045d7f0b77d4). Nessun altro flag è espresso dalla clausola.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2025-12-04",
+          "verification_status": "unverified"
+        }
       }
     }
   }
