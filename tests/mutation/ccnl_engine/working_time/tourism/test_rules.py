@@ -88,6 +88,19 @@ def test_other_work_and_dates_outside_the_window_pay_none(event: object) -> None
     "event",
     [
         HolidayWorkEvent(_DAY, hours=Decimal(6), kind=HolidayWorkKind.NIGHT_HOLIDAY),
+        HolidayWorkEvent(
+            _DAY,
+            hours=Decimal(6),
+            kind=HolidayWorkKind.NIGHT_HOLIDAY_COMPENSATORY_REST,
+        ),
+        HolidayWorkEvent(
+            _DAY, hours=Decimal(6), kind=HolidayWorkKind.NIGHT_HOLIDAY_SHIFT
+        ),
+        HolidayWorkEvent(
+            _DAY,
+            hours=Decimal(6),
+            kind=HolidayWorkKind.NIGHT_HOLIDAY_SHIFT_COMPENSATORY_REST,
+        ),
         ShiftWorkEvent(_DAY, hours=Decimal(6), kind=ShiftKind.NIGHT),
         NightShiftEvent(date(2026, 1, 1), hours=Decimal(6)),
         NightShiftEvent(date(2026, 9, 30), hours=Decimal(6)),
