@@ -259,8 +259,9 @@ def injury_pay(
     indemnified_from = max(after, waiting_end + timedelta(days=1))
     daily = pay.monthly / hourly_divisor * weekly_hours / Decimal(rates.weekly_days)
     indemnity = _ZERO
+    insured = rules is None or rules.inail_indemnity
     day = indemnified_from
-    while day <= last:
+    while insured and day <= last:
         indemnity += rates.rate_on((day - injury_on).days) * daily
         day += timedelta(days=1)
     indemnity = money(indemnity)
