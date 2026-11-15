@@ -4557,7 +4557,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "ade7243b44d1393e61ca5fb0785456e37d92f50aac90fdf27a5dc258e4fa0446",
+    "source_hash": "857d892418d7a3a38e898db8e37e8c4e0645042b63b14eb421918b769c2b5d73",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -6031,6 +6031,42 @@
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf)."
       }
+    },
+    "travel_allowance": {
+      "habitual_discount": "0.10",
+      "long_mission_discount": "0.10",
+      "daily_share": {
+        "rate": "2",
+        "base": "pay",
+        "divisor": "26",
+        "no_overnight_discount": "0.3333333333"
+      },
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "dmo-federdistribuzione-testo-unico-travel",
+            "title": "CCNL Distribuzione Moderna Organizzata, Testo Unico",
+            "kind": "associazione",
+            "url": "https://www.federdistribuzione.it/wp-content/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          },
+          "page": "50",
+          "section": "Art. 162 cc. 2-5",
+          "quote": "2. In tal caso al personale – fatta eccezione per gli operatori di vendita – compete: 1) Il rimborso delle spese effettive di viaggio; 2) Il rimborso delle spese effettive per il trasporto del bagaglio; 3) Il rimborso delle spese postali, telegrafiche ed altre, sostenute in esecuzione del mandato nell’interesse dell’azienda; 4) Una diaria non inferiore al doppio della quota giornaliera della retribuzione di fatto di cui all’art. 191; qualora non vi sia pernottamento fuori sede la diaria verrà ridotta di un terzo. 3. Per le missioni di durata superiore al mese verrà corrisposta una diaria ridotta del 10%. Analogamente si procederà quando le attribuzioni del lavoratore comportino viaggi abituali. 4. In luogo delle diarie di cui al n. 4) del secondo comma, nonché della diaria di cui al terzo comma del presente articolo, il datore di lavoro ha facoltà di corrispondere il rimborso a piè di lista delle spese di vitto e alloggio, con trattamento uniforme per tutto il personale. 5. Per brevi trasferte in località vicine verrà rimborsata la spesa effettiva del viaggio e quella di soggiorno."
+        },
+        "transformation": "Each day of trasferta is paid at least twice the daily quota of the retribuzione di fatto of art. 191 (the monthly pay over 26): the engine pays that floor on the minimo, the seniority and the cash allowances; individual elements the worker states are not in it. A third less on a day without an overnight stay away; 10% less on a mission over a month or for a worker whose duties carry habitual travel. The employer may refund meals and lodging at cost instead (a piè di lista): then no diaria event is stated. The CCNL states no TFR rule for the diaria: the event states it.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2019-07-30",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-dmo-federdistribuzione-travel"
+        }
+      }
     }
   },
   "verification": {
@@ -6499,6 +6535,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.time_supplements.overtime_bands"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-dmo-federdistribuzione-travel",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Travel allowance of Art. 162 cc. 2-5, quote located in the cited file by sha256 and read against the model.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/wp-content/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "The diaria is a share (twice) of the daily retribuzione di fatto, a third less without overnight stay, 10% less for long missions or habitual travel."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.travel_allowance"
         ]
       }
     ],

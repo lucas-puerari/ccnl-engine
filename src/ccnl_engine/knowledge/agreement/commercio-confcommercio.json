@@ -4351,7 +4351,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "785106bc5a56d07a22760834d0af8d417986b641462757ed76cf1afe44b007e6",
+    "source_hash": "56d4a5811aa882bd380398d10bc534f559c28404389c0b286a2075d323aa343c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5901,6 +5901,42 @@
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://u, sha256 76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016)."
       }
+    },
+    "travel_allowance": {
+      "habitual_discount": "0.10",
+      "long_mission_discount": "0.10",
+      "daily_share": {
+        "rate": "2",
+        "base": "pay",
+        "divisor": "26",
+        "no_overnight_discount": "0.3333333333"
+      },
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "commercio-confcommercio-testo-unico-travel",
+            "title": "CCNL Terziario Distribuzione e Servizi, Testo Unico 30 luglio 2019",
+            "kind": "associazione",
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          },
+          "page": "173",
+          "section": "Art. 179 cc. 2-5",
+          "quote": "In tal caso al personale – fatta eccezione per gli operatori di vendita – compete: 1) il rimborso delle spese effettive di viaggio; 2) il rimborso delle spese effettive per il trasporto del bagaglio; 3) il rimborso delle spese postali, telegrafiche ed altre, sostenute in esecuzione del mandato nell’interesse dell’azienda; 4) una diaria non inferiore al doppio della quota giornaliera della retribuzione di fatto di cui all’art. 208; qualora non vi sia pernottamento fuori sede la diaria verrà ridotta di un terzo. Per le missioni di durata superiore al mese verrà corrisposta una diaria ridotta del 10%. Analogamente si procederà quando le attribuzioni del lavoratore comportino viaggi abituali. In luogo delle diarie di cui al n. 4) del secondo comma, nonché della diaria di cui al terzo comma del presente articolo, il datore di lavoro ha facoltà di corrispondere il rimborso a piè di lista delle spese di vitto e alloggio, con trattamento uniforme per tutto il personale. Per brevi trasferte in località vicine verrà rimborsata la spesa effettiva del viaggio e quella di soggiorno."
+        },
+        "transformation": "Each day of trasferta is paid at least twice the daily quota of the retribuzione di fatto of art. 208 (the monthly pay over 26): the engine pays that floor on the minimo, the seniority and the cash allowances; individual elements the worker states are not in it. A third less on a day without an overnight stay away; 10% less on a mission over a month or for a worker whose duties carry habitual travel. The employer may refund meals and lodging at cost instead (a piè di lista): then no diaria event is stated. The CCNL states no TFR rule for the diaria: the event states it.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2019-07-30",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-commercio-confcommercio-travel"
+        }
+      }
     }
   },
   "verification": {
@@ -6481,6 +6517,27 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.time_supplements.overtime_bands"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-commercio-confcommercio-travel",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Travel allowance of Art. 179 cc. 2-5, quote located in the cited file by sha256 and read against the model.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
+            "sha256": "76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016"
+          }
+        ],
+        "findings": [
+          "The diaria is a share (twice) of the daily retribuzione di fatto, a third less without overnight stay, 10% less for long missions or habitual travel."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.travel_allowance"
         ]
       }
     ],

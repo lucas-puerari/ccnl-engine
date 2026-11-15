@@ -204,9 +204,9 @@ class TravelAllowanceEvent:
             CCNL rejects.
 
     Raises:
-        InvalidInputError: When a field is invalid, neither
-            ``daily_amount`` nor ``hours_away`` is given, or
-            ``trasfertista`` is ``True``.
+        InvalidInputError: When a field is invalid, or ``trasfertista`` is
+            ``True``.  The facts the CCNL diaria needs (hours away, meals,
+            the overnight stay) are checked by the run, against the CCNL.
     """
 
     event_date: date
@@ -263,15 +263,6 @@ class TravelAllowanceEvent:
         for fact in ("overnight", "agreed_at_hiring"):
             if getattr(self, fact) is not None:
                 require_bool(getattr(self, fact), f"{name}.{fact}", feature=feature)
-        if (
-            self.daily_amount is None
-            and self.hours_away is None
-            and self.mission_hours is None
-            and self.meals is None
-            and self.agreed_at_hiring is None
-        ):
-            msg = f"{name}: state daily_amount or the hours_away of the CCNL span"
-            raise InvalidInputError(msg, field=f"{name}.hours_away", feature=feature)
         for flag in (
             "outside_municipality",
             "abroad",

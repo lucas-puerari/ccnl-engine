@@ -124,7 +124,6 @@ def test_caps_come_from_the_lire_amounts() -> None:
         ({"daily_amount": Decimal(0)}, "daily_amount"),
         ({"meals_lodging": "dinner"}, "meals_lodging"),
         ({"tfr_base": "half"}, "tfr_base"),
-        ({"daily_amount": None}, "hours_away"),
     ],
     ids=[
         "trasfertista",
@@ -132,7 +131,6 @@ def test_caps_come_from_the_lire_amounts() -> None:
         "no_amount",
         "meals_lodging",
         "tfr_base",
-        "no_amount_nor_hours",
     ],
 )
 def test_invalid_events_are_rejected(changes: dict[str, object], field: str) -> None:
@@ -161,7 +159,7 @@ def _run(
 
 
 #: A CCNL without travel allowance amounts or TFR rule.
-_NO_RULE = ("commercio-confcommercio", "4")
+_NO_RULE = ("cooperative-sociali", "A1")
 
 
 def _account(result: PeriodResult, account: AccountKind) -> Decimal:

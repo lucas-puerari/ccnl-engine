@@ -10,7 +10,12 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
-__all__ = ["CcnlTravelAllowance", "TravelAllowanceBand", "TravelQuotas"]
+__all__ = [
+    "CcnlTravelAllowance",
+    "TravelAllowanceBand",
+    "TravelDailyShare",
+    "TravelQuotas",
+]
 
 
 class TravelAllowanceBand(BaseModel):
@@ -78,6 +83,39 @@ class TravelQuotas(BaseModel):
     provenance: RuleProvenance | None = None
 
 
+class TravelDailyShare(BaseModel):
+    """A diaria that is a share of the worker's daily pay.
+
+    Commercio art. 172: "una diaria non inferiore al doppio della quota
+    giornaliera della retribuzione di fatto [...]; qualora non vi sia
+    pernottamento fuori sede la diaria verrà ridotta di un terzo".  Lavoro
+    domestico art. 33 c. 2: "una diaria giornaliera, pari al 20% della
+    retribuzione minima tabellare giornaliera [...] salvo il caso in cui il
+    relativo obbligo fosse stato contrattualmente previsto nella lettera di
+    assunzione".
+
+    Attributes:
+        rate: Share of the daily pay (2 for the double, 0.20 for 20%).
+        base: ``"minimum"`` for the minimo of the level, ``"pay"`` for the
+            retribuzione di fatto (minimo, seniority and cash allowances).
+        divisor: Divisor of the monthly pay that gives the daily one.
+        no_overnight_discount: Share the diaria drops by on a day without
+            an overnight stay away (Commercio: a third).
+        hiring_letter_exempts: Whether no diaria is due when the hiring
+            letter provides for the duty to travel (Lavoro domestico).
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    rate: Decimal = Field(gt=Decimal(0), le=Decimal(5))
+    base: Literal["minimum", "pay"]
+    divisor: Decimal = Field(default=Decimal(26), gt=Decimal(0))
+    no_overnight_discount: Decimal = Field(
+        default=Decimal(0), ge=Decimal(0), lt=Decimal(1)
+    )
+    hiring_letter_exempts: bool = False
+
+
 class CcnlTravelAllowance(BaseModel):
     """CCNL amounts of the daily travel allowance (indennità di trasferta).
 
@@ -101,13 +139,8 @@ class CcnlTravelAllowance(BaseModel):
         night_from_hours: Hours away from which the night allowance is due.
         quotas: Amounts by meals and lodging in place of the bands of hours
             (Federmeccanica); ``bands`` is then empty.
-        minimum_share: Share of the daily minimum of the level each day of
-            trasferta is paid, in place of bands and quotas (Lavoro
-            domestico art. 33 c. 2: "una diaria giornaliera, pari al 20%
-            della retribuzione minima tabellare giornaliera"); ``None``
-            without one.
-        minimum_divisor: Divisor of the monthly minimum that gives the daily
-            one (Lavoro domestico, chiarimento a verbale 1: 1/26).
+        daily_share: A share of the daily pay in place of bands and quotas
+            (:class:`TravelDailyShare`); ``None`` without one.
         provenance: Source and status of the amounts.
     """
 
@@ -123,8 +156,7 @@ class CcnlTravelAllowance(BaseModel):
     night_allowance: TimeSeries | None = None
     night_from_hours: Decimal = Decimal(18)
     quotas: TravelQuotas | None = None
-    minimum_share: Decimal | None = Field(default=None, gt=Decimal(0), le=Decimal(1))
-    minimum_divisor: Decimal = Field(default=Decimal(26), gt=Decimal(0))
+    daily_share: TravelDailyShare | None = None
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
@@ -132,12 +164,12 @@ class CcnlTravelAllowance(BaseModel):
         kinds = (
             bool(self.bands),
             self.quotas is not None,
-            self.minimum_share is not None,
+            self.daily_share is not None,
         )
         if sum(kinds) != 1:
             msg = (
                 "a travel allowance has bands of hours, quotas or a share of "
-                "the daily minimum, exactly one"
+                "the daily pay, exactly one"
             )
             raise ValueError(msg)
         return self
