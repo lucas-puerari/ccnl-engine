@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 62 verified / 6 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 65 verified / 6 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🏭 Production | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-06-26 |
-| **Last review** | 2026-11-08 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-12-01 |
 
 ## Review history
@@ -71,6 +71,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-05 | claude-opus-5-5 (ai) | The hourly divisor of the 44-hour week, Articolo 160 (PDF p. 116, printed p. 114), checked by a separate session on the page rendered at 200 and 400 dpi. | confirmed | Art. 160 c.1 (sha256 32a2831b... matched): 190 for a normal week of 44 hours, 172 for 40: work_rules.time_supplements.week_divisors 44/190.<br>The renewal of 5 June 2024 amends arts. 114, 135, 161, 183-184 and 199-202, not art. 160. |
 | 2026-11-05 | claude-opus-5-5 (ai) | Art. 186 (p. 17) of the renewal of 5 June 2024, OCR of the signed scan. | corrected | Art. 186 covers every sector of the CCNL: the Fondo Est of the Pubblici esercizi file applies to ristorazione collettiva, which had no health fund. |
 | 2026-11-08 | gpt-6-sol (ai) | Art. 13 commi 5-13 (renewal of 5 June 2024 pp. 7-8, CCNL 2018 p. 29), the encoding checked against the signed pages by a separate model session. | flagged | Confirmed the amounts by level and their mapping, the November 2027 payment, the part-time of comma 6 and the exclusion of comma 7.<br>Flagged: the quote condensed the table (now verbatim up to the table, the table in the transformation); the eligibility date of comma 5 is a reading, not stated; commi 8 (pre-1993 exception) and 12 (Fon.Te.) were missing from the limitation: added.<br>Kept as approximations under the limitation: trigger of comma 10, days worked, absorption. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base, bands[0:night], bands[1:holiday], none.shift_work.<br>Left out: bands[2:sunday]: quote skipped; none.rest_day: skipped. |
 
 ## Salary table
 

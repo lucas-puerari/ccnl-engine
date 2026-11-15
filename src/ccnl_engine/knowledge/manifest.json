@@ -1496,7 +1496,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-confapi",
       "ruleset_version": "2026.2",
-      "source_hash": "8866fe7a174545179ed6cda471f5295774fb487428f43337cc7a3ab33d8a8ffd",
+      "source_hash": "710df87ab645d47d933630b30e21a3273891ac2dd7ab8f21b1c75d8c938e14d8",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-confapi.json.gz"
@@ -1768,7 +1768,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem-ristorazione-collettiva",
       "ruleset_version": "2026.2",
-      "source_hash": "42fd52a40a5a36aeefa3ffb060cacf9563eb988eeaa8e3180b1dc64d1e15066b",
+      "source_hash": "8c1daff19ff323224a5b127294bcd1586fe3a8e05edb3b904dedb57b1850b68c",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem-ristorazione-collettiva.json.gz"

@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 69 verified / 11 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 70 verified / 11 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -81,6 +81,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 32(b,c), physical PDF pp. 104-105, maternity holiday and local holiday selection. | confirmed | The maternity holiday target exists; letters b and c cover reduced-pay pregnancy and puerperium holidays. The employer-stated patron date can denote the locally agreed substitute or 29 June in Rome; neither is inferred without the local fact. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto breve and pay of art. 55 against the research of a separate model session; quotes checked on the text layer of the source. | corrected | Replaced 100% for 180 days of one episode with the bands of art. 55: 2+4, 3+6, 4+8 months at full and half pay, comporto 6/9/12 months over three years. |
 | 2026-11-15 | gpt-6-sol (ai) | Comporto breve and pay bands of art. 55, read by a separate model session on the 2017 text and the 2026 renewal. | confirmed | Confirmed: comporto breve 6/9/12 months over the three years before the last episode, full and half pay 2+4, 3+6, 4+8 months over the same three years; the 2026 renewal keeps them and adds the disability extension. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: bands[0:night_shift]. |
 
 ## Salary table
 
