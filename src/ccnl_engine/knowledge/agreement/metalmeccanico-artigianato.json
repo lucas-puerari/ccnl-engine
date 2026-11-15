@@ -2992,7 +2992,7 @@
     "effective_until": null,
     "source": "https://www.ebna.it/wp-content/uploads/2022/01/CCNL-artigianato-metalmeccanico-2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "47bf2769003c5aba69a93ae22c8b1ebd216fdab14d47d87e10869d05b4f5cdcd",
+    "source_hash": "c8023aabb87ddad8975b9d005ad05d776c3e66e4acb1f8c5183ae03b1609991e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3493,6 +3493,25 @@
             "review_id": "2026-11-08-ai-metalmeccanico-artigianato-impiegati-sickness"
           }
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-152-2015",
+            "title": "INPS Circolare n. 152 del 18 agosto 2015",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20152%20del%2018-08-2015.pdf",
+            "published_on": "2015-08-18",
+            "sha256": "6e74e62dd50378c23117df7aaca509ab9b8b93e60f99cad23e9c64982fd3734e"
+          },
+          "page": "2",
+          "section": "par. 2.1",
+          "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://c, sha256 6f8424cb05c74d81e1a9e58f2b6c972f6f3d61a9639ded36b4c316e13a4e00e1; https://w, sha256 d186f0321098fc171e06272da7f2acc7ef36eb5c0b12fb9715665ec44b13b472)."
       }
     }
   },

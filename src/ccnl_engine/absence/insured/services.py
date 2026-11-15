@@ -17,6 +17,9 @@ if TYPE_CHECKING:
         InsuredAbsenceRates,
         InsuredAbsenceRules,
     )
+    from ccnl_engine.absence.insured.parental.hourly.models import (
+        ParentalHourlyClause,
+    )
     from ccnl_engine.agreement.validity.rules import TimeSeries
     from ccnl_engine.employer.inputs import EmployerProfile
     from ccnl_engine.employment.category.models import WorkerCategory
@@ -51,6 +54,8 @@ class InsuredTerms:
         monthly_payments: Monthly payments a year of the CCNL, by date.
         vertical: Whether the employment is a vertical or mixed part time
             (``Employment.work_pattern``).
+        hourly_clause: The CCNL rule on the parental leave by the hour,
+            ``None`` when the bundle does not record one.
     """
 
     employed: tuple[date, date] | None
@@ -68,6 +73,7 @@ class InsuredTerms:
     vertical: bool = False
     employer: EmployerProfile | None = None
     apprentice: bool = False
+    hourly_clause: ParentalHourlyClause | None = None
 
 
 def insured_terms(ctx: RunContext) -> InsuredTerms:
@@ -106,6 +112,7 @@ def insured_terms(ctx: RunContext) -> InsuredTerms:
         weekly_hours=_DEFAULT_WEEKLY_HOURS if stated is None else stated.value,
         permanent=isinstance(ctx.request.contract_type, Permanent),
         apprentice=isinstance(ctx.request.contract_type, Apprentice),
+        hourly_clause=None if work is None else work.parental_hourly,
         rule=f"{name}:work_rules.insured_absence",
         rule_version=(
             str(competence.year) if ccnl.ruleset is None else ccnl.ruleset.version

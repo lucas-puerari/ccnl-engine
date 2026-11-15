@@ -6,6 +6,7 @@ from dataclasses import replace
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.absence.insured.parental.hourly.cumulation import check_cumulation
 from ccnl_engine.balance.cash.account.models import RegimeCapAccount
 from ccnl_engine.employment.context.models import EffectiveDateContext
 from ccnl_engine.errors import InvalidInputError
@@ -236,6 +237,7 @@ def _process_events(
     Returns:
         Tuple of ``(_EventTotals, pay_items, ledger_entries)``.
     """
+    check_cumulation(events, None if insured is None else insured.hourly_clause)
     opening_cap = opening_work_time_cap or RegimeCapAccount()
     terms = sickness or SicknessTerms()
     acc = _EventAccumulator(

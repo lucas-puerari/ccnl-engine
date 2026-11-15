@@ -2080,7 +2080,7 @@
     "effective_until": null,
     "source": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
     "verification_status": "unverified",
-    "source_hash": "99565de70e072bbb80e210a843360fcdce0dfa8463be7a72dbb6e34b8143664c",
+    "source_hash": "cf2e4f3462d9d877b86f4acd7169fb412d901ce4de09f05c90cf8b5e3c31420f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2312,6 +2312,25 @@
           "comporto_days": 365
         }
       ]
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-152-2015",
+            "title": "INPS Circolare n. 152 del 18 agosto 2015",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20152%20del%2018-08-2015.pdf",
+            "published_on": "2015-08-18",
+            "sha256": "6e74e62dd50378c23117df7aaca509ab9b8b93e60f99cad23e9c64982fd3734e"
+          },
+          "page": "2",
+          "section": "par. 2.1",
+          "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 5369af742968cdbf536ec3535b8da42bf73a52104390fc9c029e11a7e96635f2; https://a, sha256 a857ab65ee5a6101fb8ae50099804c1229815a1c676b798896a2ea7ed0260919)."
+      }
     }
   },
   "verification": {
