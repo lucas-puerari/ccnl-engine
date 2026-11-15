@@ -1231,7 +1231,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "b4c0d39264dca11f05ed07b5f5939044955f25e5ac2734383a80e8c0a0714146",
+    "source_hash": "84fd149fdd205158141d55b7bf1a0a9978824c1cb05e589dfa6ea7596056616a",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -1985,6 +1985,65 @@
           "section": "Art. 5"
         },
         "transformation": "The CCNL text read is silent on the holidays falling on a Sunday: the law pays the civil holidays only; art. 5 names the 'Stato, enti pubblici e datori privati', and the maintainer decided on 2026-11-15 that it applies to public employment (documents read: https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf, sha256 11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d; https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf, sha256 8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904; https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf, sha256 99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a; https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-UNIVERSITA-2006-09_Rev.pdf, sha256 53f4287478134e36ad0ce7ec0b143160cab0b954aeee2da6dafde70ba2af5e2f)"
+      }
+    },
+    "capability_basis": {
+      "shift_work": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-ir-2019-2021",
+              "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+              "kind": "amministrazione",
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+              "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+            },
+            "page": "142",
+            "section": "Sezione Università, art. 120, c. 2, lett. c)",
+            "quote": "Le risorse disponibili per la contrattazione integrativa ai sensi del comma 1 sono destinate ai seguenti utilizzi: [...] c) indennità correlate alle condizioni di lavoro del personale delle Aree Operatori, Collaboratori e Funzionari, in particolare: ad obiettive situazioni di disagio, rischio, al lavoro in turno, a particolari o gravose articolazioni dell’orario di lavoro, alla reperibilità;"
+          },
+          "transformation": "The indennità of shift work is paid from the fondo risorse decentrate, in the measure the integrative bargaining of each university sets. The amount is a fact of the employer, which the caller states (maintainer decision of 2026-11-15)."
+        }
+      },
+      "holiday_work": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-ir-2019-2021",
+              "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+              "kind": "amministrazione",
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+              "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+            },
+            "page": "142",
+            "section": "Sezione Università, art. 120, c. 2, lett. c)",
+            "quote": "Le risorse disponibili per la contrattazione integrativa ai sensi del comma 1 sono destinate ai seguenti utilizzi: [...] c) indennità correlate alle condizioni di lavoro del personale delle Aree Operatori, Collaboratori e Funzionari, in particolare: ad obiettive situazioni di disagio, rischio, al lavoro in turno, a particolari o gravose articolazioni dell’orario di lavoro, alla reperibilità;"
+          },
+          "transformation": "No CCNL of the universities sets a premium of ordinary holiday work: the work in burdensome arrangements of the working time is paid from the fondo risorse decentrate, in the measure the integrative bargaining sets. The amount is a fact of the employer, which the caller states (maintainer decision of 2026-11-15)."
+        }
+      },
+      "night_work": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-universita-2006-2009",
+              "title": "CCNL Università 2006-2009, 16 ottobre 2008",
+              "kind": "amministrazione",
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2024/07/CCNL-UNIVERSITA-2006-09_Rev.pdf",
+              "sha256": "53f4287478134e36ad0ce7ec0b143160cab0b954aeee2da6dafde70ba2af5e2f"
+            },
+            "page": "22",
+            "section": "Art. 26, c. 6",
+            "quote": "La contrattazione collettiva integrativa stabilisce la riduzione dell’orario di lavoro normale settimanale e mensile nei confronti dei lavoratori notturni e la relativa maggiorazione retributiva."
+          },
+          "transformation": "The premium of the night workers is set by the integrative bargaining of each university; the CCNL 18/1/2024 keeps the earlier CCNLs where not replaced. The amount is a fact of the employer, which the caller states (maintainer decision of 2026-11-15)."
+        }
       }
     }
   },

@@ -6078,7 +6078,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "68554c999a6df72dd93448fd72cf0eb8fd3352504d0f31d6630a521a785448d9",
+    "source_hash": "c862b2acd5b5d48ea76d17aa6cc7ff36f5f0837f86af8c5d0a1649cdc1e0944a",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -6336,6 +6336,63 @@
             "quote": "In quanto autorizzate e compatibilmente con le risorse disponibili, le prestazioni eccedenti l'orario di lavoro sono retribuite con le modalità e nella misura definite in sede di contrattazione integrativa locale."
           },
           "transformation": "The overtime of the AFAM technical and administrative staff is paid as the local integrative bargaining sets: no national rate, the amount is a fact of the employer (the caller states it). The CCNL 18/1/2024 keeps the earlier AFAM CCNLs where not replaced (art. 1 c. 16)."
+        }
+      },
+      "shift_work": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-ir-2022-2024",
+              "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+              "kind": "amministrazione",
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+              "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+            },
+            "page": "42",
+            "section": "Sezione AFAM, art. 30, c. 3, lett. b1)",
+            "quote": "Sono oggetto di contrattazione collettiva integrativa: [...] b) a livello di Istituzione: b1) i criteri generali per l'utilizzazione del fondo d'istituto;"
+          },
+          "transformation": "No AFAM CCNL sets the indennità of shift work: the accessory pay of the technical and administrative staff comes from the fondo d'istituto, whose use the integrative bargaining of each Istituzione sets (also CCNL AFAM 16/2/2005 art. 6 cc. 2 lett. g) and 4). The amount is a fact of the employer, which the caller states (maintainer decision of 2026-11-15)."
+        }
+      },
+      "night_work": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-ir-2022-2024",
+              "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+              "kind": "amministrazione",
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+              "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+            },
+            "page": "42",
+            "section": "Sezione AFAM, art. 30, c. 3, lett. b1)",
+            "quote": "Sono oggetto di contrattazione collettiva integrativa: [...] b) a livello di Istituzione: b1) i criteri generali per l'utilizzazione del fondo d'istituto;"
+          },
+          "transformation": "No AFAM CCNL sets the premium of ordinary night work (22 to 6, art. 36 c. 1 lett. c CCNL AFAM 2005): the accessory pay of the technical and administrative staff comes from the fondo d'istituto, whose use the integrative bargaining of each Istituzione sets (also CCNL AFAM 16/2/2005 art. 6 cc. 2 lett. g) and 4). The amount is a fact of the employer, which the caller states (maintainer decision of 2026-11-15)."
+        }
+      },
+      "holiday_work": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-ir-2022-2024",
+              "title": "CCNL Comparto Istruzione e Ricerca 2022-2024, 23 dicembre 2025",
+              "kind": "amministrazione",
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf",
+              "sha256": "99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a"
+            },
+            "page": "42",
+            "section": "Sezione AFAM, art. 30, c. 3, lett. b1)",
+            "quote": "Sono oggetto di contrattazione collettiva integrativa: [...] b) a livello di Istituzione: b1) i criteri generali per l'utilizzazione del fondo d'istituto;"
+          },
+          "transformation": "No AFAM CCNL sets the premium of ordinary holiday work: the accessory pay of the technical and administrative staff comes from the fondo d'istituto, whose use the integrative bargaining of each Istituzione sets (also CCNL AFAM 16/2/2005 art. 6 cc. 2 lett. g) and 4). The amount is a fact of the employer, which the caller states (maintainer decision of 2026-11-15)."
         }
       }
     }
