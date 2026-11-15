@@ -12,7 +12,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | terziario | 46 | 5 257 055 | 46 | 951 | 1987 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 49 | 4 969 900 | 150 | 1213 | 2648 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 76 | 0 | `lavoro-domestico-non-convivente` |
-| artigianato | 8 | 1 244 505 | 34 | 151 | 364 | 2 | `metalmeccanico-artigianato` |
+| artigianato | 8 | 1 244 505 | 34 | 151 | 373 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 12 | 92 | 261 | 5 | `operai-agricoli-florovivaisti` |
 | edilizia | 4 | 710 000 | 2 | 97 | 136 | 0 | `edilizia-ance` |
 | credito | 3 | 348 000 | 2 | 18 | 100 | 0 | `bancari-abi` |
@@ -155,7 +155,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---|---:|---:|---:|---|---|---|
 | [`edilizia-artigianato-cna`](../contracts/edilizia-artigianato-cna.md) | 350 000 | exploratory | 1 | 45 | 41 | party or official | none | none |
 | [`metalmeccanico-artigianato`](../contracts/metalmeccanico-artigianato.md) (anchor) | 350 000 | exploratory | 0 | 12 | 71 | party or official | maintainer | 2027-01-31 |
-| [`tessile-moda-artigianato-confartigianato`](../contracts/tessile-moda-artigianato-confartigianato.md) | 120 000 | exploratory | 1 | 11 | 65 | aggregator | none | none |
+| [`tessile-moda-artigianato-confartigianato`](../contracts/tessile-moda-artigianato-confartigianato.md) | 120 000 | exploratory | 1 | 11 | 74 | aggregator | none | none |
 | [`acconciatura-estetica-confartigianato`](../contracts/acconciatura-estetica-confartigianato.md) | 95 000 | exploratory | 1 | 9 | 26 | party or official | none | none |
 | [`legno-lapidei-artigianato-confartigianato`](../contracts/legno-lapidei-artigianato-confartigianato.md) | 95 000 | exploratory | 1 | 6 | 65 | aggregator | none | none |
 | [`panificazione-artigianato-confartigianato`](../contracts/panificazione-artigianato-confartigianato.md) | 90 000 | exploratory | 0 | 47 | 6 | party or official | maintainer | 2027-01-31 |
