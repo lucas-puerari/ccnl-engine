@@ -28,7 +28,12 @@ from enum import StrEnum
 
 from ccnl_engine.validators import parse_enum, reject, require_bool, require_date
 
-__all__ = ["EXEMPTION_FEATURE", "ContributionExemption", "ExemptionMeasure"]
+__all__ = [
+    "EXEMPTION_FEATURE",
+    "ContributionExemption",
+    "ExemptionMeasure",
+    "MothersExemption",
+]
 
 EXEMPTION_FEATURE = "contribution_exemption"
 _SHARES = frozenset({Decimal("0.7"), Decimal(1)})
@@ -94,3 +99,30 @@ class ContributionExemption:
             reject(f"{owner}.territorial", "False", True, feature=EXEMPTION_FEATURE)
         if self.made_permanent and measure is not ExemptionMeasure.MOTHERS:
             reject(f"{owner}.made_permanent", "False", True, feature=EXEMPTION_FEATURE)
+
+
+@dataclass(frozen=True)
+class MothersExemption:
+    """The exemption of the IVS share of a working mother of three or more.
+
+    L. 213/2023 art. 1 c. 180: for the pay periods of 2024 to 2026, a mother
+    of three or more children on a permanent contract does not pay her IVS
+    contributions, up to 3,000 EUR a year, until the month her youngest
+    child turns eighteen (INPS circ. 27/2024).  The worker states it to the
+    employer.
+
+    Attributes:
+        youngest_child_born_on: Birth day of the youngest child.
+
+    Raises:
+        InvalidInputError: When the birth day is not a date.
+    """
+
+    youngest_child_born_on: date
+
+    def __post_init__(self) -> None:  # noqa: D105
+        require_date(
+            self.youngest_child_born_on,
+            "MothersExemption.youngest_child_born_on",
+            feature=EXEMPTION_FEATURE,
+        )

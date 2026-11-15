@@ -67,7 +67,7 @@ formulas or caller-declared amounts.
 | `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 34 / 24 / 45 / 0 |
 | `inps_employer` | Contributi INPS a carico azienda | core | net | native | always | pipeline | — | — | simplified | 42 / 24 / 53 / 0 |
 | `inail` | Premio INAIL a carico azienda (imponibile del mese per il tasso applicato alla posizione, per mille) | core | net | native | decided | decision | `employer.inail_rate` | — | implemented | none bundled |
-| `contribution_exemption` | Esonero contributivo del datore (DL 60/2024 artt. 22-24, L. 199/2025 cc. 210-213) | core | net | native | decided | decision | `employment.contribution_exemption` | young, women, zes, mothers | implemented | none bundled |
+| `contribution_exemption` | Esonero contributivo del datore (DL 60/2024 artt. 22-24, L. 199/2025 cc. 210-213) | core | net | native | decided | decision | `employment.contribution_exemption`, `employment.mothers_exemption` | young, women, zes, mothers, worker_mothers | implemented | none bundled |
 | `fiscal_adjustment` | Conguaglio da assistenza fiscale (730-4): rimborsi, saldi e acconti in busta con rate, interessi e incapienza (DM 164/1999 art. 19) | core | net | native | decided | decision | `employment.tax_returns` | — | implemented | none bundled |
 | `maternity_leave` | Congedo di maternità: indennità INPS anticipata e integrazione CCNL | scenario | work_rules | native | event | event | — | inps_indemnity, ccnl_top_up | verified | 1 / 0 / 0 / 0 |
 | `paternity_leave` | Congedo di paternità obbligatorio: indennità INPS al 100% anticipata dal datore | scenario | work_rules | native | event | event | — | inps_indemnity | implemented | 0 / 1 / 0 / 0 |

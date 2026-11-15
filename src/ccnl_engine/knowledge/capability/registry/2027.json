@@ -85,10 +85,12 @@
         "young",
         "women",
         "zes",
-        "mothers"
+        "mothers",
+        "worker_mothers"
       ],
       "required_facts": [
-        "employment.contribution_exemption"
+        "employment.contribution_exemption",
+        "employment.mothers_exemption"
       ],
       "description": "Esonero contributivo del datore (DL 60/2024 artt. 22-24, L. 199/2025 cc. 210-213)"
     },

@@ -160,6 +160,9 @@ EMPLOYER_DEFAULTS: Mapping[str, FieldDefault] = {
         "without a net headcount growth, which the employer states"
     ),
     "ContributionExemption.territorial": absence_is_fact("the national cap and code"),
+    "Employment.mothers_exemption": absence_is_fact(
+        "the worker states no exemption of her IVS share"
+    ),
     "ContributionExemption.made_permanent": absence_is_fact(
         "a hire, not a fixed term made permanent"
     ),

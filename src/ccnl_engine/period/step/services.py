@@ -33,6 +33,7 @@ from ccnl_engine.contribution.ceiling.services import (
     ivs_ceiling_decision,
     run_ivs_ceiling,
 )
+from ccnl_engine.contribution.exemption.mothers import mother_cap
 from ccnl_engine.contribution.exemption.services import exempted, exemption_decisions
 from ccnl_engine.contribution.minimum_base.services import run_minimum_base
 from ccnl_engine.decision.rules import contract_decisions
@@ -195,16 +196,16 @@ def run_amounts(ctx: RunContext, totals: _EventTotals) -> RunAmounts:
             whole_euro=whole_euro,
         ),
     )
-    amounts, breakdown, tax, plan = _compute_amounts(
-        amounts_input(
-            ctx,
-            totals,
-            surtax_rules,
-            family_rules,
-            ivs_ceiling_applies=ivs is not None and ivs.applies,
-            inps_minimum=None if minimum is None else minimum.minimum,
-        )
+    inp = amounts_input(
+        ctx,
+        totals,
+        surtax_rules,
+        family_rules,
+        ivs_ceiling_applies=ivs is not None and ivs.applies,
+        inps_minimum=None if minimum is None else minimum.minimum,
     )
+    computed = _compute_amounts(replace(inp, mother_cap=mother_cap(ctx)))
+    amounts, breakdown, tax, plan = computed
     amounts, breakdown = exempted(ctx, amounts, breakdown)
     return RunAmounts(
         amounts, breakdown, tax, plan, ivs, minimum, whole_euro=whole_euro

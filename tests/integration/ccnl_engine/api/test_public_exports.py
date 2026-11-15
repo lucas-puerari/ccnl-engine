@@ -77,6 +77,7 @@ EXPECTED_PUBLIC: dict[str, frozenset[str]] = {
         "Apprentice",
         "ContributionExemption",
         "ExemptionMeasure",
+        "MothersExemption",
         "CalendarOverride",
         "CalendarOverrideReason",
         "CollectiveDismissal",
