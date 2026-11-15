@@ -1410,9 +1410,9 @@
       "id": "parental_month_split",
       "capability": "parental_leave",
       "variant": "parental_month_split",
-      "summary": "When a counter of the parental leave (a rate band or the indemnified months) ends inside a calendar month of the leave that is not of thirty days, the engine pays the days of that month in order, one day of counter each and the last day what is left of the thirty: INPS counts the calendar month as one month (FAQ congedo parentale 2024, n. 10) but no source says which of its days fall in which band.",
+      "summary": "When a rate band or the indemnified months of the parental leave end inside a calendar month, the days of that month are paid in order at the rate of the period each falls in, one day of counter each, the last day what is left of the thirty. INPS attributes the rates to the periods of leave by day, within a month too: circ. 57/2024, example A, gives 30% to 21-31 December 2023 and 80% to 1-20 January 2024, and counts '10 giorni residui' of the further month after 20 days taken.",
       "monetary_impact": "unknown",
-      "status": "unsourced",
+      "status": "resolved",
       "rulesets": [
         "acconciatura-estetica-confartigianato",
         "afam-aran",
@@ -1554,83 +1554,16 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.absence.insured.parental.rules.allocate; INPS FAQ congedo parentale 2024 n. 10 (pdf sha256 f3f4d4f68b1db21e9f3c7589c5fa2e584a398c055031c4bb1e6481a897f4461f)",
-      "remediation": "Source how INPS splits a calendar month between two rates of the parental leave and apply it, then resolve this limitation.",
-      "searched": [
-        {
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2001-03-26;151~art34!vig=",
-          "sha256": "7ce35063d260d9ea304ae710e98e35c5edd5181cd5acbb24ba30510cf3777742",
-          "title": "art. 34, comma 1 (HTML, senza paginazione)."
-        },
-        {
-          "url": "https://www.inps.it/content/dam/inps-site/pdf/schede-servizio/documents/FAQ_congedo_parentale_2024.pdf",
-          "sha256": "f3f4d4f68b1db21e9f3c7589c5fa2e584a398c055031c4bb1e6481a897f4461f",
-          "title": "FAQ n. 10, PDF p. 2."
-        },
-        {
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2001-03-26;151~art23!vig=",
-          "sha256": "b9824637eeb03c6cdd6eaad77b2e3e6d810f787d37f87a73273ed8b501e331b5",
-          "title": "art. 23: base retributiva giornaliera, non ripartizione delle fasce."
-        },
-        {
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2001-03-26;151~art32!vig=",
-          "sha256": "b6eca6b819533a69b01d70e636398a51b6a1e2e80a95a5f037c6a799adf1077c",
-          "title": "art. 32: durata e modalità di fruizione, non split tra aliquote."
-        },
-        {
-          "url": "https://www.inps.it/it/it/dettaglio-scheda.it.schede-servizio-strumento.schede-servizi.50583.indennit-di-congedo-parentale-per-lavoratrici-e-lavoratori-dipendenti.html",
-          "sha256": "641fb049f59f0a4af5ef2911e82cec60f838de7ae8ba89593bcedf7bbd215439",
-          "title": "scheda INPS: descrive aliquote, durate e domanda, non l'imputazione del giorno di passaggio."
-        },
-        {
-          "url": "https://www.inps.it/content/dam/inps-site/pdf/schede-servizio/documents/FAQ_congedo_parentale_2023.pdf",
-          "sha256": "0e56dde5dc8928e89fc428074fb411a25065ab1c670e602da4157f74b9ca9ef2",
-          "title": "FAQ: nessun criterio pertinente verificato."
-        },
-        {
-          "url": "https://www.inps.it/content/dam/inps-site/pdf/allegati/2026/Schema_ripartizione_mesi_congedo_parentale_indennizzabili_80.pdf",
-          "sha256": "59207d69b078da94133840f2ba5d53ac4cc8900d1acf37202f73f6d0c1742547",
-          "title": "schema delle mensilità maggiorate, non dello split giornaliero."
-        },
-        {
-          "url": "https://www.inps.it/content/dam/inps-site/pdf/allegati/2026/Schema_ripartizione_periodi_congedo%20indennizzabili.pdf",
-          "sha256": "a8415b3949fdb7b761e5040d96ce7d9febdce60ef19a089e849f50193d05d5ea",
-          "title": "schema dei mesi indennizzabili, non dello split."
-        },
-        {
-          "url": "https://www.inps.it/content/dam/inps-site/pdf/allegati/2026/Schema_periodi_congedo_parentale.pdf",
-          "sha256": "ea85936a92de971d073f38f6999f2d1630d39f2880b5a9b3c5ddaeaeec38896f",
-          "title": "schema dei periodi, non dello split."
-        },
-        {
-          "url": "https://www.inps.it/it/it/inps-comunica/atti/circolari-messaggi-e-normativa/dettaglio.circolari-e-messaggi.2022.10.circolare-numero-122-del-27-10-2022_13978.html",
-          "sha256": "6c2d08c9e4bbcb6a00dafeffe5950dab513f5fc2181cd1f54e074476d7f5449a",
-          "title": "pagina di dettaglio scaricata: testo della circolare non restituito nell'HTML; non utilizzata come prova del contenuto."
-        },
-        {
-          "url": "https://www.inps.it/it/it/inps-comunica/atti/circolari-messaggi-e-normativa/dettaglio.circolari-e-messaggi.2023.05.circolare-numero-45-del-16-05-2023_14158.html",
-          "sha256": "da07f74b856af661b76108c8f3086f5a3dea7f0d6d4a6bd6c2974c22ca3a6f63",
-          "title": "stessa limitazione di accesso al testo."
-        },
-        {
-          "url": "https://www.inps.it/it/it/inps-comunica/atti/circolari-messaggi-e-normativa/dettaglio.circolari-e-messaggi.2024.04.circolare-numero-57-del-18-04-2024_14551.html",
-          "sha256": "78ad2a912bee9345e4525650f11bd0f831e315f56ba41b10353d69d897debc4e",
-          "title": "stessa limitazione di accesso al testo."
-        },
-        {
-          "url": "https://www.inps.it/it/it/inps-comunica/atti/circolari-messaggi-e-normativa/dettaglio.circolari-e-messaggi.2025.05.circolare-numero-95-del-26-05-2025_14931.html",
-          "sha256": "a46b43ec44f8f724676e58080d9ec13df3b9c70ddab16d1eaeaf800e7a8fb96b",
-          "title": "stessa limitazione di accesso al testo."
-        }
-      ]
+      "source": "INPS circ. 57/2024 (example A) and circ. 95/2025; ccnl_engine.absence.insured.parental.handlers",
+      "remediation": "Resolved: the rates follow the days of each period, as INPS circ. 57/2024."
     },
     {
       "id": "parental_extra_month_share",
       "capability": "parental_leave",
       "variant": "parental_extra_month_share",
-      "summary": "The days of parental leave accrue the 13th and the other extra months in full at the employer's charge (art. 34 c. 5 D.Lgs. 151/2001: the leave does not reduce them), while the INPS indemnity is computed on a base that already holds their daily rateo (art. 23 c. 2, INPS circ. 122/2022): no source read settles whether the employer's extra month is reduced by the share INPS pays, so the rateo of a month on leave may be overstated.",
+      "summary": "The days of parental leave accrue the 13th and the other extra months in full at the employer's charge: the leave does not reduce them (art. 34 c. 5 D.Lgs. 151/2001), and no source sets a netting of the share the INPS indemnity holds in its base (art. 23 c. 2); by the maintainer's decision of 2026-11-15 the employer pays the whole rateo, as the text reads.",
       "monetary_impact": "unknown",
-      "status": "unsourced",
+      "status": "resolved",
       "rulesets": [
         "acconciatura-estetica-confartigianato",
         "afam-aran",
@@ -1772,40 +1705,8 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.absence.insured.parental.handlers._handle_parental_leave; D.Lgs. 151/2001 art. 34 c. 5 (Normattiva, text in force on 2026-10-30, page sha256 aaf521a98f84e5d33cad1deee74452d789e5c58ec3d1ede4567453d7b7bd3967) and art. 23 c. 2",
-      "remediation": "Source how the extra months of a parental leave are split between INPS and the employer and net the INPS share from the employer's rateo, then resolve this limitation.",
-      "searched": [
-        {
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2001-03-26;151~art34",
-          "sha256": "01946d1dc1e363138c4d73502facbb404c4b2bb8ce6e3ea7955c984c10b1b0c8",
-          "title": "art. 34, comma 5 (HTML, senza pagina PDF)."
-        },
-        {
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2001-03-26;151~art23",
-          "sha256": "f127076b31d13acabe918e4cb13097cfd508a707d8aa605533c218f203d54e87",
-          "title": "art. 23, comma 2 (HTML, senza pagina PDF)."
-        },
-        {
-          "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2022/10/Circolare_13978/Allegati/14966_Circolare-numero-122-del-27-10-2022.pdf",
-          "sha256": "0f3dfc31dbe4fd2ed9f8ca004183d87db0dab9798add4a555c31c7d46d93a71c",
-          "title": "circolare INPS n. 122 del 27 ottobre 2022, § 3.1, PDF p. 8."
-        },
-        {
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2001-03-26;151~art22",
-          "sha256": "4a24438d8e800a22eefc799c446a78c8eaf27bd108ba1fef399e32ad0a3ee656",
-          "title": "regola modalità di corresponsione e anzianità nel congedo di maternità, non il riparto economico della tredicesima nel congedo parentale."
-        },
-        {
-          "url": "https://www.inps.it/it/it/inps-comunica/atti/circolari-messaggi-e-normativa/dettaglio.circolari-e-messaggi.2022.10.circolare-numero-122-del-27-10-2022_13978.html",
-          "sha256": "6c2d08c9e4bbcb6a00dafeffe5950dab513f5fc2181cd1f54e074476d7f5449a",
-          "title": "pagina indice con testo caricato separatamente; utilizzato il PDF allegato."
-        },
-        {
-          "url": "https://www.inps.it/it/it/inps-comunica/atti/circolari-messaggi-e-normativa/dettaglio.content-fragment-detail.circolari-e-messaggi.2022.10.circolare-numero-122-del-27-10-2022_13978.json",
-          "sha256": "cda15667e253aec00af8f5f1cbd500f2f1d3f466fb45a2f4c483214c1d500a78",
-          "title": "testo e collegamento al PDF della medesima circolare; nessuna disposizione autonoma sul conguaglio."
-        }
-      ]
+      "source": "D.Lgs. 151/2001 artt. 23 c. 2 and 34 c. 5; maintainer decision of 2026-11-15; ccnl_engine.absence.insured.parental.handlers",
+      "remediation": "Resolved by the decision of 2026-11-15: the employer pays the whole rateo of the extra months."
     },
     {
       "id": "parental_hourly_ccnl_rule",
@@ -1848,9 +1749,9 @@
       "id": "disability_permit_tfr",
       "capability": "disability_permits",
       "variant": "disability_permit_tfr",
-      "summary": "The days of permit under L. 104/1992 art. 33 c. 3 keep the TFR base, as payroll practice holds; art. 2120 c. 3 c.c. keeps in the TFR base only the absences of art. 2110 c.c. and the wage integration, and no primary source read says the permits are among them, so the TFR quota of a month with permits may be overstated.",
+      "summary": "The days of permit under L. 104/1992 art. 33 c. 3 keep the TFR base. Art. 33 c. 4 refers to art. 43 D.Lgs. 151/2001, which applies art. 34 c. 5: the days are paid and counted in the seniority; no primary source states their TFR base, and by the maintainer's decision of 2026-11-15 they stay in it, as payroll practice holds.",
       "monetary_impact": "unknown",
-      "status": "unsourced",
+      "status": "resolved",
       "rulesets": [
         "acconciatura-estetica-confartigianato",
         "afam-aran",
@@ -1992,60 +1893,8 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.absence.insured.permit.handlers._handle_disability_permit; D.Lgs. 151/2001 artt. 43-44 (Normattiva, text in force on 2026-10-30, page sha256 6bd9b8071e8c852ec96f3cdfdd2ee236d75a9bbb9ea0ef5d058d9315dd9c7888); art. 2120 c. 3 c.c.",
-      "remediation": "Source the TFR treatment of the permit days (an INPS or Ministry ruling, or case law of the Cassazione) and apply it, then resolve this limitation.",
-      "searched": [
-        {
-          "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=12&art.idGruppo=0&art.flagTipoArticolo=0&art.codiceRedazionale=092G0108&art.idArticolo=33&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1992-02-17&art.progressivo=0&",
-          "sha256": "5b06929ff0eb05c22536b5f24826ca277cc0da3a0987a441347feeb768d4e5b4",
-          "title": "L. 104/1992, art. 33, comma 3 (HTML norm104_art33_new.html)."
-        },
-        {
-          "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=1&art.idGruppo=6&art.flagTipoArticolo=0&art.codiceRedazionale=001G0200&art.idArticolo=43&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=2001-04-26&art.progressivo=0&",
-          "sha256": "c1016db4be4632f83857079009c5c6d96140108f6a2b8d9007852c1979caec98",
-          "title": "D.Lgs. 151/2001, art. 43, comma 1 (HTML norm151_art43.html)."
-        },
-        {
-          "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=9&art.idGruppo=5&art.flagTipoArticolo=0&art.codiceRedazionale=001G0200&art.idArticolo=34&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=2001-04-26&art.progressivo=0&",
-          "sha256": "e3c8d76c93bf08f323f48896e347d06f873b3f80744b0204ec0fec11f856419f",
-          "title": "D.Lgs. 151/2001, art. 34, comma 5 (HTML norm151_art34.html)."
-        },
-        {
-          "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=5&art.idGruppo=267&art.flagTipoArticolo=2&art.codiceRedazionale=042U0262&art.idArticolo=2120&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1942-04-04&art.progressivo=0&",
-          "sha256": "51ab6777b716df1ddfddb7eebedeb3c8fab358fdfb1d7678b492d5182bef23ae",
-          "title": "c.c., art. 2120, comma 1 (HTML normcc_art2120.html)."
-        },
-        {
-          "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=1&art.idGruppo=265&art.flagTipoArticolo=2&art.codiceRedazionale=042U0262&art.idArticolo=2110&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1942-04-04&art.progressivo=0&",
-          "sha256": "2f86c7185a670705ce187acd8848c279cd04ed6a58dbe4e9fd859ecf64a3cc0b",
-          "title": "art. 2110 elenca infortunio, malattia, gravidanza, puerperio; non tratta i permessi 104."
-        },
-        {
-          "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=13&art.idGruppo=6&art.flagTipoArticolo=0&art.codiceRedazionale=001G0200&art.idArticolo=42&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=2001-04-26&art.progressivo=0&",
-          "sha256": "4573dc711959aa3f24906500385847b1c53fedaa5ebea0ea78e28a1e600ea0fc",
-          "title": "distingue permessi da congedo straordinario; non risolve TFR dei permessi."
-        },
-        {
-          "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=1&art.idGruppo=6&art.flagTipoArticolo=0&art.codiceRedazionale=001G0200&art.idArticolo=44&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=2001-04-26&art.progressivo=0&",
-          "sha256": "e5f2807fc50107aeba40da6a1ca126e1d289d2faae7fbff240b43caa4b4059f7",
-          "title": "contribuzione figurativa, non TFR."
-        },
-        {
-          "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=4&art.idGruppo=9&art.flagTipoArticolo=0&art.codiceRedazionale=001G0200&art.idArticolo=56&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=2001-04-26&art.progressivo=0&",
-          "sha256": "ccbc2b87d4e4b0c99060293932da2e573d5ef219fd61b09de6c90285fc90408b",
-          "title": "conservazione del posto, non base TFR."
-        },
-        {
-          "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=1&art.idGruppo=6&art.flagTipoArticolo=0&art.codiceRedazionale=001G0200&art.idArticolo=35&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=2001-04-26&art.progressivo=0&",
-          "sha256": "2cc9ff845eeb8990f9661f5e5806253860a4d099c7d9e8d8703baabbc7c81770",
-          "title": "previdenza del congedo parentale, non base TFR dei permessi."
-        },
-        {
-          "url": "https://www.inps.it/it/it/dettaglio-scheda.it.schede-servizio-strumento.schede-servizi.50098.indennit-per-permessi-fruiti-dai-lavoratori-per-assistere-familiari-disabili-in-situazione-di-gravit-o-fruiti-dai-lavoratori-disabili.html",
-          "sha256": "93bfa57d83db079aa69d39f9fb1df5e81746a827c0b7808486d8db4eb5298825",
-          "title": "scheda INPS «QUANTO SPETTA» specifica indennità e ratei delle mensilità aggiuntive, non TFR; non è circolare o messaggio interpretativo del TFR."
-        }
-      ]
+      "source": "L. 104/1992 art. 33 cc. 3-4; D.Lgs. 151/2001 artt. 34 c. 5 and 43; maintainer decision of 2026-11-15; ccnl_engine.absence.insured.permit.handlers",
+      "remediation": "Resolved by the decision of 2026-11-15: the permit days stay in the TFR base."
     },
     {
       "id": "notice_indemnity_partial",
@@ -2504,9 +2353,9 @@
       "id": "notice_indemnity_day_measure",
       "capability": "termination_notice",
       "variant": "notice_indemnity_day_measure",
-      "summary": "A CCNL that sets the notice in calendar days measures the indemnity on the pay of those days: the engine takes a calendar day as a 30th of the monthly pay; Commercio art. 209 refers the monthly pay to all the days of the calendar month, but its art. 210 sets the daily quota at 1/26 'in tutti i casi', so the indemnity may be understated.",
+      "summary": "A notice in calendar days is paid at the monthly pay over 30 for each calendar day ('la retribuzione che sarebbe spettata', art. 2118 c. 2 c.c.): no law sets a daily measure, and by the maintainer's decision of 2026-11-15 a calendar day is a thirtieth of the month unless the CCNL sets its own. A CCNL whose daily quota differs records its own limitation.",
       "monetary_impact": "unknown",
-      "status": "unsourced",
+      "status": "resolved",
       "rulesets": [
         "acconciatura-estetica-confartigianato",
         "afam-aran",
@@ -2648,25 +2497,8 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.termination.notice.handlers._handle_notice_indemnity; CCNL Terziario Confcommercio 30 luglio 2019 artt. 209-210, 248 (sha256 76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016)",
-      "remediation": "Source the daily measure of the notice indemnity of the CCNL (an interpretation of the parties or case law) and apply it, then resolve this limitation.",
-      "searched": [
-        {
-          "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=1&art.idGruppo=267&art.flagTipoArticolo=2&art.codiceRedazionale=042U0262&art.idArticolo=2118&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1942-04-04&art.progressivo=0&",
-          "sha256": "834213e542e77f0f1079835b14c444432e208be59a9d3d4c859ff5ede6c8e11d",
-          "title": "codice civile art. 2118, comma 2 (HTML: articolo_2118.html)."
-        },
-        {
-          "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=2&art.idGruppo=267&art.flagTipoArticolo=2&art.codiceRedazionale=042U0262&art.idArticolo=2121&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1942-04-04&art.progressivo=0&",
-          "sha256": "c89a9754b6905fe584c87e833c4ae1bb3fc20889d4407cb90c4b803c6e4437fb",
-          "title": "codice civile art. 2121, comma 1 (HTML: articolo_2121.html)."
-        },
-        {
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:regio.decreto:1942-03-16;262~art2118",
-          "sha256": "6b564205c913f06da457c36edb7c07df720c7d28cd0e87800ad204f0fc15d480",
-          "title": "(codice_2118.html): indice e pagina contenitore; testo degli articoli caricato separatamente, sopra citato."
-        }
-      ]
+      "source": "c.c. artt. 2118-2121; maintainer decision of 2026-11-15; ccnl_engine.termination.notice.handlers._handle_notice_indemnity",
+      "remediation": "Resolved by the decision of 2026-11-15: a calendar day of notice is a thirtieth of the monthly pay."
     },
     {
       "id": "extraordinary_leave_daily_base",
@@ -3147,9 +2979,9 @@
       "id": "mid_month_level_change",
       "capability": "base_salary",
       "variant": "mid_month_level_change",
-      "summary": "A promotion on a day other than the first of a month splits the monthly pay of the run between the level before and the new level by the payable days of the CCNL daily quota on each side of the promotion, component by component; the hourly quotas of the month (overtime, permits, absences) read the same split chain whatever the day of the event. The CCNL texts read (Commercio and Terziario art. 118, DMO art. 102) give the new level from the promotion but not how its month is split.",
+      "summary": "A promotion on a day other than the first of a month splits the monthly pay of the run between the level before and the new level by the payable days of the CCNL daily quota on each side of the promotion, component by component, as a month of hire or termination; the hourly quotas of the month read the same split chain. No source sets the split (art. 2103 c.c. gives the higher pay from the assignment): by the maintainer's decision of 2026-11-15 the partial-month rule of the CCNL applies.",
       "monetary_impact": "unknown",
-      "status": "unsourced",
+      "status": "resolved",
       "rulesets": [
         "acconciatura-estetica-confartigianato",
         "afam-aran",
@@ -3291,120 +3123,8 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.compensation.change.rules.blended; CCNL Terziario Confcommercio art. 118 (Testo Unico 30 July 2019, sha256 76420e3a21e002e2cb37b71db515356ee260a239c7cf38e7df94f68b8f730016)",
-      "remediation": "Source how a month is split by a promotion inside it (a CCNL clause or an INPS or Ministry ruling) and price the events of the month at the terms of their day, then resolve this limitation.",
-      "searched": [
-        {
-          "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=5&art.idGruppo=265&art.flagTipoArticolo=2&art.codiceRedazionale=042U0262&art.idArticolo=2103&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1942-04-04&art.progressivo=0&",
-          "sha256": "e1cef175c0f0acd0d88bb930c8f003795b6369b9cf121afc6a44c45366c2f41c",
-          "title": "art. 2103, comma 7, c.c.; HTML articolo_2103.html (nessuna pagina PDF)."
-        },
-        {
-          "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=1&art.idGruppo=265&art.flagTipoArticolo=2&art.codiceRedazionale=042U0262&art.idArticolo=2099&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1942-04-04&art.progressivo=0&",
-          "sha256": "9e625de24bfa31855a317ffa78ea1c726b79d1096b4bdb9f2e0d374b85f35d4a",
-          "title": "(articolo_2099.html): disciplina forme e determinazione della retribuzione, non il riparto per promozione inframensile."
-        },
-        {
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:regio.decreto:1942-03-16;262~art2103",
-          "sha256": "6b564205c913f06da457c36edb7c07df720c7d28cd0e87800ad204f0fc15d480",
-          "title": "(codice_civile_2103.html): pagina di navigazione del codice; il testo dell'articolo è stato scaricato separatamente e citato sopra."
-        },
-        {
-          "url": "https://servizi2.inps.it/servizi/CircMessStd/VisualizzaDoc.aspx?sVirtualUrl=/Circolari/Circolare%20numero%2026%20del%2030-01-2025.htm",
-          "sha256": "5b769f8529720b3d840a6026053b752a91ed07de058ccf92159990e719e2f732",
-          "title": "(inps_circolare_26_2025.html): reindirizza a una pagina INPS priva del testo della circolare; non utilizzabile a supporto della regola."
-        },
-        {
-          "url": "https://www.google.com/search?q=promozione+met%C3%A0+mese+retribuzione+proporzionale+giorni+cassazione+art+2103",
-          "sha256": "48a59fc8e3768bda0888570a6a4ef2b4d77286f4f81c3b2372c7eb1c626cef75",
-          "title": "."
-        },
-        {
-          "url": "https://www.bing.com/search?q=site%3Anormattiva.it+articolo+2103+trattamento+corrispondente+attivit%C3%A0+svolta",
-          "sha256": "d6273531989ef044a042a501dd70dae4335149c8541ddf12c5fbbb58b01faa00",
-          "title": "."
-        },
-        {
-          "url": "https://www.google.com/search?q=cassazione+mansioni+superiori+differenze+retributive+periodo+effettivo+svolgimento+decorrenza",
-          "sha256": "8a8cef0966878e1a7d3ee74a3839d7c074a440e0973b09457a299bf978fd2437",
-          "title": "."
-        },
-        {
-          "url": "https://www.google.com/search?q=%22mansioni+superiori%22+%22giorni%22+%22retribuzione%22+cassazione",
-          "sha256": "284c5145888a09fa42a7ec3dc3f5efe4366b8e7dc89190b5278738cff6111bcd",
-          "title": "."
-        },
-        {
-          "url": "https://www.bing.com/search?q=%22mansioni+superiori%22+%22giorni%22+%22retribuzione%22+cassazione",
-          "sha256": "82aa3697e8370e4a28617b94716a08d337d25617e954940b62f4a760eb108a88",
-          "title": "."
-        },
-        {
-          "url": "https://www.bing.com/search?q=INPS+Uniemens+cambio+livello+in+corso+di+mese+retribuzione",
-          "sha256": "af1d92cc0da3bf1c0ca8eb95e854a6f5b8b97f7b60e7a7c9f970834768539512",
-          "title": "."
-        },
-        {
-          "url": "https://www.bing.com/search?q=site%3Aservizi2.inps.it%2Fservizi%2FCircMessStd%2F+retribuzione+mensile+divisore+26+circolare",
-          "sha256": "f3523862a9604004403ff2802b40d1df78acc8aed78792cea1c86ec402dddf91",
-          "title": "."
-        },
-        {
-          "url": "https://www.bing.com/search?q=inps+circolare+minimali+retribuzione+giornaliera+2025+26",
-          "sha256": "3821840414d7703fcb4cf44349b85a585a93026704c7be3ecf85bf4ee3cd7408",
-          "title": "."
-        },
-        {
-          "url": "https://www.bing.com/search?q=site%3Ainps.it+%22passaggio+di+qualifica%22+%22mese%22+retribuzione",
-          "sha256": "ae9c5fff9c5ee778bb6c865fcf487cd60d7948f7936fd345eaeb9e450baefe86",
-          "title": "."
-        },
-        {
-          "url": "https://www.bing.com/search?q=site%3Alavoro.gov.it+%22mansioni+superiori%22+%22retribuzione%22+%22giorni%22",
-          "sha256": "71029f75a3dc7c559e8405c47040a895e6090f29d2a1d7007ddd330153021707",
-          "title": "."
-        },
-        {
-          "url": "https://www.bing.com/search?q=%22cambio+livello%22+%22corso+del+mese%22+retribuzione+INPS",
-          "sha256": "3e5496d59312f575a9dcf47846ad78df83cf0845013037a816557b877ae118bf",
-          "title": "."
-        },
-        {
-          "url": "https://www.bing.com/search?q=%22promozione%22+%22in+corso+di+mese%22+%22retribuzione%22",
-          "sha256": "6fc4d5616ccfe0dd8195a832aee93c17632e8f194f072ad53f6674a8492ec8a8",
-          "title": "."
-        },
-        {
-          "url": "https://www.bing.com/search?q=site%3Aservizi2.inps.it+%22variazione%22+%22qualifica%22+%22mese%22+retribuzione",
-          "sha256": "6aceaa4a4c9c2c48e2476b0b0130f78ba0dfcb637b40e3613a27bd049c5bfa51",
-          "title": "."
-        },
-        {
-          "url": "https://www.google.com/search?q=INPS+variazione+inquadramento+livello+nel+corso+del+mese+retribuzione",
-          "sha256": "7b26e55e5eefd4c90aa1673b470c58f87ebacb3e56d712e1be79f0f950e62c18",
-          "title": "."
-        },
-        {
-          "url": "https://www.bing.com/search?q=site%3Aagenziaentrate.gov.it+risoluzione+promozione+corso+mese+retribuzione+riproporzionamento",
-          "sha256": "a6dd8801ca2c56180a823f746d0d4ab34f7e7fd029d76e2257f2795b8b23c88a",
-          "title": "."
-        },
-        {
-          "url": "https://www.bing.com/search?q=site%3Aitalgiure.giustizia.it%2Fsncass%2F+promozione+corso+mese+retribuzione",
-          "sha256": "5e2047d97784efc0cacca6500fb194b2c574ebf6920af57a173ab5fc65cf74b1",
-          "title": "."
-        },
-        {
-          "url": "https://www.bing.com/search?q=site%3Alavoro.gov.it+interpello+promozione+corso+mese+retribuzione",
-          "sha256": "a388761c4d87ab75e6b94d87164cac734f07171aeacb10c3a4dec1ad556c2a13",
-          "title": "."
-        },
-        {
-          "url": "https://www.bing.com/search?q=site%3Ainps.it+circolare+promozione+nel+corso+del+mese+calcolo+retribuzione",
-          "sha256": "be815de791bc6858a3e7c8d02540be42d0131c1bebf1bda51de48be946a4a596",
-          "title": "."
-        }
-      ]
+      "source": "c.c. art. 2103; maintainer decision of 2026-11-15; ccnl_engine.compensation.change.rules",
+      "remediation": "Resolved by the decision of 2026-11-15: the month is split by the partial-month rule of the CCNL."
     },
     {
       "id": "arrears_unused_deductions",
@@ -3676,9 +3396,9 @@
       "id": "pension_extra_deduction_first_employed",
       "capability": "pension_fund_contribution",
       "variant": "pension_extra_deduction_first_employed",
-      "summary": "A worker first employed after D.Lgs. 252/2005 came into force may deduct, in the twenty years after the fifth year of membership, the contributions above the annual cap within the room the first five years left, up to half the annual cap (art. 8 c. 6, as amended by L. 199/2025 from 1 July 2026). The request has no field for the first employment or the room left, and the sources searched set no rule for the withholding agent: a run whose contributions exceed the cap left deducts within the ordinary cap, and the worker may claim the rest in the tax return.",
+      "summary": "A worker first employed after D.Lgs. 252/2005 came into force may deduct, in the twenty years after the fifth year of membership, the contributions above the annual cap within the room the first five years left, up to half the annual cap (art. 8 c. 6). The withholding agent applies it (AdE circ. 70/E/2007: the employer excludes the deductible contributions from the income of the ritenute): the worker states the deduction of the year as PensionFundEnrolment.extra_deduction, and contributions above the cap left with none stated carry the missing fact extra_deduction.",
       "monetary_impact": "unknown",
-      "status": "unsourced",
+      "status": "resolved",
       "rulesets": [
         "acconciatura-estetica-confartigianato",
         "afam-aran",
@@ -3820,20 +3540,8 @@
       "applies_when": {
         "trigger": "path"
       },
-      "source": "ccnl_engine.pension_fund.services.capped_paths; D.Lgs. 252/2005 art. 8 c. 6",
-      "remediation": "Source whether and how the withholding agent grants the extra deduction at the conguaglio, add the worker's statement as an optional input and apply it, then resolve this limitation.",
-      "searched": [
-        {
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252~art8!vig=2026-07-01",
-          "sha256": "d182546ccf61578699f0a78a08a7211e425be7ea7b8e7c1ae9ff7060669caf3d",
-          "title": "art. 8, cc. 4 and 6: the cap and the extra deduction, no rule for the withholding agent."
-        },
-        {
-          "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2005-12-05;252~art10!vig=2026-01-01",
-          "sha256": "08db33336c237659caaf7c8fa83afca8aab8192410858c1c09839d7bfa9fc4ab",
-          "title": "art. 10: the employer compensations, not the worker's deduction."
-        }
-      ]
+      "source": "D.Lgs. 252/2005 art. 8 c. 6; AdE circ. 70/E/2007; ccnl_engine.pension_fund.services.extra_deduction_issue",
+      "remediation": "Resolved: the extra deduction is an input of the enrolment."
     }
   ]
 }

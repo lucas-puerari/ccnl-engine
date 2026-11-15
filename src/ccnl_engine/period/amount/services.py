@@ -35,6 +35,7 @@ from ccnl_engine.pension_fund.services import (
     ERC_UNKNOWN,
     YOUNG_MEMBER_UNKNOWN,
     conventional_base_unknown,
+    extra_deduction_issue,
     run_pension,
 )
 from ccnl_engine.severance.relief.services import (
@@ -161,7 +162,9 @@ def _compute_amounts(
         ulteriore=irpef.tax.ulteriore,
         decisions=_decisions(inp, pdr, irpef, surtax),
         pension=pension,
-        issues=_issues(inp, irpef) + tfr.issues(),
+        issues=_issues(inp, irpef)
+        + tfr.issues()
+        + tuple(i for i in (extra_deduction_issue(pension),) if i is not None),
         assistance=assistance,
         prior_irpef_withheld=inp.prior.irpef_withheld,
         prior_trattamento_paid=inp.prior.trattamento_paid,

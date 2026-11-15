@@ -9,8 +9,8 @@ monthly pay of the run between the two levels by the payable days of the
 CCNL daily quota (its unpaid-absence rule) on each side of the promotion,
 so the two stretches always make one month of the employed days.  The
 chain of the run is the chain of each level times its share, component by
-component, and the path is reported as the engine limitation
-:data:`MID_MONTH_CHANGE`.
+component, as the maintainer decided on 2026-11-15 (the resolved
+engine limitation ``mid_month_level_change``).
 """
 
 from __future__ import annotations
@@ -32,10 +32,8 @@ if TYPE_CHECKING:
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.period.requests import PeriodCalculationRequest
 
-__all__ = ["MID_MONTH_CHANGE", "MonthChange", "blended", "month_change"]
+__all__ = ["MonthChange", "blended", "month_change"]
 
-#: Engine limitation of a run that splits its month between two levels.
-MID_MONTH_CHANGE = "mid_month_level_change"
 _FEATURE = "employment_change"
 _PAYING = frozenset({RunKind.REGULAR, RunKind.TERMINATION})
 _ONE = Decimal(1)
@@ -123,7 +121,7 @@ def blended(
     one level only counts zero on the other.
 
     Returns:
-        The chain of the month, reporting :data:`MID_MONTH_CHANGE`.
+        The chain of the month.
     """
     rest = _ONE - share
     old = {a.code: (a, v) for a, v in before.allowances}
@@ -140,6 +138,6 @@ def blended(
         base=money(before.base * rest) + money(after.base * share),
         seniority=money(before.seniority * rest) + money(after.seniority * share),
         allowances=allowances,
-        limitations=(*after.limitations, MID_MONTH_CHANGE),
+        limitations=after.limitations,
         seniority_excluded_from=after.seniority_excluded_from,
     )

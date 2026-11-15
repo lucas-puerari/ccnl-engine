@@ -26,7 +26,7 @@ import pytest
 
 from ccnl_engine import InvalidInputError, PayrollEngine, PeriodInput
 from ccnl_engine.catalog.loaders import load_ccnl
-from ccnl_engine.compensation.change.rules import MID_MONTH_CHANGE, month_change
+from ccnl_engine.compensation.change.rules import month_change
 from ccnl_engine.inputs import (
     EmploymentChange,
     EmploymentPeriod,
@@ -96,7 +96,7 @@ def test_july_pays_each_level_for_its_days() -> None:
         Decimal("2.07"),
     )
     assert july.period_gross == base + contingenza + terzo
-    assert MID_MONTH_CHANGE in {lim.id for lim in july.limitations}
+    assert "mid_month_level_change" not in {lim.id for lim in july.limitations}
 
 
 def test_the_months_around_pay_one_level_each() -> None:
@@ -108,7 +108,7 @@ def test_the_months_around_pay_one_level_each() -> None:
     assert runs[8].period_gross == Decimal("1257.46") + Decimal("524.22") + Decimal(
         "2.07"
     )
-    assert MID_MONTH_CHANGE not in {lim.id for lim in runs[8].limitations}
+    assert "mid_month_level_change" not in {lim.id for lim in runs[8].limitations}
 
 
 def _request(

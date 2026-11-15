@@ -4,9 +4,10 @@ The run deducts the days of permit of its month at the CCNL daily quota and
 pays them back in full as the INPS indemnity the employer advances (art. 43
 D.Lgs. 151/2001), posted as ``maternity_item``: out of the INPS base, the
 days covered by figurative contributions (art. 44 c. 2).  The deduction
-keeps the TFR base, as payroll practice holds for these permits; art. 2120
-c. 3 c.c. does not list them, so the run records the open engine
-limitation ``disability_permit_tfr``.
+keeps the TFR base, as payroll practice holds for these permits: the days
+are paid and counted in the seniority (L. 104/1992 art. 33 c. 4, D.Lgs.
+151/2001 artt. 43 and 34 c. 5), by the maintainer's decision of
+2026-11-15 (the resolved engine limitation ``disability_permit_tfr``).
 
 An hour of permit is paid as :mod:`~ccnl_engine.absence.insured.hours.rules`
 says.  Where the engine cannot derive its base the hours post nothing: the
@@ -41,14 +42,11 @@ if TYPE_CHECKING:
 __all__ = [
     "HOURS_UNDERIVED",
     "PERMITS",
-    "PERMIT_TFR_LIMITATION",
     "_handle_disability_permit",
 ]
 
 #: Capability of the permits to assist a disabled person.
 PERMITS = "disability_permits"
-#: The TFR base keeps the permit days on payroll practice, not on a source.
-PERMIT_TFR_LIMITATION = "disability_permit_tfr"
 #: Hours of permit whose CCNL hourly base the engine cannot derive.
 HOURS_UNDERIVED = "disability_permit_hours_underived"
 _ZERO = Decimal(0)
@@ -93,5 +91,4 @@ def _handle_disability_permit(
         decision = replace(decision, status=incomplete, reason_code=HOURS_UNDERIVED)
     effect.decisions = [decision]
     effect.issues = issues
-    effect.limitations = (PERMIT_TFR_LIMITATION,)
     return effect

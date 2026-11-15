@@ -117,7 +117,7 @@ def test_the_days_leave_the_inps_base_and_keep_the_rest() -> None:
     # The TFR base is kept; its quota is net of the 0.50% IVS contribution
     # (art. 3 L. 297/1982), whose base fell by 249: 0.005 * 249 = 1.24.
     assert _tfr(away) - _tfr(worked) == Decimal("1.24")
-    assert "disability_permit_tfr" in {lim.id for lim in away.limitations}
+    assert "disability_permit_tfr" not in {lim.id for lim in away.limitations}
 
 
 def test_a_sunday_of_permit_deducts_nothing() -> None:

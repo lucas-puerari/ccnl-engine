@@ -21,11 +21,9 @@ from ccnl_engine.contribution.minimum_base.services import (
 from ccnl_engine.fund.contractual.rules import contractual_paths
 from ccnl_engine.limitation.scope.models import LimitationFacts
 from ccnl_engine.pension_fund.decision.services import paid_month_paths
-from ccnl_engine.pension_fund.services import capped_paths
 from ccnl_engine.seniority.services import seniority_months_at
 
 if TYPE_CHECKING:
-    from ccnl_engine.amount.types import _PeriodAmounts
     from ccnl_engine.capability.results import CapabilityReport
     from ccnl_engine.event.total.handlers import _EventTotals
     from ccnl_engine.limitation.models import ModelLimitation
@@ -70,7 +68,6 @@ def run_limitations(
     ctx: RunContext,
     report: CapabilityReport,
     events: _EventTotals,
-    amounts: _PeriodAmounts | None = None,
 ) -> tuple[ModelLimitation, ...]:
     """Return the limitations that concern the run, engine ones first.
 
@@ -80,8 +77,6 @@ def run_limitations(
         events: Totals of the events of the run: the engine limitations
             whose path they took, besides those of the pay chain, and the
             INPS base they add (:func:`paid_month_paths`).
-        amounts: Amounts of the run, whose pension fund deduction cap
-            may traverse :func:`capped_paths`.
 
     Returns:
         The applicable limitations, each once.
@@ -91,7 +86,6 @@ def run_limitations(
         | paid_month_paths(ctx, events.inps_base)
         | provisional_paths(ctx)
         | minimum_base_paths(ctx)
-        | capped_paths(None if amounts is None else amounts.pension)
     )
     facts = limitation_facts(ctx, report, traversed)
     candidates = (*ctx.repo.load_engine_limitations(), *ctx.contract.ccnl.limitations)

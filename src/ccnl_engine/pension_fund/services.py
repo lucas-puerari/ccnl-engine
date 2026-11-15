@@ -24,8 +24,19 @@ if TYPE_CHECKING:
     )
 
 _ZERO = Decimal(0)
-#: Engine limitation of the extra deduction of D.Lgs. 252/2005 art. 8 c. 6.
-EXTRA_DEDUCTION_LIMITATION = "pension_extra_deduction_first_employed"
+#: Contributions above the cap need the worker's extra deduction stated.
+EXTRA_DEDUCTION_UNKNOWN = CalculationIssue(
+    code="pension_fund_extra_deduction_unknown",
+    capability="pension_fund_contribution",
+    message=(
+        "the contributions of the run exceed the deduction cap left: a worker "
+        "first employed after 2006 may deduct more (D.Lgs. 252/2005 art. 8 c. "
+        "6) and the enrolment does not state it; the ordinary cap is applied; "
+        "state PensionFundEnrolment.extra_deduction"
+    ),
+    status=CalculationStatus.INCOMPLETE,
+    fact="extra_deduction",
+)
 #: A fund with a young member rate needs the enrolment to state it.
 YOUNG_MEMBER_UNKNOWN = CalculationIssue(
     code="pension_fund_young_member_unknown",
@@ -148,17 +159,23 @@ def projected_adjustment(
     return upcoming_adjustment(pension.terms, inp.upcoming_gross, deducted)
 
 
-def capped_paths(pension: PensionContribution | None) -> frozenset[str]:
-    """Return the limitation path of contributions above the deduction cap.
+def extra_deduction_issue(
+    pension: PensionContribution | None,
+) -> CalculationIssue | None:
+    """Return the missing fact of contributions above the cap left.
 
-    A worker first employed from 2007 may deduct more than the annual cap
-    (D.Lgs. 252/2005 art. 8 c. 6); the request does not say who is, and no
-    source says whether the withholding agent grants it.
+    A worker first employed after 2006 may deduct more than the annual cap
+    (D.Lgs. 252/2005 art. 8 c. 6), which the withholding agent applies (AdE
+    circ. 70/E/2007): the enrolment states it.
 
     Returns:
-        :data:`EXTRA_DEDUCTION_LIMITATION` when the cap left less deductible
-        than the contributions of the run, else nothing.
+        :data:`EXTRA_DEDUCTION_UNKNOWN` when an enrolment that does not
+        state it has contributions above the cap left, else ``None``.
     """
-    if pension is None or pension.deductible >= pension.employer + pension.employee:
-        return frozenset()
-    return frozenset({EXTRA_DEDUCTION_LIMITATION})
+    if pension is None or pension.terms is None:
+        return None
+    if pension.terms.extra_deduction is not None:
+        return None
+    if pension.deductible >= pension.employer + pension.employee:
+        return None
+    return EXTRA_DEDUCTION_UNKNOWN
