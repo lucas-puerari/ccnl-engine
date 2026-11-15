@@ -120,9 +120,7 @@ def _pay(result: PeriodResult) -> Decimal:
 
 
 def _limited(result: PeriodResult) -> bool:
-    return any(
-        lim.variant == "part_time_supplementary_rate" for lim in result.limitations
-    )
+    return any(i.code == "overtime_supplementary_share_unknown" for i in result.issues)
 
 
 def test_logistica_pays_forty_percent_past_the_share() -> None:

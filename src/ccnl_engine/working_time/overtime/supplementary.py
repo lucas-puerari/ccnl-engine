@@ -6,8 +6,8 @@ Logistica Confetra art. 56: 18% up to 30% of the agreed annual hours, 40% on
 the excess.  The supplementary hours worked earlier in the year and the
 agreed annual hours are facts of the timesheet
 (``OvertimeEvent.supplementary_hours_before`` and ``agreed_annual_hours``);
-without them only the base band applies and the run carries the CCNL
-limitation of the clause.
+without them only the base band applies and the run has a missing-fact
+issue.
 """
 
 from __future__ import annotations
@@ -19,6 +19,7 @@ from typing import TYPE_CHECKING
 from pydantic import BaseModel, ConfigDict, Field
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
+from ccnl_engine.decision.models import CalculationIssue, CalculationStatus, IssueCause
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.working_time.event_kinds import OvertimeKind
 
@@ -26,14 +27,18 @@ if TYPE_CHECKING:
     from ccnl_engine.event.facade import OvertimeEvent
 
 __all__ = [
+    "SUPPLEMENTARY_UNKNOWN",
     "SUPPLEMENTARY_VARIANT",
     "ExcessRate",
     "SupplementaryExcess",
     "excess_rate",
+    "missing_fact",
 ]
 
-#: Variant of the CCNL limitation a run carries when the excess is unknown.
+#: Variant of the CCNL limitation the missing facts were recorded under.
 SUPPLEMENTARY_VARIANT = "part_time_supplementary_rate"
+#: Issue of supplementary hours whose share of the year is not known.
+SUPPLEMENTARY_UNKNOWN = "overtime_supplementary_share_unknown"
 _ZERO = Decimal(0)
 
 
@@ -94,3 +99,22 @@ def excess_rate(
     threshold = annual * rule.share
     past = max(before + event.hours - max(before, threshold), _ZERO)
     return ExcessRate(hours=past, threshold=threshold, rate=rate)
+
+
+def missing_fact(code: str, fact: str) -> CalculationIssue:
+    """Return the issue of a fact the overtime rule of the year needs.
+
+    Returns:
+        An incomplete missing-fact issue of the overtime.
+    """
+    return CalculationIssue(
+        code=code,
+        message=(
+            f"state OvertimeEvent.{fact}: the CCNL rate of the year depends on "
+            "it, and without it the base band is paid"
+        ),
+        status=CalculationStatus.INCOMPLETE,
+        capability="overtime",
+        fact=fact,
+        cause=IssueCause.FACT,
+    )

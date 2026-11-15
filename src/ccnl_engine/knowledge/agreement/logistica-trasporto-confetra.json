@@ -202,8 +202,8 @@
           "applies_when": {
             "trigger": "path"
           },
-          "remediation": "State OvertimeEvent.supplementary_hours_before and agreed_annual_hours on the supplementary hours.",
-          "status": "open"
+          "remediation": "Resolved (2026-11-15): the supplementary hours without the earlier hours or the agreed annual hours have a missing_fact supplementary_hours_before or agreed_annual_hours (overtime_supplementary_share_unknown).",
+          "status": "resolved"
         }
       }
     ]
@@ -3007,7 +3007,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "faf2944cc20626ac281e014579f53d6aaa51b0ff43f5a46cadf42406ebfc8ea9",
+    "source_hash": "d06d46983646dc03196e001e28256b17d4ee839ffb9893b813c22d062ea2e9dd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

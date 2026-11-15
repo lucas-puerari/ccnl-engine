@@ -125,10 +125,11 @@
         "monetary_impact": "yes",
         "limitation": {
           "variant": "overtime_exempt_quota_supplement",
-          "remediation": "State OvertimeEvent.exempt_quota_hours_before (and in_periodic_shift in a firm up to 200 employees) on the overtime of the quote esenti.",
+          "remediation": "Resolved (2026-11-15): exempt_quota_hours_before stated places the overtime in the regime, absent it is agreed overtime; an event in the regime whose quota needs the turnista status has a missing_fact in_periodic_shift (overtime_exempt_quota_unknown).",
           "applies_when": {
             "trigger": "path"
-          }
+          },
+          "status": "resolved"
         }
       },
       {
@@ -158,8 +159,8 @@
           "applies_when": {
             "trigger": "path"
           },
-          "remediation": "State OvertimeEvent.supplementary_hours_before and agreed_annual_hours on the supplementary hours; the elastic clauses (10% and 15%) remain outside the model.",
-          "status": "open"
+          "remediation": "Resolved (2026-11-15): the supplementary hours without the earlier hours or the agreed annual hours have a missing_fact supplementary_hours_before or agreed_annual_hours (overtime_supplementary_share_unknown).",
+          "status": "resolved"
         }
       },
       {
@@ -246,6 +247,20 @@
             "trigger": "outside_input"
           },
           "remediation": "Top up pregnancy and puerperium holidays, the substitute patron holiday and Rome-only 29 June when the applicable local facts are stated."
+        }
+      },
+      {
+        "kind": "simplification",
+        "text": "PART-TIME ELASTIC CLAUSES (CCNL 5 February 2021, PDF p. 57): 10% for a rearranged placement of the hours and 15% for an increase in duration up to 25% of the normal annual part-time hours. The request has no field for the hours of an elastic clause.",
+        "capability": "overtime",
+        "monetary_impact": "yes",
+        "limitation": {
+          "variant": "part_time_elastic_clauses",
+          "applies_when": {
+            "trigger": "outside_input"
+          },
+          "status": "open",
+          "remediation": "Add an optional fact for the hours worked under an elastic clause and pay its 10% or 15%, then resolve this limitation."
         }
       }
     ]
@@ -3411,7 +3426,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "7633529262fc031fe78ae8bdfe7f79459da6fe908b97b46ef5c3b0e8ba89759a",
+    "source_hash": "321bbb446a659644a5eb8a3dc56333af2e1cb066897b3ca4c6d9717e65dbb2ec",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },

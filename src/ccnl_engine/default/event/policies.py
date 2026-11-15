@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.default.event.overtime import OVERTIME_DEFAULTS
 from ccnl_engine.default.event.parental import PARENTAL_DEFAULTS
 from ccnl_engine.default.event.sickness import SICKNESS_DEFAULTS
 from ccnl_engine.default.event.travel import TRAVEL_DEFAULTS
@@ -32,6 +33,7 @@ _SUPPLEMENT_HOURS = (
 
 #: Classification of each defaulted field of the work events.
 EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
+    **OVERTIME_DEFAULTS,
     "AbsenceEvent.end_date": absence_is_fact("a one-day absence"),
     "AbsenceEvent.hourly_rate": absence_is_fact(_FROM_CCNL),
     "AbsenceEvent.working_days": absence_is_fact(
@@ -48,25 +50,6 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "unknown preceding hours of the week: threshold-only overtime bands "
         "cannot be selected without this timesheet fact or a caller multiplier; "
         "the event is rejected when no unthresholded band applies"
-    ),
-    "OvertimeEvent.exempt_quota_hours_before": absence_is_fact(
-        "overtime outside the regime of the quote esenti, or its earlier hours "
-        "unknown: the premium past the yearly exempt quota is not added and a "
-        "CCNL with that premium records its limitation"
-    ),
-    "OvertimeEvent.in_periodic_shift": absence_is_fact(
-        "unknown turnista status: the overtime takes the bands of the non "
-        "turnisti; in a firm up to the CCNL headcount the yearly exempt quota "
-        "is not chosen and the premium past it is not added"
-    ),
-    "OvertimeEvent.supplementary_hours_before": absence_is_fact(
-        "unknown earlier supplementary hours of the year: a CCNL whose rate "
-        "rises past a share of the annual part-time hours pays the base band "
-        "and records its limitation"
-    ),
-    "OvertimeEvent.agreed_annual_hours": absence_is_fact(
-        "unknown annual part-time hours: the share past which the "
-        "supplementary rate rises is not known, the base band is paid"
     ),
     "NightShiftEvent.supplement_amount": absence_is_fact(_FROM_CCNL),
     "NightShiftEvent.hours": absence_is_fact(_SUPPLEMENT_HOURS),

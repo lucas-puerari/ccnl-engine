@@ -39,7 +39,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, overtime |
+| **Limits of this contract** | base_salary |
 
 7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -190,12 +190,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Implement the separate 24-month apprentice classification progression for level 6J.
 
-!!! warning "logistica-trasporto-confetra/part_time_supplementary_rate · overtime · impact yes · open"
+!!! note "logistica-trasporto-confetra/part_time_supplementary_rate · overtime · impact yes · resolved"
     PART-TIME SUPPLEMENTARY HOURS: Art. 56 pays 18% of the global hourly pay on supplementary hours up to 30% of agreed annual hours, and 40% on the excess. The rate past the yearly share is paid when the event states the supplementary hours worked earlier in the year and the agreed annual hours (OvertimeEvent.supplementary_hours_before, agreed_annual_hours); without them the base rate is paid and the run carries this limitation. Saturday work has separate Art. 13 rates.
 
     **Applies when:** `overtime` applies; the run takes the engine code path.
 
-    **Remediation:** State OvertimeEvent.supplementary_hours_before and agreed_annual_hours on the supplementary hours.
+    **Remediation:** Resolved (2026-11-15): the supplementary hours without the earlier hours or the agreed annual hours have a missing_fact supplementary_hours_before or agreed_annual_hours (overtime_supplementary_share_unknown).
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.

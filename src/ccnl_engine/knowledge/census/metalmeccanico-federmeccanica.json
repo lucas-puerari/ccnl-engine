@@ -35,22 +35,6 @@
       }
     },
     {
-      "id": "overtime_exempt_quota_supplement",
-      "institute": "overtime",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "OVERTIME, QUOTE ESENTI (art. 7, ipotesi of 22 November 2025 p. 35): 8% more per overtime hour of the regime past 40 hours a year (shift workers, firms above 200 employees) or 48 (workers not on shifts in firms up to 200) is added when the event states the hours of the regime worked earlier in the year (OvertimeEvent.exempt_quota_hours_before) and, in a firm up to 200 employees, whether the worker is on shifts (OvertimeEvent.in_periodic_shift). Without those facts the premium is not added and the run carries this limitation.",
-      "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
-      "state": "absent",
-      "remediation": "State OvertimeEvent.exempt_quota_hours_before (and in_periodic_shift in a firm up to 200 employees) on the overtime of the quote esenti.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement"
-        ]
-      }
-    },
-    {
       "id": "par_sector_and_shift_hours",
       "institute": "leave",
       "variant": "all",
@@ -67,18 +51,18 @@
       }
     },
     {
-      "id": "part_time_supplementary_rate",
+      "id": "part_time_elastic_clauses",
       "institute": "overtime",
       "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "PART-TIME SUPPLEMENTARY HOURS: work up to 40 weekly hours earns an all-inclusive 10% on the overtime-premium pay elements until supplementary hours exceed 50% of agreed annual part-time hours; the excess earns 20% (CCNL 5 February 2021, PDF p. 58). The rate past the yearly share is paid when the event states the supplementary hours worked earlier in the year and the agreed annual hours (OvertimeEvent.supplementary_hours_before, agreed_annual_hours); without them the base rate is paid and the run carries this limitation. The elastic clauses of the same section (PDF p. 57: 10% for a rearranged placement of hours, 15% for an increase in duration up to 25% of the normal annual part-time hours) and the conditions of supplementary work are not modelled.",
+      "discriminant": "applies_when.trigger = outside_input",
+      "rule": "PART-TIME ELASTIC CLAUSES (CCNL 5 February 2021, PDF p. 57): 10% for a rearranged placement of the hours and 15% for an increase in duration up to 25% of the normal annual part-time hours. The request has no field for the hours of an elastic clause.",
       "calculation": "ccnl/metalmeccanico-federmeccanica:coverage.notes",
       "state": "absent",
-      "remediation": "State OvertimeEvent.supplementary_hours_before and agreed_annual_hours on the supplementary hours; the elastic clauses (10% and 15%) remain outside the model.",
+      "remediation": "Add an optional fact for the hours worked under an elastic clause and pay its 10% or 15%, then resolve this limitation.",
       "origin": "seeded",
       "links": {
         "limitations": [
-          "metalmeccanico-federmeccanica/part_time_supplementary_rate"
+          "metalmeccanico-federmeccanica/part_time_elastic_clauses"
         ]
       }
     },

@@ -900,8 +900,7 @@
       "logistica-trasporto-confetra-viaggiante/travelling_allowances"
     ],
     "agreement/logistica-trasporto-confetra.json": [
-      "logistica-trasporto-confetra/level_6j_apprenticeship",
-      "logistica-trasporto-confetra/part_time_supplementary_rate"
+      "logistica-trasporto-confetra/level_6j_apprenticeship"
     ],
     "agreement/marittimi-industria-armatoriale.json": [
       "marittimi-industria-armatoriale/una_tantum_2024_2025"
@@ -938,9 +937,8 @@
     "agreement/metalmeccanico-federmeccanica.json": [
       "metalmeccanico-federmeccanica/elemento_perequativo",
       "metalmeccanico-federmeccanica/holiday_outside_calendar",
-      "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement",
       "metalmeccanico-federmeccanica/par_sector_and_shift_hours",
-      "metalmeccanico-federmeccanica/part_time_supplementary_rate",
+      "metalmeccanico-federmeccanica/part_time_elastic_clauses",
       "metalmeccanico-federmeccanica/shift_and_multiweek_premiums"
     ],
     "agreement/multiservizi-anip.json": [

@@ -42,10 +42,11 @@ from ccnl_engine.working_time.overtime.policies import (
     overtime_issues,
     resolve_overtime_rate,
 )
-from ccnl_engine.working_time.overtime.quota import EXEMPT_QUOTA_VARIANT, quota_premium
+from ccnl_engine.working_time.overtime.quota import EXEMPT_QUOTA_UNKNOWN, quota_premium
 from ccnl_engine.working_time.overtime.supplementary import (
-    SUPPLEMENTARY_VARIANT,
+    SUPPLEMENTARY_UNKNOWN,
     excess_rate,
+    missing_fact,
 )
 from ccnl_engine.working_time.supplement.policies import (
     resolve_supplement,
@@ -126,9 +127,9 @@ def _overtime(
     else:
         band = band_decision(paid, rate, bands, _standard_event_gross(paid))
         decisions.extend(() if band is None else (band,))
-        paid, limitations = _with_yearly_rules(event, paid, bands, decisions)
+        paid, missing = _with_yearly_rules(event, paid, bands, decisions)
         return WorkResolution(
-            paid, tuple(decisions), overtime_issues(event, rate), limitations
+            paid, tuple(decisions), overtime_issues(event, rate) + missing
         )
     return WorkResolution(paid, tuple(decisions), overtime_issues(event, rate))
 
@@ -138,24 +139,24 @@ def _with_yearly_rules(
     paid: OvertimeEvent,
     bands: CCNLOvertimeBands,
     decisions: list[CalculationDecision],
-) -> tuple[OvertimeEvent, tuple[str, ...]]:
+) -> tuple[OvertimeEvent, tuple[CalculationIssue, ...]]:
     """Apply the supplementary share and the exempt quota of the year.
 
     Returns:
-        The paid event and the CCNL limitations of the missing facts; the
-        decisions of the rules applied are appended to ``decisions``.
+        The paid event and the issues of the missing facts; the decisions
+        of the rules applied are appended to ``decisions``.
     """
-    limitations: list[str] = []
+    issues: list[CalculationIssue] = []
     for step in (_with_supplementary_excess, _with_quota_premium):
-        paid, extra, limitation = step(event, paid, bands)
+        paid, extra, issue = step(event, paid, bands)
         decisions.extend(() if extra is None else (extra,))
-        limitations.extend(() if limitation is None else (limitation,))
-    return paid, tuple(limitations)
+        issues.extend(() if issue is None else (issue,))
+    return paid, tuple(issues)
 
 
 def _with_supplementary_excess(
     event: OvertimeEvent, paid: OvertimeEvent, bands: CCNLOvertimeBands
-) -> tuple[OvertimeEvent, CalculationDecision | None, str | None]:
+) -> tuple[OvertimeEvent, CalculationDecision | None, CalculationIssue | None]:
     """Pay the supplementary hours past the yearly share at their rate.
 
     The hours within the share keep the base band; a multiplier the caller
@@ -168,7 +169,12 @@ def _with_supplementary_excess(
     if excess is None or event.multiplier is not None or paid.multiplier is None:
         return paid, None, None
     if excess.unknown:
-        return paid, None, f"{bands.ccnl_id}/{SUPPLEMENTARY_VARIANT}"
+        fact = (
+            "supplementary_hours_before"
+            if event.supplementary_hours_before is None
+            else "agreed_annual_hours"
+        )
+        return paid, None, missing_fact(SUPPLEMENTARY_UNKNOWN, fact)
     assert bands.supplementary_excess is not None
     base = paid.multiplier - 1
     multiplier = paid.multiplier + (excess.rate - base) * excess.hours / event.hours
@@ -197,22 +203,22 @@ def _with_supplementary_excess(
 
 def _with_quota_premium(
     event: OvertimeEvent, paid: OvertimeEvent, bands: CCNLOvertimeBands
-) -> tuple[OvertimeEvent, CalculationDecision | None, str | None]:
+) -> tuple[OvertimeEvent, CalculationDecision | None, CalculationIssue | None]:
     """Add the premium past the yearly exempt quota to ``paid``.
 
     A multiplier the caller states is applied as given.
 
     Returns:
-        The event with the premium, its decision and no limitation; the
-        event unchanged with the limitation of the CCNL when a fact the
-        premium needs is missing; the event unchanged alone when the CCNL
-        sets no such premium for it.
+        The event with the premium, its decision and no issue; the event
+        unchanged with a missing-fact issue when a fact the premium needs
+        is missing; the event unchanged alone when the CCNL sets no such
+        premium for it.
     """
     premium = quota_premium(event, bands.exempt_quota, bands.headcount)
     if premium is None or event.multiplier is not None or paid.multiplier is None:
         return paid, None, None
     if premium.unknown:
-        return paid, None, f"{bands.ccnl_id}/{EXEMPT_QUOTA_VARIANT}"
+        return paid, None, missing_fact(EXEMPT_QUOTA_UNKNOWN, "in_periodic_shift")
     before, quota = event.exempt_quota_hours_before, premium.quota
     assert bands.exempt_quota is not None
     assert before is not None

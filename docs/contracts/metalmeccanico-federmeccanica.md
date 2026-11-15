@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ⚠️ |
 | **Limits of this contract** | base_salary, leave, overtime, sickness |
 
-7 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+8 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -138,12 +138,12 @@ percentage: 1.00
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement · overtime · impact yes · open"
+!!! note "metalmeccanico-federmeccanica/overtime_exempt_quota_supplement · overtime · impact yes · resolved"
     OVERTIME, QUOTE ESENTI (art. 7, ipotesi of 22 November 2025 p. 35): 8% more per overtime hour of the regime past 40 hours a year (shift workers, firms above 200 employees) or 48 (workers not on shifts in firms up to 200) is added when the event states the hours of the regime worked earlier in the year (OvertimeEvent.exempt_quota_hours_before) and, in a firm up to 200 employees, whether the worker is on shifts (OvertimeEvent.in_periodic_shift). Without those facts the premium is not added and the run carries this limitation.
 
     **Applies when:** `overtime` applies; the run takes the engine code path.
 
-    **Remediation:** State OvertimeEvent.exempt_quota_hours_before (and in_periodic_shift in a firm up to 200 employees) on the overtime of the quote esenti.
+    **Remediation:** Resolved (2026-11-15): exempt_quota_hours_before stated places the overtime in the regime, absent it is agreed overtime; an event in the regime whose quota needs the turnista status has a missing_fact in_periodic_shift (overtime_exempt_quota_unknown).
 
 !!! warning "metalmeccanico-federmeccanica/shift_and_multiweek_premiums · overtime · impact yes · open"
     MULTI-WEEK SCHEDULE AND NIGHT SHIFT WORK: the premiums of the orario plurisettimanale of Art. 5 as renewed on 22 November 2025 (15% Monday to Friday and 25% on Saturday, 20% and 30% for sudden needs, raised by 8% from the 81st hour, p. 32 of the signed scan) and the onnicomprensive night shift rates of Art. 7 (20%, 60%, 35% from 1 June 2013; 25%, 65%, 40% from 22 to 6) are not modelled. The shift column of the overtime of Art. 7 is: OT_NOTTURNO_TURNI, OT_NOTTURNO_TURNI_EXTRA and OT_NOTTURNO_FESTIVO_TURNI for an event with in_periodic_shift.
@@ -152,12 +152,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model the multi-week premiums of Art. 5 and the night shift supplements of Art. 7 with a fact naming the schedule of the worker, then remove this note.
 
-!!! warning "metalmeccanico-federmeccanica/part_time_supplementary_rate · overtime · impact yes · open"
+!!! note "metalmeccanico-federmeccanica/part_time_supplementary_rate · overtime · impact yes · resolved"
     PART-TIME SUPPLEMENTARY HOURS: work up to 40 weekly hours earns an all-inclusive 10% on the overtime-premium pay elements until supplementary hours exceed 50% of agreed annual part-time hours; the excess earns 20% (CCNL 5 February 2021, PDF p. 58). The rate past the yearly share is paid when the event states the supplementary hours worked earlier in the year and the agreed annual hours (OvertimeEvent.supplementary_hours_before, agreed_annual_hours); without them the base rate is paid and the run carries this limitation. The elastic clauses of the same section (PDF p. 57: 10% for a rearranged placement of hours, 15% for an increase in duration up to 25% of the normal annual part-time hours) and the conditions of supplementary work are not modelled.
 
     **Applies when:** `overtime` applies; the run takes the engine code path.
 
-    **Remediation:** State OvertimeEvent.supplementary_hours_before and agreed_annual_hours on the supplementary hours; the elastic clauses (10% and 15%) remain outside the model.
+    **Remediation:** Resolved (2026-11-15): the supplementary hours without the earlier hours or the agreed annual hours have a missing_fact supplementary_hours_before or agreed_annual_hours (overtime_supplementary_share_unknown).
 
 !!! warning "metalmeccanico-federmeccanica/elemento_perequativo · base_salary · impact yes · open"
     ELEMENTO PEREQUATIVO (Sez. Quarta Tit. IV Art. 13, pp. 177-178): 485 euro a year with the June pay to the worker in service on 1 January of a company without second-level bargaining (EmployerProfile.second_level_premium false), for the months of the year before over twelve; the engine pays it (parameters.equalisation_element). Left open: the pay above the CCNL the worker received in the year before (superminimi, premi annui, other pay subject to contributions) has no field in the request; the engine reads it from the individual elements of the run, each amount on 31 December of the year before at the part-time fraction, for each month served, on twelve monthly payments, so an element agreed since, the share of the extra months or a yearly premium of the year before is not seen. A run without the employment period pays none; a second-level element the employer states counts when in force in the year before.
@@ -186,6 +186,13 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Top up pregnancy and puerperium holidays, the substitute patron holiday and Rome-only 29 June when the applicable local facts are stated.
+
+!!! warning "metalmeccanico-federmeccanica/part_time_elastic_clauses · overtime · impact yes · open"
+    PART-TIME ELASTIC CLAUSES (CCNL 5 February 2021, PDF p. 57): 10% for a rearranged placement of the hours and 15% for an increase in duration up to 25% of the normal annual part-time hours. The request has no field for the hours of an elastic clause.
+
+    **Applies when:** a fact the request cannot express: never recorded on a run.
+
+    **Remediation:** Add an optional fact for the hours worked under an elastic clause and pay its 10% or 15%, then resolve this limitation.
 
 !!! note "apprentice_seniority_simplified · seniority · impact unknown · resolved"
     Apprentices accrue only the CCNL apprentice-specific seniority increment, paid in full: the apprenticeship percentage no longer reduces it a second time. A CCNL that declares no apprentice amount pays none and carries its own open limitation <ccnl_id>/apprentice_seniority, recorded when the level pays matured increments.
