@@ -4818,7 +4818,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
     "verification_status": "unverified",
-    "source_hash": "dd9d68942ada0c3fe4a8cd81eb5dfe969acb7d7425352eebab7fe33c5d8b4e6f",
+    "source_hash": "39313ee6a40c3ade5ed9050876df70c268d86c00528be074e0b4574601367e51",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5119,6 +5119,7 @@
       }
     },
     "parental_hourly": {
+      "regulated": true,
       "provenance": {
         "status": "derived",
         "location": {

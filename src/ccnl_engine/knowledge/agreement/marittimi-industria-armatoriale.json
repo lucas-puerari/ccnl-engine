@@ -2669,7 +2669,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "2438eeaae9aed13613d05c620394ed3fc5b78078aac3640fbb9478e0d52f8c84",
+    "source_hash": "4e1cb512441912a0f7d68f9b373dbf72f10028f7edc6cc538a5b4a06b1d4b35b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2923,6 +2923,7 @@
     },
     "parental_hourly": {
       "effective_from": "2024-07-01",
+      "regulated": true,
       "provenance": {
         "status": "derived",
         "location": {

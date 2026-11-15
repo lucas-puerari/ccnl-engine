@@ -1926,7 +1926,7 @@
     "effective_until": null,
     "source": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "11b2e92d1f4dcf88223f5c506d9b7146c6c71738a16ff3c74aab81d4172d734c",
+    "source_hash": "7fe343406af8d7572c919cffe63ddba6c5711aa02ecb3023a90b2f593ca2183d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2200,6 +2200,7 @@
       }
     },
     "parental_hourly": {
+      "regulated": true,
       "provenance": {
         "status": "derived",
         "location": {

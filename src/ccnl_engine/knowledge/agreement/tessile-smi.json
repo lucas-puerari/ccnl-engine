@@ -1950,7 +1950,7 @@
     "effective_until": null,
     "source": "https://www.sistemamodaitalia.com/",
     "verification_status": "unverified",
-    "source_hash": "c9015b95dff6d39ff3c2336653595b50caedaf33b1ecf06014be538d1991c183",
+    "source_hash": "4da6a99b235f941e7f5d7a02f67d8d074d0c5cbbfb8f3a837994984bc84f55f7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2263,6 +2263,7 @@
     },
     "parental_hourly": {
       "part_time_scaled": true,
+      "regulated": true,
       "provenance": {
         "status": "derived",
         "location": {

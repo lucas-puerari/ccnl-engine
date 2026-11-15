@@ -2484,7 +2484,7 @@
     "effective_until": "2027-12-31",
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
     "verification_status": "unverified",
-    "source_hash": "28e982acce901e8abc2e074c1fa9af69e6452f619f476be6b50c83a828281f6e",
+    "source_hash": "8c58e48b6345db65fa903906b10bb001959be20fc193d917a4e1bcc6443abbfd",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -2722,6 +2722,7 @@
       }
     },
     "parental_hourly": {
+      "regulated": true,
       "provenance": {
         "status": "derived",
         "location": {

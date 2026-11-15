@@ -3106,7 +3106,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
     "verification_status": "unverified",
-    "source_hash": "459a648486395550cb9c33e9acc462b3fac4809eed2fe940458b7179200b59ca",
+    "source_hash": "c94aac613a294a4f153958bab593ffa7a76db9f46229aa5cdb26e02d04e462e9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3406,6 +3406,7 @@
     },
     "parental_hourly": {
       "effective_from": "2020-01-01",
+      "regulated": true,
       "provenance": {
         "status": "derived",
         "location": {

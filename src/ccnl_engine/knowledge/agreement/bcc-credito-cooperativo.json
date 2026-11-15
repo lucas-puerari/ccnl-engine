@@ -1814,7 +1814,7 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "982b33bfb653ce610731b15d487eb7f6dce88d899a5c6ee33c8da35d6e5dcf5e",
+    "source_hash": "37689a75e547abeec683653a625e31a96d8cd966e33b21a9281692e20c0cc08d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2168,6 +2168,7 @@
     "parental_hourly": {
       "part_time_scaled": true,
       "effective_from": "2026-01-01",
+      "regulated": true,
       "provenance": {
         "status": "derived",
         "location": {
