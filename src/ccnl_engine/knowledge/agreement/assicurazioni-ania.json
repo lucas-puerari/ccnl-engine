@@ -17619,7 +17619,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "37dfdaf5b4b7ebdd77ef35d32671562b71761689c58a86161667e1d44ece7cff",
+    "source_hash": "866f829d7ac6e113868df63bf769e714ae94a3ca2f0b0e7ed2afa3e85c2bc25b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -17839,6 +17839,28 @@
           "more_than_days": 15,
           "max_days": 120
         }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02"
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "l-260-1949-art5",
+            "title": "L. 27 maggio 1949 n. 260, art. 5 (testo vigente)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=2&art.idGruppo=0&art.flagTipoArticolo=0&art.codiceRedazionale=049U0260&art.idArticolo=5&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1949-05-31&art.progressivo=0",
+            "sha256": "ed0f71cdb9682a60e84f95ac8229ce1f608faf5a9e2ecd2fb261dc047a457426"
+          },
+          "quote": "Qualora la festivita' ricorra nel giorno di domenica, spettera' ai lavoratori stessi, oltre la normale retribuzione globale di fatto giornaliera, compreso ogni elemento accessorio, anche una ulteriore retribuzione corrispondente all'aliquota giornaliera",
+          "section": "Art. 5"
+        },
+        "transformation": "The civil holidays listed are paid under the cited law when they fall on Sunday. The CCNL treats 4 November as an abolished holiday, not as a Sunday holiday carrying additional pay: Allegato 7, premessa, PDF p. 231: 'che la Legge 5 marzo 1977, n. 54 ha dichiarato non più festivi, e quindi lavorativi, i seguenti giorni:' and 'Unità Nazionale (4 novembre).' Allegato 7, art. 2, PDF p. 232: 'In sostituzione delle giornate già festive di cui alla premessa, i lavoratori/trici avranno diritto – per ciascun anno di durata dell’accordo – di usufruire di tante giornate di permesso straordinario retribuito quante sono le giornate ex festive previste come lavorative, a condizione che nelle giornate già festive abbiano effettivamente prestato la propria attività lavorativa o – anche se assenti – abbiano comunque percepito per le stesse la retribuzione loro spettante.' Source: testo-coordinato-2017.pdf, sha256 8ece938521408684e42e603a94c334b9e9d2c62e0517cc7eef18e5fc6e9cf5be. No 11-04 holiday or separate ex_november_fourth payment is added. Other documents previously read: https://www.fisac-cgil.it/wp-content/uploads/CCNL-ANIA_compressed.pdf sha256 b93a0549d28901da9a9c4d5d50b5a76e659cdead9e8d89313fa240b194f202ae; https://www.fisac-cgil.it/wp-content/uploads/CCNL_ANIA_20221116-0_Ipotesi_di_intesa.pdf sha256 3f601994154be25d912eed73cf644cf885a0647cce7d17d0daded71ff815badd; https://www.fnaitalia.org/files/Tabelle-ANIA-e-ASSISTENZA-definitive.pdf sha256 727940302d11c5ae4f54817580f0b0d12971b5d176d030bdfba7cbac3c5320bb."
       }
     },
     "parental_hourly": {

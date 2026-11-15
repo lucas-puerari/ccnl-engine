@@ -5400,7 +5400,7 @@
     "effective_until": null,
     "source": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori",
     "verification_status": "unverified",
-    "source_hash": "e0a20b06f4633d50efedf42d13cb3e61651c2fe97d9a763484ed73dace373433",
+    "source_hash": "48fb917915d2046260e14c7ee2115eac37e3fb68ceeec63a509d16aad7dc6bfd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5639,6 +5639,28 @@
           "comporto_days": 426
         }
       ]
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02"
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "l-260-1949-art5",
+            "title": "L. 27 maggio 1949 n. 260, art. 5 (testo vigente)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=2&art.idGruppo=0&art.flagTipoArticolo=0&art.codiceRedazionale=049U0260&art.idArticolo=5&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1949-05-31&art.progressivo=0",
+            "sha256": "ed0f71cdb9682a60e84f95ac8229ce1f608faf5a9e2ecd2fb261dc047a457426"
+          },
+          "quote": "Qualora la festivita' ricorra nel giorno di domenica, spettera' ai lavoratori stessi, oltre la normale retribuzione globale di fatto giornaliera, compreso ogni elemento accessorio, anche una ulteriore retribuzione corrispondente all'aliquota giornaliera",
+          "section": "Art. 5"
+        },
+        "transformation": "The CCNL does not provide an additional Sunday-holiday payment for 4 November: art. 17(8)(a) instead states verbatim, ‘a) una giornata di permesso retribuito in sostituzione del trattamento economico applicato per la ex festività civile del 4 novembre. La giornata di permesso viene riconosciuta in relazione alla frazione di anno lavorata.’ Source: CCNL Autostrade e Trafori 2024, PDF p. 34, https://www.filtcgil.it/images/Contratti/Mobilit%C3%A0/CCNL_AUTOSTRADE_stesura_5luglio2024_firmato.pdf, sha256 a15133d6a3db6a0dbc9d8b48934d607ec4f3fe56c96f2c8aaf207d3f7212c2d5; art. 71(8) repeats the provision on PDF p. 127. Consequently 11-04 is not included and ex_november_fourth is not set. The civil holidays listed retain the statutory Sunday treatment. The AISCAT page https://www.aiscat.it/contratto-collettivo-autostrade-trafori (sha256 f0a5e2394bc27904da4b9d1d55076e76eae21ecd4d4913d3d2581b6e64b754cc) did not provide usable contract text."
+      }
     },
     "parental_hourly": {
       "provenance": {

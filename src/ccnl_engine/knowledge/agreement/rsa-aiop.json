@@ -2080,7 +2080,7 @@
     "effective_until": null,
     "source": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
     "verification_status": "unverified",
-    "source_hash": "cf2e4f3462d9d877b86f4acd7169fb412d901ce4de09f05c90cf8b5e3c31420f",
+    "source_hash": "c63d71c218218aae66a6a3b08b3dcea38fa828071598bcdaa80115ba11a90c17",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2312,6 +2312,28 @@
           "comporto_days": 365
         }
       ]
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02"
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "l-260-1949-art5",
+            "title": "L. 27 maggio 1949 n. 260, art. 5 (testo vigente)",
+            "kind": "legge",
+            "url": "https://www.normattiva.it/atto/caricaArticolo?art.versione=2&art.idGruppo=0&art.flagTipoArticolo=0&art.codiceRedazionale=049U0260&art.idArticolo=5&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=1949-05-31&art.progressivo=0",
+            "sha256": "ed0f71cdb9682a60e84f95ac8229ce1f608faf5a9e2ecd2fb261dc047a457426"
+          },
+          "quote": "Qualora la festivita' ricorra nel giorno di domenica, spettera' ai lavoratori stessi, oltre la normale retribuzione globale di fatto giornaliera, compreso ogni elemento accessorio, anche una ulteriore retribuzione corrispondente all'aliquota giornaliera",
+          "section": "Art. 5"
+        },
+        "transformation": "The statutory daily supplement is retained for the listed civil holidays. The CCNL treats the ex holidays through paid leave credited to the hours bank, not through a separate 4 November Sunday daily supplement or a fixed-month ex_november_fourth payment. VERBATIM: 'I lavoratori hanno diritto di godere annualmente di 25,33 ore di permesso in sostituzione delle festività soppresse dalla legge 5.3.1977, n. 54 e successive modificazioni. Tali ore confluiranno nella banca ore.' CCNL AIOP RSA, art. 17, PDF page 19 (printed page 17), https://www.aiop.it/Portals/0/documenti/CCNL/ccnl_AiopRSA_v1_0.pdf, sha256 278e7c71b2b22f866dedd0aa4b89357df908966b3ce80d7c39fa58dc39744e4e. The 2012 text likewise grants 32 hours of leave (art. 17, PDF page 8, sha256 a857ab65ee5a6101fb8ae50099804c1229815a1c676b798896a2ea7ed0260919). Other documents read: https://www.aiop.it/Portals/0/documenti/CCNL/Accordo%20ponte%20RSA%202021-2023.pdf sha256 8c4bc6f957e9c122714cd1ebe77300d97ec31d4da25d62be241d0bb22db73214; https://www.frgeditore.it/images/cop/pdf/titolo-6/ccnl/rsa/63_accordo_3-10-2023_aiop.pdf sha256 5369af742968cdbf536ec3535b8da42bf73a52104390fc9c029e11a7e96635f2."
+      }
     },
     "parental_hourly": {
       "provenance": {

@@ -1786,7 +1786,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
     "verification_status": "unverified",
-    "source_hash": "de5dee01919a7dd32096a3502155d96c0fc285878929029751af48513cf3b695",
+    "source_hash": "51cdecb95314243468fe1309c53c4e88f2efbcbe790a8f4c681906550c986022",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1984,6 +1984,51 @@
           "hospital_excluded": true
         }
       ]
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "divisor": 26,
+      "on_rest_day": false,
+      "on_saturday": true,
+      "on_coincident_holiday": true,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-calzaturiero-assocalzaturifici-2024-2026",
+            "title": "CCNL calzaturiero 2024–2026",
+            "kind": "associazione",
+            "url": "https://www.falc.biz/wp-content/uploads/2025/03/CCNL-contratto-collettivo-nazionale-di-lavoro-calzaturiero-2024.pdf",
+            "sha256": "fd48de9dd4aa81fd5ca97c3dd94099d085ac61666831e6da37fe2fbab19558cf"
+          },
+          "page": "PDF pp. 94–95 (stampate pp. 93–94)",
+          "section": "art. 42",
+          "quote": "Sono considerati giorni festivi i seguenti:\n\na)   le domeniche o i giorni di riposo settimanale compensativo;\nb)   1) Capodanno                              – 1° Gennaio\n     2) Epifania                                 – 6 Gennaio\n     3) Giorno dell’Angelo                       – Lunedì successivo alla Pasqua\n     4) Anniversario liberazione                 – 25 Aprile\n     5) Festa del lavoro                         – 1° Maggio\n     6) Fondazione della Repubblica              – 2 Giugno\n     7) Assunzione Maria Vergine                 – 15 Agosto\n     8) Ognissanti                               – 1° Novembre\n     9) Immacolata Concezione                    – 8 Dicembre\n     10) S. Natale                             – 25 Dicembre\n     11) S. Stefano                            – 26 Dicembre\n     12) Patrono della località ove ha sede lo stabilimento,nel giorno di ricorrenza in calendario.\nNel caso di coincidenza di uno dei giorni festivi di cui alla lettera b) con il sabato quando l’orario di lavoro è distribuito su 5 giorni settimanali con la domenica o con un altro giorno festivo o con il periodo feriale, verrà corrisposto, in aggiunta alla retribuzione di fatto, un importo pari ad un ventiseiesimo della retribuzione stessa."
+        },
+        "transformation": "Le dodici festività della lettera b) ricevono un ulteriore ventiseiesimo quando coincidono con la domenica; sono comprese 25 aprile, 1° maggio e 2 giugno. Il testo prevede anche la coincidenza con il sabato, subordinata all'orario su cinque giorni, e con un altro giorno festivo. Non estende espressamente la quota al riposo settimanale compensativo. Il 4 novembre non comporta una quota domenicale aggiuntiva né una quota in altro mese: il trattamento economico è assorbito nella retribuzione delle riduzioni d'orario. Citazione verbatim, art. 29, C) Ex festività, PDF p. 84 (stampata p. 83), sha256 fd48de9dd4aa81fd5ca97c3dd94099d085ac61666831e6da37fe2fbab19558cf: «– Nella retribuzione delle riduzioni di cui alle lettere a), b) ed e) del precedente punto B),\nè interamente assorbito il trattamento economico relativo alla festività già del 4 novembre.»",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-01-01",
+          "verification_status": "unverified"
+        }
+      }
     }
   },
   "verification": {
