@@ -235,14 +235,22 @@ class Window:
     last_day: date
 
     @classmethod
-    def of(cls, years: Iterable[int]) -> Window:
+    def of(cls, years: Iterable[int], in_force_from: date | None = None) -> Window:
         """Return the window of the supported tax *years*.
+
+        Args:
+            years: The supported tax years.
+            in_force_from: First day a CCNL that created its category is
+                paid, which starts the window when later.
 
         Returns:
             The window from the first to the last year, both included.
         """
         ordered = sorted(years)
-        return cls(date(ordered[0], 1, 1), date(ordered[-1], 12, 31))
+        first = date(ordered[0], 1, 1)
+        if in_force_from is not None and in_force_from > first:
+            first = in_force_from
+        return cls(first, date(ordered[-1], 12, 31))
 
 
 def window_gaps(data: ValidityWindow | None, window: Window) -> tuple[str, ...]:
@@ -484,7 +492,9 @@ def assess(
         limitations=met,
         outside_input=outside,
         capabilities=non_native(ccnl, years),
-        window_gaps=window_gaps(model_window(ccnl), Window.of(years)),
+        window_gaps=window_gaps(
+            model_window(ccnl), Window.of(years, meta.in_force_from)
+        ),
         renewal_due=renewal_due(ccnl, Window.of(years)),
         residuals=ccnl_residuals(ccnl, engine),
     )
