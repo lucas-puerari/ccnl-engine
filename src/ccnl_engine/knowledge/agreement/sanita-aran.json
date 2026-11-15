@@ -890,7 +890,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "3562ca3e30bab0ee445dc690b4354801d26c96f05ce91672b76f72346c149b48",
+    "source_hash": "52be9dd0d5096819ab5612e62336b3fa84f915f3c45b687e98a94e9901a1378c",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1074,7 +1074,246 @@
             }
           }
         }
-      ]
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "w-aranagenzia-it-wp-content-uploads-2022-11-2022-11-02-comp-sanita-2019-2021-pdf",
+            "title": "CCNL Comparto Sanità 2019-2021, 2 novembre 2022",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf",
+            "sha256": "c9f57cf60c3ae2cacbfea57dd856ba13d4e9d197a4bc1c58f9b3d37aa5785722"
+          },
+          "page": "70",
+          "section": "Art. 47 c. 7",
+          "quote": "La misura oraria dei compensi per lavoro straordinario è rideterminata maggiorando la misura oraria di lavoro ordinario calcolata, convenzionalmente, dividendo per 156 la retribuzione base mensile, di cui all’art. 94, comma 2 lett. b) (Retribuzione e sue definizioni), comprensiva del rateo di tredicesima mensilità ad essa riferita. Per il personale che fruisce della riduzione di orario di cui all’art. 27 del CCNL del 7/4/1999 (Riduzione dell’orario) il valore del divisore è fissato in 151."
+        },
+        "transformation": "The hourly pay is the retribuzione base mensile (stipendio tabellare; the differenziali economici di professionalità are individual elements of the worker) with the rateo of the tredicesima, over 156 (151 for the reduced hours of art. 27 CCNL 7/4/1999, not modelled).",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-sanita-aran-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_0",
+          "description": "Indennità per servizio notturno ordinario dalle 22 alle 6; elevabile dalla contrattazione integrativa.",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "valid_until": null,
+                "value": "4.00"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "w-aranagenzia-it-wp-content-uploads-2025-10-2025-10-27-comp-sanita-2022-2024-pdf",
+                "title": "CCNL Comparto Sanità 2022-2024, 27 ottobre 2025",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+                "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
+              },
+              "page": "92",
+              "section": "Art. 67 c. 3",
+              "quote": "Al personale di tutti i ruoli e di tutte le aree compete una indennità oraria per il servizio notturno effettuato tra le ore 22 e le ore 6 del giorno successivo, pari a 4,00 euro, eventualmente elevabile in sede di contrattazione integrativa."
+            },
+            "transformation": "Indennità per servizio notturno ordinario dalle 22 alle 6; elevabile dalla contrattazione integrativa.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2023-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-sanita-aran-time-supplements"
+            }
+          },
+          "fixed_per_hour": true
+        },
+        {
+          "code": "U_HOLIDAY_1",
+          "description": "Indennità per servizio ordinario in giorno festivo; cumulabile con quella notturna.",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "valid_until": null,
+                "value": "2.55"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "w-aranagenzia-it-wp-content-uploads-2025-10-2025-10-27-comp-sanita-2022-2024-pdf",
+                "title": "CCNL Comparto Sanità 2022-2024, 27 ottobre 2025",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+                "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
+              },
+              "page": "92",
+              "section": "Art. 67 c. 4",
+              "quote": "Per il servizio prestato in giorno festivo compete un’indennità oraria pari a euro 2,55 lorde."
+            },
+            "transformation": "Indennità per servizio ordinario in giorno festivo; cumulabile con quella notturna.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2023-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-sanita-aran-time-supplements"
+            }
+          },
+          "fixed_per_hour": true
+        },
+        {
+          "code": "U_HOLIDAY_COMPENSATORY_REST_2",
+          "description": "Festivo infrasettimanale: indennità mantenuta anche scegliendo il riposo compensativo; non cumulabile come fascia aggiuntiva alla fascia holiday.",
+          "work": "holiday_compensatory_rest",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "valid_until": null,
+                "value": "2.55"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "w-aranagenzia-it-wp-content-uploads-2025-10-2025-10-27-comp-sanita-2022-2024-pdf",
+                "title": "CCNL Comparto Sanità 2022-2024, 27 ottobre 2025",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+                "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
+              },
+              "page": "92",
+              "section": "Art. 67 c. 5 lett. a",
+              "quote": "L’attività prestata dal personale in giorno festivo infrasettimanale dà titolo, a richiesta del dipendente da effettuarsi entro trenta giorni, ferme restanti le indennità di cui ai commi 3 e 4, alternativamente: a) a equivalente riposo compensativo;"
+            },
+            "transformation": "Festivo infrasettimanale: indennità mantenuta anche scegliendo il riposo compensativo; non cumulabile come fascia aggiuntiva alla fascia holiday.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2023-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-sanita-aran-time-supplements"
+            }
+          },
+          "fixed_per_hour": true
+        },
+        {
+          "code": "U_DAY_SHIFT_3",
+          "description": "Indennità per giornata effettiva di lavoro in servizio organizzato su almeno due turni; spetta anche a chi opera su un solo turno; esclusa l’area di elevata qualificazione.",
+          "work": "day_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-10-27",
+                "valid_until": null,
+                "value": "2.07"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "w-aranagenzia-it-wp-content-uploads-2025-10-2025-10-27-comp-sanita-2022-2024-pdf",
+                "title": "CCNL Comparto Sanità 2022-2024, 27 ottobre 2025",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+                "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
+              },
+              "page": "92",
+              "section": "Art. 67 c. 2",
+              "quote": "Al personale di tutti i ruoli e di tutte le aree, con esclusione dell’area del personale di elevata qualificazione, operante in servizi attivati, in base alla programmazione dell’Azienda o Ente, per un minimo di dodici ore giornaliere ed effettivamente articolati su almeno due turni, compete una indennità giornaliera, ivi incluso il giorno montante e smontante il turno notturno, pari a euro 2,07 per ogni giornata di effettivo lavoro. Tale indennità: - è corrisposta anche al personale che opera su un solo turno; - non è corrisposta al personale esentato dal medico competente dall’effettuazione dei turni; - non è corrisposta per i giorni di assenza dal servizio a qualsiasi titolo effettuata."
+            },
+            "transformation": "Indennità per giornata effettiva di lavoro in servizio organizzato su almeno due turni; spetta anche a chi opera su un solo turno; esclusa l’area di elevata qualificazione.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-10-27",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-sanita-aran-time-supplements"
+            }
+          },
+          "per_shift": true
+        },
+        {
+          "code": "U_NIGHT_SHIFT_4",
+          "description": "Stessa indennità giornaliera di turno, inclusi montante e smontante del turno notturno; non da sommare alla fascia day_shift nella stessa giornata.",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-10-27",
+                "valid_until": null,
+                "value": "2.07"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "w-aranagenzia-it-wp-content-uploads-2025-10-2025-10-27-comp-sanita-2022-2024-pdf",
+                "title": "CCNL Comparto Sanità 2022-2024, 27 ottobre 2025",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+                "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
+              },
+              "page": "92",
+              "section": "Art. 67 c. 2",
+              "quote": "compete una indennità giornaliera, ivi incluso il giorno montante e smontante il turno notturno, pari a euro 2,07 per ogni giornata di effettivo lavoro."
+            },
+            "transformation": "Stessa indennità giornaliera di turno, inclusi montante e smontante del turno notturno; non da sommare alla fascia day_shift nella stessa giornata.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-10-27",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-sanita-aran-time-supplements"
+            }
+          },
+          "per_shift": true
+        }
+      ],
+      "hourly_base_yearly_payments": 13
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -1314,6 +1553,37 @@
         },
         "transformation": "L'art. 45, comma 4, equipara espressamente una giornata di congedo all'orario convenzionale dell'art. 27, comma 1: 6 ore per l'articolazione su sei giorni; per quella su cinque giorni sono invece 7 ore e 12 minuti. Il comma 3 riproporziona il monte ore per il part-time. La decorrenza è ricavata dall'art. 2, comma 2 (giorno successivo alla stipulazione del 27 ottobre 2025), non da una data specifica dell'art. 45."
       }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "w-aranagenzia-it-wp-content-uploads-2022-11-2022-11-02-comp-sanita-2019-2021-pdf",
+              "title": "CCNL Comparto Sanità 2019-2021, 2 novembre 2022",
+              "kind": "amministrazione",
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf",
+              "sha256": "c9f57cf60c3ae2cacbfea57dd856ba13d4e9d197a4bc1c58f9b3d37aa5785722"
+            },
+            "page": "133",
+            "section": "Art. 91 c. 1 lett. a–c",
+            "quote": "al personale inviato, senza prima aver preso servizio in sede, a prestare temporaneamente la propria attività lavorativa in località diversa dalla dimora abituale o dalla ordinaria sede di servizio, per una durata superiore ad otto ore e a oltre 50 km dalla ordinaria sede di lavoro, oltre alla normale retribuzione, compete: a. il rimborso delle spese effettivamente sostenute per i viaggi in ferrovia, aereo, nave ed altri mezzi di trasporto extraurbani, nel limite del costo del biglietto; per i viaggi in aereo la classe di rimborso è quella “economica”; b. il rimborso delle spese per i mezzi di trasporto urbano o, nei casi preventivamente individuati ed autorizzati dall’Azienda o Ente, dei taxi; c. per le trasferte di durata superiore a dodici ore, il rimborso della spesa sostenuta per il pernottamento in un albergo fino a quattro stelle e della spesa per i due pasti giornalieri, nel limite, per i predetti pasti, di complessivi € 44,26;"
+          },
+          "transformation": "The CCNL pays no daily travel allowance: the trasferta is refunded at documented cost",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-15T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-15-ai-sanita-aran-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -1399,6 +1669,33 @@
         "independence": "separate_session",
         "checked": [
           "work_rules.notice"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-sanita-aran-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf",
+            "sha256": "c9f57cf60c3ae2cacbfea57dd856ba13d4e9d197a4bc1c58f9b3d37aa5785722"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf",
+            "sha256": "44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[0:night], bands[1:holiday], bands[2:holiday_compensatory_rest], bands[3:day_shift], bands[4:night_shift], travel.",
+          "Left out: none.sunday: skipped; none.rest_day: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ],

@@ -46,7 +46,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 16 verified / 8 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 22 verified / 8 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟢 Verified | The confidence the ruleset declares as a whole |
 | **Readiness** | 👁 Reviewed | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -55,7 +55,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-10-27 |
-| **Last review** | 2026-11-01 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2024-01-01 |
 
 ## Review history
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-12 | claude-opus-5-5 (ai) | Salary tables, additional months, hourly and daily divisors, overtime, leave, sickness and seniority, against the CCNL of 2 November 2022 and the definitive CCNL of 27 October 2025. | corrected | Salary amounts confirmed (annual table over 12; elevata qualificazione 2023: 35,000 / 13).<br>The first period started on 2022-11-02, the signing date; the new classification applies from 1 January 2023 (art. 99 c. 3).<br>Overtime is art. 47 c. 8 of the CCNL 2.11.2022, in force from 2022, not from 2024.<br>Citations moved from the ipotesi of January 2025 (other article numbers) to the definitive text of 27 October 2025.<br>Sickness: comporto of 18 months with 9 months at 100%, 3 at 90% and 6 at 50% (art. 40), not 270 days at 100%.<br>Leave: 26 days for the first three years of a first public employment (art. 35 c. 4).<br>Signatories: FP CGIL and UIL FPL did not sign; CONFSAL, CGS, CSE and CISL signed.<br>The 2025-2027 renewal is an ipotesi of 29 July 2026, not in force. |
 | 2026-10-17 | claude-opus-5-5 (ai) | Periodic review due 2026-12-31: the tabellare of 2024 against Tabella 2a of the CCNL of 27 October 2025, and the status of the 2025-2027 renewal. | confirmed | Tabella 2a (p. 107): the five annual amounts from 1 January 2024 over 12 give the monthly amounts of the file (21.545,34 / 12 = 1.795,445, 1.795,45 half up). Match.<br>The 2025-2027 renewal is still the ipotesi of 29 July 2026 on 2026-10-17; renewal_2025_2027_not_modelled stays open with the status recorded. The next review is moved to 2027-01-31.<br>No independent example (an ARAN worked example or a real payslip of the comparto) was found in this review. |
 | 2026-11-01 | claude-opus-5-5 (ai) | The notice clause (Art. 53, commi 1–4 e 9, p. 80–81). | corrected | Notice bands by level, category and service checked against the PDF by a separate session (delegated search and independent verification): work_rules.notice. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base, bands[0:night], bands[1:holiday], bands[2:holiday_compensatory_rest], bands[3:day_shift], bands[4:night_shift], travel.<br>Left out: none.sunday: skipped; none.rest_day: skipped. |
 
 ## Salary table
 

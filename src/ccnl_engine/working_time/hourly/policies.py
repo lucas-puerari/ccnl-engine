@@ -45,9 +45,11 @@ from ccnl_engine.errors import InvalidInputError, MissingRuleError
 from ccnl_engine.provenance.source.rule.models import ProvenanceStatus
 from ccnl_engine.working_time.hourly.base import HourlyBase
 from ccnl_engine.working_time.hourly.components import (
+    base_record,
     components,
     individual,
     level_method,
+    rateo,
     week_mismatch,
 )
 from ccnl_engine.working_time.hourly.direct import direct_hourly_base
@@ -119,10 +121,8 @@ class HourlyTerms:
     def base_source(self) -> SourceLocation | None:
         """Location of the hourly base rule, when recorded."""
         supplements = self.supplements
-        record = None if supplements is None else supplements.hourly_base_provenance
         level = self.level
-        if level is not None and level.hourly_base_provenance is not None:
-            record = level.hourly_base_provenance
+        record = base_record(supplements, level)
         return None if record is None else record.location
 
     def rule_of(self, path: str) -> str:
@@ -237,6 +237,7 @@ class HourlyTerms:
             )
             state = "included" if included else "not_included"
             parts_of_base += personal if included else ()
+        parts_of_base += rateo(parts_of_base, supplements.hourly_base_yearly_payments)
         monthly = sum((v for _, v in parts_of_base), Decimal(0))
         return HourlyBase(
             monthly / divisor, monthly, divisor, named, parts_of_base, state

@@ -119,22 +119,21 @@ def test_work_of_each_event() -> None:
     assert work_of(shift) is SupplementWork.NIGHT_SHIFT
 
 
-@pytest.mark.parametrize(
-    ("paid_apart", "words"),
-    [(True, "pays the 8 hours"), (None, "does not settle whether")],
-)
-def test_hours_paid_apart_raise_an_issue(paid_apart: bool | None, words: str) -> None:
-    """The hours themselves are not posted: the issue says so."""
+@pytest.mark.parametrize("paid_apart", [True, None])
+def test_holiday_hours_are_posted_apart(paid_apart: bool | None) -> None:
+    """L. 260/1949 art. 5 c. 3: the hours worked on a holiday are paid on top.
+
+    A band that says so and one silent on it both price the 8 hours at the
+    hourly base of EUR 10: EUR 80, with no issue.
+    """
     holiday = next(b for b in _bands() if b.code == "TDS_FESTIVO")
     band = holiday.model_copy(update={"hours_paid_apart": paid_apart})
     event = HolidayWorkEvent(_DAY, hours=_HOURS)
     pay = resolve_supplement(event, _terms(_with_bands((band,))))
 
-    issue = supplement_issue(event, pay)
-
-    assert issue is not None
-    assert issue.code == HOURS_NOT_POSTED
-    assert words in issue.message
+    assert pay.apart == Decimal(80)
+    assert pay.posted
+    assert supplement_issue(event, pay) is None
 
 
 def test_sunday_decision_identifies_the_rule_and_each_factor() -> None:
@@ -171,14 +170,15 @@ def test_sunday_decision_identifies_the_rule_and_each_factor() -> None:
 
 
 @pytest.mark.parametrize(
-    ("paid_apart", "status", "label", "message"),
+    ("paid_apart", "status", "label", "apart", "message"),
     [
-        (False, CalculationStatus.FINAL, "no", None),
-        (True, CalculationStatus.PROVISIONAL, "yes", "pays the 8 hours"),
+        (False, CalculationStatus.FINAL, "no", 0, None),
+        (True, CalculationStatus.FINAL, "yes", 80, None),
         (
             None,
             CalculationStatus.PROVISIONAL,
             "unconfirmed",
+            0,
             "does not settle whether the 8 hours",
         ),
     ],
@@ -187,9 +187,14 @@ def test_hours_apart_decision_and_issue(
     paid_apart: bool | None,
     status: CalculationStatus,
     label: str,
+    apart: int,
     message: str | None,
 ) -> None:
-    """Even when ordinary hours are owed separately, only EUR 24 is posted."""
+    """The Sunday supplement is EUR 24; the hours apart EUR 80 when due.
+
+    No law settles the Sunday of a worker resting on another day: a band
+    silent on it leaves the hours unposted, with the issue.
+    """
     band = next(b for b in _bands() if b.code == "TDS_DOMENICA").model_copy(
         update={"hours_paid_apart": paid_apart}
     )
@@ -202,6 +207,7 @@ def test_hours_apart_decision_and_issue(
     assert decision.amount == Decimal("24.00")
     assert decision.status is status
     assert decision.inputs["hours_paid_apart"] == label
+    assert pay.apart == apart
     if message is None:
         assert issue is None
     else:

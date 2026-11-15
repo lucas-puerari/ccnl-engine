@@ -83,7 +83,9 @@ def test_the_ordinary_hour_premiums(
 def test_night_holiday_excludes_periodic_shifts(in_shift: bool, expected: str) -> None:
     """8 night-holiday hours: 1982.05 / 173 x 50% = 45.83 non-turnista.
 
-    The turnista's excluded 50% band is 0.00, not total remuneration.
+    The turnista's excluded 50% band is 0.00, not total remuneration, and
+    stays provisional.  The 8 hours themselves are paid on top (L. 260/1949
+    art. 5 c. 3).
     """
     event = HolidayWorkEvent(
         date(2026, 3, 19),
@@ -104,10 +106,10 @@ def test_night_holiday_excludes_periodic_shifts(in_shift: bool, expected: str) -
         Decimal(0) if in_shift else Decimal("0.50")
     )
     assert decision.inputs["in_periodic_shift"] == ("yes" if in_shift else "no")
-    assert decision.inputs["hours_paid_apart"] == "unconfirmed"
+    assert decision.inputs["hours_paid_apart"] == "yes"
     assert decision.reason_code == "ccnl_supplement_applied"
     assert decision.amount == Decimal(expected)
-    assert decision.status.value == "provisional"
+    assert decision.status.value == ("provisional" if in_shift else "final")
     if in_shift:
         assert any(
             issue.code == "supplement_shift_holiday_rate_unresolved"

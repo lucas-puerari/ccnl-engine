@@ -1887,7 +1887,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/sanita-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "3562ca3e30bab0ee445dc690b4354801d26c96f05ce91672b76f72346c149b48",
+      "source_hash": "52be9dd0d5096819ab5612e62336b3fa84f915f3c45b687e98a94e9901a1378c",
       "source_type": "commercial_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/sanita-aran.json.gz"

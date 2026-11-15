@@ -250,12 +250,15 @@ class ShiftWorkEvent:
             required.
         hours: Hours of the shift, above 0 and at most 744.
         kind: The shift of the rotation; ``None`` when not stated.
+        shifts: Days of shift worked, for a CCNL that pays the day of shift
+            (Sanità art. 67 c. 2: "per ogni giornata di effettivo lavoro").
     """
 
     event_date: date
     supplement_amount: Decimal | None = None
     hours: Decimal | None = None
     kind: ShiftKind | None = None
+    shifts: int | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         feature = "shift_work"
@@ -265,6 +268,7 @@ class ShiftWorkEvent:
             self.hours,
             "ShiftWorkEvent",
             feature,
+            self.shifts,
         )
         if self.kind is not None:
             kind = parse_enum(
