@@ -163,6 +163,7 @@ class _AmountsInput:
     public: PublicTerms = field(default_factory=PublicTerms)
     solidarity_fund: SolidarityFund | None = None
     sick_pay_regime: str | None = None
+    mother_cap: Decimal | None = None
 
     @property
     def tfr_pay(self) -> Decimal:

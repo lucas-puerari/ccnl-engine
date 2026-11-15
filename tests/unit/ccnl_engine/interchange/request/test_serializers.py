@@ -43,6 +43,7 @@ from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
 from ccnl_engine.contribution.exemption.inputs import (
     ContributionExemption,
     ExemptionMeasure,
+    MothersExemption,
 )
 from ccnl_engine.contribution.zone.models import AgriculturalZone
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
@@ -301,6 +302,7 @@ def _employment(contract: Contract) -> Employment:
         contribution_exemption=ContributionExemption(
             ExemptionMeasure.WOMEN, date(2026, 1, 1), territorial=True
         ),
+        mothers_exemption=MothersExemption(date(2015, 4, 2)),
     )
 
 

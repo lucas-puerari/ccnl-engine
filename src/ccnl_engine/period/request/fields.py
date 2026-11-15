@@ -10,6 +10,9 @@ from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.contribution.exemption.inputs import (
     ContributionExemption as Exemption,
 )
+from ccnl_engine.contribution.exemption.inputs import (
+    MothersExemption,
+)
 from ccnl_engine.employment.fact.inputs import (
     ContributableHours,
     WeeklyHours,
@@ -71,6 +74,7 @@ def period_field_specs(request: PeriodCalculationRequest) -> tuple[FieldSpec, ..
         ("tfr_fund", request.tfr_fund, TfrFundBalance, True),
         ("tfr_treasury_fund", request.tfr_treasury_fund, bool, True),
         ("contribution_exemption", request.contribution_exemption, Exemption, True),
+        ("mothers_exemption", request.mothers_exemption, MothersExemption, True),
         ("erc_amount", request.erc_amount, Decimal, True),
         ("prior_extra_month_amount", request.prior_extra_month_amount, Decimal, True),
         ("holiday_company_offset", request.holiday_company_offset, Decimal, True),

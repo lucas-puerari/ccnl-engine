@@ -6,6 +6,7 @@ from dataclasses import replace
 from typing import TYPE_CHECKING
 
 from ccnl_engine.amount.types import _PeriodAmounts
+from ccnl_engine.contribution.exemption.mothers import with_mother_exemption
 from ccnl_engine.contribution.services import (
     AGRICULTURAL_ZONE_UNKNOWN,
     CIGS_INDOTTO_UNKNOWN,
@@ -130,6 +131,7 @@ def _compute_amounts(
         amounts carry only contributions, TFR and taxable income.
     """
     breakdown, employee_rate = run_contributions(inp)
+    breakdown = with_mother_exemption(inp.mother_cap, breakdown)
     tfr = tfr_accrual(inp, breakdown)
     breakdown = with_tfr_compensation(inp, breakdown, tfr)
     pension = run_pension(inp)
