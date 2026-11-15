@@ -1926,7 +1926,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "279c6cf9ce50d1d1ef6153a2f711cc78c2a0bca859e8a638d72d5045e1af7a95",
+    "source_hash": "61dd417f6e1068287725d4426db56499dec6704cc0d5bfd61aee73007cd2f1e4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2140,6 +2140,50 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 586ec86c279b9cf2484217d15e0e663985d32c3ed31a4e649e1574a1f594004b)."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "04-25",
+        "easter_monday",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "11-04",
+        "12-08",
+        "12-25",
+        "12-26"
+      ],
+      "on_rest_day": false,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-cooperative-consorzi-agricoli-2022",
+            "title": "CCNL cooperative e consorzi agricoli, stesura 3 agosto 2022",
+            "kind": "associazione",
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/03_08_2022-STESURA-CCNL-COOPERATIVE-AGRICOLE-2019-2023.pdf",
+            "sha256": "586ec86c279b9cf2484217d15e0e663985d32c3ed31a4e649e1574a1f594004b"
+          },
+          "page": "44",
+          "section": "art. 28",
+          "quote": "Quando la festa del Patrono del luogo cade di domenica o in un giorno festivo infrasettimanale, si considera festivo il giorno feriale susseguente. Per il trattamento da praticarsi ai lavoratori nei giorni di festività nazionali ed infrasettimanali valgono le disposizioni di cui alle leggi 27.5.1949, n. 260 e 31.3.1954, n. 90 e pertanto, nella ricorrenza delle festività nazionali ed infrasettimanali di cui al presente articolo anche se cadono di domenica, verrà usato ai lavoratori il seguente trattamento: a) se non lavorano verrà corrisposta una giornata normale di paga compreso ogni accessorio; b) se lavorano è dovuta, oltre alla retribuzione di cui al precedente punto a), una seconda retribuzione per le ore di lavoro effettivamente prestato, maggiorata dalla percentuale per il lavoro festivo."
+        },
+        "transformation": "L'art. 28 (PDF p. 44) elenca le festività nazionali e infrasettimanali e ne prevede il trattamento anche quando cadono di domenica: i codici riportano quelle elencate, inclusi 25 aprile, 1 maggio e 2 giugno. Il Patrono è escluso perché, quando cade di domenica, è festivo il giorno feriale successivo. Il comma sul 4 novembre (PDF p. 45) prevede il trattamento della festività nazionale coincidente con la domenica per la celebrazione spostata alla prima domenica di novembre: incluso 11-04. La giornata normale di paga non indica un divisore; non sono espressamente previsti gli altri casi o esclusioni modellati dai flag.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2022-08-03",
+          "verification_status": "unverified"
+        }
       }
     }
   },

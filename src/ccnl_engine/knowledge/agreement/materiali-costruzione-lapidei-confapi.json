@@ -2528,7 +2528,7 @@
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "8b2ae3bc09ce3469c0e90f1e339d7caa39cf7164736a238431cf465925fb5928"
+    "source_hash": "8fe57b68d3fc700b90963246f57559428e59464dbc160012ad0320c0b3ee2217"
   },
   "work_rules": {
     "insured_absence": {
@@ -2582,6 +2582,47 @@
           "quote": "La fruizione del congedo parentale facoltativo può essere frazionata anche in\nunità orarie, rispettando le necessità organizzative aziendali, programmandone\npreferibilmente l'utilizzo a inizio o fine turno o pausa pranzo."
         },
         "transformation": "La clausola permette la fruizione in unità orarie ma non equipara espressamente un numero di ore a una giornata di congedo: day_hours = null. Non prescrive riproporzionamento per il part-time né una decorrenza della fruizione oraria."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron",
+        "11-04"
+      ],
+      "divisor": 25,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "materiali-costruzione-lapidei-confapi-2025",
+            "title": "Testo completo CCNL F020 sottoscritto il 9 settembre 2025",
+            "kind": "associazione",
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+            "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
+          },
+          "page": "86",
+          "section": "art. 21 e nota a verbale",
+          "quote": "Nel caso che una delle festività di cui ai punti b) c) e d) coincida con la domenica - oppure con il giorno di riposo compensativo per i lavoratori che, per i casi previsti dalla legge e dal contratto, prestino la loro opera di domenica - verrà corrisposto 1/26 della retribuzione globale di fatto mensile.\n\nNota a verbale\nLa percentuale della retribuzione globale di fatto mensile perla disciplina lapidei è pari a 1/25."
+        },
+        "transformation": "I punti b), c) e d) dell'art. 21 (PDF pp. 85–86) individuano le festività elencate, incluso il patrono; la nota a verbale sostituisce per i lapidei 1/26 con 1/25 della retribuzione globale di fatto mensile. L'art. 22 (PDF p. 87) applica il medesimo trattamento al 4 novembre, celebrato nella prima domenica di novembre. Il riposo compensativo menzionato riguarda soltanto i lavoratori che prestano opera di domenica nei casi previsti, non ogni giorno di riposo settimanale.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2025-09-09",
+          "verification_status": "unverified"
+        }
       }
     }
   }
