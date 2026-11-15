@@ -62,7 +62,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | CCNL | Family | Readiness | Renewal due | Census | Gaps |
 |---|---|---|---|---|---|
 | [acconciatura-estetica-confartigianato](../contracts/acconciatura-estetica-confartigianato.md) | `servizi-persona` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 2 monetary limitations; 5 non-native capabilities; 6 declared residuals |
-| [afam-aran](../contracts/afam-aran.md) | `pubblico-impiego` | exploratory | — | 0 rows | 5 non-native capabilities; 6 declared residuals |
+| [afam-aran](../contracts/afam-aran.md) | `pubblico-impiego` | exploratory | — | 0 rows | 4 non-native capabilities; 6 declared residuals |
 | [agenti-immobiliari-fiaip](../contracts/agenti-immobiliari-fiaip.md) | `servizi-immobiliari` | exploratory | — | 4 rows | 4 open requirements; 2 weak rules; 2 monetary limitations; 4 non-native capabilities; 6 declared residuals |
 | [agenzie-marittime-i481](../contracts/agenzie-marittime-i481.md) | `trasporti-logistica` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 monetary limitation; 5 non-native capabilities; 6 declared residuals |
 | [agenzie-viaggio-fiavet](../contracts/agenzie-viaggio-fiavet.md) | `turismo` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule; 4 non-native capabilities; 6 declared residuals |

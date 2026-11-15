@@ -22,6 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 from ccnl_engine.absence.insured.models import InsuredAbsenceRules
 from ccnl_engine.absence.insured.parental.hourly.models import ParentalHourlyClause
 from ccnl_engine.absence.models import AbsenceRules
+from ccnl_engine.agreement.coverage.basis import CapabilityBasis
 from ccnl_engine.agreement.types import NoteKind
 from ccnl_engine.compensation.legacy_holiday.models import LegacyHolidayPayment
 from ccnl_engine.compensation.sunday_holiday.models import SundayHolidayPay
@@ -135,6 +136,8 @@ class CCNLWorkRules(BaseModel):
     sickness rules of the workers a CCNL treats apart (Tabacco art. 34: the
     impiegati; Alimentari art. 21: the apprentices); the run takes them in
     place of ``sickness_rules`` (:mod:`ccnl_engine.sickness.variant`).
+    ``capability_basis`` names the capabilities whose amount the CCNL hands
+    to the employer (:mod:`ccnl_engine.agreement.coverage.basis`).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -155,6 +158,7 @@ class CCNLWorkRules(BaseModel):
     sunday_holidays: SundayHolidayPay | None = None
     parental_hourly: ParentalHourlyClause | None = None
     legacy_holiday_payment: LegacyHolidayPayment | None = None
+    capability_basis: dict[str, CapabilityBasis] = Field(default_factory=dict)
 
 
 class CCNLCoverage(BaseModel):

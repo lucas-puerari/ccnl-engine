@@ -9,7 +9,8 @@ value may replace.  Two kinds are not a gap of the model:
   gap for one that does not;
 - a capability whose amount is a fact only the employer knows (a
   second-level agreement, a territorial fund, the pay of earlier payslips):
-  accepted by design.
+  accepted by design, for every CCNL or, where a CCNL hands it to the
+  integrative bargaining, for that CCNL (``work_rules.capability_basis``).
 """
 
 from __future__ import annotations
@@ -99,6 +100,8 @@ def accepted(feature: str, ccnl: CCNL) -> bool:
         rule *ccnl* holds.
     """
     if feature in BY_DESIGN:
+        return True
+    if ccnl.work_rules is not None and feature in ccnl.work_rules.capability_basis:
         return True
     holds = RULE_BACKED.get(feature)
     return holds is not None and holds(ccnl)
