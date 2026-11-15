@@ -3,66 +3,6 @@
   "ccnl_id": "universita-aran",
   "requirements": [
     {
-      "id": "rule_levels_collaboratore_fixed_allowances_ind_ateneo",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/universita-aran.json#levels[COLLABORATORE].fixed_allowances[IND_ATENEO]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/universita-aran.json#levels[COLLABORATORE].fixed_allowances[IND_ATENEO]"
-        ]
-      }
-    },
-    {
-      "id": "rule_levels_elevata_professionalita_fixed_allowances_ind_ateneo",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/universita-aran.json#levels[ELEVATA_PROFESSIONALITA].fixed_allowances[IND_ATENEO]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/universita-aran.json#levels[ELEVATA_PROFESSIONALITA].fixed_allowances[IND_ATENEO]"
-        ]
-      }
-    },
-    {
-      "id": "rule_levels_funzionario_fixed_allowances_ind_ateneo",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/universita-aran.json#levels[FUNZIONARIO].fixed_allowances[IND_ATENEO]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/universita-aran.json#levels[FUNZIONARIO].fixed_allowances[IND_ATENEO]"
-        ]
-      }
-    },
-    {
-      "id": "rule_levels_operatore_fixed_allowances_ind_ateneo",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/universita-aran.json#levels[OPERATORE].fixed_allowances[IND_ATENEO]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/universita-aran.json#levels[OPERATORE].fixed_allowances[IND_ATENEO]"
-        ]
-      }
-    },
-    {
       "id": "rule_work_rules_absence_rules",
       "institute": "base_salary",
       "variant": "all",

@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs**; complete except declared residuals: 0. Bundle: 261 weak rules, 289 open limitations (289 with a monetary impact), 39 declared residuals.
+**Complete: 0/136 CCNLs**; complete except declared residuals: 0. Bundle: 256 weak rules, 289 open limitations (289 with a monetary impact), 39 declared residuals.
 
 ## Declared window
 
@@ -62,7 +62,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | CCNL | Family | Readiness | Renewal due | Census | Gaps |
 |---|---|---|---|---|---|
 | [acconciatura-estetica-confartigianato](../contracts/acconciatura-estetica-confartigianato.md) | `servizi-persona` | exploratory | — | 4 rows | 4 open requirements; 1 weak rule; 3 monetary limitations; 5 non-native capabilities; 6 declared residuals |
-| [afam-aran](../contracts/afam-aran.md) | `pubblico-impiego` | exploratory | — | 3 rows | 3 open requirements; 2 weak rules; 1 monetary limitation; 6 non-native capabilities; 6 declared residuals |
+| [afam-aran](../contracts/afam-aran.md) | `pubblico-impiego` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 monetary limitation; 6 non-native capabilities; 6 declared residuals |
 | [agenti-immobiliari-fiaip](../contracts/agenti-immobiliari-fiaip.md) | `servizi-immobiliari` | exploratory | — | 4 rows | 4 open requirements; 2 weak rules; 2 monetary limitations; 4 non-native capabilities; 6 declared residuals |
 | [agenzie-marittime-i481](../contracts/agenzie-marittime-i481.md) | `trasporti-logistica` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 monetary limitation; 5 non-native capabilities; 6 declared residuals |
 | [agenzie-viaggio-fiavet](../contracts/agenzie-viaggio-fiavet.md) | `turismo` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule; 4 non-native capabilities; 6 declared residuals |
@@ -190,7 +190,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [turismo-federalberghi](../contracts/turismo-federalberghi.md) | `turismo` | production | — | 7 rows | 7 open requirements; 3 monetary limitations; 4 outside_input limitations; 4 non-native capabilities; 8 declared residuals |
 | [turismo-federalberghi-alberghi-minori](../contracts/turismo-federalberghi-alberghi-minori.md) | `turismo` | exploratory | — | 9 rows | 9 open requirements; 4 monetary limitations; 5 outside_input limitations; 4 non-native capabilities; 7 declared residuals |
 | [uneba-uneba](../contracts/uneba-uneba.md) | `socio-sanitario` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 outside_input limitation; 4 non-native capabilities; 6 declared residuals |
-| [universita-aran](../contracts/universita-aran.md) | `pubblico-impiego` | exploratory | — | 5 rows | 5 open requirements; 5 weak rules; 4 non-native capabilities; 6 declared residuals |
+| [universita-aran](../contracts/universita-aran.md) | `pubblico-impiego` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule; 4 non-native capabilities; 6 declared residuals |
 | [universita-tecnologi-aran](../contracts/universita-tecnologi-aran.md) | `pubblico-impiego` | exploratory | — | 1 rows | tables from 2026-03-01; 1 open requirement; 1 weak rule; 5 non-native capabilities; 6 declared residuals |
 | [vetro-meccanizzato-assovetro](../contracts/vetro-meccanizzato-assovetro.md) | `chimica` | exploratory | — | 31 rows | 31 open requirements; 29 weak rules; 1 monetary limitation; 1 outside_input limitation; 7 non-native capabilities; 6 declared residuals |
 | [vigilanza-privata-assiv](../contracts/vigilanza-privata-assiv.md) | `vigilanza` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 2 monetary limitations; 5 non-native capabilities; 7 declared residuals |

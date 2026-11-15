@@ -3,21 +3,6 @@
   "ccnl_id": "afam-aran",
   "requirements": [
     {
-      "id": "rule_levels_elevata_qualificazione_fixed_allowances_ret_d640ff31",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/afam-aran.json#levels[ELEVATA_QUALIFICAZIONE].fixed_allowances[RET_POSIZIONE]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/afam-aran.json#levels[ELEVATA_QUALIFICAZIONE].fixed_allowances[RET_POSIZIONE]"
-        ]
-      }
-    },
-    {
       "id": "rule_work_rules_absence_rules",
       "institute": "base_salary",
       "variant": "all",
