@@ -18,9 +18,8 @@ engine does not post.
 
 A CCNL without a band of the work is not derived: the caller states the
 amount.  The bundle leaves out a band when its rate depends on facts the
-request does not carry (a night window the company fixes, the shift column
-of the metalmeccanici) or when the text is unconfirmed; the coverage notes
-of the CCNL say which.
+request does not carry (a night window the company fixes) or when the text
+is unconfirmed; the coverage notes of the CCNL say which.
 """
 
 from __future__ import annotations
