@@ -46,7 +46,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 62 verified / 6 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 65 verified / 6 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -71,6 +71,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Lapidei tables of the integrative agreement of 15 March 2024 (pp. 5-7) and Art. 45 bis of the integrative agreement of 17 February 2025 (pp. 3-4). | confirmed | Read the 28 Lapidei amounts and the seniority table of Art. 45 bis on the page images; the Lapidei levels were absent, so a stone worker could only be classified on the Legno levels. Added levels 1-7 on the lapidei ladder with their seniority and closed lapidei_tables_not_modelled; recorded the Lapidei apprenticeship tracks as an open limitation. |
 | 2026-11-14 | claude-opus-5-5 (ai) | INPS circ. 140/2012 par. 3.3 on the apprentice contribution, against the research of a separate model session. | confirmed | The cuneo reductions (0.91) do not apply to apprentices: the artigianato apprentice rates of the bundle are confirmed. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Nuovo art. 56 of the accordo of 13 March 2018 (PDF p. 6-7), read on the page images. | corrected | Added the lapidei apprenticeship tracks (groups 1-3, operai and impiegati). |
+| 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base, bands[6:holiday_compensatory_rest], bands[7:saturday_sixth_day].<br>Left out: bands[0:night]: more night bands the engine cannot tell apart; bands[1:night_shift]: more night_shift bands the engine cannot tell apart; bands[2:night]: more night bands the engine cannot tell apart; bands[3:night_shift]: more night_shift bands the engine cannot tell apart; bands[4:holiday]: more holiday bands the engine cannot tell apart; bands[5:holiday]: more holiday bands the engine cannot tell apart; travel: kind share applied by hand; none.day_shift: skipped. |
 
 ## Salary table
 

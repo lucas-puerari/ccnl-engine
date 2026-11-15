@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 11 verified / 35 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 22 verified / 35 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-11-11 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2028-12-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | gpt-6-sol (ai) | Monthly values of tabella b, Allegato 1, read from the page by an independent session of another model without being told the expected value. | confirmed | 27 values equal to the printed minimum plus the Elemento retributivo di settore of the same row (the reader returned the minimum column; the file stores the conglobated amount). |
 | 2026-11-08 | gpt-6-sol (ai) | CCNL top-ups of maternity and work injury, read from the signed text by a separate model session; every quote found on the PDF text layer. | confirmed | Added work_rules.insured_absence.maternity.<br>Added work_rules.insured_absence.injury. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Rows of the seniority table of art. 41 of the testo coordinato 2025, from the targeted research of a separate model session; text layer. | confirmed | C2 is in the 5° row (25.56) and D1 in the 7° (30.73); A1 passes to A2 after 18 months, before any biennio. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base, bands[0:night_shift], bands[1:night], bands[2:holiday], bands[3:rest_day], bands[4:holiday_compensatory_rest], bands[5:sunday], bands[6:night_holiday_shift], bands[7:night_holiday], bands[8:night_holiday_shift_compensatory_rest], bands[9:night_holiday_compensatory_rest].<br>Left out: bands[10:night]: quote skipped; travel: kind delegated applied by hand. |
 
 ## Salary table
 

@@ -308,6 +308,33 @@
         "checked": [
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-edilizia-cooperative-ancpl-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fenealuil.it/sites/default/files/rinnovo_edilizia_coop_24-06-08.pdf",
+            "sha256": "424ca3ece6a9164c13326da68dea2e3d394e72b2b74095462104ce4e2973f951"
+          },
+          {
+            "url": "https://www.fenealuil.it/sites/default/files/verbale-di-accordo-ccnl-cooperative_0.pdf",
+            "sha256": "0655507846614c2454c61dc922679ae02a35c1e10b66a5933409b3b92ec09748"
+          }
+        ],
+        "findings": [
+          "Applied: bands[1:day_shift], bands[2:night_shift], bands[5:holiday], bands[6:night_holiday], bands[7:sunday].",
+          "Left out: bands[0:night]: more night bands the engine cannot tell apart; bands[3:night]: work/role/rate not applicable (guardiano); bands[4:night]: quote skipped; travel: kind delegated applied by hand."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -2425,7 +2452,7 @@
     "effective_until": null,
     "source": "https://www.studiocani.com/ccnl-edilizia-industria-e-cooperative-aumento-dei-minimi-dal-1-marzo/",
     "verification_status": "unverified",
-    "source_hash": "017958b16abcaf5800e23c645f15c69a1eeda5c4365683dcdf414e1472ec7069",
+    "source_hash": "06bedc17f0b1c19786bad6bfd8a1bdcd58a793c926a8812f95f8c84085529519",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
@@ -2576,6 +2603,243 @@
               "effective_from": "2025-02-01"
             }
           }
+        }
+      ],
+      "supplement_bands": [
+        {
+          "code": "U_DAY_SHIFT_1",
+          "description": "Operai: lavoro diurno in turni regolari avvicendati.",
+          "work": "day_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2008-06-24",
+                "valid_until": null,
+                "value": "0.09"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-fenealuil-it-sites-default-files-rinnovo-edilizia-coop-24-06-08-pdf",
+                "title": "rinnovo edilizia coop 24 06 08",
+                "kind": "associazione",
+                "url": "https://www.fenealuil.it/sites/default/files/rinnovo_edilizia_coop_24-06-08.pdf",
+                "sha256": "424ca3ece6a9164c13326da68dea2e3d394e72b2b74095462104ce4e2973f951"
+              },
+              "page": "15",
+              "section": "Allegato 9, Art. 59, operai, voce 5",
+              "quote": "5 ) avorodiurnocomoreso in tumi resolariavvicendati: 9%"
+            },
+            "transformation": "Operai: lavoro diurno in turni regolari avvicendati. The rates are those of the operai (levels 1 to 4).",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2008-06-24",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-edilizia-cooperative-ancpl-time-supplements"
+            }
+          },
+          "levels": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        {
+          "code": "U_NIGHT_SHIFT_2",
+          "description": "Operai: lavoro notturno in turni regolari avvicendati; OCR del PDF legge 't2%' per 12%.",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2008-06-24",
+                "valid_until": null,
+                "value": "0.12"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-fenealuil-it-sites-default-files-rinnovo-edilizia-coop-24-06-08-pdf",
+                "title": "rinnovo edilizia coop 24 06 08",
+                "kind": "associazione",
+                "url": "https://www.fenealuil.it/sites/default/files/rinnovo_edilizia_coop_24-06-08.pdf",
+                "sha256": "424ca3ece6a9164c13326da68dea2e3d394e72b2b74095462104ce4e2973f951"
+              },
+              "page": "15",
+              "section": "Allegato 9, Art. 59, operai, voce 6",
+              "quote": "avoronotturnocolÌpresoin turni regolariawicendati: t2%"
+            },
+            "transformation": "Operai: lavoro notturno in turni regolari avvicendati; OCR del PDF legge 't2%' per 12%. The rates are those of the operai (levels 1 to 4).",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2008-06-24",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-edilizia-cooperative-ancpl-time-supplements"
+            }
+          },
+          "levels": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        {
+          "code": "U_HOLIDAY_5",
+          "description": "Operai: lavoro festivo ordinario.",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2008-06-24",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-fenealuil-it-sites-default-files-rinnovo-edilizia-coop-24-06-08-pdf",
+                "title": "rinnovo edilizia coop 24 06 08",
+                "kind": "associazione",
+                "url": "https://www.fenealuil.it/sites/default/files/rinnovo_edilizia_coop_24-06-08.pdf",
+                "sha256": "424ca3ece6a9164c13326da68dea2e3d394e72b2b74095462104ce4e2973f951"
+              },
+              "page": "15",
+              "section": "Allegato 9, Art. 59, operai, voce 2",
+              "quote": "2) lavorofcstivo: 45%"
+            },
+            "transformation": "Operai: lavoro festivo ordinario. The rates are those of the operai (levels 1 to 4).",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2008-06-24",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-edilizia-cooperative-ancpl-time-supplements"
+            }
+          },
+          "levels": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        {
+          "code": "U_NIGHT_HOLIDAY_6",
+          "description": "Operai: lavoro festivo notturno ordinario.",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2008-06-24",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-fenealuil-it-sites-default-files-rinnovo-edilizia-coop-24-06-08-pdf",
+                "title": "rinnovo edilizia coop 24 06 08",
+                "kind": "associazione",
+                "url": "https://www.fenealuil.it/sites/default/files/rinnovo_edilizia_coop_24-06-08.pdf",
+                "sha256": "424ca3ece6a9164c13326da68dea2e3d394e72b2b74095462104ce4e2973f951"
+              },
+              "page": "15",
+              "section": "Allegato 9, Art. 59, operai, voce 10",
+              "quote": "l0) lavorofèstvo notturno: 50%"
+            },
+            "transformation": "Operai: lavoro festivo notturno ordinario. The rates are those of the operai (levels 1 to 4).",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2008-06-24",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-edilizia-cooperative-ancpl-time-supplements"
+            }
+          },
+          "levels": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        {
+          "code": "U_SUNDAY_7",
+          "description": "Operai: domenica con riposo compensativo, esclusi i turnisti.",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2008-06-24",
+                "valid_until": null,
+                "value": "0.08"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "https-www-fenealuil-it-sites-default-files-rinnovo-edilizia-coop-24-06-08-pdf",
+                "title": "rinnovo edilizia coop 24 06 08",
+                "kind": "associazione",
+                "url": "https://www.fenealuil.it/sites/default/files/rinnovo_edilizia_coop_24-06-08.pdf",
+                "sha256": "424ca3ece6a9164c13326da68dea2e3d394e72b2b74095462104ce4e2973f951"
+              },
+              "page": "15",
+              "section": "Allegato 9, Art. 59, operai, voce 12",
+              "quote": "l2) larorodorncnicalc csclucii lumi\\li: cL'nrino\\ocompcn5drivo, 8%"
+            },
+            "transformation": "Operai: domenica con riposo compensativo, esclusi i turnisti. The rates are those of the operai (levels 1 to 4).",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2008-06-24",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-edilizia-cooperative-ancpl-time-supplements"
+            }
+          },
+          "levels": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ]
         }
       ]
     },

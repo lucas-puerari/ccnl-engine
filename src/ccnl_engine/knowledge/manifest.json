@@ -31,7 +31,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/acconciatura-estetica-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "4e10b2c425ff605034216b2ec57f658df0c8ae86f6fe201f9e2eddef77bd400f",
+      "source_hash": "600352489abd4340d9dc3322a42bf3a84d9f0bca5a91289b0b070a020615685e",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/acconciatura-estetica-confartigianato.json.gz"
@@ -116,7 +116,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/alimentari-federalimentare",
       "ruleset_version": "2026.2",
-      "source_hash": "dab44ecbdc28fe977b80ff66b828fe842e1323f791a50aff0b28110319fd3fb6",
+      "source_hash": "c897f17fe92f5d67697a969506780a8372431dc8ed70608f7b1ca2e5e5523c0f",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/alimentari-federalimentare.json.gz"
@@ -779,7 +779,7 @@
       "valid_to": "2028-09-30",
       "ruleset_id": "ccnl/edilizia-artigianato-cna",
       "ruleset_version": "2026.2",
-      "source_hash": "7a5ab06d083e68f1bcf3239370358d554bc913857bddbd6318aa624cd5fa7cbf",
+      "source_hash": "4f183e3454d2c962e894f608db8f7c0e156a3137d76e2cf8f77e9c4a0089c20e",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/edilizia-artigianato-cna.json.gz"
@@ -796,7 +796,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/edilizia-cooperative-ancpl",
       "ruleset_version": "2026.1",
-      "source_hash": "017958b16abcaf5800e23c645f15c69a1eeda5c4365683dcdf414e1472ec7069",
+      "source_hash": "06bedc17f0b1c19786bad6bfd8a1bdcd58a793c926a8812f95f8c84085529519",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/edilizia-cooperative-ancpl.json.gz"
@@ -1054,7 +1054,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/funzioni-centrali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "d3d8b1b76e351cc14f4c34546eb9b62fc9355151fec6c441bd310071bfc4a671",
+      "source_hash": "d0ee1b77a25df50843a10f50842ec1a2c0184ccfc4ee0eacaf0b67f655cc0517",
       "source_type": "institutional_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/funzioni-centrali-aran.json.gz"
@@ -1071,7 +1071,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/funzioni-locali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "0c656645f2686846570e964805fd3a17941f1f676bc839ace1e907b21064d3a4",
+      "source_hash": "aaead19478ebbde0c33321b0b273415cbac43e23852fc4ee489f8d47972efd3c",
       "source_type": "institutional_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/funzioni-locali-aran.json.gz"
@@ -1224,7 +1224,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/istituzioni-servizi-socio-assistenziali-anaste",
       "ruleset_version": "2026.2",
-      "source_hash": "4862a0ebc2d835506a0f0d9d4ed2723d939ebbcf40edab03d5257e21f1aa76f4",
+      "source_hash": "567a9376b2d8bc81eff3c4affcf3a2e59d082a7879070174e53d1eb753b4276a",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/istituzioni-servizi-socio-assistenziali-anaste.json.gz"
@@ -1360,7 +1360,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/legno-arredamento-federlegno",
       "ruleset_version": "2026.2",
-      "source_hash": "236d5e54842a67ae1ec61571a31f5eed0ab232f1dd1c28eb4c10bc1d844a0032",
+      "source_hash": "a1433cc3b1cb4d13698c90c2c93f036fbd3b1dfe43570469b1c50b33e4604950",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/legno-arredamento-federlegno.json.gz"
@@ -1377,7 +1377,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/legno-lapidei-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "5e1afe938deacbba5ebf767bfce7a9e48fc88aaf7fd2aec6273a9cbca819d5c2",
+      "source_hash": "339e93697b8fcbd23931096c4a0f23d3856e137f2bc8c538a999145b70cb1c23",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/legno-lapidei-artigianato-confartigianato.json.gz"
@@ -1547,7 +1547,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/multiservizi-anip",
       "ruleset_version": "2026.2",
-      "source_hash": "48ec2834fe29e08851c246d3f69eef096b8c08c333411b05d93d931dceeb594e",
+      "source_hash": "bee92253195437c5c506ae0c2abeaa05f4e368d5dabbd1e0863bb9f570c9f193",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/multiservizi-anip.json.gz"
@@ -1683,7 +1683,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/panificazione-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "f3658137963d1eab0d97d5a6428588f872f9cc98d1298c032052cebd7bd8d631",
+      "source_hash": "1c58ce00dc8d6c6af32d382dea5bb0cfab0eb8bbaa7fa95f29817915b32c097b",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/panificazione-artigianato-confartigianato.json.gz"
@@ -2057,7 +2057,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/telecomunicazioni-asstel",
       "ruleset_version": "2026.2",
-      "source_hash": "3fe4a798d8db3d438e09abfaa285403277bf4a8cfe3411e18caabfcc6a077928",
+      "source_hash": "32d9593ad2c238aecd364ee7f0fadc39580a3a27e9ba3d4b2c586e8325b68250",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/telecomunicazioni-asstel.json.gz"
@@ -2091,7 +2091,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tessile-moda-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "39313ee6a40c3ade5ed9050876df70c268d86c00528be074e0b4574601367e51",
+      "source_hash": "828b4dbf703bc9b1323507d97e1edd59b695ab1f1a18a9cd6fff0ee49cfcee28",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/tessile-moda-artigianato-confartigianato.json.gz"

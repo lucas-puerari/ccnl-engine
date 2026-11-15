@@ -33,7 +33,7 @@ def _restated(multiplier: Decimal, day: date, hourly: HourlyTerms) -> Decimal:
         ``1 + (multiplier - 1) x normale / fatto``, unrounded.
     """
     field = "OvertimeEvent.hourly_rate"
-    hour = hourly.base(day, field, "overtime")
+    hour = hourly.base(day, field, "overtime", overtime=True)
     normale = hourly.base(day, field, "overtime", supplement=True)
     return 1 + (multiplier - 1) * normale.rate / hour.rate
 
@@ -49,7 +49,9 @@ def hourly_paid(
     paid = rate.paid(event)
     decisions: list[CalculationDecision] = []
     if paid.hourly_rate is None:
-        base = hourly.base(event.event_date, "OvertimeEvent.hourly_rate", "overtime")
+        base = hourly.base(
+            event.event_date, "OvertimeEvent.hourly_rate", "overtime", overtime=True
+        )
         paid = replace(paid, hourly_rate=base.rate)
         inputs = {"hours": event.hours, **base.inputs()}
         multiplier = paid.multiplier

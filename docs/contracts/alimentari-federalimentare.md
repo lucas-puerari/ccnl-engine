@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-01 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -77,6 +77,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | FASA coverage of art. 74 quater (PDF p. 157), text layer. | corrected | FASA was permanent-only; the text covers fixed terms of at least nine months in the calendar year: permanent_only false, minimum_fixed_term_months 9, fixed_term_months_in_year. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Sugar-industry supplementary rule 25 (physical PDF p. 230), once-only award and outstanding eligibility facts. | corrected | The sugar rule pays one normal monthly salary to clerical employees or 200 normal hourly wages to manual workers after 25 uninterrupted years in the same company or group. Early death/incapacity, direct transfers and group continuity require facts not available in the run. |
 | 2026-11-14 | claude-opus-5-5 (ai) | FASA Regolamento 2024 art. 9 and the beneficiary notices 2026 and 2027, against the research of a separate model session. | corrected | The family member fee is paid by the worker to FASA by MAV only, not through the payslip: the fasa_family_members limitation had no payroll effect and becomes an info note. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: travel. |
 
 ## Salary table
 
