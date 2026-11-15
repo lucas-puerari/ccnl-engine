@@ -2543,7 +2543,7 @@
     "effective_until": null,
     "source": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
     "verification_status": "verified",
-    "source_hash": "89d0e4b40d232837a2833a1220b385aa54f140e735c91a7e4ffd0d6542cab08d",
+    "source_hash": "08dc60f1ed9c21893fa90d77326c9fcf1ee94690c47873f6acd028460cdaf302",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2817,6 +2817,26 @@
           "effective_from": "2024-01-01",
           "verification_status": "unverified"
         },
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
+      }
+    },
+    "parental_hourly": {
+      "effective_from": "2024-01-01",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "28-05-25-ccnl-24-27-definitivo-con-firme",
+            "title": "28 05 25 ccnl 24 27 definitivo con firme",
+            "kind": "associazione",
+            "url": "https://fism.net/wp-content/uploads/2026/06/28-05-25-ccnl-24-27-definitivo-con-firme.pdf",
+            "sha256": "07c84a5b92ff81e1d119ff08836972e8b1e382c7cce804e3eeb79234ec6b5a36"
+          },
+          "page": "47",
+          "section": "Art. 74, Tutela della maternità e della paternità — Congedo di maternità / paternità e congedo parentale",
+          "quote": "Per il personale docente, data la specifica caratterizzazione delle istituzioni oggetto del presente CCNL, la fruizione del congedo parentale potrà aver luogo esclusivamente su base giornaliera. Per tutto il restante personale il congedo parentale è fruibile nella singola giornata in modalità oraria pari alla metà dell'orario medio giornaliero, riferito al mese precedente nel corso del quale ha inizio il congedo parentale"
+        },
+        "transformation": "La metà dell'orario medio giornaliero del mese precedente è la modalità/frazione di fruizione per il personale non docente, non l'equivalenza in ore di una giornata intera: nessun valore day_hours espresso. Non è previsto un riproporzionamento esplicito per il part-time. La decorrenza 2024-01-01 è indicata per il CCNL nell'art. 2, non specificamente nell'art. 74.",
         "note": "Scanned PDF: the quote is read from the OCR of the page."
       }
     }

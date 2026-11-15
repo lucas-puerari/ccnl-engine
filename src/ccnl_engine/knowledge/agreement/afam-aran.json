@@ -5671,6 +5671,11 @@
             "periods": [
               {
                 "valid_from": "2024-01-01",
+                "valid_until": "2024-05-01",
+                "gap_kind": "not_applicable"
+              },
+              {
+                "valid_from": "2024-05-01",
                 "valid_until": "2025-01-01",
                 "value": "422.79"
               },
@@ -5688,7 +5693,7 @@
           },
           "months_per_year": 12,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2025-2027",
@@ -5699,18 +5704,10 @@
                 "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
               },
               "page": "34",
-              "section": "Tabella D5 - AFAM, Retribuzione di posizione - parte fissa, Elevate Qualificazioni",
+              "section": "Tabella D5 - AFAM; art. 18, c. 1, lett. c)",
               "quote": "Elevate Qualificazioni 206,50 5.368,53"
             },
-            "extraction": {
-              "method": "ai",
-              "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T18:04:30Z",
-              "effective_from": "2024-01-01",
-              "verification_status": "unverified"
-            },
-            "transformation": "Annual 5,073.43 (2024), 5,162.03 (2025-2026), 5,368.53 (2027) over 12. The 2024 amount is the 2025 value less its increment from 1.1.2025 plus that from 1.1.2024 (CCNL 2022-2024 Tabelle D3-D6, p. 62-63).",
-            "note": "The tabella gives annual amounts; the instalments (12 here) are set by art. 159 c. 6 CCNL 18/1/2024, not read (assumed)."
+            "transformation": "Annual parte fissa over the 12 mensilità of art. 159, c. 6, CCNL 18/1/2024 (PDF p. 192, sha256 11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d): 5,368.53 from 1/1/2027 (this table) = 447.38 a month; 5,162.03 from 1/1/2025 (CCNL 23/12/2025, tab. D5, PDF p. 65, sha256 99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a: 'Elevate Qualificazioni 73,43 162,03 5.162,03') = 430.17; 5,000 + 73.43 = 5,073.43 from 1/5/2024 = 422.79. The position pay exists from 1/5/2024, when the new classification entered into force (art. 165, c. 1, CCNL 18/1/2024); from 1/1 to 30/4/2024 the increment belongs to the former indennità di amministrazione (tab. D5 note 1)."
           }
         }
       ],
@@ -6090,7 +6087,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "4f760d72515edbb1e83b630a28c429fe179ac5c93896696c2f2c423eff59ef0a",
+    "source_hash": "8c094be786ae42e32e07678126f5b48c237e8e92c8187d5991f513d8f1f86840",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

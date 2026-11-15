@@ -3986,7 +3986,7 @@
     "effective_until": null,
     "source": "https://www.confedilizia.it/retribuzioni-dipendenti-da-proprietari-di-fabbricati/",
     "verification_status": "verified",
-    "source_hash": "eab317a192e2187c6b4be89aa071e4b32669cb10fe947d9047f2e2ac33d08038",
+    "source_hash": "8a78508c5ae9a79aaee9cd7693910634428360164f271dbee86a47b5a5cf611f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4141,6 +4141,25 @@
         }
       },
       "comporto_calendar_year": true
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnldipproprietarifabbricati-ipotesirinnovo-301025",
+            "title": "CCNLDipProprietariFabbricati IpotesiRinnovo 301025",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/CCNLDipProprietariFabbricati_IpotesiRinnovo_301025.pdf",
+            "sha256": "4d08a1dd4a828e3d8da37a9eab21eca8b8ff81aa94d626d8365c95330b5f1e68"
+          },
+          "page": "65",
+          "section": "Art. 100, comma 2, lettere a–e, e comma 3",
+          "quote": "a) non sono comunque ammissibili richieste che prevedano l'effettuazione di prestazioni lavorative inferiori alla metà dell'orario giornaliero previsto dal contratto individuale; b) il calcolo dell'indennità economica prevista dalla legge e da erogare per ogni ora di congedo viene effettuato secondo quanto previsto dal contratto; c) la possibilità di convertire uno o più mesi di congedo parentale a ore è ammessa anche a più riprese, fino ad esaurimento del periodo massimo riconosciuto dalla legge; d) il congedo a ore di cui al presente articolo è cumulabile, anche nell'ambito della stessa giornata, con altri riposi e permessi previsti dalla legge o dal CCNL, nei limiti ed alle condizioni di legge; e) sono fatti salvi gli obblighi di legge a carico del lavoratore con riferimento all'apposita istanza di congedo parentale che lo stesso deve presentare all'INPS. 3. Per tutto quanto non previsto al presente titolo si fa riferimento alle norme di legge vigenti e smi"
+        },
+        "transformation": "L'art. 100 limita la prestazione lavorativa residua ad almeno metà dell'orario giornaliero individuale, ma non stabilisce quante ore di congedo equivalgano a una giornata a tempo pieno: day_hours = null. Non prevede un riproporzionamento delle ore di equiparazione per il part-time: part_time_scaled = false. Non indica una decorrenza propria: effective_from = null.",
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
+      }
     }
   },
   "verification": {

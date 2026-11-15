@@ -890,7 +890,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "5ffe8437bd4f5fe2dd875a0e7135ff85cbe671f8acabc562d05ea5b489671ca0",
+    "source_hash": "3562ca3e30bab0ee445dc690b4354801d26c96f05ce91672b76f72346c149b48",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1292,6 +1292,27 @@
           "section": "Art. 5"
         },
         "transformation": "The CCNL text read is silent on the holidays falling on a Sunday: the law pays the civil holidays only; art. 5 names the 'Stato, enti pubblici e datori privati', and the maintainer decided on 2026-11-15 that it applies to public employment (documents read: https://www.aranagenzia.it/wp-content/uploads/2025/10/2025_10_27_COMP-SANITA_2022-2024.pdf, sha256 44703973da37ba07c1c1455795c18e710a596de00a28d59bbc462662f678235d; https://www.aranagenzia.it/wp-content/uploads/2022/11/2022_11_02_COMP-SANITA_2019-2021.pdf, sha256 c9f57cf60c3ae2cacbfea57dd856ba13d4e9d197a4bc1c58f9b3d37aa5785722; https://www.aranagenzia.it/wp-content/uploads/2025/10/2025.10.27-CCNL-comparto-definitivo-3.pdf, sha256 2d5a0d966527851b1e06cd2d7e758905877e65eedaf84e0aaaeb083f3b2fac47)"
+      }
+    },
+    "parental_hourly": {
+      "day_hours": "6",
+      "part_time_scaled": true,
+      "effective_from": "2025-10-28",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "2025-10-27-ccnl-comparto-definitivo-3",
+            "title": "2025.10.27 CCNL comparto definitivo 3",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2025/10/2025.10.27-CCNL-comparto-definitivo-3.pdf",
+            "sha256": "2d5a0d966527851b1e06cd2d7e758905877e65eedaf84e0aaaeb083f3b2fac47"
+          },
+          "page": "64",
+          "section": "Art. 45, commi 2–4 (rinvio all'art. 27, comma 1)",
+          "quote": "2. Ai fini della eventuale fruizione del congedo su base oraria, il monte ore annuale del congedo residuo fruibile è determinato dall’Azienda ed ente in misura non superiore al numero delle giornate residue per le ore giornaliere convenzionali di cui all’art. 27, comma 1 (Orario di lavoro) in relazione alla articolazione oraria del dipendente. 3. In caso di rapporto di lavoro a tempo parziale, il monte ore di cui al comma 2 è riproporzionato, in relazione alla ridotta durata della prestazione lavorativa. 4. Qualora il congedo sia fruito per l’intera giornata si determina una decurtazione del monte ore di cui al comma 2, pari all’orario convenzionale di cui all’art. 27, comma 1 (Orario di lavoro) previsto per l’articolazione oraria del dipendente"
+        },
+        "transformation": "L'art. 45, comma 4, equipara espressamente una giornata di congedo all'orario convenzionale dell'art. 27, comma 1: 6 ore per l'articolazione su sei giorni; per quella su cinque giorni sono invece 7 ore e 12 minuti. Il comma 3 riproporziona il monte ore per il part-time. La decorrenza è ricavata dall'art. 2, comma 2 (giorno successivo alla stipulazione del 27 ottobre 2025), non da una data specifica dell'art. 45."
       }
     }
   },

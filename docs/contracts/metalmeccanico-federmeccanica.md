@@ -32,9 +32,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | leave, overtime |
+| **Limits of this contract** | leave |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -144,13 +144,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `overtime` applies; the run takes the engine code path.
 
     **Remediation:** Resolved (2026-11-15): exempt_quota_hours_before stated places the overtime in the regime, absent it is agreed overtime; an event in the regime whose quota needs the turnista status has a missing_fact in_periodic_shift (overtime_exempt_quota_unknown).
-
-!!! warning "metalmeccanico-federmeccanica/shift_and_multiweek_premiums · overtime · impact yes · open"
-    MULTI-WEEK SCHEDULE: the premiums of the orario plurisettimanale of Art. 5 as renewed on 22 November 2025 are the bands OT_PLURI (15%), OT_PLURI_SABATO (25%) and, for sudden needs, OT_PLURI_IMPROVVISO (20%) and OT_PLURI_IMPROVVISO_SABATO (30%), premium only. Not modelled: their rise 'a partire dalla 81esima ora' ('elevate nella misura onnicomprensiva dell'8%'), which needs the hours of the schedule worked in the year. The night-holiday work of Art. 7 rows h) and i) is paid by the FED_NOTTURNO_FESTIVO* supplement bands, the shift column of the overtime by OT_NOTTURNO_TURNI, OT_NOTTURNO_TURNI_EXTRA and OT_NOTTURNO_FESTIVO_TURNI for an event with in_periodic_shift.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Add the hours of the multi-week schedule worked in the year to pay the 8% from the 81st hour, then resolve this limitation.
 
 !!! note "metalmeccanico-federmeccanica/part_time_supplementary_rate · overtime · impact yes · resolved"
     PART-TIME SUPPLEMENTARY HOURS: work up to 40 weekly hours earns an all-inclusive 10% on the overtime-premium pay elements until supplementary hours exceed 50% of agreed annual part-time hours; the excess earns 20% (CCNL 5 February 2021, PDF p. 58). The rate past the yearly share is paid when the event states the supplementary hours worked earlier in the year and the agreed annual hours (OvertimeEvent.supplementary_hours_before, agreed_annual_hours); without them the base rate is paid and the run carries this limitation. The elastic clauses of the same section (PDF p. 57: 10% for a rearranged placement of hours, 15% for an increase in duration up to 25% of the normal annual part-time hours) and the conditions of supplementary work are not modelled.
@@ -367,6 +360,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SICKNESS (Sez. Quarta Titolo VI Art. 2): full pay for the first 122/153/214 days of the treatment chain and 80% after, by seniority band (up to 3 years, 3 to 6, over 6); comporto breve of 183/274/365 days over the sickness of the three years that end on the day; the chain restarts after 61 days of work; the first 3 days of the fourth short absence (at most 5 days) of a calendar year are paid 66%, of the fifth and later 50%. The history before the imported episodes, the seniority and the exemption of a short absence are facts: when they could change a sick day the run has a missing_fact blocker.
     
     TRAVEL AND ON-CALL ALLOWANCES (Art. 7 Trasferta p. 61, Art. 6 Reperibilità p. 158 of the CCNL 2021; adjusted each June by IPCA per the renewal of 22 November 2025, p. 2): event-driven. From 1 June 2026 (minutes of 16 June 2026): trasferta intera 51.29, pasto 13.13, pernottamento 25.03; reperibilità by level group D1-D2-C1 / C2-C3 / B1+ per 16h worked day, 24h rest day, 24h holiday and per week. A StandbyEvent is paid at the rates of work_rules.standby_rules (from 1 June 2025; the earlier rates are not extracted) plus 5.00 for each call; a TravelAllowanceEvent pays the daily_amount the caller states, since the file holds no trasferta amounts (review of 2026-10-30)
+    
+    MULTI-WEEK SCHEDULE AND SHIFT COLUMN: the premiums of the orario plurisettimanale of Art. 5 as renewed on 22 November 2025 are the bands OT_PLURI (15%), OT_PLURI_SABATO (25%) and, for sudden needs, OT_PLURI_IMPROVVISO (20%) and OT_PLURI_IMPROVVISO_SABATO (30%), premium only; from the 81st hour of the schedule each rises by 8 points (time_supplements.multiweek_excess, on OvertimeEvent.multiweek_hours_before). The night-holiday work of Art. 7 rows h) and i) is paid by the FED_NOTTURNO_FESTIVO* supplement bands, the shift column of the overtime by OT_NOTTURNO_TURNI, OT_NOTTURNO_TURNI_EXTRA and OT_NOTTURNO_FESTIVO_TURNI for an event with in_periodic_shift.
     
     APPRENTICESHIP TRACKS (CCNL 5 February 2021, accordo sull'apprendistato, pp. 267-271): 36 months, reduced by 6 months for a diploma of level 4 QEQ or above (30), 24 for the D2 figures on assembly lines; each third at 85, 90 and 95% of the destination level.
     

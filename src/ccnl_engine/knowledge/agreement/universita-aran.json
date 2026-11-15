@@ -538,7 +538,7 @@
           },
           "months_per_year": 12,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2025-2027",
@@ -549,18 +549,10 @@
                 "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
               },
               "page": "23",
-              "section": "Tabella B3 - UNIVERSITÀ, Indennità di Ateneo (valori annui rideterminati)",
+              "section": "Tabella B3 - Università, Indennità di Ateneo; art. 10",
               "quote": "OPERATORI 59,40 1.705,76"
             },
-            "extraction": {
-              "method": "ai",
-              "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T16:56:05Z",
-              "effective_from": "2024-01-01",
-              "verification_status": "unverified"
-            },
-            "transformation": "Annual amounts 1646.36 from 1.1.2024 (CCNL 2022-2024 Tabella B3, p. 55: 'OPERATORI 100,20 1.646,36') and 1705.76 from 1.1.2027, over 12.",
-            "note": "Paid in 12 monthly instalments: the frequency is set by art. 4 of the CCNL 28/03/2006, which was not read (assumed)."
+            "transformation": "Annual values ('Valori in Euro annui') over 12 monthly payments: from 1/1/2027 the value of this table; from 1/1/2024 1.646,36, the 'Valori annui rideterminati' of CCNL 23/12/2025, tab. B3 (PDF p. 53, sha256 99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a), whose areas refer to the corresponding former categories from 1/1 to 30/4/2024. Art. 85 CCNL 16/10/2008 keeps 'le modalità in corso' of payment: the monthly twelfth is the usual payment, not a contractual amount."
           }
         }
       ],
@@ -746,7 +738,7 @@
           },
           "months_per_year": 12,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2025-2027",
@@ -757,18 +749,10 @@
                 "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
               },
               "page": "23",
-              "section": "Tabella B3 - UNIVERSITÀ, Indennità di Ateneo (valori annui rideterminati)",
+              "section": "Tabella B3 - Università, Indennità di Ateneo; art. 10",
               "quote": "COLLABORATORI 78,80 2.265,97"
             },
-            "extraction": {
-              "method": "ai",
-              "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T16:56:05Z",
-              "effective_from": "2024-01-01",
-              "verification_status": "unverified"
-            },
-            "transformation": "Annual amounts 2187.17 from 1.1.2024 (CCNL 2022-2024 Tabella B3, p. 55: 'COLLABORATORI 133,20 2.187,17') and 2265.97 from 1.1.2027, over 12.",
-            "note": "Paid in 12 monthly instalments: the frequency is set by art. 4 of the CCNL 28/03/2006, which was not read (assumed)."
+            "transformation": "Annual values ('Valori in Euro annui') over 12 monthly payments: from 1/1/2027 the value of this table; from 1/1/2024 2.187,17, the 'Valori annui rideterminati' of CCNL 23/12/2025, tab. B3 (PDF p. 53, sha256 99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a), whose areas refer to the corresponding former categories from 1/1 to 30/4/2024. Art. 85 CCNL 16/10/2008 keeps 'le modalità in corso' of payment: the monthly twelfth is the usual payment, not a contractual amount."
           }
         }
       ],
@@ -954,7 +938,7 @@
           },
           "months_per_year": 12,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2025-2027",
@@ -965,18 +949,10 @@
                 "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
               },
               "page": "23",
-              "section": "Tabella B3 - UNIVERSITÀ, Indennità di Ateneo (valori annui rideterminati)",
+              "section": "Tabella B3 - Università, Indennità di Ateneo; art. 10",
               "quote": "FUNZIONARI 109,10 3.135,56"
             },
-            "extraction": {
-              "method": "ai",
-              "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T16:56:05Z",
-              "effective_from": "2024-01-01",
-              "verification_status": "unverified"
-            },
-            "transformation": "Annual amounts 3026.46 from 1.1.2024 (CCNL 2022-2024 Tabella B3, p. 55: 'FUNZIONARI 184,30 3.026,46') and 3135.56 from 1.1.2027, over 12.",
-            "note": "Paid in 12 monthly instalments: the frequency is set by art. 4 of the CCNL 28/03/2006, which was not read (assumed)."
+            "transformation": "Annual values ('Valori in Euro annui') over 12 monthly payments: from 1/1/2027 the value of this table; from 1/1/2024 3.026,46, the 'Valori annui rideterminati' of CCNL 23/12/2025, tab. B3 (PDF p. 53, sha256 99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a), whose areas refer to the corresponding former categories from 1/1 to 30/4/2024. Art. 85 CCNL 16/10/2008 keeps 'le modalità in corso' of payment: the monthly twelfth is the usual payment, not a contractual amount."
           }
         }
       ],
@@ -1162,7 +1138,7 @@
           },
           "months_per_year": 12,
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
                 "document_id": "ccnl-ir-2025-2027",
@@ -1173,18 +1149,10 @@
                 "sha256": "8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904"
               },
               "page": "23",
-              "section": "Tabella B3 - UNIVERSITÀ, Indennità di Ateneo (valori annui rideterminati)",
+              "section": "Tabella B3 - Università, Indennità di Ateneo; art. 10",
               "quote": "ELEVATE PROFESSIONALITA' 129,00 3.706,20"
             },
-            "extraction": {
-              "method": "ai",
-              "model": "claude-opus-5-5",
-              "extraction_timestamp": "2026-10-12T16:56:05Z",
-              "effective_from": "2024-01-01",
-              "verification_status": "unverified"
-            },
-            "transformation": "Annual amounts 3577.20 from 1.1.2024 (CCNL 2022-2024 Tabella B3, p. 55: 'ELEVATE PROFESSIONALITA' 217,80 3.577,20') and 3706.20 from 1.1.2027, over 12.",
-            "note": "Paid in 12 monthly instalments: the frequency is set by art. 4 of the CCNL 28/03/2006, which was not read (assumed)."
+            "transformation": "Annual values ('Valori in Euro annui') over 12 monthly payments: from 1/1/2027 the value of this table; from 1/1/2024 3.577,20, the 'Valori annui rideterminati' of CCNL 23/12/2025, tab. B3 (PDF p. 53, sha256 99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a), whose areas refer to the corresponding former categories from 1/1 to 30/4/2024. Art. 85 CCNL 16/10/2008 keeps 'le modalità in corso' of payment: the monthly twelfth is the usual payment, not a contractual amount."
           }
         }
       ],
@@ -1263,7 +1231,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "ec2c6bae549cf187e2bedd2fcbc72c564dbae315b4185499e2f8c0b099283efe",
+    "source_hash": "58631f16d9da69fd8bfd61f87dd0e38666331284b7c936f1d02dd7c40ac9bfac",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
