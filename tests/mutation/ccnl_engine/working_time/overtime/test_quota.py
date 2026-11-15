@@ -102,15 +102,13 @@ def test_hours_within_the_quota_take_nothing() -> None:
 
 
 def test_without_the_facts_the_premium_is_unknown() -> None:
-    """No earlier hours, or no shift status in a small firm."""
+    """No earlier hours: outside the regime; no shift status in a small firm."""
     rule = _rule()
     plain = OvertimeEvent(_DAY, hours=Decimal(8))
     small = OvertimeEvent(_DAY, hours=Decimal(8), exempt_quota_hours_before=Decimal(50))
-    first = quota_premium(plain, rule, 300)
+    assert quota_premium(plain, rule, 300) is None
     second = quota_premium(small, rule, 50)
-    assert first is not None
     assert second is not None
-    assert first.unknown
     assert second.unknown
 
 
@@ -145,9 +143,7 @@ def _pay(result: PeriodResult) -> Decimal:
 
 
 def _limited(result: PeriodResult) -> bool:
-    return any(
-        lim.variant == "overtime_exempt_quota_supplement" for lim in result.limitations
-    )
+    return any(i.code == "overtime_exempt_quota_unknown" for i in result.issues)
 
 
 def test_the_run_pays_the_premium_past_the_quota() -> None:
@@ -171,9 +167,16 @@ def test_the_run_pays_the_premium_past_the_quota() -> None:
         Decimal("130.70"),
         Decimal("133.92"),
     )
-    assert _limited(plain)
+    assert not _limited(plain)
     assert not _limited(small)
     assert not _limited(large)
+    unknown = _run(
+        OvertimeEvent(_DAY, hours=Decimal(10), exempt_quota_hours_before=Decimal(44)),
+        50,
+    )
+    assert _pay(unknown) == Decimal("125.87")
+    (issue,) = (i for i in unknown.issues if i.code == "overtime_exempt_quota_unknown")
+    assert issue.fact == "in_periodic_shift"
     (decision,) = (
         d for d in small.decisions if d.reason_code == "overtime_exempt_quota_premium"
     )

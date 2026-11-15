@@ -44,6 +44,21 @@ _CATALOG = load_capability_catalog(2026)
 
 #: ``requires_fact`` fields without a case, and why.
 _NOT_EXERCISED: dict[str, str] = {
+    "OvertimeEvent.in_periodic_shift": (
+        "read only by an overtime event in the Federmeccanica regime of the "
+        "quote esenti in a firm up to 200 employees, which no registry pair "
+        "states; tests/mutation/ccnl_engine/working_time/overtime/test_quota.py "
+        "exercises the missing fact and the stated status"
+    ),
+    "OvertimeEvent.supplementary_hours_before": (
+        "read only by part-time supplementary hours of a CCNL whose rate rises "
+        "past a yearly share; tests/mutation/ccnl_engine/working_time/overtime/"
+        "test_supplementary.py exercises the missing fact and the stated hours"
+    ),
+    "OvertimeEvent.agreed_annual_hours": (
+        "read with supplementary_hours_before; tests/mutation/ccnl_engine/"
+        "working_time/overtime/test_supplementary.py exercises it"
+    ),
     "ParentalLeaveEvent.individual_income": (
         "read only past the indemnified months, which no registry pair "
         "reaches; tests/mutation/ccnl_engine/absence/insured/parental/"

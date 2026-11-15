@@ -10,9 +10,10 @@ aggiuntiva pari all'8% per ciascuna ora lavorata".
 
 The hours of the regime worked earlier in the year are a fact of the
 timesheet (``OvertimeEvent.exempt_quota_hours_before``); stating them
-places the event in the regime.  Without them, or without the facts that
-choose the quota, the extra premium is not added and the run carries the
-CCNL limitation of the clause.
+places the event in the regime, and an event without them is agreed
+overtime outside it.  An event in the regime whose quota the run cannot
+choose (``OvertimeEvent.in_periodic_shift`` unstated in a firm up to the
+CCNL headcount) has a missing-fact issue and no premium.
 """
 
 from __future__ import annotations
@@ -30,6 +31,7 @@ if TYPE_CHECKING:
     from ccnl_engine.event.facade import OvertimeEvent
 
 __all__ = [
+    "EXEMPT_QUOTA_UNKNOWN",
     "EXEMPT_QUOTA_VARIANT",
     "OvertimeExemptQuota",
     "QuotaPremium",
@@ -37,8 +39,10 @@ __all__ = [
     "quota_premium",
 ]
 
-#: Variant of the CCNL limitation a run carries when the premium is unknown.
+#: Variant of the CCNL limitation the missing facts were recorded under.
 EXEMPT_QUOTA_VARIANT = "overtime_exempt_quota_supplement"
+#: Issue of an event in the regime whose quota the run cannot choose.
+EXEMPT_QUOTA_UNKNOWN = "overtime_exempt_quota_unknown"
 _ZERO = Decimal(0)
 
 
@@ -108,8 +112,8 @@ def quota_premium(
 
     Returns:
         ``None`` when the CCNL has no such clause in force on the event
-        day; otherwise the premium, ``unknown`` when the hours of the
-        regime before the event or the quota are not known.
+        day or the event is outside the regime (no earlier hours stated);
+        otherwise the premium, ``unknown`` when the quota is not known.
     """
     if rule is None:
         return None
@@ -119,7 +123,9 @@ def quota_premium(
     rate = rule.rate.value_at(event.event_date)
     before = event.exempt_quota_hours_before
     quota = quota_hours(rule, headcount, event.in_periodic_shift)
-    if before is None or quota is None:
+    if before is None:
+        return None
+    if quota is None:
         return QuotaPremium(quota=quota, rate=rate, unknown=True)
     past = max(before + event.hours - max(before, Decimal(quota)), _ZERO)
     return QuotaPremium(

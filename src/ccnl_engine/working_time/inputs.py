@@ -65,7 +65,7 @@ class OvertimeEvent:
         exempt_quota_hours_before: Overtime hours worked earlier in the
             calendar year under the CCNL regime of the 'quote esenti'
             (Federmeccanica art. 7); stating it places the event in that
-            regime, ``None`` when it is not or not known.
+            regime, ``None`` for overtime outside it.
         in_periodic_shift: Whether the worker is a turnista, which chooses
             the yearly exempt quota; ``None`` when not stated.
         supplementary_hours_before: Part-time supplementary hours worked

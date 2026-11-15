@@ -723,11 +723,6 @@ def _stated_gaps(
             (BlockerCode.CALCULATION_ISSUE, "overtime", "ccnl_overtime_band_applied"),
             (BlockerCode.MISSING_RULE, "overtime", "overtime_tier_not_applied"),
             (BlockerCode.CALLER_SUPPLIED_RULE, "overtime", "hourly_rate"),
-            (
-                BlockerCode.OPEN_LIMITATION,
-                "overtime",
-                f"{_METAL}/overtime_exempt_quota_supplement",
-            ),
         }
     reason = _RESIDUAL_LEAVE_UNPAID.get(s.ccnl, "termination_basis_not_sourced")
     if s.terminated and reason is not None:
