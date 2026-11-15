@@ -34,6 +34,10 @@ class OvertimeKind(StrEnum):
         MULTIWEEK_SUDDEN: Hours of a multi-week schedule for sudden needs,
             Monday to Friday, premium only.
         MULTIWEEK_SUDDEN_SATURDAY: The same hours on a Saturday.
+        RECOVERY_COURSE: Hours of a teacher's recovery course beyond the
+            orario d'obbligo (scuola, Tabella E1.6), paid at their band.
+        EXTRA_TEACHING: Additional teaching hours of a teacher.
+        EXTRA_NON_TEACHING: Additional non-teaching hours of a teacher.
     """
 
     WEEKDAY = "weekday"
@@ -50,6 +54,9 @@ class OvertimeKind(StrEnum):
     MULTIWEEK_SATURDAY = "plurisettimanale_sabato"
     MULTIWEEK_SUDDEN = "plurisettimanale_improvviso"
     MULTIWEEK_SUDDEN_SATURDAY = "plurisettimanale_improvviso_sabato"
+    RECOVERY_COURSE = "corso_recupero"
+    EXTRA_TEACHING = "insegnamento_aggiuntivo"
+    EXTRA_NON_TEACHING = "non_insegnamento_aggiuntivo"
 
 
 class HolidayWorkKind(StrEnum):

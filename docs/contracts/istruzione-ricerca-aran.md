@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ✅ |
-| **Limits of this contract** | overtime |
+| **Limits of this contract** | — |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -92,13 +92,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "istruzione-ricerca-aran/fixed_hourly_overtime · overtime · impact yes · open"
-    The ore aggiuntive of the docenti are paid at fixed hourly amounts by activity (CCNL 2019-2021 Tabella E1.6: corsi di recupero 55,00, insegnamento 38,50, non di insegnamento 19,25), not by time of day: no overtime band is modelled for the docenti levels, so their overtime event needs the amount as hourly_rate with multiplier 1. The ATA areas are paid by the bands of Tabella E1.7.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Pass the amount of Tabella E1.6 of the activity as hourly_rate with multiplier 1.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -272,6 +265,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     LEVELS. The Tabelle A1 and A2 of the CCNL 2022-2024 (from 1.1.2024) list 'Docente scuola dell'infanzia ed elementare' and 'Docente diplomato istituti sec. II grado' as two rows with the same amounts (22,420.48 a year in the first band): two levels with the same minimum, DOCENTE_INFANZIA_PRIMARIA and DOCENTE_DIPLOMATO_SECONDARIA, since only the first owes the ENAM.
     
     ENAM (L. 93/1957 art. 3): 1% of 80% of the stipendio of a permanent teacher of the scuola dell'infanzia and primaria, the IIS conglobata in the tabellare left out: EUR 6,384.11 a year on 12 months (CCNL 24.7.2003 Tabella 2, PDF p. 121), 532.01 a month (parameters.enam_iis_monthly).
+    
+    The ore aggiuntive of the docenti are paid at fixed hourly amounts by activity (CCNL 2019-2021 Tabella E1.6: corsi di recupero 55,00, insegnamento 38,50, non di insegnamento 19,25): bands OT_CORSO_RECUPERO_DOC, OT_INSEGNAMENTO_DOC and OT_NON_INSEGNAMENTO_DOC on the overtime kinds corso_recupero, insegnamento_aggiuntivo and non_insegnamento_aggiuntivo. The ATA areas are paid by the bands of Tabella E1.7.
     
     FASCE STIPENDIALI: the six fasce of anzianità di servizio (0-8, 9-14, 15-20, 21-27, 28-34, da 35) are paid as five seniority steps after 9, 15, 21, 28 and 35 years, each the difference between the monthly tabellari of two fasce (CCNL 2019-2021 Tabelle C1 and E1.5, 2022-2024 and 2025-2027 Tabella A2). The seniority is the anzianità di servizio recognised for the fasce (ricostruzione di carriera), which the caller states; the engine does not reconstruct it. The scuola media and the laureato di II grado have the same first fascia and differ above it: two levels, DOCENTE_SECONDARIA and DOCENTE_LAUREATO_SECONDARIA_II.
     

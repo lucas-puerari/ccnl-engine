@@ -55,6 +55,9 @@ class WorkKind(StrEnum):
     PLURISETTIMANALE_SABATO = "plurisettimanale_sabato"
     PLURISETTIMANALE_IMPROVVISO = "plurisettimanale_improvviso"
     PLURISETTIMANALE_IMPROVVISO_SABATO = "plurisettimanale_improvviso_sabato"
+    CORSO_RECUPERO = "corso_recupero"
+    INSEGNAMENTO_AGGIUNTIVO = "insegnamento_aggiuntivo"
+    NON_INSEGNAMENTO_AGGIUNTIVO = "non_insegnamento_aggiuntivo"
 
 
 class OvertimeBand(BaseModel):

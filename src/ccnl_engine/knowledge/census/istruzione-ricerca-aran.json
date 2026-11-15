@@ -1,22 +1,5 @@
 {
   "schema_version": 1,
   "ccnl_id": "istruzione-ricerca-aran",
-  "requirements": [
-    {
-      "id": "fixed_hourly_overtime",
-      "institute": "overtime",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "The ore aggiuntive of the docenti are paid at fixed hourly amounts by activity (CCNL 2019-2021 Tabella E1.6: corsi di recupero 55,00, insegnamento 38,50, non di insegnamento 19,25), not by time of day: no overtime band is modelled for the docenti levels, so their overtime event needs the amount as hourly_rate with multiplier 1. The ATA areas are paid by the bands of Tabella E1.7.",
-      "calculation": "ccnl/istruzione-ricerca-aran:coverage.notes",
-      "state": "absent",
-      "remediation": "Pass the amount of Tabella E1.6 of the activity as hourly_rate with multiplier 1.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "istruzione-ricerca-aran/fixed_hourly_overtime"
-        ]
-      }
-    }
-  ]
+  "requirements": []
 }
