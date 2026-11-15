@@ -127,6 +127,9 @@ EMPLOYER_DEFAULTS: Mapping[str, FieldDefault] = {
         "employer cost leaves it out, without a blocker",
     ),
     "EmployerProfile.second_level_elements": absence_is_fact("none agreed"),
+    "EmployerProfile.second_level_rates": absence_is_fact(
+        "none agreed: the CCNL bands price the work, or the event states it"
+    ),
     "EmployerProfile.sickness_window_counting": absence_is_fact(
         "the comporto of each illness the CCNL sets"
     ),
@@ -134,6 +137,12 @@ EMPLOYER_DEFAULTS: Mapping[str, FieldDefault] = {
     "SecondLevelElement.levels": absence_is_fact("every level"),
     "SecondLevelElement.extra_months": absence_is_fact("paid on the extra months"),
     "SecondLevelElement.tfr_relevant": absence_is_fact("in the TFR base"),
+    "SecondLevelRate.valid_until": absence_is_fact("in force, no end"),
+    "SecondLevelRate.levels": absence_is_fact("every level"),
+    "SecondLevelRate.hours_paid_apart": absence_is_fact(
+        "the hours are in the monthly pay; a public holiday worked is a fact "
+        "of the agreement the rate states"
+    ),
     "EmployerProfile.solidarity_fund_covered": requires_fact(
         "inps_employer",
         "employer.solidarity_fund_covered",

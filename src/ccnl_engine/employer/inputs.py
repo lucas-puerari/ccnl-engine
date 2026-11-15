@@ -24,6 +24,10 @@ from ccnl_engine.validators import (
     require_int,
     require_str,
 )
+from ccnl_engine.working_time.supplement.employer.inputs import (
+    SecondLevelRate,
+    check_second_level_rates,
+)
 
 __all__ = [
     "AgriculturalZone",
@@ -166,6 +170,8 @@ class EmployerProfile:
             mille, from the INAIL basi di calcolo of the year (art. 29 DPR
             1124/1965): the run accrues the premium on its contribution
             base.  ``None`` means not stated: no premium is computed.
+        second_level_rates: The supplements of the employer's agreement
+            (:class:`SecondLevelRate`), in place of the CCNL bands of a work.
 
     Raises:
         InvalidInputError: When ``headcount`` is not a :class:`Headcount`,
@@ -200,6 +206,7 @@ class EmployerProfile:
     legacy_section_applicable: bool | None = None
     second_level_elements: tuple[SecondLevelElement, ...] = ()
     inail_rate: Decimal | None = None
+    second_level_rates: tuple[SecondLevelRate, ...] = ()
 
     def __post_init__(self) -> None:  # noqa: D105
         require_instance(
@@ -248,13 +255,12 @@ class EmployerProfile:
                     msg, field="EmployerProfile.contractual_funds", feature=_FEATURE
                 )
             object.__setattr__(self, "contractual_funds", frozenset(funds))
-        object.__setattr__(
-            self,
-            "second_level_elements",
-            check_second_level_elements(
-                self.second_level_elements, "EmployerProfile.second_level_elements"
-            ),
-        )
+        for name, check in (
+            ("second_level_elements", check_second_level_elements),
+            ("second_level_rates", check_second_level_rates),
+        ):
+            value = check(getattr(self, name), f"EmployerProfile.{name}")
+            object.__setattr__(self, name, value)
         _validate_patron_day(self.patron_saint_day)
         require_decimal(
             self.inail_rate,

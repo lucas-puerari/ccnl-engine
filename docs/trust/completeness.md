@@ -66,7 +66,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [agenti-immobiliari-fiaip](../contracts/agenti-immobiliari-fiaip.md) | `servizi-immobiliari` | exploratory | — | 4 rows | 4 open requirements; 2 weak rules; 2 monetary limitations; 4 non-native capabilities |
 | [agenzie-marittime-i481](../contracts/agenzie-marittime-i481.md) | `trasporti-logistica` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 monetary limitation; 6 non-native capabilities |
 | [agenzie-viaggio-fiavet](../contracts/agenzie-viaggio-fiavet.md) | `turismo` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule; 5 non-native capabilities |
-| [alimentari-federalimentare](../contracts/alimentari-federalimentare.md) | `alimentare` | reviewed | — | 3 rows | 3 open requirements; 2 monetary limitations; 1 outside_input limitation; 2 non-native capabilities |
+| [alimentari-federalimentare](../contracts/alimentari-federalimentare.md) | `alimentare` | reviewed | — | 3 rows | 3 open requirements; 2 monetary limitations; 1 outside_input limitation; 1 non-native capability |
 | [alimentari-pmi-unionalimentari](../contracts/alimentari-pmi-unionalimentari.md) | `alimentare` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 1 monetary limitation; 1 outside_input limitation; 1 non-native capability |
 | [alimentaristi-cooperative-e016](../contracts/alimentaristi-cooperative-e016.md) | `alimentare` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 outside_input limitation; 6 non-native capabilities |
 | [anas](../contracts/anas.md) | `trasporti-logistica` | exploratory | — | 4 rows | tables from 2026-03-01; 4 open requirements; 1 weak rule; 3 monetary limitations; 5 non-native capabilities |
@@ -120,8 +120,8 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [formazione-professionale](../contracts/formazione-professionale.md) | `istruzione-formazione` | exploratory | — | 5 rows | 5 open requirements; 2 weak rules; 2 monetary limitations; 1 outside_input limitation; 6 non-native capabilities |
 | [forze-polizia-ordinamento-civile](../contracts/forze-polizia-ordinamento-civile.md) | `forze-polizia` | exploratory | — | 5 rows | 5 open requirements; 2 weak rules; 3 monetary limitations; 7 non-native capabilities |
 | [funivie-anef](../contracts/funivie-anef.md) | `trasporti-logistica` | exploratory | — | 3 rows | 3 open requirements; 2 weak rules; 1 monetary limitation; 5 non-native capabilities |
-| [funzioni-centrali-aran](../contracts/funzioni-centrali-aran.md) | `pubblico-impiego` | reviewed | — | 0 rows | 5 non-native capabilities |
-| [funzioni-locali-aran](../contracts/funzioni-locali-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 0 rows | 5 non-native capabilities |
+| [funzioni-centrali-aran](../contracts/funzioni-centrali-aran.md) | `pubblico-impiego` | reviewed | — | 0 rows | 1 non-native capability |
+| [funzioni-locali-aran](../contracts/funzioni-locali-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 0 rows | tables from 2026-02-24 |
 | [gas-acqua-utilitalia](../contracts/gas-acqua-utilitalia.md) | `energia-utilities` | exploratory | — | 4 rows | 4 open requirements; 1 weak rule; 3 monetary limitations; 6 non-native capabilities |
 | [gomma-plastica-federazione-gomma-plastica](../contracts/gomma-plastica-federazione-gomma-plastica.md) | `chimica` | exploratory | — | 5 rows | 5 open requirements; 2 weak rules; 2 monetary limitations; 1 outside_input limitation; 7 non-native capabilities |
 | [grafica-editoria-aieg](../contracts/grafica-editoria-aieg.md) | `carta-grafica` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule; 5 non-native capabilities |
@@ -149,7 +149,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [metalmeccanico-confapi](../contracts/metalmeccanico-confapi.md) | `metalmeccanica` | reviewed | — | 12 rows | 12 open requirements; 1 monetary limitation; 11 outside_input limitations; 5 non-native capabilities |
 | [metalmeccanico-confimi-pmi](../contracts/metalmeccanico-confimi-pmi.md) | `metalmeccanica` | exploratory | — | 2 rows | tables from 2026-06-01; 2 open requirements; 2 outside_input limitations; 6 non-native capabilities |
 | [metalmeccanico-federmeccanica](../contracts/metalmeccanico-federmeccanica.md) | `metalmeccanica` | production | — | 0 rows | complete |
-| [multiservizi-anip](../contracts/multiservizi-anip.md) | `pulizia-multiservizi` | exploratory | — | 9 rows | 9 open requirements; 6 monetary limitations; 3 outside_input limitations; 5 non-native capabilities; 2 declared residuals |
+| [multiservizi-anip](../contracts/multiservizi-anip.md) | `pulizia-multiservizi` | exploratory | — | 9 rows | 9 open requirements; 6 monetary limitations; 3 outside_input limitations; 4 non-native capabilities; 2 declared residuals |
 | [noleggio-autobus-conducente-anav](../contracts/noleggio-autobus-conducente-anav.md) | `trasporti-logistica` | exploratory | — | 9 rows | 9 open requirements; 3 weak rules; 4 monetary limitations; 2 outside_input limitations; 8 non-native capabilities |
 | [occhiali-occhialeria-industria](../contracts/occhiali-occhialeria-industria.md) | `tessile-moda` | exploratory | — | 3 rows | 3 open requirements; 2 weak rules; 1 monetary limitation; 5 non-native capabilities |
 | [ooss-unsic-confsal](../contracts/ooss-unsic-confsal.md) | `organizzazioni-associative` | exploratory | — | 5 rows | 5 open requirements; 1 weak rule; 4 monetary limitations; 7 non-native capabilities |

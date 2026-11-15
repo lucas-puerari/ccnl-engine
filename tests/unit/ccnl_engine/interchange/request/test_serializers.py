@@ -146,6 +146,11 @@ from ccnl_engine.working_time.inputs import (
     ShiftWorkEvent,
 )
 from ccnl_engine.working_time.standby.inputs import StandbyEvent, StandbyKind
+from ccnl_engine.working_time.supplement.employer.inputs import (
+    RateUnit,
+    SecondLevelRate,
+)
+from ccnl_engine.working_time.supplement.models import SupplementWork
 from ccnl_engine.year.competence.inputs import CompetenceYearPlan
 from ccnl_engine.year.tax_year.inputs import TaxYearPlan
 from tests.unit.ccnl_engine import support
@@ -322,6 +327,18 @@ def _employer() -> EmployerProfile:
                 levels=("C3",),
                 extra_months=False,
                 tfr_relevant=False,
+            ),
+        ),
+        second_level_rates=(
+            SecondLevelRate(
+                SupplementWork.NIGHT,
+                Decimal("0.25"),
+                RateUnit.PERCENTAGE,
+                SecondLevelAgreement.COMPANY,
+                date(2026, 1, 1),
+                date(2026, 12, 31),
+                levels=("C3",),
+                hours_paid_apart=True,
             ),
         ),
     )

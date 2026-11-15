@@ -14,7 +14,10 @@ value may replace.  Two kinds are not a gap of the model:
 - a capability whose amount is a fact only the employer knows (a
   second-level agreement, a territorial fund, the pay of earlier payslips):
   accepted by design, for every CCNL or, where a CCNL hands it to the
-  integrative bargaining, for that CCNL (``work_rules.capability_basis``).
+  integrative bargaining, for that CCNL (``work_rules.capability_basis``):
+  the employer states the rate of its agreement once
+  (``EmployerProfile.second_level_rates``) and the engine prices each event
+  with it.
 """
 
 from __future__ import annotations

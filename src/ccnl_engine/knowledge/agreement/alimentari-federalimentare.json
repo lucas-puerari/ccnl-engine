@@ -4222,7 +4222,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "dab44ecbdc28fe977b80ff66b828fe842e1323f791a50aff0b28110319fd3fb6",
+    "source_hash": "c897f17fe92f5d67697a969506780a8372431dc8ed70608f7b1ca2e5e5523c0f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -13919,6 +13919,37 @@
         },
         "transformation": "La clausola stabilisce gruppi minimi di 4 ore, non l'equivalenza tra una giornata di congedo e un numero di ore: day_hours è null. Non prevede riproporzionamento per il part-time né una decorrenza specifica della clausola."
       }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "s-www-flai-it-wp-content-uploads-2018-11-ccnl-industria-alimentare-2023-2027-pdf",
+              "title": "CCNL Industria Alimentare 2023-2027",
+              "kind": "associazione",
+              "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+              "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+            },
+            "page": "132",
+            "section": "Art. 59, comma 1",
+            "quote": "sarà rimborsato l’importo delle spese di viaggio, di vitto e di alloggio, nei limiti della normalità, liquidato in base a nota documentata, salvo accordi forfettari fra le parti interessate."
+          },
+          "transformation": "The CCNL pays no daily travel allowance: the trasferta is refunded at documented cost",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-15T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-15-ai-alimentari-federalimentare-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -14350,6 +14381,28 @@
         "independence": "same_process",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-alimentari-federalimentare-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          }
+        ],
+        "findings": [
+          "Applied: travel."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ],
