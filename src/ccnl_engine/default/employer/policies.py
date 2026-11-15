@@ -174,4 +174,11 @@ EMPLOYER_DEFAULTS: Mapping[str, FieldDefault] = {
         "perequativo reads the individual elements, with a missing_fact "
         "pay_above_ccnl when the element is owed",
     ),
+    "Employment.weekly_shifts": requires_fact(
+        "leave",
+        "employment.weekly_shifts",
+        FactEnforcement.PENDING,
+        "unknown number of weekly shifts: a PAR supplement from 18 or 21 shifts "
+        "is not credited and the balance is inexact",
+    ),
 }

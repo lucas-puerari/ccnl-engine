@@ -929,8 +929,7 @@
       "metalmeccanico-confimi-pmi/overtime_shift_column"
     ],
     "agreement/metalmeccanico-federmeccanica.json": [
-      "metalmeccanico-federmeccanica/par_sector_and_shift_hours",
-      "metalmeccanico-federmeccanica/shift_and_multiweek_premiums"
+      "metalmeccanico-federmeccanica/par_sector_and_shift_hours"
     ],
     "agreement/multiservizi-anip.json": [
       "multiservizi-anip/anip_unsigned_renewal",

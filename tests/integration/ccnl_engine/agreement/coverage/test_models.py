@@ -49,6 +49,8 @@ _DECLARED_GAPS: dict[tuple[str, SalaryGapKind, date], int] = {
     ("scuole-materne-fism", _NOT_APPLICABLE, date(2025, 9, 1)): 8,
     # The ratified 2023 seniority premium is not in force before October (9 levels).
     ("rsa-aiop", _NOT_APPLICABLE, date(2023, 10, 1)): 9,
+    # Art. 159 c. 6 CCNL 18.1.2024: the AFAM position pay from 1 May 2024.
+    ("afam-aran", _NOT_APPLICABLE, date(2024, 5, 1)): 1,
 }
 
 

@@ -65,6 +65,7 @@ def period_field_specs(request: PeriodCalculationRequest) -> tuple[FieldSpec, ..
         ("weekly_rest_day", request.weekly_rest_day, Weekday, False),
         ("rota", request.rota, Rota, True),
         ("qualifying_shifts", request.qualifying_shifts, bool, True),
+        ("weekly_shifts", request.weekly_shifts, int, True),
         ("employment_period", request.employment_period, EmploymentPeriod, True),
         ("seniority", request.seniority, SeniorityFact, True),
         ("sector", request.sector, EmploymentSector, True),
