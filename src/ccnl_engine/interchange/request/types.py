@@ -95,6 +95,11 @@ from ccnl_engine.working_time.inputs import (
     ShiftKind,
 )
 from ccnl_engine.working_time.standby.inputs import StandbyKind
+from ccnl_engine.working_time.supplement.employer.inputs import (
+    RateUnit,
+    SecondLevelRate,
+)
+from ccnl_engine.working_time.supplement.models import SupplementWork
 from ccnl_engine.year.competence.inputs import CompetenceYearPlan
 from ccnl_engine.year.tax_year.inputs import TaxYearPlan
 
@@ -131,6 +136,9 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             SeniorityPromotion,
             SecondLevelAgreement,
             SecondLevelElement,
+            SecondLevelRate,
+            RateUnit,
+            SupplementWork,
             EmploymentChange,
             EmploymentPeriod,
             EmploymentSector,

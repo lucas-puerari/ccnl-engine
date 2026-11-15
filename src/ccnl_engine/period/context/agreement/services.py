@@ -34,6 +34,7 @@ from ccnl_engine.sickness.variant.rules import with_sickness_variant
 from ccnl_engine.working_time.flat_pay.rules import flat_pay_divisor
 from ccnl_engine.working_time.rota.rules import with_rota
 from ccnl_engine.working_time.subsector.rules import with_subsector
+from ccnl_engine.working_time.supplement.employer.rules import with_second_level_rates
 from ccnl_engine.working_time.week.rules import with_week_days, with_week_divisor
 
 if TYPE_CHECKING:
@@ -181,6 +182,9 @@ def load_contract(
         request.level_code,
         request.employer.second_level_elements,
         tctx.competence,
+    )
+    ccnl = with_second_level_rates(
+        ccnl, request.level_code, request.employer.second_level_rates, tctx.competence
     )
     ccnl = with_solidarity_headcount(ccnl, request.employer.headcount.value)
     level = ccnl.level_by_code(request.level_code)

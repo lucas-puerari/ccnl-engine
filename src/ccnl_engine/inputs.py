@@ -104,6 +104,10 @@ from ccnl_engine.surtax.obligation.models import (
 )
 from ccnl_engine.tax_credit.recovery.models import RecoveryPlan
 from ccnl_engine.withholding.deferral.inputs import DeferredShortfall
+from ccnl_engine.working_time.supplement.employer.inputs import (
+    RateUnit,
+    SecondLevelRate,
+)
 
 __all__ = [
     "AgriculturalZone",
@@ -150,11 +154,13 @@ __all__ = [
     "PersonalWithholdingKind",
     "PriorYearTaxFacts",
     "PublicEndOfService",
+    "RateUnit",
     "RecoveryObligation",
     "RecoveryPlan",
     "Rota",
     "SecondLevelAgreement",
     "SecondLevelElement",
+    "SecondLevelRate",
     "SeniorityFact",
     "SeniorityPromotion",
     "SenioritySource",
