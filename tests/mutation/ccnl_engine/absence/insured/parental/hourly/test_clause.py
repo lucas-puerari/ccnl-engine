@@ -17,6 +17,7 @@ import pytest
 
 from ccnl_engine.absence.insured.parental.hourly.handlers import (
     HOURLY_CCNL_LIMITATION,
+    _limitations,
 )
 from ccnl_engine.absence.insured.parental.hourly.models import ParentalHourlyClause
 from ccnl_engine.catalog.loaders import load_ccnl
@@ -117,3 +118,35 @@ def test_the_check_needs_the_criterion(
     assert other_day.period_gross > 0
     same = NursingRestEvent((LeaveHours(date(2026, 3, 3), Decimal(2)),), _BORN)
     assert _run(leave, same, ccnl_id=ccnl[0], level_code=ccnl[1]).period_gross > 0
+
+
+def test_the_first_day_of_leave_decides_the_rule(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """The CCNL hours in force on the first day of leave, 2 March, decide."""
+    seen: list[date] = []
+
+    def in_force(_clause: ParentalHourlyClause, day: date) -> bool:
+        seen.append(day)
+        return day == date(2026, 3, 2)
+
+    monkeypatch.setattr(ParentalHourlyClause, "sets_hours_on", in_force)
+    leave = replace(_leave(2, 3), local_hourly_agreement=False)
+    result = _run(leave, ccnl_id=_COMMERCIO[0], level_code=_COMMERCIO[1])
+    assert HOURLY_CCNL_LIMITATION in {lim.id for lim in result.limitations}
+    assert date(2026, 3, 2) in seen
+
+
+@pytest.mark.parametrize(
+    ("first", "limited"),
+    [(date(2026, 8, 6), False), (date(2026, 8, 7), True)],
+)
+def test_the_limitation_follows_the_date_of_the_clause(
+    first: date, limited: bool
+) -> None:
+    """ARAN-like 6 hours from 7 August: before it the criterion applies."""
+    clause = ParentalHourlyClause(
+        day_hours=Decimal(6), effective_from=date(2026, 8, 7), provenance=_RECORD
+    )
+    limitations = _limitations((), clause, first, unpublished=False)
+    assert (HOURLY_CCNL_LIMITATION in limitations) is limited
