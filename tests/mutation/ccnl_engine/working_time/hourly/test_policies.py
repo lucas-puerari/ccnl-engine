@@ -48,7 +48,7 @@ def test_default_terms_derive_nothing() -> None:
 
 def test_unsourced_hourly_base_is_not_read() -> None:
     """A CCNL whose hourly base carries no provenance is not derived."""
-    ccnl = load_ccnl("acconciatura-estetica-confartigianato")
+    ccnl = load_ccnl("edilizia-artigianato-cna")
 
     assert "has no verified hourly base" in _reject(_terms(ccnl=ccnl))
 

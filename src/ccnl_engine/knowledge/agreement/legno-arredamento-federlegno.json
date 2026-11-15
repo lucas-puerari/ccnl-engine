@@ -343,6 +343,29 @@
           "parameters.una_tantum",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-legno-arredamento-federlegno-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+            "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[0:night], bands[1:night_shift], bands[2:holiday], bands[3:sunday], bands[4:rest_day].",
+          "Left out: travel: kind share applied by hand."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -5165,13 +5188,13 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/DAL-2024/MATERIALI_dipartimento/LEGNO-ARREDO/Verbale_di_accordo_Adeguamento_minimi_anno_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "236d5e54842a67ae1ec61571a31f5eed0ab232f1dd1c28eb4c10bc1d844a0032",
+    "source_hash": "a1433cc3b1cb4d13698c90c2c93f036fbd3b1dfe43570469b1c50b33e4604950",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "minimo_e_contingenza",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -5314,6 +5337,239 @@
               "extraction_timestamp": "2026-09-08T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2022-01-01"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "filcacisl-it-sindacato-wp-content-uploads-2026-09-contratto-legno-industria-pdf",
+            "title": "contratto legno industria",
+            "kind": "associazione",
+            "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+            "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+          },
+          "page": "19",
+          "section": "Art. 27, commi sulle maggiorazioni",
+          "quote": "Per il lavoro straordinario, notturno e festivo sono corrisposte le maggiorazioni percentuali, di seguito indicate, da calcolarsi sulla retribuzione base (minimo tabellare, più l’indennità di contingenza, più eventuale terzo elemento)."
+        },
+        "transformation": "The supplements are measured on minimo_e_contingenza over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-legno-arredamento-federlegno-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_0",
+          "description": "Lavoro notturno ordinario fuori dai turni avvicendati",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.35"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "filcacisl-it-sindacato-wp-content-uploads-2026-09-contratto-legno-industria-pdf",
+                "title": "contratto legno industria",
+                "kind": "associazione",
+                "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+              },
+              "page": "20",
+              "section": "Art. 27, commi sulle maggiorazioni",
+              "quote": "3) lavoro notturno (dalle ore 22 alle ore 6) non compreso in turni avvicendati, compreso il 35 35 35 ciclo continuo"
+            },
+            "transformation": "Lavoro notturno ordinario fuori dai turni avvicendati",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-legno-arredamento-federlegno-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_SHIFT_1",
+          "description": "Turno notturno avvicendato, anche a ciclo continuo",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "filcacisl-it-sindacato-wp-content-uploads-2026-09-contratto-legno-industria-pdf",
+                "title": "contratto legno industria",
+                "kind": "associazione",
+                "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+              },
+              "page": "20",
+              "section": "Art. 27, commi sulle maggiorazioni",
+              "quote": "4) lavoro notturno (dalle ore 22 alle ore 6) effettuato in turni avvicendati, compreso ciclo 30 30 30 continuo"
+            },
+            "transformation": "Turno notturno avvicendato, anche a ciclo continuo",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-legno-arredamento-federlegno-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_2",
+          "description": "Festività",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "filcacisl-it-sindacato-wp-content-uploads-2026-09-contratto-legno-industria-pdf",
+                "title": "contratto legno industria",
+                "kind": "associazione",
+                "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+              },
+              "page": "20",
+              "section": "Art. 27, commi sulle maggiorazioni",
+              "quote": "2) lavoro festivo anche a turni avvicendati compreso il ciclo continuo (compiuto nelle domeniche o nei giorni di riposo compensativo 50 50 50 delle stesse e nei giorni festivi)"
+            },
+            "transformation": "Festività",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-legno-arredamento-federlegno-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_SUNDAY_3",
+          "description": "Domenica senza riposo compensativo in altro giorno",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "filcacisl-it-sindacato-wp-content-uploads-2026-09-contratto-legno-industria-pdf",
+                "title": "contratto legno industria",
+                "kind": "associazione",
+                "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+              },
+              "page": "20",
+              "section": "Art. 27, commi sulle maggiorazioni",
+              "quote": "2) lavoro festivo anche a turni avvicendati compreso il ciclo continuo (compiuto nelle domeniche o nei giorni di riposo compensativo 50 50 50 delle stesse e nei giorni festivi)"
+            },
+            "transformation": "Domenica senza riposo compensativo in altro giorno",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-legno-arredamento-federlegno-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_REST_DAY_4",
+          "description": "Giorno di riposo compensativo",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2026-01-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "filcacisl-it-sindacato-wp-content-uploads-2026-09-contratto-legno-industria-pdf",
+                "title": "contratto legno industria",
+                "kind": "associazione",
+                "url": "https://www.filcacisl.it/sindacato/wp-content/uploads/2026/09/contratto-legno-industria.pdf",
+                "sha256": "3ffe3e57f2e5f83f83018b96f9fe2a66f8213160d361cb247b72b2ea76f85c68"
+              },
+              "page": "20",
+              "section": "Art. 27, commi sulle maggiorazioni",
+              "quote": "2) lavoro festivo anche a turni avvicendati compreso il ciclo continuo (compiuto nelle domeniche o nei giorni di riposo compensativo 50 50 50 delle stesse e nei giorni festivi)"
+            },
+            "transformation": "Giorno di riposo compensativo",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2026-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-legno-arredamento-federlegno-time-supplements"
             }
           }
         }

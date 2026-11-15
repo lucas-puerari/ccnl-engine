@@ -378,6 +378,29 @@
         "checked": [
           "apprenticeship"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-legno-lapidei-artigianato-confartigianato-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/cannata/LAPIDEI/2014_CcnlLegnoLapideiArtigiani.pdf",
+            "sha256": "d5b66672860a63bf6e51adacccf6030ea09ddabaa88fc036f08bbb3bfcbbd6ef"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[6:holiday_compensatory_rest], bands[7:saturday_sixth_day].",
+          "Left out: bands[0:night]: more night bands the engine cannot tell apart; bands[1:night_shift]: more night_shift bands the engine cannot tell apart; bands[2:night]: more night bands the engine cannot tell apart; bands[3:night_shift]: more night_shift bands the engine cannot tell apart; bands[4:holiday]: more holiday bands the engine cannot tell apart; bands[5:holiday]: more holiday bands the engine cannot tell apart; travel: kind share applied by hand; none.day_shift: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -3806,13 +3829,13 @@
     "effective_until": null,
     "source": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
     "verification_status": "unverified",
-    "source_hash": "5e1afe938deacbba5ebf767bfce7a9e48fc88aaf7fd2aec6273a9cbca819d5c2",
+    "source_hash": "339e93697b8fcbd23931096c4a0f23d3856e137f2bc8c538a999145b70cb1c23",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -3919,6 +3942,116 @@
               "extraction_timestamp": "2026-09-08T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2022-01-01"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "tps-www-filleacgil-net-images-cannata-lapidei-2014-ccnllegnolapideiartigiani-pdf",
+            "title": "2014 CcnlLegnoLapideiArtigiani",
+            "kind": "associazione",
+            "url": "https://www.filleacgil.net/images/cannata/LAPIDEI/2014_CcnlLegnoLapideiArtigiani.pdf",
+            "sha256": "d5b66672860a63bf6e51adacccf6030ea09ddabaa88fc036f08bbb3bfcbbd6ef"
+          },
+          "page": "37",
+          "section": "Art. 42; base di fatto: artt. 29 e 29 bis; orario settimanale: artt. 27 e 27 bis",
+          "quote": "La retribuzione oraria si ottiene dividendo la retribuzione mensile per 174."
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-legno-lapidei-artigianato-confartigianato-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_HOLIDAY_COMPENSATORY_REST_6",
+          "description": "Lavoro festivo con riposo compensativo; la domenica con riposo in altro giorno non è considerata festiva",
+          "work": "holiday_compensatory_rest",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2014-03-25",
+                "valid_until": null,
+                "value": "0.12"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "tps-www-filleacgil-net-images-cannata-lapidei-2014-ccnllegnolapideiartigiani-pdf",
+                "title": "2014 CcnlLegnoLapideiArtigiani",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/cannata/LAPIDEI/2014_CcnlLegnoLapideiArtigiani.pdf",
+                "sha256": "d5b66672860a63bf6e51adacccf6030ea09ddabaa88fc036f08bbb3bfcbbd6ef"
+              },
+              "page": "32",
+              "section": "Art. 29 bis, commi 4-5",
+              "quote": "Non si considera festivo il lavoro prestato di domenica dai lavoratori che godono del riposo compensativo in altro giorno della settimana. Per il lavoro straordinario, notturno e festivo sono corrisposte le seguenti maggiorazioni percentuali da calcolarsi sulla retribuzione oraria normale di fatto: - lavoro straordinario: 28% - lavoro notturno in turni avvicendati: 18% - lavoro notturno non compreso in turni avvicendati: 50% - lavoro festivo: 50% - lavoro festivo con riposo compensativo: 12%"
+            },
+            "transformation": "Lavoro festivo con riposo compensativo; la domenica con riposo in altro giorno non è considerata festiva",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2014-03-25",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-legno-lapidei-artigianato-confartigianato-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_SATURDAY_SIXTH_DAY_7",
+          "description": "Sabato ordinario in settimana distribuita su sei giorni, massimo quattro ore",
+          "work": "saturday_sixth_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2014-03-25",
+                "valid_until": null,
+                "value": "0.08"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "tps-www-filleacgil-net-images-cannata-lapidei-2014-ccnllegnolapideiartigiani-pdf",
+                "title": "2014 CcnlLegnoLapideiArtigiani",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/cannata/LAPIDEI/2014_CcnlLegnoLapideiArtigiani.pdf",
+                "sha256": "d5b66672860a63bf6e51adacccf6030ea09ddabaa88fc036f08bbb3bfcbbd6ef"
+              },
+              "page": "31",
+              "section": "Art. 27, comma 2",
+              "quote": "maggiorazione dell'8% da calcolarsi sulla retribuzione globale di fatto e le ore normali contrattuali nella giornata di sabato potranno essere massimo 4."
+            },
+            "transformation": "Sabato ordinario in settimana distribuita su sei giorni, massimo quattro ore",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2014-03-25",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-legno-lapidei-artigianato-confartigianato-time-supplements"
             }
           }
         }
