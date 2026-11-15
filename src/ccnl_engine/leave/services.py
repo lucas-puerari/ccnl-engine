@@ -132,6 +132,7 @@ def _accrual_facts(ctx: RunContext) -> AccrualFacts:
         subsector=request.employer.subsector,
         qualifying_shifts=request.qualifying_shifts,
         weekly_shifts=request.weekly_shifts,
+        roles=request.roles,
         entry_pay=isinstance(request.contract_type, Permanent)
         and request.contract_type.entry_pay,
     )

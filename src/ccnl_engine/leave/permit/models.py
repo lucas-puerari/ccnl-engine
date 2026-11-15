@@ -227,6 +227,8 @@ class PermitRules(BaseModel):
         day: date | None = None,
         qualifying_shifts: bool | None = None,
         weekly_shifts: int | None = None,
+        roles: frozenset[str] | None = None,
+        hired_on: date | None = None,
     ) -> Decimal:
         """Return the yearly hours of a full-time worker of an employer.
 
@@ -255,7 +257,12 @@ class PermitRules(BaseModel):
         ]
         absorbed = sum((a.hours for a in chosen), _ZERO)
         return max(hours - absorbed, _ZERO) + self._extra_for(
-            day, subsector, qualifying_shifts, weekly_shifts
+            day,
+            subsector,
+            qualifying_shifts,
+            weekly_shifts,
+            roles=roles,
+            hired_on=hired_on,
         )
 
     def _extra_for(
@@ -264,6 +271,9 @@ class PermitRules(BaseModel):
         subsector: str | None,
         shifts: bool | None,
         weekly: int | None,
+        *,
+        roles: frozenset[str] | None = None,
+        hired_on: date | None = None,
     ) -> Decimal:
         """Sum the applicable additive annual hours.
 
@@ -274,7 +284,10 @@ class PermitRules(BaseModel):
             (
                 item.hours
                 for item in self.extra_hours
-                if day is not None and item.applies(day, subsector, shifts, weekly)
+                if day is not None
+                and item.applies(
+                    day, subsector, shifts, weekly, roles=roles, hired_on=hired_on
+                )
             ),
             _ZERO,
         )
