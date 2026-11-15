@@ -19,22 +19,6 @@
       }
     },
     {
-      "id": "art34_role_conditions",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Art. 34 cc. 3 and 7: the engine pays the level-specific allowances only while the caller states the qualifying roles. It cannot independently verify a child's age or certification validity, written notice and delivery of its copy. Nor does it automatically offset the allowance of c. 3 against an individual superminimo or that of c. 7 against better treatment received overall; the caller must state individual pay net of any offset. The c. 4 allowance is restricted to C super and D super, outside this reduced-hours file.",
-      "calculation": "ccnl/lavoro-domestico-convivente-orario-ridotto:coverage.notes",
-      "state": "absent",
-      "remediation": "Verify role eligibility externally and state individual pay net of any offset; to automate this, model child age, certification validity and notice, and the applicable offsets.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "lavoro-domestico-convivente-orario-ridotto/art34_role_conditions"
-        ]
-      }
-    },
-    {
       "id": "extra_month_hours",
       "institute": "assistance_contribution",
       "variant": "all",

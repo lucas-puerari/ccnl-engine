@@ -116,8 +116,15 @@ def _with(level: Level, elements: tuple[IndividualElement, ...], day: date) -> L
         for e in elements
     )
     excess = sum((monthly_on(e, level, day) for e in elements), _ZERO)
+    absorbable = sum(
+        (monthly_on(e, level, day) for e in elements if e.absorbable), _ZERO
+    )
     allowances = tuple(
-        _offset_allowance(a, excess, day) if a.absorbed_by_individual_excess else a
+        _offset_allowance(
+            a, absorbable if a.absorbed_by_absorbable_only else excess, day
+        )
+        if a.absorbed_by_individual_excess
+        else a
         for a in level.fixed_allowances
     )
     return level.model_copy(update={"fixed_allowances": (*allowances, *added)})

@@ -230,7 +230,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Verify role eligibility externally and state individual pay net of any offset; to automate this, model child age, certification validity and notice, and the applicable offsets."
+          "remediation": "Resolved: the allowances of art. 34 are paid while the caller states the role (Employment.roles: baby_sitter_under_6 until the child is six, assistenza_piu_non_autosufficienti, certificazione_uni_11766 while valid and communicated in writing), facts of the employment the engine cannot see; the individual elements of the worker absorb them: the absorbable superminimi for cc. 3-4 (\"assorbibile da eventuali superminimi individuali di miglior favore\", c. 5 keeping whole the treatment \"ad personam non assorbibile\"), every better treatment for c. 7 (\"assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti\") (review of 2026-11-16).",
+          "status": "resolved"
         },
         "provenance": {
           "status": "verified",
@@ -657,7 +658,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-lavoro-domestico-convivente-orario-ridotto-art34-allowances"
             }
-          }
+          },
+          "absorbed_by_individual_excess": true
         }
       ],
       "category": null,
@@ -833,7 +835,9 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-lavoro-domestico-convivente-orario-ridotto-art34-allowances"
             }
-          }
+          },
+          "absorbed_by_individual_excess": true,
+          "absorbed_by_absorbable_only": true
         },
         {
           "code": "IND_CERTIFICAZIONE_UNI",
@@ -899,7 +903,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-08-ai-lavoro-domestico-convivente-orario-ridotto-art34-allowances"
             }
-          }
+          },
+          "absorbed_by_individual_excess": true
         }
       ],
       "category": null,
@@ -1048,7 +1053,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "54572251861d0e79225365fae241f3591968a317571ef6417373896e938fe0a9",
+    "source_hash": "4687d6eba7b6b3baa538e562d206c5f1e6e337557a9e92df2f6e4bd1853b720a",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },

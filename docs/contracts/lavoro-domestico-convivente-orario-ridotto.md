@@ -153,12 +153,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note.
 
-!!! warning "lavoro-domestico-convivente-orario-ridotto/art34_role_conditions · base_salary · impact yes · open"
+!!! note "lavoro-domestico-convivente-orario-ridotto/art34_role_conditions · base_salary · impact yes · resolved"
     Art. 34 cc. 3 and 7: the engine pays the level-specific allowances only while the caller states the qualifying roles. It cannot independently verify a child's age or certification validity, written notice and delivery of its copy. Nor does it automatically offset the allowance of c. 3 against an individual superminimo or that of c. 7 against better treatment received overall; the caller must state individual pay net of any offset. The c. 4 allowance is restricted to C super and D super, outside this reduced-hours file.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Verify role eligibility externally and state individual pay net of any offset; to automate this, model child age, certification validity and notice, and the applicable offsets.
+    **Remediation:** Resolved: the allowances of art. 34 are paid while the caller states the role (Employment.roles: baby_sitter_under_6 until the child is six, assistenza_piu_non_autosufficienti, certificazione_uni_11766 while valid and communicated in writing), facts of the employment the engine cannot see; the individual elements of the worker absorb them: the absorbable superminimi for cc. 3-4 ("assorbibile da eventuali superminimi individuali di miglior favore", c. 5 keeping whole the treatment "ad personam non assorbibile"), every better treatment for c. 7 ("assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti") (review of 2026-11-16).
 
 !!! warning "provisional_ruleset · irpef · impact unknown · open"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.
