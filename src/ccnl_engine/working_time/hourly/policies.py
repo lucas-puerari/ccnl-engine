@@ -181,6 +181,7 @@ class HourlyTerms:
         method: HourlyBaseMethod | None = None,
         *,
         supplement: bool = False,
+        overtime: bool = False,
     ) -> HourlyBase:
         """Return the hourly base on ``day``.
 
@@ -193,6 +194,8 @@ class HourlyTerms:
             supplement: Whether the base is that of a maggiorazione, which a
                 CCNL of :attr:`IndividualInBase.HOUR_ONLY` computes without
                 the individual elements.
+            overtime: Whether the base is that of the overtime hour, which
+                holds the rateo of ``hourly_base_yearly_payments``.
 
         Returns:
             The hourly base; the event is rejected (``reject_underived``)
@@ -237,7 +240,10 @@ class HourlyTerms:
             )
             state = "included" if included else "not_included"
             parts_of_base += personal if included else ()
-        parts_of_base += rateo(parts_of_base, supplements.hourly_base_yearly_payments)
+        if overtime:
+            parts_of_base += rateo(
+                parts_of_base, supplements.hourly_base_yearly_payments
+            )
         monthly = sum((v for _, v in parts_of_base), Decimal(0))
         return HourlyBase(
             monthly / divisor, monthly, divisor, named, parts_of_base, state

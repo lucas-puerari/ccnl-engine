@@ -8,7 +8,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
-| pubblica-amministrazione | 14 | 7 548 000 | 5 | 288 | 227 | 0 | `funzioni-centrali-aran` |
+| pubblica-amministrazione | 14 | 7 548 000 | 5 | 288 | 243 | 0 | `funzioni-centrali-aran` |
 | terziario | 46 | 5 257 055 | 46 | 951 | 1966 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 49 | 4 969 900 | 150 | 1213 | 2607 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 76 | 0 | `lavoro-domestico-non-convivente` |
@@ -27,8 +27,8 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`universita-aran`](../contracts/universita-aran.md) | 1 200 000 | exploratory | 0 | 9 | 22 | party or official | none | none |
 | [`universita-tecnologi-aran`](../contracts/universita-tecnologi-aran.md) | 1 200 000 | exploratory | 0 | 6 | 4 | party or official | none | none |
 | [`sanita-aran`](../contracts/sanita-aran.md) | 580 000 | reviewed | 0 | 8 | 22 | party or official | maintainer | 2027-01-31 |
-| [`funzioni-locali-aran`](../contracts/funzioni-locali-aran.md) | 400 000 | reviewed | 0 | 21 | 14 | party or official | maintainer | 2027-01-31 |
-| [`funzioni-centrali-aran`](../contracts/funzioni-centrali-aran.md) (anchor) | 250 000 | reviewed | 0 | 5 | 44 | party or official | maintainer | 2027-12-31 |
+| [`funzioni-locali-aran`](../contracts/funzioni-locali-aran.md) | 400 000 | reviewed | 0 | 21 | 22 | party or official | maintainer | 2027-01-31 |
+| [`funzioni-centrali-aran`](../contracts/funzioni-centrali-aran.md) (anchor) | 250 000 | reviewed | 0 | 5 | 52 | party or official | maintainer | 2027-12-31 |
 | [`forze-polizia-ordinamento-civile`](../contracts/forze-polizia-ordinamento-civile.md) | 130 000 | exploratory | 2 | 112 | 0 | party or official | none | none |
 | [`dirigenza-sanitaria-medico-veterinaria-aran`](../contracts/dirigenza-sanitaria-medico-veterinaria-aran.md) | 100 000 | exploratory | 3 | 7 | 1 | party or official | none | none |
 | [`dirigenza-sanitaria-area-sanita-aran`](../contracts/dirigenza-sanitaria-area-sanita-aran.md) | 37 000 | exploratory | 0 | 11 | 0 | party or official | none | none |
