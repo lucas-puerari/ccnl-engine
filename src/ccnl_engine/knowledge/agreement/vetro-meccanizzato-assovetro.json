@@ -4265,7 +4265,7 @@
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/vetro_lampade/260409_VETRO_RINNOVO_ACCORDO_2026-2028_TABELLE.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "2aebd13291f3a713184ab265c82d28ad2ca3e3b007144364587f973ae729d269"
+    "source_hash": "1fb7deb7b1c03fa9380569a9b05848e9b660ec14119434d4b2aebbd14bd48f59"
   },
   "work_rules": {
     "parental_hourly": {
@@ -4285,6 +4285,66 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://a, sha256 e91271f843086e80780b607d9b62f3f6b7a40d65888fb542ecc8ecfed667d95f; https://w, sha256 c20fa051273aff50e46189f2a39cabf21182270204459181aea96c1cf765896c)."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26"
+      ],
+      "divisor": 25,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "135749",
+            "title": "Testo coordinato firmato del CCNL 2021–2022",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/135749",
+            "sha256": "e91271f843086e80780b607d9b62f3f6b7a40d65888fb542ecc8ecfed667d95f"
+          },
+          "page": "96",
+          "section": "art. 23",
+          "quote": "Qualora taluna delle festività di cui alle lettere b) e c) cada di domenica, è dovuta ai lavoratori, in aggiunta alla retribuzione mensile, una giornata di retribuzione nella misura di 1/25 della retribuzione mensile, composta dagli elementi contemplati dall'art, 28"
+        },
+        "transformation": "La quota 1/25 dà divisor 25. Le lettere b) e c) dell'art. 23 (PDF p. 95) elencano 25 aprile, 1° maggio, 2 giugno, 1° e 6 gennaio, lunedì di Pasqua, 15 agosto, 1° novembre, 8, 25 e 26 dicembre: sono i codici in holidays. La lettera d) (Santo Patrono) non è richiamata; il 4 novembre è trattato separatamente dall'art. 17 (PDF p. 89), con pagamento in agosto.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "verification_status": "unverified"
+        },
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
+      },
+      "ex_november_fourth": {
+        "month": 8,
+        "hours": 8,
+        "hourly_divisor": 175,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "135749",
+              "title": "Testo coordinato firmato del CCNL 2021–2022",
+              "kind": "cnel",
+              "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/135749",
+              "sha256": "e91271f843086e80780b607d9b62f3f6b7a40d65888fb542ecc8ecfed667d95f"
+            },
+            "page": "89",
+            "section": "art. 17 — Riposi aggiuntivi e riduzione dell’orario di lavoro",
+            "quote": "Inoltre a fronte della ex festività nazionale del 4 novembre sarà corrisposto, in occasione del pagamento della retribuzione del mese di agosto, un trattamento economico complessivo pari a 4/175 della retribuzione mensile. Sempre in occasione del pagamento della retribuzione del mese di agosto, ulteriori 4/175 verrano riconosciuti a partire dall’anno 2004."
+          },
+          "transformation": "Dal 2004 le due quote di 4/175 della retribuzione mensile, entrambe pagate in agosto, sommano 8/175: month 8, hours 8, hourly_divisor 175. Non dipende dalla coincidenza del 4 novembre con la domenica e non va aggiunto a holidays."
+        }
       }
     }
   }

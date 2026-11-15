@@ -1221,7 +1221,7 @@
     "effective_until": null,
     "source": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "b829048a3af2c58bbb1725b7c389234e0cb796a9cb261b1302191ec530efcd98",
+    "source_hash": "c9f5871a66c47255ba0efe3924cf8d287dde0212c02a51b46caa48b0658cbc56",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1455,6 +1455,25 @@
           "hospital_excluded": true
         }
       ]
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-federcasa-2022-2024",
+            "title": "CCNL Federcasa 2022–2024",
+            "kind": "associazione",
+            "url": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
+            "sha256": "4c9e5b5a0a22a0712fbbe475c9cc77248f0e0a33b3c338fab6881915146c2c0c"
+          },
+          "page": "48",
+          "section": "Art. 53, commi 12–13",
+          "quote": "12. Il congedo parentale potrà essere usufruito in forma giornaliera o oraria sulla base della regolamentazione definita a livello aziendale. 13. La fruizione oraria dei periodi di congedo parentale, ai sensi dell’articolo 7 del D.Lgs. 80/2015 e dell'articolo 32 comma 1bis del DLgs 151/2001, per il personale in full time e in part time, è frazionabile fino al minimo di un'ora continuativa da fruire, in linea di massima, all’inizio o al termine della prestazione lavorativa prevista per la madre lavoratrice o il padre lavoratore e non può essere cumulata con permessi o riposi richiesti a qualsiasi titolo."
+        },
+        "transformation": "Il comma 13 fissa solo la frazione minima di un'ora continuativa, non le ore equivalenti a una giornata; day_hours è quindi null. Menziona full time e part time ma non dispone un riproporzionamento: part_time_scaled è false. Nessuna decorrenza specifica indicata nella clausola: effective_from è null.",
+        "note": "Scanned PDF: the quote is read from the image of page 48."
+      }
     }
   }
 }
