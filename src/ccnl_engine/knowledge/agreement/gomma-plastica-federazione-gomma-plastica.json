@@ -2989,7 +2989,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
     "verification_status": "unverified",
-    "source_hash": "9ca813cd3b77f646ee556e444df6ec4e7caf99216c3dec6bf1faae7da0828aa7",
+    "source_hash": "980fa029aaac2a8b5be311cd7cac84314aceb465ebc9be5d768ccc3f1b298652",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3306,6 +3306,52 @@
           "comporto_days": 365
         }
       ]
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "divisor": 25,
+      "on_rest_day": false,
+      "on_saturday": false,
+      "on_coincident_holiday": true,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-gomma-plastica-2021-04-12",
+            "title": "CCNL 12 aprile 2021",
+            "kind": "associazione",
+            "url": "https://www.studiobergonzini.it/uploads/3004241047572021-04-12-ccnlpdf.pdf",
+            "sha256": "31758caf2480d3645bf46c30b70c28c921d0eb13e36d52ca49d9d858f960adb8"
+          },
+          "page": "27",
+          "section": "art. 15, par. A, comma 2",
+          "quote": "2. In occasione della Pasqua, e comunque in coincidenza di una o più festività di cui alle lett. b) e c) del presente articolo tra di loro, o con la domenica, o con il giorno destinato al riposo compensativo, qualora non si proceda a spostamento, verrà corrisposto al lavoratore, in aggiunta alla retribuzione mensile, l'importo di 1/25 della retribuzione mensile, calcolata con riferimento agli elementi ed alle modalità di cui all'art. 19, comma 2."
+        },
+        "transformation": "Il comma 2 paga la Pasqua e le festività delle lettere b) e c) coincidenti con la domenica, con quota di 1/25 della retribuzione mensile, qualora non si proceda a spostamento; paga anche la coincidenza tra festività. Le lettere b) e c) (PDF pp. 26–27) individuano 25 aprile, 1° maggio, Capodanno, Epifania, lunedì di Pasqua, 2 giugno, Assunzione, Ognissanti, Immacolata Concezione, Natale, Santo Stefano e Patrono. Il 4 novembre non figura tra queste; il riposo compensativo non equivale a qualsiasi giorno di riposo settimanale. Per le festività soppresse il CCNL prevede riposi sostitutivi, non una quota aggiuntiva per la prima domenica di novembre né una quota retributiva in altro mese: art. 9, comma 1, PDF p. 21 (sha256 31758caf2480d3645bf46c30b70c28c921d0eb13e36d52ca49d9d858f960adb8): «1. I lavoratori hanno diritto di godere annualmente di 4 giornate di riposo in sostituzione delle festività soppresse dalla legge 5.3.1977, n. 54 e successive modifiche e del trattamento per le stesse previsto dall'Accordo interconfederale 26.1.1977.»",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2021-04-12",
+          "verification_status": "unverified"
+        }
+      }
     }
   }
 }

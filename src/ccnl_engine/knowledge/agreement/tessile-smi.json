@@ -1950,7 +1950,7 @@
     "effective_until": null,
     "source": "https://www.sistemamodaitalia.com/",
     "verification_status": "unverified",
-    "source_hash": "df5bae7e130472eba0f9494355ec19a8f1466a79d15c0c71c5ee1f467ebac5d6",
+    "source_hash": "abdf53916d60d6fc7dc1f90f6077dd273c6eb8d703354f4b1f05a524e1f4cc28",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2214,6 +2214,51 @@
         },
         "integration_rate": "1",
         "net_basis": true
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "divisor": 26,
+      "on_rest_day": false,
+      "on_saturday": true,
+      "on_coincident_holiday": true,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "tessile-smi-ccnl-2022-01-31",
+            "title": "CCNL tessile abbigliamento 31 gennaio 2022",
+            "kind": "cnel",
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/187819",
+            "sha256": "77c269b3fa0d3d87efeb86e44ecd7b344f55cb3d125205d283e6ac58b97fb2b1"
+          },
+          "page": "100",
+          "section": "art. 98 (intermedi); artt. 91 e 107",
+          "quote": "Nel caso di coincidenza di uno dei giorni festivi di cui sopra con la domenica o con altro giorno festivo o con il sabato o con il periodo feriale, verrà corrisposto in aggiunta alla retribuzione un importo pari a 1/26 della retribuzione stessa."
+        },
+        "transformation": "Le festività sono quelle elencate nell'art. 91 del CCNL 2022 (PDF p. 95), riprese nel rinnovo 2024 (p. 31); includono 25 aprile, 1 maggio e 2 giugno. L'art. 91, lett. c, prevede 1/26 per domenica e sabato; l'art. 98 (e la previsione parallela dell'art. 107) prevede anche la coincidenza con altro giorno festivo per intermedi e impiegati. Il 4 novembre non è nell'elenco: il compenso contrattuale di 1/26 è assorbito nella retribuzione delle riduzioni d'orario, non erogato come ulteriore quota per festività domenicale né come pagamento autonomo in un mese fisso. Citazione verbatim, art. 33, § 1.1, PDF p. 50, sha256 77c269b3fa0d3d87efeb86e44ecd7b344f55cb3d125205d283e6ac58b97fb2b1: «I compensi pari a 1/26 della retribuzione lorda mensile previsti dal presente contratto per la coincidenza della festività del 15 agosto (Assunzione) con la domenica o con il sabato o con il periodo feriale e per la festività nazionale del 4 novembre, anziché essere corrisposti nei periodi di paga di agosto e di novembre, saranno corrisposti in occasione del godimento delle predette riduzioni di orario. Resta a carico dell’azienda la differenza tra detti compensi e la retribuzione corrispondente alle riduzioni predette.» Per i settori specificati nello stesso articolo si applica analogo assorbimento del solo 4 novembre.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2022-01-31",
+          "verification_status": "unverified"
+        }
       }
     }
   },
