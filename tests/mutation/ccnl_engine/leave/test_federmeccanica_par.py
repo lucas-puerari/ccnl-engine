@@ -43,7 +43,7 @@ def test_par_hours_by_sector_and_shifts(
 
 def test_an_unknown_sector_names_the_fact_for_a_turnista() -> None:
     """The 8 hours exclude steel: a turnista of an unstated sector is unknown."""
-    (extra,) = _rol().extra_hours
+    extra = _rol().extra_hours[0]
     day = date(2026, 3, 1)
     assert extra.shift_fact_unknown(day, None, shifts=True)
     assert not extra.shift_fact_unknown(day, "auto", shifts=True)

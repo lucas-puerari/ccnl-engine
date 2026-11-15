@@ -47,6 +47,7 @@ def employment_fields(
         ("tfr_fund", e.tfr_fund, TfrFundBalance, True),
         ("tfr_treasury_fund", e.tfr_treasury_fund, bool, True),
         ("qualifying_shifts", e.qualifying_shifts, bool, True),
+        ("weekly_shifts", e.weekly_shifts, int, True),
         ("contribution_exemption", e.contribution_exemption, Exemption, True),
         ("mothers_exemption", e.mothers_exemption, MothersExemption, True),
     )

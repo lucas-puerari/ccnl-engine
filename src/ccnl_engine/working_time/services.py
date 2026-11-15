@@ -37,6 +37,7 @@ from ccnl_engine.event.facade import (
 )
 from ccnl_engine.event.standard.handlers import _standard_event_gross
 from ccnl_engine.working_time.overtime.hourly import HOURLY_RATE_DERIVED, hourly_paid
+from ccnl_engine.working_time.overtime.multiweek import with_multiweek_premium
 from ccnl_engine.working_time.overtime.policies import (
     band_decision,
     overtime_issues,
@@ -140,14 +141,18 @@ def _with_yearly_rules(
     bands: CCNLOvertimeBands,
     decisions: list[CalculationDecision],
 ) -> tuple[OvertimeEvent, tuple[CalculationIssue, ...]]:
-    """Apply the supplementary share and the exempt quota of the year.
+    """Apply the supplementary share, the exempt quota and the multi-week hours.
 
     Returns:
         The paid event and the issues of the missing facts; the decisions
         of the rules applied are appended to ``decisions``.
     """
     issues: list[CalculationIssue] = []
-    for step in (_with_supplementary_excess, _with_quota_premium):
+    for step in (
+        _with_supplementary_excess,
+        _with_quota_premium,
+        with_multiweek_premium,
+    ):
         paid, extra, issue = step(event, paid, bands)
         decisions.extend(() if extra is None else (extra,))
         issues.extend(() if issue is None else (issue,))
