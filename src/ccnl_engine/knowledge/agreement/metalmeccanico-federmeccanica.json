@@ -138,7 +138,7 @@
       },
       {
         "kind": "simplification",
-        "text": "MULTI-WEEK SCHEDULE AND NIGHT SHIFT WORK: the premiums of the orario plurisettimanale of Art. 5 as renewed on 22 November 2025 (15% Monday to Friday and 25% on Saturday, 20% and 30% for sudden needs, raised by 8% from the 81st hour, p. 32 of the signed scan) and the onnicomprensive night shift rates of Art. 7 (20%, 60%, 35% from 1 June 2013; 25%, 65%, 40% from 22 to 6) are not modelled. The shift column of the overtime of Art. 7 is: OT_NOTTURNO_TURNI, OT_NOTTURNO_TURNI_EXTRA and OT_NOTTURNO_FESTIVO_TURNI for an event with in_periodic_shift.",
+        "text": "MULTI-WEEK SCHEDULE: the premiums of the orario plurisettimanale of Art. 5 as renewed on 22 November 2025 (15% Monday to Friday and 25% on Saturday, 20% and 30% for sudden needs, raised by 8% from the 81st hour, p. 32 of the signed scan) are not modelled. The night work of Art. 7 is in supplement_bands: 20% before 22 (FED_NOTTURNO_FINO_22), 30% after 22 not on shifts (FED_NOTTURNO_OLTRE_22), the shift workers 25% from 22 to 6 (FED_NOTTURNO_TURNI) or 20% in the impiantistiche activities over the 24 hours (FED_NOTTURNO_TURNI_IMPIANTI, role impianti_24h); their night-holiday rates of rows h) and i) (60%, 35%; 65%, 40% from 22 to 6) are not modelled. The shift column of the overtime of Art. 7 is: OT_NOTTURNO_TURNI, OT_NOTTURNO_TURNI_EXTRA and OT_NOTTURNO_FESTIVO_TURNI for an event with in_periodic_shift.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -146,7 +146,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the multi-week premiums of Art. 5 and the night shift supplements of Art. 7 with a fact naming the schedule of the worker, then remove this note."
+          "remediation": "Model the multi-week premiums of Art. 5 and the night-holiday rates of the shift workers with a fact naming the schedule of the worker, then resolve this limitation."
         }
       },
       {
@@ -3426,7 +3426,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "c09db580ba4ffb283f105078d77e774afd4318ac4950c2ade65227e6ea67b2ce",
+    "source_hash": "de2a2267287b9110f65b3e70e90a47dbec940d2527013f9a1dab056ca6268532",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -3982,6 +3982,135 @@
               "verified_at": "2026-10-19T09:00:00Z",
               "review_id": "2026-10-19-ai-hourly-rates"
             }
+          }
+        },
+        {
+          "code": "FED_NOTTURNO_FINO_22",
+          "description": "Lavoro notturno fino alle ore 22 (art. 7 riga b)",
+          "work": "night_early",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "valid_until": null,
+                "value": "0.20",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-federmeccanica-2021-02-05",
+                "title": "CCNL Metalmeccanici Federmeccanica-Assistal 5 febbraio 2021 (testo FIOM-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+              },
+              "page": "161",
+              "section": "Sez. Quarta, Titolo III, Art. 7",
+              "quote": "Le percentuali di maggiorazione per il lavoro straordinario, notturno e festivo, da corrispondersi oltre alla normale retribuzione e da calcolarsi sugli elementi della stessa indicati al comma successivo, sono le seguenti"
+            },
+            "transformation": "Row b) of the table, 'notturno fino alle ore 22': 20% for the work not on shifts; the shift workers take 20% too from 1 June 2013 (next paragraph). Night work starts, for pay, 12 hours after the start of the morning shift (same page). The percentages are 'da corrispondersi oltre alla normale retribuzione': the ordinary night hours are in the monthly pay, the band adds the maggiorazione only (hours_paid_apart false)."
+          }
+        },
+        {
+          "code": "FED_NOTTURNO_OLTRE_22",
+          "description": "Lavoro notturno oltre le ore 22, non a turni (art. 7 riga b)",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "valid_until": null,
+                "value": "0.30",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-federmeccanica-2021-02-05",
+                "title": "CCNL Metalmeccanici Federmeccanica-Assistal 5 febbraio 2021 (testo FIOM-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+              },
+              "page": "161",
+              "section": "Sez. Quarta, Titolo III, Art. 7",
+              "quote": "Le percentuali di maggiorazione per il lavoro straordinario, notturno e festivo, da corrispondersi oltre alla normale retribuzione e da calcolarsi sugli elementi della stessa indicati al comma successivo, sono le seguenti"
+            },
+            "transformation": "Row b) of the table, 'notturno oltre le ore 22': 30% for the work not on shifts. The night hours after 22 of a shift worker are a night shift (ShiftWorkEvent kind night), paid by FED_NOTTURNO_TURNI. The percentages are 'da corrispondersi oltre alla normale retribuzione': the ordinary night hours are in the monthly pay, the band adds the maggiorazione only (hours_paid_apart false)."
+          }
+        },
+        {
+          "code": "FED_NOTTURNO_TURNI",
+          "description": "Lavoro notturno dei turnisti dalle 22 alle 6 (art. 7)",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "valid_until": null,
+                "value": "0.25",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-federmeccanica-2021-02-05",
+                "title": "CCNL Metalmeccanici Federmeccanica-Assistal 5 febbraio 2021 (testo FIOM-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+              },
+              "page": "161",
+              "section": "Sez. Quarta, Titolo III, Art. 7",
+              "quote": "A decorrere dal 1° giugno 2013 per il lavoro notturno dei lavoratori turnisti di cui alle lettere b), h) e i) di cui sopra, la percentuale di maggiorazione sarà elevata alla misura onnicomprensiva rispettivamente pari al 20%, 60% e 35%. Ad esclusione delle attività di gestione e manutenzione, svolte dalle aziende impiantistiche, che richiedono una articolazione dei turni a copertura delle 24 ore, per le ore cadenti dalle 22.00 alle 6.00, le suddette percentuali sono elevate alla misura onnicomprensiva rispettivamente pari al 25%, 65% e 40%."
+            },
+            "transformation": "Shift workers, hours from 22.00 to 6.00: 25% onnicomprensivo from 1 June 2013, except the activities of gestione e manutenzione of the aziende impiantistiche with shifts over the 24 hours (FED_NOTTURNO_TURNI_IMPIANTI). The percentages are 'da corrispondersi oltre alla normale retribuzione': the ordinary night hours are in the monthly pay, the band adds the maggiorazione only (hours_paid_apart false)."
+          }
+        },
+        {
+          "code": "FED_NOTTURNO_TURNI_IMPIANTI",
+          "description": "Lavoro notturno dei turnisti nelle attività impiantistiche a copertura delle 24 ore (art. 7)",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-06-01",
+                "valid_until": null,
+                "value": "0.20",
+                "provenance": null
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "role": "impianti_24h",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-federmeccanica-2021-02-05",
+                "title": "CCNL Metalmeccanici Federmeccanica-Assistal 5 febbraio 2021 (testo FIOM-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+              },
+              "page": "161",
+              "section": "Sez. Quarta, Titolo III, Art. 7",
+              "quote": "A decorrere dal 1° giugno 2013 per il lavoro notturno dei lavoratori turnisti di cui alle lettere b), h) e i) di cui sopra, la percentuale di maggiorazione sarà elevata alla misura onnicomprensiva rispettivamente pari al 20%, 60% e 35%. Ad esclusione delle attività di gestione e manutenzione, svolte dalle aziende impiantistiche, che richiedono una articolazione dei turni a copertura delle 24 ore, per le ore cadenti dalle 22.00 alle 6.00, le suddette percentuali sono elevate alla misura onnicomprensiva rispettivamente pari al 25%, 65% e 40%."
+            },
+            "transformation": "The activities of gestione e manutenzione of the aziende impiantistiche with shifts over the 24 hours keep the 20% onnicomprensivo of the shift workers' night work; role impianti_24h (Employment.roles). The percentages are 'da corrispondersi oltre alla normale retribuzione': the ordinary night hours are in the monthly pay, the band adds the maggiorazione only (hours_paid_apart false)."
           }
         }
       ],
