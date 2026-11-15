@@ -70,6 +70,11 @@ _NOT_EXERCISED: dict[str, str] = {
         "read with supplementary_hours_before; tests/mutation/ccnl_engine/"
         "working_time/overtime/test_supplementary.py exercises it"
     ),
+    "OvertimeEvent.multiweek_hours_before": (
+        "read only by a multi-week event of a CCNL whose premiums rise past a "
+        "threshold of hours; tests/mutation/ccnl_engine/working_time/overtime/"
+        "test_multiweek_excess.py exercises the missing fact and the stated hours"
+    ),
     "ParentalLeaveEvent.individual_income": (
         "read only past the indemnified months, which no registry pair "
         "reaches; tests/mutation/ccnl_engine/absence/insured/parental/"

@@ -88,6 +88,7 @@ PUBLIC_FACTS: Mapping[str, str] = MappingProxyType({
     "in_periodic_shift": "OvertimeEvent.in_periodic_shift",
     "supplementary_hours_before": "OvertimeEvent.supplementary_hours_before",
     "agreed_annual_hours": "OvertimeEvent.agreed_annual_hours",
+    "multiweek_hours_before": "OvertimeEvent.multiweek_hours_before",
     "young_member": "PensionFundEnrolment.young_member",
     "erc_amount": "Employment.erc_amount",
     "prior_extra_month_amount": "Employment.prior_extra_month_amount",
