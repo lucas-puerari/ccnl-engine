@@ -1496,7 +1496,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-confapi",
       "ruleset_version": "2026.2",
-      "source_hash": "313132087eea7cfdceab4ab9f32eb9457b2ddcce7c0122d8a1590761ea31f38d",
+      "source_hash": "8866fe7a174545179ed6cda471f5295774fb487428f43337cc7a3ab33d8a8ffd",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-confapi.json.gz"
@@ -1530,7 +1530,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-federmeccanica",
       "ruleset_version": "2026.3",
-      "source_hash": "b3a88922a99bc155eaedf5f913521c7cb68aa84dbaab4bf46261fa9ee15e8168",
+      "source_hash": "ef7cf968897afe1c37897d8f7c9af637713c447b968e2c2b80d4d0ee3449bfd9",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/metalmeccanico-federmeccanica.json.gz"

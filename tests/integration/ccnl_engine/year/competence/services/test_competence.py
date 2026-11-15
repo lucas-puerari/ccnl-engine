@@ -331,8 +331,10 @@ class TestEmploymentPeriodRuns:
 
         The income of five months is within the 20,000 EUR limit of the
         somma esente, whose reddito complessivo (L. 207/2024 art. 1 c. 4)
-        includes the income beyond this employment the plan does not state:
-        the result is incomplete for that alone.
+        includes the income beyond this employment the plan does not state,
+        and the leave left at the termination of an employment begun in 2020
+        is not known from the fresh opening balances: the result is
+        incomplete for those two.
         """
         result = calculate_competence_year(
             year_plan(
@@ -357,7 +359,8 @@ class TestEmploymentPeriodRuns:
         ] * 5
         assert result.assurance.calculation is CalculationStatus.INCOMPLETE
         assert {i.code for r in result.period_results for i in r.issues} == {
-            "somma_esente_income_unknown"
+            "somma_esente_income_unknown",
+            "leave_history_unknown",
         }
 
     def test_employment_outside_the_year_is_rejected(self) -> None:

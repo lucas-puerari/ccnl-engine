@@ -194,30 +194,8 @@
         "capability": "leave"
       },
       {
-        "kind": "simplification",
-        "text": "LEAVE, CONTO ORE: the hourly elements of Tit. IV art. 3 are included in the PAR payout at expiry when the caller states hourly_pay_elements (zero confirms none; missing blocks payment). PAR left when employment ends before expiry remain unpaid: Tit. III art. 5 specifies liquidation at expiry but no termination basis.",
-        "capability": "leave",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "par_conto_ore_hourly_elements",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Source the payment basis and timing for PAR left when employment ends before the conto ore expires.",
-          "status": "unsourced",
-          "searched": [
-            {
-              "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
-              "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151",
-              "title": "PDF p. 156 (stampata p. 152), Sez. Quarta, Tit. III, art. 5, Permessi annui retribuiti."
-            },
-            {
-              "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
-              "sha256": "37152685c30627ee755fa5593faee689db76fa42a70b87f30661e9561f40f4ec",
-              "title": "PDF p. 35 (stampata p. 30), Sez. Quarta, Tit. III, art. 5, Permessi annui retribuiti; citazione della parte non barrata, verificata sull'immagine della pagina."
-            }
-          ]
-        }
+        "kind": "info",
+        "text": "LEAVE, CONTO ORE: the hourly elements of Tit. IV art. 3 are included in the PAR payout at expiry when the caller states hourly_pay_elements (zero confirms none; missing blocks payment). The PAR and the ferie left when the employment ends before the expiry are paid at the termination (work_rules.leave_rules.termination)."
       },
       {
         "kind": "info",
@@ -3400,7 +3378,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "b3a88922a99bc155eaedf5f913521c7cb68aa84dbaab4bf46261fa9ee15e8168",
+    "source_hash": "ef7cf968897afe1c37897d8f7c9af637713c447b968e2c2b80d4d0ee3449bfd9",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -4885,7 +4863,26 @@
           ]
         }
       ],
-      "termination": null,
+      "termination": {
+        "ferie_divisor": "21.625",
+        "permits_hourly": true,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-federmeccanica-2021-02-05",
+              "title": "CCNL Metalmeccanici Federmeccanica-Assistal 5 febbraio 2021 (testo FIOM-CGIL)",
+              "kind": "associazione",
+              "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+              "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+            },
+            "page": "166",
+            "section": "Sez. Quarta, Titolo III, Art. 10 - Ferie",
+            "quote": "In caso di risoluzione del rapporto di lavoro al lavoratore spetterà il pagamento delle ferie in proporzione dei dodicesimi maturati."
+          },
+          "transformation": "Ferie left at the termination are paid at the 'retribuzione giornaliera globale di fatto' (same page). The ferie are four weeks counted on the 5-day week (20 days, leave_rules), so a day of ferie is the 8 hours of a fifth of the 40-hour week at the hourly pay, the monthly pay over 173 (Tit. IV art. 3, PDF p. 173): ferie_divisor 173 / 8 = 21.625, not the 1/26 of a day of a 6-day week. The PAR left are paid by the hour at the monthly pay over 173. The CCNL liquidates the PAR of the conto ore 'con la retribuzione in atto al momento della scadenza' and says nothing of a termination before it: by the maintainer's decision of 2026-11-15 they are paid at the termination with the pay then in force, as at the expiry."
+        }
+      },
       "permit_deadline": {
         "carry_until_month": 12,
         "carry_years": 2,
