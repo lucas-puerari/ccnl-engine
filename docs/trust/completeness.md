@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 3/136 CCNLs**; complete except declared residuals: 0. Bundle: 251 weak rules, 285 open limitations (285 with a monetary impact), 31 declared residuals.
+**Complete: 3/136 CCNLs**; complete except declared residuals: 0. Bundle: 251 weak rules, 284 open limitations (284 with a monetary impact), 31 declared residuals.
 
 ## Declared window
 
@@ -131,7 +131,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [industria-turistica-federturismo](../contracts/industria-turistica-federturismo.md) | `turismo` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 1 monetary limitation; 1 outside_input limitation; 5 non-native capabilities |
 | [informatica-pmi-unimatica](../contracts/informatica-pmi-unimatica.md) | `ict-telecomunicazioni` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule; 4 non-native capabilities |
 | [istituzioni-servizi-socio-assistenziali-anaste](../contracts/istituzioni-servizi-socio-assistenziali-anaste.md) | `socio-sanitario` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 1 monetary limitation; 1 outside_input limitation; 5 non-native capabilities |
-| [istruzione-ricerca-aran](../contracts/istruzione-ricerca-aran.md) | `pubblico-impiego` | exploratory | — | 1 rows | 1 open requirement; 1 outside_input limitation; 3 non-native capabilities |
+| [istruzione-ricerca-aran](../contracts/istruzione-ricerca-aran.md) | `pubblico-impiego` | exploratory | — | 0 rows | 3 non-native capabilities |
 | [lapidei-industria](../contracts/lapidei-industria.md) | `materiali-estrattive` | exploratory | — | 6 rows | 6 open requirements; 2 weak rules; 3 monetary limitations; 1 outside_input limitation; 6 non-native capabilities |
 | [laterizi-industria-f021](../contracts/laterizi-industria-f021.md) | `materiali-estrattive` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 2 monetary limitations; 5 non-native capabilities |
 | [lavanderie-industriali-assosistema](../contracts/lavanderie-industriali-assosistema.md) | `pulizia-multiservizi` | exploratory | — | 3 rows | tables from 2026-05-01; 3 open requirements; 2 weak rules; 1 monetary limitation; 4 non-native capabilities |
