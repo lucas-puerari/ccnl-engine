@@ -12826,7 +12826,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.notiziedellascuola.it/legislazione-e-dottrina/indice-cronologico/2025/dicembre/CCNL_ARAN_20251223_NIR-1/ann1",
     "verification_status": "unverified",
-    "source_hash": "283d44467c42119ef82c8a1ffb1657dd875d718d4271d2d26a4c840e5f0c656b",
+    "source_hash": "bab0dd70bf9f602f7b2ced271b9082424208a0c942f419c45557414c1d0d42db",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -13383,6 +13383,125 @@
             "transformation": "Compenso orario lordo of the docenti for 'prestazioni aggiuntive all'orario d'obbligo' by activity: corsi di recupero, ore aggiuntive di insegnamento, ore aggiuntive non di insegnamento; paid per hour in place of the hourly rate, the whole pay of the hour. The CCNLs of 23/12/2025 and 1/7/2026 do not re-determine the table."
           }
         }
+      ],
+      "supplement_bands": [
+        {
+          "code": "SCU_TURNO_NOTTURNO",
+          "description": "Indennità di turno notturno, ATA delle istituzioni educative (Tabella E1.8)",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "17.05"
+              }
+            ]
+          },
+          "per_shift": true,
+          "hours_paid_apart": false,
+          "role": "istituzione_educativa",
+          "levels": [
+            "COLLABORATORE_SCOLASTICO",
+            "OPERATORE",
+            "ASSISTENTE"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "258",
+              "section": "Tabella E1.8 - SCUOLA (art. 80 c. 3), dal 1 gennaio 2024",
+              "quote": "Tabella E1.8 – SCUOLA Misure lorde dell’indennità di lavoro notturno e/o festivo spettante dal 1° gennaio 2024 al personale educativo ed ATA delle istituzioni educative e delle scuole speciali [...] Collaboratori/Operatori/Assistenti € 17,05 € 34,65"
+            },
+            "transformation": "17,05 for a night turn per turn, to the ATA areas (Collaboratori/Operatori/Assistenti) of the istituzioni educative and scuole speciali only: the role istituzione_educativa (Employment.roles). The amount is the indennità of the turn, the hours of the turn being in the monthly pay (hours_paid_apart false). The row of the personale educativo (20,90 and 41,25) has no level in this file."
+          }
+        },
+        {
+          "code": "SCU_TURNO_FESTIVO",
+          "description": "Indennità di turno festivo, ATA delle istituzioni educative (Tabella E1.8)",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "17.05"
+              }
+            ]
+          },
+          "per_shift": true,
+          "hours_paid_apart": false,
+          "role": "istituzione_educativa",
+          "levels": [
+            "COLLABORATORE_SCOLASTICO",
+            "OPERATORE",
+            "ASSISTENTE"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "258",
+              "section": "Tabella E1.8 - SCUOLA (art. 80 c. 3), dal 1 gennaio 2024",
+              "quote": "Tabella E1.8 – SCUOLA Misure lorde dell’indennità di lavoro notturno e/o festivo spettante dal 1° gennaio 2024 al personale educativo ed ATA delle istituzioni educative e delle scuole speciali [...] Collaboratori/Operatori/Assistenti € 17,05 € 34,65"
+            },
+            "transformation": "17,05 for a holiday turn per turn, to the ATA areas (Collaboratori/Operatori/Assistenti) of the istituzioni educative and scuole speciali only: the role istituzione_educativa (Employment.roles). The amount is the indennità of the turn, the hours of the turn being in the monthly pay (hours_paid_apart false). The row of the personale educativo (20,90 and 41,25) has no level in this file."
+          }
+        },
+        {
+          "code": "SCU_TURNO_NOTTURNO_FESTIVO",
+          "description": "Indennità di turno notturno e festivo, ATA delle istituzioni educative (Tabella E1.8)",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "34.65"
+              }
+            ]
+          },
+          "per_shift": true,
+          "hours_paid_apart": false,
+          "role": "istituzione_educativa",
+          "levels": [
+            "COLLABORATORE_SCOLASTICO",
+            "OPERATORE",
+            "ASSISTENTE"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-ir-2019-2021",
+                "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+                "published_on": "2024-01-18",
+                "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+              },
+              "page": "258",
+              "section": "Tabella E1.8 - SCUOLA (art. 80 c. 3), dal 1 gennaio 2024",
+              "quote": "Tabella E1.8 – SCUOLA Misure lorde dell’indennità di lavoro notturno e/o festivo spettante dal 1° gennaio 2024 al personale educativo ed ATA delle istituzioni educative e delle scuole speciali [...] Collaboratori/Operatori/Assistenti € 17,05 € 34,65"
+            },
+            "transformation": "34,65 for a night and holiday turn per turn, to the ATA areas (Collaboratori/Operatori/Assistenti) of the istituzioni educative and scuole speciali only: the role istituzione_educativa (Employment.roles). The amount is the indennità of the turn, the hours of the turn being in the monthly pay (hours_paid_apart false). The row of the personale educativo (20,90 and 41,25) has no level in this file."
+          }
+        }
       ]
     },
     "absence_rules": {
@@ -13557,6 +13676,26 @@
             "quote": "L'indennita' di trasferta di cui all'articolo 1, primo comma, della legge 26 luglio 1978, n. 417, e all'articolo 1, primo comma, del decreto del Presidente della Repubblica 16 gennaio 1978, n. 513, l'indennita' supplementare prevista dal primo e secondo comma dell'articolo 14 della legge 18 dicembre 1973, n. 836, nonche' l'indennita' di cui all'articolo 8 del decreto legislativo luogotenenziale 7 giugno 1945, n. 320, sono soppresse. Sono soppresse le analoghe disposizioni contenute nei contratti collettivi nazionali e nei provvedimenti di recepimento degli accordi sindacali"
           },
           "transformation": "Since 1 January 2006 the public employees of the comparto have no daily travel allowance for the missions in Italy: the law suppressed it and the analogous clauses of the CCNLs. What is left is the refund of the documented expenses of the mission, a fact of the employer, which the caller states (maintainer decision of 2026-11-15)."
+        }
+      },
+      "shift_work": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-ir-2019-2021",
+              "title": "CCNL Comparto Istruzione e Ricerca 2019-2021, 18 gennaio 2024",
+              "kind": "amministrazione",
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+              "published_on": "2024-01-18",
+              "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+            },
+            "page": "48",
+            "section": "Art. 30, c. 4, lett. c2)",
+            "quote": "c) a livello di istituzione scolastica ed educativa: [...] c2) i criteri per la ripartizione delle risorse del fondo per il miglioramento dell’offerta formativa e per la determinazione dei compensi;"
+          },
+          "transformation": "No national indennità of day shifts: the turns of the school staff are paid from the fondo per il miglioramento dell'offerta formativa, whose compensi the integrative bargaining of each school sets (the night and holiday turns of the istituzioni educative are the bands of Tabella E1.8). The amount is a fact of the employer, which the caller states (maintainer decision of 2026-11-15)."
         }
       }
     },

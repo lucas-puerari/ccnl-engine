@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.errors import InvalidInputError
 from ccnl_engine.validators import (
     parse_enum,
     require_bool,
@@ -18,6 +17,7 @@ from ccnl_engine.working_time.event_kinds import (
     OvertimeKind,
     ShiftKind,
 )
+from ccnl_engine.working_time.supplement.checks import check_supplement
 
 if TYPE_CHECKING:
     from datetime import date
@@ -140,39 +140,6 @@ class OvertimeEvent:
         object.__setattr__(self, "kind", kind)
 
 
-def _check_supplement(
-    event_date: object,
-    amount: object,
-    hours: object,
-    event: str,
-    feature: str,
-) -> None:
-    """Reject a supplement event without a date, or with neither amount nor hours.
-
-    Raises:
-        InvalidInputError: When neither the amount nor the hours are given.
-    """
-    require_date(event_date, f"{event}.event_date", feature=feature)
-    require_decimal(
-        amount,
-        f"{event}.supplement_amount",
-        feature=feature,
-        minimum=_ZERO,
-        optional=True,
-    )
-    require_decimal(
-        hours,
-        f"{event}.hours",
-        feature=feature,
-        positive=True,
-        maximum=_HOURS_IN_A_MONTH,
-        optional=True,
-    )
-    if amount is None and hours is None:
-        msg = f"{event} needs supplement_amount or the hours the engine derives it from"
-        raise InvalidInputError(msg, field=f"{event}.hours", feature=feature)
-
-
 @dataclass(frozen=True)
 class NightShiftEvent:
     """Night-work supplement: INPS + IRPEF on the supplement amount.
@@ -191,20 +158,24 @@ class NightShiftEvent:
         hours: Ordinary night hours, above 0 and at most 744.
         before_22: Whether the hours fall before 22:00, which a CCNL may pay
             at a lower night rate (Confapi art. 29 row b).
+        shifts: Night turns worked, for a CCNL that pays the turn (scuola
+            Tabella E1.8); ``None`` when not stated.
     """
 
     event_date: date
     supplement_amount: Decimal | None = None
     hours: Decimal | None = None
     before_22: bool = False
+    shifts: int | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
-        _check_supplement(
+        check_supplement(
             self.event_date,
             self.supplement_amount,
             self.hours,
             "NightShiftEvent",
             "night_shift",
+            self.shifts,
         )
         require_bool(self.before_22, "NightShiftEvent.before_22", feature="night_shift")
 
@@ -230,6 +201,8 @@ class HolidayWorkEvent:
         in_periodic_shift: Whether the worker is a turnista (rotating-shift
             worker); ``None`` when unknown. Required only by bands excluding
             such workers, even if these particular hours are outside a turn.
+        shifts: Turns worked that day, for a CCNL that pays the turn (scuola
+            Tabella E1.8); ``None`` when not stated.
     """
 
     event_date: date
@@ -237,15 +210,17 @@ class HolidayWorkEvent:
     hours: Decimal | None = None
     kind: HolidayWorkKind = HolidayWorkKind.HOLIDAY
     in_periodic_shift: bool | None = None
+    shifts: int | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         feature = "holiday_work"
-        _check_supplement(
+        check_supplement(
             self.event_date,
             self.supplement_amount,
             self.hours,
             "HolidayWorkEvent",
             feature,
+            self.shifts,
         )
         kind = parse_enum(
             self.kind, HolidayWorkKind, "HolidayWorkEvent.kind", feature=feature
@@ -284,7 +259,7 @@ class ShiftWorkEvent:
 
     def __post_init__(self) -> None:  # noqa: D105
         feature = "shift_work"
-        _check_supplement(
+        check_supplement(
             self.event_date,
             self.supplement_amount,
             self.hours,

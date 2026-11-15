@@ -64,7 +64,8 @@
     },
     "workers_estimate": "~1,2M",
     "public_pension_fund": "ctps",
-    "public_life_insurance": false
+    "public_life_insurance": false,
+    "in_force_from": "2026-02-25"
   },
   "parameters": {
     "hourly_divisor": {
@@ -144,11 +145,6 @@
           "amount_by_level": {
             "TECNOLOGO": {
               "periods": [
-                {
-                  "valid_from": "2026-01-01",
-                  "valid_until": "2026-02-25",
-                  "gap_kind": "not_applicable"
-                },
                 {
                   "valid_from": "2026-02-25",
                   "valid_until": "2026-03-01",
@@ -239,11 +235,6 @@
             "TECNOLOGO": {
               "periods": [
                 {
-                  "valid_from": "2026-01-01",
-                  "valid_until": "2026-02-25",
-                  "gap_kind": "not_applicable"
-                },
-                {
                   "valid_from": "2026-02-25",
                   "valid_until": "2026-03-01",
                   "value": "328.34",
@@ -332,11 +323,6 @@
           "amount_by_level": {
             "TECNOLOGO": {
               "periods": [
-                {
-                  "valid_from": "2026-01-01",
-                  "valid_until": "2026-02-25",
-                  "gap_kind": "not_applicable"
-                },
                 {
                   "valid_from": "2026-02-25",
                   "valid_until": "2026-03-01",
@@ -427,11 +413,6 @@
             "TECNOLOGO": {
               "periods": [
                 {
-                  "valid_from": "2026-01-01",
-                  "valid_until": "2026-02-25",
-                  "gap_kind": "not_applicable"
-                },
-                {
                   "valid_from": "2026-02-25",
                   "valid_until": "2026-03-01",
                   "value": "328.33",
@@ -520,11 +501,6 @@
           "amount_by_level": {
             "TECNOLOGO": {
               "periods": [
-                {
-                  "valid_from": "2026-01-01",
-                  "valid_until": "2026-02-25",
-                  "gap_kind": "not_applicable"
-                },
                 {
                   "valid_from": "2026-02-25",
                   "valid_until": "2026-03-01",
@@ -617,11 +593,6 @@
         "rate": {
           "periods": [
             {
-              "valid_from": "2026-01-01",
-              "valid_until": "2026-02-25",
-              "gap_kind": "not_applicable"
-            },
-            {
               "valid_from": "2026-02-25",
               "valid_until": null,
               "value": "0.01"
@@ -630,11 +601,6 @@
         },
         "employee_min_rate": {
           "periods": [
-            {
-              "valid_from": "2026-01-01",
-              "valid_until": "2026-02-25",
-              "gap_kind": "not_applicable"
-            },
             {
               "valid_from": "2026-02-25",
               "valid_until": null,
@@ -707,11 +673,6 @@
       "category": "impiegato",
       "base_salary": {
         "periods": [
-          {
-            "valid_from": "2026-01-01",
-            "valid_until": "2026-02-25",
-            "gap_kind": "not_applicable"
-          },
           {
             "valid_from": "2026-02-25",
             "valid_until": "2026-03-01",
@@ -875,7 +836,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "b4e7633164505ceccfa6b158007394f18115b6d47dc6f7d1b23f08d41823623f",
+    "source_hash": "ff89ee288e05bc7374155286b949a120df2e99777f370ede681bd7dbfe9ca14a",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

@@ -106,6 +106,10 @@ class CCNLMeta(BaseModel):
         agreement_date: Date of the most recent renewal agreement, ISO 8601 string.
             ``None`` if not yet modelled.
         validity: Contractual validity window. ``None`` if not specified.
+        in_force_from: First day any worker is paid under this CCNL, for one
+            that created its category (the sequenza of the university
+            tecnologi, 25 February 2026); ``None`` for a CCNL older than the
+            supported years.  No pay table is owed before it.
         workers_estimate: Approximate number of workers covered by this agreement,
             as a human-readable string (e.g. ``"~800k"``). Based on CNEL and INPS
             estimates. Empty string when unknown.
@@ -140,6 +144,7 @@ class CCNLMeta(BaseModel):
     extraction: ExtractionTrace
     agreement_date: str | None = None
     validity: CCNLValidity | None = None
+    in_force_from: dt.date | None = None
     workers_estimate: str = ""
     public_pension_fund: PublicPensionFund | None = None
     public_life_insurance: bool | None = None
