@@ -5257,13 +5257,13 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "3351d9672a1e65783d49cc9255fc75a20799bc0bd314bfa518a7444f049ae659",
+    "source_hash": "68441cf7b7b1a0cd768f506bfb9d54e8b99f1a07030b57ec9b2706886193b965",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "minimo_e_anzianita",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -5444,6 +5444,240 @@
               "extraction_timestamp": "2026-09-08T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2023-03-01"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ads-2018-06-collazione-ccnl-dei-servizi-ambientali-10-07-2016-18-giugno-2018-pdf",
+            "title": "Collazione CCNL dei Servizi Ambientali 10.07.2016 18 giugno 2018 ",
+            "kind": "associazione",
+            "url": "https://www.fpcgil.it/wp-content/uploads/2018/06/Collazione-CCNL-dei-Servizi-Ambientali-10.07.2016-18-giugno-2018_.pdf",
+            "sha256": "48540f87ea427da477cdde39e0df86f074d30339378c9a79b3ee1d5c6372dcad"
+          },
+          "page": "81",
+          "section": "Art. 27, comma 3",
+          "quote": "La retribuzione individuale mensile è costituita dai seguenti elementi tassativi: a) la retribuzione base parametrale di cui al comma 2; b) gli aumenti periodici di anzianità di cui all’art. 30; c) l’eventuale aumento di merito o superminimo, a carattere individuale; d) l’eventuale assegno ad personam."
+        },
+        "transformation": "The supplements are measured on minimo_e_anzianita over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-igiene-ambientale-utilitalia-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_0",
+          "description": "Lavoro ordinario 22:00–06:00; anche terzo turno avvicendato, non cumulabile con la maggiorazione festiva.",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2016-07-10",
+                "valid_until": null,
+                "value": "0.33"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ads-2018-06-collazione-ccnl-dei-servizi-ambientali-10-07-2016-18-giugno-2018-pdf",
+                "title": "Collazione CCNL dei Servizi Ambientali 10.07.2016 18 giugno 2018 ",
+                "kind": "associazione",
+                "url": "https://www.fpcgil.it/wp-content/uploads/2018/06/Collazione-CCNL-dei-Servizi-Ambientali-10.07.2016-18-giugno-2018_.pdf",
+                "sha256": "48540f87ea427da477cdde39e0df86f074d30339378c9a79b3ee1d5c6372dcad"
+              },
+              "page": "73",
+              "section": "Art. 19, comma 10",
+              "quote": "Il lavoro notturno di cui al comma 6 è compensato con la retribuzione individuale oraria maggiorata del 33%; fatto salvo quanto previsto al comma 11."
+            },
+            "transformation": "Lavoro ordinario 22:00–06:00; anche terzo turno avvicendato, non cumulabile con la maggiorazione festiva.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2016-07-10",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-igiene-ambientale-utilitalia-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_1",
+          "description": "Prestazione festiva diurna; la domenica è festiva se è il giorno di riposo settimanale.",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2016-07-10",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ads-2018-06-collazione-ccnl-dei-servizi-ambientali-10-07-2016-18-giugno-2018-pdf",
+                "title": "Collazione CCNL dei Servizi Ambientali 10.07.2016 18 giugno 2018 ",
+                "kind": "associazione",
+                "url": "https://www.fpcgil.it/wp-content/uploads/2018/06/Collazione-CCNL-dei-Servizi-Ambientali-10.07.2016-18-giugno-2018_.pdf",
+                "sha256": "48540f87ea427da477cdde39e0df86f074d30339378c9a79b3ee1d5c6372dcad"
+              },
+              "page": "72",
+              "section": "Art. 19, comma 5",
+              "quote": "Le prestazioni di lavoro festivo sono compensate con la retribuzione individuale oraria maggiorata delle seguenti percentuali: - festivo diurno: 50%; - festivo notturno: 75%."
+            },
+            "transformation": "Prestazione festiva diurna; la domenica è festiva se è il giorno di riposo settimanale.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2016-07-10",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-igiene-ambientale-utilitalia-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_HOLIDAY_2",
+          "description": "Prestazione festiva notturna; sostituisce e non cumula le maggiorazioni festiva diurna e notturna ordinaria.",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2016-07-10",
+                "valid_until": null,
+                "value": "0.75"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ads-2018-06-collazione-ccnl-dei-servizi-ambientali-10-07-2016-18-giugno-2018-pdf",
+                "title": "Collazione CCNL dei Servizi Ambientali 10.07.2016 18 giugno 2018 ",
+                "kind": "associazione",
+                "url": "https://www.fpcgil.it/wp-content/uploads/2018/06/Collazione-CCNL-dei-Servizi-Ambientali-10.07.2016-18-giugno-2018_.pdf",
+                "sha256": "48540f87ea427da477cdde39e0df86f074d30339378c9a79b3ee1d5c6372dcad"
+              },
+              "page": "72",
+              "section": "Art. 19, comma 5",
+              "quote": "Le prestazioni di lavoro festivo sono compensate con la retribuzione individuale oraria maggiorata delle seguenti percentuali: - festivo diurno: 50%; - festivo notturno: 75%."
+            },
+            "transformation": "Prestazione festiva notturna; sostituisce e non cumula le maggiorazioni festiva diurna e notturna ordinaria.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2016-07-10",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-igiene-ambientale-utilitalia-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_SUNDAY_3",
+          "description": "EUR 7 per domenica ordinaria effettivamente lavorata con riposo in altro giorno; assorbita dall'indennità per lavoro festivo e sostituisce l'indennità turni nelle domeniche lavorate.",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2016-07-10",
+                "valid_until": null,
+                "value": "7.00"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ads-2018-06-collazione-ccnl-dei-servizi-ambientali-10-07-2016-18-giugno-2018-pdf",
+                "title": "Collazione CCNL dei Servizi Ambientali 10.07.2016 18 giugno 2018 ",
+                "kind": "associazione",
+                "url": "https://www.fpcgil.it/wp-content/uploads/2018/06/Collazione-CCNL-dei-Servizi-Ambientali-10.07.2016-18-giugno-2018_.pdf",
+                "sha256": "48540f87ea427da477cdde39e0df86f074d30339378c9a79b3ee1d5c6372dcad"
+              },
+              "page": "77",
+              "section": "Art. 22, commi 1-2",
+              "quote": "Ai lavoratori che prestano servizio domenicale normale - in turni con riposo settimanale fissato in altro giorno, al fine di garantire la continuità dei servizi d’istituto - è riconosciuta un’indennità pari a euro 7,00."
+            },
+            "transformation": "EUR 7 per domenica ordinaria effettivamente lavorata con riposo in altro giorno; assorbita dall'indennità per lavoro festivo e sostituisce l'indennità turni nelle domeniche lavorate.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2016-07-10",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-igiene-ambientale-utilitalia-time-supplements"
+            }
+          },
+          "per_shift": true
+        },
+        {
+          "code": "U_REST_DAY_4",
+          "description": "Prestazione nel prestabilito giorno di riposo, con recupero del riposo: maggiorazione di straordinario festivo (65%), non 50% festivo ordinario.",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2016-07-10",
+                "valid_until": null,
+                "value": "0.65"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ads-2018-06-collazione-ccnl-dei-servizi-ambientali-10-07-2016-18-giugno-2018-pdf",
+                "title": "Collazione CCNL dei Servizi Ambientali 10.07.2016 18 giugno 2018 ",
+                "kind": "associazione",
+                "url": "https://www.fpcgil.it/wp-content/uploads/2018/06/Collazione-CCNL-dei-Servizi-Ambientali-10.07.2016-18-giugno-2018_.pdf",
+                "sha256": "48540f87ea427da477cdde39e0df86f074d30339378c9a79b3ee1d5c6372dcad"
+              },
+              "page": "79",
+              "section": "Art. 25, comma 4",
+              "quote": "Fatto salvo quanto previsto ai sensi del precedente comma 2, qualora i dipendenti siano chiamati in servizio nel prestabilito giorno di riposo settimanale ovvero nel settimo giorno di lavoro consecutivo, gli stessi hanno diritto a recuperare detto riposo, di norma, entro i 3 giorni successivi nonché al pagamento della maggiorazione di lavoro straordinario festivo per le ore effettivamente lavorate."
+            },
+            "transformation": "Prestazione nel prestabilito giorno di riposo, con recupero del riposo: maggiorazione di straordinario festivo (65%), non 50% festivo ordinario.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2016-07-10",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-igiene-ambientale-utilitalia-time-supplements"
             }
           }
         }
@@ -5788,6 +6022,29 @@
         "independence": "same_process",
         "checked": [
           "parameters.seniority_increments"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-igiene-ambientale-utilitalia-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fpcgil.it/wp-content/uploads/2018/06/Collazione-CCNL-dei-Servizi-Ambientali-10.07.2016-18-giugno-2018_.pdf",
+            "sha256": "48540f87ea427da477cdde39e0df86f074d30339378c9a79b3ee1d5c6372dcad"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[0:night], bands[1:holiday], bands[2:night_holiday], bands[3:sunday], bands[4:rest_day].",
+          "Left out: bands[5:day_shift]: more day_shift bands the engine cannot tell apart; bands[6:night_shift]: more night_shift bands the engine cannot tell apart; bands[7:day_shift]: more day_shift bands the engine cannot tell apart; bands[8:night_shift]: more night_shift bands the engine cannot tell apart; travel: kind share applied by hand."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ]

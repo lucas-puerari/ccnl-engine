@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 34 verified / 8 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 40 verified / 8 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 44 - Tredicesima mensilità (p. 44): "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell’anno la lavoratrice ed il lavoratore avranno diritto a tanti dodicesimi dell’ammontare della 13° mensilità per quanti sono i mesi di servizio prestato. Le frazioni di mese pari o superiori ai 15 giorni saranno considerate come mese intero.". Match: at_least 15. |
 | 2026-11-08 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 34 values read identically by both readings and equal to the file. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Art. 22 apprenticeship pay of the CCNL UNEBA 2023-2025 (PDF p. 32), text layer; the 2025 accordo (OCR, 30 pages) does not touch it. | corrected | The apprentice bands are 85% and 90% split at half of the duration, not 90/95/100% in three thirds: apprentices were overpaid. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base, bands[0:night_shift], bands[1:night], bands[2:sunday], bands[3:holiday_compensatory_rest], bands[5:night_holiday_compensatory_rest].<br>Left out: bands[4:holiday]: quote quote_not_in_file; travel: kind share applied by hand. |
 
 ## Salary table
 

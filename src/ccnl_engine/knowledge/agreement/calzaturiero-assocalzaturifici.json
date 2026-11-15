@@ -1786,13 +1786,13 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
     "verification_status": "unverified",
-    "source_hash": "a8ad0ae3ebe1f284b75d216f12d70926e8c49ed9ebe15d4582005a3827e3ed68",
+    "source_hash": "50650a70dd5416d3da223a64e4f54d5cd97bf8c99dfe982ffef5688c4089c624",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -1899,6 +1899,280 @@
               "extraction_timestamp": "2026-09-08T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2024-01-01"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "download-contratti-calzaturiero-170427-calzature-rinnovo-20ccnl-202016-2019-pdf",
+            "title": "170427 CALZATURE RINNOVO%20CCNL%202016 2019",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/calzaturiero/170427_CALZATURE_RINNOVO%20CCNL%202016-2019.pdf",
+            "sha256": "a67d1a651e1ae714747c9d584d0d2ed5c8779a6a6b9063aef92959836b868c9b"
+          },
+          "page": "12",
+          "section": "Art. 35",
+          "quote": "Per ogni ora straordinaria sarà corrisposta al lavoratore una quota oraria della retribuzione di fatto, maggiorata per i cottimisti della percentuale contrattuale di cottimo, determinata ai sensi dell'art. 45, parte generale del presente contratto maggiorata delle percentuali relative."
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-calzaturiero-assocalzaturifici-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_0",
+          "description": "Lavoro notturno ordinario (22:00–06:00)",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2017-04-01",
+                "valid_until": null,
+                "value": "0.35"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "download-contratti-calzaturiero-170427-calzature-rinnovo-20ccnl-202016-2019-pdf",
+                "title": "170427 CALZATURE RINNOVO%20CCNL%202016 2019",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/calzaturiero/170427_CALZATURE_RINNOVO%20CCNL%202016-2019.pdf",
+                "sha256": "a67d1a651e1ae714747c9d584d0d2ed5c8779a6a6b9063aef92959836b868c9b"
+              },
+              "page": "12",
+              "section": "Art. 35",
+              "quote": "— Lavoro notturno                                             35%"
+            },
+            "transformation": "Lavoro notturno ordinario (22:00–06:00)",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2017-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-calzaturiero-assocalzaturifici-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_1",
+          "description": "Festività, lavoro ordinario diurno",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2017-04-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "download-contratti-calzaturiero-170427-calzature-rinnovo-20ccnl-202016-2019-pdf",
+                "title": "170427 CALZATURE RINNOVO%20CCNL%202016 2019",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/calzaturiero/170427_CALZATURE_RINNOVO%20CCNL%202016-2019.pdf",
+                "sha256": "a67d1a651e1ae714747c9d584d0d2ed5c8779a6a6b9063aef92959836b868c9b"
+              },
+              "page": "12",
+              "section": "Art. 35",
+              "quote": "— Lavoro festivo diurno                                       50%"
+            },
+            "transformation": "Festività, lavoro ordinario diurno",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2017-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-calzaturiero-assocalzaturifici-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_SUNDAY_2",
+          "description": "Domenica, lavoro ordinario diurno",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2017-04-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "download-contratti-calzaturiero-170427-calzature-rinnovo-20ccnl-202016-2019-pdf",
+                "title": "170427 CALZATURE RINNOVO%20CCNL%202016 2019",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/calzaturiero/170427_CALZATURE_RINNOVO%20CCNL%202016-2019.pdf",
+                "sha256": "a67d1a651e1ae714747c9d584d0d2ed5c8779a6a6b9063aef92959836b868c9b"
+              },
+              "page": "12",
+              "section": "Art. 35",
+              "quote": "— Lavoro festivo diurno                                       50%"
+            },
+            "transformation": "Domenica, lavoro ordinario diurno",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2017-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-calzaturiero-assocalzaturifici-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_REST_DAY_3",
+          "description": "Riposo compensativo, lavoro ordinario diurno",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2017-04-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "download-contratti-calzaturiero-170427-calzature-rinnovo-20ccnl-202016-2019-pdf",
+                "title": "170427 CALZATURE RINNOVO%20CCNL%202016 2019",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/calzaturiero/170427_CALZATURE_RINNOVO%20CCNL%202016-2019.pdf",
+                "sha256": "a67d1a651e1ae714747c9d584d0d2ed5c8779a6a6b9063aef92959836b868c9b"
+              },
+              "page": "12",
+              "section": "Art. 35",
+              "quote": "— Lavoro festivo diurno                                       50%"
+            },
+            "transformation": "Riposo compensativo, lavoro ordinario diurno",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2017-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-calzaturiero-assocalzaturifici-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_HOLIDAY_4",
+          "description": "Festività, lavoro ordinario notturno",
+          "work": "night_holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2017-04-01",
+                "valid_until": null,
+                "value": "0.60"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "download-contratti-calzaturiero-170427-calzature-rinnovo-20ccnl-202016-2019-pdf",
+                "title": "170427 CALZATURE RINNOVO%20CCNL%202016 2019",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/calzaturiero/170427_CALZATURE_RINNOVO%20CCNL%202016-2019.pdf",
+                "sha256": "a67d1a651e1ae714747c9d584d0d2ed5c8779a6a6b9063aef92959836b868c9b"
+              },
+              "page": "12",
+              "section": "Art. 35",
+              "quote": "— Lavoro festivo notturno                                     60%"
+            },
+            "transformation": "Festività, lavoro ordinario notturno",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2017-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-calzaturiero-assocalzaturifici-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_HOLIDAY_COMPENSATORY_REST_5",
+          "description": "Riposo compensativo, lavoro ordinario notturno",
+          "work": "night_holiday_compensatory_rest",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2017-04-01",
+                "valid_until": null,
+                "value": "0.60"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "download-contratti-calzaturiero-170427-calzature-rinnovo-20ccnl-202016-2019-pdf",
+                "title": "170427 CALZATURE RINNOVO%20CCNL%202016 2019",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/calzaturiero/170427_CALZATURE_RINNOVO%20CCNL%202016-2019.pdf",
+                "sha256": "a67d1a651e1ae714747c9d584d0d2ed5c8779a6a6b9063aef92959836b868c9b"
+              },
+              "page": "12",
+              "section": "Art. 35",
+              "quote": "— Lavoro festivo notturno                                     60%"
+            },
+            "transformation": "Riposo compensativo, lavoro ordinario notturno",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2017-04-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-calzaturiero-assocalzaturifici-time-supplements"
             }
           }
         }
@@ -2138,6 +2412,33 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules.comporto_windows"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-calzaturiero-assocalzaturifici-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/calzaturiero/131129_CALZATURE%20RINNOVO%20CCNL%202013-2016.pdf",
+            "sha256": "879032c4fba0d884e396b21ffdc367aeff9374c8577c2bbc167cf85d61940bab"
+          },
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/calzaturiero/170427_CALZATURE_RINNOVO%20CCNL%202016-2019.pdf",
+            "sha256": "a67d1a651e1ae714747c9d584d0d2ed5c8779a6a6b9063aef92959836b868c9b"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[0:night], bands[1:holiday], bands[2:sunday], bands[3:rest_day], bands[4:night_holiday], bands[5:night_holiday_compensatory_rest].",
+          "Left out: bands[6:night_shift]: more night_shift bands the engine cannot tell apart; bands[7:night_shift]: more night_shift bands the engine cannot tell apart."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ]

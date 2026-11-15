@@ -300,6 +300,29 @@
         "checked": [
           "parameters.seniority_increments"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-trasporto-ferroviario-agens-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.agens.it/wp-content/uploads/2026/02/Testo-firmato-Accordo-di-rinnovo-22-maggio-2025.pdf",
+            "sha256": "91729afaa4fe8f3d4059afd40b52d83f3d6015c085c1d747460b045ce92c4952"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[0:night], bands[5:holiday].",
+          "Left out: bands[1:sunday]: more sunday bands the engine cannot tell apart; bands[2:sunday]: more sunday bands the engine cannot tell apart; bands[3:sunday]: more sunday bands the engine cannot tell apart; bands[4:sunday]: more sunday bands the engine cannot tell apart; bands[6:day_shift]: more day_shift bands the engine cannot tell apart; bands[7:day_shift]: more day_shift bands the engine cannot tell apart; bands[8:day_shift]: more day_shift bands the engine cannot tell apart; travel: kind bands applied by hand."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -2595,13 +2618,13 @@
     "effective_until": "2026-12-31",
     "source": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "1f900b97f79091e017147c01d935bcfd212511bbac04f0319c0353cdc37058a1",
+    "source_hash": "3bce4f3656ee82aa5ad74347943a5891c2598335e5f9c971500306f5ca28f1cf",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -2672,6 +2695,117 @@
               "extraction_timestamp": "2026-09-08T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2025-05-22"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "t-wp-content-uploads-2026-02-testo-firmato-accordo-di-rinnovo-22-maggio-2025-pdf",
+            "title": "Testo firmato Accordo di rinnovo 22 maggio 2025",
+            "kind": "associazione",
+            "url": "https://www.agens.it/wp-content/uploads/2026/02/Testo-firmato-Accordo-di-rinnovo-22-maggio-2025.pdf",
+            "sha256": "91729afaa4fe8f3d4059afd40b52d83f3d6015c085c1d747460b045ce92c4952"
+          },
+          "page": "117",
+          "section": "Art. 68, punto 6; art. 68, punti 1.1 e 1.2(d); art. 27, punto 1.1; art. 74, punto 2",
+          "quote": "La retribuzione giornaliera e oraria si ottiene dividendo rispettivamente per 26 e per 160 la retribuzione mensile determinata dagli elementi retributivi di cui al punto 1.1, ed alla lettera d) del punto 1.2 del presente articolo."
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-trasporto-ferroviario-agens-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_0",
+          "description": "Lavoro ordinario tra le 22.00 e le 6.00; arrotondamento mensile delle frazioni superiori a 30 minuti.",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-08-01",
+                "valid_until": null,
+                "value": "2.50"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "t-wp-content-uploads-2026-02-testo-firmato-accordo-di-rinnovo-22-maggio-2025-pdf",
+                "title": "Testo firmato Accordo di rinnovo 22 maggio 2025",
+                "kind": "associazione",
+                "url": "https://www.agens.it/wp-content/uploads/2026/02/Testo-firmato-Accordo-di-rinnovo-22-maggio-2025.pdf",
+                "sha256": "91729afaa4fe8f3d4059afd40b52d83f3d6015c085c1d747460b045ce92c4952"
+              },
+              "page": "122",
+              "section": "Art. 75, punti 1-2",
+              "quote": "per lavoro notturno che, a partire dal 1° agosto 2025, sarà pari a € 2,50."
+            },
+            "transformation": "Lavoro ordinario tra le 22.00 e le 6.00; arrotondamento mensile delle frazioni superiori a 30 minuti.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-08-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-trasporto-ferroviario-agens-time-supplements"
+            }
+          },
+          "fixed_per_hour": true
+        },
+        {
+          "code": "U_HOLIDAY_5",
+          "description": "Prestazione in giorno festivo dell'art. 29, punto 2.1; riposo compensativo disciplinato dall'art. 29, punti 2.2-2.5. Base: minimo, anzianità, assegni personali pensionabili, salario professionale.",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-05-22",
+                "valid_until": null,
+                "value": "0.35"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "t-wp-content-uploads-2026-02-testo-firmato-accordo-di-rinnovo-22-maggio-2025-pdf",
+                "title": "Testo firmato Accordo di rinnovo 22 maggio 2025",
+                "kind": "associazione",
+                "url": "https://www.agens.it/wp-content/uploads/2026/02/Testo-firmato-Accordo-di-rinnovo-22-maggio-2025.pdf",
+                "sha256": "91729afaa4fe8f3d4059afd40b52d83f3d6015c085c1d747460b045ce92c4952"
+              },
+              "page": "123",
+              "section": "Art. 76, punto 4",
+              "quote": "oraria pari al 35% delle seguenti voci retributive:"
+            },
+            "transformation": "Prestazione in giorno festivo dell'art. 29, punto 2.1; riposo compensativo disciplinato dall'art. 29, punti 2.2-2.5. Base: minimo, anzianità, assegni personali pensionabili, salario professionale.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-05-22",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-trasporto-ferroviario-agens-time-supplements"
             }
           }
         }

@@ -226,6 +226,29 @@
           "work_rules.sickness_rules",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-metalmeccanico-confimi-pmi-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2026/09/CCNL-2016-Metalmeccanici-PMI-Confimi.pdf",
+            "sha256": "842c80dd4c5eed9ed9600ffcafe90f57c8113e9e6ef8fc93f021e8f09e44c0a4"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[0:night_early], bands[1:night].",
+          "Left out: bands[2:night_shift]: quote quote_not_in_file; travel: kind quotas applied by hand; none.shift_work: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -1918,13 +1941,13 @@
     "effective_until": null,
     "source": "https://www.fim-cisl.it/2025/10/29/metalmeccanica-piccola-industria-firmato-il-rinnovo-del-ccnl-confimi/",
     "verification_status": "unverified",
-    "source_hash": "687f7a8e90542c735e2d5472575b780e046c754192f8247b25e4669f1e1b2009",
+    "source_hash": "1089b617bba92af18e540604dbf6ef68ae8ec5ac0f872da92b2997db6614f78f",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -2181,8 +2204,116 @@
               "effective_from": "2025-10-28"
             }
           }
+        },
+        {
+          "code": "U_NIGHT_EARLY_0",
+          "description": "Lavoro notturno ordinario non a turni, fino alle ore 22; il periodo notturno retributivo decorre dalla dodicesima ora successiva all’inizio del turno del mattino.",
+          "work": "night_early",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2016-06-01",
+                "valid_until": null,
+                "value": "0.25"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "fim-cisl-it-wp-content-uploads-2026-09-ccnl-2016-metalmeccanici-pmi-confimi-pdf",
+                "title": "CCNL 2016 Metalmeccanici PMI Confimi",
+                "kind": "associazione",
+                "url": "https://www.fim-cisl.it/wp-content/uploads/2026/09/CCNL-2016-Metalmeccanici-PMI-Confimi.pdf",
+                "sha256": "842c80dd4c5eed9ed9600ffcafe90f57c8113e9e6ef8fc93f021e8f09e44c0a4"
+              },
+              "page": "104",
+              "section": "Art. 27, definizione del lavoro notturno e tabella, lett. b",
+              "quote": "b) lavoro notturno - fino alle ore 22 25% 25% - oltre le ore 22 35% 25%"
+            },
+            "transformation": "Lavoro notturno ordinario non a turni, fino alle ore 22; il periodo notturno retributivo decorre dalla dodicesima ora successiva all’inizio del turno del mattino.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2016-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-metalmeccanico-confimi-pmi-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_1",
+          "description": "Lavoro notturno ordinario non a turni, oltre le ore 22.",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2016-06-01",
+                "valid_until": null,
+                "value": "0.35"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "fim-cisl-it-wp-content-uploads-2026-09-ccnl-2016-metalmeccanici-pmi-confimi-pdf",
+                "title": "CCNL 2016 Metalmeccanici PMI Confimi",
+                "kind": "associazione",
+                "url": "https://www.fim-cisl.it/wp-content/uploads/2026/09/CCNL-2016-Metalmeccanici-PMI-Confimi.pdf",
+                "sha256": "842c80dd4c5eed9ed9600ffcafe90f57c8113e9e6ef8fc93f021e8f09e44c0a4"
+              },
+              "page": "104",
+              "section": "Art. 27, tabella, lett. b",
+              "quote": "b) lavoro notturno - fino alle ore 22 25% 25% - oltre le ore 22 35% 25%"
+            },
+            "transformation": "Lavoro notturno ordinario non a turni, oltre le ore 22.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2016-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-metalmeccanico-confimi-pmi-time-supplements"
+            }
+          }
         }
-      ]
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "fim-cisl-it-wp-content-uploads-2026-09-ccnl-2016-metalmeccanici-pmi-confimi-pdf",
+            "title": "CCNL 2016 Metalmeccanici PMI Confimi",
+            "kind": "associazione",
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2026/09/CCNL-2016-Metalmeccanici-PMI-Confimi.pdf",
+            "sha256": "842c80dd4c5eed9ed9600ffcafe90f57c8113e9e6ef8fc93f021e8f09e44c0a4"
+          },
+          "page": "105",
+          "section": "Art. 27, comma successivo alla tabella delle maggiorazioni",
+          "quote": "Le percentuali di maggiorazione sono computate sulla quota oraria della retribuzione globale di fatto determinata dividendo per 173 l’ammontare mensile e per i lavoratori normalmente lavoranti a cottimo, della percentuale media contrattuale di cottimo."
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-metalmeccanico-confimi-pmi-time-supplements"
+        }
+      }
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",

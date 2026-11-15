@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-22 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-02-01 |
 
 ## Review history
@@ -81,6 +81,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-13 | claude-opus-5-5 (ai) | Tables of the accordo integrativo 28/03/2024 (CNEL 20279, pp. 2-3) and protocollo aggiuntivo artt. 1, 14 of the TU 2019 (pp. 351-352, 358) | corrected | Added levels OV1 and OV2 of the operatori di vendita on their own ladder, six tables 2023-2027, and their seniority increments. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 206, 208, 214 and 215 of the Testo Unico 2019, PDF pp. 154-157. | confirmed | The provincial terzi elementi are frozen local amounts the national text does not print; the existing territorial second-level input carries them with the incidences of the normal pay, and provincial_pay_element removes the 2,07 national element. Closed the limitation, which asked for an input that exists. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Weekly threshold of the overtime band beyond the 48th hour. | corrected | OvertimeEvent.weekly_hours_before counts all the hours worked in the week: the 20% band 'eccedenti la 48a ora settimanale' starts at 48, not at 8 (which paid the 41st-48th hours at 20% instead of 15% when the caller stated the hours before). |
+| 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: none.shift_work. |
 
 ## Salary table
 

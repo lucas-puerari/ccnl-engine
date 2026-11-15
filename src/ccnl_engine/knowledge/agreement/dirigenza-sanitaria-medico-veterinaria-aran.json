@@ -120,7 +120,7 @@
           "source_document": {
             "document_id": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
             "title": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
-            "kind": "associazione",
+            "kind": "amministrazione",
             "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
           },
           "section": "Scatti di anzianità"
@@ -192,7 +192,7 @@
                 "source_document": {
                   "document_id": "aran-area-sanita-2019-2021",
                   "title": "CCNL Area Sanità 2019-2021, 23 gennaio 2024 (ARAN)",
-                  "kind": "associazione",
+                  "kind": "amministrazione",
                   "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf",
                   "sha256": "de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375"
                 },
@@ -223,7 +223,7 @@
                 "source_document": {
                   "document_id": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
                   "title": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
-                  "kind": "associazione",
+                  "kind": "amministrazione",
                   "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
                 },
                 "section": "Tabella retributiva"
@@ -309,7 +309,7 @@
                     "source_document": {
                       "document_id": "aran-ccnl-area-sanita-2019-2021",
                       "title": "CCNL Area Sanità 2019-2021, sottoscritto il 23 gennaio 2024 (ARAN)",
-                      "kind": "associazione",
+                      "kind": "amministrazione",
                       "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf",
                       "published_on": "2024-01-23",
                       "sha256": "de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375"
@@ -341,7 +341,7 @@
                     "source_document": {
                       "document_id": "aran-ccnl-area-sanita-2022-2024",
                       "title": "CCNL Area Sanità 2022-2024, sottoscritto il 27 febbraio 2026 (ARAN)",
-                      "kind": "associazione",
+                      "kind": "amministrazione",
                       "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
                       "published_on": "2026-02-27",
                       "sha256": "78f817dd3665df879f652b9778aeb634037664143ae195c2278d608efce4513a"
@@ -375,7 +375,7 @@
               "source_document": {
                 "document_id": "aran-ccnl-area-sanita-2022-2024",
                 "title": "CCNL Area Sanità 2022-2024, sottoscritto il 27 febbraio 2026 (ARAN)",
-                "kind": "associazione",
+                "kind": "amministrazione",
                 "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
                 "published_on": "2026-02-27",
                 "sha256": "78f817dd3665df879f652b9778aeb634037664143ae195c2278d608efce4513a"
@@ -404,7 +404,7 @@
           "source_document": {
             "document_id": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
             "title": "2026-02-27-ccnl-area-sanita-2022-2024-3-pdf",
-            "kind": "associazione",
+            "kind": "amministrazione",
             "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
           },
           "section": "Livelli contrattuali"
@@ -537,7 +537,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
     "verification_status": "unverified",
-    "source_hash": "cd561ee5db7d153dda7bfb1fd2249b7d5d6731705553bcf77c721aaa025dce1b",
+    "source_hash": "3010c98b540ad1510538070859ecdf4e0dd21b6e54defa5f417fbe4e8d2f11b2",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -568,7 +568,7 @@
               "source_document": {
                 "document_id": "ccnl-area-sanita-2022-2024",
                 "title": "CCNL Area Sanità 2022-2024",
-                "kind": "tabella_retributiva",
+                "kind": "amministrazione",
                 "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
               },
               "section": "Art. 8 CCNL 27.02.2026 — Lavoro straordinario"
@@ -604,7 +604,7 @@
               "source_document": {
                 "document_id": "ccnl-area-sanita-2022-2024",
                 "title": "CCNL Area Sanità 2022-2024",
-                "kind": "tabella_retributiva",
+                "kind": "amministrazione",
                 "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
               },
               "section": "Art. 8 CCNL 27.02.2026 — Lavoro straordinario"
@@ -617,6 +617,50 @@
             }
           }
         }
+      ],
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_0",
+          "description": "Servizio ordinario notturno, dalle 22 alle 6; indennità oraria lorda, non percentuale.",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-24",
+                "valid_until": null,
+                "value": "2.74"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "w-aranagenzia-it-wp-content-uploads-2024-01-2024-01-23-area-sanita-2019-2021-pdf",
+                "title": "2024 01 23 AREA SANITA 2019 2021",
+                "kind": "amministrazione",
+                "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf",
+                "sha256": "de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375"
+              },
+              "page": "112",
+              "section": "Art. 77 c. 1",
+              "quote": "1. Ai dirigenti il cui servizio si svolga durante le ore notturne spetta una “indennità notturna” nella misura unica uguale per tutti di € 2,74 lordi per ogni ora di servizio prestato tra le ore 22 e le ore 6."
+            },
+            "transformation": "Servizio ordinario notturno, dalle 22 alle 6; indennità oraria lorda, non percentuale.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2024-01-24",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-dirigenza-sanitaria-medico-veterinaria-aran-time-supplements"
+            }
+          },
+          "fixed_per_hour": true
+        }
       ]
     },
     "absence_rules": {
@@ -628,7 +672,7 @@
           "source_document": {
             "document_id": "ccnl-area-sanita-2022-2024",
             "title": "CCNL Area Sanità 2022-2024",
-            "kind": "tabella_retributiva",
+            "kind": "amministrazione",
             "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
           },
           "section": "Art. 28 CCNL 23.01.2024 — Orario di lavoro (7h36'/giorno su 5 giorni)"
@@ -659,7 +703,7 @@
           "source_document": {
             "document_id": "ccnl-area-sanita-2022-2024",
             "title": "CCNL Area Sanità 2022-2024",
-            "kind": "tabella_retributiva",
+            "kind": "amministrazione",
             "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
           },
           "section": "Art. 9 CCNL 27.02.2026 — Ferie (26 gg < 3 anni; 28 gg >= 3 anni, settimana 5 gg)"
@@ -682,7 +726,7 @@
           "source_document": {
             "document_id": "ccnl-area-sanita-2022-2024",
             "title": "CCNL Area Sanità 2022-2024",
-            "kind": "tabella_retributiva",
+            "kind": "amministrazione",
             "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf"
           },
           "section": "Art. 38 CCNL 23.01.2024 — Malattia (comporto 18 mesi; mesi 10-12 al 90%, mesi 13-18 al 50%)"
@@ -846,7 +890,7 @@
           "source_document": {
             "document_id": "dirigenza-sanitaria-medico-veterinaria-aran-notice-text",
             "title": "CCNL text with the notice clause (Art. 20(1)–(4), Termini di preavviso (replacement of art. 83 confirmed on PDF p. 28, art. 20(10)))",
-            "kind": "associazione",
+            "kind": "amministrazione",
             "url": "https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf",
             "sha256": "78f817dd3665df879f652b9778aeb634037664143ae195c2278d608efce4513a"
           },
@@ -904,6 +948,66 @@
           "section": "Art. 5"
         },
         "transformation": "The CCNL text read is silent on the holidays falling on a Sunday: the law pays the civil holidays only; art. 5 names the 'Stato, enti pubblici e datori privati', and the maintainer decided on 2026-11-15 that it applies to public employment (documents read: https://www.aranagenzia.it/wp-content/uploads/2026/02/2026.02.27-CCNL-Area-sanita-2022-2024-3.pdf, sha256 78f817dd3665df879f652b9778aeb634037664143ae195c2278d608efce4513a; https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf, sha256 de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375)"
+      }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ranagenzia-it-wp-content-uploads-2024-10-definitivo-ccnl-area-sanita-firmato-pdf",
+              "title": "DEFINITIVO CCNL AREA SANITA firmato",
+              "kind": "amministrazione",
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2024/10/DEFINITIVO-CCNL-AREA-SANITA-firmato.pdf",
+              "sha256": "32240e405e685cfad3d8eb91f8d12c7db504f81529357fa0882a567d82deace9"
+            },
+            "page": "100",
+            "section": "Art. 80 c. 1",
+            "quote": "1. Al personale dirigente comandato a prestare la propria attività lavorativa in località diversa dalla dimora abituale o dalla ordinaria sede di servizio, oltre alla normale retribuzione, compete: a) il rimborso delle spese effettivamente sostenute per i viaggi in ferrovia, aereo, nave ed altri mezzi di trasporto extraurbani, nel limite del costo del biglietto; per i viaggi in aereo la classe di rimborso è quella “economica”; per i dirigenti autorizzati ad avvalersi del proprio mezzo, nel rispetto delle vigenti disposizioni legislative in materia, si applica l’art. 64 (Coperture assicurative per utilizzo di mezzo di trasporto proprio o aziendale); b) il rimborso delle spese per i mezzi di trasporto urbano o, nei casi preventivamente individuati ed autorizzati dall’Azienda o Ente, dei taxi; c) per le trasferte di durata superiore a dodici ore, il rimborso della spesa sostenuta per il pernottamento in un albergo fino a quattro stelle e della spesa per i due pasti giornalieri, nel limite di complessivi € 44,26; d) per le trasferte di durata non inferiore a otto ore e fino a dodici ore, il rimborso per un pasto nel limite di € 22,26; e) per le trasferte continuative nella medesima località di durata non inferiore a trenta giorni, rimborso della spesa per il pernottamento in residenza turistico alberghiera di categoria corrispondente a quella ammessa per l’albergo, purché risulti economicamente più conveniente rispetto al costo medio della categoria consentita nella medesima località, ai sensi della lettera c)."
+          },
+          "transformation": "The CCNL pays no daily travel allowance: the trasferta is refunded at documented cost",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-15T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-15-ai-dirigenza-sanitaria-medico-veterinaria-aran-time-supplements"
+          }
+        }
+      },
+      "shift_work": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "w-aranagenzia-it-wp-content-uploads-2024-01-2024-01-23-area-sanita-2019-2021-pdf",
+              "title": "2024 01 23 AREA SANITA 2019 2021",
+              "kind": "amministrazione",
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf",
+              "sha256": "de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375"
+            },
+            "page": "112",
+            "section": "Art. 76 c. 1",
+            "quote": "1. Gli emolumenti connessi a determinate condizioni di lavoro del personale destinatario del presente contratto sono i seguenti: - L’indennità per il turno di guardia di cui all’art. 29 (Servizio di guardia); - L’Indennità di pronta disponibilità di cui all’art. 30 (Servizio di pronta disponibilità); - I compensi per il lavoro straordinario di cui all’art. 31 (Lavoro straordinario); - L’indennità per servizio notturno e festivo di cui all’art. 77 (Indennità per servizio notturno e festivo);"
+          },
+          "transformation": "shift_work: none in ccnl.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-15T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-15-ai-dirigenza-sanitaria-medico-veterinaria-aran-time-supplements"
+          }
+        }
       }
     }
   },
@@ -1021,6 +1125,33 @@
         "checked": [
           "levels.fixed_allowances.SPECIFICITA_MEDICO_VETERINARIA",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-dirigenza-sanitaria-medico-veterinaria-aran-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_23_AREA-SANITA_2019-2021.pdf",
+            "sha256": "de9efc25f0ca29ea4fedf8ff7d9e3fa893a672c62f628dbb96d7cfa18bcd6375"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/10/DEFINITIVO-CCNL-AREA-SANITA-firmato.pdf",
+            "sha256": "32240e405e685cfad3d8eb91f8d12c7db504f81529357fa0882a567d82deace9"
+          }
+        ],
+        "findings": [
+          "Applied: bands[0:night], travel, none.shift_work.",
+          "Left out: bands[1:holiday]: quote quote_not_in_file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ]
