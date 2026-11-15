@@ -2091,7 +2091,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tessile-moda-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "828b4dbf703bc9b1323507d97e1edd59b695ab1f1a18a9cd6fff0ee49cfcee28",
+      "source_hash": "4237394d2ae3d57e5a5be46d740fc9f8b81bf44906a0c41bf058f9909ab5e069",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/tessile-moda-artigianato-confartigianato.json.gz"

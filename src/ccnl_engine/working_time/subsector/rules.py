@@ -82,7 +82,8 @@ def with_subsector(
     Returns:
         The CCNL, unchanged when no band names a sub-sector or a category,
         and whether the sub-sector is not stated, the run then priced with
-        the first one the bands name.
+        the first one the bands name; a CCNL with bands of no sub-sector
+        has a main sector, which a run stating none belongs to.
 
     Raises:
         InvalidInputError: When ``subsector`` is not one the CCNL names, the
@@ -113,8 +114,7 @@ def with_subsector(
         or not any(b.subsectors or b.categories for b in bands)
     ):
         return ccnl, False
-    first = next((b.subsectors[0] for b in bands if b.subsectors), None)
-    stated = subsector if subsector is not None else first
+    stated, main = _stated(bands, subsector)
     if category is None and any(b.categories and stated in b.subsectors for b in bands):
         msg = (
             f"the overtime of sub-sector {stated!r} of {ccnl.meta.ccnl_id} "
@@ -140,7 +140,26 @@ def with_subsector(
         }
     )
     work = rules.model_copy(update={"time_supplements": supplements})
-    return ccnl.model_copy(update={"work_rules": work}), bool(known) and not subsector
+    unknown = bool(known) and not subsector and not main
+    return ccnl.model_copy(update={"work_rules": work}), unknown
+
+
+def _stated(
+    bands: tuple[OvertimeBand | SupplementBand, ...], subsector: str | None
+) -> tuple[str | None, bool]:
+    """Return the sub-sector the run is priced with, and whether there is a main one.
+
+    A CCNL with rules of its own beside those of its sub-sectors has a main
+    sector: a run that states no sub-sector is of it, not of the first one.
+
+    Returns:
+        ``subsector`` when stated; else ``None`` for the main sector, or the
+        first sub-sector the bands name without one.
+    """
+    main = any(not b.subsectors for b in bands)
+    if subsector is not None or main:
+        return subsector, main
+    return next((b.subsectors[0] for b in bands if b.subsectors), None), main
 
 
 def _applies(
