@@ -238,17 +238,8 @@
         }
       },
       {
-        "kind": "simplification",
-        "text": "Art. 9 (Sez. IV Tit. III): the holidays of letters b and c in a sickness or a work injury reach 100% (sickness_rules.holiday and insured_absence.injury.holiday). Not calculated: the holiday top-up during pregnancy and puerperium, the patron saint substitute and 29 June, a letter b holiday in Rome only, outside the national calendar.",
-        "capability": "sickness",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "holiday_outside_calendar",
-          "applies_when": {
-            "trigger": "outside_input"
-          },
-          "remediation": "Top up pregnancy and puerperium holidays, the substitute patron holiday and Rome-only 29 June when the applicable local facts are stated."
-        }
+        "kind": "info",
+        "text": "Art. 9 (Sez. IV Tit. III): the holidays of letters b and c in a sickness, a work injury or the compulsory maternity leave reach 100% (sickness_rules.holiday, insured_absence.injury.holiday, insured_absence.maternity.holiday). Letter c) is the patron saint of the workplace or the festivity agreed locally in its place, and for Rome SS. Pietro e Paolo (29 June, letter b point 4): the request states that date as EmployerProfile.patron_saint_day."
       },
       {
         "kind": "simplification",
@@ -3427,7 +3418,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "6ad2dca3a73fd088f2d342cb85ed39f2164966e1ad67968562fa22ddee84677d",
+    "source_hash": "fde554c83e21afff2e2ba3fb99a77ca1eb1d04a07a9c757ac33092d2a73da1d0",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -6497,6 +6488,32 @@
             "verification_status": "verified",
             "review_id": "2026-11-08-gpt-metalmeccanico-federmeccanica-insured-absence"
           }
+        },
+        "holiday": {
+          "rate": "1",
+          "excluded_days": [
+            "04-25",
+            "05-01",
+            "06-02",
+            "10-04"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-federmeccanica-2021-fiom",
+                "title": "CCNL Federmeccanica-Assistal 5 febbraio 2021 (FIOM-CGIL)",
+                "kind": "associazione",
+                "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+                "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+              },
+              "page": "164-165",
+              "section": "Sez. Quarta, Titolo III, Art. 9 - Festività",
+              "quote": "Qualora le festività di cui ai punti b) e c) ricorrano nel periodo di assenza dovuta a malattia, gravidanza e puerperio, o ad infortunio compensati con retribuzione ridotta, l’azienda integrerà tale trattamento fino a raggiungere per la giornata festiva l’intera retribuzione globale."
+            },
+            "transformation": "The same clause covers 'gravidanza e puerperio': during the compulsory maternity leave a weekday holiday of art. 9(b) and the stated local patron saint day of letter c) reach 100% of the global daily pay, INPS indemnity and the art. 4 integration included; art. 9(a) (25 April, 1 May, 2 June) and 4 October, absent from the list, are excluded. The substitute festivity agreed locally in place of the patron saint and, for Rome, SS. Pietro e Paolo (29 June, letter b point 4) are the date the employer states as EmployerProfile.patron_saint_day."
+          },
+          "includes_patron_saint": true
         }
       },
       "injury": {

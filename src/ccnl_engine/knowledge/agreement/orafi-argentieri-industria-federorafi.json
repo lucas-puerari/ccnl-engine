@@ -2309,7 +2309,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "ca165fb0eefb0e0a45513a5307110179d42cc5adf4bc2a6e2b093d51c335b43b",
+    "source_hash": "2250b46752148a124205fa57d443ccdc2d286177b511fef313dc7d86da5c8adf",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2594,6 +2594,51 @@
           "quote": "L’utilizzo su base oraria dei periodi di congedo parentale è frazionabile per gruppi di 2 o 4 ore\ngiornaliere riproporzionati, rispettivamente, ad un’ora e a 2 ore, per i part-time pari o inferiori a 20\nore settimanali. Esso non potrà essere programmato per un periodo inferiore ad una giornata\nlavorativa nel mese di utilizzo."
         },
         "transformation": "I gruppi di 2 o 4 ore sono frazioni di fruizione, non l'equiparazione espressa di una giornata di congedo: day_hours è null. Per i part-time fino a 20 ore settimanali i gruppi sono riproporzionati a 1 o 2 ore: part_time_scaled è true. La clausola non indica una decorrenza specifica: effective_from è null."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "06-29",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron",
+        "11-04"
+      ],
+      "divisor": "26",
+      "on_rest_day": true,
+      "exclude_compensatory_rest_day": true,
+      "fourth_november_on_sunday": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-orafi-argentieri-2017-05-18",
+            "title": "CCNL Orafi Argentieri Industria Federorafi 18-5-2017",
+            "kind": "associazione",
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf",
+            "sha256": "093a8610fb069f16df77cee5fec9e858568f2f3776bcf14013eb4673869dc45b"
+          },
+          "page": "PDF p. 90 (stampata p. 88)",
+          "section": "Disciplina speciale, Parte terza, art. 5",
+          "quote": "Qualora una delle festività elencate nei punti a), b) e c) del comma 1° cada di domenica, ai lavoratori di cui alla presente Parte Terza è dovuto, in aggiunta alla normale retribuzione mensile, l’importo di una quota giornaliera della retribuzione di fatto pari a 1/26 della retribuzione mensile fissa"
+        },
+        "transformation": "La clausola riconosce 1/26 della retribuzione mensile fissa quando le festività elencate cadono di domenica (divisor \"26\"); le date dei punti a), b) e c) diventano i codici holidays (04-25, 05-01, 06-02, 01-01, 01-06, easter_monday, 06-29, 08-15, 11-01, 12-08, 12-25, 12-26, patron); il 4 novembre celebrato la prima domenica di novembre ha il medesimo trattamento (11-04 in holidays, fourth_november_on_sunday true); chi lavora la domenica con riposo compensativo in altro giorno è pagato (on_rest_day true); se la festa coincide col giorno di riposo compensativo non è dovuto alcun compenso (exclude_compensatory_rest_day true).",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2015-01-01",
+          "verification_status": "unverified"
+        }
       }
     }
   }

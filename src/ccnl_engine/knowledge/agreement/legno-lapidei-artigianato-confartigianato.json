@@ -3806,7 +3806,7 @@
     "effective_until": null,
     "source": "https://www.informaimpresa.it/wp-content/uploads/2024/03/Rinnovo-CCNL-Area-Legno-Lapidei_05.03.2024_Tabelle-retributive-e3d.pdf",
     "verification_status": "unverified",
-    "source_hash": "c6ea43479b500f20deccfc9a90f6d99edd917091f10bffb24775c3127f2232ee",
+    "source_hash": "5e1afe938deacbba5ebf767bfce7a9e48fc88aaf7fd2aec6273a9cbca819d5c2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4017,6 +4017,52 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 c6d21685d3bce74e78cf571d5ce7b9701447ed8bdd5cd27a8c814d7a9c7d9489)."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "easter_monday",
+        "patron",
+        "11-04"
+      ],
+      "on_rest_day": false,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": true,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-legno-lapidei-artigiani-2014",
+            "title": "CCNL-Legno-Lapidei-Artigiani-25.03.14.pdf",
+            "kind": "associazione",
+            "url": "https://www.fenealuil.it/wp-content/uploads/2014/10/CCNL-Legno-Lapidei-Artigiani-25.03.14.pdf",
+            "sha256": "6e40ca166cb3acb734bc103bf1692e60c4ca97344138d20dba07d66d59b3de30"
+          },
+          "page": "35",
+          "section": "art. 35",
+          "quote": "Qualora una delle festività elencate ai punti b), c) e d) del 1° comma cada di domenica ai lavoratori è dovuta, in aggiunta alla normale retribuzione globale, l'importo di una quota giornaliera della retribuzione di fatto. Tale trattamento è dovuto per il giorno di domenica coincidente con una delle dette festività anche a coloro che, nei casi consentiti dalla legge, lavorino di domenica, godendo il prescritto riposo compensativo în altro giorno della settimana, fermo restando che non è dovuto alcun ‘compenso nel caso di coincidenza della festività col giorno di ri compensativo"
+        },
+        "transformation": "I punti b), c) e d) dell'art. 35 (PDF p. 35) elencano 25 aprile, 1° maggio, 1° gennaio, 6 gennaio, 2 giugno, 15 agosto, 1° novembre, 8 dicembre, 25 dicembre, 26 dicembre, lunedì di Pasqua e Santo Patrono: convertiti nei rispettivi codici. L'art. 36 (PDF p. 36) prevede per il 4 novembre, la cui celebrazione è spostata alla domenica successiva, lo stesso trattamento: aggiunto 11-04. La quota giornaliera non indica un divisore; nessun pagamento generalizzato per sabato, altra festività coincidente o giorno di riposo settimanale non domenicale. L'art. 35 esclude espressamente il compenso quando la festività coincide col giorno di riposo compensativo.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2014-03-25",
+          "verification_status": "unverified"
+        },
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
       }
     }
   }
