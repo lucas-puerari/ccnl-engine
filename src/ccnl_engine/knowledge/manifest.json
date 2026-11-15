@@ -48,7 +48,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/afam-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "68554c999a6df72dd93448fd72cf0eb8fd3352504d0f31d6630a521a785448d9",
+      "source_hash": "c862b2acd5b5d48ea76d17aa6cc7ff36f5f0837f86af8c5d0a1649cdc1e0944a",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/afam-aran.json.gz"
@@ -864,7 +864,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/enti-ricerca-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "0e5df7b3160e336271b409209c8fd850e59f1006baaf837bbfd9d08475cd65a5",
+      "source_hash": "abbf779944f931240cec4eb22bd7e1b1826686539fe23b6e90c27ea530cff83d",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/enti-ricerca-aran.json.gz"
@@ -2244,7 +2244,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/universita-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "b4c0d39264dca11f05ed07b5f5939044955f25e5ac2734383a80e8c0a0714146",
+      "source_hash": "84fd149fdd205158141d55b7bf1a0a9978824c1cb05e589dfa6ea7596056616a",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/universita-aran.json.gz"
