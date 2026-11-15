@@ -1122,7 +1122,7 @@
     "effective_until": null,
     "source": "https://www.cislscuola.it/download/ccnl-formazione-professionale-2024-2027/",
     "verification_status": "verified",
-    "source_hash": "d86927f96a2603fbcdc713eb2a950723dda3ef89471a738c18e5db03b0848738",
+    "source_hash": "a9caae840a48789b0e49dd19a2bb2e35b2e799b903b8202d199b5bab6793b56e",
     "published_at": "2026-09-11",
     "source_type": "contracting_party"
   },
@@ -1450,6 +1450,24 @@
           "verified_at": "2026-11-01T12:51:22Z",
           "verification_status": "verified"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "236584",
+            "title": "Contratto Collettivo Nazionale di Lavoro - Formazione Professionale 2024-2027",
+            "kind": "cnel",
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/236584",
+            "sha256": "9b42f827613b72c414f475c30a8aaf0ff107baafc954b5c178feffb12a3990cf"
+          },
+          "page": "56",
+          "section": "Art. 50, A, comma 7",
+          "quote": "Il congedo parentale può essere goduto per periodi continuativi\n         oppure frazionati, su base mensile, giornaliera o oraria. La modali-\n         tà di fruizione oraria non modifica la durata del congedo parenta-\n         le, valgono quindi i limiti complessivi ed individuali sopra previsti."
+        },
+        "transformation": "La clausola ammette la fruizione oraria ma non stabilisce quante ore equivalgano a una giornata di congedo: day_hours = null. Non prevede riproporzionamento per il part-time né una decorrenza specifica della clausola."
       }
     }
   },

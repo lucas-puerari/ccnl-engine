@@ -3106,7 +3106,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
     "verification_status": "unverified",
-    "source_hash": "8b2a5398230ee4b5c6119a24ad187ab115223e03691123ad48518f3d3f5ddcd9",
+    "source_hash": "459a648486395550cb9c33e9acc462b3fac4809eed2fe940458b7179200b59ca",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3402,6 +3402,25 @@
           "transformation": "Top-up of the INAIL indemnity to 100% of the pay from the first day of absence."
         },
         "integration_rate": "1"
+      }
+    },
+    "parental_hourly": {
+      "effective_from": "2020-01-01",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-2022.txt",
+            "title": "CCNL settore elettrico 18 luglio 2022 (testo estratto dal PDF)",
+            "kind": "associazione",
+            "url": "https://gme.mercatoelettrico.org/portals/0/Documents/en-us/20230116_CCNL_Elettrico.pdf",
+            "sha256": "d124da13a54fab3a4ae33be0dfb9b167cf0eabfcf474d36d55b018f1131b2297"
+          },
+          "page": "47",
+          "section": "Art. 20, commi 4–6",
+          "quote": "4. Ai sensi dell’art. 32 del D. Lgs. n.151/2001 e successive modificazioni a decorrere dal 1°\n      gennaio 2020, il congedo parentale potrà essere fruito anche ad ore.\n   5. La lavoratrice/il lavoratore può usufruire di permessi su base oraria fino a un massimo\n      dell’orario giornaliero previsto in azienda.\n   6. Il congedo potrà essere fruito, sia dal personale a tempo pieno che dal personale a tempo\n      parziale, per periodi minimi di un’ora giornaliera, la cui somma nell’arco di ciascun mese di\n      utilizzo deve in ogni caso corrispondere a giornate intere."
+        },
+        "transformation": "Il comma 4 indica la decorrenza 1° gennaio 2020. I commi 5–6 stabiliscono il massimo nell'orario giornaliero aziendale e il minimo di un'ora, con somma mensile in giornate intere, ma non equiparano espressamente una giornata a un numero fisso di ore: day_hours = null. Il comma 6 include il part-time, senza prescrivere un riproporzionamento delle ore: part_time_scaled = false."
       }
     }
   }

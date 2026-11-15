@@ -1814,7 +1814,7 @@
     "effective_until": null,
     "source": "https://www.fabi.it/wp-content/uploads/2025/01/CCNL-BCC-testo-coordinato-19-dicembre-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "8ab6b4446a475365fd10cd427ba734cee7d983e7d5520eceaee024f89140cffe",
+    "source_hash": "982b33bfb653ce610731b15d487eb7f6dce88d899a5c6ee33c8da35d6e5dcf5e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2164,6 +2164,26 @@
           "divisor": "26"
         }
       ]
+    },
+    "parental_hourly": {
+      "part_time_scaled": true,
+      "effective_from": "2026-01-01",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "bcc-credito-cooperativo-accordo-2025-11-24",
+            "title": "Verbale di accordo del 24 novembre 2025 (art. 54 bis CCNL BCC-CRA)",
+            "kind": "associazione",
+            "url": "https://apilavoro.eutekne.it/v1/notizie/allegato/f571390d-5db7-457d-bde1-59ed2112e1e9/Accordo%2024.11.2025.pdf/download",
+            "sha256": "a5d1ff06d41fd6ee1797293ccfaa82959da632c31e778d0b6548779d83c538eb"
+          },
+          "page": "1",
+          "section": "Verbale di accordo 24 novembre 2025, modifica art. 54 bis, «convengono quanto segue»",
+          "quote": "Il congedo parentale ex art. 32 del D. Lgs. 151/2001 e ss. mm. di cui all’articolo 54 bis del CCNL per i\nquadri direttivi e per il personale delle aree professionali delle BCC-CRA del 9 luglio 2024, a decorrere\ndal 1° gennaio 2026 potrà essere fruito in modo frazionato con il minimo di un’ora giornaliera, fermo\nrestando che la somma dei congedi parentali fruiti ad ore nell’arco di ciascun mese deve corrispondere\ncomunque a giornate intere.\n\nCon riferimento alla fruizione del congedo parentale di cui sopra, ed ai soli fini della stessa, una giornata\nlavorativa corrisponde convenzionalmente all’orario di lavoro settimanale applicato diviso il numero di\ngiorni lavorativi su cui è articolato lo stesso."
+        },
+        "transformation": "L'accordo definisce la giornata come orario settimanale applicato diviso i giorni lavorativi, non come un numero fisso di ore per il tempo pieno: day_hours è null. La formula usa l'orario e i giorni applicati al singolo rapporto, quindi adegua la conversione anche al part-time; la decorrenza espressa è il 1° gennaio 2026."
+      }
     }
   },
   "verification": {

@@ -3677,7 +3677,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
     "verification_status": "unverified",
-    "source_hash": "6ea4b06a9cc004507dcd62a9f02e1b6f56640c0811104c065f5137439856a972",
+    "source_hash": "5b7bb0d91ae19a318e76ec2fcc6df7f0f36847a65bf4e98798242438901e901f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -3934,6 +3934,24 @@
           "effective_from": "2020-12-02",
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "CCNL-cooperazione-alimentare-2023-testo-estratto",
+            "title": "CCNL cooperazione alimentare 2023 (estrazione testuale del PDF)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2023/07/CCNL-cooperazione-alimentare-2023.pdf",
+            "sha256": "a38eb5c832d99cddb4c6fe1b31c24b72291c8362b8633aa3c523c6a189fc043a"
+          },
+          "page": "57 (pagina stampata 113)",
+          "section": "Art. 62, lett. A) Congedi parentali",
+          "quote": "sarà riconosciuto in gruppi minimi di 4 ore giornaliere, fermi restando i termini di"
+        },
+        "transformation": "La clausola stabilisce gruppi minimi di 4 ore giornaliere per la fruizione oraria, non l'equivalenza tra ore e una giornata di congedo: day_hours = null. Non prevede riproporzionamento per il part-time né una decorrenza specifica: part_time_scaled = false, effective_from = null."
       }
     }
   }

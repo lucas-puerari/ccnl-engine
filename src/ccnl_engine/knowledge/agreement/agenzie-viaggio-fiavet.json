@@ -2484,7 +2484,7 @@
     "effective_until": "2027-12-31",
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
     "verification_status": "unverified",
-    "source_hash": "d3b0070f3e75ab04dad029e464f702020454221d22e9c6fc4e0d8b422fad1961",
+    "source_hash": "28e982acce901e8abc2e074c1fa9af69e6452f619f476be6b50c83a828281f6e",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -2719,6 +2719,24 @@
           "effective_from": "2024-07-01",
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "agenzie-viaggio-fiavet-rinnovo-2024-testo-estratto",
+            "title": "Accordo di rinnovo CCNL Agenzie di viaggio e turismo 26 luglio 2024 (testo estratto)",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AgenzieViaggioTurismo_AccordoRinnovo_26.7.24.pdf",
+            "sha256": "4a110c78751772f16c62ea511166996a2316c61bf8096c9259e67eb343874d68"
+          },
+          "page": "37",
+          "section": "Articolo 176, comma 3 – Congedo parentale",
+          "quote": "(3) I congedi parentali (astensione facoltativa) possono essere frazionati, anche a ore secondo\nquanto previsto dalle vigenti disposizioni di legge, in misura pari alla metà dell'orario medio\ngiornaliero del periodo di paga quadrisettimanale o mensile immediatamente precedente a quello\nnel corso del quale ha inizio il congedo. La contrattazione integrativa potrà stabilire diverse\nmodalità di fruizione."
+        },
+        "transformation": "La metà dell'orario medio giornaliero determina la misura della fruizione oraria, non il numero di ore che il CCNL equipara espressamente a una giornata di congedo: day_hours = null. Il comma non prevede un riproporzionamento espresso per il part-time né una decorrenza specifica."
       }
     }
   },

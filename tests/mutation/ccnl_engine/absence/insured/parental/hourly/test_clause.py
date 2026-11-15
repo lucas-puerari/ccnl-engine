@@ -12,11 +12,15 @@ from __future__ import annotations
 from dataclasses import replace
 from datetime import date
 from decimal import Decimal
+from types import SimpleNamespace
+from typing import TYPE_CHECKING, cast
 
 import pytest
 
+from ccnl_engine.absence.insured.parental.hourly import handlers
 from ccnl_engine.absence.insured.parental.hourly.handlers import (
     HOURLY_CCNL_LIMITATION,
+    _day_hours,
     _limitations,
 )
 from ccnl_engine.absence.insured.parental.hourly.models import ParentalHourlyClause
@@ -33,9 +37,12 @@ from tests.mutation.ccnl_engine.absence.insured.parental.hourly.test_handlers im
 )
 from tests.mutation.ccnl_engine.absence.insured.parental.test_handlers import _run
 
+if TYPE_CHECKING:
+    from ccnl_engine.absence.insured.services import InsuredTerms
+
 _RECORD = RuleProvenance(status=ProvenanceStatus.MISSING)
 _COMMERCIO = ("commercio-confcommercio", "4")
-_METAL = ("metalmeccanico-federmeccanica", "C3")
+_UNRECORDED = ("gas-acqua-utilitalia", "4")
 
 
 @pytest.mark.parametrize(
@@ -86,8 +93,9 @@ def test_a_silent_ccnl_applies_the_criterion() -> None:
 
 
 def test_an_unrecorded_ccnl_keeps_the_limitation() -> None:
-    """Metalmeccanico: its rule is not in the bundle yet."""
-    result = _run(replace(_leave(2, 3), local_hourly_agreement=False))
+    """Gas-acqua: its rule is not in the bundle yet."""
+    leave = replace(_leave(2, 3), local_hourly_agreement=False)
+    result = _run(leave, ccnl_id=_UNRECORDED[0], level_code=_UNRECORDED[1])
     assert HOURLY_CCNL_LIMITATION in {lim.id for lim in result.limitations}
 
 
@@ -104,7 +112,7 @@ def test_no_hourly_leave_on_a_day_of_nursing_rest() -> None:
     [
         (None, _COMMERCIO),
         (True, _COMMERCIO),
-        (False, _METAL),
+        (False, _UNRECORDED),
     ],
     ids=["agreement-unknown", "local-agreement", "ccnl-unrecorded"],
 )
@@ -120,33 +128,70 @@ def test_the_check_needs_the_criterion(
     assert _run(leave, same, ccnl_id=ccnl[0], level_code=ccnl[1]).period_gross > 0
 
 
-def test_the_first_day_of_leave_decides_the_rule(
+@pytest.mark.parametrize(
+    ("clause", "part_time", "hours"),
+    [
+        (None, None, None),
+        (ParentalHourlyClause(provenance=_RECORD), None, None),
+        (
+            ParentalHourlyClause(
+                day_hours=Decimal(6),
+                effective_from=date(2026, 3, 3),
+                provenance=_RECORD,
+            ),
+            None,
+            None,
+        ),
+        (
+            ParentalHourlyClause(day_hours=Decimal(6), provenance=_RECORD),
+            None,
+            Decimal(6),
+        ),
+        (
+            ParentalHourlyClause(day_hours=Decimal(6), provenance=_RECORD),
+            Decimal("0.5"),
+            Decimal(6),
+        ),
+        (
+            ParentalHourlyClause(
+                day_hours=Decimal(6), part_time_scaled=True, provenance=_RECORD
+            ),
+            Decimal("0.5"),
+            Decimal(3),
+        ),
+        (
+            ParentalHourlyClause(
+                day_hours=Decimal(6), part_time_scaled=True, provenance=_RECORD
+            ),
+            None,
+            Decimal(6),
+        ),
+    ],
+)
+def test_the_hours_of_a_day_of_leave(
+    clause: ParentalHourlyClause | None,
+    part_time: Decimal | None,
+    hours: Decimal | None,
+) -> None:
+    """In force on the first day, 2 March; scaled for a part time if the CCNL says."""
+    terms = SimpleNamespace(hourly_clause=clause, part_time=part_time)
+    assert _day_hours(_leave(2, 3), cast("InsuredTerms", terms)) == hours
+
+
+def test_the_run_makes_the_days_with_the_ccnl_hours(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    """The CCNL hours in force on the first day of leave, 2 March, decide."""
-    seen: list[date] = []
-
-    def in_force(_clause: ParentalHourlyClause, day: date) -> bool:
-        seen.append(day)
-        return day == date(2026, 3, 2)
-
-    monkeypatch.setattr(ParentalHourlyClause, "sets_hours_on", in_force)
-    leave = replace(_leave(2, 3), local_hourly_agreement=False)
+    """Six hours a day of leave: four hours on 2 and 3 March, then 4 on the 4th."""
+    monkeypatch.setattr(handlers, "_day_hours", lambda *_: Decimal(6))
+    leave = replace(_leave(2, 3, 4), local_hourly_agreement=False)
     result = _run(leave, ccnl_id=_COMMERCIO[0], level_code=_COMMERCIO[1])
-    assert HOURLY_CCNL_LIMITATION in {lim.id for lim in result.limitations}
-    assert date(2026, 3, 2) in seen
+    (item,) = (i for i in result.pay_items if i.kind == "maternity_item")
+    assert item.absence_days == 2
+    assert HOURLY_CCNL_LIMITATION not in {lim.id for lim in result.limitations}
 
 
-@pytest.mark.parametrize(
-    ("first", "limited"),
-    [(date(2026, 8, 6), False), (date(2026, 8, 7), True)],
-)
-def test_the_limitation_follows_the_date_of_the_clause(
-    first: date, limited: bool
-) -> None:
-    """ARAN-like 6 hours from 7 August: before it the criterion applies."""
-    clause = ParentalHourlyClause(
-        day_hours=Decimal(6), effective_from=date(2026, 8, 7), provenance=_RECORD
-    )
-    limitations = _limitations((), clause, first, unpublished=False)
-    assert (HOURLY_CCNL_LIMITATION in limitations) is limited
+def test_only_an_unrecorded_ccnl_takes_the_limitation() -> None:
+    """A recorded rule, with hours or not, is applied."""
+    clause = ParentalHourlyClause(day_hours=Decimal(6), provenance=_RECORD)
+    assert HOURLY_CCNL_LIMITATION not in _limitations((), clause, unpublished=False)
+    assert HOURLY_CCNL_LIMITATION in _limitations((), None, unpublished=False)

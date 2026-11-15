@@ -3104,7 +3104,7 @@
     "effective_until": null,
     "source": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
     "verification_status": "unverified",
-    "source_hash": "c50c7a03ca26edb6fd531c74cc9d418b6b68c7c8e458399ac0abf6a46b708f5b",
+    "source_hash": "4f441f2e3c851c5eaeb17c49b901b3fbe95a0a7f0cf7897110e76b2f75c2b6d7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3396,6 +3396,24 @@
           "effective_from": "2021-01-01",
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "grafici20242026-alt.txt",
+            "title": "CCNL grafici editori, testo del 19 gennaio 2021 allegato all'ipotesi di rinnovo del 19 dicembre 2023 (estrazione testuale)",
+            "kind": "associazione",
+            "url": "https://www.fistelveneto.cisl.it/cms/files/file/411150-grafici20242026.pdf",
+            "sha256": "b259619cbe85745389e45b0b02945b5bb7efd6f815e0a332b15b32ade36ea343"
+          },
+          "page": "90 (pagina stampata 63)",
+          "section": "Parte prima, art. 42 – Tutela della maternità e della paternità",
+          "quote": "Nel caso in cui il congedo venga chiesto in modalità di fruizione oraria, lo stesso\nsarà riconosciuto in gruppi minimi di 4 ore giornaliere, fermo restando i termini\ndi preavviso sopra indicati.\nL’Azienda e la R.S.U. potranno definire modalità e condizioni per la fruizione\ndei congedi parentali su base oraria in misura inferiore a quelli previsti dalle\nnorme di Legge, in relazione alle esigenze organizzative e produttive."
+        },
+        "transformation": "Le 4 ore sono un gruppo minimo giornaliero di fruizione, non ore equiparate a una giornata di congedo: day_hours=null. Nessun riproporzionamento per il part-time né decorrenza specifica nella clausola."
       }
     }
   }

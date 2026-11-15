@@ -2862,7 +2862,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
     "verification_status": "unverified",
-    "source_hash": "8060e8e67c08bf02ef5280a0e5df170b8df8cc52022149ad5c8d2f8cbd1d25b8",
+    "source_hash": "88434d98e328d1f4ccec9fb3da9e5fed3f99b7d6cfa65afe94b96b5bb3b5f6a3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3072,6 +3072,24 @@
           "review_id": "2026-10-31-ai-sickness-comporto"
         },
         "note": "Not modelled: the hospital stays (day hospital included), the life-saving therapies and the continuous absences over a month (up to 90 days) left out of the counts; the absences of up to 3 days counted twice after the first 4 events of the comporto. The 2026 ipotesi (CNEL 246200) only corrects typos of the sickness article."
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-carta-industria-2021",
+            "title": "CARTA - Aziende industriali del 28/07/2021 - CCNL",
+            "kind": "associazione",
+            "url": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+            "sha256": "fb3e0cce00ffb6d13a42dd60ead6658f609ff475cb60ed43e8edc76695239a77"
+          },
+          "page": "46",
+          "section": "Art. 42 - Tutela della maternità e della paternità",
+          "quote": "Nel caso in cui il congedo venga chiesto in modalità di fruizione oraria, lo stesso sarà riconosciuto\n           in gruppi minimi di 4 ore giornaliere, fermo restando i termini di preavviso di 2 giorni previsti dalla legge.\n                    L'azienda e la R.S.U. potranno definire modalità e condizioni per la fruizione dei congedi parentali\n           su base oraria in misura inferiore a quelli previsti dalle norme di legge, in relazione alle esigenze\n           organizzative e produttive."
+        },
+        "transformation": "La clausola fissa gruppi minimi di 4 ore giornaliere, non l'equivalenza tra una giornata di congedo e un numero di ore: day_hours è null. Non prevede riproporzionamento per il part-time né una decorrenza specifica della clausola."
       }
     }
   }

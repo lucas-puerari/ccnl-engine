@@ -1359,7 +1359,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "12267ced4eeae03aa6da873abcfdcca13912d07333a24768b30d4e2aa3beebac",
+    "source_hash": "af79edf2d43b75d2551f55409167919cd29b6a74c8fbf7420dee2f4c0932a5ea",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1736,6 +1736,27 @@
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice-2"
         }
+      }
+    },
+    "parental_hourly": {
+      "day_hours": "6",
+      "part_time_scaled": true,
+      "effective_from": "2026-10-29",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-2025-2027-funzioni-locali-aran",
+            "title": "CCNL comparto Funzioni Locali 2025–2027 (testo estratto dal PDF)",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/10/CCNL-comparto-FL-25-27-_-firmato-2.pdf",
+            "sha256": "145dca441a06b77763fa7fe5915113bd71c0105b296ccae22a87a502b0db189e"
+          },
+          "page": "38 (pagina stampata 37)",
+          "section": "Art. 29, comma 7",
+          "quote": "7. I genitori lavoratori, anche adottivi o affidatari, con rapporto di lavoro, sia a tempo\npieno che a tempo parziale, possono fruire anche su base oraria dei periodi di congedo\nparentale. In tale ipotesi, fermo restando, un termine di preavviso pari a 2 giorni, ai fini\ndel computo dei giorni di congedo parentale fruiti da un lavoratore a tempo pieno, 6\nore di congedo parentale sono convenzionalmente equiparate ad un giorno. In caso di\npart time il suddetto numero di ore è riproporzionato per tenere conto della minore\ndurata della prestazione lavorativa. I congedi parentali ad ore sono cumulabili con\npermessi e riposi di cui al D.Lgs 151/2001 e non sono, in ogni caso, fruibili per meno\ndi un’ora."
+        },
+        "transformation": "Il comma equipara esplicitamente 6 ore di congedo di un lavoratore a tempo pieno a un giorno e riproporziona tale numero per il part-time. La decorrenza è il giorno dopo la stipulazione del 28 ottobre 2026, secondo l'art. 2, comma 2, del medesimo CCNL."
       }
     }
   },

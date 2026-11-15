@@ -2528,7 +2528,7 @@
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "72db060fd32c652d7011e061eee88286f2056ffc050b8077c12d147600e4f8ce"
+    "source_hash": "7a4f9e2075629f9c7a1971f9e0a2931c8ae7692cd45953bce232b323859a94e1"
   },
   "work_rules": {
     "insured_absence": {
@@ -2563,6 +2563,24 @@
             "effective_from": "2025-07-01"
           }
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "F020",
+            "title": "Contratto collettivo nazionale di lavoro per i lavoratori della piccola e media industria del settore materiali da costruzione: lapidei, laterizi, cemento",
+            "kind": "associazione",
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CCNL_MaterialiCostruzione_testo-completo.pdf",
+            "sha256": "8b7e20601ddae6799292bc6bee96054cdbf136682357837200e823bfac8b983f"
+          },
+          "page": "150 (stampata 148)",
+          "section": "Art. 52 - Genitorialità",
+          "quote": "La fruizione del congedo parentale facoltativo può essere frazionata anche in\nunità orarie, rispettando le necessità organizzative aziendali, programmandone\npreferibilmente l'utilizzo a inizio o fine turno o pausa pranzo."
+        },
+        "transformation": "La clausola permette la fruizione in unità orarie ma non equipara espressamente un numero di ore a una giornata di congedo: day_hours = null. Non prescrive riproporzionamento per il part-time né una decorrenza della fruizione oraria."
       }
     }
   }

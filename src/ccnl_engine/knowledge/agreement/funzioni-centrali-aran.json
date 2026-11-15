@@ -1835,7 +1835,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "96fb3dd731f8fd71030a04f559a8d4676fc3377c7061f9101788684b8228842c",
+    "source_hash": "b674c836012a0b0dde9290cb8e2c7210b7c7e93a7ed4f9efe90fab87eddf51ba",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -2213,6 +2213,27 @@
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice-2"
         }
+      }
+    },
+    "parental_hourly": {
+      "day_hours": "6",
+      "part_time_scaled": true,
+      "effective_from": "2026-08-07",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-2025-2027.txt",
+            "title": "CCNL comparto Funzioni Centrali 2025-2027",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf",
+            "sha256": "1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e"
+          },
+          "page": "37 (PDF; pagina stampata 35)",
+          "section": "Art. 26, comma 7 (continuazione)",
+          "quote": "151/2001, ai fini del computo dei giorni di congedo parentale fruiti da un lavoratore a\ntempo pieno, 6 ore di congedo parentale sono convenzionalmente equiparate ad un\ngiorno. In caso di part-time il suddetto numero di ore è riproporzionato per tenere conto\ndella minore durata della prestazione lavorativa. I congedi parentali ad ore non sono,\nin ogni caso, fruibili per meno di un’ora."
+        },
+        "transformation": "L'art. 26, comma 7 equipara esplicitamente 6 ore a un giorno di congedo per il tempo pieno e riproporziona tale numero per il part-time. L'art. 2, comma 2 fa decorrere gli effetti dal giorno successivo alla stipulazione del 6 agosto 2026: 7 agosto 2026."
       }
     }
   },

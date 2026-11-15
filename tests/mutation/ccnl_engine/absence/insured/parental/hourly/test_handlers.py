@@ -17,12 +17,16 @@ from __future__ import annotations
 from dataclasses import replace
 from datetime import date
 from decimal import Decimal
+from fractions import Fraction
 from typing import TYPE_CHECKING
 
 import pytest
 
 from ccnl_engine.absence.insured.handlers import NOT_MODELLED
-from ccnl_engine.absence.insured.parental.hourly.rules import hourly_top_up
+from ccnl_engine.absence.insured.parental.hourly.rules import (
+    HourlyDays,
+    hourly_top_up,
+)
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.decision.models import (
     CalculationDecision,
@@ -48,6 +52,10 @@ if TYPE_CHECKING:
     from ccnl_engine.period.results import PeriodResult
 
 _BORN = date(2025, 6, 1)
+_HALF_DAYS = HourlyDays({
+    date(2026, 3, 2): ((Fraction(1, 2), Decimal("0.3")),),
+    date(2026, 3, 3): ((Fraction(1, 2), Decimal("0.3")),),
+})
 
 
 def _leave(
@@ -110,7 +118,7 @@ def test_half_day_remaining_under_collective_cap() -> None:
     rule = work_rules.insured_absence.parental
     assert hourly_top_up(
         leave,
-        {date(2026, 3, 2): Decimal("0.3"), date(2026, 3, 3): Decimal("0.3")},
+        _HALF_DAYS,
         (date(2026, 3, 1), date(2026, 3, 31)),
         Decimal(2400) / 30 + Decimal(2400) / 360,
         rule,
@@ -133,7 +141,7 @@ def test_standard_only_supplement_excludes_single_parent() -> None:
     assert work_rules.insured_absence is not None
     assert hourly_top_up(
         leave,
-        {date(2026, 3, 2): Decimal("0.3"), date(2026, 3, 3): Decimal("0.3")},
+        _HALF_DAYS,
         (date(2026, 3, 1), date(2026, 3, 31)),
         Decimal(100),
         work_rules.insured_absence.parental,
@@ -158,7 +166,8 @@ def test_four_half_days_are_two_days_of_leave_at_80_percent() -> None:
     (item,) = (i for i in result.pay_items if i.kind == "maternity_item")
     assert item.absence_days == Decimal(2)
     ids = {lim.id for lim in result.limitations}
-    assert {"parental_hourly_ccnl_rule", "parental_extra_month_share"} <= ids
+    assert "parental_extra_month_share" in ids
+    assert "parental_hourly_ccnl_rule" not in ids
 
 
 def test_without_an_hourly_base_the_hours_post_nothing() -> None:

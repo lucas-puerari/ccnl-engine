@@ -19,22 +19,6 @@
       }
     },
     {
-      "id": "parental_hourly_ccnl_rule",
-      "institute": "parental_leave",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "A parental leave by the hour takes half the average daily hours a day and counts two such days as one day of leave, the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 (INPS circ. 152/2015 par. 2.2), which also excludes its cumulation with the nursing rests on the same day. A national CCNL rule that sets other hours to a day of leave prevails (art. 32 c. 1-bis): the run records this limitation while the bundle does not record the rule of the CCNL (work_rules.parental_hourly) or the rule sets its own hours, which the engine does not apply yet; a company or territorial agreement is the fact local_hourly_agreement of the event.",
-      "calculation": "ccnl_engine.absence.insured.parental.hourly.handlers._handle_hourly_parental; INPS circ. 152/2015 (sha256 6e74e62dd50378c23117df7aaca509ab9b8b93e60f99cad23e9c64982fd3734e) par. 2.2; INPS msg. 6704/2015 (sha256 df53a5985edfad727f8f7fcab3c2e21ee70181181ef35194935394157ef12204)",
-      "state": "unverified",
-      "remediation": "Source the collective rules on the leave by the hour of the CCNL (hours of a day of leave, cumulation) and apply them, then resolve this limitation.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "parental_hourly_ccnl_rule"
-        ]
-      }
-    },
-    {
       "id": "rule_work_rules_absence_rules",
       "institute": "base_salary",
       "variant": "all",

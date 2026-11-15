@@ -7,7 +7,7 @@
     "effective_until": null,
     "published_at": "2026-09-11",
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/concia/240307_CONCIA_RINNOVO%20CCNL%202023-2026.pdf",
-    "source_hash": "e14449e2be9b1b58f0b189127a84f814dff992ecb014f831e262ac3a02c35c77",
+    "source_hash": "397130133b174dfa86692e3c0feedb27fbbb452173bb4b3c54826fac7c312600",
     "verification_status": "verified",
     "source_type": "contracting_party"
   },
@@ -3762,6 +3762,25 @@
           "effective_from": "2019-11-01",
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "part_time_scaled": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-148617-cnel-2021.txt",
+            "title": "CCNL per gli addetti delle aziende conciarie (1 novembre 2019 – 30 giugno 2023), testo estratto",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/148617",
+            "sha256": "e5f478479583edd9fd8614480cc5ee5d6dc130ad29271067522ed444c8bd9cde"
+          },
+          "page": "79 (pagina stampata 77)",
+          "section": "Art. 65 - Congedi parentali e per malattia dei figli",
+          "quote": "L’utilizzo su base oraria dei periodi di congedo parentale è frazionabile per gruppi di 4 ore giornaliere\nriproporzionati, rispettivamente, a 2 ore, per i tempi parziali pari o inferiori a 20 ore settimanali. Esso\nnon potrà essere programmato per un periodo inferiore ad una giornata lavorativa nel mese di utilizzo.\nCon accordo aziendale si possono trovare soluzioni alternative."
+        },
+        "transformation": "Le 4 ore sono gruppi di frazionamento, non ore equiparate a una giornata: day_hours=null. Per i part-time fino a 20 ore settimanali il gruppo è ridotto a 2 ore: part_time_scaled=true. La clausola non indica una data di applicazione specifica: effective_from=null."
       }
     }
   },

@@ -2378,7 +2378,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "e322f3bc3ae22b87d601f3ba1a0216c32a0200c62829c620da8aa08facf9b037",
+    "source_hash": "a6987d44614ff3a576329bdd67603346579daad8d45f6aacb092ea2a0674e031",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3888,6 +3888,24 @@
           "review_id": "2026-11-14-ai-sunday-holidays",
           "effective_from": "2024-02-16"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-2024.pdf",
+            "title": "CCNL per i dipendenti degli studi e delle attività professionali (16 febbraio 2024)",
+            "kind": "associazione",
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          },
+          "page": "63",
+          "section": "Articolo 114 - Congedo parentale a ore",
+          "quote": "Articolo 114 - Congedo parentale a ore\nAi fini di conciliare i tempi di lavoro e quelli famigliari, le parti - con il presente articolo - intendono dare\nattuazione alla disposizione di cui al D.lgs. 151/2001 per definire la modalità di fruizione del congedo\nparentale disciplinato dall'articolo 113 in modalità a ore, indistintamente per i lavoratori a tempo pieno\no parziale.\nIn particolare:\n- la volontà di avvalersi del congedo in ossequio alla predetta articolazione dovrà essere comunicata al\ndatore di lavoro con almeno 5 giorni di preavviso, indicando il numero di mesi di congedo parentale\n(spettante ai sensi del D.lgs. 151/2001) che intende usufruire, l'arco temporale entro il quale le ore di\ncongedo saranno fruite (inizio e fine), la programmazione mensile delle ore di congedo.\nQuest'ultima dovrà essere concordata con il datore di lavoro, compatibilmente con le esigenze\norganizzative;\n- non sono comunque ammissibili richieste che prevedano l’effettuazione di prestazioni lavorative\ninferiori alla metà dell’orario giornaliero previsto dal contratto individuale.\n- per ogni mese di congedo parentale, al genitore lavoratore saranno riconosciute, a richiesta, 174 ore di\ncongedo;\n- il calcolo dell'indennità economica prevista dalla legge e da erogare per ogni ora di congedo viene\neffettuato prendendo come base di computo il monte ore di cui al punto precedente;\n- la possibilità di convertire uno o più mesi di congedo parentale a ore è ammessa anche a più riprese,\nfino ad esaurimento del periodo massimo riconosciuto dalla legge;\n- il congedo a ore di cui al presente articolo è cumulabile, anche nell'ambito della stessa giornata, con\naltri riposi e permessi previsti dalla legge o dal CCNL.\n- sono fatti salvi gli obblighi di legge a carico del lavoratore con riferimento all'apposita istanza di\ncongedo parentale che lo stesso deve presentare all'Inps.\nSono fatte salve eventuali intese stipulate a livello territoriale o con accordo aziendale.\nPer tutto quanto non previsto al presente titolo si fa riferimento alle norme di legge vigenti."
+        },
+        "transformation": "L'articolo attribuisce 174 ore per mese di congedo, ma non stabilisce quante ore equivalgano a una giornata: day_hours = null. La fruizione vale per tempo pieno e parziale senza prevedere un riproporzionamento espresso delle ore: part_time_scaled = false. Nessuna decorrenza specifica è indicata nell'articolo: effective_from = null."
       }
     }
   },

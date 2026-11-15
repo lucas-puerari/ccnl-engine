@@ -2192,7 +2192,7 @@
     "effective_until": null,
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/2024-06-06-CCNL-AREA-ALIMENTAZIONE-ARTIGIANATO-PANIFICAZIONE-2023-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "44dd930e11d0f4d1a24dfb4ef3764729cb5477a803735d188415bac329cd157f",
+    "source_hash": "ef2accd941d5c647d7b45229a1635497dff4151500d34e9f39f341daf18c95bd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2423,6 +2423,24 @@
           "effective_from": "2024-06-06",
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "flai-2024.txt",
+            "title": "CCNL Area Alimentazione - Panificazione 2023–2026 (testo estratto dal PDF FLAI)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL_AREA-ALIMENTAZIONE-PANIFICAZIONE_2024.pdf",
+            "sha256": "5c0aa439b903f81d197cdda41896d100c195ea5c95b031949bf64399e105c2a2"
+          },
+          "page": "101 (pagina stampata 102)",
+          "section": "Art. 47 bis – Disciplina dei congedi parentali su base oraria",
+          "quote": "Art. 47 bis – Disciplina dei congedi parentali su\nbase oraria\nIl recepimento del comma 1 ter dell’articolo 32 del D.Lgs. 26.3.2001 n.\n151, il congedo parentale potrà essere fruito da parte di ciascun geni-\ntore anche su base oraria in misura pari alla metà dell’orario medio gior-\nnaliero del periodo di paga mensile immediatamente precedente a\nquello nel corso del quale ha inizio il congedo parentale.\nIn detto caso la fruizione su base oraria potrà essere ammessa per pe-\nriodi pari a un minimo di 4 ore giornaliere, previa comunicazione da\nparte del lavoratore al datore di lavoro di 15 giorni e previo accordo\nfra le Parti in relazione alla fungibilità del lavoratore e all’organizza-\nzione aziendale ovvero dei turni di lavoro.In questi casi è esclusa la cu-\nmulabilità della fruizione oraria del congedo parentale con permessi o\nriposi previsti dal decreto legislativo 151 del 2001."
+        },
+        "transformation": "La metà dell’orario medio giornaliero regola la fruizione a ore e il minimo di 4 ore è una soglia di fruizione, non l’equiparazione di una giornata intera a un numero di ore: day_hours = null. Nessun riproporzionamento espresso per il part-time né decorrenza specifica nell’articolo."
       }
     }
   },

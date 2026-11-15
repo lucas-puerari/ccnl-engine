@@ -4222,7 +4222,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "71ef9ce237d7558e7c0a8925e878ca246d283f3d502c76a21677e8730eb445c9",
+    "source_hash": "26825d5f7147212f7e9081bc3da6a76fa0f77394f737fd51b673f698e4e3dba0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -13899,6 +13899,24 @@
           "verification_status": "verified",
           "review_id": "2026-11-07-ai-alimentari-federalimentare-apprentice-sickness"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-industria-alimentare-2023-2027.txt",
+            "title": "Contratto collettivo nazionale di lavoro per l’industria alimentare 2023–2027 (testo estratto dal PDF)",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Industria-Alimentare-2023-2027.pdf",
+            "sha256": "11792ad3df71999684bae85fea8aaf1e3d492d477043eecc78545b5f41db842c"
+          },
+          "page": "PDF 100 (stampata 99)",
+          "section": "Art. 40 ter, lett. A) Congedi parentali",
+          "quote": "Nel caso in cui il congedo venga chiesto in modalità di fruizione oraria, lo stesso sarà\nriconosciuto in gruppi minimi di 4 ore giornaliere, fermi restando i termini di preavviso di cui\nsopra."
+        },
+        "transformation": "La clausola stabilisce gruppi minimi di 4 ore, non l'equivalenza tra una giornata di congedo e un numero di ore: day_hours è null. Non prevede riproporzionamento per il part-time né una decorrenza specifica della clausola."
       }
     }
   },

@@ -4818,7 +4818,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/artigianato/240722_ARTIGIANATO_Verbale%20e%20Tabelle%20Ipotesi%20accordo%20ccnl%20Artigianato.pdf",
     "verification_status": "unverified",
-    "source_hash": "a4317a1d22b993df21a1caf606590ab928c912feafafcb40f56f8a3dd4d37a5f",
+    "source_hash": "dd9d68942ada0c3fe4a8cd81eb5dfe969acb7d7425352eebab7fe33c5d8b4e6f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5116,6 +5116,24 @@
           "verification_status": "verified",
           "review_id": "2026-10-31-ai-sickness-pay-texts"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-2017.txt",
+            "title": "CCNL Area Tessile-Moda, Chimica-Ceramica 14 dicembre 2017 (testo estratto dal PDF)",
+            "kind": "associazione",
+            "url": "https://www.cna.it/wp-content/uploads/2021/01/CCNL-Area-Tessile-Moda-Chimica-Ceramica.pdf",
+            "sha256": "27240326b23f4e0ca597de9bb3029e83bf057d8ed3ef1183090c76bcbd712800"
+          },
+          "page": "76 (PDF; la clausola prosegue a p. 77)",
+          "section": "Art. 63 Disciplina dei congedi parentali su base oraria",
+          "quote": "In recepimento del comma 1-ter dell'articolo 32 del D.Lgs. 26 marzo 2001, n. 151, il congedo parentale\npotrà essere fruito da parte di ciascun genitore anche su base oraria in misura pari alla metà dell'orario\nmedio giornaliero del periodo di paga mensile immediatamente precedente a quello nel corso del quale ha\ninizio il congedo parentale."
+        },
+        "transformation": "La metà dell'orario medio giornaliero del mese precedente determina la misura della fruizione oraria, non il numero di ore che equivale a una giornata. Il minimo di 4 ore indicato nella prosecuzione dell'articolo è una soglia di fruizione, non un'equiparazione: day_hours = null. Nessun riproporzionamento esplicito delle ore per il part-time né decorrenza specifica della clausola."
       }
     }
   }

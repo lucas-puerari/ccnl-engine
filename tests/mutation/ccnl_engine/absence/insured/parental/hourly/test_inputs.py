@@ -41,16 +41,14 @@ def test_the_leave_is_dated_and_cut_to_the_month() -> None:
     ("hours", "average", "born", "match"),
     [
         ((), Decimal(8), _BORN, "non-empty tuple"),
-        (_hours(2), Decimal(8), _BORN, "even number"),
         (_hours(3, 2), Decimal(8), _BORN, "in order"),
-        (_hours(2, 3, hours="3"), Decimal(8), _BORN, "half of average_daily_hours"),
         (_hours(2, 3), Decimal(8), date(2026, 3, 3), "precede child_born_on"),
     ],
 )
 def test_wrong_days_are_rejected(
     hours: tuple[LeaveHours, ...], average: Decimal, born: date, match: str
 ) -> None:
-    """Whole days of leave, in order, half the average day each."""
+    """Days in order, from the birth on."""
     with pytest.raises(InvalidInputError, match=match) as error:
         HourlyParentalLeaveEvent(hours, born, _TAKEN, average)
 
