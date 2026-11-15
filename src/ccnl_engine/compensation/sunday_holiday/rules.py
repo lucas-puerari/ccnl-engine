@@ -197,10 +197,13 @@ def monthly_pay(chain: MonthlyPayChain, excluded: frozenset[str]) -> Decimal:
 
     Returns:
         The minimo, the seniority and the cash allowances (individual
-        elements included) but the ``excluded`` codes.
+        elements included), with the benefits in kind of the global pay,
+        but the ``excluded`` codes.
     """
     allowances = (
-        v for a, v in chain.allowances if not a.in_kind and a.code not in excluded
+        v
+        for a, v in chain.allowances
+        if (not a.in_kind or a.in_global_pay) and a.code not in excluded
     )
     return money(chain.base + chain.seniority + sum(allowances, _ZERO))
 

@@ -632,7 +632,8 @@
               "review_id": "2026-10-12-ai"
             },
             "transformation": "(2.33 + 2.33 + 2.00) x 30 = 199.80"
-          }
+          },
+          "in_global_pay": true
         }
       ],
       "category": null,
@@ -740,7 +741,8 @@
               "review_id": "2026-10-12-ai"
             },
             "transformation": "(2.33 + 2.33 + 2.00) x 30 = 199.80"
-          }
+          },
+          "in_global_pay": true
         }
       ],
       "category": null,
@@ -848,7 +850,8 @@
               "review_id": "2026-10-12-ai"
             },
             "transformation": "(2.33 + 2.33 + 2.00) x 30 = 199.80"
-          }
+          },
+          "in_global_pay": true
         },
         {
           "code": "IND_CERTIFICAZIONE_UNI",
@@ -1022,7 +1025,8 @@
               "review_id": "2026-10-12-ai"
             },
             "transformation": "(2.33 + 2.33 + 2.00) x 30 = 199.80"
-          }
+          },
+          "in_global_pay": true
         },
         {
           "code": "IND_BABYSITTER",
@@ -1262,7 +1266,8 @@
               "review_id": "2026-10-12-ai"
             },
             "transformation": "(2.33 + 2.33 + 2.00) x 30 = 199.80"
-          }
+          },
+          "in_global_pay": true
         }
       ],
       "category": null,
@@ -1370,7 +1375,8 @@
               "review_id": "2026-10-12-ai"
             },
             "transformation": "(2.33 + 2.33 + 2.00) x 30 = 199.80"
-          }
+          },
+          "in_global_pay": true
         },
         {
           "code": "IND_PIU_NON_AUTOSUFFICIENTI",
@@ -1648,7 +1654,8 @@
               "review_id": "2026-10-12-ai"
             },
             "transformation": "(2.33 + 2.33 + 2.00) x 30 = 199.80"
-          }
+          },
+          "in_global_pay": true
         }
       ],
       "category": null,
@@ -1794,7 +1801,8 @@
               "review_id": "2026-10-12-ai"
             },
             "transformation": "(2.33 + 2.33 + 2.00) x 30 = 199.80"
-          }
+          },
+          "in_global_pay": true
         },
         {
           "code": "IND_PIU_NON_AUTOSUFFICIENTI",
@@ -1899,7 +1907,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "16a3079ba6fcf8689b0b97d8cdf4bde10894e2daf299e0f38e25e3718c2deef5",
+    "source_hash": "fea5cc4cd5ea7a0772d0e05e01f954931c689bc41151609390a8213f46239f53",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
@@ -2036,7 +2044,120 @@
             }
           }
         }
-      ]
+      ],
+      "supplement_bands": [
+        {
+          "code": "NOTTURNO_ORDINARIO",
+          "description": "Lavoro notturno ordinario (22-6), art. 14 c. 6",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-11-01",
+                "valid_until": null,
+                "value": "0.20"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-lavoro-domestico-2025-10-28-cassacolf",
+                "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Cas.Sa.Colf)",
+                "kind": "associazione",
+                "url": "https://www.cassacolf.it/wp-content/uploads/2026/09/CCNL-sulla-disciplina-del-rapporto-di-lavoro-domestico-28ott25.pdf",
+                "published_on": "2025-10-28",
+                "sha256": "1c5868b1d9f78acb5e89c9a1c8757ff0dbda7af92dae02fd99036ec02ab11837"
+              },
+              "page": "26",
+              "section": "Art. 14 c. 6",
+              "quote": "Salvo quanto previsto per i rapporti di cui ai precedenti artt. 10 e 11, è considerato lavoro notturno quello prestato tra le ore 22.00 e le ore 6.00, ed è compensato, se ordinario, con la maggiorazione del 20% della retribuzione globale di fatto oraria"
+            },
+            "transformation": "20% of the hourly pay on the ordinary hours between 22:00 and 6:00, which are in the agreed hours and paid by the pay of the month. The night assistance of artt. 10 and 11 is paid by its own tables (G, D) and is not night work.",
+            "extraction": {
+              "method": "ai",
+              "extraction_timestamp": "2026-11-15T20:00:00Z",
+              "effective_from": "2025-11-01",
+              "model": "claude-opus-5-5",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T20:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-lavoro-domestico-supplements"
+            }
+          }
+        },
+        {
+          "code": "FESTIVO_LAVORATO",
+          "description": "Prestazione nelle festività dell'art. 16, art. 16 c. 3",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-11-01",
+                "valid_until": null,
+                "value": "0.60"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-lavoro-domestico-2025-10-28-cassacolf",
+                "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Cas.Sa.Colf)",
+                "kind": "associazione",
+                "url": "https://www.cassacolf.it/wp-content/uploads/2026/09/CCNL-sulla-disciplina-del-rapporto-di-lavoro-domestico-28ott25.pdf",
+                "published_on": "2025-10-28",
+                "sha256": "1c5868b1d9f78acb5e89c9a1c8757ff0dbda7af92dae02fd99036ec02ab11837"
+              },
+              "page": "28",
+              "section": "Art. 16 c. 3",
+              "quote": "In caso di prestazione lavorativa è dovuto, oltre alla normale retribuzione giornaliera, il pagamento delle ore lavorate con la retribuzione globale di fatto maggiorata del 60%."
+            },
+            "transformation": "The hours worked on a holiday of art. 16 c. 1 are paid on top of the day's normal pay, at the hourly pay plus 60%: the band is the 60%, the hours themselves are paid apart.",
+            "extraction": {
+              "method": "ai",
+              "extraction_timestamp": "2026-11-15T20:00:00Z",
+              "effective_from": "2025-11-01",
+              "model": "claude-opus-5-5",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T20:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-lavoro-domestico-supplements"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-lavoro-domestico-2025-10-28-cassacolf",
+            "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Cas.Sa.Colf)",
+            "kind": "associazione",
+            "url": "https://www.cassacolf.it/wp-content/uploads/2026/09/CCNL-sulla-disciplina-del-rapporto-di-lavoro-domestico-28ott25.pdf",
+            "published_on": "2025-10-28",
+            "sha256": "1c5868b1d9f78acb5e89c9a1c8757ff0dbda7af92dae02fd99036ec02ab11837"
+          },
+          "page": "48, 27",
+          "section": "Chiarimento a verbale 5; art. 15 c. 3",
+          "quote": "Per “retribuzione globale di fatto” si intende quella comprensiva di tutte le indennità di cui alle tabelle allegate, ivi incluse le indennità di vitto e alloggio."
+        },
+        "transformation": "The supplements of artt. 13, 14, 15 and 16 are measured on the hourly \"retribuzione globale di fatto\": the minimum of the level, the seniority, every allowance of the tables and the conventional value of board and lodging, even when provided in kind, over the hourly divisor of the CCNL (weekly hours x 52 / 12, chiarimento a verbale 1).",
+        "extraction": {
+          "method": "ai",
+          "extraction_timestamp": "2026-11-15T20:00:00Z",
+          "effective_from": "2025-11-01",
+          "model": "claude-opus-5-5",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T20:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-lavoro-domestico-supplements"
+        }
+      }
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -2232,6 +2353,115 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://l, sha256 122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf; https://w, sha256 69025160fd599ca2c5ebde1c6c5643923157102a0c83c045ebf9d00ed5ccbfb3)."
+      }
+    },
+    "capability_basis": {
+      "shift_work": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-lavoro-domestico-2025-10-28-cassacolf",
+              "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Cas.Sa.Colf)",
+              "kind": "associazione",
+              "url": "https://www.cassacolf.it/wp-content/uploads/2026/09/CCNL-sulla-disciplina-del-rapporto-di-lavoro-domestico-28ott25.pdf",
+              "published_on": "2025-10-28",
+              "sha256": "1c5868b1d9f78acb5e89c9a1c8757ff0dbda7af92dae02fd99036ec02ab11837"
+            },
+            "page": "38",
+            "section": "Art. 34 c. 2",
+            "quote": "La retribuzione del lavoratore è composta dalle seguenti voci: a. retribuzione minima contrattuale di cui all’art. 35, comprensiva per i livelli D) e D Super) di uno specifico elemento denominato indennità di funzione; b. eventuali scatti di anzianità di cui all’art. 37; c. eventuale compenso sostitutivo di vitto e alloggio; d. eventuale superminimo."
+          },
+          "transformation": "The CCNL sets no shift work: the pay of the domestic worker is made of the items of art. 34 c. 2, and no article organises the work in rotating shifts (the night of artt. 10-11 and 14 c. 6 is paid as night work).",
+          "extraction": {
+            "method": "ai",
+            "extraction_timestamp": "2026-11-15T20:00:00Z",
+            "effective_from": "2025-11-01",
+            "model": "claude-opus-5-5",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T20:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-15-ai-lavoro-domestico-supplements"
+          }
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "10-04",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "divisor": "26",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-lavoro-domestico-2025-10-28-cassacolf",
+            "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Cas.Sa.Colf)",
+            "kind": "associazione",
+            "url": "https://www.cassacolf.it/wp-content/uploads/2026/09/CCNL-sulla-disciplina-del-rapporto-di-lavoro-domestico-28ott25.pdf",
+            "published_on": "2025-10-28",
+            "sha256": "1c5868b1d9f78acb5e89c9a1c8757ff0dbda7af92dae02fd99036ec02ab11837"
+          },
+          "page": "28",
+          "section": "Art. 16 cc. 1, 4, 5",
+          "quote": "In caso di festività infrasettimanale coincidente con la domenica, il lavoratore avrà diritto al recupero del riposo in altra giornata o, in alternativa, al pagamento di 1/26 della retribuzione globale di fatto mensile."
+        },
+        "transformation": "Each holiday of the art. 16 c. 1 list falling on a Sunday is paid 1/26 of the monthly pay. The ex holidays of L. 54/1977, 4 November among them, are already compensated by the whole holidays of c. 1 (c. 5), so 11-04 is not listed. The rest recovered on another day in place of the pay is an agreement of the parties the run does not see: the engine pays the quota. For the worker paid by the hour (c. 2: 1/6 of the weekly hours at the hourly pay) the amount is the same, the monthly pay being the hourly pay times the weekly hours x 52 / 12 (chiarimento a verbale 1): weekly hours / 6 x monthly / (weekly hours x 52 / 12) = monthly / 26 (Assindatcolf, vademecum of 21 September 2026 on 4 October and 1 November 2026).",
+        "extraction": {
+          "method": "ai",
+          "extraction_timestamp": "2026-11-15T20:00:00Z",
+          "effective_from": "2025-11-01",
+          "model": "claude-opus-5-5",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T20:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-lavoro-domestico-supplements"
+        }
+      }
+    },
+    "travel_allowance": {
+      "minimum_share": "0.20",
+      "minimum_divisor": "26",
+      "tfr_base": "whole",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-lavoro-domestico-2025-10-28-cassacolf",
+            "title": "CCNL sulla disciplina del rapporto di lavoro domestico, 28 ottobre 2025 (testo Cas.Sa.Colf)",
+            "kind": "associazione",
+            "url": "https://www.cassacolf.it/wp-content/uploads/2026/09/CCNL-sulla-disciplina-del-rapporto-di-lavoro-domestico-28ott25.pdf",
+            "published_on": "2025-10-28",
+            "sha256": "1c5868b1d9f78acb5e89c9a1c8757ff0dbda7af92dae02fd99036ec02ab11837"
+          },
+          "page": "38, 48",
+          "section": "Art. 33 c. 2; art. 41 c. 1; chiarimento a verbale 1",
+          "quote": "Sarà inoltre corrisposta al lavoratore una diaria giornaliera, pari al 20% della retribuzione minima tabellare giornaliera, di cui alla tabella A, per tutti i giorni nei quali egli sia stato in trasferta ovvero si sia recato in soggiorni temporanei, come indicato al comma 1, salvo il caso in cui il relativo obbligo fosse stato contrattualmente previsto nella lettera di assunzione."
+        },
+        "transformation": "Each day of trasferta is paid 20% of the daily minimum of the level, the monthly minimum of Tabella A over 26 (chiarimento a verbale 1: \"Il calcolo della retribuzione giornaliera si ottiene determinando 1/26 della retribuzione mensile\"); none when the hiring letter provides for the duty to travel, which the event states. Travel expenses refunded are not pay. The TFR of art. 41 c. 1 is computed \"sull’ammontare delle retribuzioni percepite nell’anno\": the diaria enters it whole.",
+        "extraction": {
+          "method": "ai",
+          "extraction_timestamp": "2026-11-15T20:00:00Z",
+          "effective_from": "2025-11-01",
+          "model": "claude-opus-5-5",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T20:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-lavoro-domestico-supplements"
+        }
       }
     }
   },
@@ -2438,6 +2668,33 @@
         "independence": "separate_model",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-lavoro-domestico-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Night, holiday, Sunday-holiday, travel and shift rules of the CCNL of 28 October 2025 (artt. 14 c. 6, 16, 33, 34 c. 2; chiarimenti a verbale 1 and 5) against the Cas.Sa.Colf text; text layer.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.cassacolf.it/wp-content/uploads/2026/09/CCNL-sulla-disciplina-del-rapporto-di-lavoro-domestico-28ott25.pdf",
+            "sha256": "1c5868b1d9f78acb5e89c9a1c8757ff0dbda7af92dae02fd99036ec02ab11837"
+          }
+        ],
+        "findings": [
+          "The hourly base of the supplements is the retribuzione globale di fatto, with the board and lodging value (chiarimento 5): verified, with the existing divisor of art. 14 and chiarimento 1.",
+          "Art. 14 c. 6 pays 20% on ordinary night hours; art. 16 c. 3 pays the holiday hours on top of the day's pay at +60%; art. 16 c. 4 pays 1/26 of the monthly global pay for a holiday on a Sunday, the ex holidays of L. 54/1977 being compensated (c. 5).",
+          "Art. 33 binds the live-in worker of art. 14 c. 1 only: a diaria of 20% of the daily minimum, none when the hiring letter provides for the travel. No article organises shift work."
+        ],
+        "independence": "same_process",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.sunday_holidays",
+          "work_rules.travel_allowance",
+          "work_rules.capability_basis",
+          "levels[].fixed_allowances"
         ]
       }
     ],

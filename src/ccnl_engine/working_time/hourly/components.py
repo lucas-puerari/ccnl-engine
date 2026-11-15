@@ -68,7 +68,9 @@ def components(
         found.extend(
             (a.code, v)
             for a, v in chain.allowances
-            if not a.in_kind and not a.individual and a.code not in excluded
+            if (not a.in_kind or a.in_global_pay)
+            and not a.individual
+            and a.code not in excluded
         )
     return tuple(found)
 

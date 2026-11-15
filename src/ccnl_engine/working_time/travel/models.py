@@ -101,6 +101,13 @@ class CcnlTravelAllowance(BaseModel):
         night_from_hours: Hours away from which the night allowance is due.
         quotas: Amounts by meals and lodging in place of the bands of hours
             (Federmeccanica); ``bands`` is then empty.
+        minimum_share: Share of the daily minimum of the level each day of
+            trasferta is paid, in place of bands and quotas (Lavoro
+            domestico art. 33 c. 2: "una diaria giornaliera, pari al 20%
+            della retribuzione minima tabellare giornaliera"); ``None``
+            without one.
+        minimum_divisor: Divisor of the monthly minimum that gives the daily
+            one (Lavoro domestico, chiarimento a verbale 1: 1/26).
         provenance: Source and status of the amounts.
     """
 
@@ -116,12 +123,22 @@ class CcnlTravelAllowance(BaseModel):
     night_allowance: TimeSeries | None = None
     night_from_hours: Decimal = Decimal(18)
     quotas: TravelQuotas | None = None
+    minimum_share: Decimal | None = Field(default=None, gt=Decimal(0), le=Decimal(1))
+    minimum_divisor: Decimal = Field(default=Decimal(26), gt=Decimal(0))
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
     def _bands_or_quotas(self) -> Self:
-        if bool(self.bands) == (self.quotas is not None):
-            msg = "a travel allowance has bands of hours or quotas, exactly one"
+        kinds = (
+            bool(self.bands),
+            self.quotas is not None,
+            self.minimum_share is not None,
+        )
+        if sum(kinds) != 1:
+            msg = (
+                "a travel allowance has bands of hours, quotas or a share of "
+                "the daily minimum, exactly one"
+            )
             raise ValueError(msg)
         return self
 
