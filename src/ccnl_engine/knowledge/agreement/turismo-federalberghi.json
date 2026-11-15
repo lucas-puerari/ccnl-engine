@@ -4205,7 +4205,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "38b69b5e0728f2b716d4c681f4e7ba52d0713f918ea8e893083b0c6c7c4f38b4",
+    "source_hash": "738c07879ec08a50d3fa0c3ac186129e6105caec6b4d71c140ce37d4bbd2a1ba",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5178,6 +5178,26 @@
           "effective_from": "2010-01-01",
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "effective_from": "2024-07-01",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-turismo-ipotesi-di-accordo-5-luglio-2024",
+            "title": "ccnl turismo   ipotesi di accordo 5 luglio 2024",
+            "kind": "associazione",
+            "url": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
+            "sha256": "a84052fc9e3063cf5379ae1e6374eaa0cbfdcd6de5abaf57513b0395805dea0b"
+          },
+          "page": "54",
+          "section": "Articolo 180, comma 4",
+          "quote": "4) | congedi parentali possono essere frazionati, anche a ore secondo quanto previsto dalle vigenti disposizioni di legge, in misura pari alla metà dell'orario medio giornaliero del periodo di paga quadrisettimanale o mensile immediatamente precedente a quello nel corso del quale ha inizio il |) congedo. Nel caso in cui vengano richieste frazioni di durata inferiore a quindici giorni continuativi nell’ambito dello stesso mese di calendario, la domanda dovrà essere presentata con cadenza mensile unitamente ad un prospetto delle giornate di congedo. La contrattazione integrativa, uò { stabilire diverse modalità di fruizione. TR Ve y"
+        },
+        "transformation": "La metà dell'orario medio giornaliero precedente è una misura variabile della fruizione a ore, non un'equiparazione espressa di un numero fisso di ore a una giornata di congedo: day_hours = null. Non è previsto un riproporzionamento esplicito per il part-time. La decorrenza generale è indicata all'articolo 199, comma 1, senza eccezione per l'articolo 180.",
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
       }
     }
   },

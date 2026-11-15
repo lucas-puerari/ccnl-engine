@@ -1918,7 +1918,7 @@
     "effective_until": null,
     "source": "https://www.fim-cisl.it/2025/10/29/metalmeccanica-piccola-industria-firmato-il-rinnovo-del-ccnl-confimi/",
     "verification_status": "unverified",
-    "source_hash": "e91ff580a7f2690826a51a60c0ec238c71d1ec6ccdd9d51d95973ca6db57266e",
+    "source_hash": "687f7a8e90542c735e2d5472575b780e046c754192f8247b25e4669f1e1b2009",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
@@ -2336,6 +2336,25 @@
           "effective_from": "2026-08-06",
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "effective_from": "2016-06-01",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-2016",
+            "title": "CCNL Metalmeccanici PMI Confimi 2016",
+            "kind": "associazione",
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-2016-Metalmeccanici-PMI-Confimi.pdf",
+            "sha256": "842c80dd4c5eed9ed9600ffcafe90f57c8113e9e6ef8fc93f021e8f09e44c0a4"
+          },
+          "page": "132 (stampata 131)",
+          "section": "Art. 51 - Congedi parentali",
+          "quote": "L’utilizzo su base oraria dei periodi di congedo parentale è frazionabile fino a gruppi minimi di due ore. Esso non potrà essere programmato per un periodo inferiore ad una giornata lavorativa nel mese di utilizzo. I criteri di calcolo per la determinazione della base oraria e della equiparazione del monte ore utilizzabile relativo al normale orario settimanale di 40 ore sono i seguenti: giorni medi annui 365,25: 7 giorni in una settimana = 52,18 settimane medie annue x 40 ore settimanali = 2.087,20 ore annue: 12 mesi = 173,93 ore medie mensili"
+        },
+        "transformation": "Le due ore sono la frazione minima; 40 ore settimanali e 173,93 ore mensili servono a calcolare il monte ore, non l'equivalenza di una giornata. Nessun numero di ore per giornata è fissato espressamente: day_hours=null. Nessun riproporzionamento per il part-time è previsto nella clausola: part_time_scaled=false. Decorrenza generale dall'art. 83: 1° giugno 2016."
       }
     }
   }

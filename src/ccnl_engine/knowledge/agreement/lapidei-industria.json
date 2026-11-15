@@ -3126,7 +3126,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/Scadenziario/Scadenza/19851/lapidei-industria",
     "verification_status": "verified",
-    "source_hash": "9098492f6de7b2e7eef211ca668edf02b1100e30f661817336432ca657dc3365",
+    "source_hash": "b56de1cc2cab89c878ef027107bf464ebe91b4ae7650a994c03bf2af5257c35f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -3402,6 +3402,25 @@
           "verification_status": "verified",
           "review_id": "2026-11-05-ai-sunday-holidays"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnllapideiindustria-novembre2022",
+            "title": "CcnlLapideiIndustria novembre2022",
+            "kind": "associazione",
+            "url": "https://www.filleacgil.net/images/cannata/LAPIDEI/CcnlLapideiIndustria_novembre2022.pdf",
+            "sha256": "424d40daa56eb0a83a2fccac72d31a82afa3bf5bc2285d8edc57ccf3e0b9716f"
+          },
+          "page": "6",
+          "section": "Art. 4 — Tutela della maternità e paternità",
+          "quote": "La fruizione del congedo parentale facoltativo può essere frazionata su base oraria"
+        },
+        "transformation": "La clausola autorizza il frazionamento orario, ma non equipara esplicitamente un numero di ore a una giornata: day_hours = null. Non prevede un riproporzionamento per il part-time né indica una decorrenza specifica per questa clausola.",
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
       }
     }
   },

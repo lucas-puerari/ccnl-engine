@@ -1936,7 +1936,7 @@
     "effective_until": null,
     "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
     "verification_status": "unverified",
-    "source_hash": "7506db93a64fe6b8d7a60387878b491062d04b71142a84b7e2f8515c32dbf478",
+    "source_hash": "3fe4a798d8db3d438e09abfaa285403277bf4a8cfe3411e18caabfcc6a077928",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2289,6 +2289,24 @@
             "review_id": "2026-11-08-gpt-telecomunicazioni-asstel-insured-absence"
           }
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-tlc-slc-cgil-fistel-cisl-uilcom-uil-12-novembre-2020-nuovo",
+            "title": "CCNL TLC Slc Cgil Fistel Cisl Uilcom Uil 12 novembre 2020 nuovo",
+            "kind": "associazione",
+            "url": "https://www.asstel.it/wp-content/uploads/2023/05/CCNL-TLC-Slc-Cgil-Fistel-Cisl-Uilcom-Uil-12-novembre-2020-nuovo.pdf",
+            "sha256": "67ac2f50eea25ec50d43e02f0f65aa89f6c850a7bcf5ca7dd78e98a1dfd785d4"
+          },
+          "page": "77",
+          "section": "Art. 38, comma 8",
+          "quote": "8. Ai sensi delle vigenti disposizioni di legge, è riconosciuta al genitore la possibilità di fruire del congedo parentale su base oraria, in misura non superiore alla metà del normale orario giornaliero di lavoro. Il lavoratore è tenuto a presentare all’azienda la relativa richiesta di fruizione con un preavviso minimo di due giorni. Diverse modalità di fruizione del congedo parentale a ore possono essere previste dalla contrattazione aziendale"
+        },
+        "transformation": "La metà dell'orario giornaliero è un massimo di fruizione, non un'equiparazione espressa di una giornata a un numero di ore: day_hours=null. Nessun riproporzionamento esplicito per il part-time né decorrenza specifica della clausola."
       }
     }
   }

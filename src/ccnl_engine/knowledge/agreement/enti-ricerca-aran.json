@@ -3820,7 +3820,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "bede971d0c0714003ae60539f03c2bc02db778a053a4cabb8d9aae29683613c8",
+    "source_hash": "97cac873c4e6e32e0343ee75d5a9cb37bf754aa3acf1f74e080d27bd30b4c29b",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -4032,6 +4032,27 @@
           "section": "Art. 5"
         },
         "transformation": "The CCNL text read is silent on the holidays falling on a Sunday: the law pays the civil holidays only; art. 5 names the 'Stato, enti pubblici e datori privati', and the maintainer decided on 2026-11-15 that it applies to public employment (documents read: https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf, sha256 11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d; https://www.aranagenzia.it/wp-content/uploads/2025/12/2025_12_23_COMP-IR_2022-2024.pdf, sha256 99b56f9ef47362f96fd97f4ffc18f46fcb1f5f35beadfab530dfc4a9e1973b1a; https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf, sha256 8bced4eb922070bfc30ee5ec9aaa3f4644a6b251b1b48da492843be2a4758904; https://www.aranagenzia.it/wp-content/uploads/2024/09/Ricerca_Raccolta-sistematica_Gennaio-2017_s1.pdf, sha256 371e335f0501d71fa7854ff3f404cc375ecf4e44ca322f8c004be68217d6a60a)"
+      }
+    },
+    "parental_hourly": {
+      "day_hours": "6",
+      "part_time_scaled": true,
+      "effective_from": "2024-01-19",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "2024-01-18-comp-ir-2019-2021",
+            "title": "2024 01 18 COMP IR 2019 2021",
+            "kind": "amministrazione",
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/01/2024_01_18_COMP-IR_2019-2021.pdf",
+            "sha256": "11814e2d5354a44de155badea1245c14951b08d3177e9c8b98fd3f872e5fa51d"
+          },
+          "page": "158",
+          "section": "Art. 132, comma 8 — Congedi dei genitori",
+          "quote": "8. I genitori lavoratori, anche adottivi o affidatari, con rapporto di lavoro, sia a tempo pieno che a tempo parziale, possono fruire anche su base oraria dei periodi di congedo parentale. Tale modalità di utilizzo non è cumulabile con gli altri permessi e riposi previsti dal d.lgs. n. 151 del 2001. Ai fini del computo dei giorni di congedo parentale fruiti da un lavoratore a tempo pieno, 6 ore di congedo parentale sono convenzionalmente equiparate ad un giorno. In caso di part-time il suddetto numero di ore è riproporzionato per tenere conto della minore durata della prestazione lavorativa. I congedi parentali ad ore non sono, in ogni caso, fruibili per meno di un’ora e non riducono le ferie"
+        },
+        "transformation": "L'art. 132, comma 8, equipara esplicitamente 6 ore a un giorno per il tempo pieno e riproporziona tale numero per il part-time. La decorrenza 2024-01-19 deriva dall'art. 2, comma 2 (giorno successivo alla stipulazione), e dalla firma del 18 gennaio 2024, entrambi nel medesimo testo."
       }
     }
   },
