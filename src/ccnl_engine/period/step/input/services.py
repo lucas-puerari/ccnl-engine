@@ -39,6 +39,7 @@ from ccnl_engine.sickness.services import sickness_terms
 from ccnl_engine.termination.notice.services import notice_terms
 from ccnl_engine.variable_pay.benefit.handlers import fringe_threshold_of
 from ccnl_engine.variable_pay.travel.handlers import TravelTerms
+from ccnl_engine.working_time.hourly.components import cash_pay
 from ccnl_engine.working_time.hourly.services import hourly_terms
 from ccnl_engine.working_time.overtime.policies import CCNLOvertimeBands
 from ccnl_engine.working_time.standby.handlers import StandbyTerms
@@ -112,6 +113,7 @@ def _travel_terms(ctx: RunContext) -> TravelTerms:
         None if work is None else work.travel_allowance,
         bands.ruleset,
         ctx.regular_chain.base,
+        cash_pay(ctx.regular_chain),
     )
 
 

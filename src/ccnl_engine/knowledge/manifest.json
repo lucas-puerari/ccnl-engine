@@ -490,7 +490,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/commercio-confcommercio",
       "ruleset_version": "2026.2",
-      "source_hash": "785106bc5a56d07a22760834d0af8d417986b641462757ed76cf1afe44b007e6",
+      "source_hash": "56d4a5811aa882bd380398d10bc534f559c28404389c0b286a2075d323aa343c",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/commercio-confcommercio.json.gz"
@@ -728,7 +728,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/dmo-federdistribuzione",
       "ruleset_version": "2026.2",
-      "source_hash": "ade7243b44d1393e61ca5fb0785456e37d92f50aac90fdf27a5dc258e4fa0446",
+      "source_hash": "857d892418d7a3a38e898db8e37e8c4e0645042b63b14eb421918b769c2b5d73",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/dmo-federdistribuzione.json.gz"
@@ -1326,7 +1326,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lavoro-domestico-convivente",
       "ruleset_version": "2026.3",
-      "source_hash": "fea5cc4cd5ea7a0772d0e05e01f954931c689bc41151609390a8213f46239f53",
+      "source_hash": "c09a9e2a440c9e06d190ab53e819a24b6eeb92cf0b33a29d30e091bc952050dc",
       "source_type": "commercial_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/lavoro-domestico-convivente.json.gz"

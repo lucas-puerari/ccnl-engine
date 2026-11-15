@@ -1907,7 +1907,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "fea5cc4cd5ea7a0772d0e05e01f954931c689bc41151609390a8213f46239f53",
+    "source_hash": "c09a9e2a440c9e06d190ab53e819a24b6eeb92cf0b33a29d30e091bc952050dc",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },
@@ -2433,9 +2433,13 @@
       }
     },
     "travel_allowance": {
-      "minimum_share": "0.20",
-      "minimum_divisor": "26",
       "tfr_base": "whole",
+      "daily_share": {
+        "rate": "0.20",
+        "base": "minimum",
+        "divisor": "26",
+        "hiring_letter_exempts": true
+      },
       "provenance": {
         "status": "derived",
         "location": {
