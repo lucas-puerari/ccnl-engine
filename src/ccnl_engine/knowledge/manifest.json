@@ -2261,7 +2261,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/universita-tecnologi-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "ac73cdd6cd42ae21784279219559b6d65d93dcd835a3167859b4a1b15168e068",
+      "source_hash": "ff89ee288e05bc7374155286b949a120df2e99777f370ede681bd7dbfe9ca14a",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/universita-tecnologi-aran.json.gz"

@@ -207,10 +207,11 @@ _COMPLETE_CCNLS = [
     "istruzione-ricerca-aran",
     "metalmeccanico-federmeccanica",
     "universita-aran",
+    "universita-tecnologi-aran",
 ]
 
 
-def test_today_five_ccnls_are_complete() -> None:
+def test_today_six_ccnls_are_complete() -> None:
     """Every other census is seeded only: those CCNLs are incomplete."""
     built = report.build_report()
 
@@ -227,7 +228,7 @@ def test_the_page_names_every_ccnl_and_the_totals() -> None:
     built = report.build_report()
     page = report.render(built)
 
-    assert f"**Complete: 5/{len(built.rows)} CCNLs**" in page
+    assert f"**Complete: 6/{len(built.rows)} CCNLs**" in page
     assert "complete except declared residuals: 0." in page
     assert "| [anas](../contracts/anas.md) | `trasporti-logistica` |" in page
 
@@ -245,7 +246,7 @@ def test_check_and_strict_modes(
     assert page.is_file()
     assert report.main(["--check"]) == 0
     assert report.main(["--check", "--strict"]) == 1
-    assert "Complete: 5/136 CCNLs." in capsys.readouterr().out
+    assert "Complete: 6/136 CCNLs." in capsys.readouterr().out
 
 
 def test_a_census_error_fails_every_mode(
