@@ -45,4 +45,13 @@ TRAVEL_DEFAULTS: Mapping[str, FieldDefault] = {
         "a mission within one calendar month; a longer one is a fact the "
         "event records, which lowers the diaria where the CCNL says so"
     ),
+    "TravelAllowanceEvent.meals": absence_is_fact(
+        "read only by a CCNL that pays the trasferta by meals and lodging "
+        "(Federmeccanica): there, unstated, the event without daily_amount is "
+        "rejected"
+    ),
+    "TravelAllowanceEvent.overnight": absence_is_fact(
+        "read with meals: unstated, the event of such a CCNL without "
+        "daily_amount is rejected"
+    ),
 }

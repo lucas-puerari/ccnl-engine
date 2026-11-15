@@ -3427,7 +3427,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "adc9bd593e8436616e1de5dc7ed0793153fabdefa1b0cec7c5059d208813f055",
+    "source_hash": "8cff562878e383cef12680ca39d1ddfab79ee797e162174271e8290bbd114c21",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -6121,6 +6121,388 @@
           "quote": "L’utilizzo su base oraria dei periodi di congedo parentale è frazionabile per\ngruppi di 2 o 4 ore giornaliere riproporzionati, rispettivamente, ad un’ora e a 2\nore, per i part-time pari o inferiori a 20 ore settimanali."
         },
         "transformation": "La clausola fissa gruppi di fruizione di 2 o 4 ore e li riproporziona a 1 o 2 ore per i part-time fino a 20 ore settimanali; non equipara espressamente alcun numero di ore a una giornata di congedo a tempo pieno. day_hours = null; part_time_scaled = true. Nessuna data di decorrenza specifica della clausola è indicata."
+      }
+    },
+    "travel_allowance": {
+      "tfr_base": "none",
+      "quotas": {
+        "whole": {
+          "periods": [
+            {
+              "valid_from": "2021-06-01",
+              "valid_until": "2022-06-01",
+              "value": "44.12",
+              "provenance": null
+            },
+            {
+              "valid_from": "2022-06-01",
+              "valid_until": "2023-06-01",
+              "value": "44.47",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "federmeccanica-verbale-ipca-2022",
+                    "title": "Federmeccanica-Assistal-Fim-Fiom-Uilm, verbale 8 giugno 2022",
+                    "kind": "associazione",
+                    "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/06/20220608-verbale-Federmeccanica-Assistal-FIM-FIOM-UILM-IPCA.pdf",
+                    "sha256": "74a719e8182b21fe77c4a13297483ef8ca856451e5132756068eadb11ddf5fc9"
+                  },
+                  "page": "1",
+                  "section": "Indennità di trasferta forfettaria",
+                  "quote": "Trasferta intera | Dal 1° giugno 2022 | 44,47"
+                },
+                "transformation": "Read from the scanned table of the verbale (OCR checked on 2026-11-15): the amount from 1 June of the year."
+              }
+            },
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": "2024-06-01",
+              "value": "46.47",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "federmeccanica-verbale-ipca-2023",
+                    "title": "Federmeccanica-Assistal-Fim-Fiom-Uilm, verbale 16 giugno 2023",
+                    "kind": "associazione",
+                    "url": "https://www.uilmnazionale.it/wp-content/uploads/2023/06/20230616-CCNL-Federmeccanica-Assistal-verbale-dincontro-ADEGUAMENTO-IPCA-allegato-4.pdf",
+                    "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
+                  },
+                  "page": "1",
+                  "section": "Indennità di trasferta forfettaria",
+                  "quote": "Trasferta intera | Dal 1° giugno 2023 | 46,47"
+                },
+                "transformation": "Read from the scanned table of the verbale (OCR checked on 2026-11-15): the amount from 1 June of the year."
+              }
+            },
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-06-01",
+              "value": "49.68",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "federmeccanica-verbale-ipca-2024",
+                    "title": "Federmeccanica-Assistal-Fim-Fiom-Uilm, verbale 11 giugno 2024",
+                    "kind": "associazione",
+                    "url": "https://www.uilmnazionale.it/wp-content/uploads/2024/06/20240611-CCNL-Federmeccanica-Assistal-adeguamento-IPCA-2023.pdf",
+                    "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
+                  },
+                  "page": "1",
+                  "section": "Indennità di trasferta forfettaria",
+                  "quote": "Trasferta intera | Dal 1° giugno 2024 | 49,68"
+                },
+                "transformation": "Read from the scanned table of the verbale (OCR checked on 2026-11-15): the amount from 1 June of the year."
+              }
+            },
+            {
+              "valid_from": "2025-06-01",
+              "valid_until": "2026-06-01",
+              "value": "50.33",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "federmeccanica-verbale-ipca-2025",
+                    "title": "Federmeccanica-Assistal-Fim-Fiom-Uilm, verbale 12 giugno 2025",
+                    "kind": "associazione",
+                    "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                    "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                  },
+                  "page": "1",
+                  "section": "Indennità di trasferta forfettaria",
+                  "quote": "Trasferta intera | Dal 1° giugno 2025 | 50,33"
+                },
+                "transformation": "Read from the scanned table of the verbale (OCR checked on 2026-11-15): the amount from 1 June of the year."
+              }
+            },
+            {
+              "valid_from": "2026-06-01",
+              "valid_until": null,
+              "value": "51.29",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "federmeccanica-verbale-ipca-2026",
+                    "title": "Federmeccanica-Assistal-Fim-Fiom-Uilm, verbale 16 giugno 2026",
+                    "kind": "associazione",
+                    "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                    "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                  },
+                  "page": "1",
+                  "section": "Indennità di trasferta forfettaria",
+                  "quote": "Trasferta intera | Dal 1° giugno 2026 | 51,29"
+                },
+                "transformation": "Read from the scanned table of the verbale (OCR checked on 2026-11-15): the amount from 1 June of the year."
+              }
+            }
+          ]
+        },
+        "meal": {
+          "periods": [
+            {
+              "valid_from": "2021-06-01",
+              "valid_until": "2022-06-01",
+              "value": "11.92",
+              "provenance": null
+            },
+            {
+              "valid_from": "2022-06-01",
+              "valid_until": "2023-06-01",
+              "value": "11.97",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "federmeccanica-verbale-ipca-2022",
+                    "title": "Federmeccanica-Assistal-Fim-Fiom-Uilm, verbale 8 giugno 2022",
+                    "kind": "associazione",
+                    "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/06/20220608-verbale-Federmeccanica-Assistal-FIM-FIOM-UILM-IPCA.pdf",
+                    "sha256": "74a719e8182b21fe77c4a13297483ef8ca856451e5132756068eadb11ddf5fc9"
+                  },
+                  "page": "1",
+                  "section": "Indennità di trasferta forfettaria",
+                  "quote": "Quota per il pasto meridiano o serale | Dal 1° giugno 2022 | 11,97"
+                },
+                "transformation": "Read from the scanned table of the verbale (OCR checked on 2026-11-15): the amount from 1 June of the year."
+              }
+            },
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": "2024-06-01",
+              "value": "12.41",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "federmeccanica-verbale-ipca-2023",
+                    "title": "Federmeccanica-Assistal-Fim-Fiom-Uilm, verbale 16 giugno 2023",
+                    "kind": "associazione",
+                    "url": "https://www.uilmnazionale.it/wp-content/uploads/2023/06/20230616-CCNL-Federmeccanica-Assistal-verbale-dincontro-ADEGUAMENTO-IPCA-allegato-4.pdf",
+                    "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
+                  },
+                  "page": "1",
+                  "section": "Indennità di trasferta forfettaria",
+                  "quote": "Quota per il pasto meridiano o serale | Dal 1° giugno 2023 | 12,41"
+                },
+                "transformation": "Read from the scanned table of the verbale (OCR checked on 2026-11-15): the amount from 1 June of the year."
+              }
+            },
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-06-01",
+              "value": "12.89",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "federmeccanica-verbale-ipca-2024",
+                    "title": "Federmeccanica-Assistal-Fim-Fiom-Uilm, verbale 11 giugno 2024",
+                    "kind": "associazione",
+                    "url": "https://www.uilmnazionale.it/wp-content/uploads/2024/06/20240611-CCNL-Federmeccanica-Assistal-adeguamento-IPCA-2023.pdf",
+                    "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
+                  },
+                  "page": "1",
+                  "section": "Indennità di trasferta forfettaria",
+                  "quote": "Quota per il pasto meridiano o serale | Dal 1° giugno 2024 | 12,89"
+                },
+                "transformation": "Read from the scanned table of the verbale (OCR checked on 2026-11-15): the amount from 1 June of the year."
+              }
+            },
+            {
+              "valid_from": "2025-06-01",
+              "valid_until": "2026-06-01",
+              "value": "12.99",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "federmeccanica-verbale-ipca-2025",
+                    "title": "Federmeccanica-Assistal-Fim-Fiom-Uilm, verbale 12 giugno 2025",
+                    "kind": "associazione",
+                    "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                    "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                  },
+                  "page": "1",
+                  "section": "Indennità di trasferta forfettaria",
+                  "quote": "Quota per il pasto meridiano o serale | Dal 1° giugno 2025 | 12,99"
+                },
+                "transformation": "Read from the scanned table of the verbale (OCR checked on 2026-11-15): the amount from 1 June of the year."
+              }
+            },
+            {
+              "valid_from": "2026-06-01",
+              "valid_until": null,
+              "value": "13.13",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "federmeccanica-verbale-ipca-2026",
+                    "title": "Federmeccanica-Assistal-Fim-Fiom-Uilm, verbale 16 giugno 2026",
+                    "kind": "associazione",
+                    "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                    "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                  },
+                  "page": "1",
+                  "section": "Indennità di trasferta forfettaria",
+                  "quote": "Quota per il pasto meridiano o serale | Dal 1° giugno 2026 | 13,13"
+                },
+                "transformation": "Read from the scanned table of the verbale (OCR checked on 2026-11-15): the amount from 1 June of the year."
+              }
+            }
+          ]
+        },
+        "overnight": {
+          "periods": [
+            {
+              "valid_from": "2021-06-01",
+              "valid_until": "2022-06-01",
+              "value": "20.28",
+              "provenance": null
+            },
+            {
+              "valid_from": "2022-06-01",
+              "valid_until": "2023-06-01",
+              "value": "20.53",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "federmeccanica-verbale-ipca-2022",
+                    "title": "Federmeccanica-Assistal-Fim-Fiom-Uilm, verbale 8 giugno 2022",
+                    "kind": "associazione",
+                    "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/06/20220608-verbale-Federmeccanica-Assistal-FIM-FIOM-UILM-IPCA.pdf",
+                    "sha256": "74a719e8182b21fe77c4a13297483ef8ca856451e5132756068eadb11ddf5fc9"
+                  },
+                  "page": "1",
+                  "section": "Indennità di trasferta forfettaria",
+                  "quote": "Quota per il pernottamento | Dal 1° giugno 2022 | 20,53"
+                },
+                "transformation": "Read from the scanned table of the verbale (OCR checked on 2026-11-15): the amount from 1 June of the year."
+              }
+            },
+            {
+              "valid_from": "2023-06-01",
+              "valid_until": "2024-06-01",
+              "value": "21.65",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "federmeccanica-verbale-ipca-2023",
+                    "title": "Federmeccanica-Assistal-Fim-Fiom-Uilm, verbale 16 giugno 2023",
+                    "kind": "associazione",
+                    "url": "https://www.uilmnazionale.it/wp-content/uploads/2023/06/20230616-CCNL-Federmeccanica-Assistal-verbale-dincontro-ADEGUAMENTO-IPCA-allegato-4.pdf",
+                    "sha256": "61a24a9688dcfd0fad3ac463ab948b23759f4da45b2fd220f0bf42965032d81f"
+                  },
+                  "page": "1",
+                  "section": "Indennità di trasferta forfettaria",
+                  "quote": "Quota per il pernottamento | Dal 1° giugno 2023 | 21,65"
+                },
+                "transformation": "Read from the scanned table of the verbale (OCR checked on 2026-11-15): the amount from 1 June of the year."
+              }
+            },
+            {
+              "valid_from": "2024-06-01",
+              "valid_until": "2025-06-01",
+              "value": "23.90",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "federmeccanica-verbale-ipca-2024",
+                    "title": "Federmeccanica-Assistal-Fim-Fiom-Uilm, verbale 11 giugno 2024",
+                    "kind": "associazione",
+                    "url": "https://www.uilmnazionale.it/wp-content/uploads/2024/06/20240611-CCNL-Federmeccanica-Assistal-adeguamento-IPCA-2023.pdf",
+                    "sha256": "c25205963fe9cd701e4b2360f47257f6169074a84182782d4be4a743e66bac59"
+                  },
+                  "page": "1",
+                  "section": "Indennità di trasferta forfettaria",
+                  "quote": "Quota per il pernottamento | Dal 1° giugno 2024 | 23,90"
+                },
+                "transformation": "Read from the scanned table of the verbale (OCR checked on 2026-11-15): the amount from 1 June of the year."
+              }
+            },
+            {
+              "valid_from": "2025-06-01",
+              "valid_until": "2026-06-01",
+              "value": "24.35",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "federmeccanica-verbale-ipca-2025",
+                    "title": "Federmeccanica-Assistal-Fim-Fiom-Uilm, verbale 12 giugno 2025",
+                    "kind": "associazione",
+                    "url": "https://www.uilmnazionale.it/wp-content/uploads/2025/06/20250612-CCNL-Federmeccanica-Assistal-IPCA-NEI-VERBALE-MINIMI-giugno-2025-trasferta-e-reperibilita-1.pdf",
+                    "sha256": "e60921cadc971b86632a284ae357f6e55804c9737b7d41be831112ff56349360"
+                  },
+                  "page": "1",
+                  "section": "Indennità di trasferta forfettaria",
+                  "quote": "Quota per il pernottamento | Dal 1° giugno 2025 | 24,35"
+                },
+                "transformation": "Read from the scanned table of the verbale (OCR checked on 2026-11-15): the amount from 1 June of the year."
+              }
+            },
+            {
+              "valid_from": "2026-06-01",
+              "valid_until": null,
+              "value": "25.03",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "federmeccanica-verbale-ipca-2026",
+                    "title": "Federmeccanica-Assistal-Fim-Fiom-Uilm, verbale 16 giugno 2026",
+                    "kind": "associazione",
+                    "url": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260616-CCNL-Federmeccanica-Assistal-IPCA-Minimi-giugno-2026-trasferta.pdf",
+                    "sha256": "67faca45b8d363b7d9c11e309daea103f05ccc1d4793321846c8ed0b0e4b0195"
+                  },
+                  "page": "1",
+                  "section": "Indennità di trasferta forfettaria",
+                  "quote": "Quota per il pernottamento | Dal 1° giugno 2026 | 25,03"
+                },
+                "transformation": "Read from the scanned table of the verbale (OCR checked on 2026-11-15): the amount from 1 June of the year."
+              }
+            }
+          ]
+        },
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-federmeccanica-2021-uilm",
+              "title": "CCNL Metalmeccanici Federmeccanica-Assistal 5 febbraio 2021 (versione integrale UILM)",
+              "kind": "associazione",
+              "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/11/CCNL-140x206-DEF-Fim-Fiom-Uilm-1.pdf",
+              "sha256": "620e18590c0ebe3a4cdc36c367a4005b9775eae60b359914e8b6f286a2479147"
+            },
+            "page": "62-63",
+            "section": "Sez. Quarta, Titolo I, Art. 7 (trasferta)",
+            "quote": "In alternativa al rimborso delle spese come sopra specificato, è possibile sostituire, anche in modo parziale, il rimborso con un'indennità di trasferta forfettaria per ciascun pasto, meridiano o serale e per il pernottamento i cui importi sono pari a"
+          },
+          "transformation": "The forfait in place of the reimbursement: 'Trasferta intera' for both meals and the overnight stay, otherwise each meal and the overnight stay at their quota, from 1 June 2021 44,12, 11,92, 20,28, adjusted each June by the verbali on the IPCA (renewal of 22 November 2025: 'con le stesse modalità'). The lunch is due beyond 20 km or without a return for the unpaid break, the dinner without a return home by 21, the overnight stay without a return home by 22: the event states them (meals, overnight). The indemnity 'continua ad essere esclusa dal calcolo della retribuzione spettante per tutti gli istituti di legge e/o di Contratto': tfr_base none."
+        }
+      },
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-federmeccanica-2021-uilm",
+            "title": "CCNL Metalmeccanici Federmeccanica-Assistal 5 febbraio 2021 (versione integrale UILM)",
+            "kind": "associazione",
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/11/CCNL-140x206-DEF-Fim-Fiom-Uilm-1.pdf",
+            "sha256": "620e18590c0ebe3a4cdc36c367a4005b9775eae60b359914e8b6f286a2479147"
+          },
+          "page": "62-63",
+          "section": "Sez. Quarta, Titolo I, Art. 7 (trasferta)",
+          "quote": "In alternativa al rimborso delle spese come sopra specificato, è possibile sostituire, anche in modo parziale, il rimborso con un'indennità di trasferta forfettaria per ciascun pasto, meridiano o serale e per il pernottamento i cui importi sono pari a"
+        },
+        "transformation": "The forfait in place of the reimbursement: 'Trasferta intera' for both meals and the overnight stay, otherwise each meal and the overnight stay at their quota, from 1 June 2021 44,12, 11,92, 20,28, adjusted each June by the verbali on the IPCA (renewal of 22 November 2025: 'con le stesse modalità'). The lunch is due beyond 20 km or without a return for the unpaid break, the dinner without a return home by 21, the overnight stay without a return home by 22: the event states them (meals, overnight). The indemnity 'continua ad essere esclusa dal calcolo della retribuzione spettante per tutti gli istituti di legge e/o di Contratto': tfr_base none."
       }
     }
   },

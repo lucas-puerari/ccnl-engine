@@ -192,6 +192,10 @@ class TravelAllowanceEvent:
             distinct from the fiscal status ``trasfertista``.
         mission_over_month: Whether the mission exceeds one calendar month;
             determined by the caller from the actual start and end dates.
+        meals: Meals of each day the CCNL quota is due for (0 to 2), for a
+            CCNL that pays by meals and lodging; ``None`` otherwise.
+        overnight: Whether the overnight quota is due each day, with
+            ``meals``.
 
     Raises:
         InvalidInputError: When a field is invalid, neither
@@ -211,6 +215,8 @@ class TravelAllowanceEvent:
     mission_hours: Decimal | None = None
     habitual_travel: bool = False
     mission_over_month: bool = False
+    meals: int | None = None
+    overnight: bool | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         feature = "travel_allowance"
@@ -239,10 +245,21 @@ class TravelAllowanceEvent:
             minimum=_ZERO,
             optional=True,
         )
+        require_int(
+            self.meals,
+            f"{name}.meals",
+            feature=feature,
+            minimum=0,
+            maximum=2,
+            optional=True,
+        )
+        if self.overnight is not None:
+            require_bool(self.overnight, f"{name}.overnight", feature=feature)
         if (
             self.daily_amount is None
             and self.hours_away is None
             and self.mission_hours is None
+            and self.meals is None
         ):
             msg = f"{name}: state daily_amount or the hours_away of the CCNL span"
             raise InvalidInputError(msg, field=f"{name}.hours_away", feature=feature)

@@ -14,6 +14,7 @@ from ccnl_engine.ledger.models import AccountKind, PostingIntent
 from ccnl_engine.pay_item.facade import TravelAllowanceItem
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.pay_item.services import _ZERO, _require_resolution
+from ccnl_engine.working_time.travel.quotas import quota_amount
 
 if TYPE_CHECKING:
     from ccnl_engine.variable_pay.inputs import TravelAllowanceEvent
@@ -145,6 +146,8 @@ def _daily_amount(event: TravelAllowanceEvent, terms: TravelTerms | None) -> Dec
     if terms is None or rules is None:
         msg = "the CCNL of the run has no travel allowance amounts: state daily_amount"
         raise MissingRuleError(msg, as_of=event.event_date, feature=_FEATURE)
+    if rules.quotas is not None:
+        return quota_amount(event, rules.quotas, terms.ruleset)
     if rules.mission_duration and event.mission_hours is None:
         msg = "the CCNL requires the total mission duration in mission_hours"
         raise MissingRuleError(msg, as_of=event.event_date, feature=_FEATURE)
