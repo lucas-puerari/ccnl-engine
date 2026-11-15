@@ -203,12 +203,16 @@ class InjuryRules(BaseModel):
         advanced_permanent_only: Whether it advances it to permanent
             workers only.
         holiday: Target of a covered holiday during the injury, if any.
+        inail_indemnity: Whether INAIL pays the temporary indemnity; ``False``
+            for the employees of the State it insures in the gestione per
+            conto dello Stato, whom the employer pays in full instead.
         provenance: Source of the clause.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     holiday: SicknessHoliday | None = None
+    inail_indemnity: bool = True
     carenza_rate: Decimal | None = Field(default=None, gt=Decimal(0), le=Decimal(1))
     integration_rate: Decimal | None = Field(default=None, gt=Decimal(0), le=Decimal(1))
     integration_bands: tuple[InjuryIntegrationBand, ...] = ()
