@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | **Core payroll path** | ✅ |
 | **Limits of this contract** | leave |
 
-6 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+5 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -158,13 +158,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Resolved (2026-11-15): PriorYearTaxFacts.pay_above_ccnl states the pay above the CCNL of the year before, which the element is reduced by 'fino a concorrenza'; not stated, the run reads the individual elements and names the missing fact pay_above_ccnl.
-
-!!! warning "metalmeccanico-federmeccanica/par_sector_and_shift_hours · leave · impact yes · open"
-    LEAVE, PAR (Sez. Quarta, Titolo III, Art. 5, renewal of 22 November 2025 p. 33): the settore siderurgico (EmployerProfile.subsector steel) accrues 124 hours in place of 104, every other firm (subsector general) 104, and the turnisti on 15 or more weekly shifts including the night shift (Employment.qualifying_shifts) 8 hours more. The further 4 hours from 2027 at 18 or more weekly shifts and 4 more from 2028 at 21 for the non siderurgico workers are permit extra_hours on Employment.weekly_shifts. The hour of the sottosettori of the accordo of 16 July 1979 (8 hours a year) goes to the workers holding the role sottosettore_1979 hired by 31 December 2012. Not modelled: the 8 hours of the siderurgico turnisti, paid with the 13th.
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Pay the 8 hours of the siderurgico turnisti with the 13th, then resolve this limitation.
 
 !!! warning "metalmeccanico-federmeccanica/par_conto_ore_hourly_elements · leave · impact yes · unsourced"
     LEAVE, CONTO ORE: the hourly elements of Tit. IV art. 3 are included in the PAR payout at expiry when the caller states hourly_pay_elements (zero confirms none; missing blocks payment). PAR left when employment ends before expiry remain unpaid: Tit. III art. 5 specifies liquidation at expiry but no termination basis.
@@ -373,6 +366,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     APPRENTICESHIP TRACKS (CCNL 5 February 2021, accordo sull'apprendistato, pp. 267-271): 36 months, reduced by 6 months for a diploma of level 4 QEQ or above (30), 24 for the D2 figures on assembly lines; each third at 85, 90 and 95% of the destination level.
     
     HOURLY RATE AND SUPPLEMENTS (Art. 7 Sez. Quarta Tit. III of the CCNL of 5 February 2021, rates untouched by the renewal of 22 November 2025): without a caller value the engine derives the hourly base (minimi, scatti and fixed allowances over 173) and the supplements on holiday hours (50%) and on holiday hours with a compensatory rest (10%), equal in both columns. Whether those hours are also paid on top of the monthly pay is not settled: a derived holiday supplement is provisional. Not derived, the caller states the amount: ordinary night work (20% until 22 and 30% after; shift workers 15%, 20% from June 2013, 25% from 22 to 6 in the impiantistica), because its window starts 12 hours after the morning shift of each work group and its rate depends on the hour and on the shift column, facts the request does not carry; night holiday work and Sunday work. Individual elements (merito, superminimi, cottimi) are not in the hourly base. Absences: no clause sets the divisor of an absence deduction; the 1/26 of art. 9 (festività on a Sunday) is taken by analogy (work_rules.absence_rules derived, was verified on the wrong clause): the caller states AbsenceEvent.hourly_rate.
+    
+    LEAVE, PAR (Sez. Quarta, Titolo III, Art. 5, renewal of 22 November 2025 p. 33): the settore siderurgico (EmployerProfile.subsector steel) accrues 124 hours in place of 104, every other firm (subsector general) 104, and the turnisti on 15 or more weekly shifts including the night shift (Employment.qualifying_shifts) 8 hours more. The further 4 hours from 2027 at 18 or more weekly shifts and 4 more from 2028 at 21 for the non siderurgico workers are permit extra_hours on Employment.weekly_shifts. The hour of the sottosettori of the accordo of 16 July 1979 (8 hours a year) goes to the workers holding the role sottosettore_1979 hired by 31 December 2012. The 8 hours of the siderurgico turnisti are paid with the thirteenth (extra_hours paid_with_thirteenth).
     
     LEAVE AT TERMINATION (Sez. IV, Tit. III, Art. 10, p. 166 of the CCNL of 5 February 2021): 'L’indennità dovuta al lavoratore per le giornate di ferie non godute è costituita dalla retribuzione giornaliera globale di fatto'. No clause of the 2021 text or of the ipotesi of 22 November 2025 (OCR) defines that daily pay as a fraction of the monthly pay: the only daily quota stated (1/26 of the retribuzione mensile fissa, Art. 9, p. 164) is the pay of a festività falling on a Sunday, and the divisor 173 (Tit. IV, Art. 3, p. 173) gives the hourly pay. The engine pays no residual (termination_residual_leave incomplete, termination_basis_not_sourced).
     

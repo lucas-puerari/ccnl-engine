@@ -155,11 +155,9 @@ REQUEST_DEFAULTS: Mapping[str, FieldDefault] = {
         "leave",
         "employment.qualifying_shifts",
         _PENDING,
-        "unknown rotation: where a CCNL grants additional PAR hours to a "
-        "worker in at least 15 weekly shifts including night and/or weekend "
-        "work, the base PAR is credited but its balance is inexact; when the "
-        "shift clause cannot grant leave (before its effective date or for "
-        "sectors paid instead) the missing shift fact does not affect leave",
+        "unknown rotation: PAR hours of a 15-shift rotation leave the balance "
+        "inexact where the clause can grant them, and hours paid with the "
+        "thirteenth wait for the rotation and the sub-sector",
     ),
     "Employment.work_pattern": absence_is_fact(
         "a horizontal part time or a full time: every month is worked and "

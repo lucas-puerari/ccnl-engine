@@ -26,7 +26,9 @@ class PermitExtraHours(BaseModel):
     ``Employment.roles`` code, and ``hired_by`` to the workers in service on
     that day: a worker hired later never takes them, whatever the roles
     (Federmeccanica art. 5: the hour of the sottosettori of 1979, for the
-    workers in service at 31 December 2012).
+    workers in service at 31 December 2012).  ``paid_with_thirteenth``
+    hours are not leave: the run paying the thirteenth pays them in money
+    (:mod:`~ccnl_engine.leave.permit.monetised`).
     Dates bound the competence month, with an exclusive end.
     """
 
@@ -41,6 +43,7 @@ class PermitExtraHours(BaseModel):
     min_weekly_shifts: int | None = Field(default=None, gt=0)
     role: str | None = None
     hired_by: date | None = None
+    paid_with_thirteenth: bool = False
     provenance: RuleProvenance
 
     def _hired_later(self, hired_on: date | None) -> bool:

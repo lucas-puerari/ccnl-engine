@@ -214,6 +214,7 @@ def _permit(permit: PermitRules, facts: AccrualFacts) -> tuple[Decimal, bool]:
             hired_on=facts.hired_on,
         )
         for item in permit.extra_hours
+        if not item.paid_with_thirteenth
     ):
         exact = False
     ramp = permit.ramp
