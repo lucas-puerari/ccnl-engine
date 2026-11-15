@@ -7251,7 +7251,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
     "verification_status": "unverified",
-    "source_hash": "64bf7a23dfcd5074e91d172b3cd2714a3bf235c974712217d9e1bb83bc835061",
+    "source_hash": "ee45fe76ca0143ffb9b9e0d58815626c691d36c9500f859f6885c026bae56e16",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -7542,6 +7542,25 @@
             "review_id": "2026-11-08-gpt-energia-petrolio-confindustria-insured-absence"
           }
         }
+      }
+    },
+    "parental_hourly": {
+      "effective_from": "2025-05-01",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "CNEL-239758 (estrazione testuale cnel-decoded.txt)",
+            "title": "CCNL Energia e Petrolio, testo coordinato del rinnovo 16 aprile 2025",
+            "kind": "cnel",
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239758",
+            "sha256": "129ad0c91a836a05cdcdbcb8a8f1d4a7a920521459adc98f6995bab0c4af12de"
+          },
+          "page": "116",
+          "section": "Art. 59 - Genitorialità",
+          "quote": "Ai sensi dell’art. 32 del D. Lgs. n. 151/2001 e successive modificazioni, a decorrere dal mese\n              successivo a quello di sottoscrizione del presente rinnovo il congedo parentale potrà essere fruito\n              anche ad ore.\n              La lavoratrice/il lavoratore può usufruire di permessi su base oraria fino a un massimo dell’orario\n              giornaliero previsto dalla contrattazione collettiva nazionale o aziendale, se diversa.\n              Il congedo potrà essere fruito, sia dal personale a tempo pieno che dal personale a tempo\n              parziale, per periodi minimi di un’ora giornaliera, la cui somma nell’arco di ciascun mese di\n              utilizzo deve corrispondere a giornate intere."
+        },
+        "transformation": "L'articolo non quantifica le ore equiparate a una giornata per il tempo pieno: richiama l'orario giornaliero contrattuale e fissa soltanto il minimo di un'ora; day_hours = null. La stessa soglia minima vale per tempo pieno e parziale, senza riproporzionamento esplicito: part_time_scaled = false. Il rinnovo è sottoscritto il 16 aprile 2025; il mese successivo inizia il 1° maggio 2025."
       }
     }
   },

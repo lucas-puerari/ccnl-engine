@@ -3683,7 +3683,7 @@
     "effective_until": null,
     "source": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
     "verification_status": "verified",
-    "source_hash": "6949ea0161f702dd2105f66ba78270e9826202a8a0c321c4d57b6577fda6f4b9",
+    "source_hash": "4e2f52e44d6978fc27d8650131594c3af26cf32e6adc95585d84937cfad65dec",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4107,6 +4107,24 @@
           "effective_from": "2025-01-01",
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "cemento-2025-feneal",
+            "title": "CCNL cemento, calce e gesso industria 2025–2027",
+            "kind": "associazione",
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/CEMENTO_STAMPA-CCNL_2025-NO-UGL.pdf",
+            "sha256": "0577ad1f914031470abf63b59ffc33b0eff779311bbe10fe670a28b3b0823f97"
+          },
+          "page": "157 (pagina stampata 141)",
+          "section": "Art. 58, Tutela genitorialità",
+          "quote": "Il congedo parentale su base oraria potrà essere fruito, sia dal personale\n                a tempo pieno che dal personale a tempo parziale, nei primi 12 anni del\n                figlio fino ad un massimo di metà dell’orario medio giornaliero previsto\n                in azienda.\n\n                Per i lavoratori non turnisti il congedo parentale potrà essere fruito, sia\n                dal personale a tempo pieno che dal personale a tempo parziale, per\n                periodi minimi di due ore giornaliere."
+        },
+        "transformation": "La metà dell’orario medio giornaliero è un limite massimo alla fruizione oraria, non l’equiparazione di una giornata a un numero di ore. Le due ore sono un periodo minimo per i non turnisti, non un equivalente giornaliero: day_hours = null. Il testo ammette il part-time ma non prescrive un riproporzionamento delle ore: part_time_scaled = false. Nessuna decorrenza specifica è indicata per questa clausola: effective_from = null."
       }
     }
   }

@@ -3705,7 +3705,7 @@
     "effective_until": null,
     "source": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "ebb94a8f6cb52d8aec4755eb891b3141a4d1ee5722786c9551a17b5d5780dc16",
+    "source_hash": "d6c3883b69efee1c5c13ae94196be13e6d28dae81d68a824ca669a167147d0ea",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3938,6 +3938,24 @@
           "comporto_days": 425
         }
       ]
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "laterizi-industria-f021-ccnl-2020",
+            "title": "Contratto collettivo nazionale di lavoro 12 febbraio 2020 per i dipendenti delle aziende produttrici di laterizi e manufatti cementizi",
+            "kind": "associazione",
+            "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+            "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+          },
+          "page": "55",
+          "section": "Art. 35 ter – Tutela delle lavoratrici madri, della maternità e della paternità",
+          "quote": "Al padre e alla madre lavoratori sarà concesso, anche in unità orarie, l’utilizzo dei congedi di cui all’articolo 32\ndel D.Lgs. n.151/2000 e normative successive."
+        },
+        "transformation": "La clausola consente la fruizione in unità orarie ma non equipara un numero di ore a una giornata di congedo: day_hours = null. Non dispone riproporzionamenti per il part-time né indica una decorrenza specifica."
+      }
     }
   }
 }

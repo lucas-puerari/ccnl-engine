@@ -2669,7 +2669,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "c61a67efefc47f27ce79beea053451beae74352022420523ea907a839b19224f",
+    "source_hash": "2438eeaae9aed13613d05c620394ed3fc5b78078aac3640fbb9478e0d52f8c84",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2919,6 +2919,25 @@
           "review_id": "2026-10-31-ai-sickness-comporto"
         },
         "note": "Art. 26 D): an illness of particular gravity (neoplasie invalidanti, sclerosi multipla, trapianti...) keeps the job 18 months, 540 days within the three years, with the whole pay; the engine applies the ordinary comporto to it."
+      }
+    },
+    "parental_hourly": {
+      "effective_from": "2024-07-01",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "15-sezione-personale-di-terra.pdf",
+            "title": "Sezione per il personale di terra – uffici e terminals delle società di navigazione",
+            "kind": "associazione",
+            "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+            "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+          },
+          "page": "18 (stampata 17)",
+          "section": "Art. 20, B) CONGEDI PARENTALI, punto 1",
+          "quote": "1 - Ai fini e per gli effetti dell’art. 32 del Decreto legislativo n. 151 del 26 marzo 2001, il padre\nlavoratore e la madre lavoratrice, per ogni bambino nei primi suoi dodici anni di vita hanno diritto\nal congedo parentale che può essere utilizzato sia su base giornaliera, che oraria; quest’ultima\nin misura pari alla metà dell’orario medio giornaliero del periodo di paga mensile\nimmediatamente precedente a quello nel corso del quale ha inizio il congedo parentale. La\nrichiesta per la loro fruizione, sia giornaliera che oraria, deve pervenire alla Società con un\npreavviso non inferiore a 5 giorni di calendario, indicando l’inizio e la fine del periodo di congedo\ne allegando il certificato di nascita, ovvero la dichiarazione sostitutiva."
+        },
+        "transformation": "La metà dell'orario medio giornaliero del mese precedente determina la misura della fruizione oraria, non il numero di ore equiparato a una giornata: nessuna equivalenza espressa, quindi day_hours = null."
       }
     }
   }

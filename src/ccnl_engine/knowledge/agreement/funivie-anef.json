@@ -2025,7 +2025,7 @@
     "effective_until": null,
     "source": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
     "verification_status": "unverified",
-    "source_hash": "aeec8506317de6ec61e103626ba0c49129a957558a3919a02d006217f3ebc899",
+    "source_hash": "98de07ef2c101c7d11959fbd98d4b95ecf6c7a7e01ccf4a486a55d7b35edc26e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2258,6 +2258,25 @@
           "comporto_days": 180
         }
       ]
+    },
+    "parental_hourly": {
+      "effective_from": "2025-05-01",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "coordinated.pdf",
+            "title": "Contratto collettivo nazionale di lavoro per gli addetti degli impianti di trasporto a fune (testo unico coordinato)",
+            "kind": "associazione",
+            "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+            "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
+          },
+          "page": "43",
+          "section": "Art. 41 ter, Congedo parentale, comma 1, lettere a–c",
+          "quote": "a. Ai soli fini del computo del congedo parentale la durata dell’orario giornaliero di lavoro è quella risultante\n          dalla distribuzione giornaliera dell’orario contrattuale settimanale nazionale o aziendale ove esistente;\n      b. gli importi orari del trattamento economico si determinano dividendo la retribuzione giornaliera per la\n          durata dell’orario giornaliero come determinato dalla lettera a);\n      c. la fruizione dei permessi di cui al presente articolo è riconosciuta:\n                 per multipli di un’ora, e comunque non inferiore a 2 (due) ore, per il personale amministrativo;\n               in misura pari alla metà dell’orario giornaliero di cui alla lettera a) per il restante personale\n                (personale operativo e/o turnista)"
+        },
+        "transformation": "La lettera a equipara una giornata alla durata giornaliera risultante dalla distribuzione dell'orario contrattuale settimanale, senza fissare un numero espresso di ore per il tempo pieno: day_hours = null. I multipli/minimi della lettera c non sono l'equivalenza di una giornata. Non è prevista una regola espressa di riproporzionamento per il part-time. La decorrenza 2025-05-01 deriva dall'art. 49, comma 1, applicabile salvo diverse decorrenze specifiche non indicate nell'art. 41 ter."
+      }
     }
   },
   "verification": {

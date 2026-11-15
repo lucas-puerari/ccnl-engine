@@ -4807,7 +4807,7 @@
     "effective_until": "2027-12-31",
     "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
     "verification_status": "unverified",
-    "source_hash": "ca7b5ff6b819236de80ea309ff75d0257f4bae52d6bb811910f1322417b5ea48",
+    "source_hash": "70ec5e6c435da473610d78364c216379bf31e451d426e3049ff02313240138e4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5065,6 +5065,24 @@
           "effective_from": "2025-01-01",
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-parte-specifica-2025-2027.txt",
+            "title": "CCNL Parte Specifica Gestori Aeroportuali 2025–2027 (estrazione testuale del PDF)",
+            "kind": "associazione",
+            "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+            "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+          },
+          "page": "7–8",
+          "section": "Art. G2, comma 5",
+          "quote": "5. Per quanto riguarda la possibilità di fruizione di congedi parentali ad ore prevista dall’art. 32 del\nD.Lgs. n. 151/2001 e ss.mm.ii., in considerazione dei riflessi dell’istituto sull’operatività aziendale,\nsi rinvia alla contrattazione di secondo livello ovvero, ove assente, alla normativa in vigore, la\n\n                                                                                                          5\n\fdefinizione dei criteri di calcolo della base oraria, l'equiparazione di un determinato monte ore alla\nsingola giornata lavorativa e le modalità di fruizione del congedo stesso."
+        },
+        "transformation": "Il comma 5 demanda l'equiparazione ore/giornata alla contrattazione di secondo livello o, in sua assenza, alla normativa vigente: il CCNL non stabilisce espressamente un numero di ore per giornata (day_hours=null). Non prevede un riproporzionamento per il part-time (part_time_scaled=false) né una decorrenza specifica della clausola (effective_from=null)."
       }
     }
   }

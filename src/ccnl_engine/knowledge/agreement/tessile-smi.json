@@ -1950,7 +1950,7 @@
     "effective_until": null,
     "source": "https://www.sistemamodaitalia.com/",
     "verification_status": "unverified",
-    "source_hash": "abdf53916d60d6fc7dc1f90f6077dd273c6eb8d703354f4b1f05a524e1f4cc28",
+    "source_hash": "c9015b95dff6d39ff3c2336653595b50caedaf33b1ecf06014be538d1991c183",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2259,6 +2259,25 @@
           "effective_from": "2022-01-31",
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "part_time_scaled": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-2022.txt",
+            "title": "CCNL Tessile Abbigliamento Moda, 31 gennaio 2022 (estrazione testuale del PDF CNEL)",
+            "kind": "cnel",
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/187819",
+            "sha256": "77c269b3fa0d3d87efeb86e44ecd7b344f55cb3d125205d283e6ac58b97fb2b1"
+          },
+          "page": "74",
+          "section": "Art. 56 – Congedi parentali",
+          "quote": "  Ai sensi dell’art. 32, comma 1-ter, del D.lgs n.151/2001, l’utilizzo su base giornaliera e oraria dei\nperiodi di congedo parentale è disciplinato come segue:\n - i permessi sono frazionabili per gruppi di 4 ore giornaliere (riproporzionabili per i contratti a tempo\n       parziale), per un periodo complessivo non inferiore ad una giornata lavorativa nel mese di utilizzo;\n - il genitore è tenuto a presentare un programma almeno mensile, da aggiornare ogni mese con un\n       preavviso di almeno una settimana, indicando i giorni o le ore di congedo richieste (con il numero\n       di giornate equivalenti) e il calendario dei giorni in cui sono collocati i permessi;\n - in caso di oggettivi impedimenti, debitamente certificati, le modifiche al programma dei permessi\n       dovranno essere presentate entro la fine del turno/orario di lavoro della giornata che precede\n       l’inizio della fruizione del congedo.\n  Per l’equiparazione dei periodi di congedo utilizzati in modo continuativo con quelli su base\ngiornaliera o oraria, si fa riferimento ai divisori fissi contrattuali, pari a:\n          173 ore/mese per l’orario a 40 ore;\n          156 ore/mese per l’orario 6x6."
+        },
+        "transformation": "Le 4 ore sono il gruppo minimo giornaliero, non l'equivalenza di una giornata. I divisori 173 e 156 sono mensili e non fissano le ore di una giornata: day_hours = null. La clausola riproporziona esplicitamente i gruppi di ore per i contratti a tempo parziale: part_time_scaled = true. Non indica una data di applicazione della clausola: effective_from = null."
       }
     }
   },

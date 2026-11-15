@@ -1786,7 +1786,7 @@
     "effective_until": null,
     "source": "https://www.consulenza.it/Contenuti/News/news/9409/calzaturieri-industria-e-minimi-retributivi",
     "verification_status": "unverified",
-    "source_hash": "51cdecb95314243468fe1309c53c4e88f2efbcbe790a8f4c681906550c986022",
+    "source_hash": "c019f0be46e20d3c4918c6484ab42b42f28e0c8d645bffcf47822118212296a7",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2028,6 +2028,25 @@
           "effective_from": "2024-01-01",
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "part_time_scaled": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-2024.pdf",
+            "title": "CCNL calzaturiero 2024–2026",
+            "kind": "associazione",
+            "url": "https://www.falc.biz/wp-content/uploads/2025/03/CCNL-contratto-collettivo-nazionale-di-lavoro-calzaturiero-2024.pdf",
+            "sha256": "fd48de9dd4aa81fd5ca97c3dd94099d085ac61666831e6da37fe2fbab19558cf"
+          },
+          "page": "102 (pagina stampata 101)",
+          "section": "Art. 57 – Congedo di paternità obbligatorio – Congedi parentali",
+          "quote": "permessi sono frazionabili per gruppi di 4 ore giornaliere (riproporzionabili per i contratti\n  a tempo parziale), per un periodo complessivo non inferiore ad una giornata lavorativa\n  nel mese di utilizzo;"
+        },
+        "transformation": "Le 4 ore sono gruppi di frazionamento giornaliero, non l'equivalenza di una giornata di congedo: day_hours = null. La clausola prescrive il riproporzionamento per i contratti a tempo parziale: part_time_scaled = true. L'articolo non indica la data di applicazione della clausola: effective_from = null."
       }
     }
   },

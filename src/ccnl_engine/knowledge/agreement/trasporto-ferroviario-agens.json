@@ -2595,7 +2595,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "a482a52fd62fb6d6d63e8085c2bf8bca27059180d42d1f2d6a847e4d7f058b95",
+    "source_hash": "5a19a846c19c893114e24d2ff0b3cc8c2b34044d609a820b19595e287bf57b48",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2860,6 +2860,24 @@
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "orsa-2025",
+            "title": "CCNL Mobilità/Area AF del 22 maggio 2025",
+            "kind": "associazione",
+            "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
+            "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
+          },
+          "page": "87 (numerazione stampata: 86)",
+          "section": "Art. 33, punto 2.2",
+          "quote": "2.2 Ciascun genitore può scegliere fra la fruizione giornaliera e quella oraria del congedo\n      parentale.\n      La fruizione su base oraria è consentita, previo preavviso scritto di almeno 2 giorni, in\n      misura pari a mezza giornata di ferie e per il personale per il quale è prevista dal presente\n      CCNL o dagli eventuali contratti aziendali la fruizione delle ferie a mezza giornata."
+        },
+        "transformation": "La clausola misura la fruizione oraria in mezza giornata di ferie, senza indicare quante ore equivalgano a una giornata intera di congedo: day_hours = null. Non prevede un riproporzionamento orario per il part-time né indica una decorrenza specifica."
       }
     }
   }

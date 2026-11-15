@@ -4213,7 +4213,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "9e7cdf32f5ced3f266375fb38dfd588886775efb3d0cdcd74ffb221b08872487",
+    "source_hash": "9c66efaaf46e07e1a36450b37d27b6337e29ae5f2f68c6f3543262c97ce5863f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4591,6 +4591,24 @@
           "effective_from": "2025-12-09",
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "testo-2025-2027.pdf",
+            "title": "Contratto collettivo nazionale di lavoro ANIASA 2025–2027",
+            "kind": "associazione",
+            "url": "https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf",
+            "sha256": "af0c6b2555f502ab52fcedb82b5d138093ef49499cac97ac19ec241e696f686d"
+          },
+          "page": "126 (stampata 124)",
+          "section": "Art. 79 - Congedi, Congedo parentale ad ore",
+          "quote": "Fermo restando quanto previsto dal D.lgs. n. 151/2001 e s.m.i. in materia di congedo\nparentale, al fine di garantire una maggiore flessibilità dello stesso, e per favorire le\nopportunità di conciliazione dei tempi di vita e di lavoro, tenendo anche conto della\nfunzionalità organizzativa aziendale, le Parti stabiliscono, ai sensi dall’art. 1, comma\n339, lett. A), L. 24 dicembre 2012, n. 228, le modalità di fruizione oraria del congedo\nparentale, i criteri di calcolo della base oraria e l’equiparazione di un determinato\nmonte ore alla singola giornata lavorativa come di seguito indicato:\n\n a. ai soli fini del computo del congedo parentale la durata dell’orario giornaliero\n    di lavoro è quella risultante dalla distribuzione giornaliera dell’orario\n    contrattuale settimanale nazionale o aziendale ove esistente;\n b. gli importi orari del trattamento economico si determinano dividendo la\n    retribuzione giornaliera per la durata dell’orario giornaliero come determinato\n    dalla lettera a);\n c. la fruizione dei permessi di cui al presente articolo è riconosciuta:\n    1) per il personale amministrativo per multipli di un’ora, e comunque non\n     inferiore a 2 (due) ore;\n    2) per il restante personale (personale operativo e/o turnista) in misura pari alla\n    metà dell’orario giornaliero di cui alla lettera a)."
+        },
+        "transformation": "La lettera a) definisce la giornata in base alla distribuzione concreta dell'orario settimanale nazionale o aziendale, senza indicare un numero fisso di ore per una giornata a tempo pieno: day_hours = null. Le 2 ore della lettera c) sono una soglia minima di fruizione e la metà dell'orario giornaliero è una frazione, non un'equiparazione numerica della giornata. Non è previsto un riproporzionamento espresso per il part-time."
       }
     }
   },

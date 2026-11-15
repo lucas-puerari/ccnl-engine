@@ -7,9 +7,10 @@ out of the INPS and TFR bases, at the CCNL hourly base of their day
 indemnity, half the daily base at the rate of each day (art. 34 c. 1 D.Lgs.
 151/2001; INPS circ. 152/2015 par. 2.2).  A collective rule on the hours
 that make a day of leave prevails over the general criterion of art. 32 c.
-1-ter: the run records the open engine limitation
-``parental_hourly_ccnl_rule`` while the bundle does not record the rule of
-the CCNL (``work_rules.parental_hourly``) or the rule sets its own hours.
+1-ter: the CCNL hours in force on the first day of leave make the days of
+leave (``work_rules.parental_hourly``), and the run records the open engine
+limitation ``parental_hourly_ccnl_rule`` while the bundle does not record
+the rule of the CCNL.
 """
 
 from __future__ import annotations
@@ -46,14 +47,13 @@ from ccnl_engine.absence.insured.rules import InsuredPay
 from ccnl_engine.decision.models import CalculationIssue, CalculationStatus, IssueCause
 
 if TYPE_CHECKING:
-    from datetime import date
-
     from ccnl_engine.absence.insured.parental.hourly.inputs import (
         HourlyParentalLeaveEvent,
     )
     from ccnl_engine.absence.insured.parental.hourly.models import (
         ParentalHourlyClause,
     )
+    from ccnl_engine.absence.insured.services import InsuredTerms
     from ccnl_engine.event.handlers import EventEffect, _EventHandlerCtx
 
 __all__ = ["HOURLY_CCNL_LIMITATION", "HOURS_UNDERIVED", "_handle_hourly_parental"]
@@ -64,7 +64,6 @@ HOURLY_CCNL_LIMITATION = "parental_hourly_ccnl_rule"
 HOURS_UNDERIVED = "parental_hours_underived"
 _DEDUCTION = "absence_deduction"
 _ZERO = Decimal(0)
-_HALF = Decimal(2)
 
 
 def _handle_hourly_parental(
@@ -80,7 +79,7 @@ def _handle_hourly_parental(
     if terms is None or terms.pay is None:
         return _no_quota(PARENTAL)
     rates = terms.rates.parental
-    days, unknown = allocate_hours(event, rates)
+    days, unknown = allocate_hours(event, rates, _day_hours(event, terms))
     base = leave_base(
         event.parental_base_pay,
         terms,
@@ -94,7 +93,7 @@ def _handle_hourly_parental(
     if daily is None:
         daily = run_daily_base(terms.pay, rates.daily_divisor)
     hours = event.hours_within(*span)
-    in_span = [day for day in days if span[0] <= day <= span[1]]
+    in_span = [day for day in days.pieces if span[0] <= day <= span[1]]
     deduction = hours_pay(event.hours, span, ctx.hourly, PARENTAL, HOURS_UNDERIVED)
     rule = None if terms.rules is None else terms.rules.parental
     issues: list[CalculationIssue] = [
@@ -112,7 +111,7 @@ def _handle_hourly_parental(
     effect = post_lines(
         (
             ("abs", -deduction, _DEDUCTION, hours),
-            ("inps", indemnity, "maternity_item", Decimal(len(in_span)) / _HALF),
+            ("inps", indemnity, "maternity_item", days.leave_days(*span)),
             ("intg", integration, "absence_integration_item", topped_up),
         ),
         ctx,
@@ -146,13 +145,14 @@ def _handle_hourly_parental(
         )
     if unknown:
         issues.append(_cohort_issue())
-    issue, unpublished = income_check(days, in_span, event.individual_income, PARENTAL)
+    issue, unpublished = income_check(
+        days.rates(), in_span, event.individual_income, PARENTAL
+    )
     local = agreement_issue(event.local_hourly_agreement, PARENTAL)
     effect.issues = [*issues, *(i for i in (issue, local) if i is not None)]
     effect.limitations = _limitations(
         base.limitations,
         terms.hourly_clause,
-        event.hours[0].day,
         unpublished=unpublished,
     )
     return effect
@@ -161,7 +161,6 @@ def _handle_hourly_parental(
 def _limitations(
     base: tuple[str, ...],
     clause: ParentalHourlyClause | None,
-    first: date,
     *,
     unpublished: bool,
 ) -> tuple[str, ...]:
@@ -170,11 +169,30 @@ def _limitations(
     Returns:
         Those of the daily base and of the indemnified months; the income
         threshold when it is not published; the CCNL rule while the bundle
-        does not record it or it sets its own hours to a day of leave.
+        does not record it.
     """
     limitations = [*base, PARENTAL_EXTRA_MONTH_LIMITATION]
     if unpublished:
         limitations.append(PARENTAL_INCOME_LIMITATION)
-    if clause is None or clause.sets_hours_on(first):
+    if clause is None:
         limitations.append(HOURLY_CCNL_LIMITATION)
     return tuple(limitations)
+
+
+def _day_hours(event: HourlyParentalLeaveEvent, terms: InsuredTerms) -> Decimal | None:
+    """Return the hours of a day of leave the CCNL sets for ``event``.
+
+    Returns:
+        The CCNL hours in force on the first day of leave, scaled by the
+        part-time ratio when the CCNL scales them; ``None`` for the general
+        criterion.
+    """
+    clause = terms.hourly_clause
+    if clause is None or clause.day_hours is None:
+        return None
+    if not clause.sets_hours_on(event.hours[0].day):
+        return None
+    ratio = terms.part_time
+    if not clause.part_time_scaled or ratio is None:
+        return clause.day_hours
+    return clause.day_hours * ratio

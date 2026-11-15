@@ -493,10 +493,12 @@ whose month it touches. The run deducts the days at the CCNL daily quota
   prevails (art. 32 c. 1-bis): `work_rules.parental_hourly` records it, or
   records that the CCNL sets none (the criterion applies, INPS circ.
   152/2015: it applies without a bargaining that regulates the leave
-  "compiutamente"). The run records the open limitation
-  `parental_hourly_ccnl_rule` while the CCNL has no record, or its rule sets
-  its own hours (`day_hours`, from `effective_from`), which the engine does
-  not apply yet. A company or territorial agreement is a fact of the employer
+  "compiutamente"). Hours of its own (`day_hours`, from `effective_from`,
+  scaled by the part-time ratio when `part_time_scaled`) make each day the
+  share its hours are of a day of leave (ARAN: 6 hours); the shares must
+  make whole days, and a day that falls in two days of leave takes each
+  one's rate for its part. The run records the open limitation
+  `parental_hourly_ccnl_rule` while the CCNL has no record. A company or territorial agreement is a fact of the employer
   (`local_hourly_agreement`): unstated, the run is incomplete with the
   missing fact; stated true, it is incomplete with
   `parental_hourly_agreement_unmodelled`, the agreement's rules not being

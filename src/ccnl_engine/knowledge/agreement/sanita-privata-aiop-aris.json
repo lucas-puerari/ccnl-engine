@@ -2153,7 +2153,7 @@
     "effective_until": null,
     "source": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
     "verification_status": "unverified",
-    "source_hash": "cf0ec206b06f0c29af72044de648bb2d48c9df5d4c57197f3b50ee1bb07cdea3",
+    "source_hash": "9f0ef1f7f6e9e37e82a3c6279a979755d8215ede248e50db24d72bebd801b9b0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2618,6 +2618,25 @@
           "review_id": "2026-10-15-ai-leave-sickness"
         },
         "transformation": "From the first day the employer advances the INPS indemnity and tops it up to 100% of the retribuzione globale up to the 365th day of absence in the four years before the start of each sickness; the job is kept for 540 days in a rolling four years ('oltre il limite di 540 giorni complessivi nell'arco di un quadriennio mobile'). The treatment 'non deve essere comunque superiore a quello che il lavoratore avrebbe percepito al netto se avesse lavorato': net_basis. Not modelled: the extension to 600 and 690 days for a relapse during a long hospital stay, and the life-saving therapies left out of the comporto."
+      }
+    },
+    "parental_hourly": {
+      "effective_from": "2020-10-09",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-2020.txt",
+            "title": "CCNL AIOP–ARIS 8 ottobre 2020, personale non medico (estrazione testuale)",
+            "kind": "associazione",
+            "url": "https://www.fondazionerimed.eu/wp-content/uploads/2023/12/CCNL-CASE-DI-CURA-PRIVATE-08.10.2020.pdf",
+            "sha256": "183c5c0a01c9a113fd08efffed8132b4e598e4db574f6aed402afb7be880a442"
+          },
+          "page": "47",
+          "section": "Art. 34, punto 3 (Congedi per i genitori)",
+          "quote": "Ciascun genitore può scegliere tra la fruizione giornaliera e quella oraria del congedo parentale. La\nfruizione su base oraria è consentita in misura pari alla metà dell'orario medio giornaliero del\nperiodo di paga mensile immediatamente precedente a quello nel corso del quale ha inizio il\ncongedo parentale. Nei casi di cui al presente comma è esclusa la cumulabilità della fruizione oraria\ndel congedo parentale con permessi o riposi di cui al presente c.c.n.l."
+        },
+        "transformation": "La metà dell'orario medio giornaliero definisce la misura della fruizione oraria, non il numero di ore espressamente equiparate a una giornata: day_hours = null. Nessun riproporzionamento esplicito per il part-time: part_time_scaled = false. L'art. 4 dispone che gli effetti decorrono dal giorno successivo alla stipula dell'8 ottobre 2020: effective_from = 2020-10-09."
       }
     }
   },

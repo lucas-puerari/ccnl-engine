@@ -202,7 +202,7 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Source how the extra months of a parental leave are split between INPS and the employer and net the INPS share from the employer's rateo, then resolve this limitation.
 
 !!! warning "parental_hourly_ccnl_rule · parental_leave · impact unknown · open"
-    A parental leave by the hour takes half the average daily hours a day and counts two such days as one day of leave, the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 (INPS circ. 152/2015 par. 2.2), which also excludes its cumulation with the nursing rests on the same day. A national CCNL rule that sets other hours to a day of leave prevails (art. 32 c. 1-bis): the run records this limitation while the bundle does not record the rule of the CCNL (work_rules.parental_hourly) or the rule sets its own hours, which the engine does not apply yet; a company or territorial agreement is the fact local_hourly_agreement of the event.
+    A parental leave by the hour follows the national CCNL rule on the hours of a day of leave (art. 32 c. 1-bis D.Lgs. 151/2001, work_rules.parental_hourly), or without one the general criterion of art. 32 c. 1-ter: half the average daily hours a day, two such days a day of leave, no cumulation with the nursing rests on the same day (INPS circ. 152/2015 par. 2.1-2.2). The run records this limitation while the bundle does not record the rule of the CCNL; a company or territorial agreement is the fact local_hourly_agreement of the event.
 
     **Applies when:** `parental_leave` applies; the run takes the engine code path.
 

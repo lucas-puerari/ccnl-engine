@@ -194,13 +194,6 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Source how the extra months of a parental leave are split between INPS and the employer and net the INPS share from the employer's rateo, then resolve this limitation.
 
-!!! warning "parental_hourly_ccnl_rule · parental_leave · impact unknown · open"
-    A parental leave by the hour takes half the average daily hours a day and counts two such days as one day of leave, the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 (INPS circ. 152/2015 par. 2.2), which also excludes its cumulation with the nursing rests on the same day. A national CCNL rule that sets other hours to a day of leave prevails (art. 32 c. 1-bis): the run records this limitation while the bundle does not record the rule of the CCNL (work_rules.parental_hourly) or the rule sets its own hours, which the engine does not apply yet; a company or territorial agreement is the fact local_hourly_agreement of the event.
-
-    **Applies when:** `parental_leave` applies; the run takes the engine code path.
-
-    **Remediation:** Source the collective rules on the leave by the hour of the CCNL (hours of a day of leave, cumulation) and apply them, then resolve this limitation.
-
 !!! warning "disability_permit_tfr · disability_permits · impact unknown · unsourced"
     The days of permit under L. 104/1992 art. 33 c. 3 keep the TFR base, as payroll practice holds; art. 2120 c. 3 c.c. keeps in the TFR base only the absences of art. 2110 c.c. and the wage integration, and no primary source read says the permits are among them, so the TFR quota of a month with permits may be overstated.
 

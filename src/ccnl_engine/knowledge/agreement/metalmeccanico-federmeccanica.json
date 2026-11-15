@@ -3411,7 +3411,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2025/11/20251122-CCNL-Federmeccanica-Assistal-Fim-Fiom-Uilm_Ipotesi-di-accordo-siglata.pdf",
     "verification_status": "unverified",
-    "source_hash": "2436995a8a0ca47809c134a45c7e7edee0905a5b3a4ff6b85111a0234f5cea1f",
+    "source_hash": "7633529262fc031fe78ae8bdfe7f79459da6fe908b97b46ef5c3b0e8ba89759a",
     "published_at": "2026-09-08",
     "source_type": "contracting_party"
   },
@@ -5956,6 +5956,25 @@
           },
           "includes_patron_saint": true
         }
+      }
+    },
+    "parental_hourly": {
+      "part_time_scaled": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-2021",
+            "title": "CCNL industria metalmeccanica e installazione di impianti, 5 febbraio 2021",
+            "kind": "associazione",
+            "url": "https://www.fiom-cgil.it/images/CCNL/INDUSTRIA/2021_02_05-CCNL-federmeccanica.pdf",
+            "sha256": "ff182dd8aeb42b15b236c48775030a12720b9affabba460d38e426ec7be5c151"
+          },
+          "page": "205 (stampata 201)",
+          "section": "Sezione quarta, Titolo VI, art. 5 – Congedi parentali",
+          "quote": "L’utilizzo su base oraria dei periodi di congedo parentale è frazionabile per\ngruppi di 2 o 4 ore giornaliere riproporzionati, rispettivamente, ad un’ora e a 2\nore, per i part-time pari o inferiori a 20 ore settimanali."
+        },
+        "transformation": "La clausola fissa gruppi di fruizione di 2 o 4 ore e li riproporziona a 1 o 2 ore per i part-time fino a 20 ore settimanali; non equipara espressamente alcun numero di ore a una giornata di congedo a tempo pieno. day_hours = null; part_time_scaled = true. Nessuna data di decorrenza specifica della clausola è indicata."
       }
     }
   },

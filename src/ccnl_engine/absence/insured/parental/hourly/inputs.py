@@ -32,7 +32,6 @@ __all__ = ["HourlyParentalLeaveEvent"]
 _PARENTAL = "parental_leave"
 _FIELD = "HourlyParentalLeaveEvent.hours"
 _DAY_HOURS = Decimal(24)
-_HALF = Decimal(2)
 
 
 def _reject(msg: str, field: str = _FIELD) -> InvalidInputError:
@@ -141,18 +140,10 @@ class HourlyParentalLeaveEvent:
 
     def _days_problem(self) -> str | None:
         days = [item.day for item in self.hours]
-        half = self.average_daily_hours / _HALF
         if days != sorted(set(days)):
             return f"{_FIELD} must be in order, each day once"
-        if len(days) % 2:
-            return f"{_FIELD} must hold whole days of leave: an even number"
         if days[0] < self.child_born_on:
             return f"{_FIELD} must not precede child_born_on"
-        if any(item.hours != half for item in self.hours):
-            return (
-                f"{_FIELD} must be half of average_daily_hours ({half}) on each "
-                "day: the general criterion of art. 32 c. 1-ter"
-            )
         return None
 
     @property

@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.absence.insured.rules import MonthPay
 from ccnl_engine.employment.inputs import Apprentice, Permanent
+from ccnl_engine.leave.services import part_time_ratio
 from ccnl_engine.sickness.services import sickness_terms
 
 if TYPE_CHECKING:
@@ -56,6 +57,7 @@ class InsuredTerms:
             (``Employment.work_pattern``).
         hourly_clause: The CCNL rule on the parental leave by the hour,
             ``None`` when the bundle does not record one.
+        part_time: Part-time ratio of the worker, ``None`` full time.
     """
 
     employed: tuple[date, date] | None
@@ -74,6 +76,7 @@ class InsuredTerms:
     employer: EmployerProfile | None = None
     apprentice: bool = False
     hourly_clause: ParentalHourlyClause | None = None
+    part_time: Decimal | None = None
 
 
 def insured_terms(ctx: RunContext) -> InsuredTerms:
@@ -113,6 +116,7 @@ def insured_terms(ctx: RunContext) -> InsuredTerms:
         permanent=isinstance(ctx.request.contract_type, Permanent),
         apprentice=isinstance(ctx.request.contract_type, Apprentice),
         hourly_clause=None if work is None else work.parental_hourly,
+        part_time=part_time_ratio(ctx),
         rule=f"{name}:work_rules.insured_absence",
         rule_version=(
             str(competence.year) if ccnl.ruleset is None else ccnl.ruleset.version
