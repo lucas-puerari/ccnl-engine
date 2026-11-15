@@ -1045,7 +1045,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "ba9a013aeda4713a90b152e1c62bf2c1c86af2d417311a395ec1ce13960c9a71",
+    "source_hash": "836c9ea9d76500ad3f8dbf6a5714790912eb618791e44465b77f94adcb3adb9c",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },
@@ -1402,6 +1402,25 @@
           "effective_from": "2025-11-01"
         },
         "transformation": "INPS pays domestic workers no sickness indemnity, so the employer pays the CCNL rate: 50% up to the third consecutive day (the carenza) and 100% from the fourth, for at most 8, 10 or 15 days and within a comporto of 10, 45 or 180 days, for up to 6 months of seniority, from 6 months to 2 years and over 2 years (bands from 0, 6 and 24 months). Readings: 'nell'anno' of c. 7 is taken as the period of 365 days of c. 5, and the 365 days 'decorrenti dall'evento' as the year that ends on the sick day; a day past the paid days is unpaid; the daily pay is a thirtieth of the monthly pay (chiarimento a verbale 2: 'giorni di calendario' are thirtieths, 'esempio: malattia'). An oncological illness documented by the ASL (c. 6, SicknessEpisode.serious_illness) keeps the post 50% longer: 15, 68 and 270 days (45 x 1.5 = 67.5, the 68th day still in part within the period); the paid days of c. 7 do not change."
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-152-2015",
+            "title": "INPS Circolare n. 152 del 18 agosto 2015",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20152%20del%2018-08-2015.pdf",
+            "published_on": "2015-08-18",
+            "sha256": "6e74e62dd50378c23117df7aaca509ab9b8b93e60f99cad23e9c64982fd3734e"
+          },
+          "page": "2",
+          "section": "par. 2.1",
+          "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://l, sha256 122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf)."
       }
     }
   },

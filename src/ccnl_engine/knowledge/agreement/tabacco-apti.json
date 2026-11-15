@@ -2613,7 +2613,7 @@
     "source": "https://www.uila.eu/web/wp-content/uploads/2022/04/Accordo-rinnovo-ccnl-nazionale-tabacco-sciolto-2025-2028-02-07-25.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "af7a466f8e4a8af4938ad0a6648b718a39b43298809669c12f49cad76541a65a"
+    "source_hash": "e615b1f1a751e1a27d2b6e804ed6547be9af4c1c577d92e10992aafb5818de07"
   },
   "work_rules": {
     "sunday_holidays": {
@@ -2873,6 +2873,25 @@
           "review_id": "2026-11-14-ai-tabacco-apti-apprentice-sickness"
         },
         "note": "Scanned PDF without a text layer: the struck '50%' and the underlined '100%' read on the page image."
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-152-2015",
+            "title": "INPS Circolare n. 152 del 18 agosto 2015",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20152%20del%2018-08-2015.pdf",
+            "published_on": "2015-08-18",
+            "sha256": "6e74e62dd50378c23117df7aaca509ab9b8b93e60f99cad23e9c64982fd3734e"
+          },
+          "page": "2",
+          "section": "par. 2.1",
+          "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 8e1bf94e59348560f8e0fbd4974a5287b78cf019d0a66bcda3de636f9c8df1d3)."
       }
     }
   }

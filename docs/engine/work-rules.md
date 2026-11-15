@@ -489,14 +489,21 @@ whose month it touches. The run deducts the days at the CCNL daily quota
   daily hours the event states on each day, two such days a day of leave
   (INPS circ. 152/2015 par. 2.2): the hours are deducted at the CCNL hourly
   base as an unpaid absence and each day is paid half the daily indemnity
-  at its rate, under the open limitation `parental_hourly_ccnl_rule` (a
-  national CCNL rule on the hours of a day of leave prevails, and the bundle
-  holds none). A company or territorial agreement is a fact of the employer
+  at its rate. A national CCNL rule on the hours of a day of leave
+  prevails (art. 32 c. 1-bis): `work_rules.parental_hourly` records it, or
+  records that the CCNL sets none (the criterion applies, INPS circ.
+  152/2015: it applies without a bargaining that regulates the leave
+  "compiutamente"). The run records the open limitation
+  `parental_hourly_ccnl_rule` while the CCNL has no record, or its rule sets
+  its own hours (`day_hours`, from `effective_from`), which the engine does
+  not apply yet. A company or territorial agreement is a fact of the employer
   (`local_hourly_agreement`): unstated, the run is incomplete with the
   missing fact; stated true, it is incomplete with
   `parental_hourly_agreement_unmodelled`, the agreement's rules not being
-  held. Same-day cumulation with the rests of artt. 39-40 and the
-  hours of artt. 33 c. 2 and 42 c. 1 (INPS msg. 6704/2015) is not checked.
+  held. Under the criterion (recorded CCNL without hours of its own, no
+  local agreement) a day of leave by the hour that is also a day of nursing
+  rest (artt. 39-40) is rejected; the hours of artt. 33 c. 2 and 42 c. 1
+  have no event of their own.
   Adoption is not modelled;
 - permits to assist a disabled person (L. 104/1992 art. 33 c. 3, three
   days a month for each person assisted): the days are deducted at the

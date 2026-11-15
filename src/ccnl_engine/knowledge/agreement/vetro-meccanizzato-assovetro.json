@@ -4265,6 +4265,27 @@
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/vetro_lampade/260409_VETRO_RINNOVO_ACCORDO_2026-2028_TABELLE.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "8187f4e96ee9f6d1aeb471e0f5a5fae6712df7019b0f447cf35d117625f4409a"
+    "source_hash": "2aebd13291f3a713184ab265c82d28ad2ca3e3b007144364587f973ae729d269"
+  },
+  "work_rules": {
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-152-2015",
+            "title": "INPS Circolare n. 152 del 18 agosto 2015",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20152%20del%2018-08-2015.pdf",
+            "published_on": "2015-08-18",
+            "sha256": "6e74e62dd50378c23117df7aaca509ab9b8b93e60f99cad23e9c64982fd3734e"
+          },
+          "page": "2",
+          "section": "par. 2.1",
+          "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://a, sha256 e91271f843086e80780b607d9b62f3f6b7a40d65888fb542ecc8ecfed667d95f; https://w, sha256 c20fa051273aff50e46189f2a39cabf21182270204459181aea96c1cf765896c)."
+      }
+    }
   }
 }

@@ -1599,7 +1599,7 @@
     "effective_until": null,
     "source": "https://www.cdltorino.it/ccnl-informatica-piccola-industria-rettifica-tabelle-retributive/",
     "verification_status": "unverified",
-    "source_hash": "e2ecb3f8bce1bbcbd5e3791ff4f071e068325fe9da340ad788bac6db713f4064",
+    "source_hash": "8150a9fb64d9e8bed86d4f6093a8e3725c5373db1d7ab3d707da006ac8c55e2f",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1887,6 +1887,25 @@
           "effective_from": "2021-03-09",
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-152-2015",
+            "title": "INPS Circolare n. 152 del 18 agosto 2015",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20152%20del%2018-08-2015.pdf",
+            "published_on": "2015-08-18",
+            "sha256": "6e74e62dd50378c23117df7aaca509ab9b8b93e60f99cad23e9c64982fd3734e"
+          },
+          "page": "2",
+          "section": "par. 2.1",
+          "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 19545d57e08de55f9db0e2232acb9c86a0f910a4a375a321c808f621970cec41)."
       }
     }
   }

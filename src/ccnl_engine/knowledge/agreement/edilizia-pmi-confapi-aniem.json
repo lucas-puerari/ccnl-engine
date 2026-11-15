@@ -1974,7 +1974,7 @@
     "effective_until": null,
     "source": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL%20_Aniem_Confapi%20Armonizzato_15042025.pdf",
     "verification_status": "verified",
-    "source_hash": "d6efeabe7382d74c69b4ba979034f3931f3a2b5c2e62ff76f23c3363ff2ed892",
+    "source_hash": "7068ebccadd67e870182af78724082747db2026eb9eb64d6e346aa48022bbbd9",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },
@@ -2468,6 +2468,25 @@
           },
           "transformation": "One illness: 6, 9 or 12 months (183, 274, 365 days) up to 2 years of seniority, to 6, above 6; several illnesses: 9, 12 or 15 months (274, 365, 456 days) within 30 months; full pay from the first day. Quadri: art. 76 (PDF p. 102) applies the rules of the impiegati of 7th level."
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-152-2015",
+            "title": "INPS Circolare n. 152 del 18 agosto 2015",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20152%20del%2018-08-2015.pdf",
+            "published_on": "2015-08-18",
+            "sha256": "6e74e62dd50378c23117df7aaca509ab9b8b93e60f99cad23e9c64982fd3734e"
+          },
+          "page": "2",
+          "section": "par. 2.1",
+          "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 25828567c377c4892c46d6e1c47734aef275933f4a3619ee74dc424fd080dcba)."
       }
     }
   },

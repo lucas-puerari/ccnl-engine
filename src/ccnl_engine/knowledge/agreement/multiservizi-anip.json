@@ -5681,7 +5681,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "16e29d81ea29b42536bbd01b45a5f99a93121afeb987e23f1739b2a0fb5d5103",
+    "source_hash": "48ec2834fe29e08851c246d3f69eef096b8c08c333411b05d93d931dceeb594e",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -6532,6 +6532,25 @@
           },
           "note": "The clause restricts this treatment to impiegati not on probation and excludes illness caused by their serious fault; these conditions are not represented. The engine's global daily pay includes components beyond stipendio and contingenza."
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-152-2015",
+            "title": "INPS Circolare n. 152 del 18 agosto 2015",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20152%20del%2018-08-2015.pdf",
+            "published_on": "2015-08-18",
+            "sha256": "6e74e62dd50378c23117df7aaca509ab9b8b93e60f99cad23e9c64982fd3734e"
+          },
+          "page": "2",
+          "section": "par. 2.1",
+          "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://a, sha256 4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167; https://w, sha256 ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f)."
       }
     }
   },

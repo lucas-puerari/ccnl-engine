@@ -554,7 +554,7 @@
     "effective_until": "2024-12-31",
     "source": "https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/",
     "verification_status": "unverified",
-    "source_hash": "aed902ec75daff549ae02740a90c30693d541ca7ee4d22ad7bfd8952476eb744",
+    "source_hash": "bf07830036c23e625a53e005ec5398efcd1c34ea3f6da8455480a3344dff04e3",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -684,6 +684,25 @@
           "section": "Art. 5"
         },
         "transformation": "The CCNL text read is silent on the holidays falling on a Sunday: the law pays the civil holidays only (documents read: https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL-area-IR-2022-2024.pdf, sha256 44c27ea302da97ca8f833aa0e94ec037034ec208ab1579f8d7d110562f9f8d5d; https://www.aranagenzia.it/wp-content/uploads/2024/08/2024_08_07_AREA-IR_2019-2021.pdf, sha256 2135b83f4ab2230ccacf14b657733ae67c3d0c2429b033cba605a7272e460a95)"
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "inps-circolare-152-2015",
+            "title": "INPS Circolare n. 152 del 18 agosto 2015",
+            "kind": "inps_circolare",
+            "url": "https://servizi2.inps.it/CircolariZIP/Circolare%20numero%20152%20del%2018-08-2015.pdf",
+            "published_on": "2015-08-18",
+            "sha256": "6e74e62dd50378c23117df7aaca509ab9b8b93e60f99cad23e9c64982fd3734e"
+          },
+          "page": "2",
+          "section": "par. 2.1",
+          "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 2135b83f4ab2230ccacf14b657733ae67c3d0c2429b033cba605a7272e460a95)."
       }
     }
   },

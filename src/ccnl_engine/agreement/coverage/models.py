@@ -20,6 +20,7 @@ from typing import TYPE_CHECKING, Self
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.absence.insured.models import InsuredAbsenceRules
+from ccnl_engine.absence.insured.parental.hourly.models import ParentalHourlyClause
 from ccnl_engine.absence.models import AbsenceRules
 from ccnl_engine.agreement.types import NoteKind
 from ccnl_engine.compensation.legacy_holiday.models import LegacyHolidayPayment
@@ -152,6 +153,7 @@ class CCNLWorkRules(BaseModel):
     travel_allowance: CcnlTravelAllowance | None = None
     notice: NoticeRules | None = None
     sunday_holidays: SundayHolidayPay | None = None
+    parental_hourly: ParentalHourlyClause | None = None
     legacy_holiday_payment: LegacyHolidayPayment | None = None
 
 
