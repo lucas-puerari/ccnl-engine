@@ -206,7 +206,7 @@ def test_a_notice_partly_worked_pays_its_days_left() -> None:
     result = _run(_notice(date(2026, 3, 1)), ended=date(2026, 3, 31))
 
     assert _indemnity(result) == Decimal("3780.87")
-    assert "notice_indemnity_day_measure" in {lim.id for lim in result.limitations}
+    assert "notice_indemnity_day_measure" not in {lim.id for lim in result.limitations}
     # No TFR settlement in the run: no rate, no tax, the run says so.
     assert ("incomplete", "notice_indemnity_tax_rate_unknown", None) in (
         _notice_decisions(result)
@@ -240,7 +240,7 @@ def test_commercio_pays_the_days_with_the_extra_months_out_of_the_tfr() -> None:
         "2026-04-29",
     )
     notice = {lim.id for lim in result.limitations if lim.id.startswith("notice")}
-    assert notice == {"notice_indemnity_day_measure"}
+    assert notice == set()
     quota = [
         sum(i.amount for i in r.pay_items if i.item_id.startswith("tfr_2026"))
         for r in (result, without)
@@ -267,7 +267,7 @@ def test_studi_pays_forty_calendar_days_with_the_extra_months() -> None:
         "2026-04-24",
     )
     notice = {lim.id for lim in result.limitations if lim.id.startswith("notice")}
-    assert notice == {"notice_indemnity_day_measure"}
+    assert notice == set()
 
 
 def test_fipe_pays_the_normale_retribuzione_of_its_days() -> None:

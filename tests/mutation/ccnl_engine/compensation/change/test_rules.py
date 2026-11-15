@@ -11,7 +11,6 @@ import pytest
 
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.compensation.change.rules import (
-    MID_MONTH_CHANGE,
     blended,
     month_change,
 )
@@ -62,7 +61,7 @@ def test_each_component_takes_its_share_of_each_level() -> None:
         "OLD": Decimal(6),
         "NEW": Decimal(4),
     }
-    assert chain.limitations == ("after", MID_MONTH_CHANGE)
+    assert chain.limitations == ("after",)
     assert chain.seniority_excluded_from == frozenset({14})
 
 

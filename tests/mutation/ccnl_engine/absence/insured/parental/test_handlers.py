@@ -297,7 +297,7 @@ def test_the_80_percent_months_run_out_inside_the_month() -> None:
     result = _run(_march(ParentalLeaveTaken(80, 80, 0)))
 
     assert _amounts(result)["maternity_item"] == ("inps", Decimal("1239.33"))
-    assert _limitations(result) == {"parental_month_split"}
+    assert _limitations(result) == set()
 
 
 def test_the_days_beyond_the_indemnified_months_need_the_income() -> None:
