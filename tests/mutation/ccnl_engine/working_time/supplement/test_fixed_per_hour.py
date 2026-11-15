@@ -95,18 +95,22 @@ def test_the_decision_of_a_percentage_band_cites_its_base() -> None:
 
 
 @pytest.mark.parametrize(
-    ("ccnl", "code", "words"),
+    ("ccnl", "code", "apart", "words"),
     [
-        (_SANITA, "NIGHT_FIXED", "worked on 2026-03-16 on top of"),
-        (_COMMERCIO, "TDS_NOTTURNO", "worked on 2026-03-16 (hourly base "),
+        (_SANITA, "NIGHT_FIXED", True, "worked on 2026-03-16 on top of"),
+        (_COMMERCIO, "TDS_NOTTURNO", None, "worked on 2026-03-16 (hourly base "),
     ],
     ids=["fixed", "on-the-base"],
 )
 def test_the_issue_states_the_base_only_when_there_is_one(
-    ccnl: CCNL, code: str, words: str
+    ccnl: CCNL, code: str, apart: bool | None, words: str
 ) -> None:
-    """The issue of hours paid apart cites the hourly base of the band, if any."""
-    band = _night_band(ccnl, code).model_copy(update={"hours_paid_apart": True})
+    """The issue of hours left unposted cites the hourly base of the band, if any.
+
+    A fixed band has no base to price hours paid apart; a band on the base
+    leaves them unposted only when the CCNL does not settle them.
+    """
+    band = _night_band(ccnl, code).model_copy(update={"hours_paid_apart": apart})
     supplements = _supplements(ccnl).model_copy(update={"supplement_bands": (band,)})
     rules = ccnl.work_rules
     assert rules is not None

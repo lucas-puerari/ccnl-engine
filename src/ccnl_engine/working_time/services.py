@@ -76,12 +76,15 @@ class WorkResolution:
         decisions: Engine decisions of the derived values.
         issues: Issues the derived values raise.
         limitations: Limitations of the CCNL the event's pay carries.
+        apart: Pay of the hours themselves a supplement band pays on top of
+            the monthly pay (public holiday work), apart from the supplement.
     """
 
     event: TimeWorkEvent
     decisions: tuple[CalculationDecision, ...] = ()
     issues: tuple[CalculationIssue, ...] = field(default=())
     limitations: tuple[str, ...] = ()
+    apart: Decimal = Decimal(0)
 
 
 def _overtime(
@@ -284,4 +287,5 @@ def resolve_work_event(
         replace(event, supplement_amount=pay.amount),
         (supplement_decision(event, pay, hourly),),
         () if issue is None else (issue,),
+        apart=pay.apart,
     )
