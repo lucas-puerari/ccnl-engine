@@ -6078,7 +6078,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/07/2026_07_01_CCNL_C_IR_2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "c862b2acd5b5d48ea76d17aa6cc7ff36f5f0837f86af8c5d0a1649cdc1e0944a",
+    "source_hash": "bca82cbd3d381f65151e5640a36bfa4910f0a5f3f802e924c511fb4eb88481e7",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -6393,6 +6393,24 @@
             "quote": "Sono oggetto di contrattazione collettiva integrativa: [...] b) a livello di Istituzione: b1) i criteri generali per l'utilizzazione del fondo d'istituto;"
           },
           "transformation": "No AFAM CCNL sets the premium of ordinary holiday work: the accessory pay of the technical and administrative staff comes from the fondo d'istituto, whose use the integrative bargaining of each Istituzione sets (also CCNL AFAM 16/2/2005 art. 6 cc. 2 lett. g) and 4). The amount is a fact of the employer, which the caller states (maintainer decision of 2026-11-15)."
+        }
+      },
+      "travel_allowance": {
+        "kind": "none_by_law",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "legge-266-2005",
+              "title": "Legge 23 dicembre 2005, n. 266 (legge finanziaria 2006), GU n. 302 del 29 dicembre 2005, S.O. n. 211",
+              "kind": "legge",
+              "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.versione=1&art.idGruppo=0&art.flagTipoArticolo=0&art.codiceRedazionale=005G0293&art.idArticolo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=2005-12-29&art.progressivo=3",
+              "sha256": "f8dedc9457bb1dd52703044e6be45bd2de332ae0dc56542c95f9837dc1d455ee"
+            },
+            "section": "Art. 1, c. 213",
+            "quote": "L'indennita' di trasferta di cui all'articolo 1, primo comma, della legge 26 luglio 1978, n. 417, e all'articolo 1, primo comma, del decreto del Presidente della Repubblica 16 gennaio 1978, n. 513, l'indennita' supplementare prevista dal primo e secondo comma dell'articolo 14 della legge 18 dicembre 1973, n. 836, nonche' l'indennita' di cui all'articolo 8 del decreto legislativo luogotenenziale 7 giugno 1945, n. 320, sono soppresse. Sono soppresse le analoghe disposizioni contenute nei contratti collettivi nazionali e nei provvedimenti di recepimento degli accordi sindacali"
+          },
+          "transformation": "Since 1 January 2006 the public employees of the comparto have no daily travel allowance for the missions in Italy: the law suppressed it and the analogous clauses of the CCNLs. The diaria of art. 14 CCNL AFAM 16/2/2005 (20.65 euro per 24 hours) is one of those clauses. What is left is the refund of the documented expenses of the mission, a fact of the employer, which the caller states (maintainer decision of 2026-11-15)."
         }
       }
     }

@@ -48,7 +48,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/afam-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "c862b2acd5b5d48ea76d17aa6cc7ff36f5f0837f86af8c5d0a1649cdc1e0944a",
+      "source_hash": "bca82cbd3d381f65151e5640a36bfa4910f0a5f3f802e924c511fb4eb88481e7",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/afam-aran.json.gz"
@@ -864,7 +864,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/enti-ricerca-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "abbf779944f931240cec4eb22bd7e1b1826686539fe23b6e90c27ea530cff83d",
+      "source_hash": "e757c8adcf9e5a4c3d63f957930f7dbb88911936d7a7f6968253e57c0d8a5ec6",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/enti-ricerca-aran.json.gz"
@@ -1241,7 +1241,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/istruzione-ricerca-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "f3df54591d0cd86040048ee59dad8c0e2814503f90375245e20b31e32c0d2a5a",
+      "source_hash": "cfa2a8f5bd33d50e79d4eb867ed7144e43f8f682b794a6ef60c7cacf073a07d5",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/istruzione-ricerca-aran.json.gz"
@@ -2244,7 +2244,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/universita-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "84fd149fdd205158141d55b7bf1a0a9978824c1cb05e589dfa6ea7596056616a",
+      "source_hash": "8ea959316fba955992126a8e4f03dc90a25f1b9262d3bc6e5684767522dd3993",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/universita-aran.json.gz"
@@ -2261,7 +2261,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/universita-tecnologi-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "75da823dac3a46eb2dc9530a6d3a3fa10b5afb0c240f1be9e9acd511df0595e1",
+      "source_hash": "ac73cdd6cd42ae21784279219559b6d65d93dcd835a3167859b4a1b15168e068",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/universita-tecnologi-aran.json.gz"

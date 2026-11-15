@@ -25,9 +25,13 @@ class CapabilityBasisKind(StrEnum):
     Attributes:
         DELEGATED_TO_SECOND_LEVEL: The CCNL hands the amount to the
             integrative (second-level) bargaining of the employer.
+        NONE_BY_LAW: A law suppressed the amount, the clauses of the CCNL
+            included; what is left (a refund of documented expenses) is a
+            fact of the employer.
     """
 
     DELEGATED_TO_SECOND_LEVEL = "delegated_to_second_level"
+    NONE_BY_LAW = "none_by_law"
 
 
 class CapabilityBasis(BaseModel):
