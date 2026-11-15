@@ -1435,7 +1435,7 @@
     "effective_until": null,
     "source": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "8f9712935615857548c1619057d532fcf97752e27fec64771f2494a043f92640",
+    "source_hash": "6d31305a3944e0ef36e6b7644b0e75c596a81d249a02a1a0241402df2a9f747b",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1667,6 +1667,25 @@
           "comporto_days": 365
         }
       ]
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-agidae-scuola-2024-2027-del-3-luglio-2024",
+            "title": "ccnl agidae scuola 2024 2027 del 3 luglio 2024",
+            "kind": "associazione",
+            "url": "https://www.flcgil.it/files/pdf/20240710/ccnl-agidae-scuola-2024-2027-del-3-luglio-2024.pdf",
+            "sha256": "6fbd1639a5cd984f98d59373682841eb0ef7712e9d2112ecbc0a4484a470c964"
+          },
+          "page": "38",
+          "section": "Art. 67, comma 2, lett. b",
+          "quote": "b. Per il personale docente, data la specifica caratterizzazione delle istituzioni oggetto del presente CCNL, la fruizione del congedo parentale potrà aver luogo esclusivamente su base giornaliera. Per il personale ATA il congedo parentale è fruibile nella singola giornata in modalità oraria pari alla metà dell’orario medio giornaliero, riferito al mese precedente nel corso del quale ha inizio il congedo parentale"
+        },
+        "transformation": "La metà dell’orario medio giornaliero è la modalità oraria di fruizione per il personale ATA, non un numero espresso di ore equiparato a una giornata: day_hours=null. La clausola non prevede un riproporzionamento esplicito per il part-time né una decorrenza specifica.",
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
+      }
     }
   }
 }

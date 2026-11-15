@@ -1985,7 +1985,7 @@
     "effective_until": null,
     "source": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
     "verification_status": "unverified",
-    "source_hash": "7ec37f87511e26252992cc4e9133984f7087d7bbc5f23607b0bf3a71ce2f024f",
+    "source_hash": "c3babd9297fa2b3ce8f852cbd41e368772891daeb5de4ef45ae81c7ab45195cb",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -2215,6 +2215,50 @@
         },
         "integration_rate": "1",
         "net_basis": true
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26"
+      ],
+      "divisor": 26,
+      "on_rest_day": true,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl2013",
+            "title": "ccnl2013",
+            "kind": "associazione",
+            "url": "https://www.bollettinoadapt.it/wp-content/uploads/2019/10/ccnl2013.pdf",
+            "sha256": "c6b3a6176dee20e6a727e4da153bd3511850275e991e0e344f92e1d1b4c0df79"
+          },
+          "page": "61",
+          "section": "Art. 89",
+          "quote": "In caso di coincidenza di una festività nazionale ed infrasettimanale di cui al precedente articolo con il giorno di riposo settimanale di cui alla Legge n. 370/1934 e qualora non si proceda a sostituire la festività con il godimento di un’altra giornata di riposo, spetterà al lavoratore, in aggiunta alla normale retribuzione mensile, un ulteriore importo pari alla quota giornaliera di tale retribuzione"
+        },
+        "transformation": "L'art. 89 riconosce la quota aggiuntiva per le festività dell'art. 88 coincidenti con il riposo settimanale, purché non sostituite con un'altra giornata di riposo: on_rest_day=true. L'elenco dell'art. 88, trascritto nel report dal PDF ADAPT p. 62 (sha256 c6b3a6176dee20e6a727e4da153bd3511850275e991e0e344f92e1d1b4c0df79), dà gli undici codici in holidays, inclusi 25 aprile, 1 maggio e 2 giugno; non include il patrono né il 4 novembre. L'art. 115 del medesimo CCNL (PDF p. 77) definisce la quota giornaliera come retribuzione mensile divisa per 26: divisor=26. Nessun altro flag è affermato dalla clausola. Per la ex festività del 4 novembre, dichiarazione a verbale dell'art. 88, PDF p. 62 (stampata p. 61), sha256 del PDF c6b3a6176dee20e6a727e4da153bd3511850275e991e0e344f92e1d1b4c0df79, citazione verbatim: «Le ex festività religiose e nazionali agli effetti civili di cui alla Legge 5 marzo 1977, n. 54 e\nsuccessive modificazioni sono sostituite dai permessi annuali come previsto dall’art. 84 del\npresente Contratto.» Pertanto il 4 novembre non dà una quota giornaliera aggiuntiva se cade di domenica né una quota separata in altro mese: holidays invariato, ex_november_fourth=null.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2023-06-01",
+          "verification_status": "unverified"
+        }
       }
     }
   }

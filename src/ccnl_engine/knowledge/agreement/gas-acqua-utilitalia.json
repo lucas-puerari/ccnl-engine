@@ -2342,7 +2342,7 @@
     "effective_until": null,
     "source": "https://sosvavsrl.it/media/attachments/2024/05/24/ccnl.pdf",
     "verification_status": "unverified",
-    "source_hash": "823cbf9c6fc7c69a015ea0461332a94e7291ec5f91701b761cf95e48d98376cb",
+    "source_hash": "a34bce1412cc50a002d9d9e2163ce48254993506e45275c45012de49c9e43318",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2575,6 +2575,25 @@
           "hospital_excluded": true
         }
       ]
+    },
+    "parental_hourly": {
+      "effective_from": "2025-06-01",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-gas-acqua-2023-web",
+            "title": "CCNL GAS ACQUA 2023 WEB",
+            "kind": "associazione",
+            "url": "https://www.smatorino.it/wp-content/uploads/2024/06/CCNL-GAS-ACQUA-2023-WEB.pdf",
+            "sha256": "39d5127aa6c8f888cc245925eb91373619d18e7d9ec6d1b94992eb9a040d0d1c"
+          },
+          "page": "114",
+          "section": "Art. 34, commi 5–7",
+          "quote": "5. Ai sensi dell’art. 32 del D. LGS. n. 151/2001 e successive modificazioni, a decorrere dal mese successivo a quello di sottoscrizione del presente rinnovo, il congedo parentale potrà essere fruito anche ad ore. 6. La lavoratrice/il lavoratore può usufruire di permessi su base oraria fino a un massimo dell’orario giornaliero previsto in azienda. 7. Il congedo potrà essere fruito, sia dal personale a tempo pieno che dal personale a tempo parziale, per periodi minimi di un’ora giornaliera, la cui somma nell’arco di ciascun mese di utilizzo deve corrispondere a giornate intere"
+        },
+        "transformation": "La clausola indica un minimo di un'ora e un massimo pari all'orario giornaliero aziendale, ma non stabilisce quante ore equivalgano a UNA giornata per un tempo pieno: day_hours = null. Si applica anche al tempo parziale senza prescrivere un riproporzionamento: part_time_scaled = false. Il rinnovo è sottoscritto l'8 maggio 2025 (pagina 1); il mese successivo è giugno 2025, quindi effective_from = 2025-06-01 per la formulazione del rinnovo."
+      }
     }
   },
   "verification": {

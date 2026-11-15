@@ -558,7 +558,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/consorzi-di-bonifica-snebi",
       "ruleset_version": "2026.2",
-      "source_hash": "eb9c35801394dc8cd256cde47cbdeffc23c9c6ee32803a3c93adef606198bd5c",
+      "source_hash": "47512755d1c81545c9483f929bcaacc00509fc234180ff69bc8d4c03f1b9bd7d",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/consorzi-di-bonifica-snebi.json.gz"
@@ -864,7 +864,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/enti-ricerca-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "bede971d0c0714003ae60539f03c2bc02db778a053a4cabb8d9aae29683613c8",
+      "source_hash": "97cac873c4e6e32e0343ee75d5a9cb37bf754aa3acf1f74e080d27bd30b4c29b",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/enti-ricerca-aran.json.gz"
@@ -1088,7 +1088,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/gas-acqua-utilitalia",
       "ruleset_version": "2026.2",
-      "source_hash": "823cbf9c6fc7c69a015ea0461332a94e7291ec5f91701b761cf95e48d98376cb",
+      "source_hash": "a34bce1412cc50a002d9d9e2163ce48254993506e45275c45012de49c9e43318",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/gas-acqua-utilitalia.json.gz"
@@ -1139,7 +1139,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/igiene-ambientale-utilitalia",
       "ruleset_version": "2026.2",
-      "source_hash": "9958fedf6ca9c2db803bd0ffeb7816cf917ff4f54be2aec04a9901f2cc7d4a0d",
+      "source_hash": "3351d9672a1e65783d49cc9255fc75a20799bc0bd314bfa518a7444f049ae659",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/igiene-ambientale-utilitalia.json.gz"
@@ -1258,7 +1258,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/lapidei-industria",
       "ruleset_version": "2026.2",
-      "source_hash": "9098492f6de7b2e7eef211ca668edf02b1100e30f661817336432ca657dc3365",
+      "source_hash": "b56de1cc2cab89c878ef027107bf464ebe91b4ae7650a994c03bf2af5257c35f",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/lapidei-industria.json.gz"
@@ -1513,7 +1513,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/metalmeccanico-confimi-pmi",
       "ruleset_version": "2025.1",
-      "source_hash": "e91ff580a7f2690826a51a60c0ec238c71d1ec6ccdd9d51d95973ca6db57266e",
+      "source_hash": "687f7a8e90542c735e2d5472575b780e046c754192f8247b25e4669f1e1b2009",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/metalmeccanico-confimi-pmi.json.gz"
@@ -1581,7 +1581,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/occhiali-occhialeria-industria",
       "ruleset_version": "2026.2",
-      "source_hash": "4cfb135c8725626b0d12ef78d140cdc6534c9d538dfa86cbe688fd4a640c7e8f",
+      "source_hash": "59c0a9b0b27b50b2735e60f2914f5473d11fef907cb318d3842a9d57fe99432a",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/occhiali-occhialeria-industria.json.gz"
@@ -1717,7 +1717,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pelli-cuoio-industria-assopellettieri",
       "ruleset_version": "2026.2",
-      "source_hash": "c0961aa6e0be34dabd7f9e390168499a9078673dc35485751c6f5d7bbb7b9cf4",
+      "source_hash": "cfc48c1058c0dd48026892b75ed0fbdc16c349f6d14a16d92997a036bb684354",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/pelli-cuoio-industria-assopellettieri.json.gz"
@@ -1734,7 +1734,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/portieri-fabbricati-confedilizia",
       "ruleset_version": "2026.2",
-      "source_hash": "eab317a192e2187c6b4be89aa071e4b32669cb10fe947d9047f2e2ac33d08038",
+      "source_hash": "8a78508c5ae9a79aaee9cd7693910634428360164f271dbee86a47b5a5cf611f",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/portieri-fabbricati-confedilizia.json.gz"
@@ -1887,7 +1887,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/sanita-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "5ffe8437bd4f5fe2dd875a0e7135ff85cbe671f8acabc562d05ea5b489671ca0",
+      "source_hash": "3562ca3e30bab0ee445dc690b4354801d26c96f05ce91672b76f72346c149b48",
       "source_type": "commercial_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/sanita-aran.json.gz"
@@ -1921,7 +1921,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/scuole-materne-fism",
       "ruleset_version": "2026.2",
-      "source_hash": "89d0e4b40d232837a2833a1220b385aa54f140e735c91a7e4ffd0d6542cab08d",
+      "source_hash": "08dc60f1ed9c21893fa90d77326c9fcf1ee94690c47873f6acd028460cdaf302",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/scuole-materne-fism.json.gz"
@@ -1938,7 +1938,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/scuole-private-agidae",
       "ruleset_version": "2026.2",
-      "source_hash": "8f9712935615857548c1619057d532fcf97752e27fec64771f2494a043f92640",
+      "source_hash": "6d31305a3944e0ef36e6b7644b0e75c596a81d249a02a1a0241402df2a9f747b",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/scuole-private-agidae.json.gz"
@@ -2057,7 +2057,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/telecomunicazioni-asstel",
       "ruleset_version": "2026.2",
-      "source_hash": "7506db93a64fe6b8d7a60387878b491062d04b71142a84b7e2f8515c32dbf478",
+      "source_hash": "3fe4a798d8db3d438e09abfaa285403277bf4a8cfe3411e18caabfcc6a077928",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/telecomunicazioni-asstel.json.gz"
@@ -2159,7 +2159,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "ccnl/trasporto-ferroviario-agens",
       "ruleset_version": "2026.2",
-      "source_hash": "cca5f1c489d949fbc3512b3f7bb0ca89829e828b97ea9bfe3cf3097fa93cc306",
+      "source_hash": "1f900b97f79091e017147c01d935bcfd212511bbac04f0319c0353cdc37058a1",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/trasporto-ferroviario-agens.json.gz"
@@ -2193,7 +2193,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi-alberghi-minori",
       "ruleset_version": "2026.2",
-      "source_hash": "deb965c0b49c9477d2c80f12491fcfbb5c963ba0229ede84f830e67113371d61",
+      "source_hash": "4c820de39c92057ef5b34a2d2206f1c854e3793e378f102b43d07aaf0c84f07a",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/turismo-federalberghi-alberghi-minori.json.gz"
@@ -2210,7 +2210,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi",
       "ruleset_version": "2026.2",
-      "source_hash": "38b69b5e0728f2b716d4c681f4e7ba52d0713f918ea8e893083b0c6c7c4f38b4",
+      "source_hash": "738c07879ec08a50d3fa0c3ac186129e6105caec6b4d71c140ce37d4bbd2a1ba",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/turismo-federalberghi.json.gz"
@@ -2312,7 +2312,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/vigilanza-privata-assiv",
       "ruleset_version": "2026.2",
-      "source_hash": "7ec37f87511e26252992cc4e9133984f7087d7bbc5f23607b0bf3a71ce2f024f",
+      "source_hash": "c3babd9297fa2b3ce8f852cbd41e368772891daeb5de4ef45ae81c7ab45195cb",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/vigilanza-privata-assiv.json.gz"
