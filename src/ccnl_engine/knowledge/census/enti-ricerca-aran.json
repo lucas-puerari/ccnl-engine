@@ -1,22 +1,5 @@
 {
   "schema_version": 1,
   "ccnl_id": "enti-ricerca-aran",
-  "requirements": [
-    {
-      "id": "shared_rules_unchecked",
-      "institute": "sickness",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = owed",
-      "rule": "SHARED RULES: the hourly divisor, the tredicesima, the leave, absence, sickness and accrual rules are those of the scuola file of the same comparto (istruzione-ricerca-aran), not read again for the research bodies. No overtime table is modelled.",
-      "calculation": "ccnl/enti-ricerca-aran:coverage.notes",
-      "state": "unverified",
-      "remediation": "Read the research sections of the CCNL 2019-2021 (18/1/2024) for leave, absence, sickness and overtime.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "enti-ricerca-aran/shared_rules_unchecked"
-        ]
-      }
-    }
-  ]
+  "requirements": []
 }

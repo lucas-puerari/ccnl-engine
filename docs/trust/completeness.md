@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 0/136 CCNLs**; complete except declared residuals: 1. Bundle: 251 weak rules, 287 open limitations (287 with a monetary impact), 37 declared residuals.
+**Complete: 0/136 CCNLs**; complete except declared residuals: 1. Bundle: 251 weak rules, 285 open limitations (285 with a monetary impact), 37 declared residuals.
 
 ## Declared window
 
@@ -62,7 +62,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | CCNL | Family | Readiness | Renewal due | Census | Gaps |
 |---|---|---|---|---|---|
 | [acconciatura-estetica-confartigianato](../contracts/acconciatura-estetica-confartigianato.md) | `servizi-persona` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 2 monetary limitations; 5 non-native capabilities; 6 declared residuals |
-| [afam-aran](../contracts/afam-aran.md) | `pubblico-impiego` | exploratory | — | 1 rows | 1 open requirement; 1 monetary limitation; 6 non-native capabilities; 6 declared residuals |
+| [afam-aran](../contracts/afam-aran.md) | `pubblico-impiego` | exploratory | — | 0 rows | 5 non-native capabilities; 6 declared residuals |
 | [agenti-immobiliari-fiaip](../contracts/agenti-immobiliari-fiaip.md) | `servizi-immobiliari` | exploratory | — | 4 rows | 4 open requirements; 2 weak rules; 2 monetary limitations; 4 non-native capabilities; 6 declared residuals |
 | [agenzie-marittime-i481](../contracts/agenzie-marittime-i481.md) | `trasporti-logistica` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 monetary limitation; 5 non-native capabilities; 6 declared residuals |
 | [agenzie-viaggio-fiavet](../contracts/agenzie-viaggio-fiavet.md) | `turismo` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule; 4 non-native capabilities; 6 declared residuals |
@@ -110,7 +110,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [edilizia-pmi-confapi-aniem](../contracts/edilizia-pmi-confapi-aniem.md) | `edilizia` | exploratory | — | 13 rows | 13 open requirements; 1 weak rule; 9 monetary limitations; 3 outside_input limitations; 7 non-native capabilities; 7 declared residuals |
 | [elettrico-elettricita-futura](../contracts/elettrico-elettricita-futura.md) | `energia-utilities` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 2 monetary limitations; 4 non-native capabilities; 6 declared residuals |
 | [energia-petrolio-confindustria](../contracts/energia-petrolio-confindustria.md) | `energia-utilities` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 2 monetary limitations; 4 non-native capabilities; 6 declared residuals |
-| [enti-ricerca-aran](../contracts/enti-ricerca-aran.md) | `pubblico-impiego` | exploratory | — | 1 rows | 1 open requirement; 1 monetary limitation; 7 non-native capabilities; 7 declared residuals |
+| [enti-ricerca-aran](../contracts/enti-ricerca-aran.md) | `pubblico-impiego` | exploratory | — | 0 rows | 6 non-native capabilities; 7 declared residuals |
 | [esercizi-cinematografici-anec](../contracts/esercizi-cinematografici-anec.md) | `spettacolo-media` | exploratory | — | 6 rows | 6 open requirements; 1 weak rule; 4 monetary limitations; 1 outside_input limitation; 6 non-native capabilities; 6 declared residuals |
 | [farmacie-municipalizzate-assofarm](../contracts/farmacie-municipalizzate-assofarm.md) | `farmacie` | exploratory | — | 4 rows | 4 open requirements; 1 weak rule; 3 monetary limitations; 6 non-native capabilities; 6 declared residuals |
 | [farmacie-private-h121](../contracts/farmacie-private-h121.md) | `farmacie` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule; 4 non-native capabilities; 6 declared residuals |
