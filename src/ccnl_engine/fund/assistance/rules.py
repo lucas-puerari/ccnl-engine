@@ -56,9 +56,11 @@ def run_assistance(
 ) -> AssistanceContribution | None:
     """Return the contribution of the run on its paid hours.
 
-    The hours are those the INPS contributions of the run are paid on: the
-    CCNL lavoro domestico collects the contribution with them (art. 54
-    c. 1).  A run is charged on the hours it states, a tredicesima run too.
+    The hours are those the INPS contributions of the run are paid on:
+    Cas.Sa.Colf charges "il numero di ore retribuite nel trimestre" and
+    collects it in the INPS quarterly bollettino (code F2).  An extra-month
+    run carries none: INPS spreads the tredicesima over the hours of the
+    year (the paga oraria effettiva), and the caller passes zero for it.
 
     Args:
         terms: Rates of the CCNL, ``None`` when it charges no contribution.
