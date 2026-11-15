@@ -46,6 +46,7 @@ from ccnl_engine.validators import require_decimal, require_instances
 if TYPE_CHECKING:
     from ccnl_engine.calendar.payment.models import PaymentId
     from ccnl_engine.compensation.individual.inputs import IndividualElement
+    from ccnl_engine.contribution.exemption.inputs import ContributionExemption
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.event.facade import WorkEvent
     from ccnl_engine.extra_month.models import ExtraMonthAccrual
@@ -164,6 +165,7 @@ class PeriodCalculationRequest:
         erc_amount: Annual ERC of the CCNL grafici editoriali, if known;
             ``public_end_of_service`` the regime of a public employee.
         tax_returns: The 730-4 statements the payslips settle.
+        contribution_exemption: The exemption of the employer contributions.
         personal_withholdings: Garnishments and salary assignments notified
             to the employer, withheld from the net pay.
     """
@@ -218,6 +220,7 @@ class PeriodCalculationRequest:
     public_end_of_service: PublicEndOfService | None = None
     personal_withholdings: tuple[PersonalWithholding, ...] = ()
     tax_returns: tuple[Form730Settlement, ...] = ()
+    contribution_exemption: ContributionExemption | None = None
 
     def __post_init__(self) -> None:
         """Guard dates, cross-year state or schedule and hours above full time.

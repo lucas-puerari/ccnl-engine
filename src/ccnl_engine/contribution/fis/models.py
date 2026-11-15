@@ -78,6 +78,6 @@ def with_fis_reduction(
             "employer_rate_by_category": by_category,
             "relief_excluded": None
             if excluded is None
-            else excluded.reduced(cut.employer_rate),
+            else excluded.with_fund(excluded.fund_rate - cut.employer_rate),
         }
     )

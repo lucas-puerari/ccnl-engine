@@ -30,7 +30,7 @@ on unverified sources, or be well sourced and not cleared for production.
   verified / derived / assumed / missing.
 - **Readiness:** the review tier of the contract ruleset.
 
-**Core payroll path: computed on every run of every contract** (31):
+**Core payroll path: computed on every run of every contract** (32):
 
 - ✅ `base_salary` (native)
 - ✅ `seniority` (native)
@@ -38,6 +38,7 @@ on unverified sources, or be well sourced and not cleared for production.
 - ✅ `inps_employee` (native)
 - ✅ `inps_employer` (native)
 - ✅ `inail` (native)
+- ✅ `contribution_exemption` (native)
 - ✅ `fiscal_adjustment` (native)
 - ✅ `una_tantum` (native)
 - ✅ `personal_withholdings` (native)
@@ -95,9 +96,8 @@ on unverified sources, or be well sourced and not cleared for production.
 - ✅ `welfare` (native)
 - 📝 `bilateral_funds` (caller_supplied)
 
-**Outside the input: the request has no field for the fact, so the engine does not compute them** (1):
+**Outside the input: the request has no field for the fact, so the engine does not compute them** (0):
 
-- 🔲 `contribution_exemption` (unsupported)
 
 | | Core payroll path of a contract |
 |---|---|

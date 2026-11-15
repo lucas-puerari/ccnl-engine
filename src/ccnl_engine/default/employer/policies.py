@@ -151,4 +151,16 @@ EMPLOYER_DEFAULTS: Mapping[str, FieldDefault] = {
         "are left out and the run has a missing_fact contractual_funds "
         "blocker; an empty set states that the employer pays none",
     ),
+    "Employment.contribution_exemption": absence_is_fact(
+        "no exemption of the employer contributions: the employer applies one "
+        "only once INPS admits the hire"
+    ),
+    "ContributionExemption.share": absence_is_fact(
+        "the whole contributions: 1 for every measure; young and zes take 0.7 "
+        "without a net headcount growth, which the employer states"
+    ),
+    "ContributionExemption.territorial": absence_is_fact("the national cap and code"),
+    "ContributionExemption.made_permanent": absence_is_fact(
+        "a hire, not a fixed term made permanent"
+    ),
 }

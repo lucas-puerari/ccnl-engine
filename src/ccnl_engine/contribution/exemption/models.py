@@ -27,6 +27,9 @@ class ReliefExclusion(BaseModel):
 
     Attributes:
         rate: The part of the tier rate, for the categories not listed.
+        fund_rate: The part of :attr:`rate` that is the employer share of
+            the FIS or of a solidarity fund, which a fund in place of the
+            FIS replaces and the cut of art. 29 c. 8-bis lowers.
         rate_by_category: The part of the rate of a category, ``None`` when
             the sources do not break that rate down.
         provenance: The exemption circular and the rate table it is read
@@ -36,6 +39,7 @@ class ReliefExclusion(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     rate: NonNegativeRate
+    fund_rate: NonNegativeRate = Decimal(0)
     rate_by_category: dict[WorkerCategory, NonNegativeRate | None] = {}
     provenance: RuleProvenance
 
@@ -50,16 +54,23 @@ class ReliefExclusion(BaseModel):
             return self.rate_by_category[category]
         return self.rate
 
-    def reduced(self, cut: Decimal) -> ReliefExclusion:
-        """Return the exclusion of a tier whose excluded fund rate is cut.
+    def with_fund(self, employer_rate: Decimal) -> ReliefExclusion:
+        """Return the exclusion with the fund share set to ``employer_rate``.
 
         Returns:
-            The exclusion with every known rate lowered by ``cut``.
+            The exclusion of a tier whose FIS share a solidarity fund
+            replaces, or whose FIS rate is cut: every known rate moved by
+            the difference.
         """
+        delta = employer_rate - self.fund_rate
         by_category = {
-            category: None if rate is None else rate - cut
+            category: None if rate is None else rate + delta
             for category, rate in self.rate_by_category.items()
         }
         return self.model_copy(
-            update={"rate": self.rate - cut, "rate_by_category": by_category}
+            update={
+                "rate": self.rate + delta,
+                "fund_rate": employer_rate,
+                "rate_by_category": by_category,
+            }
         )

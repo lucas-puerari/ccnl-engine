@@ -26,6 +26,7 @@
         "ivs_rate": "0.2381",
         "relief_excluded": {
           "rate": "0.0063333",
+          "fund_rate": "0.0033333",
           "rate_by_category": {
             "dirigente": null
           },
@@ -62,6 +63,7 @@
         "ivs_rate": "0.2381",
         "relief_excluded": {
           "rate": "0.0083333",
+          "fund_rate": "0.0053333",
           "rate_by_category": {
             "dirigente": null
           },
@@ -98,6 +100,7 @@
         "ivs_rate": "0.2381",
         "relief_excluded": {
           "rate": "0.0083333",
+          "fund_rate": "0.0053333",
           "rate_by_category": {
             "dirigente": null
           },
@@ -307,7 +310,7 @@
     "published_at": "2026-10-14",
     "source": "unavailable",
     "verification_status": "unverified",
-    "source_hash": "bf1e392dc2542396ec4e90e4507cc94057ddbcd16379924d3e3031bb01517fe4",
+    "source_hash": "2a59e13eda238e7679b0bf26a5211a642482afd2c818ce24b7ff26b54ae5e82d",
     "source_type": "estimated",
     "provisional": true
   }

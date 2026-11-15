@@ -13,6 +13,7 @@ from ccnl_engine.compensation.individual.inputs import (
     check_individual_elements,
 )
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
+from ccnl_engine.contribution.exemption.inputs import ContributionExemption
 from ccnl_engine.employment.apprentice.inputs import Apprentice
 from ccnl_engine.employment.category.models import (
     WorkerCategory,
@@ -168,6 +169,9 @@ class Employment:
             with its own id; a list is accepted and stored as a tuple.
         tax_returns: The 730-4 statements the employer received, which the
             payslips settle (:mod:`~ccnl_engine.withholding.assistance`).
+        contribution_exemption: The exemption of the employer contributions
+            the employer was admitted to for the worker
+            (:mod:`~ccnl_engine.contribution.exemption.inputs`).
 
     Raises:
         InvalidInputError: When a field is not of its type, a role is not a
@@ -206,6 +210,7 @@ class Employment:
     individual_elements: tuple[IndividualElement, ...] = ()
     personal_withholdings: tuple[PersonalWithholding, ...] = ()
     tax_returns: tuple[Form730Settlement, ...] = ()
+    contribution_exemption: ContributionExemption | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         if not isinstance(self.ccnl_id, str) or not _CCNL_ID.fullmatch(self.ccnl_id):
@@ -238,15 +243,6 @@ class Employment:
                 feature=FEATURE,
             )
             object.__setattr__(self, "public_end_of_service", regime)
-        if self.qualifying_shifts is not None and not isinstance(
-            self.qualifying_shifts, bool
-        ):
-            reject(
-                "Employment.qualifying_shifts",
-                "a boolean",
-                self.qualifying_shifts,
-                feature=FEATURE,
-            )
         check_within_full_time(self.weekly_hours, self.full_time_weekly_hours)
         check_pattern_hours(self.weekly_hours, self.work_pattern)
         rest = check_rest_day(self.weekly_rest_day, self.work_pattern)

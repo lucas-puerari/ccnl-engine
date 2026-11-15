@@ -47,6 +47,7 @@ _DECISION_FEATURES: dict[str, TraceState] = {
     "special_supplement": TraceState.NOT_APPLICABLE,
     "sunday_holiday": TraceState.NOT_APPLICABLE,
     "una_tantum": TraceState.NOT_APPLICABLE,
+    "contribution_exemption": TraceState.NOT_APPLICABLE,
     "withholding_shortfall": TraceState.NOT_APPLICABLE,
     "shortfall_deferral": TraceState.NOT_APPLICABLE,
     "personal_withholdings": TraceState.NOT_APPLICABLE,

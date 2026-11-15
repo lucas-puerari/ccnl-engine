@@ -40,6 +40,10 @@ from ccnl_engine.compensation.second_level.inputs import (
     SecondLevelElement,
 )
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
+from ccnl_engine.contribution.exemption.inputs import (
+    ContributionExemption,
+    ExemptionMeasure,
+)
 from ccnl_engine.contribution.zone.models import AgriculturalZone
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.apprentice.inputs import ApprenticeshipProgramme, DualHours
@@ -293,6 +297,9 @@ def _employment(contract: Contract) -> Employment:
                 (Form730Line(Form730Kind.IRPEF_BALANCE, Decimal("-120.00")),),
                 2,
             ),
+        ),
+        contribution_exemption=ContributionExemption(
+            ExemptionMeasure.WOMEN, date(2026, 1, 1), territorial=True
         ),
     )
 

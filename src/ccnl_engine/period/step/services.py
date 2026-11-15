@@ -33,6 +33,7 @@ from ccnl_engine.contribution.ceiling.services import (
     ivs_ceiling_decision,
     run_ivs_ceiling,
 )
+from ccnl_engine.contribution.exemption.services import exempted, exemption_decisions
 from ccnl_engine.contribution.minimum_base.services import run_minimum_base
 from ccnl_engine.decision.rules import contract_decisions
 from ccnl_engine.extra_month.decision.services import accrual_decisions
@@ -194,7 +195,7 @@ def run_amounts(ctx: RunContext, totals: _EventTotals) -> RunAmounts:
             whole_euro=whole_euro,
         ),
     )
-    computed = _compute_amounts(
+    amounts, breakdown, tax, plan = _compute_amounts(
         amounts_input(
             ctx,
             totals,
@@ -204,8 +205,9 @@ def run_amounts(ctx: RunContext, totals: _EventTotals) -> RunAmounts:
             inps_minimum=None if minimum is None else minimum.minimum,
         )
     )
+    amounts, breakdown = exempted(ctx, amounts, breakdown)
     return RunAmounts(
-        *computed, ivs_ceiling=ivs, minimum_base=minimum, whole_euro=whole_euro
+        amounts, breakdown, tax, plan, ivs, minimum, whole_euro=whole_euro
     )
 
 
@@ -287,6 +289,7 @@ def run_decisions(
         + totals.decisions
         + meal_benefit_decisions(ctx)
         + una_tantum_decisions(ctx)
+        + exemption_decisions(ctx, run.contribution_breakdown)
         + amounts.decisions
         + caller_supplied_decisions(
             request.events, contract.ccnl, request.level_code, hourly_terms(ctx)

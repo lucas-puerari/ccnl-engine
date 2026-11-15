@@ -17,6 +17,10 @@ from ccnl_engine.compensation.second_level.inputs import (
     SecondLevelElement,
 )
 from ccnl_engine.contribution.ceiling.inputs import ContributionHistory
+from ccnl_engine.contribution.exemption.inputs import (
+    ContributionExemption,
+    ExemptionMeasure,
+)
 from ccnl_engine.contribution.zone.models import AgriculturalZone
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.apprentice.inputs import ApprenticeshipProgramme, DualHours
@@ -141,6 +145,8 @@ REQUEST_TYPES: Mapping[str, type] = MappingProxyType({
             Form730Line,
             Form730Kind,
             Art15Expense,
+            ContributionExemption,
+            ExemptionMeasure,
             Art15Kind,
             HolidayWorkKind,
             IncomeEstimateQuality,
