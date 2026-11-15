@@ -63,6 +63,7 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
     "HolidayWorkEvent.supplement_amount": absence_is_fact(_FROM_CCNL),
     "HolidayWorkEvent.hours": absence_is_fact(_SUPPLEMENT_HOURS),
     "HolidayWorkEvent.shifts": absence_is_fact(_TURNS),
+    "ShiftWorkEvent.shifts": absence_is_fact(_TURNS),
     "HolidayWorkEvent.kind": absence_is_fact(
         "work on a public holiday; a Sunday, rest day or compensatory rest is "
         "a fact of the timesheet the event records"

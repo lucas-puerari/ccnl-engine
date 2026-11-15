@@ -48,6 +48,7 @@ from ccnl_engine.working_time.hourly.components import (
     components,
     individual,
     level_method,
+    rateo,
     week_mismatch,
 )
 from ccnl_engine.working_time.hourly.direct import direct_hourly_base
@@ -237,6 +238,7 @@ class HourlyTerms:
             )
             state = "included" if included else "not_included"
             parts_of_base += personal if included else ()
+        parts_of_base += rateo(parts_of_base, supplements.hourly_base_yearly_payments)
         monthly = sum((v for _, v in parts_of_base), Decimal(0))
         return HourlyBase(
             monthly / divisor, monthly, divisor, named, parts_of_base, state
