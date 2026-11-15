@@ -73,6 +73,9 @@ class OvertimeEvent:
             share of the agreed annual hours.
         agreed_annual_hours: Annual hours of the part-time contract that
             share is taken of.
+        multiweek_hours_before: Hours of the multi-week schedule worked
+            earlier in its period (at most 12 months from its activation),
+            for a CCNL whose premiums rise past a threshold of hours.
     """
 
     event_date: date
@@ -87,6 +90,7 @@ class OvertimeEvent:
     in_periodic_shift: bool | None = None
     supplementary_hours_before: Decimal | None = None
     agreed_annual_hours: Decimal | None = None
+    multiweek_hours_before: Decimal | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         feature = "overtime"
@@ -111,6 +115,7 @@ class OvertimeEvent:
             "exempt_quota_hours_before",
             "supplementary_hours_before",
             "agreed_annual_hours",
+            "multiweek_hours_before",
         ):
             require_decimal(
                 getattr(self, name),

@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.provenance.source.rule.models import RuleProvenance
     from ccnl_engine.working_time.models import OvertimeBand
+    from ccnl_engine.working_time.overtime.multiweek import MultiweekExcess
     from ccnl_engine.working_time.overtime.quota import OvertimeExemptQuota
     from ccnl_engine.working_time.overtime.supplementary import (
         SupplementaryExcess,
@@ -39,6 +40,8 @@ class CCNLOvertimeBands:
         ccnl_id: Identifier of the CCNL, which scopes its limitations.
         supplementary_excess: Rate of the supplementary hours past a yearly
             share of the agreed hours, if any.
+        multiweek_excess: Points added to the multi-week premiums past a
+            threshold of hours, if any.
     """
 
     bands: tuple[OvertimeBand, ...] = ()
@@ -50,6 +53,7 @@ class CCNLOvertimeBands:
     headcount: int | None = None
     ccnl_id: str = "ccnl"
     supplementary_excess: SupplementaryExcess | None = None
+    multiweek_excess: MultiweekExcess | None = None
 
     @classmethod
     def of(
@@ -75,6 +79,7 @@ class CCNLOvertimeBands:
         source = None if supplements is None else supplements.overtime_bank_provenance
         quota = None if supplements is None else supplements.overtime_exempt_quota
         excess = None if supplements is None else supplements.supplementary_excess
+        multiweek = None if supplements is None else supplements.multiweek_excess
         if ccnl.ruleset is not None:
             ruleset, version = ccnl.ruleset.id, ccnl.ruleset.version
         else:
@@ -89,6 +94,7 @@ class CCNLOvertimeBands:
             headcount,
             ccnl.meta.ccnl_id,
             excess,
+            multiweek,
         )
 
     @classmethod

@@ -19,6 +19,14 @@ OVERTIME_DEFAULTS: Mapping[str, FieldDefault] = {
         "agreed overtime, outside the regime of the quote esenti: no premium "
         "past the yearly exempt quota"
     ),
+    "OvertimeEvent.multiweek_hours_before": requires_fact(
+        "overtime",
+        "event.multiweek_hours_before",
+        FactEnforcement.REPORTED,
+        "unknown earlier hours of the multi-week schedule: a CCNL whose "
+        "multi-week premiums rise past a threshold of hours pays the base band "
+        "with a missing_fact multiweek_hours_before",
+    ),
     "OvertimeEvent.in_periodic_shift": requires_fact(
         "overtime",
         "event.in_periodic_shift",
