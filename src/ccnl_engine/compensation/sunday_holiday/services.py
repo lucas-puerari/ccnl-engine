@@ -40,7 +40,6 @@ from ccnl_engine.pay_item.services import (
     _require_resolution,
     _treatment_from_resolution,
 )
-from ccnl_engine.regime.models import EmploymentSector
 
 if TYPE_CHECKING:
     from ccnl_engine.compensation.sunday_holiday.models import SundayHolidayPay
@@ -215,7 +214,7 @@ def _paid(
 
 
 def _ex_november_fourth(
-    ctx: RunContext, clause: SundayHolidayPay | None, *, public: bool
+    ctx: RunContext, clause: SundayHolidayPay | None
 ) -> SundayHoliday:
     """Return the pay of 4 November a CCNL carries in a month of its own.
 
@@ -224,7 +223,7 @@ def _ex_november_fourth(
         month, with the limitation of an employment that does not cover
         the whole year (the CCNL pays it "in ragione annua").
     """
-    ex = None if clause is None or public else clause.ex_november_fourth
+    ex = None if clause is None else clause.ex_november_fourth
     if clause is None or ex is None or ctx.request.period_id.month != ex.month:
         return SundayHoliday()
     monthly = monthly_pay(ctx.regular_chain, clause.excluded)
@@ -253,24 +252,22 @@ def sunday_holiday(ctx: RunContext) -> SundayHoliday:
     Returns:
         Nothing without such a holiday, or when the CCNL pays none of them
         in the month; the limitation of a holiday the CCNL clause is not
-        sourced for (and of every holiday of a public employment, whose
-        treatment is not sourced, or of a CCNL without a daily divisor the
-        engine applies), with a nil decision when nothing is paid; the
+        sourced for (and of a CCNL without a daily divisor the engine
+        applies), with a nil decision when nothing is paid; the
         earning, entry and decision of the paid holidays at the CCNL daily
         quota; with the pay of 4 November of a CCNL that carries it in a
         month of its own.
     """
     rules = ctx.contract.ccnl.work_rules
     clause = None if rules is None else rules.sunday_holidays
-    public = ctx.request.sector is EmploymentSector.PUBLIC
-    ex = _ex_november_fourth(ctx, clause, public=public)
+    ex = _ex_november_fourth(ctx, clause)
     found = sundays(ctx)
     paid = STATUTORY if clause is None else frozenset(clause.holidays)
-    days = [] if public else [d for code, d in found if code in paid]
+    days = [d for code, d in found if code in paid]
     by = divisor(rules)
     # A paid holiday without a daily divisor the engine applies is open too.
     open_clause = bool(found) and (
-        public or unsourced(clause, found, unpayable=bool(days) and by is None)
+        unsourced(clause, found, unpayable=bool(days) and by is None)
     )
     if days and by is not None:
         result = _paid(ctx, clause, days, by)
