@@ -2148,7 +2148,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "698127ecf2c7a79cab525d695fd52c6855cb29348f23d3eec0f3ba6c0d585efe",
+    "source_hash": "8e7639412c1c25e24558310c40908f137c0209b28a2d2daad6ec98e0bffcde02",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2371,6 +2371,52 @@
           "extraction_timestamp": "2026-09-08T00:00:00",
           "verification_status": "unverified",
           "effective_from": "2023-11-01"
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron",
+        "11-04"
+      ],
+      "divisor": "26",
+      "on_rest_day": false,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-organizzazioni-allevatori-aia-art14",
+            "title": "CCNL Organizzazioni Allevatori AIA (firmato 14 novembre 2023), art. 14",
+            "kind": "associazione",
+            "url": "https://www.aia.it/download/ccnl/?wpdmdl=1787",
+            "sha256": "0d98962630c8e46ecb1c07a8e7f727c2d145e653d9430c1e78960cf914fdc528"
+          },
+          "page": "PDF p. 21 (stampata p. 21)",
+          "section": "art. 14",
+          "quote": "Qualora la festività ricorra nel giorno di domenica, spetterà ai dipendenti una ulteriore retribuzione lorda giornaliera corrispondente ad 1/26 della retribuzione mensile attuale. Tale trattamento è valido anche per la festività nazionale del 4 novembre."
+        },
+        "transformation": "L'art. 14 paga, per festività cadenti di domenica, un'ulteriore retribuzione giornaliera pari a 1/26 della retribuzione mensile → divisor \"26\". holidays include le festività dell'art. 14 (25 aprile, 1° maggio, 2 giugno già per legge; 1° e 6 gennaio, lunedì dopo Pasqua, 15 agosto, 1° novembre, 8, 25 e 26 dicembre, patrono) e la festività nazionale del 4 novembre estesa espressamente. Nessun altro flag (sabato, festività coincidenti, riposo settimanale, quota annuale, divisore settimanale, esclusione indennità, 4 novembre in altro mese) è espresso dal testo.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2023-11-14",
+          "verification_status": "unverified"
         }
       }
     }

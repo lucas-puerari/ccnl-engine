@@ -4807,7 +4807,7 @@
     "effective_until": "2027-12-31",
     "source": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
     "verification_status": "unverified",
-    "source_hash": "57fc80089c02945ef79ed784643b24e276fa081aa92829914eb3fe3c5d7966ac",
+    "source_hash": "ca7b5ff6b819236de80ea309ff75d0257f4bae52d6bb811910f1322417b5ea48",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5020,6 +5020,51 @@
           "review_id": "2026-11-09-ai-sickness-counts"
         },
         "transformation": "Point 6: the sick days of the rolling three years are summed; the whole monthly pay for the first 6 months (183 days), 50% for the next 6, up to the comporto of 12 months (365 days). Stored as a cumulation of one band over a three-year window. Read on 2026-10-30. Exclude hospital days from both counts; for the three documented pathologies in point 9, triple the overall 365-day limit to 1095 days, retaining the original full-pay tier. Convalescence and disability-related limits remain limited."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "06-29",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26"
+      ],
+      "divisor": 26,
+      "on_rest_day": true,
+      "on_saturday": false,
+      "on_coincident_holiday": false,
+      "exclude_compensatory_rest_day": false,
+      "fourth_november_on_sunday": false,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-parte-specifica-2025-2027",
+            "title": "CCNL Parte Specifica Gestori Aeroportuali",
+            "kind": "associazione",
+            "url": "https://assaeroporti.com/wp-content/uploads/2025/06/CCNL-Parte-Specifica-versione-accessibile.pdf",
+            "sha256": "a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de"
+          },
+          "page": "35 (stampata 33)",
+          "section": "art. G17, commi 1–2",
+          "quote": "1. Agli effetti del presente Contratto, sono considerati giorni festivi:\n\na) tutte le domeniche o, in sostituzione, il giorno di riposo compensativo per le Lavoratrici /\n   Lavoratori turnisti;\nb) le festività previste dalle vigenti norme di legge;\nc) per tutto il territorio nazionale la festività dei SS. Pietro e Paolo (29 giugno) sostituirà il giorno\n   della Santa Patrona dell’Aeronautica (10 dicembre). Restano salve eventuali pattuizioni a livello\n   aziendale che, in alternativa, individuano una diversa giornata per il Santo Patrono."
+        },
+        "transformation": "L'art. G17, c. 2, riconosce una quota giornaliera aggiuntiva quando le festività del c. 1 cadono di domenica o, per i turnisti, nel giorno di riposo settimanale: si includono le festività nazionali di legge e il 29 giugno, salvo diversa festa patronale pattuita in azienda. L'art. G28, c. 1, divide la retribuzione mensile per 26. Per il 4 novembre, ricompreso nel trattamento delle ex festività della L. 54/1977, il c. 3 sostituisce i precedenti trattamenti con quattro giornate di R.O.L., senza prevedere una quota aggiuntiva per la ricorrenza domenicale né una quota fissa in un altro mese. Citazione verbatim: art. G17, c. 3, PDF p. 36 (stampata 34), sha256 a9ea5e4a0d7c90bd3566c2858e2bdec2561f31824fa1710aadb996dd219465de: «trattamento delle ex festività soppresse di cui alla Legge n. 54/1977 e ss.mm.ii. e della Santa Patrona\ndell’Aeronautica (10 dicembre) e di conseguire effettivi recuperi di produttività, si conviene che i\npregressi e diversificati trattamenti nelle singole Aziende (giornate di ferie aggiuntive, giornate od\nore di riduzione orario di lavoro nelle quantità aziendalmente definite, eventuali diversi trattamenti\nretributivi delle stesse) vengono integralmente sostituiti dalla compensazione con 4 giornate di R.O.L\nda fruirsi anche ad ore.» Nessuna previsione espressa per il sabato o la coincidenza fra festività.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2025-01-01",
+          "verification_status": "unverified"
+        }
       }
     }
   }

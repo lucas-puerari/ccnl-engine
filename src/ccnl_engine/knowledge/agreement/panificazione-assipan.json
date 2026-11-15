@@ -2036,7 +2036,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
     "verification_status": "unverified",
-    "source_hash": "6251a173e575def173ecea74a99174a620f8591cff966e583e286cd2098b5516",
+    "source_hash": "26ffdb5ccf681e61e8ed4ca2d637a0623fb57ee5c869bd40fb3bd8b4aabbb119",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2270,6 +2270,37 @@
           "comporto_days": 180
         }
       ]
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "11-04"
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-panificazione-assipan-2025-02-26",
+            "title": "CCNL della Panificazione 26 febbraio 2025",
+            "kind": "associazione",
+            "url": "https://assipan.it/wp-content/uploads/2025/03/CCNL-della-Panificazione-26-febbraio-2025.pdf",
+            "sha256": "8533abbd8719e1de2e7f3fa2f228ebe44e62154d27b2e9a3120bd47ab31e1abf"
+          },
+          "page": "PDF p. 56 (stampata p. 55)",
+          "section": "art. 38",
+          "quote": "Per le festività che hanno cessato di essere tali in base alla legge 5 marzo 1977, n. 54, viene stabilito quanto segue: 1) la ex festività del 4 novembre da diritto al lavoratore al trattamento economico previsto per le festività cadenti di domenica;"
+        },
+        "transformation": "Art. 38 rinvia alla legge per il trattamento economico delle festività e non nomina quota aggiuntiva per le festività cadenti di domenica oltre quelle di legge; stabilisce invece che la ex festività del 4 novembre dà al lavoratore il trattamento economico previsto per le festività cadenti di domenica, senza subordinarlo alla coincidenza del 4 novembre con una domenica, e non indica misura numerica (né 1/26 né 1/25). Quindi holidays include le festività civili pagate di domenica per legge (04-25, 05-01, 06-02) più 11-04 pagata con la stessa quota; divisor null; tutti gli altri flag null perché non espressamente previsti.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2025-02-26",
+          "verification_status": "unverified"
+        }
+      }
     }
   }
 }

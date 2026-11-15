@@ -1926,7 +1926,7 @@
     "effective_until": null,
     "source": "https://www.uneba.org/wp-content/uploads/2025/01/contratto-uneba-2025-testo-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "81213c207e97b1a36af5cb71772bc77ebc6b0f31701220d5d14b5f96f61e189a",
+    "source_hash": "e2bc6d62bd6fa30af97e63541064a43d1f00aa8aba3a17af1cd5f99a37ad3d92",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2159,6 +2159,45 @@
           "comporto_days": 365
         }
       ]
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "04-25",
+        "easter_monday",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-uneba-2023-2025",
+            "title": "CCNL UNEBA 2023–2025",
+            "kind": "associazione",
+            "url": "https://www.fpcgil.it/wp-content/uploads/2017/12/CCNL-UNEBA-2023-2025.pdf",
+            "sha256": "d17e610b45222238c83c4e9201262e111c3371c4afd3dcb515c256703e15bcaa"
+          },
+          "page": "53",
+          "section": "art. 54",
+          "quote": "In caso di coincidenza di una delle predette festività infrasettimanali con la domenica, in aggiunta alla normale retribuzione sarà corrisposto alle lavoratrici ed ai lavoratori un ulteriore importo pari alla retribuzione di cui all’art.41."
+        },
+        "transformation": "Le 'predette festività' sono le dodici elencate nell'art. 54 (PDF p. 53, stampata p. 53), convertite nei codici del calendario; 04-25, 05-01 e 06-02 sono inclusi anche per legge. Il 4 novembre non è elencato: l'art. 50, «Riduzione di orario», stabilisce: «Le lavoratrici ed i lavoratori avranno diritto ad un pacchetto di riduzione di orario di lavoro pari a nove giornate lavorative annue, convenzionalmente assimilate a 57,66 ore, comprensive della festività del 4 novembre, del giorno di permesso retribuito previsto dal comma 9 dell’art. 6 del CCNL UNEBA 20.9.1991, da quanto previsto al comma 4 dell’art. 49 (Riduzione di orario) del CCNL UNEBA 18.4.2000 ed infine dai commi 12 e ss. dell’art. 50 (Riduzioni di orario) del CCNL UNEBA 27.5.2004.» (PDF p. 51; sha256 d17e610b45222238c83c4e9201262e111c3371c4afd3dcb515c256703e15bcaa). Il 4 novembre è dunque compreso nelle giornate di riduzione di orario, non dà una quota aggiuntiva in caso di coincidenza con la domenica né un pagamento in altro mese; holidays resta invariato. L'art. 54 rinvia all'art. 41 e non nomina una quota 1/26: divisor è null; nessun altro flag è espresso.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2023-01-01",
+          "verification_status": "unverified"
+        }
+      }
     }
   }
 }

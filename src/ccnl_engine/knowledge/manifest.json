@@ -184,7 +184,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/assicurazioni-ania",
       "ruleset_version": "2026.2",
-      "source_hash": "0b8054cee7d13617cbf6022f7556f22619294f67cf31675cfe9266d9cb1a6818",
+      "source_hash": "53c1a6095f5b73c8bb2d068d202106be6980e7a8bbcc225dad7b5564b36e29f5",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/assicurazioni-ania.json.gz"
@@ -269,7 +269,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/autostrade-trafori",
       "ruleset_version": "2026.2",
-      "source_hash": "fec0ec656f7cfe331e0a2372d0e26d2d6eeea791788b1d2ff825f538f7522429",
+      "source_hash": "ad424fcd4e70fec34584a08f266a988f8bf42f588e3dabdf15758dc8fc917260",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/autostrade-trafori.json.gz"
@@ -303,7 +303,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/bancari-abi",
       "ruleset_version": "2026.2",
-      "source_hash": "fd940c06dc336ca2e8d9134b059bd5fe231bad25a17c3cee585bf162bbfc423f",
+      "source_hash": "22ae39a4439449cc3de5324e066670822a9178eda504de8be44e282d869bab6e",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/bancari-abi.json.gz"
@@ -337,7 +337,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/calzaturiero-assocalzaturifici",
       "ruleset_version": "2026.2",
-      "source_hash": "de5dee01919a7dd32096a3502155d96c0fc285878929029751af48513cf3b695",
+      "source_hash": "51cdecb95314243468fe1309c53c4e88f2efbcbe790a8f4c681906550c986022",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/calzaturiero-assocalzaturifici.json.gz"
@@ -1105,7 +1105,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/gomma-plastica-federazione-gomma-plastica",
       "ruleset_version": "2026.2",
-      "source_hash": "9ca813cd3b77f646ee556e444df6ec4e7caf99216c3dec6bf1faae7da0828aa7",
+      "source_hash": "980fa029aaac2a8b5be311cd7cac84314aceb465ebc9be5d768ccc3f1b298652",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/gomma-plastica-federazione-gomma-plastica.json.gz"
@@ -1649,7 +1649,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/organizzazioni-allevatori-aia",
       "ruleset_version": "2026.2",
-      "source_hash": "698127ecf2c7a79cab525d695fd52c6855cb29348f23d3eec0f3ba6c0d585efe",
+      "source_hash": "8e7639412c1c25e24558310c40908f137c0209b28a2d2daad6ec98e0bffcde02",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/organizzazioni-allevatori-aia.json.gz"
@@ -1683,7 +1683,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/panificazione-artigianato-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "f4df53419923f49fc380034edce47dcefd1ef81d0b9a910f602eb19c5c5d82f5",
+      "source_hash": "44dd930e11d0f4d1a24dfb4ef3764729cb5477a803735d188415bac329cd157f",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/panificazione-artigianato-confartigianato.json.gz"
@@ -1700,7 +1700,7 @@
       "valid_to": "2026-12-31",
       "ruleset_id": "ccnl/panificazione-assipan",
       "ruleset_version": "2026.2",
-      "source_hash": "6251a173e575def173ecea74a99174a620f8591cff966e583e286cd2098b5516",
+      "source_hash": "26ffdb5ccf681e61e8ed4ca2d637a0623fb57ee5c869bd40fb3bd8b4aabbb119",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/panificazione-assipan.json.gz"
@@ -1870,7 +1870,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/rsa-aiop",
       "ruleset_version": "2026.2",
-      "source_hash": "99565de70e072bbb80e210a843360fcdce0dfa8463be7a72dbb6e34b8143664c",
+      "source_hash": "3555a0ec5e2092df2451dc9fedc7cc53fe5e4cb050a55de57ab75cab75e2a855",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/rsa-aiop.json.gz"
@@ -2125,7 +2125,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/tessile-smi",
       "ruleset_version": "2026.2",
-      "source_hash": "df5bae7e130472eba0f9494355ec19a8f1466a79d15c0c71c5ee1f467ebac5d6",
+      "source_hash": "abdf53916d60d6fc7dc1f90f6077dd273c6eb8d703354f4b1f05a524e1f4cc28",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/tessile-smi.json.gz"
@@ -2142,7 +2142,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/trasporto-aereo-assaeroporti",
       "ruleset_version": "2026.2",
-      "source_hash": "57fc80089c02945ef79ed784643b24e276fa081aa92829914eb3fe3c5d7966ac",
+      "source_hash": "ca7b5ff6b819236de80ea309ff75d0257f4bae52d6bb811910f1322417b5ea48",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/trasporto-aereo-assaeroporti.json.gz"
@@ -2227,7 +2227,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/uneba-uneba",
       "ruleset_version": "2026.2",
-      "source_hash": "81213c207e97b1a36af5cb71772bc77ebc6b0f31701220d5d14b5f96f61e189a",
+      "source_hash": "e2bc6d62bd6fa30af97e63541064a43d1f00aa8aba3a17af1cd5f99a37ad3d92",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/uneba-uneba.json.gz"
