@@ -7251,13 +7251,13 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
     "verification_status": "unverified",
-    "source_hash": "9ddfc3605f2443c3383ae9085091c16f2862ce16798ecfe2fe7a63d6b2907abd",
+    "source_hash": "5eafa5e5a802a0855cb64eaba6d5caf0cc85cbf93127cb170ce528c0a8b7aab3",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -7404,6 +7404,157 @@
             }
           }
         }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ad-contratti-energia-petrolio-220721-energia-rinnovo-20ccnl-20-202022-2024-a-pdf",
+            "title": "220721 ENERGIA RINNOVO%20CCNL%20%202022 2024 a",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/energia_petrolio/220721_ENERGIA_RINNOVO%20CCNL%20%202022-2024_a.pdf",
+            "sha256": "7f94a7f02bdbf8e93f5b132630ac98503070db02fb9edec08942a269bf8059df"
+          },
+          "page": "57",
+          "section": "Art. 28, comma 2; art. 19, art. 32 e art. 34 del rinnovo 16 aprile 2025 per orario, composizione ed esclusioni",
+          "quote": "Ciascuna ora di lavoro straordinario viene compensata con una quota oraria determinata dividendo la retribuzione globale mensile per 174,5, moltiplicata per i seguenti coefficienti:"
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-energia-petrolio-confindustria-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_HOLIDAY_COMPENSATORY_REST_2",
+          "description": "Festivo ordinario del non turnista, nei casi in cui la legge consente il riposo compensativo; le domeniche e i giorni destinati a riposo compensativo sono festivi ex art. 30.",
+          "work": "holiday_compensatory_rest",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-07-21",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ad-contratti-energia-petrolio-220721-energia-rinnovo-20ccnl-20-202022-2024-a-pdf",
+                "title": "220721 ENERGIA RINNOVO%20CCNL%20%202022 2024 a",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/energia_petrolio/220721_ENERGIA_RINNOVO%20CCNL%20%202022-2024_a.pdf",
+                "sha256": "7f94a7f02bdbf8e93f5b132630ac98503070db02fb9edec08942a269bf8059df"
+              },
+              "page": "57",
+              "section": "Art. 28, comma 1, secondo trattino; Art. 30 lett. a, rinnovo 2025",
+              "quote": "lavoro festivo: 50%"
+            },
+            "transformation": "Festivo ordinario del non turnista, nei casi in cui la legge consente il riposo compensativo; le domeniche e i giorni destinati a riposo compensativo sono festivi ex art. 30.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2022-07-21",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-energia-petrolio-confindustria-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_REST_DAY_5",
+          "description": "Non turnista: giorno destinato a riposo compensativo a norma di legge (festivo ex art. 30 lett. a), nei limiti dell'art. 28.",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-07-21",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ad-contratti-energia-petrolio-220721-energia-rinnovo-20ccnl-20-202022-2024-a-pdf",
+                "title": "220721 ENERGIA RINNOVO%20CCNL%20%202022 2024 a",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/energia_petrolio/220721_ENERGIA_RINNOVO%20CCNL%20%202022-2024_a.pdf",
+                "sha256": "7f94a7f02bdbf8e93f5b132630ac98503070db02fb9edec08942a269bf8059df"
+              },
+              "page": "57",
+              "section": "Art. 28, comma 1, secondo trattino; Art. 30 lett. a, rinnovo 2025",
+              "quote": "lavoro festivo: 50%"
+            },
+            "transformation": "Non turnista: giorno destinato a riposo compensativo a norma di legge (festivo ex art. 30 lett. a), nei limiti dell'art. 28.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2022-07-21",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-energia-petrolio-confindustria-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_SATURDAY_SIXTH_DAY_13",
+          "description": "Giornalieri: sabato nell'articolazione aziendale 37h40–40h, non automaticamente prestazione straordinaria; salvo sostituzione integrale del lunedì ex art. 19.",
+          "work": "saturday_sixth_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-04-16",
+                "valid_until": null,
+                "value": "0.15"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "load-contratti-energia-petrolio-250416-energia-rinnovo-20ccnl-20-202025-2027-pdf",
+                "title": "250416 ENERGIA RINNOVO%20CCNL%20%202025 2027",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/energia_petrolio/250416_ENERGIA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                "sha256": "fced86c079a021b7bc66824eba642679a91e4157b58c8295a5432837ba18409e"
+              },
+              "page": "28",
+              "section": "Art. 19, ultimo comma",
+              "quote": "Tuttavia per le ore prestate oltre l’orario settimanale contrattuale verrà corrisposta una maggiorazione del 5%, mentre per quelle prestate nella giornata del sabato verrà corrisposta una maggiorazione del 15%."
+            },
+            "transformation": "Giornalieri: sabato nell'articolazione aziendale 37h40–40h, non automaticamente prestazione straordinaria; salvo sostituzione integrale del lunedì ex art. 19.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-04-16",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-energia-petrolio-confindustria-time-supplements"
+            }
+          }
+        }
       ]
     },
     "absence_rules": {
@@ -7493,7 +7644,7 @@
             "source_document": {
               "document_id": "cnel-b254-239758",
               "title": "CCNL Energia e Petrolio 16 aprile 2025, testo coordinato depositato CNEL",
-              "kind": "associazione",
+              "kind": "cnel",
               "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239758",
               "sha256": "129ad0c91a836a05cdcdbcb8a8f1d4a7a920521459adc98f6995bab0c4af12de"
             },
@@ -7522,7 +7673,7 @@
             "source_document": {
               "document_id": "cnel-b254-239758",
               "title": "CCNL Energia e Petrolio 16 aprile 2025, testo coordinato depositato CNEL",
-              "kind": "associazione",
+              "kind": "cnel",
               "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/239758",
               "sha256": "129ad0c91a836a05cdcdbcb8a8f1d4a7a920521459adc98f6995bab0c4af12de"
             },
@@ -7610,6 +7761,33 @@
         "checked": [
           "work_rules.insured_absence.maternity",
           "work_rules.insured_absence.injury"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-energia-petrolio-confindustria-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/energia_petrolio/220721_ENERGIA_RINNOVO%20CCNL%20%202022-2024_a.pdf",
+            "sha256": "7f94a7f02bdbf8e93f5b132630ac98503070db02fb9edec08942a269bf8059df"
+          },
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/energia_petrolio/250416_ENERGIA_RINNOVO%20CCNL%20%202025-2027.pdf",
+            "sha256": "fced86c079a021b7bc66824eba642679a91e4157b58c8295a5432837ba18409e"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[2:holiday_compensatory_rest], bands[5:rest_day], bands[13:saturday_sixth_day].",
+          "Left out: bands[0:night]: more night bands the engine cannot tell apart; bands[1:night]: more night bands the engine cannot tell apart; bands[3:holiday]: more holiday bands the engine cannot tell apart; bands[4:sunday]: more sunday bands the engine cannot tell apart; bands[6:day_shift]: more day_shift bands the engine cannot tell apart; bands[7:night_shift]: quote skipped; bands[8:sunday]: more sunday bands the engine cannot tell apart; bands[9:night_holiday_shift]: quote skipped; bands[10:day_shift]: more day_shift bands the engine cannot tell apart; bands[11:sunday]: more sunday bands the engine cannot tell apart; bands[12:holiday]: more holiday bands the engine cannot tell apart; travel: kind share applied by hand; none.shift_B: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ]

@@ -208,6 +208,33 @@
           "work_rules.sickness_rules",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-scuole-private-agidae-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.agidae.it/wp-content/uploads/2022/07/2022-Rivista-AGIDAE-N.-3-CCNL-Scuola-TestoUfficiale.pdf",
+            "sha256": "d0428e25efde1d1cb30e3afae683a15afa9da17c964dbb0f9f71b7bf1ce16da4"
+          },
+          {
+            "url": "https://www.agidae.it/wp-content/uploads/2024/07/2024-CCNL_Scuola_2024_2027_Firmato.pdf",
+            "sha256": "f16a8e86e3195aa48878ec280de975c8c3dbd0067c52f379ab28fcccf722bc7a"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[0:night], none.shift_work.",
+          "Left out: bands[1:holiday]: quote skipped; bands[2:sunday]: quote skipped; bands[3:holiday_compensatory_rest]: work/role/rate not applicable (turnista)."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -1435,13 +1462,13 @@
     "effective_until": null,
     "source": "https://www.terrazzini.it/wp-content/uploads/14bis-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "6d31305a3944e0ef36e6b7644b0e75c596a81d249a02a1a0241402df2a9f747b",
+    "source_hash": "e4cc2fc100b9768c2a4343d20fa728bfa7878beb2171fd04203ffbbc3d129324",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -1587,6 +1614,75 @@
             }
           }
         }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "p-content-uploads-2022-07-2022-rivista-agidae-n-3-ccnl-scuola-testoufficiale-pdf",
+            "title": "2022 Rivista AGIDAE N. 3 CCNL Scuola TestoUfficiale",
+            "kind": "associazione",
+            "url": "https://www.agidae.it/wp-content/uploads/2022/07/2022-Rivista-AGIDAE-N.-3-CCNL-Scuola-TestoUfficiale.pdf",
+            "sha256": "d0428e25efde1d1cb30e3afae683a15afa9da17c964dbb0f9f71b7bf1ce16da4"
+          },
+          "page": "39",
+          "section": "Art. 38 c. 2",
+          "quote": "per i dipendenti a 38 ore settimanali: retribuzione globale mensile diviso 164;"
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-scuole-private-agidae-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_0",
+          "description": "Notturno ordinario: periodi di almeno sette ore comprendenti 00–05, nelle fasce 00–07, 23–06 o 22–05. Base specifica: retribuzione tabellare comprensiva del superminimo ex categoria, non retribuzione globale.",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-01-01",
+                "valid_until": null,
+                "value": "0.15"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "p-content-uploads-2022-07-2022-rivista-agidae-n-3-ccnl-scuola-testoufficiale-pdf",
+                "title": "2022 Rivista AGIDAE N. 3 CCNL Scuola TestoUfficiale",
+                "kind": "associazione",
+                "url": "https://www.agidae.it/wp-content/uploads/2022/07/2022-Rivista-AGIDAE-N.-3-CCNL-Scuola-TestoUfficiale.pdf",
+                "sha256": "d0428e25efde1d1cb30e3afae683a15afa9da17c964dbb0f9f71b7bf1ce16da4"
+              },
+              "page": "52",
+              "section": "Art. 52 c. 1",
+              "quote": "Il lavoro notturno è quello effettuato in un periodo di almeno 7 ore consecutive comprendenti l’intervallo tra la mezzanotte e le cinque del mattino. Quindi il lavoro notturno è quello svolto tra le 24 e le 7 ovvero tra le 23 e le 6 ovvero tra le 22 e le 5 ed è retribuito con la maggiorazione della quota oraria lorda del 15% della retribuzione tabellare di cui all’art. 30, ivi compreso il superminimo di ex categoria."
+            },
+            "transformation": "Notturno ordinario: periodi di almeno sette ore comprendenti 00–05, nelle fasce 00–07, 23–06 o 22–05. Base specifica: retribuzione tabellare comprensiva del superminimo ex categoria, non retribuzione globale.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2024-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-scuole-private-agidae-time-supplements"
+            }
+          }
+        }
       ]
     },
     "absence_rules": {
@@ -1685,6 +1781,37 @@
         },
         "transformation": "La metà dell’orario medio giornaliero è la modalità oraria di fruizione per il personale ATA, non un numero espresso di ore equiparato a una giornata: day_hours=null. La clausola non prevede un riproporzionamento esplicito per il part-time né una decorrenza specifica.",
         "note": "Scanned PDF: the quote is read from the OCR of the page."
+      }
+    },
+    "capability_basis": {
+      "shift_work": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "www-agidae-it-wp-content-uploads-2024-07-2024-ccnl-scuola-2024-2027-firmato-pdf",
+              "title": "2024 CCNL Scuola 2024 2027 Firmato",
+              "kind": "associazione",
+              "url": "https://www.agidae.it/wp-content/uploads/2024/07/2024-CCNL_Scuola_2024_2027_Firmato.pdf",
+              "sha256": "f16a8e86e3195aa48878ec280de975c8c3dbd0067c52f379ab28fcccf722bc7a"
+            },
+            "page": "30",
+            "section": "Art. 49 c. 9",
+            "quote": "La distribuzione dell'orario di lavoro per il personale non docente, solo nel caso di necessità d’introdurre regimi di orario particolari (turni) viene stabilita dalla Direzione dell'Istituto in ambito di contrattazione decentrata in accordo con le R.S.A."
+          },
+          "transformation": "shift_work: delegated to second level.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-15T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-15-ai-scuole-private-agidae-time-supplements"
+          }
+        }
       }
     }
   }

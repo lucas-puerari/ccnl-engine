@@ -9,8 +9,8 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 5 | 288 | 244 | 0 | `funzioni-centrali-aran` |
-| terziario | 46 | 5 257 055 | 46 | 951 | 1987 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 49 | 4 969 900 | 150 | 1213 | 2648 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| terziario | 46 | 5 257 055 | 46 | 951 | 2014 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| industria | 49 | 4 969 900 | 150 | 1213 | 2657 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 76 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 151 | 373 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 12 | 92 | 261 | 5 | `operai-agricoli-florovivaisti` |
@@ -56,16 +56,16 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`istituzioni-servizi-socio-assistenziali-anaste`](../contracts/istituzioni-servizi-socio-assistenziali-anaste.md) | 120 000 | exploratory | 1 | 11 | 66 | party or official | none | none |
 | [`vigilanza-privata-assiv`](../contracts/vigilanza-privata-assiv.md) | 85 000 | exploratory | 1 | 7 | 44 | party or official | none | none |
 | [`distribuzione-cooperativa-ancc`](../contracts/distribuzione-cooperativa-ancc.md) | 63 000 | exploratory | 1 | 48 | 26 | aggregator | none | none |
-| [`farmacie-private-h121`](../contracts/farmacie-private-h121.md) | 60 000 | exploratory | 1 | 41 | 4 | party or official | none | none |
-| [`farmacie-rurali-sussidiate-h121`](../contracts/farmacie-rurali-sussidiate-h121.md) | 60 000 | exploratory | 1 | 41 | 4 | party or official | none | none |
+| [`farmacie-private-h121`](../contracts/farmacie-private-h121.md) | 60 000 | exploratory | 1 | 41 | 9 | party or official | none | none |
+| [`farmacie-rurali-sussidiate-h121`](../contracts/farmacie-rurali-sussidiate-h121.md) | 60 000 | exploratory | 1 | 41 | 9 | party or official | none | none |
 | [`ortofrutticoli-agrumari`](../contracts/ortofrutticoli-agrumari.md) | 60 000 | exploratory | 1 | 0 | 64 | aggregator | none | none |
-| [`scuole-private-agidae`](../contracts/scuole-private-agidae.md) | 50 000 | exploratory | 1 | 31 | 13 | party or official | none | none |
-| [`vigilanza-privata-federdat-gpg`](../contracts/vigilanza-privata-federdat-gpg.md) | 45 000 | exploratory | 2 | 5 | 24 | party or official | none | none |
-| [`autorimesse-ic35`](../contracts/autorimesse-ic35.md) | 41 000 | exploratory | 2 | 40 | 55 | party or official | none | none |
-| [`vigilanza-privata-assiv-sf`](../contracts/vigilanza-privata-assiv-sf.md) | 40 000 | exploratory | 3 | 5 | 46 | party or official | none | none |
-| [`industria-turistica-federturismo`](../contracts/industria-turistica-federturismo.md) | 40 000 | exploratory | 1 | 10 | 36 | aggregator | none | none |
+| [`scuole-private-agidae`](../contracts/scuole-private-agidae.md) | 50 000 | exploratory | 1 | 31 | 15 | party or official | none | none |
+| [`vigilanza-privata-federdat-gpg`](../contracts/vigilanza-privata-federdat-gpg.md) | 45 000 | exploratory | 2 | 5 | 27 | party or official | none | none |
+| [`autorimesse-ic35`](../contracts/autorimesse-ic35.md) | 41 000 | exploratory | 2 | 40 | 59 | party or official | none | none |
+| [`vigilanza-privata-assiv-sf`](../contracts/vigilanza-privata-assiv-sf.md) | 40 000 | exploratory | 3 | 5 | 48 | party or official | none | none |
+| [`industria-turistica-federturismo`](../contracts/industria-turistica-federturismo.md) | 40 000 | exploratory | 1 | 10 | 37 | aggregator | none | none |
 | [`portieri-fabbricati-confedilizia`](../contracts/portieri-fabbricati-confedilizia.md) | 40 000 | exploratory | 1 | 5 | 64 | party or official | none | none |
-| [`impianti-sportivi-sport`](../contracts/impianti-sportivi-sport.md) | 35 533 | exploratory | 2 | 4 | 42 | party or official | none | none |
+| [`impianti-sportivi-sport`](../contracts/impianti-sportivi-sport.md) | 35 533 | exploratory | 2 | 4 | 47 | party or official | none | none |
 | [`scuole-materne-fism`](../contracts/scuole-materne-fism.md) | 30 000 | exploratory | 1 | 15 | 41 | party or official | none | none |
 | [`agenzie-viaggio-fiavet`](../contracts/agenzie-viaggio-fiavet.md) | 25 000 | exploratory | 1 | 59 | 10 | party or official | none | none |
 | [`scuole-private-laiche-aninsei`](../contracts/scuole-private-laiche-aninsei.md) | 25 000 | exploratory | 1 | 71 | 36 | party or official | none | none |
@@ -106,13 +106,13 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`calzaturiero-assocalzaturifici`](../contracts/calzaturiero-assocalzaturifici.md) | 75 000 | exploratory | 2 | 6 | 39 | aggregator | none | none |
 | [`trasporto-ferroviario-agens`](../contracts/trasporto-ferroviario-agens.md) | 75 000 | exploratory | 1 | 5 | 55 | aggregator | none | none |
 | [`grafica-editoria-aieg`](../contracts/grafica-editoria-aieg.md) | 70 000 | exploratory | 1 | 70 | 6 | aggregator | none | none |
-| [`gas-acqua-utilitalia`](../contracts/gas-acqua-utilitalia.md) | 65 000 | exploratory | 1 | 18 | 45 | party or official | none | none |
+| [`gas-acqua-utilitalia`](../contracts/gas-acqua-utilitalia.md) | 65 000 | exploratory | 1 | 18 | 49 | party or official | none | none |
 | [`igiene-ambientale-utilitalia`](../contracts/igiene-ambientale-utilitalia.md) | 65 000 | exploratory | 1 | 76 | 74 | aggregator | none | none |
-| [`elettrico-elettricita-futura`](../contracts/elettrico-elettricita-futura.md) | 60 000 | exploratory | 1 | 21 | 57 | aggregator | none | none |
+| [`elettrico-elettricita-futura`](../contracts/elettrico-elettricita-futura.md) | 60 000 | exploratory | 1 | 21 | 58 | aggregator | none | none |
 | [`chimica-affini-pmi-unionchimica`](../contracts/chimica-affini-pmi-unionchimica.md) | 56 000 | exploratory | 2 | 13 | 40 | aggregator | none | none |
 | [`tessile-pmi-uniontessile`](../contracts/tessile-pmi-uniontessile.md) | 48 000 | exploratory | 6 | 0 | 42 | aggregator | none | none |
 | [`trasporto-aereo-assaeroporti`](../contracts/trasporto-aereo-assaeroporti.md) | 40 000 | exploratory | 1 | 49 | 46 | party or official | none | none |
-| [`energia-petrolio-confindustria`](../contracts/energia-petrolio-confindustria.md) | 38 000 | exploratory | 1 | 56 | 115 | party or official | none | none |
+| [`energia-petrolio-confindustria`](../contracts/energia-petrolio-confindustria.md) | 38 000 | exploratory | 1 | 56 | 119 | party or official | none | none |
 | [`alimentari-pmi-unionalimentari`](../contracts/alimentari-pmi-unionalimentari.md) | 35 000 | exploratory | 1 | 38 | 273 | party or official | none | none |
 | [`carta-cartone-assocarta`](../contracts/carta-cartone-assocarta.md) | 35 000 | exploratory | 1 | 61 | 14 | aggregator | none | none |
 | [`vetro-meccanizzato-assovetro`](../contracts/vetro-meccanizzato-assovetro.md) | 28 000 | exploratory | 29 | 0 | 73 | aggregator | none | none |

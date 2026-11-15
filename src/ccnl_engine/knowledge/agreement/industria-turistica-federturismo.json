@@ -93,7 +93,7 @@
             "source_document": {
               "document_id": "industria-turistica-2016-definitive-text",
               "title": "Tourism industry collective agreement (CNEL archive)",
-              "kind": "associazione",
+              "kind": "cnel",
               "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/154401",
               "sha256": "2c01fa555644de38b31a327c517edd8f2888545a41a9b28f20eeccdecf0758fc"
             },
@@ -201,6 +201,29 @@
         "independence": "same_process",
         "checked": [
           "apprenticeship"
+        ]
+      },
+      {
+        "id": "2026-11-15-ai-industria-turistica-federturismo-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.federturismo.it/it/documenti/news-2019/12031-ccnl-industria-turistica-federturismo-testo-ufficiale-2016/file.html",
+            "sha256": "2c01fa555644de38b31a327c517edd8f2888545a41a9b28f20eeccdecf0758fc"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base.",
+          "Left out: bands[0:night]: more night bands the engine cannot tell apart; bands[1:night]: quote quote_not_in_file; bands[2:sunday]: quote skipped; bands[3:holiday]: quote quote_not_in_file; bands[4:holiday]: more holiday bands the engine cannot tell apart; none.shift_work: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ]
@@ -1850,7 +1873,7 @@
           "source_document": {
             "document_id": "ccnl-industria-turistica-2016",
             "title": "CCNL per i dipendenti dell'Industria Turistica, testo definitivo 14 novembre 2016",
-            "kind": "associazione",
+            "kind": "cnel",
             "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/154401",
             "published_on": "2016-11-14",
             "sha256": "2c01fa555644de38b31a327c517edd8f2888545a41a9b28f20eeccdecf0758fc"
@@ -1932,13 +1955,13 @@
     "effective_until": null,
     "source": "https://www.federturismo.it/it/documenti/documenti/12210-circolare-tabelle-retributive-ccnl-news-16-gennaio-2025/file.html",
     "verification_status": "unverified",
-    "source_hash": "e021324fa48dcd15aa6299370d6aaec5681c091181b1e1e00675aa19ce21696c",
+    "source_hash": "9b81cab9f74d04afd323a83162274e108dd98f25f14a907ea408c7d988c908f7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -2084,7 +2107,34 @@
             }
           }
         }
-      ]
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "2019-12031-ccnl-industria-turistica-federturismo-testo-ufficiale-2016-file-html",
+            "title": "file.html",
+            "kind": "associazione",
+            "url": "https://www.federturismo.it/it/documenti/news-2019/12031-ccnl-industria-turistica-federturismo-testo-ufficiale-2016/file.html",
+            "sha256": "2c01fa555644de38b31a327c517edd8f2888545a41a9b28f20eeccdecf0758fc"
+          },
+          "page": "118",
+          "section": "Articolo 109",
+          "quote": "– 192 per il personale con orario normale di quarantacinque ore settimanali; – 190 per il personale con orario normale di quarantaquattro ore settimanali; – 172 per il personale con orario normale di quaranta ore settimanali."
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-15T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-15-ai-industria-turistica-federturismo-time-supplements"
+        }
+      },
+      "supplement_bands": []
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -2183,7 +2233,7 @@
           "source_document": {
             "document_id": "ccnl-industria-turistica-2016",
             "title": "CCNL per i dipendenti dell'Industria Turistica, testo definitivo 14 novembre 2016",
-            "kind": "associazione",
+            "kind": "cnel",
             "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/154401",
             "published_on": "2016-11-14",
             "sha256": "2c01fa555644de38b31a327c517edd8f2888545a41a9b28f20eeccdecf0758fc"

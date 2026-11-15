@@ -223,6 +223,29 @@
           "work_rules.sickness_rules",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-15-ai-elettrico-elettricita-futura-time-supplements",
+        "date": "2026-11-15",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/elettrico/251223_%20ELETTRICO_CCNL%202025-2027%20-%20TESTO%20INTEGRALE.pdf",
+            "sha256": "ed6009cfc644dddfb5836b427f4c2cbf5bf6d9c0c53bfe90afecaa7a20aebec9"
+          }
+        ],
+        "findings": [
+          "Applied: bands[0:night], travel.",
+          "Left out: bands[1:holiday]: quote quote_not_in_file; bands[2:rest_day]: quote quote_not_in_file; bands[3:night_holiday_compensatory_rest]: quote quote_not_in_file; bands[4:sunday]: quote quote_not_in_file; bands[5:sunday]: quote quote_not_in_file; bands[6:night_shift]: quote quote_not_in_file; bands[7:day_shift]: quote quote_not_in_file; bands[8:day_shift]: more day_shift bands the engine cannot tell apart; bands[9:day_shift]: quote quote_not_in_file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -3106,7 +3129,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
     "verification_status": "unverified",
-    "source_hash": "c94aac613a294a4f153958bab593ffa7a76db9f46229aa5cdb26e02d04e462e9",
+    "source_hash": "66067f982f27f3cfaf716d6573421bb6f451497a23c7ce29a226d30be8620377",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3255,6 +3278,49 @@
               "extraction_timestamp": "2026-09-08T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2025-01-01"
+            }
+          }
+        }
+      ],
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_0",
+          "description": "Maggiorazione del lavoro ordinario notturno non in turno (20-6, art. 28 comma 6, PDF p. 94; orario legale 23-6, comma 7).",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ntratti-elettrico-251223-20elettrico-ccnl-202025-2027-20-20testo-20integrale-pdf",
+                "title": "251223 %20ELETTRICO CCNL%202025 2027%20 %20TESTO%20INTEGRALE",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/elettrico/251223_%20ELETTRICO_CCNL%202025-2027%20-%20TESTO%20INTEGRALE.pdf",
+                "sha256": "ed6009cfc644dddfb5836b427f4c2cbf5bf6d9c0c53bfe90afecaa7a20aebec9"
+              },
+              "page": "95",
+              "section": "Art. 28, comma 9",
+              "quote": "Ogni ora di lavoro notturno non in turno prestata, anche eccezionalmente, dal lavoratore in regime di lavoro ordinario in giorni non festivi, viene compensata con un’indennità pari alla maggiorazione del 50% sulla retribuzione oraria."
+            },
+            "transformation": "Maggiorazione del lavoro ordinario notturno non in turno (20-6, art. 28 comma 6, PDF p. 94; orario legale 23-6, comma 7).",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-15T00:00:00Z",
+              "effective_from": "2025-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-15T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-15-ai-elettrico-elettricita-futura-time-supplements"
             }
           }
         }
@@ -3422,6 +3488,37 @@
           "quote": "4. Ai sensi dell’art. 32 del D. Lgs. n.151/2001 e successive modificazioni a decorrere dal 1°\n      gennaio 2020, il congedo parentale potrà essere fruito anche ad ore.\n   5. La lavoratrice/il lavoratore può usufruire di permessi su base oraria fino a un massimo\n      dell’orario giornaliero previsto in azienda.\n   6. Il congedo potrà essere fruito, sia dal personale a tempo pieno che dal personale a tempo\n      parziale, per periodi minimi di un’ora giornaliera, la cui somma nell’arco di ciascun mese di\n      utilizzo deve in ogni caso corrispondere a giornate intere."
         },
         "transformation": "Il comma 4 indica la decorrenza 1° gennaio 2020. I commi 5–6 stabiliscono il massimo nell'orario giornaliero aziendale e il minimo di un'ora, con somma mensile in giornate intere, ma non equiparano espressamente una giornata a un numero fisso di ore: day_hours = null. Il comma 6 include il part-time, senza prescrivere un riproporzionamento delle ore: part_time_scaled = false."
+      }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ntratti-elettrico-251223-20elettrico-ccnl-202025-2027-20-20testo-20integrale-pdf",
+              "title": "251223 %20ELETTRICO CCNL%202025 2027%20 %20TESTO%20INTEGRALE",
+              "kind": "associazione",
+              "url": "https://www.filctemcgil.it/images/download/CONTRATTI/elettrico/251223_%20ELETTRICO_CCNL%202025-2027%20-%20TESTO%20INTEGRALE.pdf",
+              "sha256": "ed6009cfc644dddfb5836b427f4c2cbf5bf6d9c0c53bfe90afecaa7a20aebec9"
+            },
+            "page": "135",
+            "section": "Art. 42, comma 1",
+            "quote": "Al lavoratore in missione per motivi di servizio esplicitamente autorizzati spetta il rimborso delle spese sostenute, nei limiti e secondo le modalità stabilite dalle norme e dalle procedure aziendali, per viaggio – vitto – pernottamento. Gli importi a titolo di rimborso forfetario per le spese derivanti dall’utilizzo, per motivi di servizio, dell’automezzo di proprietà del lavoratore verranno definiti a livello aziendale."
+          },
+          "transformation": "The CCNL pays no daily travel allowance: the trasferta is refunded at documented cost",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-15T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-15T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-15-ai-elettrico-elettricita-futura-time-supplements"
+          }
+        }
       }
     }
   }

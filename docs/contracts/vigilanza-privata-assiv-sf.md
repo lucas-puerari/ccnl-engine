@@ -46,7 +46,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 46 verified / 5 derived / 2 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 48 verified / 5 derived / 2 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | CNEL archive of HV17 and HV51; CCNL 8 April 2013 Parte servizi fiduciari Art. 25 (PDF p. 117, page image); ipotesi 30 May 2023 (OCR, 43 pages); UILTUCS tables of 16 February 2024 (no seniority figures). | corrected | The file holds the HV17 pay tables (A-E 2023-2026 match the accordo of 16 February 2024), not those of FEDERDAT (HV51): renamed vigilanza-privata-assiv-sf, signatories of HV17.<br>Seniority: six triennial increments A 21, B 19, C 17, D 15, E none; the file had 29/26/22/19/17.50 and a maximum of 10 with no HV17 source.<br>The apprenticeship note quoted the FEDERDAT text: recorded as an open limitation. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Paga conglobata of levels A-E against the signed tables of 16 February 2024, page 2, read on the page image. | corrected | Every level was shifted one column: the amount of 1/01/24 was dated 1/06/23, and so on; the December 2026 tranche was missing. Nine periods rebuilt on the printed dates 01/06/23 ... 01/12/26 (an independent reading and a separate investigation agreed). |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto over the calendar year and paid days, against the research of a separate model session; quotes checked on the source. | corrected | Comporto of 240 days over the calendar year; pay ends after 180 days. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base, bands[0:sunday].<br>Left out: bands[1:night_holiday]: quote quote_not_in_file; bands[2:night_holiday]: more night_holiday bands the engine cannot tell apart; bands[3:holiday]: quote quote_not_in_file; bands[4:rest_day]: quote skipped; none.shift_work: skipped; none.night: skipped. |
 
 ## Salary table
 

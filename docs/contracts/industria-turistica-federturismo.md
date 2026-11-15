@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 36 verified / 10 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 37 verified / 10 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-01-01 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-15 |
 | **Latest salary tranche** | 2027-04-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Apprentice seniority: artt. 40 and 106 of the testo definitivo of 14 November 2016 (pp. 56, 88). | corrected | The apprentice's retribuzione is 'quella minima contrattualmente prevista' for his level, apart from the scatti of art. 106: none during the apprenticeship. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Grandfathered seniority prize in Art. 182 and hotel awards in Annex 9 of the cached agreement; current-renewal status remains unconfirmed. | corrected | Art. 182 (PDF p. 160) preserves rights of workers in service on 31 May 1986. Annex 9 (PDF p. 316) lists one-off hotel milestones and departure fractions after year 10. A continuously employed 2026 worker has passed year 30; accrued rights and settlement require worker-specific facts. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 40 and 40 bis of the CCNL of 14 November 2016, apprentice classification and pay. | confirmed | Read Artt. 40 and 40 bis in the text PDF (pp. 55-57): classification up to two levels below the destination, chosen by the individual contract, paid at the minimum of that level; destinations B2-D1. Replaced the 100% passthrough over all levels with three named tracks (2, 1, 0 below) and closed apprenticeship_under_classification. |
+| 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base.<br>Left out: bands[0:night]: more night bands the engine cannot tell apart; bands[1:night]: quote quote_not_in_file; bands[2:sunday]: quote skipped; bands[3:holiday]: quote quote_not_in_file; bands[4:holiday]: more holiday bands the engine cannot tell apart; none.shift_work: skipped. |
 
 ## Salary table
 
