@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 7/136 CCNLs**; complete except declared residuals: 1. Bundle: 250 weak rules, 263 open limitations (263 with a monetary impact), 31 declared residuals.
+**Complete: 8/136 CCNLs**; complete except declared residuals: 1. Bundle: 249 weak rules, 263 open limitations (263 with a monetary impact), 31 declared residuals.
 
 ## Declared window
 
@@ -135,7 +135,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [funzioni-locali-aran](../contracts/funzioni-locali-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 0 rows | tables from 2026-02-24 |
 | [gas-acqua-utilitalia](../contracts/gas-acqua-utilitalia.md) | `energia-utilities` | exploratory | — | 4 rows | 4 open requirements; 1 weak rule; 3 monetary limitations; 3 non-native capabilities |
 | [gomma-plastica-federazione-gomma-plastica](../contracts/gomma-plastica-federazione-gomma-plastica.md) | `chimica` | exploratory | — | 5 rows | 5 open requirements; 2 weak rules; 2 monetary limitations; 1 outside_input limitation; 7 non-native capabilities |
-| [grafica-editoria-aieg](../contracts/grafica-editoria-aieg.md) | `carta-grafica` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule; 1 non-native capability |
+| [grafica-editoria-aieg](../contracts/grafica-editoria-aieg.md) | `carta-grafica` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [igiene-ambientale-utilitalia](../contracts/igiene-ambientale-utilitalia.md) | `energia-utilities` | exploratory | — | 5 rows | tables from 2026-02-01; 5 open requirements; 1 weak rule; 3 monetary limitations; 1 outside_input limitation; 5 non-native capabilities; 1 declared residual |
 | [impianti-sportivi-sport](../contracts/impianti-sportivi-sport.md) | `sport` | exploratory | — | 5 rows | 5 open requirements; 2 weak rules; 2 monetary limitations; 1 outside_input limitation; 2 non-native capabilities; 1 declared residual |
 | [impiegati-tecnici-agricoli](../contracts/impiegati-tecnici-agricoli.md) | `agricoltura` | exploratory | — | 6 rows | 6 open requirements; 2 weak rules; 3 monetary limitations; 1 outside_input limitation; 2 non-native capabilities |

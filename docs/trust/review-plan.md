@@ -10,7 +10,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 5 | 288 | 244 | 0 | `funzioni-centrali-aran` |
 | terziario | 46 | 5 257 055 | 46 | 951 | 2014 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 49 | 4 969 900 | 150 | 1213 | 2657 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| industria | 49 | 4 969 900 | 149 | 1215 | 2657 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 76 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 151 | 373 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 11 | 97 | 262 | 5 | `operai-agricoli-florovivaisti` |
@@ -105,7 +105,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`legno-arredamento-federlegno`](../contracts/legno-arredamento-federlegno.md) | 90 000 | exploratory | 1 | 88 | 23 | aggregator | none | none |
 | [`calzaturiero-assocalzaturifici`](../contracts/calzaturiero-assocalzaturifici.md) | 75 000 | exploratory | 2 | 6 | 39 | aggregator | none | none |
 | [`trasporto-ferroviario-agens`](../contracts/trasporto-ferroviario-agens.md) | 75 000 | exploratory | 1 | 5 | 55 | aggregator | none | none |
-| [`grafica-editoria-aieg`](../contracts/grafica-editoria-aieg.md) | 70 000 | exploratory | 1 | 70 | 6 | aggregator | none | none |
+| [`grafica-editoria-aieg`](../contracts/grafica-editoria-aieg.md) | 70 000 | exploratory | 0 | 72 | 6 | aggregator | none | none |
 | [`gas-acqua-utilitalia`](../contracts/gas-acqua-utilitalia.md) | 65 000 | exploratory | 1 | 18 | 49 | party or official | none | none |
 | [`igiene-ambientale-utilitalia`](../contracts/igiene-ambientale-utilitalia.md) | 65 000 | exploratory | 1 | 76 | 74 | aggregator | none | none |
 | [`elettrico-elettricita-futura`](../contracts/elettrico-elettricita-futura.md) | 60 000 | exploratory | 1 | 21 | 58 | aggregator | none | none |
