@@ -181,6 +181,7 @@ class PeriodInput:
             level_started_on=employment.level_started_on,
             seniority=employment.seniority,
             roles=employment.roles,
+            fund_opt_ins=employment.fund_opt_ins,
             presence_days=facts.presence_days,
             site_presence_days=facts.site_presence_days,
             meal_benefit_days=facts.meal_benefit_days,

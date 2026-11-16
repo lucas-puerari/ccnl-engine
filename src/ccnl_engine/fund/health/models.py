@@ -9,6 +9,7 @@ pays (``EmployerProfile.contractual_funds``); the CCNL gives the amounts.
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 from typing import Literal, Self
 
@@ -114,6 +115,10 @@ class ContractualFund(BaseModel):
         welfare: Whether the employer amount is a welfare benefit made
             available to the worker (goods and services, outside the pay)
             rather than a contribution to a fund.
+        opt_in_from: Day from which the fund covers only the worker who
+            chose to pay its worker share (``Employment.fund_opt_ins``); one
+            who does not leaves it, the employer share with it (Alimentari
+            art. 74 quater, FASA from 1 June 2029).
         provenance: Source of the clause.
     """
 
@@ -147,6 +152,7 @@ class ContractualFund(BaseModel):
     alternative_scaled: bool = True
     charged_in_month: TimeSeries | None = None
     welfare: bool = False
+    opt_in_from: date | None = None
     provenance: RuleProvenance
 
     def excludes_contract(self, contract_type: object) -> bool:

@@ -192,6 +192,12 @@ _NOT_EXERCISED: dict[str, str] = {
         "liquidating extra months raises MissingRequiredFactError without "
         "it; no other run reads it: no result to compare"
     ),
+    "Employment.fund_opt_ins": (
+        "read only from 1 June 2029 (Alimentari FASA), a tax year the bundle "
+        "has no tables for: no run to compare; "
+        "tests/mutation/ccnl_engine/fund/health/test_opt_in.py shows its "
+        "missing_fact"
+    ),
     "Dependent.birth_date": (
         "a child without it raises InvalidInputError, and no other dependant "
         "reads it: no result to compare"
