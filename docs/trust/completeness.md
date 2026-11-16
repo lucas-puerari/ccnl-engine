@@ -107,7 +107,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [consorzi-di-bonifica-snebi](../contracts/consorzi-di-bonifica-snebi.md) | `bonifica-forestazione` | exploratory | — | 3 rows | 3 open requirements; 2 weak rules; 1 monetary limitation; 6 non-native capabilities |
 | [contoterzismo-caiagromec](../contracts/contoterzismo-caiagromec.md) | `agricoltura` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 2 monetary limitations; 5 non-native capabilities |
 | [cooperative-consorzi-agricoli](../contracts/cooperative-consorzi-agricoli.md) | `agricoltura` | exploratory | — | 2 rows | 2 open requirements; 1 monetary limitation; 1 outside_input limitation; 6 non-native capabilities |
-| [cooperative-sociali](../contracts/cooperative-sociali.md) | `socio-sanitario` | reviewed | — | 5 rows | 5 open requirements; 2 monetary limitations; 3 outside_input limitations; 5 non-native capabilities |
+| [cooperative-sociali](../contracts/cooperative-sociali.md) | `socio-sanitario` | reviewed | — | 5 rows | 5 open requirements; 2 monetary limitations; 3 outside_input limitations; 3 non-native capabilities |
 | [dirigenza-funzioni-centrali-aran](../contracts/dirigenza-funzioni-centrali-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 0 rows | complete; 3 limitations awaiting publication |
 | [dirigenza-funzioni-locali-aran](../contracts/dirigenza-funzioni-locali-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 0 rows | complete; 3 limitations awaiting publication |
 | [dirigenza-istruzione-ricerca-aran](../contracts/dirigenza-istruzione-ricerca-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 1 rows | 1 open requirement; 1 monetary limitation; 1 non-native capability |

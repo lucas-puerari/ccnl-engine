@@ -34,7 +34,7 @@ def test_every_accepted_capability_is_caller_supplied_with_a_reason() -> None:
         ("studi-professionali-confprofessioni", True),
         ("metalmeccanico-federmeccanica", True),
         ("commercio-confcommercio", True),
-        ("cooperative-sociali", False),
+        ("logistica-trasporto-confetra", False),
     ],
 )
 def test_the_travel_allowance_is_a_gap_where_the_ccnl_holds_no_amounts(
