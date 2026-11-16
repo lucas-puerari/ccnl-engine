@@ -8,12 +8,14 @@ from typing import TYPE_CHECKING
 from ccnl_engine.contribution.apprenticeship.rules import (
     apprentice_employer_ivs_rate,
     apprentice_employer_rate,
+    first_level_employer_rate,
 )
 from ccnl_engine.contribution.naspi.rules import naspi_surcharge
 from ccnl_engine.decision.models import (
     CalculationIssue,
     CalculationStatus,
 )
+from ccnl_engine.employment.apprentice.inputs import ApprenticeshipProgramme
 from ccnl_engine.employment.inputs import Apprentice, FixedTerm
 
 if TYPE_CHECKING:
@@ -99,7 +101,9 @@ def resolve_rates(
 
     Apprentices use the statutory reduced rates (L. 296/2006 art. 1 c. 773,
     headcount already resolved in ``rules.apprentice``), without the NASpI
-    surcharge (L. 92/2012 art. 2 c. 29 lett. c).  Other contracts add the
+    surcharge (L. 92/2012 art. 2 c. 29 lett. c); a first-level apprentice
+    the 5% of D.Lgs. 150/2015 art. 32 c. 1 (``first_level_employer_rate``).
+    Other contracts add the
     surcharge of :func:`~ccnl_engine.contribution.naspi.rules.naspi_surcharge` to the
     employer rate only; the IVS rate is unchanged
     because the surcharge is a non-IVS component (NASpI fund).
@@ -117,6 +121,17 @@ def resolve_rates(
             "domestic sectors must use the flat-hour path in compute()"
         )
         raise TypeError(msg)
+    if (
+        isinstance(employment, Apprentice)
+        and employment.programme is ApprenticeshipProgramme.FIRST_LEVEL
+    ):
+        first = first_level_employer_rate(rules.apprentice, employment.months_elapsed)
+        return ContributionRates(
+            employee_rate=rules.apprentice.employee_rate,
+            employee_ivs_rate=rules.apprentice.employee_ivs_rate,
+            employer_rate=first,
+            employer_ivs_rate=first,
+        )
     if isinstance(employment, Apprentice):
         emp_rate = rules.apprentice.employee_rate
         er_rate = apprentice_employer_rate(rules.apprentice, employment.months_elapsed)

@@ -3,22 +3,6 @@
   "ccnl_id": "formazione-professionale",
   "requirements": [
     {
-      "id": "dual_apprenticeship_contributions",
-      "institute": "inps_employer",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "A first- or third-level apprentice (D.Lgs. 81/2015 artt. 43 and 45) is paid by the CCNL dual_apprenticeship tracks, but the INPS contributions and the other rates of the run are those of the professionalising apprentice: the contribution regime of these apprentices is not sourced. On a final-settlement run that pays both its month and the ratei, Apprentice.hours splits both by one set of hours.",
-      "calculation": "ccnl_engine.apprenticeship.dual.rules.dual_chain",
-      "state": "unverified",
-      "remediation": "Source the INPS contribution regime of first- and third-level apprentices and apply it; give a final-settlement run separate hours for its month and its ratei.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "dual_apprenticeship_contributions"
-        ]
-      }
-    },
-    {
       "id": "dual_apprenticeship_entry_floor",
       "institute": "base_salary",
       "variant": "apprentice",
@@ -31,6 +15,22 @@
       "links": {
         "limitations": [
           "formazione-professionale/dual_apprenticeship_entry_floor"
+        ]
+      }
+    },
+    {
+      "id": "dual_final_settlement_hours",
+      "institute": "base_salary",
+      "variant": "apprentice",
+      "discriminant": "applies_when.trigger = path",
+      "rule": "A final-settlement run of a first- or third-level apprentice pays both its month and the ratei of the extra months: Apprentice.hours weighs both by one set of hours, while the ratei accrued over the year at its own share of school, training and work.",
+      "calculation": "ccnl_engine.apprenticeship.dual.rules.dual_chain",
+      "state": "unverified",
+      "remediation": "Give a final-settlement run separate hours for its month and its ratei.",
+      "origin": "seeded",
+      "links": {
+        "limitations": [
+          "dual_final_settlement_hours"
         ]
       }
     },

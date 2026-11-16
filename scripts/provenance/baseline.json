@@ -1071,7 +1071,7 @@
     ],
     "limitation/engine.json": [
       "apprenticeship_pct_undeclared_components",
-      "dual_apprenticeship_contributions",
+      "dual_final_settlement_hours",
       "inps_minimum_base_exempt_category",
       "parental_hourly_ccnl_rule",
       "sickness_cumulation_window",
