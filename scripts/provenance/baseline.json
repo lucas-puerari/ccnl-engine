@@ -163,9 +163,6 @@
       "levels[9].fixed_allowances[CONTINGENZA]": "assumed",
       "seniority_increments": "assumed"
     },
-    "agreement/recapito-corrispondenza-fise.json": {
-      "accrual_rule": "missing"
-    },
     "agreement/scuole-private-laiche-aninsei.json": {
       "additional_months[2024-06-15]": "assumed"
     },

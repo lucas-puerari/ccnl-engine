@@ -16,7 +16,7 @@ from datetime import date, timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.extra_month.models import absence_days
+from ccnl_engine.extra_month.days import absence_days
 from ccnl_engine.run.models import RunKind
 
 if TYPE_CHECKING:

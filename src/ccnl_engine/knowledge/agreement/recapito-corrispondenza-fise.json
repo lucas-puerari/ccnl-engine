@@ -219,6 +219,67 @@
           "effective_from": "2020-01-01"
         }
       }
+    },
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "working_days": true,
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "recapito-fise-ccnl-2010-2012",
+            "title": "CCNL Recapito corrispondenza privati FISE 2010-2012",
+            "kind": "associazione",
+            "url": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+            "sha256": "273af4660875d90a4abad4caa12a713641154d4a4a924db9bbc515126a031f91"
+          },
+          "page": "41",
+          "section": "Art. 40 c. 2",
+          "quote": "La frazione di mese superiore a 15 giorni lavorativi si considera, ai fini della corresponsione della tredicesima mensilità, come mese intero."
+        },
+        "transformation": "The tredicesima counts a month with more than 15 working days; the renewals of 2015 and 2023 leave art. 40 unchanged.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2010-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-recapito-accrual"
+        }
+      },
+      "fourteenth": {
+        "min_days": 15,
+        "comparison": "more_than",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "recapito-fise-ccnl-2010-2012",
+              "title": "CCNL Recapito corrispondenza privati FISE 2010-2012",
+              "kind": "associazione",
+              "url": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+              "sha256": "273af4660875d90a4abad4caa12a713641154d4a4a924db9bbc515126a031f91"
+            },
+            "page": "41",
+            "section": "Art. 41 c. 3",
+            "quote": "La frazione di mese non superiore a 15 giorni non sarà calcolata, mentre sarà considerata mese intero se superiore a 15 giorni."
+          },
+          "transformation": "The quattordicesima counts a month with more than 15 calendar days.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2010-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-recapito-accrual"
+          }
+        }
+      }
     }
   },
   "apprenticeship": [],
@@ -1671,7 +1732,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/",
     "verification_status": "unverified",
-    "source_hash": "1d4f93a06969759e590245531940236f9c39db61c4fce325196ba61bfb8806f4",
+    "source_hash": "e0b48a60d3d0c214728ba7913c10014a42304c495664664249927c61367c3af3",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2384,6 +2445,27 @@
         "checked": [
           "work_rules.time_supplements",
           "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-recapito-accrual",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Arts. 40 and 41 of the CCNL 2010-2012 (PDF p. 41), read in the cited file by sha256; the renewals of 2015 and 2023 do not amend them.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+            "sha256": "273af4660875d90a4abad4caa12a713641154d4a4a924db9bbc515126a031f91"
+          }
+        ],
+        "findings": [
+          "Sourced: parameters.accrual_rule, with the quattordicesima apart."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.accrual_rule"
         ]
       }
     ]

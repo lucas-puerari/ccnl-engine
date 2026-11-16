@@ -50,7 +50,6 @@ __all__ = [
     "DEFAULT_MONTH_ACCRUAL_RULE",
     "ExtraMonthAccrual",
     "MonthAccrualRule",
-    "absence_days",
     "partial_months",
 ]
 
@@ -100,6 +99,8 @@ class MonthAccrualRule:
         valid_from: First day the rule applies; a month starting before it
             is counted with :attr:`previous`.  ``None`` for every month.
         previous: Rule of the months before :attr:`valid_from`.
+        fourteenth: Rule of the quattordicesima, when the CCNL counts it
+            apart (Recapito FISE artt. 40-41); ``None`` for this one.
 
     Raises:
         ValueError: When a full 28-day month would not count or the
@@ -114,6 +115,7 @@ class MonthAccrualRule:
     provenance: RuleProvenance | None = None
     valid_from: date | None = None
     previous: MonthAccrualRule | None = None
+    fourteenth: MonthAccrualRule | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         if self.by_working_days:
@@ -436,6 +438,8 @@ class ExtraMonthAccrual:
             The accrual, with the window clipped to the hire date and
             counted up to the termination date.
         """
+        if schedule.kind.value == "fourteenth" and rule.fourteenth is not None:
+            rule = rule.fourteenth
         started_on = employment.started_on if employment is not None else None
         ended_on = employment.ended_on if employment is not None else None
         window = schedule.accrual_window(payment_year, started_on)
@@ -469,13 +473,3 @@ class ExtraMonthAccrual:
             ),
             undetermined=(suspended_months, suspended_units) != (months, units),
         )
-
-
-def absence_days(first: date, last: date) -> frozenset[date]:
-    """Return every calendar day from ``first`` to ``last`` inclusive.
-
-    Returns:
-        The days of the range, empty when ``last`` precedes ``first``.
-    """
-    span = (last - first).days + 1
-    return frozenset(first + timedelta(days=i) for i in range(max(0, span)))

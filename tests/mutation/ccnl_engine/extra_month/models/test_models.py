@@ -8,11 +8,11 @@ from decimal import Decimal
 import pytest
 
 from ccnl_engine.employment.period.inputs import EmploymentPeriod
+from ccnl_engine.extra_month.days import absence_days
 from ccnl_engine.extra_month.models import (
     DEFAULT_MONTH_ACCRUAL_RULE,
     ExtraMonthAccrual,
     MonthAccrualRule,
-    absence_days,
 )
 from ccnl_engine.extra_month.schedule.models import (
     AccrualWindow,

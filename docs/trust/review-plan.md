@@ -9,7 +9,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 4 | 289 | 244 | 0 | `funzioni-centrali-aran` |
-| terziario | 46 | 5 257 055 | 12 | 990 | 2045 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| terziario | 46 | 5 257 055 | 11 | 990 | 2046 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 49 | 4 969 900 | 114 | 1269 | 2694 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 76 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 29 | 156 | 373 | 2 | `metalmeccanico-artigianato` |
@@ -79,7 +79,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`noleggio-autobus-conducente-anav`](../contracts/noleggio-autobus-conducente-anav.md) | 5 422 | exploratory | 2 | 34 | 35 | party or official | none | none |
 | [`agenzie-marittime-i481`](../contracts/agenzie-marittime-i481.md) | 5 000 | exploratory | 0 | 36 | 2 | party or official | none | none |
 | [`fiori-recisi-ancef`](../contracts/fiori-recisi-ancef.md) | 1 300 | exploratory | 0 | 6 | 42 | party or official | none | none |
-| [`recapito-corrispondenza-fise`](../contracts/recapito-corrispondenza-fise.md) | 1 000 | exploratory | 1 | 16 | 39 | party or official | none | none |
+| [`recapito-corrispondenza-fise`](../contracts/recapito-corrispondenza-fise.md) | 1 000 | exploratory | 0 | 16 | 40 | party or official | none | none |
 | [`servizi-postali-appalto-fise`](../contracts/servizi-postali-appalto-fise.md) | 1 000 | exploratory | 0 | 28 | 23 | party or official | none | none |
 | [`agenti-immobiliari-fiaip`](../contracts/agenti-immobiliari-fiaip.md) | none | exploratory | 1 | 2 | 42 | party or official | none | none |
 | [`autoscuole-unasca`](../contracts/autoscuole-unasca.md) | none | exploratory | 0 | 41 | 5 | party or official | none | none |
