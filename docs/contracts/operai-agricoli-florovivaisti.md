@@ -123,11 +123,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Add the provincial (CPL) supplement outside the engine.
 
 !!! warning "operai-agricoli-florovivaisti/florovivaisti_tables · base_salary · impact yes · open"
-    FLOROVIVAISTI MONTHLY PAY NOT DISTINGUISHED. Annex 1 hourly floriculture minima are used only for time events from June 2026. Monthly base salary and other monthly entitlements still use agricultural amounts; the earlier floriculture hourly floor is not sourced. Do not treat agricultural monthly wages as floriculture salaries.
+    FLOROVIVAISTI MONTHLY PAY NOT DISTINGUISHED. The hourly floriculture minima of Tabella n. 2 (from 2023, 2025 and June 2026) are used for time events. Monthly base salary and other monthly entitlements still use agricultural amounts, while art. 50 derives the monthly pay of a floriculture OTI from the hourly one (paga oraria = paga mensile / 169). Do not treat agricultural monthly wages as floriculture salaries.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Model floriculture monthly pay and historical hourly minima independently; supply contractual hourly rates where the national floor is unavailable.
+    **Remediation:** Model the floriculture monthly pay as the hourly minimum times 169 (art. 50) for the florovivaisti sub-sector.
 
 !!! note "operai-agricoli-florovivaisti/inail_agricultural_premium · inail · impact yes · resolved"
     INAIL AT THE SECTOR RATE. The operai agricoli pay the INAIL agricultural premium of 8.50% (INPS circ. 43/2026, allegato 1), applied when the worker category is stated as operaio; the cooperatives of L. 240/1984 state their industrial rate as EmployerProfile.inail_rate.

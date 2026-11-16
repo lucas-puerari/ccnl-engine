@@ -117,7 +117,7 @@
       },
       {
         "kind": "simplification",
-        "text": "FLOROVIVAISTI MONTHLY PAY NOT DISTINGUISHED. Annex 1 hourly floriculture minima are used only for time events from June 2026. Monthly base salary and other monthly entitlements still use agricultural amounts; the earlier floriculture hourly floor is not sourced. Do not treat agricultural monthly wages as floriculture salaries.",
+        "text": "FLOROVIVAISTI MONTHLY PAY NOT DISTINGUISHED. The hourly floriculture minima of Tabella n. 2 (from 2023, 2025 and June 2026) are used for time events. Monthly base salary and other monthly entitlements still use agricultural amounts, while art. 50 derives the monthly pay of a floriculture OTI from the hourly one (paga oraria = paga mensile / 169). Do not treat agricultural monthly wages as floriculture salaries.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -125,7 +125,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model floriculture monthly pay and historical hourly minima independently; supply contractual hourly rates where the national floor is unavailable."
+          "remediation": "Model the floriculture monthly pay as the hourly minimum times 169 (art. 50) for the florovivaisti sub-sector."
         }
       },
       {
@@ -1008,7 +1008,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "364fd940bd4da2c5ea2a19cc0f56a30cb123c0404998bfdbfcb665f0ea6fd229",
+    "source_hash": "c092adad1c9dbd343b2c3bd80c83aa00184c5922131ea5d48d3764e35cb71b8d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1760,6 +1760,16 @@
           "Area1": {
             "periods": [
               {
+                "valid_from": "2023-01-01",
+                "valid_until": "2025-01-01",
+                "value": "8.41"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2026-06-01",
+                "value": "8.83"
+              },
+              {
                 "valid_from": "2026-06-01",
                 "valid_until": null,
                 "value": "9.28033"
@@ -1769,6 +1779,16 @@
           "Area2": {
             "periods": [
               {
+                "valid_from": "2023-01-01",
+                "valid_until": "2025-01-01",
+                "value": "7.71"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2026-06-01",
+                "value": "8.09"
+              },
+              {
                 "valid_from": "2026-06-01",
                 "valid_until": null,
                 "value": "8.50259"
@@ -1777,6 +1797,16 @@
           },
           "Area3": {
             "periods": [
+              {
+                "valid_from": "2023-01-01",
+                "valid_until": "2025-01-01",
+                "value": "7.24"
+              },
+              {
+                "valid_from": "2025-01-01",
+                "valid_until": "2026-06-01",
+                "value": "7.60"
+              },
               {
                 "valid_from": "2026-06-01",
                 "valid_until": null,
@@ -1800,7 +1830,7 @@
             "section": "Allegato n. 1, Tabella n. 2 (Minimi salariali di area orari — Operai florovivaisti)",
             "quote": "MINIMI SALARIALI DI AREA ORARI\n\n                Tabella n. 2\n\n      OPERAI FLOROVIVAISTI\n\n       Area 1                  9,28033\n       Area2                   8,50259\n       Area3                    7,9876"
           },
-          "transformation": "The annex prints floriculture hourly minima, not agricultural monthly minima / 169. National minima apply from 1 June 2026 in provinces without a CPL; in other provinces the CPL renewal date controls (cpl_minimi_timing limitation). Before June a caller supplies the contractual hourly wage.",
+          "transformation": "The annex prints floriculture hourly minima, not agricultural monthly minima / 169. National minima apply from 1 June 2026 in provinces without a CPL; in other provinces the CPL renewal date controls (cpl_minimi_timing limitation). Earlier periods, aligned with the agricultural monthly tables of the levels: 8.41 / 7.71 / 7.24 to 31 December 2024, Tabella n. 2 of the CCNL 23 May 2022 (https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c, PDF p. 84): 'OPERAI FLOROVIVAISTI ... Area 1 8,41 ... Area 2 7,71 ... Area 3 7,24'; 8.83 / 8.09 / 7.60 from 1 January 2025, Tabella n. 2 of the accordo of 27 October 2023 (https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-OPERAI-AGRICOLI-E-FLOROVIVAISTI-31-10-23.pdf, sha256 64e7b93cae86cb9a6cdf9c2af05eb36ed4760a77a0a9d64f0c4bc68c918fb6b1, PDF p. 6): 'MINIMI SALARIALI DI AREA ORARI ... OPERAI FLOROVIVAISTI ... Area 1 | 8,83 Area 2 | 8,09 Area 3 | 7,60', point 3: 'i predetti importi dei minimi salariali di area sono incrementati del 5 per cento a decorrere dal 1° gennaio 2025'. The 2026 table is the 2025 one raised by 5.1%, the 3.4% of June 2026 plus the 1.7% of January 2027 (8.83 x 1.051 = 9.28033).",
           "extraction": {
             "method": "ai",
             "model": "claude-opus-5-5",
@@ -1809,7 +1839,7 @@
             "verification_status": "verified",
             "review_id": "2026-11-09-floriculture-hourly-correction",
             "verified_by": "claude-opus-5-5",
-            "effective_from": "2026-06-01"
+            "effective_from": "2023-01-01"
           }
         },
         "sickness_rules": {

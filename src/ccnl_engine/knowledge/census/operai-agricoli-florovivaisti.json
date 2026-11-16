@@ -87,10 +87,10 @@
       "institute": "base_salary",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "FLOROVIVAISTI MONTHLY PAY NOT DISTINGUISHED. Annex 1 hourly floriculture minima are used only for time events from June 2026. Monthly base salary and other monthly entitlements still use agricultural amounts; the earlier floriculture hourly floor is not sourced. Do not treat agricultural monthly wages as floriculture salaries.",
+      "rule": "FLOROVIVAISTI MONTHLY PAY NOT DISTINGUISHED. The hourly floriculture minima of Tabella n. 2 (from 2023, 2025 and June 2026) are used for time events. Monthly base salary and other monthly entitlements still use agricultural amounts, while art. 50 derives the monthly pay of a floriculture OTI from the hourly one (paga oraria = paga mensile / 169). Do not treat agricultural monthly wages as floriculture salaries.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
-      "remediation": "Model floriculture monthly pay and historical hourly minima independently; supply contractual hourly rates where the national floor is unavailable.",
+      "remediation": "Model the floriculture monthly pay as the hourly minimum times 169 (art. 50) for the florovivaisti sub-sector.",
       "origin": "seeded",
       "links": {
         "limitations": [

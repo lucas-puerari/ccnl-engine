@@ -15,7 +15,6 @@ from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.catalog.loaders import load_ccnl
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
 from ccnl_engine.employment.category.models import WorkerCategory
-from ccnl_engine.errors import MissingRuleError
 from ccnl_engine.event.facade import (
     HolidayWorkEvent,
     NightShiftEvent,
@@ -199,28 +198,49 @@ def test_floriculture_overtime_derives_hourly_floor() -> None:
     assert decision.amount == Decimal("23.94")
 
 
-def test_pre_annex_floriculture_requires_contractual_hourly_wage() -> None:
-    """March has no sourced hourly floor: never use EUR 1458.61 / 169.
+def test_earlier_floriculture_hourly_floor() -> None:
+    """Area 1, March 2026: the 2025 Tabella n. 2, never 1458.61 / 169.
 
-    The June 2026 annex cannot justify an earlier floor; a caller must
-    supply the contractual hourly rate for March instead of silently
-    paying 8 x (1458.61 / 169) x .40 = EUR 27.62.
+    Accordo of 27/10/2023: 8 x 8.83 x .40 = 28.26.
     """
-    with pytest.raises(
-        MissingRuleError, match="no hourly minimum for this level and date"
-    ):
-        calculate_period(
-            PeriodCalculationRequest(
-                employer=EmployerProfile(
-                    headcount=Headcount(5), subsector="florovivaisti"
-                ),
-                period_id=PeriodId(year=2026, month=3),
-                payment_date=date(2026, 3, 27),
-                ccnl_id="operai-agricoli-florovivaisti",
-                level_code="Area1",
-                opening_state=PeriodState.zero(),
-                events=(HolidayWorkEvent(date(2026, 3, 19), hours=Decimal(8)),),
-            ),
-            repo=bundled_repository(),
-            resolver=bundled_policies(),
-        )
+    result = calculate_period(
+        PeriodCalculationRequest(
+            employer=EmployerProfile(headcount=Headcount(5), subsector="florovivaisti"),
+            period_id=PeriodId(year=2026, month=3),
+            payment_date=date(2026, 3, 27),
+            ccnl_id="operai-agricoli-florovivaisti",
+            level_code="Area1",
+            opening_state=PeriodState.zero(),
+            events=(HolidayWorkEvent(date(2026, 3, 19), hours=Decimal(8)),),
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
+    decision = next(
+        d for d in result.decisions if d.reason_code == "ccnl_supplement_applied"
+    )
+    assert decision.inputs["hourly_minimum"] == Decimal("8.83")
+    assert decision.amount == Decimal("28.26")
+
+
+@pytest.mark.parametrize(
+    ("day", "floor"),
+    [
+        (date(2022, 12, 31), None),
+        (date(2024, 3, 19), Decimal("8.41")),
+        (date(2025, 1, 1), Decimal("8.83")),
+        (date(2026, 6, 1), Decimal("9.28033")),
+    ],
+)
+def test_floriculture_hourly_table_by_date(day: date, floor: Decimal | None) -> None:
+    """CCNL 23/5/2022, accordo 27/10/2023 and verbale 28/5/2026, Area 1."""
+    ccnl, _ = with_subsector(
+        load_ccnl("operai-agricoli-florovivaisti"),
+        "florovivaisti",
+        WorkerCategory.OPERAIO,
+    )
+    assert ccnl.work_rules is not None
+    supplements = ccnl.work_rules.time_supplements
+    assert supplements is not None
+    period = supplements.hourly_minimum_by_level["Area1"].period_at(day)
+    assert (None if period is None else period.value) == floor
