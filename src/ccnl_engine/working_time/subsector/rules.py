@@ -23,9 +23,11 @@ from ccnl_engine.compensation.ladder.rules import levels_for
 from ccnl_engine.errors import InvalidInputError
 
 if TYPE_CHECKING:
+    from ccnl_engine.agreement.coverage.models import CCNLWorkRules
     from ccnl_engine.agreement.facade import CCNL
     from ccnl_engine.employment.category.models import WorkerCategory
     from ccnl_engine.working_time.models import OvertimeBand
+    from ccnl_engine.working_time.subsector.models import SubsectorRules
     from ccnl_engine.working_time.supplement.models import SupplementBand
 
 __all__ = ["subsectors_of", "with_subsector"]
@@ -255,8 +257,20 @@ def _with_sector_rules(
         "apprenticeship": tracks,
         "parameters": parameters.model_copy(update=changed),
     }
-    if work is not None and rules is not None and rules.sickness_rules is not None:
-        update["work_rules"] = work.model_copy(
-            update={"sickness_rules": rules.sickness_rules}
-        )
+    if work is not None and rules is not None:
+        update["work_rules"] = _own_work_rules(work, rules)
     return ccnl.model_copy(update=update)
+
+
+def _own_work_rules(work: CCNLWorkRules, rules: SubsectorRules) -> CCNLWorkRules:
+    """Return the work rules with those the sub-sector sets in their place.
+
+    Returns:
+        ``work`` with the sickness and Sunday-holiday rules of ``rules``
+        that are set.
+    """
+    own = {
+        "sickness_rules": rules.sickness_rules,
+        "sunday_holidays": rules.sunday_holidays,
+    }
+    return work.model_copy(update={k: v for k, v in own.items() if v is not None})
