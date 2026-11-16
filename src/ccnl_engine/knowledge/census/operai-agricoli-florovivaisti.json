@@ -51,22 +51,6 @@
       }
     },
     {
-      "id": "fixed_term_seniority_element",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (Art. 54-bis, new, verbale of 28 May 2026): from 1 January 2027 a fixed-term operaio who worked at least 150 days a year for the same employer for three consecutive years receives, from the fourth year, 0.4% of the salario contrattuale. The request carries no history of days per employer, so it is not paid.",
-      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the consecutive years of at least 150 days with the employer to the request and pay 0.4% of the salary, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "operai-agricoli-florovivaisti/fixed_term_seniority_element"
-        ]
-      }
-    },
-    {
       "id": "florovivaisti_sickness_integration",
       "institute": "sickness",
       "variant": "all",

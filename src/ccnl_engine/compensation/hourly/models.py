@@ -59,6 +59,10 @@ class HourlyPercentage(BaseModel):
             the Cassa Edile; set for ``cassa_edile`` alone.
         tfr_relevant: Whether it enters the TFR base (operai agricoli OTD:
             'il TFR non si calcola sul terzo elemento').
+        fixed_term_years: Consecutive qualifying years with the employer a
+            fixed-term worker needs to be paid it
+            (``FixedTerm.qualifying_years``; operai agricoli art. 54-bis);
+            ``None`` pays it to every worker of the rule.
         provenance: Source of the clause.
 
     Raises:
@@ -77,6 +81,7 @@ class HourlyPercentage(BaseModel):
     settlement: PercentageSettlement
     net_rate: TimeSeries | None = None
     tfr_relevant: bool = True
+    fixed_term_years: int | None = Field(default=None, ge=1)
     provenance: RuleProvenance
 
     @model_validator(mode="after")

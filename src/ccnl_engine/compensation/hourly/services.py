@@ -17,7 +17,7 @@ from typing import TYPE_CHECKING
 
 from ccnl_engine.agreement.validity.rules import rule_scope
 from ccnl_engine.compensation.fixed_term.rules import overtime_hours
-from ccnl_engine.compensation.hourly.base import percentage_base
+from ccnl_engine.compensation.hourly.base import percentage_base, percentage_due
 from ccnl_engine.compensation.hourly.models import PercentageSettlement
 from ccnl_engine.decision.models import CalculationDecision, CalculationStatus
 from ccnl_engine.decision.rules import _ccnl_rule
@@ -107,6 +107,8 @@ def run_percentages(ctx: RunContext) -> tuple[PercentageAmount, ...]:
     amounts: list[PercentageAmount] = []
     with rule_scope(ruleset=ctx.contract.ccnl.meta.ccnl_id, feature="base_salary"):
         for percentage in spec.percentages:
+            if not percentage_due(percentage, ctx.request.contract_type, day):
+                continue
             base = money(percentage_base(chain, percentage) * scale)
             rate = percentage.rate.value_at(day)
             series = percentage.net_rate
@@ -269,6 +271,7 @@ def upcoming_percentages(
     chain: MonthlyPayChain,
     day: date,
     upcoming: tuple[WithholdingSlot, ...],
+    contract_type: object,
 ) -> Decimal:
     """Return the percentages the regular payments still to come will pay.
 
@@ -287,6 +290,7 @@ def upcoming_percentages(
             (
                 money(percentage_base(chain, p) * p.rate.value_at(day))
                 for p in percentages
+                if percentage_due(p, contract_type, day)
             ),
             _ZERO,
         )

@@ -150,8 +150,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** State on the apprentice input whether the apprenticeship is fixed-term and pay no increment to a fixed-term apprentice where the CCNL keeps them to permanent workers, then remove this note.
 
-!!! warning "operai-agricoli-florovivaisti/fixed_term_seniority_element · base_salary · impact yes · open"
-    ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (Art. 54-bis, new, verbale of 28 May 2026): from 1 January 2027 a fixed-term operaio who worked at least 150 days a year for the same employer for three consecutive years receives, from the fourth year, 0.4% of the salario contrattuale. The request carries no history of days per employer, so it is not paid.
+!!! note "operai-agricoli-florovivaisti/fixed_term_seniority_element · base_salary · impact yes · resolved"
+    ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (Art. 54-bis, new, verbale of 28 May 2026): from 1 January 2027 a fixed-term operaio who worked at least 150 days a year for the same employer for three consecutive years receives, from the fourth year, 0.4% of the salario contrattuale. FixedTerm.qualifying_years states the consecutive years: the element is the hourly percentage ELEMENTO_AGGIUNTIVO of the fixed-term pay.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 

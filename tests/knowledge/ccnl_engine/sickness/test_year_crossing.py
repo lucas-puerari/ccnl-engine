@@ -134,7 +134,7 @@ def test_an_agricultural_fixed_term_episode_is_paid_by_inps_alone() -> None:
         "Area1",
         date(2027, 1, 12),
         category=WorkerCategory.OPERAIO,
-        contract_type=FixedTerm(),
+        contract_type=FixedTerm(qualifying_years=0),
     )
     december, january = (
         next(d for d in r.decisions if d.capability == "sickness").inputs for r in runs
