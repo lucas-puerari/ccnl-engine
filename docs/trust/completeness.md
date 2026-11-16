@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 8/136 CCNLs**; complete except declared residuals: 1. Bundle: 250 weak rules, 261 open limitations (261 with a monetary impact), 32 declared residuals.
+**Complete: 9/136 CCNLs**; complete except declared residuals: 1. Bundle: 250 weak rules, 261 open limitations (261 with a monetary impact), 32 declared residuals.
 
 ## Declared window
 
@@ -133,7 +133,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [forze-polizia-ordinamento-civile](../contracts/forze-polizia-ordinamento-civile.md) | `forze-polizia` | exploratory | — | 5 rows | 5 open requirements; 2 weak rules; 3 monetary limitations; 7 non-native capabilities |
 | [funivie-anef](../contracts/funivie-anef.md) | `trasporti-logistica` | exploratory | — | 3 rows | 3 open requirements; 2 weak rules; 1 monetary limitation; 5 non-native capabilities |
 | [funzioni-centrali-aran](../contracts/funzioni-centrali-aran.md) | `pubblico-impiego` | reviewed | — | 0 rows | 1 non-native capability |
-| [funzioni-locali-aran](../contracts/funzioni-locali-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 0 rows | tables from 2026-02-24 |
+| [funzioni-locali-aran](../contracts/funzioni-locali-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 0 rows | complete; 3 limitations awaiting publication |
 | [gas-acqua-utilitalia](../contracts/gas-acqua-utilitalia.md) | `energia-utilities` | exploratory | — | 4 rows | 4 open requirements; 1 weak rule; 3 monetary limitations; 3 non-native capabilities |
 | [gomma-plastica-federazione-gomma-plastica](../contracts/gomma-plastica-federazione-gomma-plastica.md) | `chimica` | exploratory | — | 5 rows | 5 open requirements; 2 weak rules; 2 monetary limitations; 1 outside_input limitation; 7 non-native capabilities |
 | [grafica-editoria-aieg](../contracts/grafica-editoria-aieg.md) | `carta-grafica` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule; 1 non-native capability |
