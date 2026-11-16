@@ -64,6 +64,8 @@ def _context(
                             manual_monthly_pay=False,
                             levels=(),
                             service_basis="actual",
+                            early_hours={},
+                            dismissal_pro_rata=False,
                             manual_hours=None,
                             provenance=SimpleNamespace(
                                 location=SimpleNamespace(section="Art. 65")
@@ -119,6 +121,8 @@ def test_historical_in_service_gate_and_monthly_manual_award() -> None:
             in_service_on=date(1997, 12, 22),
             levels=(),
             service_basis="actual",
+            early_hours={},
+            dismissal_pro_rata=False,
             provenance=SimpleNamespace(location=SimpleNamespace(section="Art. 43")),
         )
         return cast("RunContext", ctx)
@@ -275,6 +279,8 @@ def test_one_time_subsector_award(
         manual_monthly_pay=False,
         levels=(),
         service_basis="actual",
+        early_hours={},
+        dismissal_pro_rata=False,
         manual_hours=Decimal(200),
         hourly_divisor=None,
         provenance=SimpleNamespace(location=SimpleNamespace(section="Rule 25")),
@@ -331,6 +337,8 @@ def test_manual_milestone_without_hourly_divisor_pays_nothing(
         manual_monthly_pay=False,
         levels=(),
         service_basis="actual",
+        early_hours={},
+        dismissal_pro_rata=False,
         manual_hours=Decimal(200),
         hourly_divisor=None,
     )

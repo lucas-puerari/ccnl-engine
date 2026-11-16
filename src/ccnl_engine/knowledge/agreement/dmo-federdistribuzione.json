@@ -4557,7 +4557,7 @@
     "effective_until": null,
     "source": "https://www.federdistribuzione.it/app/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
     "verification_status": "unverified",
-    "source_hash": "857d892418d7a3a38e898db8e37e8c4e0645042b63b14eb421918b769c2b5d73",
+    "source_hash": "931fa47fe969357af302cec5b81f9b1af15fc22cdd155b30874a7bea2038a3bf",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -6067,6 +6067,33 @@
           "review_id": "2026-11-15-ai-dmo-federdistribuzione-travel"
         }
       }
+    },
+    "capability_basis": {
+      "shift_work": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "testo-unico-ccnl-dmo-2026",
+              "title": "Testo Unico CCNL DMO (Federdistribuzione)",
+              "kind": "associazione",
+              "url": "https://www.federdistribuzione.it/wp-content/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+              "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+            },
+            "page": "43",
+            "section": "Art. 134 - Lavoro notturno",
+            "quote": "A decorrere dal 1° gennaio 1995, le ore di lavoro ordinario prestato di notte – intendendosi per tali quelle effettuate dalle ore 22 alle ore 6 del mattino – verranno retribuite con aliquota oraria della retribuzione di fatto di cui all’art. 191, maggiorata del 15%."
+          },
+          "transformation": "The CCNL pays the ordinary night hours 15% (art. 134), shift or not, and sets no premium for shift work as such: art. 12 (PDF p. 13) and art. 115 (PDF p. 39, 'Al secondo livello di contrattazione aziendale potranno essere raggiunte intese sulle materie riguardanti turni o nastri orari') leave the organisation of the shifts to company bargaining, not an amount. A night shift hour is a night hour of art. 134; a day shift hour is ordinary pay.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "verification_status": "unverified"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -6556,6 +6583,27 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.travel_allowance"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-dmo-shift-basis",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Shift work: artt. 12, 115 and 134 read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.federdistribuzione.it/wp-content/uploads/2026/04/Testo-Unico-CCNL-DMO.pdf",
+            "sha256": "9bb56adb31c2f6aa2c65c48dbe60774701367658177dd544391ccf2da70fbbaf"
+          }
+        ],
+        "findings": [
+          "Applied: shift work none_in_ccnl; the night hours keep the 15% of art. 134."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.capability_basis"
         ]
       }
     ],
