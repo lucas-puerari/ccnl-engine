@@ -5,7 +5,7 @@ from __future__ import annotations
 from decimal import Decimal
 
 from ccnl_engine.contribution.decision.services import _minimum_inputs
-from ccnl_engine.contribution.minimum_base.models import (
+from ccnl_engine.contribution.minimum_base.results import (
     MinimumBase,
     MinimumBaseReason,
 )

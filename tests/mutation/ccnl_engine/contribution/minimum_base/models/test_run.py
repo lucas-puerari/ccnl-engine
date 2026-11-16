@@ -6,11 +6,8 @@ from decimal import Decimal
 
 import pytest
 
-from ccnl_engine.contribution.minimum_base.models import (
-    MinimumBase,
-    MinimumBaseReason,
-    MonthPosition,
-)
+from ccnl_engine.contribution.minimum_base.models import MonthPosition
+from ccnl_engine.contribution.minimum_base.results import MinimumBase, MinimumBaseReason
 
 _D = Decimal
 
