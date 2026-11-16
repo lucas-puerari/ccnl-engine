@@ -5473,7 +5473,7 @@
     "effective_until": null,
     "source": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
     "verification_status": "unverified",
-    "source_hash": "c2afb2319c3a305987e7f8bf2e21a006eed5a3ba34246f7de368eccb9b9ac3fb",
+    "source_hash": "7f539c74d06e5a8b199d82a3399ec0542ac90b1c8885c3ccb02b2821f74a46eb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5802,6 +5802,37 @@
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://f, sha256 7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65)."
       }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "https-foe-it-files-2024-07-ccnl-aninsei-2024-2027cd-pdf",
+              "title": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+              "kind": "associazione",
+              "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+              "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+            },
+            "page": "23",
+            "section": "Art. 21 - Secondo Livello di Contrattazione",
+            "quote": "- indennità di trasferta;"
+          },
+          "transformation": "The CCNL leaves the daily travel allowance to company or territorial bargaining: its amount is the employer's fact (TravelAllowanceEvent.daily_amount).",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-scuole-private-laiche-aninsei-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -5841,6 +5872,27 @@
             "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
             "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
           }
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-scuole-private-laiche-aninsei-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Travel allowance: the clause located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://foe.it/files/2024/07/CCNL-ANINSEI_2024-2027cd.pdf",
+            "sha256": "7ded0d5d6b5a3dc5763084517f7fb520e293b4f0a7d9b85be96648d537c35b65"
+          }
+        ],
+        "findings": [
+          "Applied: travel delegated to second-level bargaining."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.capability_basis"
         ]
       }
     ]

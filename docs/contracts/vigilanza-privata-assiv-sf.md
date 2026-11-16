@@ -55,7 +55,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-05-30 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Paga conglobata of levels A-E against the signed tables of 16 February 2024, page 2, read on the page image. | corrected | Every level was shifted one column: the amount of 1/01/24 was dated 1/06/23, and so on; the December 2026 tranche was missing. Nine periods rebuilt on the printed dates 01/06/23 ... 01/12/26 (an independent reading and a separate investigation agreed). |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto over the calendar year and paid days, against the research of a separate model session; quotes checked on the source. | corrected | Comporto of 240 days over the calendar year; pay ends after 180 days. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base, bands[0:sunday].<br>Left out: bands[1:night_holiday]: quote quote_not_in_file; bands[2:night_holiday]: more night_holiday bands the engine cannot tell apart; bands[3:holiday]: quote quote_not_in_file; bands[4:rest_day]: quote skipped; none.shift_work: skipped; none.night: skipped. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: travel.<br>Left out: bands[0:sunday]: quote skipped; bands[1:night_holiday]: quote skipped; bands[2:night_holiday]: quote skipped; bands[3:holiday]: quote skipped; bands[4:rest_day]: quote skipped; none.shift_work: skipped; none.night: skipped. |
 
 ## Salary table
 

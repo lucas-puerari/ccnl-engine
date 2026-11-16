@@ -3868,7 +3868,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "8f2d7b7136b7b0be00a16819bbcfff096c826e5521d3775dec1c1d02af18a51f",
+    "source_hash": "618bb28d61789d481794e5e5b9d03145e6a6fc4701839f35b5e144288c6ede88",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },
@@ -4892,6 +4892,35 @@
             "review_id": "2026-11-16-ai-turismo-federalberghi-alberghi-minori-time-supplements"
           }
         }
+      },
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "http-www-uiltucs-it-pdf-turismo-ccnl-turismo-confcommercio-2010-pdf",
+              "title": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+              "kind": "associazione",
+              "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+              "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+            },
+            "page": "180",
+            "section": "Articolo 212 - Spese di viaggio",
+            "quote": "Il personale delle aziende stagionali anA diritto al biglietto di andata dal punto di ingaggio (o dalla staziOlle di confine se proveniente dall'e!Jtero)."
+          },
+          "transformation": "The CCNL sets no travel allowance.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-turismo-federalberghi-alberghi-minori-time-supplements"
+          }
+        }
       }
     }
   },
@@ -5299,7 +5328,8 @@
           }
         ],
         "findings": [
-          "Applied: none.shift_work."
+          "Applied: travel.",
+          "Left out: none.shift_work: skipped."
         ],
         "independence": "separate_model",
         "checked": [

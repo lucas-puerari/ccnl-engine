@@ -4403,7 +4403,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "0cd5346117a2d375e077c701b2b5a46e8a15dafb41a2b9b89fba0e7d5c504d77",
+    "source_hash": "c5a5c3f126e8a7218171377644dd2c61e0c4ad4d5ffa65caf69bac60b3f75eb1",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5532,6 +5532,37 @@
         "transformation": "The CCNL repeats the statutory half-average-daily-hours criterion over the immediately preceding four-week or monthly pay period; it does not equate a fixed number of hours to one day. The criterion uses the worker's average daily hours and thus scales with individual part-time hours. The two-day notice also matches the statutory hourly-leave notice; no distinct hourly modality is established by this clause.",
         "note": "Scanned PDF: the quote is read from the OCR of the page."
       }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "unione-doc-contratti-lavoro-contrattazione-collettiva-ccnl-ristorazione-2018-pdf",
+              "title": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+              "kind": "associazione",
+              "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+              "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+            },
+            "page": "116",
+            "section": "Articolo 157 - Elementi della retribuzione",
+            "quote": "Di norma, la retribuzione del lavoratore è distinta nelle seguenti voci: a) paga base nazionale; b) eventuali trattamenti salariali integrativi comunque denominati previsti per ciascun comparto nelle parti generale e speciale del presente Contratto; ©) indennità di contingenza; d) eventuali scatti di anzianità nelle misure e con le modalità previste all’articolo 182;"
+          },
+          "transformation": "The CCNL sets no travel allowance.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-pubblici-esercizi-fipe-angem-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -5907,6 +5938,29 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.parental_hourly"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-pubblici-esercizi-fipe-angem-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          }
+        ],
+        "findings": [
+          "Applied: travel.",
+          "Left out: none.shift_work: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ],

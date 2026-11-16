@@ -52,7 +52,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-05-14 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-31 | claude-opus-5-5 (ai) | The comporto and the sick pay of the CCNL counted over several illnesses (work_rules.sickness_rules), read on the signed text. | corrected | Art. 41 (pp. 45-47): comporto 6 months up to 5 years of seniority within the 17 months before, 12 months above within the 24 months before; 6 months of whole net pay and, above 5 years, 6 of half. The file kept 180 days of one illness: corrected to a cumulation with two seniority bands. |
 | 2026-11-07 | gpt-6-sol (ai) | Monthly values on scanned pages, each read twice from the page image by two independent sessions of another model, the second without being told the expected value. | confirmed | 72 values read identically by both readings and equal to the file. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 21 (V.P. classification), art. 23 (quadri) and the V.P. protocol of the TU 2019-2023, against the research of a separate model session and the 2024 renewal p. 49. | corrected | Added the indennità di funzione of the quadri, EUR 120 at 1A and EUR 90 at level 1, role 'quadro'.<br>V.P. are level 2 and 3 workers; the open note becomes the travelling_salesmen_protocol limitation. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Travel allowance: the clause located in the cited file by sha256. | corrected | Applied: travel delegated to second-level bargaining. |
 
 ## Salary table
 

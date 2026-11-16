@@ -118,6 +118,29 @@
         "findings": [
           "Art. 18 - Tredicesima mensilita' (p. 20): \"Le frazioni di mese non superiori ai 15 giorni non saranno calcolate mentre saranno considerate come mese intero se superiori ai 15 giorni.\". Match: more_than 15."
         ]
+      },
+      {
+        "id": "2026-11-16-ai-autoscuole-unasca-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+            "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+          }
+        ],
+        "findings": [
+          "Applied: travel.",
+          "Left out: bands[0:night]: quote skipped; bands[1:night]: quote skipped; bands[2:sunday]: quote skipped; bands[3:night_holiday_compensatory_rest]: quote skipped; bands[4:holiday]: quote skipped; none.shift_work: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -1490,7 +1513,7 @@
     "effective_until": null,
     "source": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
     "verification_status": "unverified",
-    "source_hash": "f76413fae88011317453d2bf8b91825d3254f1baa117076175841c3caf5c6803",
+    "source_hash": "7c7ec04b4d1b225b9caf4f2ffe862628c2b295f0551a9c94f04fe258bd8a0e3a",
     "published_at": "2026-09-12",
     "source_type": "contracting_party"
   },
@@ -1512,6 +1535,40 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 c01d0de466fd8a094e6bdccdda21b3ae0dd0db7ddd887acd2367c936ebb2ac8b)."
+      }
+    },
+    "time_supplements": {
+      "supplement_bands": []
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "le-scuole-nautiche-studi-di-consulenza-automobilistica-firmato-il-28-02-2023-pdf",
+              "title": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+              "kind": "associazione",
+              "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+              "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+            },
+            "page": "16",
+            "section": "Art. 13 - Retribuzione, comma 2",
+            "quote": "Non fanno parte della retribuzione, i rimborsi spese e le indennità di cui agli artt. 13 e 31 e qualunque altra indennità avente carattere risarcitorio."
+          },
+          "transformation": "The CCNL sets no travel allowance.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-autoscuole-unasca-time-supplements"
+          }
+        }
       }
     }
   }

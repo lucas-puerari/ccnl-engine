@@ -1926,7 +1926,7 @@
     "effective_until": null,
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-Cooperative-e-consorzi-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "61dd417f6e1068287725d4426db56499dec6704cc0d5bfd61aee73007cd2f1e4",
+    "source_hash": "442da19efc531a30fac4b1fc305fa9db002559dc1af4d7bd0b7a88265ca31410",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2185,6 +2185,37 @@
           "verification_status": "unverified"
         }
       }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "cnl-per-i-lavoratori-dipendenti-di-cooperative-e-consorzi-agricoli-2024-2027-pdf",
+              "title": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-per-i-lavoratori-dipendenti-di-cooperative-e-consorzi-agricoli-2024-2027.pdf",
+              "kind": "associazione",
+              "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-per-i-lavoratori-dipendenti-di-cooperative-e-consorzi-agricoli-2024-2027.pdf",
+              "sha256": "2a3ccfd23d9545f5614e7af245eb51f60e89c323b1797b81b336d2d2d79e153e"
+            },
+            "page": "46",
+            "section": "Art. 15 - Rimborso spese",
+            "quote": "L’eventuale tempo eccedente il normale orario contrattuale potrà essere remunerato o attraverso il riconoscimento delle maggiorazioni per straordinario o attraverso un’indennità di trasferta da stabilire nella contrattazione di 2° livello."
+          },
+          "transformation": "The CCNL leaves the daily travel allowance to company or territorial bargaining: its amount is the employer's fact (TravelAllowanceEvent.daily_amount).",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-cooperative-consorzi-agricoli-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -2358,6 +2389,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules.comporto_windows"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-cooperative-consorzi-agricoli-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Travel allowance: the clause located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-per-i-lavoratori-dipendenti-di-cooperative-e-consorzi-agricoli-2024-2027.pdf",
+            "sha256": "2a3ccfd23d9545f5614e7af245eb51f60e89c323b1797b81b336d2d2d79e153e"
+          }
+        ],
+        "findings": [
+          "Applied: travel delegated to second-level bargaining."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.capability_basis"
         ]
       }
     ],

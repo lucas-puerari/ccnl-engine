@@ -31,7 +31,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/acconciatura-estetica-confartigianato",
       "ruleset_version": "2026.2",
-      "source_hash": "600352489abd4340d9dc3322a42bf3a84d9f0bca5a91289b0b070a020615685e",
+      "source_hash": "67fa07021909fc8b6a38073666090c7a3604a983c44e0e4e76477f865b44931b",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/acconciatura-estetica-confartigianato.json.gz"
@@ -150,7 +150,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/alimentaristi-cooperative-e016",
       "ruleset_version": "2026.2",
-      "source_hash": "9e8882f05a904a504beac07f4c76613bf6ad1e3457432a483603b51141b62981",
+      "source_hash": "7e595285a4f07eb98f082063e19e774af981b6a5744ea5baa81e74221c823dff",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/alimentaristi-cooperative-e016.json.gz"
@@ -252,7 +252,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/autoscuole-unasca",
       "ruleset_version": "2026.1",
-      "source_hash": "f76413fae88011317453d2bf8b91825d3254f1baa117076175841c3caf5c6803",
+      "source_hash": "7c7ec04b4d1b225b9caf4f2ffe862628c2b295f0551a9c94f04fe258bd8a0e3a",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/autoscuole-unasca.json.gz"
@@ -541,7 +541,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/consorzi-agrari-assocap",
       "ruleset_version": "2026.2",
-      "source_hash": "1b9e6cebe2a86006918789d27739c7e6f9dd8812494e33996cf149f717c54a83",
+      "source_hash": "faaf6ff15d78c7691728c9f3b383e0d07deab3741fdb9e3c1c5aaba8574d161f",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/consorzi-agrari-assocap.json.gz"
@@ -592,7 +592,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/cooperative-consorzi-agricoli",
       "ruleset_version": "2026.2",
-      "source_hash": "61dd417f6e1068287725d4426db56499dec6704cc0d5bfd61aee73007cd2f1e4",
+      "source_hash": "442da19efc531a30fac4b1fc305fa9db002559dc1af4d7bd0b7a88265ca31410",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/cooperative-consorzi-agricoli.json.gz"
@@ -935,7 +935,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/farmacie-private-h121",
       "ruleset_version": "2026.2",
-      "source_hash": "d3b185e8717675431816f769632669bbd8f260e9aab6daf2cb9e267e7dee4261",
+      "source_hash": "f7131fac12a6cd6017287cfef8fb5b59395aa9d514830a053c831f2db461d417",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/farmacie-private-h121.json.gz"
@@ -952,7 +952,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/farmacie-rurali-sussidiate-h121",
       "ruleset_version": "2026.2",
-      "source_hash": "a226b51039e68998efd1c22d015fbef6e781664b01c13e1d645cd1d517a8fb60",
+      "source_hash": "edea8914e91b18e5ce23476e5b48664a48c64150a79eb9b8f8b998f0dd4f75c2",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/farmacie-rurali-sussidiate-h121.json.gz"
@@ -1768,7 +1768,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem-ristorazione-collettiva",
       "ruleset_version": "2026.2",
-      "source_hash": "9fa833e9c405871defb85a159946933b6065fce94494ea38ab2ed56beffbaf58",
+      "source_hash": "fb1e41e421ade95cebead2fccc0b4c969471843c7b872811eaadd194a1ae1b63",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem-ristorazione-collettiva.json.gz"
@@ -1785,7 +1785,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/pubblici-esercizi-fipe-angem",
       "ruleset_version": "2026.2",
-      "source_hash": "0cd5346117a2d375e077c701b2b5a46e8a15dafb41a2b9b89fba0e7d5c504d77",
+      "source_hash": "c5a5c3f126e8a7218171377644dd2c61e0c4ad4d5ffa65caf69bac60b3f75eb1",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/pubblici-esercizi-fipe-angem.json.gz"
@@ -1802,7 +1802,7 @@
       "valid_to": "2029-12-31",
       "ruleset_id": "ccnl/pulizia-artigianato-confartigianato",
       "ruleset_version": "2025.1",
-      "source_hash": "c5fae06c91cf18d7c8dadcdea57e8fd95549bc09937d189bb22b4b7426489054",
+      "source_hash": "808b99a43115811674100c53ed591c2528b9aca9d1a9258826cf9721f91a3669",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/pulizia-artigianato-confartigianato.json.gz"
@@ -1819,7 +1819,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/radiotelevisive-radiofonico",
       "ruleset_version": "2026.2",
-      "source_hash": "018a4032bb1f7d2c392861185286c59af75903ddf10959b002b59cae2abca4a0",
+      "source_hash": "aa00daadc2d539c921a792fd1e11b836edb74dd4b99cd37e5e148df7b51004b1",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/radiotelevisive-radiofonico.json.gz"
@@ -1836,7 +1836,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/radiotelevisive-televisivo",
       "ruleset_version": "2026.2",
-      "source_hash": "7381fd28696f6839ccae484ca36a2baba99c060d14a699b36affc82df74c94b4",
+      "source_hash": "ce8171d8f820a5c3f66fc221d9bdeae83e36f6efc5de4e0d551f4b065cc75bae",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/radiotelevisive-televisivo.json.gz"
@@ -1955,7 +1955,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/scuole-private-laiche-aninsei",
       "ruleset_version": "2026.2",
-      "source_hash": "c2afb2319c3a305987e7f8bf2e21a006eed5a3ba34246f7de368eccb9b9ac3fb",
+      "source_hash": "7f539c74d06e5a8b199d82a3399ec0542ac90b1c8885c3ccb02b2821f74a46eb",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/scuole-private-laiche-aninsei.json.gz"
@@ -2193,7 +2193,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi-alberghi-minori",
       "ruleset_version": "2026.2",
-      "source_hash": "8f2d7b7136b7b0be00a16819bbcfff096c826e5521d3775dec1c1d02af18a51f",
+      "source_hash": "618bb28d61789d481794e5e5b9d03145e6a6fc4701839f35b5e144288c6ede88",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/turismo-federalberghi-alberghi-minori.json.gz"
@@ -2295,7 +2295,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/vigilanza-privata-assiv-sf",
       "ruleset_version": "2026.2",
-      "source_hash": "896b813975aecc566b10d30b6fd37535457e3c90a841f8fe5165ee21ef7ba964",
+      "source_hash": "3ec884d3adf2d5271aa67d6f23f63def885d2a5500969fa76d6b9824827ddefb",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/vigilanza-privata-assiv-sf.json.gz"
