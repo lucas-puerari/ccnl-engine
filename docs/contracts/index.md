@@ -138,7 +138,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 18 | IC35 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | Autorimesse e noleggio automezzi | ~41k | 2025 | ✅ | parental_leave | 59 / 41 / 0 / 1 | 🧪 | 🤖 |
 | 19 | I192 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | autostrade e trafori — addetti alle concessionarie autostradali | ~15k | 2023 | ✅ | sickness | 55 / 97 / 0 / 1 | 🧪 | 🤖 |
 | 20 | H601 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | Terziario | ~22k | 2025 | ⚠️ | base_salary, inps_employer, maternity_leave, shift_work, workplace_injury | 51 / 5 / 0 / 1 | 🧪 | 🤖 |
-| 21 | G022 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | carta-cartone | ~35k | 2026 | ⚠️ | base_salary | 14 / 62 / 0 / 0 | 🧪 | 🤖 |
+| 21 | G022 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | carta-cartone | ~35k | 2026 | ⚠️ | base_salary | 21 / 62 / 0 / 0 | 🧪 | 🤖 |
 | 22 | T011 | [CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)](sanita-privata-aiop-aris.md) | Sanità privata | ~150k | 2020 | ⚠️ | base_salary, overtime, seniority, standby | 38 / 2 / 0 / 0 | 🧪 | 🤖 |
 | 23 | F032 | [CCNL Cemento, Calce e Gesso — Industria (Federbeton)](cemento-calce-gesso-industria.md) | industria del cemento calce e gesso | ~25k | — | ⚠️ | seniority | 45 / 37 / 0 / 0 | 🧪 | 🤖 |
 | 24 | B122 | [CCNL Ceramica Industria (Confindustria) - Ceramica sanitaria e stoviglieria](ceramica-sanitaria-stoviglieria-confindustria.md) | ceramica | ~23k | — | ⚠️ | seniority | 52 / 19 / 0 / 1 | 🧪 | 🤖 |
@@ -214,7 +214,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 94 | T091 | [CCNL RSA e Strutture Residenziali Socio-Assistenziali (AIOP)](rsa-aiop.md) | residenze sanitarie assistenziali — personale non medico | ~17k | 2012 | ⚠️ | base_salary, seniority | 33 / 9 / 0 / 0 | 🧪 | 🤖 |
 | 95 | G091 | [CCNL Radiotelevisivo — Settore Radiofonico](radiotelevisive-radiofonico.md) | radiotelevisione — settore radiofonico | — | 2026 | ⚠️ | inps_employer, seniority | 13 / 0 / 8 / 0 | 🧪 | 🤖 |
 | 96 | G091 | [CCNL Radiotelevisivo — Settore Televisivo Multimediale](radiotelevisive-televisivo.md) | radiotelevisione — settore televisivo multimediale | — | 2026 | ⚠️ | inps_employer, seniority | 28 / 1 / 10 / 0 | 🧪 | 🤖 |
-| 97 | K711 | [CCNL Recapito Corrispondenza (FISE-ARE)](recapito-corrispondenza-fise.md) | Recapito corrispondenza e spedizioni | ~1k | 2023 | ✅ | — | 32 / 16 / 0 / 1 | 🧪 | 🤖 |
+| 97 | K711 | [CCNL Recapito Corrispondenza (FISE-ARE)](recapito-corrispondenza-fise.md) | Recapito corrispondenza e spedizioni | ~1k | 2023 | ✅ | — | 39 / 16 / 0 / 1 | 🧪 | 🤖 |
 | 98 | T271 | [CCNL Scuole Materne — FISM](scuole-materne-fism.md) | istruzione privata cattolica per l'infanzia | ~30k | — | ⚠️ | seniority, sickness | 41 / 16 / 0 / 0 | 🧪 | 🤖 |
 | 99 | T231 | [CCNL Scuole Private Laiche (ANINSEI-Assoscuola)](scuole-private-laiche-aninsei.md) | istruzione privata laica | ~25k | — | ⚠️ | seniority | 36 / 71 / 1 / 0 | 🧪 | 🤖 |
 | 100 | K721 | [CCNL Servizi Postali in Appalto (FISE-ARE)](servizi-postali-appalto-fise.md) | Servizi postali in appalto e recapito | ~1k | 2023 | ⚠️ | base_salary | 23 / 28 / 0 / 0 | 🧪 | 🤖 |

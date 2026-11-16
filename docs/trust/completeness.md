@@ -92,7 +92,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [bancari-abi](../contracts/bancari-abi.md) | `credito` | exploratory | 2026-03-31 | 6 rows | 6 open requirements; 3 monetary limitations; 3 outside_input limitations; 9 non-native capabilities |
 | [bcc-credito-cooperativo](../contracts/bcc-credito-cooperativo.md) | `credito` | exploratory | — | 3 rows | 3 open requirements; 1 monetary limitation; 2 outside_input limitations; 8 non-native capabilities |
 | [calzaturiero-assocalzaturifici](../contracts/calzaturiero-assocalzaturifici.md) | `pelli-calzature` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 outside_input limitation; 4 non-native capabilities |
-| [carta-cartone-assocarta](../contracts/carta-cartone-assocarta.md) | `carta-grafica` | exploratory | — | 1 rows | 1 open requirement; 1 monetary limitation; 4 non-native capabilities; 1 declared residual |
+| [carta-cartone-assocarta](../contracts/carta-cartone-assocarta.md) | `carta-grafica` | exploratory | — | 1 rows | 1 open requirement; 1 monetary limitation; 1 declared residual |
 | [ced-assoced](../contracts/ced-assoced.md) | `servizi-professionali` | exploratory | — | 6 rows | 6 open requirements; 1 weak rule; 1 monetary limitation; 4 outside_input limitations; 7 non-native capabilities |
 | [cemento-calce-gesso-industria](../contracts/cemento-calce-gesso-industria.md) | `materiali-estrattive` | exploratory | — | 1 rows | 1 open requirement; 1 monetary limitation; 6 non-native capabilities |
 | [ceramica-industria-confindustria](../contracts/ceramica-industria-confindustria.md) | `chimica` | exploratory | — | 5 rows | 5 open requirements; 2 weak rules; 3 monetary limitations; 6 non-native capabilities |
@@ -128,7 +128,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [farmacie-private-h121](../contracts/farmacie-private-h121.md) | `farmacie` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [farmacie-rurali-sussidiate-h121](../contracts/farmacie-rurali-sussidiate-h121.md) | `farmacie` | exploratory | — | 0 rows | complete except 1 declared residual |
 | [federcasa](../contracts/federcasa.md) | `servizi-immobiliari` | exploratory | — | 2 rows | 2 open requirements; 2 monetary limitations; 7 non-native capabilities |
-| [fiori-recisi-ancef](../contracts/fiori-recisi-ancef.md) | `commercio` | exploratory | — | 1 rows | 1 open requirement; 1 monetary limitation; 4 non-native capabilities |
+| [fiori-recisi-ancef](../contracts/fiori-recisi-ancef.md) | `commercio` | exploratory | — | 1 rows | 1 open requirement; 1 monetary limitation; 2 non-native capabilities |
 | [formazione-professionale](../contracts/formazione-professionale.md) | `istruzione-formazione` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 1 monetary limitation; 1 outside_input limitation; 6 non-native capabilities |
 | [forze-polizia-ordinamento-civile](../contracts/forze-polizia-ordinamento-civile.md) | `forze-polizia` | exploratory | — | 5 rows | 5 open requirements; 2 weak rules; 3 monetary limitations; 7 non-native capabilities |
 | [funivie-anef](../contracts/funivie-anef.md) | `trasporti-logistica` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 monetary limitation; 4 non-native capabilities |
@@ -179,7 +179,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [pulizia-artigianato-confartigianato](../contracts/pulizia-artigianato-confartigianato.md) | `pulizia-multiservizi` | exploratory | — | 31 rows | 31 open requirements; 28 weak rules; 2 monetary limitations; 1 outside_input limitation; 6 non-native capabilities |
 | [radiotelevisive-radiofonico](../contracts/radiotelevisive-radiofonico.md) | `spettacolo-media` | exploratory | — | 11 rows | 11 open requirements; 8 weak rules; 3 monetary limitations; 7 non-native capabilities |
 | [radiotelevisive-televisivo](../contracts/radiotelevisive-televisivo.md) | `spettacolo-media` | exploratory | — | 12 rows | 12 open requirements; 10 weak rules; 2 monetary limitations; 7 non-native capabilities |
-| [recapito-corrispondenza-fise](../contracts/recapito-corrispondenza-fise.md) | `servizi-postali` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule; 4 non-native capabilities |
+| [recapito-corrispondenza-fise](../contracts/recapito-corrispondenza-fise.md) | `servizi-postali` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule |
 | [rsa-aiop](../contracts/rsa-aiop.md) | `socio-sanitario` | exploratory | — | 3 rows | 3 open requirements; 2 monetary limitations; 1 outside_input limitation; 7 non-native capabilities |
 | [sanita-aran](../contracts/sanita-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 0 rows | complete; 4 limitations awaiting publication |
 | [sanita-privata-aiop-aris](../contracts/sanita-privata-aiop-aris.md) | `socio-sanitario` | exploratory | 2018-12-31 | 5 rows | 5 open requirements; 1 monetary limitation; 4 outside_input limitations; 6 non-native capabilities |

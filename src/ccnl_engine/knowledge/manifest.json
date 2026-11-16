@@ -354,7 +354,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/carta-cartone-assocarta",
       "ruleset_version": "2026.2",
-      "source_hash": "b6a2217e564212d445ff4202f16362b9804727a420ee829d988adeb700419aa4",
+      "source_hash": "d69f44c1dc8ef30a4c6eabc85a17d86a0148477d899a1383342d81b6894e0d70",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/carta-cartone-assocarta.json.gz"
@@ -986,7 +986,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/fiori-recisi-ancef",
       "ruleset_version": "2026.2",
-      "source_hash": "2c15973b43fe029e623fc749678d62f5b6e242d81a7c81bd26f1186643d95bb1",
+      "source_hash": "bd4694d742386b9ad3d75f5c952b5148869dd4b40565f7f9f41a715694e0e288",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/fiori-recisi-ancef.json.gz"
@@ -1853,7 +1853,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/recapito-corrispondenza-fise",
       "ruleset_version": "2026.2",
-      "source_hash": "763d4b81a707178463ef7f1af662bb497aea7a4423a4c09dddf02433816ef452",
+      "source_hash": "1d4f93a06969759e590245531940236f9c39db61c4fce325196ba61bfb8806f4",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/recapito-corrispondenza-fise.json.gz"

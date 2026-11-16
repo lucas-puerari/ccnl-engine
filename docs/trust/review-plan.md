@@ -9,8 +9,8 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 4 | 289 | 244 | 0 | `funzioni-centrali-aran` |
-| terziario | 46 | 5 257 055 | 17 | 990 | 2031 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
-| industria | 49 | 4 969 900 | 118 | 1269 | 2683 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
+| terziario | 46 | 5 257 055 | 17 | 990 | 2038 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| industria | 49 | 4 969 900 | 118 | 1269 | 2690 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 76 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 29 | 156 | 373 | 2 | `metalmeccanico-artigianato` |
 | agricoltura | 9 | 752 860 | 6 | 102 | 262 | 5 | `operai-agricoli-florovivaisti` |
@@ -79,7 +79,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`noleggio-autobus-conducente-anav`](../contracts/noleggio-autobus-conducente-anav.md) | 5 422 | exploratory | 2 | 34 | 35 | party or official | none | none |
 | [`agenzie-marittime-i481`](../contracts/agenzie-marittime-i481.md) | 5 000 | exploratory | 0 | 36 | 2 | party or official | none | none |
 | [`fiori-recisi-ancef`](../contracts/fiori-recisi-ancef.md) | 1 300 | exploratory | 0 | 6 | 42 | party or official | none | none |
-| [`recapito-corrispondenza-fise`](../contracts/recapito-corrispondenza-fise.md) | 1 000 | exploratory | 1 | 16 | 32 | party or official | none | none |
+| [`recapito-corrispondenza-fise`](../contracts/recapito-corrispondenza-fise.md) | 1 000 | exploratory | 1 | 16 | 39 | party or official | none | none |
 | [`servizi-postali-appalto-fise`](../contracts/servizi-postali-appalto-fise.md) | 1 000 | exploratory | 0 | 28 | 23 | party or official | none | none |
 | [`agenti-immobiliari-fiaip`](../contracts/agenti-immobiliari-fiaip.md) | none | exploratory | 1 | 2 | 42 | party or official | none | none |
 | [`vigilanza-privata-federdat-sf`](../contracts/vigilanza-privata-federdat-sf.md) | none | exploratory | 1 | 0 | 27 | party or official | none | none |
@@ -114,7 +114,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`trasporto-aereo-assaeroporti`](../contracts/trasporto-aereo-assaeroporti.md) | 40 000 | exploratory | 0 | 50 | 46 | party or official | none | none |
 | [`energia-petrolio-confindustria`](../contracts/energia-petrolio-confindustria.md) | 38 000 | exploratory | 0 | 57 | 119 | party or official | none | none |
 | [`alimentari-pmi-unionalimentari`](../contracts/alimentari-pmi-unionalimentari.md) | 35 000 | exploratory | 0 | 43 | 273 | party or official | none | none |
-| [`carta-cartone-assocarta`](../contracts/carta-cartone-assocarta.md) | 35 000 | exploratory | 0 | 62 | 14 | aggregator | none | none |
+| [`carta-cartone-assocarta`](../contracts/carta-cartone-assocarta.md) | 35 000 | exploratory | 0 | 62 | 21 | aggregator | none | none |
 | [`vetro-meccanizzato-assovetro`](../contracts/vetro-meccanizzato-assovetro.md) | 28 000 | exploratory | 29 | 0 | 73 | aggregator | none | none |
 | [`metalmeccanica-cooperative`](../contracts/metalmeccanica-cooperative.md) | 28 000 | exploratory | 0 | 10 | 37 | party or official | none | none |
 | [`cemento-calce-gesso-industria`](../contracts/cemento-calce-gesso-industria.md) | 25 000 | exploratory | 0 | 37 | 45 | party or official | none | none |

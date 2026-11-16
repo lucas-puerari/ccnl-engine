@@ -184,29 +184,6 @@
         ]
       },
       {
-        "id": "2026-11-16-ai-carta-cartone-assocarta-time-supplements",
-        "date": "2026-11-16",
-        "reviewer": "claude-opus-5-5",
-        "reviewer_kind": "ai",
-        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
-        "outcome": "corrected",
-        "sources": [
-          {
-            "url": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
-            "sha256": "fb3e0cce00ffb6d13a42dd60ead6658f609ff475cb60ed43e8edc76695239a77"
-          }
-        ],
-        "findings": [
-          "Applied: travel.",
-          "Left out: bands[0:night]: quote skipped; bands[1:holiday]: quote skipped; bands[2:rest_day]: quote skipped; bands[3:sunday]: quote skipped; bands[4:day_shift]: quote skipped; bands[5:night_shift]: quote skipped."
-        ],
-        "independence": "separate_model",
-        "checked": [
-          "work_rules.time_supplements",
-          "work_rules.capability_basis"
-        ]
-      },
-      {
         "id": "2026-11-16-ai-additional-months",
         "date": "2026-11-16",
         "reviewer": "claude-opus-5-5",
@@ -225,6 +202,29 @@
         "independence": "separate_model",
         "checked": [
           "parameters.additional_months"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-carta-cartone-assocarta-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+            "sha256": "fb3e0cce00ffb6d13a42dd60ead6658f609ff475cb60ed43e8edc76695239a77"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[0:night], bands[1:holiday], bands[2:rest_day], bands[3:sunday], bands[4:day_shift], bands[5:night_shift].",
+          "Left out: travel: kind expenses_only applied by hand."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ]
@@ -2917,13 +2917,13 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
     "verification_status": "unverified",
-    "source_hash": "b6a2217e564212d445ff4202f16362b9804727a420ee829d988adeb700419aa4",
+    "source_hash": "d69f44c1dc8ef30a4c6eabc85a17d86a0148477d899a1383342d81b6894e0d70",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -3034,7 +3034,280 @@
           }
         }
       ],
-      "supplement_bands": []
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_0",
+          "description": "Lavoro notturno ordinario dei non turnisti: ore 22–5; la maggiorazione non si cumula con le altre dell'art. 21.",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2017-01-01",
+                "valid_until": null,
+                "value": "0.55"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ps-www-pisacaneboxes-com-wp-content-uploads-2022-02-ccnl-carta-industria2022-pdf",
+                "title": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+                "kind": "associazione",
+                "url": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+                "sha256": "fb3e0cce00ffb6d13a42dd60ead6658f609ff475cb60ed43e8edc76695239a77"
+              },
+              "page": "36",
+              "section": "Art. 21, 21b e 21c",
+              "quote": "- lavoro notturno per i lavoratori non turnisti: 55%;"
+            },
+            "transformation": "Lavoro notturno ordinario dei non turnisti: ore 22–5; la maggiorazione non si cumula con le altre dell'art. 21. Ordinary night hours sit in the monthly pay: the band adds the percentage alone.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2017-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-carta-cartone-assocarta-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_1",
+          "description": "Lavoro festivo ordinario; per gli operai la retribuzione delle ore lavorate si aggiunge al trattamento della festività.",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2017-01-01",
+                "valid_until": null,
+                "value": "0.55"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ps-www-pisacaneboxes-com-wp-content-uploads-2022-02-ccnl-carta-industria2022-pdf",
+                "title": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+                "kind": "associazione",
+                "url": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+                "sha256": "fb3e0cce00ffb6d13a42dd60ead6658f609ff475cb60ed43e8edc76695239a77"
+              },
+              "page": "36",
+              "section": "Art. 21, 21c",
+              "quote": "- lavoro festivo: 55%;"
+            },
+            "transformation": "Lavoro festivo ordinario; per gli operai la retribuzione delle ore lavorate si aggiunge al trattamento della festività.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2017-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-carta-cartone-assocarta-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_REST_DAY_2",
+          "description": "Lavoro nel giorno di riposo compensativo: qualificato come lavoro festivo dall'art. 21c.",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2017-01-01",
+                "valid_until": null,
+                "value": "0.55"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ps-www-pisacaneboxes-com-wp-content-uploads-2022-02-ccnl-carta-industria2022-pdf",
+                "title": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+                "kind": "associazione",
+                "url": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+                "sha256": "fb3e0cce00ffb6d13a42dd60ead6658f609ff475cb60ed43e8edc76695239a77"
+              },
+              "page": "35",
+              "section": "Art. 21, 21c",
+              "quote": "E' considerato lavoro festivo quello eseguito la domenica, salvo il caso dei lavoratori per i quali, ai sensi della legge o dell'art. 20 - Orario di lavoro - Sezione seconda - Disciplina del rapporto di lavoro - il riposo compensativo cade in altro giorno, nel qual caso è lavoro festivo quello eventualmente compiuto nel giorno di riposo compensativo."
+            },
+            "transformation": "Lavoro nel giorno di riposo compensativo: qualificato come lavoro festivo dall'art. 21c.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2017-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-carta-cartone-assocarta-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_SUNDAY_3",
+          "description": "Ore normali della domenica con riposo compensativo in altro giorno; non cumulabile con le altre maggiorazioni dell'art. 21.",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2017-01-01",
+                "valid_until": null,
+                "value": "0.80"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ps-www-pisacaneboxes-com-wp-content-uploads-2022-02-ccnl-carta-industria2022-pdf",
+                "title": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+                "kind": "associazione",
+                "url": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+                "sha256": "fb3e0cce00ffb6d13a42dd60ead6658f609ff475cb60ed43e8edc76695239a77"
+              },
+              "page": "36",
+              "section": "Art. 21, 21c",
+              "quote": "- lavoro domenicale con riposo compensativo: a) per le ore normali di lavoro: 80%; b) per le ore straordinarie: 80%. Le suddette percentuali non sono cumulabili, intendendosi che la maggiore assorbe la minore."
+            },
+            "transformation": "Ore normali della domenica con riposo compensativo in altro giorno; non cumulabile con le altre maggiorazioni dell'art. 21.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2017-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-carta-cartone-assocarta-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_DAY_SHIFT_4",
+          "description": "Primo e secondo turno diurno di otto ore consecutive, avvicendati o nelle prestazioni non avvicendate ammesse dall'art. 22.",
+          "work": "day_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2017-01-01",
+                "valid_until": null,
+                "value": "0.08"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ps-www-pisacaneboxes-com-wp-content-uploads-2022-02-ccnl-carta-industria2022-pdf",
+                "title": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+                "kind": "associazione",
+                "url": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+                "sha256": "fb3e0cce00ffb6d13a42dd60ead6658f609ff475cb60ed43e8edc76695239a77"
+              },
+              "page": "36",
+              "section": "Art. 22, comma 1",
+              "quote": "Ai lavoratori, che effettuano lavoro tanto in turni avvicendati di 8 ore consecutive quanto in prestazioni non avvicendate (vedi chiarimento a verbale) ma sempre di 8 ore consecutive, saranno concesse le seguenti maggiorazioni sulla normale retribuzione (escluse ovviamente dalla base di computo le maggiorazioni di cui si tratta): - 8% per il primo e secondo turno (diurni);"
+            },
+            "transformation": "Primo e secondo turno diurno di otto ore consecutive, avvicendati o nelle prestazioni non avvicendate ammesse dall'art. 22.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2017-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-carta-cartone-assocarta-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_SHIFT_5",
+          "description": "Terzo turno notturno di otto ore consecutive; la maggiorazione dell'art. 22 spetta anche di domenica o festivo.",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2017-01-01",
+                "valid_until": null,
+                "value": "0.26"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ps-www-pisacaneboxes-com-wp-content-uploads-2022-02-ccnl-carta-industria2022-pdf",
+                "title": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+                "kind": "associazione",
+                "url": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+                "sha256": "fb3e0cce00ffb6d13a42dd60ead6658f609ff475cb60ed43e8edc76695239a77"
+              },
+              "page": "36",
+              "section": "Art. 22, comma 1",
+              "quote": "- 26% per il terzo turno (notturno)."
+            },
+            "transformation": "Terzo turno notturno di otto ore consecutive; la maggiorazione dell'art. 22 spetta anche di domenica o festivo.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2017-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-carta-cartone-assocarta-time-supplements"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ps-www-pisacaneboxes-com-wp-content-uploads-2022-02-ccnl-carta-industria2022-pdf",
+            "title": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+            "kind": "associazione",
+            "url": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+            "sha256": "fb3e0cce00ffb6d13a42dd60ead6658f609ff475cb60ed43e8edc76695239a77"
+          },
+          "page": "151",
+          "section": "Art. 49 (Nomenclatura), testo dell'accordo 28 luglio 2021",
+          "quote": "- per normale retribuzione, la somma di quanto compete al lavoratore, quale corrispettivo, in via ordinaria, mensilmente o a periodi più brevi (compresi stipendio o salario contrattuale, aumenti periodici di anzianità e, quando dovute, indennità per lavoro a ciclo continuo di sette giorni su sette, maggiorazioni per prestazioni non occasionali in turni di 8 ore consecutive, esclusi emolumenti annuali, indennità di cassa);"
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-carta-cartone-assocarta-time-supplements"
+        }
+      }
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",

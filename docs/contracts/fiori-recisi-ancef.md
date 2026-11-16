@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 30 of the CCNL 2023-2026. | corrected | Added the rest-day premium of Art. 30: 50% of the hourly quota of the retribuzione globale, the hours compensated by rest. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 54 of the CCNL 2023-2026. | corrected | The file had no fund: added Fondo EST and its element in place. |
 | 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 14 monthly pays. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: none.night_work, none.shift_work.<br>Left out: travel: kind bands applied by hand. |
 
 ## Salary table
 

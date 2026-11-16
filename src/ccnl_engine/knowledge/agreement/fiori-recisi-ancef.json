@@ -336,6 +336,29 @@
         "checked": [
           "parameters.additional_months"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-fiori-recisi-ancef-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167753",
+            "sha256": "92b68a0106e1bb74abb3c405b51e89cdc6ad6eb935ac63909a8894d7d8a12463"
+          }
+        ],
+        "findings": [
+          "Applied: none.night_work, none.shift_work.",
+          "Left out: travel: kind bands applied by hand."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -1813,7 +1836,7 @@
     "effective_until": null,
     "source": "https://www.ccnlportatili.it/ccnl/fiori-recisi/",
     "verification_status": "unverified",
-    "source_hash": "2c15973b43fe029e623fc749678d62f5b6e242d81a7c81bd26f1186643d95bb1",
+    "source_hash": "bd4694d742386b9ad3d75f5c952b5148869dd4b40565f7f9f41a715694e0e288",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2457,6 +2480,66 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 371f86a796d33168137e99730c70c9df1c580d789695644fad8cef6eda69d8fd)."
+      }
+    },
+    "capability_basis": {
+      "night_work": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-167753",
+              "title": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167753",
+              "kind": "associazione",
+              "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167753",
+              "sha256": "92b68a0106e1bb74abb3c405b51e89cdc6ad6eb935ac63909a8894d7d8a12463"
+            },
+            "page": "22",
+            "section": "Articolo 33, commi 1–7",
+            "quote": "Le ore straordinarie di lavoro prestate la notte, intendendosi per tali quelle effettuate dalle ore 22 alle ore 6 del mattino, sempre che non si tratti di turni regolari di servizio, verranno retribuite con la retribuzione globale maggiorata del 70%."
+          },
+          "transformation": "night_work: none in ccnl.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-fiori-recisi-ancef-time-supplements"
+          }
+        }
+      },
+      "shift_work": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "lgc-we-azure-api-net-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-167753",
+              "title": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167753",
+              "kind": "associazione",
+              "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167753",
+              "sha256": "92b68a0106e1bb74abb3c405b51e89cdc6ad6eb935ac63909a8894d7d8a12463"
+            },
+            "page": "20",
+            "section": "Articolo 28, ultimo comma; Articolo 33",
+            "quote": "I turni di lavoro devono risultare da apposita tabella collocata in posizione ben visibile"
+          },
+          "transformation": "shift_work: none in ccnl.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-fiori-recisi-ancef-time-supplements"
+          }
+        }
       }
     }
   }
