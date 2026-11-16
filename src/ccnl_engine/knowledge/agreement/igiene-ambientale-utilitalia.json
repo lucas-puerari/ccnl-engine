@@ -5268,7 +5268,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=551",
     "verification_status": "unverified",
-    "source_hash": "b1dac13a386b485d7fbc5eb3a4fc4d3cd08f91e82db405cc098722914f21c563",
+    "source_hash": "8c59755962caabd25c422fe0e37c3957eb43ec7a5047f20e118c86bd673a4f0c",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -5859,6 +5859,47 @@
         },
         "transformation": "La metà dell'orario medio giornaliero disciplina la misura della fruizione oraria, non fissa un numero di ore equivalente a una giornata: day_hours=null. La stessa misura riferita all'orario medio giornaliero si applica espressamente anche al personale a tempo parziale, quindi le ore seguono il suo orario medio giornaliero. La decorrenza è indicata espressamente."
       }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "04-25",
+        "05-01",
+        "06-02",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron",
+        "easter"
+      ],
+      "on_rest_day": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "igiene-ambientale-utilitalia-testo-consolidato-2025",
+            "title": "CCNL 24/07/2025, testo consolidato con ipotesi di accordo 09/12/2025",
+            "kind": "associazione",
+            "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+            "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
+          },
+          "page": "83",
+          "section": "art. 20, comma 4 (con commi 1, 5–6)",
+          "quote": "4. Qualora una delle festività non domenicali, di cui al comma 1 del presente articolo cada di domenica, è dovuto a ciascun lavoratore, il cui riposo settimanale cada normalmente di domenica, in aggiunta al normale trattamento economico, un importo pari ad una giornata di retribuzione globale."
+        },
+        "transformation": "Il comma 4 paga le festività non domenicali del comma 1 quando cadono di domenica: codici 01-01, 01-06, 04-25, 05-01, 06-02, easter_monday, 08-15, 11-01, 12-08, 12-25, 12-26 e patron (elenco ai PDF pp. 82–83). Il comma 5 estende il trattamento alla coincidenza con il riposo settimanale dei lavoratori dell'art. 25, comma 3; il comma 6 paga autonomamente easter. L'art. 21 non prevede la quota domenicale per 11-04. La giornata di retribuzione globale non specifica un divisore.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2025-12-09",
+          "verification_status": "unverified"
+        }
+      }
     }
   },
   "verification": {
@@ -6077,6 +6118,27 @@
         "independence": "separate_model",
         "checked": [
           "parameters.additional_months"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-sunday-holidays",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holidays falling on a Sunday: the clause located in the cited file by sha256 (or the law where the CCNL is silent).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.utroppitu.eu/wp-content/uploads/2026/03/igene-ambientale-testo-consolidato-1.pdf",
+            "sha256": "57764d9dc31e831e38fca306b9d29c0978d21fefc5dab8e09593d75ab055f756"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.sunday_holidays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays"
         ]
       }
     ]

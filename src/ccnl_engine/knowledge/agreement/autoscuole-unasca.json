@@ -162,6 +162,27 @@
           "work_rules.time_supplements",
           "work_rules.capability_basis"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-sunday-holidays",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holidays falling on a Sunday: the clause located in the cited file by sha256 (or the law where the CCNL is silent).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+            "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.sunday_holidays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays"
+        ]
       }
     ]
   },
@@ -1546,7 +1567,7 @@
     "effective_until": null,
     "source": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
     "verification_status": "unverified",
-    "source_hash": "a095b28fa84fb79f0604f74e66358f81badbada4498e8467cfa77d75138ff08b",
+    "source_hash": "85835f0731b5b4721d9f689cf451da56d7181a1ab114711f407aa826cd9f93a0",
     "published_at": "2026-09-12",
     "source_type": "contracting_party"
   },
@@ -1752,6 +1773,47 @@
             "verification_status": "verified",
             "review_id": "2026-11-16-ai-autoscuole-unasca-time-supplements"
           }
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "on_saturday": true,
+      "on_coincident_holiday": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "autoscuole-unasca-2023-02-28",
+            "title": "CCNL Autoscuole, Scuole Nautiche e Studi di Consulenza Automobilistica, firmato il 28 febbraio 2023",
+            "kind": "associazione",
+            "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+            "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+          },
+          "page": "15",
+          "section": "art. 11, comma 4",
+          "quote": "Per le festività di cui al punto b) cadenti di sabato o di domenica o in altre festività è dovuta, in aggiunta alla retribuzione mensile, la retribuzione globale di una giornata, calcolata ai sensi del comma 1 del successivo art.12."
+        },
+        "transformation": "L'art. 11, comma 4, paga le festività elencate all'art. 11, comma 1, lettera b), quando cadono di domenica, sabato o in altra festività: 1 e 6 gennaio, lunedì dopo Pasqua, 25 aprile, 1 maggio, 2 giugno, 15 agosto, 1 novembre, 8, 25 e 26 dicembre e festa del Patrono. L'art. 13, comma 3, definisce la quota giornaliera come retribuzione mensile divisa per 22 su cinque giorni o per 26 su sei giorni: i divisori dipendono quindi dai giorni settimanali, non da un divisore unico. Il 4 novembre è escluso dall'elenco; l'art. 12 prevede invece un distinto elemento retributivo mensile per i lavoratori aventi diritto. Il rinvio dell'art. 11 all'art. 12 è letterale nel PDF, ma la definizione della retribuzione giornaliera è all'art. 13, comma 3.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2023-02-28",
+          "verification_status": "unverified"
         }
       }
     }

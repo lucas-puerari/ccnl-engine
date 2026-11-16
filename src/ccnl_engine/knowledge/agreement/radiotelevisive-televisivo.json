@@ -228,6 +228,27 @@
         "checked": [
           "parameters.additional_months"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-sunday-holidays",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holidays falling on a Sunday: the clause located in the cited file by sha256 (or the law where the CCNL is silent).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/09/CCNL_RadioTv-2026.pdf",
+            "sha256": "0197f37aaed4ff2a8838d441b9d9584efdcdb8c4222ce5259c55cfba4b78f142"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.sunday_holidays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays"
+        ]
       }
     ]
   },
@@ -2241,7 +2262,7 @@
     "source": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "d6463bcf52cea721d40c989b1b1468930223d5334386d87c1273627735995c88"
+    "source_hash": "e4e57bc251b3eb8163885e13596a76321683700b9fdfdc4ad1a23badd3f85810"
   },
   "work_rules": {
     "notice": {
@@ -2390,6 +2411,47 @@
             "verification_status": "verified",
             "review_id": "2026-11-16-ai-radiotelevisive-televisivo-time-supplements"
           }
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "08-15",
+        "10-04",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "divisor": "26",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-radiotv-2026-art41",
+            "title": "CCNL Radiotelevisivo-Televisivo (Confindustria Radio TV), testo unico 8 gennaio 2026, art. 41",
+            "kind": "associazione",
+            "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/09/CCNL_RadioTv-2026.pdf",
+            "sha256": "0197f37aaed4ff2a8838d441b9d9584efdcdb8c4222ce5259c55cfba4b78f142"
+          },
+          "page": "PDF p. 70 (stampata p. 69), lett. A; definizione festività PDF pp. 69-70 (stampate pp. 68-69)",
+          "section": "art. 41",
+          "quote": "A) Il lavoratore che nell'ambito del suo regime di orario, non lavora nelle festività di cui ai punti b) e c) del presente articolo ha diritto: 1) alla normale retribuzione senza alcun altro compenso per le festività, se la festività non coincide con la domenica; 2) se la festività coincide con la domenica (es. 25 aprile che cade di domenica), ad 1/26 della normale retribuzione mensile, in aggiunta alla stessa."
+        },
+        "transformation": "art. 41 lett. A riconosce 1/26 della normale retribuzione mensile in aggiunta quando una festività dei punti b) o c) cade di domenica → divisor \"26\"; holidays = punti b) e c) del medesimo art. 41 codificati (04-25, 05-01, 06-02, 01-01, 01-06, easter_monday, 08-15, 10-04, 11-01, 12-08, 12-25, 12-26, patron); il 4 novembre è trattato separatamente (celebrazione spostata alla domenica successiva con trattamento delle festività coincidenti con la domenica, nessun compenso per il 4 novembre di calendario) e non rientra in holidays; gli altri flag non sono espressi nel testo → false/null.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2026-01-08",
+          "verification_status": "unverified"
         }
       }
     }

@@ -249,6 +249,27 @@
         "checked": [
           "parameters.additional_months"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-sunday-holidays",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holidays falling on a Sunday: the clause located in the cited file by sha256 (or the law where the CCNL is silent).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+            "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.sunday_holidays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays"
+        ]
       }
     ]
   },
@@ -3433,7 +3454,7 @@
     "effective_until": null,
     "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
     "verification_status": "unverified",
-    "source_hash": "c7cec044f4dd2694e24cf90f4e883653b78beb7a66f863ca95f3c8c23c79a0f4",
+    "source_hash": "6c1e1dd2a956fdd1b0b0d926090a9e8a9936050f537d1eb9164f2145693b61d3",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3714,6 +3735,45 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5)."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-assofarm-2027-2029-ipotesi",
+            "title": "Ipotesi di accordo di rinnovo CCNL Assofarm 2027–2029",
+            "kind": "associazione",
+            "url": "https://www.assofarm.it/wp-content/uploads/2026/09/CCNL-Assofarm-2027-2029-firmato.pdf",
+            "sha256": "063a3548487866acce38f2771d8b29271b07a993c954294288b244854be1aae5"
+          },
+          "page": "12",
+          "section": "art. 13, c. 6",
+          "quote": "6. Quando una delle festività non domenicali coincida con la domenica, è dovuto a ciascun lavoratore, in aggiunta al normale trattamento economico, un importo pari ad una giornata di retribuzione, (non si applica per la festività civile del 4° novembre in quanto “assorbita” per il concorso alla formazione del monte ore di riduzione orario di lavoro)."
+        },
+        "transformation": "L'art. 13, c. 6 paga le festività non domenicali quando cadono di domenica ed esclude il 4 novembre. L'art. 13, c. 5 del CCNL 2022–2024 (https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf; sha256 31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365) definisce i giorni festivi come quelli stabiliti dalla legge più il Santo Patrono del luogo di lavoro. I codici elencano tali festività nazionali non domenicali e patron; includono le tre festività civili pagate per legge. La clausola prevede una giornata di retribuzione ma non nomina un divisore, né stabilisce gli altri flag.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2026-09-15",
+          "verification_status": "unverified"
+        }
       }
     }
   }
