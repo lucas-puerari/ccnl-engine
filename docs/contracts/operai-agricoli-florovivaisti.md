@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority, sickness |
+| **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority |
 
 12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -143,22 +143,22 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: art. 54 and art. 41 D.Lgs. 81/2015 read on 2026-11-14.
 
-!!! warning "operai-agricoli-florovivaisti/seasonal_apprentice_seniority · seniority · impact unknown · open"
-    SEASONAL APPRENTICES: Allegato 10 (PDF p. 124, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c) lets employers working in seasonal cycles hire apprentices 'anche a tempo determinato', and art. 54 grants the increments only to 'gli operai a tempo indeterminato'. The apprentice input states no term, so the engine pays a fixed-term seasonal apprentice the increments of the level once the biennium with the same employer is complete.
+!!! note "operai-agricoli-florovivaisti/seasonal_apprentice_seniority · seniority · impact unknown · resolved"
+    SEASONAL APPRENTICES: Allegato 10 (PDF p. 124, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c) lets employers working in seasonal cycles hire apprentices 'anche a tempo determinato', and art. 54 grants the increments only to 'gli operai a tempo indeterminato'. Apprentice.fixed_term states the term of a seasonal apprenticeship: the engine pays it no increment, as art. 54 keeps them to the permanent workers.
 
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** State on the apprentice input whether the apprenticeship is fixed-term and pay no increment to a fixed-term apprentice where the CCNL keeps them to permanent workers, then remove this note.
 
-!!! warning "operai-agricoli-florovivaisti/fixed_term_seniority_element · base_salary · impact yes · open"
-    ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (Art. 54-bis, new, verbale of 28 May 2026): from 1 January 2027 a fixed-term operaio who worked at least 150 days a year for the same employer for three consecutive years receives, from the fourth year, 0.4% of the salario contrattuale. The request carries no history of days per employer, so it is not paid.
+!!! note "operai-agricoli-florovivaisti/fixed_term_seniority_element · base_salary · impact yes · resolved"
+    ELEMENTO AGGIUNTIVO DELLA RETRIBUZIONE (Art. 54-bis, new, verbale of 28 May 2026): from 1 January 2027 a fixed-term operaio who worked at least 150 days a year for the same employer for three consecutive years receives, from the fourth year, 0.4% of the salario contrattuale. FixedTerm.qualifying_years states the consecutive years: the element is the hourly percentage ELEMENTO_AGGIUNTIVO of the fixed-term pay.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
     **Remediation:** Add the consecutive years of at least 150 days with the employer to the request and pay 0.4% of the salary, then remove this note.
 
-!!! warning "operai-agricoli-florovivaisti/florovivaisti_sickness_integration · sickness · impact yes · open"
-    FLOROVIVAISTI SICKNESS (remaining limits): State EmployerProfile.subsector=florovivaisti for the permanent-worker supplement; without a sub-sector the agricultural rule applies. The provincial contractual daily wage on February 1 is not printed in the national clause and must be supplied for each year of sickness, already prorated for a part-time worker under Art. 17(c) p. 10; an unknown wage or INPS recognition leaves the employer supplement unpaid and flagged. Previously posted months must be rerun if a later relapse extends a short illness beyond three days. Art. 62 also grants fixed-term workers the supplement after 30 continuous days with the same employer, from day 31 for up to 45 days per year; this entitlement is not modeled.
+!!! note "operai-agricoli-florovivaisti/florovivaisti_sickness_integration · sickness · impact yes · resolved"
+    FLOROVIVAISTI SICKNESS (remaining limits): State EmployerProfile.subsector=florovivaisti for the permanent-worker supplement; without a sub-sector the agricultural rule applies. The provincial contractual daily wage on February 1 is not printed in the national clause and must be supplied for each year of sickness, already prorated for a part-time worker under Art. 17(c) p. 10; an unknown wage or INPS recognition leaves the employer supplement unpaid and flagged. Previously posted months must be rerun if a later relapse extends a short illness beyond three days. Art. 62 also grants fixed-term workers the supplement from day 31 of the employment for up to 45 days a year (fixed_term_daily_share), when the hiring day is stated.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
@@ -206,12 +206,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the INPS share is computed on the base of every regime of the bundle; an episode that states no base the engine can read has the missing_fact issue sickness_inps_base_unknown (fact inps_base), which blocks the run. Tests: tests/mutation/ccnl_engine/sickness/base/test_rules_wiring.py, tests/mutation/ccnl_engine/sickness/base/test_rules.py.
 
-!!! warning "sickness_cumulation_window · sickness · impact unknown · open"
-    The CCNL tier and the comporto are counted on the days of one episode and the relapses it continues. A CCNL that sums the sickness of separate episodes over a window (a calendar year, the last three years) can reach a lower tier or the end of the comporto earlier than the engine shows. The run is affected when an earlier episode outside the relapse chain is recorded. A CCNL whose comporto the engine counts over the calendar year (Commercio Art. 186 and the others with comporto_calendar_year) is not affected.
+!!! warning "sickness_cumulation_equity · sickness · impact unknown · unsourced"
+    The CCNL sets the comporto (180 days, arts. 61-62 of the operai agricoli e florovivaisti) without saying whether separate episodes are summed or over which window, and the law gives no default: art. 2110 c. 2 c.c. leaves the period to the law, the usages or equity, and Cass. 23596/2018 has the judge set both limits of the comporto per sommatoria by equity. The engine counts the comporto over one episode and its relapses; a judge may sum separate episodes. The run is affected when an earlier episode outside the relapse chain is recorded.
 
     **Applies when:** `sickness` applies; the run takes the engine code path.
 
-    **Remediation:** Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it.
+    **Remediation:** None from the sources: the window is set by a judge case by case; a provincial contract or usage that sets it can be added as the sickness rule of the CCNL.
 
 !!! warning "provisional_ruleset · irpef · impact unknown · awaiting_publication"
     The run reads a tax ruleset marked provisional: the sources of its year are not published yet (budget law of the year; regional and municipal surtax resolutions), so the values are those of the year before, carried over. Rules in force by statute (the IRPEF brackets of art. 11 and the deductions of art. 13 of the testo unico of D.Lgs. 117/2026) carry over unchanged; any change of the budget law is not applied.

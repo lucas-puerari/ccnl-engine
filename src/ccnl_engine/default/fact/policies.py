@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from ccnl_engine.default.fact.fixed_term import FIXED_TERM_DEFAULTS
 from ccnl_engine.default.models import FactEnforcement, absence_is_fact, requires_fact
 
 if TYPE_CHECKING:
@@ -74,22 +75,7 @@ _IMPORTED_LIST = absence_is_fact(
 
 #: Classification of each defaulted field of the fact types.
 FACT_DEFAULTS: Mapping[str, FieldDefault] = {
-    "FixedTerm.renewals": requires_fact(
-        "inps_employer",
-        "employment.contract_type.renewals",
-        _REPORTED,
-        "unknown renewals: a run that owes the 0.5-point increase of the NASpI "
-        "surcharge per renewal (L. 92/2012 art. 2 c. 28) has a missing_fact "
-        "renewals blocker",
-    ),
-    "FixedTerm.naspi_exclusion": requires_fact(
-        "inps_employer",
-        "employment.contract_type.naspi_exclusion",
-        _REPORTED,
-        "unknown exclusion: a run whose sector charges the NASpI surcharge "
-        "(L. 92/2012 art. 2 c. 28-29) has a missing_fact naspi_exclusion "
-        "blocker",
-    ),
+    **FIXED_TERM_DEFAULTS,
     "PensionFundEnrolment.tfr_share": absence_is_fact(
         "the whole TFR maturando goes to the fund"
     ),

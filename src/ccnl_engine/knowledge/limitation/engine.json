@@ -337,7 +337,6 @@
         "energia-petrolio-confindustria",
         "forze-polizia-ordinamento-civile",
         "legno-lapidei-artigianato-confartigianato",
-        "operai-agricoli-florovivaisti",
         "organizzazioni-allevatori-aia",
         "tabacco-apti",
         "tessile-moda-artigianato-confartigianato"
@@ -347,6 +346,44 @@
       },
       "source": "ccnl_engine.sickness.day.rules (CCNL tier of a sick day)",
       "remediation": "Add the cumulation window of each CCNL to its sickness rule, with the source, and count the tier and the comporto over it."
+    },
+    {
+      "id": "sickness_cumulation_equity",
+      "capability": "sickness",
+      "variant": "comporto_cumulation_by_equity",
+      "summary": "The CCNL sets the comporto (180 days, arts. 61-62 of the operai agricoli e florovivaisti) without saying whether separate episodes are summed or over which window, and the law gives no default: art. 2110 c. 2 c.c. leaves the period to the law, the usages or equity, and Cass. 23596/2018 has the judge set both limits of the comporto per sommatoria by equity. The engine counts the comporto over one episode and its relapses; a judge may sum separate episodes. The run is affected when an earlier episode outside the relapse chain is recorded.",
+      "monetary_impact": "unknown",
+      "status": "unsourced",
+      "rulesets": [
+        "operai-agricoli-florovivaisti"
+      ],
+      "applies_when": {
+        "trigger": "path"
+      },
+      "source": "ccnl_engine.sickness.issue.handlers (episode limitations)",
+      "remediation": "None from the sources: the window is set by a judge case by case; a provincial contract or usage that sets it can be added as the sickness rule of the CCNL.",
+      "searched": [
+        {
+          "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+          "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c",
+          "title": "CCNL operai agricoli e florovivaisti 2022-2025, arts. 61-63 (PDF pp. 60-62): 180 days of conservazione del posto, no window."
+        },
+        {
+          "url": "https://www.flai.it/wp-content/uploads/2018/11/Verbale-di-accordo-CCNL-operai-agricoli-e-florovivaisti-maggio-2026.pdf",
+          "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa",
+          "title": "Verbale di rinnovo 28 maggio 2026, arts. 61-62 (PDF pp. 37-38): the 180 days unchanged, no window."
+        },
+        {
+          "url": "https://www.brocardi.it/codice-civile/libro-quinto/titolo-ii/capo-i/sezione-iii/art2110.html",
+          "sha256": "b20326bf71555194c341887ac7cc83768d6ce81246169c38714e266c2b42b480",
+          "title": "Art. 2110 c. 2 c.c.: 'decorso il periodo stabilito dalla legge [...], dagli usi o secondo equità'."
+        },
+        {
+          "url": "https://www.brocardi.it/massimario/49070.html",
+          "sha256": "3ec18a972b28910e23c567c8429065a31b950911e037a4d08fd25fefb0e878e8",
+          "title": "Cass. civ. sez. lav. 23596/2018, massima: 'il comporto per sommatoria, ove la contrattazione non lo preveda e non vi siano usi utilmente richiamabili, va determinato dal giudice con impiego della cd. equità integrativa'."
+        }
+      ]
     },
     {
       "id": "provisional_ruleset",

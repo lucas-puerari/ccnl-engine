@@ -40,6 +40,7 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "apprenticeship_pct_undeclared_components",
         "dual_final_settlement_hours",
         "sickness_cumulation_window",
+        "sickness_cumulation_equity",
         "provisional_ruleset",
         "provisional_inps_ruleset",
         "parental_income_condition",
