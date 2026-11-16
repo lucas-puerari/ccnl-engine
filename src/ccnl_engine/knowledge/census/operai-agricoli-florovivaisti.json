@@ -103,10 +103,10 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "Agricultural and floriculture premiums are selected by EmployerProfile.subsector. Remaining: the 10% regular-shift rule for night AND holiday work (Art. 43 p. 48, Art. 44 p. 49), provincial special tariffs, the third element on overtime/holiday/night hours, and the bank of hours are not fully routed; provincial contractual wages require local inputs.",
+      "rule": "Agricultural and floriculture premiums are selected by EmployerProfile.subsector; the 10% of night work in regular shifts (Art. 43 p. 48, Art. 44 p. 49) is paid on a ShiftWorkEvent of kind night. Remaining: the 10% of holiday work in regular shifts without night work (Art. 43), the provincial special tariffs of agriturismo, acquacoltura and the other special works, the terzo elemento on the overtime, holiday and night hours of an OTD, and the bank of hours; provincial contractual wages require local inputs.",
       "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
       "state": "absent",
-      "remediation": "Supply the contractual hourly wage and provincial special tariffs; route the 10% regular-shift night and holiday exceptions, the third element on these hours and bank-of-hours elections separately.",
+      "remediation": "Supply the contractual hourly wage and provincial special tariffs; route the 10% of holiday work in regular shifts, the third element on these hours and bank-of-hours elections separately.",
       "origin": "seeded",
       "links": {
         "limitations": [
