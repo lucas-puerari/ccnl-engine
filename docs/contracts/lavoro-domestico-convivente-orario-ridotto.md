@@ -97,7 +97,7 @@ Latest effective values per level (monthly gross, EUR).
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "lavoro-domestico-convivente-orario-ridotto/students_other_levels · base_salary · impact yes · open"
+!!! warning "lavoro-domestico-convivente-orario-ridotto/students_other_levels · base_salary · impact yes · unsourced"
     NOT MODELLED: students aged 16 to 40 (art. 14 c. 2) at levels other than C, B and B super, for whom Tabella B has no value. The 2026 monthly allowances of Tables H (BS, 97.06) and L (B and BS, 30.27) are encoded for caller-attested eligible roles; child age, certification validity and absorption by better individual pay cannot be inferred from the role alone.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.

@@ -866,7 +866,7 @@
       },
       {
         "kind": "simplification",
-        "text": "2025-2027 RENEWAL NOT YET MODELLED. An ipotesi di CCNL 2025-2027 was signed by ARAN on 29 July 2026 with retroactive effect from 1 January 2025. Increases (monthly, 13 mensilità) from Jan 2024 base: support +41.40 (Jan 2025)/+82.80 (Jan 2026)/+106.70 (Jan 2027); operatori +43.70/+87.40/+112.60; assistenti +46.60/+93.20/+120.00; funzionari +50.50/+101.10/+130.20; elevata qualificazione +70.20/+140.50/+181.00. Not yet modelled — ipotesi pending comitato di settore, Governo, and Corte dei conti certification. STATUS CHECKED 2026-10-17: still an ipotesi (signed text of 29 July 2026, lentepubblica.it copy); no definitive signature found on 2026-10-17.",
+        "text": "2025-2027 RENEWAL NOT YET MODELLED. An ipotesi di CCNL 2025-2027 was signed by ARAN on 29 July 2026 with retroactive effect from 1 January 2025. Increases (monthly, 13 mensilità) from Jan 2024 base: support +41.40 (Jan 2025)/+82.80 (Jan 2026)/+106.70 (Jan 2027); operatori +43.70/+87.40/+112.60; assistenti +46.60/+93.20/+120.00; funzionari +50.50/+101.10/+130.20; elevata qualificazione +70.20/+140.50/+181.00. Not yet modelled — ipotesi pending comitato di settore, Governo, and Corte dei conti certification. STATUS CHECKED 2026-11-16: still an ipotesi; signed text of 29 July 2026 read in the lentepubblica.it copy (https://lentepubblica.it/wp-content/uploads/2026/07/2026.07.29-Ipotesi-CCNL-Comparto-2025-2027-Testo-firmato.pdf, sha256 a01df62c0521845307d76b324296c8cd97fd723daf8a7f2ffc589d498ec9af25, p. 1: 'Al termine della riunione le parti sottoscrivono l’allegata Ipotesi'). The definitive CCNL follows the controls of art. 47 D.Lgs. 165/2001.",
         "capability": "base_salary",
         "monetary_impact": "unknown",
         "limitation": {
@@ -874,7 +874,12 @@
           "applies_when": {
             "effective_from": "2025-01-01"
           },
-          "remediation": "Model the 2025-2027 increases once the ipotesi is certified and signed."
+          "remediation": "Model the 2025-2027 increases once the ipotesi is certified and signed.",
+          "status": "awaiting_publication",
+          "awaited": {
+            "publication": "The definitive CCNL Comparto Sanità 2025-2027, signed after the certification of the ipotesi of 29 July 2026 (art. 47 D.Lgs. 165/2001: comitato di settore, Governo, Corte dei conti)",
+            "expected_by": "2027-01-31"
+          }
         }
       },
       {
@@ -890,7 +895,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.quotidianosanita.it/allegati/allegato1736872056.pdf",
     "verification_status": "unverified",
-    "source_hash": "52be9dd0d5096819ab5612e62336b3fa84f915f3c45b687e98a94e9901a1378c",
+    "source_hash": "61f6fcae86c8b7ed3eb749b4a884659f6e1621f6923ed9b7323a46023ae6a727",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },

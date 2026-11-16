@@ -1835,7 +1835,7 @@
     "effective_until": null,
     "source": "https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "d0ee1b77a25df50843a10f50842ec1a2c0184ccfc4ee0eacaf0b67f655cc0517",
+    "source_hash": "f129df2e914b68d7dbb73552497a6a96eee24df0890d912a5dae7d59d4b19dd2",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -2662,6 +2662,26 @@
           "section": "Art. 5"
         },
         "transformation": "The CCNL text read is silent on the holidays falling on a Sunday: the law pays the civil holidays only; art. 5 names the 'Stato, enti pubblici e datori privati', and the maintainer decided on 2026-11-15 that it applies to public employment (documents read: https://www.aranagenzia.it/wp-content/uploads/2026/08/2026_08_06_CCNL_CFC_2025-2027-1.pdf, sha256 1a8142a37a08f1ed6558b4cd0b05f35fb9638ac14ef2a8ccc98c3b494824033e; https://www.aranagenzia.it/wp-content/uploads/2023/05/Frontespizio-e-CCNL-Comparto-Funzioni-Centrali-2019-2021-1.pdf, sha256 459fb979cbfc9cc64ea251fdae5fb868533ebe9ecd7c17980c4c99ff0f79285f; https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL_L_C_FC_2022_2024.pdf, sha256 7115a9eb2d432a906e9df8e5fcb275dae415cfe4edcebe9ac40ea0a494eff924; https://www.aranagenzia.it/wp-content/uploads/2025/01/CCNL-definitivo-Funzioni-centrali-triennio-2016-2018_firmato_12-2-2018.pdf, sha256 d374410b7e202197f2cfd5828994bb56572533daf3dc39c4e775e888c915762e)"
+      }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_by_law",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "legge-266-2005",
+              "title": "Legge 23 dicembre 2005, n. 266 (legge finanziaria 2006), GU n. 302 del 29 dicembre 2005, S.O. n. 211",
+              "kind": "legge",
+              "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.versione=1&art.idGruppo=0&art.flagTipoArticolo=0&art.codiceRedazionale=005G0293&art.idArticolo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=2005-12-29&art.progressivo=3",
+              "sha256": "f8dedc9457bb1dd52703044e6be45bd2de332ae0dc56542c95f9837dc1d455ee"
+            },
+            "section": "Art. 1, c. 213",
+            "quote": "L'indennita' di trasferta di cui all'articolo 1, primo comma, della legge 26 luglio 1978, n. 417, e all'articolo 1, primo comma, del decreto del Presidente della Repubblica 16 gennaio 1978, n. 513, l'indennita' supplementare prevista dal primo e secondo comma dell'articolo 14 della legge 18 dicembre 1973, n. 836, nonche' l'indennita' di cui all'articolo 8 del decreto legislativo luogotenenziale 7 giugno 1945, n. 320, sono soppresse. Sono soppresse le analoghe disposizioni contenute nei contratti collettivi nazionali e nei provvedimenti di recepimento degli accordi sindacali"
+          },
+          "transformation": "Since 1 January 2006 the public employees of the comparto have no daily travel allowance for the missions in Italy: the law suppressed it and the analogous clauses of the CCNLs. What is left is the refund of the documented expenses of the mission, a fact of the employer, which the caller states (maintainer decision of 2026-11-15)."
+        }
       }
     }
   },
