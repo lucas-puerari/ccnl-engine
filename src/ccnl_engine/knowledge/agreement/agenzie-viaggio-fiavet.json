@@ -2495,13 +2495,13 @@
     "effective_until": "2027-12-31",
     "source": "https://cdcpcnelblg01sa.blob.core.windows.net/archivio/2019//20108.pdf",
     "verification_status": "unverified",
-    "source_hash": "6751706c9eea0800ea7f89697a68794c17d887f0c35ba2d99a48aff933454358",
+    "source_hash": "b10e1a2118a349f5a9dc4c68ec1e01af751577ba0cb8a765030e33896280fc46",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -2608,6 +2608,116 @@
               "extraction_timestamp": "2026-09-08T00:00:00",
               "verification_status": "unverified",
               "effective_from": "2019-01-01"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "l-it-cne-cne-sa-0002-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-109727",
+            "title": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/109727",
+            "kind": "associazione",
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/109727",
+            "sha256": "1b62f2f580ad1224285f10d899341f6dcf89b51914dd0b7eac5572dd9b2cca2b"
+          },
+          "page": "57",
+          "section": "Art. 146",
+          "quote": "Articolo 146 – Determinazione della retribuzione oraria La retribuzione oraria si ottiene dividendo la retribuzione per: - 192 per il personale con orario normale di quarantacinque ore settimanali; - 172 per il personale con orario normale di quaranta ore settimanali."
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-agenzie-viaggio-fiavet-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_HOLIDAY_0",
+          "description": "Lavoro ordinario nelle festività di cui all’art. 121",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2019-01-01",
+                "valid_until": null,
+                "value": "0.40"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "l-it-cne-cne-sa-0002-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-109727",
+                "title": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/109727",
+                "kind": "associazione",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/109727",
+                "sha256": "1b62f2f580ad1224285f10d899341f6dcf89b51914dd0b7eac5572dd9b2cca2b"
+              },
+              "page": "51",
+              "section": "Art. 122 c. 1",
+              "quote": "(1) Al personale che presta la propria opera nelle festività di cui all'articolo 121 è dovuta oltre alla normale retribuzione anche quella per le ore di servizio effettivamente prestate, con la maggiorazione del quaranta per cento per lavoro festivo."
+            },
+            "transformation": "Lavoro ordinario nelle festività di cui all’art. 121",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2019-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-agenzie-viaggio-fiavet-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_SUNDAY_1",
+          "description": "Domenica con riposo in altro giorno; indennità su paga base e contingenza",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2019-01-01",
+                "valid_until": null,
+                "value": "0.10"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "l-it-cne-cne-sa-0002-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-109727",
+                "title": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/109727",
+                "kind": "associazione",
+                "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/109727",
+                "sha256": "1b62f2f580ad1224285f10d899341f6dcf89b51914dd0b7eac5572dd9b2cca2b"
+              },
+              "page": "50",
+              "section": "Art. 120 c. 1",
+              "quote": "Ai lavoratori che godano del riposo settimanale in giornata diversa dalla domenica, verrà corrisposta un‘indennità in cifra fissa pari al dieci per cento della quota oraria della paga base e della contingenza per ciascuna ora di lavoro ordinario effettivamente prestato di domenica."
+            },
+            "transformation": "Domenica con riposo in altro giorno; indennità su paga base e contingenza",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2019-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-agenzie-viaggio-fiavet-time-supplements"
             }
           }
         }
@@ -2750,6 +2860,93 @@
         },
         "transformation": "La metà dell'orario medio giornaliero determina la misura della fruizione oraria, non il numero di ore che il CCNL equipara espressamente a una giornata di congedo: day_hours = null. Il comma non prevede un riproporzionamento espresso per il part-time né una decorrenza specifica."
       }
+    },
+    "capability_basis": {
+      "shift_work": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "l-it-cne-cne-sa-0002-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-109727",
+              "title": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/109727",
+              "kind": "associazione",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/109727",
+              "sha256": "1b62f2f580ad1224285f10d899341f6dcf89b51914dd0b7eac5572dd9b2cca2b"
+            },
+            "page": "12",
+            "section": "Art. 10 c. 2 lett. i",
+            "quote": "i) eventuale istituzione del lavoro a turno intendendosi per tale il lavoro prestato in uno dei tre o più turni giornalieri avvicendati nell'arco delle ventiquattro ore;"
+          },
+          "transformation": "shift_work: delegated to second level.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-agenzie-viaggio-fiavet-time-supplements"
+          }
+        }
+      },
+      "night_work": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "l-it-cne-cne-sa-0002-ricerca-api-ricerca-pubblica-accordi-scarica-accordi-109727",
+              "title": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/109727",
+              "kind": "associazione",
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/109727",
+              "sha256": "1b62f2f580ad1224285f10d899341f6dcf89b51914dd0b7eac5572dd9b2cca2b"
+            },
+            "page": "48",
+            "section": "Art. 114 cc. 1-2",
+            "quote": "Il periodo notturno comprende l’intervallo tra le ore 22:00 e le ore 6:00 del mattino. (2) L'orario di lavoro ordinario dei lavoratori notturni non può superare, nella settimana, le otto ore medie giornaliere."
+          },
+          "transformation": "night_work: none in ccnl.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-agenzie-viaggio-fiavet-time-supplements"
+          }
+        }
+      }
+    },
+    "travel_allowance": {
+      "habitual_discount": "0.3333333333",
+      "daily_share": {
+        "rate": "0.15",
+        "base": "pay",
+        "divisor": "26",
+        "abroad_rate": "0.20",
+        "partial_from_hours": "6",
+        "partial_rate": "0.10"
+      },
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "cnel-109727",
+            "title": "CCNL Agenzie di viaggio FIAVET, testo definitivo 24 luglio 2019 (CNEL 109727)",
+            "kind": "cnel",
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/109727",
+            "sha256": "1b62f2f580ad1224285f10d899341f6dcf89b51914dd0b7eac5572dd9b2cca2b"
+          },
+          "page": "72",
+          "section": "Art. 184 cc. 2-6",
+          "quote": "(2) In tal caso al personale compete oltre alle normali spettanze: a) il rimborso delle spese di viaggio effettivamente sostenute; b) il rimborso delle spese di vitto e di alloggio a piè di lista, quando la durata della trasferta obblighi il dipendente a sostenere tali spese; c) il rimborso di eventuali altre spese sostenute in stretta relazione all'espletamento della missione sempre che autorizzate e comprovate (postali, telefoniche e simili); d) un'indennità di trasferta pari al quindici per cento di un ventiseiesimo della retribuzione mensile per ogni giornata intera di assenza; per le assenze inferiori alle ventiquattro ore, ma superiori alle sei ore, spetterà il dieci per cento di un ventiseiesimo della retribuzione mensile. (3) Nei confronti del personale le cui mansioni comportino viaggi abituali, la misura dell'indennità di trasferta sarà in ogni caso pari al dieci per cento calcolato come sopra. (4) L'indennità di cui al punto d) non è cumulabile con eventuali trattamenti aziendali o individuali già in atto a tale titolo, riconoscendosi al lavoratore in servizio, alla data di entrata in vigore del presente Contratto, la facoltà di optare per iscritto, entro tre mesi, per il trattamento ritenuto più favorevole. (5) Può essere concordata aziendalmente una diaria fissa per gli accompagnatori, hostess e simili. (6) In caso di trasferta fuori del territorio nazionale, fermo restando il rimborso di cui ai precedenti punti a), b) e c) per quanto riguarda l'indennità prevista al punto d), la stessa resta stabilita nel venti per cento calcolato come sopra."
+        },
+        "transformation": "d) 15% of a twenty-sixth of the monthly pay for each whole day away (rate 0.15, divisor 26, base the pay); a day under 24 hours but over 6 pays 10% (partial_from_hours 6, partial_rate 0.10), none at or below 6 hours; c. 3: habitual travel 10% 'in ogni caso', i.e. 0.15 reduced by a third (habitual_discount); c. 6: abroad 20% (abroad_rate). Not modelled: the optional company diaria for tour escorts (c. 5) and the option for better company treatments (c. 4), which are the caller's daily_amount. The TFR treatment is not stated: the event states it."
+      }
     }
   },
   "verification": {
@@ -2858,6 +3055,50 @@
         "independence": "separate_model",
         "checked": [
           "parameters.additional_months"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-agenzie-viaggio-fiavet-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/109727",
+            "sha256": "1b62f2f580ad1224285f10d899341f6dcf89b51914dd0b7eac5572dd9b2cca2b"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[0:holiday], bands[1:sunday], none.shift_work, none.night_work.",
+          "Left out: travel: kind share applied by hand; none.rest_day_premium: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-fiavet-travel",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Travel allowance, art. 184 cc. 2-6 (PDF p. 72), read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/109727",
+            "sha256": "1b62f2f580ad1224285f10d899341f6dcf89b51914dd0b7eac5572dd9b2cca2b"
+          }
+        ],
+        "findings": [
+          "Applied: the diaria as a share of the daily pay, with the partial day, habitual travel and abroad rates."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.travel_allowance"
         ]
       }
     ]

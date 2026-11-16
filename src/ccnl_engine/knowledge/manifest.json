@@ -99,7 +99,7 @@
       "valid_to": "2027-12-31",
       "ruleset_id": "ccnl/agenzie-viaggio-fiavet",
       "ruleset_version": "2026.2",
-      "source_hash": "6751706c9eea0800ea7f89697a68794c17d887f0c35ba2d99a48aff933454358",
+      "source_hash": "b10e1a2118a349f5a9dc4c68ec1e01af751577ba0cb8a765030e33896280fc46",
       "source_type": "institutional_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/agenzie-viaggio-fiavet.json.gz"
@@ -252,7 +252,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/autoscuole-unasca",
       "ruleset_version": "2026.1",
-      "source_hash": "9d8677931fa1e44b4757a816cdde95ee777e564c245a56ba7b18b46951637765",
+      "source_hash": "a095b28fa84fb79f0604f74e66358f81badbada4498e8467cfa77d75138ff08b",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/autoscuole-unasca.json.gz"

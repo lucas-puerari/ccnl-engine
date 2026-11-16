@@ -9,7 +9,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 4 | 289 | 244 | 0 | `funzioni-centrali-aran` |
-| terziario | 46 | 5 257 055 | 17 | 982 | 2024 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| terziario | 46 | 5 257 055 | 17 | 982 | 2031 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 49 | 4 969 900 | 118 | 1250 | 2657 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 76 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 29 | 156 | 373 | 2 | `metalmeccanico-artigianato` |
@@ -68,7 +68,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`impianti-sportivi-sport`](../contracts/impianti-sportivi-sport.md) | 35 533 | exploratory | 1 | 5 | 47 | party or official | none | none |
 | [`scuole-materne-fism`](../contracts/scuole-materne-fism.md) | 30 000 | exploratory | 0 | 16 | 41 | party or official | none | none |
 | [`scuole-private-laiche-aninsei`](../contracts/scuole-private-laiche-aninsei.md) | 25 000 | exploratory | 1 | 71 | 36 | party or official | none | none |
-| [`agenzie-viaggio-fiavet`](../contracts/agenzie-viaggio-fiavet.md) | 25 000 | exploratory | 0 | 60 | 10 | party or official | none | none |
+| [`agenzie-viaggio-fiavet`](../contracts/agenzie-viaggio-fiavet.md) | 25 000 | exploratory | 0 | 60 | 13 | party or official | none | none |
 | [`ced-assoced`](../contracts/ced-assoced.md) | 22 000 | exploratory | 1 | 5 | 51 | party or official | none | none |
 | [`formazione-professionale`](../contracts/formazione-professionale.md) | 19 800 | exploratory | 1 | 35 | 0 | party or official | none | none |
 | [`rsa-aiop`](../contracts/rsa-aiop.md) | 17 000 | exploratory | 0 | 9 | 33 | party or official | none | none |
@@ -83,7 +83,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`servizi-postali-appalto-fise`](../contracts/servizi-postali-appalto-fise.md) | 1 000 | exploratory | 0 | 28 | 23 | party or official | none | none |
 | [`agenti-immobiliari-fiaip`](../contracts/agenti-immobiliari-fiaip.md) | none | exploratory | 1 | 2 | 42 | party or official | none | none |
 | [`vigilanza-privata-federdat-sf`](../contracts/vigilanza-privata-federdat-sf.md) | none | exploratory | 1 | 0 | 27 | party or official | none | none |
-| [`autoscuole-unasca`](../contracts/autoscuole-unasca.md) | none | exploratory | 0 | 33 | 1 | party or official | none | none |
+| [`autoscuole-unasca`](../contracts/autoscuole-unasca.md) | none | exploratory | 0 | 33 | 5 | party or official | none | none |
 | [`aziende-termali-federterme`](../contracts/aziende-termali-federterme.md) | none | exploratory | 0 | 66 | 0 | party or official | none | none |
 | [`turismo-confesercenti`](../contracts/turismo-confesercenti.md) | none | exploratory | 0 | 8 | 50 | aggregator | none | none |
 

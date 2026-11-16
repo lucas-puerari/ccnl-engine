@@ -89,3 +89,48 @@ def test_the_share_is_bounded() -> None:
         TravelDailyShare(rate=Decimal(6), base="pay")
     with pytest.raises(ValidationError):
         TravelDailyShare(rate=Decimal(1), base="pay", no_overnight_discount=Decimal(1))
+
+
+_FIAVET = TravelDailyShare(
+    rate=Decimal("0.15"),
+    base="pay",
+    abroad_rate=Decimal("0.20"),
+    partial_from_hours=Decimal(6),
+    partial_rate=Decimal("0.10"),
+)
+
+
+@pytest.mark.parametrize(
+    ("hours", "abroad", "daily"),
+    [
+        (Decimal(24), False, Decimal("15.00")),
+        (Decimal(24), True, Decimal("20.00")),
+        (Decimal(10), False, Decimal("10.00")),
+        (Decimal(10), True, Decimal("10.00")),
+        (Decimal(6), False, Decimal(0)),
+    ],
+)
+def test_the_agenzie_di_viaggio_diaria_by_the_hours_away(
+    hours: Decimal, abroad: bool, daily: Decimal
+) -> None:
+    """Agenzie di viaggio art. 184 c. 2 d and c. 6, 2,600 a month: 100 a day.
+
+    15% a whole day, 20% abroad; under 24 hours but over 6, 10%; 6 or fewer
+    hours, nothing.
+    """
+    trip = _trip(hours_away=hours, abroad=abroad)
+    assert share_amount(trip, _FIAVET, Decimal(2600)) == daily
+
+
+def test_a_partial_day_needs_the_hours_away() -> None:
+    """Without the hours the share of the day is not known."""
+    with pytest.raises(MissingRuleError, match="hours away"):
+        share_amount(_trip(), _FIAVET, Decimal(2600))
+
+
+def test_a_partial_day_needs_its_rate() -> None:
+    """The hours of a partial day without its rate are rejected."""
+    with pytest.raises(ValidationError, match="partial day"):
+        TravelDailyShare(
+            rate=Decimal("0.15"), base="pay", partial_from_hours=Decimal(6)
+        )

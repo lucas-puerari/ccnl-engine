@@ -103,6 +103,13 @@ class TravelDailyShare(BaseModel):
             an overnight stay away (Commercio: a third).
         hiring_letter_exempts: Whether no diaria is due when the hiring
             letter provides for the duty to travel (Lavoro domestico).
+        abroad_rate: Share of a trasferta abroad, when the CCNL sets its own
+            (Agenzie di viaggio art. 184 c. 6: 20%); ``None`` for ``rate``.
+        partial_from_hours: Hours away a day of less than 24 must exceed to
+            be paid at ``partial_rate``; fewer pay nothing (Agenzie di viaggio
+            art. 184 c. 2 d: 10% "per le assenze inferiori alle ventiquattro
+            ore, ma superiori alle sei ore").  ``None`` pays every day whole.
+        partial_rate: Share of such a day.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -114,6 +121,18 @@ class TravelDailyShare(BaseModel):
         default=Decimal(0), ge=Decimal(0), lt=Decimal(1)
     )
     hiring_letter_exempts: bool = False
+    abroad_rate: Decimal | None = Field(default=None, gt=Decimal(0), le=Decimal(5))
+    partial_from_hours: Decimal | None = Field(
+        default=None, ge=Decimal(0), lt=Decimal(24)
+    )
+    partial_rate: Decimal | None = Field(default=None, gt=Decimal(0), le=Decimal(5))
+
+    @model_validator(mode="after")
+    def _partial_pair(self) -> Self:
+        if (self.partial_from_hours is None) != (self.partial_rate is None):
+            msg = "a partial day of the diaria needs its hours and its rate"
+            raise ValueError(msg)
+        return self
 
 
 class CcnlTravelAllowance(BaseModel):
