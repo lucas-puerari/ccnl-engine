@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Panificazione industriale pay of the text signed on 18 March 2026 (PDF p. 145, 147-148, 153-154, 160), read on the page images, against the research of a separate model session on the CCNL 2021. | corrected | Added the seven panificazione industriale levels with paga base, contingenza, premio di produzione, premio per obiettivi and scatti.<br>The contingenza of the sector (art. 47 bis) is new in the 2026 text; the CCNL 2021 had none for these levels. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 29 tables of the text signed on 18 March 2026 (PDF p. 109-119), read on the page images, against the Federalimentare art. 31 bands. | corrected | The file had unverified overtime rates of 40%, 45% and 50% for everyone; the signed tables pay 45% for weekday overtime in every sub-sector and differ by sub-sector and category.<br>The sub-sector tables equal those of Federalimentare art. 31; the first also covers the prodotti da forno; the panificazione has its own table. |
 | 2026-11-16 | claude-opus-5-5 (ai) | Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256. | corrected | Applied: work_rules.parental_hourly. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: travel. |
 
 ## Salary table
 

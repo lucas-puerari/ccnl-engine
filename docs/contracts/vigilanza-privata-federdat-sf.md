@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-07-09 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-10 | claude-opus-5-5 (ai) | 2023 level F classification and pay (pp. 69-70, 76); 2026 renewal table (p. 76). | corrected | The 2023 table pays F 865.68; the 2026 renewal omits F without printing a transition. |
 | 2026-11-13 | claude-opus-5-5 (ai) | Arts. 21 and 64 of the renewal of 9 July 2026 (CNEL 245848, PDF pp. 16, 34-35) and arts. 21 and 48 of the text of 4 May 2023 (CNEL 167336, PDF pp. 17, 34), scanned pages read on the images. | corrected | Added health_funds ebilav (0,20% + 0,10%, alternative 25 EUR) and ebilav_sanitario (12 EUR, alternative 15 EUR); limitation health_and_bilateral_funds replaced by the narrower federdat_sf_fund_substitutes_fourteen. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto over the calendar year and paid days, against the research of a separate model session; quotes checked on the source. | corrected | Comporto of 240 days over the calendar year; pay ends after 180 days. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: travel.<br>Left out: none.night_work: skipped; none.shift_work: skipped. |
 
 ## Salary table
 

@@ -2025,7 +2025,7 @@
     "effective_until": null,
     "source": "https://www.funiviearabba.it/wp-content/uploads/2025/12/Sintesi-CCNL-ANEF.pdf",
     "verification_status": "unverified",
-    "source_hash": "a93aa967e2c4ed6f9628910399538c65e5335eb357b6b686ea899968ccae7010",
+    "source_hash": "6aa3837d7a040621d3fd3be44d816f2eda496525793e86ee55c478021036b1d9",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2177,7 +2177,8 @@
             }
           }
         }
-      ]
+      ],
+      "supplement_bands": []
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -2278,6 +2279,37 @@
         },
         "transformation": "La lettera a equipara una giornata alla durata giornaliera risultante dalla distribuzione dell'orario contrattuale settimanale, senza fissare un numero espresso di ore per il tempo pieno: day_hours = null. I multipli/minimi della lettera c non sono l'equivalenza di una giornata. Non è prevista una regola espressa di riproporzionamento per il part-time. La decorrenza 2025-05-01 deriva dall'art. 49, comma 1, applicabile salvo diverse decorrenze specifiche non indicate nell'art. 41 ter."
       }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "l-org-wp-content-uploads-2025-10-ccnl-impianti-a-fune-testo-unico-coordinato-pdf",
+              "title": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+              "kind": "associazione",
+              "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+              "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
+            },
+            "page": "30",
+            "section": "Art. 28 cc. 1-2",
+            "quote": "Al lavoratore che per esigenze di servizio venga inviato fuori dalla sede di lavoro, intendendosi per tale le località in cui sono ubicati gli impianti aziendali, spetta a titolo di trasferta il rimborso delle spese effettive di viaggio e delle altre spese necessarie per l’espletamento della missione dietro presentazione dei relativi documenti di viaggio e ricevute fiscali, secondo quanto previsto ai punti seguenti: a. rimborso delle spese di viaggio in 1ª classe effettivamente sostenute; b. rimborso delle spese di vitto nei limiti della normalità e di quelle di alloggio in albergo di 2ª categoria, quando la durata della trasferta obblighi il lavoratore a sostenere tali spese; c. rimborso delle altre eventuali spese sostenute per l’espletamento della missione, sempreché siano autorizzate e debitamente comprovate. 2. I rimborsi di cui ai precedenti punti non fanno parte della retribuzione ordinaria e non si cumulano con eventuali trattamenti aziendali o individuali in atto a tale titolo, riconoscendosi al lavoratore la facoltà di optare per il trattamento ritenuto più favorevole."
+          },
+          "transformation": "The CCNL pays no daily travel allowance: the trasferta is refunded at documented cost",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-funivie-anef-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -2377,6 +2409,29 @@
         "independence": "same_process",
         "checked": [
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-funivie-anef-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Impianti-a-Fune-testo-unico-coordinato.pdf",
+            "sha256": "24f5d87b3468ae8a25bb494f42cf3431764d1740e4cf4b5b3525c573cee62482"
+          }
+        ],
+        "findings": [
+          "Applied: travel.",
+          "Left out: bands[0:night]: quote skipped; bands[1:holiday]: quote skipped; bands[2:rest_day]: quote skipped; bands[3:sunday]: quote skipped; bands[4:sunday]: quote skipped; none.shift_work: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ]
