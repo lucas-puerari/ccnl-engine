@@ -109,7 +109,35 @@
             "trigger": "run",
             "effective_from": "2026-05-01"
           },
-          "remediation": "Source an ANIP-signed later minimum or verified IPCA adjustment before adding subsequent tranches."
+          "remediation": "Source an ANIP-signed later minimum or verified IPCA adjustment before adding subsequent tranches.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+              "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167",
+              "title": "Rinnovo 8 giugno 2021, PDF p. 34: the July 2025 fifth tranche is the last minimum ANIP signed."
+            },
+            {
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234754",
+              "sha256": "c48ac1d26759f53553270b626d7acddcb35621707554d8a7e7306f48bf29976d",
+              "title": "Ipotesi 13 giugno 2025, PDF pp. 1, 12-14: signed by AGCI, Confcooperative, Legacoop and Unionservizi-Confapi, not by ANIP."
+            },
+            {
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
+              "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61",
+              "title": "Accordo integrativo 6 agosto 2025, PDF pp. 1 and 5: no ANIP signature."
+            },
+            {
+              "url": "https://www.legacoop.coop/wp-content/uploads/2026/04/decreto-direttoriale-n-25-del-30032026.pdf",
+              "sha256": "d19281efd6c6f3cf5cf9992095b867b2fda0982fd062e9f506188b63bf96ccc2",
+              "title": "Decreto direttoriale 25 del 30 marzo 2026, p. 3: labour-cost tables from July 2025 to March 2029, not an ANIP agreement."
+            },
+            {
+              "url": "https://www.legacoop.coop/wp-content/uploads/2026/04/tabelle-operai-2025-2029-imprese-esercenti-servizi-pulizia.pdf",
+              "sha256": "b201fcb9a8faa158eb1d76745d5c85aeb3e78df4f42c85dd4af9eecd9bd3d0ca",
+              "title": "Ministerial tables of the operai 2025-2029: the minima of the CCNL signed by the other parties."
+            }
+          ]
         }
       },
       {
@@ -5681,7 +5709,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "bee92253195437c5c506ae0c2abeaa05f4e368d5dabbd1e0863bb9f570c9f193",
+    "source_hash": "e6d389e7a15dc2b38afd2f9d6760c962894e9cff5a53244c6e4be3ec3b8d73ca",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },

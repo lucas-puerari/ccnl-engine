@@ -137,7 +137,7 @@ Destination levels: `7`
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
 
-!!! warning "multiservizi-anip/anip_unsigned_renewal · base_salary · impact yes · open"
+!!! warning "multiservizi-anip/anip_unsigned_renewal · base_salary · impact yes · unsourced"
     LATER UNSIGNED TRANCHES: the May 2026 and later minima of the renewal of 13 June 2025 (CNEL K511, deposits 234754 and 234752) were not signed by ANIP and are excluded. The signed July 2025 fifth tranche of the 2021 renewal (CNEL 139292 p. 34) is applied; no subsequent ANIP minimum or actual IPCA adjustment has been verified.
 
     **Applies when:** `base_salary` applies; from 2026-05-01.
