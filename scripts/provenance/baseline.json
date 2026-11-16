@@ -150,9 +150,6 @@
       "accrual_rule": "missing",
       "additional_months[2023-01-01]": "assumed"
     },
-    "agreement/grafica-editoria-aieg.json": {
-      "additional_months[2024-03-01]": "assumed"
-    },
     "agreement/igiene-ambientale-utilitalia.json": {
       "additional_months[2026-02-01]": "assumed"
     },

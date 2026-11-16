@@ -1122,7 +1122,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/grafica-editoria-aieg",
       "ruleset_version": "2026.2",
-      "source_hash": "90c7ff6b4800a6780378be9ecf5e3ebc80e529adfb9440820e3ad9989fc44900",
+      "source_hash": "13e2123162163a3ac9fffbab511017d3e1b3a7ddbf783edccbfb9543337f3849",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/grafica-editoria-aieg.json.gz"
@@ -3701,7 +3701,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "e6e82385256ed9e1d4498cfe3d9c5ce6bf48cfc58ac8f78d5605d032fc902f0c",
+      "source_hash": "96010394ef057d9f4f2e008b6ad3a2df4ebf776f94b49f26d01acc834f01034b",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/grafica-editoria-aieg.json.gz",
