@@ -26,7 +26,7 @@ def run_settlement(ctx: RunContext) -> ExtraMonthSettlement:
     """
     settlement = settle_extra_months(
         ctx.settlements,
-        ctx.regular_chain,
+        ctx.ratei_chain,
         ctx.cp,
         ctx.contract.tctx.payment,
         ctx.run_id,

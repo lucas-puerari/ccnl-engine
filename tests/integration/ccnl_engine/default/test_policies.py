@@ -187,6 +187,11 @@ _NOT_EXERCISED: dict[str, str] = {
         "a first- or third-level apprentice raises MissingRequiredFactError "
         "without it; a professionalising one does not read it"
     ),
+    "Apprentice.ratei_hours": (
+        "the final settlement of a first- or third-level apprentice "
+        "liquidating extra months raises MissingRequiredFactError without "
+        "it; no other run reads it: no result to compare"
+    ),
     "Dependent.birth_date": (
         "a child without it raises InvalidInputError, and no other dependant "
         "reads it: no result to compare"

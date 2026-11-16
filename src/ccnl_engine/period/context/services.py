@@ -2,9 +2,6 @@
 
 The context is an immutable record; :mod:`._context_build` resolves it from
 the request and :mod:`._context_facts` derives the facts it exposes.
-
-Pure functions of the values a :class:`RunContext` holds, so the context
-stays a plain immutable record.
 """
 
 from __future__ import annotations
@@ -77,8 +74,9 @@ class RunContext:
         var_pay_rules: Variable pay rules of the tax year.
         policy_context: Context the pay-item policies are resolved in.
         cp: Competence period of the run.
-        regular_chain: Pay chain of a fully employed regular month, which
-            the extra-month settlements and the domestic hourly rate read.
+        regular_chain: Pay chain of a fully employed regular month.
+        ratei_chain: :attr:`regular_chain` the extra-month settlements pay,
+            at the hours of the ratei of a first- or third-level apprentice.
         proration: Payable part of the month of a regular run.
         settlements: Ratei the run liquidates at the termination of the
             employment, paid as extra-month earnings.
@@ -103,6 +101,7 @@ class RunContext:
     policy_context: PolicyContext
     cp: CompetencePeriod
     regular_chain: MonthlyPayChain
+    ratei_chain: MonthlyPayChain
     proration: RunProration
     settlements: tuple[ExtraMonthAccrual, ...]
     full_time_chain: MonthlyPayChain
