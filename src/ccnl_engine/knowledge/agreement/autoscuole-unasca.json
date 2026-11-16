@@ -183,6 +183,29 @@
         "checked": [
           "work_rules.sunday_holidays"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-autoscuole-close",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Arts. 13 c. 3, 15 and 16 (PDF pp. 16-18) read from the OCR of the scanned CCNL of 28 February 2023 (sha256 e8bf8811…).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+            "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+          }
+        ],
+        "findings": [
+          "Applied: the daily divisor by week, the night bands with the instructor's, the overtime table and no shift premium."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.absence_rules",
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -1567,7 +1590,7 @@
     "effective_until": null,
     "source": "https://www.unasca.it/PDF/ccnl/Verbale_di_Accordo_Rettifica_tabelle14-03-2023.pdf",
     "verification_status": "unverified",
-    "source_hash": "85835f0731b5b4721d9f689cf451da56d7181a1ab114711f407aa826cd9f93a0",
+    "source_hash": "9403f5ff585d9c02780d403d26ca7ee911bca4473b53b5fceef2e791ad19e5c2",
     "published_at": "2026-09-12",
     "source_type": "contracting_party"
   },
@@ -1715,6 +1738,71 @@
               "review_id": "2026-11-16-ai-autoscuole-unasca-time-supplements"
             }
           }
+        },
+        {
+          "code": "NOTTURNO",
+          "description": "Lavoro notturno ordinario, ore 22-6",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-02-28",
+                "valid_until": null,
+                "value": "0.20"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-autoscuole-2023",
+                "title": "CCNL Autoscuole, scuole nautiche e studi di consulenza automobilistica, firmato il 28 febbraio 2023 (UNASCA)",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+                "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+              },
+              "page": "17",
+              "section": "Art. 15 cc. 2, 5",
+              "quote": "lavoro notturno: maggiorazione del 20%"
+            },
+            "transformation": "Night work from 22 to 6 within the normal hours: 20% of the retribuzione globale.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
+          }
+        },
+        {
+          "code": "NOTTURNO_ISTRUTTORE",
+          "description": "Lavoro notturno dell'istruttore di guida",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-02-28",
+                "valid_until": null,
+                "value": "0.10"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "role": "istruttore_guida",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-autoscuole-2023",
+                "title": "CCNL Autoscuole, scuole nautiche e studi di consulenza automobilistica, firmato il 28 febbraio 2023 (UNASCA)",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+                "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+              },
+              "page": "18",
+              "section": "Art. 15 c. 5, ultimo periodo",
+              "quote": "Al lavoro notturno svolto dall'istruttore di guida si applica la maggiorazione del 10%."
+            },
+            "transformation": "The driving instructor's night work is paid 10%: role istruttore_guida.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
+          }
         }
       ],
       "hourly_base_method": "gross_incl_allowances",
@@ -1743,7 +1831,250 @@
           "verification_status": "verified",
           "review_id": "2026-11-16-ai-autoscuole-unasca-time-supplements"
         }
-      }
+      },
+      "overtime_bands": [
+        {
+          "code": "OT_FERIALE_DIURNO",
+          "description": "Straordinario feriale diurno, 1a e 2a ora",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-02-28",
+                "valid_until": null,
+                "value": "0.15"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-autoscuole-2023",
+                "title": "CCNL Autoscuole, scuole nautiche e studi di consulenza automobilistica, firmato il 28 febbraio 2023 (UNASCA)",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+                "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+              },
+              "page": "18",
+              "section": "Art. 16 c. 6",
+              "quote": "La maggiorazione dovuta sulle prime quattro ore settimanali di lavoro straordinario feriale diurno è pari a:"
+            },
+            "transformation": "The first two weekly overtime hours (the 40th and 41st of the 39-hour week of art. 9) at 15%.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
+          }
+        },
+        {
+          "code": "OT_FERIALE_DIURNO_3",
+          "description": "Straordinario feriale diurno, 3a ora",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-02-28",
+                "valid_until": null,
+                "value": "0.25"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-autoscuole-2023",
+                "title": "CCNL Autoscuole, scuole nautiche e studi di consulenza automobilistica, firmato il 28 febbraio 2023 (UNASCA)",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+                "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+              },
+              "page": "18",
+              "section": "Art. 16 c. 6",
+              "quote": "La maggiorazione dovuta sulle prime quattro ore settimanali di lavoro straordinario feriale diurno è pari a:"
+            },
+            "transformation": "The third weekly overtime hour, past the 41st hour of the week: 25%.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
+          },
+          "hour_threshold_per_week": "41"
+        },
+        {
+          "code": "OT_FERIALE_DIURNO_4",
+          "description": "Straordinario feriale diurno, dalla 4a ora",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-02-28",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "weekday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-autoscuole-2023",
+                "title": "CCNL Autoscuole, scuole nautiche e studi di consulenza automobilistica, firmato il 28 febbraio 2023 (UNASCA)",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+                "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+              },
+              "page": "18",
+              "section": "Art. 16 c. 6",
+              "quote": "lavoro straordinario feriale diurno: maggiorazione 30%"
+            },
+            "transformation": "The fourth hour (30%) and every further one ('lavoro straordinario feriale diurno: maggiorazione 30%'), past the 42nd hour of the week.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
+          },
+          "hour_threshold_per_week": "42"
+        },
+        {
+          "code": "OT_FERIALE_NOTTURNO",
+          "description": "Straordinario feriale notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-02-28",
+                "valid_until": null,
+                "value": "0.55"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-autoscuole-2023",
+                "title": "CCNL Autoscuole, scuole nautiche e studi di consulenza automobilistica, firmato il 28 febbraio 2023 (UNASCA)",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+                "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+              },
+              "page": "18",
+              "section": "Art. 16 c. 6",
+              "quote": "lavoro straordinario feriale notturno: maggiorazione 55%"
+            },
+            "transformation": "Night overtime, 22 to 6: 55%.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
+          }
+        },
+        {
+          "code": "OT_FERIALE_NOTTURNO_ISTRUTTORE",
+          "description": "Straordinario feriale notturno dell'istruttore di guida",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-02-28",
+                "valid_until": null,
+                "value": "0.40"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-autoscuole-2023",
+                "title": "CCNL Autoscuole, scuole nautiche e studi di consulenza automobilistica, firmato il 28 febbraio 2023 (UNASCA)",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+                "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+              },
+              "page": "18",
+              "section": "Art. 16 c. 6",
+              "quote": "AI lavoro straordinario feriale notturno svolto dallo stesso lavoratore si applica la maggiorazione del 40%."
+            },
+            "transformation": "The driving instructor's night overtime: 40% in place of 55%.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
+          },
+          "role": "istruttore_guida"
+        },
+        {
+          "code": "OT_FESTIVO_DIURNO",
+          "description": "Straordinario festivo diurno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-02-28",
+                "valid_until": null,
+                "value": "0.55"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "holiday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-autoscuole-2023",
+                "title": "CCNL Autoscuole, scuole nautiche e studi di consulenza automobilistica, firmato il 28 febbraio 2023 (UNASCA)",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+                "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+              },
+              "page": "18",
+              "section": "Art. 16 c. 6",
+              "quote": "lavoro straordinario festivo diurno: maggiorazione 55%"
+            },
+            "transformation": "Overtime on Sunday or beyond the normal hours of a holiday (art. 16 c. 4): 55%.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
+          }
+        },
+        {
+          "code": "OT_FESTIVO_NOTTURNO",
+          "description": "Straordinario festivo notturno",
+          "kind": "percentage",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-02-28",
+                "valid_until": null,
+                "value": "0.80"
+              }
+            ]
+          },
+          "applies_to_kinds": [
+            "night_holiday"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-autoscuole-2023",
+                "title": "CCNL Autoscuole, scuole nautiche e studi di consulenza automobilistica, firmato il 28 febbraio 2023 (UNASCA)",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+                "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+              },
+              "page": "18",
+              "section": "Art. 16 c. 6",
+              "quote": "lavoro straordinario festivo notturno: maggiorazione 80%."
+            },
+            "transformation": "Night holiday overtime: 80%.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
+          }
+        }
+      ]
     },
     "capability_basis": {
       "travel_allowance": {
@@ -1773,6 +2104,26 @@
             "verification_status": "verified",
             "review_id": "2026-11-16-ai-autoscuole-unasca-time-supplements"
           }
+        }
+      },
+      "shift_work": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-autoscuole-2023",
+              "title": "CCNL Autoscuole, scuole nautiche e studi di consulenza automobilistica, firmato il 28 febbraio 2023 (UNASCA)",
+              "kind": "associazione",
+              "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+              "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+            },
+            "page": "17",
+            "section": "Art. 15 c. 3",
+            "quote": "E' considerato compreso in turni avvicendati quello eseguito a turni regolari ed alternativi."
+          },
+          "transformation": "The CCNL defines the shifts and sets no premium for them: a night shift hour is a night hour of art. 15 (20%, 10% for the instructor).",
+          "note": "Scanned PDF: the quote is read from the OCR of the page."
         }
       }
     },
@@ -1815,6 +2166,70 @@
           "effective_from": "2023-02-28",
           "verification_status": "unverified"
         }
+      }
+    },
+    "absence_rules": {
+      "daily_divisor_method": "by_22",
+      "week_days_methods": [
+        {
+          "days": 6,
+          "method": "by_26",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-autoscuole-2023",
+                "title": "CCNL Autoscuole, scuole nautiche e studi di consulenza automobilistica, firmato il 28 febbraio 2023 (UNASCA)",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+                "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+              },
+              "page": "16",
+              "section": "Art. 13 c. 3",
+              "quote": "La retribuzione giornaliera si ottiene dividendo la retribuzione mensile per 22, per i lavoratori il cui orario normale è ripartito su 5 giorni, o per 26, in caso di lavoratori il cui orario normale di lavoro è ripartito su 6 giorni."
+            },
+            "transformation": "A six-day full-time week divides the monthly pay by 26.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
+          }
+        },
+        {
+          "days": 5,
+          "method": "by_22",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-autoscuole-2023",
+                "title": "CCNL Autoscuole, scuole nautiche e studi di consulenza automobilistica, firmato il 28 febbraio 2023 (UNASCA)",
+                "kind": "associazione",
+                "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+                "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+              },
+              "page": "16",
+              "section": "Art. 13 c. 3",
+              "quote": "La retribuzione giornaliera si ottiene dividendo la retribuzione mensile per 22, per i lavoratori il cui orario normale è ripartito su 5 giorni, o per 26, in caso di lavoratori il cui orario normale di lavoro è ripartito su 6 giorni."
+            },
+            "transformation": "A five-day week divides by 22, the default.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
+          }
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-autoscuole-2023",
+            "title": "CCNL Autoscuole, scuole nautiche e studi di consulenza automobilistica, firmato il 28 febbraio 2023 (UNASCA)",
+            "kind": "associazione",
+            "url": "https://www.unasca.it/PDF/ccnl/CCNL_AUTOSCUOLE_-_SCUOLE_NAUTICHE_-_STUDI_DI_CONSULENZA_AUTOMOBILISTICA_FIRMATO_IL_28-02-2023.pdf",
+            "sha256": "e8bf8811c5a57113fb301082daf1b1cdf034da400c31c9292779e6e7042ddae4"
+          },
+          "page": "16",
+          "section": "Art. 13 c. 3",
+          "quote": "La retribuzione giornaliera si ottiene dividendo la retribuzione mensile per 22, per i lavoratori il cui orario normale è ripartito su 5 giorni, o per 26, in caso di lavoratori il cui orario normale di lavoro è ripartito su 6 giorni."
+        },
+        "transformation": "The daily pay is the monthly pay over 22 on a five-day week, over 26 on a six-day week (Employment.full_time_week_days).",
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
       }
     }
   }

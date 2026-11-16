@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 20/136 CCNLs**; complete except declared residuals: 4. Bundle: 177 weak rules, 251 open limitations (251 with a monetary impact), 34 declared residuals.
+**Complete: 21/136 CCNLs**; complete except declared residuals: 4. Bundle: 177 weak rules, 251 open limitations (251 with a monetary impact), 34 declared residuals.
 
 ## Declared window
 
@@ -86,7 +86,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [attivita-minerarie-assorisorse](../contracts/attivita-minerarie-assorisorse.md) | `materiali-estrattive` | exploratory | — | 2 rows | 2 open requirements; 2 weak rules; 6 non-native capabilities |
 | [autoferrotranvieri-internavigatori](../contracts/autoferrotranvieri-internavigatori.md) | `trasporti-logistica` | exploratory | — | 2 rows | 2 open requirements; 1 monetary limitation; 1 outside_input limitation; 6 non-native capabilities |
 | [autorimesse-ic35](../contracts/autorimesse-ic35.md) | `servizi-automobilistici` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 outside_input limitation; 5 non-native capabilities |
-| [autoscuole-unasca](../contracts/autoscuole-unasca.md) | `servizi-automobilistici` | exploratory | — | 0 rows | 4 non-native capabilities |
+| [autoscuole-unasca](../contracts/autoscuole-unasca.md) | `servizi-automobilistici` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [autostrade-trafori](../contracts/autostrade-trafori.md) | `trasporti-logistica` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 1 monetary limitation; 1 outside_input limitation; 6 non-native capabilities |
 | [aziende-termali-federterme](../contracts/aziende-termali-federterme.md) | `turismo` | exploratory | — | 3 rows | 3 open requirements; 3 monetary limitations; 7 non-native capabilities |
 | [bancari-abi](../contracts/bancari-abi.md) | `credito` | exploratory | 2026-03-31 | 6 rows | 6 open requirements; 3 monetary limitations; 3 outside_input limitations; 9 non-native capabilities |

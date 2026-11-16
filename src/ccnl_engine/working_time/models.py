@@ -82,7 +82,8 @@ class OvertimeBand(BaseModel):
     when they differ from those used to pay the ordinary hour.
     ``shift_workers`` keeps an overtime band to the turnisti
     (``OvertimeEvent.in_periodic_shift``) when ``True``, to the others when
-    ``False`` (Federmeccanica art. 7: a column for each); ``None``, to all.
+    ``False`` (Federmeccanica art. 7: a column for each); ``None``, to all;
+    ``role``, to an ``Employment.roles`` code, replacing the general band.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -98,6 +99,7 @@ class OvertimeBand(BaseModel):
     levels: tuple[str, ...] = ()
     subsectors: tuple[str, ...] = ()
     categories: tuple[WorkerCategory, ...] = ()
+    role: str | None = None
     premium_base: HourlyBaseMethod | None = None
     shift_workers: bool | None = None
     provenance: RuleProvenance | None = None
@@ -107,14 +109,15 @@ def _unconditional_keys(band: OvertimeBand) -> list[str]:
     """Return the work kind and shift column keys an unpredicated band takes.
 
     Returns:
-        ``kind/column`` for each kind and column (both columns without a
+        ``kind/column/role`` for each kind and column (both columns without
         ``shift_workers``); none for a band with a threshold or a context.
     """
     if band.required_context_kinds or _has_threshold(band):
         return []
     shift = band.shift_workers
     columns = (True, False) if shift is None else (shift,)
-    return [f"{k}/{c}" for k, c in itertools.product(band.applies_to_kinds, columns)]
+    kinds = itertools.product(band.applies_to_kinds, columns)
+    return [f"{k}/{c}/{band.role}" for k, c in kinds]
 
 
 def _has_threshold(band: OvertimeBand) -> bool:

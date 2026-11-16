@@ -212,8 +212,11 @@ def resolve_overtime_rate(
 
     Raises:
         MissingRuleError: When the event has no multiplier and the CCNL
-            has no first-tier percentage band of its kind in force.
+            has no first-tier percentage band of its kind in force.  An
+            event of a kind a band of a role pays, without the worker's
+            roles, is blocked (:meth:`CCNLOvertimeBands.require_roles`).
     """
+    bands.require_roles(event)
     matching = _kind_bands(bands, event)
     tiers = tuple((b, rate) for b, rate in matching if _has_threshold(b))
     base = next(((b, rate) for b, rate in matching if not _has_threshold(b)), None)
