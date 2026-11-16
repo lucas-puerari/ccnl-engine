@@ -51,6 +51,8 @@ _DECLARED_GAPS: dict[tuple[str, SalaryGapKind, date], int] = {
     ("rsa-aiop", _NOT_APPLICABLE, date(2023, 10, 1)): 9,
     # Art. 159 c. 6 CCNL 18.1.2024: the AFAM position pay from 1 May 2024.
     ("afam-aran", _NOT_APPLICABLE, date(2024, 5, 1)): 1,
+    # Scatti and F-level allowances under the 2023 table not read (18 series).
+    ("trasporto-ferroviario-agens", _MISSING, date(2025, 6, 1)): 18,
 }
 
 

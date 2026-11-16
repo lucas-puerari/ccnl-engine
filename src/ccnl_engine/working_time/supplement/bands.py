@@ -54,8 +54,9 @@ def _of_service(
     if not services:
         return found
     if service is None:
+        shift = work in {SupplementWork.DAY_SHIFT, SupplementWork.NIGHT_SHIFT}
         return Unstated(
-            "NightShiftEvent.service",
+            "ShiftWorkEvent.service" if shift else "NightShiftEvent.service",
             f"the CCNL ({terms.ruleset}) pays {work.value} work by the service "
             f"({', '.join(services)}) and the event does not state it",
         )

@@ -265,6 +265,8 @@ class ShiftWorkEvent:
         kind: The shift of the rotation; ``None`` when not stated.
         shifts: Days of shift worked, for a CCNL that pays the day of shift
             (Sanità art. 67 c. 2: "per ogni giornata di effettivo lavoro").
+        service: The kind of rotation, by the code of the CCNL band, for a
+            CCNL that pays it by the rotation (Mobilità AF art. 30).
     """
 
     event_date: date
@@ -272,6 +274,7 @@ class ShiftWorkEvent:
     hours: Decimal | None = None
     kind: ShiftKind | None = None
     shifts: int | None = None
+    service: str | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         feature = "shift_work"
@@ -288,3 +291,5 @@ class ShiftWorkEvent:
                 self.kind, ShiftKind, "ShiftWorkEvent.kind", feature=feature
             )
             object.__setattr__(self, "kind", kind)
+        path = "ShiftWorkEvent.service"
+        require_str(self.service, path, feature=feature, non_blank=True, optional=True)

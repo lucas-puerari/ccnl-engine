@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 22/136 CCNLs**; complete except declared residuals: 4. Bundle: 177 weak rules, 251 open limitations (251 with a monetary impact), 34 declared residuals.
+**Complete: 23/136 CCNLs**; complete except declared residuals: 4. Bundle: 177 weak rules, 250 open limitations (250 with a monetary impact), 34 declared residuals.
 
 ## Declared window
 
@@ -197,7 +197,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [tessile-pmi-uniontessile](../contracts/tessile-pmi-uniontessile.md) | `tessile-moda` | exploratory | 2027-03-31 | 11 rows | 11 open requirements; 6 weak rules; 3 monetary limitations; 2 outside_input limitations; 7 non-native capabilities; 1 declared residual |
 | [tessile-smi](../contracts/tessile-smi.md) | `tessile-moda` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule; 5 non-native capabilities |
 | [trasporto-aereo-assaeroporti](../contracts/trasporto-aereo-assaeroporti.md) | `trasporti-logistica` | exploratory | — | 3 rows | 3 open requirements; 2 monetary limitations; 1 outside_input limitation; 7 non-native capabilities |
-| [trasporto-ferroviario-agens](../contracts/trasporto-ferroviario-agens.md) | `trasporti-logistica` | exploratory | 2026-12-31 | 1 rows | 1 open requirement; 1 monetary limitation; 3 non-native capabilities |
+| [trasporto-ferroviario-agens](../contracts/trasporto-ferroviario-agens.md) | `trasporti-logistica` | exploratory | 2026-12-31 | 0 rows | complete; 3 limitations awaiting publication |
 | [turismo-confesercenti](../contracts/turismo-confesercenti.md) | `turismo` | exploratory | — | 1 rows | 1 open requirement; 1 outside_input limitation; 6 non-native capabilities |
 | [turismo-federalberghi](../contracts/turismo-federalberghi.md) | `turismo` | production | — | 6 rows | 6 open requirements; 2 monetary limitations; 4 outside_input limitations; 2 non-native capabilities; 2 declared residuals |
 | [turismo-federalberghi-alberghi-minori](../contracts/turismo-federalberghi-alberghi-minori.md) | `turismo` | exploratory | — | 8 rows | 8 open requirements; 3 monetary limitations; 5 outside_input limitations; 2 non-native capabilities; 1 declared residual |

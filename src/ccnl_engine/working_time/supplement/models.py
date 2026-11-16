@@ -136,7 +136,8 @@ class SupplementBand(BaseModel):
             engine posts the supplement only; the hours paid apart are
             ordinary pay it does not post.
         service: Code of the kind of service the band pays, stated on each
-            event (``NightShiftEvent.service``), when the CCNL pays the same
+            event (``NightShiftEvent.service``, ``ShiftWorkEvent.service``),
+            when the CCNL pays the same
             work at different rates by the service (Farmacie art. 19: doors
             open or closed, the first 8 hours or beyond); ``None`` otherwise.
         role: Role code the band is reserved to (``Employment.roles``);
