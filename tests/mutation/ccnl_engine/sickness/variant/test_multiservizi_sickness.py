@@ -123,3 +123,45 @@ def test_episode_band_boundaries(
         is SickDayKind.BEYOND_COMPORTO
     )
     assert rules.ccnl.comporto_windows[0].comporto_days == 360
+
+
+def test_the_operai_band_past_day_180_is_of_the_gross_pay() -> None:
+    """Art. 51 b: '50% della retribuzione globale', not of the net one.
+
+    A synthetic INPS share of 25% from day 181 (30 June): the 50% band
+    takes 25 a paid day on the gross basis, 22.22 if the share were grossed
+    up at 10%; the 17 paid days to 19 July differ by 425 / 0.9 - 425 = 47.22.
+    """
+    inps = InpsSickPayRates(
+        carenza_days=3,
+        bands=[
+            SickPayBand(day_from=4, day_to=180, rate=Decimal("0.5")),
+            SickPayBand(day_from=181, day_to=300, rate=Decimal("0.25")),
+        ],
+        annual_max_days=300,
+        coverage=(SickPayCoverage(covered=True, source="test: insured"),),
+    )
+    rule = _rules(WorkerCategory.OPERAIO).ccnl
+    net = rule.model_copy(
+        update={
+            "day_bands": tuple(
+                b.model_copy(update={"gross_basis": False}) for b in rule.day_bands
+            )
+        }
+    )
+    episode = SicknessEpisode("long", date(2026, 1, 1), date(2026, 7, 19))
+    paid = []
+    for ccnl in (rule, net):
+        pay = episode_pay(
+            episode,
+            (date(2026, 6, 30), date(2026, 7, 19)),
+            SicknessTerms(
+                rules=SickPayRules(inps=inps, inps_cover=True, ccnl=ccnl),
+                quota=DailyQuota(DailyDivisorMethod.BY_26, Decimal(26)),
+                chain=MonthlyPayChain(Decimal(2600), Decimal(0), ()),
+                employee_rate=Decimal("0.10"),
+            ),
+        )
+        assert pay is not None
+        paid.append(pay.integration)
+    assert paid == [Decimal("425.00"), Decimal("377.78")]

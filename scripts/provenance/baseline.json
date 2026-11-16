@@ -150,9 +150,6 @@
       "accrual_rule": "missing",
       "additional_months[2023-01-01]": "assumed"
     },
-    "agreement/grafica-editoria-aieg.json": {
-      "additional_months[2024-03-01]": "assumed"
-    },
     "agreement/igiene-ambientale-utilitalia.json": {
       "additional_months[2026-02-01]": "assumed"
     },
@@ -884,7 +881,6 @@
       "metalmeccanico-confimi-pmi/overtime_shift_column"
     ],
     "agreement/multiservizi-anip.json": [
-      "multiservizi-anip/anip_unsigned_renewal",
       "multiservizi-anip/multiservizi_apprenticeship_destinations",
       "multiservizi-anip/multiservizi_duty_allowances_and_edar",
       "multiservizi-anip/multiservizi_part_time_supplements",
@@ -957,9 +953,6 @@
       "rsa-aiop/apprentice_seniority",
       "rsa-aiop/apprenticeship_under_classification",
       "rsa-aiop/seniority_premium_2023"
-    ],
-    "agreement/sanita-aran.json": [
-      "sanita-aran/renewal_2025_2027_not_modelled"
     ],
     "agreement/sanita-privata-aiop-aris.json": [
       "sanita-privata-aiop-aris/daily_rotating_shift_allowances",

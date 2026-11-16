@@ -3,22 +3,6 @@
   "ccnl_id": "multiservizi-anip",
   "requirements": [
     {
-      "id": "anip_unsigned_renewal",
-      "institute": "base_salary",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "LATER UNSIGNED TRANCHES: the May 2026 and later minima of the renewal of 13 June 2025 (CNEL K511, deposits 234754 and 234752) were not signed by ANIP and are excluded. The signed July 2025 fifth tranche of the 2021 renewal (CNEL 139292 p. 34) is applied; no subsequent ANIP minimum or actual IPCA adjustment has been verified.",
-      "calculation": "ccnl/multiservizi-anip:coverage.notes",
-      "state": "absent",
-      "remediation": "Source an ANIP-signed later minimum or verified IPCA adjustment before adding subsequent tranches.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "multiservizi-anip/anip_unsigned_renewal"
-        ]
-      }
-    },
-    {
       "id": "multiservizi_apprenticeship_destinations",
       "institute": "base_salary",
       "variant": "all",
@@ -103,7 +87,7 @@
       "institute": "sickness",
       "variant": "all",
       "discriminant": "applies_when.trigger = run",
-      "rule": "SICKNESS (CNEL 139292 art. 51, pp. 22-24): category routing, the 100% net-global-pay operai band through day 180, the 50% band through day 270, the impiegati 100% first five months and 50% next seven months, and the rolling 36-month comporto are represented. Remaining: the operai 50% band is of gross global pay, while the model applies net_basis to the whole rule; impiegati pay is stipendio plus contingenza, while the engine uses global pay. The operai first working day and the impiegati non-probation and serious-fault conditions are not represented. The clause does not state a daily gross/net conversion or an amount for the excluded pay components.",
+      "rule": "SICKNESS (CNEL 139292 art. 51, pp. 22-24): category routing, the 100% net-global-pay operai band through day 180, the 50% band through day 270, the impiegati 100% first five months and 50% next seven months, and the rolling 36-month comporto are represented. The operai 50% band of days 181-270 is of the gross global pay (gross_basis). Remaining: impiegati pay is stipendio plus contingenza, while the engine uses global pay. The operai first working day and the impiegati non-probation and serious-fault conditions are not represented. The clause does not state a daily gross/net conversion or an amount for the excluded pay components.",
       "calculation": "ccnl/multiservizi-anip:coverage.notes",
       "state": "absent",
       "remediation": "Apply gross rather than net basis to operai days 181-270, restrict impiegati pay to stipendio plus contingenza, and respect the first-working-day and eligibility conditions; use the worker's actual category at mixed-category levels.",
@@ -119,10 +103,10 @@
       "institute": "overtime",
       "variant": "all",
       "discriminant": "applies_when.trigger = outside_input",
-      "rule": "OVERTIME AND NIGHT WORK (CNEL 105782 art. 38, p. 57): ordinary overtime hours use global pay, whereas percentage supplements use base pay (tabellare and contingenza). Holiday work attracts 50%; ordinary night work attracts 20% in rotating shifts or 30% otherwise. The four overtime bands, the ordinary holiday band and the two night bands use the printed rates, with a separate tabellare-plus-contingenza premium base. The engine cannot automatically enforce the non-cumulation of simultaneous holiday and night premiums or the incidence of continuous night supplements on deferred pay.",
+      "rule": "OVERTIME AND NIGHT WORK (CNEL 105782 art. 38, p. 57): ordinary overtime hours use global pay, whereas percentage supplements use base pay (tabellare and contingenza). Holiday work attracts 50%; ordinary night work attracts 20% in rotating shifts or 30% otherwise. The four overtime bands, the ordinary holiday band and the two night bands use the printed rates, with a separate tabellare-plus-contingenza premium base. Night work on a holiday takes the 50% alone (night_holiday bands: the higher absorbs the lower). The engine does not compute the incidence of continuous night supplements on deferred pay (ferie, festività, 13a and 14a, TFR).",
       "calculation": "ccnl/multiservizi-anip:coverage.notes",
       "state": "absent",
-      "remediation": "Do not stack simultaneous holiday and night premiums; account for continuous night premiums in deferred pay where applicable.",
+      "remediation": "Account for continuous night premiums in deferred pay where applicable.",
       "origin": "seeded",
       "links": {
         "limitations": [
