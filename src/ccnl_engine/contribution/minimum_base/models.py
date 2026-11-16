@@ -14,7 +14,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from decimal import Decimal
-from enum import StrEnum
 from typing import TYPE_CHECKING, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -26,12 +25,8 @@ from ccnl_engine.types import PositiveCeiling
 if TYPE_CHECKING:
     from datetime import date
 
-    from ccnl_engine.provenance.source.models import SourceLocation
 __all__ = [
-    "UNDETERMINED",
     "HourlyMinimum",
-    "MinimumBase",
-    "MinimumBaseReason",
     "MinimumBaseRule",
     "MonthPosition",
 ]
@@ -67,6 +62,9 @@ class MinimumBaseRule(BaseModel):
             full-time weekly hours of the CCNL.
         hourly_categories: Categories of ``daily_by_category`` whose part
             time takes the published hourly minimums (circ. 43/2026 par. 5).
+        daily_paid_categories: Categories paid by the day worked: the
+            minimum of a full-time worker paid by the hour is the daily one
+            times the days of presence (UniEmens PosAgri <NumeroGiornate>).
         provenance: Source of the amounts and the day counts.
 
     Raises:
@@ -84,6 +82,7 @@ class MinimumBaseRule(BaseModel):
     monthly_days: int | None = Field(default=None, ge=1, le=31)
     hourly: tuple[HourlyMinimum, ...] = ()
     hourly_categories: frozenset[WorkerCategory] = frozenset()
+    daily_paid_categories: frozenset[WorkerCategory] = frozenset()
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
@@ -157,56 +156,6 @@ class MinimumBaseRule(BaseModel):
         )
 
 
-class MinimumBaseReason(StrEnum):
-    """How the minimum entered the INPS base of a run.
-
-    Attributes:
-        ABOVE_MINIMUM: The base reaches the minimum: it is kept.
-        RAISED_TO_MINIMUM: The base was raised to the minimum.
-        APPRENTICE: Art. 7 c. 5 excludes apprentices.
-        CATEGORY_UNKNOWN: A category of the sector has a lower daily
-            minimum and the worker's is not known.
-        PARTIAL_MONTH: The run pays part of its month.
-        ABSENCE_IN_MONTH: An absence or a sick leave reduced the pay.
-        PAY_ADDED_TO_MONTH: The run adds pay to a month posted by another
-            run (an extra month, an adjustment, a termination), or settles
-            the extra-month ratei with the pay of its month.
-        MONTHLY_DAYS_UNSOURCED: The sector has no sourced monthly day count.
-        HOURLY_MINIMUM_UNSOURCED: No hourly minimum is published for the
-            full-time weekly hours of the part-time worker.
-        MONTH_NOT_WORKED: The run would post the pay of a month the
-            vertical part time does not work: no hour is paid, so the
-            hourly minimum of D.Lgs. 81/2015 art. 11 c. 1 gives none.
-        INDEMNIFIED_MONTH: Every employed day of the month is a maternity
-            leave or a work-injury inability an insurer indemnifies: the
-            days are credited with figurative contributions and the
-            employer pays no day the daily minimum is counted on.
-    """
-
-    ABOVE_MINIMUM = "above_minimum"
-    RAISED_TO_MINIMUM = "raised_to_minimum"
-    APPRENTICE = "apprentice_excluded"
-    CATEGORY_UNKNOWN = "category_unknown"
-    PARTIAL_MONTH = "partial_month"
-    ABSENCE_IN_MONTH = "absence_in_month"
-    PAY_ADDED_TO_MONTH = "pay_added_to_month"
-    MONTHLY_DAYS_UNSOURCED = "monthly_days_unsourced"
-    HOURLY_MINIMUM_UNSOURCED = "hourly_minimum_unsourced"
-    MONTH_NOT_WORKED = "month_not_worked"
-    INDEMNIFIED_MONTH = "indemnified_month"
-
-
-#: Reasons whose minimum the bundle cannot determine.
-UNDETERMINED = frozenset({
-    MinimumBaseReason.CATEGORY_UNKNOWN,
-    MinimumBaseReason.PARTIAL_MONTH,
-    MinimumBaseReason.ABSENCE_IN_MONTH,
-    MinimumBaseReason.PAY_ADDED_TO_MONTH,
-    MinimumBaseReason.MONTHLY_DAYS_UNSOURCED,
-    MinimumBaseReason.HOURLY_MINIMUM_UNSOURCED,
-})
-
-
 @dataclass(frozen=True)
 class MonthPosition:
     """What the run pays of its month, as the minimum reads it.
@@ -222,6 +171,10 @@ class MonthPosition:
         span: First and last employed day of a partly employed month whose
             pay the run posts; ``None`` for a fully employed month.
         absence: An unpaid absence or a sick leave falls in the run.
+        hourly: The worker is paid the hours worked, so the hours not
+            worked may be absences of any kind.
+        presence_days: Days the worker was present at work in the month,
+            ``None`` when not stated.
         apprentice: The worker is an apprentice.
         category: Worker category, ``None`` when not known.
         weekly_hours: Contracted weekly hours, ``None`` for full time.
@@ -237,6 +190,8 @@ class MonthPosition:
     adds_to_month: bool = False
     span: tuple[date, date] | None = None
     absence: bool = False
+    hourly: bool = False
+    presence_days: int | None = None
     apprentice: bool = False
     category: WorkerCategory | None = None
     weekly_hours: Decimal | None = None
@@ -256,43 +211,3 @@ class MonthPosition:
         if hours is None or full is None or hours >= full:
             return None
         return hours, full
-
-
-@dataclass(frozen=True)
-class MinimumBase:
-    """The minimum the INPS base of a run is compared with.
-
-    Attributes:
-        actual: INPS base of the run before the minimum.
-        bound: Highest minimum the month of the run can have.
-        reason: How the minimum entered the base.
-        minimum: Minimum of the month, ``None`` when not determined or not
-            needed (the base reaches :attr:`bound`, or the worker is
-            excluded).
-        source: Location of the rule the minimum is read from.
-    """
-
-    actual: Decimal
-    bound: Decimal
-    reason: MinimumBaseReason
-    minimum: Decimal | None = None
-    source: SourceLocation | None = None
-
-    @property
-    def undetermined(self) -> bool:
-        """Whether the base may be below a minimum the bundle cannot fix."""
-        return self.reason in UNDETERMINED
-
-    @property
-    def base(self) -> Decimal:
-        """INPS base of the run: the actual base raised to the minimum."""
-        return self.raise_to_minimum(self.actual)
-
-    def raise_to_minimum(self, amount: Decimal) -> Decimal:
-        """Return ``amount`` raised to the minimum, when one is determined.
-
-        Returns:
-            The larger of ``amount`` and :attr:`minimum`; ``amount`` when the
-            minimum is not determined.
-        """
-        return amount if self.minimum is None else max(amount, self.minimum)

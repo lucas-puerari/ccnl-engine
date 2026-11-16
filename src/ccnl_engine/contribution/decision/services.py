@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 
     from ccnl_engine.capability.rule.services import Rule
     from ccnl_engine.contribution.ceiling.services import IvsCeiling
-    from ccnl_engine.contribution.minimum_base.models import MinimumBase
+    from ccnl_engine.contribution.minimum_base.results import MinimumBase
     from ccnl_engine.event.total.handlers import _EventTotals
     from ccnl_engine.period.context.services import RunContext
     from ccnl_engine.period.step.services import RunAmounts
