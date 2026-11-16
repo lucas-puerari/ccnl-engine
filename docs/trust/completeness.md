@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 7/136 CCNLs**; complete except declared residuals: 1. Bundle: 250 weak rules, 262 open limitations (262 with a monetary impact), 32 declared residuals.
+**Complete: 8/136 CCNLs**; complete except declared residuals: 1. Bundle: 249 weak rules, 261 open limitations (261 with a monetary impact), 32 declared residuals.
 
 ## Declared window
 
@@ -200,7 +200,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [turismo-confesercenti](../contracts/turismo-confesercenti.md) | `turismo` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 1 monetary limitation; 1 outside_input limitation; 6 non-native capabilities |
 | [turismo-federalberghi](../contracts/turismo-federalberghi.md) | `turismo` | production | — | 6 rows | 6 open requirements; 2 monetary limitations; 4 outside_input limitations; 2 non-native capabilities; 2 declared residuals |
 | [turismo-federalberghi-alberghi-minori](../contracts/turismo-federalberghi-alberghi-minori.md) | `turismo` | exploratory | — | 8 rows | 8 open requirements; 3 monetary limitations; 5 outside_input limitations; 3 non-native capabilities; 1 declared residual |
-| [uneba-uneba](../contracts/uneba-uneba.md) | `socio-sanitario` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 outside_input limitation; 1 non-native capability |
+| [uneba-uneba](../contracts/uneba-uneba.md) | `socio-sanitario` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [universita-aran](../contracts/universita-aran.md) | `pubblico-impiego` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [universita-tecnologi-aran](../contracts/universita-tecnologi-aran.md) | `pubblico-impiego` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [vetro-meccanizzato-assovetro](../contracts/vetro-meccanizzato-assovetro.md) | `chimica` | exploratory | — | 30 rows | 30 open requirements; 29 weak rules; 1 outside_input limitation; 7 non-native capabilities |

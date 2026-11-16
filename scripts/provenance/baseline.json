@@ -389,9 +389,6 @@
     "agreement/turismo-confesercenti.json": {
       "additional_months[2024-07-01]": "assumed"
     },
-    "agreement/uneba-uneba.json": {
-      "additional_months[2024-10-01]": "assumed"
-    },
     "agreement/vetro-meccanizzato-assovetro.json": {
       "accrual_rule": "missing",
       "additional_months[2023-03-01]": "assumed",
@@ -1043,9 +1040,6 @@
       "turismo-federalberghi/guarantee_element_2027",
       "turismo-federalberghi/quadri_absorption_extra_months",
       "turismo-federalberghi/sickness_net_basis"
-    ],
-    "agreement/uneba-uneba.json": [
-      "uneba-uneba/ermt_territorial"
     ],
     "agreement/vetro-meccanizzato-assovetro.json": [
       "vetro-meccanizzato-assovetro/other_subsectors_tables"

@@ -186,7 +186,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 66 | HV17 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (GPG)](vigilanza-privata-assiv.md) | vigilanza-privata | ~85k | 2023 | ⚠️ | seniority | 44 / 7 / 1 / 0 | 🧪 | 🤖 |
 | 67 | HV17 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (Servizi fiduciari)](vigilanza-privata-assiv-sf.md) | vigilanza privata — servizi fiduciari (SF) | ~40k | 2023 | ⚠️ | base_salary, seniority | 48 / 5 / 2 / 1 | 🧪 | 🤖 |
 | 68 | T241 | [CCNL Istituzioni Formative Private (Scuole Private Religiose) — AGIDAE](scuole-private-agidae.md) | istruzione privata | ~50k | — | ⚠️ | seniority | 15 / 31 / 1 / 0 | 🧪 | 🤖 |
-| 69 | T141 | [CCNL Istituzioni Socio-Assistenziali — UNEBA](uneba-uneba.md) | servizi socio-assistenziali | ~130k | — | ✅ | territorial_supplement | 40 / 8 / 1 / 0 | 🧪 | 🤖 |
+| 69 | T141 | [CCNL Istituzioni Socio-Assistenziali — UNEBA](uneba-uneba.md) | servizi socio-assistenziali | ~130k | — | ✅ | — | 40 / 9 / 0 / 0 | 🧪 | 🤖 |
 | 70 | T131 | [CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE)](istituzioni-servizi-socio-assistenziali-anaste.md) | servizi socio-assistenziali | ~120k | — | ✅ | maternity_leave | 66 / 11 / 1 / 0 | 🧪 | 🤖 |
 | 71 | F041 | [CCNL Lapidei — Industria (Confindustria Marmomacchine/ANEPLA)](lapidei-industria.md) | industria lapidea e delle cave | ~18k | — | ⚠️ | absence, base_salary, sickness | 49 / 30 / 1 / 1 | 🧪 | 🤖 |
 | 72 | F021 | [CCNL Laterizi e Manufatti Cementizi - Industria](laterizi-industria-f021.md) | industria | ~17k | — | ⚠️ | seniority | 33 / 66 / 1 / 0 | 🧪 | 🤖 |
