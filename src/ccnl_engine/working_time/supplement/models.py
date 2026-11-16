@@ -3,7 +3,7 @@
 from enum import StrEnum
 from typing import Self
 
-from pydantic import BaseModel, ConfigDict, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
 from ccnl_engine.employment.category.models import WorkerCategory
@@ -135,6 +135,10 @@ class SupplementBand(BaseModel):
             covers them, ``None`` when the text does not settle it.  The
             engine posts the supplement only; the hours paid apart are
             ordinary pay it does not post.
+        service: Code of the kind of service the band pays, stated on each
+            event (``NightShiftEvent.service``), when the CCNL pays the same
+            work at different rates by the service (Farmacie art. 19: doors
+            open or closed, the first 8 hours or beyond); ``None`` otherwise.
         role: Role code the band is reserved to (``Employment.roles``);
             ``None`` for the workers holding none of the roles of the
             other bands of the same work.
@@ -157,6 +161,7 @@ class SupplementBand(BaseModel):
     per_shift: bool = False
     base: HourlyBaseMethod | None = None
     hours_paid_apart: bool | None
+    service: str | None = Field(default=None, pattern=r"^[a-z][a-z0-9_]*$")
     role: str | None = None
     levels: tuple[str, ...] = ()
     subsectors: tuple[str, ...] = ()

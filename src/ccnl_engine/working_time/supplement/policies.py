@@ -156,7 +156,7 @@ def resolve_supplement(event: SupplementEvent, terms: HourlyTerms) -> Supplement
     if work is None:
         unstated = Unstated("ShiftWorkEvent.kind", "ShiftWorkEvent.kind is not stated")
         reject_underived(field, feature, day, unstated)
-    found = band_for(terms, work, day)
+    found = band_for(terms, work, day, getattr(event, "service", None))
     if isinstance(found, str | Unstated):
         reject_underived(field, feature, day, found)
     band, rate = found

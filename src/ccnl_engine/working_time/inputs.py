@@ -11,6 +11,7 @@ from ccnl_engine.validators import (
     require_bool,
     require_date,
     require_decimal,
+    require_str,
 )
 from ccnl_engine.working_time.event_kinds import (
     HolidayWorkKind,
@@ -160,6 +161,10 @@ class NightShiftEvent:
             at a lower night rate (Confapi art. 29 row b).
         shifts: Night turns worked, for a CCNL that pays the turn (scuola
             Tabella E1.8); ``None`` when not stated.
+        service: The kind of night service, by the code of the CCNL band
+            (Farmacie art. 19: ``doors_open``, ``doors_closed`` and their
+            ``_beyond_8`` hours), for a CCNL that pays it by the service;
+            ``None`` when not stated.
     """
 
     event_date: date
@@ -167,6 +172,7 @@ class NightShiftEvent:
     hours: Decimal | None = None
     before_22: bool = False
     shifts: int | None = None
+    service: str | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         check_supplement(
@@ -178,6 +184,13 @@ class NightShiftEvent:
             self.shifts,
         )
         require_bool(self.before_22, "NightShiftEvent.before_22", feature="night_shift")
+        require_str(
+            self.service,
+            "NightShiftEvent.service",
+            feature="night_shift",
+            non_blank=True,
+            optional=True,
+        )
 
 
 @dataclass(frozen=True)

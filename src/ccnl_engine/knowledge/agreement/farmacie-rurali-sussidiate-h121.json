@@ -287,6 +287,29 @@
           "work_rules.time_supplements",
           "work_rules.capability_basis"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-farmacie-rurali-sussidiate-h121-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+            "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+          }
+        ],
+        "findings": [
+          "Applied: the four night bands of art. 19 by service (doors open or closed, the first 8 hours or beyond).",
+          "Left out: bands[4:night_holiday]: the bundle already has a night_holiday band; bands[5:sunday]: the bundle already has a sunday band; bands[6:rest_day]: the bundle already has a rest_day band; bands[7:holiday]: the bundle already has a holiday band; none.shift_work: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -1801,7 +1824,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "a226b51039e68998efd1c22d015fbef6e781664b01c13e1d645cd1d517a8fb60",
+    "source_hash": "e251244606ea83b8a901039d5ef0135d51858b7c47dbb6b1a6826c6df08b27cf",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },
@@ -1959,7 +1982,7 @@
         "location": {
           "source_document": {
             "document_id": "menti-contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
-            "title": "ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021",
+            "title": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
             "kind": "associazione",
             "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
             "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
@@ -1972,12 +1995,12 @@
         "extraction": {
           "method": "ai",
           "model": "gpt-6-sol",
-          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
           "effective_from": "2026-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-15T00:00:00Z",
+          "verified_at": "2026-11-16T00:00:00Z",
           "verification_status": "verified",
-          "review_id": "2026-11-15-ai-farmacie-rurali-sussidiate-h121-time-supplements"
+          "review_id": "2026-11-16-ai-farmacie-rurali-sussidiate-h121-time-supplements"
         }
       },
       "supplement_bands": [
@@ -2144,6 +2167,174 @@
               "review_id": "2026-11-15-ai-farmacie-rurali-sussidiate-h121-time-supplements"
             }
           }
+        },
+        {
+          "code": "U_NIGHT_0",
+          "description": "Servizio notturno a battenti aperti: prime otto ore",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "0.20"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "menti-contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+              },
+              "page": "13",
+              "section": "Art. 19, comma 3, lett. a",
+              "quote": "a) Servizio a porte/battenti aperti ininterrottamente durante le ore notturne nei termini sopra definiti: - con la sola maggiorazione del 20% calcolata sulla quota oraria della retribuzione normale di cui all’art. 54 per le prime 8 ore di servizio;"
+            },
+            "transformation": "Servizio notturno a battenti aperti: prime otto ore",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2021-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-farmacie-rurali-sussidiate-h121-time-supplements"
+            }
+          },
+          "service": "doors_open"
+        },
+        {
+          "code": "U_NIGHT_1",
+          "description": "Servizio notturno a battenti aperti: oltre otto ore; quota oraria di fatto aggiuntiva",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "0.20"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "menti-contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+              },
+              "page": "13",
+              "section": "Art. 19, comma 3, lett. a",
+              "quote": "- con la quota oraria della retribuzione di fatto di cui all’art. 55 maggiorata del 20% calcolata sulla quota oraria della normale retribuzione di cui all’art. 54 per le ore di servizio oltre il predetto limite."
+            },
+            "transformation": "Servizio notturno a battenti aperti: oltre otto ore; quota oraria di fatto aggiuntiva",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2021-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-farmacie-rurali-sussidiate-h121-time-supplements"
+            }
+          },
+          "service": "doors_open_beyond_8"
+        },
+        {
+          "code": "U_NIGHT_2",
+          "description": "Servizio notturno a battenti chiusi con presenza: prime otto ore",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "0.16"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "menti-contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+              },
+              "page": "13",
+              "section": "Art. 19, comma 3, lett. b",
+              "quote": "b) Servizio a porte/battenti chiusi per tutto il periodo notturno come sopra definito, con presenza del personale in farmacia e con l’obbligo di rispondere ad ogni singola chiamata: - con la sola maggiorazione del 16% calcolata sulla quota oraria della retribuzione normale di cui all’art. 54, per le prime otto ore di servizio;"
+            },
+            "transformation": "Servizio notturno a battenti chiusi con presenza: prime otto ore",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2021-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-farmacie-rurali-sussidiate-h121-time-supplements"
+            }
+          },
+          "service": "doors_closed"
+        },
+        {
+          "code": "U_NIGHT_3",
+          "description": "Servizio notturno a battenti chiusi con presenza: oltre otto ore; quota oraria di fatto aggiuntiva",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2021-11-01",
+                "valid_until": null,
+                "value": "0.10"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "menti-contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+                "title": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                "kind": "associazione",
+                "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+                "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+              },
+              "page": "13",
+              "section": "Art. 19, comma 3, lett. b",
+              "quote": "- con la quota oraria della retribuzione di fatto di cui all’art. 55, maggiorata del 10% calcolata sulla quota oraria della normale retribuzione di cui all’art. 54 per le ore di servizio oltre il predetto limite."
+            },
+            "transformation": "Servizio notturno a battenti chiusi con presenza: oltre otto ore; quota oraria di fatto aggiuntiva",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2021-11-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-farmacie-rurali-sussidiate-h121-time-supplements"
+            }
+          },
+          "service": "doors_closed_beyond_8"
         }
       ]
     },

@@ -60,6 +60,10 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
         "the event records"
     ),
     "NightShiftEvent.shifts": absence_is_fact(_TURNS),
+    "NightShiftEvent.service": absence_is_fact(
+        "read only without supplement_amount, on a CCNL whose night bands "
+        "differ by the service, which then requires it to choose the band"
+    ),
     "HolidayWorkEvent.supplement_amount": absence_is_fact(_FROM_CCNL),
     "HolidayWorkEvent.hours": absence_is_fact(_SUPPLEMENT_HOURS),
     "HolidayWorkEvent.shifts": absence_is_fact(_TURNS),
