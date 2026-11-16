@@ -122,8 +122,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add the provincial (CPL) supplement outside the engine.
 
-!!! warning "operai-agricoli-florovivaisti/florovivaisti_tables · base_salary · impact yes · open"
-    FLOROVIVAISTI MONTHLY PAY NOT DISTINGUISHED. The hourly floriculture minima of Tabella n. 2 (from 2023, 2025 and June 2026) are used for time events. Monthly base salary and other monthly entitlements still use agricultural amounts, while art. 50 derives the monthly pay of a floriculture OTI from the hourly one (paga oraria = paga mensile / 169). Do not treat agricultural monthly wages as floriculture salaries.
+!!! note "operai-agricoli-florovivaisti/florovivaisti_tables · base_salary · impact yes · resolved"
+    FLOROVIVAISTI MONTHLY PAY. The hourly floriculture minima of Tabella n. 2 (from 2023, 2025 and June 2026) are used for time events. The monthly base salary of a floriculture OTI is the hourly minimum times 169 (art. 50: paga oraria = paga mensile / 169), selected by EmployerProfile.subsector=florovivaisti.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
