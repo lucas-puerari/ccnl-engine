@@ -115,22 +115,6 @@
       }
     },
     {
-      "id": "seasonal_apprentice_seniority",
-      "institute": "seniority",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "SEASONAL APPRENTICES: Allegato 10 (PDF p. 124, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c) lets employers working in seasonal cycles hire apprentices 'anche a tempo determinato', and art. 54 grants the increments only to 'gli operai a tempo indeterminato'. The apprentice input states no term, so the engine pays a fixed-term seasonal apprentice the increments of the level once the biennium with the same employer is complete.",
-      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
-      "state": "unverified",
-      "remediation": "State on the apprentice input whether the apprenticeship is fixed-term and pay no increment to a fixed-term apprentice where the CCNL keeps them to permanent workers, then remove this note.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "operai-agricoli-florovivaisti/seasonal_apprentice_seniority"
-        ]
-      }
-    },
-    {
       "id": "sickness_cumulation_window",
       "institute": "sickness",
       "variant": "all",

@@ -9,6 +9,7 @@ from typing import Literal
 
 from ccnl_engine.validators import (
     parse_enum,
+    require_bool,
     require_decimal,
     require_instance,
     require_int,
@@ -107,6 +108,10 @@ class Apprentice:
             contract start) of an extension following failure to obtain the
             qualification. ``None`` when no such extension applies. Only
             tracks with a rule for this outcome can pay the extension.
+        fixed_term: Whether the apprenticeship has a term, as a seasonal
+            one may (D.Lgs. 81/2015 art. 44 c. 5); an apprenticeship is
+            otherwise permanent (art. 41 c. 1).  A CCNL that keeps the
+            seniority increments to permanent workers pays none to it.
 
     Raises:
         InvalidInputError: When a field has the wrong type or range.
@@ -119,6 +124,7 @@ class Apprentice:
     programme_months: int | None = None
     hours: DualHours | None = None
     failed_title_extension_start_month: int | None = None
+    fixed_term: bool = False
     type: Literal["apprentice"] = field(default="apprentice", init=False)
 
     def __post_init__(self) -> None:  # noqa: D105
@@ -166,4 +172,7 @@ class Apprentice:
             "Apprentice.hours",
             feature=_CONTRACT_FEATURE,
             optional=True,
+        )
+        require_bool(
+            self.fixed_term, "Apprentice.fixed_term", feature=_CONTRACT_FEATURE
         )

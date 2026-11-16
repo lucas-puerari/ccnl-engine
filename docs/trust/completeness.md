@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 7/136 CCNLs**; complete except declared residuals: 1. Bundle: 250 weak rules, 266 open limitations (266 with a monetary impact), 30 declared residuals.
+**Complete: 7/136 CCNLs**; complete except declared residuals: 1. Bundle: 250 weak rules, 265 open limitations (265 with a monetary impact), 30 declared residuals.
 
 ## Declared window
 
@@ -164,7 +164,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [noleggio-autobus-conducente-anav](../contracts/noleggio-autobus-conducente-anav.md) | `trasporti-logistica` | exploratory | — | 9 rows | 9 open requirements; 3 weak rules; 4 monetary limitations; 2 outside_input limitations; 8 non-native capabilities |
 | [occhiali-occhialeria-industria](../contracts/occhiali-occhialeria-industria.md) | `tessile-moda` | exploratory | — | 3 rows | 3 open requirements; 2 weak rules; 1 monetary limitation; 5 non-native capabilities |
 | [ooss-unsic-confsal](../contracts/ooss-unsic-confsal.md) | `organizzazioni-associative` | exploratory | — | 5 rows | 5 open requirements; 1 weak rule; 4 monetary limitations; 7 non-native capabilities |
-| [operai-agricoli-florovivaisti](../contracts/operai-agricoli-florovivaisti.md) | `agricoltura` | exploratory | — | 9 rows | 9 open requirements; 4 monetary limitations; 5 outside_input limitations; 3 non-native capabilities |
+| [operai-agricoli-florovivaisti](../contracts/operai-agricoli-florovivaisti.md) | `agricoltura` | exploratory | — | 8 rows | 8 open requirements; 3 monetary limitations; 5 outside_input limitations; 3 non-native capabilities |
 | [orafi-argentieri-industria-federorafi](../contracts/orafi-argentieri-industria-federorafi.md) | `metalmeccanica` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 monetary limitation; 5 non-native capabilities |
 | [organizzazioni-allevatori-aia](../contracts/organizzazioni-allevatori-aia.md) | `agricoltura` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 2 monetary limitations; 6 non-native capabilities |
 | [ortofrutticoli-agrumari](../contracts/ortofrutticoli-agrumari.md) | `commercio` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 1 monetary limitation; 1 outside_input limitation; 3 non-native capabilities |

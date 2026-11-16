@@ -143,8 +143,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: art. 54 and art. 41 D.Lgs. 81/2015 read on 2026-11-14.
 
-!!! warning "operai-agricoli-florovivaisti/seasonal_apprentice_seniority · seniority · impact unknown · open"
-    SEASONAL APPRENTICES: Allegato 10 (PDF p. 124, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c) lets employers working in seasonal cycles hire apprentices 'anche a tempo determinato', and art. 54 grants the increments only to 'gli operai a tempo indeterminato'. The apprentice input states no term, so the engine pays a fixed-term seasonal apprentice the increments of the level once the biennium with the same employer is complete.
+!!! note "operai-agricoli-florovivaisti/seasonal_apprentice_seniority · seniority · impact unknown · resolved"
+    SEASONAL APPRENTICES: Allegato 10 (PDF p. 124, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c) lets employers working in seasonal cycles hire apprentices 'anche a tempo determinato', and art. 54 grants the increments only to 'gli operai a tempo indeterminato'. Apprentice.fixed_term states the term of a seasonal apprenticeship: the engine pays it no increment, as art. 54 keeps them to the permanent workers.
 
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
