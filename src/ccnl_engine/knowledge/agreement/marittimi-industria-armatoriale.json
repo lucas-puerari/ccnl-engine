@@ -276,6 +276,31 @@
         "checked": [
           "parameters.additional_months"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (Appendice, Apprendistato professionalizzante, punto 2, PDF p. 41): the elements the percentage applies to, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
+            "sha256": "747f2eb3af9ec92581cd21f2dfe746554ef4336495cc1738d23579c284088cc3"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant EAR = false: La percentuale si applica esclusivamente al minimo: EAR separato, ove spettante, dovuto intero.",
+          "apprenticeship_pct_relevant INDENNITA_FUNZIONE = false: Indennità quadri esclusa dal minimo e non spettante a un apprendista non quadro.",
+          "apprenticeship_pct_relevant SUPERMINIMO_LIVELLO = false: Superminimo distinto dal minimo; non ridotto, maturabile solo dopo dieci anni nel livello II (non durante apprendistato).",
+          "apprenticeship_pct_relevant SUPERMINIMO_LIVELLO_DIPLOMA = false: Superminimo distinto dal minimo; maturabile dopo quattro anni nel livello III (non durante apprendistato).",
+          "Clause: Le retribuzioni degli apprendisti sono pari alle percentuali di seguito specificate in\ncorrispondenza agli archi temporali di applicazione delle stesse. Ai fini della determinazione\ndella retribuzione, la percentuale si applica esclusivamente sul minimo contrattuale del\nlavoratore non apprendista avente inquadramento corrispondente a quello al cui conseguimento\nè finalizzato il contratto:"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
+        ]
       }
     ]
   },
@@ -658,7 +683,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -894,7 +920,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "SUPERMINIMO_LIVELLO",
@@ -963,7 +990,8 @@
             }
           },
           "role": "senza_passaggio",
-          "level_service": true
+          "level_service": true,
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1199,7 +1227,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "SUPERMINIMO_LIVELLO_DIPLOMA",
@@ -1268,7 +1297,8 @@
             }
           },
           "role": "diplomato",
-          "level_service": true
+          "level_service": true,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "SUPERMINIMO_LIVELLO",
@@ -1337,7 +1367,8 @@
             }
           },
           "role": "non_diplomato",
-          "level_service": true
+          "level_service": true,
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1573,7 +1604,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "SUPERMINIMO_LIVELLO",
@@ -1641,7 +1673,8 @@
               "review_id": "2026-11-10-ai-level-tenure-gate"
             }
           },
-          "level_service": true
+          "level_service": true,
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1877,7 +1910,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2113,7 +2147,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2349,7 +2384,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2585,7 +2621,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "INDENNITA_FUNZIONE",
@@ -2642,7 +2679,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2701,7 +2739,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mare/15_-_SEZIONE_PERSONALE_DI_TERRA.pdf",
     "verification_status": "verified",
-    "source_hash": "d9764e572f46038a6218a370e4cfc0807034a50b857256f237105645fd902637",
+    "source_hash": "08b67c6fbe716d52cc8028ebea18dc64f55088f722c7c26f58f381c38400dc13",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

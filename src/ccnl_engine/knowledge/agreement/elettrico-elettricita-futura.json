@@ -267,6 +267,28 @@
         "checked": [
           "parameters.additional_months"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (Art. 15, Inquadramento e trattamento retributivo, PDF p. 50): the elements the percentage applies to, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/elettrico/251223_%20ELETTRICO_CCNL%202025-2027%20-%20TESTO%20INTEGRALE.pdf",
+            "sha256": "ed6009cfc644dddfb5836b427f4c2cbf5bf6d9c0c53bfe90afecaa7a20aebec9"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant EDR = false: EDR corrisposto in aggiunta alla retribuzione mensile contrattuale e non compreso nel minimo contrattuale integrato percentualmente ridotto: dovuto intero.",
+          "Clause: 5. L’apprendista viene inquadrato nella categoria corrispondente alla qualifica-\n    zione da conseguire al termine dell’apprendistato con una retribuzione in mi-\n    sura percentuale e proporzionata all’anzianità di servizio."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
+        ]
       }
     ]
   },
@@ -652,7 +674,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "quadro",
@@ -837,7 +860,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "quadro",
@@ -1022,7 +1046,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1206,7 +1231,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1390,7 +1416,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1574,7 +1601,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1758,7 +1786,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1942,7 +1971,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2126,7 +2156,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2310,7 +2341,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2494,7 +2526,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2678,7 +2711,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2862,7 +2896,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -3046,7 +3081,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -3161,7 +3197,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/216334",
     "verification_status": "unverified",
-    "source_hash": "a3ed65a53d0b81407f43afed0fdc66ead55e1f6aa343b41cab7b0f4153b79f15",
+    "source_hash": "d53d0bed54b42f48ecd01ed6ff93a0aa721be1f6e563cbcfe4e4400b6c362084",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -172,6 +172,28 @@
         "checked": [
           "parameters.additional_months"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (Art. 24, apprendistato professionalizzante, PDF p. 38): the elements the percentage applies to, read in the cited file by sha256 (OCR of the scanned page).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
+            "sha256": "c81e33f8253fff7a7df65b5959f24e3cfaeabecda8a77d48b0739c1285ad9027"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant IIS = true: La IIS è la contingenza, compresa espressamente fra le voci ridotte.",
+          "Clause: Le percentuali sopra indicate si applicano ai minimi tabellari, all'indennità di\n     contingenza ed alle altre voci retributive fissate per la posizione economica\n     organizzativa per la quale è finalizzato il periodo di apprendistato."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
+        ]
       }
     ]
   },
@@ -360,7 +382,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -566,7 +589,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -772,7 +796,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -978,7 +1003,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -1184,7 +1210,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -1390,7 +1417,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -1596,7 +1624,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         }
       ],
       "provenance": {
@@ -1817,7 +1846,7 @@
     "effective_until": null,
     "source": "https://www.stradeanas.it/sites/default/files/Azienda/Lavora_con_noi/CCNL-2025-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "e882df43e630cda4fcd791bd5d1116437cf8ae3a4c0bd3ec98637b9f102b8efe",
+    "source_hash": "775f43940c0f27fbb5899ddeb7a058aefbd9e89576eea53d643c179cbd8fe813",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

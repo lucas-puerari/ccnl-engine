@@ -201,6 +201,28 @@
         "checked": [
           "parameters.additional_months"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (allegato 10, art. 8, PDF p. 177): the elements the percentage applies to, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/242519",
+            "sha256": "bde3a8cd131000a533e4457dad53ee9ce94d6d17f67e26e1f7cffb32eb07081b"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant IND_FUN = false: La percentualizzazione riguarda solo il minimo contrattuale; indennità di funzione B3 separata (qualifica B3 non apprendibile se non prevista).",
+          "Clause: La retribuzione sarà quella minima contrattuale del livello di inquadramento corrispondente alla qualifica\nprofessionale da conseguire ragguagliata, in coerenza con il percorso formativo che si conclude al termine\ndell’apprendistato, alle percentuali e relativi periodi di applicazione come riportato nella tabella in calce,\nfatte salve diverse intese fra le Parti contraenti."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
+        ]
       }
     ]
   },
@@ -1605,7 +1627,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1785,7 +1808,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1922,7 +1946,7 @@
     "effective_until": null,
     "source": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/",
     "verification_status": "unverified",
-    "source_hash": "3b9e12098023f3d12ac3da893450691ddc3ca89f866aaa81ada51210c1d79883",
+    "source_hash": "8acf02980aaa4818f40202315829b13be50ada56541de195c60d837d187ccfca",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

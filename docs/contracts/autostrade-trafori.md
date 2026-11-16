@@ -61,6 +61,15 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | Minimi tabellari 2023-2025 (p. 168) and I.D.R. 2021 (p. 169) of the 5 July 2024 text, read on the page image. | corrected | The 2023-2024 minimums were shifted by one tranche (the 1/8/2023 amounts dated 1 January 2023, and so on) and the August tranches were missing: periods rebuilt on the printed dates 31/07/2023, 1/8/2023, 1/1/2024, 1/8/2024, 1/1/2025.<br>Cent errors on C plus, B1 plus and B plus corrected to the printed amounts.<br>I.D.R. 2021 is due from December 2021: before January 2024 it is the printed amount of the level, not zero (D 10,14, not 10,13). |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the OCR of the source. | corrected | Added the comporto window; the pay bands of the CCNL are recorded as a limitation. |
 | 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 14 monthly pays. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Apprentice pay (art. 6 e art. 22, PDF p. 33): the elements the percentage applies to, read in the cited file by sha256. | corrected | apprenticeship_pct_relevant CONTINGENZA = true: Art. 22 include contingenza e elemento differenziato 1997; gli altri elementi non vi figurano (IDR 2021 successivo, funzione separata); EDR 1991 non identificato nell’elenco art. 22.<br>apprenticeship_pct_relevant EDR_1997 = true: Art. 22 include contingenza e elemento differenziato 1997; gli altri elementi non vi figurano (IDR 2021 successivo, funzione separata); EDR 1991 non identificato nell’elenco art. 22.<br>apprenticeship_pct_relevant IND_FUNZIONE = false: Art. 22 include contingenza e elemento differenziato 1997; gli altri elementi non vi figurano (IDR 2021 successivo, funzione separata); EDR 1991 non identificato nell’elenco art. 22.<br>Clause: Per quanto concerne la retribuzione, come definita all’art. 22, la stessa sarà ero-
+gata con le seguenti modalità:
+    - 80% per i primi12 mesi;
+    - 85% per i secondi 12 mesi;
+    - 95% per i successivi mesi.
+
+   Agli apprendisti, oltre l’indicato trattamento economico, spetta ogni altro isti-
+   tuto economico — normativo, previsto dal presente c.c.n.l. per i lavoratori a
+   tempo indeterminato |
 
 ## Salary table
 

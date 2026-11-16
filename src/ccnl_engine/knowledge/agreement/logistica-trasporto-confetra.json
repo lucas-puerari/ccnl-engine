@@ -771,7 +771,8 @@
               "review_id": "2026-11-08-ai-level-6j"
             }
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -987,7 +988,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -1028,7 +1030,8 @@
               "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1223,7 +1226,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -1264,7 +1268,8 @@
               "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1459,7 +1464,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1654,7 +1660,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -1695,7 +1702,8 @@
               "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1890,7 +1898,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -1931,7 +1940,8 @@
               "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2126,7 +2136,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -2167,7 +2178,8 @@
               "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2362,7 +2374,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -2403,7 +2416,8 @@
               "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2598,7 +2612,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -2639,7 +2654,8 @@
               "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2830,7 +2846,8 @@
               "verification_status": "verified",
               "review_id": "2026-10-11-ai"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "EDR_2021",
@@ -2872,7 +2889,8 @@
             },
             "transformation": "Paid from January 2022 'per 13 mensilità' with 'nessuna incidenza su alcun istituto contrattuale' (p. 83); the file starts on 1.1.2025. Art. 37 (p. 54) counts it in the TFR base."
           },
-          "absence_relevant": false
+          "absence_relevant": false,
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "EDR_2011",
@@ -2913,7 +2931,8 @@
               "review_id": "2026-10-15-ai-elements"
             },
             "transformation": "'ai lavoratori in servizio alla data del 26 gennaio 2011 è riconosciuto un elemento distinto della retribuzione non riassorbibile pari a 10 euro al 3° Super da riparametrare'; it 'incide su tutti gli istituti legali e contrattuali', so it is paid in the 14 mensilità. The amount follows the current level (the text does not say)."
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -3007,7 +3026,7 @@
     "effective_until": null,
     "source": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
     "verification_status": "unverified",
-    "source_hash": "d06d46983646dc03196e001e28256b17d4ee839ffb9893b813c22d062ea2e9dd",
+    "source_hash": "be91a988fb0e7d0483dcb24c28f707706558f4525ced22e445dad9f28c606acb",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4699,6 +4718,30 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.time_supplements.overtime_bands"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (Art. 55, commi 8–9, PDF p. 73): the elements the percentage applies to, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confetra.com/wp-content/uploads/Nuovo-Testo-Unico-del-CCNL-logistica-trasporto-e-spedizione_pulito.pdf",
+            "sha256": "99d743d0924958c9cea8e80ec97377763090ad2b3b84d1a4bb8aa5900f0d6e24"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant EDR_2011 = false: Riservato a lavoratori in servizio al 26 gennaio 2011: non dovuto a nuovi apprendisti.",
+          "apprenticeship_pct_relevant EDR_2021 = false: Elemento separato dal minimo contrattuale: non subisce la percentuale, dovuto intero ove spettante.",
+          "apprenticeship_pct_relevant IND_FUN = false: Indennità esclusiva dei quadri; l’apprendistato è ammesso fino al primo livello, non ai quadri: non dovuta.",
+          "Clause: 8.       Salvo quanto previsto dal successivo comma 9), la durata del contratto di apprendistato è\nstabilita dalla tabella A) riportata nel presente articolo che fissa durate differenziate a seconda dei livelli di\ninquadramento, definendo altresì per ciascuno di essi il trattamento retributivo da calcolarsi in percentuale sul\nminimo contrattuale.\n           9.       In deroga a quanto previsto dal"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
         ]
       }
     ],

@@ -64,6 +64,10 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Artt. G24-G26 daily presence allowances, 2025 and 2026 PDF pp. 41-42, text layers and SHA256 checks. | confirmed | G24: 2.73 and 3.97 per actual day, both increased by 3.00 from 1 July 2025; excluded from TFR, included in holiday pay from that date.<br>G25: 0.26 per shift-presence day, absorbed by the existing company allowance at the two named employers. G26: 0.21 up to 20 km and 0.26 beyond 20 km per airport-presence day. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. G34 points 6, 9 and 10, 2025 cached PDF pages 45-46; hospital exclusion and qualifying illnesses. | confirmed | Point 6 excludes hospital days from both counts and certified continuous convalescence up to 120 days overall.<br>Point 9 triples the overall limit for documented oncological illness, multiple sclerosis or muscular dystrophy.<br>Point 10 requires previously attested disability for the 30% increase. Convalescence and disability remain limited. |
 | 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 14 monthly pays. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Apprentice pay (Art. G14, comma 16, PDF p. 32): the elements the percentage applies to, read in the cited file by sha256. | corrected | apprenticeship_pct_relevant CONTINGENZA = true: Indennità di contingenza inclusa espressamente tra gli istituti percentualmente ridotti.<br>apprenticeship_pct_relevant CONTRIBUTO_DPI = false: Contributo condizionato al mancato servizio aziendale di lavaggio, non nella base percentuale: dovuto intero se spettante.<br>apprenticeship_pct_relevant IND_MANEGGIO_DENARO = true: Indennità del 10% calcolata anche su minimo e contingenza del livello effettivo: la base dell’apprendista è ridotta.<br>Clause: 16. Agli apprendisti si riconoscono gli istituti previsti dal presente CCNL, in quanto applicabili e, per
+quanto concerne la retribuzione mensile, la stessa viene determinata applicando le percentuali di cui
+alla tabella sotto riportata ai seguenti istituti: minimi tabellari in vigore, indennità di contingenza e
+livello inquadramentale tempo per tempo previsto sulla base della legge e degli iter p |
 
 ## Salary table
 
@@ -154,13 +158,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation.
-
-!!! warning "apprenticeship_pct_undeclared_components · base_salary · impact unknown · open"
-    A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.
-
-    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

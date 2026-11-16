@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-02-21 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2027-03-01 |
 
 ## Review history
@@ -72,6 +72,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | gpt-6-sol (ai) | Art. 92 (PDF pp. 4-6), extension of a first-level apprenticeship after a failed qualification, by a separate model session. | corrected | Confirmed: the employer may extend the contract up to one year; only when the title is not obtained does the pay stay at the previous contract year (p. 6).<br>Confirmed: the previous year is read by semester (85% at month 36, 90% at month 42 for the qualifica track).<br>Corrected: an extension starting before the end of the original contract of the track (p. 4) was accepted and could underpay; it is now rejected. |
 | 2026-11-09 | gpt-6-sol (ai) | Art. 50 (PDF p. 70), cash-handling allowance, and arts. 44, 47, 52, 63-64, 76 for the remaining limitations, by a separate model session. | confirmed | Confirmed: 8% of the monthly minimum and the ex-contingenza for an impiegato who normally handles money with liability for errors; no allowance without the attested role.<br>Confirmed: the allowance enters the thirteenth and the annual premium (art. 44 item 12, arts. 63-64).<br>Flagged: 1 February 2025 is the first salary tranche in the data, not the clause start; earlier eligibility is not encoded.<br>Confirmed: the art. 47, art. 52, art. 76 and provincial premium limitations stay open. |
 | 2026-11-09 | gpt-6-sol (ai) | Art. 54 (PDF p. 71), night-holiday work in periodic shifts against the 50% band, by a separate model session. | corrected | Confirmed: the 50% night-holiday band excludes the hours comprised in periodic shifts; ordinary holiday and other bands are unaffected.<br>Flagged and corrected: an excluded hour is now provisional, not final at zero, since no combined night-holiday periodic-shift rate is printed; the 10% night-shift band of the same page stays as encoded.<br>Confirmed: a missing in_periodic_shift fact blocks only the restricted band. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Apprentice pay (Art. 92, apprendistato professionalizzante, PDF p. 125): the elements the percentage applies to, read in the cited file by sha256. | corrected | apprenticeship_pct_relevant CASH_HANDLING = true: Art. 50: 8% dello stipendio minimo e dell’ex contingenza; il sottoinquadramento riduce lo stipendio minimo usato per calcolare l’indennità.<br>Clause: L’inquadramento e il trattamento economico dei lavoratori in apprendistato pro-
+fessionalizzante è quello di un livello inferiore a quello della categoria per la quale
+è finalizzato il relativo contratto. |
 
 ## Salary table
 
@@ -188,13 +191,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `seniority` applies; the run takes the engine code path; contract type in apprentice.
 
     **Remediation:** Resolved: the remaining CCNLs are tracked by their own apprentice_seniority limitation.
-
-!!! warning "apprenticeship_pct_undeclared_components · base_salary · impact unknown · open"
-    A percentage apprenticeship reduces every fixed allowance whose apprenticeship_pct_relevant flag the data leaves at its default, together with the base salary. Whether the CCNL applies the percentage to that allowance (an EDR, a contingenza, a function allowance) was not sourced. The run is affected when such an allowance is in the apprentice's pay.
-
-    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice.
-
-    **Remediation:** Source, for each CCNL, the elements the apprenticeship percentage applies to and set apprenticeship_pct_relevant on every allowance; the limitation then no longer applies to its runs.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

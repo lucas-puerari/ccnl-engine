@@ -856,7 +856,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -887,7 +888,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "operaio",
@@ -1068,7 +1070,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1099,7 +1102,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "operaio",
@@ -1280,7 +1284,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1311,7 +1316,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "operaio",
@@ -1492,7 +1498,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1523,7 +1530,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "operaio",
@@ -1704,7 +1712,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1735,7 +1744,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "operaio",
@@ -1916,7 +1926,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1947,7 +1958,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2127,7 +2139,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -2158,7 +2171,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "impiegato",
@@ -2311,7 +2325,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -2342,7 +2357,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         },
         {
           "code": "IND_FUN",
@@ -2373,7 +2389,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "quadro",
@@ -2625,7 +2642,7 @@
     "effective_until": "2028-09-30",
     "source": "https://www.ediltecnico.it/ccnl-edilizia-artigianato-novita-su-campo-di-applicazione-classificazione-personale-e-apprendistato/",
     "verification_status": "unverified",
-    "source_hash": "4f183e3454d2c962e894f608db8f7c0e156a3137d76e2cf8f77e9c4a0089c20e",
+    "source_hash": "e70c2c61a6ac2d6a6d7a7fb00a2459cd920f73390717e5ab6a04e4c9d5898835",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -3782,6 +3799,30 @@
         "checked": [
           "work_rules.time_supplements",
           "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (regolamento apprendistato, art. 7, PDF p. 168): the elements the percentage applies to, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fenealuil.it/wp-content/uploads/2026/02/20251222_CCNL_EDILIZIA-ARTIGIANI-E-PMI.pdf",
+            "sha256": "0c6e4b8d8ade933714625ae443c2fce283ad503acf121c22bd5177dfe7bc5d94"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant CONTINGENZA = true: Contingenza inclusa espressamente; EDR e indennità quadri non compaiono fra gli elementi percentualizzati.",
+          "apprenticeship_pct_relevant EDR = false: Contingenza inclusa espressamente; EDR e indennità quadri non compaiono fra gli elementi percentualizzati.",
+          "apprenticeship_pct_relevant IND_FUN = false: Contingenza inclusa espressamente; EDR e indennità quadri non compaiono fra gli elementi percentualizzati.",
+          "Clause: La retribuzione dell’apprendista è determinata mediante l’applicazione delle per-\ncentuali sottoindicate sul minimo di paga, indennità di contingenza, indennità\nterritoriale di settore, E.v.r. e percentuale per i riposi annui spettante al lavoratore"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
         ]
       }
     ]

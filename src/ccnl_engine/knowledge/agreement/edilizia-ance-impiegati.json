@@ -1048,7 +1048,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-09-gpt-edilizia-ance-impiegati-cash-handling"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1302,7 +1303,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-09-gpt-edilizia-ance-impiegati-cash-handling"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1556,7 +1558,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-09-gpt-edilizia-ance-impiegati-cash-handling"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -1810,7 +1813,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-09-gpt-edilizia-ance-impiegati-cash-handling"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -2064,7 +2068,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-09-gpt-edilizia-ance-impiegati-cash-handling"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -2318,7 +2323,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-09-gpt-edilizia-ance-impiegati-cash-handling"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -2572,7 +2578,8 @@
               "verification_status": "verified",
               "review_id": "2026-11-09-gpt-edilizia-ance-impiegati-cash-handling"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR",
@@ -2770,7 +2777,7 @@
     "effective_until": null,
     "source": "https://ance.it/wp-content/uploads/allegati/Tabella_nuovi_minimi_orari-_CCNL_2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "8d0eed8af38be35e5186e8a3037e3c374456947240d58ee13bef750b8dc7fbab",
+    "source_hash": "16bdfb28722197de690a53240ed6e3ca5e1bc49a5ad9a86208bf480732d818da",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3688,6 +3695,28 @@
         ],
         "checked": [
           "work_rules.time_supplements.supplement_bands[ANCE_IMP_FESTIVO_NOTTURNO]"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (Art. 92, apprendistato professionalizzante, PDF p. 125): the elements the percentage applies to, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/ORGANIZZAZIONE/CONTRATTI_E_TABELLE/EDILIZIA/CCNL_EDILIZIA_INDUSTRIA_2010_TESTO_COMPLETO.pdf",
+            "sha256": "ddd11bb850de2e7c642eb662b59e40e36c66e3a534162c505aa1c9a94ac5a00b"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant CASH_HANDLING = true: Art. 50: 8% dello stipendio minimo e dell’ex contingenza; il sottoinquadramento riduce lo stipendio minimo usato per calcolare l’indennità.",
+          "Clause: L’inquadramento e il trattamento economico dei lavoratori in apprendistato pro-\nfessionalizzante è quello di un livello inferiore a quello della categoria per la quale\nè finalizzato il relativo contratto."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
         ]
       }
     ],

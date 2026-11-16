@@ -204,6 +204,29 @@
         "checked": [
           "parameters.additional_months"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (disciplina apprendistato, art. 6, PDF p. 119): the elements the percentage applies to, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf",
+            "sha256": "093a8610fb069f16df77cee5fec9e858568f2f3776bcf14013eb4673869dc45b"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant IND_FUNZIONE = false: La retribuzione dell’apprendista è il minimo contrattuale del livello progressivo; qualifiche conseguibili solo dalla 3a alla 6a categoria: livello 7 e quadri 7Q non apprendibili.",
+          "apprenticeship_pct_relevant IND_FUNZIONE_QUADRI = false: La retribuzione dell’apprendista è il minimo contrattuale del livello progressivo; qualifiche conseguibili solo dalla 3a alla 6a categoria: livello 7 e quadri 7Q non apprendibili.",
+          "Clause: Il livello di inquadramento iniziale del lavoratore sarà inferiore di due livelli rispetto a quello di\ndestinazione. La retribuzione sarà corrispondente a quella minima contrattuale prevista per il livello\niniziale di inquadramento. Trascorso un terzo del periodo di apprendistato la retribuzione e\nl’inquadramento saranno corrispondenti a quella minima contrattuale prevista per il livello superiore"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
+        ]
       }
     ]
   },
@@ -2000,7 +2023,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "quadro",
@@ -2277,7 +2301,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "category": "quadro",
@@ -2341,7 +2366,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "7e4221216aa643f8bbd3319c3d8f851631500f0c69a32a56d9a8336af19e24b0",
+    "source_hash": "09623d4bfc431ffb0b082bf8ed39a17f08e60e9b9f047e2879ad6c8eec39d978",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

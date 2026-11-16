@@ -374,7 +374,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR_1991",
@@ -438,7 +439,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "IDR_2021",
@@ -833,7 +835,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR_1991",
@@ -897,7 +900,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "IDR_2021",
@@ -1292,7 +1296,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR_1991",
@@ -1356,7 +1361,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "IDR_2021",
@@ -1751,7 +1757,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR_1991",
@@ -1815,7 +1822,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "IDR_2021",
@@ -2210,7 +2218,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR_1991",
@@ -2274,7 +2283,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "IDR_2021",
@@ -2669,7 +2679,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR_1991",
@@ -2733,7 +2744,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "IDR_2021",
@@ -3128,7 +3140,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR_1991",
@@ -3192,7 +3205,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "IDR_2021",
@@ -3587,7 +3601,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR_1991",
@@ -3651,7 +3666,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "IDR_2021",
@@ -4046,7 +4062,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR_1991",
@@ -4110,7 +4127,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "IDR_2021",
@@ -4505,7 +4523,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR_1991",
@@ -4569,7 +4588,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "IDR_2021",
@@ -4964,7 +4984,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "EDR_1991",
@@ -5028,7 +5049,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": true
         },
         {
           "code": "IDR_2021",
@@ -5152,7 +5174,8 @@
               "verification_status": "unverified",
               "effective_from": "2020-01-01"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -5412,7 +5435,7 @@
     "effective_until": null,
     "source": "https://www.aiscat.it/contratto-collettivo-autostrade-trafori",
     "verification_status": "unverified",
-    "source_hash": "3e910c966b9d423db5fa987616e3d65ff048c545477bd8447da3e55bf1178e2c",
+    "source_hash": "630a79632dffa65bb9b1fdf783d7ab7f0b667f6807179fdf344c6ed11acc0bb2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5784,6 +5807,30 @@
         "independence": "separate_model",
         "checked": [
           "parameters.additional_months"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (art. 6 e art. 22, PDF p. 33): the elements the percentage applies to, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/cerca/accordi/codice-ccnl/I192?vigenti=true&size=300",
+            "sha256": "2f547e3788b2278f0b9ab7255d70b1f0fbcd8b1db462b4a9e198b710e640970f"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant CONTINGENZA = true: Art. 22 include contingenza e elemento differenziato 1997; gli altri elementi non vi figurano (IDR 2021 successivo, funzione separata); EDR 1991 non identificato nell’elenco art. 22.",
+          "apprenticeship_pct_relevant EDR_1997 = true: Art. 22 include contingenza e elemento differenziato 1997; gli altri elementi non vi figurano (IDR 2021 successivo, funzione separata); EDR 1991 non identificato nell’elenco art. 22.",
+          "apprenticeship_pct_relevant IND_FUNZIONE = false: Art. 22 include contingenza e elemento differenziato 1997; gli altri elementi non vi figurano (IDR 2021 successivo, funzione separata); EDR 1991 non identificato nell’elenco art. 22.",
+          "Clause: Per quanto concerne la retribuzione, come definita all’art. 22, la stessa sarà ero-\ngata con le seguenti modalità:\n    - 80% per i primi12 mesi;\n    - 85% per i secondi 12 mesi;\n    - 95% per i successivi mesi.\n\n   Agli apprendisti, oltre l’indicato trattamento economico, spetta ogni altro isti-\n   tuto economico — normativo, previsto dal presente c.c.n.l. per i lavoratori a\n   tempo indeterminato"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
         ]
       }
     ]

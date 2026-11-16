@@ -485,7 +485,8 @@
               "review_id": "2026-11-10-ai-rsa-seniority-premium",
               "verified_by": "claude-opus-5-5"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -649,7 +650,8 @@
               "review_id": "2026-11-10-ai-rsa-seniority-premium",
               "verified_by": "claude-opus-5-5"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -813,7 +815,8 @@
               "review_id": "2026-11-10-ai-rsa-seniority-premium",
               "verified_by": "claude-opus-5-5"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -977,7 +980,8 @@
               "review_id": "2026-11-10-ai-rsa-seniority-premium",
               "verified_by": "claude-opus-5-5"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1141,7 +1145,8 @@
               "review_id": "2026-11-10-ai-rsa-seniority-premium",
               "verified_by": "claude-opus-5-5"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1305,7 +1310,8 @@
               "review_id": "2026-11-10-ai-rsa-seniority-premium",
               "verified_by": "claude-opus-5-5"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1469,7 +1475,8 @@
               "review_id": "2026-11-10-ai-rsa-seniority-premium",
               "verified_by": "claude-opus-5-5"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1633,7 +1640,8 @@
               "review_id": "2026-11-10-ai-rsa-seniority-premium",
               "verified_by": "claude-opus-5-5"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -1797,7 +1805,8 @@
               "review_id": "2026-11-10-ai-rsa-seniority-premium",
               "verified_by": "claude-opus-5-5"
             }
-          }
+          },
+          "apprenticeship_pct_relevant": false
         }
       ],
       "provenance": {
@@ -2091,7 +2100,7 @@
     "effective_until": null,
     "source": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
     "verification_status": "unverified",
-    "source_hash": "01f8eb7ea8ac3af192fbcfbd95effe22405ae65a4adfbce7bdb3cf7629c849e8",
+    "source_hash": "848c041f84a2931a9c0c603e1160ecdb33afcebce982b80e3e2fd837cebf0858",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2455,6 +2464,28 @@
         "independence": "separate_model",
         "checked": [
           "parameters.additional_months"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-apprenticeship-pct",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Apprentice pay (art. 23, PDF p. 12): the elements the percentage applies to, read in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://acopnazionale.it/wp-content/uploads/2022/03/ccnl-rsa-aiop-2012.pdf",
+            "sha256": "a857ab65ee5a6101fb8ae50099804c1229815a1c676b798896a2ea7ed0260919"
+          }
+        ],
+        "findings": [
+          "apprenticeship_pct_relevant PREMIO_ANZIANITA_2023 = false: Percentuale sul minimo contrattuale della retribuzione base; premio anzianità legato a dieci anni di servizio alla firma 2023 non spettante agli apprendisti di nuova assunzione.",
+          "Clause: Il trattamento dell'apprendista viene fissato sulla base del minimo contrattuale della retribuzione\nbase previsto per livello, secondo le percentuali della seguente tabella:"
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].fixed_allowances[].apprenticeship_pct_relevant"
         ]
       }
     ]
