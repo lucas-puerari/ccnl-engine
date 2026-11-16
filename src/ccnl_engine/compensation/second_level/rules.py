@@ -65,6 +65,7 @@ def with_second_level_elements(
             months_per_year=None if e.extra_months else _MONTHS,
             tfr_relevant=e.tfr_relevant,
             apprenticeship_pct_relevant=False,
+            territorial=e.agreement is SecondLevelAgreement.TERRITORIAL,
         )
         for e in paid
     )

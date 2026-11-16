@@ -51,6 +51,9 @@ class HourlyPercentage(BaseModel):
             salary in its base, as the run pays them by the hour.
         include_individual: Whether individual ordinary-pay elements (including
             superminimum) join the named allowances in the percentage base.
+        include_territorial: Whether the elements of a territorial agreement
+            join the base: the salario contrattuale of the contratto
+            provinciale (operai agricoli OTD, art. 50).
         settlement: Who it is paid to.
         net_rate: Share of the base withheld from the pay and accrued with
             the Cassa Edile; set for ``cassa_edile`` alone.
@@ -70,6 +73,7 @@ class HourlyPercentage(BaseModel):
     rate: TimeSeries
     base_allowances: tuple[str, ...] = ()
     include_individual: bool = False
+    include_territorial: bool = False
     settlement: PercentageSettlement
     net_rate: TimeSeries | None = None
     tfr_relevant: bool = True
