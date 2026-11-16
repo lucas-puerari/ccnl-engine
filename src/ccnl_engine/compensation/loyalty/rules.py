@@ -71,6 +71,22 @@ class LoyaltySettlement:
         )
 
 
+def _hourly_pay(ctx: RunContext, clause: LoyaltyPremium, day: date) -> Decimal | None:
+    """Return the normal hourly pay the clause values its hours at.
+
+    Returns:
+        The monthly normal pay over the divisor of the clause, or of the
+        CCNL on ``day``; ``None`` when neither sets one.
+    """
+    divisor = clause.hourly_divisor
+    if divisor is None:
+        period = ctx.contract.ccnl.parameters.hourly_divisor.period_at(day)
+        divisor = None if period is None else period.value
+    if divisor is None:
+        return None
+    return monthly_pay(ctx.regular_chain, frozenset()) / divisor
+
+
 def _award_amount(
     ctx: RunContext, clause: LoyaltyPremium, anniversary: date
 ) -> Decimal | None:
@@ -79,14 +95,11 @@ def _award_amount(
     Returns:
         Rounded award, or ``None`` when the hourly divisor is unavailable.
     """
-    monthly = monthly_pay(ctx.regular_chain, frozenset())
     hours = getattr(clause, "manual_hours", None)
     if ctx.worker_category is WorkerCategory.OPERAIO and hours is not None:
-        divisor = ctx.contract.ccnl.parameters.hourly_divisor.period_at(anniversary)
-        if divisor is None or divisor.value is None:
-            return None
-        return money(hours * monthly / divisor.value)
-    return money(clause.months * monthly)
+        hourly = _hourly_pay(ctx, clause, anniversary)
+        return None if hourly is None else money(hours * hourly)
+    return money(clause.months * monthly_pay(ctx.regular_chain, frozenset()))
 
 
 def _qualified_before(anniversary: date, qualifying_date: date) -> bool:
@@ -213,9 +226,9 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:  # noqa: PLR0911
     if clause.levels and ctx.request.level_code not in clause.levels:
         return LoyaltySettlement()
     if ctx.run_kind is RunKind.TERMINATION:
-        from ccnl_engine.compensation.loyalty.termination import dismissal_award  # noqa: PLC0415
+        from ccnl_engine.compensation.loyalty.termination import closing_award  # noqa: PLC0415
 
-        return dismissal_award(ctx, clause, period)
+        return closing_award(ctx, clause, period)
     if ctx.run_kind is not RunKind.REGULAR:
         return LoyaltySettlement()
     anniversary = _award_anniversary(ctx, clause, period)

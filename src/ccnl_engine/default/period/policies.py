@@ -41,6 +41,14 @@ PERIOD_DEFAULTS: Mapping[str, FieldDefault] = {
         "not stated: the dismissal twelfths have a missing_fact "
         "disciplinary_dismissal blocker",
     ),
+    "EmploymentPeriod.permanent_incapacity": requires_fact(
+        "base_salary",
+        "employment.employment_period.permanent_incapacity",
+        _REPORTED,
+        "an end before a service award that settles its ratei on permanent "
+        "incapacity, not by death: the ratei have a missing_fact "
+        "permanent_incapacity blocker",
+    ),
     "EmploymentPeriod.naspi_case": requires_fact(
         "naspi_dismissal",
         "employment.employment_period.naspi_case",

@@ -3,11 +3,15 @@
 from __future__ import annotations
 
 import calendar
-from datetime import date
+from datetime import date, timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.compensation.loyalty.rules import LoyaltySettlement, _award_amount
+from ccnl_engine.compensation.loyalty.rules import (
+    LoyaltySettlement,
+    _award_amount,
+    _hourly_pay,
+)
 from ccnl_engine.decision.models import (
     CalculationDecision,
     CalculationIssue,
@@ -17,7 +21,7 @@ from ccnl_engine.decision.models import (
 from ccnl_engine.decision.rules import _ccnl_rule
 from ccnl_engine.employment.period.inputs import TerminationCause
 from ccnl_engine.ledger.models import AccountKind
-from ccnl_engine.pay_item.models import LoyaltyPremiumEarning
+from ccnl_engine.pay_item.models import BonusEarning, LoyaltyPremiumEarning
 from ccnl_engine.pay_item.rounding.policies import money
 from ccnl_engine.pay_item.services import (
     _make_entry,
@@ -26,6 +30,8 @@ from ccnl_engine.pay_item.services import (
 )
 
 if TYPE_CHECKING:
+    from collections.abc import Mapping
+
     from ccnl_engine.compensation.loyalty.models import LoyaltyPremium
     from ccnl_engine.employment.period.inputs import EmploymentPeriod
     from ccnl_engine.period.context.services import RunContext
@@ -54,6 +60,18 @@ def _months_since(anniversary: date, ended: date) -> int:
     return months - (ended.day < boundary)
 
 
+def _in_month(ctx: RunContext, day: date) -> bool:
+    """Whether ``day`` falls in the month of the run.
+
+    Returns:
+        ``True`` when the run is of the month of ``day``.
+    """
+    return (ctx.request.period_id.year, ctx.request.period_id.month) == (
+        day.year,
+        day.month,
+    )
+
+
 def _missing(fact: str) -> LoyaltySettlement:
     """Flag a missing closing-run fact without guessing an award.
 
@@ -65,7 +83,7 @@ def _missing(fact: str) -> LoyaltySettlement:
             CalculationIssue(
                 code=f"loyalty_{fact}_unknown",
                 message=(
-                    "Art. 65 loyalty dismissal twelfths need "
+                    "the loyalty award at the end of the employment needs "
                     f"EmploymentPeriod.{fact}, which is not stated"
                 ),
                 capability="base_salary",
@@ -88,10 +106,7 @@ def dismissal_award(  # noqa: PLR0911
     if not clause.dismissal_pro_rata or period.ended_on is None:
         return LoyaltySettlement()
     ended = period.ended_on
-    if (ctx.request.period_id.year, ctx.request.period_id.month) != (
-        ended.year,
-        ended.month,
-    ):
+    if not _in_month(ctx, ended):
         return LoyaltySettlement()
     previous = _anniversary(period.started_on, ended.year)
     if previous > ended:
@@ -113,26 +128,133 @@ def dismissal_award(  # noqa: PLR0911
     if full is None:
         return LoyaltySettlement()
     amount = money(full * Decimal(months) / Decimal(12))
+    return _posted(
+        ctx,
+        clause,
+        (amount, Decimal(months) / Decimal(12)),
+        ended,
+        (
+            "loyalty_dismissal_twelfths",
+            {"whole_months": str(months), "annual_award": full},
+        ),
+    )
+
+
+def _whole_years(start: date, ended: date) -> int:
+    """Count the whole years of service from ``start`` through ``ended``.
+
+    Returns:
+        The years completed by the end of the last day of service.
+    """
+    after = ended + timedelta(days=1)
+    return (
+        after.year - start.year - ((after.month, after.day) < (start.month, start.day))
+    )
+
+
+def _early_cause(period: EmploymentPeriod) -> bool | LoyaltySettlement:
+    """Whether the employment ends by death or permanent incapacity.
+
+    Returns:
+        ``True`` or ``False``, or an incomplete settlement naming the fact
+        that is not stated.
+    """
+    if period.ended_by is None:
+        return _missing("ended_by")
+    if period.ended_by is TerminationCause.DEATH:
+        return True
+    if period.permanent_incapacity is None:
+        return _missing("permanent_incapacity")
+    return period.permanent_incapacity
+
+
+def early_award(
+    ctx: RunContext, clause: LoyaltyPremium, period: EmploymentPeriod
+) -> LoyaltySettlement:
+    """Settle the ratei of a once-only award the employment ends before.
+
+    Alimentari saccarifero, punto 25: "In caso di risoluzione anticipata del
+    rapporto di lavoro per causa di morte o di invalidità permanente, saranno
+    liquidati ... i ratei corrispondenti agli anni interi maturati in
+    funzione di 8 ore annue per gli operai e 7 ore per gli impiegati."
+
+    Returns:
+        The ratei on the run of the month the employment ends, an incomplete
+        settlement naming a missing fact, or nothing.
+    """
+    category = ctx.worker_category
+    hours = None if category is None else clause.early_hours.get(category)
+    ended = period.ended_on
+    if hours is None or ended is None or not _in_month(ctx, ended):
+        return LoyaltySettlement()
+    start = period.uninterrupted_service_started_on or period.started_on
+    years = _whole_years(start, ended)
+    if not 0 < years < clause.service_years:
+        return LoyaltySettlement()
+    cause = _early_cause(period)
+    if cause is not True:
+        return cause or LoyaltySettlement()
+    hourly = _hourly_pay(ctx, clause, ended)
+    if hourly is None:
+        return LoyaltySettlement()
+    amount = money(years * hours * hourly)
+    return _posted(
+        ctx,
+        clause,
+        (amount, Decimal(years)),
+        ended,
+        ("loyalty_early_ratei", {"whole_years": str(years), "hours": str(hours)}),
+    )
+
+
+def closing_award(
+    ctx: RunContext, clause: LoyaltyPremium, period: EmploymentPeriod
+) -> LoyaltySettlement:
+    """Pay what the loyalty clause owes at the end of the employment.
+
+    Returns:
+        The early ratei of a clause that settles them, else the dismissal
+        twelfths.
+    """
+    if clause.early_hours:
+        return early_award(ctx, clause, period)
+    return dismissal_award(ctx, clause, period)
+
+
+def _posted(
+    ctx: RunContext,
+    clause: LoyaltyPremium,
+    paid: tuple[Decimal, Decimal],
+    ended: date,
+    reason: tuple[str, Mapping[str, Decimal | str]],
+) -> LoyaltySettlement:
+    """Post ``paid`` (amount and quantity) as the award of the clause.
+
+    Returns:
+        The earning, its ledger entry and its decision.
+    """
+    amount, quantity = paid
+    reason_code, inputs = reason
+    once = clause.recurrence == "once"
+    kind = "bonus_earning" if once else "loyalty_premium_earning"
     rule, version = _ccnl_rule(ctx.contract.ccnl, ended.year)
     location = clause.provenance.location
-    resolution = _require_resolution(
-        ctx.resolver, "loyalty_premium_earning", ctx.policy_context
-    )
+    resolution = _require_resolution(ctx.resolver, kind, ctx.policy_context)
     treatment = _treatment_from_resolution(resolution)
     item_id = f"loyalty_premium_{ctx.run_id}"
     payment = ctx.contract.tctx.payment
-    item = LoyaltyPremiumEarning(
+    item = (BonusEarning if once else LoyaltyPremiumEarning)(
         item_id=item_id,
         competence_period=ctx.cp,
         payment_date=payment,
-        quantity=Decimal(months) / Decimal(12),
+        quantity=quantity,
         amount=amount,
         source=f"Premio di fedeltà: {getattr(location, 'section', '')}",
     )
     entry = _make_entry(
         item_id,
         item_id,
-        "loyalty_premium_earning",
+        kind,
         ctx.cp,
         payment,
         AccountKind.CASH_EARNINGS,
@@ -144,13 +266,13 @@ def dismissal_award(  # noqa: PLR0911
         entries=(entry,),
         decisions=(
             CalculationDecision(
-                capability="base_salary",
+                capability="bonus" if once else "base_salary",
                 status=CalculationStatus.FINAL,
-                reason_code="loyalty_dismissal_twelfths",
+                reason_code=reason_code,
                 rule=f"{rule}:parameters.loyalty_premium",
                 rule_version=version,
                 source=location,
-                inputs={"whole_months": str(months), "annual_award": full},
+                inputs=inputs,
                 amount=amount,
             ),
         ),

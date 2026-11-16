@@ -796,6 +796,33 @@ def _loyalty_dismissal(disciplinary: bool | None) -> PeriodInput:
     )
 
 
+def _sugar_incapacity(incapacity: bool | None) -> PeriodInput:
+    """Return a sugar operaio dismissed after 24 whole years, in March.
+
+    Returns:
+        The termination run with or without its permanent-incapacity fact.
+    """
+    employment = replace(
+        _EMPLOYMENT,
+        ccnl_id="alimentari-federalimentare",
+        level_code="6",
+        category=WorkerCategory.OPERAIO,
+        employment_period=EmploymentPeriod(
+            date(2001, 4, 15),
+            date(2026, 3, 31),
+            TerminationCause.DISMISSAL,
+            permanent_incapacity=incapacity,
+        ),
+    )
+    run = _march(PeriodState.zero())
+    return replace(
+        run,
+        run=PayrollRun(RunKind.TERMINATION, 3, 2026),
+        employer=replace(run.employer, subsector="saccarifero"),
+        employment=employment,
+    )
+
+
 def _extraordinary(last_pay: Decimal | None) -> PeriodInput:
     """Return two weeks of extraordinary leave in March of an impiegato.
 
@@ -983,6 +1010,13 @@ def sickness_cases[C](
                 _loyalty_dismissal(False),
                 _loyalty_dismissal(None),
                 "disciplinary_dismissal",
+            ),
+        ),
+        "EmploymentPeriod.permanent_incapacity": (
+            case(
+                _sugar_incapacity(True),
+                _sugar_incapacity(None),
+                "permanent_incapacity",
             ),
         ),
         "ExtraordinaryLeaveEvent.last_fixed_pay": (
