@@ -99,22 +99,6 @@
       }
     },
     {
-      "id": "provincial_supplement",
-      "institute": "territorial_supplement",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = owed",
-      "rule": "NATIONAL MINIMUMS ONLY. Provincial contracts (contratti provinciali di lavoro, 20 provinces) pay substantially more than national floor. The national tabella retributiva is the legal minimum. Actual employer cost in any province requires adding the CPL supplement.",
-      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
-      "state": "absent",
-      "remediation": "Add the provincial (CPL) supplement outside the engine.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "operai-agricoli-florovivaisti/provincial_supplement"
-        ]
-      }
-    },
-    {
       "id": "regular_night_shift_and_local_tariffs",
       "institute": "overtime",
       "variant": "all",

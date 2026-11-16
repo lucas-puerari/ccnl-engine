@@ -206,7 +206,7 @@ on unverified sources, or be well sourced and not cleared for production.
 | 86 | C011 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | metalmeccanico | ~1,7M | 2025 | ✅ | — | 92 / 18 / 0 / 0 | 🏭 | 🤖✓ |
 | 87 | IC36 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | Trasporti - Noleggio autobus con conducente | ~5422 | 2025 | ⚠️ | seniority, una_tantum | 35 / 33 / 3 / 0 | 🧪 | 🤖 |
 | 88 | D271 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | industria occhialeria e ottica | ~20k | — | ✅ | — | 77 / 11 / 1 / 1 | 🧪 | 🤖 |
-| 89 | A011 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | agricoltura | ~600k | 2026 | ⚠️ | base_salary, bilateral_funds, overtime, seniority, sickness, territorial_supplement | 23 / 6 / 0 / 0 | 🧪 | 🤖 |
+| 89 | A011 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | agricoltura | ~600k | 2026 | ⚠️ | base_salary, bilateral_funds, overtime, seniority, sickness | 23 / 6 / 0 / 0 | 🧪 | 🤖 |
 | 90 | A221 | [CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)](organizzazioni-allevatori-aia.md) | Agricoltura | ~2k | 2024 | ⚠️ | inps_employer | 44 / 7 / 1 / 0 | 🧪 | 🤖 |
 | 91 | H341 | [CCNL Ortofrutticoli ed Agrumari (Import-Export)](ortofrutticoli-agrumari.md) | ortofrutticoli ed agrumari import-export | ~60000 | 2024 | ⚠️ | base_salary | 64 / 0 / 1 / 0 | 🧪 | 🤖 |
 | 92 | E023 | [CCNL Panificazione e Settori Affini — Industria (Assipan/Fiesa)](panificazione-assipan.md) | alimentare | ~20k | 2025 | ✅ | — | 35 / 14 / 1 / 0 | 🧪 | 🤖 |

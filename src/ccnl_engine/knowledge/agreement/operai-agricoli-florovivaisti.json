@@ -99,17 +99,9 @@
         "text": "CNEL CODE: A011. Confirmed from ilccnl.it page header and contratticcnl.it/ccnl/a011/. CNEL archive (cnel.it) returned 404 at time of extraction."
       },
       {
-        "kind": "simplification",
-        "text": "NATIONAL MINIMUMS ONLY. Provincial contracts (contratti provinciali di lavoro, 20 provinces) pay substantially more than national floor. The national tabella retributiva is the legal minimum. Actual employer cost in any province requires adding the CPL supplement.",
-        "capability": "territorial_supplement",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "provincial_supplement",
-          "applies_when": {
-            "trigger": "owed"
-          },
-          "remediation": "Add the provincial (CPL) supplement outside the engine."
-        }
+        "kind": "info",
+        "text": "PROVINCIAL WAGES (Art. 50, CCNL 23 May 2022, PDF p. 53, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c): 'I salari contrattuali definiti dai contratti provinciali possono essere mensili o giornalieri od orari a seconda dei tipi di rapporto'. The national minimi di area are the floor; the national text prints no provincial amount. The caller states the excess of the contratto provinciale over the minimo of the level as a territorial second-level element (EmployerProfile.second_level_elements, agreement 'territorial', monthly amount, levels, dates), which enters the extra months and the TFR by default; an hour priced on the provincial wage carries its hourly rate on the event.",
+        "capability": "territorial_supplement"
       },
       {
         "kind": "info",
@@ -1279,7 +1271,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "9259e5b218459f24f50cf7bb4684b4894014858c8a6d4981aca7743229f5bb18",
+    "source_hash": "7fb5c812ef9eb059f0257772d992d27f19f351e6b655d509ab86351883b25970",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
