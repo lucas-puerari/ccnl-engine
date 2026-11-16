@@ -45,6 +45,7 @@ from ccnl_engine.sickness.indemnity.models import (
     SickPayCoverage,
 )
 from ccnl_engine.sickness.integration.models import SicknessRules
+from ccnl_engine.sickness.issue.daily_share import daily_share_issues
 from ccnl_engine.sickness.models import SicknessEpisode, SicknessHistory
 from ccnl_engine.sickness.pay.handlers import episode_pay
 from ccnl_engine.sickness.term.rules import DailyQuota, SicknessTerms
@@ -288,3 +289,66 @@ def test_only_permanent_workers_take_the_permanent_rule(fixed_term: bool) -> Non
         Decimal(0),
     )
     assert total == (Decimal(0) if fixed_term else Decimal(100))
+
+
+@pytest.mark.parametrize(
+    ("hired_on", "total"),
+    [(date(2026, 6, 1), Decimal(100)), (date(2026, 6, 20), Decimal(0)), (None, 0)],
+    ids=["day-36", "day-17", "hiring-unknown"],
+)
+def test_a_fixed_term_worker_takes_it_from_day_31(
+    hired_on: date | None, total: Decimal
+) -> None:
+    """Art. 62: an OTD from the 31st day of the employment, five days EUR 100."""
+    episode = _episode("otd", _START, 5)
+    rules = replace(_rules(fixed_term=True), worker=SicknessWorker(hired_on=hired_on))
+    segments = classify_days(
+        episode, (_START, episode.ended_on), SicknessHistory(), rules
+    )
+    paid = sum(
+        (
+            Decimal((s.last - s.first).days + 1) * s.daily_share * Decimal(80)
+            for s in segments
+        ),
+        Decimal(0),
+    )
+    assert paid == total
+
+
+def test_a_fixed_term_worker_takes_45_days_a_year() -> None:
+    """A 60-day illness of an OTD hired long before: 45 days at EUR 20."""
+    episode = _episode("long", _START, 60)
+    rules = replace(
+        _rules(fixed_term=True), worker=SicknessWorker(hired_on=date(2026, 1, 1))
+    )
+    segments = classify_days(
+        episode, (_START, episode.ended_on), SicknessHistory(), rules
+    )
+    days = sum(((s.last - s.first).days + 1 for s in segments if s.daily_share), 0)
+    assert days == 45
+
+
+@pytest.mark.parametrize(("share", "issues"), [(True, 1), (False, 0)])
+def test_a_fixed_term_worker_needs_the_wage_only_with_a_share(
+    share: bool, issues: int
+) -> None:
+    """Unrecognised illness of an OTD: a fact only where the CCNL pays it."""
+    rules = replace(
+        _rules(fixed_term=True), worker=SicknessWorker(hired_on=date(2026, 1, 1))
+    )
+    if not share:
+        rules = replace(
+            rules, ccnl=rules.ccnl.model_copy(update={"fixed_term_daily_share": None})
+        )
+    terms = SicknessTerms(
+        rules=rules,
+        history=_EMPTY_HISTORY,
+        counted=Decimal(0),
+        quota=DailyQuota(DailyDivisorMethod.BY_26, Decimal(26)),
+        chain=MonthlyPayChain(base=Decimal(2600), seniority=Decimal(0), allowances=()),
+        fixed_term=True,
+    )
+    episode = _episode("otd", _START, 5, recognized=None)
+    pay = episode_pay(episode, (episode.started_on, episode.ended_on), terms)
+    assert pay is not None
+    assert len(daily_share_issues(episode, pay, terms)) == issues

@@ -23,6 +23,7 @@ from ccnl_engine.sickness.integration.condition.models import (
     ShortAbsenceReduction,
 )
 from ccnl_engine.sickness.integration.hourly import HourlyEmployerIntegration
+from ccnl_engine.sickness.integration.share import FixedTermDailyShare
 
 _ONE = Decimal(1)
 
@@ -63,8 +64,7 @@ class SicknessDayBand(BaseModel):
         day_from: First episode day of the band (1-indexed).
         day_until: First episode day past the band; ``None`` is open-ended.
         integration_rate: Target fraction of the daily pay of the band.
-        gross_basis: On a ``net_basis`` rule, the band is of the gross pay
-            (Multiservizi art. 51 b: '50% della retribuzione globale').
+        gross_basis: On a ``net_basis`` rule, the band is of the gross pay.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -339,6 +339,7 @@ class SicknessRules(BaseModel):
         daily_share_min_days: Length the illness must exceed for retroactive pay.
         daily_share_annual_max_days: Maximum paid days across episodes per year.
         daily_share_reference_month: Month whose first day's wage applies.
+        fixed_term_daily_share: The share of a fixed-term worker, if any.
         permanent_only: As a rule of a worker category, it covers only the
             permanent contracts (Tabacco art. 34: "l'impiegato con rapporto
             a tempo indeterminato"); the others keep the general rule.
@@ -381,6 +382,7 @@ class SicknessRules(BaseModel):
     daily_share_min_days: int | None = Field(default=None, ge=1)
     daily_share_annual_max_days: int | None = Field(default=None, ge=1)
     daily_share_reference_month: int | None = Field(default=None, ge=1, le=12)
+    fixed_term_daily_share: FixedTermDailyShare | None = None
     inps_regime: str | None = None
     daily_divisor_method: DailyDivisorMethod | None = None
     holiday: SicknessHoliday | None = None

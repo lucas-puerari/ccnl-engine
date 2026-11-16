@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-05 |
-| **Last review** | 2026-11-13 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2027-11-01 |
 
 ## Review history
@@ -71,6 +71,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | gpt-6-sol (ai) | Art. 13 commi 5-14 of the ipotesi of 5 July 2024 (scanned pp. 10-12), the encoding checked against the page images by a separate model session. | flagged | Confirmed the amounts by level, the November 2027 payment, the eligibility of comma 5 and the part-time of comma 6.<br>Flagged as approximations, kept under the limitation: the trigger of comma 10, the days worked of comma 5, the absorption of comma 8. |
 | 2026-11-10 | gpt-6-sol (ai) | Art. 155 c. 3 p. 44: all-inclusive hourly table of the extra workers by level and validity, selected by the stated role. | corrected | CONFIRMED: every hourly amount, level and validity date agrees with the scanned table on p. 44, and the role selection and the test arithmetic are right.<br>The row quotes joined the column header and the row; corrected to the printed row, the header now in the transformation.<br>Holiday and leave settlement of extra workers stays out of scope, with the four-hour minimum and territorial rates, as the limitation says. |
 | 2026-11-13 | gpt-6-sol (ai) | Art. 145 of the CCNL Turismo 2010 (PDF p. 133, scanned) and the renewals of 2014 and 5 July 2024, against the absorption of the Quadri allowance, by a separate model session. | flagged | Confirmed: the allowance (A 75, B 70 from January 2009) is absorbable up to its whole amount by company-recognized individual treatments; neither renewal changes art. 145; it applies to the quadri of the alberghi minori too.<br>Flagged and kept as limitation quadri_absorption_extra_months: an individual element paid on 12 months still offsets the allowance in the 13th and 14th; the clause does not settle it. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: travel, none.shift_work. |
 
 ## Salary table
 

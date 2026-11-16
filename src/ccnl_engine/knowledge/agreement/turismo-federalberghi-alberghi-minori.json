@@ -3868,7 +3868,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "4c820de39c92057ef5b34a2d2206f1c854e3793e378f102b43d07aaf0c84f07a",
+    "source_hash": "8f2d7b7136b7b0be00a16819bbcfff096c826e5521d3775dec1c1d02af18a51f",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },
@@ -4862,6 +4862,37 @@
         "transformation": "La metà dell'orario medio giornaliero determina la misura della fruizione a ore, non il numero di ore equiparate a una giornata di congedo. Nessuna equiparazione espressa: day_hours = null. Nessun riproporzionamento esplicito per il part-time. Decorrenza generale del contratto: 1° luglio 2024 (art. 199, comma 1, pagina 57).",
         "note": "Scanned PDF: the quote is read from the OCR of the page."
       }
+    },
+    "capability_basis": {
+      "shift_work": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "http-www-uiltucs-it-pdf-turismo-ccnl-turismo-confcommercio-2010-pdf",
+              "title": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+              "kind": "associazione",
+              "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+              "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+            },
+            "page": "55",
+            "section": "Art. 14 c. 2 lett. k",
+            "quote": "k) eventuale istituzione del lavoro a turno intendendosi per tale il lavoro prestato in uno dei tre o più turni giornalieri avvicendati nell'arco delle ventiquattro ore;"
+          },
+          "transformation": "shift_work: delegated to second level.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-turismo-federalberghi-alberghi-minori-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -5252,6 +5283,28 @@
         "independence": "same_process",
         "checked": [
           "coverage.notes.hires_2016_ramp"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-turismo-federalberghi-alberghi-minori-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+            "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+          }
+        ],
+        "findings": [
+          "Applied: none.shift_work."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ]

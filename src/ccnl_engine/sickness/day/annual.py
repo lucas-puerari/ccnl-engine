@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import date
+from datetime import date, timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
@@ -64,14 +64,8 @@ def daily_share(
     """
     share = rules.ccnl.annual_daily_share
     minimum = rules.ccnl.daily_share_min_days
-    limit = rules.ccnl.daily_share_annual_max_days
-    if (
-        share is None
-        or minimum is None
-        or limit is None
-        or rules.fixed_term
-        or beyond_comporto
-    ):
+    limit = _annual_limit(rules, day)
+    if share is None or minimum is None or limit is None or beyond_comporto:
         return _ZERO
     if (
         episode.inps_recognized is not True
@@ -80,3 +74,24 @@ def daily_share(
     ):
         return _ZERO
     return share if take(days.employer_share, day, limit) else _ZERO
+
+
+def _annual_limit(rules: SickPayRules, day: date) -> int | None:
+    """Return the days a year the share is paid on ``day``, if any.
+
+    A fixed-term worker takes the share of ``fixed_term_daily_share`` from
+    its day of the employment (the hiring day being the first), when the
+    hiring day is known.
+
+    Returns:
+        The annual limit; ``None`` when the worker is not paid the share.
+    """
+    if not rules.fixed_term:
+        return rules.ccnl.daily_share_annual_max_days
+    fixed = rules.ccnl.fixed_term_daily_share
+    hired = rules.worker.hired_on
+    if fixed is None or hired is None:
+        return None
+    if day < hired + timedelta(days=fixed.from_day - 1):
+        return None
+    return fixed.annual_max_days
