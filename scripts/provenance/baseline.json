@@ -845,11 +845,7 @@
       "laterizi-industria-f021/asq_seniority_from_as"
     ],
     "agreement/lavoro-domestico-convivente-orario-ridotto.json": [
-      "lavoro-domestico-convivente-orario-ridotto/art34_role_conditions",
       "lavoro-domestico-convivente-orario-ridotto/students_other_levels"
-    ],
-    "agreement/lavoro-domestico-convivente.json": [
-      "lavoro-domestico-convivente/art34_role_conditions"
     ],
     "agreement/legno-arredamento-federlegno.json": [
       "legno-arredamento-federlegno/renewal_2026_ipotesi"

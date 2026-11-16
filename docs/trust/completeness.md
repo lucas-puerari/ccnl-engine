@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 7/136 CCNLs**; complete except declared residuals: 0. Bundle: 251 weak rules, 274 open limitations (274 with a monetary impact), 29 declared residuals.
+**Complete: 7/136 CCNLs**; complete except declared residuals: 1. Bundle: 251 weak rules, 272 open limitations (272 with a monetary impact), 29 declared residuals.
 
 ## Declared window
 
@@ -146,8 +146,8 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [lapidei-industria](../contracts/lapidei-industria.md) | `materiali-estrattive` | exploratory | — | 6 rows | 6 open requirements; 2 weak rules; 3 monetary limitations; 1 outside_input limitation; 7 non-native capabilities |
 | [laterizi-industria-f021](../contracts/laterizi-industria-f021.md) | `materiali-estrattive` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 2 monetary limitations; 6 non-native capabilities |
 | [lavanderie-industriali-assosistema](../contracts/lavanderie-industriali-assosistema.md) | `pulizia-multiservizi` | exploratory | — | 3 rows | tables from 2026-05-01; 3 open requirements; 2 weak rules; 1 monetary limitation; 5 non-native capabilities |
-| [lavoro-domestico-convivente](../contracts/lavoro-domestico-convivente.md) | `lavoro-domestico` | reviewed | — | 1 rows | 1 open requirement; 1 outside_input limitation; 1 non-native capability; 1 declared residual |
-| [lavoro-domestico-convivente-orario-ridotto](../contracts/lavoro-domestico-convivente-orario-ridotto.md) | `lavoro-domestico` | reviewed | — | 2 rows | 2 open requirements; 2 outside_input limitations; 1 non-native capability |
+| [lavoro-domestico-convivente](../contracts/lavoro-domestico-convivente.md) | `lavoro-domestico` | reviewed | — | 0 rows | complete except 1 declared residual |
+| [lavoro-domestico-convivente-orario-ridotto](../contracts/lavoro-domestico-convivente-orario-ridotto.md) | `lavoro-domestico` | reviewed | — | 1 rows | 1 open requirement; 1 outside_input limitation; 1 non-native capability |
 | [lavoro-domestico-non-convivente](../contracts/lavoro-domestico-non-convivente.md) | `lavoro-domestico` | reviewed | — | 0 rows | complete; 5 limitations awaiting publication |
 | [legno-arredamento-federlegno](../contracts/legno-arredamento-federlegno.md) | `legno-arredamento` | exploratory | — | 4 rows | 4 open requirements; 1 weak rule; 3 monetary limitations; 2 non-native capabilities |
 | [legno-lapidei-artigianato-confartigianato](../contracts/legno-lapidei-artigianato-confartigianato.md) | `legno-arredamento` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 2 monetary limitations; 4 non-native capabilities |
