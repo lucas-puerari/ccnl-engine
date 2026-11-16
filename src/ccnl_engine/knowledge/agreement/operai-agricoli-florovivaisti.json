@@ -130,7 +130,7 @@
       },
       {
         "kind": "simplification",
-        "text": "INAIL NOT MODELLED. INAIL agricultural premium (8.50% unified from 2026 per new tariff) is not modelled. The engine does not track INAIL.",
+        "text": "INAIL AT THE SECTOR RATE. The operai agricoli pay the INAIL agricultural premium of 8.50% (INPS circ. 43/2026, allegato 1), applied when the worker category is stated as operaio; the cooperatives of L. 240/1984 state their industrial rate as EmployerProfile.inail_rate.",
         "capability": "inail",
         "monetary_impact": "yes",
         "limitation": {
@@ -138,7 +138,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the INAIL agricultural premium."
+          "remediation": "Model the INAIL agricultural premium.",
+          "status": "resolved"
         }
       },
       {
@@ -986,7 +987,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "e824343e57b74122451954120f993aff521a352b5458e844341ed5889dc56489",
+    "source_hash": "8d3a28fb781508760d6a8f46fac2a20ae64dac747c2f2badc45e01d9d4d9e35c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

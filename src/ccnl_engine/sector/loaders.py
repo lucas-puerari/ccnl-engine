@@ -148,6 +148,7 @@ def _assembled(
         if apprentice_json is None
         else ApprenticeRates.model_validate_json(apprentice_json),
         domestic_contributions=rules.domestic_contributions,
+        inail=rules.inail,
         tfr=rules.tfr,
         tfr_revaluation=load_tfr_revaluation_rules(year),
         tfr_settlement=load_tfr_settlement_rules(year),

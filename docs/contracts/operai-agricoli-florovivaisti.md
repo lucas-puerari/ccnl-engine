@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, inail, overtime, seniority, sickness, territorial_supplement |
+| **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority, sickness, territorial_supplement |
 
 13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -127,8 +127,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Model floriculture monthly pay and historical hourly minima independently; supply contractual hourly rates where the national floor is unavailable.
 
-!!! warning "operai-agricoli-florovivaisti/inail_agricultural_premium · inail · impact yes · open"
-    INAIL NOT MODELLED. INAIL agricultural premium (8.50% unified from 2026 per new tariff) is not modelled. The engine does not track INAIL.
+!!! note "operai-agricoli-florovivaisti/inail_agricultural_premium · inail · impact yes · resolved"
+    INAIL AT THE SECTOR RATE. The operai agricoli pay the INAIL agricultural premium of 8.50% (INPS circ. 43/2026, allegato 1), applied when the worker category is stated as operaio; the cooperatives of L. 240/1984 state their industrial rate as EmployerProfile.inail_rate.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 

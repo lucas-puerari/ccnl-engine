@@ -99,22 +99,6 @@
       }
     },
     {
-      "id": "inail_agricultural_premium",
-      "institute": "inail",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = outside_input",
-      "rule": "INAIL NOT MODELLED. INAIL agricultural premium (8.50% unified from 2026 per new tariff) is not modelled. The engine does not track INAIL.",
-      "calculation": "ccnl/operai-agricoli-florovivaisti:coverage.notes",
-      "state": "absent",
-      "remediation": "Model the INAIL agricultural premium.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "operai-agricoli-florovivaisti/inail_agricultural_premium"
-        ]
-      }
-    },
-    {
       "id": "inps_minimum_base_exempt_category",
       "institute": "inps_employer",
       "variant": "all",

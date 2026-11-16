@@ -206,7 +206,38 @@
     "published_at": "2026-09-07",
     "source": "https://ciatreviso.it/contributi-inps-inail-2026-agricoli-aliquote-e-le-scadenze-per-operai-otd-e-oti/",
     "verification_status": "unverified",
-    "source_hash": "f477d50b172df01a700f0213d791099725747713d142f7e71c2467468c9c328b",
+    "source_hash": "22a99fdea1512840aaab03df8984b7d8395d5534d9d32bd24b6372227d70cd9a",
     "source_type": "contracting_party"
+  },
+  "inail": {
+    "rate_by_category": {
+      "operaio": "0.085"
+    },
+    "provenance": {
+      "status": "verified",
+      "location": {
+        "source_document": {
+          "document_id": "inps-circolare-43-2026-allegato-1",
+          "title": "INPS Circolare n. 43/2026, allegato 1: aliquote OTI e OTD anno 2026",
+          "kind": "inps_circolare",
+          "url": "https://www.fiscoetasse.com/files/21591/circolare-n43-del-07-04-2026-allegato1.pdf",
+          "sha256": "39a526358cec2ec2bd75e468c07a5cd72dc2bade525aeb80ee4e605ba4f16194",
+          "published_on": "2026-04-07"
+        },
+        "page": "1-2",
+        "section": "Allegato 1 (OTI) and allegato 2 (OTD), col. A",
+        "quote": "Assicurazione INAIL in agricoltura 8,5000"
+      },
+      "transformation": "The operai agricoli, permanent (OTI) and fixed-term (OTD), pay 8.50% of the contribution base for the INAIL insurance in agriculture, collected by INPS: the employer rate the engine uses leaves it out (33.953% - 8.50% = 25.453%). The cooperatives of L. 240/1984 apply the industrial INAIL rates instead and state them as EmployerProfile.inail_rate.",
+      "extraction": {
+        "method": "ai",
+        "model": "claude-opus-5-5",
+        "extraction_timestamp": "2026-11-16T00:00:00Z",
+        "effective_from": "2026-01-01",
+        "verified_by": "claude-opus-5-5",
+        "verified_at": "2026-11-16T00:00:00Z",
+        "verification_status": "verified"
+      }
+    }
   }
 }
