@@ -34,9 +34,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority, sickness, territorial_supplement |
+| **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority, sickness |
 
-13 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -114,13 +114,6 @@ Destination levels: `Area1`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "operai-agricoli-florovivaisti/provincial_supplement · territorial_supplement · impact yes · open"
-    NATIONAL MINIMUMS ONLY. Provincial contracts (contratti provinciali di lavoro, 20 provinces) pay substantially more than national floor. The national tabella retributiva is the legal minimum. Actual employer cost in any province requires adding the CPL supplement.
-
-    **Applies when:** `territorial_supplement` applies.
-
-    **Remediation:** Add the provincial (CPL) supplement outside the engine.
 
 !!! note "operai-agricoli-florovivaisti/florovivaisti_tables · base_salary · impact yes · resolved"
     FLOROVIVAISTI MONTHLY PAY. The hourly floriculture minima of Tabella n. 2 (from 2023, 2025 and June 2026) are used for time events. The monthly base salary of a floriculture OTI is the hourly minimum times 169 (art. 50: paga oraria = paga mensile / 169), selected by EmployerProfile.subsector=florovivaisti.
@@ -395,6 +388,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     TAX SECTOR: AGRICOLTURA (new TaxSector). INPS rates: Gestione Previdenziale Speciale Agricola, OTI standard agriculture: employee 8.84%, employer 25.453% (of which IVS 21.66%) (2026). Source: ciatreviso.it citing INPS 2026 rates (review of 2026-10-30)
     
     CNEL CODE: A011. Confirmed from ilccnl.it page header and contratticcnl.it/ccnl/a011/. CNEL archive (cnel.it) returned 404 at time of extraction.
+    
+    PROVINCIAL WAGES (Art. 50, CCNL 23 May 2022, PDF p. 53, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c): 'I salari contrattuali definiti dai contratti provinciali possono essere mensili o giornalieri od orari a seconda dei tipi di rapporto'. The national minimi di area are the floor; the national text prints no provincial amount. The caller states the excess of the contratto provinciale over the minimo of the level as a territorial second-level element (EmployerProfile.second_level_elements, agreement 'territorial', monthly amount, levels, dates), which enters the extra months and the TFR by default; an hour priced on the provincial wage carries its hourly rate on the event.
     
     OTD (Art. 50, p. 52): a fixed-term operaio is paid the hours worked (PeriodFacts.ordinary_hours_worked, salario over 169) with the terzo elemento of 30.44% on them (festività 5.45%, ferie 8.33%, tredicesima 8.33%, quattordicesima 8.33%), outside the TFR base; no extra month and no leave accrue (parameters.fixed_term_pay). The terzo elemento is also paid on the hours of the overtime events 'nella misura in atto per le ore ordinarie' (Art. 44, p. 48); the ordinary holiday and night hours are in the hours worked. The OTD accrues 8.63% of the salario of the hours paid and 10% on the overtime hours worked 'a titolo non occasionale' (art. 58, PDF p. 58; parameters.fixed_term_pay.tfr_rate and overtime_tfr_rate, OvertimeEvent.non_occasional).
     
