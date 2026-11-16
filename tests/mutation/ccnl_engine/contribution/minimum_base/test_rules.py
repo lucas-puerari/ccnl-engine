@@ -48,8 +48,20 @@ _PRIVATE = MinimumBaseRule(
     hourly=(HourlyMinimum(full_time_weekly_hours=_D(40), amount=_D("8.72")),),
     provenance=RuleProvenance(status=ProvenanceStatus.DERIVED, location=_LOCATION),
 )
+#: Circ. 6/2026 Tabella A, operaio agricolo 51.70; circ. 43/2026 par. 5, 8.94.
 _AGRICULTURE = _PRIVATE.model_copy(
-    update={"exempt_categories": frozenset({WorkerCategory.OPERAIO})}
+    update={
+        "daily_by_category": {WorkerCategory.OPERAIO: _D("51.70")},
+        "hourly": (
+            *_PRIVATE.hourly,
+            HourlyMinimum(full_time_weekly_hours=_D(39), amount=_D("8.94")),
+        ),
+        "hourly_categories": frozenset({WorkerCategory.OPERAIO}),
+    }
+)
+#: Industria: only the dirigenti have a higher minimum.
+_INDUSTRY = _PRIVATE.model_copy(
+    update={"daily_by_category": {WorkerCategory.DIRIGENTE: _D("160.77")}}
 )
 _PUBLIC = MinimumBaseRule(
     daily=_D("58.13"),
@@ -120,26 +132,44 @@ def test_part_time_of_an_unpublished_week_is_undetermined() -> None:
     assert (minimum.minimum, minimum.base) == (None, _D("700.00"))
 
 
-@pytest.mark.parametrize(
-    ("rule", "position", "reason"),
-    [
-        (_PRIVATE, replace(_FULL_TIME, apprentice=True), MinimumBaseReason.APPRENTICE),
-        (
-            _AGRICULTURE,
-            replace(_FULL_TIME, category=WorkerCategory.OPERAIO),
-            MinimumBaseReason.EXEMPT_CATEGORY,
-        ),
-    ],
-)
-def test_art_7_c_5_exclusions_keep_the_pay(
-    rule: MinimumBaseRule, position: MonthPosition, reason: MinimumBaseReason
-) -> None:
-    """Apprentices and operai agricoli are contributed on the pay, 900.00."""
-    minimum = resolve_minimum_base(rule, _D("900.00"), position)
+def test_art_7_c_5_apprentice_keeps_the_pay() -> None:
+    """Apprentices are contributed on the pay, 900.00."""
+    position = replace(_FULL_TIME, apprentice=True)
+    minimum = resolve_minimum_base(_AGRICULTURE, _D("900.00"), position)
 
-    assert minimum.reason is reason
+    assert minimum.reason is MinimumBaseReason.APPRENTICE
     assert minimum.base == _D("900.00")
     assert not minimum.undetermined
+
+
+def test_operaio_agricolo_is_raised_to_51_70() -> None:
+    """Art. 7 c. 5 keeps the 51.70: 900.00 is raised to 26 x 51.70."""
+    position = replace(_FULL_TIME, category=WorkerCategory.OPERAIO)
+    minimum = resolve_minimum_base(_AGRICULTURE, _D("900.00"), position)
+
+    assert minimum.reason is MinimumBaseReason.RAISED_TO_MINIMUM
+    assert (minimum.bound, minimum.base) == (_D("1344.20"), _D("1344.20"))
+
+
+def test_part_time_operaio_agricolo_takes_8_94() -> None:
+    """20 of 39 hours: 8.94 x 20 x 26 / 6 = 774.80, not 51.70 x 6/39."""
+    position = MonthPosition(
+        month_pay=_D("700.00"),
+        category=WorkerCategory.OPERAIO,
+        weekly_hours=_D(20),
+        full_time_weekly_hours=_D(39),
+    )
+    minimum = resolve_minimum_base(_AGRICULTURE, _D("600.00"), position)
+
+    assert minimum.base == _D("774.80")
+
+
+def test_unknown_category_of_industria_takes_58_13() -> None:
+    """A higher dirigente minimum alone does not need the category."""
+    minimum = resolve_minimum_base(_INDUSTRY, _D("1000.00"), _FULL_TIME)
+
+    assert minimum.reason is MinimumBaseReason.RAISED_TO_MINIMUM
+    assert minimum.base == _FULL_MONTH
 
 
 def test_an_indemnified_month_keeps_the_pay() -> None:
@@ -158,7 +188,7 @@ def test_an_indemnified_month_keeps_the_pay() -> None:
 
 
 def test_impiegato_agricolo_keeps_the_minimum() -> None:
-    """Art. 7 c. 5 excludes the operai only: 1,000.00 is raised to 1,511.38."""
+    """The impiegati take 58.13 here: 1,000.00 is raised to 1,511.38."""
     position = replace(_FULL_TIME, category=WorkerCategory.IMPIEGATO)
     minimum = resolve_minimum_base(_AGRICULTURE, _D("1000.00"), position)
 

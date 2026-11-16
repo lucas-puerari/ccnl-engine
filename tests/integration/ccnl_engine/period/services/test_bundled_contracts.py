@@ -32,6 +32,7 @@ from ccnl_engine import (
 )
 from ccnl_engine.agreement.facade import CCNL, TaxSector
 from ccnl_engine.catalog.loaders import load_ccnl
+from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.inputs import (
     AgriculturalZone,
     ContributableHours,
@@ -46,6 +47,7 @@ from ccnl_engine.period.facts.holiday import PaidHolidayDays
 from ccnl_engine.results import BlockerCode, CalculationStatus
 from tests.integration.ccnl_engine.surtax.residence.builders import resident
 from tests.knowledge.ccnl_engine.contribution.oracles import (
+    AGRICULTURAL_OPERAIO_MONTHLY_FLOOR,
     FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR,
     contribution_base,
 )
@@ -86,24 +88,33 @@ _ACCEPTED = frozenset({
 _INPS = frozenset({"inps_employee", "inps_employer"})
 
 
-def _minimum_held(result: PeriodResult) -> bool:
+def _minimum_held(result: PeriodResult, floor: Decimal) -> bool:
     """Whether the INPS base respects the minimum, or says it cannot.
 
     Returns:
-        True for a base at or above 26 daily floors to the whole euro
-        (INPS circ. 208/2001), a worker
-        art. 7 c. 5 excludes, or an undetermined minimum that blocks both
-        INPS amounts.
+        True for a base at or above ``floor`` to the whole euro (INPS circ.
+        208/2001), or an undetermined minimum that blocks both INPS amounts.
     """
     (decision,) = (d for d in result.decisions if d.capability == "inps_employee")
-    if decision.inputs.get("minimum_base_reason") == "category_excluded":
-        return True
     if any(i.code == _MINIMUM_UNDETERMINED for i in result.issues):
         causes = {BlockerCode.MISSING_FACT, BlockerCode.CALCULATION_ISSUE}
         return {b.feature for b in result.blockers if b.code in causes} >= _INPS
     base = decision.inputs["base"]
-    floor = contribution_base(FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR)
-    return isinstance(base, Decimal) and base >= floor
+    return isinstance(base, Decimal) and base >= contribution_base(floor)
+
+
+def _floor(ccnl: CCNL, category: WorkerCategory | None) -> Decimal:
+    """Return the monthly minimum of a full-time worker of ``category``.
+
+    Returns:
+        26 times 51.70 for an operaio agricolo, 26 times 58.13 otherwise.
+    """
+    if (
+        ccnl.meta.tax_sector is TaxSector.AGRICOLTURA
+        and category is WorkerCategory.OPERAIO
+    ):
+        return AGRICULTURAL_OPERAIO_MONTHLY_FLOOR
+    return FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR
 
 
 def _computed(result: PeriodResult) -> bool:
@@ -181,6 +192,7 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
             last_valid = level.valid_until - timedelta(days=1)
             run_day = date(last_valid.year, last_valid.month, 1)
         hired = _HIRED if run_day == _HIRED.started_on else EmploymentPeriod(run_day)
+        category = pricing_category(increments, level.code)
         result = _ENGINE.calculate_period(
             PeriodInput(
                 run=PayrollRun.regular(year=run_day.year, month=run_day.month),
@@ -191,7 +203,7 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
                     weekly_hours=_DOMESTIC.get(slug),
                     full_time_weekly_hours=_DOMESTIC.get(slug),
                     seniority=new_hire(),
-                    category=pricing_category(increments, level.code),
+                    category=category,
                     employment_period=hired,
                     roles=frozenset(),
                     pension_fund=NoPensionFund(),
@@ -226,7 +238,10 @@ def test_every_level_computes_sane_totals(slug: str) -> None:
         gross = result.period_gross
         if not (
             _computed(result)
-            and (slug in _DOMESTIC or _minimum_held(result))
+            and (
+                slug in _DOMESTIC
+                or _minimum_held(result, _floor(ccnl, category or level.category))
+            )
             and gross > 0
             and result.period_net > 0
             and result.contribution_breakdown.employee >= 0

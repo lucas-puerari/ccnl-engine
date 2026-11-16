@@ -48,6 +48,10 @@ from ccnl_engine.inputs import (
     WorkerCategory,
 )
 from scripts.provenance.rules import KNOWLEDGE_DIR
+from tests.knowledge.ccnl_engine.contribution.oracles import (
+    AGRICULTURAL_OPERAIO_MONTHLY_FLOOR,
+    contribution_base,
+)
 from tests.knowledge.ccnl_engine.seniority.builders import new_hire
 from tests.knowledge.ccnl_engine.support import EMPLOYER, regular_period
 
@@ -216,6 +220,10 @@ def test_permanent_and_fixed_term_contributions(
     contract = FixedTerm() if fixed_term else Permanent()
     result = _run(slug, level, WorkerCategory(category), contract)
     base = _base(result, sector)
+    if (sector, category, fixed_term) == ("agricoltura", "operaio", False):
+        # Tabella A of circ. 6/2026: a full month of an OTI is at least
+        # 26 x 51.70; an OTD paid by the day stated no day in the month.
+        base = max(base, contribution_base(AGRICULTURAL_OPERAIO_MONTHLY_FLOOR))
     employee, employer = _expected(sector, base, category, fixed_term=fixed_term)
     fund = _solidarity(slug, base, fixed_term=fixed_term)
 

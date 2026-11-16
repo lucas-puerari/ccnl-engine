@@ -45,9 +45,6 @@ from ccnl_engine.compensation.sunday_holiday.services import (
     CLAUSE_LIMITATION as SUNDAY_CLAUSE,
 )
 from ccnl_engine.compensation.una_tantum.rules import UNA_TANTUM
-from ccnl_engine.contribution.minimum_base.services import (
-    EXEMPT_CATEGORY_FLOOR,
-)
 from ccnl_engine.limitation.loaders import load_engine_limitations
 from ccnl_engine.limitation.models import HOLDING, LimitationStatus, MonetaryImpact
 from ccnl_engine.period.repositories import (
@@ -119,7 +116,6 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         PCT_UNDECLARED,
         SETTLEMENT_HOURS_LIMITATION,
         CUMULATION_LIMITATION,
-        EXEMPT_CATEGORY_FLOOR,
         HOURLY_CCNL_LIMITATION,
         UNA_TANTUM,
         SUNDAY_CLAUSE,
@@ -131,6 +127,7 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
     }
     assert by_status[LimitationStatus.RESOLVED] == {
         "arrears_unused_deductions",
+        "inps_minimum_base_exempt_category",
         "dual_apprenticeship_contributions",
         _MIDPOINT,
         _APPRENTICE_SENIORITY,

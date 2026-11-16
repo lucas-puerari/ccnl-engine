@@ -42,7 +42,6 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
         "sickness_cumulation_window",
         "provisional_ruleset",
         "provisional_inps_ruleset",
-        "inps_minimum_base_exempt_category",
         "parental_income_condition",
         "parental_hourly_ccnl_rule",
         "una_tantum_readings",
@@ -50,6 +49,7 @@ def test_bundled_engine_limitations_are_path_triggered() -> None:
     }
     assert {lim.id for lim in limitations} - blocking == {
         "dual_apprenticeship_contributions",
+        "inps_minimum_base_exempt_category",
         "apprenticeship_midpoint_allowances",
         "apprentice_seniority_simplified",
         "sickness_inps_daily_base",

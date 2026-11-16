@@ -46,10 +46,8 @@ if TYPE_CHECKING:
     from ccnl_engine.period.context.services import RunContext
 
 __all__ = [
-    "EXEMPT_CATEGORY_FLOOR",
     "ISSUE_CODE",
     "minimum_base_issue",
-    "minimum_base_paths",
     "run_minimum_base",
 ]
 
@@ -71,10 +69,8 @@ _REDUCING_EVENTS = (
     PaternityLeaveEvent,
     WorkInjuryEvent,
 )
-#: Fact of a sector that excludes a category the request leaves open.
+#: Fact of a sector whose minimum depends on a category the request leaves open.
 _CATEGORY = "category"
-#: Engine limitation of a worker whose category art. 7 c. 5 excludes.
-EXEMPT_CATEGORY_FLOOR = "inps_minimum_base_exempt_category"
 
 
 def _hours(fact: WeeklyHours | None) -> Decimal | None:
@@ -163,7 +159,8 @@ def minimum_base_issue(minimum: MinimumBase | None) -> CalculationIssue | None:
 
     Returns:
         An incomplete issue naming the reason, and the ``category`` fact
-        when the sector excludes a category the request leaves open;
+        when a lower minimum of a category the request leaves open may
+        apply;
         ``None`` when the minimum is determined or not modelled.
     """
     if minimum is None or not minimum.undetermined:
@@ -184,26 +181,3 @@ def minimum_base_issue(minimum: MinimumBase | None) -> CalculationIssue | None:
         fact=_CATEGORY if unknown else None,
         cause=IssueCause.RULE,
     )
-
-
-def minimum_base_paths(ctx: RunContext) -> frozenset[str]:
-    """Return the limitation path of a worker of an excluded category.
-
-    D.L. 463/1983 art. 7 c. 5 keeps the operai agricoli out of the 9.50%
-    minimum, and the run applies none; Tabella A of INPS circ. 6/2026 still
-    lists 51.70 for them, "non soggetto all'adeguamento", and whether it is
-    a floor of their base is not settled.
-
-    Returns:
-        :data:`EXEMPT_CATEGORY_FLOOR` for a worker, not an apprentice, of a
-        category the minimum of the sector excludes; nothing otherwise.
-    """
-    inps = ctx.contract.year_rules.inps
-    rule = None if inps is None else inps.minimum_base
-    if (
-        rule is None
-        or isinstance(ctx.request.contract_type, Apprentice)
-        or ctx.worker_category not in rule.exempt_categories
-    ):
-        return frozenset()
-    return frozenset({EXEMPT_CATEGORY_FLOOR})

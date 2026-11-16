@@ -164,12 +164,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Replace each provisional INPS ruleset of the year with the values of the INPS circulars of the year, drop its provisional flag, then resolve this limitation.
 
-!!! warning "inps_minimum_base_exempt_category · inps_employer · impact unknown · open"
+!!! note "inps_minimum_base_exempt_category · inps_employer · impact unknown · resolved"
     D.L. 463/1983 art. 7 c. 5 keeps the operai agricoli out of the 9.50% minimum daily base, and the run applies no minimum to them. Tabella A of INPS circ. 6/2026 still lists 51.70 for the operai agricoli, 'non soggetto all'adeguamento' of art. 7 c. 1; no source found says whether it is a floor of their contribution base. A base below it may understate the contributions.
 
     **Applies when:** `inps_employer` applies; the run takes the engine code path.
 
-    **Remediation:** Source the role of the 51.70 of the operai agricoli (INPS circ. 43/2026 on the agricultural contributions, or the minimum daily wages of art. 1 L. 389/1989), then apply it as their minimum or record that none applies.
+    **Remediation:** Resolved: Tabella A gives the operai agricoli the 51.70, kept by art. 7 c. 5 from the 9.50% adjustment; circ. INPS 43/2026 recalls the legal minimums for the OTI and OTD and gives their part time 58.13 x 6/39 = 8.94. contribution/2026/agricoltura.json holds both as daily_by_category and hourly_categories. Tests: tests/mutation/ccnl_engine/contribution/minimum_base/test_rules.py.
 
 !!! note "maternity_daily_base · maternity_leave · impact unknown · resolved"
     The INPS indemnity of the leave is computed on the pay of the month before, as the sickness base (art. 23 D.Lgs. 151/2001): an operaio's pay over the days worked or paid with the monthly share of the extra months over 25, a month not worked in full over its days worked or paid; the pay of the month before, its days and the pay of a whole month are facts of the leave, missing when not stated. The run keeps its own pay only when the category or the monthly payments of the CCNL are unknown.
