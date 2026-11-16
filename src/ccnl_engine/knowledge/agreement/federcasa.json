@@ -188,6 +188,27 @@
         "checked": [
           "parameters.additional_months"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-sunday-holidays",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holidays falling on a Sunday: the clause located in the cited file by sha256 (or the law where the CCNL is silent).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
+            "sha256": "4c9e5b5a0a22a0712fbbe475c9cc77248f0e0a33b3c338fab6881915146c2c0c"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.sunday_holidays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays"
+        ]
       }
     ]
   },
@@ -1254,7 +1275,7 @@
     "effective_until": null,
     "source": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "1c626fede5fdfcc51b9d20367ddf95c5621806146b926ff9f910d440e52a960b",
+    "source_hash": "93aa7705a307eac120a158d99fcc754545e1a3caeb180d81f1dbea4f6eddc57e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1506,6 +1527,46 @@
         },
         "transformation": "Il comma 13 fissa solo la frazione minima di un'ora continuativa, non le ore equivalenti a una giornata; day_hours è quindi null. Menziona full time e part time ma non dispone un riproporzionamento: part_time_scaled è false. Nessuna decorrenza specifica indicata nella clausola: effective_from è null.",
         "note": "Scanned PDF: the quote is read from the image of page 48."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron"
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "CCNL-Federcasa-2022-2024.pdf",
+            "title": "CCNL Federcasa 2022-2024",
+            "kind": "associazione",
+            "url": "https://cislfp.it/wp-content/uploads/2024/11/CCNL-Federcasa-2022-2024.pdf",
+            "sha256": "4c9e5b5a0a22a0712fbbe475c9cc77248f0e0a33b3c338fab6881915146c2c0c"
+          },
+          "page": "45",
+          "section": "art. 49, c. 6",
+          "quote": "6. Qualora una delle festività non domenicali, di cui al punto 1 del presente articolo, cada di domenica, è dovuto a ciascun lavoratore, il cui riposo settimanale cada normalmente di domenica, in aggiunta al normale trattamento economico, un importo pari ad una giornata di retribuzione globale. In luogo di detto trattamento economico aggiuntivo, a richiesta del lavoratore, è consentito il recupero della festività non goduta, purché non ostino motivate esigenze di servizio."
+        },
+        "transformation": "Art. 49, c. 6: per i lavoratori il cui riposo settimanale cade normalmente di domenica, le festività non domenicali del c. 1 cadute di domenica danno diritto a una giornata aggiuntiva di retribuzione globale, oppure al recupero richiesto se compatibile con il servizio. Il c. 1 richiama le festività degli artt. 1 e 2 della L. 260/1949 con le modifiche indicate e aggiunge il Santo Patrono: codificate come 01-01, 01-06, easter_monday, 04-25, 05-01, 06-02, 08-15, 11-01, 12-08, 12-25, 12-26 e patron. Il c. 9 riconosce separatamente una giornata aggiuntiva per Pasqua (easter). La clausola non indica un divisore; non include il 4 novembre fra le festività pagate con questa quota.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-11-06",
+          "verification_status": "unverified"
+        }
       }
     }
   }

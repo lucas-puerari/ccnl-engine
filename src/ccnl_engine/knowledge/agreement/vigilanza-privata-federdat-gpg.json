@@ -1236,7 +1236,7 @@
     "effective_until": null,
     "source": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
     "verification_status": "unverified",
-    "source_hash": "70a3b4be7b017edd4d3eba61a968786ae57f1328e1fdd85e5051dc468f693e31",
+    "source_hash": "7db201afe180db7a357a53be8336c29846c235157dbbbe85941baec668d4d6e7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1772,6 +1772,46 @@
           }
         }
       }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "04-25",
+        "05-01",
+        "06-02",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26"
+      ],
+      "divisor": 26,
+      "on_rest_day": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "245848",
+            "title": "CCNL firmato FEDERDAT e sindacati indicati, 9 luglio 2026",
+            "kind": "cnel",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          },
+          "page": "46",
+          "section": "art. 91",
+          "quote": "In caso di coincidenza di una festività nazionale ed infrasettimanale di cui al precedente articolo con il giorno di riposo settimanale e qualora non si proceda a sostituire la festività con il godimento di un’altra giornata di riposo, spetterà al lavoratore, in aggiunta alla normale retribuzione mensile, un ulteriore importo pari alla quota giornaliera di tale retribuzione."
+        },
+        "transformation": "L'art. 91 paga le festività dell'art. 90 coincidenti con il riposo settimanale, se non sostituite con un'altra giornata di riposo: on_rest_day=true. L'art. 90 (PDF p. 46) elenca gli undici giorni codificati in holidays, inclusi 25 aprile, 1° maggio e 2 giugno; non elenca il 4 novembre né il Santo Patrono. L'art. 127 (PDF p. 65) definisce la quota giornaliera della retribuzione mensile dividendo per 26: divisor=26. Non sono previsti nel testo citato gli altri trattamenti o esclusioni modellati.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2026-07-09",
+          "verification_status": "unverified"
+        }
+      }
     }
   },
   "verification": {
@@ -1915,6 +1955,27 @@
         "independence": "separate_model",
         "checked": [
           "parameters.additional_months"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-sunday-holidays",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holidays falling on a Sunday: the clause located in the cited file by sha256 (or the law where the CCNL is silent).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.sunday_holidays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays"
         ]
       }
     ]

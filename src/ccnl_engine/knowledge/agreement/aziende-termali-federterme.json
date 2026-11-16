@@ -2876,7 +2876,7 @@
     "effective_until": null,
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
     "verification_status": "unverified",
-    "source_hash": "976101193bbd89e74f95290b768cde02c1ba9f9a02e591b7cc4b28f161aac6e6",
+    "source_hash": "94a16654c4e82e234e5c9cb09a8916a5c46c5468ed2059a1ca84929baa79cce2",
     "published_at": "2026-09-12",
     "source_type": "commercial_secondary"
   },
@@ -2932,6 +2932,50 @@
             "verification_status": "verified",
             "review_id": "2026-11-16-ai-aziende-termali-federterme-time-supplements"
           }
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "10-04",
+        "01-01",
+        "01-06",
+        "easter_monday",
+        "06-29",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron",
+        "11-04"
+      ],
+      "divisor": 26,
+      "exclude_compensatory_rest_day": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "aziende-termali-federterme-ccnl-2024-2027",
+            "title": "CCNL Aziende Termali 2024–2027, testo firmato 8 ottobre 2024",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+            "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+          },
+          "page": "42",
+          "section": "art. 30, IV",
+          "quote": "Nel solo caso in cui una delle giornate festive sopra indicate cada di domenica, alle lavoratrici/lavoratori è dovuto in aggiunta al normale trattamento economico, un importo pari ad una quota giornaliera della retribuzione di fatto. Il predetto importo sarà determinato sulla base di 1/26 della retribuzione mensile fissa."
+        },
+        "transformation": "L'art. 30, IV paga le festività elencate nell'art. 30, I, lett. b–d, quando cadono di domenica, con quota di 1/26: 04-25, 05-01, 06-02, 10-04, 01-01, 01-06, easter_monday, 06-29 (Roma), 08-15, 11-01, 12-08, 12-25, 12-26 e patron (fuori dal caso di Roma). L'art. 32 applica il trattamento delle festività domenicali alla giornata ex festiva del 4 novembre (11-04). L'art. 30, V esclude il compenso quando la festività coincide con il riposo compensativo, anche per chi lavora di domenica e riposa in un altro giorno. Il contratto decorre dal 1° ottobre 2024 (art. 84, I).",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-14T00:00:00Z",
+          "effective_from": "2024-10-01",
+          "verification_status": "unverified"
         }
       }
     }
@@ -3092,6 +3136,27 @@
         "independence": "separate_model",
         "checked": [
           "parameters.additional_months"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-sunday-holidays",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holidays falling on a Sunday: the clause located in the cited file by sha256 (or the law where the CCNL is silent).",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+            "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.sunday_holidays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays"
         ]
       }
     ]

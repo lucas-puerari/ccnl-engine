@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-02-18 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | The giocattoli table of art. 46 (p. 22) and the occhiali and pelli e cuoio replacement tables of the verbale of 21 February 2025 (pp. 24-25), page images. | confirmed | Giocattoli (p. 22), occhiali (p. 24) and pelli e cuoio (p. 25): the 88 minimi, from the minimi of 1/02/2022 to 1/01/2027, read on the page images and added as the base_salary_by_subsector of levels 1-7 and the new sub-sector level 4s.<br>The verbale moves the last occhiali tranche to 1/01/2027 (p. 22 printed 1/02/2027) and corrects the pelli e cuoio level 6; pelli e cuoio level 1 is printed 1.557,00 in 2025 and 1.558,00 from 2026, kept as printed. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Art. 12 bis and 12 ter of the renewal of 24 January 2020 (CNEL deposito 118136, PDF p. 12), the renewal of 18 February 2025 (deposito 216349) for amendments. | corrected | Art. 12 bis: 240 EUR a year from 2017, with the June pay from 2021, to the worker in service on 1 January without company bargaining or individual treatment; twelfths of the year before, part-time proportional, all-inclusive including the TFR.<br>The text is silent on a termination before June: limitation egr_termination_before_june.<br>Art. 12 ter (110 EUR, firms without art. 12 C) left as limitation art_12_ter_element.<br>The renewal of 18 February 2025 does not amend art. 12, 12 bis or 12 ter.<br>An independent reading confirmed amount, months, part-time, exclusion and the termination limitation, and found that the text tests the company bargaining in the present ('aziende prive'), not in the year before: the element is closed by bargaining in force in the year of payment. |
 | 2026-11-10 | claude-opus-5-5 (ai) | Art. 12 ter, CNEL deposito 118136, PDF page 12 | confirmed | Art. 12 ter pays EUR 110 with June pay from 2020, for the payment year's service in twelfths, to workers in service in June; part-time is proportional. A smaller company payment requires an unmodelled top-up. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Holidays falling on a Sunday: the clause located in the cited file by sha256 (or the law where the CCNL is silent). | corrected | Applied: work_rules.sunday_holidays. |
 
 ## Salary table
 
@@ -278,13 +279,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `contract_renewal_arrears` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: art. 21 c. 4 TUIR (Normattiva, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art21!vig=, sha256 aafc3e5d5cd7254c7eb52e74051e86f1243b3a7b3cbadcd951daf7bc5e113fc6): 'Gli aventi diritto agli arretrati devono dichiarare al soggetto che li corrisponde l'ammontare delle detrazioni fruite per ciascuno degli anni cui si riferiscono'. The deductions are a fact the worker declares: ArrearsEvent.unused_deductions, and PriorYearTaxFacts.arrears_unused_deductions for the una tantum the engine pays as arrears; unstated, the run carries the missing-fact issue arrears_unused_deductions_unknown. Read on 2026-11-14.
-
-!!! warning "sunday_holiday_ccnl_clause · sunday_holiday · impact yes · open"
-    L. 260/1949 art. 5 pays the workers with a fixed salary a further daily quota only for the civil holidays (25 April, 1 May, 2 June) falling on a Sunday; the other holidays of art. 2 (1 January, 6 January, Easter Monday, 15 August, 4 October, 1 November, 8 December, 25 and 26 December) give it only by CCNL clause, and the payment of 4 November is a CCNL institute. A run of a month with such a holiday on a Sunday, in a CCNL whose clause is not sourced (work_rules.sunday_holidays), pays the statutory holidays only; a public employment is paid as a private one (art. 5 names the "Stato, enti pubblici e datori privati").
-
-    **Applies when:** `sunday_holiday` applies; the run takes the engine code path.
-
-    **Remediation:** Source the CCNL clause on the holidays falling on a Sunday and record it as work_rules.sunday_holidays.
 
 !!! note "pension_extra_deduction_first_employed · pension_fund_contribution · impact unknown · resolved"
     A worker first employed after D.Lgs. 252/2005 came into force may deduct, in the twenty years after the fifth year of membership, the contributions above the annual cap within the room the first five years left, up to half the annual cap (art. 8 c. 6). The withholding agent applies it (AdE circ. 70/E/2007: the employer excludes the deductible contributions from the income of the ritenute): the worker states the deduction of the year as PensionFundEnrolment.extra_deduction, and contributions above the cap left with none stated carry the missing fact extra_deduction.
