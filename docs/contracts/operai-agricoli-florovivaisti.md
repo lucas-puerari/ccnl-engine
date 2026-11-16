@@ -34,7 +34,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority, sickness |
+| **Limits of this contract** | base_salary, bilateral_funds, overtime, seniority |
 
 12 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
@@ -157,8 +157,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add the consecutive years of at least 150 days with the employer to the request and pay 0.4% of the salary, then remove this note.
 
-!!! warning "operai-agricoli-florovivaisti/florovivaisti_sickness_integration · sickness · impact yes · open"
-    FLOROVIVAISTI SICKNESS (remaining limits): State EmployerProfile.subsector=florovivaisti for the permanent-worker supplement; without a sub-sector the agricultural rule applies. The provincial contractual daily wage on February 1 is not printed in the national clause and must be supplied for each year of sickness, already prorated for a part-time worker under Art. 17(c) p. 10; an unknown wage or INPS recognition leaves the employer supplement unpaid and flagged. Previously posted months must be rerun if a later relapse extends a short illness beyond three days. Art. 62 also grants fixed-term workers the supplement after 30 continuous days with the same employer, from day 31 for up to 45 days per year; this entitlement is not modeled.
+!!! note "operai-agricoli-florovivaisti/florovivaisti_sickness_integration · sickness · impact yes · resolved"
+    FLOROVIVAISTI SICKNESS (remaining limits): State EmployerProfile.subsector=florovivaisti for the permanent-worker supplement; without a sub-sector the agricultural rule applies. The provincial contractual daily wage on February 1 is not printed in the national clause and must be supplied for each year of sickness, already prorated for a part-time worker under Art. 17(c) p. 10; an unknown wage or INPS recognition leaves the employer supplement unpaid and flagged. Previously posted months must be rerun if a later relapse extends a short illness beyond three days. Art. 62 also grants fixed-term workers the supplement from day 31 of the employment for up to 45 days a year (fixed_term_daily_share), when the hiring day is stated.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 

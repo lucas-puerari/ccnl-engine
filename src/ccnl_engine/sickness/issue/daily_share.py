@@ -21,7 +21,9 @@ def daily_share_issues(
         Provisional issues, or an empty tuple when the inputs are complete.
     """
     rules = terms.rules
-    if rules is None or rules.ccnl.annual_daily_share is None or terms.fixed_term:
+    if rules is None or rules.ccnl.annual_daily_share is None:
+        return ()
+    if terms.fixed_term and rules.ccnl.fixed_term_daily_share is None:
         return ()
     if episode.inps_recognized is None:
         return (

@@ -5709,7 +5709,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "e6d389e7a15dc2b38afd2f9d6760c962894e9cff5a53244c6e4be3ec3b8d73ca",
+    "source_hash": "fb6cef87f6bccb37a815dd8bd5ecc00607f78df6b27a52f7f9ce103daf882a29",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -6609,6 +6609,50 @@
             "verification_status": "verified",
             "review_id": "2026-11-15-ai-multiservizi-anip-time-supplements"
           }
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "10-04",
+        "01-01",
+        "01-06",
+        "easter",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron",
+        "11-04"
+      ],
+      "on_rest_day": true,
+      "fourth_november_on_sunday": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-multiservizi-2021-filcams",
+            "title": "CCNL Servizi di pulizia e servizi integrati/multiservizi, testo coordinato 8 giugno 2021 (Filcams CGIL)",
+            "kind": "associazione",
+            "url": "https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0",
+            "sha256": "ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f"
+          },
+          "page": "58",
+          "section": "Art. 41 - Ricorrenze festive",
+          "quote": "Soltanto nel caso in cui le ricorrenze festive di cui alle lett. b) e c) cadano in giornata di riposo settimanale (art. 40) spetta, in aggiunta al normale trattamento economico, un importo pari alle quote giornaliere degli elementi della retribuzione globale mensile. [...] Per quanto riguarda la festività civile (4 novembre) la cui celebrazione ha luogo nella prima domenica di novembre, il lavoratore beneficerà del trattamento previsto per le festività che coincidono con la domenica"
+        },
+        "transformation": "Letter b): 25 April, 1 May, 2 June 'salvo le eventuali sostituzioni o aggiunte che intervenissero per disposizioni di carattere generale', so 4 October as restored by law; letter c): 1 and 6 January, Easter, Easter Monday, 15 August, 1 November, 8 December, 25 and 26 December and the patron. Paid when they fall on the weekly rest day of art. 40 (the Sunday or the compensatory day), with 4 November on the first Sunday of November. The same text is in art. 41 of the CCNL of 31 May 2011 (CNEL 105782, PDF p. 60, sha256 e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7).",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2021-06-08",
+          "verification_status": "unverified"
         }
       }
     }
