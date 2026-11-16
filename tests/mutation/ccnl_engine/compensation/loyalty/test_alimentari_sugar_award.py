@@ -12,11 +12,13 @@ settles the ratei of 8 hours (operai) or 7 hours (impiegati) a whole year
 (punto 25, second paragraph, PDF p. 230).
 """
 
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 
 import pytest
 
+from ccnl_engine.balance.competence.models import EmploymentAccrualState
 from ccnl_engine.balance.models import PeriodState
 from ccnl_engine.decision.models import CalculationStatus
 from ccnl_engine.employer.inputs import EmployerProfile, Headcount
@@ -30,7 +32,7 @@ from ccnl_engine.period.services import (
     bundled_repository,
     calculate_period,
 )
-from ccnl_engine.run.models import PayrollRun, RunKind
+from ccnl_engine.run.models import PayrollRun, PayrollRunId, RunKind
 from ccnl_engine.run.types import PeriodId
 
 
@@ -83,6 +85,8 @@ def _end(
     service_from: date | None = None,
     ended: date = date(2026, 3, 31),
     run_month: int | None = None,
+    kind: RunKind = RunKind.TERMINATION,
+    opening: PeriodState | None = None,
 ) -> PeriodResult:
     month = ended.month if run_month is None else run_month
     return calculate_period(
@@ -93,7 +97,7 @@ def _end(
             ccnl_id="alimentari-federalimentare",
             level_code="6",
             category=category,
-            opening_state=PeriodState.zero(),
+            opening_state=opening or PeriodState.zero(),
             roles=frozenset(),
             events=(),
             employment_period=EmploymentPeriod(
@@ -103,7 +107,7 @@ def _end(
                 ended_by=cause,
                 permanent_incapacity=incapacity,
             ),
-            run=PayrollRun(run_kind=RunKind.TERMINATION, year=ended.year, month=month),
+            run=PayrollRun(run_kind=kind, year=ended.year, month=month),
         ),
         repo=bundled_repository(),
         resolver=bundled_policies(),
@@ -224,3 +228,21 @@ def test_no_hourly_pay_settles_nothing(monkeypatch: pytest.MonkeyPatch) -> None:
         lambda *_: None,
     )
     assert _bonus(_end(WorkerCategory.OPERAIO, TerminationCause.DEATH)) == []
+
+
+def test_the_regular_run_of_the_last_month_settles_the_ratei() -> None:
+    """The run that liquidates the extra months closes the award too."""
+    result = _end(WorkerCategory.OPERAIO, TerminationCause.DEATH, kind=RunKind.REGULAR)
+    assert _bonus(result) == [Decimal("1981.88")]
+
+
+def test_a_termination_run_after_the_closed_month_pays_nothing_more() -> None:
+    """The regular run of March already paid the ratei: no second payment."""
+    closed = replace(
+        PeriodState.zero(),
+        accrual=EmploymentAccrualState(
+            competence_runs=(PayrollRunId(2026, 3, RunKind.REGULAR),)
+        ),
+    )
+    result = _end(WorkerCategory.OPERAIO, TerminationCause.DEATH, opening=closed)
+    assert _bonus(result) == []

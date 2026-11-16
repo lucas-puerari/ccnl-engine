@@ -208,7 +208,10 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:  # noqa: PLR0911
     the current employment period to have begun by that date.
     Recognised-service milestones instead pay in the month the caller's
     credited seniority crosses the threshold, including prior employers.
-    Without a known employment period, or on a non-regular run, pay nothing.
+    The run that closes the employment, the regular run of its last month
+    or a termination run when that one is not closed, pays what the clause
+    owes at the end instead (:func:`.termination.closing_award`).  Without a
+    known employment period, or on another kind of run, pay nothing.
     February 29 hires celebrate on February 28 in non-leap years.
 
     Returns:
@@ -225,15 +228,14 @@ def loyalty_premium(ctx: RunContext) -> LoyaltySettlement:  # noqa: PLR0911
         return LoyaltySettlement()
     if clause.levels and ctx.request.level_code not in clause.levels:
         return LoyaltySettlement()
-    if ctx.run_kind is RunKind.TERMINATION:
+    if ctx.run_kind not in {RunKind.REGULAR, RunKind.TERMINATION}:
+        return LoyaltySettlement()
+    regular = ctx.run_kind is RunKind.REGULAR
+    anniversary = _award_anniversary(ctx, clause, period) if regular else None
+    if anniversary is None:
         from ccnl_engine.compensation.loyalty.termination import closing_award  # noqa: PLC0415
 
         return closing_award(ctx, clause, period)
-    if ctx.run_kind is not RunKind.REGULAR:
-        return LoyaltySettlement()
-    anniversary = _award_anniversary(ctx, clause, period)
-    if anniversary is None:
-        return LoyaltySettlement()
     year = ctx.request.period_id.year
     amount = _award_amount(ctx, clause, anniversary)
     if amount is None:
