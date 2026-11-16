@@ -9,7 +9,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | Group | CCNLs | Workers | Weak | Derived | Verified | Aggregator | Anchor |
 |---|---:|---:|---:|---:|---:|---:|---|
 | pubblica-amministrazione | 14 | 7 548 000 | 4 | 289 | 244 | 0 | `funzioni-centrali-aran` |
-| terziario | 46 | 5 257 055 | 17 | 990 | 2038 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
+| terziario | 46 | 5 257 055 | 17 | 990 | 2040 | 4 | `commercio-confcommercio`, `sanita-privata-aiop-aris` |
 | industria | 49 | 4 969 900 | 118 | 1269 | 2690 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 76 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 29 | 156 | 373 | 2 | `metalmeccanico-artigianato` |
@@ -60,7 +60,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | [`farmacie-private-h121`](../contracts/farmacie-private-h121.md) | 60 000 | exploratory | 0 | 42 | 13 | party or official | none | none |
 | [`farmacie-rurali-sussidiate-h121`](../contracts/farmacie-rurali-sussidiate-h121.md) | 60 000 | exploratory | 0 | 42 | 13 | party or official | none | none |
 | [`scuole-private-agidae`](../contracts/scuole-private-agidae.md) | 50 000 | exploratory | 0 | 32 | 15 | party or official | none | none |
-| [`vigilanza-privata-federdat-gpg`](../contracts/vigilanza-privata-federdat-gpg.md) | 45 000 | exploratory | 1 | 6 | 27 | party or official | none | none |
+| [`vigilanza-privata-federdat-gpg`](../contracts/vigilanza-privata-federdat-gpg.md) | 45 000 | exploratory | 1 | 6 | 29 | party or official | none | none |
 | [`autorimesse-ic35`](../contracts/autorimesse-ic35.md) | 41 000 | exploratory | 1 | 41 | 59 | party or official | none | none |
 | [`vigilanza-privata-assiv-sf`](../contracts/vigilanza-privata-assiv-sf.md) | 40 000 | exploratory | 3 | 5 | 48 | party or official | none | none |
 | [`industria-turistica-federturismo`](../contracts/industria-turistica-federturismo.md) | 40 000 | exploratory | 1 | 10 | 37 | aggregator | none | none |

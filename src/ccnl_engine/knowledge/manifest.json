@@ -2329,7 +2329,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/vigilanza-privata-federdat-gpg",
       "ruleset_version": "2026.2",
-      "source_hash": "7db201afe180db7a357a53be8336c29846c235157dbbbe85941baec668d4d6e7",
+      "source_hash": "d2dbc5ec3859d939c3a23356809ae00942439092f4e20bb7e97ecb946fa9556e",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/vigilanza-privata-federdat-gpg.json.gz"

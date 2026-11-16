@@ -24,9 +24,10 @@ from ccnl_engine.working_time.travel.quotas import (
 if TYPE_CHECKING:
     from ccnl_engine.variable_pay.inputs import TravelAllowanceEvent
     from ccnl_engine.variable_pay.models import TravelAllowanceRules
+    from ccnl_engine.variable_pay.travel.terms import TravelTerms
     from ccnl_engine.working_time.travel.models import CcnlTravelAllowance
 
-__all__ = ["TravelAllowanceAssessment", "TravelTerms", "_handle_travel_allowance"]
+__all__ = ["TravelAllowanceAssessment", "_handle_travel_allowance"]
 
 _FEATURE = "travel_allowance"
 _KIND = "travel_allowance_item"
@@ -127,23 +128,6 @@ class TravelAllowanceAssessment:
         )
 
 
-@dataclass(frozen=True)
-class TravelTerms:
-    """The CCNL travel allowance a run pays a trasferta with.
-
-    Attributes:
-        rules: CCNL amounts and TFR rule, ``None`` when the CCNL has none.
-        ruleset: Ruleset identifier of the CCNL.
-        monthly_minimum: Monthly minimum of the level, for a share of it.
-        monthly_pay: Monthly retribuzione di fatto, for a share of it.
-    """
-
-    rules: CcnlTravelAllowance | None
-    ruleset: str
-    monthly_minimum: Decimal = _ZERO
-    monthly_pay: Decimal = _ZERO
-
-
 def _daily_amount(event: TravelAllowanceEvent, terms: TravelTerms | None) -> Decimal:
     """Return the allowance of each day: the event's or the CCNL's.
 
@@ -164,9 +148,7 @@ def _daily_amount(event: TravelAllowanceEvent, terms: TravelTerms | None) -> Dec
         return quota_amount(event, rules.quotas, terms.ruleset)
     if rules.daily_share is not None:
         share = rules.daily_share
-        monthly = (
-            terms.monthly_minimum if share.base == "minimum" else terms.monthly_pay
-        )
+        monthly = terms.monthly(share.base)
         return _discounted_daily(event, rules, share_amount(event, share, monthly))
     hours = band_hours(event, rules)
     band = rules.band_of(hours)

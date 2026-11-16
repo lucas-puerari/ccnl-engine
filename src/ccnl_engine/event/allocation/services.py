@@ -59,7 +59,7 @@ if TYPE_CHECKING:
     )
     from ccnl_engine.termination.notice.services import NoticeTerms
     from ccnl_engine.variable_pay.models import TravelAllowanceRules
-    from ccnl_engine.variable_pay.travel.handlers import TravelTerms
+    from ccnl_engine.variable_pay.travel.terms import TravelTerms
     from ccnl_engine.working_time.standby.handlers import StandbyTerms
 
 

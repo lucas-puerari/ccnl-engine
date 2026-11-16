@@ -1236,7 +1236,7 @@
     "effective_until": null,
     "source": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
     "verification_status": "unverified",
-    "source_hash": "7db201afe180db7a357a53be8336c29846c235157dbbbe85941baec668d4d6e7",
+    "source_hash": "d2dbc5ec3859d939c3a23356809ae00942439092f4e20bb7e97ecb946fa9556e",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1387,6 +1387,38 @@
           "rate": {
             "periods": [
               {
+                "valid_from": "2023-06-01",
+                "valid_until": "2026-07-01",
+                "value": "0.71",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federdat-ccnl-2023-cnel-167336",
+                      "title": "CCNL Vigilanza privata FEDERDAT, 4 maggio 2023 (CNEL 167336)",
+                      "kind": "associazione",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+                      "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
+                    },
+                    "page": "64",
+                    "section": "Art. 105 Indennità di lavoro domenicale",
+                    "quote": "Al lavoratore sia del Ruolo Tecnico-operativo che del Ruolo Amministrativo che presti la sua opera nel giorno di domenica, spetterà oltre alla normale retribuzione mensile un'indennità per ogni ora effettivamente lavorata dalle ore 0 alle ore 24 della domenica, così definita: euro 0,71."
+                  },
+                  "transformation": "EUR 0.71 an hour of Sunday under the CCNL of 2023, the same as the 2026 renewal.",
+                  "note": "Scanned PDF: the quote is read from the OCR of the page.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "gpt-6-sol",
+                    "extraction_timestamp": "2026-11-16T00:00:00Z",
+                    "effective_from": "2023-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-16T00:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-16-ai-federdat-gpg-night-travel"
+                  }
+                }
+              },
+              {
                 "valid_from": "2026-07-01",
                 "valid_until": null,
                 "value": "0.71"
@@ -1429,6 +1461,38 @@
           "rate": {
             "periods": [
               {
+                "valid_from": "2023-06-01",
+                "valid_until": "2026-07-01",
+                "value": "0.35",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federdat-ccnl-2023-cnel-167336",
+                      "title": "CCNL Vigilanza privata FEDERDAT, 4 maggio 2023 (CNEL 167336)",
+                      "kind": "associazione",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+                      "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
+                    },
+                    "page": "65",
+                    "section": "Art. 111 Lavoro straordinario e festivo",
+                    "quote": "Le maggiorazioni per lavoro festivo e lavoro straordinario si calcolano sulla quota giornaliera od oraria della normale retribuzione, con le seguenti percentuali: a)35% per le ore di lavoro normale - nei limiti dell'orario giornaliero contrattuale - prestate nei giorni di festività nazionali ed infrasettimanali;"
+                  },
+                  "transformation": "35% under the CCNL of 2023, the same as the 2026 renewal.",
+                  "note": "Scanned PDF: the quote is read from the OCR of the page.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "gpt-6-sol",
+                    "extraction_timestamp": "2026-11-16T00:00:00Z",
+                    "effective_from": "2023-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-16T00:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-16-ai-federdat-gpg-night-travel"
+                  }
+                }
+              },
+              {
                 "valid_from": "2026-07-01",
                 "valid_until": null,
                 "value": "0.35"
@@ -1460,6 +1524,158 @@
               "verified_at": "2026-11-15T00:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-15-ai-vigilanza-privata-federdat-gpg-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "NOTTE_ROAD_ZONE_ESCORT",
+          "description": "Indennità lavoro notturno giornaliera: zona stradale e trasporto scorta valori",
+          "work": "night",
+          "per_shift": true,
+          "hours_paid_apart": false,
+          "service": "road_zone_escort",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-06-01",
+                "valid_until": "2026-07-01",
+                "value": "5.61",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federdat-ccnl-2023-cnel-167336",
+                      "title": "CCNL Vigilanza privata FEDERDAT, 4 maggio 2023 (CNEL 167336)",
+                      "kind": "associazione",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+                      "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
+                    },
+                    "page": "63",
+                    "section": "Art. 104 Indennità relative ai servizi prestati",
+                    "quote": "INDENNITÀ PER LAVORO NOTTURNO (GIORNALIERA) Indennità lavoro notturno (giornaliera) 5,61 Zono stradale e trasporto scorta valori Piantonamento fisso, sala conta e centrale 4,18 operativa"
+                  },
+                  "transformation": "EUR 5.61 for each night of the zona stradale e trasporto scorta valori service under the CCNL of 2023.",
+                  "note": "Scanned PDF: the quote is read from the OCR of the page.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "gpt-6-sol",
+                    "extraction_timestamp": "2026-11-16T00:00:00Z",
+                    "effective_from": "2023-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-16T00:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-16-ai-federdat-gpg-night-travel"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": null,
+                "value": "5.61"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "federdat-rinnovo-2026-cnel-245848",
+                "title": "CCNL Vigilanza privata FEDERDAT, rinnovo 9 luglio 2026 (CNEL 245848)",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "63",
+              "section": "Art. 121 Indennità relative ai servizi prestati",
+              "quote": "INDENNITA PER LAVORO NOTTURNO (GIORNALIERA) Indennità lavoro notturno (giornaliera) 5,61 Zono stradale e trasporto scorta valori Piantonamento fisso, sala conta e centrale 4,18 operativa"
+            },
+            "transformation": "EUR 5.61 for each night of zona stradale e trasporto scorta valori (ruolo tecnico-operativo): NightShiftEvent.service road_zone_escort, shifts the nights. The hours sit in the monthly pay.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-federdat-gpg-night-travel"
+            }
+          }
+        },
+        {
+          "code": "NOTTE_FIXED_WATCH_COUNT_ROOM",
+          "description": "Indennità lavoro notturno giornaliera: piantonamento fisso, sala conta e centrale operativa",
+          "work": "night",
+          "per_shift": true,
+          "hours_paid_apart": false,
+          "service": "fixed_watch_count_room",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2023-06-01",
+                "valid_until": "2026-07-01",
+                "value": "4.18",
+                "provenance": {
+                  "status": "verified",
+                  "location": {
+                    "source_document": {
+                      "document_id": "federdat-ccnl-2023-cnel-167336",
+                      "title": "CCNL Vigilanza privata FEDERDAT, 4 maggio 2023 (CNEL 167336)",
+                      "kind": "associazione",
+                      "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+                      "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
+                    },
+                    "page": "63",
+                    "section": "Art. 104 Indennità relative ai servizi prestati",
+                    "quote": "INDENNITÀ PER LAVORO NOTTURNO (GIORNALIERA) Indennità lavoro notturno (giornaliera) 5,61 Zono stradale e trasporto scorta valori Piantonamento fisso, sala conta e centrale 4,18 operativa"
+                  },
+                  "transformation": "EUR 4.18 for each night of the piantonamento fisso, sala conta e centrale operativa service under the CCNL of 2023.",
+                  "note": "Scanned PDF: the quote is read from the OCR of the page.",
+                  "extraction": {
+                    "method": "ai",
+                    "model": "gpt-6-sol",
+                    "extraction_timestamp": "2026-11-16T00:00:00Z",
+                    "effective_from": "2023-06-01",
+                    "verified_by": "claude-opus-5-5",
+                    "verified_at": "2026-11-16T00:00:00Z",
+                    "verification_status": "verified",
+                    "review_id": "2026-11-16-ai-federdat-gpg-night-travel"
+                  }
+                }
+              },
+              {
+                "valid_from": "2026-07-01",
+                "valid_until": null,
+                "value": "4.18"
+              }
+            ]
+          },
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "federdat-rinnovo-2026-cnel-245848",
+                "title": "CCNL Vigilanza privata FEDERDAT, rinnovo 9 luglio 2026 (CNEL 245848)",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+                "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+              },
+              "page": "63",
+              "section": "Art. 121 Indennità relative ai servizi prestati",
+              "quote": "INDENNITA PER LAVORO NOTTURNO (GIORNALIERA) Indennità lavoro notturno (giornaliera) 5,61 Zono stradale e trasporto scorta valori Piantonamento fisso, sala conta e centrale 4,18 operativa"
+            },
+            "transformation": "EUR 4.18 for each night of piantonamento fisso, sala conta e centrale operativa (ruolo tecnico-operativo): NightShiftEvent.service fixed_watch_count_room, shifts the nights. The hours sit in the monthly pay.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2023-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-federdat-gpg-night-travel"
             }
           }
         }
@@ -1812,6 +2028,40 @@
           "verification_status": "unverified"
         }
       }
+    },
+    "travel_allowance": {
+      "daily_share": {
+        "rate": "0.30",
+        "base": "normal",
+        "divisor": "26"
+      },
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "federdat-rinnovo-2026-cnel-245848",
+            "title": "CCNL Vigilanza privata FEDERDAT, rinnovo 9 luglio 2026 (CNEL 245848)",
+            "kind": "associazione",
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          },
+          "page": "50",
+          "section": "Art. 100, commi 4-5",
+          "quote": "indennità di trasferta pari al 30% della quota giornaliera della normale retribuzione mensile sc la missione dura oltre l’orario contrattuale giornaliero di lavoro e sino alle 24 orc."
+        },
+        "transformation": "30% of the daily normale retribuzione (paga conglobata and scatti, art. 118) over 26 (art. 127) for each day of a mission past the daily schedule, beyond the jurisdiction of the Istituto and without return within three hours; over 24 hours by the days of mission. The CCNL of 2023 (art. 82, p. 50) reads the same. It states no TFR rule: the event states it.",
+        "note": "Scanned PDF: the quote is read from the OCR of the page.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2023-06-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-federdat-gpg-night-travel"
+        }
+      }
     }
   },
   "verification": {
@@ -1976,6 +2226,32 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.sunday_holidays"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-federdat-gpg-night-travel",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Arts. 104, 105, 111 and 82 of the CCNL of 4 May 2023 (CNEL 167336) and arts. 100, 121 of the renewal of 9 July 2026 (CNEL 245848), read from the OCR of the scans by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/167336",
+            "sha256": "40f3628a8d1cf28cf73f4445dd4c8013027c8e68933569ea36ae50c50061cb14"
+          },
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          }
+        ],
+        "findings": [
+          "Extended the Sunday and holiday bands to June 2023; added the daily night allowance by service and the travel share."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.travel_allowance"
         ]
       }
     ]

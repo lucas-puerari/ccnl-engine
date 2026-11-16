@@ -207,5 +207,5 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [vetro-meccanizzato-assovetro](../contracts/vetro-meccanizzato-assovetro.md) | `chimica` | exploratory | — | 30 rows | 30 open requirements; 29 weak rules; 1 outside_input limitation; 7 non-native capabilities |
 | [vigilanza-privata-assiv](../contracts/vigilanza-privata-assiv.md) | `vigilanza` | exploratory | — | 1 rows | 1 open requirement; 1 monetary limitation; 3 non-native capabilities; 1 declared residual |
 | [vigilanza-privata-assiv-sf](../contracts/vigilanza-privata-assiv-sf.md) | `vigilanza` | exploratory | — | 5 rows | 5 open requirements; 3 weak rules; 2 monetary limitations; 4 non-native capabilities; 1 declared residual |
-| [vigilanza-privata-federdat-gpg](../contracts/vigilanza-privata-federdat-gpg.md) | `vigilanza` | exploratory | — | 1 rows | tables from 2026-07-01; 1 open requirement; 1 weak rule; 2 non-native capabilities |
+| [vigilanza-privata-federdat-gpg](../contracts/vigilanza-privata-federdat-gpg.md) | `vigilanza` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule |
 | [vigilanza-privata-federdat-sf](../contracts/vigilanza-privata-federdat-sf.md) | `vigilanza` | exploratory | — | 5 rows | tables until 2026-06-30; 5 open requirements; 1 weak rule; 1 monetary limitation; 3 outside_input limitations; 6 non-native capabilities |

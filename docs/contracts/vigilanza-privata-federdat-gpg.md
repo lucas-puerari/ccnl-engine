@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 27 verified / 6 derived / 0 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 29 verified / 6 derived / 0 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -65,6 +65,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base, bands[2:sunday], bands[3:holiday], none.shift_work.<br>Left out: bands[0:night]: more night bands the engine cannot tell apart; bands[1:night]: more night bands the engine cannot tell apart; bands[4:rest_day]: more rest_day bands the engine cannot tell apart; bands[5:rest_day]: more rest_day bands the engine cannot tell apart; travel: kind share applied by hand. |
 | 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 14 monthly pays. |
 | 2026-11-16 | claude-opus-5-5 (ai) | Holidays falling on a Sunday: the clause located in the cited file by sha256 (or the law where the CCNL is silent). | corrected | Applied: work_rules.sunday_holidays. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Arts. 104, 105, 111 and 82 of the CCNL of 4 May 2023 (CNEL 167336) and arts. 100, 121 of the renewal of 9 July 2026 (CNEL 245848), read from the OCR of the scans by sha256. | corrected | Extended the Sunday and holiday bands to June 2023; added the daily night allowance by service and the travel share. |
 
 ## Salary table
 
