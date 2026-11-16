@@ -31,11 +31,11 @@ if TYPE_CHECKING:
     from ccnl_engine.employment.apprentice.inputs import Apprentice, DualHours
     from ccnl_engine.employment.category.models import WorkerCategory
 
-__all__ = ["CONTRIBUTIONS_LIMITATION", "dual_chain"]
+__all__ = ["SETTLEMENT_HOURS_LIMITATION", "dual_chain"]
 
 _FEATURE = "apprenticeship"
 #: Engine limitation of the contributions of a first- or third-level apprentice.
-CONTRIBUTIONS_LIMITATION = "dual_apprenticeship_contributions"
+SETTLEMENT_HOURS_LIMITATION = "dual_final_settlement_hours"
 
 
 def _track(ccnl: CCNL, level: Level, apprentice: Apprentice) -> DualTrack:
@@ -257,7 +257,7 @@ def dual_chain(
     Returns:
         The chain of the level the period pays at, each element weighed
         by the hours of :attr:`Apprentice.hours`, recording the engine
-        limitation :data:`CONTRIBUTIONS_LIMITATION`.
+        limitation :data:`SETTLEMENT_HOURS_LIMITATION` (final settlement).
 
     Raises:
         MissingRequiredFactError: When the hours, or a fact the period
@@ -296,5 +296,5 @@ def dual_chain(
         allowances=tuple(
             (a, _weighed(v, a.code, track, period, hours)) for a, v in chain.allowances
         ),
-        limitations=(*chain.limitations, CONTRIBUTIONS_LIMITATION),
+        limitations=(*chain.limitations, SETTLEMENT_HOURS_LIMITATION),
     )

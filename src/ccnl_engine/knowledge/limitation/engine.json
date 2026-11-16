@@ -3379,9 +3379,9 @@
       "id": "dual_apprenticeship_contributions",
       "capability": "inps_employer",
       "variant": "dual_apprenticeship_contributions",
-      "summary": "A first- or third-level apprentice (D.Lgs. 81/2015 artt. 43 and 45) is paid by the CCNL dual_apprenticeship tracks, but the INPS contributions and the other rates of the run are those of the professionalising apprentice: the contribution regime of these apprentices is not sourced. On a final-settlement run that pays both its month and the ratei, Apprentice.hours splits both by one set of hours.",
+      "summary": "A first- or third-level apprentice (D.Lgs. 81/2015 artt. 43 and 45) is paid by the CCNL dual_apprenticeship tracks. The INPS contributions of a third-level apprentice are those of the professionalising one (L. 296/2006 art. 1 c. 773); a first-level one pays the employer 5% (D.Lgs. 150/2015 art. 32 c. 1 lett. b, made structural by L. 205/2017 art. 1 c. 110), the 1.5% and 3% of a firm with up to nine employees staying in the first two years, with no NASpI, no 0.30% (lett. c) and no dismissal contribution (lett. a): INPS circ. 108/2018 par. 3.4 (HTML sha256 6704846f...).",
       "monetary_impact": "unknown",
-      "status": "open",
+      "status": "resolved",
       "rulesets": [
         "alimentari-federalimentare",
         "commercio-confcommercio",
@@ -3399,7 +3399,36 @@
         ]
       },
       "source": "ccnl_engine.apprenticeship.dual.rules.dual_chain",
-      "remediation": "Source the INPS contribution regime of first- and third-level apprentices and apply it; give a final-settlement run separate hours for its month and its ratei."
+      "remediation": "Resolved: the first-level rates of INPS circ. 108/2018 par. 3.4 (first_level_employer_rate) and no dismissal contribution; the hours of the final settlement are dual_final_settlement_hours (review of 2026-11-16)."
+    },
+    {
+      "id": "dual_final_settlement_hours",
+      "capability": "base_salary",
+      "variant": "dual_final_settlement_hours",
+      "summary": "A final-settlement run of a first- or third-level apprentice pays both its month and the ratei of the extra months: Apprentice.hours weighs both by one set of hours, while the ratei accrued over the year at its own share of school, training and work.",
+      "monetary_impact": "unknown",
+      "status": "open",
+      "rulesets": [
+        "alimentari-federalimentare",
+        "commercio-confcommercio",
+        "terziario-confesercenti",
+        "edilizia-ance",
+        "edilizia-ance-impiegati",
+        "impiegati-tecnici-agricoli",
+        "metalmeccanico-artigianato",
+        "formazione-professionale"
+      ],
+      "applies_when": {
+        "trigger": "path",
+        "contract_types": [
+          "apprentice"
+        ],
+        "run_kinds": [
+          "termination"
+        ]
+      },
+      "source": "ccnl_engine.apprenticeship.dual.rules.dual_chain",
+      "remediation": "Give a final-settlement run separate hours for its month and its ratei."
     },
     {
       "id": "pension_extra_deduction_first_employed",

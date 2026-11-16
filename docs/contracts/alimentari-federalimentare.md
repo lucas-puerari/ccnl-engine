@@ -289,12 +289,19 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: art. 21 c. 4 TUIR (Normattiva, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art21!vig=, sha256 aafc3e5d5cd7254c7eb52e74051e86f1243b3a7b3cbadcd951daf7bc5e113fc6): 'Gli aventi diritto agli arretrati devono dichiarare al soggetto che li corrisponde l'ammontare delle detrazioni fruite per ciascuno degli anni cui si riferiscono'. The deductions are a fact the worker declares: ArrearsEvent.unused_deductions, and PriorYearTaxFacts.arrears_unused_deductions for the una tantum the engine pays as arrears; unstated, the run carries the missing-fact issue arrears_unused_deductions_unknown. Read on 2026-11-14.
 
-!!! warning "dual_apprenticeship_contributions · inps_employer · impact unknown · open"
-    A first- or third-level apprentice (D.Lgs. 81/2015 artt. 43 and 45) is paid by the CCNL dual_apprenticeship tracks, but the INPS contributions and the other rates of the run are those of the professionalising apprentice: the contribution regime of these apprentices is not sourced. On a final-settlement run that pays both its month and the ratei, Apprentice.hours splits both by one set of hours.
+!!! note "dual_apprenticeship_contributions · inps_employer · impact unknown · resolved"
+    A first- or third-level apprentice (D.Lgs. 81/2015 artt. 43 and 45) is paid by the CCNL dual_apprenticeship tracks. The INPS contributions of a third-level apprentice are those of the professionalising one (L. 296/2006 art. 1 c. 773); a first-level one pays the employer 5% (D.Lgs. 150/2015 art. 32 c. 1 lett. b, made structural by L. 205/2017 art. 1 c. 110), the 1.5% and 3% of a firm with up to nine employees staying in the first two years, with no NASpI, no 0.30% (lett. c) and no dismissal contribution (lett. a): INPS circ. 108/2018 par. 3.4 (HTML sha256 6704846f...).
 
     **Applies when:** `inps_employer` applies; the run takes the engine code path; contract type in apprentice.
 
-    **Remediation:** Source the INPS contribution regime of first- and third-level apprentices and apply it; give a final-settlement run separate hours for its month and its ratei.
+    **Remediation:** Resolved: the first-level rates of INPS circ. 108/2018 par. 3.4 (first_level_employer_rate) and no dismissal contribution; the hours of the final settlement are dual_final_settlement_hours (review of 2026-11-16).
+
+!!! warning "dual_final_settlement_hours · base_salary · impact unknown · open"
+    A final-settlement run of a first- or third-level apprentice pays both its month and the ratei of the extra months: Apprentice.hours weighs both by one set of hours, while the ratei accrued over the year at its own share of school, training and work.
+
+    **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice; run kind in termination.
+
+    **Remediation:** Give a final-settlement run separate hours for its month and its ratei.
 
 !!! note "pension_extra_deduction_first_employed · pension_fund_contribution · impact unknown · resolved"
     A worker first employed after D.Lgs. 252/2005 came into force may deduct, in the twenty years after the fifth year of membership, the contributions above the annual cap within the room the first five years left, up to half the annual cap (art. 8 c. 6). The withholding agent applies it (AdE circ. 70/E/2007: the employer excludes the deductible contributions from the income of the ritenute): the worker states the deduction of the year as PensionFundEnrolment.extra_deduction, and contributions above the cap left with none stated carry the missing fact extra_deduction.

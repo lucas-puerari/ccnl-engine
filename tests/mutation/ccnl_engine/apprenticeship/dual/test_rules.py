@@ -304,8 +304,10 @@ def test_the_months_of_the_contract_select_the_period(elapsed: int, rate: str) -
     assert chain.base == (Decimal("1746.84") * Decimal(rate)).quantize(Decimal("0.01"))
 
 
-def test_the_run_records_the_contributions_limitation() -> None:
-    """The contribution regime of a first-level apprentice is not sourced."""
+def test_a_regular_run_records_no_dual_limitation() -> None:
+    """The settlement hours concern the final settlement only."""
     apprentice = _first(track="qualifica", school_year=2, hours=_HOURS)
     result = PayrollEngine.bundled().calculate_period(_period_input(apprentice))
-    assert "dual_apprenticeship_contributions" in {lim.id for lim in result.limitations}
+    ids = {lim.id for lim in result.limitations}
+    assert "dual_final_settlement_hours" not in ids
+    assert "dual_apprenticeship_contributions" not in ids

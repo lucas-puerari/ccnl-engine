@@ -22,6 +22,7 @@ from datetime import date, timedelta
 from decimal import ROUND_DOWN, Decimal
 from typing import TYPE_CHECKING
 
+from ccnl_engine.employment.apprentice.inputs import ApprenticeshipProgramme
 from ccnl_engine.employment.inputs import Apprentice, Permanent
 from ccnl_engine.employment.period.inputs import (
     CollectiveDismissal,
@@ -91,13 +92,20 @@ def is_due(
     """Return whether the end of the employment owes the contribution.
 
     Returns:
-        ``True`` on a dismissal of an open-ended employee or an apprentice,
+        ``True`` on a dismissal of an open-ended employee or an apprentice
+        (not of a first-level one: D.Lgs. 150/2015 art. 32 c. 1 lett. a),
         on their resignation for just cause, or on a case that owes it;
         ``False`` on a case that leaves it out;
         ``None`` when the just cause of a resignation is not stated;
         ``False`` otherwise.
     """
-    if not isinstance(contract, Permanent | Apprentice):
+    # D.Lgs. 150/2015 art. 32 c. 1 lett. a (INPS circ. 108/2018 par. 3.4):
+    # no contribution for a first-level apprentice.
+    first_level = (
+        isinstance(contract, Apprentice)
+        and contract.programme is ApprenticeshipProgramme.FIRST_LEVEL
+    )
+    if not isinstance(contract, Permanent | Apprentice) or first_level:
         return False
     if case in _OWED:
         return True
