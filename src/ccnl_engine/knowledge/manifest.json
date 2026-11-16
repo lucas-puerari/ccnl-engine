@@ -1887,7 +1887,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/sanita-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "52be9dd0d5096819ab5612e62336b3fa84f915f3c45b687e98a94e9901a1378c",
+      "source_hash": "61f6fcae86c8b7ed3eb749b4a884659f6e1621f6923ed9b7323a46023ae6a727",
       "source_type": "commercial_secondary",
       "owner": "maintainer",
       "wheel_resource": "agreement/sanita-aran.json.gz"
@@ -4601,7 +4601,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "900e37ac2774dd998979ab9cf73a17cd0fe3d7e0fc0e1174732477e804f2e186",
+      "source_hash": "fc29e88274105b08facddb1b29ac3bc84ea20c9513cef580f1ae4acb2348d9de",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/sanita-aran.json.gz",
