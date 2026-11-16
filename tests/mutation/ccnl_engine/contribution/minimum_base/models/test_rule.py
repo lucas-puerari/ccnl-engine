@@ -69,10 +69,15 @@ def test_accepts_a_sector_without_a_monthly_day_count() -> None:
 
 
 #: Tabella A of circ. 6/2026 allegato 1, Agricoltura: dirigente 128.65,
-#: impiegato 67.84; the operai are excluded by art. 7 c. 5.
+#: impiegato 67.84, operaio 51.70; circ. 43/2026 par. 5: the part time of
+#: the operai takes 58.13 x 6/39 = 8.94.
 _AGRICULTURE = _RULE | {
-    "daily_by_category": {"dirigente": "128.65", "impiegato": "67.84"},
-    "exempt_categories": ["operaio"],
+    "daily_by_category": {
+        "dirigente": "128.65",
+        "impiegato": "67.84",
+        "operaio": "51.70",
+    },
+    "hourly_categories": ["operaio"],
 }
 
 
@@ -82,22 +87,40 @@ def test_category_minimum_overrides_the_daily_minimum() -> None:
 
     assert rule.daily_for(WorkerCategory.IMPIEGATO) == Decimal("67.84")
     assert rule.daily_for(WorkerCategory.DIRIGENTE) == Decimal("128.65")
+    assert rule.daily_for(WorkerCategory.OPERAIO) == Decimal("51.70")
     assert rule.daily_for(WorkerCategory.QUADRO) == Decimal("58.13")
     assert rule.daily_for(None) == Decimal("58.13")
 
 
 def test_published_hourly_minimum_is_of_the_general_minimum() -> None:
-    """8.72 is 58.13 x 6/40: it says nothing of a qualifica of its own."""
+    """8.72 is 58.13 x 6/40: a qualifica of its own takes it only when listed."""
     rule = MinimumBaseRule.model_validate(_AGRICULTURE)
 
     assert rule.publishes_hourly_for(None)
     assert rule.publishes_hourly_for(WorkerCategory.QUADRO)
+    assert rule.publishes_hourly_for(WorkerCategory.OPERAIO)
     assert not rule.publishes_hourly_for(WorkerCategory.IMPIEGATO)
 
 
-def test_rejects_a_minimum_of_an_excluded_category() -> None:
-    """Art. 7 c. 5 excludes the category: it cannot have a minimum."""
-    with pytest.raises(ValidationError, match="exempt categories"):
-        MinimumBaseRule.model_validate(
-            _AGRICULTURE | {"daily_by_category": {"operaio": "51.70"}}
-        )
+@pytest.mark.parametrize(
+    ("by_category", "lowers"),
+    [
+        ({"dirigente": "160.77"}, False),
+        ({"dirigente": "128.65", "operaio": "51.70"}, True),
+        ({}, False),
+    ],
+    ids=["industria", "agricoltura", "none"],
+)
+def test_a_lower_category_minimum_needs_the_category(
+    by_category: dict[str, str], lowers: bool
+) -> None:
+    """Only a category below 58.13 makes the general minimum overstate."""
+    rule = MinimumBaseRule.model_validate(_RULE | {"daily_by_category": by_category})
+
+    assert rule.lowers_by_category is lowers
+
+
+def test_rejects_an_hourly_category_without_a_minimum() -> None:
+    """An hourly category is one with a daily minimum of its own."""
+    with pytest.raises(ValidationError, match="hourly categories need"):
+        MinimumBaseRule.model_validate(_RULE | {"hourly_categories": ["operaio"]})

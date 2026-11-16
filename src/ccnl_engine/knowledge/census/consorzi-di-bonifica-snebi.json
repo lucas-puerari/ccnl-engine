@@ -19,22 +19,6 @@
       }
     },
     {
-      "id": "inps_minimum_base_exempt_category",
-      "institute": "inps_employer",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "D.L. 463/1983 art. 7 c. 5 keeps the operai agricoli out of the 9.50% minimum daily base, and the run applies no minimum to them. Tabella A of INPS circ. 6/2026 still lists 51.70 for the operai agricoli, 'non soggetto all'adeguamento' of art. 7 c. 1; no source found says whether it is a floor of their contribution base. A base below it may understate the contributions.",
-      "calculation": "ccnl_engine.contribution.minimum_base.services.minimum_base_paths; D.L. 463/1983 art. 7 cc. 1 and 5; INPS circ. 6/2026 allegato 1, Tabella A, note (2)",
-      "state": "unverified",
-      "remediation": "Source the role of the 51.70 of the operai agricoli (INPS circ. 43/2026 on the agricultural contributions, or the minimum daily wages of art. 1 L. 389/1989), then apply it as their minimum or record that none applies.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "inps_minimum_base_exempt_category"
-        ]
-      }
-    },
-    {
       "id": "rule_accrual_rule",
       "institute": "base_salary",
       "variant": "all",

@@ -27,6 +27,7 @@ from ccnl_engine.inputs import (
 )
 from ccnl_engine.results import BlockerCode
 from tests.knowledge.ccnl_engine.contribution.oracles import (
+    AGRICULTURAL_OPERAIO_MONTHLY_FLOOR,
     FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR,
     HOURLY_FLOOR_40_HOURS,
     additional_ivs,
@@ -201,11 +202,12 @@ def test_ratei_settled_at_termination_leave_the_floor_open() -> None:
     assert _issue_blocked(june) >= {"inps_employee", "inps_employer"}
 
 
-def test_operaio_agricolo_is_contributed_on_the_pay() -> None:
+def test_operaio_agricolo_is_contributed_on_51_70() -> None:
     """Operai agricoli florovivaisti Area 3, operaio, June 2026.
 
-    D.L. 463/1983 art. 7 c. 5: the floor of c. 1 does not apply to the
-    operai agricoli, so the base stays the pay, below 1,511.38.
+    D.L. 463/1983 art. 7 c. 5 keeps the operai agricoli from the adjustment
+    to 58.13: their minimum is the 51.70 of Tabella A (INPS circ. 6/2026),
+    so the pay below 1,344.20 is raised to it, not to 1,511.38.
     """
     employment = replace(
         CONCIA_D2,
@@ -215,8 +217,8 @@ def test_operaio_agricolo_is_contributed_on_the_pay() -> None:
     )
     result = ENGINE.calculate_period(regular_run(employment=employment))
 
-    assert result.period_gross < FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR
-    assert _inps_base(result) == contribution_base(result.period_gross)
+    assert result.period_gross < AGRICULTURAL_OPERAIO_MONTHLY_FLOOR
+    assert _inps_base(result) == contribution_base(AGRICULTURAL_OPERAIO_MONTHLY_FLOOR)
 
 
 #: Facts the NASpI surcharge of a fixed term may miss.

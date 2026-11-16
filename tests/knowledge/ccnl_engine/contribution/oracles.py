@@ -58,6 +58,7 @@ from decimal import ROUND_HALF_UP, Decimal
 
 __all__ = [
     "ADDITIONAL_IVS_MONTHLY_THRESHOLD",
+    "AGRICULTURAL_OPERAIO_MONTHLY_FLOOR",
     "DAILY_CONTRIBUTION_FLOOR",
     "FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR",
     "HOURLY_FLOOR_40_HOURS",
@@ -71,6 +72,8 @@ __all__ = [
 DAILY_CONTRIBUTION_FLOOR = Decimal("58.13")
 #: Section 4 reading: 26 daily floors in a month of a 40-hour, six-day week.
 FULL_TIME_MONTHLY_CONTRIBUTION_FLOOR = DAILY_CONTRIBUTION_FLOOR * 26
+#: Tabella A of circ. 6/2026: the operai agricoli keep 51.70 (note 2).
+AGRICULTURAL_OPERAIO_MONTHLY_FLOOR = Decimal("51.70") * 26
 #: Section 4: 58.13 x 6 / 40 = 8.7195, published as 8.72.
 HOURLY_FLOOR_40_HOURS = Decimal("8.72")
 #: Section 4: 58.13 x 5 / 36 = 8.0736, published as 8.07.

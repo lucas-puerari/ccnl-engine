@@ -14,8 +14,11 @@ circ. 6/2026 par. 1):
   minimum of D.Lgs. 81/2015 art. 11 c. 1 times the contracted hours of the
   month (the weekly hours over a month of 26 days of a six-day week).
 
-Art. 7 c. 5 excludes apprentices and operai agricoli (domestic work has its
-own hourly contributions and no ordinary INPS rules).  A month a vertical
+Art. 7 c. 5 excludes apprentices; it keeps the operai agricoli from the
+adjustment to 9.50%, so their minimum is the 51.70 of Tabella A (INPS circ.
+6/2026, allegato 1, note 2), while their part time takes the hourly minimum
+of 58.13 x 6/39 (circ. 43/2026 par. 5).  Domestic work has its own hourly
+contributions and no ordinary INPS rules.  A month a vertical
 part time does not work pays no hour, so it has no minimum; nor does a
 month whose employed days are all a maternity leave or a work-injury
 inability after the injury day, credited with figurative contributions
@@ -112,18 +115,15 @@ def _bound(rule: MinimumBaseRule, position: MonthPosition) -> Decimal:
     return money(hourly * hours * days / rule.week_days)
 
 
-def _exclusion(
-    rule: MinimumBaseRule, position: MonthPosition
-) -> MinimumBaseReason | None:
+def _exclusion(position: MonthPosition) -> MinimumBaseReason | None:
     """Return why the month of the worker has no minimum, if it has none.
 
     Returns:
         :attr:`MinimumBaseReason.MONTH_NOT_WORKED` for a month a vertical
         part time does not work; :attr:`MinimumBaseReason.INDEMNIFIED_MONTH`
         for a month an insurer indemnifies in full;
-        :attr:`MinimumBaseReason.APPRENTICE` or
-        :attr:`MinimumBaseReason.EXEMPT_CATEGORY` when art. 7 c. 5 excludes
-        the worker; ``None`` otherwise.
+        :attr:`MinimumBaseReason.APPRENTICE` when art. 7 c. 5 excludes the
+        worker; ``None`` otherwise.
     """
     if not position.worked:
         return MinimumBaseReason.MONTH_NOT_WORKED
@@ -131,8 +131,6 @@ def _exclusion(
         return MinimumBaseReason.INDEMNIFIED_MONTH
     if position.apprentice:
         return MinimumBaseReason.APPRENTICE
-    if position.category in rule.exempt_categories:
-        return MinimumBaseReason.EXEMPT_CATEGORY
     return None
 
 
@@ -144,12 +142,12 @@ def _undetermined_reason(
     Returns:
         The first reason, in the order of the checks; ``None`` when the run
         posts the pay of a fully employed month without absences, of a
-        worker whose exclusion is known, in a sector with a sourced day
+        worker whose minimum is known, in a sector with a sourced day
         count.
     """
     reasons = (
         (
-            bool(rule.exempt_categories) and position.category is None,
+            rule.lowers_by_category and position.category is None,
             MinimumBaseReason.CATEGORY_UNKNOWN,
         ),
         (position.adds_to_month, MinimumBaseReason.PAY_ADDED_TO_MONTH),
@@ -193,7 +191,7 @@ def _resolve(
     Returns:
         The minimum of :func:`resolve_minimum_base`, ``source`` left unset.
     """
-    excluded = _exclusion(rule, position)
+    excluded = _exclusion(position)
     if excluded is not None:
         return MinimumBase(actual, actual, excluded)
     bound = _bound(rule, position)
