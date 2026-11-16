@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 24/136 CCNLs**; complete except declared residuals: 4. Bundle: 177 weak rules, 250 open limitations (250 with a monetary impact), 34 declared residuals.
+**Complete: 25/136 CCNLs**; complete except declared residuals: 4. Bundle: 177 weak rules, 250 open limitations (250 with a monetary impact), 34 declared residuals.
 
 ## Declared window
 
@@ -166,7 +166,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [occhiali-occhialeria-industria](../contracts/occhiali-occhialeria-industria.md) | `tessile-moda` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 monetary limitation; 5 non-native capabilities |
 | [ooss-unsic-confsal](../contracts/ooss-unsic-confsal.md) | `organizzazioni-associative` | exploratory | — | 2 rows | 2 open requirements; 2 monetary limitations; 7 non-native capabilities |
 | [operai-agricoli-florovivaisti](../contracts/operai-agricoli-florovivaisti.md) | `agricoltura` | exploratory | — | 5 rows | tables from 2027-01-01; 5 open requirements; 2 monetary limitations; 3 outside_input limitations; 2 non-native capabilities; 1 declared residual |
-| [orafi-argentieri-industria-federorafi](../contracts/orafi-argentieri-industria-federorafi.md) | `metalmeccanica` | exploratory | — | 0 rows | 5 non-native capabilities |
+| [orafi-argentieri-industria-federorafi](../contracts/orafi-argentieri-industria-federorafi.md) | `metalmeccanica` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [organizzazioni-allevatori-aia](../contracts/organizzazioni-allevatori-aia.md) | `agricoltura` | exploratory | — | 2 rows | 2 open requirements; 2 monetary limitations; 6 non-native capabilities |
 | [ortofrutticoli-agrumari](../contracts/ortofrutticoli-agrumari.md) | `commercio` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 outside_input limitation; 3 non-native capabilities |
 | [panificazione-artigianato-confartigianato](../contracts/panificazione-artigianato-confartigianato.md) | `alimentare` | exploratory | — | 3 rows | 3 open requirements; 2 monetary limitations; 1 outside_input limitation; 2 non-native capabilities; 1 declared residual |

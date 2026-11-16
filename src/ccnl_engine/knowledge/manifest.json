@@ -1632,7 +1632,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/orafi-argentieri-industria-federorafi",
       "ruleset_version": "2026.2",
-      "source_hash": "09623d4bfc431ffb0b082bf8ed39a17f08e60e9b9f047e2879ad6c8eec39d978",
+      "source_hash": "c3260d843e8967f8ecd1033727f9d34731778b3cafbf6061ab52709eb452998c",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/orafi-argentieri-industria-federorafi.json.gz"

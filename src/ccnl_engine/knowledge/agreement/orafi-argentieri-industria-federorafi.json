@@ -227,6 +227,32 @@
         "checked": [
           "levels[].fixed_allowances[].apprenticeship_pct_relevant"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-orafi-argentieri-industria-federorafi-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf",
+            "sha256": "093a8610fb069f16df77cee5fec9e858568f2f3776bcf14013eb4673869dc45b"
+          },
+          {
+            "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
+            "sha256": "4a1fd4cf94a8f21c9b15e6661dee94a3e8935da676911860c4582bf157a245f4"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[0:night], bands[1:night_shift], bands[2:night], bands[3:night_shift], bands[4:holiday], bands[5:sunday], bands[6:rest_day], travel."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -2366,7 +2392,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
     "verification_status": "unverified",
-    "source_hash": "09623d4bfc431ffb0b082bf8ed39a17f08e60e9b9f047e2879ad6c8eec39d978",
+    "source_hash": "c3260d843e8967f8ecd1033727f9d34731778b3cafbf6061ab52709eb452998c",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2519,7 +2545,269 @@
             }
           }
         }
-      ]
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "s-www-fim-cisl-it-wp-content-uploads-2021-03-ccnl-orafi-argentieri-18-5-2017-pdf",
+            "title": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf",
+            "kind": "associazione",
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf",
+            "sha256": "093a8610fb069f16df77cee5fec9e858568f2f3776bcf14013eb4673869dc45b"
+          },
+          "page": "81",
+          "section": "Disciplina speciale, parte prima, art. 6; rinnovo 23 dicembre 2021 (p. 14) from 1 January 2022",
+          "quote": "Le percentuali di maggiorazione di cui sopra sono computate sulla paga base di fatto (minimo contrattuale, superminimi individuali e/o collettivi, premio di produzione orario ovvero indennità sostitutiva) e, per i lavoratori normalmente lavoranti a cottimo, sulla percentuale minima contrattuale di cottimo."
+        },
+        "transformation": "The supplements are measured on the minimum of the level over 173 (art. 3): the paga base di fatto leaves the seniority increments out; the superminimi enter as individual elements.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-orafi-argentieri-industria-federorafi-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_0",
+          "description": "Lavoro ordinario non a turni fra le 22:00 e le 06:00",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.30"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uploads-2022-01-20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
+                "title": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
+                "kind": "associazione",
+                "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
+                "sha256": "4a1fd4cf94a8f21c9b15e6661dee94a3e8935da676911860c4582bf157a245f4"
+              },
+              "page": "14",
+              "section": "Disciplina Comune, nuovo articolo Lavoro straordinario, festivo e prestato tra le ore 22,00 e le ore 06,00, tabella lett. b",
+              "quote": "») Lavoro prestato tra le ore 22,00 e le ore 6,00. turni avvicendati 20%\na Lo non a turni 30%"
+            },
+            "transformation": "Lavoro ordinario non a turni fra le 22:00 e le 06:00",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-orafi-argentieri-industria-federorafi-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_SHIFT_1",
+          "description": "Lavoro ordinario a turni avvicendati fra le 22:00 e le 06:00; nessuna maggiorazione autonoma per turni diurni",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.20"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uploads-2022-01-20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
+                "title": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
+                "kind": "associazione",
+                "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
+                "sha256": "4a1fd4cf94a8f21c9b15e6661dee94a3e8935da676911860c4582bf157a245f4"
+              },
+              "page": "14",
+              "section": "Disciplina Comune, nuovo articolo Lavoro straordinario, festivo e prestato tra le ore 22,00 e le ore 06,00, tabella lett. b",
+              "quote": "») Lavoro prestato tra le ore 22,00 e le ore 6,00. turni avvicendati 20%\na Lo non a turni 30%"
+            },
+            "transformation": "Lavoro ordinario a turni avvicendati fra le 22:00 e le 06:00; nessuna maggiorazione autonoma per turni diurni",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-orafi-argentieri-industria-federorafi-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_4",
+          "description": "Festività infrasettimanale",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uploads-2022-01-20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
+                "title": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
+                "kind": "associazione",
+                "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
+                "sha256": "4a1fd4cf94a8f21c9b15e6661dee94a3e8935da676911860c4582bf157a245f4"
+              },
+              "page": "14",
+              "section": "Disciplina Comune, nuovo articolo Lavoro straordinario, festivo e prestato tra le ore 22,00 e le ore 06,00, tabella lett. c",
+              "quote": "€) Lavoro Festivo _ 45%"
+            },
+            "transformation": "Festività infrasettimanale The holiday hours are paid on top of the monthly pay, which already holds the holiday, with 45% \"oltre alla normale retribuzione\" (art. 6).",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-orafi-argentieri-industria-federorafi-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_SUNDAY_5",
+          "description": "Domenica lavorata con riposo compensativo in altro giorno",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uploads-2022-01-20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
+                "title": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
+                "kind": "associazione",
+                "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
+                "sha256": "4a1fd4cf94a8f21c9b15e6661dee94a3e8935da676911860c4582bf157a245f4"
+              },
+              "page": "14",
+              "section": "Disciplina Comune, nuovo articolo Lavoro straordinario, festivo e prestato tra le ore 22,00 e le ore 06,00, tabella lett. c",
+              "quote": "€) Lavoro Festivo _ 45%"
+            },
+            "transformation": "Domenica lavorata con riposo compensativo in altro giorno",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-orafi-argentieri-industria-federorafi-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_REST_DAY_6",
+          "description": "Lavoro nel giorno di riposo prefissato eccezionalmente spostato",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.45"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "uploads-2022-01-20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
+                "title": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
+                "kind": "associazione",
+                "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
+                "sha256": "4a1fd4cf94a8f21c9b15e6661dee94a3e8935da676911860c4582bf157a245f4"
+              },
+              "page": "14",
+              "section": "Disciplina Comune, nuovo articolo Lavoro straordinario, festivo e prestato tra le ore 22,00 e le ore 06,00, tabella lett. c",
+              "quote": "€) Lavoro Festivo _ 45%"
+            },
+            "transformation": "Lavoro nel giorno di riposo prefissato eccezionalmente spostato",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2022-01-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-orafi-argentieri-industria-federorafi-time-supplements"
+            }
+          }
+        }
+      ],
+      "individual_elements": {
+        "in_hourly_base": "included",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "s-www-fim-cisl-it-wp-content-uploads-2021-03-ccnl-orafi-argentieri-18-5-2017-pdf",
+              "title": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf",
+              "kind": "associazione",
+              "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-orafi-argentieri-18-5-2017.pdf",
+              "sha256": "093a8610fb069f16df77cee5fec9e858568f2f3776bcf14013eb4673869dc45b"
+            },
+            "page": "81",
+            "section": "Disciplina speciale, parte prima, art. 6; rinnovo 23 dicembre 2021 (p. 14) from 1 January 2022",
+            "quote": "Le percentuali di maggiorazione di cui sopra sono computate sulla paga base di fatto (minimo contrattuale, superminimi individuali e/o collettivi, premio di produzione orario ovvero indennità sostitutiva) e, per i lavoratori normalmente lavoranti a cottimo, sulla percentuale minima contrattuale di cottimo."
+          },
+          "transformation": "The paga base di fatto holds the individual and collective superminimi: they enter the hourly rate and the base of every supplement.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-orafi-argentieri-industria-federorafi-time-supplements"
+          }
+        }
+      }
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -2695,6 +2983,37 @@
           "extraction_timestamp": "2026-11-14T00:00:00Z",
           "effective_from": "2015-01-01",
           "verification_status": "unverified"
+        }
+      }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "uploads-2022-01-20211223-ccnl-orafi-ipotesi-di-rinnovo-apprendistato-firmato-pdf",
+              "title": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
+              "kind": "associazione",
+              "url": "https://www.uilmnazionale.it/wp-content/uploads/2022/01/20211223-CCNL-Orafi-ipotesi-di-rinnovo-apprendistato-firmato.pdf",
+              "sha256": "4a1fd4cf94a8f21c9b15e6661dee94a3e8935da676911860c4582bf157a245f4"
+            },
+            "page": "5",
+            "section": "Ipotesi di accordo 23 dicembre 2021, Trasferta",
+            "quote": "In sede di stesura definitiva del testo contratiuale le Parti definiranno una apposita disciplina del rimborso spese spettante al personale comandato a svolgere la propria attività lavorativa în trasferta."
+          },
+          "transformation": "The CCNL sets no travel allowance.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-orafi-argentieri-industria-federorafi-time-supplements"
+          }
         }
       }
     }
