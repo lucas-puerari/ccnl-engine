@@ -55,7 +55,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-22 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2027-11-01 |
 
 ## Review history
@@ -68,6 +68,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-13 | claude-opus-5-5 (ai) | Ristorazione collettiva tables of the ipotesi of 22 July 2024 (CNEL 194334, pp. 42-45, scanned pages read on the images). | corrected | Added base_salary_by_subsector.ristorazione_collettiva, five tranches per level (June 2024, September 2025, September 2026, June 2027, December 2027); limitation other_subsectors_tables removed. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Artt. 54 and 58 of the signed renewal 2018 (three sections) and the apprentice reference of the 2024 renewal. | confirmed | Read Art. 58 and Art. 54 on the page images (pp. 74, 76): 80/85/90% of the same level, 95% only beyond 36 months; destinations 2-6. Replaced the 100% passthrough over all levels, which overpaid every apprentice, and closed apprenticeship_under_classification; recorded the Art. 58 c. 3 net cap as a limitation. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto of several illnesses, against the research of a separate model session; quote checked on the source. | corrected | The 180 days of art. 165 count over the calendar year. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause of the CNEL deposited text, read from the OCR of the page of the file with the cited sha256. | corrected | Applied: work_rules.parental_hourly. |
 
 ## Salary table
 
@@ -197,13 +198,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `parental_leave` applies; the run takes the engine code path.
 
     **Remediation:** Resolved by the decision of 2026-11-15: the employer pays the whole rateo of the extra months.
-
-!!! warning "parental_hourly_ccnl_rule · parental_leave · impact unknown · open"
-    A parental leave by the hour follows the national CCNL rule on the hours of a day of leave (art. 32 c. 1-bis D.Lgs. 151/2001, work_rules.parental_hourly), or without one the general criterion of art. 32 c. 1-ter: half the average daily hours a day, two such days a day of leave, no cumulation with the nursing rests on the same day (INPS circ. 152/2015 par. 2.1-2.2). The run records this limitation while the bundle does not record the rule of the CCNL; a company or territorial agreement is the fact local_hourly_agreement of the event.
-
-    **Applies when:** `parental_leave` applies; the run takes the engine code path.
-
-    **Remediation:** Source the collective rules on the leave by the hour of the CCNL (hours of a day of leave, cumulation) and apply them, then resolve this limitation.
 
 !!! note "disability_permit_tfr · disability_permits · impact unknown · resolved"
     The days of permit under L. 104/1992 art. 33 c. 3 keep the TFR base. Art. 33 c. 4 refers to art. 43 D.Lgs. 151/2001, which applies art. 34 c. 5: the days are paid and counted in the seniority; no primary source states their TFR base, and by the maintainer's decision of 2026-11-15 they stay in it, as payroll practice holds.

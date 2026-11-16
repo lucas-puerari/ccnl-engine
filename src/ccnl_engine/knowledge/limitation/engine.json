@@ -1766,9 +1766,7 @@
       "status": "open",
       "rulesets": [
         "chimica-affini-pmi-unionchimica",
-        "comunicazione-artigianato-confartigianato",
         "tessile-pmi-uniontessile",
-        "turismo-confesercenti",
         "vigilanza-privata-assiv"
       ],
       "applies_when": {
