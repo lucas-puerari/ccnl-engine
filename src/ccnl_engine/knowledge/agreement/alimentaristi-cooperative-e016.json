@@ -175,6 +175,27 @@
           "levels[*].fixed_allowances",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-alimentaristi-cooperative-e016-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Travel allowance: the clause located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/07/CCNL-cooperazione-alimentare-2023.pdf",
+            "sha256": "a38eb5c832d99cddb4c6fe1b31c24b72291c8362b8633aa3c523c6a189fc043a"
+          }
+        ],
+        "findings": [
+          "Applied: travel delegated to second-level bargaining."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -3677,7 +3698,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=E016",
     "verification_status": "unverified",
-    "source_hash": "9e8882f05a904a504beac07f4c76613bf6ad1e3457432a483603b51141b62981",
+    "source_hash": "7e595285a4f07eb98f082063e19e774af981b6a5744ea5baa81e74221c823dff",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -3953,6 +3974,37 @@
           "quote": "sarà riconosciuto in gruppi minimi di 4 ore giornaliere, fermi restando i termini di"
         },
         "transformation": "La clausola stabilisce gruppi minimi di 4 ore giornaliere per la fruizione oraria, non l'equivalenza tra ore e una giornata di congedo: day_hours = null. Non prevede riproporzionamento per il part-time né una decorrenza specifica: part_time_scaled = false, effective_from = null."
+      }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "tps-www-flai-it-wp-content-uploads-2023-07-ccnl-cooperazione-alimentare-2023-pdf",
+              "title": "https://www.flai.it/wp-content/uploads/2023/07/CCNL-cooperazione-alimentare-2023.pdf",
+              "kind": "associazione",
+              "url": "https://www.flai.it/wp-content/uploads/2023/07/CCNL-cooperazione-alimentare-2023.pdf",
+              "sha256": "a38eb5c832d99cddb4c6fe1b31c24b72291c8362b8633aa3c523c6a189fc043a"
+            },
+            "page": "45",
+            "section": "Art. 39 - Trasferte",
+            "quote": "Le parti in sede aziendale potranno definire, in alternativa a quanto stabilito dal presente articolo, l’istituzione di una indennità di trasferta a copertura dei costi e del maggiore disagio che il lavoratore sostiene."
+          },
+          "transformation": "The CCNL leaves the daily travel allowance to company or territorial bargaining: its amount is the employer's fact (TravelAllowanceEvent.daily_amount).",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-alimentaristi-cooperative-e016-time-supplements"
+          }
+        }
       }
     }
   }

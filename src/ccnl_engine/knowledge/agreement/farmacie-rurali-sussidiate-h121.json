@@ -287,6 +287,29 @@
           "work_rules.time_supplements",
           "work_rules.capability_basis"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-farmacie-rurali-sussidiate-h121-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+            "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+          }
+        ],
+        "findings": [
+          "Applied: travel.",
+          "Left out: bands[0:night]: quote skipped; bands[1:night]: quote skipped; bands[2:night]: quote skipped; bands[3:night]: quote skipped; bands[4:night_holiday]: quote skipped; bands[5:sunday]: quote skipped; bands[6:rest_day]: quote skipped; bands[7:holiday]: quote skipped; none.shift_work: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -1801,7 +1824,7 @@
     "effective_until": null,
     "source": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
     "verification_status": "unverified",
-    "source_hash": "a226b51039e68998efd1c22d015fbef6e781664b01c13e1d645cd1d517a8fb60",
+    "source_hash": "edea8914e91b18e5ce23476e5b48664a48c64150a79eb9b8f8b998f0dd4f75c2",
     "published_at": "2026-11-01",
     "source_type": "contracting_party"
   },
@@ -2601,6 +2624,35 @@
             "verified_at": "2026-11-15T00:00:00Z",
             "verification_status": "verified",
             "review_id": "2026-11-15-ai-farmacie-rurali-sussidiate-h121-time-supplements"
+          }
+        }
+      },
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "menti-contrattocollettivonazionaledilavorodeidipendentidafarmaciaprivata2021-pdf",
+              "title": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+              "kind": "associazione",
+              "url": "https://www.mnlf.it/documenti/ContrattoCollettivoNazionalediLavorodeidipendentidafarmaciaprivata2021.pdf",
+              "sha256": "b6798989a01293d9629dc61f8cb56faeb07f4f5eb4d447526b911c761ac40214"
+            },
+            "page": "25",
+            "section": "Art. 55 - Retribuzione di fatto",
+            "quote": "La retribuzione di fatto è costituita dalle voci di cui al precedente art. 54, nonché da tutti gli altri elementi retributivi aventi carattere continuativo, ad esclusione dei rimborsi di spese, dei compensi per lavoro straordinario, delle gratificazioni straordinarie o una tantum, e di ogni elemento espressamente escluso dalle Parti dal calcolo di singoli istituti contrattuali ovvero escluso dall’imponibile retributivo a norma di legge."
+          },
+          "transformation": "The CCNL sets no travel allowance.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-farmacie-rurali-sussidiate-h121-time-supplements"
           }
         }
       }

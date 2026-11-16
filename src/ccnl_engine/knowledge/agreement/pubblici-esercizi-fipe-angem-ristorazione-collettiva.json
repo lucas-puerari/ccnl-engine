@@ -2721,7 +2721,7 @@
     "effective_until": null,
     "source": "https://www.fipe.it/wp-content/uploads/2025/02/Tabelle-retributive-2024.pdf",
     "verification_status": "unverified",
-    "source_hash": "9fa833e9c405871defb85a159946933b6065fce94494ea38ab2ed56beffbaf58",
+    "source_hash": "fb1e41e421ade95cebead2fccc0b4c969471843c7b872811eaadd194a1ae1b63",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3588,6 +3588,35 @@
             "review_id": "2026-11-15-ai-pubblici-esercizi-fipe-angem-ristorazione-collettiva-time-supplements"
           }
         }
+      },
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "unione-doc-contratti-lavoro-contrattazione-collettiva-ccnl-ristorazione-2018-pdf",
+              "title": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+              "kind": "associazione",
+              "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+              "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+            },
+            "page": "116",
+            "section": "Articolo 157 - Elementi della retribuzione",
+            "quote": "Di norma, la retribuzione del lavoratore è distinta nelle seguenti voci: a) paga base nazionale; b) eventuali trattamenti salariali integrativi comunque denominati previsti per ciascun comparto nelle parti generale e speciale del presente Contratto;"
+          },
+          "transformation": "The CCNL sets no travel allowance.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-pubblici-esercizi-fipe-angem-ristorazione-collettiva-time-supplements"
+          }
+        }
       }
     },
     "parental_hourly": {
@@ -3909,6 +3938,29 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.parental_hourly"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-pubblici-esercizi-fipe-angem-ristorazione-collettiva-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confcommerciomilano.it/export/sites/unione/doc/contratti_lavoro/contrattazione_collettiva/ccnl_ristorazione_2018.pdf",
+            "sha256": "32a2831b6ff1965adf82da1714f46ac6dc46102971012d6f646368837f72cf85"
+          }
+        ],
+        "findings": [
+          "Applied: travel.",
+          "Left out: bands[0:night]: quote skipped; bands[1:holiday]: quote skipped; bands[2:sunday]: quote skipped; none.shift_work: skipped; none.rest_day: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ],

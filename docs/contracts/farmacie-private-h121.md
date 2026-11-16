@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2021-09-07 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2021-11-01 |
 
 ## Review history
@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Apprentice seniority increments against art. 53 of the CCNL, from the targeted research of a separate model session; text layer. | confirmed | Art. 53 grants the increments to the lavoratore qualificato: none during the apprenticeship. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text. | confirmed | work_rules.sunday_holidays: 01-01, 01-06, easter_monday, 04-25, 05-01, 06-02, 08-15, 11-01, 12-08, 12-25, 12-26, patron, 11-04 |
 | 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base, bands[4:night_holiday], bands[5:sunday], bands[6:rest_day], bands[7:holiday].<br>Left out: bands[0:night]: more night bands the engine cannot tell apart; bands[1:night]: more night bands the engine cannot tell apart; bands[2:night]: more night bands the engine cannot tell apart; bands[3:night]: more night bands the engine cannot tell apart; none.shift_work: skipped. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: travel.<br>Left out: bands[0:night]: quote skipped; bands[1:night]: quote skipped; bands[2:night]: quote skipped; bands[3:night]: quote skipped; bands[4:night_holiday]: quote skipped; bands[5:sunday]: quote skipped; bands[6:rest_day]: quote skipped; bands[7:holiday]: quote skipped; none.shift_work: skipped. |
 
 ## Salary table
 

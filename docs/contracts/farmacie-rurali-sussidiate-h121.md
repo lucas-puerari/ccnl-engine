@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2021-09-07 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2021-11-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Art. 3 Area Q and Tabella C (p. 59) of the CCNL of 7 September 2021. | corrected | Q2 and Q3 get 130 EUR after 12 years in level 1 and Area Q, 100 EUR before. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | isq_twelve_year_tier: The rural agreement already defines mutually exclusive Q2 and Q3 ISQ allowances: EUR 100.00 for career seniority below 144 months and EUR 130.00 from 144 months, effective 2021-11-01. _allowance_active selects the latter at >=144 months and the former at <144; the period calculat |
 | 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base, bands[4:night_holiday], bands[5:sunday], bands[6:rest_day], bands[7:holiday], none.shift_work.<br>Left out: bands[0:night]: more night bands the engine cannot tell apart; bands[1:night]: more night bands the engine cannot tell apart; bands[2:night]: more night bands the engine cannot tell apart; bands[3:night]: more night bands the engine cannot tell apart. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: travel.<br>Left out: bands[0:night]: quote skipped; bands[1:night]: quote skipped; bands[2:night]: quote skipped; bands[3:night]: quote skipped; bands[4:night_holiday]: quote skipped; bands[5:sunday]: quote skipped; bands[6:rest_day]: quote skipped; bands[7:holiday]: quote skipped; none.shift_work: skipped. |
 
 ## Salary table
 

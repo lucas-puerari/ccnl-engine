@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-06-15 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -60,6 +60,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|---|---|
 | 2026-11-08 | claude-opus-5-5 (ai) | The monthly values of the levels against the primary tables (text layer). | confirmed | 90 values found verbatim on the cited pages and marked verified; 0 left as they were (derived or not on a text page). |
 | 2026-11-09 | claude-opus-5-5 (ai) | Historic scatti, thirteenth and TFR, pp. 51, 53, 82. | confirmed | — |
+| 2026-11-16 | claude-opus-5-5 (ai) | Travel allowance: the clause located in the cited file by sha256. | corrected | Applied: travel delegated to second-level bargaining. |
 
 ## Salary table
 

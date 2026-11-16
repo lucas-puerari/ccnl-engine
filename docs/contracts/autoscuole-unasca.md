@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2023-02-28 |
-| **Last review** | 2026-10-18 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2022-02-01 |
 
 ## Review history
@@ -59,6 +59,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | Date | Reviewer | Scope | Outcome | Findings |
 |---|---|---|---|---|
 | 2026-10-18 | claude-opus-5-5 (ai) | The accrual rule of the tredicesima (fractions of a month) against the full CCNL text. | confirmed | Art. 18 - Tredicesima mensilita' (p. 20): "Le frazioni di mese non superiori ai 15 giorni non saranno calcolate mentre saranno considerate come mese intero se superiori ai 15 giorni.". Match: more_than 15. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: travel.<br>Left out: bands[0:night]: quote skipped; bands[1:night]: quote skipped; bands[2:sunday]: quote skipped; bands[3:night_holiday_compensatory_rest]: quote skipped; bands[4:holiday]: quote skipped; none.shift_work: skipped. |
 
 ## Salary table
 

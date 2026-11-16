@@ -66,6 +66,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-15 | claude-opus-5-5 (ai) | Table and cumulation of art. 36 against the research of a separate model session; table read on the text layer of the source. | corrected | Replaced one per-episode rule with the nine seniority bands of art. 36, each summed over three times its comporto.<br>The integration rates were 0: art. 36 c. 7 tops up to 100% or 50% of the net pay. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Holidays falling on a Sunday: the clause proposed by a separate model from the targeted research, its quote checked on the downloaded text. | confirmed | work_rules.sunday_holidays: 01-01, 01-06, easter_monday, 04-25, 05-01, 06-02, 08-15, 11-01, 11-04, 12-08, 12-25, 12-26, patron; divisor 26 |
 | 2026-11-16 | claude-opus-5-5 (ai) | Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256. | corrected | Applied: work_rules.parental_hourly. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Travel allowance: the clause located in the cited file by sha256. | corrected | Applied: travel delegated to second-level bargaining. |
 
 ## Salary table
 

@@ -433,6 +433,29 @@
           "levels.fixed_allowances.IND_FUN",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-pulizia-artigianato-confartigianato-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+            "sha256": "037e5a830b9027e280d0a84285afe7c69190550e5704b236270ba6ebd62f6424"
+          }
+        ],
+        "findings": [
+          "Applied: travel.",
+          "Left out: none.shift_work: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -4479,7 +4502,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "c5fae06c91cf18d7c8dadcdea57e8fd95549bc09937d189bb22b4b7426489054",
+    "source_hash": "808b99a43115811674100c53ed591c2528b9aca9d1a9258826cf9721f91a3669",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -4670,7 +4693,8 @@
             "note": null
           }
         }
-      ]
+      ],
+      "supplement_bands": []
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -5084,6 +5108,37 @@
           "quote": "Per il solo congedo parentale, in caso di modalità di fruizione del congedo su base oraria da parte\ndel genitore, la fruizione è consentita in misura pari alla metà dell'orario medio giornaliero del\nperiodo di paga mensile precedente a quello nel corso del quale ha avuto inizio il congedo\nparentale. Ai fini dell'esercizio del diritto di cui all'art. 32, comma 1, del D.Lgs. n. 151/2001\ne s.m.i., il genitore è tenuto a preavvisare il datore di lavoro per iscritto, salvo casi di oggettiva\nimpossibilità, con un preavviso pari a 2 giorni, indicando l'inizio e la fine del periodo di congedo.\n\nSono fatti salvi accordi tra le Parti per una diversa fruizione del congedo su base oraria in relazione\nalla distribuzione settimanale dell'orario di lavoro e alle giornate in cui è previsto un orario di\nlavoro ridotto."
         },
         "transformation": "La metà dell'orario medio giornaliero del mese precedente definisce la misura della fruizione oraria, non quante ore costituiscano una giornata di congedo: day_hours = null. Non è prevista un'esplicita regola di riproporzionamento per il part-time: part_time_scaled = false. L'art. 3 fa decorrere le modifiche dalla sottoscrizione, avvenuta il 27.10.2022, salvo decorrenze specifiche non indicate per questa clausola."
+      }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "contratti-cms-magazine-uploads-pulizia-artigianato-accordo-rinnovo-27-10-22-pdf",
+              "title": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+              "kind": "associazione",
+              "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
+              "sha256": "037e5a830b9027e280d0a84285afe7c69190550e5704b236270ba6ebd62f6424"
+            },
+            "page": "10",
+            "section": "Art. 25, lettera h (tempo parziale)",
+            "quote": "Per i lavoratori a tempo parziale la quota oraria della retribuzione, si ottiene dividendo la retribuzione mensile globale che sarebbe spettata in caso di svolgimento del rapporto di lavoro a tempo pieno per il divisore 173."
+          },
+          "transformation": "The CCNL sets no travel allowance.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-pulizia-artigianato-confartigianato-time-supplements"
+          }
+        }
       }
     }
   }
