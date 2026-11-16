@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 22 verified / 6 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 23 verified / 6 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -53,7 +53,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-05-28 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2026-06-01 |
 
 ## Review history
@@ -82,6 +82,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Article 54 permanent-worker eligibility, cached signed text PDF page 55. | corrected | Art. 54 explicitly grants biennial increments to permanent workers only; fixed-term workers have a separate, unmodelled element under the 2026 renewal. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Apprentice seniority increments against art. 54 of the CCNL and art. 41 D.Lgs. 81/2015, from the targeted research of a separate model session; text layer. | confirmed | Art. 54 covers the operai a tempo indeterminato; the apprenticeship is a contract a tempo indeterminato: the apprentice accrues the increments of the classification level. |
 | 2026-11-14 | gpt-6-sol (ai) | Apprentice seniority increments against art. 54 and Allegato 10 of the CCNL and art. 41 D.Lgs. 81/2015; text layer. | flagged | Confirmed for the permanent apprentice: art. 54 covers the operai a tempo indeterminato and does not exclude apprentices.<br>Allegato 10 allows seasonal fixed-term apprentices, outside art. 54: declared as the open limitation seasonal_apprentice_seniority. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly payments against artt. 52-53 of the CCNL 2022-2025. | corrected | 14 monthly payments sourced: tredicesima (art. 52) and quattordicesima (art. 53). |
+| 2026-11-16 | claude-opus-5-5 (ai) | Holidays on a Sunday: artt. 41 and 42 of the verbale of 28 May 2026. | corrected | Operai agricoli: the law's national holidays and 4 November up to 2026, the infrasettimanali added from 1 January 2027 (art. 41); florovivaisti: every listed holiday but the Patrono (art. 42). |
 
 ## Salary table
 
@@ -357,13 +359,6 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Applies when:** `contract_renewal_arrears` applies; the run takes the engine code path.
 
     **Remediation:** Resolved: art. 21 c. 4 TUIR (Normattiva, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.del.presidente.della.repubblica:1986-12-22;917~art21!vig=, sha256 aafc3e5d5cd7254c7eb52e74051e86f1243b3a7b3cbadcd951daf7bc5e113fc6): 'Gli aventi diritto agli arretrati devono dichiarare al soggetto che li corrisponde l'ammontare delle detrazioni fruite per ciascuno degli anni cui si riferiscono'. The deductions are a fact the worker declares: ArrearsEvent.unused_deductions, and PriorYearTaxFacts.arrears_unused_deductions for the una tantum the engine pays as arrears; unstated, the run carries the missing-fact issue arrears_unused_deductions_unknown. Read on 2026-11-14.
-
-!!! warning "sunday_holiday_ccnl_clause · sunday_holiday · impact yes · open"
-    L. 260/1949 art. 5 pays the workers with a fixed salary a further daily quota only for the civil holidays (25 April, 1 May, 2 June) falling on a Sunday; the other holidays of art. 2 (1 January, 6 January, Easter Monday, 15 August, 4 October, 1 November, 8 December, 25 and 26 December) give it only by CCNL clause, and the payment of 4 November is a CCNL institute. A run of a month with such a holiday on a Sunday, in a CCNL whose clause is not sourced (work_rules.sunday_holidays), pays the statutory holidays only; a public employment is paid as a private one (art. 5 names the "Stato, enti pubblici e datori privati").
-
-    **Applies when:** `sunday_holiday` applies; the run takes the engine code path.
-
-    **Remediation:** Source the CCNL clause on the holidays falling on a Sunday and record it as work_rules.sunday_holidays.
 
 !!! note "pension_extra_deduction_first_employed · pension_fund_contribution · impact unknown · resolved"
     A worker first employed after D.Lgs. 252/2005 came into force may deduct, in the twenty years after the fifth year of membership, the contributions above the annual cap within the room the first five years left, up to half the annual cap (art. 8 c. 6). The withholding agent applies it (AdE circ. 70/E/2007: the employer excludes the deductible contributions from the income of the ritenute): the worker states the deduction of the year as PensionFundEnrolment.extra_deduction, and contributions above the cap left with none stated carry the missing fact extra_deduction.

@@ -11,6 +11,7 @@ from __future__ import annotations
 from pydantic import BaseModel, ConfigDict, Field
 
 from ccnl_engine.agreement.validity.rules import TimeSeries
+from ccnl_engine.compensation.sunday_holiday.models import SundayHolidayPay
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 from ccnl_engine.sickness.integration.models import SicknessRules
@@ -30,6 +31,8 @@ class SubsectorRules(BaseModel):
             salaries to be divided by the CCNL divisor. Unavailable dates
             require an explicit caller rate.
         hourly_minimum_provenance: Source of those hourly minimums.
+        sunday_holidays: The holidays the sub-sector pays on a Sunday, in
+            place of the CCNL's (operai florovivaisti art. 42).
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
@@ -40,3 +43,4 @@ class SubsectorRules(BaseModel):
     )
     hourly_minimum_by_level: dict[str, TimeSeries] = Field(default_factory=dict)
     hourly_minimum_provenance: RuleProvenance | None = None
+    sunday_holidays: SundayHolidayPay | None = None
