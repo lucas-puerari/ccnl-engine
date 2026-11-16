@@ -119,13 +119,15 @@ def test_engine_limitations_are_raised_by_their_code() -> None:
         PCT_UNDECLARED,
         CONTRIBUTIONS_LIMITATION,
         CUMULATION_LIMITATION,
-        PROVISIONAL_RULESET,
-        PROVISIONAL_INPS_RULESET,
         EXEMPT_CATEGORY_FLOOR,
-        PARENTAL_INCOME_LIMITATION,
         HOURLY_CCNL_LIMITATION,
         UNA_TANTUM,
         SUNDAY_CLAUSE,
+    }
+    assert by_status[LimitationStatus.AWAITING_PUBLICATION] == {
+        PROVISIONAL_RULESET,
+        PROVISIONAL_INPS_RULESET,
+        PARENTAL_INCOME_LIMITATION,
     }
     assert by_status[LimitationStatus.RESOLVED] == {
         "arrears_unused_deductions",
