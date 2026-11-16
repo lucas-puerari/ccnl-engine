@@ -6090,7 +6090,7 @@
     "effective_until": null,
     "source": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
     "verification_status": "unverified",
-    "source_hash": "04845bbc9a1588d54d518a5962904c88e34a1c1c784a5689ca91ce59a30d4290",
+    "source_hash": "a4c59ee7c0f77573d265c2f19a077501d13297edfe11890e4c3c80b222ad5fa2",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -6284,7 +6284,7 @@
         "location": {
           "source_document": {
             "document_id": "ociali-it-wp-content-uploads-low-legacoop-contratto-collettivo-2025-completo-pdf",
-            "title": "low LEGACOOP Contratto Collettivo 2025 COMPLETO",
+            "title": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
             "kind": "associazione",
             "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
             "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
@@ -6297,12 +6297,12 @@
         "extraction": {
           "method": "ai",
           "model": "gpt-6-sol",
-          "extraction_timestamp": "2026-11-15T00:00:00Z",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
           "effective_from": "2026-01-01",
           "verified_by": "claude-opus-5-5",
-          "verified_at": "2026-11-15T00:00:00Z",
+          "verified_at": "2026-11-16T00:00:00Z",
           "verification_status": "verified",
-          "review_id": "2026-11-15-ai-cooperative-sociali-time-supplements"
+          "review_id": "2026-11-16-ai-cooperative-sociali-time-supplements"
         }
       },
       "supplement_bands": [
@@ -6385,6 +6385,88 @@
               "verified_at": "2026-11-15T00:00:00Z",
               "verification_status": "verified",
               "review_id": "2026-11-15-ai-cooperative-sociali-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_3",
+          "description": "Ogni ora di lavoro ordinario nelle festività di cui all'art. 59; base: minimi contrattuali conglobati.",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2009-12-01",
+                "valid_until": null,
+                "value": "0.15"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ociali-it-wp-content-uploads-low-legacoop-contratto-collettivo-2025-completo-pdf",
+                "title": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "93",
+              "section": "Art. 55 c. 1",
+              "quote": "A decorrere dal 01/12/2009 per ogni ora di lavoro svolta nelle giornate di domenica e nelle festività di cui all’art. 59 spetterà una maggiorazione oraria del 15% riferita ai minimi contrattuali conglobati."
+            },
+            "transformation": "Ogni ora di lavoro ordinario nelle festività di cui all'art. 59; base: minimi contrattuali conglobati.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2009-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-cooperative-sociali-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_SUNDAY_4",
+          "description": "Ogni ora di lavoro ordinario domenicale, anche con riposo settimanale programmato in altro giorno; base: minimi contrattuali conglobati.",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2009-12-01",
+                "valid_until": null,
+                "value": "0.15"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ociali-it-wp-content-uploads-low-legacoop-contratto-collettivo-2025-completo-pdf",
+                "title": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "kind": "associazione",
+                "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+                "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+              },
+              "page": "93",
+              "section": "Art. 55 c. 1",
+              "quote": "A decorrere dal 01/12/2009 per ogni ora di lavoro svolta nelle giornate di domenica e nelle festività di cui all’art. 59 spetterà una maggiorazione oraria del 15% riferita ai minimi contrattuali conglobati."
+            },
+            "transformation": "Ogni ora di lavoro ordinario domenicale, anche con riposo settimanale programmato in altro giorno; base: minimi contrattuali conglobati.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2009-12-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-cooperative-sociali-time-supplements"
             }
           }
         }
@@ -6768,6 +6850,37 @@
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440)."
       }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ociali-it-wp-content-uploads-low-legacoop-contratto-collettivo-2025-completo-pdf",
+              "title": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+              "kind": "associazione",
+              "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+              "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+            },
+            "page": "112",
+            "section": "Art. 82 c. 1",
+            "quote": "limiti della normalità, a piè di lista, le spese sostenute per trasporto, vitto e alloggio. In sede d’impresa cooperativa saranno fissati i criteri per i rimborsi delle spese chilometriche e per le eventuali coperture assicurative."
+          },
+          "transformation": "The CCNL pays no daily travel allowance: the trasferta is refunded at documented cost",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-cooperative-sociali-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -7036,6 +7149,29 @@
         "findings": [
           "Applied: hourly_base, bands[5:day_shift], bands[6:night_shift].",
           "Left out: bands[0:night]: quote quote_not_in_file; bands[1:night]: quote quote_not_in_file; bands[2:night]: work/role/rate not applicable (addette e addetti ai servizi di sorveglianza e custodia non soggetti a turni, attività esclusivamente notturna); bands[3:holiday]: quote quote_not_in_file; bands[4:sunday]: quote quote_not_in_file."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-cooperative-sociali-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.legacoopsociali.it/wp-content/uploads/low-LEGACOOP-Contratto-Collettivo-2025-COMPLETO.pdf",
+            "sha256": "3ed1d09098959f8b7fb50da86d4f6f1bf3a22023bf1d8852614899ed88919440"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[3:holiday], bands[4:sunday], travel.",
+          "Left out: bands[0:night]: more night bands the engine cannot tell apart; bands[1:night]: more night bands the engine cannot tell apart; bands[2:night]: work/role/rate not applicable (addette e addetti ai servizi di sorveglianza e custodia non soggetti a turni, attività esclusivamente notturna); bands[5:day_shift]: the bundle already has a day_shift band; bands[6:night_shift]: the bundle already has a night_shift band."
         ],
         "independence": "separate_model",
         "checked": [
