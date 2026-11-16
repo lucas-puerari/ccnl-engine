@@ -3,7 +3,8 @@
 Art. 41: up to 2026 the national holidays of the law and 4 November,
 celebrated on the first Sunday of November; from 1 January 2027 the
 festività infrasettimanali too.  Art. 42: the florovivaisti have every
-listed holiday on a Sunday.  1398.09 / 26 = 53.77 a day.
+listed holiday on a Sunday.  1398.09 / 26 = 53.77 a day; a florovivaista
+is paid 8.50259 x 169 = 1436.94 a month (art. 50), 55.27 a day.
 """
 
 from __future__ import annotations
@@ -50,7 +51,7 @@ def _paid(year: int, month: int, subsector: str | None = None) -> list[str]:
         (2026, 11, None, ["2026-11-01:53.77"]),
         (2026, 10, None, []),
         (2027, 8, None, ["2027-08-15:53.77"]),
-        (2026, 10, "florovivaisti", ["2026-10-04:53.77"]),
+        (2026, 10, "florovivaisti", ["2026-10-04:55.27"]),
     ],
     ids=["4-november", "4-october-2026", "15-august-2027", "florovivaisti"],
 )

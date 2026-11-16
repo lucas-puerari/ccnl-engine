@@ -117,7 +117,7 @@
       },
       {
         "kind": "simplification",
-        "text": "FLOROVIVAISTI MONTHLY PAY NOT DISTINGUISHED. The hourly floriculture minima of Tabella n. 2 (from 2023, 2025 and June 2026) are used for time events. Monthly base salary and other monthly entitlements still use agricultural amounts, while art. 50 derives the monthly pay of a floriculture OTI from the hourly one (paga oraria = paga mensile / 169). Do not treat agricultural monthly wages as floriculture salaries.",
+        "text": "FLOROVIVAISTI MONTHLY PAY. The hourly floriculture minima of Tabella n. 2 (from 2023, 2025 and June 2026) are used for time events. The monthly base salary of a floriculture OTI is the hourly minimum times 169 (art. 50: paga oraria = paga mensile / 169), selected by EmployerProfile.subsector=florovivaisti.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -125,7 +125,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the floriculture monthly pay as the hourly minimum times 169 (art. 50) for the florovivaisti sub-sector."
+          "remediation": "Model the floriculture monthly pay as the hourly minimum times 169 (art. 50) for the florovivaisti sub-sector.",
+          "status": "resolved"
         }
       },
       {
@@ -734,6 +735,96 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      },
+      "base_salary_by_subsector": {
+        "florovivaisti": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": "2025-01-01",
+              "value": "1223.56",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-operai-agricoli-florovivaisti-2022-2025",
+                    "title": "CCNL operai agricoli e florovivaisti 2022-2025",
+                    "kind": "associazione",
+                    "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                    "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+                  },
+                  "page": "53",
+                  "section": "Art. 50, Retribuzione, and note 12",
+                  "quote": "Agli effetti del computo dei vari istituti economici contrattuali, la paga giornaliera si ottiene dividendo quella mensile per 26. Quella oraria si ottiene dividendo la paga mensile per 169."
+                },
+                "transformation": "The monthly pay of a floriculture OTI is the hourly minimum times 169, the inverse of art. 50 (note 12: 'il salario per gli operai florovivaisti è riferito alla paga oraria'): 7.24 of Tabella n. 2 of the CCNL 23 May 2022 (PDF p. 84) x 169 = 1223.56, rounded to the cent.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-16T00:00:00Z",
+                  "effective_from": "2023-01-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2026-06-01",
+              "value": "1284.40",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-operai-agricoli-florovivaisti-2022-2025",
+                    "title": "CCNL operai agricoli e florovivaisti 2022-2025",
+                    "kind": "associazione",
+                    "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                    "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+                  },
+                  "page": "53",
+                  "section": "Art. 50, Retribuzione, and note 12",
+                  "quote": "Agli effetti del computo dei vari istituti economici contrattuali, la paga giornaliera si ottiene dividendo quella mensile per 26. Quella oraria si ottiene dividendo la paga mensile per 169."
+                },
+                "transformation": "The monthly pay of a floriculture OTI is the hourly minimum times 169, the inverse of art. 50 (note 12: 'il salario per gli operai florovivaisti è riferito alla paga oraria'): 7.60 of Tabella n. 2 of the accordo of 27 October 2023 x 169 = 1284.40, rounded to the cent.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-16T00:00:00Z",
+                  "effective_from": "2025-01-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-06-01",
+              "valid_until": null,
+              "value": "1349.90",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-operai-agricoli-florovivaisti-2022-2025",
+                    "title": "CCNL operai agricoli e florovivaisti 2022-2025",
+                    "kind": "associazione",
+                    "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                    "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+                  },
+                  "page": "53",
+                  "section": "Art. 50, Retribuzione, and note 12",
+                  "quote": "Agli effetti del computo dei vari istituti economici contrattuali, la paga giornaliera si ottiene dividendo quella mensile per 26. Quella oraria si ottiene dividendo la paga mensile per 169."
+                },
+                "transformation": "The monthly pay of a floriculture OTI is the hourly minimum times 169, the inverse of art. 50 (note 12: 'il salario per gli operai florovivaisti è riferito alla paga oraria'): 7.9876 of Tabella n. 2 of the verbale of 28 May 2026 x 169 = 1349.90, rounded to the cent.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-16T00:00:00Z",
+                  "effective_from": "2026-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            }
+          ]
+        }
       }
     },
     {
@@ -852,6 +943,96 @@
           "extraction_timestamp": "2026-09-07T15:03:36",
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
+        }
+      },
+      "base_salary_by_subsector": {
+        "florovivaisti": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": "2025-01-01",
+              "value": "1302.99",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-operai-agricoli-florovivaisti-2022-2025",
+                    "title": "CCNL operai agricoli e florovivaisti 2022-2025",
+                    "kind": "associazione",
+                    "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                    "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+                  },
+                  "page": "53",
+                  "section": "Art. 50, Retribuzione, and note 12",
+                  "quote": "Agli effetti del computo dei vari istituti economici contrattuali, la paga giornaliera si ottiene dividendo quella mensile per 26. Quella oraria si ottiene dividendo la paga mensile per 169."
+                },
+                "transformation": "The monthly pay of a floriculture OTI is the hourly minimum times 169, the inverse of art. 50 (note 12: 'il salario per gli operai florovivaisti è riferito alla paga oraria'): 7.71 of Tabella n. 2 of the CCNL 23 May 2022 (PDF p. 84) x 169 = 1302.99, rounded to the cent.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-16T00:00:00Z",
+                  "effective_from": "2023-01-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2026-06-01",
+              "value": "1367.21",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-operai-agricoli-florovivaisti-2022-2025",
+                    "title": "CCNL operai agricoli e florovivaisti 2022-2025",
+                    "kind": "associazione",
+                    "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                    "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+                  },
+                  "page": "53",
+                  "section": "Art. 50, Retribuzione, and note 12",
+                  "quote": "Agli effetti del computo dei vari istituti economici contrattuali, la paga giornaliera si ottiene dividendo quella mensile per 26. Quella oraria si ottiene dividendo la paga mensile per 169."
+                },
+                "transformation": "The monthly pay of a floriculture OTI is the hourly minimum times 169, the inverse of art. 50 (note 12: 'il salario per gli operai florovivaisti è riferito alla paga oraria'): 8.09 of Tabella n. 2 of the accordo of 27 October 2023 x 169 = 1367.21, rounded to the cent.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-16T00:00:00Z",
+                  "effective_from": "2025-01-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-06-01",
+              "valid_until": null,
+              "value": "1436.94",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-operai-agricoli-florovivaisti-2022-2025",
+                    "title": "CCNL operai agricoli e florovivaisti 2022-2025",
+                    "kind": "associazione",
+                    "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                    "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+                  },
+                  "page": "53",
+                  "section": "Art. 50, Retribuzione, and note 12",
+                  "quote": "Agli effetti del computo dei vari istituti economici contrattuali, la paga giornaliera si ottiene dividendo quella mensile per 26. Quella oraria si ottiene dividendo la paga mensile per 169."
+                },
+                "transformation": "The monthly pay of a floriculture OTI is the hourly minimum times 169, the inverse of art. 50 (note 12: 'il salario per gli operai florovivaisti è riferito alla paga oraria'): 8.50259 of Tabella n. 2 of the verbale of 28 May 2026 x 169 = 1436.94, rounded to the cent.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-16T00:00:00Z",
+                  "effective_from": "2026-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            }
+          ]
         }
       }
     },
@@ -972,6 +1153,96 @@
           "verification_status": "unverified",
           "effective_from": "2020-01-01"
         }
+      },
+      "base_salary_by_subsector": {
+        "florovivaisti": {
+          "periods": [
+            {
+              "valid_from": "2023-01-01",
+              "valid_until": "2025-01-01",
+              "value": "1421.29",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-operai-agricoli-florovivaisti-2022-2025",
+                    "title": "CCNL operai agricoli e florovivaisti 2022-2025",
+                    "kind": "associazione",
+                    "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                    "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+                  },
+                  "page": "53",
+                  "section": "Art. 50, Retribuzione, and note 12",
+                  "quote": "Agli effetti del computo dei vari istituti economici contrattuali, la paga giornaliera si ottiene dividendo quella mensile per 26. Quella oraria si ottiene dividendo la paga mensile per 169."
+                },
+                "transformation": "The monthly pay of a floriculture OTI is the hourly minimum times 169, the inverse of art. 50 (note 12: 'il salario per gli operai florovivaisti è riferito alla paga oraria'): 8.41 of Tabella n. 2 of the CCNL 23 May 2022 (PDF p. 84) x 169 = 1421.29, rounded to the cent.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-16T00:00:00Z",
+                  "effective_from": "2023-01-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2025-01-01",
+              "valid_until": "2026-06-01",
+              "value": "1492.27",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-operai-agricoli-florovivaisti-2022-2025",
+                    "title": "CCNL operai agricoli e florovivaisti 2022-2025",
+                    "kind": "associazione",
+                    "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                    "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+                  },
+                  "page": "53",
+                  "section": "Art. 50, Retribuzione, and note 12",
+                  "quote": "Agli effetti del computo dei vari istituti economici contrattuali, la paga giornaliera si ottiene dividendo quella mensile per 26. Quella oraria si ottiene dividendo la paga mensile per 169."
+                },
+                "transformation": "The monthly pay of a floriculture OTI is the hourly minimum times 169, the inverse of art. 50 (note 12: 'il salario per gli operai florovivaisti è riferito alla paga oraria'): 8.83 of Tabella n. 2 of the accordo of 27 October 2023 x 169 = 1492.27, rounded to the cent.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-16T00:00:00Z",
+                  "effective_from": "2025-01-01",
+                  "verification_status": "unverified"
+                }
+              }
+            },
+            {
+              "valid_from": "2026-06-01",
+              "valid_until": null,
+              "value": "1568.38",
+              "provenance": {
+                "status": "derived",
+                "location": {
+                  "source_document": {
+                    "document_id": "ccnl-operai-agricoli-florovivaisti-2022-2025",
+                    "title": "CCNL operai agricoli e florovivaisti 2022-2025",
+                    "kind": "associazione",
+                    "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                    "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+                  },
+                  "page": "53",
+                  "section": "Art. 50, Retribuzione, and note 12",
+                  "quote": "Agli effetti del computo dei vari istituti economici contrattuali, la paga giornaliera si ottiene dividendo quella mensile per 26. Quella oraria si ottiene dividendo la paga mensile per 169."
+                },
+                "transformation": "The monthly pay of a floriculture OTI is the hourly minimum times 169, the inverse of art. 50 (note 12: 'il salario per gli operai florovivaisti è riferito alla paga oraria'): 9.28033 of Tabella n. 2 of the verbale of 28 May 2026 x 169 = 1568.38, rounded to the cent.",
+                "extraction": {
+                  "method": "ai",
+                  "model": "claude-opus-5-5",
+                  "extraction_timestamp": "2026-11-16T00:00:00Z",
+                  "effective_from": "2026-06-01",
+                  "verification_status": "unverified"
+                }
+              }
+            }
+          ]
+        }
       }
     }
   ],
@@ -1008,7 +1279,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "c092adad1c9dbd343b2c3bd80c83aa00184c5922131ea5d48d3764e35cb71b8d",
+    "source_hash": "9259e5b218459f24f50cf7bb4684b4894014858c8a6d4981aca7743229f5bb18",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
