@@ -43,7 +43,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 35 verified / 15 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 38 verified / 15 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 sugli elementi retributivi di seguito specificati, propri del lavoratore non apprendista avente inquadramento
 corrispondente a quello al cui conseguimento è finalizzato il contratto: paga base, ex indennità di contingenza,
 E.D.R., eventuali elementi derivanti dalla contrattazione di secondo livello: |
+| 2026-11-16 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base, bands[0:night], bands[1:holiday], none.shift_work.<br>Left out: bands[2:sunday]: more sunday bands the engine cannot tell apart; bands[3:sunday]: more sunday bands the engine cannot tell apart. |
 
 ## Salary table
 

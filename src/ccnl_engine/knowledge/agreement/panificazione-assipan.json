@@ -194,6 +194,29 @@
         "checked": [
           "levels[].fixed_allowances[].apprenticeship_pct_relevant"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-panificazione-assipan-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://assipan.it/wp-content/uploads/2025/03/CCNL-della-Panificazione-26-febbraio-2025.pdf",
+            "sha256": "8533abbd8719e1de2e7f3fa2f228ebe44e62154d27b2e9a3120bd47ab31e1abf"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[0:night], bands[1:holiday], none.shift_work.",
+          "Left out: bands[2:sunday]: more sunday bands the engine cannot tell apart; bands[3:sunday]: more sunday bands the engine cannot tell apart."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -2097,13 +2120,13 @@
     "effective_until": "2026-12-31",
     "source": "https://www.assipan.it/contratto-collettivo-nazionale-lavoro/",
     "verification_status": "unverified",
-    "source_hash": "6e7de70534a5962e11eab93c0b5d63adbfdc9b27f3069261dbf8284fcb7a5d8a",
+    "source_hash": "d9a76e1c6b544ad9037606fe6e7c6479be761fa6013709d9de871f67206ffc14",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "gross_incl_allowances",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -2250,6 +2273,116 @@
             }
           }
         }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "ipan-it-wp-content-uploads-2025-03-ccnl-della-panificazione-26-febbraio-2025-pdf",
+            "title": "https://assipan.it/wp-content/uploads/2025/03/CCNL-della-Panificazione-26-febbraio-2025.pdf",
+            "kind": "associazione",
+            "url": "https://assipan.it/wp-content/uploads/2025/03/CCNL-della-Panificazione-26-febbraio-2025.pdf",
+            "sha256": "8533abbd8719e1de2e7f3fa2f228ebe44e62154d27b2e9a3120bd47ab31e1abf"
+          },
+          "page": "63",
+          "section": "Art. 50 bis, comma 1",
+          "quote": "Il trattamento economico dei lavoratori dipendenti da panifici ad indirizzo produttivo industriale dovrà comprendere: a) paga base; b) indennità di contingenza all’1/11/91 (è inserito nella paga base delle seguenti tabelle); c) premio di produzione nazionale; d) scatti di anzianità. (Nota. Si precisa che l’EDR è inserito nelle seguenti tabelle)"
+        },
+        "transformation": "The supplements are measured on gross_incl_allowances over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-panificazione-assipan-time-supplements"
+        }
+      },
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_0",
+          "description": "Maggiorazione per lavoro ordinario dalle 21:00 alle 04:00; la definizione di periodo notturno nell'art. 34 è invece 22:00–05:00.",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2024-02-01",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ipan-it-wp-content-uploads-2025-03-ccnl-della-panificazione-26-febbraio-2025-pdf",
+                "title": "https://assipan.it/wp-content/uploads/2025/03/CCNL-della-Panificazione-26-febbraio-2025.pdf",
+                "kind": "associazione",
+                "url": "https://assipan.it/wp-content/uploads/2025/03/CCNL-della-Panificazione-26-febbraio-2025.pdf",
+                "sha256": "8533abbd8719e1de2e7f3fa2f228ebe44e62154d27b2e9a3120bd47ab31e1abf"
+              },
+              "page": "54",
+              "section": "Art. 34 bis, comma 1",
+              "quote": "Il lavoro svolto tra le ore 21 e fino alle ore 4, sarà compensato con una maggiorazione del 50 % sulla retribuzione normale."
+            },
+            "transformation": "Maggiorazione per lavoro ordinario dalle 21:00 alle 04:00; la definizione di periodo notturno nell'art. 34 è invece 22:00–05:00. The night hours inside the normal schedule are paid by the monthly pay: the band adds the 50% alone.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2024-02-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-panificazione-assipan-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_1",
+          "description": "Festività nazionali e infrasettimanali; le ore effettivamente prestate sono retribuite con maggiorazione.",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-02-26",
+                "valid_until": null,
+                "value": "0.20"
+              }
+            ]
+          },
+          "hours_paid_apart": true,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ipan-it-wp-content-uploads-2025-03-ccnl-della-panificazione-26-febbraio-2025-pdf",
+                "title": "https://assipan.it/wp-content/uploads/2025/03/CCNL-della-Panificazione-26-febbraio-2025.pdf",
+                "kind": "associazione",
+                "url": "https://assipan.it/wp-content/uploads/2025/03/CCNL-della-Panificazione-26-febbraio-2025.pdf",
+                "sha256": "8533abbd8719e1de2e7f3fa2f228ebe44e62154d27b2e9a3120bd47ab31e1abf"
+              },
+              "page": "54",
+              "section": "Art. 35, comma 1",
+              "quote": "Il lavoro prestato in giornate festive nazionali ed infrasettimanali ai sensi di legge sarà retribuito in misura delle effettive prestazioni con la maggiorazione del 20% sulla retribuzione normale."
+            },
+            "transformation": "Festività nazionali e infrasettimanali; le ore effettivamente prestate sono retribuite con maggiorazione.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2025-02-26",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-panificazione-assipan-time-supplements"
+            }
+          }
+        }
       ]
     },
     "absence_rules": {
@@ -2380,6 +2513,66 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://a, sha256 8533abbd8719e1de2e7f3fa2f228ebe44e62154d27b2e9a3120bd47ab31e1abf)."
+      }
+    },
+    "capability_basis": {
+      "shift_work": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ipan-it-wp-content-uploads-2025-03-ccnl-della-panificazione-26-febbraio-2025-pdf",
+              "title": "https://assipan.it/wp-content/uploads/2025/03/CCNL-della-Panificazione-26-febbraio-2025.pdf",
+              "kind": "associazione",
+              "url": "https://assipan.it/wp-content/uploads/2025/03/CCNL-della-Panificazione-26-febbraio-2025.pdf",
+              "sha256": "8533abbd8719e1de2e7f3fa2f228ebe44e62154d27b2e9a3120bd47ab31e1abf"
+            },
+            "page": "51",
+            "section": "Art. 31 ter, comma 3",
+            "quote": "Per i lavoratori dei Panifici industriali che, non fruendo del riposo intermedio di mezz’ora retribuita per la consumazione del pasto, effettuano lavoro in turni avvicendati di 8 ore consecutive quanto in prestazioni non avvicendate ma sempre di 8 ore consecutive, sarà corrisposta, in aggiunta, un’ulteriore mezz’ora retribuita."
+          },
+          "transformation": "Art. 31 ter adds a paid half hour to an 8-hour stretch without the meal break, rotating or not: paid time, not a shift premium. The CCNL sets no shift allowance.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-panificazione-assipan-time-supplements"
+          }
+        }
+      },
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ipan-it-wp-content-uploads-2025-03-ccnl-della-panificazione-26-febbraio-2025-pdf",
+              "title": "https://assipan.it/wp-content/uploads/2025/03/CCNL-della-Panificazione-26-febbraio-2025.pdf",
+              "kind": "associazione",
+              "url": "https://assipan.it/wp-content/uploads/2025/03/CCNL-della-Panificazione-26-febbraio-2025.pdf",
+              "sha256": "8533abbd8719e1de2e7f3fa2f228ebe44e62154d27b2e9a3120bd47ab31e1abf"
+            },
+            "page": "63",
+            "section": "Art. 50 bis",
+            "quote": "Il trattamento economico dei lavoratori dipendenti da panifici ad indirizzo produttivo industriale dovrà comprendere: a) paga base; b) indennità di contingenza all’1/11/91 (è inserito nella paga base delle seguenti tabelle); c) premio di produzione nazionale; d) scatti di anzianità."
+          },
+          "transformation": "The economic treatment lists no travel allowance, and no article of the text names a trasferta, a diaria or a missione: the CCNL sets none.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-panificazione-assipan-time-supplements"
+          }
+        }
       }
     }
   }

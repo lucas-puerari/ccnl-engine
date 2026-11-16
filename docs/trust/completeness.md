@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 23/136 CCNLs**; complete except declared residuals: 4. Bundle: 177 weak rules, 250 open limitations (250 with a monetary impact), 34 declared residuals.
+**Complete: 24/136 CCNLs**; complete except declared residuals: 4. Bundle: 177 weak rules, 250 open limitations (250 with a monetary impact), 34 declared residuals.
 
 ## Declared window
 
@@ -170,7 +170,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [organizzazioni-allevatori-aia](../contracts/organizzazioni-allevatori-aia.md) | `agricoltura` | exploratory | — | 2 rows | 2 open requirements; 2 monetary limitations; 6 non-native capabilities |
 | [ortofrutticoli-agrumari](../contracts/ortofrutticoli-agrumari.md) | `commercio` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 outside_input limitation; 3 non-native capabilities |
 | [panificazione-artigianato-confartigianato](../contracts/panificazione-artigianato-confartigianato.md) | `alimentare` | exploratory | — | 3 rows | 3 open requirements; 2 monetary limitations; 1 outside_input limitation; 2 non-native capabilities; 1 declared residual |
-| [panificazione-assipan](../contracts/panificazione-assipan.md) | `alimentare` | exploratory | 2026-12-31 | 0 rows | 5 non-native capabilities |
+| [panificazione-assipan](../contracts/panificazione-assipan.md) | `alimentare` | exploratory | 2026-12-31 | 0 rows | complete; 3 limitations awaiting publication |
 | [pelli-cuoio-industria-assopellettieri](../contracts/pelli-cuoio-industria-assopellettieri.md) | `pelli-calzature` | exploratory | — | 5 rows | 5 open requirements; 3 weak rules; 2 monetary limitations; 6 non-native capabilities |
 | [portieri-fabbricati-confedilizia](../contracts/portieri-fabbricati-confedilizia.md) | `servizi-immobiliari` | exploratory | — | 3 rows | 3 open requirements; 1 monetary limitation; 2 outside_input limitations; 6 non-native capabilities |
 | [poste-italiane-k700](../contracts/poste-italiane-k700.md) | `servizi-postali` | exploratory | — | 4 rows | 4 open requirements; 2 monetary limitations; 2 outside_input limitations; 8 non-native capabilities |
