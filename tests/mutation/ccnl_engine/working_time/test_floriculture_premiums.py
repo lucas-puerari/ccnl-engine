@@ -75,7 +75,12 @@ def test_hand_computed_hours_by_subsector(
         assert rate.derived
         assert rate.multiplier * event.hours * Decimal(10) == Decimal(expected)
     ordinary = {band.work.value: band for band in supplements.supplement_bands}
-    assert set(ordinary) == {"holiday", "night", "night_holiday"}
+    shifts = (
+        {"night_shift", "night_holiday_shift"}
+        if subsector == "agricoli"
+        else {"night_shift"}
+    )
+    assert set(ordinary) == {"holiday", "night", "night_holiday", *shifts}
     for work, expected in (("holiday", holiday), ("night", night)):
         historical = ordinary[work].rate.period_at(date(2022, 6, 1))
         assert historical is not None  # The cited 2022-2025 text starts in 2022.

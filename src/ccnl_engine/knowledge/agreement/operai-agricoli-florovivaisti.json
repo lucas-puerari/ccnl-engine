@@ -230,7 +230,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Agricultural and floriculture premiums are selected by EmployerProfile.subsector. Remaining: the 10% regular-shift rule for night AND holiday work (Art. 43 p. 48, Art. 44 p. 49), provincial special tariffs, the third element on overtime/holiday/night hours, and the bank of hours are not fully routed; provincial contractual wages require local inputs.",
+        "text": "Agricultural and floriculture premiums are selected by EmployerProfile.subsector; the 10% of night work in regular shifts (Art. 43 p. 48, Art. 44 p. 49) is paid on a ShiftWorkEvent of kind night. Remaining: the 10% of holiday work in regular shifts without night work (Art. 43), the provincial special tariffs of agriturismo, acquacoltura and the other special works, the terzo elemento on the overtime, holiday and night hours of an OTD, and the bank of hours; provincial contractual wages require local inputs.",
         "capability": "overtime",
         "monetary_impact": "yes",
         "limitation": {
@@ -238,7 +238,7 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Supply the contractual hourly wage and provincial special tariffs; route the 10% regular-shift night and holiday exceptions, the third element on these hours and bank-of-hours elections separately."
+          "remediation": "Supply the contractual hourly wage and provincial special tariffs; route the 10% of holiday work in regular shifts, the third element on these hours and bank-of-hours elections separately."
         }
       },
       {
@@ -1271,7 +1271,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "7fb5c812ef9eb059f0257772d992d27f19f351e6b655d509ab86351883b25970",
+    "source_hash": "2cd47cf7434a9223f23605f3e7d9263030d703e9a4b67013ec7d828873b2c88d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1711,7 +1711,7 @@
               }
             ]
           },
-          "hours_paid_apart": null,
+          "hours_paid_apart": false,
           "subsectors": [
             "agricoli"
           ],
@@ -1846,7 +1846,7 @@
               }
             ]
           },
-          "hours_paid_apart": null,
+          "hours_paid_apart": false,
           "subsectors": [
             "florovivaisti"
           ],
@@ -1920,6 +1920,132 @@
               "verified_by": "claude-opus-5-5",
               "verified_at": "2026-11-09T08:08:53Z",
               "review_id": "2026-11-09-floriculture-hourly-correction"
+            }
+          }
+        },
+        {
+          "code": "SHIFT_AGRICOLI_NIGHT",
+          "description": "Agricultural night work in regular periodic shifts (art. 43)",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.10"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "subsectors": [
+            "agricoli"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-operai-agricoli-2022-2025-flai",
+                "title": "CCNL operai agricoli e florovivaisti 23 maggio 2022 (FLAI CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                "published_on": "2022-05-23",
+                "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+              },
+              "page": "48",
+              "section": "Art. 43 (Lavoro straordinario, festivo, notturno operai agricoli)",
+              "quote": "Per il lavoro notturno e/o festivo che cada in regolari turni periodici e riguardante mansioni specifiche rientranti nelle normali attribuzioni del lavoratore, si farà luogo soltanto ad una maggiorazione del 10 per cento."
+            },
+            "transformation": "In place of the 40% (45% festivo notturno) when the night work falls in regular periodic shifts and concerns specific duties of the worker's normal attribution: both conditions, which the caller states by posting a ShiftWorkEvent of kind night (a HolidayWorkEvent of kind night_holiday_shift on a holiday) instead of a NightShiftEvent. Only the premium is posted; the hours are ordinary hours of the month.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            }
+          }
+        },
+        {
+          "code": "SHIFT_AGRICOLI_NIGHT_HOLIDAY",
+          "description": "Agricultural night holiday work in regular periodic shifts (art. 43)",
+          "work": "night_holiday_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.10"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "subsectors": [
+            "agricoli"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-operai-agricoli-2022-2025-flai",
+                "title": "CCNL operai agricoli e florovivaisti 23 maggio 2022 (FLAI CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                "published_on": "2022-05-23",
+                "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+              },
+              "page": "48",
+              "section": "Art. 43 (Lavoro straordinario, festivo, notturno operai agricoli)",
+              "quote": "Per il lavoro notturno e/o festivo che cada in regolari turni periodici e riguardante mansioni specifiche rientranti nelle normali attribuzioni del lavoratore, si farà luogo soltanto ad una maggiorazione del 10 per cento."
+            },
+            "transformation": "In place of the 40% (45% festivo notturno) when the night work falls in regular periodic shifts and concerns specific duties of the worker's normal attribution: both conditions, which the caller states by posting a ShiftWorkEvent of kind night (a HolidayWorkEvent of kind night_holiday_shift on a holiday) instead of a NightShiftEvent. Only the premium is posted; the hours are ordinary hours of the month. On a public holiday the hours are paid on top by law (L. 260/1949 art. 5).",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
+            }
+          }
+        },
+        {
+          "code": "SHIFT_FLOROVIVAISTI_NIGHT",
+          "description": "Floriculture night work in regular periodic shifts or night duties (art. 44)",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2022-01-01",
+                "valid_until": null,
+                "value": "0.10"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "subsectors": [
+            "florovivaisti"
+          ],
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-operai-agricoli-2022-2025-flai",
+                "title": "CCNL operai agricoli e florovivaisti 23 maggio 2022 (FLAI CGIL)",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                "published_on": "2022-05-23",
+                "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+              },
+              "page": "49",
+              "section": "Art. 44 (Lavoro straordinario, festivo, notturno operai florovivaisti)",
+              "quote": "Quando il lavoro notturno cada in regolari turni periodici o riguardi mansioni specifiche rientranti nelle normali attribuzioni del lavoratore, mansioni che, per la loro natura e per esigenze tecniche debbono eseguirsi anche di notte, si farà luogo ad una maggiorazione del 10 per cento."
+            },
+            "transformation": "In place of the 48% when the night work falls in regular periodic shifts or concerns duties that must be carried out also at night: either condition, which the caller states by posting a ShiftWorkEvent of kind night instead of a NightShiftEvent. Only the premium is posted.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2022-01-01",
+              "verification_status": "unverified"
             }
           }
         }
@@ -2348,6 +2474,35 @@
           "verified_at": "2026-11-16T00:00:00Z",
           "verification_status": "verified",
           "review_id": "2026-11-16-ai-operai-agricoli-sunday-holidays"
+        }
+      }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "verbale-ccnl-operai-agricoli-2026-05-28-flai",
+              "title": "Verbale di accordo di rinnovo del CCNL operai agricoli e florovivaisti, 28 maggio 2026 (FLAI CGIL)",
+              "kind": "associazione",
+              "url": "https://www.flai.it/wp-content/uploads/2018/11/Verbale-di-accordo-CCNL-operai-agricoli-e-florovivaisti-maggio-2026.pdf",
+              "published_on": "2026-05-28",
+              "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
+            },
+            "page": "60",
+            "section": "Allegato n. 5, verbale acquacoltura, punto 2",
+            "quote": "2) che i contratti provinciali possono disciplinare gli aspetti relativi alle trasferte (o missioni) del personale dipendente dalle imprese che esercitano attività di acquacoltura, e in particolare le modalità di rimborso spese e la determinazione della relativa indennità"
+          },
+          "transformation": "The national text sets no travel allowance: only the trasferte of the acquacoltura enterprises are left to the provincial contracts. A daily amount of a provincial or company agreement is the TravelAllowanceEvent.daily_amount.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2022-06-01",
+            "verification_status": "unverified"
+          }
         }
       }
     }

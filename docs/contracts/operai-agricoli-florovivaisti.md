@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 23 verified / 6 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 23 verified / 9 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -165,11 +165,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** State the existing employer sub-sector and the February 1 contractual daily wage by year for permanent workers; source or supply continuous days with the employer and encode the 45-day fixed-term supplement after day 30.
 
 !!! warning "operai-agricoli-florovivaisti/regular_night_shift_and_local_tariffs · overtime · impact yes · open"
-    Agricultural and floriculture premiums are selected by EmployerProfile.subsector. Remaining: the 10% regular-shift rule for night AND holiday work (Art. 43 p. 48, Art. 44 p. 49), provincial special tariffs, the third element on overtime/holiday/night hours, and the bank of hours are not fully routed; provincial contractual wages require local inputs.
+    Agricultural and floriculture premiums are selected by EmployerProfile.subsector; the 10% of night work in regular shifts (Art. 43 p. 48, Art. 44 p. 49) is paid on a ShiftWorkEvent of kind night. Remaining: the 10% of holiday work in regular shifts without night work (Art. 43), the provincial special tariffs of agriturismo, acquacoltura and the other special works, the terzo elemento on the overtime, holiday and night hours of an OTD, and the bank of hours; provincial contractual wages require local inputs.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Supply the contractual hourly wage and provincial special tariffs; route the 10% regular-shift night and holiday exceptions, the third element on these hours and bank-of-hours elections separately.
+    **Remediation:** Supply the contractual hourly wage and provincial special tariffs; route the 10% of holiday work in regular shifts, the third element on these hours and bank-of-hours elections separately.
 
 !!! warning "operai-agricoli-florovivaisti/agricoli_apprentice_provincial_levels · base_salary · impact unknown · open"
     APPRENTICESHIP (Allegato n. 10, CCNL 23 May 2022, pp. 122-123): two levels below the destination in the first 12 months, one level below in the next 12, the destination in the last 12 (Area 1 and 2: 36 months; Area 3: 24 months, from one level below, only for the highest provincial level of the area). The levels are the provincial professional levels inside each area, not the three national areas the file holds: the file places an Area1 apprentice at the Area3 and then the Area2 minimum, a reading the text does not support. A fixed-term apprentice operaio is never paid below the lowest level of the destination area (p. 125).
