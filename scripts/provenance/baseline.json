@@ -119,12 +119,6 @@
     "agreement/farmacie-municipalizzate-assofarm.json": {
       "additional_months[2022-07-01]": "assumed"
     },
-    "agreement/farmacie-private-h121.json": {
-      "additional_months[2021-11-01]": "assumed"
-    },
-    "agreement/farmacie-rurali-sussidiate-h121.json": {
-      "additional_months[2021-11-01]": "assumed"
-    },
     "agreement/federcasa.json": {
       "additional_months[2024-12-01]": "assumed"
     },

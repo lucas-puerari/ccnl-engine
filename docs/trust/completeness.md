@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 7/136 CCNLs**; complete except declared residuals: 1. Bundle: 250 weak rules, 262 open limitations (262 with a monetary impact), 32 declared residuals.
+**Complete: 7/136 CCNLs**; complete except declared residuals: 1. Bundle: 248 weak rules, 262 open limitations (262 with a monetary impact), 32 declared residuals.
 
 ## Declared window
 
@@ -124,8 +124,8 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [enti-ricerca-aran](../contracts/enti-ricerca-aran.md) | `pubblico-impiego` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [esercizi-cinematografici-anec](../contracts/esercizi-cinematografici-anec.md) | `spettacolo-media` | exploratory | — | 6 rows | 6 open requirements; 1 weak rule; 4 monetary limitations; 1 outside_input limitation; 7 non-native capabilities |
 | [farmacie-municipalizzate-assofarm](../contracts/farmacie-municipalizzate-assofarm.md) | `farmacie` | exploratory | — | 4 rows | 4 open requirements; 1 weak rule; 3 monetary limitations; 7 non-native capabilities |
-| [farmacie-private-h121](../contracts/farmacie-private-h121.md) | `farmacie` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule; 3 non-native capabilities |
-| [farmacie-rurali-sussidiate-h121](../contracts/farmacie-rurali-sussidiate-h121.md) | `farmacie` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule; 2 non-native capabilities; 1 declared residual |
+| [farmacie-private-h121](../contracts/farmacie-private-h121.md) | `farmacie` | exploratory | — | 0 rows | 2 non-native capabilities |
+| [farmacie-rurali-sussidiate-h121](../contracts/farmacie-rurali-sussidiate-h121.md) | `farmacie` | exploratory | — | 0 rows | 2 non-native capabilities; 1 declared residual |
 | [federcasa](../contracts/federcasa.md) | `servizi-immobiliari` | exploratory | — | 4 rows | 4 open requirements; 1 weak rule; 3 monetary limitations; 7 non-native capabilities |
 | [fiori-recisi-ancef](../contracts/fiori-recisi-ancef.md) | `commercio` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 monetary limitation; 4 non-native capabilities |
 | [formazione-professionale](../contracts/formazione-professionale.md) | `istruzione-formazione` | exploratory | — | 5 rows | 5 open requirements; 2 weak rules; 2 monetary limitations; 1 outside_input limitation; 6 non-native capabilities |
