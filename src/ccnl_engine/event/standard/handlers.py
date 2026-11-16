@@ -40,6 +40,7 @@ _CashEvent = _WorkTimeEvent | SickLeaveEvent | BonusEvent
 _BONUS_KINDS: dict[str, str] = {
     "productivity_bonus": "productivity_bonus_earning",
     "contract_renewal": "contract_renewal_earning",
+    "commission": "commission_earning",
 }
 
 
@@ -151,6 +152,9 @@ def _standard_event_item(
             payment_date=payment_date,
             quantity=Decimal(1),
             amount=gross,
+            kind="commission_earning"
+            if event.kind == "commission"
+            else "bonus_earning",
         )
         return bonus, _BONUS_KINDS.get(event.kind, "bonus_earning")
     return _work_time_item(event, gross, evt_id, cp, payment_date)
