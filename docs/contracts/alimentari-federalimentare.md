@@ -31,9 +31,9 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary, bilateral_funds |
+| **Limits of this contract** | base_salary |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-03-01 |
-| **Last review** | 2026-11-15 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2027-01-01 |
 
 ## Review history
@@ -78,6 +78,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-09 | claude-opus-5-5 (ai) | Sugar-industry supplementary rule 25 (physical PDF p. 230), once-only award and outstanding eligibility facts. | corrected | The sugar rule pays one normal monthly salary to clerical employees or 200 normal hourly wages to manual workers after 25 uninterrupted years in the same company or group. Early death/incapacity, direct transfers and group continuity require facts not available in the run. |
 | 2026-11-14 | claude-opus-5-5 (ai) | FASA Regolamento 2024 art. 9 and the beneficiary notices 2026 and 2027, against the research of a separate model session. | corrected | The family member fee is paid by the worker to FASA by MAV only, not through the payslip: the fasa_family_members limitation had no payroll effect and becomes an info note. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: travel. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Art. 74 quater (FASA, PDF p. 157): the worker share and the opt-in from 1 June 2029, read in the cited file by sha256. | corrected | Applied: the EUR 2 worker share from 1 June 2029 and the end of the enrolment, employer share included, of a worker who does not opt in. |
 
 ## Salary table
 
@@ -127,13 +128,6 @@ Destination levels: `5`
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "alimentari-federalimentare/health_and_bilateral_funds · bilateral_funds · impact yes · open"
-    HEALTH AND BILATERAL FUNDS (artt. 74 bis-quinquies, pp. 155-158): FASA EUR 12 (16 from 2025) for the permanent workers and the fixed terms of at least nine months in the calendar year, Cassa maternità EUR 3.50 (4.50), Cassa rischio vita EUR 30 a year and bilateralità EUR 2 (2.50) a month are modelled, with the EDR of EUR 20 of an employer outside the bilateralità, and the reduced bilateralità of EUR 1.50 (2.00 from 2025) of a company with better union-leave terms (fund bilateralita_aspettativa_sindacale). Not modelled: from 1 June 2029 the worker's optional EUR 2 a month to FASA, without which the enrolment and the company contribution end (art. 74 quater).
-
-    **Applies when:** `bilateral_funds` applies; from 2029-06-01.
-
-    **Remediation:** Model the FASA worker opt-in of 1 June 2029 as a worker fact.
 
 !!! warning "alimentari-federalimentare/sugar_twenty_five_year_award · base_salary · impact yes · open"
     Sugar-industry supplementary rule 25 (PDF p. 230): the once-only award at 25 uninterrupted years is modelled for clerical and manual workers in the sugar branch. Still missing: settlement before the threshold on death or permanent incapacity, qualifying direct transfers between sugar companies, and proof of uninterrupted service within the same company or group from the employment facts.
@@ -332,6 +326,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     SICKNESS (Art. 47): the 100% and 50% bands of the net normal pay and the comporto of 186 days in 17 months (up to 5 years) and 365 days in 24 months (over 5) are counted over the sickness of every episode in the window. Modelled: the apprentice's 'retribuzione normale, per un massimo di sei mesi per ogni anno' (Art. 21, PDF p. 50), 100% of the gross pay for 180 days a calendar year; the comporto of a fixed-term worker 'limitata al periodo massimo di 4 mesi' (prima nota a verbale, PDF p. 111), 120 days. Already right without a model: the fixed-term integration stops with the INPS indemnity (the days past the D.L. 463/1983 limit are unpaid), and the 90 more days of comporto of a disabled worker (L. 68/99) carry 'non decorrerà retribuzione né si avrà decorrenza di anzianità', which is what a day past the comporto already pays. The net pay is computed by grossing up the INPS indemnity by the worker's INPS rate, as for the Commercio file.
     
     FIRST- AND THIRD-LEVEL APPRENTICES (Art. 21 B-C, PDF pp. 56-58): modelled in dual_apprenticeship (school hours unpaid, 20% of T.E.M. and I.A.R. for the training at the employer, the table percentages at the conventional level 3A for the first level, one or two levels below the destination for the third). The contributions of these apprentices are the engine limitation dual_apprenticeship_contributions. The first school year of qualifica and diploma, which the table leaves out, is refused.
+    
+    HEALTH AND BILATERAL FUNDS (artt. 74 bis-quinquies, pp. 155-158): FASA EUR 12 (16 from 2025) for the permanent workers and the fixed terms of at least nine months in the calendar year, Cassa maternità EUR 3.50 (4.50), Cassa rischio vita EUR 30 a year and bilateralità EUR 2 (2.50) a month are modelled, with the EDR of EUR 20 of an employer outside the bilateralità, and the reduced bilateralità of EUR 1.50 (2.00 from 2025) of a company with better union-leave terms (fund bilateralita_aspettativa_sindacale). From 1 June 2029 the worker's optional EUR 2 a month to FASA, without which the enrolment and the company contribution end (art. 74 quater), is modelled: Employment.fund_opt_ins.
     
     FASA FAMILY MEMBERS (art. 74 quater): each dependent family member may be enrolled in FASA with EUR 2 a month from 1 January 2022, 'modalità attuative ... demandate al Cda del Fondo'. The FASA Regolamento 2024 (art. 9, p. 5) puts it 'a carico del lavoratore, per ciascun soggetto da iscrivere', and the notices of 2026 and 2027 collect EUR 24 a year per member 'con bollettino MAV ... Non sono ammessi altri metodi di versamento', the MAV 'intestato al lavoratore Iscritto' (https://www.fondofasa.it/wp-content/uploads/2024/05/REGOLAMENTO-2024.pdf sha256 a3a3d6186f46fc72f13ab282bf6ec9641ec756b40ca1fb395068c1c9f37118fa; https://www.fondofasa.it/wp-content/uploads/2025/11/INFORMATIVA-2026-DEFINITIVA.pdf sha256 1762a7112fb0b886d57122982da64a171e12df7a4508ae692f4e9cf95b1c0ea1, p. 2-3): the worker pays the fund directly, outside the payslip, so no payroll amount follows.
     

@@ -69,9 +69,8 @@ _CCNL_ID = re.compile(r"[a-z0-9][a-z0-9-]*|[A-Z][A-Z0-9]{3}")
 class Employment:
     """The employment relationship: contract, level and worker facts.
 
-    Facts are validated on construction: a value of the wrong type or an
-    impossible combination raises
-    :class:`~ccnl_engine.errors.InvalidInputError`, not a payslip.
+    Facts are validated on construction: a wrong type or an impossible
+    combination raises :class:`~ccnl_engine.errors.InvalidInputError`.
 
     Attributes:
         ccnl_id: CCNL slug or CNEL code; ambiguous or unknown ids raise
@@ -84,9 +83,8 @@ class Employment:
         employment_period: Start and optional end of the employment. ``None`` when not
             tracked: a year then computes every run of the calendar with full ratei.
         level_started_on: Entry date for time-limited levels (Confetra 6J).
-        weekly_hours: Contracted weekly hours.  Required for domestic CCNLs to select
-            the INPS bracket; below ``full_time_weekly_hours`` it scales the pay for
-            part time.
+        weekly_hours: Contracted weekly hours, required for domestic CCNLs (INPS
+            bracket); below ``full_time_weekly_hours`` it scales the pay.
         full_time_weekly_hours: Full-time weekly hours of the contract. ``weekly_hours``
             must not exceed it.
         full_time_week_days: Working days of the full-time week, 5 or 6; a CCNL
@@ -144,31 +142,30 @@ class Employment:
             outside the Fondo: ``True`` there raises ``InvalidInputError``, ``None`` and
             ``False`` keep the TFR in the company.
         holiday_company_offset: Company holiday compensation already paid for the
-            eligible former-worker holidays of this month. Zero states no
-            offset; ``None`` means the company arrangement is unknown.
-        prior_extra_month_amount: Annual extra remuneration month(s) already
-            received beyond the thirteenth at the contract's entry, excluding
-            merit bonuses. Zero states none; ``None`` is unknown. The amount
-            is a full monthly amount, before accrual proration.
+            eligible former-worker holidays of this month. Zero states no offset;
+            ``None`` means the company arrangement is unknown.
+        prior_extra_month_amount: Annual extra remuneration month(s) already received
+            beyond the thirteenth at the contract's entry, excluding merit bonuses,
+            as a full monthly amount before accrual proration; zero for none,
+            ``None`` unknown.
         erc_amount: Annual Elemento di Raccordo Contrattuale of the CCNL grafici
             editoriali (renewal of 19 January 2021), frozen in December 2020; zero when
             the worker has none.  It is paid with the tredicesima, by its months, and
-            sets the Byblos employer rate (1.4% with one, 1.9% without).  ``None`` means
-            not known, zero for an employment that started after December 2020: an
-            enrolled run, or a run paying the tredicesima, on that CCNL has a
-            ``missing_fact`` blocker.
+            sets the Byblos employer rate (1.4% with one, 1.9% without).  ``None``
+            (unknown; zero after December 2020 hires) gives an enrolled run, or a run
+            paying the tredicesima, on that CCNL a ``missing_fact`` blocker.
         public_end_of_service: End-of-service regime of a public employee (TFS, TFR at
             INPS or TFR at the employer), which sets the contributions to INPS Gestione
-            Dipendenti Pubblici and whether the run accrues the TFR.  ``None`` means not
-            known: a run on a CCNL of the public administrations has a ``missing_fact``
-            blocker.
-        individual_elements: Pay elements agreed with the worker above the
-            CCNL minimum (superminimo, assegno ad personam), each with its
-            own code; a list is accepted and stored as a tuple.
-        personal_withholdings: Garnishments and salary assignments notified
-            to the employer, each a
-            :class:`~ccnl_engine.personal_withholding.inputs.PersonalWithholding`
-            with its own id; a list is accepted and stored as a tuple.
+            Dipendenti Pubblici and whether the run accrues the TFR.  ``None`` (unknown)
+            gives a run on a public-administration CCNL a ``missing_fact`` blocker.
+        individual_elements: Pay elements agreed with the worker above the CCNL minimum
+            (superminimo, assegno ad personam), each with its own code, as a tuple.
+        personal_withholdings: Garnishments and salary assignments notified to the
+            employer, each a :class:`~ccnl_engine.personal_withholding.inputs.
+            PersonalWithholding` with its own id; a list is stored as a tuple.
+        fund_opt_ins: Codes of the contractual funds whose optional worker share
+            the worker chose to pay (Alimentari FASA from 1 June 2029); an empty
+            set for none.  ``None`` means not known.
         tax_returns: The 730-4 statements the employer received, which the
             payslips settle (:mod:`~ccnl_engine.withholding.assistance`).
         contribution_exemption: The exemption of the employer contributions
@@ -176,13 +173,13 @@ class Employment:
             ``mothers_exemption`` that of the worker's own IVS share.
 
     Raises:
-        InvalidInputError: When a field is not of its type, a role is not a
-            non-blank string, ``weekly_hours`` exceeds ``full_time_weekly_hours``
-            or differs from the weekday hours of ``work_pattern``, ``category``,
-            ``sector`` or ``weekly_rest_day`` names no known value, the week
-            days are not 5 or 6, the pattern
-            states hours on the rest day, or two individual elements or
-            withholdings share a code.
+        InvalidInputError: When a field is not of its type, a role or fund code
+            is not a non-blank string, ``weekly_hours`` exceeds
+            ``full_time_weekly_hours`` or differs from the weekday hours of
+            ``work_pattern``, ``category``, ``sector`` or ``weekly_rest_day`` names
+            no known value, the week days are not 5 or 6, the pattern states
+            hours on the rest day, or two individual elements or withholdings
+            share a code.
     """
 
     ccnl_id: str
@@ -215,6 +212,7 @@ class Employment:
     tax_returns: tuple[Form730Settlement, ...] = ()
     contribution_exemption: ContributionExemption | None = None
     mothers_exemption: MothersExemption | None = None
+    fund_opt_ins: frozenset[str] | None = None
 
     def __post_init__(self) -> None:  # noqa: D105
         if not isinstance(self.ccnl_id, str) or not _CCNL_ID.fullmatch(self.ccnl_id):
@@ -230,9 +228,11 @@ class Employment:
         )
         require_instances("Employment", self._typed_fields(), feature=FEATURE)
         check_level_start(self.level_started_on, self.employment_period)
-        if self.roles is not None:
-            roles = frozenset_of(self.roles, "Employment.roles", _role, feature=FEATURE)
-            object.__setattr__(self, "roles", roles)
+        for name in ("roles", "fund_opt_ins"):
+            if (codes := getattr(self, name)) is not None:
+                path = f"Employment.{name}"
+                codes = frozenset_of(codes, path, _role, feature=FEATURE)
+                object.__setattr__(self, name, codes)
         object.__setattr__(self, "category", parse_worker_category(self.category))
         if self.sector is not None:
             sector = parse_enum(

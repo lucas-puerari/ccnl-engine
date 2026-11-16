@@ -27,7 +27,7 @@ from ccnl_engine.decision.models import (
     CalculationStatus,
 )
 from ccnl_engine.extra_month.settlement.services import ExtraMonthSettlement
-from ccnl_engine.fund.health.rules import excluded
+from ccnl_engine.fund.health.rules import excluded, with_opt_ins
 from ccnl_engine.ledger.models import AccountKind
 from ccnl_engine.pay_item.models import (
     EmployeeWithholdingItem,
@@ -98,7 +98,7 @@ def contractual_funds(ctx: RunContext) -> FundOutcome:
     paid = frozenset(stated or ()) | frozenset(
         f.code for f in funds if not _a_choice(f)
     )
-    return _post(ctx, funds, paid)
+    return with_opt_ins(ctx, funds, paid, _post)
 
 
 def _a_choice(fund: ContractualFund) -> bool:
