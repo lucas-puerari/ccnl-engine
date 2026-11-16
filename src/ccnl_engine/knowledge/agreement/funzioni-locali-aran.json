@@ -1359,7 +1359,7 @@
     "effective_until": "2024-12-31",
     "source": "https://www.aranagenzia.it/wp-content/uploads/2026/02/CCNL-Comparto-2022-2024-23-02-26.pdf",
     "verification_status": "unverified",
-    "source_hash": "aaead19478ebbde0c33321b0b273415cbac43e23852fc4ee489f8d47972efd3c",
+    "source_hash": "be8c6561f68880cc4e90aa5963851c663ad809d6645d7c7731a60b8b35252442",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },
@@ -1552,7 +1552,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2026-02-24",
+                "valid_from": "2022-11-16",
                 "valid_until": null,
                 "value": "0.20"
               }
@@ -1573,12 +1573,12 @@
               "section": "Art. 26 c. 5",
               "quote": "Anche in assenza di rotazione per turno, nel caso di lavoro ordinario notturno e festivo, è dovuta una maggiorazione della retribuzione oraria di cui all’art. 74, comma 2, lett. b) del CCNL del 16.11.2022 nella misura: - del 20% nel caso di prestazione lavorativa resa in via ordinaria, in fascia notturna o in giornata festiva;"
             },
-            "transformation": "Lavoro ordinario notturno senza rotazione per turno (22:00–06:00).",
+            "transformation": "Lavoro ordinario notturno senza rotazione per turno (22:00–06:00). Before the CCNL of 23 February 2026 the rule was art. 24 of the CCNL of 14 September 2000, kept in force by the CCNL Funzioni Locali 2019-2021 of 16 November 2022 (https://www.funzionepubblica.gov.it/media/h0vjkvvb/ccnl_comparto_funzioni_locali_2019-2021.pdf, sha256 28153c7ff296f9f4d9b22d0dd56e0f7e051af9848b2f3a8d7d0eac5ba35b89ee), which funds the 'compensi di cui all’art. 24, comma 1 del CCNL del 14.09.2000' (use of the fondo risorse decentrate, c. 2 lett. d, PDF p. 101); the 2026 text restates its rates on the retribuzione of art. 74 of the 2022 CCNL.",
             "extraction": {
               "method": "ai",
               "model": "gpt-6-sol",
               "extraction_timestamp": "2026-11-15T00:00:00Z",
-              "effective_from": "2026-02-24",
+              "effective_from": "2022-11-16",
               "verified_by": "claude-opus-5-5",
               "verified_at": "2026-11-15T00:00:00Z",
               "verification_status": "verified",
@@ -1593,7 +1593,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2026-02-24",
+                "valid_from": "2022-11-16",
                 "valid_until": null,
                 "value": "0.20"
               }
@@ -1614,12 +1614,12 @@
               "section": "Art. 26 c. 5",
               "quote": "Anche in assenza di rotazione per turno, nel caso di lavoro ordinario notturno e festivo, è dovuta una maggiorazione della retribuzione oraria di cui all’art. 74, comma 2, lett. b) del CCNL del 16.11.2022 nella misura: - del 20% nel caso di prestazione lavorativa resa in via ordinaria, in fascia notturna o in giornata festiva;"
             },
-            "transformation": "Lavoro ordinario festivo senza rotazione per turno; il lavoro festivo infrasettimanale fuori dall'orario ordinario segue invece il comma 2.",
+            "transformation": "Lavoro ordinario festivo senza rotazione per turno; il lavoro festivo infrasettimanale fuori dall'orario ordinario segue invece il comma 2. Before the CCNL of 23 February 2026 the rule was art. 24 of the CCNL of 14 September 2000, kept in force by the CCNL Funzioni Locali 2019-2021 of 16 November 2022 (https://www.funzionepubblica.gov.it/media/h0vjkvvb/ccnl_comparto_funzioni_locali_2019-2021.pdf, sha256 28153c7ff296f9f4d9b22d0dd56e0f7e051af9848b2f3a8d7d0eac5ba35b89ee), which funds the 'compensi di cui all’art. 24, comma 1 del CCNL del 14.09.2000' (use of the fondo risorse decentrate, c. 2 lett. d, PDF p. 101); the 2026 text restates its rates on the retribuzione of art. 74 of the 2022 CCNL.",
             "extraction": {
               "method": "ai",
               "model": "gpt-6-sol",
               "extraction_timestamp": "2026-11-15T00:00:00Z",
-              "effective_from": "2026-02-24",
+              "effective_from": "2022-11-16",
               "verified_by": "claude-opus-5-5",
               "verified_at": "2026-11-15T00:00:00Z",
               "verification_status": "verified",
@@ -1634,7 +1634,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2026-02-24",
+                "valid_from": "2022-11-16",
                 "valid_until": null,
                 "value": "0.30"
               }
@@ -1655,12 +1655,12 @@
               "section": "Art. 26 c. 5",
               "quote": "- del 30% nel caso di prestazione lavorativa resa in via ordinaria in fascia notturna- festiva."
             },
-            "transformation": "Lavoro ordinario notturno-festivo senza turnazione.",
+            "transformation": "Lavoro ordinario notturno-festivo senza turnazione. Before the CCNL of 23 February 2026 the rule was art. 24 of the CCNL of 14 September 2000, kept in force by the CCNL Funzioni Locali 2019-2021 of 16 November 2022 (https://www.funzionepubblica.gov.it/media/h0vjkvvb/ccnl_comparto_funzioni_locali_2019-2021.pdf, sha256 28153c7ff296f9f4d9b22d0dd56e0f7e051af9848b2f3a8d7d0eac5ba35b89ee), which funds the 'compensi di cui all’art. 24, comma 1 del CCNL del 14.09.2000' (use of the fondo risorse decentrate, c. 2 lett. d, PDF p. 101); the 2026 text restates its rates on the retribuzione of art. 74 of the 2022 CCNL.",
             "extraction": {
               "method": "ai",
               "model": "gpt-6-sol",
               "extraction_timestamp": "2026-11-15T00:00:00Z",
-              "effective_from": "2026-02-24",
+              "effective_from": "2022-11-16",
               "verified_by": "claude-opus-5-5",
               "verified_at": "2026-11-15T00:00:00Z",
               "verification_status": "verified",
@@ -1675,7 +1675,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2026-02-24",
+                "valid_from": "2022-11-16",
                 "valid_until": null,
                 "value": "0.50"
               }
@@ -1696,12 +1696,12 @@
               "section": "Art. 26 c. 1",
               "quote": "Al dipendente che per particolari esigenze di servizio non usufruisce del giorno di riposo settimanale deve essere corrisposto, per ogni ora di lavoro effettivamente prestata, un compenso aggiuntivo pari al 50% della retribuzione oraria di cui all’art. 74, comma 2, lett. b) del CCNL del 16.11.2022, con diritto al riposo compensativo di almeno 24 ore consecutive da fruire di regola entro 15 giorni e comunque non oltre il bimestre successivo."
             },
-            "transformation": "Lavoro nel giorno di riposo settimanale non goduto, con riposo compensativo; compenso aggiuntivo pari al 50% per ora effettiva.",
+            "transformation": "Lavoro nel giorno di riposo settimanale non goduto, con riposo compensativo; compenso aggiuntivo pari al 50% per ora effettiva. Before the CCNL of 23 February 2026 the rule was art. 24 of the CCNL of 14 September 2000, kept in force by the CCNL Funzioni Locali 2019-2021 of 16 November 2022 (https://www.funzionepubblica.gov.it/media/h0vjkvvb/ccnl_comparto_funzioni_locali_2019-2021.pdf, sha256 28153c7ff296f9f4d9b22d0dd56e0f7e051af9848b2f3a8d7d0eac5ba35b89ee), which funds the 'compensi di cui all’art. 24, comma 1 del CCNL del 14.09.2000' (use of the fondo risorse decentrate, c. 2 lett. d, PDF p. 101); the 2026 text restates its rates on the retribuzione of art. 74 of the 2022 CCNL.",
             "extraction": {
               "method": "ai",
               "model": "gpt-6-sol",
               "extraction_timestamp": "2026-11-15T00:00:00Z",
-              "effective_from": "2026-02-24",
+              "effective_from": "2022-11-16",
               "verified_by": "claude-opus-5-5",
               "verified_at": "2026-11-15T00:00:00Z",
               "verification_status": "verified",
@@ -1716,7 +1716,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2026-02-24",
+                "valid_from": "2022-11-16",
                 "valid_until": null,
                 "value": "0.10"
               }
@@ -1737,12 +1737,12 @@
               "section": "Art. 25 c. 5 lett. a",
               "quote": "a) turno diurno, antimeridiano e pomeridiano (tra le 6,00 e le 22,00): maggiorazione oraria del 10% della retribuzione di cui all’art. 74, comma 2, lett. c) del CCNL 16.11.2022;"
             },
-            "transformation": "Turno diurno antimeridiano o pomeridiano, 06:00–22:00.",
+            "transformation": "Turno diurno antimeridiano o pomeridiano, 06:00–22:00. Before the CCNL of 23 February 2026 the same rates were in art. 23 c. 5 of the CCNL Funzioni Locali 2019-2021 of 16 November 2022 (https://www.funzionepubblica.gov.it/media/h0vjkvvb/ccnl_comparto_funzioni_locali_2019-2021.pdf, sha256 28153c7ff296f9f4d9b22d0dd56e0f7e051af9848b2f3a8d7d0eac5ba35b89ee): 'a) turno diurno [...] maggiorazione oraria del 10% [...] b) turno notturno o festivo: maggiorazione oraria del 30% [...] c) turno festivo-notturno: maggiorazione oraria del 50%'.",
             "extraction": {
               "method": "ai",
               "model": "gpt-6-sol",
               "extraction_timestamp": "2026-11-15T00:00:00Z",
-              "effective_from": "2026-02-24",
+              "effective_from": "2022-11-16",
               "verified_by": "claude-opus-5-5",
               "verified_at": "2026-11-15T00:00:00Z",
               "verification_status": "verified",
@@ -1757,7 +1757,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2026-02-24",
+                "valid_from": "2022-11-16",
                 "valid_until": null,
                 "value": "0.30"
               }
@@ -1778,12 +1778,12 @@
               "section": "Art. 25 c. 5 lett. b",
               "quote": "b) turno notturno o festivo: maggiorazione oraria del 30% della retribuzione di cui all’art. 74, comma 2, lett. c) del CCNL 16.11.2022;"
             },
-            "transformation": "Turno notturno (22:00–06:00) o festivo.",
+            "transformation": "Turno notturno (22:00–06:00) o festivo. Before the CCNL of 23 February 2026 the same rates were in art. 23 c. 5 of the CCNL Funzioni Locali 2019-2021 of 16 November 2022 (https://www.funzionepubblica.gov.it/media/h0vjkvvb/ccnl_comparto_funzioni_locali_2019-2021.pdf, sha256 28153c7ff296f9f4d9b22d0dd56e0f7e051af9848b2f3a8d7d0eac5ba35b89ee): 'a) turno diurno [...] maggiorazione oraria del 10% [...] b) turno notturno o festivo: maggiorazione oraria del 30% [...] c) turno festivo-notturno: maggiorazione oraria del 50%'.",
             "extraction": {
               "method": "ai",
               "model": "gpt-6-sol",
               "extraction_timestamp": "2026-11-15T00:00:00Z",
-              "effective_from": "2026-02-24",
+              "effective_from": "2022-11-16",
               "verified_by": "claude-opus-5-5",
               "verified_at": "2026-11-15T00:00:00Z",
               "verification_status": "verified",
@@ -1798,7 +1798,7 @@
           "rate": {
             "periods": [
               {
-                "valid_from": "2026-02-24",
+                "valid_from": "2022-11-16",
                 "valid_until": null,
                 "value": "0.50"
               }
@@ -1819,12 +1819,12 @@
               "section": "Art. 25 c. 5 lett. c",
               "quote": "c) turno festivo-notturno: maggiorazione oraria del 50% della retribuzione di cui all’art. 74, comma 2, lett. c) del CCNL 16.11.2022;"
             },
-            "transformation": "Turno festivo-notturno.",
+            "transformation": "Turno festivo-notturno. Before the CCNL of 23 February 2026 the same rates were in art. 23 c. 5 of the CCNL Funzioni Locali 2019-2021 of 16 November 2022 (https://www.funzionepubblica.gov.it/media/h0vjkvvb/ccnl_comparto_funzioni_locali_2019-2021.pdf, sha256 28153c7ff296f9f4d9b22d0dd56e0f7e051af9848b2f3a8d7d0eac5ba35b89ee): 'a) turno diurno [...] maggiorazione oraria del 10% [...] b) turno notturno o festivo: maggiorazione oraria del 30% [...] c) turno festivo-notturno: maggiorazione oraria del 50%'.",
             "extraction": {
               "method": "ai",
               "model": "gpt-6-sol",
               "extraction_timestamp": "2026-11-15T00:00:00Z",
-              "effective_from": "2026-02-24",
+              "effective_from": "2022-11-16",
               "verified_by": "claude-opus-5-5",
               "verified_at": "2026-11-15T00:00:00Z",
               "verification_status": "verified",
