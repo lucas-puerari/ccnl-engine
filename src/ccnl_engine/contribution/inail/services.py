@@ -9,7 +9,10 @@ premium on the pay of the year, which is the sum of the months: the run
 accrues its month, an employer cost, never a deduction from the worker.
 
 The rate is a fact of the employer's position
-(``EmployerProfile.inail_rate``): without it no premium is computed.
+(``EmployerProfile.inail_rate``); where the sector sets one rate by law for
+a category of workers (``YearRules.inail``: the operai agricoli), that rate
+applies when the employer states none.  Without either no premium is
+computed.
 """
 
 from __future__ import annotations
@@ -56,6 +59,10 @@ def inail_premium(ctx: RunContext, base: Decimal) -> InailPremium:
     """
     employer = ctx.request.employer
     rate = None if employer is None else employer.inail_rate
+    sector = ctx.contract.year_rules.inail
+    if rate is None and sector is not None and ctx.worker_category is not None:
+        share = sector.rate_by_category.get(ctx.worker_category)
+        rate = None if share is None else share * _PER_MILLE
     if rate is None:
         return InailPremium()
     amount = money(base * rate / _PER_MILLE)

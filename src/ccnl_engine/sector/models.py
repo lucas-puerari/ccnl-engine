@@ -9,6 +9,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 from ccnl_engine.agreement.facade import TaxSector
 from ccnl_engine.contribution.domestic.models import DomesticInpsRates
 from ccnl_engine.contribution.headcount.models import ApprenticeRawRates, InpsRawRates
+from ccnl_engine.contribution.inail.models import SectorInail
 from ccnl_engine.contribution.rate.models import ApprenticeRates, InpsRates
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.irpef.models import (
@@ -68,6 +69,7 @@ class YearRulesRaw(BaseModel):
     inps: InpsRawRates | None = None
     apprentice: ApprenticeRawRates | None = None
     domestic_contributions: DomesticInpsRates | None = None
+    inail: SectorInail | None = None
     tfr: TfrRules
     trattamento_integrativo: TrattamentoIntegrativoRules | None = None
     ulteriore_detrazione: UlterioreDetrazioneRules | None = None
@@ -140,6 +142,7 @@ class YearRules(BaseModel):
     inps: InpsRates | None = None
     apprentice: ApprenticeRates | None = None
     domestic_contributions: DomesticInpsRates | None = None
+    inail: SectorInail | None = None
     tfr: TfrRules
     tfr_revaluation: TfrRevaluationRules | None = None
     tfr_settlement: TfrSettlementRules | None = None
