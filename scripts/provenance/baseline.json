@@ -1035,7 +1035,6 @@
     ],
     "limitation/engine.json": [
       "apprenticeship_pct_undeclared_components",
-      "dual_final_settlement_hours",
       "parental_hourly_ccnl_rule",
       "sickness_cumulation_window",
       "sunday_holiday_ccnl_clause",

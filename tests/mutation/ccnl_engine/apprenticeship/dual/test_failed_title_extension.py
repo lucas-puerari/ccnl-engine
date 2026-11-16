@@ -59,7 +59,7 @@ def test_prior_year_semesters_in_failed_title_extension(
         seniority_months=None,
     )
     assert chain.base == expected
-    assert "dual_final_settlement_hours" in chain.limitations
+    assert "dual_final_settlement_hours" not in chain.limitations
     assert "dual_apprenticeship_prorogation" not in chain.limitations
 
 

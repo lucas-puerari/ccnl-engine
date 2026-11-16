@@ -101,9 +101,12 @@ class Apprentice:
             for a CCNL that pays by the half of the programme or by its
             length; ``None`` when not stated.
         hours: Hours of the month by kind, for a first- or third-level
-            apprentice; on an extra-month or final-settlement run, the
-            hours of the period the ratei accrue over.  ``None`` when not
-            stated.
+            apprentice; on an extra-month run, the hours of the period the
+            ratei accrue over.  ``None`` when not stated.
+        ratei_hours: Hours by kind of the period the extra-month ratei
+            accrue over, for a first- or third-level apprentice whose final
+            settlement pays its month at ``hours`` and the ratei at these.
+            ``None`` when not stated.
         failed_title_extension_start_month: First month (zero-based from
             contract start) of an extension following failure to obtain the
             qualification. ``None`` when no such extension applies. Only
@@ -123,6 +126,7 @@ class Apprentice:
     school_year: int | None = None
     programme_months: int | None = None
     hours: DualHours | None = None
+    ratei_hours: DualHours | None = None
     failed_title_extension_start_month: int | None = None
     fixed_term: bool = False
     type: Literal["apprentice"] = field(default="apprentice", init=False)
@@ -166,13 +170,14 @@ class Apprentice:
             minimum=1,
             optional=True,
         )
-        require_instance(
-            self.hours,
-            DualHours,
-            "Apprentice.hours",
-            feature=_CONTRACT_FEATURE,
-            optional=True,
-        )
+        for name in ("hours", "ratei_hours"):
+            require_instance(
+                getattr(self, name),
+                DualHours,
+                f"Apprentice.{name}",
+                feature=_CONTRACT_FEATURE,
+                optional=True,
+            )
         require_bool(
             self.fixed_term, "Apprentice.fixed_term", feature=_CONTRACT_FEATURE
         )

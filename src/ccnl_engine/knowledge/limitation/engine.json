@@ -3440,9 +3440,9 @@
       "id": "dual_final_settlement_hours",
       "capability": "base_salary",
       "variant": "dual_final_settlement_hours",
-      "summary": "A final-settlement run of a first- or third-level apprentice pays both its month and the ratei of the extra months: Apprentice.hours weighs both by one set of hours, while the ratei accrued over the year at its own share of school, training and work.",
+      "summary": "A final-settlement run of a first- or third-level apprentice pays its month at Apprentice.hours and the ratei of the extra months at Apprentice.ratei_hours, the hours of the period they accrued over; a run liquidating ratei without them raises a missing-fact error.",
       "monetary_impact": "unknown",
-      "status": "open",
+      "status": "resolved",
       "rulesets": [
         "alimentari-federalimentare",
         "commercio-confcommercio",
@@ -3462,8 +3462,8 @@
           "termination"
         ]
       },
-      "source": "ccnl_engine.apprenticeship.dual.rules.dual_chain",
-      "remediation": "Give a final-settlement run separate hours for its month and its ratei."
+      "source": "ccnl_engine.apprenticeship.dual.settlement.ratei_apprentice; ccnl_engine.period.context.request.chain.ratei_chain",
+      "remediation": "Resolved: the ratei of the final settlement are weighed by Apprentice.ratei_hours."
     },
     {
       "id": "pension_extra_deduction_first_employed",

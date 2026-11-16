@@ -3,22 +3,6 @@
   "ccnl_id": "alimentari-federalimentare",
   "requirements": [
     {
-      "id": "dual_final_settlement_hours",
-      "institute": "base_salary",
-      "variant": "apprentice",
-      "discriminant": "applies_when.trigger = path",
-      "rule": "A final-settlement run of a first- or third-level apprentice pays both its month and the ratei of the extra months: Apprentice.hours weighs both by one set of hours, while the ratei accrued over the year at its own share of school, training and work.",
-      "calculation": "ccnl_engine.apprenticeship.dual.rules.dual_chain",
-      "state": "unverified",
-      "remediation": "Give a final-settlement run separate hours for its month and its ratei.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "dual_final_settlement_hours"
-        ]
-      }
-    },
-    {
       "id": "health_and_bilateral_funds",
       "institute": "bilateral_funds",
       "variant": "all",

@@ -36,6 +36,14 @@ APPRENTICE_DEFAULTS: Mapping[str, FieldDefault] = {
         FactEnforcement.REPORTED,
         "unknown hours: a first- or third-level apprentice raises a missing-fact error",
     ),
+    "Apprentice.ratei_hours": requires_fact(
+        "base_salary",
+        "employment.contract_type.ratei_hours",
+        FactEnforcement.REPORTED,
+        "unknown hours of the ratei: the final settlement of a first- or "
+        "third-level apprentice liquidating extra months raises a "
+        "missing-fact error",
+    ),
     "Apprentice.track": requires_fact(
         "base_salary",
         "employment.contract_type.track",
