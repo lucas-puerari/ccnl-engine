@@ -284,6 +284,9 @@ class SicknessRules(BaseModel):
             by seniority, on top of ``max_duration_days`` for one illness.
         comporto_bands: Comporto of one illness by seniority, in place of
             ``max_duration_days`` (ABI Art. 66 c. 1).
+        comporto_by_equity: The CCNL sets no window and the law none (art.
+            2110 c. 2 c.c.: equity): separate episodes are a declared
+            residual, ``sickness_cumulation_equity``.
         window_alternative: Windows the employer may count instead
             (``EmployerProfile.sickness_window_counting``, ABI Art. 66 c. 2:
             the 48 months before the last day of absence).
@@ -359,6 +362,7 @@ class SicknessRules(BaseModel):
     comporto_calendar_year: bool = False
     comporto_windows: tuple[ComportoWindow, ...] = ()
     comporto_bands: tuple[ComportoBand, ...] = ()
+    comporto_by_equity: bool = False
     window_alternative: tuple[ComportoWindow, ...] = ()
     carenza_by_event: CarenzaByEvent | None = None
     carenza_min_days: int | None = Field(default=None, ge=1)

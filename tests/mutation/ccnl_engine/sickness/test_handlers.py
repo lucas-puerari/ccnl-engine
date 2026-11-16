@@ -809,3 +809,28 @@ class TestCommercioApprentice:
             "sickness_hospital_stays_unknown",
             "sickness_probation_unknown",
         } <= self._codes(result)
+
+
+def test_the_agricultural_comporto_is_a_residual_left_to_equity() -> None:
+    """Operai agricoli arts. 61-62: 180 days, no window, none in the law.
+
+    Art. 2110 c. 2 c.c. leaves the period to equity and Cass. 23596/2018
+    to the judge: the same path records the declared residual, not the
+    open window limitation.
+    """
+    relapse = sickness_episode("m", date(2026, 3, 2), date(2026, 3, 3), "f")
+    result = calculate_period(
+        _req(
+            3,
+            relapse,
+            opening=_after_january_and_february(),
+            slug="operai-agricoli-florovivaisti",
+            level="Area2",
+            category=WorkerCategory.OPERAIO,
+        ),
+        repo=bundled_repository(),
+        resolver=bundled_policies(),
+    )
+    found = {lim.id for lim in result.limitations}
+    assert "sickness_cumulation_equity" in found
+    assert "sickness_cumulation_window" not in found

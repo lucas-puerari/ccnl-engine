@@ -155,6 +155,12 @@ _NOT_EXERCISED: dict[str, str] = {
         "read by the agricoltura rates only, and the cases run the Concia D2 "
         "of industria; test_services_contract_agricultural_zone shows its blocker"
     ),
+    "FixedTerm.qualifying_years": (
+        "an OTD run from 2027 raises MissingRequiredFactError without it: no "
+        "result to compare; "
+        "tests/mutation/ccnl_engine/compensation/fixed_term/test_additional_element.py "
+        "shows it"
+    ),
     "PeriodFacts.commission_average": (
         "an extra month of a commission level raises MissingRequiredFactError "
         "without it: no result to compare; "
