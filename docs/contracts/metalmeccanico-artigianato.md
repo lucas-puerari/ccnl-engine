@@ -305,12 +305,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Resolved: the first-level rates of INPS circ. 108/2018 par. 3.4 (first_level_employer_rate) and no dismissal contribution; the hours of the final settlement are dual_final_settlement_hours (review of 2026-11-16).
 
-!!! warning "dual_final_settlement_hours · base_salary · impact unknown · open"
-    A final-settlement run of a first- or third-level apprentice pays both its month and the ratei of the extra months: Apprentice.hours weighs both by one set of hours, while the ratei accrued over the year at its own share of school, training and work.
+!!! note "dual_final_settlement_hours · base_salary · impact unknown · resolved"
+    A final-settlement run of a first- or third-level apprentice pays its month at Apprentice.hours and the ratei of the extra months at Apprentice.ratei_hours, the hours of the period they accrued over; a run liquidating ratei without them raises a missing-fact error.
 
     **Applies when:** `base_salary` applies; the run takes the engine code path; contract type in apprentice; run kind in termination.
 
-    **Remediation:** Give a final-settlement run separate hours for its month and its ratei.
+    **Remediation:** Resolved: the ratei of the final settlement are weighed by Apprentice.ratei_hours.
 
 !!! note "pension_extra_deduction_first_employed · pension_fund_contribution · impact unknown · resolved"
     A worker first employed after D.Lgs. 252/2005 came into force may deduct, in the twenty years after the fifth year of membership, the contributions above the annual cap within the room the first five years left, up to half the annual cap (art. 8 c. 6). The withholding agent applies it (AdE circ. 70/E/2007: the employer excludes the deductible contributions from the income of the ritenute): the worker states the deduction of the year as PensionFundEnrolment.extra_deduction, and contributions above the cap left with none stated carry the missing fact extra_deduction.

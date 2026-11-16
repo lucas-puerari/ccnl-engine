@@ -55,7 +55,7 @@ def _thirteenth_gross(ctx: RunContext) -> Decimal | None:
     if not ratei or ratei[0].accrued <= 0:
         return None
     scaled = _apply_extra_month_policy(
-        ctx.regular_chain, ExtraMonthKind.THIRTEENTH.value, ratei[0].fraction
+        ctx.ratei_chain, ExtraMonthKind.THIRTEENTH.value, ratei[0].fraction
     )
     return money(scaled.base + scaled.seniority + scaled.allowances_total)
 
