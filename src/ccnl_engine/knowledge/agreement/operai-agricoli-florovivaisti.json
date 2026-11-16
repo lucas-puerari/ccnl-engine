@@ -311,9 +311,30 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-operai-agricoli-florovivaisti-2022-2025",
+                "title": "CCNL operai agricoli e florovivaisti 2022-2025",
+                "kind": "associazione",
+                "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+                "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+              },
+              "page": "54",
+              "section": "Artt. 52-53",
+              "quote": "Agli operai con rapporto di lavoro a tempo indeterminato spetta, al termine di ogni anno, la tredicesima mensilità pari alla retribuzione globale mensile ordinaria in vigore nel mese di dicembre. [...] Agli operai con rapporto di lavoro a tempo indeterminato deve essere corrisposta, alla data del 30 aprile di ogni anno, la quattordicesima mensilità, pari alla retribuzione globale mensile ordinaria in vigore alla stessa data."
+            },
+            "transformation": "Twelve monthly payments, the tredicesima in December (art. 52) and the quattordicesima on 30 April (art. 53): 14.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2022-06-01",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-operai-agricoli-additional-months"
+            }
           }
         }
       ]
@@ -986,7 +1007,7 @@
     "effective_until": null,
     "source": "https://ebta.it/documenti/CCNL_operai_agricoli_e_florovivaisti_2022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "e824343e57b74122451954120f993aff521a352b5458e844341ed5889dc56489",
+    "source_hash": "49bfa59edd89d4f7a474b865ee576a723d0f6d91074c6850095ee6e8e488f1bd",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1826,6 +1847,49 @@
               "review_id": "2026-11-09-ai-florovivaisti-sickness-fix"
             }
           }
+        },
+        "sunday_holidays": {
+          "holidays": [
+            "01-01",
+            "01-06",
+            "04-25",
+            "easter_monday",
+            "05-01",
+            "06-02",
+            "08-15",
+            "10-04",
+            "11-01",
+            "11-04",
+            "12-08",
+            "12-25",
+            "12-26"
+          ],
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "verbale-ccnl-operai-agricoli-2026-05-28",
+                "title": "Verbale di accordo CCNL operai agricoli e florovivaisti, 28 maggio 2026",
+                "kind": "associazione",
+                "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
+                "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
+              },
+              "page": "27",
+              "section": "Art. 42",
+              "quote": "nella ricorrenza delle feste nazionali ed infrasettimanali di cui al presente articolo, anche se cadono di domenica, verrà usato ai lavoratori il seguente trattamento: a) se non lavorano verrà corrisposta una giornata normale di paga compreso ogni accessorio;"
+            },
+            "transformation": "Every holiday of the art. 42 list falling on a Sunday is paid a normal day of pay. The Patrono is left out: when it falls on a Sunday or another holiday the next working day is the holiday instead.",
+            "extraction": {
+              "method": "ai",
+              "model": "claude-opus-5-5",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2026-05-28",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-operai-agricoli-sunday-holidays"
+            }
+          }
         }
       }
     },
@@ -1940,6 +2004,57 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c; https://e, sha256 2ef94afdbbd314e024be7131dd583db59cae60409fd8edfa3b96cbd57c80e6cd)."
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "11-04"
+      ],
+      "added_from": [
+        {
+          "valid_from": "2027-01-01",
+          "holidays": [
+            "01-01",
+            "01-06",
+            "easter_monday",
+            "08-15",
+            "10-04",
+            "11-01",
+            "12-08",
+            "12-25",
+            "12-26",
+            "patron"
+          ]
+        }
+      ],
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "verbale-ccnl-operai-agricoli-2026-05-28",
+            "title": "Verbale di accordo CCNL operai agricoli e florovivaisti, 28 maggio 2026",
+            "kind": "associazione",
+            "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
+            "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
+          },
+          "page": "25",
+          "section": "Art. 41",
+          "quote": "A far data dal 1° gennaio 2027, per gli operai agricoli a tempo indeterminato il trattamento economico da praticarsi nei giorni di festività infrasettimanali, coincidenti con la domenica, è equiparato a quello dei giorni di festività nazionali coincidenti con la domenica."
+        },
+        "transformation": "Up to 2026 the national holidays on a Sunday of the laws 260/1949 and 90/1954 (25 April, 1 May, 2 June) and the 4 November, celebrated on the first Sunday of November with the treatment of a national holiday on a Sunday; from 1 January 2027 the festività infrasettimanali of the art. 41 list too, the Patrono among them. The fixed-term workers have it in the terzo elemento of art. 50.",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2026-05-28",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-operai-agricoli-sunday-holidays"
+        }
       }
     }
   },
@@ -2395,6 +2510,49 @@
         "checked": [
           "parameters.seniority_increments.apprentice_level_amount",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-operai-agricoli-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly payments against artt. 52-53 of the CCNL 2022-2025.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf",
+            "sha256": "49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c"
+          }
+        ],
+        "findings": [
+          "14 monthly payments sourced: tredicesima (art. 52) and quattordicesima (art. 53)."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-operai-agricoli-sunday-holidays",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Holidays on a Sunday: artt. 41 and 42 of the verbale of 28 May 2026.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confagricolturaragusa.it/rinnovo-del-ccnl-per-gli-operai-agricoli-e-florovivaisti-2026-2029/verbale-di-accordo-ccnl-operai-agricoli-e-florovivaisti-28-maggio-2026/",
+            "sha256": "487f3412d7fdb68c80b4d7e5cff223888c34ce51fc109b6a9ebdecda689dd6fa"
+          }
+        ],
+        "findings": [
+          "Operai agricoli: the law's national holidays and 4 November up to 2026, the infrasettimanali added from 1 January 2027 (art. 41); florovivaisti: every listed holiday but the Patrono (art. 42)."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.sunday_holidays",
+          "work_rules.subsector_rules.florovivaisti.sunday_holidays"
         ]
       }
     ],

@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+from datetime import date
 from decimal import Decimal
 
 from pydantic import BaseModel, ConfigDict, Field
 
 from ccnl_engine.provenance.source.rule.models import RuleProvenance
 
-__all__ = ["ExHolidayPay", "SundayHolidayPay", "WeekDaysDivisor"]
+__all__ = ["AddedHolidays", "ExHolidayPay", "SundayHolidayPay", "WeekDaysDivisor"]
 
 
 class ExHolidayPay(BaseModel):
@@ -40,6 +41,23 @@ class WeekDaysDivisor(BaseModel):
 
     days: int = Field(ge=5, le=6)
     divisor: Decimal = Field(gt=0)
+
+
+class AddedHolidays(BaseModel):
+    """Holidays a later clause pays on a Sunday from a day on.
+
+    Operai agricoli art. 41: from 1 January 2027 the festività
+    infrasettimanali on a Sunday take the treatment of the national ones.
+
+    Attributes:
+        valid_from: First day the holidays are paid.
+        holidays: The day codes added.
+    """
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    valid_from: date
+    holidays: tuple[str, ...] = Field(min_length=1)
 
 
 class SundayHolidayPay(BaseModel):
@@ -83,12 +101,14 @@ class SundayHolidayPay(BaseModel):
         week_days_divisors: The divisor of a full-time week of the days
             stated in ``Employment.full_time_week_days``, in place of
             ``divisor`` (BCC art. 114: 26 on a six-day week).
+        added_from: Holidays paid only from a later day.
         provenance: The CCNL clause.
     """
 
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     holidays: tuple[str, ...] = Field(min_length=1)
+    added_from: tuple[AddedHolidays, ...] = ()
     divisor: Decimal | None = Field(default=None, gt=0)
     excluded: frozenset[str] = frozenset()
     ex_november_fourth: ExHolidayPay | None = None
@@ -100,3 +120,14 @@ class SundayHolidayPay(BaseModel):
     annual_share: Decimal | None = Field(default=None, gt=0, le=1)
     week_days_divisors: tuple[WeekDaysDivisor, ...] = ()
     provenance: RuleProvenance
+
+    def holidays_on(self, day: date) -> frozenset[str]:
+        """Return the day codes the clause pays on ``day``.
+
+        Returns:
+            The holidays, with those added from ``day`` or earlier.
+        """
+        added = (
+            code for a in self.added_from if a.valid_from <= day for code in a.holidays
+        )
+        return frozenset((*self.holidays, *added))
