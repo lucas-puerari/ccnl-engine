@@ -13,7 +13,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 | industria | 49 | 4 969 900 | 150 | 1213 | 2657 | 15 | `logistica-trasporto-confetra`, `metalmeccanico-federmeccanica` |
 | lavoro-domestico | 3 | 1 800 000 | 0 | 12 | 76 | 0 | `lavoro-domestico-non-convivente` |
 | artigianato | 8 | 1 244 505 | 34 | 151 | 373 | 2 | `metalmeccanico-artigianato` |
-| agricoltura | 9 | 752 860 | 11 | 92 | 262 | 5 | `operai-agricoli-florovivaisti` |
+| agricoltura | 9 | 752 860 | 11 | 94 | 262 | 5 | `operai-agricoli-florovivaisti` |
 | edilizia | 4 | 710 000 | 2 | 97 | 136 | 0 | `edilizia-ance` |
 | credito | 3 | 348 000 | 2 | 18 | 100 | 0 | `bancari-abi` |
 
@@ -166,7 +166,7 @@ Groups are ordered by the workers they cover, then by their weak (`assumed` or `
 
 | CCNL | Workers | Readiness | Weak | Derived | Verified | Source | Owner | Next review |
 |---|---:|---|---:|---:|---:|---|---|---|
-| [`operai-agricoli-florovivaisti`](../contracts/operai-agricoli-florovivaisti.md) (anchor) | 600 000 | exploratory | 0 | 6 | 23 | aggregator | maintainer | none |
+| [`operai-agricoli-florovivaisti`](../contracts/operai-agricoli-florovivaisti.md) (anchor) | 600 000 | exploratory | 0 | 8 | 23 | aggregator | maintainer | none |
 | [`impiegati-tecnici-agricoli`](../contracts/impiegati-tecnici-agricoli.md) | 80 000 | exploratory | 2 | 7 | 12 | aggregator | none | none |
 | [`cooperative-consorzi-agricoli`](../contracts/cooperative-consorzi-agricoli.md) | 60 000 | exploratory | 0 | 8 | 34 | party or official | maintainer | 2027-02-01 |
 | [`consorzi-di-bonifica-snebi`](../contracts/consorzi-di-bonifica-snebi.md) | 4 000 | exploratory | 2 | 10 | 50 | party or official | none | none |

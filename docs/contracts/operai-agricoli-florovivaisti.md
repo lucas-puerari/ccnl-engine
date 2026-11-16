@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 23 verified / 6 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 23 verified / 8 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -130,11 +130,11 @@ Each simplification below is a model limitation of the registry. An open limitat
     **Remediation:** Model the INAIL agricultural premium.
 
 !!! warning "operai-agricoli-florovivaisti/eban_fisa_agrifondo · bilateral_funds · impact yes · open"
-    BILATERAL FUNDS. EBAN (Ente Bilaterale Agricolo Nazionale) and FISA (Fondo Integrativo di Settore Agricolo) bilateral fund contributions are set at provincial level and not modelled. Agrifondo (supplementary pension) contributions also omitted.
+    BILATERAL FUNDS. Art. 7 (printed pp. 9-10) charges the employer for EBAN, which funds the FISA health fund of art. 66, 0.30% (OTI) and 0.60% (OTD) of the retribuzione imponibile ai fini previdenziali from 1 January 2014; a separate agreement splits it among the activities, so the FISA share the INPS solidarity contribution of 10% falls on is not known, and the OTD base includes the terzo elemento a fund rate does not read. Not computed; pass them as BilateralFundEvent. The casse extra legem / EBAT of art. 8 are provincial. Agrifondo is modelled as the employer fund AGRIFONDO.
 
     **Applies when:** `bilateral_funds` applies.
 
-    **Remediation:** Pass the provincial EBAN, FISA and Agrifondo contributions as bilateral fund events.
+    **Remediation:** Source the FISA share of the EBAN contribution and compute 0.30% / 0.60% of the INPS base, or pass them as bilateral fund events.
 
 !!! note "operai-agricoli-florovivaisti/apprentice_seniority · seniority · impact unknown · resolved"
     APPRENTICE SENIORITY: art. 54 (PDF p. 55, https://www.flai.it/wp-content/uploads/2023/11/CCNL-Operai-Agricoli-e-Florovivaisti-2022-2025.pdf, sha256 49ae5803f2081985a0e1a10f64e9019e1b999e808da9d3681eaab24c3dee674c) grants a biennial increment to 'gli operai a tempo indeterminato', and the apprenticeship is a contract 'a tempo indeterminato' (art. 41 c. 1 D.Lgs. 81/2015, https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2015-06-15;81~art41): the apprentice accrues the increments of the level of their classification (Allegato 10, p. 123), with no amount of their own.
