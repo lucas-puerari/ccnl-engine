@@ -38,8 +38,36 @@ def _in_force(
     return found
 
 
+def _of_service(
+    terms: HourlyTerms,
+    work: SupplementWork,
+    found: list[tuple[SupplementBand, Decimal]],
+    service: str | None,
+) -> list[tuple[SupplementBand, Decimal]] | str | Unstated:
+    """Return the bands of the service of the event, when the CCNL names any.
+
+    Returns:
+        The bands of ``service``, all of them when no band names a service,
+        or the reason none can be chosen.
+    """
+    services = sorted({b.service for b, _ in found if b.service is not None})
+    if not services:
+        return found
+    if service is None:
+        return Unstated(
+            "NightShiftEvent.service",
+            f"the CCNL ({terms.ruleset}) pays {work.value} work by the service "
+            f"({', '.join(services)}) and the event does not state it",
+        )
+    chosen = [(b, r) for b, r in found if b.service == service]
+    return chosen or (
+        f"the CCNL ({terms.ruleset}) has no {work.value} supplement band for the "
+        f"service {service!r}: {', '.join(services)}"
+    )
+
+
 def band_for(
-    terms: HourlyTerms, work: SupplementWork, day: date
+    terms: HourlyTerms, work: SupplementWork, day: date, service: str | None = None
 ) -> tuple[SupplementBand, Decimal] | str | Unstated:
     """Return the band of ``work`` the worker is paid with on ``day``.
 
@@ -52,6 +80,10 @@ def band_for(
             f"the CCNL ({terms.ruleset}) has no {work.value} supplement band "
             "the engine applies (see its coverage notes)"
         )
+    of_service = _of_service(terms, work, found, service)
+    if isinstance(of_service, str | Unstated):
+        return of_service
+    found = of_service
     roles = sorted({b.role for b, _ in found if b.role is not None})
     if roles and terms.roles is None:
         return Unstated(

@@ -935,7 +935,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/farmacie-private-h121",
       "ruleset_version": "2026.2",
-      "source_hash": "f7131fac12a6cd6017287cfef8fb5b59395aa9d514830a053c831f2db461d417",
+      "source_hash": "ede15c5743db519f64b0fab0674f99f91f6add2437c1c3f20f339afeb6bb1f06",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/farmacie-private-h121.json.gz"
@@ -952,7 +952,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/farmacie-rurali-sussidiate-h121",
       "ruleset_version": "2026.2",
-      "source_hash": "edea8914e91b18e5ce23476e5b48664a48c64150a79eb9b8f8b998f0dd4f75c2",
+      "source_hash": "8fcae037fe4a2ac336c45aa24aadbbc30a7d96404b19886e68d91540f4c7c931",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/farmacie-rurali-sussidiate-h121.json.gz"

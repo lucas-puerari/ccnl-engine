@@ -271,20 +271,24 @@ class TimeSupplements(BaseModel):
     def _one_band_per_work(
         cls, bands: tuple[SupplementBand, ...]
     ) -> tuple[SupplementBand, ...]:
-        """Reject two bands of the same work and role for a level.
+        """Reject two bands of the same work, role and service for a level.
 
         Returns:
             The validated bands unchanged.
 
         Raises:
-            ValueError: When two bands of one work and role share a level.
+            ValueError: When two bands of one work, role and service share
+                a level.
         """
-        groups: dict[tuple[SupplementWork, str | None], list[SupplementBand]] = {}
+        groups: dict[
+            tuple[SupplementWork, str | None, str | None], list[SupplementBand]
+        ]
+        groups = {}
         for band in bands:
-            groups.setdefault((band.work, band.role), []).append(band)
+            groups.setdefault((band.work, band.role, band.service), []).append(band)
         clashes = [
             f"{work}/{role}: {[b.code for b in found]}"
-            for (work, role), found in groups.items()
+            for (work, role, _), found in groups.items()
             if bands_overlap(found)
         ]
         if clashes:

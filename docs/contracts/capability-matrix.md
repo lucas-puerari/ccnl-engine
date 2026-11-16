@@ -104,7 +104,7 @@ formulas or caller-declared amounts.
 | `family_deductions` | Detrazioni familiari a carico (Art. 12 TUIR) | core | net | native | decided | decision | `facts.family_composition`, `current_year` | children, other_dependants, sole_parent_first_child, spouse, spouse_increase_bands | simplified | 4 / 0 / 4 / 0 |
 | `art15_deductions` | Detrazioni art. 15 TUIR al conguaglio per gli oneri trattenuti o erogati dal datore (art. 23 c. 3 DPR 600/1973): spese sanitarie e premi assicurativi | core | net | native | decided | decision | `current_year.art15_expenses` | — | implemented | none bundled |
 | `overtime` | Lavoro straordinario e supplementare | scenario | work_rules | caller_supplied | event | event | — | ccnl_band_multiplier, caller_multiplier | caller-supplied | 314 / 296 / 4 / 0 |
-| `night_work` | Lavoro notturno | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 147 / 3 / 0 / 0 |
+| `night_work` | Lavoro notturno | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 155 / 3 / 0 / 0 |
 | `holiday_work` | Lavoro festivo | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 359 / 14 / 0 / 0 |
 | `shift_work` | Lavoro a turni | scenario | work_rules | caller_supplied | event | event | — | — | caller-supplied | 134 / 4 / 0 / 0 |
 | `standby` | Reperibilità (importi del CCNL per livello) | scenario | work_rules | native | event | event | — | — | implemented | none bundled |
@@ -183,8 +183,8 @@ never grow.
 | 41 | [CCNL Dipendenti Piccola e Media Industria Alimentare (Unionalimentari-Confapi)](alimentari-pmi-unionalimentari.md) | ✅ | overtime | 273 / 38 / 1 / 0 |
 | 42 | [CCNL Dipendenti da Proprietari di Fabbricati (Confedilizia)](portieri-fabbricati-confedilizia.md) | ⚠️ | base_salary | 64 / 5 / 1 / 0 |
 | 43 | [CCNL Dipendenti delle Farmacie Municipalizzate (ASSOFARM)](farmacie-municipalizzate-assofarm.md) | ⚠️ | base_salary, inps_employer | 74 / 16 / 1 / 0 |
-| 44 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | ✅ | — | 9 / 42 / 0 / 0 |
-| 45 | [CCNL Dipendenti delle Farmacie Private - Farmacie rurali sussidiate](farmacie-rurali-sussidiate-h121.md) | ⚠️ | seniority | 9 / 42 / 0 / 0 |
+| 44 | [CCNL Dipendenti delle Farmacie Private](farmacie-private-h121.md) | ✅ | — | 13 / 42 / 0 / 0 |
+| 45 | [CCNL Dipendenti delle Farmacie Private - Farmacie rurali sussidiate](farmacie-rurali-sussidiate-h121.md) | ⚠️ | seniority | 13 / 42 / 0 / 0 |
 | 46 | [CCNL Distribuzione Cooperativa (ANCC-Coop / Confcooperative Consumo)](distribuzione-cooperativa-ancc.md) | ⚠️ | seniority | 26 / 48 / 1 / 0 |
 | 47 | [CCNL Edilizia PMI CONFAPI ANIEM](edilizia-pmi-confapi-aniem.md) | ⚠️ | base_salary, bilateral_funds, seniority, sickness, territorial_supplement | 15 / 34 / 1 / 0 |
 | 48 | [CCNL Edilizia e Affini Artigianato](edilizia-artigianato-cna.md) | ⚠️ | base_salary, bilateral_funds, inps_employer, seniority, sickness | 41 / 45 / 1 / 0 |
