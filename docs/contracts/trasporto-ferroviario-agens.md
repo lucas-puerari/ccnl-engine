@@ -33,10 +33,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
-2 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -44,7 +44,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 55 verified / 6 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 55 verified / 29 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -69,6 +69,8 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-15 | claude-opus-5-5 (ai) | Seniority table of art. 69 against the research of a separate model session; values checked on the source. | confirmed | The 16 amounts of art. 69 match the data; the article has one table for every tranche. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base, bands[0:night], bands[5:holiday].<br>Left out: bands[1:sunday]: more sunday bands the engine cannot tell apart; bands[2:sunday]: more sunday bands the engine cannot tell apart; bands[3:sunday]: more sunday bands the engine cannot tell apart; bands[4:sunday]: more sunday bands the engine cannot tell apart; bands[6:day_shift]: more day_shift bands the engine cannot tell apart; bands[7:day_shift]: more day_shift bands the engine cannot tell apart; bands[8:day_shift]: more day_shift bands the engine cannot tell apart; travel: kind bands applied by hand. |
 | 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 14 monthly pays. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Art. 68 c. 3 of the agreement of 22 March 2022 (PDF p. 9), the 16 minimi of the column 'dal 1.8.2023', read from the OCR of the scanned page. | corrected | Applied: the minimi from 1 August 2023 to 31 May 2025. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Arts. 77 and 81 of the renewal of 22 May 2025 (PDF pp. 124-125, 131-132), read from the OCR of the scanned signed text by sha256. | corrected | Applied: the shift allowances by rotation and the travel allowance by hours away. |
 
 ## Salary table
 
@@ -120,13 +122,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "trasporto-ferroviario-agens/pre_june_2025_tables · base_salary · impact yes · open"
-    PRE-JUN 2025 PERIOD NOT MODELLED. The CCNL contractual coverage runs 2024-01-01 to 2026-12-31. The Jan 2024 – May 2025 wage gap was compensated by a lump-sum una tantum paid in Aug 2025 (per redigo.info), explicitly stated as having no effect on any contractual institute ('non avranno riflessi su alcun istituto contrattuale'). Salary periods therefore start 01/06/2025. A run before 1 June 2025 reads no salary table and fails (SeriesGapError, outside the validity window of the file); the window declared for completeness starts on 1 January 2026, so only an arrears or history computation would need the earlier tables (review of 2026-10-30).
-
-    **Applies when:** `base_salary` applies; before 2025-06-01.
-
-    **Remediation:** Model the January 2024 - May 2025 salary tables if an arrears or history computation needs them.
 
 !!! note "trasporto-ferroviario-agens/seniority_amounts_before_june_2026 · seniority · impact unknown · resolved"
     SENIORITY AMOUNTS: art. 69 of the CCNL signed on 22 May 2025 (PDF p. 118) has one table of biennial increments, with no date of its own; the same amounts apply from 1 June 2025, 1 November 2025 and 1 June 2026.
@@ -306,6 +301,8 @@ Each simplification below is a model limitation of the registry. An open limitat
     FUNCTION ALLOWANCES (IND_FUN): Q1 receives +250.00/month, Q2 receives +130.00/month. Modelled as fixed_allowances with code IND_FUN effective from first salary tranche (01/06/2025). Two aggregator sources (ilccnl.it, kitech.it) agree the allowances are additive to the base tabellare.
     
     APPRENTICESHIP. I320 specifies apprendistato professionalizzante (max 36 months per Art. 29 Parte Generale). Per leggeinchiaro.it, retributive percentages are defined in the Piano Formativo Individuale (PFI) on a per-worker basis and are not published as a contract-level table. No fixed percentage or under-classification track exists in the CCNL text; the apprenticeship array is therefore empty by contract structure, not by modelling omission. Analogous to public-sector contracts where apprendistato is excluded from scope.
+    
+    SALARY BEFORE JUNE 2025: from 1 August 2023 to 31 May 2025 the minimum is the last tranche of the agreement of 22 March 2022 (art. 68 c. 3, column 'dal 1.8.2023', PDF p. 9 of the signed text, sha256 5b333f0c…); the 2025 renewal starts on 1 June 2025, and its una tantum of August 2025 for January 2024 - May 2025 'non avranno riflessi su alcun istituto contrattuale'.
     
     The ordinary FS solidarity fund contribution is modelled only when EmployerProfile.solidarity_fund_covered is true. The 2017 decree limits coverage to FS-controlled rail transport employers and undertakings already covered by the predecessor fund under art. 59(6) L. 449/1997. An unknown employer fact withholds the contribution and blocks inps_employer; false owes none. Only permanent non-executive employees, including professional apprentices, contribute. The separate additional contribution on benefits and other funds potentially applicable to uncovered employers are not determined here (D.I. 99296/2017 art. 2 and art. 6; INPS circ. 107/2018 sections 4.1-4.2).
     

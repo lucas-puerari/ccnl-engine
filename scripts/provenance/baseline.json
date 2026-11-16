@@ -826,9 +826,6 @@
       "trasporto-aereo-assaeroporti/role_conditional_allowances",
       "trasporto-aereo-assaeroporti/sickness_hospital_and_serious_illness"
     ],
-    "agreement/trasporto-ferroviario-agens.json": [
-      "trasporto-ferroviario-agens/pre_june_2025_tables"
-    ],
     "agreement/turismo-confesercenti.json": [
       "turismo-confesercenti/apprentice_net_cap"
     ],

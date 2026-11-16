@@ -107,17 +107,8 @@
         "text": "APPRENTICESHIP. I320 specifies apprendistato professionalizzante (max 36 months per Art. 29 Parte Generale). Per leggeinchiaro.it, retributive percentages are defined in the Piano Formativo Individuale (PFI) on a per-worker basis and are not published as a contract-level table. No fixed percentage or under-classification track exists in the CCNL text; the apprenticeship array is therefore empty by contract structure, not by modelling omission. Analogous to public-sector contracts where apprendistato is excluded from scope."
       },
       {
-        "kind": "simplification",
-        "text": "PRE-JUN 2025 PERIOD NOT MODELLED. The CCNL contractual coverage runs 2024-01-01 to 2026-12-31. The Jan 2024 – May 2025 wage gap was compensated by a lump-sum una tantum paid in Aug 2025 (per redigo.info), explicitly stated as having no effect on any contractual institute ('non avranno riflessi su alcun istituto contrattuale'). Salary periods therefore start 01/06/2025. A run before 1 June 2025 reads no salary table and fails (SeriesGapError, outside the validity window of the file); the window declared for completeness starts on 1 January 2026, so only an arrears or history computation would need the earlier tables (review of 2026-10-30).",
-        "capability": "base_salary",
-        "monetary_impact": "yes",
-        "limitation": {
-          "variant": "pre_june_2025_tables",
-          "applies_when": {
-            "effective_until": "2025-06-01"
-          },
-          "remediation": "Model the January 2024 - May 2025 salary tables if an arrears or history computation needs them."
-        }
+        "kind": "info",
+        "text": "SALARY BEFORE JUNE 2025: from 1 August 2023 to 31 May 2025 the minimum is the last tranche of the agreement of 22 March 2022 (art. 68 c. 3, column 'dal 1.8.2023', PDF p. 9 of the signed text, sha256 5b333f0c…); the 2025 renewal starts on 1 June 2025, and its una tantum of August 2025 for January 2024 - May 2025 'non avranno riflessi su alcun istituto contrattuale'."
       },
       {
         "kind": "info",
@@ -344,6 +335,50 @@
         "checked": [
           "parameters.additional_months"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-agens-pre-2025",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 68 c. 3 of the agreement of 22 March 2022 (PDF p. 9), the 16 minimi of the column 'dal 1.8.2023', read from the OCR of the scanned page.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2022/ccnl-mobilita-af22marzo2022.pdf",
+            "sha256": "5b333f0cb44e32859e6d626030f740c4c187de6b031413c06ed3226cfec6d234"
+          }
+        ],
+        "findings": [
+          "Applied: the minimi from 1 August 2023 to 31 May 2025."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "levels[].base_salary"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-agens-shift-travel",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Arts. 77 and 81 of the renewal of 22 May 2025 (PDF pp. 124-125, 131-132), read from the OCR of the scanned signed text by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.agens.it/wp-content/uploads/2026/02/Testo-firmato-Accordo-di-rinnovo-22-maggio-2025.pdf",
+            "sha256": "91729afaa4fe8f3d4059afd40b52d83f3d6015c085c1d747460b045ce92c4952"
+          }
+        ],
+        "findings": [
+          "Applied: the shift allowances by rotation and the travel allowance by hours away."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.travel_allowance",
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -385,7 +420,7 @@
     "hourly_divisor": {
       "periods": [
         {
-          "valid_from": "2025-06-01",
+          "valid_from": "2023-08-01",
           "valid_until": null,
           "value": "160"
         }
@@ -393,6 +428,28 @@
     },
     "additional_months": {
       "periods": [
+        {
+          "valid_from": "2023-08-01",
+          "valid_until": "2025-06-01",
+          "value": "14",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-mobilita-af22marzo2022.pdf",
+                "title": "CCNL Mobilità/Area AF, accordo di rinnovo 22 marzo 2022",
+                "kind": "associazione",
+                "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2022/ccnl-mobilita-af22marzo2022.pdf",
+                "sha256": "5b333f0cb44e32859e6d626030f740c4c187de6b031413c06ed3226cfec6d234"
+              },
+              "page": "5",
+              "section": "Premessa",
+              "quote": "La presente intesa modifica e/o sostituisce esclusivamente gli articoli e gli allegati espressamente richiamati del suddetto CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 16 dicembre 2016 le cui previsioni non variate con il presente accordo restano confermate tra le parti."
+            },
+            "transformation": "The 2022 renewal does not touch art. 70, so the 13th and 14th monthly pays of the 2016 CCNL stay in force under its tables: 14 monthly pays.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
+          }
+        },
         {
           "valid_from": "2025-06-01",
           "valid_until": null,
@@ -423,6 +480,11 @@
         "Q1": {
           "periods": [
             {
+              "valid_from": "2023-08-01",
+              "valid_until": "2025-06-01",
+              "gap_kind": "missing"
+            },
+            {
               "valid_from": "2025-06-01",
               "valid_until": null,
               "value": "47.19"
@@ -431,6 +493,11 @@
         },
         "Q2": {
           "periods": [
+            {
+              "valid_from": "2023-08-01",
+              "valid_until": "2025-06-01",
+              "gap_kind": "missing"
+            },
             {
               "valid_from": "2025-06-01",
               "valid_until": null,
@@ -441,6 +508,11 @@
         "A": {
           "periods": [
             {
+              "valid_from": "2023-08-01",
+              "valid_until": "2025-06-01",
+              "gap_kind": "missing"
+            },
+            {
               "valid_from": "2025-06-01",
               "valid_until": null,
               "value": "35.95"
@@ -449,6 +521,11 @@
         },
         "B1": {
           "periods": [
+            {
+              "valid_from": "2023-08-01",
+              "valid_until": "2025-06-01",
+              "gap_kind": "missing"
+            },
             {
               "valid_from": "2025-06-01",
               "valid_until": null,
@@ -459,6 +536,11 @@
         "B2": {
           "periods": [
             {
+              "valid_from": "2023-08-01",
+              "valid_until": "2025-06-01",
+              "gap_kind": "missing"
+            },
+            {
               "valid_from": "2025-06-01",
               "valid_until": null,
               "value": "31.77"
@@ -467,6 +549,11 @@
         },
         "B3": {
           "periods": [
+            {
+              "valid_from": "2023-08-01",
+              "valid_until": "2025-06-01",
+              "gap_kind": "missing"
+            },
             {
               "valid_from": "2025-06-01",
               "valid_until": null,
@@ -477,6 +564,11 @@
         "C1": {
           "periods": [
             {
+              "valid_from": "2023-08-01",
+              "valid_until": "2025-06-01",
+              "gap_kind": "missing"
+            },
+            {
               "valid_from": "2025-06-01",
               "valid_until": null,
               "value": "29.91"
@@ -485,6 +577,11 @@
         },
         "C2": {
           "periods": [
+            {
+              "valid_from": "2023-08-01",
+              "valid_until": "2025-06-01",
+              "gap_kind": "missing"
+            },
             {
               "valid_from": "2025-06-01",
               "valid_until": null,
@@ -495,6 +592,11 @@
         "D1": {
           "periods": [
             {
+              "valid_from": "2023-08-01",
+              "valid_until": "2025-06-01",
+              "gap_kind": "missing"
+            },
+            {
               "valid_from": "2025-06-01",
               "valid_until": null,
               "value": "28.42"
@@ -503,6 +605,11 @@
         },
         "D2": {
           "periods": [
+            {
+              "valid_from": "2023-08-01",
+              "valid_until": "2025-06-01",
+              "gap_kind": "missing"
+            },
             {
               "valid_from": "2025-06-01",
               "valid_until": null,
@@ -513,6 +620,11 @@
         "D3": {
           "periods": [
             {
+              "valid_from": "2023-08-01",
+              "valid_until": "2025-06-01",
+              "gap_kind": "missing"
+            },
+            {
               "valid_from": "2025-06-01",
               "valid_until": null,
               "value": "25.22"
@@ -521,6 +633,11 @@
         },
         "E1": {
           "periods": [
+            {
+              "valid_from": "2023-08-01",
+              "valid_until": "2025-06-01",
+              "gap_kind": "missing"
+            },
             {
               "valid_from": "2025-06-01",
               "valid_until": null,
@@ -531,6 +648,11 @@
         "E2": {
           "periods": [
             {
+              "valid_from": "2023-08-01",
+              "valid_until": "2025-06-01",
+              "gap_kind": "missing"
+            },
+            {
               "valid_from": "2025-06-01",
               "valid_until": null,
               "value": "22.66"
@@ -539,6 +661,11 @@
         },
         "E3": {
           "periods": [
+            {
+              "valid_from": "2023-08-01",
+              "valid_until": "2025-06-01",
+              "gap_kind": "missing"
+            },
             {
               "valid_from": "2025-06-01",
               "valid_until": null,
@@ -549,6 +676,11 @@
         "F1": {
           "periods": [
             {
+              "valid_from": "2023-08-01",
+              "valid_until": "2025-06-01",
+              "gap_kind": "missing"
+            },
+            {
               "valid_from": "2025-06-01",
               "valid_until": null,
               "value": "18.58"
@@ -557,6 +689,11 @@
         },
         "F2": {
           "periods": [
+            {
+              "valid_from": "2023-08-01",
+              "valid_until": "2025-06-01",
+              "gap_kind": "missing"
+            },
             {
               "valid_from": "2025-06-01",
               "valid_until": null,
@@ -631,6 +768,28 @@
       "description": "Level F2 — entry-level railway workers, unskilled support tasks",
       "base_salary": {
         "periods": [
+          {
+            "valid_from": "2023-08-01",
+            "valid_until": "2025-06-01",
+            "value": "1455.27",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-mobilita-af-2022-03-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 marzo 2022 (testo pubblicato da ORSA Ferrovie, scansione)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2022/ccnl-mobilita-af22marzo2022.pdf",
+                  "sha256": "5b333f0cb44e32859e6d626030f740c4c187de6b031413c06ed3226cfec6d234"
+                },
+                "page": "9",
+                "section": "Art. 68 c. 3, column 'dal 1.8.2023'",
+                "quote": "i valori dei minimi contrattuali mensili sono i seguenti: [...] F2 [...] 1455,27 (dal 1.8.2023)"
+              },
+              "transformation": "The last minimum of the agreement of 22 March 2022, from 1 August 2023, holds until the first minimum of the 2025 renewal on 1 June 2025; the una tantum of August 2025 for the gap is paid besides, not spread over the months.",
+              "note": "Scanned PDF: the table read from the OCR of page 9."
+            }
+          },
           {
             "valid_from": "2025-06-01",
             "valid_until": "2025-11-01",
@@ -754,6 +913,28 @@
       "base_salary": {
         "periods": [
           {
+            "valid_from": "2023-08-01",
+            "valid_until": "2025-06-01",
+            "value": "1484.37",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-mobilita-af-2022-03-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 marzo 2022 (testo pubblicato da ORSA Ferrovie, scansione)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2022/ccnl-mobilita-af22marzo2022.pdf",
+                  "sha256": "5b333f0cb44e32859e6d626030f740c4c187de6b031413c06ed3226cfec6d234"
+                },
+                "page": "9",
+                "section": "Art. 68 c. 3, column 'dal 1.8.2023'",
+                "quote": "i valori dei minimi contrattuali mensili sono i seguenti: [...] F1 [...] 1484,37 (dal 1.8.2023)"
+              },
+              "transformation": "The last minimum of the agreement of 22 March 2022, from 1 August 2023, holds until the first minimum of the 2025 renewal on 1 June 2025; the una tantum of August 2025 for the gap is paid besides, not spread over the months.",
+              "note": "Scanned PDF: the table read from the OCR of page 9."
+            }
+          },
+          {
             "valid_from": "2025-06-01",
             "valid_until": "2025-11-01",
             "value": "1579.25",
@@ -875,6 +1056,28 @@
       "description": "Level E3 — semi-skilled railway workers, qualified operational tasks",
       "base_salary": {
         "periods": [
+          {
+            "valid_from": "2023-08-01",
+            "valid_until": "2025-06-01",
+            "value": "1600.79",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-mobilita-af-2022-03-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 marzo 2022 (testo pubblicato da ORSA Ferrovie, scansione)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2022/ccnl-mobilita-af22marzo2022.pdf",
+                  "sha256": "5b333f0cb44e32859e6d626030f740c4c187de6b031413c06ed3226cfec6d234"
+                },
+                "page": "9",
+                "section": "Art. 68 c. 3, column 'dal 1.8.2023'",
+                "quote": "i valori dei minimi contrattuali mensili sono i seguenti: [...] E3 [...] 1600,79 (dal 1.8.2023)"
+              },
+              "transformation": "The last minimum of the agreement of 22 March 2022, from 1 August 2023, holds until the first minimum of the 2025 renewal on 1 June 2025; the una tantum of August 2025 for the gap is paid besides, not spread over the months.",
+              "note": "Scanned PDF: the table read from the OCR of page 9."
+            }
+          },
           {
             "valid_from": "2025-06-01",
             "valid_until": "2025-11-01",
@@ -998,6 +1201,28 @@
       "base_salary": {
         "periods": [
           {
+            "valid_from": "2023-08-01",
+            "valid_until": "2025-06-01",
+            "value": "1629.91",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-mobilita-af-2022-03-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 marzo 2022 (testo pubblicato da ORSA Ferrovie, scansione)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2022/ccnl-mobilita-af22marzo2022.pdf",
+                  "sha256": "5b333f0cb44e32859e6d626030f740c4c187de6b031413c06ed3226cfec6d234"
+                },
+                "page": "9",
+                "section": "Art. 68 c. 3, column 'dal 1.8.2023'",
+                "quote": "i valori dei minimi contrattuali mensili sono i seguenti: [...] E2 [...] 1629,91 (dal 1.8.2023)"
+              },
+              "transformation": "The last minimum of the agreement of 22 March 2022, from 1 August 2023, holds until the first minimum of the 2025 renewal on 1 June 2025; the una tantum of August 2025 for the gap is paid besides, not spread over the months.",
+              "note": "Scanned PDF: the table read from the OCR of page 9."
+            }
+          },
+          {
             "valid_from": "2025-06-01",
             "valid_until": "2025-11-01",
             "value": "1734.10",
@@ -1119,6 +1344,28 @@
       "description": "Level E1 — specialised railway workers, technical operational duties",
       "base_salary": {
         "periods": [
+          {
+            "valid_from": "2023-08-01",
+            "valid_until": "2025-06-01",
+            "value": "1702.66",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-mobilita-af-2022-03-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 marzo 2022 (testo pubblicato da ORSA Ferrovie, scansione)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2022/ccnl-mobilita-af22marzo2022.pdf",
+                  "sha256": "5b333f0cb44e32859e6d626030f740c4c187de6b031413c06ed3226cfec6d234"
+                },
+                "page": "9",
+                "section": "Art. 68 c. 3, column 'dal 1.8.2023'",
+                "quote": "i valori dei minimi contrattuali mensili sono i seguenti: [...] E1 [...] 1702,66 (dal 1.8.2023)"
+              },
+              "transformation": "The last minimum of the agreement of 22 March 2022, from 1 August 2023, holds until the first minimum of the 2025 renewal on 1 June 2025; the una tantum of August 2025 for the gap is paid besides, not spread over the months.",
+              "note": "Scanned PDF: the table read from the OCR of page 9."
+            }
+          },
           {
             "valid_from": "2025-06-01",
             "valid_until": "2025-11-01",
@@ -1242,6 +1489,28 @@
       "base_salary": {
         "periods": [
           {
+            "valid_from": "2023-08-01",
+            "valid_until": "2025-06-01",
+            "value": "1731.77",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-mobilita-af-2022-03-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 marzo 2022 (testo pubblicato da ORSA Ferrovie, scansione)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2022/ccnl-mobilita-af22marzo2022.pdf",
+                  "sha256": "5b333f0cb44e32859e6d626030f740c4c187de6b031413c06ed3226cfec6d234"
+                },
+                "page": "9",
+                "section": "Art. 68 c. 3, column 'dal 1.8.2023'",
+                "quote": "i valori dei minimi contrattuali mensili sono i seguenti: [...] D3 [...] 1731,77 (dal 1.8.2023)"
+              },
+              "transformation": "The last minimum of the agreement of 22 March 2022, from 1 August 2023, holds until the first minimum of the 2025 renewal on 1 June 2025; the una tantum of August 2025 for the gap is paid besides, not spread over the months.",
+              "note": "Scanned PDF: the table read from the OCR of page 9."
+            }
+          },
+          {
             "valid_from": "2025-06-01",
             "valid_until": "2025-11-01",
             "value": "1842.47",
@@ -1363,6 +1632,28 @@
       "description": "Level D2 — experienced railway technicians, intermediate professional roles",
       "base_salary": {
         "periods": [
+          {
+            "valid_from": "2023-08-01",
+            "valid_until": "2025-06-01",
+            "value": "1760.88",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-mobilita-af-2022-03-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 marzo 2022 (testo pubblicato da ORSA Ferrovie, scansione)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2022/ccnl-mobilita-af22marzo2022.pdf",
+                  "sha256": "5b333f0cb44e32859e6d626030f740c4c187de6b031413c06ed3226cfec6d234"
+                },
+                "page": "9",
+                "section": "Art. 68 c. 3, column 'dal 1.8.2023'",
+                "quote": "i valori dei minimi contrattuali mensili sono i seguenti: [...] D2 [...] 1760,88 (dal 1.8.2023)"
+              },
+              "transformation": "The last minimum of the agreement of 22 March 2022, from 1 August 2023, holds until the first minimum of the 2025 renewal on 1 June 2025; the una tantum of August 2025 for the gap is paid besides, not spread over the months.",
+              "note": "Scanned PDF: the table read from the OCR of page 9."
+            }
+          },
           {
             "valid_from": "2025-06-01",
             "valid_until": "2025-11-01",
@@ -1486,6 +1777,28 @@
       "base_salary": {
         "periods": [
           {
+            "valid_from": "2023-08-01",
+            "valid_until": "2025-06-01",
+            "value": "1819.08",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-mobilita-af-2022-03-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 marzo 2022 (testo pubblicato da ORSA Ferrovie, scansione)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2022/ccnl-mobilita-af22marzo2022.pdf",
+                  "sha256": "5b333f0cb44e32859e6d626030f740c4c187de6b031413c06ed3226cfec6d234"
+                },
+                "page": "9",
+                "section": "Art. 68 c. 3, column 'dal 1.8.2023'",
+                "quote": "i valori dei minimi contrattuali mensili sono i seguenti: [...] D1 [...] 1819,08 (dal 1.8.2023)"
+              },
+              "transformation": "The last minimum of the agreement of 22 March 2022, from 1 August 2023, holds until the first minimum of the 2025 renewal on 1 June 2025; the una tantum of August 2025 for the gap is paid besides, not spread over the months.",
+              "note": "Scanned PDF: the table read from the OCR of page 9."
+            }
+          },
+          {
             "valid_from": "2025-06-01",
             "valid_until": "2025-11-01",
             "value": "1935.36",
@@ -1607,6 +1920,28 @@
       "description": "Level C2 — railway professionals, specialist operational coordination",
       "base_salary": {
         "periods": [
+          {
+            "valid_from": "2023-08-01",
+            "valid_until": "2025-06-01",
+            "value": "1848.19",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-mobilita-af-2022-03-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 marzo 2022 (testo pubblicato da ORSA Ferrovie, scansione)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2022/ccnl-mobilita-af22marzo2022.pdf",
+                  "sha256": "5b333f0cb44e32859e6d626030f740c4c187de6b031413c06ed3226cfec6d234"
+                },
+                "page": "9",
+                "section": "Art. 68 c. 3, column 'dal 1.8.2023'",
+                "quote": "i valori dei minimi contrattuali mensili sono i seguenti: [...] C2 [...] 1848,19 (dal 1.8.2023)"
+              },
+              "transformation": "The last minimum of the agreement of 22 March 2022, from 1 August 2023, holds until the first minimum of the 2025 renewal on 1 June 2025; the una tantum of August 2025 for the gap is paid besides, not spread over the months.",
+              "note": "Scanned PDF: the table read from the OCR of page 9."
+            }
+          },
           {
             "valid_from": "2025-06-01",
             "valid_until": "2025-11-01",
@@ -1730,6 +2065,28 @@
       "base_salary": {
         "periods": [
           {
+            "valid_from": "2023-08-01",
+            "valid_until": "2025-06-01",
+            "value": "1877.30",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-mobilita-af-2022-03-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 marzo 2022 (testo pubblicato da ORSA Ferrovie, scansione)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2022/ccnl-mobilita-af22marzo2022.pdf",
+                  "sha256": "5b333f0cb44e32859e6d626030f740c4c187de6b031413c06ed3226cfec6d234"
+                },
+                "page": "9",
+                "section": "Art. 68 c. 3, column 'dal 1.8.2023'",
+                "quote": "i valori dei minimi contrattuali mensili sono i seguenti: [...] C1 [...] 1877,30 (dal 1.8.2023)"
+              },
+              "transformation": "The last minimum of the agreement of 22 March 2022, from 1 August 2023, holds until the first minimum of the 2025 renewal on 1 June 2025; the una tantum of August 2025 for the gap is paid besides, not spread over the months.",
+              "note": "Scanned PDF: the table read from the OCR of page 9."
+            }
+          },
+          {
             "valid_from": "2025-06-01",
             "valid_until": "2025-11-01",
             "value": "1997.30",
@@ -1851,6 +2208,28 @@
       "description": "Level B3 — railway supervisors, operational management duties",
       "base_salary": {
         "periods": [
+          {
+            "valid_from": "2023-08-01",
+            "valid_until": "2025-06-01",
+            "value": "1920.96",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-mobilita-af-2022-03-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 marzo 2022 (testo pubblicato da ORSA Ferrovie, scansione)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2022/ccnl-mobilita-af22marzo2022.pdf",
+                  "sha256": "5b333f0cb44e32859e6d626030f740c4c187de6b031413c06ed3226cfec6d234"
+                },
+                "page": "9",
+                "section": "Art. 68 c. 3, column 'dal 1.8.2023'",
+                "quote": "i valori dei minimi contrattuali mensili sono i seguenti: [...] B3 [...] 1920,96 (dal 1.8.2023)"
+              },
+              "transformation": "The last minimum of the agreement of 22 March 2022, from 1 August 2023, holds until the first minimum of the 2025 renewal on 1 June 2025; the una tantum of August 2025 for the gap is paid besides, not spread over the months.",
+              "note": "Scanned PDF: the table read from the OCR of page 9."
+            }
+          },
           {
             "valid_from": "2025-06-01",
             "valid_until": "2025-11-01",
@@ -1974,6 +2353,28 @@
       "base_salary": {
         "periods": [
           {
+            "valid_from": "2023-08-01",
+            "valid_until": "2025-06-01",
+            "value": "1950.06",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-mobilita-af-2022-03-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 marzo 2022 (testo pubblicato da ORSA Ferrovie, scansione)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2022/ccnl-mobilita-af22marzo2022.pdf",
+                  "sha256": "5b333f0cb44e32859e6d626030f740c4c187de6b031413c06ed3226cfec6d234"
+                },
+                "page": "9",
+                "section": "Art. 68 c. 3, column 'dal 1.8.2023'",
+                "quote": "i valori dei minimi contrattuali mensili sono i seguenti: [...] B2 [...] 1950,06 (dal 1.8.2023)"
+              },
+              "transformation": "The last minimum of the agreement of 22 March 2022, from 1 August 2023, holds until the first minimum of the 2025 renewal on 1 June 2025; the una tantum of August 2025 for the gap is paid besides, not spread over the months.",
+              "note": "Scanned PDF: the table read from the OCR of page 9."
+            }
+          },
+          {
             "valid_from": "2025-06-01",
             "valid_until": "2025-11-01",
             "value": "2074.71",
@@ -2095,6 +2496,28 @@
       "description": "Level B1 — railway department managers, senior management roles",
       "base_salary": {
         "periods": [
+          {
+            "valid_from": "2023-08-01",
+            "valid_until": "2025-06-01",
+            "value": "2037.38",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-mobilita-af-2022-03-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 marzo 2022 (testo pubblicato da ORSA Ferrovie, scansione)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2022/ccnl-mobilita-af22marzo2022.pdf",
+                  "sha256": "5b333f0cb44e32859e6d626030f740c4c187de6b031413c06ed3226cfec6d234"
+                },
+                "page": "9",
+                "section": "Art. 68 c. 3, column 'dal 1.8.2023'",
+                "quote": "i valori dei minimi contrattuali mensili sono i seguenti: [...] B1 [...] 2037,38 (dal 1.8.2023)"
+              },
+              "transformation": "The last minimum of the agreement of 22 March 2022, from 1 August 2023, holds until the first minimum of the 2025 renewal on 1 June 2025; the una tantum of August 2025 for the gap is paid besides, not spread over the months.",
+              "note": "Scanned PDF: the table read from the OCR of page 9."
+            }
+          },
           {
             "valid_from": "2025-06-01",
             "valid_until": "2025-11-01",
@@ -2218,6 +2641,28 @@
       "base_salary": {
         "periods": [
           {
+            "valid_from": "2023-08-01",
+            "valid_until": "2025-06-01",
+            "value": "2139.25",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-mobilita-af-2022-03-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 marzo 2022 (testo pubblicato da ORSA Ferrovie, scansione)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2022/ccnl-mobilita-af22marzo2022.pdf",
+                  "sha256": "5b333f0cb44e32859e6d626030f740c4c187de6b031413c06ed3226cfec6d234"
+                },
+                "page": "9",
+                "section": "Art. 68 c. 3, column 'dal 1.8.2023'",
+                "quote": "i valori dei minimi contrattuali mensili sono i seguenti: [...] A [...] 2139,25 (dal 1.8.2023)"
+              },
+              "transformation": "The last minimum of the agreement of 22 March 2022, from 1 August 2023, holds until the first minimum of the 2025 renewal on 1 June 2025; the una tantum of August 2025 for the gap is paid besides, not spread over the months.",
+              "note": "Scanned PDF: the table read from the OCR of page 9."
+            }
+          },
+          {
             "valid_from": "2025-06-01",
             "valid_until": "2025-11-01",
             "value": "2275.99",
@@ -2340,6 +2785,28 @@
       "base_salary": {
         "periods": [
           {
+            "valid_from": "2023-08-01",
+            "valid_until": "2025-06-01",
+            "value": "2212.01",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-mobilita-af-2022-03-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 marzo 2022 (testo pubblicato da ORSA Ferrovie, scansione)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2022/ccnl-mobilita-af22marzo2022.pdf",
+                  "sha256": "5b333f0cb44e32859e6d626030f740c4c187de6b031413c06ed3226cfec6d234"
+                },
+                "page": "9",
+                "section": "Art. 68 c. 3, column 'dal 1.8.2023'",
+                "quote": "i valori dei minimi contrattuali mensili sono i seguenti: [...] Q2 [...] 2212,01 (dal 1.8.2023)"
+              },
+              "transformation": "The last minimum of the agreement of 22 March 2022, from 1 August 2023, holds until the first minimum of the 2025 renewal on 1 June 2025; the una tantum of August 2025 for the gap is paid besides, not spread over the months.",
+              "note": "Scanned PDF: the table read from the OCR of page 9."
+            }
+          },
+          {
             "valid_from": "2025-06-01",
             "valid_until": "2025-11-01",
             "value": "2353.41",
@@ -2441,6 +2908,11 @@
           "monthly": {
             "periods": [
               {
+                "valid_from": "2023-08-01",
+                "valid_until": "2025-06-01",
+                "gap_kind": "missing"
+              },
+              {
                 "valid_from": "2025-06-01",
                 "valid_until": null,
                 "value": "130.00"
@@ -2493,6 +2965,28 @@
       "description": "Level Q1 — railway quadri (senior management), with IND_FUN function allowance",
       "base_salary": {
         "periods": [
+          {
+            "valid_from": "2023-08-01",
+            "valid_until": "2025-06-01",
+            "value": "2517.62",
+            "provenance": {
+              "status": "derived",
+              "location": {
+                "source_document": {
+                  "document_id": "ccnl-mobilita-af-2022-03-22",
+                  "title": "CCNL della Mobilità/Area contrattuale Attività Ferroviarie del 22 marzo 2022 (testo pubblicato da ORSA Ferrovie, scansione)",
+                  "kind": "associazione",
+                  "url": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2022/ccnl-mobilita-af22marzo2022.pdf",
+                  "sha256": "5b333f0cb44e32859e6d626030f740c4c187de6b031413c06ed3226cfec6d234"
+                },
+                "page": "9",
+                "section": "Art. 68 c. 3, column 'dal 1.8.2023'",
+                "quote": "i valori dei minimi contrattuali mensili sono i seguenti: [...] Q1 [...] 2517,62 (dal 1.8.2023)"
+              },
+              "transformation": "The last minimum of the agreement of 22 March 2022, from 1 August 2023, holds until the first minimum of the 2025 renewal on 1 June 2025; the una tantum of August 2025 for the gap is paid besides, not spread over the months.",
+              "note": "Scanned PDF: the table read from the OCR of page 9."
+            }
+          },
           {
             "valid_from": "2025-06-01",
             "valid_until": "2025-11-01",
@@ -2595,6 +3089,11 @@
           "monthly": {
             "periods": [
               {
+                "valid_from": "2023-08-01",
+                "valid_until": "2025-06-01",
+                "gap_kind": "missing"
+              },
+              {
                 "valid_from": "2025-06-01",
                 "valid_until": null,
                 "value": "250.00"
@@ -2650,7 +3149,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "03de04e6e74c4e45c9794c2ea344155e9641e371c137e4b28639fe41a1db321a",
+    "source_hash": "9af5d70b9ff86e17e654674ee19dc0c05e264d478cb7832f2fa7cc3e6da67981",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2839,6 +3338,210 @@
               "verification_status": "verified",
               "review_id": "2026-11-15-ai-trasporto-ferroviario-agens-time-supplements"
             }
+          }
+        },
+        {
+          "code": "TURNO_ROTATING_24H_DAY",
+          "description": "Indennità di turno per giornata di presenza: rotations over the 24 hours",
+          "work": "day_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-08-01",
+                "valid_until": null,
+                "value": "2.20"
+              }
+            ]
+          },
+          "per_shift": true,
+          "hours_paid_apart": false,
+          "service": "rotating_24h",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "agens-rinnovo-2025-05-22",
+                "title": "CCNL Mobilità/Area AF, accordo di rinnovo 22 maggio 2025, testo firmato (Agens)",
+                "kind": "associazione",
+                "url": "https://www.agens.it/wp-content/uploads/2026/02/Testo-firmato-Accordo-di-rinnovo-22-maggio-2025.pdf",
+                "sha256": "91729afaa4fe8f3d4059afd40b52d83f3d6015c085c1d747460b045ce92c4952"
+              },
+              "page": "131",
+              "section": "Art. 81 punto 1 a)",
+              "quote": "a) turni avvicendati nelle 24 ore, € 2,20"
+            },
+            "transformation": "EUR 2.20 for each day of presence in rotations over the 24 hours, day or night shift alike: ShiftWorkEvent.service rotating_24h, shifts the days.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
+          }
+        },
+        {
+          "code": "TURNO_ROTATING_24H_NIGHT",
+          "description": "Indennità di turno per giornata di presenza: rotations over the 24 hours",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-08-01",
+                "valid_until": null,
+                "value": "2.20"
+              }
+            ]
+          },
+          "per_shift": true,
+          "hours_paid_apart": false,
+          "service": "rotating_24h",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "agens-rinnovo-2025-05-22",
+                "title": "CCNL Mobilità/Area AF, accordo di rinnovo 22 maggio 2025, testo firmato (Agens)",
+                "kind": "associazione",
+                "url": "https://www.agens.it/wp-content/uploads/2026/02/Testo-firmato-Accordo-di-rinnovo-22-maggio-2025.pdf",
+                "sha256": "91729afaa4fe8f3d4059afd40b52d83f3d6015c085c1d747460b045ce92c4952"
+              },
+              "page": "131",
+              "section": "Art. 81 punto 1 a)",
+              "quote": "a) turni avvicendati nelle 24 ore, € 2,20"
+            },
+            "transformation": "EUR 2.20 for each day of presence in rotations over the 24 hours, day or night shift alike: ShiftWorkEvent.service rotating_24h, shifts the days.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
+          }
+        },
+        {
+          "code": "TURNO_NON_CADENCED_24H_DAY",
+          "description": "Indennità di turno per giornata di presenza: uncadenced rotations over the 24 hours (mobile staff)",
+          "work": "day_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-08-01",
+                "valid_until": null,
+                "value": "2.45"
+              }
+            ]
+          },
+          "per_shift": true,
+          "hours_paid_apart": false,
+          "service": "non_cadenced_24h",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "agens-rinnovo-2025-05-22",
+                "title": "CCNL Mobilità/Area AF, accordo di rinnovo 22 maggio 2025, testo firmato (Agens)",
+                "kind": "associazione",
+                "url": "https://www.agens.it/wp-content/uploads/2026/02/Testo-firmato-Accordo-di-rinnovo-22-maggio-2025.pdf",
+                "sha256": "91729afaa4fe8f3d4059afd40b52d83f3d6015c085c1d747460b045ce92c4952"
+              },
+              "page": "131",
+              "section": "Art. 81 punto 1 b)",
+              "quote": "b) turni non cadenzati nelle 24 ore, € 2.45"
+            },
+            "transformation": "EUR 2.45 for each day of presence in uncadenced rotations over the 24 hours (mobile staff), day or night shift alike: ShiftWorkEvent.service non_cadenced_24h, shifts the days.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
+          }
+        },
+        {
+          "code": "TURNO_NON_CADENCED_24H_NIGHT",
+          "description": "Indennità di turno per giornata di presenza: uncadenced rotations over the 24 hours (mobile staff)",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-08-01",
+                "valid_until": null,
+                "value": "2.45"
+              }
+            ]
+          },
+          "per_shift": true,
+          "hours_paid_apart": false,
+          "service": "non_cadenced_24h",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "agens-rinnovo-2025-05-22",
+                "title": "CCNL Mobilità/Area AF, accordo di rinnovo 22 maggio 2025, testo firmato (Agens)",
+                "kind": "associazione",
+                "url": "https://www.agens.it/wp-content/uploads/2026/02/Testo-firmato-Accordo-di-rinnovo-22-maggio-2025.pdf",
+                "sha256": "91729afaa4fe8f3d4059afd40b52d83f3d6015c085c1d747460b045ce92c4952"
+              },
+              "page": "131",
+              "section": "Art. 81 punto 1 b)",
+              "quote": "b) turni non cadenzati nelle 24 ore, € 2.45"
+            },
+            "transformation": "EUR 2.45 for each day of presence in uncadenced rotations over the 24 hours (mobile staff), day or night shift alike: ShiftWorkEvent.service non_cadenced_24h, shifts the days.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
+          }
+        },
+        {
+          "code": "TURNO_TWO_PERIODS_DAY",
+          "description": "Indennità di turno per giornata di presenza: rotations over two daily periods",
+          "work": "day_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-08-01",
+                "valid_until": null,
+                "value": "1.30"
+              }
+            ]
+          },
+          "per_shift": true,
+          "hours_paid_apart": false,
+          "service": "two_periods",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "agens-rinnovo-2025-05-22",
+                "title": "CCNL Mobilità/Area AF, accordo di rinnovo 22 maggio 2025, testo firmato (Agens)",
+                "kind": "associazione",
+                "url": "https://www.agens.it/wp-content/uploads/2026/02/Testo-firmato-Accordo-di-rinnovo-22-maggio-2025.pdf",
+                "sha256": "91729afaa4fe8f3d4059afd40b52d83f3d6015c085c1d747460b045ce92c4952"
+              },
+              "page": "132",
+              "section": "Art. 81 punto 1 c)",
+              "quote": "turni avvicendati su due periodi giornalieri {turni in seconda) € 1,30"
+            },
+            "transformation": "EUR 1.30 for each day of presence in rotations over two daily periods, day or night shift alike: ShiftWorkEvent.service two_periods, shifts the days.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
+          }
+        },
+        {
+          "code": "TURNO_TWO_PERIODS_NIGHT",
+          "description": "Indennità di turno per giornata di presenza: rotations over two daily periods",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2025-08-01",
+                "valid_until": null,
+                "value": "1.30"
+              }
+            ]
+          },
+          "per_shift": true,
+          "hours_paid_apart": false,
+          "service": "two_periods",
+          "provenance": {
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "agens-rinnovo-2025-05-22",
+                "title": "CCNL Mobilità/Area AF, accordo di rinnovo 22 maggio 2025, testo firmato (Agens)",
+                "kind": "associazione",
+                "url": "https://www.agens.it/wp-content/uploads/2026/02/Testo-firmato-Accordo-di-rinnovo-22-maggio-2025.pdf",
+                "sha256": "91729afaa4fe8f3d4059afd40b52d83f3d6015c085c1d747460b045ce92c4952"
+              },
+              "page": "132",
+              "section": "Art. 81 punto 1 c)",
+              "quote": "turni avvicendati su due periodi giornalieri {turni in seconda) € 1,30"
+            },
+            "transformation": "EUR 1.30 for each day of presence in rotations over two daily periods, day or night shift alike: ShiftWorkEvent.service two_periods, shifts the days.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
           }
         }
       ]
@@ -3089,6 +3792,74 @@
           "effective_from": "2025-05-22",
           "verification_status": "unverified"
         }
+      }
+    },
+    "travel_allowance": {
+      "bands": [
+        {
+          "hours_from": "4",
+          "hours_from_exclusive": true,
+          "hours_until": "12",
+          "hours_until_inclusive": true,
+          "italy": {
+            "periods": [
+              {
+                "valid_from": "2025-08-01",
+                "valid_until": null,
+                "value": "16.00"
+              }
+            ]
+          },
+          "abroad": {
+            "periods": [
+              {
+                "valid_from": "2025-08-01",
+                "valid_until": null,
+                "value": "20.80"
+              }
+            ]
+          }
+        },
+        {
+          "hours_from": "12",
+          "hours_from_exclusive": true,
+          "italy": {
+            "periods": [
+              {
+                "valid_from": "2025-08-01",
+                "valid_until": null,
+                "value": "35.00"
+              }
+            ]
+          },
+          "abroad": {
+            "periods": [
+              {
+                "valid_from": "2025-08-01",
+                "valid_until": null,
+                "value": "45.50"
+              }
+            ]
+          }
+        }
+      ],
+      "tfr_base": "none",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "agens-rinnovo-2025-05-22",
+            "title": "CCNL Mobilità/Area AF, accordo di rinnovo 22 maggio 2025, testo firmato (Agens)",
+            "kind": "associazione",
+            "url": "https://www.agens.it/wp-content/uploads/2026/02/Testo-firmato-Accordo-di-rinnovo-22-maggio-2025.pdf",
+            "sha256": "91729afaa4fe8f3d4059afd40b52d83f3d6015c085c1d747460b045ce92c4952"
+          },
+          "page": "124",
+          "section": "Art. 77 punti 1.1 d), 1.2 c), 1.5; art. 85",
+          "quote": "d) un’indennità di trasferta giornaliera che, a partire dal 1° agosto 2025, sarà pari a € 35,00, se la durata della trasferta è superiore alle 12 ore."
+        },
+        "transformation": "Over 12 hours away, EUR 35.00 a day (1.1 d); over 4 and up to 12 hours, a flat refund of EUR 16.00 (1.2 c); abroad 30% more (1.5): 45.50 and 20.80; outside the TFR (art. 85). The residual fraction of a mission over 24 hours is paid in proportion to the daily allowance (1.1 d): that day's amount is the caller's daily_amount.",
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
       }
     }
   }

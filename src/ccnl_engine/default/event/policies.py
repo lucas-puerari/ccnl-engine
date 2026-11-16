@@ -82,6 +82,10 @@ EVENT_DEFAULTS: Mapping[str, FieldDefault] = {
     ),
     "ShiftWorkEvent.supplement_amount": absence_is_fact(_FROM_CCNL),
     "ShiftWorkEvent.hours": absence_is_fact(_SUPPLEMENT_HOURS),
+    "ShiftWorkEvent.service": absence_is_fact(
+        "read only without supplement_amount, on a CCNL whose shift bands "
+        "differ by the rotation, which then requires it to choose the band"
+    ),
     "ShiftWorkEvent.kind": absence_is_fact(
         "read only without supplement_amount, which then requires it to "
         "choose the CCNL shift band"
