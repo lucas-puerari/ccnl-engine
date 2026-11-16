@@ -83,3 +83,19 @@ def test_commercio_halves_the_long_profiles_too(
     """Commercio Art. 68 (PDF pp. 82-83), its levels coded 2 to 7."""
     slug = "commercio-confcommercio"
     assert _base(slug, level, months, track) == _minimum(slug, paid_at)
+
+
+@pytest.mark.parametrize(
+    ("months", "track", "paid_at"),
+    [
+        (0, "farmacista_parafarmacia", "2"),
+        (35, "farmacista_parafarmacia", "2"),
+        (0, "livelli_2_5", "4"),
+    ],
+)
+def test_the_farmacista_di_parafarmacia_is_paid_at_the_second_level(
+    months: int, track: str, paid_at: str
+) -> None:
+    """Accordo 31/10/2024: the second level "per tutta la durata dei 36 mesi"."""
+    slug = "commercio-confcommercio"
+    assert _base(slug, "2", months, track) == _minimum(slug, paid_at)

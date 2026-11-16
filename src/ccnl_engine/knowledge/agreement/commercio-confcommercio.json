@@ -81,7 +81,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Apprenticeship (Art. 53 TU 2019, unchanged in 2024): sottoinquadramento, two levels below the destination for the first half and one level below for the second half; eligible destinations II-VI (Art. 62); durations II-V 36 months, VI 24 months (Art. 64). Track 'livelli_2_5' (18+18 months), track 'livello_6' (VII for the first 12 months; the second half stays at VII by the general one-level-below rule, lexplain.it reads it as VI: adopted the literal text). The Art. 68 Tabella B profiles (PDF pp. 82-83) are tracks 'tabella_b_48_mesi' (levels 2 and 3, 24+24 months) and 'tabella_b_42_mesi' (level 4, 21+21 months); an apprentice of levels 2, 3 and 4 states Apprentice.track ('livelli_2_5' for the 36 months). The farmacista di parafarmacia derogation (Accordo 31/10/2024) is not modelled: its text was not found.",
+        "text": "Apprenticeship (Art. 53 TU 2019, unchanged in 2024): sottoinquadramento, two levels below the destination for the first half and one level below for the second half; eligible destinations II-VI (Art. 62); durations II-V 36 months, VI 24 months (Art. 64). Track 'livelli_2_5' (18+18 months), track 'livello_6' (VII for the first 12 months; the second half stays at VII by the general one-level-below rule, lexplain.it reads it as VI: adopted the literal text). The Art. 68 Tabella B profiles (PDF pp. 82-83) are tracks 'tabella_b_48_mesi' (levels 2 and 3, 24+24 months) and 'tabella_b_42_mesi' (level 4, 21+21 months); an apprentice of levels 2, 3 and 4 states Apprentice.track ('livelli_2_5' for the 36 months). The farmacista di parafarmacia hired from 1 November 2024 (accordo 31/10/2024) states the track 'farmacista_parafarmacia': second level for the whole 36 months.",
         "capability": "base_salary",
         "monetary_impact": "yes",
         "limitation": {
@@ -89,7 +89,8 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Model the farmacista di parafarmacia apprenticeship of the Accordo 31/10/2024 once its text is found."
+          "remediation": "Resolved: track 'farmacista_parafarmacia' (second level for the 36 months, accordo 31 October 2024, edizione Confcommercio 2026 p. 368) (review of 2026-11-16).",
+          "status": "resolved"
         }
       },
       {
@@ -4387,6 +4388,41 @@
           "effective_from": "2019-07-30"
         }
       }
+    },
+    {
+      "type": "under_classification",
+      "name": "farmacista_parafarmacia",
+      "destination_levels": [
+        "2"
+      ],
+      "periods": [
+        {
+          "months_from": 0,
+          "months_until": 36,
+          "levels_below": 0
+        },
+        {
+          "months_from": 36,
+          "months_until": null,
+          "levels_below": 0
+        }
+      ],
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "confcommercio-ccnl-tds-2026",
+            "title": "CCNL Terziario Distribuzione e Servizi, edizione Confcommercio 2026 (Allegato apprendistato n. 1, accordo 31 ottobre 2024)",
+            "kind": "associazione",
+            "url": "https://www.confcommercio.it/documents/20126/64376/CCNL_dipendenti-terziario-distribuzione-servizi_2026.pdf/f0e7f8ce-b355-e3bf-fe51-6200636391a8?version=1.0&t=1",
+            "sha256": "5701a97dd70639aa718f949c7899aff33d313cb04e18b073649399a46dc6eb51"
+          },
+          "page": "368",
+          "section": "Accordo 31 ottobre 2024 (Allegato apprendistato n. 1)",
+          "quote": "Le Parti, con riferimento alla specifica figura del farmacista di parafarmacia, in deroga a quanto previsto dall’art. 54 del vigente CCNL TDS, convengono che il livello di inquadramento professionale e il conseguente trattamento economico saranno, per tutta la durata dei 36 mesi, quelli del secondo livello."
+        },
+        "transformation": "The farmacista di parafarmacia (art. 115, second level, n. 27) hired as apprentice from 1 November 2024 is classified and paid at the second level for the whole 36 months, without the under-classification of art. 54; selected by Apprentice.track."
+      }
     }
   ],
   "ruleset": {
@@ -4396,7 +4432,7 @@
     "effective_until": null,
     "source": "https://uiltucs.it/wp-content/uploads/2022/02/testo-unico-CCNL-TDS-Confcommercio-2019.pdf",
     "verification_status": "unverified",
-    "source_hash": "80010ea5e5fc8f085524472bedd7bff809c41fc04431095e02a242a3a0472fff",
+    "source_hash": "e4353bd6e15f5896fa53b76d5c6cabf1c7ad41a91bf3aecb2c33d34ff83d81de",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

@@ -688,8 +688,7 @@
       "cinema-audiovisivi-industria/fpls_rates_approximated"
     ],
     "agreement/commercio-confcommercio.json": [
-      "commercio-confcommercio/commission_fixed_part",
-      "commercio-confcommercio/profile_specific_apprenticeship"
+      "commercio-confcommercio/commission_fixed_part"
     ],
     "agreement/comunicazione-artigianato-confartigianato.json": [
       "comunicazione-artigianato-confartigianato/function_allowance_half_absorption",
