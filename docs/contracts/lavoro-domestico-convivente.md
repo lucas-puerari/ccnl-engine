@@ -169,12 +169,12 @@ Each simplification below is a model limitation of the registry. An open limitat
 
     **Remediation:** Add the minimi of 2027 set by the Commissione nazionale with their source, then remove this note.
 
-!!! warning "lavoro-domestico-convivente/art34_role_conditions · base_salary · impact yes · open"
+!!! note "lavoro-domestico-convivente/art34_role_conditions · base_salary · impact yes · resolved"
     Art. 34 cc. 3, 4, 7: the engine pays the level-specific allowances only while the caller states the qualifying roles. It cannot independently verify a child's age, the number of persons assisted, or certification validity, written notice and delivery of its copy. Nor does it automatically offset the allowances of cc. 3 and 4 against an individual superminimo or that of c. 7 against better treatment received overall; the caller must state individual pay net of any offset.
 
     **Applies when:** a fact the request cannot express: never recorded on a run.
 
-    **Remediation:** Verify role eligibility externally and state individual pay net of any offset; to automate this, model child age, assisted persons, certification validity and notice, and the applicable offsets.
+    **Remediation:** Resolved: the allowances of art. 34 are paid while the caller states the role (Employment.roles: baby_sitter_under_6 until the child is six, assistenza_piu_non_autosufficienti, certificazione_uni_11766 while valid and communicated in writing), facts of the employment the engine cannot see; the individual elements of the worker absorb them: the absorbable superminimi for cc. 3-4 ("assorbibile da eventuali superminimi individuali di miglior favore", c. 5 keeping whole the treatment "ad personam non assorbibile"), every better treatment for c. 7 ("assorbibile da eventuali trattamenti retributivi di miglior favore complessivamente percepiti") (review of 2026-11-16).
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).

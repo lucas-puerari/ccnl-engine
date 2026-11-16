@@ -709,7 +709,8 @@
               "review_id": "2026-11-10-ai-domestic-hourly-allowances"
             }
           },
-          "part_time_proportionable": false
+          "part_time_proportionable": false,
+          "absorbed_by_individual_excess": true
         }
       ],
       "category": null,
@@ -950,7 +951,8 @@
               "review_id": "2026-11-10-ai-domestic-hourly-allowances"
             }
           },
-          "part_time_proportionable": false
+          "part_time_proportionable": false,
+          "absorbed_by_individual_excess": true
         }
       ],
       "category": null,
@@ -1258,7 +1260,8 @@
               "review_id": "2026-11-10-ai-domestic-hourly-allowances"
             }
           },
-          "part_time_proportionable": false
+          "part_time_proportionable": false,
+          "absorbed_by_individual_excess": true
         }
       ],
       "category": null,
@@ -1536,7 +1539,7 @@
     "effective_until": null,
     "source": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
     "verification_status": "unverified",
-    "source_hash": "e4cf91a368fbfddf2734e4e39ff281503dc403125cb8b1d6a14d73820f0ce853",
+    "source_hash": "1e8536b0c199077eeaea4827553e51c24f07809dc5f87e37fa6c22d1ee1313ea",
     "published_at": "2026-10-07",
     "source_type": "commercial_secondary"
   },

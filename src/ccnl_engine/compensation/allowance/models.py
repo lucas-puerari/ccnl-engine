@@ -39,6 +39,11 @@ class Allowance(BaseModel):
     The integration is not the special supplement listed in Art. 24(4)
     for the Art. 17-18 percentage bases.
 
+    ``absorbed_by_absorbable_only`` restricts that reduction to the absorbable
+    elements: an assegno ad personam non assorbibile keeps it whole (Lavoro
+    domestico art. 34 cc. 3-5: "assorbibile da eventuali superminimi
+    individuali di miglior favore", the payslip stating the treatment "ad
+    personam non assorbibile").
     ``absorbed_by_individual_excess`` reduces the allowance by the worker's paid
     individual elements, down to zero, leaving those elements whole (ANASTE
     art. 70 c. 2: the nurse allowance absorbed "fino a concorrenza").
@@ -118,10 +123,14 @@ class Allowance(BaseModel):
     below_weekly_hours: Decimal | None = Field(default=None, gt=0)
     individual: bool = False
     absorbed_by_individual_excess: bool = False
+    absorbed_by_absorbable_only: bool = False
     provenance: RuleProvenance | None = None
 
     @model_validator(mode="after")
     def _check_contribution_relevant(self) -> Self:
+        if self.absorbed_by_absorbable_only and not self.absorbed_by_individual_excess:
+            msg = f"allowance {self.code}: absorbed_by_absorbable_only needs absorption"
+            raise ValueError(msg)
         if self.percentage_rate is None and (
             self.percentage_base_allowances or self.floor_level is not None
         ):
