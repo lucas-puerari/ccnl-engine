@@ -14,10 +14,8 @@ from datetime import date, timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING
 
-from ccnl_engine.contribution.minimum_base.models import (
-    MinimumBaseReason,
-    MonthPosition,
-)
+from ccnl_engine.contribution.minimum_base.models import MonthPosition
+from ccnl_engine.contribution.minimum_base.results import MinimumBaseReason
 from ccnl_engine.contribution.minimum_base.rules import resolve_minimum_base
 from ccnl_engine.decision.models import (
     CalculationIssue,
@@ -41,7 +39,7 @@ from ccnl_engine.event.facade import (
 from ccnl_engine.run.models import RunKind
 
 if TYPE_CHECKING:
-    from ccnl_engine.contribution.minimum_base.models import MinimumBase
+    from ccnl_engine.contribution.minimum_base.results import MinimumBase
     from ccnl_engine.employment.fact.inputs import WeeklyHours
     from ccnl_engine.period.context.services import RunContext
 
@@ -69,8 +67,12 @@ _REDUCING_EVENTS = (
     PaternityLeaveEvent,
     WorkInjuryEvent,
 )
-#: Fact of a sector whose minimum depends on a category the request leaves open.
-_CATEGORY = "category"
+#: Fact each undetermined reason misses: the category the sector's minimum
+#: depends on, the days of presence of a worker paid by the day.
+_FACTS = {
+    MinimumBaseReason.CATEGORY_UNKNOWN: "category",
+    MinimumBaseReason.PRESENCE_DAYS_UNKNOWN: "presence_days",
+}
 
 
 def _hours(fact: WeeklyHours | None) -> Decimal | None:
@@ -122,10 +124,9 @@ def _position(ctx: RunContext) -> MonthPosition:
             or bool(request.extra_month_settlements)
         ),
         span=proration.span,
-        # A worker paid by the hour is paid only the hours worked: below the
-        # minimum, the hours not worked may be absences of any kind.
-        absence=proration.hourly is not None
-        or any(isinstance(e, _REDUCING_EVENTS) for e in request.events),
+        absence=any(isinstance(e, _REDUCING_EVENTS) for e in request.events),
+        hourly=proration.hourly is not None,
+        presence_days=request.presence_days,
         apprentice=isinstance(request.contract_type, Apprentice),
         category=ctx.worker_category,
         weekly_hours=_hours(request.weekly_hours),
@@ -165,7 +166,7 @@ def minimum_base_issue(minimum: MinimumBase | None) -> CalculationIssue | None:
     """
     if minimum is None or not minimum.undetermined:
         return None
-    unknown = minimum.reason is MinimumBaseReason.CATEGORY_UNKNOWN
+    fact = _FACTS.get(minimum.reason)
     return CalculationIssue(
         code=ISSUE_CODE,
         capability="inps_employee",
@@ -178,6 +179,6 @@ def minimum_base_issue(minimum: MinimumBase | None) -> CalculationIssue | None:
         ),
         status=CalculationStatus.INCOMPLETE,
         source=minimum.source,
-        fact=_CATEGORY if unknown else None,
+        fact=fact,
         cause=IssueCause.RULE,
     )

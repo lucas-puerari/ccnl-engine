@@ -19,10 +19,10 @@ import pytest
 
 from ccnl_engine.contribution.minimum_base.models import (
     HourlyMinimum,
-    MinimumBaseReason,
     MinimumBaseRule,
     MonthPosition,
 )
+from ccnl_engine.contribution.minimum_base.results import MinimumBaseReason
 from ccnl_engine.contribution.minimum_base.rules import resolve_minimum_base
 from ccnl_engine.employment.category.models import WorkerCategory
 from ccnl_engine.provenance.source.models import (
@@ -315,3 +315,70 @@ def test_part_time_dirigente_has_no_published_hourly_minimum() -> None:
 
     assert minimum.reason is MinimumBaseReason.HOURLY_MINIMUM_UNSOURCED
     assert minimum.bound == _D("2090.01")
+
+
+#: An operaio agricolo paid by the hour, 1,000.00 in the month.
+_OTD = MonthPosition(
+    month_pay=_D("1000.00"), hourly=True, category=WorkerCategory.OPERAIO
+)
+_DAILY_PAID = _AGRICULTURE.model_copy(
+    update={"daily_paid_categories": frozenset({WorkerCategory.OPERAIO})}
+)
+
+
+@pytest.mark.parametrize(
+    ("days", "reason", "base"),
+    [
+        (25, MinimumBaseReason.RAISED_TO_MINIMUM, "1292.50"),
+        (15, MinimumBaseReason.ABOVE_MINIMUM, "1000.00"),
+    ],
+)
+def test_daily_paid_operaio_counts_the_days_of_presence(
+    days: int, reason: MinimumBaseReason, base: str
+) -> None:
+    """PosAgri <NumeroGiornate>: 51.70 x 25 = 1,292.50; 15 days, 775.50."""
+    position = replace(
+        _OTD, presence_days=days, span=(date(2026, 3, 9), date(2026, 3, 31))
+    )
+    minimum = resolve_minimum_base(_DAILY_PAID, _D("1000.00"), position)
+
+    assert minimum.reason is reason
+    assert minimum.base == _D(base)
+    assert not minimum.undetermined
+
+
+@pytest.mark.parametrize(
+    ("actual", "reason"),
+    [
+        ("1000.00", MinimumBaseReason.PRESENCE_DAYS_UNKNOWN),
+        ("1400.00", MinimumBaseReason.ABOVE_MINIMUM),
+    ],
+)
+def test_daily_paid_operaio_without_days(
+    actual: str, reason: MinimumBaseReason
+) -> None:
+    """Below 26 x 51.70 = 1,344.20 the days decide; above it nothing can raise it."""
+    minimum = resolve_minimum_base(_DAILY_PAID, _D(actual), _OTD)
+
+    assert minimum.reason is reason
+    assert minimum.bound == _D("1344.20")
+
+
+@pytest.mark.parametrize(
+    "position",
+    [
+        replace(_OTD, presence_days=25, absence=True),
+        replace(_OTD, presence_days=25, adds_to_month=True),
+        replace(_OTD, presence_days=25, category=WorkerCategory.IMPIEGATO),
+        replace(
+            _OTD, presence_days=25, weekly_hours=_D(20), full_time_weekly_hours=_D(39)
+        ),
+    ],
+    ids=["absence", "added-pay", "other-category", "part-time"],
+)
+def test_other_hourly_positions_keep_the_month_rule(position: MonthPosition) -> None:
+    """Outside the daily-paid case the days are not read: still undetermined."""
+    minimum = resolve_minimum_base(_DAILY_PAID, _D("500.00"), position)
+
+    assert minimum.undetermined
+    assert minimum.reason is not MinimumBaseReason.PRESENCE_DAYS_UNKNOWN

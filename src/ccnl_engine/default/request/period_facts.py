@@ -64,7 +64,9 @@ PERIOD_FACT_DEFAULTS: dict[str, FieldDefault] = {
         _PERIOD_REPORTED,
         "unknown actual presence days: a regular run with a qualifying daily "
         "allowance leaves that earning out and reports a missing_fact "
-        "presence_days blocker; zero states no days present",
+        "presence_days blocker, and the INPS minimum of an operaio agricolo "
+        "paid by the hour below the monthly bound is undetermined; zero "
+        "states no days present",
     ),
     "PeriodFacts.site_presence_days": requires_fact(
         "base_salary",
