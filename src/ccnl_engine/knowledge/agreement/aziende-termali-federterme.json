@@ -2864,11 +2864,32 @@
     "effective_until": null,
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
     "verification_status": "unverified",
-    "source_hash": "a7a2a9fae37b69b0fcbad4f4b90cb08186637c9210a12ff211b44f678ad969bc",
+    "source_hash": "57320ffd10e6a68ac88d64e0808d8ded14e23ad43a7a6527245d61f454a580b8",
     "published_at": "2026-09-12",
     "source_type": "commercial_secondary"
   },
-  "work_rules": null,
+  "work_rules": {
+    "parental_hourly": {
+      "regulated": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "termali.pdf",
+            "title": "CCNL aziende termali 8 ottobre 2024",
+            "kind": "associazione",
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+            "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+          },
+          "page": "19",
+          "section": "Art. 10, IV–V",
+          "quote": "IV. Ai fini dell’esercizio del diritto al congedo parentale, il genitore che intenda usufruire\ndel congedo parentale su base giornaliera è tenuto a presentare, almeno 5 giorni prima, richiesta\nscritta al datore di lavoro, indicando la durata del periodo di congedo richiesto ed allegando il\ncertificato di nascita ovvero la dichiarazione sostitutiva; il termine di preavviso si riduce a due\ngiorni qualora la lavoratrice o il lavoratore intenda usufruire del congedo parentale su base oraria.\nNel caso in cui la lavoratrice o il lavoratore sia oggettivamente impossibilitato a rispettare tali\ntermini, lo stesso è tenuto a preavvertire il datore di lavoro dell’assenza e a presentare la richiesta\nscritta con la relativa certificazione tempestivamente e comunque entro due giorni dall’inizio\ndell’assenza dal lavoro se il congedo parentale richiesto è su base giornaliera e entro un giorno se il\ncongedo parentale richiesto è su base oraria.\n\nV. Per quanto attiene al congedo parentale ad ore, i permessi di cui al presente articolo sono\ncumulabili con gli altri permessi disciplinati dal D. Lgs. n. 151/01, nel limite massimo di centoventi\nore calcolate nell’ambito dell’intera durata dei congedi parentali."
+        },
+        "transformation": "The CCNL sets a two-day notice for hourly parental leave and expressly permits combining it with other statutory leave, subject to a 120-hour limit across parental leave. It does not expressly equate a day to a fixed number of hours or prescribe part-time scaling. The first effective date of this hourly rule is not established.",
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
+      }
+    }
+  },
   "verification": {
     "reviews": [
       {
@@ -2960,6 +2981,27 @@
         "independence": "same_process",
         "checked": [
           "levels.*.fixed_allowances.EDR"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-parental-hourly",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256, read from the OCR of the page where the PDF is scanned.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/AziendeTermali_CCNL_2024_2027_08102024.pdf",
+            "sha256": "5032131e3e3742dabdea2ad11a074fb602c965cb9e0b34c77d73d04e9623c0a5"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.parental_hourly."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.parental_hourly"
         ]
       }
     ]

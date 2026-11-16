@@ -423,6 +423,27 @@
         "checked": [
           "work_rules.time_supplements"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-parental-hourly",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+            "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.parental_hourly."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.parental_hourly"
+        ]
       }
     ]
   },
@@ -2046,7 +2067,7 @@
     "source": "https://www.fiaip.it/wp-content/uploads/2025/06/250519-Ipotesi-di-accordo-Fiaip-OOSS-firmata-1.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "65d23915763fa16d074a2e652475e05d2a5bf69f53770b82e1f912dbdd939b04"
+    "source_hash": "d7e6bb54c1d6e87fc932629427b5789c60fbd6cc6b898c49c7ae178fd7def19b"
   },
   "work_rules": {
     "notice": {
@@ -2777,6 +2798,25 @@
           }
         }
       ]
+    },
+    "parental_hourly": {
+      "regulated": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "fiaip.pdf",
+            "title": "Contratto collettivo nazionale di lavoro per dipendenti da agenti immobiliari FIAIP 2025",
+            "kind": "associazione",
+            "url": "https://www.ebnaip.it/download.aspx?file=/public/ccnl/1_CCNL_CONTRATTO_COLLETTIVO_NAZIONALE_LAVORO_2025.pdf",
+            "sha256": "560d16410d3e41dc0bfb00bfe2a40ef65f2cd900234aeaee92018ed9fa21ead5"
+          },
+          "page": "90",
+          "section": "Art. 146 — Congedo Parentale",
+          "quote": "un minimo di due ore al giorno e potrà essere abbinato agli ulteriori permessi retribuiti previsti sia"
+        },
+        "transformation": "The provision sets a two-hour daily minimum for hourly parental leave, not an equivalence between a full-time day of leave and a fixed number of hours. No explicit part-time scaling or date of first introduction is established."
+      }
     }
   }
 }

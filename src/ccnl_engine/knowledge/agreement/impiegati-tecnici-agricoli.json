@@ -278,6 +278,27 @@
           "work_rules.time_supplements",
           "work_rules.capability_basis"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-parental-hourly",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256, read from the OCR of the page where the PDF is scanned.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://pub-44429b7b330a431e94aea589bd6b8bed.r2.dev/A021/216332.pdf",
+            "sha256": "b251e33ea1f92bdd5572933f14dbbc89603cbeef5e5be2a2f3bee37c17067ab1"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.parental_hourly."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.parental_hourly"
+        ]
       }
     ]
   },
@@ -862,7 +883,7 @@
     "effective_until": "2027-12-31",
     "source": "https://www.flai.it/wp-content/uploads/2018/11/CCNL-quadri-e-impiegati-agricoli-2024-2027.pdf",
     "verification_status": "unverified",
-    "source_hash": "e1211b1a18fb72a4cf16fd61b08044ff686bed39b948ee0732157ac9268ba606",
+    "source_hash": "8357affaea879b3d1032e5bc0d31197f4849e01ae4c62dd977eceb427162319d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1421,6 +1442,26 @@
             "review_id": "2026-11-15-ai-impiegati-tecnici-agricoli-time-supplements"
           }
         }
+      }
+    },
+    "parental_hourly": {
+      "regulated": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "agricoli.pdf",
+            "title": "CCNL quadri e impiegati agricoli, testo 7 luglio 2021",
+            "kind": "associazione",
+            "url": "https://pub-44429b7b330a431e94aea589bd6b8bed.r2.dev/A021/216332.pdf",
+            "sha256": "b251e33ea1f92bdd5572933f14dbbc89603cbeef5e5be2a2f3bee37c17067ab1"
+          },
+          "page": "31",
+          "section": "Art. 26 — Congedi parentali",
+          "quote": "In caso di richiesta del congedo parentale su base oraria, inferiore alla metà dell'orario medio giornaliero\n\nprevista dall’art. 32, c. 1-ter, del d.igs. n. 151/2001, come modificato dall'art. 7 del d.lgs. n. 80/2015, c\n\nl'azienda valuterà la possibilita di accogliere tale richiesta."
+        },
+        "transformation": "Requests for hourly parental leave below half the average daily working time are subject to employer assessment, a contractual modality distinct from the statutory default. No fixed full-time hours are expressly equated to one day.",
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
       }
     }
   },

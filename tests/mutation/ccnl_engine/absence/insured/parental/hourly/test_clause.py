@@ -47,7 +47,7 @@ if TYPE_CHECKING:
 
 _RECORD = RuleProvenance(status=ProvenanceStatus.MISSING)
 _COMMERCIO = ("commercio-confcommercio", "4")
-_UNRECORDED = ("consorzi-agrari-assocap", "1")
+_UNRECORDED = ("vigilanza-privata-assiv", "4")
 
 
 @pytest.mark.parametrize(
@@ -98,7 +98,7 @@ def test_a_silent_ccnl_applies_the_criterion() -> None:
 
 
 def test_an_unrecorded_ccnl_keeps_the_limitation() -> None:
-    """Gas-acqua: its rule is not in the bundle yet."""
+    """A CCNL whose rule is not in the bundle yet."""
     leave = replace(_leave(2, 3), local_hourly_agreement=False)
     result = _run(leave, ccnl_id=_UNRECORDED[0], level_code=_UNRECORDED[1])
     assert HOURLY_CCNL_LIMITATION in {lim.id for lim in result.limitations}

@@ -310,6 +310,27 @@
         "checked": [
           "work_rules.sunday_holidays"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-parental-hourly",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/FLAI-CGIL-CCNL-Dipendenti-consorzi-agrari-24-27.pdf",
+            "sha256": "641d470a1dfee87467d192b34d2b2bd8c13f3b42faa2365d45eb37175179c207"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.parental_hourly."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.parental_hourly"
+        ]
       }
     ]
   },
@@ -2421,7 +2442,7 @@
     "effective_until": null,
     "source": "https://www.wolterskluwer.it/",
     "verification_status": "unverified",
-    "source_hash": "52f0137808cd6bd073cbdd56d56691e0f3a715d8e8ca9e1c0b7600e77c1b2c4c",
+    "source_hash": "1b9e6cebe2a86006918789d27739c7e6f9dd8812494e33996cf149f717c54a83",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2816,6 +2837,25 @@
           "effective_from": "2024-01-01",
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "regulated": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "consorzi-2024.pdf",
+            "title": "CCNL dipendenti dei consorzi agrari 2024–2027",
+            "kind": "associazione",
+            "url": "https://www.flai.it/wp-content/uploads/2018/11/FLAI-CGIL-CCNL-Dipendenti-consorzi-agrari-24-27.pdf",
+            "sha256": "641d470a1dfee87467d192b34d2b2bd8c13f3b42faa2365d45eb37175179c207"
+          },
+          "page": "28",
+          "section": "Art. 27, lettera b), comma 11",
+          "quote": "fruito su base oraria, in gruppi minimi di quattro ore giornaliere, e"
+        },
+        "transformation": "The contractual four-hour minimum and two-day notice for hourly leave are distinct arrangements. Four hours is a minimum block, not the fixed equivalence for a day of full-time leave. Neither part-time scaling nor the date of first introduction is established."
       }
     }
   }

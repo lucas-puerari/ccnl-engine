@@ -6733,7 +6733,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
     "verification_status": "unverified",
-    "source_hash": "a95ccb483fa46382a407c5f7e920d2dcb816a364f829516b270987165c9d2d0d",
+    "source_hash": "286ec5923cd25969ee771afb7423ce0d3371944095eb20ec6819876a6f526e65",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -7067,6 +7067,26 @@
           }
         }
       }
+    },
+    "parental_hourly": {
+      "effective_from": "2024-07-01",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "pdf/H058-246905.pdf",
+            "title": "Contratto Collettivo Nazionale di Lavoro per i dipendenti da Aziende del Settore Turismo",
+            "kind": "cnel",
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246905",
+            "sha256": "38061d11d7b5e582597082787cde42e0f7d4d0878a80a68cb140cea033cbd180"
+          },
+          "page": "134",
+          "section": "Art. 184 (Congedo parentale), comma 4",
+          "quote": "I congedi parentali possono essere frazionati, anche a ore secondo quanto previsto dalle vigenti disposizioni di legge, in misura pari alla metà dell’orario medio giornaliero del periodo di paga quadrisettimanale o mensile immediatamente precedente a quello nel corso del quale ha inizio il congedo."
+        },
+        "transformation": "Half the average daily hours of the previous pay period is the statutory criterion of art. 32 c. 1-ter restated, not a number of hours equated to a day of leave: day_hours = null, regulated = false. The monthly application for fractions shorter than fifteen days (comma 4, PDF p. 135) is a procedure, not a computation. No part-time scaling is stated. Text signed 22 July 2024 with effect from 1 July 2024.",
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
+      }
     }
   },
   "verification": {
@@ -7211,6 +7231,27 @@
         "checked": [
           "work_rules.sickness_rules",
           "coverage.notes"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-parental-hourly",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause of the CNEL deposited text, read from the OCR of the page of the file with the cited sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/246905",
+            "sha256": "38061d11d7b5e582597082787cde42e0f7d4d0878a80a68cb140cea033cbd180"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.parental_hourly."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.parental_hourly"
         ]
       }
     ]

@@ -163,6 +163,27 @@
         "checked": [
           "work_rules.notice"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-parental-hourly",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2020/01/CCNL_RadioTv%202017.pdf",
+            "sha256": "99127fefd875fe8113f190976af6eaaf73729370bd226c255b6de4ded306c155"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.parental_hourly."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.parental_hourly"
+        ]
       }
     ]
   },
@@ -1396,7 +1417,7 @@
     "source": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "b345ed34544c28f237a68735a98d4b155dc14e1e7b1734e36178c69756eb1bfc"
+    "source_hash": "018a4032bb1f7d2c392861185286c59af75903ddf10959b002b59cae2abca4a0"
   },
   "work_rules": {
     "notice": {
@@ -1479,6 +1500,26 @@
           "verification_status": "verified",
           "review_id": "2026-11-01-ai-notice"
         }
+      }
+    },
+    "parental_hourly": {
+      "regulated": true,
+      "effective_from": "2017-12-19",
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "radio2017.pdf",
+            "title": "CCNL per i dipendenti di imprese radiotelevisive, multimediali e multipiattaforma (19 dicembre 2017)",
+            "kind": "associazione",
+            "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2020/01/CCNL_RadioTv%202017.pdf",
+            "sha256": "99127fefd875fe8113f190976af6eaaf73729370bd226c255b6de4ded306c155"
+          },
+          "page": "75",
+          "section": "Art. 59 Tutela della maternità e della paternità",
+          "quote": "Ai sensi del D.Lgs.. 15 giugno 2015, n. 80 nel caso in cui il congedo parentale venga richiesto in modalità di fruizione oraria lo stesso sarà riconosciuto in gruppi minimi di 4 ore giornaliere con termine di preavviso pari a 5 giorni lavorativi. L’azienda e la RSU potranno definire modalità e condizioni per la fruizione dei congedi parentali su base oraria in misura inferiore a quelli previsti dalle norme di legge, in relazione alle esigenze organizzative e produttive."
+        },
+        "transformation": "The contract sets a minimum daily block of four hours for hourly parental leave, unlike the statutory half-average-day criterion. This minimum does not equate four hours to a full day of leave; the clause does not specify part-time scaling. The verified 2017 agreement is the earliest documented occurrence."
       }
     }
   }

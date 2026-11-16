@@ -2950,7 +2950,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027_TABELLE.pdf",
     "verification_status": "unverified",
-    "source_hash": "843726b9540c04fbd6a3b95e6d6bc9db47053843912d04b40c7d9e829c4affb7",
+    "source_hash": "15b3fda4a738d44528b5567f13a69d8bc4c32a88e5d369b3160eb0969bbb46fc",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3156,6 +3156,25 @@
           "comporto_days": 365
         }
       ]
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ceramica.pdf",
+            "title": "Accordo di rinnovo CCNL industria ceramica 22 luglio 2024",
+            "kind": "associazione",
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027.pdf",
+            "sha256": "b3ba1b4418666d8e2dfb9e98787a93006734fb1b887feba2159f0058cdb5593d"
+          },
+          "page": "4",
+          "section": "Art. 39, Trattamento in caso di maternità/paternità, modifica",
+          "quote": "In sede di contrattazione\naziendale potranno essere stabilite Ie modalità di fruizione su base oraria del\ncongedo parentale di cui all'articolo 32 del D.Lgs n. 151/01, commi 1 e 1-bis"
+        },
+        "transformation": "The national agreement leaves the hourly parental-leave arrangements to possible company-level bargaining; this clause does not itself set an hourly method or a fixed day-to-hours equivalence. Without a company agreement the general statutory criterion applies. The date when this clause first took effect is unverified.",
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
+      }
     }
   },
   "verification": {
@@ -3201,6 +3220,27 @@
         "independence": "same_process",
         "checked": [
           "work_rules.sickness_rules.comporto_windows"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-parental-hourly",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256, read from the OCR of the page where the PDF is scanned.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/ceramica_piastrelle/240722_CERAMICHE_RINNOVO_1LUGLIO2023_30GIUGNO2027.pdf",
+            "sha256": "b3ba1b4418666d8e2dfb9e98787a93006734fb1b887feba2159f0058cdb5593d"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.parental_hourly."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.parental_hourly"
         ]
       }
     ]

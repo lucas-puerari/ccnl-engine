@@ -3296,7 +3296,7 @@
     "effective_until": null,
     "source": "https://www.uilmnazionale.it/wp-content/uploads/2026/06/20260604-CCNL-Unionmeccanica-Confapi-2025-2028.pdf",
     "verification_status": "unverified",
-    "source_hash": "710df87ab645d47d933630b30e21a3273891ac2dd7ab8f21b1c75d8c938e14d8",
+    "source_hash": "facec54cbae9fc2e40b9ac665adefe386b20e3b37c067bd3aaab52947d95f178",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -4763,6 +4763,26 @@
           }
         }
       }
+    },
+    "parental_hourly": {
+      "day_hours": "8",
+      "part_time_scaled": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-2017",
+            "title": "CCNL Unionmeccanica-Confapi 3 luglio 2017",
+            "kind": "associazione",
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          },
+          "page": "142",
+          "section": "Art. 58 - Congedi parentali, Verbale di Accordo, lett. a)",
+          "quote": "La fruizione oraria dei periodi di congedo parentale è frazionabile fino a un minimo di\n due ore, riproporzionate per i rapporti di lavoro part-time.\n     La fruizione oraria non potrà essere programmata per un periodo inferiore, nel mese di\n utilizzo, ad una giornata lavorativa.\n     Ai fini dell’esercizio di tale diritto, il genitore è tenuto a presentare, almeno 15 giorni\n prima, richiesta scritta al datore di lavoro allegando il certificato di nascita ovvero la dichia-\n razione sostitutiva e indicando:\n     a) la durata del periodo richiesto;\n     b) il numero di giornate equivalenti alle ore complessivamente richieste nel periodo;\n     c) il calendario del frazionamento a ore richiesto nel periodo.\n \t\t nel caso in cui il lavoratore sia oggettivamente impossibilitato a rispettare i termini, lo\n        stesso è tenuto a preavvertire il datore di lavoro e a presentare richiesta scritta con la\n        relativa certificazione tempestivamente e comunque entro due giorni dall’inizio della\n        fruizione ad ore del congedo parentale.\n    I criteri di calcolo per la determinazione della retribuzione oraria e della equiparazione\n del monte ore utilizzabile alla singola giornata lavorativa sono i seguenti:\n    a) stante la frazionabilità massima stabilita in gruppi di due ore e la programmazione di\n        una fruizione minima di otto ore al mese, i criteri restano i medesimi applicati ad oggi\n        nel calcolo dell’indennità dovuta su giornata piena di 8 ore che rappresenta l’ordinaria\n        prestazione lavorativa (lavoro di otto ore giornaliere per cinque giorni la settimana);"
+        },
+        "transformation": "Il verbale definisce i criteri di equiparazione del monte ore alla singola giornata lavorativa e indica espressamente la giornata piena di 8 ore: per il tempo pieno day_hours = 8. Il minimo di due ore per frazione è riproporzionato per il part-time; non è la misura di una giornata."
+      }
     }
   },
   "verification": {
@@ -5352,6 +5372,27 @@
         "checked": [
           "work_rules.time_supplements",
           "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-parental-hourly",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fim-cisl.it/wp-content/uploads/2021/03/CCNL-Unionmeccanica.pdf",
+            "sha256": "c3e694dc561879c0b5ef510d0e931a16e3562f073a88e8a06a210fbf00451fad"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.parental_hourly."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.parental_hourly"
         ]
       }
     ],

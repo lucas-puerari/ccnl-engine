@@ -217,6 +217,27 @@
           "work_rules.sickness_rules.comporto_windows",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-parental-hourly",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause located in the cited file by sha256, read from the OCR of the page where the PDF is scanned.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://pub-44429b7b330a431e94aea589bd6b8bed.r2.dev/B371/138012.pdf",
+            "sha256": "2ec73cf8b46366b973eb3e1a6f5067071f6c070208969fd55a0c5183f61120d4"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.parental_hourly."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.parental_hourly"
+        ]
       }
     ]
   },
@@ -2989,7 +3010,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/gomma_plastica/251002-_GOMMAPLASTICA_RINNOVO%20CCNL%202026-2028_tabelle_minimi.pdf",
     "verification_status": "unverified",
-    "source_hash": "980fa029aaac2a8b5be311cd7cac84314aceb465ebc9be5d768ccc3f1b298652",
+    "source_hash": "8c6d116fb6e486b7eca50678fe23898dd2d9b7d463f86790a5523ad7a78edf71",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3351,6 +3372,25 @@
           "effective_from": "2021-04-12",
           "verification_status": "unverified"
         }
+      }
+    },
+    "parental_hourly": {
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "gomma.pdf",
+            "title": "CCNL gomma-plastica, stesura 16 settembre 2020 sottoscritta 12 aprile 2021",
+            "kind": "associazione",
+            "url": "https://pub-44429b7b330a431e94aea589bd6b8bed.r2.dev/B371/138012.pdf",
+            "sha256": "2ec73cf8b46366b973eb3e1a6f5067071f6c070208969fd55a0c5183f61120d4"
+          },
+          "page": "62",
+          "section": "Congedi parentali (Contratto - parte II)",
+          "quote": "In materia di congedi parentali ed in particolare di permessi per il decesso \\ \ndi familiari, valgono [e disposizioni di cui alla legge 8.3.2000, n. 53 e successive\nmodifiche."
+        },
+        "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies.",
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
       }
     }
   }

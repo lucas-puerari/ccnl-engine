@@ -2452,7 +2452,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "5a7fdf991a18e1fafe93f648d5433316187602c76ee4918274cef666b82000d6",
+    "source_hash": "2f49e87ee5c8b4671edc512c6589bebede9f47be78891db80c843e6a7174b158",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2652,6 +2652,26 @@
           "comporto_days": 365
         }
       ]
+    },
+    "parental_hourly": {
+      "regulated": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "pdf/G016-97874.pdf",
+            "title": "CCNL Area Comunicazione - stesura sottoscritta il 18/12/2018",
+            "kind": "cnel",
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/97874",
+            "sha256": "440fbbd1d70618844562748f4bdc95f41384214b6dbe2db98a33111d59b0f4b0"
+          },
+          "page": "44",
+          "section": "Articolo 44 bis Disciplina dei congedi parentali su base oraria",
+          "quote": "In detto caso la fruizione su base oraria potrà essere ammessa per periodi pari a un minimo di 2 ore\ngiornaliere, previa comunicazione da parte del lavoratore al datore di lavoro di 7 giorni lavorativi e previo\naccordo fra le parti in relazione alla fungibilità del lavoratore e all’organizzazione aziendale ovvero dei turni\ndi lavoro."
+        },
+        "transformation": "The coordinated text sets a two-hour daily minimum, seven working days of notice and an agreement concerning staffing and shifts, beyond the statutory half-of-average-daily-hours rule. It does not expressly equate any number of full-time hours with one day of leave. The 2024 renewal does not mention this article.",
+        "note": "Scanned PDF: the quote is read from the OCR of the page."
+      }
     }
   },
   "verification": {
@@ -2833,6 +2853,27 @@
         "independence": "same_process",
         "checked": [
           "apprenticeship"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-parental-hourly",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Parental leave by the hour (art. 32 c. 1-bis D.Lgs. 151/2001): the clause of the CNEL deposited text, read from the OCR of the page of the file with the cited sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/97874",
+            "sha256": "440fbbd1d70618844562748f4bdc95f41384214b6dbe2db98a33111d59b0f4b0"
+          }
+        ],
+        "findings": [
+          "Applied: work_rules.parental_hourly."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.parental_hourly"
         ]
       }
     ]
