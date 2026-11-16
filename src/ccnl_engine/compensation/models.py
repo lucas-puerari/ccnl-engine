@@ -144,7 +144,8 @@ class CCNLParameters(BaseModel):
     ``accrual_rule``: month threshold of an extra-month window; ``*_payment_day``: their
     pay days; ``additional_months_by_category``: the payments of a category.
     ``flat_pay_max_weekly_hours``: hours at the full minimum (domestic: 30);
-    ``solidarity_fund``: D.Lgs. 148/2015 art. 26; ``raccordo_element``: ERC;
+    ``solidarity_fund``: D.Lgs. 148/2015 art. 26, ``solidarity_funds`` the
+    funds by INPS sector and date the run selects it from; ``raccordo_element``: ERC;
     ``enam_levels``: ex ENAM; ``enam_iis_monthly``: the IIS conglobata in the
     tabellare of a level, which the ENAM stipendio leaves out; ``renewals``:
     raising the minimo (L. 199/2025);
@@ -184,6 +185,7 @@ class CCNLParameters(BaseModel):
     enam_levels: tuple[str, ...] = ()
     enam_iis_monthly: dict[str, TimeSeries] = Field(default_factory=dict)
     solidarity_fund: SolidarityFund | None = None
+    solidarity_funds: tuple[SolidarityFund, ...] = ()
     hourly_pay: HourlyPay | None = None
     fixed_term_pay: FixedTermPay | None = None
     renewals: tuple[RenewalAgreement, ...] = ()

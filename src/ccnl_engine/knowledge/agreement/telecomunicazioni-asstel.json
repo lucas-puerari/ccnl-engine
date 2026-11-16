@@ -43,7 +43,11 @@
       "verification_status": "unverified",
       "effective_from": null
     },
-    "workers_estimate": "~110k"
+    "workers_estimate": "~110k",
+    "inps_sectors": [
+      "industria",
+      "terziario"
+    ]
   },
   "coverage": {
     "notes": [
@@ -97,14 +101,8 @@
         "monetary_impact": "no"
       },
       {
-        "kind": "simplification",
-        "text": "INPS: reuses the industria contribution table. SIMPLIFICATION: tax_sector='industria' is a modelling choice. Supporting facts: (a) Asstel is a Confindustria federation; (b) large TLC operators (Telecom Italia, etc.) have historically accessed CIGO/CIGS; (c) the CCNL itself (Art. 58 rinnovo 11/11/2025) describes the Fondo di Solidarietà Bilaterale TLC as 'in aggiunta' (supplementary), not as a CIG substitute. Counterargument: D.Lgs. 148/2015 Art. 26 bilateral funds are formally for sectors without CIG coverage; this was not verified against an INPS circular. The employer rate of the terziario table is about 1.2 points lower than the industria one in each headcount band of the bundle. The Fondo di Solidarietà Bilaterale (0.20% datore + 0.10% lavoratore) is NOT modelled in either case (review of 2026-10-30).",
-        "capability": "inps_employer",
-        "monetary_impact": "unknown",
-        "limitation": {
-          "variant": "industria_tax_sector_unverified",
-          "remediation": "Verify the INPS classification of TLC employers and model the Fondo di Solidarieta Bilaterale TLC."
-        }
+        "kind": "info",
+        "text": "INPS SECTOR AND FONDO TLC: the employers of the filiera are in the CIGO and CIGS (industria) or were in the FIS and CIGS (terziario): INPS circ. 107/2023 (sha256 20865780…, p. 2) names both, so the CCNL does not settle it and EmployerProfile.inps_sector chooses (meta.inps_sectors). The Fondo di solidarietà bilaterale per la Filiera delle Telecomunicazioni (D.I. 4 agosto 2023) charges every employer 0.45% (0.75% from February 2027) and an employer outside the CIGO also 0.80% in place of the FIS and CIGS: parameters.solidarity_funds, by sector and date, on the permanent workers and apprentices, not the dirigenti."
       }
     ]
   },
@@ -302,6 +300,58 @@
         "checked": [
           "parameters.additional_months"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-fondo-tlc",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Fondo TLC: D.I. 4 agosto 2023 art. 7 and 10, D.I. 1 settembre 2026 art. 1, INPS circ. 107/2023, read in the cited files by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.lavoro.gov.it/documenti-e-norme/normativa/di-04082023-fondo-telecomunicazioni.pdf",
+            "sha256": "d248370184bf7ef2befe3f84844239e0aa61129490853c0c5cafc38f6adbcea2"
+          },
+          {
+            "url": "https://www.lavoro.gov.it/documenti-e-norme/normativa/di-del-01092026",
+            "sha256": "cd1aa145f4f90965f968fe9958780f98957b9067fd36674f64fc25a4d1752ddb"
+          },
+          {
+            "url": "https://www.inps.it/content/dam/inps-site/it/scorporati/circolari-e-messaggi/2023/12/Circolare_14381/Allegati/14542_Circolare-numero-107-del-21-12-2023.pdf",
+            "sha256": "20865780e71e027198fef9063e09e434073cf3e3f4b15ad42685ed87884bcb87"
+          }
+        ],
+        "findings": [
+          "Applied: the Fondo TLC by INPS sector and date.",
+          "The INPS sector is the employer's: industria or terziario."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.solidarity_funds",
+          "meta.inps_sectors"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-asstel-travel",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Art. 43 Trasferte (PDF p. 84) read in the cited file by sha256; the renewal of 11 November 2025 checked for changes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.asstel.it/wp-content/uploads/2023/05/CCNL-TLC-Slc-Cgil-Fistel-Cisl-Uilcom-Uil-12-novembre-2020-nuovo.pdf",
+            "sha256": "67ac2f50eea25ec50d43e02f0f65aa89f6c850a7bcf5ca7dd78e98a1dfd785d4"
+          }
+        ],
+        "findings": [
+          "Applied: travel delegated to the company level."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -476,7 +526,129 @@
           "review_id": "2026-10-18-ai-accrual-rule"
         }
       }
-    }
+    },
+    "solidarity_funds": [
+      {
+        "code": "FONDO_TLC",
+        "sectors": [
+          "industria"
+        ],
+        "valid_from": "2024-01-01",
+        "valid_until": "2027-02-01",
+        "employer_rate": "0.003",
+        "employee_rate": "0.0015",
+        "covers_fixed_term": false,
+        "covers_executives": false,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "di-04082023-fondo-telecomunicazioni",
+              "title": "D.I. 4 agosto 2023, Fondo di solidarietà bilaterale per la Filiera delle Telecomunicazioni (G.U. n. 218 del 18 settembre 2023)",
+              "kind": "legge",
+              "url": "https://www.lavoro.gov.it/documenti-e-norme/normativa/di-04082023-fondo-telecomunicazioni.pdf",
+              "sha256": "d248370184bf7ef2befe3f84844239e0aa61129490853c0c5cafc38f6adbcea2"
+            },
+            "page": "9",
+            "section": "Art. 7 c. 2 lett. a",
+            "quote": "Con riferimento alla totalità delle Imprese, il finanziamento per le prestazioni di cui all’articolo 5, comma 1, lett. a), b), c), avviene: a. per le prestazioni di cui all’articolo 5, comma 1, lett. a), b) e c) con un contributo ordinario mensile dello 0,45%"
+          },
+          "transformation": "An employer in the CIGO (industria) pays only the 0.45% due by every enterprise of the filiera, on top of the sector rates: two thirds employer (0.30%), one third worker (0.15%), on the permanent workers and apprentices, not the dirigenti (same art. 7 base). From January 2024, the fourth pay month after the G.U. of 18 September 2023 (art. 10)."
+        }
+      },
+      {
+        "code": "FONDO_TLC",
+        "sectors": [
+          "industria"
+        ],
+        "valid_from": "2027-02-01",
+        "employer_rate": "0.005",
+        "employee_rate": "0.0025",
+        "covers_fixed_term": false,
+        "covers_executives": false,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "di-01092026-fondo-telecomunicazioni",
+              "title": "D.I. 1 settembre 2026, modifica del Fondo TLC (G.U. n. 232 del 6 ottobre 2026)",
+              "kind": "legge",
+              "url": "https://www.lavoro.gov.it/documenti-e-norme/normativa/di-del-01092026",
+              "sha256": "cd1aa145f4f90965f968fe9958780f98957b9067fd36674f64fc25a4d1752ddb"
+            },
+            "page": "2",
+            "section": "Art. 1 c. 2 lett. a",
+            "quote": "Con riferimento alla totalità dei datori di lavoro, il finanziamento per le prestazioni di cui all’articolo 5, comma 1, lettere a), b) e c), viene rimodulato come segue: a) per le prestazioni di cui all’articolo 5, comma 1, lettere a), b) e c), del decreto del Ministro del lavoro e delle politiche sociali, di concerto con il decreto del Ministro dell’economia e delle finanze, 4 agosto 2023 con un contributo ordinario mensile dello 0,75 per cento"
+          },
+          "transformation": "The 0.45% of every enterprise becomes 0.75% (0.50% employer, 0.25% worker) from the fourth pay month after the G.U. of 6 October 2026: February 2027 (art. 1 c. 3)."
+        }
+      },
+      {
+        "code": "FONDO_TLC",
+        "sectors": [
+          "terziario"
+        ],
+        "valid_from": "2024-01-01",
+        "valid_until": "2027-02-01",
+        "wage_integration_tiers": [
+          {
+            "max_employees": null,
+            "employer_rate": "0.0083333333",
+            "employee_rate": "0.0041666667"
+          }
+        ],
+        "wage_integration_permanent_only": true,
+        "covers_executives": false,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "di-04082023-fondo-telecomunicazioni",
+              "title": "D.I. 4 agosto 2023, Fondo di solidarietà bilaterale per la Filiera delle Telecomunicazioni (G.U. n. 218 del 18 settembre 2023)",
+              "kind": "legge",
+              "url": "https://www.lavoro.gov.it/documenti-e-norme/normativa/di-04082023-fondo-telecomunicazioni.pdf",
+              "sha256": "d248370184bf7ef2befe3f84844239e0aa61129490853c0c5cafc38f6adbcea2"
+            },
+            "page": "9",
+            "section": "Art. 7 c. 1 lett. a",
+            "quote": "un contributo ordinario mensile dello 0,80% (di cui due terzi a carico del datore di lavoro e un terzo a carico dei lavoratori) calcolato sulla retribuzione imponibile ai fini previdenziali di tutti i lavoratori dipendenti con contratto a tempo indeterminato, ivi incluso il personale assunto con contratto di apprendistato, esclusi i dirigenti"
+          },
+          "transformation": "An employer outside the CIGO, formerly in the FIS and the CIGS, pays the 0.80% and the 0.45% of every enterprise in place of the FIS and CIGS shares (INPS circ. 107/2023, p. 2-3, sha256 20865780…): 1.25%, two thirds employer (0.8333%), one third worker (0.4167%), on the permanent workers and apprentices, not the dirigenti; a fixed term pays neither."
+        }
+      },
+      {
+        "code": "FONDO_TLC",
+        "sectors": [
+          "terziario"
+        ],
+        "valid_from": "2027-02-01",
+        "wage_integration_tiers": [
+          {
+            "max_employees": null,
+            "employer_rate": "0.0103333333",
+            "employee_rate": "0.0051666667"
+          }
+        ],
+        "wage_integration_permanent_only": true,
+        "covers_executives": false,
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "di-01092026-fondo-telecomunicazioni",
+              "title": "D.I. 1 settembre 2026, modifica del Fondo TLC (G.U. n. 232 del 6 ottobre 2026)",
+              "kind": "legge",
+              "url": "https://www.lavoro.gov.it/documenti-e-norme/normativa/di-del-01092026",
+              "sha256": "cd1aa145f4f90965f968fe9958780f98957b9067fd36674f64fc25a4d1752ddb"
+            },
+            "page": "2",
+            "section": "Art. 1 c. 2 lett. a",
+            "quote": "Con riferimento alla totalità dei datori di lavoro, il finanziamento per le prestazioni di cui all’articolo 5, comma 1, lettere a), b) e c), viene rimodulato come segue: a) per le prestazioni di cui all’articolo 5, comma 1, lettere a), b) e c), del decreto del Ministro del lavoro e delle politiche sociali, di concerto con il decreto del Ministro dell’economia e delle finanze, 4 agosto 2023 con un contributo ordinario mensile dello 0,75 per cento"
+          },
+          "transformation": "From February 2027 the 0.45% becomes 0.75%: with the 0.80%, 1.55% in place of the FIS and CIGS shares, two thirds employer (1.0333%), one third worker (0.5167%)."
+        }
+      }
+    ]
   },
   "levels": [
     {
@@ -1991,7 +2163,7 @@
     "effective_until": null,
     "source": "https://www.asstel.it/lavoro-e-relazioni-industriali/ccnl-tlc/",
     "verification_status": "unverified",
-    "source_hash": "1dae4fe73af072649d1d7efc4b0a64badf766c282e189badb87c41f7cbd262b7",
+    "source_hash": "4ff60738b71f161de2ed304b471269e0863517113865a1735d8f468622c2bd8d",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2800,6 +2972,27 @@
           "quote": "8. Ai sensi delle vigenti disposizioni di legge, è riconosciuta al genitore la possibilità di fruire del congedo parentale su base oraria, in misura non superiore alla metà del normale orario giornaliero di lavoro. Il lavoratore è tenuto a presentare all’azienda la relativa richiesta di fruizione con un preavviso minimo di due giorni. Diverse modalità di fruizione del congedo parentale a ore possono essere previste dalla contrattazione aziendale"
         },
         "transformation": "La metà dell'orario giornaliero è un massimo di fruizione, non un'equiparazione espressa di una giornata a un numero di ore: day_hours=null. Nessun riproporzionamento esplicito per il part-time né decorrenza specifica della clausola."
+      }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-tlc-2020",
+              "title": "CCNL Telecomunicazioni 12 novembre 2020 (Asstel)",
+              "kind": "associazione",
+              "url": "https://www.asstel.it/wp-content/uploads/2023/05/CCNL-TLC-Slc-Cgil-Fistel-Cisl-Uilcom-Uil-12-novembre-2020-nuovo.pdf",
+              "sha256": "67ac2f50eea25ec50d43e02f0f65aa89f6c850a7bcf5ca7dd78e98a1dfd785d4"
+            },
+            "page": "84",
+            "section": "Art. 43 cc. 1-3 - Trasferte",
+            "quote": "Al lavoratore inviato dall’azienda, per esigenze di servizio, fuori dal suo normale ambito territoriale di impiego, verranno rimborsate, qualora egli non possa usufruire dei servizi aziendali, le spese effettive di viaggio corrispondenti all’utilizzo dei mezzi normali di trasporto nonché, in relazione alla necessità di consumare uno o più pasti e/o di pernottare fuori dalla abituale residenza, le spese di vitto e alloggio, e/o corrisposta una indennità di trasferta giornaliera (diaria). 2. Gli importi del suddetto rimborso spese o della diaria saranno riferiti ai trattamenti individuati secondo le prassi in atto a livello aziendale."
+          },
+          "transformation": "The CCNL leaves the amount of the diaria to the company practice (c. 2): it is the employer's fact, TravelAllowanceEvent.daily_amount. The renewal of 11 November 2025 does not change art. 43. C. 3 leaves the indemnities out of every institute."
+        }
       }
     }
   }

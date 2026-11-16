@@ -11,8 +11,23 @@ from ccnl_engine.employment.inputs import FixedTerm
 if TYPE_CHECKING:
     from ccnl_engine.fund.solidarity.models import SolidarityFund
     from ccnl_engine.period.context.services import RunContext
+    from ccnl_engine.period.requests import PeriodCalculationRequest
 
-__all__ = ["covered_fund", "solidarity_coverage_issue"]
+__all__ = ["covered_fund", "fund_covers", "solidarity_coverage_issue"]
+
+
+def fund_covers(fund: SolidarityFund | None, request: PeriodCalculationRequest) -> bool:
+    """Whether a fund in place of the FIS charges the worker of ``request``.
+
+    Returns:
+        False for a fixed term or an executive of a fund that charges only
+        the permanent workers; True otherwise.
+    """
+    if fund is None or not fund.wage_integration_permanent_only:
+        return True
+    if isinstance(request.contract_type, FixedTerm):
+        return False
+    return request.category != WorkerCategory.DIRIGENTE
 
 
 def covered_fund(ctx: RunContext) -> SolidarityFund | None:

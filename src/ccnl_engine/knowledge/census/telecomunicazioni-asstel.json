@@ -1,22 +1,5 @@
 {
   "schema_version": 1,
   "ccnl_id": "telecomunicazioni-asstel",
-  "requirements": [
-    {
-      "id": "industria_tax_sector_unverified",
-      "institute": "inps_employer",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "INPS: reuses the industria contribution table. SIMPLIFICATION: tax_sector='industria' is a modelling choice. Supporting facts: (a) Asstel is a Confindustria federation; (b) large TLC operators (Telecom Italia, etc.) have historically accessed CIGO/CIGS; (c) the CCNL itself (Art. 58 rinnovo 11/11/2025) describes the Fondo di Solidarietà Bilaterale TLC as 'in aggiunta' (supplementary), not as a CIG substitute. Counterargument: D.Lgs. 148/2015 Art. 26 bilateral funds are formally for sectors without CIG coverage; this was not verified against an INPS circular. The employer rate of the terziario table is about 1.2 points lower than the industria one in each headcount band of the bundle. The Fondo di Solidarietà Bilaterale (0.20% datore + 0.10% lavoratore) is NOT modelled in either case (review of 2026-10-30).",
-      "calculation": "ccnl/telecomunicazioni-asstel:coverage.notes",
-      "state": "unverified",
-      "remediation": "Verify the INPS classification of TLC employers and model the Fondo di Solidarieta Bilaterale TLC.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "telecomunicazioni-asstel/industria_tax_sector_unverified"
-        ]
-      }
-    }
-  ]
+  "requirements": []
 }

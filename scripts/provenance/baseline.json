@@ -806,9 +806,6 @@
     "agreement/tabacco-apti.json": [
       "tabacco-apti/sickness_rules"
     ],
-    "agreement/telecomunicazioni-asstel.json": [
-      "telecomunicazioni-asstel/industria_tax_sector_unverified"
-    ],
     "agreement/terziario-confesercenti.json": [
       "terziario-confesercenti/una_tantum_apprentices_sales"
     ],
