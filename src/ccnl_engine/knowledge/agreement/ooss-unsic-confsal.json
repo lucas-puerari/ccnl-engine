@@ -239,6 +239,27 @@
         "checked": [
           "work_rules.parental_hourly"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
+            "sha256": "25f8b7efbb81b8eb2dc36c8bbb0157a7125fbcaa0e30c9da0f19e453dcbe9db3"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -259,9 +280,21 @@
           "valid_until": null,
           "value": 14,
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "CCNL-OOSS.pdf",
+                "title": "Art. 52",
+                "kind": "associazione",
+                "url": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
+                "sha256": "25f8b7efbb81b8eb2dc36c8bbb0157a7125fbcaa0e30c9da0f19e453dcbe9db3"
+              },
+              "page": "93",
+              "section": "Art. 52",
+              "quote": "Entro il mese di giugno di ogni anno il datore dovrà corrispondere al personale dipendente una mensilità aggiuntiva a titolo di 14ma."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
           }
         }
       ]
@@ -1352,7 +1385,7 @@
     "effective_until": null,
     "source": "https://unsic.it/wp-content/uploads/2023/02/CCNL-OOSS.pdf",
     "verification_status": "unverified",
-    "source_hash": "a4f9e6df41b2fb3a4345b3267d46c6d6adf3bf7b6aedd0e0f905144d237049d4",
+    "source_hash": "ed1a2588204469f5faf28da7b1275e7687d48aeac8fad9bae6dd16b1c1d37b21",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

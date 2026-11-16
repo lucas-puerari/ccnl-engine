@@ -18,21 +18,6 @@
       }
     },
     {
-      "id": "rule_additional_months_2022_04_01",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/attivita-minerarie-assorisorse.json#additional_months[2022-04-01]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/attivita-minerarie-assorisorse.json#additional_months[2022-04-01]"
-        ]
-      }
-    },
-    {
       "id": "rule_seniority_increments",
       "institute": "seniority",
       "variant": "all",

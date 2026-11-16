@@ -17,21 +17,6 @@
           "turismo-confesercenti/apprentice_net_cap"
         ]
       }
-    },
-    {
-      "id": "rule_additional_months_2024_07_01",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/turismo-confesercenti.json#additional_months[2024-07-01]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/turismo-confesercenti.json#additional_months[2024-07-01]"
-        ]
-      }
     }
   ]
 }

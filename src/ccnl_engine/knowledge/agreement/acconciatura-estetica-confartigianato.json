@@ -155,9 +155,21 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "acconciatura.pdf",
+                "title": "Art. 40 – Gratifica natalizia",
+                "kind": "associazione",
+                "url": "https://www.cna.it/wp-content/uploads/2021/01/CCNL-Acconciatura-Estetica-Tricologia-non-curativa-Tatuaggio-Piercing-e-Centri-Benessere.pdf",
+                "sha256": "916b03a4d5c4d7eb2638a639e1019dc6ee3ab3ac2b841e8cbdd231184fd7df2a"
+              },
+              "page": "43",
+              "section": "Art. 40 – Gratifica natalizia",
+              "quote": "Dal 1° gennaio 1980 la gratifica natalizia viene elevata ad una mensilità di\nretribuzione globale, rapportata all'orario di lavoro contrattuale."
+            },
+            "transformation": "13 monthly pays: twelve and the additional months the article sets.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
           }
         }
       ]
@@ -1236,7 +1248,7 @@
     "effective_until": null,
     "source": "https://www.confartigianatomarcatrevigiana.it/wp-content/uploads/2024/09/ccnl-benessere-app.prof-fino-30.9.24.pdf",
     "verification_status": "unverified",
-    "source_hash": "67fa07021909fc8b6a38073666090c7a3604a983c44e0e4e76477f865b44931b",
+    "source_hash": "eaae2bdc582a15a4af72828b62f9b79c98906a65de03a586b076499a3c03139a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -1910,6 +1922,27 @@
         "checked": [
           "work_rules.time_supplements",
           "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.cna.it/wp-content/uploads/2021/01/CCNL-Acconciatura-Estetica-Tricologia-non-curativa-Tatuaggio-Piercing-e-Centri-Benessere.pdf",
+            "sha256": "916b03a4d5c4d7eb2638a639e1019dc6ee3ab3ac2b841e8cbdd231184fd7df2a"
+          }
+        ],
+        "findings": [
+          "Sourced: 13 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
         ]
       }
     ]

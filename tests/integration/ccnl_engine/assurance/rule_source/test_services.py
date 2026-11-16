@@ -148,7 +148,7 @@ class TestBundledRun:
             if b.code is BlockerCode.RULE_SOURCE_WEAK
         }
         assert result.assurance.calculation is CalculationStatus.FINAL
-        assert ("base_salary", "assumed") in weak
+        assert ("seniority", "assumed") in weak
         assert all(detail != "derived" for _, detail in weak)
         assert not result.is_payable
 

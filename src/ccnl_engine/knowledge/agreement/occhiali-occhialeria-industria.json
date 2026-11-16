@@ -189,6 +189,27 @@
           "work_rules.sickness_rules",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/152279",
+            "sha256": "abb4d8a7c8d35e84ecc4208eaea781883c15f1bee2364067113ffcd1eb61c4ff"
+          }
+        ],
+        "findings": [
+          "Sourced: 13 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -209,9 +230,20 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "testo-2021.pdf",
+                "title": "Art. 46",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/152279",
+                "sha256": "abb4d8a7c8d35e84ecc4208eaea781883c15f1bee2364067113ffcd1eb61c4ff"
+              },
+              "page": "64",
+              "section": "Art. 46",
+              "quote": "A norma di quanto stabilito dall’Accordo Interconfederale 27 ottobre 1946, l’azienda è tenuta a corrispondere al lavoratore, in occasione della ricorrenza natalizia, una 13ma mensilità di importo pari alla retribuzione mensile di fatto percepita dal lavoratore stesso."
+            },
+            "transformation": "13 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -3299,7 +3331,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/occhiali/260130_OCCHIALI_RINNOVO%20CCNL%202026_2028.pdf",
     "verification_status": "verified",
-    "source_hash": "59c0a9b0b27b50b2735e60f2914f5473d11fef907cb318d3842a9d57fe99432a",
+    "source_hash": "f80827cff35c1bef3b013d92aa3884f9916757ba6fee34816628dcfdc978ee9b",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

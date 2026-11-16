@@ -177,9 +177,20 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ania-224217.pdf",
+                "title": "Art. 112",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224217",
+                "sha256": "09bd618a920174dbee96c526dc46095053f581779fb53ab0b7410794504a1d51"
+              },
+              "page": "80",
+              "section": "Art. 112",
+              "quote": "Lo stipendio tabellare e le indennità contrattualmente stabilite di cui all’Allegato n. 2\n         sono corrisposte in 14 mensilità, di cui una per ciascuno dei mesi solari e le altre rispetti-\n         vamente al giorno 15 dei mesi di giugno e di dicembre (gratifica natalizia)."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -17619,7 +17630,7 @@
     "effective_until": null,
     "source": "https://www.first-cisl.it/",
     "verification_status": "unverified",
-    "source_hash": "997fee02bb9bed646d4c8fc479e79515a466e6bf787322c748a2757e79b93318",
+    "source_hash": "f65ddf792db137aff4610a8a4b41ca83b60aacc0b4577b00b66beb237debbe04",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -18026,6 +18037,27 @@
         "checked": [
           "work_rules.time_supplements",
           "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/224217",
+            "sha256": "09bd618a920174dbee96c526dc46095053f581779fb53ab0b7410794504a1d51"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
         ]
       }
     ]

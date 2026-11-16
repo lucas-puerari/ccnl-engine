@@ -228,6 +228,27 @@
           "work_rules.sickness_rules",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+            "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -248,9 +269,21 @@
           "valid_until": null,
           "value": 14,
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-2022-2024.pdf",
+                "title": "Articolo 20",
+                "kind": "associazione",
+                "url": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
+                "sha256": "31dbf30a09f942830176634dff56320a55b830e07cee11f5629595192d852365"
+              },
+              "page": "20",
+              "section": "Articolo 20",
+              "quote": "L’azienda corrisponderà per ogni anno solare nei mesi di giugno e dicembre una quattordicesima e una tredicesima mensilità; il loro importo sarà pari alla retribuzione del mese precedente a quello in cui vengono corrisposte."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
           }
         }
       ]
@@ -3400,7 +3433,7 @@
     "effective_until": null,
     "source": "https://www.assofarm.it/wp-content/uploads/2024/12/CCNL2022.2024.signedcorrect.pdf",
     "verification_status": "unverified",
-    "source_hash": "9b0120a067b0f00651e09ac22bdd38f09924393c1fde8ce72fa998a571c821bf",
+    "source_hash": "c7cec044f4dd2694e24cf90f4e883653b78beb7a66f863ca95f3c8c23c79a0f4",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

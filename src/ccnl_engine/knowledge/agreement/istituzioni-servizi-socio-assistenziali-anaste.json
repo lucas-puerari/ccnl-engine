@@ -303,6 +303,27 @@
           "work_rules.time_supplements",
           "work_rules.capability_basis"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+            "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
+          }
+        ],
+        "findings": [
+          "Sourced: 13 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -323,9 +344,20 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "pdf6.pdf",
+                "title": "Art. 75, comma 1",
+                "kind": "associazione",
+                "url": "https://snalv.it/docs/anaste25/pdf6.pdf",
+                "sha256": "0104ada3fe1307dce987c275b55e962e6db6230c0bc94d4182e406bb395c8c98"
+              },
+              "page": "57",
+              "section": "Art. 75, comma 1",
+              "quote": "1. In sostituzione della quattordicesima mensilità al dipendente è corrisposto un importo equivalente, già inserito e calcolato nel minimo conglobato di cui all’art. 68 del CCNL, non assorbibile in ipotesi di futuri rinnovi ed aumenti contrattuali."
+            },
+            "transformation": "13 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -2887,7 +2919,7 @@
     "effective_until": null,
     "source": "https://snalv.it/docs/anaste25/pdf6.pdf",
     "verification_status": "verified",
-    "source_hash": "567a9376b2d8bc81eff3c4affcf3a2e59d082a7879070174e53d1eb753b4276a",
+    "source_hash": "5da895e584dfa83372036e31563eb26fe9f1a16590bba60c7f27e54a90bc62e7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

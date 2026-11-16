@@ -148,6 +148,27 @@
         "checked": [
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/605",
+            "sha256": "8a9212c1a91673e53b2b3c1ace08554a8df8052b801a5282cbd2ccb73d49617c"
+          }
+        ],
+        "findings": [
+          "Sourced: 13 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -168,9 +189,20 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-605-conversion.pdf",
+                "title": "Art. 8 — Tredicesima mensilità",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/605",
+                "sha256": "8a9212c1a91673e53b2b3c1ace08554a8df8052b801a5282cbd2ccb73d49617c"
+              },
+              "page": "94",
+              "section": "Art. 8 — Tredicesima mensilità",
+              "quote": "L'Azienda corrisponderà una tredicesima mensilità pari alla retribuzione mensile percepita dall'impiegato. La corresponsione di tale mensilità avverrà alla vigilia di Natale."
+            },
+            "transformation": "13 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -1656,7 +1688,7 @@
     "effective_until": null,
     "source": "https://www.filctemcgil.it/images/download/CONTRATTI/miniere/220713_ATTIVITA%20MINERARIE_RINNOVO%20CCNL%202022-2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "3bb3afbbf3b1955d35cbf9595da879f5c2bd1624c56144a9c6489aa49c4934ca",
+    "source_hash": "8669a0b66640ff69e2a2b73683834fc5c7b8e07125d800820e8dff2ece279e4a",
     "published_at": "2026-09-18",
     "source_type": "contracting_party"
   },

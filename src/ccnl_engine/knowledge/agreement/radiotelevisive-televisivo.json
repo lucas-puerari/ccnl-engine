@@ -207,6 +207,27 @@
           "work_rules.time_supplements",
           "work_rules.capability_basis"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/09/CCNL_RadioTv-2026.pdf",
+            "sha256": "0197f37aaed4ff2a8838d441b9d9584efdcdb8c4222ce5259c55cfba4b78f142"
+          }
+        ],
+        "findings": [
+          "Sourced: 13 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -246,23 +267,21 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
+            "status": "derived",
             "location": {
               "source_document": {
-                "document_id": "ccnl-radiotelevisivo-2026-pdf",
-                "title": "CCNL Radiotelevisivo 2026 (Confindustria Radio TV, siglato 08/01/2026)",
+                "document_id": "radiotelevisive-2026.pdf",
+                "title": "Art. 45",
                 "kind": "associazione",
-                "url": "https://www.confindustriaradiotv.it/"
+                "url": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/09/CCNL_RadioTv-2026.pdf",
+                "sha256": "0197f37aaed4ff2a8838d441b9d9584efdcdb8c4222ce5259c55cfba4b78f142"
               },
-              "section": "Cap. IX, Art. 45 — Tredicesima mensilità"
+              "page": "76",
+              "section": "Art. 45",
+              "quote": "In occasione della ricorrenza natalizia le Aziende dovranno corrispondere al perso-\nnale dipendente un importo pari ad una mensilità della retribuzione in atto.\n\nNel caso di inizio del rapporto durante il corso dell’anno, il lavoratore avrà diritto a\ntanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi\ndi servizio prestati nell’Azienda.\n\nLe frazioni di mese superiori a 15 giorni saranno da considerare mese intero."
             },
-            "extraction": {
-              "method": "manual",
-              "extraction_timestamp": "2026-09-12T00:00:00",
-              "verification_status": "verified",
-              "effective_from": "2026-01-01"
-            },
-            "note": "Assumed, not derived: its ruleset declares source_type 'estimated'."
+            "transformation": "13 monthly pays: twelve and the additional months the article sets.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
           }
         }
       ]
@@ -2222,7 +2241,7 @@
     "source": "https://www.confindustriaradiotv.it/wp-content/uploads/2026/01/tabelle-ccnl-2025.pdf",
     "source_type": "contracting_party",
     "verification_status": "unverified",
-    "source_hash": "ce8171d8f820a5c3f66fc221d9bdeae83e36f6efc5de4e0d551f4b065cc75bae"
+    "source_hash": "d6463bcf52cea721d40c989b1b1468930223d5334386d87c1273627735995c88"
   },
   "work_rules": {
     "notice": {

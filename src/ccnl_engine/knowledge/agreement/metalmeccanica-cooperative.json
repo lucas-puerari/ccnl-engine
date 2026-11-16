@@ -180,6 +180,27 @@
         "checked": [
           "apprenticeship"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/242519",
+            "sha256": "bde3a8cd131000a533e4457dad53ee9ce94d6d17f67e26e1f7cffb32eb07081b"
+          }
+        ],
+        "findings": [
+          "Sourced: 13 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -200,9 +221,20 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "cnel-242519-decoded.pdf",
+                "title": "Sezione quarta, Titolo IV, Art. 7",
+                "kind": "associazione",
+                "url": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/242519",
+                "sha256": "bde3a8cd131000a533e4457dad53ee9ce94d6d17f67e26e1f7cffb32eb07081b"
+              },
+              "page": "110",
+              "section": "Sezione quarta, Titolo IV, Art. 7",
+              "quote": "L’azienda è tenuta a corrispondere per ciascun anno al lavoratore, in occasione della ricorrenza natalizia,\nuna tredicesima mensilità di importo ragguagliato alla retribuzione globale di fatto."
+            },
+            "transformation": "13 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -1890,7 +1922,7 @@
     "effective_until": null,
     "source": "https://geps.it/rinnovo-ccnl-metalmeccanica-cooperative-2025-2028-10377/",
     "verification_status": "unverified",
-    "source_hash": "91c7f2d7e07bdcaedb1083d3efd23a147e354a9036b637404b5d916aafdd6599",
+    "source_hash": "3b9e12098023f3d12ac3da893450691ddc3ca89f866aaa81ada51210c1d79883",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

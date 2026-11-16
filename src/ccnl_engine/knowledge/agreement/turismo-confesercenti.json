@@ -108,9 +108,20 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "rinnovo-2024.pdf",
+                "title": "Art. Quattordicesima mensilità (artt. 225 e 269), comma 2",
+                "kind": "associazione",
+                "url": "https://www.redigo.info/wp-content/uploads/2024/07/H058_ipotesi-di-accordo-22072024.pdf",
+                "sha256": "729f75a3a1aeec93d085444dd096b409c8b609b3073eb5ce4c5e42c4e772050f"
+              },
+              "page": "84",
+              "section": "Art. Quattordicesima mensilità (artt. 225 e 269), comma 2",
+              "quote": "(2) La gratifica di ferie quattordicesima mensilità dovrà essere corrisposta con la retribuzione del mese di luglio."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -6733,7 +6744,7 @@
     "effective_until": null,
     "source": "https://www.lavoro-economia.it/ccnl/ccnl.aspx?c=257",
     "verification_status": "unverified",
-    "source_hash": "286ec5923cd25969ee771afb7423ce0d3371944095eb20ec6819876a6f526e65",
+    "source_hash": "6c5d10a796df4b952de23baeb8f61866141ebd794c928b0c7f43871a657838f4",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -7252,6 +7263,27 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.parental_hourly"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.redigo.info/wp-content/uploads/2024/07/H058_ipotesi-di-accordo-22072024.pdf",
+            "sha256": "729f75a3a1aeec93d085444dd096b409c8b609b3073eb5ce4c5e42c4e772050f"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
         ]
       }
     ]

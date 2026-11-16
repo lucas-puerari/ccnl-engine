@@ -323,6 +323,27 @@
           "work_rules.time_supplements",
           "work_rules.capability_basis"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Mobilita-Attivita-Ferroviarie.pdf",
+            "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -377,9 +398,20 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "orsa-2025.pdf",
+                "title": "Art. 70",
+                "kind": "associazione",
+                "url": "https://www.fitcisl.org/wp-content/uploads/2025/10/CCNL-Mobilita-Attivita-Ferroviarie.pdf",
+                "sha256": "07e476515e9517bf2ad8b89fa352b6ac9a9aee5d7764946755945cf9e929c224"
+              },
+              "page": "119",
+              "section": "Art. 70",
+              "quote": "Oltre alle normali competenze mensili, ai lavoratori saranno corrisposte, secondo le modalità previste al punto 2 dell’art. 68 (Retribuzione) del presente CCNL, una tredicesima ed una quattordicesima mensilità, di importo pari alla somma della retribuzione mensile di cui alle lettere a), b), c) del punto 1."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -2618,7 +2650,7 @@
     "effective_until": "2026-12-31",
     "source": "https://www.sindacatoorsa.it/orsa_ferrovie/ultimora/anno2025/contratto_mobilita_area_af_22.05.2025.pdf",
     "verification_status": "unverified",
-    "source_hash": "3bce4f3656ee82aa5ad74347943a5891c2598335e5f9c971500306f5ca28f1cf",
+    "source_hash": "03de04e6e74c4e45c9794c2ea344155e9641e371c137e4b28639fe41a1db321a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

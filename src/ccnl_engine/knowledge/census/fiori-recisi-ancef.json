@@ -17,21 +17,6 @@
           "fiori-recisi-ancef/apprentice_seniority"
         ]
       }
-    },
-    {
-      "id": "rule_additional_months_2023_01_01",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/fiori-recisi-ancef.json#additional_months[2023-01-01]",
-      "calculation": "base_salary",
-      "state": "unverified",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/fiori-recisi-ancef.json#additional_months[2023-01-01]"
-        ]
-      }
     }
   ]
 }

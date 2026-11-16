@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🟢 Verified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 26 verified / 19 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 26 verified / 20 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-07-11 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2026-07-01 |
 
 ## Review history
@@ -64,6 +64,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-08 | claude-opus-5-5 (ai) | Allegato 1 nn. 2-5 (PDF p. 32), art. 17 and art. 33 of the Sezione personale di terra of 11 July 2024. | corrected | The superminimi by years in the level are in Allegato 1 nn. 2-5, not art. 18 as the note said: 7 EUR (IV, 8 years; III, 4 years with a diploma or 8 years), 11 EUR (II, 10 years, no further promotion).<br>Art. 17 puts the superminimo in the tredicesima and quattordicesima, art. 33 in the TFR base. |
 | 2026-11-08 | gpt-6-sol (ai) | Allegato 1 nn. 2-5 (PDF p. 32) against the encoding of the superminimi by years in the level, by a separate model session. | corrected | Confirmed the amounts, levels and thresholds of nn. 2, 3 and 5.<br>Corrected: n. 4 is for the 'altri impiegati', not every impiegato; n. 3 does not end at eight years (role 'non_diplomato' for n. 4).<br>Flagged: without career_months the service months stand for the years in the level (limitation level_years_from_service). |
 | 2026-11-10 | claude-opus-5-5 (ai) | Allegato 1 nn. 2-5 level-tenure gate and missing level entry fact. | corrected | PDF p. 32, Allegato 1 nn. 2-5: "dopo otto anni di permanenza nel livello", "dopo quattro anni di permanenza nel 3° livello", "dopo otto anni di permanenza nello stesso", "anzianità di livello pari o superiore a 10 anni". Completed months since Employment.level_started_on measure time in the level. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 14 monthly pays. |
 
 ## Salary table
 

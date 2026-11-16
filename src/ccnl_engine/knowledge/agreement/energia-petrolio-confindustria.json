@@ -135,9 +135,20 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "rinnovo-2025.pdf",
+                "title": "Art. 36",
+                "kind": "associazione",
+                "url": "https://www.filctemcgil.it/images/download/CONTRATTI/energia_petrolio/250416_ENERGIA_RINNOVO%20CCNL%20%202025-2027.pdf",
+                "sha256": "fced86c079a021b7bc66824eba642679a91e4157b58c8295a5432837ba18409e"
+              },
+              "page": "37",
+              "section": "Art. 36",
+              "quote": "Le aziende corrisponderanno a tutti i lavoratori nel mese di dicembre una tredicesima mensilità e nel mese di giugno una quattordicesima mensilità, pari alla sola retribuzione globale mensile, così come definita nell’art. 32, percepita da ciascun lavoratore alle rispettive date di maturazione."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -7251,7 +7262,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2025/08/06/tabelle-retributive-ccnl-energia-e-petrolio/",
     "verification_status": "unverified",
-    "source_hash": "5eafa5e5a802a0855cb64eaba6d5caf0cc85cbf93127cb170ce528c0a8b7aab3",
+    "source_hash": "f5dd01e00cc6a9ebf9944d7c91b68ce184f53fddd88975ccc34af3f623040838",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -7788,6 +7799,27 @@
         "checked": [
           "work_rules.time_supplements",
           "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filctemcgil.it/images/download/CONTRATTI/energia_petrolio/250416_ENERGIA_RINNOVO%20CCNL%20%202025-2027.pdf",
+            "sha256": "fced86c079a021b7bc66824eba642679a91e4157b58c8295a5432837ba18409e"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
         ]
       }
     ]

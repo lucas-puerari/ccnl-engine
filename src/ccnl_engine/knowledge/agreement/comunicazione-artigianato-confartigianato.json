@@ -223,9 +223,21 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-2018.pdf",
+                "title": "Articolo 66 (impiegati); art. 61 (operai)",
+                "kind": "associazione",
+                "url": "https://www.fistelcisl.it/wp-content/uploads/2020/09/CCNL-Area-Comunicazione.pdf",
+                "sha256": "0dd7c5250635b270cc064115d5288679d3cb1af6619f76c26a42ce9d91a13513"
+              },
+              "page": "55",
+              "section": "Articolo 66 (impiegati); art. 61 (operai)",
+              "quote": "La tredicesima mensilità, il cui pagamento avverrà di norma nel mese di dicembre è stabilita nella misura di una mensilità globale di fatto."
+            },
+            "transformation": "13 monthly pays: twelve and the additional months the article sets.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
           }
         }
       ]
@@ -2452,7 +2464,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/ccnl/comunicazione-artigianato",
     "verification_status": "unverified",
-    "source_hash": "2f49e87ee5c8b4671edc512c6589bebede9f47be78891db80c843e6a7174b158",
+    "source_hash": "bc006aeffe1987b9cb406be04ee96ccb8396db56c8ccb6bbd17f5d6a4b2690be",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -2874,6 +2886,27 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.parental_hourly"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.fistelcisl.it/wp-content/uploads/2020/09/CCNL-Area-Comunicazione.pdf",
+            "sha256": "0dd7c5250635b270cc064115d5288679d3cb1af6619f76c26a42ce9d91a13513"
+          }
+        ],
+        "findings": [
+          "Sourced: 13 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
         ]
       }
     ]

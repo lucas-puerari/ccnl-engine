@@ -230,6 +230,27 @@
         "checked": [
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+            "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+          }
+        ],
+        "findings": [
+          "Sourced: 13 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -250,9 +271,20 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-2020.pdf",
+                "title": "Art. 26",
+                "kind": "associazione",
+                "url": "https://www.filleacgil.net/images/MORELLO/CCNL12.2.2020laterizi-manufatti-industria.pdf",
+                "sha256": "d26fb2b0ebd79c0562f7e786d77cc25d97b894369b0a34841163a46acd6e1e0b"
+              },
+              "page": "41",
+              "section": "Art. 26",
+              "quote": "I lavoratori, per ciascun anno di anzianità di servizio prestato, hanno diritto ad una tredicesima mensilità di\nretribuzione globale di fatto, da corrispondersi normalmente alla vigilia di Natale."
+            },
+            "transformation": "13 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -3705,7 +3737,7 @@
     "effective_until": null,
     "source": "https://www.filcacisl.it/sindacato/wp-content/uploads/2022/06/Ccnl-laterizi-manufatti-industria-31-5-2022.pdf",
     "verification_status": "unverified",
-    "source_hash": "2dc9147b16ce7534bb2a15c5b99bd93767512190cd5958e5913c7661b3a0dca0",
+    "source_hash": "e8097a9e7a53d3d1ce26d9886679015456c0bc3e8fad762a91cb7ffe5f68a401",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },

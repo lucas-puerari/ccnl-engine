@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 44 verified / 7 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 44 verified / 8 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-12-12 |
-| **Last review** | 2026-11-10 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2026-09-01 |
 
 ## Review history
@@ -62,6 +62,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-06 | claude-opus-5-5 (ai) | Accordo economico of 12 December 2024, table of p. 23 (stipendi 1/1/2025, 1/7/2025, 1/9/2026). | corrected | The file held the 1 July 2025 stipendi dated from 1 September 2025; the January 2025 and September 2026 columns were missing. |
 | 2026-11-08 | gpt-6-sol (ai) | Open limitations claimed to be no longer gaps: one session read the clauses and the data, a second independent session checked the claim. | confirmed | third_tranche_sep_2026: All 13 levels in the agreement JSON have the exact 1/9/2026 stipendio from the signed renewal, effective 2026-09-01 with no end date; the previous period ends exclusively on that day. The engine reads base_salary.value_at(as_of), so this third tranche is paid on and after that da |
 | 2026-11-10 | claude-opus-5-5 (ai) | Area 1 Quadri minimum function allowance and its monthly, extra-month and TFR bases against the cached signed agreement. | corrected | Article 19 (p. 25) sets a 13% minimum of monthly remuneration for 14 monthly payments, with employer discretion above the floor; Article 16 (p. 22) includes seniority and function allowance in monthly remuneration; Article 17 (p. 24) includes it in extra months; Article 39 (p. 41) refers TFR to statute. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 14 monthly pays. |
 
 ## Salary table
 

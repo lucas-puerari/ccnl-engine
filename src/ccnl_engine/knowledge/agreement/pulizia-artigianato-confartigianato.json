@@ -456,6 +456,27 @@
           "work_rules.time_supplements",
           "work_rules.capability_basis"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filcams.cgil.it/media/ccnl_-imprese_artigiane_pulizia_18sett_2014_pdf",
+            "sha256": "38fcc6d742327034b074737d8293908057611a19bffea503a63a8efebc727691"
+          }
+        ],
+        "findings": [
+          "Sourced: 13 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -476,9 +497,21 @@
           "valid_until": null,
           "value": "13",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-2014-filcams.pdf",
+                "title": "Art. 38",
+                "kind": "associazione",
+                "url": "https://www.filcams.cgil.it/media/ccnl_-imprese_artigiane_pulizia_18sett_2014_pdf",
+                "sha256": "38fcc6d742327034b074737d8293908057611a19bffea503a63a8efebc727691"
+              },
+              "page": "22",
+              "section": "Art. 38",
+              "quote": "L'impresa corrisponderà entro il 20 dicembre una tredicesima mensilità pari alla retribuzione mensile globale percepita dal lavoratore."
+            },
+            "transformation": "13 monthly pays: twelve and the additional months the article sets.",
+            "note": "Scanned PDF: the quote is read from the OCR of the page."
           }
         }
       ]
@@ -4502,7 +4535,7 @@
     "source": "https://ce-mu.it/rapportolavoro/contratti/cms_magazine/uploads/Pulizia_Artigianato_Accordo_Rinnovo_27.10.22.pdf",
     "verification_status": "unverified",
     "published_at": "2026-09-12",
-    "source_hash": "808b99a43115811674100c53ed591c2528b9aca9d1a9258826cf9721f91a3669",
+    "source_hash": "9a6341b7807c03b901447792b9662326334b9379a63356fbe0aaba70b152c80a",
     "source_type": "commercial_secondary"
   },
   "work_rules": {

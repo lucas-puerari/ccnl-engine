@@ -336,6 +336,27 @@
           "work_rules.time_supplements",
           "work_rules.capability_basis"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-additional-months",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Number of monthly pays: the article on the additional months located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.bollettinoadapt.it/wp-content/uploads/2019/10/ccnl2013.pdf",
+            "sha256": "c6b3a6176dee20e6a727e4da153bd3511850275e991e0e344f92e1d1b4c0df79"
+          }
+        ],
+        "findings": [
+          "Sourced: 14 monthly pays."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.additional_months"
+        ]
       }
     ]
   },
@@ -356,9 +377,20 @@
           "valid_until": null,
           "value": "14",
           "provenance": {
-            "status": "assumed",
-            "location": null,
-            "note": "Number of monthly payments read from the contract file; no clause is cited for it."
+            "status": "derived",
+            "location": {
+              "source_document": {
+                "document_id": "ccnl-2013.pdf",
+                "title": "Art. 117",
+                "kind": "associazione",
+                "url": "https://www.bollettinoadapt.it/wp-content/uploads/2019/10/ccnl2013.pdf",
+                "sha256": "c6b3a6176dee20e6a727e4da153bd3511850275e991e0e344f92e1d1b4c0df79"
+              },
+              "page": "81",
+              "section": "Art. 117",
+              "quote": "Ogni anno, entro il 15 Luglio, deve essere corrisposto al lavoratore un importo pari ad una mensilità della normale retribuzione di cui all’art. 105. La 13ma si intende riferita al periodo annuale 1° gennaio - 31 dicembre e la 14ma al periodo annuale 1° luglio - 30 giugno."
+            },
+            "transformation": "14 monthly pays: twelve and the additional months the article sets."
           }
         }
       ]
@@ -2008,7 +2040,7 @@
     "effective_until": null,
     "source": "https://lavoro.gov.it/temi-e-priorita-rapporti-di-lavoro-e-relazioni-industriali/focus/decreto-direttoriale-n.-50-dell8",
     "verification_status": "unverified",
-    "source_hash": "d393867ef2e31187a0b08a2dd33feb1ebcdbc1eb0acdc79b43ef44e4a59bdafc",
+    "source_hash": "1a79c2009b1b2ec1bec20a40da4f11afe0eef0e9f92f6f090c7eb9b938b73845",
     "published_at": "2026-09-07",
     "source_type": "institutional_secondary"
   },

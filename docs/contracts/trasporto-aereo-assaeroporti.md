@@ -42,7 +42,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 46 verified / 49 derived / 1 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 46 verified / 50 derived / 0 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -51,7 +51,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2025-06-04 |
-| **Last review** | 2026-11-09 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2027-07-01 |
 
 ## Review history
@@ -63,6 +63,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-07 | claude-opus-5-5 (ai) | The monthly values of the levels against the Parte specifica Gestori aeroportuali of 4 June 2025 (text layer). | confirmed | 66 printed monthly values found verbatim in the text and marked verified; 55 allowance values computed from a clause (maneggio denaro, contributo DPI) are not printed and keep their provenance. |
 | 2026-11-08 | claude-opus-5-5 (ai) | Artt. G24-G26 daily presence allowances, 2025 and 2026 PDF pp. 41-42, text layers and SHA256 checks. | confirmed | G24: 2.73 and 3.97 per actual day, both increased by 3.00 from 1 July 2025; excluded from TFR, included in holiday pay from that date.<br>G25: 0.26 per shift-presence day, absorbed by the existing company allowance at the two named employers. G26: 0.21 up to 20 km and 0.26 beyond 20 km per airport-presence day. |
 | 2026-11-09 | claude-opus-5-5 (ai) | Art. G34 points 6, 9 and 10, 2025 cached PDF pages 45-46; hospital exclusion and qualifying illnesses. | confirmed | Point 6 excludes hospital days from both counts and certified continuous convalescence up to 120 days overall.<br>Point 9 triples the overall limit for documented oncological illness, multiple sclerosis or muscular dystrophy.<br>Point 10 requires previously attested disability for the 30% increase. Convalescence and disability remain limited. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Number of monthly pays: the article on the additional months located in the cited file by sha256. | corrected | Sourced: 14 monthly pays. |
 
 ## Salary table
 
