@@ -506,7 +506,7 @@
       },
       {
         "kind": "simplification",
-        "text": "Hourly divisor 165 = 38h/settimana × 52/12 = 164.67 ≈ 165 (CCNL Area IR 2022-2024 — stesso orario di riferimento delle altre aree ARAN dirigenza). Standard contrattuale PA.",
+        "text": "Hourly divisor 165 = 38 hours a week x 52 / 12, not set by the Area IR texts. Since the injury is paid in full (art. 23 CCNL 8/7/2019), it only splits the total between the INAIL indemnity and the employer's integration.",
         "capability": "workplace_injury",
         "monetary_impact": "unknown",
         "limitation": {
@@ -514,7 +514,30 @@
           "applies_when": {
             "trigger": "run"
           },
-          "remediation": "Source the divisor of the Area IR (or the INAIL base of the dirigenti) and replace 165, or mark it not applicable so the INAIL daily base is not derived from it."
+          "remediation": "Source the divisor of the Area IR, or of the former areas V, VII and ASI its art. 1 c. 13 keeps in force, and replace 165.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2024/08/2024_08_07_AREA-IR_2019-2021.pdf",
+              "sha256": "2135b83f4ab2230ccacf14b657733ae67c3d0c2429b033cba605a7272e460a95",
+              "title": "CCNL Area IR 2019-2021 (7 agosto 2024): no hourly or daily divisor; art. 1 c. 13 (PDF p. 6) keeps the CCNL 8/7/2019 and the former areas V, VII and ASI in force where not replaced."
+            },
+            {
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2024/10/CCNL-area-istruzione-e-ricerca-2016_2018-testo-firma-definitiva.pdf",
+              "sha256": "5d9a09340c79873bbfe8117ec337188f8fa452b0a073b5fbf3e00ae1e60062a5",
+              "title": "CCNL Area IR 2016-2018 (8 luglio 2019): no hourly or daily divisor; art. 23 (PDF p. 27) pays the whole pay during the injury."
+            },
+            {
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2024/10/CCNL-area-V-2006-9-sottoscritto.pdf",
+              "sha256": "16560f1b4adb4f1976253bfec07523a0071dc70ac24b9afd92e294a8d2e1bcfe",
+              "title": "CCNL Area V 2006-2009 (dirigenti scolastici): no hourly or daily divisor."
+            },
+            {
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2024/09/CCNL-area-VII-quadriennio-2006-2009.pdf",
+              "sha256": "1b993b016894e26ba0e905a26220d61b0997f1f3e6b353cf3e1ff00675c21328",
+              "title": "CCNL Area VII 2006-2009 (dirigenti università e ricerca): no hourly or daily divisor."
+            }
+          ]
         }
       },
       {
@@ -554,7 +577,7 @@
     "effective_until": "2024-12-31",
     "source": "https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/",
     "verification_status": "unverified",
-    "source_hash": "e143b17acaae10337a539712bec15900b1f36ca980e0a5063eb419bf6969c7ac",
+    "source_hash": "4a113c20542e1f2d2fcd2e0f06de5266c68368750f00d6bcd6a94aa5f3ee6bb2",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -824,6 +847,28 @@
           "transformation": "Since 1 January 2006 the public employees of the comparto have no daily travel allowance for the missions in Italy: the law suppressed it and the analogous clauses of the CCNLs. What is left is the refund of the documented expenses of the mission, a fact of the employer, which the caller states (maintainer decision of 2026-11-15)."
         }
       }
+    },
+    "insured_absence": {
+      "injury": {
+        "carenza_rate": "1",
+        "integration_rate": "1",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "ccnl-area-ir-2016-2018",
+              "title": "CCNL Area Istruzione e Ricerca 2016-2018, 8 luglio 2019",
+              "kind": "amministrazione",
+              "url": "https://www.aranagenzia.it/wp-content/uploads/2024/10/CCNL-area-istruzione-e-ricerca-2016_2018-testo-firma-definitiva.pdf",
+              "sha256": "5d9a09340c79873bbfe8117ec337188f8fa452b0a073b5fbf3e00ae1e60062a5"
+            },
+            "page": "27",
+            "section": "Art. 23, cc. 1-2",
+            "quote": "In caso di assenza dovuta ad infortunio sul lavoro, il dirigente ha diritto alla conservazione del posto fino alla guarigione clinica, certificata dall’ente istituzionalmente preposto. 2. In tale periodo al dirigente spetta l’intera retribuzione di cui all’art. 21 comma 10 lett. a) (Assenze per malattia)."
+          },
+          "transformation": "The whole pay for every day of the injury, the waiting days included (carenza and integration at 1); the CCNL Area IR 2019-2021 (art. 1 c. 13) keeps the 2019 text in force where it does not replace it. The area mixes State dirigenti scolastici (INAIL gestione per conto dello Stato) and dirigenti of universities and research bodies: inail_indemnity is left at its default, so the INAIL share of the total is split on the derived daily base."
+        }
+      }
     }
   },
   "verification": {
@@ -847,6 +892,33 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.sunday_holidays"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-dirigenza-ir-injury",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Injury pay (art. 23 CCNL Area IR 8/7/2019) and the hourly divisor, read in the cited files by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/10/CCNL-area-istruzione-e-ricerca-2016_2018-testo-firma-definitiva.pdf",
+            "sha256": "5d9a09340c79873bbfe8117ec337188f8fa452b0a073b5fbf3e00ae1e60062a5"
+          },
+          {
+            "url": "https://www.aranagenzia.it/wp-content/uploads/2024/08/2024_08_07_AREA-IR_2019-2021.pdf",
+            "sha256": "2135b83f4ab2230ccacf14b657733ae67c3d0c2429b033cba605a7272e460a95"
+          }
+        ],
+        "findings": [
+          "Applied: the whole pay during the injury.",
+          "The divisor 165 is not in the Area IR texts nor in those of the former areas V and VII: declared unsourced."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.insured_absence",
+          "parameters.hourly_divisor"
         ]
       }
     ]
