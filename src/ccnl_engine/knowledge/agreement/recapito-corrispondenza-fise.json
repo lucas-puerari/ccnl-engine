@@ -1671,13 +1671,13 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/",
     "verification_status": "unverified",
-    "source_hash": "763d4b81a707178463ef7f1af662bb497aea7a4423a4c09dddf02433816ef452",
+    "source_hash": "1d4f93a06969759e590245531940236f9c39db61c4fce325196ba61bfb8806f4",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
     "time_supplements": {
-      "hourly_base_method": "minimo_tabellare",
+      "hourly_base_method": "minimo_e_contingenza",
       "overtime_bands": [
         {
           "code": "OT_DIURNO",
@@ -1824,7 +1824,280 @@
           }
         }
       ],
-      "supplement_bands": []
+      "supplement_bands": [
+        {
+          "code": "U_NIGHT_0",
+          "description": "Lavoro notturno ordinario non compreso in turni avvicendati (22:00–06:00)",
+          "work": "night",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2011-02-08",
+                "valid_until": null,
+                "value": "0.25"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "gil-it-images-contratti-servizi-postali-ccnl-recapito-privati-fise-2010-2012-pdf",
+                "title": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+                "kind": "associazione",
+                "url": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+                "sha256": "273af4660875d90a4abad4caa12a713641154d4a4a924db9bbc515126a031f91"
+              },
+              "page": "29",
+              "section": "Art. 18 c. 8 n. 7",
+              "quote": "7) lavoro notturno, non compreso in turni avvicendati              25%"
+            },
+            "transformation": "Lavoro notturno ordinario non compreso in turni avvicendati (22:00–06:00) Ordinary night hours sit in the monthly pay: the band adds the percentage alone.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2011-02-08",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-recapito-corrispondenza-fise-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_NIGHT_SHIFT_1",
+          "description": "Lavoro notturno ordinario compreso in turni avvicendati (22:00–06:00)",
+          "work": "night_shift",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2011-02-08",
+                "valid_until": null,
+                "value": "0.15"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "gil-it-images-contratti-servizi-postali-ccnl-recapito-privati-fise-2010-2012-pdf",
+                "title": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+                "kind": "associazione",
+                "url": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+                "sha256": "273af4660875d90a4abad4caa12a713641154d4a4a924db9bbc515126a031f91"
+              },
+              "page": "29",
+              "section": "Art. 18 c. 8 n. 6",
+              "quote": "6) lavoro notturno, compreso in turni avvicendati                  15%"
+            },
+            "transformation": "Lavoro notturno ordinario compreso in turni avvicendati (22:00–06:00) Ordinary night hours sit in the monthly pay: the band adds the percentage alone.",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2011-02-08",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-recapito-corrispondenza-fise-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_2",
+          "description": "Lavoro ordinario nei giorni considerati festivi",
+          "work": "holiday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2011-02-08",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "gil-it-images-contratti-servizi-postali-ccnl-recapito-privati-fise-2010-2012-pdf",
+                "title": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+                "kind": "associazione",
+                "url": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+                "sha256": "273af4660875d90a4abad4caa12a713641154d4a4a924db9bbc515126a031f91"
+              },
+              "page": "29",
+              "section": "Art. 18 c. 8 n. 5",
+              "quote": "5) lavoro compiuto nei giorni considerati festivi                  50%"
+            },
+            "transformation": "Lavoro ordinario nei giorni considerati festivi",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2011-02-08",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-recapito-corrispondenza-fise-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_HOLIDAY_COMPENSATORY_REST_3",
+          "description": "Lavoro nel giorno di riposo compensativo, considerato festivo a tutti gli effetti",
+          "work": "holiday_compensatory_rest",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2011-02-08",
+                "valid_until": null,
+                "value": "0.50"
+              }
+            ]
+          },
+          "hours_paid_apart": null,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "gil-it-images-contratti-servizi-postali-ccnl-recapito-privati-fise-2010-2012-pdf",
+                "title": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+                "kind": "associazione",
+                "url": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+                "sha256": "273af4660875d90a4abad4caa12a713641154d4a4a924db9bbc515126a031f91"
+              },
+              "page": "31",
+              "section": "Art. 20 c. 2; Art. 18 c. 8 n. 5",
+              "quote": "2. Per i lavoratori per i quali è ammesso il lavoro nei giorni di domenica con riposo compensativo in un altro giorno della settimana, la domenica sarà considerata giorno lavorativo mentre sarà considerato festivo a tutti gli effetti il giorno fissato per il riposo compensativo."
+            },
+            "transformation": "Lavoro nel giorno di riposo compensativo, considerato festivo a tutti gli effetti",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2011-02-08",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-recapito-corrispondenza-fise-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_SUNDAY_4",
+          "description": "Domenica lavorativa con riposo compensativo in altro giorno: giorno lavorativo, senza maggiorazione domenicale autonoma",
+          "work": "sunday",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2011-02-08",
+                "valid_until": null,
+                "value": "0"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "gil-it-images-contratti-servizi-postali-ccnl-recapito-privati-fise-2010-2012-pdf",
+                "title": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+                "kind": "associazione",
+                "url": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+                "sha256": "273af4660875d90a4abad4caa12a713641154d4a4a924db9bbc515126a031f91"
+              },
+              "page": "31",
+              "section": "Art. 20 c. 2",
+              "quote": "2. Per i lavoratori per i quali è ammesso il lavoro nei giorni di domenica con riposo compensativo in un altro giorno della settimana, la domenica sarà considerata giorno lavorativo mentre sarà considerato festivo a tutti gli effetti il giorno fissato per il riposo compensativo."
+            },
+            "transformation": "Domenica lavorativa con riposo compensativo in altro giorno: giorno lavorativo, senza maggiorazione domenicale autonoma",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2011-02-08",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-recapito-corrispondenza-fise-time-supplements"
+            }
+          }
+        },
+        {
+          "code": "U_REST_DAY_5",
+          "description": "Riposo settimanale spostato per esigenze di servizio: recupero e maggiorazione dello straordinario festivo, in aggiunta alla normale retribuzione",
+          "work": "rest_day",
+          "rate": {
+            "periods": [
+              {
+                "valid_from": "2011-02-08",
+                "valid_until": null,
+                "value": "0.65"
+              }
+            ]
+          },
+          "hours_paid_apart": false,
+          "provenance": {
+            "status": "verified",
+            "location": {
+              "source_document": {
+                "document_id": "gil-it-images-contratti-servizi-postali-ccnl-recapito-privati-fise-2010-2012-pdf",
+                "title": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+                "kind": "associazione",
+                "url": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+                "sha256": "273af4660875d90a4abad4caa12a713641154d4a4a924db9bbc515126a031f91"
+              },
+              "page": "31",
+              "section": "Art. 20 c. 4; Art. 18 c. 8 n. 3",
+              "quote": "4. Qualora per esigenze di servizio la giornata di riposo settimanale dovesse essere spostata in altro giorno, oltre al recupero nei giorni successivi, al lavoratore verrà corrisposta - in aggiunta alla normale retribuzione - la maggiorazione prevista per il lavoro straordinario festivo per le ore lavorate nel giorno di riposo."
+            },
+            "transformation": "Riposo settimanale spostato per esigenze di servizio: recupero e maggiorazione dello straordinario festivo, in aggiunta alla normale retribuzione",
+            "extraction": {
+              "method": "ai",
+              "model": "gpt-6-sol",
+              "extraction_timestamp": "2026-11-16T00:00:00Z",
+              "effective_from": "2011-02-08",
+              "verified_by": "claude-opus-5-5",
+              "verified_at": "2026-11-16T00:00:00Z",
+              "verification_status": "verified",
+              "review_id": "2026-11-16-ai-recapito-corrispondenza-fise-time-supplements"
+            }
+          }
+        }
+      ],
+      "hourly_base_provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "gil-it-images-contratti-servizi-postali-ccnl-recapito-privati-fise-2010-2012-pdf",
+            "title": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+            "kind": "associazione",
+            "url": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+            "sha256": "273af4660875d90a4abad4caa12a713641154d4a4a924db9bbc515126a031f91"
+          },
+          "page": "29",
+          "section": "Art. 18 c. 9",
+          "quote": "9. Le percentuali di cui sopra verranno calcolate sulla paga tabellare oraria e sulla quota oraria della contingenza vigenti al momento della liquidazione di esse. Le suddette percentuali di maggiorazione non sono cumulabili, nel senso che la maggiore assorbe la minore."
+        },
+        "transformation": "The supplements are measured on minimo_e_contingenza over the hourly divisor of the CCNL.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-recapito-corrispondenza-fise-time-supplements"
+        }
+      }
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -2070,29 +2343,6 @@
         ]
       },
       {
-        "id": "2026-11-16-ai-recapito-corrispondenza-fise-time-supplements",
-        "date": "2026-11-16",
-        "reviewer": "claude-opus-5-5",
-        "reviewer_kind": "ai",
-        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
-        "outcome": "corrected",
-        "sources": [
-          {
-            "url": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
-            "sha256": "273af4660875d90a4abad4caa12a713641154d4a4a924db9bbc515126a031f91"
-          }
-        ],
-        "findings": [
-          "Applied: travel.",
-          "Left out: bands[0:night]: quote skipped; bands[1:night_shift]: quote skipped; bands[2:holiday]: quote skipped; bands[3:holiday_compensatory_rest]: quote skipped; bands[4:sunday]: quote skipped; bands[5:rest_day]: quote skipped."
-        ],
-        "independence": "separate_model",
-        "checked": [
-          "work_rules.time_supplements",
-          "work_rules.capability_basis"
-        ]
-      },
-      {
         "id": "2026-11-16-ai-additional-months",
         "date": "2026-11-16",
         "reviewer": "claude-opus-5-5",
@@ -2111,6 +2361,29 @@
         "independence": "separate_model",
         "checked": [
           "parameters.additional_months"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-recapito-corrispondenza-fise-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+            "sha256": "273af4660875d90a4abad4caa12a713641154d4a4a924db9bbc515126a031f91"
+          }
+        ],
+        "findings": [
+          "Applied: hourly_base, bands[0:night], bands[1:night_shift], bands[2:holiday], bands[3:holiday_compensatory_rest], bands[4:sunday], bands[5:rest_day].",
+          "Left out: travel: kind expenses_only applied by hand."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ]
