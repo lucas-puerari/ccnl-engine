@@ -626,7 +626,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-funzioni-centrali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "e13e062fe41fa27a9e29c394bfa472a4f5f69147564fee6d0e77b9b53d72ac37",
+      "source_hash": "d7c8a921f298cd62737bfb7867728b3d677df281b275ffb615f08d7cae4899d8",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-funzioni-centrali-aran.json.gz"
@@ -643,7 +643,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-funzioni-locali-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "9da0642eeb45358c367d7ef54eef16bd22f34d2f20d996e9f0cf3b2584e41848",
+      "source_hash": "fb57cabecb97430c1a472554c1b74539c1a8975e265ac9c127104830456d73e4",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-funzioni-locali-aran.json.gz"
@@ -660,7 +660,7 @@
       "valid_to": "2024-12-31",
       "ruleset_id": "ccnl/dirigenza-istruzione-ricerca-aran",
       "ruleset_version": "2026.2",
-      "source_hash": "bf07830036c23e625a53e005ec5398efcd1c34ea3f6da8455480a3344dff04e3",
+      "source_hash": "e143b17acaae10337a539712bec15900b1f36ca980e0a5063eb419bf6969c7ac",
       "source_type": "commercial_secondary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/dirigenza-istruzione-ricerca-aran.json.gz"
@@ -3161,7 +3161,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "4ce8b19ce23d19f30872b9c1807b6f01eadadc0c5ca40cea596b841079f464e9",
+      "source_hash": "e796736fa42f0a06dc5a9b6e95d009ee0e4a03a8c164189a038276b5e00d78a1",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/dirigenza-funzioni-locali-aran.json.gz",

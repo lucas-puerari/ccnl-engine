@@ -31,10 +31,10 @@ Derived from the capability registry. The scenario features and the ones outside
 
 | | |
 |---|---|
-| **Core payroll path** | ⚠️ |
-| **Limits of this contract** | base_salary |
+| **Core payroll path** | ✅ |
+| **Limits of this contract** | — |
 
-1 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
+0 documented simplification(s) and 0 missing feature(s): see [Known simplifications](#known-simplifications).
 
 ## Assurance
 
@@ -75,13 +75,6 @@ Latest effective values per level (monthly gross, EUR).
 ## Known simplifications
 
 Each simplification below is a model limitation of the registry. An open limitation with a monetary impact (`yes` or `unknown`) makes every result it applies to not payable, with an `open_limitation` blocker; the result lists every applicable limitation in `assurance.limitations`.
-
-!!! warning "dirigenza-funzioni-locali-aran/position_pay · base_salary · impact yes · open"
-    Retribuzione di posizione: variabile per tipo incarico e ente, non modellata (SIMPLIFICATION). Totale mensile medio include posizione: +491€ RAL, +400€ segretari, +377€ PTA (include tabellare + posizione + altro).
-
-    **Applies when:** a fact the request cannot express: never recorded on a run.
-
-    **Remediation:** Model the CCNL minimum of the retribuzione di posizione or accept the amount of the incarico as a caller input, and open a limitation until then.
 
 !!! note "sickness_inps_daily_base · sickness · impact unknown · resolved"
     The INPS share of a sick day is computed on the INPS daily base of the episode, on the days INPS pays (the weekdays of an operaio, every day but the national holidays on a Sunday of an impiegato, point 7.3 of INPS circ. 134368/1981): the retribuzione media globale giornaliera of the month before the illness (INPS circ. 134368/1981 point 11; circ. 55/2024 Allegato 1), whole or partial month, impiegato or operaio, or for the lavoratori dello spettacolo the average pay of the last 40 daily contributions, capped for a fixed-term worker (INPS circ. 132/2021 par. 2.4). The base is a fact of the payroll history the episode states (SicknessEpisode.inps_base).
@@ -232,6 +225,8 @@ Each simplification below is a model limitation of the registry. An open limitat
 | SIMPLIFICATION: codice CNEL S125 da fonte secondaria (ilccnl.it). Non riportato nel testo ufficiale ARAN. | altro | — | [↗](https://ilccnl.it/ccnl/dirigenti---funzioni-locali/dirigenti---enti-locali-dal-010195) |
 
 ??? note "Coverage notes"
+    RETRIBUZIONE DI POSIZIONE (CCNL Area Funzioni Locali 2022-2024 of 23 February 2026, art. 22 c. 6, https://www.aranagenzia.it/wp-content/uploads/2026/02/2026_02_23_AREA-FL-2022-2024.pdf, sha256 2f2980b58b803cb535dc8f86c895a491049c7cc835021100e07341dabfa407bd): 'i nuovi valori minimi e massimi a regime della retribuzione di posizione sono rispettivamente rideterminati nel valore minimo di € 14.515,11 e nel valore massimo di € 48.084,81' a year for 13 months for the dirigenti; the segretari comunali and provinciali have the ranges of art. 38 by class of ente (fascia A metropolitan 46,707.00 to 68,139.96, down to 8,829.00 to 11,617.87); the ente grades each incarico within its range. The amount of the incarico is a fact of the employer: the caller states it as a non-absorbable individual element (Employment.individual_elements, monthly = annual / 13, on the extra months), which the engine pays like the stipendio tabellare.
+    
     SEGRETARI FASCIA C (Art. 35 c. 1 and 3, CCNL 23 February 2026, pp. 50-51): stipendio tabellare 40.004,59 a year with the tredicesima from 1 January 2024 (184,00 a month of increase, against 230,00 of fasce A and B), level SEGRETARIO_C at 3077.28 a month; before 2024 the same less the increase, 2893.28.
     
     Layer 2 implemented. Part-time: the engine scales the pay by Employment.weekly_hours over full_time_weekly_hours. Fixed-term: PA is excluded from NASpI addizionale (lavoratori delle pubbliche amministrazioni in statutory exclusion list per INPS guidance); fixed_term_additional_rate=0.000 in knowledge/sector/2026/pubblica-amministrazione.json. Apprenticeship: no ARAN CCNL defines percentage or under-classification tracks; narrow high-qualification form under D.Lgs. 81/2015 Art. 47 exists for research profiles but is not operationalized in any examined CCNL (review of 2026-10-30).

@@ -554,7 +554,7 @@
     "effective_until": "2024-12-31",
     "source": "https://quifinanza.it/lavoro/ccnl-istruzione-ricerca-2022-2024-tabelle-retributive/1011686/",
     "verification_status": "unverified",
-    "source_hash": "bf07830036c23e625a53e005ec5398efcd1c34ea3f6da8455480a3344dff04e3",
+    "source_hash": "e143b17acaae10337a539712bec15900b1f36ca980e0a5063eb419bf6969c7ac",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -703,6 +703,126 @@
           "quote": "in assenza di una contrattazione collettiva che disciplini compiutamente il congedo parentale su base oraria, i genitori lavoratori dipendenti possono fruire del congedo parentale ad ore in misura pari alla metà dell’orario medio giornaliero"
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://w, sha256 2135b83f4ab2230ccacf14b657733ae67c3d0c2429b033cba605a7272e460a95)."
+      }
+    },
+    "capability_basis": {
+      "overtime": {
+        "kind": "none_by_law",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "dlgs-165-2001-art-24",
+              "title": "D.Lgs. 30 marzo 2001, n. 165, art. 24 (Trattamento economico), testo vigente (Brocardi)",
+              "kind": "legge",
+              "url": "https://www.brocardi.it/testo-unico-sul-pubblico-impiego/titolo-ii/capo-ii/sezione-i/art24.html",
+              "sha256": "31010be52e125a65adec3ffa64cabde68e83a2fafe4ec0448020f2aaa9560507"
+            },
+            "section": "Art. 24, c. 3",
+            "quote": "Il trattamento economico determinato ai sensi dei commi 1 e 2 remunera tutte le funzioni ed i compiti attribuiti ai dirigenti in base a quanto previsto dal presente decreto, nonché qualsiasi incarico ad essi conferito in ragione del loro ufficio"
+          },
+          "transformation": "The pay of a public manager is all-inclusive: no overtime, night, holiday or shift premium is owed on top of the stipendio, the retribuzione di posizione and the retribuzione di risultato, and the CCNL of the area sets none.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2001-05-24",
+            "verification_status": "unverified"
+          }
+        }
+      },
+      "night_work": {
+        "kind": "none_by_law",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "dlgs-165-2001-art-24",
+              "title": "D.Lgs. 30 marzo 2001, n. 165, art. 24 (Trattamento economico), testo vigente (Brocardi)",
+              "kind": "legge",
+              "url": "https://www.brocardi.it/testo-unico-sul-pubblico-impiego/titolo-ii/capo-ii/sezione-i/art24.html",
+              "sha256": "31010be52e125a65adec3ffa64cabde68e83a2fafe4ec0448020f2aaa9560507"
+            },
+            "section": "Art. 24, c. 3",
+            "quote": "Il trattamento economico determinato ai sensi dei commi 1 e 2 remunera tutte le funzioni ed i compiti attribuiti ai dirigenti in base a quanto previsto dal presente decreto, nonché qualsiasi incarico ad essi conferito in ragione del loro ufficio"
+          },
+          "transformation": "The pay of a public manager is all-inclusive: no overtime, night, holiday or shift premium is owed on top of the stipendio, the retribuzione di posizione and the retribuzione di risultato, and the CCNL of the area sets none.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2001-05-24",
+            "verification_status": "unverified"
+          }
+        }
+      },
+      "holiday_work": {
+        "kind": "none_by_law",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "dlgs-165-2001-art-24",
+              "title": "D.Lgs. 30 marzo 2001, n. 165, art. 24 (Trattamento economico), testo vigente (Brocardi)",
+              "kind": "legge",
+              "url": "https://www.brocardi.it/testo-unico-sul-pubblico-impiego/titolo-ii/capo-ii/sezione-i/art24.html",
+              "sha256": "31010be52e125a65adec3ffa64cabde68e83a2fafe4ec0448020f2aaa9560507"
+            },
+            "section": "Art. 24, c. 3",
+            "quote": "Il trattamento economico determinato ai sensi dei commi 1 e 2 remunera tutte le funzioni ed i compiti attribuiti ai dirigenti in base a quanto previsto dal presente decreto, nonché qualsiasi incarico ad essi conferito in ragione del loro ufficio"
+          },
+          "transformation": "The pay of a public manager is all-inclusive: no overtime, night, holiday or shift premium is owed on top of the stipendio, the retribuzione di posizione and the retribuzione di risultato, and the CCNL of the area sets none.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2001-05-24",
+            "verification_status": "unverified"
+          }
+        }
+      },
+      "shift_work": {
+        "kind": "none_by_law",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "dlgs-165-2001-art-24",
+              "title": "D.Lgs. 30 marzo 2001, n. 165, art. 24 (Trattamento economico), testo vigente (Brocardi)",
+              "kind": "legge",
+              "url": "https://www.brocardi.it/testo-unico-sul-pubblico-impiego/titolo-ii/capo-ii/sezione-i/art24.html",
+              "sha256": "31010be52e125a65adec3ffa64cabde68e83a2fafe4ec0448020f2aaa9560507"
+            },
+            "section": "Art. 24, c. 3",
+            "quote": "Il trattamento economico determinato ai sensi dei commi 1 e 2 remunera tutte le funzioni ed i compiti attribuiti ai dirigenti in base a quanto previsto dal presente decreto, nonché qualsiasi incarico ad essi conferito in ragione del loro ufficio"
+          },
+          "transformation": "The pay of a public manager is all-inclusive: no overtime, night, holiday or shift premium is owed on top of the stipendio, the retribuzione di posizione and the retribuzione di risultato, and the CCNL of the area sets none.",
+          "extraction": {
+            "method": "ai",
+            "model": "claude-opus-5-5",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2001-05-24",
+            "verification_status": "unverified"
+          }
+        }
+      },
+      "travel_allowance": {
+        "kind": "none_by_law",
+        "provenance": {
+          "status": "derived",
+          "location": {
+            "source_document": {
+              "document_id": "legge-266-2005",
+              "title": "Legge 23 dicembre 2005, n. 266 (legge finanziaria 2006), GU n. 302 del 29 dicembre 2005, S.O. n. 211",
+              "kind": "legge",
+              "url": "https://www.gazzettaufficiale.it/atto/serie_generale/caricaArticolo?art.versione=1&art.idGruppo=0&art.flagTipoArticolo=0&art.codiceRedazionale=005G0293&art.idArticolo=1&art.idSottoArticolo=1&art.idSottoArticolo1=10&art.dataPubblicazioneGazzetta=2005-12-29&art.progressivo=3",
+              "sha256": "f8dedc9457bb1dd52703044e6be45bd2de332ae0dc56542c95f9837dc1d455ee"
+            },
+            "section": "Art. 1, c. 213",
+            "quote": "L'indennita' di trasferta di cui all'articolo 1, primo comma, della legge 26 luglio 1978, n. 417, e all'articolo 1, primo comma, del decreto del Presidente della Repubblica 16 gennaio 1978, n. 513, l'indennita' supplementare prevista dal primo e secondo comma dell'articolo 14 della legge 18 dicembre 1973, n. 836, nonche' l'indennita' di cui all'articolo 8 del decreto legislativo luogotenenziale 7 giugno 1945, n. 320, sono soppresse. Sono soppresse le analoghe disposizioni contenute nei contratti collettivi nazionali e nei provvedimenti di recepimento degli accordi sindacali"
+          },
+          "transformation": "Since 1 January 2006 the public employees of the comparto have no daily travel allowance for the missions in Italy: the law suppressed it and the analogous clauses of the CCNLs. What is left is the refund of the documented expenses of the mission, a fact of the employer, which the caller states (maintainer decision of 2026-11-15)."
+        }
       }
     }
   },
