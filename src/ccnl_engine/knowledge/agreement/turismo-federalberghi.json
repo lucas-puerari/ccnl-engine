@@ -4205,7 +4205,7 @@
     "effective_until": null,
     "source": "https://intranet.federalberghi.it/pubblicazioni/CCNL%20Turismo/CCNL%20Turismo%205%20luglio%202024/ccnl%20turismo%20-%20ipotesi%20di%20accordo%205%20luglio%202024.pdf",
     "verification_status": "unverified",
-    "source_hash": "738c07879ec08a50d3fa0c3ac186129e6105caec6b4d71c140ce37d4bbd2a1ba",
+    "source_hash": "0b4fef4c195a97c31acec07ffab72293357f26bd6df4e35cc69b896726ddc6f8",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5199,6 +5199,66 @@
         "transformation": "La metà dell'orario medio giornaliero precedente è una misura variabile della fruizione a ore, non un'equiparazione espressa di un numero fisso di ore a una giornata di congedo: day_hours = null. Non è previsto un riproporzionamento esplicito per il part-time. La decorrenza generale è indicata all'articolo 199, comma 1, senza eccezione per l'articolo 180.",
         "note": "Scanned PDF: the quote is read from the OCR of the page."
       }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "http-www-uiltucs-it-pdf-turismo-ccnl-turismo-confcommercio-2010-pdf",
+              "title": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+              "kind": "associazione",
+              "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+              "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+            },
+            "page": "134",
+            "section": "Art. 148 c. 1",
+            "quote": "Di norma, la retribuzione del lavoratore è distinta nelle seguenti voci: a) paga base nazionale conglobata di cui all'articolo 152 comprensiva dell'indennità di caro pane prevista dalla legge;"
+          },
+          "transformation": "The CCNL sets no travel allowance for the alberghi: the indennità of art. 395 (Missione temporanea, PDF p. 255) is in Titolo XV, for the imprese di viaggi e turismo only, and the pay items of art. 148 list none. A daily amount of a company agreement is the TravelAllowanceEvent.daily_amount.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-turismo-federalberghi-time-supplements"
+          }
+        }
+      },
+      "shift_work": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "http-www-uiltucs-it-pdf-turismo-ccnl-turismo-confcommercio-2010-pdf",
+              "title": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+              "kind": "associazione",
+              "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+              "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+            },
+            "page": "55",
+            "section": "Art. 14 c. 2 lett. k",
+            "quote": "k) eventuale istituzione del lavoro a turno intendendosi per tale il lavoro prestato in uno dei tre o più turni giornalieri avvicendati nell'arco delle ventiquattro ore;"
+          },
+          "transformation": "shift_work: delegated to second level.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-turismo-federalberghi-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -5483,6 +5543,28 @@
         "checked": [
           "levels.A.fixed_allowances.IND_FUNZIONE_QUADRI",
           "levels.B.fixed_allowances.IND_FUNZIONE_QUADRI"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-turismo-federalberghi-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "http://www.uiltucs.it/pdf/turismo/CCNL_Turismo_Confcommercio_2010.pdf",
+            "sha256": "47f71f5f3f9eb7975837a888f08f8694ca5b1d9e403c85226446c080b7e0f9e4"
+          }
+        ],
+        "findings": [
+          "Applied: travel, none.shift_work."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ],

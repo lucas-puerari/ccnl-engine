@@ -1547,7 +1547,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/multiservizi-anip",
       "ruleset_version": "2026.2",
-      "source_hash": "f7073571d693cb41b3b930d17d126a8b784da9168cb1cb5b177dcd0457210e73",
+      "source_hash": "172198d627393af53c205d998d30544c6f5354cade17aca5e4eacef28302221b",
       "source_type": "official_primary",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/multiservizi-anip.json.gz"
@@ -2023,7 +2023,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/studi-professionali-confprofessioni",
       "ruleset_version": "2026.2",
-      "source_hash": "112ecfec68011f7717208772377557080a46ad61b871a4b8d1d0680d4d6a9916",
+      "source_hash": "167e50262377f8af19de80e3a184d7bc82ab13ffeabe6eec9f90d99425e408b0",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/studi-professionali-confprofessioni.json.gz"
@@ -2193,7 +2193,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi-alberghi-minori",
       "ruleset_version": "2026.2",
-      "source_hash": "4c820de39c92057ef5b34a2d2206f1c854e3793e378f102b43d07aaf0c84f07a",
+      "source_hash": "8f2d7b7136b7b0be00a16819bbcfff096c826e5521d3775dec1c1d02af18a51f",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/turismo-federalberghi-alberghi-minori.json.gz"
@@ -2210,7 +2210,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi",
       "ruleset_version": "2026.2",
-      "source_hash": "738c07879ec08a50d3fa0c3ac186129e6105caec6b4d71c140ce37d4bbd2a1ba",
+      "source_hash": "0b4fef4c195a97c31acec07ffab72293357f26bd6df4e35cc69b896726ddc6f8",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/turismo-federalberghi.json.gz"
@@ -4201,7 +4201,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "c89e222f242537afa77bfc09463ebf764f4c9267c02561c217dd9f52e8da0902",
+      "source_hash": "6e62c2334890ea1d14322bcd3b21b900ee36254541b7aa8e3b3d2e1ec228b8a8",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "census/multiservizi-anip.json.gz",
@@ -5521,7 +5521,7 @@
       "valid_to": null,
       "ruleset_id": null,
       "ruleset_version": null,
-      "source_hash": "04bdd811fbee7e4ee73ce0eacc33d72b33def2cd4f6a0113838eb6f65c60079e",
+      "source_hash": "811f1a4a2643fe4514b95b347cf51092b8888fd30e5c9e30483f35c7ea7c3df1",
       "source_type": null,
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "limitation/engine.json.gz",

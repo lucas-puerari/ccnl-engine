@@ -2378,7 +2378,7 @@
     "effective_until": null,
     "source": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
     "verification_status": "unverified",
-    "source_hash": "112ecfec68011f7717208772377557080a46ad61b871a4b8d1d0680d4d6a9916",
+    "source_hash": "167e50262377f8af19de80e3a184d7bc82ab13ffeabe6eec9f90d99425e408b0",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -3908,6 +3908,37 @@
         },
         "transformation": "L'articolo attribuisce 174 ore per mese di congedo, ma non stabilisce quante ore equivalgano a una giornata: day_hours = null. La fruizione vale per tempo pieno e parziale senza prevedere un riproporzionamento espresso delle ore: part_time_scaled = false. Nessuna decorrenza specifica è indicata nell'articolo: effective_from = null."
       }
+    },
+    "capability_basis": {
+      "night_work": {
+        "kind": "delegated_to_second_level",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ofessioni-eu-wp-content-uploads-2025-11-ccnl-studi-2024-integrale-definitivo-pdf",
+              "title": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+              "kind": "associazione",
+              "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+              "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+            },
+            "page": "48",
+            "section": "Articolo 93, commi 1-2",
+            "quote": "Le parti, visto il D.lgs. n. 66/2003, tenuto conto delle caratteristiche strutturali del Settore, hanno concordato sulla opportunità che tale materia venga disciplinata a livello di Area Professionale e/o a livello di Area Professionale Omogenea oppure dalla contrattazione di secondo livello, sulla base di quanto il su citato Decreto delega alle parti sociali. Pertanto, nell’ambito del confronto a livello sopra richiamato, potranno essere definiti specifici accordi in materia di lavoro notturno che, fatti salvi gli obblighi inerenti ai controlli medici preventivi e periodici di cui all’art. 14 del D.lgs. n. 66/2003, potranno disciplinare, con apposite norme, tematiche, quali: Definizione di lavoro notturno – Limitazioni al lavoro notturno – Durata della prestazione – Trasferimento al lavoro diurno – Riduzione dell’orario di lavoro e Maggiorazione retributiva – Rapporti sindacali – Doveri di informazione – Misure di protezione personale e collettiva."
+          },
+          "transformation": "night_work: delegated to second level.",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-studi-professionali-confprofessioni-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -4547,6 +4578,29 @@
         "independence": "same_process",
         "checked": [
           "work_rules.time_supplements.supplement_bands"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-studi-professionali-confprofessioni-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://confprofessioni.eu/wp-content/uploads/2025/11/CCNL-Studi-2024-integrale-definitivo.pdf",
+            "sha256": "89c22bb20be410166e3538e3cdc14b011e712ce93d00ed94b54dfb67a4e8b544"
+          }
+        ],
+        "findings": [
+          "Applied: none.night_work.",
+          "Left out: none.shift_work: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ],

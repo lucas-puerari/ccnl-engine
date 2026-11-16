@@ -109,7 +109,35 @@
             "trigger": "run",
             "effective_from": "2026-05-01"
           },
-          "remediation": "Source an ANIP-signed later minimum or verified IPCA adjustment before adding subsequent tranches."
+          "remediation": "Source an ANIP-signed later minimum or verified IPCA adjustment before adding subsequent tranches.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
+              "sha256": "4a87d6d51d2c4ccf7d28a9e2708cd45ee122fdebea7d8f8420cdb38e448f6167",
+              "title": "Rinnovo 8 giugno 2021, PDF p. 34: the July 2025 fifth tranche is the last minimum ANIP signed."
+            },
+            {
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234754",
+              "sha256": "c48ac1d26759f53553270b626d7acddcb35621707554d8a7e7306f48bf29976d",
+              "title": "Ipotesi 13 giugno 2025, PDF pp. 1, 12-14: signed by AGCI, Confcooperative, Legacoop and Unionservizi-Confapi, not by ANIP."
+            },
+            {
+              "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/234752",
+              "sha256": "8f40d0cf7097274493e8baba4949ccc3aa6e4aff1756caf6eb84fa5a3d1c4e61",
+              "title": "Accordo integrativo 6 agosto 2025, PDF pp. 1 and 5: no ANIP signature."
+            },
+            {
+              "url": "https://www.legacoop.coop/wp-content/uploads/2026/04/decreto-direttoriale-n-25-del-30032026.pdf",
+              "sha256": "d19281efd6c6f3cf5cf9992095b867b2fda0982fd062e9f506188b63bf96ccc2",
+              "title": "Decreto direttoriale 25 del 30 marzo 2026, p. 3: labour-cost tables from July 2025 to March 2029, not an ANIP agreement."
+            },
+            {
+              "url": "https://www.legacoop.coop/wp-content/uploads/2026/04/tabelle-operai-2025-2029-imprese-esercenti-servizi-pulizia.pdf",
+              "sha256": "b201fcb9a8faa158eb1d76745d5c85aeb3e78df4f42c85dd4af9eecd9bd3d0ca",
+              "title": "Ministerial tables of the operai 2025-2029: the minima of the CCNL signed by the other parties."
+            }
+          ]
         }
       },
       {
@@ -220,7 +248,7 @@
       },
       {
         "kind": "simplification",
-        "text": "SICKNESS (CNEL 139292 art. 51, pp. 22-24): category routing, the 100% net-global-pay operai band through day 180, the 50% band through day 270, the impiegati 100% first five months and 50% next seven months, and the rolling 36-month comporto are represented. Remaining: the operai 50% band is of gross global pay, while the model applies net_basis to the whole rule; impiegati pay is stipendio plus contingenza, while the engine uses global pay. The operai first working day and the impiegati non-probation and serious-fault conditions are not represented. The clause does not state a daily gross/net conversion or an amount for the excluded pay components.",
+        "text": "SICKNESS (CNEL 139292 art. 51, pp. 22-24): category routing, the 100% net-global-pay operai band through day 180, the 50% band through day 270, the impiegati 100% first five months and 50% next seven months, and the rolling 36-month comporto are represented. The operai 50% band of days 181-270 is of the gross global pay (gross_basis). Remaining: impiegati pay is stipendio plus contingenza, while the engine uses global pay. The operai first working day and the impiegati non-probation and serious-fault conditions are not represented. The clause does not state a daily gross/net conversion or an amount for the excluded pay components.",
         "capability": "sickness",
         "monetary_impact": "yes",
         "limitation": {
@@ -5681,7 +5709,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/139292",
     "verification_status": "unverified",
-    "source_hash": "f7073571d693cb41b3b930d17d126a8b784da9168cb1cb5b177dcd0457210e73",
+    "source_hash": "172198d627393af53c205d998d30544c6f5354cade17aca5e4eacef28302221b",
     "published_at": "2026-09-07",
     "source_type": "official_primary"
   },
@@ -6455,7 +6483,8 @@
         {
           "day_from": 181,
           "day_until": 271,
-          "integration_rate": "0.5"
+          "integration_rate": "0.5",
+          "gross_basis": true
         },
         {
           "day_from": 271,
@@ -6663,6 +6692,50 @@
             "verification_status": "verified",
             "review_id": "2026-11-15-ai-multiservizi-anip-time-supplements"
           }
+        }
+      }
+    },
+    "sunday_holidays": {
+      "holidays": [
+        "04-25",
+        "05-01",
+        "06-02",
+        "10-04",
+        "01-01",
+        "01-06",
+        "easter",
+        "easter_monday",
+        "08-15",
+        "11-01",
+        "12-08",
+        "12-25",
+        "12-26",
+        "patron",
+        "11-04"
+      ],
+      "on_rest_day": true,
+      "fourth_november_on_sunday": true,
+      "provenance": {
+        "status": "derived",
+        "location": {
+          "source_document": {
+            "document_id": "ccnl-multiservizi-2021-filcams",
+            "title": "CCNL Servizi di pulizia e servizi integrati/multiservizi, testo coordinato 8 giugno 2021 (Filcams CGIL)",
+            "kind": "associazione",
+            "url": "https://www.filcams.cgil.it/GetMedia.aspx?id=7bef7b20933046cdac04bba6babe5cc5&s=0",
+            "sha256": "ca01d1213d006e18f2955501a333393f548b4398fac85ff37837510ae664593f"
+          },
+          "page": "58",
+          "section": "Art. 41 - Ricorrenze festive",
+          "quote": "Soltanto nel caso in cui le ricorrenze festive di cui alle lett. b) e c) cadano in giornata di riposo settimanale (art. 40) spetta, in aggiunta al normale trattamento economico, un importo pari alle quote giornaliere degli elementi della retribuzione globale mensile. [...] Per quanto riguarda la festività civile (4 novembre) la cui celebrazione ha luogo nella prima domenica di novembre, il lavoratore beneficerà del trattamento previsto per le festività che coincidono con la domenica"
+        },
+        "transformation": "Letter b): 25 April, 1 May, 2 June 'salvo le eventuali sostituzioni o aggiunte che intervenissero per disposizioni di carattere generale', so 4 October as restored by law; letter c): 1 and 6 January, Easter, Easter Monday, 15 August, 1 November, 8 December, 25 and 26 December and the patron. Paid when they fall on the weekly rest day of art. 40 (the Sunday or the compensatory day), with 4 November on the first Sunday of November. The same text is in art. 41 of the CCNL of 31 May 2011 (CNEL 105782, PDF p. 60, sha256 e4be4aff27e6bd44f3d9bda9aa4ffceb42e2f80ba9af639cec99cdc42676e8f7).",
+        "extraction": {
+          "method": "ai",
+          "model": "claude-opus-5-5",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2021-06-08",
+          "verification_status": "unverified"
         }
       }
     }
