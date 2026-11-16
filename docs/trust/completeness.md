@@ -19,7 +19,7 @@ shown for reference only, and
 `scripts/completeness/report.py --strict` fails while any CCNL is
 incomplete.
 
-**Complete: 8/136 CCNLs**; complete except declared residuals: 1. Bundle: 249 weak rules, 261 open limitations (261 with a monetary impact), 32 declared residuals.
+**Complete: 14/136 CCNLs**; complete except declared residuals: 2. Bundle: 248 weak rules, 258 open limitations (258 with a monetary impact), 33 declared residuals.
 
 ## Declared window
 
@@ -60,6 +60,7 @@ Limitations awaiting a publication due by a known date (`awaiting_publication`):
 - `parental_income_condition`: The INPS circular on the trattamento minimo di pensione of 2027 (published every year in January), by 2027-02-28
 - `provisional_inps_ruleset`: The INPS circulars on the 2027 contribution rates, massimale, minimale and domestic hourly contributions (published every year between January and February), by 2027-02-28
 - `provisional_ruleset`: The Legge di bilancio 2027 (Gazzetta Ufficiale, by 31 December 2026) and the regional and municipal IRPEF surtax resolutions of 2027 (MEF, Dipartimento delle Finanze, by the end of March 2027), by 2027-03-31
+- `sanita-aran/renewal_2025_2027_not_modelled`: The definitive CCNL Comparto Sanità 2025-2027, signed after the certification of the ipotesi of 29 July 2026 (art. 47 D.Lgs. 165/2001: comitato di settore, Governo, Corte dei conti), by 2027-01-31
 
 Capabilities a caller value may replace are not counted as gaps when the engine computes them from a rule the CCNL holds (`absence`, `holiday_work`, `night_work`, `overtime`, `shift_work`, `travel_allowance`), nor when their amount is a fact only the employer knows:
 
@@ -107,9 +108,9 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [contoterzismo-caiagromec](../contracts/contoterzismo-caiagromec.md) | `agricoltura` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 2 monetary limitations; 5 non-native capabilities |
 | [cooperative-consorzi-agricoli](../contracts/cooperative-consorzi-agricoli.md) | `agricoltura` | exploratory | — | 2 rows | 2 open requirements; 1 monetary limitation; 1 outside_input limitation; 6 non-native capabilities |
 | [cooperative-sociali](../contracts/cooperative-sociali.md) | `socio-sanitario` | reviewed | — | 5 rows | 5 open requirements; 2 monetary limitations; 3 outside_input limitations; 5 non-native capabilities |
-| [dirigenza-funzioni-centrali-aran](../contracts/dirigenza-funzioni-centrali-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 0 rows | 5 non-native capabilities |
-| [dirigenza-funzioni-locali-aran](../contracts/dirigenza-funzioni-locali-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 1 rows | 1 open requirement; 1 outside_input limitation; 6 non-native capabilities |
-| [dirigenza-istruzione-ricerca-aran](../contracts/dirigenza-istruzione-ricerca-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 1 rows | 1 open requirement; 1 monetary limitation; 6 non-native capabilities |
+| [dirigenza-funzioni-centrali-aran](../contracts/dirigenza-funzioni-centrali-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 0 rows | complete; 3 limitations awaiting publication |
+| [dirigenza-funzioni-locali-aran](../contracts/dirigenza-funzioni-locali-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 0 rows | complete; 3 limitations awaiting publication |
+| [dirigenza-istruzione-ricerca-aran](../contracts/dirigenza-istruzione-ricerca-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 1 rows | 1 open requirement; 1 monetary limitation; 1 non-native capability |
 | [dirigenza-sanitaria-area-sanita-aran](../contracts/dirigenza-sanitaria-area-sanita-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 1 rows | tables from 2026-03-01; 1 open requirement; 1 outside_input limitation; 5 non-native capabilities |
 | [dirigenza-sanitaria-medico-veterinaria-aran](../contracts/dirigenza-sanitaria-medico-veterinaria-aran.md) | `dirigenza-pubblica` | exploratory | 2024-12-31 | 6 rows | tables from 2026-03-01; 6 open requirements; 3 weak rules; 2 monetary limitations; 1 outside_input limitation; 2 non-native capabilities |
 | [distribuzione-cooperativa-ancc](../contracts/distribuzione-cooperativa-ancc.md) | `commercio` | exploratory | — | 2 rows | 2 open requirements; 1 weak rule; 1 monetary limitation; 2 non-native capabilities; 2 declared residuals |
@@ -131,11 +132,11 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [formazione-professionale](../contracts/formazione-professionale.md) | `istruzione-formazione` | exploratory | — | 5 rows | 5 open requirements; 2 weak rules; 2 monetary limitations; 1 outside_input limitation; 6 non-native capabilities |
 | [forze-polizia-ordinamento-civile](../contracts/forze-polizia-ordinamento-civile.md) | `forze-polizia` | exploratory | — | 5 rows | 5 open requirements; 2 weak rules; 3 monetary limitations; 7 non-native capabilities |
 | [funivie-anef](../contracts/funivie-anef.md) | `trasporti-logistica` | exploratory | — | 3 rows | 3 open requirements; 2 weak rules; 1 monetary limitation; 5 non-native capabilities |
-| [funzioni-centrali-aran](../contracts/funzioni-centrali-aran.md) | `pubblico-impiego` | reviewed | — | 0 rows | 1 non-native capability |
-| [funzioni-locali-aran](../contracts/funzioni-locali-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 0 rows | tables from 2026-02-24 |
+| [funzioni-centrali-aran](../contracts/funzioni-centrali-aran.md) | `pubblico-impiego` | reviewed | — | 0 rows | complete; 3 limitations awaiting publication |
+| [funzioni-locali-aran](../contracts/funzioni-locali-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 0 rows | complete; 3 limitations awaiting publication |
 | [gas-acqua-utilitalia](../contracts/gas-acqua-utilitalia.md) | `energia-utilities` | exploratory | — | 4 rows | 4 open requirements; 1 weak rule; 3 monetary limitations; 3 non-native capabilities |
 | [gomma-plastica-federazione-gomma-plastica](../contracts/gomma-plastica-federazione-gomma-plastica.md) | `chimica` | exploratory | — | 5 rows | 5 open requirements; 2 weak rules; 2 monetary limitations; 1 outside_input limitation; 7 non-native capabilities |
-| [grafica-editoria-aieg](../contracts/grafica-editoria-aieg.md) | `carta-grafica` | exploratory | — | 1 rows | 1 open requirement; 1 weak rule; 1 non-native capability |
+| [grafica-editoria-aieg](../contracts/grafica-editoria-aieg.md) | `carta-grafica` | exploratory | — | 0 rows | complete; 3 limitations awaiting publication |
 | [igiene-ambientale-utilitalia](../contracts/igiene-ambientale-utilitalia.md) | `energia-utilities` | exploratory | — | 5 rows | tables from 2026-02-01; 5 open requirements; 1 weak rule; 3 monetary limitations; 1 outside_input limitation; 5 non-native capabilities; 1 declared residual |
 | [impianti-sportivi-sport](../contracts/impianti-sportivi-sport.md) | `sport` | exploratory | — | 5 rows | 5 open requirements; 2 weak rules; 2 monetary limitations; 1 outside_input limitation; 2 non-native capabilities; 1 declared residual |
 | [impiegati-tecnici-agricoli](../contracts/impiegati-tecnici-agricoli.md) | `agricoltura` | exploratory | — | 6 rows | 6 open requirements; 2 weak rules; 3 monetary limitations; 1 outside_input limitation; 2 non-native capabilities |
@@ -147,7 +148,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [laterizi-industria-f021](../contracts/laterizi-industria-f021.md) | `materiali-estrattive` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 2 monetary limitations; 6 non-native capabilities |
 | [lavanderie-industriali-assosistema](../contracts/lavanderie-industriali-assosistema.md) | `pulizia-multiservizi` | exploratory | — | 3 rows | tables from 2026-05-01; 3 open requirements; 2 weak rules; 1 monetary limitation; 5 non-native capabilities |
 | [lavoro-domestico-convivente](../contracts/lavoro-domestico-convivente.md) | `lavoro-domestico` | reviewed | — | 0 rows | complete except 1 declared residual |
-| [lavoro-domestico-convivente-orario-ridotto](../contracts/lavoro-domestico-convivente-orario-ridotto.md) | `lavoro-domestico` | reviewed | — | 1 rows | 1 open requirement; 1 outside_input limitation; 1 non-native capability |
+| [lavoro-domestico-convivente-orario-ridotto](../contracts/lavoro-domestico-convivente-orario-ridotto.md) | `lavoro-domestico` | reviewed | — | 0 rows | complete except 1 declared residual |
 | [lavoro-domestico-non-convivente](../contracts/lavoro-domestico-non-convivente.md) | `lavoro-domestico` | reviewed | — | 0 rows | complete; 5 limitations awaiting publication |
 | [legno-arredamento-federlegno](../contracts/legno-arredamento-federlegno.md) | `legno-arredamento` | exploratory | — | 4 rows | 4 open requirements; 1 weak rule; 3 monetary limitations; 2 non-native capabilities |
 | [legno-lapidei-artigianato-confartigianato](../contracts/legno-lapidei-artigianato-confartigianato.md) | `legno-arredamento` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 2 monetary limitations; 4 non-native capabilities |
@@ -180,7 +181,7 @@ Capabilities a caller value may replace are not counted as gaps when the engine 
 | [radiotelevisive-televisivo](../contracts/radiotelevisive-televisivo.md) | `spettacolo-media` | exploratory | — | 15 rows | 15 open requirements; 11 weak rules; 4 monetary limitations; 8 non-native capabilities |
 | [recapito-corrispondenza-fise](../contracts/recapito-corrispondenza-fise.md) | `servizi-postali` | exploratory | — | 2 rows | 2 open requirements; 2 weak rules; 5 non-native capabilities |
 | [rsa-aiop](../contracts/rsa-aiop.md) | `socio-sanitario` | exploratory | — | 5 rows | 5 open requirements; 1 weak rule; 3 monetary limitations; 1 outside_input limitation; 7 non-native capabilities |
-| [sanita-aran](../contracts/sanita-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 1 rows | 1 open requirement; 1 monetary limitation; 1 non-native capability |
+| [sanita-aran](../contracts/sanita-aran.md) | `pubblico-impiego` | reviewed | 2024-12-31 | 0 rows | complete; 4 limitations awaiting publication |
 | [sanita-privata-aiop-aris](../contracts/sanita-privata-aiop-aris.md) | `socio-sanitario` | exploratory | 2018-12-31 | 6 rows | 6 open requirements; 2 monetary limitations; 4 outside_input limitations; 6 non-native capabilities |
 | [scuole-materne-fism](../contracts/scuole-materne-fism.md) | `istruzione-formazione` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 1 monetary limitation; 1 outside_input limitation; 6 non-native capabilities; 1 declared residual |
 | [scuole-private-agidae](../contracts/scuole-private-agidae.md) | `istruzione-formazione` | exploratory | — | 3 rows | 3 open requirements; 1 weak rule; 1 monetary limitation; 1 outside_input limitation; 3 non-native capabilities |

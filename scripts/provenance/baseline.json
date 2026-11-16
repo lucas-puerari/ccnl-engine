@@ -150,9 +150,6 @@
       "accrual_rule": "missing",
       "additional_months[2023-01-01]": "assumed"
     },
-    "agreement/grafica-editoria-aieg.json": {
-      "additional_months[2024-03-01]": "assumed"
-    },
     "agreement/igiene-ambientale-utilitalia.json": {
       "additional_months[2026-02-01]": "assumed"
     },
@@ -710,9 +707,6 @@
       "cooperative-sociali/role_conditions_caller_stated",
       "cooperative-sociali/type_b_disadvantaged_exemption"
     ],
-    "agreement/dirigenza-funzioni-locali-aran.json": [
-      "dirigenza-funzioni-locali-aran/position_pay"
-    ],
     "agreement/dirigenza-istruzione-ricerca-aran.json": [
       "dirigenza-istruzione-ricerca-aran/approximate_hourly_divisor"
     ],
@@ -836,9 +830,6 @@
       "laterizi-industria-f021/apprentice_seniority",
       "laterizi-industria-f021/asq_seniority_from_as"
     ],
-    "agreement/lavoro-domestico-convivente-orario-ridotto.json": [
-      "lavoro-domestico-convivente-orario-ridotto/students_other_levels"
-    ],
     "agreement/legno-arredamento-federlegno.json": [
       "legno-arredamento-federlegno/renewal_2026_ipotesi"
     ],
@@ -956,9 +947,6 @@
       "rsa-aiop/apprentice_seniority",
       "rsa-aiop/apprenticeship_under_classification",
       "rsa-aiop/seniority_premium_2023"
-    ],
-    "agreement/sanita-aran.json": [
-      "sanita-aran/renewal_2025_2027_not_modelled"
     ],
     "agreement/sanita-privata-aiop-aris.json": [
       "sanita-privata-aiop-aris/daily_rotating_shift_allowances",

@@ -62,7 +62,20 @@
           "applies_when": {
             "trigger": "outside_input"
           },
-          "remediation": "Source the Tabella B values for the other student levels. For modeled levels, supply eligible roles only after checking child age, certification conditions and any offset against individual pay."
+          "remediation": "Source the Tabella B values for the other student levels. For modeled levels, supply eligible roles only after checking child age, certification conditions and any offset against individual pay.",
+          "status": "unsourced",
+          "searched": [
+            {
+              "url": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
+              "sha256": "122ca6a72196a835976abac7fb988dc1502973941d52891a546512347fdc9dcf",
+              "title": "CCNL lavoro domestico 2025: art. 14 c. 2 (PDF p. 24) pays the students 'una retribuzione pari a quella prevista dalla tabella B'; Tabella B (PDF p. 59) has values for levels C, B and B super only."
+            },
+            {
+              "url": "https://associazionedomina.it/wp-content/uploads/2026/02/TABELLA-minimi-retributivi-2026.pdf",
+              "sha256": "bf881702d838dc9c721f07140f17ee6f7cc8b7eb920b4e7647bfa2176ee3d387",
+              "title": "Minimi retributivi 2026 (DOMINA): Tabella B, the same three levels; no value for a student of another level."
+            }
+          ]
         }
       },
       {
@@ -1059,7 +1072,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "68c369aafd3a40512e74fb85b8629c1c97391beadf8247523fde91f263284253",
+    "source_hash": "761ff5b1b89041d3a6e0e4032e0e93ef0c9450db8144bae7f4e195b699203393",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },
