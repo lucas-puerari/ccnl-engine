@@ -1152,7 +1152,37 @@
           }
         }
       }
-    ]
+    ],
+    "accrual_rule": {
+      "min_days": 15,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "vigilanza-privata-federdat-sf-accrual",
+            "title": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "kind": "associazione",
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          },
+          "page": "77",
+          "section": "Art. 158, comma 2, Sezione Servizi Fiduciari",
+          "quote": "A tal fine le frazioni di mese che superino i 15 giorni saranno considerate mese intero."
+        },
+        "transformation": "A month counts whole when its fraction is more than 15 days.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-accrual-rule"
+        }
+      }
+    }
   },
   "apprenticeship": [
     {
@@ -1182,7 +1212,7 @@
     "effective_until": null,
     "source": "https://az-apim-cne-sa-0002-lgc-we.azure-api.net/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
     "verification_status": "unverified",
-    "source_hash": "c304ca25cd6f41e401cd3349fba690d4be1bac4d9f3aaae0eab4af206cfb6b71",
+    "source_hash": "2931e94b16338e41f6e3ffb03102ff86e8e23bd2d6589b68c6c32da42339b3e0",
     "published_at": "2026-11-06",
     "source_type": "contracting_party"
   },
@@ -1917,6 +1947,27 @@
         "checked": [
           "work_rules.time_supplements",
           "work_rules.capability_basis"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-accrual-rule",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The clause on the fraction of a month of the extra-month ratei, located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/245848",
+            "sha256": "6a3c337847f6be1a3bae390eff58b7d95b9ec2f7a21d79130cb6ae1519de3a29"
+          }
+        ],
+        "findings": [
+          "Sourced: parameters.accrual_rule."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.accrual_rule"
         ]
       }
     ]

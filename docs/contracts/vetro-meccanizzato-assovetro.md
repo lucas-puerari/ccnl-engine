@@ -41,7 +41,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🧑 Manual | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 73 verified / 0 derived / 28 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 74 verified / 0 derived / 28 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🟡 Needs review | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2026-04-09 |
-| **Last review** | 2026-11-13 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2028-07-01 |
 
 ## Review history
@@ -61,6 +61,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-10-12 | claude-opus-5-5 (ai) | File-level confidence against the provenance of its payable rules; no value re-read. | flagged | confidence was 'verified' while no payable rule is verified, 35 are assumed and the accrual rule is missing; the review of 2026-09-17 recorded neither the documents it read nor the values it checked. Confidence set to needs_review until the values are read in the signed text. |
 | 2026-11-13 | claude-opus-5-5 (ai) | Signed tables of the renewal of 9 April 2026 (FILCTEM, PDF p. 3, scanned, read on the image) and art. TEM of the renewal (p. 16). | corrected | Added the minimums of October 2026, January 2027, June 2027 and July 2028; the January 2026 column matches the file; the Ipo of positions 2 and 3, never modelled, is now a limitation. |
 | 2026-11-13 | claude-opus-5-5 (ai) | Tabella 'A' of the signed tables of 9 April 2026 (FILCTEM, p. 3) and art. 35 of the coordinated text (CNEL 135749, PDF p. 109), scanned pages read on the images. | corrected | Added the levels of positions 2 and 3 (Min. + Ipo); sourced the seniority increments from art. 35, which the renewals do not amend; limitations organizational_positions and seniority_assumed_constant removed. |
+| 2026-11-16 | claude-opus-5-5 (ai) | The clause on the fraction of a month of the extra-month ratei, located in the cited file by sha256. | corrected | Sourced: parameters.accrual_rule. |
 
 ## Salary table
 

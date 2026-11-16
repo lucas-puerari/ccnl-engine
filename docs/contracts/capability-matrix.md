@@ -61,7 +61,7 @@ formulas or caller-declared amounts.
 
 | Capability | Description | Scope | Layer | Implementation | Applies when | Handler | Facts | Variants | Label | Rules (v / d / a / m) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 4821 / 2284 / 116 / 28 |
+| `base_salary` | Paga base contrattuale | core | gross | native | always | pipeline | — | — | simplified | 4830 / 2284 / 116 / 19 |
 | `seniority` | Scatti di anzianità | core | gross | native | decided | decision | `employment.seniority` | — | simplified | 36 / 90 / 10 / 0 |
 | `worker_category` | Categoria lavoratore (dichiarata o fissata dal livello) | core | gross | native | decided | decision | `employment.category` | — | implemented | none bundled |
 | `inps_employee` | Contributi INPS a carico dipendente | core | net | native | always | pipeline | — | — | simplified | 34 / 24 / 45 / 0 |
@@ -157,15 +157,15 @@ never grow.
 | 15 | [CCNL Attivita Minerarie (ASSORISORSE)](attivita-minerarie-assorisorse.md) | ✅ | — | 36 / 1 / 1 / 1 |
 | 16 | [CCNL Attività Ferroviarie — AGENS](trasporto-ferroviario-agens.md) | ✅ | — | 55 / 29 / 0 / 0 |
 | 17 | [CCNL Autoferrotranvieri e Internavigatori (Mobilita/TPL)](autoferrotranvieri-internavigatori.md) | ⚠️ | inps_employer | 36 / 140 / 0 / 0 |
-| 18 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | ✅ | parental_leave | 59 / 41 / 0 / 1 |
-| 19 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | ✅ | sickness | 55 / 97 / 0 / 1 |
-| 20 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | ⚠️ | base_salary, inps_employer, maternity_leave, shift_work, workplace_injury | 51 / 5 / 0 / 1 |
+| 18 | [CCNL Autorimesse, Noleggio Automezzi e Parcheggi (ANIASA)](autorimesse-ic35.md) | ✅ | parental_leave | 60 / 41 / 0 / 0 |
+| 19 | [CCNL Autostrade e Trafori Concessionari](autostrade-trafori.md) | ✅ | sickness | 56 / 97 / 0 / 0 |
+| 20 | [CCNL CED, ICT, Professioni Digitali e STP (Assoced-UGL)](ced-assoced.md) | ⚠️ | base_salary, inps_employer, maternity_leave, shift_work, workplace_injury | 52 / 5 / 0 / 0 |
 | 21 | [CCNL Carta e Cartone — Aziende Industriali (Assocarta)](carta-cartone-assocarta.md) | ⚠️ | base_salary | 21 / 62 / 0 / 0 |
 | 22 | [CCNL Case di Cura Private - Personale Non Medico (AIOP/ARIS)](sanita-privata-aiop-aris.md) | ⚠️ | base_salary, overtime, seniority, standby | 38 / 2 / 0 / 0 |
 | 23 | [CCNL Cemento, Calce e Gesso — Industria (Federbeton)](cemento-calce-gesso-industria.md) | ⚠️ | seniority | 45 / 37 / 0 / 0 |
 | 24 | [CCNL Ceramica Industria (Confindustria) - Ceramica sanitaria e stoviglieria](ceramica-sanitaria-stoviglieria-confindustria.md) | ⚠️ | seniority | 52 / 19 / 0 / 1 |
 | 25 | [CCNL Ceramica Industria (Confindustria-Assopiastrelle)](ceramica-industria-confindustria.md) | ⚠️ | seniority | 48 / 12 / 1 / 1 |
-| 26 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | ✅ | — | 40 / 13 / 1 / 1 |
+| 26 | [CCNL Chimica e Affini PMI — Unionchimica Confapi](chimica-affini-pmi-unionchimica.md) | ✅ | — | 41 / 13 / 1 / 0 |
 | 27 | [CCNL Comparto Funzioni Centrali — Triennio 2022-2024](funzioni-centrali-aran.md) | ✅ | — | 52 / 5 / 0 / 0 |
 | 28 | [CCNL Comparto Funzioni Locali 2022-2024 — ARAN](funzioni-locali-aran.md) | ✅ | — | 22 / 21 / 0 / 0 |
 | 29 | [CCNL Comparto Istruzione e Ricerca 2022-2024 e 2025-2027 (trattamento economico) - ARAN](istruzione-ricerca-aran.md) | ✅ | — | 60 / 45 / 0 / 0 |
@@ -206,7 +206,7 @@ never grow.
 | 64 | [CCNL Industria Turistica (Federturismo Confindustria)](industria-turistica-federturismo.md) | ⚠️ | base_salary | 37 / 10 / 1 / 0 |
 | 65 | [CCNL Industrie Cineaudiovisive (ANICA)](cinema-audiovisivi-industria.md) | ⚠️ | inps_employer | 57 / 7 / 0 / 0 |
 | 66 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (GPG)](vigilanza-privata-assiv.md) | ⚠️ | seniority | 44 / 8 / 0 / 0 |
-| 67 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (Servizi fiduciari)](vigilanza-privata-assiv-sf.md) | ⚠️ | base_salary, seniority | 48 / 5 / 2 / 1 |
+| 67 | [CCNL Istituti e Imprese di Vigilanza Privata e Servizi Fiduciari — ASSIV/ANIVP/UNIV (Servizi fiduciari)](vigilanza-privata-assiv-sf.md) | ⚠️ | base_salary, seniority | 49 / 5 / 2 / 0 |
 | 68 | [CCNL Istituzioni Formative Private (Scuole Private Religiose) — AGIDAE](scuole-private-agidae.md) | ⚠️ | seniority | 15 / 32 / 0 / 0 |
 | 69 | [CCNL Istituzioni Socio-Assistenziali — UNEBA](uneba-uneba.md) | ✅ | — | 40 / 9 / 0 / 0 |
 | 70 | [CCNL Istituzioni e Servizi Socio-Assistenziali (ANASTE)](istituzioni-servizi-socio-assistenziali-anaste.md) | ✅ | — | 66 / 12 / 0 / 0 |
@@ -227,7 +227,7 @@ never grow.
 | 85 | [CCNL Metalmeccanici Piccola Industria (Unionmeccanica-Confapi)](metalmeccanico-confapi.md) | ⚠️ | base_salary, leave, overtime, sickness | 70 / 11 / 0 / 0 |
 | 86 | [CCNL Metalmeccanici e Installatori di Impianti (Federmeccanica-Assistal)](metalmeccanico-federmeccanica.md) | ✅ | — | 92 / 18 / 0 / 0 |
 | 87 | [CCNL Noleggio Autobus con Conducente (ANAV)](noleggio-autobus-conducente-anav.md) | ⚠️ | seniority, una_tantum | 35 / 34 / 2 / 0 |
-| 88 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | ✅ | — | 77 / 12 / 0 / 1 |
+| 88 | [CCNL Occhiali e Occhialeria — Industria (ANFAO)](occhiali-occhialeria-industria.md) | ✅ | — | 78 / 12 / 0 / 0 |
 | 89 | [CCNL Operai Agricoli e Florovivaisti — Coldiretti/Confagricoltura/CIA](operai-agricoli-florovivaisti.md) | ⚠️ | base_salary, bilateral_funds, overtime, seniority | 23 / 11 / 0 / 0 |
 | 90 | [CCNL Organizzazioni Allevatori, Consorzi ed Enti Zootecnici (AIA-FLAI-FAI-UILA)](organizzazioni-allevatori-aia.md) | ⚠️ | inps_employer | 44 / 8 / 0 / 0 |
 | 91 | [CCNL Ortofrutticoli ed Agrumari (Import-Export)](ortofrutticoli-agrumari.md) | ⚠️ | base_salary | 64 / 0 / 1 / 0 |
@@ -252,9 +252,9 @@ never grow.
 | 110 | [CCNL Turismo (Assoturismo-Confesercenti)](turismo-confesercenti.md) | ⚠️ | base_salary | 50 / 8 / 0 / 0 |
 | 111 | [CCNL Turismo — Federalberghi/Faita](turismo-federalberghi.md) | ⚠️ | base_salary, sickness | 79 / 1 / 0 / 0 |
 | 112 | [CCNL Turismo — Federalberghi/Faita - Alberghi a una e due stelle e campeggi minori](turismo-federalberghi-alberghi-minori.md) | ⚠️ | base_salary, sickness | 69 / 1 / 0 / 0 |
-| 113 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | ⚠️ | base_salary | 73 / 0 / 28 / 1 |
-| 114 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | ✅ | — | 27 / 6 / 0 / 1 |
-| 115 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | ⚠️ | base_salary, contractual_funds, overtime | 27 / 0 / 0 / 1 |
+| 113 | [CCNL Vetro (Industrie) — Settori Meccanizzati (Prime Lavorazioni)](vetro-meccanizzato-assovetro.md) | ⚠️ | base_salary | 74 / 0 / 28 / 0 |
+| 114 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — GPG](vigilanza-privata-federdat-gpg.md) | ✅ | — | 28 / 6 / 0 / 0 |
+| 115 | [CCNL Vigilanza Privata e Servizi Fiduciari FEDERDAT — SF](vigilanza-privata-federdat-sf.md) | ⚠️ | base_salary, contractual_funds, overtime | 28 / 0 / 0 / 0 |
 | 116 | [CCNL per i dipendenti da agenti immobiliari professionali e mandatari a titolo oneroso](agenti-immobiliari-fiaip.md) | ✅ | — | 42 / 2 / 1 / 0 |
 | 117 | [CCNL per i dipendenti da autoscuole, scuole nautiche e studi di consulenza automobilistica](autoscuole-unasca.md) | ✅ | — | 5 / 41 / 0 / 0 |
 | 118 | [CCNL per i dipendenti da aziende dei settori Pubblici Esercizi, Ristorazione Collettiva e Commerciale e Turismo](pubblici-esercizi-fipe-angem.md) | ⚠️ | base_salary, leave, overtime, sickness | 68 / 4 / 0 / 0 |

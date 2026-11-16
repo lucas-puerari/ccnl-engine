@@ -46,7 +46,7 @@ Derived from the capability registry. The scenario features and the ones outside
 |---|---|---|
 | **Extraction method** | 🤖 AI-assisted | How the values were read from the sources |
 | **Extraction review** | 🔴 Unverified | Whether a person checked the extracted file against its sources |
-| **Rule provenance** | 48 verified / 5 derived / 2 assumed / 1 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
+| **Rule provenance** | 49 verified / 5 derived / 2 assumed / 0 missing | Payable rules of the file by the evidence behind each value ([statuses](../trust/provenance.md)) |
 | **Ruleset confidence** | 🔴 Unverified | The confidence the ruleset declares as a whole |
 | **Readiness** | 🧪 Exploratory | Whether runs of this contract can be paid in `operational` mode ([tiers](../trust/readiness.md)) |
 
@@ -67,6 +67,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-15 | claude-opus-5-5 (ai) | Comporto over the calendar year and paid days, against the research of a separate model session; quotes checked on the source. | corrected | Comporto of 240 days over the calendar year; pay ends after 180 days. |
 | 2026-11-15 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: hourly_base, bands[0:sunday].<br>Left out: bands[1:night_holiday]: quote quote_not_in_file; bands[2:night_holiday]: more night_holiday bands the engine cannot tell apart; bands[3:holiday]: quote quote_not_in_file; bands[4:rest_day]: quote skipped; none.shift_work: skipped; none.night: skipped. |
 | 2026-11-16 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: travel.<br>Left out: bands[0:sunday]: quote skipped; bands[1:night_holiday]: quote skipped; bands[2:night_holiday]: quote skipped; bands[3:holiday]: quote skipped; bands[4:rest_day]: quote skipped; none.shift_work: skipped; none.night: skipped. |
+| 2026-11-16 | claude-opus-5-5 (ai) | The clause on the fraction of a month of the extra-month ratei, located in the cited file by sha256. | corrected | Sourced: parameters.accrual_rule. |
 
 ## Salary table
 

@@ -360,6 +360,36 @@
           }
         }
       ]
+    },
+    "accrual_rule": {
+      "min_days": 14,
+      "comparison": "more_than",
+      "provenance": {
+        "status": "verified",
+        "location": {
+          "source_document": {
+            "document_id": "autorimesse-ic35-accrual",
+            "title": "https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf",
+            "kind": "associazione",
+            "url": "https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf",
+            "sha256": "af0c6b2555f502ab52fcedb82b5d138093ef49499cac97ac19ec241e696f686d"
+          },
+          "page": "91",
+          "section": "Art. 43, comma 2; art. 44, comma 3",
+          "quote": "Nel caso di inizio o di cessazione del rapporto di lavoro durante il corso dell'anno, il lavoratore non in prova avrà diritto a tanti dodicesimi dell'ammontare della tredicesima mensilità per quanti sono i mesi di servizio prestato. Le frazioni di mese non superiori ai 14 giorni non saranno calcolate, mentre saranno considerate come mese intero se superiori ai 14 giorni."
+        },
+        "transformation": "A month counts whole when its fraction is more than 14 days.",
+        "extraction": {
+          "method": "ai",
+          "model": "gpt-6-sol",
+          "extraction_timestamp": "2026-11-16T00:00:00Z",
+          "effective_from": "2026-01-01",
+          "verified_by": "claude-opus-5-5",
+          "verified_at": "2026-11-16T00:00:00Z",
+          "verification_status": "verified",
+          "review_id": "2026-11-16-ai-accrual-rule"
+        }
+      }
     }
   },
   "apprenticeship": [
@@ -4257,7 +4287,7 @@
     "effective_until": null,
     "source": "https://www.filtcgil.it/images/Contratti/Mobilita/ic35-verbale-accordo-09122025.pdf",
     "verification_status": "unverified",
-    "source_hash": "dd7ff154070c22ed12b850b4372ad2d72414585507e5625bc131a1329599209e",
+    "source_hash": "ae9fa08042e9523795f9760019d4cbacca715362dbb61463367db0e9515d62e7",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -5107,6 +5137,27 @@
         "independence": "separate_model",
         "checked": [
           "levels[].fixed_allowances[].apprenticeship_pct_relevant"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-accrual-rule",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "The clause on the fraction of a month of the extra-month ratei, located in the cited file by sha256.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.filtcgil.it/images/Contratti/Contratto_Aniasa_a_stampa_2025-2027.pdf",
+            "sha256": "af0c6b2555f502ab52fcedb82b5d138093ef49499cac97ac19ec241e696f686d"
+          }
+        ],
+        "findings": [
+          "Sourced: parameters.accrual_rule."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "parameters.accrual_rule"
         ]
       }
     ]

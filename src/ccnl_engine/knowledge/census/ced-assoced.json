@@ -51,21 +51,6 @@
       }
     },
     {
-      "id": "rule_accrual_rule",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/ced-assoced.json#accrual_rule",
-      "calculation": "base_salary",
-      "state": "absent",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/ced-assoced.json#accrual_rule"
-        ]
-      }
-    },
-    {
       "id": "shift_allowances",
       "institute": "shift_work",
       "variant": "all",

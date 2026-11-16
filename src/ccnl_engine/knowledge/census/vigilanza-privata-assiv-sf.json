@@ -19,21 +19,6 @@
       }
     },
     {
-      "id": "rule_accrual_rule",
-      "institute": "base_salary",
-      "variant": "all",
-      "rule": "agreement/vigilanza-privata-assiv-sf.json#accrual_rule",
-      "calculation": "base_salary",
-      "state": "absent",
-      "remediation": "Verify the value on its primary source and record the provenance; a derivation states its formula and inputs.",
-      "origin": "seeded",
-      "links": {
-        "rules": [
-          "agreement/vigilanza-privata-assiv-sf.json#accrual_rule"
-        ]
-      }
-    },
-    {
       "id": "rule_additional_months_2023_06_01",
       "institute": "base_salary",
       "variant": "all",
