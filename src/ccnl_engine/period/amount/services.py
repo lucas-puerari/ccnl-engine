@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import replace
+from decimal import Decimal
 from typing import TYPE_CHECKING
 
 from ccnl_engine.amount.types import _PeriodAmounts
@@ -136,7 +137,10 @@ def _compute_amounts(
     tfr = tfr_accrual(inp, breakdown)
     breakdown = with_tfr_compensation(inp, breakdown, tfr)
     pension = run_pension(inp)
-    assistance = run_assistance(inp.assistance, inp.contributable_hours)
+    # The extra months carry no hours of their own: their pay is spread over
+    # the hours of the year, as for the INPS contributions (run_contributions).
+    hours = Decimal(0) if inp.additional_month else inp.contributable_hours
+    assistance = run_assistance(inp.assistance, hours)
     if not inp.withholding_agent:
         untaxed, no_tax = untaxed_amounts(inp, breakdown, employee_rate, tfr, pension)
         return replace(untaxed, assistance=assistance), breakdown, no_tax, None

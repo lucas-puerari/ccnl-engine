@@ -19,22 +19,6 @@
       }
     },
     {
-      "id": "extra_month_hours",
-      "institute": "assistance_contribution",
-      "variant": "all",
-      "discriminant": "applies_when.trigger = run",
-      "rule": "The INPS contributions of the tredicesima are paid on the hours of the year: INPS bands them on the paga oraria effettiva, which spreads the tredicesima over the hours, so the tredicesima run charges no INPS hours. The Cas.Sa.Colf contribution of Art. 54 c. 2 is charged on the contributable hours the run states, a tredicesima run too: no bundled source says whether the tredicesima carries hours of its own for it.",
-      "calculation": "ccnl/lavoro-domestico-convivente:coverage.notes",
-      "state": "unverified",
-      "remediation": "Source from the Cas.Sa.Colf rules whether the tredicesima carries contributable hours and set them for extra-month runs.",
-      "origin": "seeded",
-      "links": {
-        "limitations": [
-          "lavoro-domestico-convivente/extra_month_hours"
-        ]
-      }
-    },
-    {
       "id": "tranches_from_2027",
       "institute": "base_salary",
       "variant": "all",

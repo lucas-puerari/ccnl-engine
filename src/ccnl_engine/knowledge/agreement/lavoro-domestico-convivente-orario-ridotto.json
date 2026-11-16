@@ -143,7 +143,7 @@
       },
       {
         "kind": "simplification",
-        "text": "The INPS contributions of the tredicesima are paid on the hours of the year: INPS bands them on the paga oraria effettiva, which spreads the tredicesima over the hours, so the tredicesima run charges no INPS hours. The Cas.Sa.Colf contribution of Art. 54 c. 2 is charged on the contributable hours the run states, a tredicesima run too: no bundled source says whether the tredicesima carries hours of its own for it.",
+        "text": "The INPS and Cas.Sa.Colf contributions of the tredicesima are paid on the hours of the year: INPS bands them on the paga oraria effettiva, which spreads the tredicesima over the hours (INPS, scheda \"Contributi e agevolazioni fiscali per chi assume un lavoratore domestico\", sha256 c24c2b4d...: \"la tredicesima mensilità (gratifica natalizia), ripartita per ore\"), and Cas.Sa.Colf charges the hours of the same quarterly INPS bollettino (Cas.Sa.Colf, \"Versamento contributi\", text sha256 56f318e6...: \"La quota dei contributi si calcola moltiplicando il numero di ore retribuite nel trimestre per 0,06€\"; Regolamento Lavoratori art. 5, text sha256 b8612cf6...: \"codice F2 (FONDO COLF) all’interno del bollettino trimestrale dell’INPS\"). A tredicesima run charges neither.",
         "capability": "assistance_contribution",
         "monetary_impact": "unknown",
         "limitation": {
@@ -153,7 +153,8 @@
               "thirteenth"
             ]
           },
-          "remediation": "Source from the Cas.Sa.Colf rules whether the tredicesima carries contributable hours and set them for extra-month runs."
+          "remediation": "Resolved: an extra-month run charges no INPS and no Cas.Sa.Colf hours; the regular runs of the year carry them (review of 2026-11-16).",
+          "status": "resolved"
         }
       },
       {
@@ -1053,7 +1054,7 @@
     "effective_until": null,
     "source": "https://lavorodomestico.assindatcolf.it/wp-content/uploads/2026/04/CCNL.pdf",
     "verification_status": "unverified",
-    "source_hash": "4687d6eba7b6b3baa538e562d206c5f1e6e337557a9e92df2f6e4bd1853b720a",
+    "source_hash": "140ab0d0eaf5b89cb05269df4e73f415cf89653d45cb82c66dc6b2335c1f6fe1",
     "published_at": "2026-10-08",
     "source_type": "commercial_secondary"
   },
