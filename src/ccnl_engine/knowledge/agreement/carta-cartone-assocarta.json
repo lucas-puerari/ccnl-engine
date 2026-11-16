@@ -182,6 +182,29 @@
         "findings": [
           "Art. 70 of the 2021 renewal (CNEL 138131, pp. 40-42) and Art. 89 of the impiegati: comporto 12 months, 180 days of 100% of the net pay and 6 months of 50%, all counted over the 36 months before each day of absence. The file kept 180 days of one illness: corrected to a cumulation over three years."
         ]
+      },
+      {
+        "id": "2026-11-16-ai-carta-cartone-assocarta-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+            "sha256": "fb3e0cce00ffb6d13a42dd60ead6658f609ff475cb60ed43e8edc76695239a77"
+          }
+        ],
+        "findings": [
+          "Applied: travel.",
+          "Left out: bands[0:night]: quote skipped; bands[1:holiday]: quote skipped; bands[2:rest_day]: quote skipped; bands[3:sunday]: quote skipped; bands[4:day_shift]: quote skipped; bands[5:night_shift]: quote skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -2862,7 +2885,7 @@
     "effective_until": null,
     "source": "https://archiviocontrattiapi.cnel.it/cne/cne-sa-0002/ricerca-api/ricerca/pubblica/accordi/scarica/accordi/138131",
     "verification_status": "unverified",
-    "source_hash": "e5580b1651b6525bcc3b93763def576fa46c7345a4cd5d7d19d7642104501a9b",
+    "source_hash": "0ca0ff9893496d6496e34e23c058ad7762415e85c6401c1aaa95c7f7ee03a53f",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -2978,7 +3001,8 @@
             }
           }
         }
-      ]
+      ],
+      "supplement_bands": []
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -3091,6 +3115,37 @@
           "quote": "Nel caso in cui il congedo venga chiesto in modalità di fruizione oraria, lo stesso sarà riconosciuto\n           in gruppi minimi di 4 ore giornaliere, fermo restando i termini di preavviso di 2 giorni previsti dalla legge.\n                    L'azienda e la R.S.U. potranno definire modalità e condizioni per la fruizione dei congedi parentali\n           su base oraria in misura inferiore a quelli previsti dalle norme di legge, in relazione alle esigenze\n           organizzative e produttive."
         },
         "transformation": "La clausola fissa gruppi minimi di 4 ore giornaliere, non l'equivalenza tra una giornata di congedo e un numero di ore: day_hours è null. Non prevede riproporzionamento per il part-time né una decorrenza specifica della clausola."
+      }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ps-www-pisacaneboxes-com-wp-content-uploads-2022-02-ccnl-carta-industria2022-pdf",
+              "title": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+              "kind": "associazione",
+              "url": "https://www.pisacaneboxes.com/wp-content/uploads/2022/02/ccnl-carta-industria2022.pdf",
+              "sha256": "fb3e0cce00ffb6d13a42dd60ead6658f609ff475cb60ed43e8edc76695239a77"
+            },
+            "page": "42",
+            "section": "Art. 33, lettere a–c",
+            "quote": "Ai lavoratori in missione per esigenze di servizio, l'azienda corrisponderà: a) il rimborso delle spese effettive di viaggio, corrispondenti ai normali mezzi di trasporto (per viaggi in ferrovia non inferiori alla 1ª classe); b) il rimborso delle spese di vitto ed alloggio - nei limiti della normalità - quando la durata del servizio obblighi il lavoratore ad incontrare tali spese; c) il rimborso delle altre eventuali spese vive necessarie per l'espletamento della missione."
+          },
+          "transformation": "The CCNL pays no daily travel allowance: the trasferta is refunded at documented cost",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-carta-cartone-assocarta-time-supplements"
+          }
+        }
       }
     }
   }

@@ -1660,7 +1660,7 @@
     "effective_until": null,
     "source": "https://www.redigo.info/2023/11/20/ccnl-recapito-corrispondenza-fise-nuove-tabelle-dal-rinnovo-di-novembre-2023/",
     "verification_status": "unverified",
-    "source_hash": "7f3301e19c0cfe7d10219553223de80308ba422a3f91c576040357efd9f37d2a",
+    "source_hash": "05d6cb2c8fb3c58d7a665bb46a2363b531795ec341519d391934af7cb51d0ee5",
     "published_at": "2026-09-07",
     "source_type": "commercial_secondary"
   },
@@ -1812,7 +1812,8 @@
             }
           }
         }
-      ]
+      ],
+      "supplement_bands": []
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -1957,6 +1958,37 @@
         },
         "transformation": "The CCNL text read sets no rule on the parental leave by the hour, nor the hours of a day of leave: the general criterion of art. 32 c. 1-ter D.Lgs. 151/2001 applies (documents read: https://s, sha256 785ee3c31d65ddd27413b5950f4267476204f9b4a823601b904e0a245b7c6b50; https://a, sha256 aaec9fe6e382a0a0c1ae7988384c34e66d6696bf2d79d21d157dbb133d8a70d5; https://w, sha256 b4394f1dbb34c7fe1c75bf977736778dc2dab550d55b8bd371ae38ad2f04b3d3)."
       }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "gil-it-images-contratti-servizi-postali-ccnl-recapito-privati-fise-2010-2012-pdf",
+              "title": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+              "kind": "associazione",
+              "url": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+              "sha256": "273af4660875d90a4abad4caa12a713641154d4a4a924db9bbc515126a031f91"
+            },
+            "page": "46",
+            "section": "Art. 47 c. 1",
+            "quote": "1. Il lavoratore comandato a prestare servizio extraurbano, o chiamato quale teste in causa civile o penale per ragioni inerenti al servizio, oltre alla retribuzione giornaliera ha diritto al rimborso spese a piè di lista."
+          },
+          "transformation": "The CCNL pays no daily travel allowance: the trasferta is refunded at documented cost",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-recapito-corrispondenza-fise-time-supplements"
+          }
+        }
+      }
     }
   },
   "verification": {
@@ -2024,6 +2056,29 @@
         "independence": "separate_model",
         "checked": [
           "work_rules.sunday_holidays"
+        ]
+      },
+      {
+        "id": "2026-11-16-ai-recapito-corrispondenza-fise-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.slc-cgil.it/images/CONTRATTI/Servizi_Postali/CCNL_recapito_Privati_FISE_2010-2012.pdf",
+            "sha256": "273af4660875d90a4abad4caa12a713641154d4a4a924db9bbc515126a031f91"
+          }
+        ],
+        "findings": [
+          "Applied: travel.",
+          "Left out: bands[0:night]: quote skipped; bands[1:night_shift]: quote skipped; bands[2:holiday]: quote skipped; bands[3:holiday_compensatory_rest]: quote skipped; bands[4:sunday]: quote skipped; bands[5:rest_day]: quote skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
         ]
       }
     ]

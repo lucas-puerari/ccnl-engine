@@ -298,6 +298,28 @@
         "checked": [
           "work_rules.parental_hourly"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-alimentari-pmi-unionalimentari-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+            "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+          }
+        ],
+        "findings": [
+          "Applied: travel."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -6100,7 +6122,7 @@
     "effective_until": null,
     "source": "https://www.unionalimentari.com/",
     "verification_status": "unverified",
-    "source_hash": "fb07c65f171c18e068a61ab2280327421d2923307683a95b1a76d1d1ddbd780b",
+    "source_hash": "2e08a2530d58fb446ef3c1da95aa1c7ca7ba41fe7f4c27f1b57224a7017abf9a",
     "published_at": "2026-09-07",
     "source_type": "contracting_party"
   },
@@ -15912,6 +15934,37 @@
           "quote": "In detto caso la fruizione su base oraria potrà essere ammessa per periodi pari a un minimo\ndi 4 ore giornaliere, previa comunicazione da parte del lavoratore al datore di lavoro di 15\ngiorni e previo accordo fra le parti in relazione alla fungibilità del lavoratore e\nall’organizzazione aziendale, ovvero dei turni di lavoro."
         },
         "transformation": "The clause adds a four-hour daily minimum and requires notice and agreement; this is a distinct contractual arrangement. The minimum is not a fixed number of hours equivalent to one full-time day of leave. Part-time scaling and the date of first introduction are not established."
+      }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "ontent-uploads-2022-04-ccnl-piccola-e-media-industria-alimentare-28-05-2025q-pdf",
+              "title": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+              "kind": "associazione",
+              "url": "https://www.uila.eu/web/wp-content/uploads/2022/04/CCNL-piccola-e-media-industria-alimentare-28-05-2025q.pdf",
+              "sha256": "1cec66bff121aef674237795a22e01653d3ca8fe7cd17297061e627a80c86dae"
+            },
+            "page": "123",
+            "section": "Art. 34, comma 1",
+            "quote": "Ai lavoratori temporaneamente incaricati di prestazioni di servizio fuori della circoscrizione del Comune, ove ha sede lo stabilimento presso il quale sono in forza, sarà rimborsato l'importo delle spese di viaggio, di vitto e di alloggio, nei limiti della normalità, liquidato in base a nota documentata, salvo accordi forfettari fra le Parti interessate."
+          },
+          "transformation": "The CCNL pays no daily travel allowance: the trasferta is refunded at documented cost",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-alimentari-pmi-unionalimentari-time-supplements"
+          }
+        }
       }
     }
   }

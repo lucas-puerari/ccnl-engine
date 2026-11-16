@@ -240,6 +240,29 @@
           "levels.fixed_allowances.IND_FUNZIONE",
           "coverage.notes"
         ]
+      },
+      {
+        "id": "2026-11-16-ai-sistemazioni-idraulico-forestali-impiegati-time-supplements",
+        "date": "2026-11-16",
+        "reviewer": "claude-opus-5-5",
+        "reviewer_kind": "ai",
+        "scope": "Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes.",
+        "outcome": "corrected",
+        "sources": [
+          {
+            "url": "https://www.flai.it/wp-content/uploads/2023/05/CCNL-Idraulico-Forestale-2023.pdf",
+            "sha256": "fb09d06825c27a3abb8081bec9e1645f17e51920559a6406323225d26b549461"
+          }
+        ],
+        "findings": [
+          "Applied: travel.",
+          "Left out: bands[0:night]: quote skipped; bands[1:holiday]: quote skipped; bands[2:sunday]: quote skipped; none.shift_work: skipped."
+        ],
+        "independence": "separate_model",
+        "checked": [
+          "work_rules.time_supplements",
+          "work_rules.capability_basis"
+        ]
       }
     ]
   },
@@ -1388,7 +1411,7 @@
     "source": "https://www.lavoro-economia.it/?c=9",
     "verification_status": "unverified",
     "published_at": "2026-09-11",
-    "source_hash": "c89ab14fee776f85f0928b1811722c9419118f950ed51d2d827370dd98d8f621",
+    "source_hash": "df1b59f4398c1a9f8fe5691e237b39c0d9da650119ff1c68a10836dbc9910e5f",
     "source_type": "commercial_secondary"
   },
   "work_rules": {
@@ -1503,7 +1526,8 @@
             }
           }
         }
-      ]
+      ],
+      "supplement_bands": []
     },
     "absence_rules": {
       "daily_divisor_method": "by_26",
@@ -1639,6 +1663,37 @@
           "extraction_timestamp": "2026-11-14T00:00:00Z",
           "effective_from": "2025-12-04",
           "verification_status": "unverified"
+        }
+      }
+    },
+    "capability_basis": {
+      "travel_allowance": {
+        "kind": "none_in_ccnl",
+        "provenance": {
+          "status": "verified",
+          "location": {
+            "source_document": {
+              "document_id": "https-www-flai-it-wp-content-uploads-2023-05-ccnl-idraulico-forestale-2023-pdf",
+              "title": "https://www.flai.it/wp-content/uploads/2023/05/CCNL-Idraulico-Forestale-2023.pdf",
+              "kind": "associazione",
+              "url": "https://www.flai.it/wp-content/uploads/2023/05/CCNL-Idraulico-Forestale-2023.pdf",
+              "sha256": "fb09d06825c27a3abb8081bec9e1645f17e51920559a6406323225d26b549461"
+            },
+            "page": "44",
+            "section": "Art. 16, commi 1-2",
+            "quote": "Le spese per viaggio, vitto ed alloggio, ed altre comunque sostenute dal lavoratore per ragioni inerenti al servizio debbono essere rimborsate, previa documentazione, entro un mese. I contratti integrativi potranno stabilire diverse modalità di rimborso delle spese anche non documentabili sostenute per la trasferta."
+          },
+          "transformation": "The CCNL pays no daily travel allowance: the trasferta is refunded at documented cost",
+          "extraction": {
+            "method": "ai",
+            "model": "gpt-6-sol",
+            "extraction_timestamp": "2026-11-16T00:00:00Z",
+            "effective_from": "2026-01-01",
+            "verified_by": "claude-opus-5-5",
+            "verified_at": "2026-11-16T00:00:00Z",
+            "verification_status": "verified",
+            "review_id": "2026-11-16-ai-sistemazioni-idraulico-forestali-impiegati-time-supplements"
+          }
         }
       }
     }
