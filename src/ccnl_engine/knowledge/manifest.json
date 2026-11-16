@@ -2023,7 +2023,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/studi-professionali-confprofessioni",
       "ruleset_version": "2026.2",
-      "source_hash": "112ecfec68011f7717208772377557080a46ad61b871a4b8d1d0680d4d6a9916",
+      "source_hash": "167e50262377f8af19de80e3a184d7bc82ab13ffeabe6eec9f90d99425e408b0",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/studi-professionali-confprofessioni.json.gz"
@@ -2193,7 +2193,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi-alberghi-minori",
       "ruleset_version": "2026.2",
-      "source_hash": "4c820de39c92057ef5b34a2d2206f1c854e3793e378f102b43d07aaf0c84f07a",
+      "source_hash": "8f2d7b7136b7b0be00a16819bbcfff096c826e5521d3775dec1c1d02af18a51f",
       "source_type": "contracting_party",
       "owner": "ccnl-engine maintainers",
       "wheel_resource": "agreement/turismo-federalberghi-alberghi-minori.json.gz"
@@ -2210,7 +2210,7 @@
       "valid_to": null,
       "ruleset_id": "ccnl/turismo-federalberghi",
       "ruleset_version": "2026.2",
-      "source_hash": "738c07879ec08a50d3fa0c3ac186129e6105caec6b4d71c140ce37d4bbd2a1ba",
+      "source_hash": "0b4fef4c195a97c31acec07ffab72293357f26bd6df4e35cc69b896726ddc6f8",
       "source_type": "contracting_party",
       "owner": "maintainer",
       "wheel_resource": "agreement/turismo-federalberghi.json.gz"

@@ -50,7 +50,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | | |
 |---|---|
 | **Last renewal** | 2024-02-16 |
-| **Last review** | 2026-11-14 |
+| **Last review** | 2026-11-16 |
 | **Latest salary tranche** | 2026-12-01 |
 
 ## Review history
@@ -86,6 +86,7 @@ Derived from the capability registry. The scenario features and the ones outside
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 97 C-D, Art. 98 and Art. 44 of the CCNL of 16 February 2024. | corrected | Added the clause of Art. 97 C: a further daily quota (1/26, Art. 44) for a listed holiday, the patron, 4 November (c. D) and the ex festività of 19 March and 29 June (Art. 98) falling on a Sunday or on another holiday. Narrowed unused_leave_hours to the Art. 92 flexibility permits. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 92 (flexibility) and Art. 95 (overtime premium) of the CCNL of 16 February 2024. | corrected | Added the flexibility permits of Art. 92 (30 or 60 minutes a week over 40 hours, paid with the 15% overtime premium in the sixth month after the programme year) and closed unused_leave_hours. |
 | 2026-11-14 | claude-opus-5-5 (ai) | Art. 97 F and Art. 95 of the CCNL of 16 February 2024. | corrected | Added the rest-day premium of Art. 97 F: the hours on the weekly rest day take the premium alone, read as the 30% of Art. 95 for work on non-working days, with the compensatory rest. |
+| 2026-11-16 | claude-opus-5-5 (ai) | Hourly base, night, holiday and shift supplements, travel allowance: quotes located in the cited files by sha256, values read against the quotes. | corrected | Applied: none.night_work.<br>Left out: none.shift_work: skipped. |
 
 ## Salary table
 
